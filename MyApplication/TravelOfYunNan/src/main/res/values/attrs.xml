@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="change_color_icon" format="reference"/>
-    <attr name="change_color_text_size" format="dimension"/>
-    <attr name="change_color_text" format="string"/>
-    <attr name="change_color_color" format="color"/>
-    <declare-styleable name="ChangeColorButtonWithText">
-        <attr name="change_color_icon"/>
-        <attr name="change_color_text_size"/>
-        <attr name="change_color_text"/>
-        <attr name="change_color_color"/>
+    <attr name="gradient_normal_color" format="color"/>
+    <attr name="gradient_checked_up_color" format="color"/>
+    <attr name="gradient_checked_down_color" format="color"/>
+    <declare-styleable name="GradientTextView">
+        <attr name="gradient_normal_color"/>
+        <attr name="gradient_checked_up_color"/>
+        <attr name="gradient_checked_down_color"/>
     </declare-styleable>
 </resources>

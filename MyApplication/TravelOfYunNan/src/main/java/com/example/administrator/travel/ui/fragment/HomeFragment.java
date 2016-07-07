@@ -23,32 +23,26 @@ import com.example.administrator.travel.ui.view.ToShowAllGridView;
  * Created by Administrator on 2016/7/6 0006.
  * 主页Fragment
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
     private static final int RECYCLE_VIEW_ITEM_SPACE=24;//子VIEW之间的间距
 
-    private View root;//跟布局
+
     private ToShowAllGridView mGvChosen;//精选
     private ChosenAdapter chosenAdapter;
     private RecyclerView mRvHotSpots;
     private ListView mLvTravels;
     private EditText mEdSearch;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        root = View.inflate(getActivity(), R.layout.fragment_home, null);
-        return root;
-    }
+
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initView();
-        initListener();
-        initData();
+    protected int initLayoutRes() {
+        return R.layout.fragment_home;
     }
 
-    private void initView() {
+
+
+    protected void initView() {
         mEdSearch = (EditText) root.findViewById(R.id.ed_search);
         root.findViewById(R.id.tv_focus).requestFocus();//抢夺Ed的焦点,搜索框的
         mGvChosen = (ToShowAllGridView) root.findViewById(R.id.gv_chosen);
@@ -58,11 +52,11 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void initListener() {
+    protected void initListener() {
 
     }
 
-    private void initData() {
+    protected void initData() {
         chosenAdapter = new ChosenAdapter(getActivity(), null);
         mGvChosen.setAdapter(chosenAdapter);
 

@@ -14,56 +14,113 @@
     </android.support.v4.view.ViewPager>
 
     <android.support.v7.widget.CardView
-        custom:cardElevation="10dp"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="48dp"
+        custom:cardElevation="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/homeTopicChosenBg"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp">
+            android:orientation="horizontal">
+
             <LinearLayout
                 android:id="@+id/ll_main_click"
-                style="@style/HomeButtonParentLL"
-                >
-                <TextView
-                    style="@style/HomeButtonIconFonts"
+                style="@style/HomeButtonParentLL">
+
+                <com.example.administrator.travel.ui.view.GradientTextView
                     android:id="@+id/tv_home_fonts_icon"
+                    style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_main"
-                     />
+                    android:textSize="20sp"
+                    custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
+                    custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
+                    custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />
+
                 <TextView
-                    style="@style/HomeButtonIconName"
                     android:id="@+id/tv_home_name"
-                    android:text="首页"
-                    />
+                    style="@style/HomeButtonIconName"
+                    android:text="首页" />
             </LinearLayout>
-            <View
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                />
+
+
             <LinearLayout
                 android:id="@+id/ll_appoint_click"
-                style="@style/HomeButtonParentLL"
-                >
-                <TextView
-                    style="@style/HomeButtonIconFonts"
+                style="@style/HomeButtonParentLL">
+
+                <com.example.administrator.travel.ui.view.GradientTextView
                     android:id="@+id/tv_appoint_fonts_icon"
+                    style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_appoint"
-                    />
+                    android:textSize="25sp"
+                    custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
+                    custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
+                    custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />
+
                 <TextView
-                    style="@style/HomeButtonIconName"
                     android:id="@+id/tv_appoint_name"
-                    android:text="约伴"
-                    />
+                    style="@style/HomeButtonIconName"
+                    android:text="约伴" />
             </LinearLayout>
 
+
+            <LinearLayout
+                android:id="@+id/ll_circle_click"
+                style="@style/HomeButtonParentLL">
+
+                <com.example.administrator.travel.ui.view.GradientTextView
+                    android:id="@+id/tv_circle_fonts_icon"
+                    style="@style/HomeButtonIconFonts"
+                    android:text="@string/home_activity_button_circle"
+                    custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
+                    custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
+                    custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />
+
+                <TextView
+                    android:id="@+id/tv_circle_name"
+                    style="@style/HomeButtonIconName"
+                    android:text="圈子" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_find_click"
+                style="@style/HomeButtonParentLL">
+
+                <com.example.administrator.travel.ui.view.GradientTextView
+                    android:id="@+id/tv_find_fonts_icon"
+                    style="@style/HomeButtonIconFonts"
+                    android:text="@string/home_activity_button_find"
+                    custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
+                    custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
+                    custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />
+
+                <TextView
+                    android:id="@+id/tv_find_name"
+                    style="@style/HomeButtonIconName"
+                    android:text="发现" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_me_click"
+                style="@style/HomeButtonParentLL">
+
+                <com.example.administrator.travel.ui.view.GradientTextView
+                    android:id="@+id/tv_me_fonts_icon"
+                    style="@style/HomeButtonIconFonts"
+                    android:text="@string/home_activity_button_me"
+                    android:textSize="20sp"
+                    custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
+                    custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
+                    custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />
+
+                <TextView
+                    android:id="@+id/tv_me_name"
+                    style="@style/HomeButtonIconName"
+                    android:text="我" />
+            </LinearLayout>
         </LinearLayout>
-
-
     </android.support.v7.widget.CardView>
 
 </LinearLayout>

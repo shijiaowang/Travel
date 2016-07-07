@@ -11,6 +11,15 @@
     <color name="homeTopicChosenBg">#fafafa</color>
     <color name="homeTopicChosenText">#323232</color>
     <color name="homeLine">#c7c6c6</color>
+    <!--homeActivity-->
+    <color name="homeButtonUnCheckedColor">#646464</color><!--未选中颜色-->
+    <color name="homeIconFontsUpCheckedColor">#60edb3</color>
+    <color name="homeButtonCheckedColor">#64d6fb</color>
+    <!--CircleFragment-->
+    <color name="circleFragmentSearchHintTextColor">#d2ffee</color>
+    <color name="circleTitleColorUnChecked">#fafafa</color>
+    <color name="circleTitleColorChecked">#f1da60</color>
+
 
 
 

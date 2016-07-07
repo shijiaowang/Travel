@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="yunshuo.yneb.com.yunnantravel.MainActivity">
 
-    <TextView
+    <yunshuo.yneb.com.yunnantravel.GradientTextView
         android:id="@+id/tv_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

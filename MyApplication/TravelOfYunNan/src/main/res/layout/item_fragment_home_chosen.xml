@@ -19,6 +19,7 @@
     <TextView
         android:id="@+id/tv_chosen_text"
         android:text="是谁，在敲打你窗，是谁是谁是谁"
+        android:lineSpacingExtra="3dp"
         android:ellipsize="end"
         android:textSize="10sp"
         android:textColor="@color/homeTopicChosenText"
