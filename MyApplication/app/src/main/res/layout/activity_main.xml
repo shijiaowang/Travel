@@ -10,7 +10,8 @@
     tools:context="yunshuo.yneb.com.yunnantravel.MainActivity">
 
     <TextView
+        android:id="@+id/tv_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/app_icon" />
 </RelativeLayout>

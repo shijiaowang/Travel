@@ -8,7 +8,7 @@ import android.widget.ImageView;
  */
 public class Chosen {
     private String Type;//主题类型
-    private ImageView picture;//展示图片
+    private String pictureUrl;//展示图片
     private String desc;//描述内容
 
     public String getType() {
@@ -27,11 +27,11 @@ public class Chosen {
         this.desc = desc;
     }
 
-    public ImageView getPicture() {
-        return picture;
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 
-    public void setPicture(ImageView picture) {
-        this.picture = picture;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 }

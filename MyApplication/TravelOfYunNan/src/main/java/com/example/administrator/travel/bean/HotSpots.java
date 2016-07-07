@@ -9,7 +9,16 @@ import android.widget.ImageView;
 public class HotSpots {
     private String hotSpotsName;
     private String addr;//地址
-    private ImageView picture;
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    private String pictureUrl;
 
     public String getHotSpotsName() {
         return hotSpotsName;
@@ -27,11 +36,5 @@ public class HotSpots {
         this.addr = addr;
     }
 
-    public ImageView getPicture() {
-        return picture;
-    }
 
-    public void setPicture(ImageView picture) {
-        this.picture = picture;
-    }
 }

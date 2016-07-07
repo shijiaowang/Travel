@@ -20,10 +20,13 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_focus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:text="@string/homeName"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
@@ -41,6 +44,7 @@
                 android:background="@drawable/home_search_bg">
 
                 <EditText
+                    android:id="@+id/ed_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -48,6 +52,7 @@
                     android:background="@null"
                     android:hint="输入您的关键词"
                     android:textColorHint="@android:color/white"
+                    android:textCursorDrawable="@null"
                     android:textSize="15sp" />
 
                 <ImageView
@@ -64,10 +69,10 @@
     </RelativeLayout>
 
     <ScrollView
-        android:background="@color/homeContentBg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/homeContentBg">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,8 +85,8 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/home_pic1" />
 
-            <LinearLayout style="@style/HomeTopicParent"
-                >
+            <LinearLayout style="@style/HomeTopicParent">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,16 +96,17 @@
                     style="@style/HomeTopicText"
                     android:text="@string/home_topic_chosen" />
             </LinearLayout>
+
             <com.example.administrator.travel.ui.view.ToShowAllGridView
-                android:numColumns="2"
                 android:id="@+id/gv_chosen"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:horizontalSpacing="18dp"
-                android:verticalSpacing="10dp"
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="22dp"
-                android:layout_marginTop="14dp">
+                android:layout_marginTop="14dp"
+                android:horizontalSpacing="18dp"
+                android:numColumns="2"
+                android:verticalSpacing="10dp">
 
             </com.example.administrator.travel.ui.view.ToShowAllGridView>
 
@@ -127,12 +133,13 @@
                     style="@style/HomeTopicText"
                     android:text="@string/home_topic_hot_spots" />
             </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_hot_spots"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="14dp">
 
             </android.support.v7.widget.RecyclerView>
 
@@ -148,13 +155,17 @@
                     android:text="@string/home_topic_travels" />
             </LinearLayout>
 
-            <ListView
+            <com.example.administrator.travel.ui.view.ToShowAllListView
+                android:id="@+id/lv_travels"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="14dp"
+                android:divider="@color/homeContentBg"
+                android:dividerHeight="10dp">
 
-            </ListView>
+            </com.example.administrator.travel.ui.view.ToShowAllListView>
 
         </LinearLayout>
     </ScrollView>

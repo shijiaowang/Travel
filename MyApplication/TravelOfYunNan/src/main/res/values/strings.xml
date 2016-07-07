@@ -5,4 +5,12 @@
     <string name="home_topic_chosen">精选</string>
     <string name="home_topic_travels">经典游记</string>
     <string name="home_topic_hot_spots">热门景点</string>
+    <!--底部导航-->
+    <string name="home_activity_button_appoint">樾</string><!--//约伴字体-->
+    <string name="home_activity_button_circle">荃</string><!--//圈子字体-->
+    <string name="home_activity_button_find">阀</string><!--//发现字体-->
+    <string name="home_activity_button_me">涡</string><!--//我字体-->
+    <string name="home_activity_button_main">绶</string><!--//首页字体-->
+
+
 </resources>
