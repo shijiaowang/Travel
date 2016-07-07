@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.HomeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:background="@color/homeTitleBg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="@string/homeName"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/home_triangle" />
+
+            <RelativeLayout
+                android:layout_width="250dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="26dp"
+                android:background="@drawable/home_search_bg">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:hint="输入您的关键词"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/home_search" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:background="@color/homeContentBg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="203dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/home_pic1" />
+
+            <LinearLayout style="@style/HomeTopicParent"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_topic_chosen" />
+
+                <TextView
+                    style="@style/HomeTopicText"
+                    android:text="@string/home_topic_chosen" />
+            </LinearLayout>
+            <com.example.administrator.travel.ui.view.ToShowAllGridView
+                android:numColumns="2"
+                android:id="@+id/gv_chosen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:horizontalSpacing="18dp"
+                android:verticalSpacing="10dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_marginTop="14dp">
+
+            </com.example.administrator.travel.ui.view.ToShowAllGridView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="134dp"
+                android:layout_marginTop="18dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/home_pic2" />
+            </RelativeLayout>
+
+            <LinearLayout style="@style/HomeTopicParent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_topic_hot_spots" />
+
+                <TextView
+                    style="@style/HomeTopicText"
+                    android:text="@string/home_topic_hot_spots" />
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_hot_spots"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout style="@style/HomeTopicParent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_topic_travels" />
+
+                <TextView
+                    style="@style/HomeTopicText"
+                    android:text="@string/home_topic_travels" />
+            </LinearLayout>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+            </ListView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

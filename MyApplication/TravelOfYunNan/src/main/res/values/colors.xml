@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+ <!--homeFragment-->
+    <color name="homeTitleBg">#5cd1c3</color>
+    <color name="homeTopicTextColor">#323233</color>
+    <color name="homeContentBg">#f0eff5</color>
+    <color name="homeTopicChosenBg">#fafafa</color>
+    <color name="homeTopicChosenText">#323232</color>
+
+
+
+</resources>
