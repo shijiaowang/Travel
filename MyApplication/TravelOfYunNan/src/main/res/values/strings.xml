@@ -10,7 +10,10 @@
     <string name="home_activity_button_circle">荃</string><!--//圈子字体-->
     <string name="home_activity_button_find">阀</string><!--//发现字体-->
     <string name="home_activity_button_me">涡</string><!--//我字体-->
-    <string name="home_activity_button_main">绶</string><!--//首页字体-->
+    <string name="home_activity_button_main">绶</string>
+    <string name="activity_circle_back_font_icon">泛</string>
+    <string name="activity_circle_create_post_font_icon">屑</string>
+    <!--//首页字体-->
 
 
 </resources>

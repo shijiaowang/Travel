@@ -19,6 +19,10 @@
     <color name="circleFragmentSearchHintTextColor">#d2ffee</color>
     <color name="circleTitleColorUnChecked">#fafafa</color>
     <color name="circleTitleColorChecked">#f1da60</color>
+    <color name="circleNavLeftChecked">#ffbf75</color>
+    <!--CircleActivity-->
+    <color name="circleDesText">#7e7e7e</color>
+    <color name="circleDesNum">#ffbf75</color>
 
 
 

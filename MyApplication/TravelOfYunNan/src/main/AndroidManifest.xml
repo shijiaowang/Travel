@@ -18,8 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.HomeActivity"
-            android:configChanges="orientation|keyboardHidden"
+            android:configChanges="orientation|screenSize"
             />
+        <activity android:name=".ui.activity.CircleActivity"/>
         <activity android:name=".ui.activity.BaseActivity"></activity>
     </application>
 

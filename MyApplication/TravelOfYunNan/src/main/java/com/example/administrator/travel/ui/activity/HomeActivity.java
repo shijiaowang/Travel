@@ -131,11 +131,12 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     private void initData() {
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
+        fragments.add(new HomeFragment());
         fragments.add(new CircleFragment());
         fragments.add(new HomeFragment());
         fragments.add(new HomeFragment());
-        fragments.add(new HomeFragment());
         mVpHome.setAdapter(new HomeFragmentAdapter(getSupportFragmentManager()));
+        mVpHome.setOffscreenPageLimit(3);//设置缓存距离为3
         initIconFonts();
         setCheckedOfPosition(0);
 
@@ -197,6 +198,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
         }
     }
+
 
     /**
      * 根据viewpager切换的位置设置选中button

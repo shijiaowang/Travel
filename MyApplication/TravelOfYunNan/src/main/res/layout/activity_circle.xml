@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="202dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/activity_circle_bg" />
+
+                <ImageView
+                    android:id="@+id/iv_post_icon"
+                    android:layout_width="66dp"
+                    android:layout_height="63dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="175dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/activity_circle_post_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="180dp"
+                    android:layout_toRightOf="@id/iv_post_icon"
+                    android:text="业余摄影圈"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_follow"
+                    android:layout_width="60dp"
+                    android:layout_height="23dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="170dp"
+                    android:src="@drawable/activity_circle_follow" />
+
+                <TextView
+                    android:id="@+id/iv_des"
+                    style="@style/CircleText"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="208dp"
+                    android:layout_toRightOf="@id/iv_post_icon"
+                    android:text="简介: 学生党，上班族，业余爱好者集结地。" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_des"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@id/iv_post_icon"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/CircleText"
+                        android:layout_marginLeft="15dp"
+                        android:text="关注：" />
+
+                    <TextView
+                        style="@style/CircleText"
+                        android:layout_marginLeft="2dp"
+                        android:text="1123"
+                        android:textColor="@color/circleDesNum" />
+
+                    <TextView
+                        style="@style/CircleText"
+                        android:layout_marginLeft="33dp"
+                        android:text="关注：" />
+
+                    <TextView
+                        style="@style/CircleText"
+                        android:layout_marginLeft="2dp"
+                        android:text="1123"
+                        android:textColor="@color/circleDesNum" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#e8e8e8" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"></LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e8e8e8" />
+
+            <com.example.administrator.travel.ui.view.ToShowAllListView
+                android:id="@+id/lv_post"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@android:color/transparent">
+
+            </com.example.administrator.travel.ui.view.ToShowAllListView>
+        </LinearLayout>
+
+
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="39dp"
+            android:text="@string/activity_circle_back_font_icon"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_create_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="38dp"
+            android:text="@string/activity_circle_create_post_font_icon"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+    </LinearLayout>
+</RelativeLayout>

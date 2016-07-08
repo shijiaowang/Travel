@@ -47,24 +47,28 @@
         </RelativeLayout>
 
         <TextView
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:id="@+id/tv_left_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="18dp"
-            android:layout_marginLeft="66dp"
+            android:paddingBottom="18dp"
+            android:layout_marginLeft="56dp"
             android:text="圈子导航"
             android:textColor="@color/circleTitleColorChecked"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_right_title"
+            android:paddingLeft="15dp"
+            android:paddingRight="13dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="18dp"
-            android:layout_marginRight="73dp"
+            android:paddingBottom="18dp"
+            android:layout_marginRight="60dp"
             android:text="热帖"
             android:textColor="@color/circleTitleColorUnChecked"
             android:textSize="12sp" />

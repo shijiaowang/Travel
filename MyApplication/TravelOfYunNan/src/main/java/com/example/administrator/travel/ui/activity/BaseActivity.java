@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +31,22 @@ public class BaseActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
           //  window.setNavigationBarColor(Color.TRANSPARENT);
         }
+        setContentView(initLayoutRes());
+        initView();
+        initListener();
+        initData();
     }
+    protected abstract int initLayoutRes();
+
+    protected abstract void initView();
+
+    protected abstract void initListener();
+
+    protected abstract void initData();
+
+
+
+
+
+
 }
