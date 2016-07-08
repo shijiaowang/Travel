@@ -6,7 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.CircleNavLeftAdapter;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 
 /**
@@ -14,19 +17,22 @@ import com.example.administrator.travel.ui.fragment.BaseFragment;
  */
 public class NavigationFragment extends BaseFragment {
 
+    private ListView mLvLeftNav;
+
     @Override
     protected int initLayoutRes() {
-        return 0;
+        return R.layout.fragment_circle_navigation;
     }
 
     @Override
     protected void initView() {
+        mLvLeftNav = (ListView) super.root.findViewById(R.id.lv_left_nav);
 
     }
 
     @Override
     protected void initData() {
-
+        mLvLeftNav.setAdapter(new CircleNavLeftAdapter(getActivity(),null));
     }
 
     @Override

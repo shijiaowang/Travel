@@ -13,11 +13,11 @@
 
     </android.support.v4.view.ViewPager>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        custom:cardElevation="10dp">
 
+      <View
+          android:background="@drawable/gradient_line"
+          android:layout_width="match_parent"
+          android:layout_height="1dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -33,7 +33,7 @@
                     android:id="@+id/tv_home_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_main"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
                     custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
                     custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />
@@ -53,7 +53,7 @@
                     android:id="@+id/tv_appoint_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_appoint"
-                    android:textSize="25sp"
+                    android:textSize="28sp"
                     custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
                     custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
                     custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />
@@ -110,7 +110,7 @@
                     android:id="@+id/tv_me_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_me"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
                     custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
                     custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />
@@ -121,6 +121,6 @@
                     android:text="我" />
             </LinearLayout>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+
 
 </LinearLayout>

@@ -198,6 +198,10 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
+    /**
+     * 根据viewpager切换的位置设置选中button
+     * @param position
+     */
     private void setCheckedOfPosition(int position) {
         if (position < 0 || position >= iconFonts.size()) {
             return;

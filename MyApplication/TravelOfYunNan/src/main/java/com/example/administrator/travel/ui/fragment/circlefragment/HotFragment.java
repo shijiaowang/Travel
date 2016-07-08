@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.CircleHotAdapter;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 
 /**
@@ -28,7 +29,7 @@ public class HotFragment extends BaseFragment {
     }
     @Override
     protected void initData() {
-
+       mLvCircleHot.setAdapter(new CircleHotAdapter(getActivity(),null));
     }
 
     @Override

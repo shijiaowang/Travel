@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Chosen;
 import com.example.administrator.travel.ui.activity.BaseActivity;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.adapter.holer.ChosenHolder;
 
 import java.util.List;
 
@@ -19,53 +21,22 @@ import java.util.List;
  * Created by Administrator on 2016/7/6 0006.
  * 主页精选
  */
-public class ChosenAdapter extends BaseAdapter {
-    private static final int MAX_CHILD = 4;//最多展示4个
-    private Context mContext;
-    private List<Chosen> mDatas;
+public class ChosenAdapter extends TravelBaseAdapter<Chosen> {
 
     public ChosenAdapter(Context mContext, List<Chosen> mDatas) {
-        this.mContext = mContext;
-        this.mDatas = mDatas;
+        super(mContext, mDatas);
+
+
+    }
+   //测试数据
+    @Override
+    protected int testDataSize() {
+        return 4;
     }
 
     @Override
-    public int getCount() {
-        if (mDatas==null){
-            return MAX_CHILD;
-        }
-        if (mDatas.size() > MAX_CHILD) {
-            return MAX_CHILD;
-        }
-        return mDatas.size();
-    }
+    protected BaseHolder initHolder() {
 
-    @Override
-    public Chosen getItem(int position) {
-        return mDatas.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ChosenHolder chosenHolder;
-        if (convertView==null){
-            chosenHolder=new ChosenHolder();
-            convertView=View.inflate(mContext,R.layout.item_fragment_home_chosen,null);
-            chosenHolder.mIvChosenPicture= (ImageView) convertView.findViewById(R.id.iv_chosen_picture);
-            chosenHolder.mTvChosenContent= (TextView) convertView.findViewById(R.id.tv_chosen_text);
-            convertView.setTag(chosenHolder);
-        }else {
-            chosenHolder= (ChosenHolder) convertView.getTag();
-        }
-        return convertView;
-    }
-    static class ChosenHolder{
-        TextView mTvChosenContent;
-        ImageView mIvChosenPicture;
+        return new ChosenHolder(super.mContext);
     }
 }

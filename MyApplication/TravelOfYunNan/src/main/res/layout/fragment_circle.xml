@@ -2,7 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.v4.view.ViewPager
+        android:layout_marginTop="117dp"
+        android:id="@+id/vp_circle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    </android.support.v4.view.ViewPager>
     <RelativeLayout
         android:id="@+id/rl_title_bg"
         android:layout_width="match_parent"
@@ -41,6 +47,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/tv_left_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -51,6 +58,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_right_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -61,11 +69,5 @@
             android:textColor="@color/circleTitleColorUnChecked"
             android:textSize="12sp" />
     </RelativeLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_circle"
-        android:layout_below="@id/rl_title_bg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </android.support.v4.view.ViewPager>
 </RelativeLayout>

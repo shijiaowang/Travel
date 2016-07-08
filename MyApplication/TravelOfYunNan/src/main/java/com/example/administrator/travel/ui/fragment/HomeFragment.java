@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
@@ -51,9 +52,26 @@ public class HomeFragment extends BaseFragment {
 
 
     }
-
+     public boolean isFirst=true;//避免进入主页已经调用onScrolled，造成未滑动边距就已经为0
     protected void initListener() {
+        mRvHotSpots.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (isFirst) {
+                    isFirst = false;
+                }else {
+                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mRvHotSpots.getLayoutParams();
+                    layoutParams.leftMargin = 0;
+                    mRvHotSpots.setLayoutParams(layoutParams);
+                }
+            }
 
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
     }
 
     protected void initData() {
