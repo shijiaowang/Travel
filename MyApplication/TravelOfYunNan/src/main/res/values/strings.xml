@@ -1,18 +1,27 @@
 <resources>
-    <string name="app_name">Travel</string>
+    <string name="app_name">云说</string>
     <!--homeFragment-->
     <string name="homeName">云南</string>
     <string name="home_topic_chosen">精选</string>
     <string name="home_topic_travels">经典游记</string>
     <string name="home_topic_hot_spots">热门景点</string>
     <!--底部导航-->
-    <string name="home_activity_button_appoint">樾</string><!--//约伴字体-->
-    <string name="home_activity_button_circle">荃</string><!--//圈子字体-->
-    <string name="home_activity_button_find">阀</string><!--//发现字体-->
-    <string name="home_activity_button_me">涡</string><!--//我字体-->
+    <string name="home_activity_button_appoint">樾</string>
+    <!--//约伴字体-->
+    <string name="home_activity_button_circle">荃</string>
+    <!--//圈子字体-->
+    <string name="home_activity_button_find">阀</string>
+    <!--//发现字体-->
+    <string name="home_activity_button_me">涡</string>
+    <!--//我字体-->
     <string name="home_activity_button_main">绶</string>
     <string name="activity_circle_back_font_icon">泛</string>
     <string name="activity_circle_create_post_font_icon">屑</string>
+    <string name="activity_circle_love">昝</string>
+    <string name="activity_circle_discuss">倫</string><!--留言-->
+    <string name="activity_circle_love_empty">簪</string><!--空心-->
+    <string name="activity_circle_love_full">昝</string><!--实心-->
+    <!--留言-->
     <!--//首页字体-->
 
 

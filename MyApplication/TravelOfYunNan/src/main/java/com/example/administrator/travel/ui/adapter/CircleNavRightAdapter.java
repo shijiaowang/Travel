@@ -21,8 +21,9 @@ public class CircleNavRightAdapter extends TravelBaseAdapter<CircleNavRight> {
         return 10;
     }
 
+
     @Override
-    protected BaseHolder initHolder() {
+    protected BaseHolder initHolder(int position) {
         return new CircleNavRightHolder(super.mContext);
     }
 }

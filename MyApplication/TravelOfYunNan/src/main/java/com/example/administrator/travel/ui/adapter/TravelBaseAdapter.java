@@ -48,7 +48,7 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         BaseHolder baseHolder;
         if (convertView==null){
-            baseHolder=initHolder();
+            baseHolder=initHolder(position);
             convertView=baseHolder.getRootView();
         }else {
             baseHolder= (BaseHolder) convertView.getTag();
@@ -59,8 +59,9 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
     /**
      * 具体需要的holer
      * @return
+     * @param position
      */
-    protected abstract BaseHolder initHolder();
+    protected abstract BaseHolder initHolder(int position);
 
 
 }

@@ -2,38 +2,41 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
+
     <LinearLayout
-        android:layout_marginTop="19dp"
         android:id="@+id/ll_select"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:gravity="center_vertical"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="19dp"
+        android:gravity="center_vertical">
+
         <TextView
             android:id="@+id/tv_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:text="热门"
             android:textColor="@color/circleNavLeftChecked"
-            android:textSize="15sp"
-            android:layout_marginLeft="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="15sp" />
+
         <ImageView
+            android:id="@+id/iv_cursor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@id/tv_place"
-            android:src="@drawable/fragment_circle_nav_left_normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:src="@drawable/fragment_circle_nav_left_normal" />
     </LinearLayout>
+
     <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/ll_select"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="9dp"
-        android:background="#f1f1f1"
-        android:layout_below="@id/ll_select"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-
-
+        android:background="#f1f1f1" />
 
 
 </RelativeLayout>

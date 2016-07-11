@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginLeft="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="9dp">
+
+        <ImageView
+            android:id="@+id/iv_user_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/circle_post_icon" />
+
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/iv_user_icon"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_user_nike_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="多啦A梦"
+                android:textColor="@color/circleDesText"
+                android:textSize="14sp" />
+
+            <TextView
+                android:text="2016-9-10 8:10"
+                android:textColor="@color/circleDesText"
+                android:textSize="11sp"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <TextView
+        android:layout_marginLeft="13dp"
+        android:text="日系风格. photo by magic"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/circleDesText"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginLeft="13dp"
+        android:text="后期 . 毁图秀秀"
+        android:layout_marginTop="7dp"
+        android:textColor="@color/circleDesText"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="93dp">
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"/>
+        <ImageView
+            android:src="@drawable/activity_circle_pic1"
+            android:layout_width="105dp"
+            android:layout_height="93dp" />
+        <ImageView
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/activity_circle_pic1"
+            android:layout_width="105dp"
+            android:layout_height="93dp" />
+        <ImageView
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/activity_circle_pic1"
+            android:layout_width="105dp"
+            android:layout_height="93dp" />
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="93dp">
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"/>
+        <ImageView
+            android:src="@drawable/activity_circle_pic1"
+            android:layout_width="105dp"
+            android:layout_height="93dp" />
+        <ImageView
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/activity_circle_pic1"
+            android:layout_width="105dp"
+            android:layout_height="93dp" />
+        <ImageView
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/activity_circle_pic1"
+            android:layout_width="105dp"
+            android:layout_height="93dp" />
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="@string/activity_circle_love"
+            android:textColor="#ff7f6c"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#ff7f6c"
+            android:text="1032"
+            android:layout_marginLeft="7dp"
+            android:textSize="11sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginLeft="27dp"
+            android:text="@string/activity_circle_discuss"
+            android:textColor="#a1a1a1"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginRight="31dp"
+            android:textColor="#a1a1a1"
+            android:text="8887"
+            android:layout_marginLeft="7dp"
+            android:textSize="11sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#efeff4" />
+
+</LinearLayout>

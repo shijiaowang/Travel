@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.fragment.circlefragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -10,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.activity.CircleActivity;
@@ -44,13 +47,23 @@ public class NavigationFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        mLvLeftNav.setAdapter(new CircleNavLeftAdapter(getActivity(),null));
-        mLvRightNav.setAdapter(new CircleNavRightAdapter(getActivity(),null));
+        mLvLeftNav.setAdapter(new CircleNavLeftAdapter(getActivity(), null));
+        mLvRightNav.setAdapter(new CircleNavRightAdapter(getActivity(), null));
 
     }
 
     @Override
     protected void initListener() {
+        mLvLeftNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // TODO: 2016/7/11 0011 根据position获取集合中的数据，重新加载右边集合
+
+
+
+
+            }
+        });
         mLvRightNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

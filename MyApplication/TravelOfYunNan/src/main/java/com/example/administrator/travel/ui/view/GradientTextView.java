@@ -102,7 +102,7 @@ public class GradientTextView extends TextView {
     }
 
     private static final String SYSTEM_SAVE="system_save";//系统存储的
-    private static final String DIV_SAVE="ME_save";//自定义存储
+    private static final String DIV_SAVE="div_save";//自定义存储
     @Override
     public Parcelable onSaveInstanceState() {
         Bundle bundle=new Bundle();

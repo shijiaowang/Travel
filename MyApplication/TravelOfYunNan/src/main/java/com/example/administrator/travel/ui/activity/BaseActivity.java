@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.VideoView;
 
 public abstract class BaseActivity extends AppCompatActivity {
 

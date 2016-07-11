@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.travel.ui.activity.PostActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="#5cd0c2"
+        android:paddingTop="25dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/activity_post_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:text="帖子详情"
+            android:textColor="#fafafa"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_post_detail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null">
+
+    </ListView>
+    <View
+        android:background="@drawable/gradient_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="14dp"
+        android:background="#fafafa"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginLeft="28dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/activity_post_enter" />
+        <EditText
+            android:textSize="11sp"
+            android:layout_marginLeft="7dp"
+            android:textColorHint="#c1c1c1"
+            android:hint="发表你的看法"
+            android:background="@null"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:layout_width="21dp"
+            android:layout_height="18dp"
+            android:layout_marginRight="45dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/activity_post_large_love" />
+
+        <ImageView
+            android:layout_width="21dp"
+            android:layout_height="18dp"
+            android:layout_marginRight="48dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/activity_post_share" />
+
+    </LinearLayout>
+
+</LinearLayout>

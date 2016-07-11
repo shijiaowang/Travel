@@ -1,18 +1,10 @@
 package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.administrator.travel.bean.CircleHot;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.CircleHotHolder;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -31,8 +23,10 @@ public class CircleHotAdapter extends TravelBaseAdapter<CircleHot> {
         return 2;
     }
 
+
+
     @Override
-    protected BaseHolder initHolder() {
+    protected BaseHolder initHolder(int position) {
         return new CircleHotHolder(super.mContext);
     }
 

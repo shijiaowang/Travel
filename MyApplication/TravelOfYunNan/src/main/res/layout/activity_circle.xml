@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <com.example.administrator.travel.ui.view.SlippingScrollView
+        android:id="@+id/sv_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,6 +20,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/iv_post_bg"
                     android:layout_width="match_parent"
                     android:layout_height="202dp"
                     android:scaleType="fitXY"
@@ -108,17 +112,24 @@
                 android:background="#e8e8e8" />
 
             <com.example.administrator.travel.ui.view.ToShowAllListView
+                android:layout_marginTop="17dp"
+                android:divider="@null"
                 android:id="@+id/lv_post"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:cacheColorHint="@android:color/transparent">
-
             </com.example.administrator.travel.ui.view.ToShowAllListView>
         </LinearLayout>
-
-
-    </ScrollView>
+    </com.example.administrator.travel.ui.view.SlippingScrollView>
+    <View
+        android:id="@+id/ll_title_bg"
+        android:alpha="0"
+        android:background="@color/homeTitleBg"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        />
     <LinearLayout
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="73dp"
         android:orientation="horizontal">
@@ -131,7 +142,7 @@
             android:layout_marginTop="39dp"
             android:text="@string/activity_circle_back_font_icon"
             android:textColor="#ffffff"
-            android:textSize="22sp" />
+            android:textSize="24sp" />
 
         <View
             android:layout_width="0dp"
@@ -146,6 +157,6 @@
             android:layout_marginTop="38dp"
             android:text="@string/activity_circle_create_post_font_icon"
             android:textColor="#ffffff"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 </RelativeLayout>
