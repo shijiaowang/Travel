@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +19,12 @@ import com.example.administrator.travel.ui.adapter.SpaceItemDecoration;
 import com.example.administrator.travel.ui.adapter.ChosenAdapter;
 import com.example.administrator.travel.ui.adapter.HotSpotsAdapter;
 import com.example.administrator.travel.ui.adapter.TravelsAdapter;
+import com.example.administrator.travel.ui.adapter.fragment.HomeActiveAdapter;
+import com.example.administrator.travel.ui.fragment.homefragment.HomeActiveFragment;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/7/6 0006.
@@ -33,7 +39,7 @@ public class HomeFragment extends BaseFragment {
     private RecyclerView mRvHotSpots;
     private ListView mLvTravels;
     private EditText mEdSearch;
-
+    private ViewPager mVpActive;
 
 
     @Override
@@ -49,6 +55,7 @@ public class HomeFragment extends BaseFragment {
         mGvChosen = (ToShowAllGridView) root.findViewById(R.id.gv_chosen);
         mRvHotSpots = (RecyclerView) root.findViewById(R.id.rv_hot_spots);
         mLvTravels = (ListView) root.findViewById(R.id.lv_travels);
+        mVpActive = (ViewPager) root.findViewById(R.id.vp_active);
 
 
     }
@@ -84,7 +91,12 @@ public class HomeFragment extends BaseFragment {
         mRvHotSpots.setItemAnimator(new DefaultItemAnimator());
         mRvHotSpots.addItemDecoration(new SpaceItemDecoration(RECYCLE_VIEW_ITEM_SPACE));//设置孩子间距为24px;
 
-        mLvTravels.setAdapter(new TravelsAdapter(getActivity(),null));
+        mLvTravels.setAdapter(new TravelsAdapter(getActivity(), null));
+        List<BaseFragment> fragments=new ArrayList<>();
+        fragments.add(new HomeActiveFragment());
+        fragments.add(new HomeActiveFragment());
+        fragments.add(new HomeActiveFragment());
+        mVpActive.setAdapter(new HomeActiveAdapter(getChildFragmentManager(),fragments));
     }
 
 

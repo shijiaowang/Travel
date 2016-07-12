@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.activity;
 
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.fragment.CircleFragment;
 import com.example.administrator.travel.ui.fragment.HomeFragment;
+import com.example.administrator.travel.ui.fragment.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
 
 import java.util.ArrayList;
@@ -33,11 +35,13 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     private List<TextView> iconNames = new ArrayList<>(5);
     private ViewPager mVpHome;
     private List<Fragment> fragments;
+    //渐变图标
     private GradientTextView mTvHomeIconFonts;
     private GradientTextView mTvAppointIconFonts;
     private GradientTextView mTvCircleIconFonts;
     private GradientTextView mTvFindIconFonts;
     private GradientTextView mTvMeIconFonts;
+
     private TextView mTvCircleName;
     private TextView mTvAppointName;
     private TextView mTvMeName;
@@ -47,6 +51,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             // Translucent status bar
@@ -134,7 +139,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         fragments.add(new HomeFragment());
         fragments.add(new CircleFragment());
         fragments.add(new HomeFragment());
-        fragments.add(new HomeFragment());
+        fragments.add(new MeFragment());
         mVpHome.setAdapter(new HomeFragmentAdapter(getSupportFragmentManager()));
         mVpHome.setOffscreenPageLimit(3);//设置缓存距离为3
         initIconFonts();

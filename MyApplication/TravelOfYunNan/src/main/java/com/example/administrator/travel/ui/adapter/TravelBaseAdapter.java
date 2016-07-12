@@ -82,7 +82,7 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
     }
 
     /**
-     * 具体需要的holer
+     * 具体需要的holder
      * @return
      * @param position
      */
