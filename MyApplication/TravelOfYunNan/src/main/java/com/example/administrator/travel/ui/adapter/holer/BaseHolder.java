@@ -22,7 +22,7 @@ public abstract class BaseHolder<T> {
         return root;
     }
 
-    protected void setDatas(T datas){
+    public void setDatas(T datas){
         this.datas=datas;
         initItemDatas(datas,mContext);
     }

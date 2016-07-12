@@ -6,6 +6,7 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyImageHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyTextHolder;
+import com.example.administrator.travel.utils.LogUtils;
 
 import java.util.List;
 
@@ -19,15 +20,16 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
 
     @Override
     protected int testDataSize() {
-        return 6;
+        return 30;
     }
 
 
     @Override
     protected BaseHolder initHolder(int position) {
-        if (position==0){
+        int itemViewType = getItemViewType(position);
+        if (itemViewType==TravelBaseAdapter.TYPE_POST_OP){
             return new PostOpHolder(super.mContext);
-        }else if (position%2==0){
+        }else if (itemViewType==TravelBaseAdapter.TYPE_POST_IMG){
             return new PostReplyImageHolder(super.mContext);
         }else {
             return new PostReplyTextHolder(super.mContext);

@@ -3,6 +3,8 @@ package com.example.administrator.travel.ui.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,11 +39,6 @@ public class SingleView extends LinearLayout {
         initView(context);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        setChecked(false);
-    }
 
     private void initView(Context context){
         // 填充布局
@@ -52,10 +49,8 @@ public class SingleView extends LinearLayout {
     }
 
 
-    public void setChecked( boolean checked) {
-        isChecked=checked;
-        mTvPlace.setTextColor(checked? Color.YELLOW:Color.RED);
-        invalidate();
+    public void setChecked() {
+        mTvPlace.setTextColor(Color.GREEN);
     }
 
 
@@ -70,5 +65,30 @@ public class SingleView extends LinearLayout {
      */
     public void setTitle(String text){
         mTvPlace.setText(text);
+    }
+    /**
+     * 恢复
+     * @param state
+     */
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof Bundle){
+            Bundle bundle = (Bundle) state;
+            this.isChecked=bundle.getBoolean(DIV_SAVE);
+            super.onRestoreInstanceState(bundle.getParcelable(SYSTEM_SAVE));
+            return;
+
+        }
+        super.onRestoreInstanceState(state);
+    }
+
+    private static final String SYSTEM_SAVE="system_save";//系统存储的
+    private static final String DIV_SAVE="div_save";//自定义存储
+    @Override
+    public Parcelable onSaveInstanceState() {
+        Bundle bundle=new Bundle();
+        bundle.putParcelable(SYSTEM_SAVE,super.onSaveInstanceState());
+        bundle.putBoolean(DIV_SAVE, isChecked);
+        return bundle;
     }
 }
