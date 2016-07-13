@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:textColor="#fcae04"
+    android:layout_marginBottom="10dp"
+    android:textSize="10sp"
+    android:layout_marginRight="15dp"
+    android:gravity="center"
+    android:background="@drawable/fragment_me_titles_bg"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+</TextView>
