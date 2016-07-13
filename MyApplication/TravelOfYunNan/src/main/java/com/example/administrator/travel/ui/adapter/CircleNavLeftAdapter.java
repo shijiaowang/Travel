@@ -1,13 +1,11 @@
 package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
-import android.view.View;
 
 import com.example.administrator.travel.bean.CircleNavLeft;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.CircleNavLeftHolder;
 import com.example.administrator.travel.ui.view.SingleView;
-import com.example.administrator.travel.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +24,10 @@ public class CircleNavLeftAdapter extends TravelBaseAdapter<CircleNavLeft> {
         return 20;
     }
 
+    @Override
+    protected void initListener(BaseHolder baseHolder, CircleNavLeft item) {
+
+    }
 
 
     @Override

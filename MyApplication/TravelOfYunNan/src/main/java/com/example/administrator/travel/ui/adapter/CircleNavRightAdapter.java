@@ -21,6 +21,11 @@ public class CircleNavRightAdapter extends TravelBaseAdapter<CircleNavRight> {
         return 10;
     }
 
+    @Override
+    protected void initListener(BaseHolder baseHolder, CircleNavRight item) {
+
+    }
+
 
     @Override
     protected BaseHolder initHolder(int position) {

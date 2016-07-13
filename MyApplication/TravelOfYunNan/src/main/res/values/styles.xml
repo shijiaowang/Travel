@@ -102,6 +102,34 @@
         <item name="android:layout_width">match_parent</item>
     </style>
 
-
+    <!--关注等-->
+    <style name="activityOtherFollow">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">#646464</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <!--信息名称-->
+    <style name="activityOtherInformationType">
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:textColor">#9f9f9f</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <!--详细信息-->
+    <style name="activityOtherInformationDetail" parent="activityOtherInformationType">
+        <item name="android:layout_marginLeft">80dp</item>
+        <item name="android:textColor">#7c7c7c</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <!--线条-->
+    <style name="activityOtherInformationLine">
+        <item name="android:background">#e8e8e8</item>
+        <item name="android:layout_marginRight">14dp</item>
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
 
 </resources>

@@ -1,7 +1,10 @@
 package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
 
+import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyImageHolder;
@@ -21,6 +24,21 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
     @Override
     protected int testDataSize() {
         return 30;
+    }
+
+    @Override
+    protected void initListener(BaseHolder baseHolder, Object item) {
+        if (baseHolder instanceof PostReplyImageHolder){
+            LogUtils.e("有");
+            PostReplyImageHolder postReplyImageHolder = (PostReplyImageHolder) baseHolder;
+            postReplyImageHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   mContext.startActivity(new Intent(mContext, OtherUserCenterActivity.class));
+                    LogUtils.e("点击事件");
+                }
+            });
+        }
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -75,11 +76,15 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
         }
         if (mDatas!=null){
             baseHolder.setDatas(getItem(position));
+
         }
         //baseHolder.setDatas();
+        initListener(baseHolder,null);//暂时传，没有数据
 
         return convertView;
     }
+
+    protected abstract void initListener(BaseHolder baseHolder, T item);
 
     /**
      * 具体需要的holder

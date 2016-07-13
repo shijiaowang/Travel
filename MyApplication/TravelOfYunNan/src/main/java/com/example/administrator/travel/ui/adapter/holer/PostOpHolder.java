@@ -22,12 +22,7 @@ public class PostOpHolder  extends BaseHolder<PostOp>{
 
     @Override
     protected void initItemDatas(PostOp datas, final Context mContext) {
-       mIvPostOpIcon.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               mContext.startActivity(new Intent(mContext,OtherUserCenterActivity.class));
-           }
-       });
+
     }
 
     @Override

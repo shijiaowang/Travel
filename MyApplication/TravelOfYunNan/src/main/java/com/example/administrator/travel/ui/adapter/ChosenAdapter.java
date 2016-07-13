@@ -25,6 +25,10 @@ public class ChosenAdapter extends TravelBaseAdapter<Chosen> {
         return 4;
     }
 
+    @Override
+    protected void initListener(BaseHolder baseHolder, Chosen item) {
+
+    }
 
 
     @Override
