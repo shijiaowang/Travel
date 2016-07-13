@@ -69,5 +69,39 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <!--个人相册等功能-->
+    <style name="fragmentMeAlbum">
+        <item name="android:textColor">@color/homeButtonUnCheckedColor</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+    </style>
+    <!--相册等的父控件-->
+    <style name="lLFragmentMeAlbum">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+    <!--相册等功能返回按钮-->
+    <style name="ivFragmentMeAlbumButton">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:src">@drawable/fragment_circle_nav_left_normal</item>
+        <item name="android:layout_marginRight">22dp</item>
+        <item name="android:layout_height">11dp</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <!--个人中心分割线-->
+    <style name="fragmentMeLine">
+        <item name="android:background">@color/meLine</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">22dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+
 
 </resources>

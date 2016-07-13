@@ -1,6 +1,8 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -36,10 +38,12 @@ public class PostActivity extends BaseActivity {
                 finish();
             }
         });
+
     }
 
     @Override
     protected void initData() {
             mLvPostDetail.setAdapter(new PostAdapter(this,null));
+
     }
 }
