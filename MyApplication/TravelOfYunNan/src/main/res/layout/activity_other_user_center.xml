@@ -1,198 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:scrollbars="none">-->
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ll_move"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#fafafa"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#fafafa"
+            android:orientation="vertical">
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/fragment_me_bg" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/fragment_me_bg" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="129dp"
-                android:text="岳阳"
-                android:textColor="#fafafa"
-                android:textSize="19sp" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civ_icon"
-                android:layout_width="73dp"
-                android:layout_height="73dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="163dp"
-                android:src="@drawable/fragment_me_icon" />
-
-
-            <TextView
-                android:layout_width="52dp"
-                android:layout_height="29dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="85dp"
-                android:background="@drawable/fragment_me_lv_bg"
-                android:gravity="center"
-                android:text="Lv.1"
-                android:textColor="#fcae04"
-                android:textSize="14sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="213dp"
-                android:layout_toRightOf="@id/civ_icon"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/ll_private"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/activity_other_private_bg"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/tv_private_icon"
-                        style="@style/activityOtherFollow"
-                        android:text="@string/activity_other_private_message" />
-
-                    <TextView
-                        style="@style/activityOtherFollow"
-                        android:layout_marginLeft="6dp"
-                        android:text="私信" />
-
-                </LinearLayout>
-                <View
-                    style="@style/AVGLine"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="粉丝 111"
-                    android:textColor="#646464"
-                    android:textSize="13sp" />
-                <View
-                    style="@style/AVGLine"/>
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="129dp"
+                    android:text="岳阳"
+                    android:textColor="#fafafa"
+                    android:textSize="19sp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_icon"
+                    android:layout_width="73dp"
+                    android:layout_height="73dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="163dp"
+                    android:src="@drawable/fragment_me_icon" />
+
+
+                <TextView
+                    android:layout_width="52dp"
+                    android:layout_height="29dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="85dp"
+                    android:background="@drawable/fragment_me_lv_bg"
+                    android:gravity="center"
+                    android:text="Lv.1"
+                    android:textColor="#fcae04"
+                    android:textSize="14sp" />
 
                 <LinearLayout
-                    android:layout_marginRight="22dp"
-                    android:id="@+id/ll_follow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="213dp"
+                    android:layout_toRightOf="@id/civ_icon"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_private"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/activity_other_private_bg"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_private_icon"
+                            style="@style/activityOtherFollow"
+                            android:text="@string/activity_other_private_message" />
+
+                        <TextView
+                            style="@style/activityOtherFollow"
+                            android:layout_marginLeft="6dp"
+                            android:text="私信" />
+
+                    </LinearLayout>
+
+                    <View style="@style/AVGLine" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="粉丝 111"
+                        android:textColor="#646464"
+                        android:textSize="13sp" />
+
+                    <View style="@style/AVGLine" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="22dp"
+                        android:background="@drawable/activity_other_private_bg"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_follow_icon"
+                            style="@style/activityOtherFollow"
+                            android:text="@string/activity_other_follow" />
+
+                        <TextView
+                            android:id="@+id/tv_follow"
+                            style="@style/activityOtherFollow"
+                            android:layout_marginLeft="6dp"
+                            android:text="关注" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_signature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="22dp"
+                android:gravity="center"
+                android:text="我了个去去去去去去去去去去去去去去去去去去去去去去去去"
+                android:textColor="#323232"
+                android:textSize="14sp" />
+
+            <View
+                style="@style/fragmentMeLine"
+                android:layout_margin="0dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_title_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/activity_other_private_bg"
-                    android:gravity="center">
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/activity_other_title"
+                    android:textColor="#646464"
+                    android:textSize="13sp" />
 
-                    <TextView
-                        android:id="@+id/tv_follow_icon"
-                        style="@style/activityOtherFollow"
-                        android:text="@string/activity_other_follow" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@id/tv_title_icon"
+                    android:text="称号"
+                    android:textColor="#646464"
+                    android:textSize="13sp" />
 
-                    <TextView
-                        android:id="@+id/tv_follow"
-                        style="@style/activityOtherFollow"
-                        android:layout_marginLeft="6dp"
-                        android:text="关注" />
+                <View
+                    android:id="@+id/pb_load"
+                    android:layout_width="61dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/activity_other_title_load" />
 
-                </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
+                <ViewStub
+                    android:id="@+id/vs_new_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="48dp"
+                    android:layout_marginTop="48dp"
+                    android:layout="@layout/item_activity_other_new_user" />
 
-        <TextView
-            android:id="@+id/tv_signature"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="45dp"
-            android:layout_marginTop="22dp"
-            android:gravity="center"
-            android:text="我了个去去去去去去去去去去去去去去去去去去去去去去去去"
-            android:textColor="#323232"
-            android:textSize="14sp" />
+                <ViewStub
+                    android:id="@+id/vs_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout="@layout/item_activity_other_title" />
 
-        <View style="@style/fragmentMeLine"
-            android:layout_margin="0dp"
-            />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_title_icon"
-                android:text="@string/activity_other_title"
-                android:textColor="#646464"
-                android:textSize="13sp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_toRightOf="@id/tv_title_icon"
-                android:text="称号"
-                android:textColor="#646464"
-                android:textSize="13sp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
             <View
-                android:background="@drawable/activity_other_title_load"
-                android:id="@+id/pb_load"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="25dp"
-                android:layout_centerInParent="true"
-                android:layout_width="61dp"
-                android:layout_height="60dp" />
-            <ViewStub
-                android:layout="@layout/item_activity_other_new_user"
-                android:id="@+id/vs_new_user"
-                android:layout_marginBottom="48dp"
-                android:layout_marginTop="48dp"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ViewStub
-                android:layout="@layout/item_activity_other_title"
-                android:id="@+id/vs_title"
-                android:layout_centerInParent="true"
+                style="@style/fragmentMeLine"
+                android:layout_margin="0dp" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="42dp">
 
+            </LinearLayout>
 
-        </RelativeLayout>
-
-        <View style="@style/fragmentMeLine"
-            android:layout_margin="0dp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="42dp">
+            <View
+                style="@style/fragmentMeLine"
+                android:layout_height="4dp"
+                android:layout_margin="0dp" />
 
         </LinearLayout>
-        <View style="@style/fragmentMeLine"
-            android:layout_margin="0dp"
-            android:layout_height="4dp"
-            />
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_dynamic"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            >
-
+            android:layout_weight="1">
         </android.support.v4.view.ViewPager>
     </LinearLayout>
 </ScrollView>

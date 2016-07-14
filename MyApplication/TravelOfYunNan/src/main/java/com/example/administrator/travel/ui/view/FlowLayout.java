@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.example.administrator.travel.utils.LogUtils;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,8 +77,7 @@ public class FlowLayout extends ViewGroup {
             }
 
         }
-        LogUtils.e("width="+width +"widthSize="+widthSize);
-        LogUtils.e("height="+height+"heightSize="+heightSize);
+
         //重新测量,算上内边距
         setMeasuredDimension(widthMode == MeasureSpec.EXACTLY ? widthSize : width + getPaddingRight() + getPaddingLeft(),
                 heightMode == MeasureSpec.EXACTLY ? heightSize : height + getPaddingTop() + getPaddingBottom()

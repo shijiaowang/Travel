@@ -29,13 +29,12 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
     @Override
     protected void initListener(BaseHolder baseHolder, Object item) {
         if (baseHolder instanceof PostReplyImageHolder){
-            LogUtils.e("有");
+
             PostReplyImageHolder postReplyImageHolder = (PostReplyImageHolder) baseHolder;
             postReplyImageHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                    mContext.startActivity(new Intent(mContext, OtherUserCenterActivity.class));
-                    LogUtils.e("点击事件");
                 }
             });
         }

@@ -1,26 +1,42 @@
 package com.example.administrator.travel.ui.activity;
 
 import android.graphics.Color;
+import android.graphics.SweepGradient;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.widget.ActionMenuView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.fragment.AlbumFragment;
+import com.example.administrator.travel.ui.fragment.BaseFragment;
+import com.example.administrator.travel.ui.fragment.DynamicFragment;
+import com.example.administrator.travel.ui.fragment.UserInfoFragment;
 import com.example.administrator.travel.ui.view.FlowLayout;
+import com.example.administrator.travel.ui.view.WrapViewPager;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -28,6 +44,7 @@ import java.util.Random;
  * Created by Administrator on 2016/7/13 0013.
  */
 public class OtherUserCenterActivity extends BaseActivity {
+
 
     private String[] titles={"老司机","新司机","旧司机","486","我是老司机","新手","小清新","我勒个去去","速度"};
     private boolean isInflate=false;
@@ -71,6 +88,10 @@ public class OtherUserCenterActivity extends BaseActivity {
     private TextView mTvFollow;
     private LinearLayout mLlPrivate;
     private LinearLayout mLlFollow;
+    private ViewPager mVpDynamic;
+    private List<BaseFragment> fragments;
+
+
 
     @Override
     protected int initLayoutRes() {
@@ -87,6 +108,9 @@ public class OtherUserCenterActivity extends BaseActivity {
         mLlPrivate = (LinearLayout) findViewById(R.id.ll_private);
         mLlFollow = (LinearLayout) findViewById(R.id.ll_follow);
 
+
+        mVpDynamic = (ViewPager) findViewById(R.id.vp_dynamic);
+
     }
 
     @Override
@@ -101,11 +125,19 @@ public class OtherUserCenterActivity extends BaseActivity {
                mTvFollowIcon.setText(getResources().getString(R.string.activity_other_followed));
            }
        });
+
     }
 
     @Override
     protected void initData() {
         initIconFonts();
+        fragments = new ArrayList<>();
+        fragments.add(new AlbumFragment());
+        fragments.add(new DynamicFragment());
+        fragments.add(new UserInfoFragment());
+        mVpDynamic.setAdapter(new OtherAdapter(getSupportFragmentManager()));
+
+
 
     }
 
@@ -126,12 +158,13 @@ public class OtherUserCenterActivity extends BaseActivity {
 
     private void initAnimation() {
         animationSet = new AnimationSet(true);
-        AlphaAnimation alphaAnimation=new AlphaAnimation(0,1);
+        AlphaAnimation alphaAnimation=new AlphaAnimation(1,0);
         alphaAnimation.setDuration(1500);
-        ScaleAnimation scaleAnimation=new ScaleAnimation(0.5f,1.0f,0.5f,1.0f, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        ScaleAnimation scaleAnimation=new ScaleAnimation(0.0f,0.8f,0.0f,0.8f, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
         scaleAnimation.setDuration(1500);
+        scaleAnimation.setFillAfter(true);
         //
-        RotateAnimation rotateAnimation=new RotateAnimation(0,21600, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        RotateAnimation rotateAnimation=new RotateAnimation(0,8888, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
         rotateAnimation.setDuration(10000);
         rotateAnimation.setFillAfter(true);
 
@@ -146,11 +179,27 @@ public class OtherUserCenterActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtils.e(System.currentTimeMillis() + "");
+
         if (!isInflate) {
             mPbLoad.startAnimation(animationSet);
-            mHandler.sendEmptyMessageDelayed(i, 1500);//发送一个两秒的延迟动画，关闭旋转
+            mHandler.sendEmptyMessageDelayed(i,1500);
         }
-        LogUtils.e(System.currentTimeMillis() + "");
+
+    }
+    class OtherAdapter extends FragmentPagerAdapter{
+
+        public OtherAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public BaseFragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
     }
 }
