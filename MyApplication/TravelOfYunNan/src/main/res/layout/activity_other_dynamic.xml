@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.administrator.travel.ui.view.ToShowAllListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:visibility="gone"
+    android:id="@+id/lv_dynamic"
+    android:divider="@null"
+    android:cacheColorHint="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</com.example.administrator.travel.ui.view.ToShowAllListView>

@@ -2,21 +2,16 @@ package com.example.administrator.travel.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.CircleAdapter;
 import com.example.administrator.travel.ui.view.SlippingScrollView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
-import com.example.administrator.travel.utils.LogUtils;
-
-import java.sql.CallableStatement;
+import com.example.administrator.travel.utils.TypefaceUtis;
 
 /**
  * Created by Administrator on 2016/7/8 0008.
@@ -52,7 +47,7 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initFontsIcon() {
-        Typeface fromAsset = Typeface.createFromAsset(getAssets(), "fonts/icomoon.ttf");
+        Typeface fromAsset = TypefaceUtis.getTypeface(this);
         mTvBack.setTypeface(fromAsset);
         mCreatePost.setTypeface(fromAsset);
     }
@@ -70,7 +65,7 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
         //监听滑动和惯性滑动
         mSvScroll.setSlippingListener(new SlippingScrollView.SlippingListener() {
             @Override
-            public void slipping() {
+            public void slipping(int l, int i, int oldl, int t) {
                 if (mTitleBgHeight<=0) {
                     mTitleBgHeight = mIvPostBg.getHeight();
                     mIvPostBg.getLocationInWindow(location);

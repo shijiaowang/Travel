@@ -38,8 +38,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(initLayoutRes());
         initView();
         initListener();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         initData();
     }
+
     protected abstract int initLayoutRes();
 
     protected abstract void initView();

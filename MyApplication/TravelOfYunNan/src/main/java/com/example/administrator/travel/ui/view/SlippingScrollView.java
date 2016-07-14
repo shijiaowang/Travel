@@ -28,7 +28,7 @@ public class SlippingScrollView extends ScrollView {
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
         if (listener != null) {
-            listener.slipping();
+            listener.slipping(l,t,oldl,oldt);
         }
     }
 
@@ -42,6 +42,6 @@ public class SlippingScrollView extends ScrollView {
      * 包括惯性滑动在内的滚动监听器
      */
     public interface SlippingListener {
-        void slipping();
+        void slipping(int l, int i, int oldl, int t);
     }
 }
