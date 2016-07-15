@@ -18,7 +18,7 @@ public class DynamicAdapter extends TravelBaseAdapter<Dynamic> {
 
     @Override
     protected int testDataSize() {
-        return 30;
+        return 5;
     }
 
     @Override
