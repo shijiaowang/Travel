@@ -1,0 +1,27 @@
+package com.example.administrator.travel.ui.adapter.holer;
+
+import android.content.Context;
+import android.view.View;
+
+import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.SystemPrivate;
+
+/**
+ * Created by Administrator on 2016/7/15 0015.
+ */
+public class MessagePrivateHolder extends BaseHolder<SystemPrivate> {
+    public MessagePrivateHolder(Context context) {
+        super(context);
+    }
+
+    @Override
+    protected void initItemDatas(SystemPrivate datas, Context mContext) {
+
+    }
+
+    @Override
+    public View initRootView(Context mContext) {
+        View inflate = View.inflate(mContext, R.layout.item_fragment_message_center_private_message, null);
+        return inflate;
+    }
+}

@@ -217,13 +217,14 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/tv_message_center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:drawablePadding="12dp"
                 android:drawableTop="@drawable/fragment_me_message"
                 android:gravity="center"
-                android:text="我的约伴"
+                android:text="消息中心"
                 android:textColor="#323232"
                 android:textSize="10sp" />
         </LinearLayout>

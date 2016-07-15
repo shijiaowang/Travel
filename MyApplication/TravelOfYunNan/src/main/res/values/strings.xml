@@ -15,7 +15,7 @@
     <string name="home_activity_button_me">涡</string>
     <!--//我字体-->
     <string name="home_activity_button_main">绶</string>
-    <string name="activity_circle_back_font_icon">泛</string>
+    <string name="activity_circle_back_font_icon">泛</string><!--返回-->
     <string name="activity_circle_create_post_font_icon">屑</string>
     <string name="activity_circle_love">昝</string>
     <string name="activity_circle_discuss">倫</string><!--留言-->
@@ -26,9 +26,14 @@
     <string name="activity_other_followed">咦</string><!--已关注，对勾-->
     <string name="activity_other_title">膘</string><!--称号-->
     <string name="activity_other_new_user">坼</string><!--新手上路-->
+    <string name="activity_message_center_recommend">煎</string><!--推荐-->
+    <string name="activity_message_center_aite">铨</string><!--@-->
+    <string name="activity_message_center_more">铎</string><!--更多-->
     <string name="activity_other_detail_message">暨</string><!--基本信息-->
     <string name="activity_other_album_eye">阚</string><!--眼睛-->
 
+
+      <string name="activity_message_center_cursor">暇</string><!--进入游标> -->
     <!--留言-->
     <!--//首页字体-->
 

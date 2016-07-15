@@ -4,8 +4,13 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -16,14 +21,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.adapter.AlbumAdapter;
-import com.example.administrator.travel.ui.adapter.DynamicAdapter;
+
+import com.example.administrator.travel.ui.fragment.BaseFragment;
+import com.example.administrator.travel.ui.fragment.DynamicFragment;
+import com.example.administrator.travel.ui.fragment.InformationFragment;
+import com.example.administrator.travel.ui.view.CustomScrollView;
 import com.example.administrator.travel.ui.view.FlowLayout;
-import com.example.administrator.travel.ui.view.SlippingScrollView;
-import com.example.administrator.travel.ui.view.ToShowAllGridView;
-import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -79,20 +86,18 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private TextView mTvInfo;
     private TextView mTvDynamic;
 
-
-    private ToShowAllGridView mGvAlbum;
-    private ToShowAllListView mLvDynamic;
+    private List<BaseFragment> fragmentList=new ArrayList<>(3);
     private LinearLayout mLlInfo;
-    private DynamicAdapter dynamicAdapter;
-    private AlbumAdapter albumAdapter;
+
     private TextView mTvFlyAlbum;
     private TextView mTvFlyDynamic;
     private TextView mTvFlyInfo;
     private LinearLayout mLlFly;
-    private SlippingScrollView mSvMove;
+    private CustomScrollView mSvMove;
     private LinearLayout mLlCursor;
     private View mVHeight;//状态栏高度，辅助变色
     public int[] flyLocation=new int[2];
+    private ViewPager mVpDynamic;
 
 
     @Override
@@ -113,17 +118,15 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         mTvInfo = (TextView) findViewById(R.id.tv_info);
         mTvDynamic = (TextView) findViewById(R.id.tv_dynamic);
 
-        mSvMove = (SlippingScrollView) findViewById(R.id.sv_move);
+        mSvMove = (CustomScrollView) findViewById(R.id.sv_move);
         mLlCursor = (LinearLayout) findViewById(R.id.ll_cursor);
 
         mTvFlyAlbum = (TextView) findViewById(R.id.tv_fly_album);
         mTvFlyDynamic = (TextView) findViewById(R.id.tv_fly_dynamic);
         mTvFlyInfo = (TextView) findViewById(R.id.tv_fly_info);
         mLlFly = (LinearLayout)findViewById(R.id.ll_fly);
+        mVpDynamic = (ViewPager) findViewById(R.id.vp_dynamic);
 
-        mLlInfo = (LinearLayout)findViewById(R.id.ll_info);
-        mLvDynamic = (ToShowAllListView)findViewById(R.id.lv_dynamic);
-        mGvAlbum = ((ToShowAllGridView) findViewById(R.id.gv_album));
 
         mVHeight = findViewById(R.id.v_height);
 
@@ -137,48 +140,6 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         mTvFlyInfo.setOnClickListener(this);
         mTvFlyAlbum.setOnClickListener(this);
         mTvAlbum.setOnClickListener(this);
-        mSvMove.setSlippingListener(new SlippingScrollView.SlippingListener() {
-            private boolean isFirst=true;
-            private int flyHeight=0;//顶部悬浮cursor的高度
-            @Override
-            public void slipping(int l, int i, int oldl, int t) {
-                //System.out.println("l"+l+"i"+i+"ol"+oldl+"t"+t);
-                if (isFirst){
-                    isFirst=false;
-                    mLlFly.getLocationInWindow(flyLocation);
-                    mLlCursor.getLocationInWindow(location);
-                    System.out.println(flyLocation[1] + "没漂浮的" + location[1]);
-                    flyHeight=location[1]-flyLocation[1];
-
-                }
-                if (t<flyHeight){
-                    if (mLlFly.getVisibility()==View.VISIBLE) {
-                        mLlFly.setVisibility(View.GONE);//如果比悬浮框高就悬浮框隐藏
-                    }
-                    mLlCursor.setVisibility(View.VISIBLE);
-                    if (mVHeight.getAlpha()>0){
-                        float alpha = mVHeight.getAlpha();
-                        AlphaAnimation animation=new AlphaAnimation(alpha,0);
-                        animation.setDuration(500);
-                        animation.setFillAfter(true);
-                        mVHeight.startAnimation(animation);
-
-                    }
-
-                }else {
-                    mVHeight.clearAnimation();
-                    mLlCursor.setVisibility(View.INVISIBLE);
-                    if (mLlFly.getVisibility()!=View.VISIBLE) {
-                        mLlFly.setVisibility(View.VISIBLE);//如果比悬浮框高就悬浮框隐藏
-                    }//显示
-                    //设置背景透明度
-                    float alpha = Math.abs((float) t-flyHeight) / flyHeight;
-                    alpha=alpha>1?1:alpha;
-                   // System.out.println(alpha+"");
-                    mVHeight.setAlpha(alpha);
-                }
-            }
-        });
         mLlFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,35 +153,19 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
 
     }
 
-    /**
-     * 设置展示的View
-     *
-     * @param view
-     */
-    private void initShow(View view) {
-       if (view==mLlInfo){
-           mLlInfo.setVisibility(View.VISIBLE);
-           mLvDynamic.setVisibility(View.GONE);
-           mGvAlbum.setVisibility(View.GONE);
-       }else if (view==mLvDynamic){
-           mLlInfo.setVisibility(View.GONE);
-           mLvDynamic.setVisibility(View.VISIBLE);
-           mGvAlbum.setVisibility(View.GONE);
-       }else {
-           mLlInfo.setVisibility(View.GONE);
-           mLvDynamic.setVisibility(View.GONE);
-           mGvAlbum.setVisibility(View.VISIBLE);
-       }
-    }
+
+
 
     @Override
     protected void initData() {
         initIconFonts();
-        if (albumAdapter==null) {
-            albumAdapter = new AlbumAdapter(this, null);
-            mGvAlbum.setAdapter(albumAdapter);
-            initShow(mGvAlbum);
-        }
+        fragmentList.add(new DynamicFragment());
+        fragmentList.add(new DynamicFragment());
+        fragmentList.add(new InformationFragment());
+        mVpDynamic.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        ViewGroup.LayoutParams layoutParams = mVpDynamic.getLayoutParams();
+        layoutParams.height=2890;
+        mVpDynamic.setLayoutParams(layoutParams);
 
         //获取数据
         Random random = new Random();
@@ -259,6 +204,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     protected void onResume() {
         super.onResume();
 
+
         if (!isInflate) {
             mPbLoad.startAnimation(animationSet);
             mHandler.sendEmptyMessageDelayed(i, 1500);
@@ -271,20 +217,31 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         switch (v.getId()){
             case R.id.tv_album:
             case R.id.tv_fly_album:
-                initShow(mGvAlbum);
+
                 break;
             case R.id.tv_dynamic:
             case R.id.tv_fly_dynamic:
-                if (dynamicAdapter==null) {
-                    dynamicAdapter = new DynamicAdapter(OtherUserCenterActivity.this, null);
-                    mLvDynamic.setAdapter(dynamicAdapter);
-                }
-                initShow(mLvDynamic);
+
                 break;
             case R.id.tv_info:
             case R.id.tv_fly_info:
-                initShow(mLlInfo);
+
                 break;
+        }
+    }
+    class MyPagerAdapter extends FragmentPagerAdapter{
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
         }
     }
 }

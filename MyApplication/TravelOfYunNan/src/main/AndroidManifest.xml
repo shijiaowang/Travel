@@ -22,6 +22,7 @@
         <activity android:name=".ui.activity.BaseActivity" />
         <activity android:name=".ui.activity.PostActivity"></activity>
         <activity android:name=".ui.activity.OtherUserCenterActivity"/>
+        <activity android:name=".ui.activity.MessageCenterActivity"/>
     </application>
 
 </manifest>

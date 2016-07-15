@@ -67,25 +67,12 @@
                 style="@style/fragmentMeLine"
                 android:layout_height="4dp"
                 android:layout_margin="0dp" />
-            <!--  <android.support.v4.view.ViewPager
+             <android.support.v4.view.ViewPager
                   android:id="@+id/vp_dynamic"
                   android:layout_width="match_parent"
-                  android:layout_height="0dp"
-                  android:layout_weight="1">
-              </android.support.v4.view.ViewPager>-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <include layout="@layout/activity_other_album" />
-
-                <include layout="@layout/activity_other_dynamic" />
-
-                <include layout="@layout/activity_other_information" />
-
-
-            </RelativeLayout>
-
+                  android:layout_height="400dp"
+                  >
+              </android.support.v4.view.ViewPager>
         </LinearLayout>
     </com.example.administrator.travel.ui.view.CustomScrollView>
     <View
