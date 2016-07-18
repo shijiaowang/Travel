@@ -3,12 +3,16 @@ package com.example.administrator.travel.ui.fragment;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
+import com.example.administrator.travel.ui.activity.MyAlbumActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 
+import java.sql.CallableStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +20,17 @@ import java.util.List;
  * Created by Administrator on 2016/7/12 0012.
  */
 public class MeFragment extends BaseFragment implements View.OnClickListener {
+    public static final String FOLLOW_SELECT="follow_select";//进入关注
 
     private FlowLayout mFlLabel;//称号
     private List<String> titles = new ArrayList<>();
     private LayoutInflater inflater;
     private TextView mTvMessageCenter;
+    private TextView mTvFollowName;
+    private TextView mTvFollowNumber;
+    private TextView mTvFanName;
+    private TextView mTvFanNumber;
+    private LinearLayout mLlAlbum;
 
     @Override
     protected int initLayoutRes() {
@@ -30,8 +40,13 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     protected void initView() {
         mFlLabel = (FlowLayout) root.findViewById(R.id.fl_label);
-        inflater = LayoutInflater.from(getActivity());
+        inflater = LayoutInflater.from(getContext());
         mTvMessageCenter = (TextView) root.findViewById(R.id.tv_message_center);
+        mTvFollowName = (TextView) root.findViewById(R.id.tv_follow_name);
+        mTvFollowNumber = (TextView) root.findViewById(R.id.tv_follow_number);
+        mTvFanName = (TextView) root.findViewById(R.id.tv_fan_name);
+        mTvFanNumber = (TextView) root.findViewById(R.id.tv_fan_number);
+        mLlAlbum = (LinearLayout) root.findViewById(R.id.ll_album);
     }
 
     @Override
@@ -57,6 +72,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     protected void initListener() {
         mTvMessageCenter.setOnClickListener(this);//消息中心
+        mTvFollowName.setOnClickListener(this);//关注
+        mTvFollowNumber.setOnClickListener(this);
+        mTvFanName.setOnClickListener(this);//粉丝
+        mTvFollowNumber.setOnClickListener(this);
+
+        mLlAlbum.setOnClickListener(this);//相册
     }
 
     @Override
@@ -64,6 +85,21 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.tv_message_center:
                 getContext().startActivity(new Intent(getContext(), MessageCenterActivity.class));
+                break;
+            case R.id.tv_follow_name:
+            case R.id.tv_follow_number:
+                Intent followIntent=new Intent(getContext(), FollowAndFanActivity.class);
+                followIntent.putExtra(FOLLOW_SELECT,true);
+                startActivity(followIntent);
+                break;
+            case R.id.tv_fan_name:
+            case R.id.tv_fan_number:
+                Intent fanIntent=new Intent(getContext(), FollowAndFanActivity.class);
+                fanIntent.putExtra(FOLLOW_SELECT,false);
+                startActivity(fanIntent);
+                break;
+            case R.id.ll_album:
+                startActivity(new Intent(getContext(), MyAlbumActivity.class));
                 break;
         }
     }

@@ -61,11 +61,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/civ_icon"
-                android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:id="@+id/tv_follow_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="关注"
@@ -73,22 +75,30 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:id="@+id/tv_follow_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
+                    android:paddingLeft="6dp"
                     android:text="12"
                     android:textColor="@color/homeButtonUnCheckedColor"
                     android:textSize="14sp" />
 
                 <View
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="3dp"
                     android:layout_height="3dp"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/fragment_me_dot" />
 
                 <TextView
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:id="@+id/tv_fan_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="粉丝"
@@ -96,9 +106,12 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:id="@+id/tv_fan_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
+                    android:paddingLeft="6dp"
                     android:text="35"
                     android:textColor="@color/homeButtonUnCheckedColor"
                     android:textSize="14sp" />
@@ -112,7 +125,7 @@
             android:layout_marginBottom="24dp"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="你是风儿他是啥，你是风儿他是啥你是风儿他是啥你是风儿他是啥你是风儿他是啥"
             android:textColor="#323232"
@@ -281,6 +294,7 @@
             android:background="@color/meLine" />
 
         <LinearLayout
+            android:id="@+id/ll_album"
             style="@style/lLFragmentMeAlbum">
             <TextView
                 android:text="我的相册"

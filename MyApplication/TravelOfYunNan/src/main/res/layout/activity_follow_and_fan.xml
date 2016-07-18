@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/meLine"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/homeTitleBg" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/homeTitleBg">
+
+        <TextView
+            android:id="@+id/tv_back"
+            style="@style/backFontsIcon"
+            android:layout_marginLeft="12dp"
+          />
+        <LinearLayout
+            android:background="@drawable/activity_follow_fan_cursor"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_follow"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:text="关注"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_fan"
+                android:gravity="center"
+                android:background="@drawable/activity_follow_fan_right"
+                android:textColor="@color/homeTitleBg"
+                android:textSize="15sp"
+                android:text="粉丝"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_follow_fan"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp">
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>
