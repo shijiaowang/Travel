@@ -1,7 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;

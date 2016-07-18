@@ -12,7 +12,6 @@ import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 
-import java.sql.CallableStatement;
 import java.util.ArrayList;
 import java.util.List;
 

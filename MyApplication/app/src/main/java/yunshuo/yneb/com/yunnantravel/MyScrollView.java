@@ -10,6 +10,7 @@ import android.widget.AbsListView;
 import android.widget.ScrollView;
 
 public class MyScrollView extends ScrollView {
+
     private float xDistance, yDistance, xLast, yLast;
 
     private AbsListView.OnScrollListener onScrollListener;

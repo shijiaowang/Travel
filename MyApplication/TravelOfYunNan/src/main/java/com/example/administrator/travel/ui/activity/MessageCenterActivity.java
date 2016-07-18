@@ -27,7 +27,6 @@ public class MessageCenterActivity extends BaseActivity implements View.OnClickL
     private int[] locationSystem = new int[2];//系统消息位置
     private int[] locationPrivate = new int[2];//私信消息位置
     private int distance = 0;
-    private int firstMargin=0;
 
     @Override
     protected int initLayoutRes() {
@@ -54,7 +53,7 @@ public class MessageCenterActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void initListener() {
         mTvBack.setOnClickListener(this);
-        mVpMessageCenter.setOnPageChangeListener(new MessagePager());
+
     }
 
     @Override
@@ -80,49 +79,7 @@ public class MessageCenterActivity extends BaseActivity implements View.OnClickL
 
     }
 
-    class MessagePager implements ViewPager.OnPageChangeListener {
-        float preOffset = 0;
-
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
 
-            if (distance != 0) {
-                if (position == 0) {
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mVCursor.getLayoutParams();
-                    if (firstMargin==0){
-                        firstMargin= layoutParams.leftMargin;
-                    }
-                    layoutParams.leftMargin += (positionOffset - preOffset) * distance;
-                    if ( layoutParams.leftMargin<firstMargin){
-                        layoutParams.leftMargin=firstMargin;
-                    }
-                    LogUtils.e(layoutParams.leftMargin + "");
-                    mVCursor.setLayoutParams(layoutParams);
-                } else {
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mVCursor.getLayoutParams();
-                    layoutParams.leftMargin =firstMargin+ distance;
-                    preOffset = positionOffset;
-
-                }
-                preOffset = positionOffset;
-            }
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-            if (distance == 0) {
-                mTvSystem.getLocationInWindow(locationSystem);
-                mTvPrivate.getLocationInWindow(locationPrivate);
-                distance = locationPrivate[0] - locationSystem[0];
-            }
-            LogUtils.e("onPageScrollStateChanged");
-        }
-    }
 }
 
