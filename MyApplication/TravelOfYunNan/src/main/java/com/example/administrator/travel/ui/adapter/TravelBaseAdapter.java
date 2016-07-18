@@ -36,22 +36,7 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
         return mDatas.size();
     }
 
-    @Override
-    public int getViewTypeCount() {
-        return 3;
-    }
 
-    @Override
-    public int getItemViewType(int position) {
-
-            if (position==0){
-                return TYPE_POST_OP;
-            }else if (position<4){
-                return TYPE_POST_IMG;
-            }else {
-                return TYPE_POST_NORMAL;
-            }
-    }
 
     protected abstract int testDataSize();//测试使用的数据大小
 

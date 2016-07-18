@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.HotSpotsItemDecoration;
 import com.example.administrator.travel.ui.adapter.SpaceItemDecoration;
 import com.example.administrator.travel.ui.adapter.ChosenAdapter;
 import com.example.administrator.travel.ui.adapter.HotSpotsAdapter;
@@ -89,7 +90,7 @@ public class HomeFragment extends BaseFragment {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRvHotSpots.setLayoutManager(manager);
         mRvHotSpots.setItemAnimator(new DefaultItemAnimator());
-        mRvHotSpots.addItemDecoration(new SpaceItemDecoration(RECYCLE_VIEW_ITEM_SPACE));//设置孩子间距为24px;
+        mRvHotSpots.addItemDecoration(new HotSpotsItemDecoration(RECYCLE_VIEW_ITEM_SPACE));//设置孩子间距为24px;
 
         mLvTravels.setAdapter(new TravelsAdapter(getActivity(), null));
         List<BaseFragment> fragments=new ArrayList<>();

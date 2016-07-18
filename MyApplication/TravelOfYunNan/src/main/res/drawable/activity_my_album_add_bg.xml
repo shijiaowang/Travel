@@ -6,6 +6,6 @@
         android:width="40dp"
         android:height="40dp"/>
     <solid
-        android:color="@color/homeTitleBg"/>
+        android:color="@color/otherTitleBg"/>
 
 </shape>

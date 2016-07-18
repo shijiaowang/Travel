@@ -8,18 +8,18 @@ import android.view.View;
  * Created by Administrator on 2016/7/7 0007.
  * 修改recycleview孩子之间的间距
  */
-public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
+public class HotSpotsItemDecoration extends RecyclerView.ItemDecoration {
 
     private int space;
 
-    public SpaceItemDecoration(int space) {
+    public HotSpotsItemDecoration(int space) {
         this.space = space;
     }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        outRect.bottom=space;
-        if (parent.getChildAdapterPosition(view) % 2 == 1)
+
+        if (parent.getChildAdapterPosition(view)!=0)
             outRect.left = space;
     }
 }

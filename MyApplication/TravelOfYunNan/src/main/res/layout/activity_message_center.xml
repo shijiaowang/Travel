@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/meLine"
+    android:background="#fafafa"
     android:orientation="vertical">
 
     <View
@@ -45,13 +45,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginBottom="14dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="17dp">
+        android:layout_height="48dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+   >
 
         <TextView
+            android:id="@+id/tv_system"
             android:textSize="14sp"
             android:textColor="#686868"
             android:layout_width="96dp"
@@ -65,6 +65,7 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/tv_private"
             android:textSize="14sp"
             android:textColor="#686868"
             android:layout_width="96dp"
@@ -73,6 +74,12 @@
             android:text="私信" />
 
     </LinearLayout>
+    <View
+        android:id="@+id/v_cursor"
+        android:background="@color/homeTitleBg"
+        android:layout_marginLeft="35dp"
+        android:layout_width="96dp"
+        android:layout_height="2dp"/>
 
     <View
         android:layout_width="match_parent"

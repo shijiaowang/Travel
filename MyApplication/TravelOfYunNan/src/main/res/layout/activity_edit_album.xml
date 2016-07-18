@@ -57,21 +57,25 @@
             android:textColor="#fafafa"
             android:textSize="17sp" />
     </RelativeLayout>
-
-  <include layout="@layout/item_activity_edit_album_last"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-    <Button
-        android:layout_marginBottom="50dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:text="完成"
-        android:textSize="18sp"
-        android:textColor="#fafafa"
-        android:background="@drawable/activity_create_album_complete"
+    <TextView
+        android:text="照片列表"
+        android:textColor="#323232"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="14dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <ListView
+        android:id="@+id/lv_photo"
+        android:divider="@null"
+        android:scrollbars="none"
+        android:dividerHeight="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="316dp"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+
 </LinearLayout>

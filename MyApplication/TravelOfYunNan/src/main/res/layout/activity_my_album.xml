@@ -4,69 +4,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fafafa"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:background="@color/homeTitleBg" />
+        android:background="@color/otherTitleBg" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:background="@color/homeTitleBg">
+        android:background="@color/otherTitleBg">
 
         <TextView
-            style="@style/backFontsIcon"
             android:id="@+id/tv_back"
-            android:layout_marginLeft="22dp"
-            />
-       <TextView
-           android:textSize="18sp"
-           android:textColor="#fafafa"
-           android:layout_centerInParent="true"
-           android:text="我的相册"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content" />
+            style="@style/backFontsIcon"
+            android:layout_marginLeft="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的相册"
+            android:textColor="#fafafa"
+            android:textSize="18sp" />
     </RelativeLayout>
+
     <TextView
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:text="@string/activity_my_album_add"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/activity_my_album_add_bg"
-       android:layout_gravity="center_horizontal"
         android:id="@+id/tv_add"
         android:layout_width="55dp"
-        android:layout_height="55dp" />
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/activity_my_album_add_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:text="@string/activity_my_album_add"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
     <TextView
-        android:textColor="@color/homeButtonUnCheckedColor"
-        android:textSize="13sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="创建新相册"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/homeButtonUnCheckedColor"
+        android:textSize="13sp" />
+
     <TextView
         android:id="@+id/tv_sum"
+        android:layout_width="109dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/activity_my_album_sum_bg"
         android:gravity="center"
-        android:textSize="10sp"
         android:text="共有4个相册"
         android:textColor="#fcae04"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/activity_my_album_sum_bg"
-        android:layout_width="109dp"
-        android:layout_height="18dp" />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_album"
-        android:background="@color/meLine"
-        android:layout_marginTop="13dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:textSize="10sp" />
+      <LinearLayout
+          android:background="@color/meLine"
+          android:paddingTop="8dp"
+          android:layout_marginTop="13dp"
+          android:layout_width="match_parent"
+          android:gravity="center_horizontal"
+          android:layout_height="match_parent">
+          <android.support.v7.widget.RecyclerView
+              android:id="@+id/rv_album"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              >
+          </android.support.v7.widget.RecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
+      </LinearLayout>
+
+
+
+
 
 </LinearLayout>
