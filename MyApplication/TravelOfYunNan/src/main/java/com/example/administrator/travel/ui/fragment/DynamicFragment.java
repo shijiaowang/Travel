@@ -27,8 +27,8 @@ public class DynamicFragment extends BaseFragment {
     @Override
     protected void initData() {
         mLvDynamic.setAdapter(new DynamicAdapter(getContext(), null));
-        int length = ViewUtil.setListViewHeightBasedOnChildren1(mLvDynamic);
-        LogUtils.e("listView高度为"+length);
+
+
     }
 
     @Override

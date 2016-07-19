@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -20,13 +19,13 @@ import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.administrator.travel.R;
 
+import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 import com.example.administrator.travel.ui.fragment.DynamicFragment;
 import com.example.administrator.travel.ui.fragment.InformationFragment;
-import com.example.administrator.travel.ui.view.CustomScrollView;
 import com.example.administrator.travel.ui.view.FlowLayout;
+import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ import java.util.Random;
  */
 public class OtherUserCenterActivity extends BaseActivity implements View.OnClickListener{
 
-    private int[] location=new int[2];
+    private String[] mTitles = new String[] { "动态", "相册", "个人" };
     private String[] titles = {"老司机", "新司机", "旧司机", "486", "我是老司机", "新手", "小清新", "我勒个去去", "速度"};
     private boolean isInflate = false;
     private Handler mHandler = new Handler() {
@@ -82,27 +81,17 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private TextView mTvFollow;
     private LinearLayout mLlPrivate;
     private LinearLayout mLlFollow;
-    private TextView mTvAlbum;
-    private TextView mTvInfo;
-    private TextView mTvDynamic;
+
 
     private List<BaseFragment> fragmentList=new ArrayList<>(3);
-    private LinearLayout mLlInfo;
 
-    private TextView mTvFlyAlbum;
-    private TextView mTvFlyDynamic;
-    private TextView mTvFlyInfo;
-    private LinearLayout mLlFly;
-    private CustomScrollView mSvMove;
-    private LinearLayout mLlCursor;
-    private View mVHeight;//状态栏高度，辅助变色
-    public int[] flyLocation=new int[2];
     private ViewPager mVpDynamic;
+
 
 
     @Override
     protected int initLayoutRes() {
-        return R.layout.activity_other_user_center;
+        return R.layout.activity_other_center;
     }
 
     @Override
@@ -114,32 +103,15 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         mTvFollow = (TextView) findViewById(R.id.tv_follow);
         mLlPrivate = (LinearLayout) findViewById(R.id.ll_private);
         mLlFollow = (LinearLayout) findViewById(R.id.ll_follow);
-        mTvAlbum = (TextView) findViewById(R.id.tv_album);
-        mTvInfo = (TextView) findViewById(R.id.tv_info);
-        mTvDynamic = (TextView) findViewById(R.id.tv_dynamic);
-
-        mSvMove = (CustomScrollView) findViewById(R.id.sv_move);
-        mLlCursor = (LinearLayout) findViewById(R.id.ll_cursor);
-
-        mTvFlyAlbum = (TextView) findViewById(R.id.tv_fly_album);
-        mTvFlyDynamic = (TextView) findViewById(R.id.tv_fly_dynamic);
-        mTvFlyInfo = (TextView) findViewById(R.id.tv_fly_info);
-        mLlFly = (LinearLayout)findViewById(R.id.ll_fly);
         mVpDynamic = (ViewPager) findViewById(R.id.vp_dynamic);
 
 
-        mVHeight = findViewById(R.id.v_height);
 
     }
 
     @Override
     protected void initListener() {
-        mTvDynamic.setOnClickListener(this);
-        mTvFlyDynamic.setOnClickListener(this);
-        mTvInfo.setOnClickListener(this);
-        mTvFlyInfo.setOnClickListener(this);
-        mTvFlyAlbum.setOnClickListener(this);
-        mTvAlbum.setOnClickListener(this);
+
         mLlFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,13 +131,12 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     @Override
     protected void initData() {
         initIconFonts();
+
         fragmentList.add(new DynamicFragment());
         fragmentList.add(new DynamicFragment());
         fragmentList.add(new InformationFragment());
         mVpDynamic.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-        ViewGroup.LayoutParams layoutParams = mVpDynamic.getLayoutParams();
-        layoutParams.height=2890;
-        mVpDynamic.setLayoutParams(layoutParams);
+        mVpDynamic.setCurrentItem(0,false);
 
         //获取数据
         Random random = new Random();
@@ -215,18 +186,8 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_album:
-            case R.id.tv_fly_album:
 
-                break;
-            case R.id.tv_dynamic:
-            case R.id.tv_fly_dynamic:
 
-                break;
-            case R.id.tv_info:
-            case R.id.tv_fly_info:
-
-                break;
         }
     }
     class MyPagerAdapter extends FragmentPagerAdapter{

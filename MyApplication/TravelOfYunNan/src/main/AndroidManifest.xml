@@ -3,7 +3,7 @@
     package="com.example.administrator.travel">
 
     <application
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:icon="@mipmap/yun_speak"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -27,6 +27,7 @@
         <activity android:name=".ui.activity.MyAlbumActivity" />
         <activity android:name=".ui.activity.CreateAlbumActivity" />
         <activity android:name=".ui.activity.EditAlbumActivity"></activity>
+        <activity android:name=".ui.activity.dragtopview.MainActivity"/>
     </application>
 
 </manifest>
