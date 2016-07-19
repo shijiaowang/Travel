@@ -23,11 +23,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.utils.LogUtils;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -48,7 +53,8 @@ public class MainActivity extends ActionBarActivity {
     private ModelPagerAdapter adapter;
     private ViewPager viewPager;
     private PagerSlidingTabStrip pagerSlidingTabStrip;
-
+    private ImageView mIvBg;
+    private LinearLayout mLlRoot;
 
 
     @Override
@@ -59,22 +65,13 @@ public class MainActivity extends ActionBarActivity {
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         dragLayout = (DragTopLayout) findViewById(R.id.drag_layout);
+        mLlRoot = (LinearLayout) findViewById(R.id.ll_root);
+        mIvBg = (ImageView) findViewById(R.id.iv_bg);
         pagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
 
-
-
-
-
+       dragLayout.setOverDrag(false);
+       dragLayout.setTouchMode(true);
         // Optional setting or set them in your xml.
-//        dragLayout.setOverDrag(true)
-//                .setCollapseOffset(100)
-//                .listener(new DragTopLayout.SimplePanelListener() {
-//                    @Override
-//                    public void onSliding(float ratio) {
-//                        super.onSliding(ratio);
-//                    }
-//                })
-//                .closeTopView(false);
 
 
         // init pager
@@ -118,7 +115,4 @@ public class MainActivity extends ActionBarActivity {
         super.onPause();
         EventBus.getDefault().unregister(this);
     }
-
-
-
 }

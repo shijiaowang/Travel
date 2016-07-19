@@ -2,6 +2,7 @@ package com.example.administrator.travel.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.ui.activity.BaseActivity;
@@ -15,6 +16,11 @@ public class FontsIconUtil {
     public static TextView findIconFontsById(int resId,BaseActivity activity){
         TextView iconView = (TextView) activity.findViewById(resId);
         iconView.setTypeface(TypefaceUtis.getTypeface(activity));
+        return iconView;
+    }
+    public static TextView findIconFontsById(int resId,Context context,View root){
+        TextView iconView = (TextView) root .findViewById(resId);
+        iconView.setTypeface(TypefaceUtis.getTypeface(context));
         return iconView;
     }
 }

@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.fragment.CircleFragment;
+import com.example.administrator.travel.ui.fragment.FindFragment;
 import com.example.administrator.travel.ui.fragment.HomeFragment;
 import com.example.administrator.travel.ui.fragment.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
@@ -118,7 +119,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         fragments.add(new HomeFragment());
         fragments.add(new HomeFragment());
         fragments.add(new CircleFragment());
-        fragments.add(new HomeFragment());
+        fragments.add(new FindFragment());
         fragments.add(new MeFragment());
         mVpHome.setAdapter(new HomeFragmentAdapter(getSupportFragmentManager()));
         mVpHome.setOffscreenPageLimit(3);//设置缓存距离为3

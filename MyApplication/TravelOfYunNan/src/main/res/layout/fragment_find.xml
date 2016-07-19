@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/meLine"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="@color/otherTitleBg"
+        android:paddingTop="25dp">
+
+        <RelativeLayout
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/fragment_find_search_bg" />
+
+            <EditText
+                android:layout_width="220dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:background="@null"
+                android:hint="请输入关键字"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColorHint="#d2ffee"
+                android:textCursorDrawable="@null"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="13dp"
+                android:text="@string/fragment_circle_search"
+                android:textColor="#aef4e4"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:src="@drawable/fragment_find_bg_test"
+                android:id="@+id/vp_find"
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:background="@color/circleTitleColorUnChecked"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/fragmentFindIconLl">
+
+                    <TextView
+                        android:id="@+id/tv_icon_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_find_add"
+                        android:textColor="#ff7f6c"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        style="@style/fragmentFindIconText"
+                        android:text="目的地" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/fragmentFindIconLl">
+
+                    <TextView
+                        android:id="@+id/tv_icon_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_find_hotel"
+                        android:textColor="#50c3eb"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_marginTop="6dp"
+                        style="@style/fragmentFindIconText"
+                        android:text="酒店" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/fragmentFindIconLl">
+
+                    <TextView
+                        android:id="@+id/tv_icon_travels"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_find_travels"
+                        android:textColor="#9f8fe4"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        style="@style/fragmentFindIconText"
+                        android:text="游记" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/fragmentFindIconLl">
+
+                    <TextView
+                        android:id="@+id/tv_icon_food"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_find_food"
+                        android:textColor="@color/otherTitleBg"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        style="@style/fragmentFindIconText"
+                        android:text="美食" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/fragmentFindIconLl">
+
+                    <TextView
+                        android:paddingBottom="5dp"
+                        android:id="@+id/tv_icon_active"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_find_active"
+                        android:textColor="#fcae04"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:paddingBottom="4dp"
+                        style="@style/fragmentFindIconText"
+                        android:text="活动"
+                        android:layout_marginTop="4dp"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:drawableRight="@drawable/fragment_find_line"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/fragment_find_line"
+                android:gravity="center"
+                android:text="推荐"
+                android:textColor="#323232"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp" />
+
+                <com.example.administrator.travel.ui.view.ToShowAllGridView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/gv_recommend"
+                    android:numColumns="2"
+                    android:verticalSpacing="5dp"
+                    android:horizontalSpacing="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </com.example.administrator.travel.ui.view.ToShowAllGridView>
+
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:drawableRight="@drawable/fragment_find_line"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/fragment_find_line"
+                android:gravity="center"
+                android:text="热门"
+                android:textColor="#323232"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp" />
+            <com.example.administrator.travel.ui.view.ToShowAllListView
+                android:id="@+id/lv_hot"
+                android:divider="@null"
+                android:dividerHeight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.example.administrator.travel.ui.view.ToShowAllListView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

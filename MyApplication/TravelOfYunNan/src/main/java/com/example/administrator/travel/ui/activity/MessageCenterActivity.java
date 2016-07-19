@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.fragment.SystemMessagePagerAdapter;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
+import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
 
@@ -21,12 +22,8 @@ public class MessageCenterActivity extends BaseActivity implements View.OnClickL
     private TextView mTvBack;
     private TextView mTvMore;
     private ViewPager mVpMessageCenter;
-    private View mVCursor;
-    private TextView mTvSystem;
-    private TextView mTvPrivate;
-    private int[] locationSystem = new int[2];//系统消息位置
-    private int[] locationPrivate = new int[2];//私信消息位置
-    private int distance = 0;
+    private SimpleViewPagerIndicator mIndicator;
+
 
     @Override
     protected int initLayoutRes() {
@@ -38,9 +35,9 @@ public class MessageCenterActivity extends BaseActivity implements View.OnClickL
         mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
         mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_more, this);
         mVpMessageCenter = (ViewPager) findViewById(R.id.vp_message_center);
-        mVCursor = findViewById(R.id.v_cursor);
-        mTvSystem = (TextView) findViewById(R.id.tv_system);
-        mTvPrivate = (TextView) findViewById(R.id.tv_private);
+
+        mIndicator = (SimpleViewPagerIndicator) findViewById(R.id.svpi_indicator);
+        mIndicator.setTitles(new String[]{"系统消息", "私信"});
 
 
     }
@@ -53,6 +50,22 @@ public class MessageCenterActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void initListener() {
         mTvBack.setOnClickListener(this);
+        mVpMessageCenter.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                mIndicator.scroll(position,positionOffset);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 

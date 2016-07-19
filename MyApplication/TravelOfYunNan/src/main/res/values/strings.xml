@@ -46,7 +46,15 @@
     <string name="activity_other_album_eye">阚</string>
     <!--眼睛-->
     <string name="activity_my_album_add">罐</string>
+
     <!--添加-->
+    <string name="fragment_circle_search">璟</string><!--搜索-->
+    <string name="fragment_find_add">睇</string><!--目的地-->
+    <string name="fragment_find_hotel">玖</string><!--酒店-->
+    <string name="fragment_find_travels">搵</string><!--游记-->
+    <string name="fragment_find_food">赤</string><!--美食-->
+    <string name="fragment_find_active">嚯</string><!--活动-->
+    <string name="item_fragment_find_add">芷</string><!--item地址-->
 
 
     <string name="activity_message_center_cursor">暇</string>

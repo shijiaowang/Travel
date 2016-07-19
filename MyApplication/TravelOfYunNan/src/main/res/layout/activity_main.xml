@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainActivity">
     <LinearLayout
+        android:id="@+id/ll_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -14,6 +16,7 @@
             android:id="@+id/drag_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#fafafa"
           >
 
             <!--top view-->
@@ -35,6 +38,7 @@
                 android:orientation="vertical">
 
                 <com.astuetz.PagerSlidingTabStrip
+                    android:visibility="gone"
                     android:id="@+id/tabs"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"

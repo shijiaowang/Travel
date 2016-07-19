@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class SimpleViewPagerIndicator extends LinearLayout
 {
 
-	private static final int COLOR_TEXT_NORMAL = 0xFF000000;
+	private static final int COLOR_TEXT_NORMAL = Color.parseColor("#686868");
 	private static final int COLOR_INDICATOR_COLOR = Color.parseColor("#ffbf75");
 
 	private String[] mTitles;
