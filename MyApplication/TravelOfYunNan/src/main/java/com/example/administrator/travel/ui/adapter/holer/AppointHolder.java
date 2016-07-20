@@ -19,7 +19,7 @@ public class AppointHolder extends BaseHolder<Appoint> {
 
     private TextView mLoveIcon;
     private FlowLayout mFlTitle;
-    private String[] titles = new String[]{"号码百事通", "仅限人妖", "郊区游玩", "有责任心", "大神带队"};
+    private String[] titles = new String[]{"号码百事通118114服务", "仅限人妖", "郊区游玩", "有责任心", "大神"};
     private LayoutInflater inflater;
 
     public AppointHolder(Context context) {
@@ -28,6 +28,9 @@ public class AppointHolder extends BaseHolder<Appoint> {
 
     @Override
     protected void initItemDatas(Appoint datas, Context mContext) {
+         if (mFlTitle!=null && mFlTitle.getChildCount()>0){
+             mFlTitle.removeAllViews();
+         }
         for (int i = 0; i < titles.length; i++) {
             TextView textView = (TextView) inflater.inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
             textView.setText(titles[i]);

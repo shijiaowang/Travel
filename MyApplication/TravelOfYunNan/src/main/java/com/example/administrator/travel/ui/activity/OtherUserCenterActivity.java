@@ -5,9 +5,8 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -17,28 +16,37 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.activity.dragtopview.GridViewFragment;
+import com.example.administrator.travel.ui.activity.dragtopview.ListViewFragment;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
-import com.example.administrator.travel.ui.fragment.DynamicFragment;
-import com.example.administrator.travel.ui.fragment.InformationFragment;
 import com.example.administrator.travel.ui.view.FlowLayout;
-import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
+import com.example.administrator.travel.ui.view.FontsIconViewPagerIndicator;
+import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import de.greenrobot.event.EventBus;
+import github.chenupt.dragtoplayout.DragTopLayout;
+import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
+import github.chenupt.multiplemodel.viewpager.PagerModelManager;
+
 
 /**
  * Created by Administrator on 2016/7/13 0013.
  */
-public class OtherUserCenterActivity extends BaseActivity implements View.OnClickListener{
+public class OtherUserCenterActivity extends BaseActivity implements View.OnClickListener {
 
-    private String[] mTitles = new String[] { "动态", "相册", "个人" };
+    private String[] mTitles =new String []{"动态","相册","个人"};
     private String[] titles = {"老司机", "新司机", "旧司机", "486", "我是老司机", "新手", "小清新", "我勒个去去", "速度"};
     private boolean isInflate = false;
     private Handler mHandler = new Handler() {
@@ -52,22 +60,12 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
                 case 0:
                     mPbLoad.clearAnimation();
                     mPbLoad.setVisibility(View.GONE);
-                    ViewStub vsNewUser = (ViewStub) findViewById(R.id.vs_new_user);
-                    vsNewUser.inflate();
-                    isInflate = true;
+                    mFlTitle.setVisibility(View.VISIBLE);
                     break;
                 case 1:
                     mPbLoad.clearAnimation();
                     mPbLoad.setVisibility(View.GONE);
-                    ViewStub vsFl = (ViewStub) findViewById(R.id.vs_title);
-                    vsFl.inflate();
-                    isInflate = true;
-                    FlowLayout mFlTitle = (FlowLayout) findViewById(R.id.fl_title_in_vs);
-                    for (int i = 0; i < titles.length; i++) {
-                        TextView textView = (TextView) inflater.inflate(R.layout.item_activity_other_title_item, mFlTitle, false);
-                        textView.setText(titles[i]);
-                        mFlTitle.addView(textView);
-                    }
+                    mLlNewUser.setVisibility(View.VISIBLE);
                     break;
             }
         }
@@ -83,10 +81,18 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private LinearLayout mLlFollow;
 
 
-    private List<BaseFragment> fragmentList=new ArrayList<>(3);
-
     private ViewPager mVpDynamic;
-
+    private DragTopLayout mDragLayout;
+    private ModelPagerAdapter adapter;
+    private FontsIconViewPagerIndicator mIndicator;
+    private FlowLayout mFlTitle;
+    private LinearLayout mLlNewUser;
+    private LinearLayout mTopView;
+    private RelativeLayout mRlTitle;
+    private View mVSup;
+    private RelativeLayout mRlTitleParent;
+    private TextView mTvBack;
+    private TextView mTvTitleBack;
 
 
     @Override
@@ -103,15 +109,58 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         mTvFollow = (TextView) findViewById(R.id.tv_follow);
         mLlPrivate = (LinearLayout) findViewById(R.id.ll_private);
         mLlFollow = (LinearLayout) findViewById(R.id.ll_follow);
-        mVpDynamic = (ViewPager) findViewById(R.id.vp_dynamic);
+        mVpDynamic = (ViewPager) findViewById(R.id.vp_daynamic);
+        mDragLayout = (DragTopLayout) findViewById(R.id.drag_layout);
 
+        mTopView = (LinearLayout) findViewById(R.id.top_view);
+        // PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        mIndicator = (FontsIconViewPagerIndicator) findViewById(R.id.fivpi_indicator);
+        mFlTitle = (FlowLayout) findViewById(R.id.fl_title);
+        mLlNewUser = (LinearLayout) findViewById(R.id.ll_new_user);
+        mRlTitle = (RelativeLayout) findViewById(R.id.rl_title);
+        mRlTitleParent = (RelativeLayout) findViewById(R.id.rl_title_parent);
+        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
+        mTvTitleBack = FontsIconUtil.findIconFontsById(R.id.tv_title_back, this);
+        mVSup = findViewById(R.id.v_sup);
 
 
     }
 
     @Override
     protected void initListener() {
+        mIndicator.setTagClick(mVpDynamic);
+        mTvBack.setOnClickListener(this);
+        mTvTitleBack.setOnClickListener(this);
+       mDragLayout.setOverDrag(false).setCollapseOffset(0).listener(new DragTopLayout.SimplePanelListener() {
+           @Override
+           public void onSliding(float ratio) {
+               if (ratio<1.0 && mRlTitleParent.getVisibility()!=View.VISIBLE){
+                   mRlTitleParent.setVisibility(View.VISIBLE);
+                   mRlTitle.setVisibility(View.GONE);
+               }
+               //显示标题
+               if (mTopView.getHeight()*ratio<=mVSup.getHeight() && mRlTitle.getVisibility()!=View.VISIBLE){
+                   mRlTitle.setVisibility(View.VISIBLE);
+                   mRlTitleParent.setVisibility(View.GONE);
+               }
+           }
+       });
+       mVpDynamic.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+           @Override
+           public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+               mIndicator.scroll(position,positionOffset);
+           }
 
+           @Override
+           public void onPageSelected(int position) {
+
+           }
+
+           @Override
+           public void onPageScrollStateChanged(int state) {
+
+           }
+       });
         mLlFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,21 +175,35 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     }
 
 
-
-
     @Override
     protected void initData() {
         initIconFonts();
+        mIndicator.setTitles(mTitles);
 
-        fragmentList.add(new DynamicFragment());
-        fragmentList.add(new DynamicFragment());
-        fragmentList.add(new InformationFragment());
-        mVpDynamic.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-        mVpDynamic.setCurrentItem(0,false);
+       if (mFlTitle.getChildCount()>0){
+           mFlTitle.removeAllViews();
+       }
+        for (int i = 0; i < titles.length; i++) {
+            TextView textView = (TextView) inflater.inflate(R.layout.item_activity_other_title_item, mFlTitle, false);
+            textView.setText(titles[i]);
+            mFlTitle.addView(textView);
+        }
+        PagerModelManager factory = new PagerModelManager();
+        factory.addCommonFragment(getFragments(), getTitles());
+        adapter = new ModelPagerAdapter(getSupportFragmentManager(), factory);
+        mVpDynamic.setAdapter(adapter);
 
         //获取数据
         Random random = new Random();
         i = random.nextInt(2);
+        if (i==0){
+            mFlTitle.setVisibility(View.INVISIBLE);
+            mLlNewUser.setVisibility(View.GONE);
+        }else {
+            mLlNewUser.setVisibility(View.INVISIBLE);
+
+            mFlTitle.setVisibility(View.GONE);
+        }
         initAnimation();
     }
 
@@ -171,10 +234,25 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
 
     }
 
+    private List<String> getTitles() {
+        return Lists.newArrayList("相册", "动态", "个人");
+    }
+
+    private List<Fragment> getFragments() {
+        List<Fragment> list = new ArrayList<>();
+        Fragment listFragment = new ListViewFragment();
+        Fragment recyclerFragment = new GridViewFragment();
+        Fragment gridViewFragment = new GridViewFragment();
+        list.add(listFragment);
+        list.add(recyclerFragment);
+        list.add(gridViewFragment);
+        return list;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-
+        EventBus.getDefault().register(this);
 
         if (!isInflate) {
             mPbLoad.startAnimation(animationSet);
@@ -183,26 +261,27 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
 
     }
 
+    // Handle scroll event from fragments
+    public void onEvent(Boolean b) {
+        mDragLayout.setTouchMode(b);
+    }
+
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-
+        switch (v.getId()) {
+            case R.id.tv_back:
+            case R.id.tv_title_back:
+                finish();
+                break;
 
         }
     }
-    class MyPagerAdapter extends FragmentPagerAdapter{
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
 
-        @Override
-        public Fragment getItem(int position) {
-            return fragmentList.get(position);
-        }
 
-        @Override
-        public int getCount() {
-            return fragmentList.size();
-        }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
     }
 }

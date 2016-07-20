@@ -27,7 +27,6 @@
         <activity android:name=".ui.activity.MyAlbumActivity" />
         <activity android:name=".ui.activity.CreateAlbumActivity" />
         <activity android:name=".ui.activity.EditAlbumActivity"></activity>
-        <activity android:name=".ui.activity.dragtopview.MainActivity"/>
     </application>
 
 </manifest>

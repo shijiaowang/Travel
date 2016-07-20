@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.View;
 
 import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
-import com.example.administrator.travel.ui.activity.dragtopview.MainActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyImageHolder;
@@ -50,7 +49,7 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
             postReplyImageHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   mContext.startActivity(new Intent(mContext, MainActivity.class));
+                   mContext.startActivity(new Intent(mContext, OtherUserCenterActivity.class));
                 }
             });
         }

@@ -1,28 +1,101 @@
-<github.chenupt.dragtoplayout.DragTopLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-    <!--top view-->
     <LinearLayout
+        android:id="@+id/ll_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-       <include layout="@layout/activity_other_top"/>
-    </LinearLayout>
 
-    <!--content view-->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp_dynamic"
+
+        <github.chenupt.dragtoplayout.DragTopLayout
+            android:id="@+id/drag_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#fafafa">
 
-        </android.support.v4.view.ViewPager>
+            <!--top view-->
+            <LinearLayout
+                android:id="@+id/top_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <include layout="@layout/activity_other_top" />
+            </LinearLayout>
+
+            <!--content view-->
+            <LinearLayout
+                android:id="@+id/drag_content_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/v_sup"
+                        android:layout_width="match_parent"
+                        android:layout_height="74dp"
+                        android:background="@android:color/transparent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <RelativeLayout
+                            android:id="@+id/rl_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="74dp"
+                            android:background="@color/otherTitleBg"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/tv_title_back"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="35dp"
+                                android:text="@string/activity_circle_back_font_icon"
+                                android:textColor="@color/colorFAFAFA"
+                                android:textSize="25sp" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/meLine" />
+
+                        <com.example.administrator.travel.ui.view.FontsIconViewPagerIndicator
+                            android:id="@+id/fivpi_indicator"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp">
+
+                        </com.example.administrator.travel.ui.view.FontsIconViewPagerIndicator>
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/vp_daynamic"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </android.support.v4.view.ViewPager>
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </github.chenupt.dragtoplayout.DragTopLayout>
     </LinearLayout>
-
-</github.chenupt.dragtoplayout.DragTopLayout>
+</RelativeLayout>
