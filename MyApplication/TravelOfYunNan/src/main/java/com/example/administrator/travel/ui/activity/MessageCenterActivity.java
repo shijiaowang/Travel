@@ -38,6 +38,7 @@ public class MessageCenterActivity extends BaseActivity implements View.OnClickL
 
         mIndicator = (SimpleViewPagerIndicator) findViewById(R.id.svpi_indicator);
         mIndicator.setTitles(new String[]{"系统消息", "私信"});
+        mIndicator.setViewPager(mVpMessageCenter);
 
 
     }

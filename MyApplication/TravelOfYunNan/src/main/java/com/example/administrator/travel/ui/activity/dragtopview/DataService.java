@@ -1,5 +1,7 @@
 package com.example.administrator.travel.ui.activity.dragtopview;
 
+import com.example.administrator.travel.bean.Dynamic;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,9 @@ public class DataService {
     public List<ItemEntity> getList() {
         List<ItemEntity> resultList = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
-            ItemEntityCreator.create("").setModelView(DynamicView.class).attach(resultList);
+            Dynamic dynamic=new Dynamic();
+            dynamic.setType("type:"+i);
+            ItemEntityCreator.create(dynamic).setModelView(DynamicView.class).attach(resultList);
         }
         return resultList;
     }

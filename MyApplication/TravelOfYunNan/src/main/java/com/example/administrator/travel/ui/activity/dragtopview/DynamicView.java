@@ -18,18 +18,26 @@ package com.example.administrator.travel.ui.activity.dragtopview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Dynamic;
+import com.example.administrator.travel.utils.LogUtils;
+
+import java.util.List;
 
 import github.chenupt.multiplemodel.BaseItemModel;
+import github.chenupt.multiplemodel.ItemEntity;
 
 /**
  * Created by chenupt@gmail.com on 2015/1/18.
  * Description TODO
  */
-public class DynamicView extends BaseItemModel<String> {
+public class DynamicView extends BaseItemModel<Dynamic> {
 
+
+    private TextView mTvType;
 
     public DynamicView(Context context) {
         super(context);
@@ -40,11 +48,24 @@ public class DynamicView extends BaseItemModel<String> {
     protected void onFinishInflate() {
         super.onFinishInflate();
         LayoutInflater.from(getContext()).inflate(R.layout.item_fragment_dynamic, this, true);
+        mTvType = (TextView) findViewById(R.id.tv_type);
 
     }
 
     @Override
     public void bindView() {
+        List<ItemEntity<Dynamic>> modelList = getModelList();
+        ItemEntity<Dynamic> dynamicItemEntity = modelList.get(viewPosition);
+        Dynamic content = dynamicItemEntity.getContent();
+        String type = content.getType();
+        mTvType.setText(type);
+        mTvType.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.e("被点击了"+viewPosition);
+            }
+        });
+
 
     }
 }

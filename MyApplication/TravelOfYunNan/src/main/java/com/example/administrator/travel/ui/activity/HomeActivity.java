@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.fragment.AppointFragment;
 import com.example.administrator.travel.ui.fragment.CircleFragment;
 import com.example.administrator.travel.ui.fragment.FindFragment;
 import com.example.administrator.travel.ui.fragment.HomeFragment;
@@ -117,7 +118,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      protected void initData() {
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
-        fragments.add(new HomeFragment());
+        fragments.add(new AppointFragment());
         fragments.add(new CircleFragment());
         fragments.add(new FindFragment());
         fragments.add(new MeFragment());

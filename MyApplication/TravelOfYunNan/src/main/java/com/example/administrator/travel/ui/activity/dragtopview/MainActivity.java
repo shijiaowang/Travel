@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.fragment.DynamicFragment;
 import com.example.administrator.travel.utils.LogUtils;
 import com.google.common.collect.Lists;
 
@@ -90,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
     private List<Fragment> getFragments() {
         List<Fragment> list = new ArrayList<>();
         Fragment listFragment = new ListViewFragment();
-        Fragment recyclerFragment = new RecyclerFragment();
+        Fragment recyclerFragment = new DynamicFragment();
         Fragment gridViewFragment = new GridViewFragment();
         list.add(listFragment);
         list.add(recyclerFragment);

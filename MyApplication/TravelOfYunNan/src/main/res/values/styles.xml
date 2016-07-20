@@ -200,4 +200,27 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="fragmentAppointTitleText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#969696</item>
+    </style>
+    <style name="fragmentAppointTitleLine">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">#c1c1c1</item>
+    </style>
+
+    <style name="fragmentAppointBottomText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorb5b5b5</item>
+    </style>
+
 </resources>

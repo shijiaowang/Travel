@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <View
+            android:background="@color/colorFAFAFA"
+            android:layout_marginTop="20dp"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:src="@drawable/fragment_appoint_icon_test" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@color/colorFAFAFA"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="昆明-丽江-大理"
+                android:textColor="@color/color323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="行程日期： 2016.7.14-2016.7.18"
+                android:textColor="@color/otherTitleBg"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="昆明出发 四天三晚"
+                android:textColor="@color/color646464"
+                android:textSize="13sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/tv_plan_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="计划：5人"
+                    android:textColor="@color/color646464"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/tv_plan_number"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="已有：2人"
+                    android:textColor="@color/color646464"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorFAFAFA"
+            android:paddingRight="10dp">
+
+            <RelativeLayout
+                android:layout_width="25dp"
+                android:layout_height="50dp"
+                android:background="@drawable/fragment_appoint_title">
+
+                <TextView
+                    android:id="@+id/tv_icon_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dp"
+                    android:text="¥"
+                    android:textColor="@color/colorFAFAFA"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_icon_title"
+                    android:layout_centerHorizontal="true"
+                    android:text="20"
+                    android:textColor="@color/colorFAFAFA"
+                    android:textSize="11sp" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <com.example.administrator.travel.ui.view.FlowLayout
+        android:paddingLeft="15dp"
+        android:id="@+id/fl_title"
+        android:background="@color/colorFAFAFA"
+        android:paddingTop="12dp"
+        android:paddingBottom="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.example.administrator.travel.ui.view.FlowLayout>
+    <View
+        android:background="@color/meLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/colorFAFAFA"
+        android:paddingBottom="9dp"
+        android:paddingTop="9dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_icon_eye"
+            android:text="@string/activity_other_album_eye"
+            style="@style/fragmentAppointBottomText"
+            android:layout_marginLeft="15dp"
+         />
+        <TextView
+            android:text="11"
+            style="@style/fragmentAppointBottomText"
+            android:layout_marginLeft="6dp"
+            />
+        <TextView
+            android:id="@+id/tv_icon_love"
+            android:text="@string/activity_circle_love_empty"
+            style="@style/fragmentAppointBottomText"
+            android:layout_marginLeft="16dp"
+            />
+        <TextView
+            android:text="11"
+            style="@style/fragmentAppointBottomText"
+            android:layout_marginLeft="6dp"
+            />
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:text="5分钟前"
+            android:textColor="@color/color969696"
+            android:textSize="13sp"
+            android:layout_marginRight="15dp"
+            style="@style/fragmentAppointBottomText"
+            />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

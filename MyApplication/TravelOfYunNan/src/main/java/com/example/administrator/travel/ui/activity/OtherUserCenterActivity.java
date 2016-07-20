@@ -62,11 +62,11 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
                     ViewStub vsFl = (ViewStub) findViewById(R.id.vs_title);
                     vsFl.inflate();
                     isInflate = true;
-                    FlowLayout mFlTitleInVs = (FlowLayout) findViewById(R.id.fl_title_in_vs);
+                    FlowLayout mFlTitle = (FlowLayout) findViewById(R.id.fl_title_in_vs);
                     for (int i = 0; i < titles.length; i++) {
-                        TextView textView = (TextView) inflater.inflate(R.layout.item_activity_other_title_item, mFlTitleInVs, false);
+                        TextView textView = (TextView) inflater.inflate(R.layout.item_activity_other_title_item, mFlTitle, false);
                         textView.setText(titles[i]);
-                        mFlTitleInVs.addView(textView);
+                        mFlTitle.addView(textView);
                     }
                     break;
             }
