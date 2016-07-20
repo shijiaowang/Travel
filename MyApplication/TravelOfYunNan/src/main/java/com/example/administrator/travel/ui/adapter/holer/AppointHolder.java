@@ -29,7 +29,9 @@ public class AppointHolder extends BaseHolder<Appoint> {
     @Override
     protected void initItemDatas(Appoint datas, Context mContext) {
         for (int i = 0; i < titles.length; i++) {
-           inflater.inflate(R.layout.,)
+            TextView textView = (TextView) inflater.inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
+            textView.setText(titles[i]);
+            mFlTitle.addView(textView);
         }
     }
 
