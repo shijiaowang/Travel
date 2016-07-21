@@ -21,18 +21,23 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Album;
+
+import java.util.List;
 
 import github.chenupt.multiplemodel.BaseItemModel;
+import github.chenupt.multiplemodel.ItemEntity;
 
 /**
  * Created by chenupt@gmail.com on 2015/1/18.
  * Description TODO
  */
-public class CustomView extends BaseItemModel<String> {
+public class AlbumView extends BaseItemModel<Album> {
 
-    private TextView textView;
 
-    public CustomView(Context context) {
+    private TextView mTvName;
+
+    public AlbumView(Context context) {
         super(context);
         onFinishInflate();
     }
@@ -40,12 +45,17 @@ public class CustomView extends BaseItemModel<String> {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        LayoutInflater.from(getContext()).inflate(R.layout.view_item_custom, this, true);
-        textView = (TextView) findViewById(R.id.text);
+        LayoutInflater.from(getContext()).inflate(R.layout.item_fragment_album_in_other, this, true);
+        mTvName = (TextView) findViewById(R.id.tv_name);
+
     }
 
     @Override
     public void bindView() {
-        textView.setText("item:" + viewPosition);
+        List<ItemEntity<Album>> modelList = getModelList();
+        ItemEntity<Album> dynamicItemEntity = modelList.get(viewPosition);
+        Album content = dynamicItemEntity.getContent();
+        String albumName = content.getAlbumName();
+        mTvName.setText(albumName);
     }
 }

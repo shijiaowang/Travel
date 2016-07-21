@@ -223,4 +223,26 @@
         <item name="android:textColor">@color/colorb5b5b5</item>
     </style>
 
+    <style name="fragmentAppointWithMeText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:textColor">@color/color323232</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="fragmentAppointWithMeIconFont">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorb5b5b5</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="fragmentAppointWithMeLl">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">9dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
 </resources>

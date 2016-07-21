@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity.dragtopview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.activity.CatOtherUserAlbumActivity;
 
 import de.greenrobot.event.EventBus;
 import github.chenupt.dragtoplayout.AttachUtil;
@@ -27,7 +30,7 @@ public class GridViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_gridview, container, false);
+        return inflater.inflate(R.layout.activity_other_album, container, false);
     }
 
     @Override
@@ -36,12 +39,20 @@ public class GridViewFragment extends Fragment {
         initView();
     }
 
-    private void initView(){
-        gridView = (GridView) getView().findViewById(R.id.grid_view);
-        adapter = new ModelListAdapter(getActivity(), DataService.getInstance().getModelManager());
+    private void initView() {
+        gridView = (GridView) getView().findViewById(R.id.gv_album);
+        adapter = new ModelListAdapter(getActivity(), AlbumDataService.getInstance().getModelManager());
         gridView.setAdapter(adapter);
-        adapter.setList(DataService.getInstance().getList());
+        adapter.setList(AlbumDataService.getInstance().getList());
         adapter.notifyDataSetChanged();
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getContext(), CatOtherUserAlbumActivity.class));
+
+            }
+
+        });
 
 
         // attach top

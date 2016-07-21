@@ -1,26 +1,19 @@
 package com.example.administrator.travel.ui.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.HotSpotsItemDecoration;
-import com.example.administrator.travel.ui.adapter.SpaceItemDecoration;
 import com.example.administrator.travel.ui.adapter.ChosenAdapter;
 import com.example.administrator.travel.ui.adapter.HotSpotsAdapter;
 import com.example.administrator.travel.ui.adapter.TravelsAdapter;
-import com.example.administrator.travel.ui.adapter.fragment.HomeActiveAdapter;
+import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.ui.fragment.homefragment.HomeActiveFragment;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
 
@@ -97,7 +90,7 @@ public class HomeFragment extends BaseFragment {
         fragments.add(new HomeActiveFragment());
         fragments.add(new HomeActiveFragment());
         fragments.add(new HomeActiveFragment());
-        mVpActive.setAdapter(new HomeActiveAdapter(getChildFragmentManager(),fragments));
+        mVpActive.setAdapter(new CommonPagerAdapter(getChildFragmentManager(),fragments));
     }
 
 

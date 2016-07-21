@@ -58,6 +58,15 @@
                             android:layout_height="74dp"
                             android:background="@color/otherTitleBg"
                             android:visibility="gone">
+                            <TextView
+                                android:layout_marginTop="35dp"
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/tv_name"
+                                android:text="岳阳"
+                                android:textColor="@color/colorFAFAFA"
+                                android:textSize="15sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
                                 android:id="@+id/tv_title_back"

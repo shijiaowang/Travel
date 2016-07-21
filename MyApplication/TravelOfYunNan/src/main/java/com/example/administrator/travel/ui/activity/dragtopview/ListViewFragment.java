@@ -57,9 +57,9 @@ public class ListViewFragment extends Fragment {
 
     private void initView() {
         listView = (ListView) getView().findViewById(R.id.lv_dynamic);
-        adapter = new ModelListAdapter(getActivity(), DataService.getInstance().getModelManager());
+        adapter = new ModelListAdapter(getActivity(), DynamicDataService.getInstance().getModelManager());
         listView.setAdapter(adapter);
-        adapter.setList(DataService.getInstance().getList());
+        adapter.setList(DynamicDataService.getInstance().getList());
         adapter.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

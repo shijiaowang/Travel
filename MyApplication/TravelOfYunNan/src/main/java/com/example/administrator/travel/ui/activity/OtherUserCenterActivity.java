@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.activity.dragtopview.GridViewFragment;
 import com.example.administrator.travel.ui.activity.dragtopview.ListViewFragment;
+import com.example.administrator.travel.ui.activity.dragtopview.ScrollViewFragment;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconViewPagerIndicator;
@@ -46,7 +48,7 @@ import github.chenupt.multiplemodel.viewpager.PagerModelManager;
  */
 public class OtherUserCenterActivity extends BaseActivity implements View.OnClickListener {
 
-    private String[] mTitles =new String []{"动态","相册","个人"};
+    private String[] mTitles = new String[]{"动态", "相册", "个人"};
     private String[] titles = {"老司机", "新司机", "旧司机", "486", "我是老司机", "新手", "小清新", "我勒个去去", "速度"};
     private boolean isInflate = false;
     private Handler mHandler = new Handler() {
@@ -90,9 +92,11 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private LinearLayout mTopView;
     private RelativeLayout mRlTitle;
     private View mVSup;
-    private RelativeLayout mRlTitleParent;
+
     private TextView mTvBack;
     private TextView mTvTitleBack;
+    private int mTopViewHeight;
+    private int mTitleHeight;
 
 
     @Override
@@ -118,7 +122,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         mFlTitle = (FlowLayout) findViewById(R.id.fl_title);
         mLlNewUser = (LinearLayout) findViewById(R.id.ll_new_user);
         mRlTitle = (RelativeLayout) findViewById(R.id.rl_title);
-        mRlTitleParent = (RelativeLayout) findViewById(R.id.rl_title_parent);
+
         mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
         mTvTitleBack = FontsIconUtil.findIconFontsById(R.id.tv_title_back, this);
         mVSup = findViewById(R.id.v_sup);
@@ -131,36 +135,49 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         mIndicator.setTagClick(mVpDynamic);
         mTvBack.setOnClickListener(this);
         mTvTitleBack.setOnClickListener(this);
-       mDragLayout.setOverDrag(false).setCollapseOffset(0).listener(new DragTopLayout.SimplePanelListener() {
-           @Override
-           public void onSliding(float ratio) {
-               if (ratio<1.0 && mRlTitleParent.getVisibility()!=View.VISIBLE){
-                   mRlTitleParent.setVisibility(View.VISIBLE);
-                   mRlTitle.setVisibility(View.GONE);
-               }
-               //显示标题
-               if (mTopView.getHeight()*ratio<=mVSup.getHeight() && mRlTitle.getVisibility()!=View.VISIBLE){
-                   mRlTitle.setVisibility(View.VISIBLE);
-                   mRlTitleParent.setVisibility(View.GONE);
-               }
-           }
-       });
-       mVpDynamic.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-           @Override
-           public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-               mIndicator.scroll(position,positionOffset);
-           }
+        mDragLayout.setOverDrag(false).setCollapseOffset(0).listener(new DragTopLayout.SimplePanelListener() {
 
-           @Override
-           public void onPageSelected(int position) {
+            @Override
+            public void onSliding(float ratio) {
+                if (mTopViewHeight == 0) {
+                    mTopViewHeight = mTopView.getHeight();
 
-           }
+                }
+                if (mTitleHeight==0){
+                    mTitleHeight = mVSup.getHeight();
+                }
+                if (ratio < 1.0 && mRlTitle.getVisibility() != View.GONE) {
+                    mRlTitle.setVisibility(View.GONE);
+                    mTopView.setVisibility(View.VISIBLE);
+                }
+                //显示标题
+                if (mTopViewHeight * ratio <= mTitleHeight  ) {
 
-           @Override
-           public void onPageScrollStateChanged(int state) {
+                    if (mRlTitle.getVisibility() != View.VISIBLE) {
+                        mRlTitle.setVisibility(View.VISIBLE);
+                    }
+                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mRlTitle.getLayoutParams();
+                    layoutParams.height= (int) (mTitleHeight-mTopViewHeight*ratio);
+                    mRlTitle.setLayoutParams(layoutParams);
+                }
+            }
+        });
+        mVpDynamic.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                mIndicator.scroll(position, positionOffset);
+            }
 
-           }
-       });
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         mLlFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,9 +197,9 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         initIconFonts();
         mIndicator.setTitles(mTitles);
 
-       if (mFlTitle.getChildCount()>0){
-           mFlTitle.removeAllViews();
-       }
+        if (mFlTitle.getChildCount() > 0) {
+            mFlTitle.removeAllViews();
+        }
         for (int i = 0; i < titles.length; i++) {
             TextView textView = (TextView) inflater.inflate(R.layout.item_activity_other_title_item, mFlTitle, false);
             textView.setText(titles[i]);
@@ -196,10 +213,10 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         //获取数据
         Random random = new Random();
         i = random.nextInt(2);
-        if (i==0){
+        if (i == 0) {
             mFlTitle.setVisibility(View.INVISIBLE);
             mLlNewUser.setVisibility(View.GONE);
-        }else {
+        } else {
             mLlNewUser.setVisibility(View.INVISIBLE);
 
             mFlTitle.setVisibility(View.GONE);
@@ -242,7 +259,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         List<Fragment> list = new ArrayList<>();
         Fragment listFragment = new ListViewFragment();
         Fragment recyclerFragment = new GridViewFragment();
-        Fragment gridViewFragment = new GridViewFragment();
+        Fragment gridViewFragment = new ScrollViewFragment();
         list.add(listFragment);
         list.add(recyclerFragment);
         list.add(gridViewFragment);

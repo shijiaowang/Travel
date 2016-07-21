@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/meLine"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.travel.ui.activity.CatOtherUserAlbumActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_album_bg"
+        android:layout_width="match_parent"
+        android:layout_height="213dp"
+        android:background="@drawable/activity_other_album_bg_test">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.36"
+            android:background="@color/colorb5b5b5" />
+        <TextView
+            android:id="@+id/tv_back"
+            android:padding="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="35dp"
+            android:text="@string/activity_circle_back_font_icon"
+            android:textSize="15sp"
+            android:textColor="@color/colorFAFAFA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="江川就是River"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="2015台湾日月潭一日游"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <ListView
+        android:scrollbars="none"
+        android:layout_marginRight="13dp"
+        android:layout_marginLeft="13dp"
+        android:dividerHeight="0dp"
+        android:divider="@null"
+        android:id="@+id/lv_album"
+        android:layout_below="@id/rl_album_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+</RelativeLayout>

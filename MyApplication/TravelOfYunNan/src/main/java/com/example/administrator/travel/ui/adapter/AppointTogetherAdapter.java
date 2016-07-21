@@ -2,8 +2,8 @@ package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
 
-import com.example.administrator.travel.bean.Appoint;
-import com.example.administrator.travel.ui.adapter.holer.AppointHolder;
+import com.example.administrator.travel.bean.AppointTogether;
+import com.example.administrator.travel.ui.adapter.holer.AppointTogetherHolder;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 import java.util.List;
@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/20 0020.
  */
-public class AppointAdapter extends TravelBaseAdapter<Appoint> {
-    public AppointAdapter(Context mContext, List<Appoint> mDatas) {
+public class AppointTogetherAdapter extends TravelBaseAdapter<AppointTogether> {
+    public AppointTogetherAdapter(Context mContext, List<AppointTogether> mDatas) {
         super(mContext, mDatas);
     }
 
@@ -22,12 +22,12 @@ public class AppointAdapter extends TravelBaseAdapter<Appoint> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Appoint item) {
+    protected void initListener(BaseHolder baseHolder, AppointTogether item) {
 
     }
 
     @Override
     protected BaseHolder initHolder(int position) {
-        return new AppointHolder(mContext);
+        return new AppointTogetherHolder(mContext);
     }
 }

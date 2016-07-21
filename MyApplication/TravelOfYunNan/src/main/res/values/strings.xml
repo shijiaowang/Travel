@@ -48,13 +48,28 @@
     <string name="activity_my_album_add">罐</string>
 
     <!--添加-->
-    <string name="fragment_circle_search">璟</string><!--搜索-->
-    <string name="fragment_find_add">睇</string><!--目的地-->
-    <string name="fragment_find_hotel">玖</string><!--酒店-->
-    <string name="fragment_find_travels">搵</string><!--游记-->
-    <string name="fragment_find_food">赤</string><!--美食-->
-    <string name="fragment_find_active">嚯</string><!--活动-->
-    <string name="item_fragment_find_add">芷</string><!--item地址-->
+    <string name="fragment_circle_search">璟</string>
+    <!--搜索-->
+    <string name="fragment_find_add">睇</string>
+    <!--目的地-->
+    <string name="fragment_find_hotel">玖</string>
+    <!--酒店-->
+    <string name="fragment_find_travels">搵</string>
+    <!--游记-->
+    <string name="fragment_find_food">赤</string>
+    <!--美食-->
+    <string name="fragment_find_active">嚯</string>
+    <!--活动-->
+    <string name="item_fragment_find_add">芷</string>
+    <!--item地址-->
+    <string name="fragment_play_with_me_time">誓</string>
+    <!--时间-->
+    <string name="fragment_play_with_me_air">籍</string>
+    <!--飞机-->
+    <string name="fragment_play_with_me_people">魜</string>
+    <!--人-->
+    <string name="fragment_play_with_me_add">桁</string>
+    <!--地点-->
 
 
     <string name="activity_message_center_cursor">暇</string>

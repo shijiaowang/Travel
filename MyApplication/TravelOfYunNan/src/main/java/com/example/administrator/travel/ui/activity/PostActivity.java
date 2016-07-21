@@ -5,9 +5,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.PostAdapter;
+import com.example.administrator.travel.utils.FontsIconUtil;
 
 /**
  * 帖子
@@ -17,7 +19,7 @@ public class PostActivity extends BaseActivity {
 
 
     private ListView mLvPostDetail;
-    private ImageView mIvBack;
+    private TextView mTvBack;
 
     @Override
     protected int initLayoutRes() {
@@ -27,12 +29,12 @@ public class PostActivity extends BaseActivity {
     @Override
     protected void initView() {
         mLvPostDetail = (ListView) findViewById(R.id.lv_post_detail);
-        mIvBack = (ImageView) findViewById(R.id.iv_back);
+        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back,this);
     }
 
     @Override
     protected void initListener() {
-        mIvBack.setOnClickListener(new View.OnClickListener() {
+        mTvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorFAFAFA"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:paddingBottom="9dp"
+       android:orientation="horizontal"
+        android:paddingTop="6dp"
+        android:paddingRight="12dp"
+        android:paddingLeft="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginTop="0dp"
+                style="@style/fragmentAppointWithMeLl">
+                <TextView
+                    android:id="@+id/tv_icon_air"
+                    android:text="@string/fragment_play_with_me_air"
+                    style="@style/fragmentAppointWithMeIconFont"/>
+                <TextView
+                    android:text="理想地：丽江"
+                   style="@style/fragmentAppointWithMeText"/>
+
+            </LinearLayout>
+            <LinearLayout
+
+                style="@style/fragmentAppointWithMeLl">
+                <TextView
+                    android:id="@+id/tv_icon_time"
+                    android:text="@string/fragment_play_with_me_time"
+                    style="@style/fragmentAppointWithMeIconFont"/>
+                <TextView
+                    android:textSize="11sp"
+                    android:textColor="@color/otherTitleBg"
+                    android:text="行程日期：2017-6-1至2018-5-1"
+                    style="@style/fragmentAppointWithMeText"/>
+
+            </LinearLayout>
+            <LinearLayout
+
+                style="@style/fragmentAppointWithMeLl">
+                <TextView
+                    android:textSize="18sp"
+                    android:id="@+id/tv_icon_add"
+                    android:text="@string/fragment_play_with_me_add"
+                    style="@style/fragmentAppointWithMeIconFont"/>
+                <TextView
+                    android:textSize="12sp"
+                    android:textColor="@color/color646464"
+                    android:text="昆明出发 四天四夜"
+                    style="@style/fragmentAppointWithMeText"/>
+
+            </LinearLayout>
+            <LinearLayout
+
+                style="@style/fragmentAppointWithMeLl">
+                <TextView
+                    android:id="@+id/tv_icon_people"
+                    android:text="@string/fragment_play_with_me_people"
+                    style="@style/fragmentAppointWithMeIconFont"/>
+                <TextView
+                    android:textSize="12sp"
+                    android:textColor="@color/color646464"
+                    android:text="已有：2人"
+                    style="@style/fragmentAppointWithMeText"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <ImageView
+            android:src="@drawable/fragment_appoint_icon_test"
+            android:layout_width="112dp"
+            android:layout_height="112dp" />
+        
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/colorFAFAFA"
+        android:paddingBottom="9dp"
+        android:paddingTop="9dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_icon_eye"
+            android:text="@string/activity_other_album_eye"
+            style="@style/fragmentAppointBottomText"
+            android:layout_marginLeft="15dp"
+            />
+        <TextView
+            android:text="11"
+            style="@style/fragmentAppointBottomText"
+            android:layout_marginLeft="6dp"
+            />
+        <TextView
+            android:id="@+id/tv_icon_love"
+            android:text="@string/activity_circle_love_empty"
+            style="@style/fragmentAppointBottomText"
+            android:layout_marginLeft="16dp"
+            />
+        <TextView
+            android:text="11"
+            style="@style/fragmentAppointBottomText"
+            android:layout_marginLeft="6dp"
+            />
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:text="5分钟前"
+            android:textColor="@color/color969696"
+            android:textSize="13sp"
+            android:layout_marginRight="15dp"
+            style="@style/fragmentAppointBottomText"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

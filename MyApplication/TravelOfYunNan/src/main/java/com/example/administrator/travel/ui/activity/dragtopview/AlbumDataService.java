@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity.dragtopview;
 
+import com.example.administrator.travel.bean.Album;
 import com.example.administrator.travel.bean.Dynamic;
 
 import java.util.ArrayList;
@@ -14,20 +15,20 @@ import github.chenupt.multiplemodel.ModelManagerBuilder;
  * Created by chenupt@gmail.com on 1/30/15.
  * Description :
  */
-public class DataService {
+public class AlbumDataService {
 
 
 
     public ModelManager getModelManager() {
-        return ModelManagerBuilder.begin().addModel(DynamicView.class).build(ModelManager.class);
+        return ModelManagerBuilder.begin().addModel(AlbumView.class).build(ModelManager.class);
     }
 
     public List<ItemEntity> getList() {
         List<ItemEntity> resultList = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
-            Dynamic dynamic=new Dynamic();
-            dynamic.setType("type:"+i);
-            ItemEntityCreator.create(dynamic).setModelView(DynamicView.class).attach(resultList);
+            Album album=new Album();
+            album.setAlbumName("毛球怪"+i);
+            ItemEntityCreator.create(album).setModelView(AlbumView.class).attach(resultList);
         }
         return resultList;
     }
@@ -35,16 +36,16 @@ public class DataService {
 
 
 
-    private static volatile DataService instance = null;
+    private static volatile AlbumDataService instance = null;
 
-    private DataService(){
+    private AlbumDataService(){
     }
 
-    public static DataService getInstance() {
+    public static AlbumDataService getInstance() {
         if (instance == null) {
-            synchronized (DataService.class) {
+            synchronized (AlbumDataService.class) {
                 if (instance == null) {
-                    instance = new DataService();
+                    instance = new AlbumDataService();
                 }
             }
         }

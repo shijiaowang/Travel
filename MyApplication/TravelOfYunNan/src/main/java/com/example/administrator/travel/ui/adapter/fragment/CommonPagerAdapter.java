@@ -12,15 +12,15 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/12 0012.
  */
-public class HomeActiveAdapter extends FragmentPagerAdapter {
+public class CommonPagerAdapter extends FragmentPagerAdapter {
     private List<BaseFragment> mDatas;
-    public HomeActiveAdapter(FragmentManager fm,List<BaseFragment> mDatas) {
+    public CommonPagerAdapter(FragmentManager fm, List<BaseFragment> mDatas) {
         super(fm);
         this.mDatas=mDatas;
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public BaseFragment getItem(int position) {
         return mDatas.get(position);
     }
 
