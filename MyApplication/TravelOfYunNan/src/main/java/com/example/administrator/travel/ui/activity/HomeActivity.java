@@ -34,7 +34,7 @@ import java.util.List;
  * 主页面
  */
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
-    private static int currentPosition=0;
+
     private List<GradientTextView> iconFonts = new ArrayList<>(5);
     private List<TextView> iconNames = new ArrayList<>(5);
     private ViewPager mVpHome;
@@ -149,25 +149,24 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onStart() {
         super.onStart();
 
-        LogUtils.e("onStart"+currentPosition);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LogUtils.e("onPause"+currentPosition);
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        LogUtils.e("onStop"+currentPosition);
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogUtils.e("onDestroy" + currentPosition);
+
     }
 
     @Override
@@ -192,31 +191,26 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 mTvHomeIconFonts.setChecked(true);
                 mTvHomeName.setTextColor(getResources().getColor(R.color.homeButtonCheckedColor));
                 mVpHome.setCurrentItem(0, false);
-                currentPosition=0;
                 break;
             case R.id.ll_appoint_click:
                 mTvAppointIconFonts.setChecked(true);
                 mTvAppointName.setTextColor(getResources().getColor(R.color.homeButtonCheckedColor));
                 mVpHome.setCurrentItem(1, false);
-                currentPosition=1;
                 break;
             case R.id.ll_circle_click:
                 mTvCircleIconFonts.setChecked(true);
                 mTvCircleName.setTextColor(getResources().getColor(R.color.homeButtonCheckedColor));
                 mVpHome.setCurrentItem(2, false);
-                currentPosition=2;
                 break;
             case R.id.ll_find_click:
                 mTvFindIconFonts.setChecked(true);
                 mTvFindName.setTextColor(getResources().getColor(R.color.homeButtonCheckedColor));
                 mVpHome.setCurrentItem(3, false);
-                currentPosition=3;
                 break;
             case R.id.ll_me_click:
                 mTvMeIconFonts.setChecked(true);
                 mTvMeName.setTextColor(getResources().getColor(R.color.homeButtonCheckedColor));
                 mVpHome.setCurrentItem(4, false);
-                currentPosition=4;
                 break;
 
         }
@@ -225,8 +219,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        mVpHome.setCurrentItem(currentPosition, false);
-        LogUtils.e("onResume"+currentPosition);
+
 
     }
     /**
@@ -238,7 +231,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         if (position < 0 || position >= iconFonts.size()) {
             return;
         }
-        currentPosition=position;
+
         initButton();
         iconFonts.get(position).setChecked(true);
         iconNames.get(position).setTextColor(getResources().getColor(R.color.homeButtonCheckedColor));

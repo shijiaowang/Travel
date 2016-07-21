@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Album;
+import com.example.administrator.travel.utils.FontsIconUtil;
 
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class AlbumView extends BaseItemModel<Album> {
         super.onFinishInflate();
         LayoutInflater.from(getContext()).inflate(R.layout.item_fragment_album_in_other, this, true);
         mTvName = (TextView) findViewById(R.id.tv_name);
+        TextView mTvIcon = FontsIconUtil.findIconFontsById(R.id.tv_icon, getContext(), this);
 
     }
 

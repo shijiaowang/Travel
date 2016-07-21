@@ -304,6 +304,5 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogUtils.e(System.currentTimeMillis() + "onDestroy");
     }
 }

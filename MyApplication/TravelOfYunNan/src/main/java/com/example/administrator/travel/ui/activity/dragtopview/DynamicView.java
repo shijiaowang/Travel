@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Dynamic;
+import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
 
 import java.util.List;
@@ -49,6 +50,7 @@ public class DynamicView extends BaseItemModel<Dynamic> {
         super.onFinishInflate();
         LayoutInflater.from(getContext()).inflate(R.layout.item_fragment_dynamic, this, true);
         mTvType = (TextView) findViewById(R.id.tv_type);
+        TextView  mTvType = FontsIconUtil.findIconFontsById(R.id.tv_icon,getContext(),this);
 
     }
 
