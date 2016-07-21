@@ -64,6 +64,7 @@
 
                 style="@style/fragmentAppointWithMeLl">
                 <TextView
+                    android:textStyle="italic"
                     android:textSize="16sp"
                     android:id="@+id/tv_icon_people"
                     android:text="@string/fragment_play_with_me_people"

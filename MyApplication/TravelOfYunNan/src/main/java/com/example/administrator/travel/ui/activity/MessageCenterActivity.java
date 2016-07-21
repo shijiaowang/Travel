@@ -2,16 +2,12 @@ package com.example.administrator.travel.ui.activity;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.fragment.SystemMessagePagerAdapter;
-import com.example.administrator.travel.ui.fragment.BaseFragment;
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 import com.example.administrator.travel.utils.FontsIconUtil;
-import com.example.administrator.travel.utils.LogUtils;
 
 /**
  * Created by Administrator on 2016/7/15 0015.

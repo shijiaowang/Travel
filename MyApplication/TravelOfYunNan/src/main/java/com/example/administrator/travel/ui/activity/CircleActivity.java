@@ -11,6 +11,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.CircleAdapter;
 import com.example.administrator.travel.ui.view.SlippingScrollView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
 /**
@@ -66,15 +67,15 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
         mSvScroll.setSlippingListener(new SlippingScrollView.SlippingListener() {
             @Override
             public void slipping(int l, int i, int oldl, int t) {
-                if (mTitleBgHeight<=0) {
+                if (mTitleBgHeight <= 0) {
                     mTitleBgHeight = mIvPostBg.getHeight();
                     mIvPostBg.getLocationInWindow(location);
                 }
-                if (location!=null&&location[1]>=mTitleBgHeight){
+                if (location != null && location[1] >= mTitleBgHeight) {
                     //不做操作
-                }else {
+                } else {
                     mIvPostBg.getLocationInWindow(location);
-                    changeBarBg((float)location[1]/mTitleBgHeight);
+                    changeBarBg((float) location[1] / mTitleBgHeight);
                 }
             }
         });
@@ -104,5 +105,16 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
         }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }

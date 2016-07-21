@@ -301,4 +301,9 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         super.onPause();
         EventBus.getDefault().unregister(this);
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtils.e(System.currentTimeMillis() + "onDestroy");
+    }
 }

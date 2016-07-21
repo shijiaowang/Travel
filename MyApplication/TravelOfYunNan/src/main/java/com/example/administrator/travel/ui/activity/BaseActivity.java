@@ -37,14 +37,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         setContentView(initLayoutRes());
         initView();
+
         initListener();
+        initData();
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        initData();
+
     }
 
     protected abstract int initLayoutRes();
@@ -54,6 +56,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initListener();
 
     protected abstract void initData();
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
 
 

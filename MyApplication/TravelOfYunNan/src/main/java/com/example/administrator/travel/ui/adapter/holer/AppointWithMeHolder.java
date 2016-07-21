@@ -24,12 +24,16 @@ public class AppointWithMeHolder extends BaseHolder<AppointWithMe> {
     @Override
     public View initRootView(Context mContext) {
         View inflate = View.inflate(mContext, R.layout.item_fragment_appoint_play_with_me, null);
-        TextView iconFontsById = FontsIconUtil.findIconFontsById(R.id.tv_icon_add, mContext, inflate);
-        TextView iconFontsById1 = FontsIconUtil.findIconFontsById(R.id.tv_icon_air, mContext, inflate);
-        TextView iconFontsById2 = FontsIconUtil.findIconFontsById(R.id.tv_icon_people, mContext, inflate);
-        TextView iconFontsById3 = FontsIconUtil.findIconFontsById(R.id.tv_icon_eye, mContext, inflate);
-        TextView iconFontsById4= FontsIconUtil.findIconFontsById(R.id.tv_icon_love, mContext, inflate);
-        TextView iconFontsById5 = FontsIconUtil.findIconFontsById(R.id.tv_icon_time, mContext, inflate);
+        TextView mTvIconAdd = FontsIconUtil.findIconFontsById(R.id.tv_icon_add, mContext, inflate);
+        TextView mTvIconAir = FontsIconUtil.findIconFontsById(R.id.tv_icon_air, mContext, inflate);
+        TextView mTvIconPeople = FontsIconUtil.findIconFontsById(R.id.tv_icon_people, mContext, inflate);
+        TextView mTvIconEye = FontsIconUtil.findIconFontsById(R.id.tv_icon_eye, mContext, inflate);
+        TextView mTvIconLove= FontsIconUtil.findIconFontsById(R.id.tv_icon_love, mContext, inflate);
+        TextView mTvIconTime = FontsIconUtil.findIconFontsById(R.id.tv_icon_time, mContext, inflate);
+        mTvIconAir.getPaint().setFakeBoldText(true);
+        mTvIconTime.getPaint().setFakeBoldText(true);
+        mTvIconPeople.getPaint().setFakeBoldText(true);
+        mTvIconAdd.getPaint().setFakeBoldText(true);
         return inflate;
     }
 }

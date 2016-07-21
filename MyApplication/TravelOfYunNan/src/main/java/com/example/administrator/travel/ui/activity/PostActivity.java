@@ -1,15 +1,15 @@
 package com.example.administrator.travel.ui.activity;
 
-import android.content.Intent;
+
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
+
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.PostAdapter;
 import com.example.administrator.travel.utils.FontsIconUtil;
+
 
 /**
  * 帖子
@@ -47,5 +47,15 @@ public class PostActivity extends BaseActivity {
     protected void initData() {
             mLvPostDetail.setAdapter(new PostAdapter(this,null));
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
