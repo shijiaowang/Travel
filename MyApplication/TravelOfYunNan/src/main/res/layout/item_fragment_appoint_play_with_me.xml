@@ -48,6 +48,7 @@
 
                 style="@style/fragmentAppointWithMeLl">
                 <TextView
+                    android:paddingLeft="0dp"
                     android:textSize="18sp"
                     android:id="@+id/tv_icon_add"
                     android:text="@string/fragment_play_with_me_add"
@@ -63,6 +64,7 @@
 
                 style="@style/fragmentAppointWithMeLl">
                 <TextView
+                    android:textSize="16sp"
                     android:id="@+id/tv_icon_people"
                     android:text="@string/fragment_play_with_me_people"
                     style="@style/fragmentAppointWithMeIconFont"/>
