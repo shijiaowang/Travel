@@ -16,6 +16,7 @@ import com.example.administrator.travel.utils.TypefaceUtis;
 
 /**
  * Created by Administrator on 2016/7/8 0008.
+ * 圈子
  */
 public class CircleActivity extends BaseActivity implements View.OnClickListener {
 
@@ -27,6 +28,7 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
     int [] location=new int[2];
     private View mLlTitleBg;
     private int mTitleBgHeight;
+    private TextView mTvTitleName;
 
     @Override
     protected int initLayoutRes() {
@@ -41,7 +43,7 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
         mSvScroll = (SlippingScrollView) findViewById(R.id.sv_scroll);
         mIvPostBg = (ImageView) findViewById(R.id.iv_post_bg);
         mLlTitleBg = findViewById(R.id.ll_title_bg);
-
+        mTvTitleName = (TextView) findViewById(R.id.tv_title_name);
 
 
         initFontsIcon();
@@ -75,7 +77,8 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
                     //不做操作
                 } else {
                     mIvPostBg.getLocationInWindow(location);
-                    changeBarBg((float) location[1] / mTitleBgHeight);
+                    changeBarBg((float) location[1] / mTitleBgHeight,mLlTitleBg);
+                    changeBarBg((float) location[1] / mTitleBgHeight,mTvTitleName);
                 }
             }
         });
@@ -87,9 +90,9 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
     /**
      * 改变顶部操作栏颜色
      */
-    private void changeBarBg(float alpha) {
-        if (mLlTitleBg!=null){
-            mLlTitleBg.setAlpha(Math.abs(alpha));
+    private void changeBarBg(float alpha,View view) {
+        if (view!=null){
+            view.setAlpha(Math.abs(alpha));
         }
     }
 

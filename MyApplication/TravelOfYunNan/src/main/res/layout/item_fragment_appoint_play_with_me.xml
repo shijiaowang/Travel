@@ -94,6 +94,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:layout_marginTop="1dp"
+            android:gravity="center_vertical"
             android:id="@+id/tv_icon_eye"
             android:text="@string/activity_other_album_eye"
             style="@style/fragmentAppointBottomText"

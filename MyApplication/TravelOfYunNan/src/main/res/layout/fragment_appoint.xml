@@ -73,13 +73,27 @@
             style="@style/fragmentAppointTitleText"
             android:text="排序" />
     </LinearLayout>
-    <android.support.v4.view.ViewPager
-        android:layout_margin="10dp"
-        android:id="@+id/vp_appoint"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <android.support.v4.view.ViewPager
+            android:layout_margin="10dp"
+            android:id="@+id/vp_appoint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
+        <android.support.design.widget.FloatingActionButton
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/fragment_appoint_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
-    </android.support.v4.view.ViewPager>
+
+
 
 
 

@@ -144,7 +144,14 @@
             android:textColor="#ffffff"
             android:textSize="24sp" />
 
-        <View
+        <TextView
+            android:alpha="0"
+            android:id="@+id/tv_title_name"
+            android:layout_marginTop="38dp"
+           android:gravity="center"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="18sp"
+            android:text="业余摄影圈"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
