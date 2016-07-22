@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.fragment;
 
 
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,11 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.AppointEvent;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 
 /**
@@ -29,6 +34,7 @@ public class AppointFragment extends BaseFragment {
     private TextView mTvPlayTogether;
     private TextView mTvPlayWithMe;
     private List<BaseFragment> fragments;
+    private FloatingActionButton mFabAdd;
 
     @Override
     protected int initLayoutRes() {
@@ -41,6 +47,9 @@ public class AppointFragment extends BaseFragment {
         mLlSwitch = (LinearLayout) root.findViewById(R.id.ll_switch);
         mTvPlayTogether = (TextView) root.findViewById(R.id.tv_play_together);
         mTvPlayWithMe = (TextView) root.findViewById(R.id.tv_play_with_me);
+        mFabAdd = (FloatingActionButton) root.findViewById(R.id.fab_add);
+
+
     }
 
     @Override
@@ -68,6 +77,7 @@ public class AppointFragment extends BaseFragment {
 
             }
         });
+
         mVpAppoint.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -86,6 +96,12 @@ public class AppointFragment extends BaseFragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
     private void selectPager(int position) {
         if (position < 0 || position > fragments.size() - 1) {
             return;
@@ -101,5 +117,23 @@ public class AppointFragment extends BaseFragment {
             mTvPlayTogether.setBackgroundColor(Color.TRANSPARENT);
             mTvPlayTogether.setTextColor(getResources().getColor(R.color.colorFAFAFA));
         }
+    }
+
+    /**
+     * 事件 与 fragment通信
+     * @param event
+     */
+    public void onEvent(AppointEvent event) {
+        if (event.isSmooth()){
+            mFabAdd.setVisibility(View.INVISIBLE);
+        }else {
+            mFabAdd.setVisibility(View.VISIBLE);
+        }
+
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
     }
 }

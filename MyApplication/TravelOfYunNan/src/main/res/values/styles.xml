@@ -246,4 +246,34 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+
+
+
+    <style name="activitySettingLine" >
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:background">@color/meLine</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+    <style name="activitySettingTvValue" parent="activitySettingTvType">
+
+        <item name="android:textColor">@color/otherTitleBg</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="activitySettingTvType">
+        <item name="android:layout_width">96dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/color323232</item>
+    </style>
+    <style name="activitySettingLl">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
 </resources>

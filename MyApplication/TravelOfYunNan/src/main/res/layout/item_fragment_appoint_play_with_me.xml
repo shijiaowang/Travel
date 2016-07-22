@@ -85,6 +85,33 @@
             android:layout_height="112dp" />
         
     </LinearLayout>
+    <com.example.administrator.travel.ui.view.FlowLayout
+        android:layout_marginLeft="15dp"
+        android:id="@+id/fl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.example.administrator.travel.ui.view.FlowLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"/>
+        <TextView
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:textSize="11sp"
+            android:textColor="@color/colorFAFAFA"
+            android:text="预算¥222220"
+            android:gravity="center"
+            android:background="@drawable/fragment_play_with_me_money_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp" />
+
+    </LinearLayout>
     <LinearLayout
         android:gravity="center_vertical"
         android:orientation="horizontal"

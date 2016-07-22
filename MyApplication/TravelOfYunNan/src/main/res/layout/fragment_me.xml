@@ -30,11 +30,15 @@
                 android:src="@drawable/fragment_me_icon" />
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                android:clickable="true"
+                android:id="@+id/iv_setting"
+                android:padding="10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="25dp"
                 android:src="@drawable/fragment_me_setting_small" />
 
             <TextView
@@ -342,6 +346,7 @@
             android:layout_height="6dp"
             android:background="@color/meLine" />
         <LinearLayout
+            android:id="@+id/ll_setting"
             style="@style/lLFragmentMeAlbum">
             <TextView
                 android:text="设置"

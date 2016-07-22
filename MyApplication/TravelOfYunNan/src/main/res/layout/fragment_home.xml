@@ -121,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/home_pic2" />
+                    android:src="@drawable/activity_home_pic2" />
             </RelativeLayout>
 
             <LinearLayout style="@style/HomeTopicParent">

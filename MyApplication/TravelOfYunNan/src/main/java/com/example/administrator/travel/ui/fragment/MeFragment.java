@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.fragment;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
+import com.example.administrator.travel.ui.activity.SettingActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 
 import java.util.ArrayList;
@@ -30,6 +32,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private TextView mTvFanName;
     private TextView mTvFanNumber;
     private LinearLayout mLlAlbum;
+    private LinearLayout mLlSetting;
+    private ImageView mIvSetting;
 
     @Override
     protected int initLayoutRes() {
@@ -46,6 +50,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvFanName = (TextView) root.findViewById(R.id.tv_fan_name);
         mTvFanNumber = (TextView) root.findViewById(R.id.tv_fan_number);
         mLlAlbum = (LinearLayout) root.findViewById(R.id.ll_album);
+        mLlSetting = (LinearLayout) root.findViewById(R.id.ll_setting);
+        mIvSetting = (ImageView) root.findViewById(R.id.iv_setting);
+
+
     }
 
     @Override
@@ -75,7 +83,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvFollowNumber.setOnClickListener(this);
         mTvFanName.setOnClickListener(this);//粉丝
         mTvFollowNumber.setOnClickListener(this);
-
+        mLlSetting.setOnClickListener(this);//设置
         mLlAlbum.setOnClickListener(this);//相册
     }
 
@@ -99,6 +107,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.ll_album:
                 startActivity(new Intent(getContext(), MyAlbumActivity.class));
+                break;
+            case R.id.iv_setting:
+            case R.id.ll_setting:
+                startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
         }
     }

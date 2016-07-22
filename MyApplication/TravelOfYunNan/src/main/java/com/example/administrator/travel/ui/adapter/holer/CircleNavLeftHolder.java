@@ -29,10 +29,10 @@ public class CircleNavLeftHolder extends BaseHolder<CircleNavLeft> {
     @Override
     protected void initItemDatas(CircleNavLeft datas, Context mContext) {
        if (datas.isChecked()){
-           mTvPlace.setTextColor(Color.GREEN);
+           mTvPlace.setTextColor(Color.parseColor("#ffbf75"));
            mIvCursor.setVisibility(View.VISIBLE);
        }else {
-           mTvPlace.setTextColor(Color.RED);
+           mTvPlace.setTextColor(Color.parseColor("#b5b5b5"));
            mIvCursor.setVisibility(View.GONE);
        }
     }
