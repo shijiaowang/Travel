@@ -1,9 +1,13 @@
 package com.example.administrator.travel.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
+import com.example.administrator.travel.ui.activity.CircleActivity;
 import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;
@@ -49,7 +53,9 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
             postReplyImageHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   mContext.startActivity(new Intent(mContext, OtherUserCenterActivity.class));
+                    ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(v, v.getWidth() / 2, v.getHeight() / 2, 0, 0);
+                    Intent intent = new Intent(mContext, OtherUserCenterActivity.class);
+                    ActivityCompat.startActivity(((Activity) mContext), intent, compat.toBundle());
                 }
             });
         }

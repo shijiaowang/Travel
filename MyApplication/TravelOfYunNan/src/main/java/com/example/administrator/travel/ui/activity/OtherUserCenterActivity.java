@@ -63,11 +63,13 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
                     mPbLoad.clearAnimation();
                     mPbLoad.setVisibility(View.GONE);
                     mFlTitle.setVisibility(View.VISIBLE);
+                    isInflate=true;
                     break;
                 case 1:
                     mPbLoad.clearAnimation();
                     mPbLoad.setVisibility(View.GONE);
                     mLlNewUser.setVisibility(View.VISIBLE);
+                    isInflate=true;
                     break;
             }
         }
@@ -108,26 +110,22 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     protected void initView() {
         mPbLoad = findViewById(R.id.pb_load);
         inflater = LayoutInflater.from(this);
-        mTvPrivateIcon = (TextView) findViewById(R.id.tv_private_icon);
-        mTvFollowIcon = (TextView) findViewById(R.id.tv_follow_icon);
+        mTvPrivateIcon = FontsIconUtil.findIconFontsById(R.id.tv_private_icon, this);
+        mTvFollowIcon =  FontsIconUtil.findIconFontsById(R.id.tv_follow_icon, this);
         mTvFollow = (TextView) findViewById(R.id.tv_follow);
         mLlPrivate = (LinearLayout) findViewById(R.id.ll_private);
         mLlFollow = (LinearLayout) findViewById(R.id.ll_follow);
-        mVpDynamic = (ViewPager) findViewById(R.id.vp_daynamic);
+        mVpDynamic = (ViewPager) findViewById(R.id.vp_dynamic);
         mDragLayout = (DragTopLayout) findViewById(R.id.drag_layout);
 
         mTopView = (LinearLayout) findViewById(R.id.top_view);
-        // PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         mIndicator = (FontsIconViewPagerIndicator) findViewById(R.id.fivpi_indicator);
         mFlTitle = (FlowLayout) findViewById(R.id.fl_title);
         mLlNewUser = (LinearLayout) findViewById(R.id.ll_new_user);
         mRlTitle = (RelativeLayout) findViewById(R.id.rl_title);
-
         mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
         mTvTitleBack = FontsIconUtil.findIconFontsById(R.id.tv_title_back, this);
         mVSup = findViewById(R.id.v_sup);
-
-
     }
 
     @Override
@@ -141,7 +139,6 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
             public void onSliding(float ratio) {
                 if (mTopViewHeight == 0) {
                     mTopViewHeight = mTopView.getHeight();
-
                 }
                 if (mTitleHeight==0){
                     mTitleHeight = mVSup.getHeight();
@@ -194,7 +191,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void initData() {
-        initIconFonts();
+
         mIndicator.setTitles(mTitles);
 
         if (mFlTitle.getChildCount() > 0) {
@@ -224,11 +221,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         initAnimation();
     }
 
-    private void initIconFonts() {
-        Typeface typeface = TypefaceUtis.getTypeface(this);
-        mTvFollowIcon.setTypeface(typeface);
-        mTvPrivateIcon.setTypeface(typeface);
-    }
+
 
 
     private void initAnimation() {

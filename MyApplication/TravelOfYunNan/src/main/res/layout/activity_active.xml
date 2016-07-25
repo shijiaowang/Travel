@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/meLine"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:alpha="0.7"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/otherTitleBg" />
+
+    <RelativeLayout
+        android:alpha="0.7"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/otherTitleBg">
+
+        <TextView
+            android:id="@+id/tv_back"
+            style="@style/backFontsIcon"
+            android:layout_marginLeft="12dp"
+            android:text="@string/activity_circle_back_font_icon"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="活动"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <ImageView
+        android:scaleType="fitXY"
+        android:src="@drawable/activity_active_holder_test"
+        android:layout_width="match_parent"
+        android:layout_height="174dp" />
+    <ListView
+        android:dividerHeight="10dp"
+        android:divider="@null"
+        android:id="@+id/lv_active"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

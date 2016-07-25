@@ -13,8 +13,8 @@ import com.example.administrator.travel.utils.FontsIconUtil;
 public class CatOtherUserAlbumActivity extends BaseActivity {
 
 
-    private ListView mLvAlbum;
-    private TextView mTvBack;
+    private ListView mLvAlbum;//相册列表
+    private TextView mTvBack;//返回
 
     @Override
     protected int initLayoutRes() {

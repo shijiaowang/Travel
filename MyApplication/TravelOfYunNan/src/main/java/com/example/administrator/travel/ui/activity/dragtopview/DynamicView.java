@@ -61,12 +61,7 @@ public class DynamicView extends BaseItemModel<Dynamic> {
         Dynamic content = dynamicItemEntity.getContent();
         String type = content.getType();
         mTvType.setText(type);
-        mTvType.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LogUtils.e("被点击了"+viewPosition);
-            }
-        });
+
 
 
     }

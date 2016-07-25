@@ -6,6 +6,10 @@ import android.widget.ListView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.EditAlbumAdapter;
 
+/**
+ * 编辑相册
+ */
+
 public class EditAlbumActivity extends BaseActivity {
 
 

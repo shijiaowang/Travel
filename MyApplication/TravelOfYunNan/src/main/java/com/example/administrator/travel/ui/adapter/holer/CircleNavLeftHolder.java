@@ -3,23 +3,19 @@ package com.example.administrator.travel.ui.adapter.holer;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.CircleNavLeft;
-import com.example.administrator.travel.ui.view.SingleView;
-import com.example.administrator.travel.utils.LogUtils;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.administrator.travel.utils.FontsIconUtil;
 
 /**
  * Created by Administrator on 2016/7/8 0008.
  */
 public class CircleNavLeftHolder extends BaseHolder<CircleNavLeft> {
     private TextView mTvPlace;
-    private ImageView mIvCursor;
+    private TextView mTvCursor;
+    private View mVLine;
 
     public CircleNavLeftHolder(Context context) {
         super(context);
@@ -29,11 +25,13 @@ public class CircleNavLeftHolder extends BaseHolder<CircleNavLeft> {
     @Override
     protected void initItemDatas(CircleNavLeft datas, Context mContext) {
        if (datas.isChecked()){
+           mVLine.setBackgroundColor(Color.parseColor("#ffbf75"));
            mTvPlace.setTextColor(Color.parseColor("#ffbf75"));
-           mIvCursor.setVisibility(View.VISIBLE);
+           mTvCursor.setVisibility(View.VISIBLE);
        }else {
-           mTvPlace.setTextColor(Color.parseColor("#b5b5b5"));
-           mIvCursor.setVisibility(View.GONE);
+           mVLine.setBackgroundColor(Color.parseColor("#f1f1f1"));
+           mTvPlace.setTextColor(Color.parseColor("#c1c1c1"));
+           mTvCursor.setVisibility(View.GONE);
        }
     }
 
@@ -41,7 +39,8 @@ public class CircleNavLeftHolder extends BaseHolder<CircleNavLeft> {
     public View initRootView(Context mContext) {
         View inflate = View.inflate(mContext, R.layout.item_fragment_circle_nav_left, null);
         mTvPlace = (TextView) inflate.findViewById(R.id.tv_place);
-        mIvCursor = (ImageView) inflate.findViewById(R.id.iv_cursor);
+        mTvCursor = FontsIconUtil.findIconFontsById(R.id.tv_cursor, mContext, inflate);
+        mVLine = inflate.findViewById(R.id.v_line);
         return inflate;
     }
 }

@@ -109,7 +109,9 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/fragmentFindIconLl">
+                <LinearLayout
+                    android:id="@+id/ll_travels"
+                    style="@style/fragmentFindIconLl">
 
                     <TextView
                         android:id="@+id/tv_icon_travels"
@@ -125,7 +127,9 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/fragmentFindIconLl">
+                <LinearLayout
+                    android:id="@+id/ll_delicious_food"
+                    style="@style/fragmentFindIconLl">
 
                     <TextView
                         android:id="@+id/tv_icon_food"
@@ -141,7 +145,9 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/fragmentFindIconLl">
+                <LinearLayout style="@style/fragmentFindIconLl"
+                    android:id="@+id/ll_active"
+                    >
 
                     <TextView
                         android:paddingBottom="5dp"

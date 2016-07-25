@@ -11,6 +11,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.CircleAdapter;
 import com.example.administrator.travel.ui.view.SlippingScrollView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
+import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
@@ -20,15 +21,15 @@ import com.example.administrator.travel.utils.TypefaceUtis;
  */
 public class CircleActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView mTvBack;
-    private TextView mCreatePost;
-    private ToShowAllListView mLvPost;
-    private SlippingScrollView mSvScroll;
-    private ImageView mIvPostBg;
-    int [] location=new int[2];
-    private View mLlTitleBg;
-    private int mTitleBgHeight;
-    private TextView mTvTitleName;
+    private TextView mTvBack;//返回
+    private TextView mCreatePost;//创建帖子按钮
+    private ToShowAllListView mLvPost;//帖子列表
+    private SlippingScrollView mSvScroll;//惯性滚动监听
+    private ImageView mIvPostBg;//帖子背景
+    int [] location=new int[2];//记录在屏幕中的位置
+    private View mLlTitleBg;//bar背景
+    private int mTitleBgHeight;//bar的高度
+    private TextView mTvTitleName;//帖子名称
 
     @Override
     protected int initLayoutRes() {
@@ -37,22 +38,13 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initView() {
-        mTvBack = (TextView) findViewById(R.id.tv_back);
-        mCreatePost = (TextView) findViewById(R.id.tv_create_post);
+        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back,this);
+        mCreatePost = FontsIconUtil.findIconFontsById(R.id.tv_create_post,this);
         mLvPost = (ToShowAllListView) findViewById(R.id.lv_post);
         mSvScroll = (SlippingScrollView) findViewById(R.id.sv_scroll);
         mIvPostBg = (ImageView) findViewById(R.id.iv_post_bg);
         mLlTitleBg = findViewById(R.id.ll_title_bg);
         mTvTitleName = (TextView) findViewById(R.id.tv_title_name);
-
-
-        initFontsIcon();
-    }
-
-    private void initFontsIcon() {
-        Typeface fromAsset = TypefaceUtis.getTypeface(this);
-        mTvBack.setTypeface(fromAsset);
-        mCreatePost.setTypeface(fromAsset);
     }
 
     @Override

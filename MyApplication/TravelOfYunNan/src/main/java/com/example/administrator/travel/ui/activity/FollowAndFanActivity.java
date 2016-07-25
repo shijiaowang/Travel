@@ -20,15 +20,19 @@ import com.example.administrator.travel.utils.TypefaceUtis;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 粉丝和关注
+ */
+
 public class FollowAndFanActivity extends BaseActivity implements View.OnClickListener {
     private int currentPosition = 0;
     private List<BaseFragment> fragments = new ArrayList<>(2);
 
 
-    private ViewPager mVpFollowFan;
-    private TextView mTvBack;
-    private TextView mTvFan;
-    private TextView mTvFollow;
+    private ViewPager mVpFollowFan;//pager
+    private TextView mTvBack;//返回
+    private TextView mTvFan;//粉丝
+    private TextView mTvFollow;//关注
 
     @Override
     protected int initLayoutRes() {

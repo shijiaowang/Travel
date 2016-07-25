@@ -43,7 +43,7 @@
     <!--更多-->
     <string name="activity_other_detail_message">暨</string>
     <!--基本信息-->
-    <string name="activity_other_album_eye">阚</string>
+    <string name="activity_other_album_eye">晏</string>
     <!--眼睛-->
     <string name="activity_my_album_add">罐</string>
 
@@ -69,7 +69,14 @@
     <string name="fragment_play_with_me_people">頭</string>
 
     <!--人-->
-    <string name="activity_setting_camera">昭</string><!--相机-->
+    <string name="activity_setting_camera">昭</string>
+    <!--相机-->
+    <string name="fragment_home_chosen">菁</string>
+    <!--精选-->
+    <string name="fragment_home_spot">娣</string>
+    <!--热门景点-->
+    <string name="activity_active_item_air">萱</string>
+    <!--纸飞机-->
     <string name="fragment_play_with_me_add">桁</string>
     <!--地点-->
 
@@ -77,7 +84,8 @@
     <string name="activity_message_center_cursor">暇</string>
 
     <!--进入游标> -->
-    <string name="activity_setting_log_out">莞</string><!--退出登录-->
+    <string name="activity_setting_log_out">莞</string>
+    <!--退出登录-->
     <!--留言-->
     <!--//首页字体-->
 

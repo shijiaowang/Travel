@@ -20,17 +20,22 @@
             android:textColor="@color/circleNavLeftChecked"
             android:textSize="15sp" />
 
-        <ImageView
-            android:id="@+id/iv_cursor"
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_cursor"
+            android:textColor="@color/circleNavLeftChecked"
+            android:textSize="15sp"
+            android:text="@string/activity_message_center_cursor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@id/tv_place"
-            android:src="@drawable/fragment_circle_nav_left_normal" />
+            />
     </LinearLayout>
 
     <View
+        android:id="@+id/v_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/ll_select"

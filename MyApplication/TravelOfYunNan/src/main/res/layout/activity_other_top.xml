@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fafafa"
@@ -20,13 +21,18 @@
                 android:id="@+id/tv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:layout_marginLeft="12dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/activity_circle_back_font_icon"
                 android:textColor="@color/colorFAFAFA"
                 android:textSize="25sp" />
 
+           <RelativeLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
 
+           </RelativeLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -207,11 +213,5 @@
             </com.example.administrator.travel.ui.view.FlowLayout>
 
 
-
-
         </RelativeLayout>
-
-
-
-
 </LinearLayout>

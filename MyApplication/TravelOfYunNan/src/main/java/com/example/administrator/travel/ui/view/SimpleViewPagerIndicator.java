@@ -26,7 +26,7 @@ public class SimpleViewPagerIndicator extends LinearLayout {
     private float mTranslationX;
     private Paint mPaint = new Paint();
     private int mTabWidth;
-    private int childMargin = 380;
+    private int childMargin = 240;
     private ViewPager viewPager;
 
     public SimpleViewPagerIndicator(Context context) {

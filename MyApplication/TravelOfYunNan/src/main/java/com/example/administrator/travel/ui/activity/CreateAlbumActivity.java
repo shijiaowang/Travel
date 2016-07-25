@@ -7,11 +7,15 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+/**
+ * 创建相册
+ */
+
 public class CreateAlbumActivity extends BaseActivity implements View.OnClickListener {
 
 
-    private TextView mTvBack;
-    private TextView mTvMore;
+    private TextView mTvBack;//返回
+    private TextView mTvMore;//更多
 
     @Override
     protected int initLayoutRes() {
@@ -29,6 +33,7 @@ public class CreateAlbumActivity extends BaseActivity implements View.OnClickLis
     protected void initListener() {
        mTvBack.setOnClickListener(this);
         mTvMore.setOnClickListener(this);
+
     }
 
     @Override

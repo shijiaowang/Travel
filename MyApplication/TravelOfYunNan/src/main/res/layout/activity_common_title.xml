@@ -1,0 +1,45 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="74dp">
+    <View
+        android:id="@+id/bg_1"
+        android:background="@color/otherTitleBg"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:id="@+id/tv_back"
+            style="@style/backFontsIcon"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的相册"
+            android:textColor="#fafafa"
+            android:textSize="18sp" />
+        <ViewStub
+            android:layout_alignParentRight="true"
+            android:id="@+id/vs_right_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:layout="@layout/activity_travels_menu_fonts_icon"
+            />
+    </RelativeLayout>
+</RelativeLayout>

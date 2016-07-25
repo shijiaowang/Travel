@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="166dp"
+    android:background="@color/colorFAFAFA"
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:src="@drawable/activity_delicious_food_item_test"
+        android:layout_width="166dp"
+        android:layout_height="90dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:text="干锅鸡，干锅鸭，干锅兔,干锅虾，干锅蛇"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/color323232"
+            android:textSize="11sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_cursor"
+            android:layout_marginLeft="10dp"
+            android:text="@string/activity_message_center_cursor"
+            android:textColor="@color/otherTitleBg"
+            android:textSize="15sp"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

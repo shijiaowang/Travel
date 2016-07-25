@@ -8,14 +8,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.SplashActivity"
-            android:theme="@style/SplashTheme"
-            >
-
-        </activity>
         <activity
-            android:name=".ui.activity.HomeActivity"
-           >
+            android:name=".ui.activity.SplashActivity"
+            android:theme="@style/SplashTheme"></activity>
+        <activity android:name=".ui.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,8 +27,12 @@
         <activity android:name=".ui.activity.MyAlbumActivity" />
         <activity android:name=".ui.activity.CreateAlbumActivity" />
         <activity android:name=".ui.activity.EditAlbumActivity" />
-        <activity android:name=".ui.activity.CatOtherUserAlbumActivity"></activity>
-        <activity android:name=".ui.activity.SettingActivity"></activity>
+        <activity android:name=".ui.activity.CatOtherUserAlbumActivity" />
+        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.ActiveActivity" />
+        <activity android:name=".ui.activity.DeliciousFoodActivity" />
+        <activity android:name=".ui.activity.BarBaseActivity" />
+        <activity android:name=".ui.activity.TravelsActivity"></activity>
     </application>
 
 </manifest>

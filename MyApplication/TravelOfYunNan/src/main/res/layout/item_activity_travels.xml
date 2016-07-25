@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/colorFAFAFA"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/iv_picture"
+        android:scaleType="fitXY"
+        android:src="@drawable/activity_travels_bg_test"
+        android:layout_width="match_parent"
+        android:layout_height="165dp" />
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="143dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:scaleType="fitXY"
+            android:src="@drawable/user_icon"
+            android:layout_width="44dp"
+            android:layout_height="44dp" />
+        <TextView
+            android:layout_marginTop="6dp"
+            android:text="许文强"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/color646464"
+            android:textSize="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_below="@id/iv_picture"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="一面苍山，一面什么都没有，除了你。猴哥猴哥。"
+        android:lineSpacingExtra="12dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/color323232"
+        android:textSize="14sp"
+        android:layout_marginRight="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/tv_name"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:paddingTop="1dp"
+            android:id="@+id/tv_time"
+            android:text="@string/fragment_play_with_me_time"
+            android:textColor="@color/color989898"
+            android:textSize="8sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:text="2016-7-1"
+            android:textColor="@color/color989898"
+            android:textSize="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:paddingBottom="1dp"
+            android:gravity="center"
+            android:id="@+id/tv_eye"
+            android:text="@string/activity_other_album_eye"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/color989898"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="355"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/color989898"
+            android:textSize="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>

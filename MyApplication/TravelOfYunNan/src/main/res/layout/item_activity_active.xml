@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+    <ImageView
+        android:scaleType="fitXY"
+        android:src="@drawable/activity_active_holder_test"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <TextView
+            android:id="@+id/tv_air"
+            android:text="@string/activity_active_item_air"
+            android:textColor="@color/colorffda60"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="9dp"
+            android:id="@+id/tv_type"
+            android:text="线下活动"
+            android:textColor="@color/colorffda60"
+            android:textSize="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_name"
+            android:text="晒出你记忆中的黑白照"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="11dp"
+            android:id="@+id/tv_people"
+            android:text="112人参赛"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

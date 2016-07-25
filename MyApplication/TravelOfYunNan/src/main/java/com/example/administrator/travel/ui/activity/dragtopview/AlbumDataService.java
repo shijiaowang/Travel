@@ -25,7 +25,7 @@ public class AlbumDataService {
 
     public List<ItemEntity> getList() {
         List<ItemEntity> resultList = new ArrayList<>();
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 20; i++) {
             Album album=new Album();
             album.setAlbumName("毛球怪"+i);
             ItemEntityCreator.create(album).setModelView(AlbumView.class).attach(resultList);

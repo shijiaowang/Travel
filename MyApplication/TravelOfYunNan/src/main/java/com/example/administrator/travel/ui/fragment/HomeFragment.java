@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.HotSpotsItemDecoration;
@@ -16,6 +17,7 @@ import com.example.administrator.travel.ui.adapter.TravelsAdapter;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.ui.fragment.homefragment.HomeActiveFragment;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
+import com.example.administrator.travel.utils.FontsIconUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,7 @@ public class HomeFragment extends BaseFragment {
     private ListView mLvTravels;
     private EditText mEdSearch;
     private ViewPager mVpActive;
+    private TextView mTvSearch;
 
 
     @Override
@@ -50,6 +53,10 @@ public class HomeFragment extends BaseFragment {
         mRvHotSpots = (RecyclerView) root.findViewById(R.id.rv_hot_spots);
         mLvTravels = (ListView) root.findViewById(R.id.lv_travels);
         mVpActive = (ViewPager) root.findViewById(R.id.vp_active);
+        TextView mTvSpot = FontsIconUtil.findIconFontsById(R.id.tv_spot,getContext(),root);
+        mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, getContext(), root);
+        TextView mTvChosen = FontsIconUtil.findIconFontsById(R.id.tv_chosen,getContext(),root);
+        TextView mTvTravels = FontsIconUtil.findIconFontsById(R.id.tv_travels,getContext(),root);
 
 
     }

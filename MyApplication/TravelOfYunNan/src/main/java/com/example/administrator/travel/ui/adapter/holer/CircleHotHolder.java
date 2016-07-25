@@ -25,20 +25,6 @@ public class CircleHotHolder extends BaseHolder<CircleHot> {
     @Override
     public View initRootView(Context mContext) {
         View root = View.inflate(mContext, R.layout.item_fragment_circle_hot,null);
-        ImageView userIcon;
-        TextView userNikeName;
-        TextView titleTime;
-        TextView titleType;
-        TextView titleName;
-        TextView titleDes;
-        LinearLayout pictureToggle;
-        ImageView picture1;
-        ImageView picture2;
-        ImageView picture3;
-        ImageView zhan;
-        ImageView discuss;
-        TextView zhanNumber;
-        TextView discussNumber;
         return root;
     }
 }

@@ -24,7 +24,7 @@ public class DynamicDataService {
 
     public List<ItemEntity> getList() {
         List<ItemEntity> resultList = new ArrayList<>();
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 20; i++) {
             Dynamic dynamic=new Dynamic();
             dynamic.setType("type:"+i);
             ItemEntityCreator.create(dynamic).setModelView(DynamicView.class).attach(resultList);
