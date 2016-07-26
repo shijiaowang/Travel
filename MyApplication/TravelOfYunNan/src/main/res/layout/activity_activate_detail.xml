@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.example.administrator.travel.ui.view.SlippingScrollView
+        android:id="@id/ssv_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="228dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/activity_activate_detail_bg_test" />
+
+            <RelativeLayout
+                android:id="@+id/rl_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="197dp"
+                android:background="@color/colorFAFAFA">
+
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/icon_test1" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="47dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@id/iv_icon"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="移动摄影大赛"
+                        android:textColor="@color/color656565"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="移动摄影大赛，和摄影大牛一起切磋吧！赶快报名。"
+                        android:textColor="#bebebe"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/fragment_play_with_me_money_bg"
+                    android:gravity="center"
+                    android:text="¥36"
+                    android:textColor="@color/colorFAFAFA"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/iv_icon"
+                    android:layout_marginLeft="9dp"
+                    android:background="@color/meLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_icon"
+                    android:layout_marginBottom="13dp"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="活动期限"
+                        android:textColor="@color/color989898"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="2016.7.8-2016.7.20"
+                        android:textColor="@color/otherTitleBg"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="参与人数"
+                        android:textColor="@color/color989898"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="14dp"
+                        android:text="236"
+                        android:textColor="@color/otherTitleBg"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+            <WebView
+                android:layout_below="@id/rl_root"
+                android:layout_width="match_parent"
+                android:layout_height="1000dp">
+
+            </WebView>
+
+        </RelativeLayout>
+    </com.example.administrator.travel.ui.view.SlippingScrollView>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:alpha="0.69"
+        android:orientation="horizontal"
+        android:background="@color/otherTitleBg"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <TextView
+            android:layout_marginLeft="26dp"
+            android:text="¥30"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:background="@drawable/activity_activate_detail_bg"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:layout_width="65dp"
+            android:layout_height="20dp">
+            <TextView
+                android:text="@string/activity_activate_detail_pen"
+                android:id="@+id/tv_pen"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="报名"
+                android:layout_marginLeft="1dp"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

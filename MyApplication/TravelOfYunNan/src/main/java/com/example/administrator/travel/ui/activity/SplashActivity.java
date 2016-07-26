@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.VideoView;
 
 import com.example.administrator.travel.R;
@@ -19,6 +20,7 @@ public class SplashActivity extends BaseActivity {
 
     private VideoView mVideoView;
     private int currentPosition;
+    private Button mBtLogin;
 
     @Override
     protected int initLayoutRes() {
@@ -44,10 +46,18 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initView() {
         mVideoView = (VideoView) findViewById(R.id.vv_video);
+        mBtLogin = (Button) findViewById(R.id.bt_login);
     }
 
     @Override
     protected void initListener() {
+        mBtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                finish();
+            }
+        });
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {

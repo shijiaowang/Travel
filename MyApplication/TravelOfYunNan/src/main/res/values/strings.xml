@@ -83,7 +83,11 @@
 
     <string name="activity_message_center_cursor">暇</string>
 
+
     <!--进入游标> -->
+    <string name="activity_activate_detail_pen">銘</string><!--钢笔-->
+    <string name="activity_delicious_detail_wan">炽</string><!--美味-->
+    <string name="activity_delicious_detail_store">厨</string><!--店家-->
     <string name="activity_setting_log_out">莞</string>
     <!--退出登录-->
     <!--留言-->

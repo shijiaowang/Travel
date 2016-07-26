@@ -1,52 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/meLine"
-    android:orientation="vertical"
+<com.example.administrator.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/ssv_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <View
-        android:alpha="0.7"
+
+    <LinearLayout
+        android:focusableInTouchMode="true"
+        android:focusable="true"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:background="@color/otherTitleBg" />
+        android:layout_height="match_parent"
+        android:background="@color/meLine"
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:alpha="0.7"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="@color/otherTitleBg">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="174dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/activity_active_holder_test" />
 
-        <TextView
-            android:id="@+id/tv_back"
-            style="@style/backFontsIcon"
-            android:layout_marginLeft="12dp"
-            android:text="@string/activity_circle_back_font_icon"
-            />
+        <com.example.administrator.travel.ui.view.ToShowAllListView
+            android:id="@+id/lv_active"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:divider="@null"
+            android:dividerHeight="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="活动"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
-    </RelativeLayout>
-    <ImageView
-        android:scaleType="fitXY"
-        android:src="@drawable/activity_active_holder_test"
-        android:layout_width="match_parent"
-        android:layout_height="174dp" />
-    <ListView
-        android:dividerHeight="10dp"
-        android:divider="@null"
-        android:id="@+id/lv_active"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        </com.example.administrator.travel.ui.view.ToShowAllListView>
 
-    </ListView>
-
-</LinearLayout>
+    </LinearLayout>
+</com.example.administrator.travel.ui.view.SlippingScrollView>

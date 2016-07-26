@@ -1,46 +1,68 @@
 package com.example.administrator.travel.ui.activity;
 
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.ActiveAdapter;
+import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
 /**
  * Created by Administrator on 2016/7/25 0025.
  * 活动界面
  */
-public class ActiveActivity extends BaseActivity {
+public class ActiveActivity extends BarBaseActivity {
 
-    private ListView mLvActive;//活动列表
-    private TextView mTvBack;//返回
+    private ToShowAllListView mLvActive;//活动列表
 
     @Override
-    protected int initLayoutRes() {
+    protected void initContentView() {
+        mLvActive = (ToShowAllListView) findViewById(R.id.lv_active);
+    }
+
+    @Override
+    protected int setContentLayout() {
         return R.layout.activity_active;
     }
 
     @Override
-    protected void initView() {
-        mLvActive = (ListView) findViewById(R.id.lv_active);
-        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
+    protected void initEvent() {
+        mLvActive.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(ActiveActivity.this,ActivateDetailActivity.class));
+            }
+        });
+    }
+
+
+    @Override
+    protected void initViewData() {
+        mLvActive.setAdapter(new ActiveAdapter(this,null));
     }
 
     @Override
-    protected void initListener() {
-      mTvBack.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              finish();
-          }
-      });
+    protected String setTitleName() {
+        return "活动";
     }
 
     @Override
-    protected void initData() {
-       mLvActive.setAdapter(new ActiveAdapter(this,null));
+    public float getAlpha() {
+        return 0f;
+    }
+
+    @Override
+    protected boolean rootIsLinearLayout() {
+        return false;
+    }
+
+    @Override
+    protected boolean canScrollToChangeTitleBgColor() {
+        return true;
     }
 }

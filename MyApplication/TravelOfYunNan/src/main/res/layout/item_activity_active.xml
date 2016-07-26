@@ -4,7 +4,7 @@
     android:layout_height="150dp">
     <ImageView
         android:scaleType="fitXY"
-        android:src="@drawable/activity_active_holder_test"
+        android:src="@drawable/activity_activate_item_test"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
     <LinearLayout
@@ -16,7 +16,7 @@
             android:id="@+id/tv_air"
             android:text="@string/activity_active_item_air"
             android:textColor="@color/colorffda60"
-            android:textSize="18sp"
+            android:textSize="40sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView

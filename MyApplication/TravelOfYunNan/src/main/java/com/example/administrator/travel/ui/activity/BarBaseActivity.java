@@ -6,6 +6,7 @@ import android.view.ViewStub;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.view.SlippingScrollView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
 /**
@@ -13,7 +14,7 @@ import com.example.administrator.travel.utils.FontsIconUtil;
  * 带有相同头布局
  */
 public abstract class BarBaseActivity extends BaseActivity {
-
+    private static final float CHANGE_COLOR_LIMIT=600f;//设置变色区间
     private TextView mTvBack;
     private TextView mTitleName;
     private View mBg1;
@@ -22,6 +23,7 @@ public abstract class BarBaseActivity extends BaseActivity {
     private float alpha=1.0f;
     private ViewStub mVsContent;
     private ViewStub mVsRightIcon;
+    private SlippingScrollView mSsvScroll;
 
     @Override
     protected int initLayoutRes() {
@@ -54,7 +56,18 @@ public abstract class BarBaseActivity extends BaseActivity {
         if (haveRightIcon()){
             mVsRightIcon = (ViewStub) findViewById(R.id.vs_right_icon);
         }
+        if (canScrollToChangeTitleBgColor()){
+            mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);
+        }
         initContentView();
+    }
+
+    /**
+     * 是否能够跟随滑动改变背景颜色，一定要有SlippingScrollView且id固定不变！
+     * @return
+     */
+    protected  boolean canScrollToChangeTitleBgColor(){
+        return false;
     }
 
     protected  boolean haveRightIcon(){
@@ -88,6 +101,14 @@ public abstract class BarBaseActivity extends BaseActivity {
                 finish();
             }
         });
+        if (canScrollToChangeTitleBgColor() && mSsvScroll!=null){
+            mSsvScroll.setSlippingListener(new SlippingScrollView.SlippingListener() {
+                @Override
+                public void slipping(int l, int i, int oldl, int t) {
+                    getmBg1().setAlpha(Math.abs(t/CHANGE_COLOR_LIMIT)>1?1f:Math.abs(t/CHANGE_COLOR_LIMIT));
+                }
+            });
+        }
         initEvent();
     }
 

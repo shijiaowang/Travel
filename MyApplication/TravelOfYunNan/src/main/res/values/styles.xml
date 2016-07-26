@@ -276,4 +276,33 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+
+    <style name="activityDeliciousDetailLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@color/meLine</item>
+    </style>
+    <style name="activityDeliciousDetailLl">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="activityDeliciousDetailTvIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textColor">@color/color656565</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="activityDeliciousDetailTvName" parent="activityDeliciousDetailTvIcon">
+        <item name="android:layout_marginLeft">9dp</item>
+
+    </style>
+
+
 </resources>

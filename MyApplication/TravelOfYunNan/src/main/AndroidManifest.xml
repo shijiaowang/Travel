@@ -10,7 +10,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.SplashActivity"
-            android:theme="@style/SplashTheme"></activity>
+            android:theme="@style/SplashTheme">
+
+          <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
         <activity android:name=".ui.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +40,9 @@
         <activity android:name=".ui.activity.DeliciousFoodActivity" />
         <activity android:name=".ui.activity.BarBaseActivity" />
         <activity android:name=".ui.activity.TravelsActivity"></activity>
+        <activity android:name=".ui.activity.ActivateDetailActivity"></activity>
+        <activity android:name=".ui.activity.DeliciousDetailActivity"></activity>
+        <activity android:name=".ui.activity.LoginActivity"></activity>
     </application>
 
 </manifest>
