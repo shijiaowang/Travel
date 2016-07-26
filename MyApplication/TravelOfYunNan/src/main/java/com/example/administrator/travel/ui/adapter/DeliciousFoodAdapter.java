@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Delicious;
+import com.example.administrator.travel.ui.activity.DeliciousDetailActivity;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.LogUtils;
 
 import java.util.List;
 
@@ -32,11 +35,14 @@ public class DeliciousFoodAdapter extends RecyclerView.Adapter<RecyclerView.View
         return new DeliciousHolder(root);
     }
 
+
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        DeliciousHolder deliciousHolder = (DeliciousHolder) holder;
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+
+
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -50,6 +56,14 @@ public class DeliciousFoodAdapter extends RecyclerView.Adapter<RecyclerView.View
        public DeliciousHolder(View itemView) {
             super(itemView);
            mTvCursor = FontsIconUtil.findIconFontsById(R.id.tv_cursor,mContext,itemView);
+
+              itemView.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       mContext.startActivity(new Intent(mContext, DeliciousDetailActivity.class));
+                   }
+               });
+
         }
     }
 }

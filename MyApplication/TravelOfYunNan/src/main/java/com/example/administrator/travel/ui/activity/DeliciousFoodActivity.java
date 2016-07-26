@@ -1,7 +1,9 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.DeliciousFoodAdapter;
@@ -15,8 +17,9 @@ import com.example.administrator.travel.utils.LogUtils;
 public class DeliciousFoodActivity extends BarBaseActivity {
 private RecyclerView mRvDelicious;
 private SlippingScrollView mSsvScroll;
+    private DeliciousFoodAdapter deliciousFoodAdapter;
 
-        @Override
+    @Override
         protected void initContentView() {
             mRvDelicious = (RecyclerView) findViewById(R.id.rv_delicious);
             mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);
@@ -34,9 +37,12 @@ private SlippingScrollView mSsvScroll;
 
         @Override
         protected void initViewData() {
+            deliciousFoodAdapter = new DeliciousFoodAdapter(this, null);
+
             mRvDelicious.setAdapter(new DeliciousFoodAdapter(this, null));
             mRvDelicious.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
             mRvDelicious.addItemDecoration(new SpaceItemDecoration(20));
+
         }
 
         @Override

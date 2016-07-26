@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.administrator.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.administrator.travel.ui.view.SlippingScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@id/ssv_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorFAFAFA"
@@ -59,6 +62,8 @@
         <View style="@style/activityDeliciousDetailLine" />
 
         <com.example.administrator.travel.ui.view.ToShowAllListView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="11dp"
             android:id="@+id/lv_delicious_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,6 +73,7 @@
 
         </com.example.administrator.travel.ui.view.ToShowAllListView>
         <View
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:background="@color/meLine" />

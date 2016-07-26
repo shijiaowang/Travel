@@ -20,7 +20,7 @@ public abstract class BarBaseActivity extends BaseActivity {
     private View mBg1;
 
     private int normalBgColor= Color.parseColor("#5cd0c2");
-    private float alpha=1.0f;
+    private float alpha=0f;
     private ViewStub mVsContent;
     private ViewStub mVsRightIcon;
     private SlippingScrollView mSsvScroll;
