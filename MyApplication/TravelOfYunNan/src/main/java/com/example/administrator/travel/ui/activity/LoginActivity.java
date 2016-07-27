@@ -1,40 +1,48 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.event.VolleyStringEvent;
+import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.MD5Utils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.VolleyUtils;
 import com.google.gson.Gson;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Administrator on 2016/7/26 0026.
  */
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends FullTransparencyActivity {
 
     private EditText mEdPassword;
     private EditText mEdName;
     private Button mBtLogin;
+    private RequestQueue requestQueue;
+    private SharedPreferences sharedPreferences;
+
 
     @Override
-    protected int initLayoutRes() {
-        return R.layout.activity_login;
+    protected int initContentRes() {
+        return  R.layout.activity_login;
     }
 
     @Override
     protected void initView() {
+        sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
+        requestQueue = Volley.newRequestQueue(this);
         mEdName = (EditText) findViewById(R.id.ed_name);
         mEdPassword = (EditText) findViewById(R.id.ed_password);
         mBtLogin = (Button) findViewById(R.id.bt_login);
@@ -51,48 +59,56 @@ public class LoginActivity extends BaseActivity {
                     ToastUtils.showToast(LoginActivity.this, "密码或者用户名为空");
                     return;
                 }
-                final String url = "http://192.168.1.158/api.php?s=/api/getKeys";
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            URL loginUrl = new URL(url);
-                            HttpURLConnection urlConnection = (HttpURLConnection) loginUrl.openConnection();
-                            urlConnection.setConnectTimeout(5000);
-                            urlConnection.setRequestMethod("GET");
-                            urlConnection.setReadTimeout(5000);
-                            urlConnection.connect();
-                            if (urlConnection.getResponseCode() == 200) {
-                                InputStream inputStream = urlConnection.getInputStream();
-                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                                int length = 0;
-                                byte[] b = new byte[1024];
-                                while ((length = inputStream.read(b)) != -1) {
-                                    outputStream.write(b, 0, length);
-                                }
-                                inputStream.close();
-                                outputStream.close();
-                                String result = new String(outputStream.toByteArray());
-                                LogUtils.e(result);
-                                Gson gson = new Gson();
-                                Login login = gson.fromJson(result, Login.class);
-
-
-                            } else {
-                                LogUtils.e("网络错误");
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            LogUtils.e("网络错误");
-                        }
-                    }
-                }).start();
+                VolleyUtils.LoginStringRequest(requestQueue, sharedPreferences.getString(IVariable.KEY_VALUE, ""), "18281614311", MD5Utils.encode(MD5Utils.encode("123456")));
             }
         });
+
+    }
+
+    public void onEvent(VolleyStringEvent event) {
+        if (event.isSuccess()) {
+            if (event.getCode() == IVariable.SUCCESS) {
+                goToHomeActivity(event);
+            } else if (event.getCode() == IVariable.CODE_EXCEPTION) {
+                //json解析异常
+                ToastUtils.showToast(LoginActivity.this, "未知错误");
+            } else {
+                ToastUtils.showToast(LoginActivity.this, event.getMessage());
+            }
+        } else {
+           ToastUtils.showToast(this,"网络错误");
+        }
+    }
+
+    private void goToHomeActivity(VolleyStringEvent event) {
+        String result = event.getResult();
+        Gson gson = new Gson();
+        Login login = gson.fromJson(result, Login.class);
+        //保存密码
+        sharedPreferences.edit().putString(IVariable.SAVE_NAME, login.getData().getName()).apply();
+        sharedPreferences.edit().putString(IVariable.SAVE_PWD, login.getData().getPwd()).apply();
+        GlobalValue.KEY_VALUE=sharedPreferences.getString(IVariable.KEY,"");
+        Intent intent = new Intent(this, HomeActivity.class);
+        Login.UserInfo data = login.getData();
+        intent.putExtra(IVariable.USER_INFO, data);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
     }
 }

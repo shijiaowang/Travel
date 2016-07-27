@@ -5,12 +5,13 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Circle;
 import com.example.administrator.travel.bean.CircleNavRight;
 
 /**
  * Created by Administrator on 2016/7/8 0008.
  */
-public class CircleNavRightHolder extends BaseHolder<CircleNavRight> {
+public class CircleNavRightHolder extends BaseHolder<CircleNavRight.RightCircle> {
 
     private RelativeLayout mRlPost;
     public CircleNavRightHolder(Context context) {
@@ -18,9 +19,10 @@ public class CircleNavRightHolder extends BaseHolder<CircleNavRight> {
     }
 
     @Override
-    protected void initItemDatas(CircleNavRight datas, final Context mContext) {
+    protected void initItemDatas(CircleNavRight.RightCircle datas, Context mContext) {
 
     }
+
 
     @Override
     public View initRootView(Context mContext) {

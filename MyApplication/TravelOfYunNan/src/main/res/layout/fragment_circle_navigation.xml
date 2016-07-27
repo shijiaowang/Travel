@@ -21,7 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"/>
     <ListView
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null"
         android:scrollbars="none"

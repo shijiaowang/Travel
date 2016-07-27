@@ -33,6 +33,11 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     protected abstract void initView();
     protected abstract void initData();
 

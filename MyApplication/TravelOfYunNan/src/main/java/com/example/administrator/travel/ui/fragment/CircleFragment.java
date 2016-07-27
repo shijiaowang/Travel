@@ -14,12 +14,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.event.VolleyStringEvent;
 import com.example.administrator.travel.ui.fragment.circlefragment.HotFragment;
 import com.example.administrator.travel.ui.fragment.circlefragment.NavigationFragment;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Administrator on 2016/7/7 0007.
@@ -52,6 +57,11 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
         fragments.add(new HotFragment());
         mVpCircle.setAdapter(new CirclePagerAdapter(getChildFragmentManager()));
         initTitle(0);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -130,4 +140,9 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
         }
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 }

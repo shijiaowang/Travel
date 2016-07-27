@@ -39,4 +39,9 @@ public class TravelsActivity extends BarBaseActivity {
     protected String setTitleName() {
         return "游记";
     }
+
+    @Override
+    public float getAlpha() {
+        return 1.0f;
+    }
 }

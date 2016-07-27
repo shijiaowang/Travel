@@ -35,4 +35,6 @@ dependencies {
     compile 'com.jpardogo.materialtabstrip:library:1.0.8'
     compile 'com.android.support:design:23.4.0'
     compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+
 }
