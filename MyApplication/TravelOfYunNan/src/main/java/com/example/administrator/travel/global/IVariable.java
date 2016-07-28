@@ -13,6 +13,7 @@ public interface IVariable {
     String LOGIN_URL=API_KEY+"User/Login/";
     String FIRST_CIRCLE_URL=API_KEY+"Circle/getCirclelists/";
     String NORMAL_CIRCLE_URL=API_KEY+"Circle/getCirclechildlists/";
+    String CIRCLE_CREATE_POST=API_KEY+"/Circle/setCircleforum";//圈子发帖
 
 
 

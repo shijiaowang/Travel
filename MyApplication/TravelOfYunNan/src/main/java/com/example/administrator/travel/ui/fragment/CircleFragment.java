@@ -24,7 +24,7 @@ import com.example.administrator.travel.utils.UIUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
+
 
 /**
  * Created by Administrator on 2016/7/7 0007.

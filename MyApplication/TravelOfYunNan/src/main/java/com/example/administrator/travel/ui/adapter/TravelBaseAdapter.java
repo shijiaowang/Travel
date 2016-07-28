@@ -35,8 +35,13 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
         }
         return mDatas.size();
     }
-
-
+    public void notifyData(List<T> mDatas){
+        if (mDatas==null){
+            return;
+        }
+        this.mDatas=mDatas;
+        notifyDataSetChanged();
+    }
 
     protected abstract int testDataSize();//测试使用的数据大小
 

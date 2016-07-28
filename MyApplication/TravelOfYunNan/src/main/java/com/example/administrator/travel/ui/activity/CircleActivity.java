@@ -101,9 +101,17 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
                 break;
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
+
 
     }
 

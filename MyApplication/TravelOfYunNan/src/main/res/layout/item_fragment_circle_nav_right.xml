@@ -21,7 +21,7 @@
             android:src="@drawable/fragment_circle_nav_right_picture" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ_user_icon"
+            android:id="@+id/civ_circle_icon"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_marginLeft="6dp"
@@ -29,11 +29,11 @@
             android:src="@drawable/user_icon" />
 
         <TextView
+            android:id="@+id/tv_circle_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="66dp"
             android:layout_marginTop="44dp"
-            android:text="Papi花生酱"
             android:textColor="#ffffff"
             android:textSize="14sp" />
 
@@ -44,7 +44,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="15dp"
-            android:layout_toRightOf="@id/civ_user_icon"
+            android:layout_toRightOf="@id/civ_circle_icon"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -56,10 +56,10 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/tv_post_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:text="335"
                 android:textColor="#fcc073"
                 android:textSize="11sp" />
 
@@ -72,10 +72,10 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/tv_follow_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:text="3351"
                 android:textColor="#fcc073"
                 android:textSize="11sp" />
         </LinearLayout>

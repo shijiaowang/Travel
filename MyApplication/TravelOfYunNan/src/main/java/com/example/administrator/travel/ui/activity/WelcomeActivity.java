@@ -2,9 +2,6 @@ package com.example.administrator.travel.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -17,7 +14,7 @@ import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MD5Utils;
 import com.example.administrator.travel.utils.NetworkUtils;
-import com.example.administrator.travel.utils.ShareUtils;
+import com.example.administrator.travel.utils.ShareUtil;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.VolleyUtils;
 import com.google.gson.Gson;
@@ -167,8 +164,8 @@ public class WelcomeActivity extends FullTransparencyActivity {
                     Gson gson = new Gson();
                     Key key = gson.fromJson(result, Key.class);
                     LogUtils.e(key.getData().getValue());
-                    ShareUtils.putString(this, IVariable.KEY_VALUE, MD5Utils.encode(MD5Utils.encode(key.getData().getValue())));
-                    ShareUtils.putInt(this, IVariable.KEY_CODE, key.getCode());
+                    ShareUtil.putString(this, IVariable.KEY_VALUE, MD5Utils.encode(MD5Utils.encode(key.getData().getValue())));
+                    ShareUtil.putInt(this, IVariable.KEY_CODE, key.getCode());
                 }else {
                     LogUtils.e(event.getMessage());
                 }

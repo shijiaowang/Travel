@@ -5,10 +5,15 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.VideoView;
+
+import com.example.administrator.travel.utils.LogUtils;
+
+import de.greenrobot.event.EventBus;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -48,6 +53,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onStart();
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
 
     protected abstract int initLayoutRes();
 

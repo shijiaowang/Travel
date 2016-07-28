@@ -62,7 +62,7 @@ public class NavigationFragment extends BaseFragment {
     @Override
     protected void initData() {
          String commonUrl = IVariable.FIRST_CIRCLE_URL + "key" + "/" + GlobalValue.KEY_VALUE + "/user_id/1";
-        VolleyUtils.getStringRequest(commonUrl , requestQueue, IVariable.FIRST_REQ_CIRCLE);
+        VolleyUtils.getStringRequest(commonUrl, requestQueue, IVariable.FIRST_REQ_CIRCLE);
 
 
     }
@@ -75,8 +75,14 @@ public class NavigationFragment extends BaseFragment {
                 // TODO: 2016/7/11 0011 根据position获取集合中的数据，重新加载右边集合
                 String cid = leftList.get(position).getCid();
                 selectNavLeft(position);
-                String commonUrl = IVariable.NORMAL_CIRCLE_URL + "key" + "/" + GlobalValue.KEY_VALUE + "/cid/";
-                VolleyUtils.getStringRequest(commonUrl + cid, requestQueue, IVariable.NORMAL_REQ_CIRCLE);
+
+                if (position==0){
+                    String commonUrl = IVariable.FIRST_CIRCLE_URL + "key" + "/" + GlobalValue.KEY_VALUE + "/user_id/1";
+                    VolleyUtils.getStringRequest(commonUrl, requestQueue, IVariable.FIRST_REQ_CIRCLE);
+                }else {
+                    String commonUrl = IVariable.NORMAL_CIRCLE_URL + "key" + "/" + GlobalValue.KEY_VALUE + "/cid/";
+                    VolleyUtils.getStringRequest(commonUrl + cid, requestQueue, IVariable.NORMAL_REQ_CIRCLE);
+                }
             }
         });
         mLvRightNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -121,8 +127,7 @@ public class NavigationFragment extends BaseFragment {
                     String result = event.getResult();
                     Gson gson = new Gson();
                     CircleNavRight circle = gson.fromJson(result, CircleNavRight.class);
-                    rightList = circle.getData();
-                    circleNavRightAdapter.notifyDataSetChanged();
+                    circleNavRightAdapter.notifyData(circle.getData());
                 } else {
                     ToastUtils.showToast(getContext(), event.getMessage());
                 }
