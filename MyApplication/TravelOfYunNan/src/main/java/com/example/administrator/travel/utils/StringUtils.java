@@ -4,6 +4,7 @@ package com.example.administrator.travel.utils;
 public class StringUtils {
     private StringUtils() {
 
+
     }
 
     /**
