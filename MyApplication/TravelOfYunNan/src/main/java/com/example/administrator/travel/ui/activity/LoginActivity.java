@@ -10,15 +10,19 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
-import com.example.administrator.travel.event.VolleyStringEvent;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.KeyUtils;
 import com.example.administrator.travel.utils.MD5Utils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
-import com.example.administrator.travel.utils.VolleyUtils;
+import com.example.administrator.travel.utils.XEventUtils;
 import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
@@ -59,53 +63,47 @@ public class LoginActivity extends FullTransparencyActivity {
                     ToastUtils.showToast(LoginActivity.this, "密码或者用户名为空");
                     return;
                 }
-                VolleyUtils.LoginStringRequest(requestQueue, sharedPreferences.getString(IVariable.KEY_VALUE, ""), "18281614311", MD5Utils.encode(MD5Utils.encode("123456")));
+                Map<String,String> logMap=new HashMap<String, String>();
+                logMap.put(IVariable.KEY, KeyUtils.getKey(LoginActivity.this));
+                logMap.put(IVariable.USERNAME, "18281614311");
+                logMap.put(IVariable.PASSWORD, MD5Utils.encode(MD5Utils.encode("123456")));
+                XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, logMap, IVariable.TYPE_POST_LOGIN);
+
             }
         });
 
     }
 
-    public void onEvent(VolleyStringEvent event) {
+    public void onEvent(HttpEvent event) {
         if (event.isSuccess()) {
-            if (event.getCode() == IVariable.SUCCESS) {
-                goToHomeActivity(event);
-            } else if (event.getCode() == IVariable.CODE_EXCEPTION) {
-                //json解析异常
-                ToastUtils.showToast(LoginActivity.this, "未知错误");
-            } else {
-                ToastUtils.showToast(LoginActivity.this, event.getMessage());
-            }
-        } else {
-           ToastUtils.showToast(this,"网络错误");
+            GlobalValue.KEY_VALUE = sharedPreferences.getString(IVariable.KEY, "");
+            goToHomeActivity(event);
+        }else {
+           ToastUtils.showToast(this,event.getMessage());
         }
     }
 
-    private void goToHomeActivity(VolleyStringEvent event) {
-        String result = event.getResult();
-        Gson gson = new Gson();
-        Login login = gson.fromJson(result, Login.class);
-        //保存密码
-        sharedPreferences.edit().putString(IVariable.SAVE_NAME, login.getData().getName()).apply();
-        sharedPreferences.edit().putString(IVariable.SAVE_PWD, login.getData().getPwd()).apply();
-        GlobalValue.KEY_VALUE=sharedPreferences.getString(IVariable.KEY,"");
+    private void goToHomeActivity(HttpEvent event) {
+        Login login = GsonUtils.getObject(event.getResult(), Login.class);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString(IVariable.SAVE_NAME, login.getData().getName());
+        edit.putString(IVariable.SAVE_PWD, login.getData().getPwd());
+        edit.apply();
         Intent intent = new Intent(this, HomeActivity.class);
         Login.UserInfo data = login.getData();
         intent.putExtra(IVariable.USER_INFO, data);
         startActivity(intent);
         finish();
     }
-
     @Override
     protected void initData() {
 
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
     }
-
     @Override
     protected void onPause() {
         super.onPause();

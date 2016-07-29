@@ -1,25 +1,17 @@
 package com.example.administrator.travel.ui.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.Login;
-import com.example.administrator.travel.event.VolleyStringEvent;
 import com.example.administrator.travel.ui.fragment.circlefragment.HotFragment;
 import com.example.administrator.travel.ui.fragment.circlefragment.NavigationFragment;
-import com.example.administrator.travel.utils.LogUtils;
-import com.example.administrator.travel.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;

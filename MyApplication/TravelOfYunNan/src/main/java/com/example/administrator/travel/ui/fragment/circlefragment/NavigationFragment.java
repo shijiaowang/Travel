@@ -13,19 +13,23 @@ import com.android.volley.toolbox.Volley;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Circle;
 import com.example.administrator.travel.bean.CircleNavRight;
-import com.example.administrator.travel.event.VolleyStringEvent;
-import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.CircleActivity;
 import com.example.administrator.travel.ui.adapter.CircleNavLeftAdapter;
 import com.example.administrator.travel.ui.adapter.CircleNavRightAdapter;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 import com.example.administrator.travel.utils.CircleUtils;
+import com.example.administrator.travel.utils.KeyUtils;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.ToastUtils;
-import com.example.administrator.travel.utils.VolleyUtils;
+import com.example.administrator.travel.utils.XEventUtils;
+import com.example.administrator.travel.utils.Xutils;
 import com.google.gson.Gson;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
@@ -61,8 +65,9 @@ public class NavigationFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-         String commonUrl = IVariable.FIRST_CIRCLE_URL + "key" + "/" + GlobalValue.KEY_VALUE + "/user_id/1";
-        VolleyUtils.getStringRequest(commonUrl, requestQueue, IVariable.FIRST_REQ_CIRCLE);
+         String commonUrl = IVariable.FIRST_CIRCLE_URL + "key" + "/" + KeyUtils.getKey(getContext()) + "/user_id/1";
+        Map<String, String> commonMap = Xutils.getCommonMap(getContext());
+        XEventUtils.getStringRequest(commonUrl, requestQueue, IVariable.FIRST_REQ_CIRCLE);
 
 
     }
@@ -72,16 +77,15 @@ public class NavigationFragment extends BaseFragment {
         mLvLeftNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: 2016/7/11 0011 根据position获取集合中的数据，重新加载右边集合
                 String cid = leftList.get(position).getCid();
                 selectNavLeft(position);
 
                 if (position==0){
-                    String commonUrl = IVariable.FIRST_CIRCLE_URL + "key" + "/" + GlobalValue.KEY_VALUE + "/user_id/1";
-                    VolleyUtils.getStringRequest(commonUrl, requestQueue, IVariable.FIRST_REQ_CIRCLE);
+                    String commonUrl = IVariable.FIRST_CIRCLE_URL + "key" + "/" + KeyUtils.getKey(getContext()) + "/user_id/1";
+                    XEventUtils.getStringRequest(commonUrl, requestQueue, IVariable.FIRST_REQ_CIRCLE);
                 }else {
-                    String commonUrl = IVariable.NORMAL_CIRCLE_URL + "key" + "/" + GlobalValue.KEY_VALUE + "/cid/";
-                    VolleyUtils.getStringRequest(commonUrl + cid, requestQueue, IVariable.NORMAL_REQ_CIRCLE);
+                    String commonUrl = IVariable.NORMAL_CIRCLE_URL + "key" + "/" + KeyUtils.getKey(getContext()) + "/cid/";
+                    XEventUtils.getStringRequest(commonUrl + cid, requestQueue, IVariable.NORMAL_REQ_CIRCLE);
                 }
             }
         });
@@ -118,7 +122,7 @@ public class NavigationFragment extends BaseFragment {
         EventBus.getDefault().register(this);
     }
 
-    public void onEvent(VolleyStringEvent event) {
+    public void onEvent(HttpEvent event) {
         if (event.isSuccess()) {
             if (event.getType() == IVariable.FIRST_REQ_CIRCLE) {
                 firstReq(event);//第一次请求
@@ -130,6 +134,7 @@ public class NavigationFragment extends BaseFragment {
                     circleNavRightAdapter.notifyData(circle.getData());
                 } else {
                     ToastUtils.showToast(getContext(), event.getMessage());
+
                 }
             }
 
@@ -139,7 +144,7 @@ public class NavigationFragment extends BaseFragment {
         }
     }
 
-    private void firstReq(VolleyStringEvent event) {
+    private void firstReq(HttpEvent event) {
         if (event.getCode() == IVariable.SUCCESS) {
             String result = event.getResult();
             Gson gson = new Gson();
@@ -148,7 +153,8 @@ public class NavigationFragment extends BaseFragment {
             rightList = CircleUtils.circleRightBean2RightCircleList(circle.getData().getCircle_right());
             setListData();
         } else {
-            ToastUtils.showToast(getContext(), event.getMessage());
+            ToastUtils.showToast(getContext(), event.getMessage()+"key"+KeyUtils.getKey(getContext()));
+            LogUtils.e("key" + KeyUtils.getKey(getContext()));
         }
     }
 

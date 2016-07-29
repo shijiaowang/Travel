@@ -4,14 +4,13 @@ import com.android.volley.VolleyError;
 
 /**
  * Created by Administrator on 2016/7/27 0027.
- * 获取volly请求的结果
  */
-public class VolleyStringEvent {
+public class HttpEvent {
     private boolean isSuccess;
     private String result;
-    private VolleyError error;
-    private int code;
+    private int code=200;
     private String message;
+    private int type;//身份识别，
 
     public String getMessage() {
         return message;
@@ -37,7 +36,7 @@ public class VolleyStringEvent {
         this.type = type;
     }
 
-    private int type;//身份识别，
+
 
     public boolean isSuccess() {
         return isSuccess;
@@ -45,14 +44,6 @@ public class VolleyStringEvent {
 
     public void setIsSuccess(boolean isSuccess) {
         this.isSuccess = isSuccess;
-    }
-
-    public VolleyError getError() {
-        return error;
-    }
-
-    public void setError(VolleyError error) {
-        this.error = error;
     }
 
     public String getResult() {

@@ -65,4 +65,6 @@ public interface IVariable {
     int  FIRST_REQ_CIRCLE =0;//第一次请求
     int NORMAL_REQ_CIRCLE =1;//之后的请求
 
+
+    int X_UTLIS_ERROR=100;//xutil相关错误
 }

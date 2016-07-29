@@ -1,21 +1,13 @@
 package com.example.administrator.travel.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.VideoView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.event.VolleyStringEvent;
-import com.example.administrator.travel.global.IVariable;
-
-import de.greenrobot.event.EventBus;
 
 public class SplashActivity extends FullTransparencyActivity {
 

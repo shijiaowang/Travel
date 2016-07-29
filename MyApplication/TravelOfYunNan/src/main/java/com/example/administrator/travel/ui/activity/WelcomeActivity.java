@@ -8,18 +8,22 @@ import com.android.volley.toolbox.Volley;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.bean.Login;
-import com.example.administrator.travel.event.VolleyStringEvent;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.KeyUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MD5Utils;
 import com.example.administrator.travel.utils.NetworkUtils;
 import com.example.administrator.travel.utils.ShareUtil;
 import com.example.administrator.travel.utils.StringUtils;
-import com.example.administrator.travel.utils.VolleyUtils;
+import com.example.administrator.travel.utils.XEventUtils;
 import com.google.gson.Gson;
 
 
+import java.util.HashMap;
+import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
@@ -27,27 +31,25 @@ import de.greenrobot.event.EventBus;
  * Created by Administrator on 2016/7/27 0027.
  */
 public class WelcomeActivity extends FullTransparencyActivity {
-    private static final int START_HOME=0;
-    private static final int START_SPLASH=1;
-    private int GO_WHERE_PAGE=-1;
-    private boolean isNetWork=false;//缓存登录时是否有网
-
+    private static final int START_HOME = 0;
+    private static final int START_SPLASH = 1;
+    private int GO_WHERE_PAGE = -1;
+    private boolean isNetWork = false;//缓存登录时是否有网
 
 
     private SharedPreferences sharedPreferences;
-    private RequestQueue requestQueue;
     private Login.UserInfo userInfo;
 
 
     @Override
     protected int initContentRes() {
-        return  R.layout.activity_welcome;
+        return R.layout.activity_welcome;
     }
 
     @Override
     protected void initView() {
         sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
-        requestQueue = Volley.newRequestQueue(this);
+
     }
 
     @Override
@@ -64,26 +66,26 @@ public class WelcomeActivity extends FullTransparencyActivity {
     protected void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
-       new Thread(new Runnable() {
-           @Override
-           public void run() {
-               try {
-                   Thread.sleep(3000);
-               } catch (InterruptedException e) {
-                   e.printStackTrace();
-               }
-               if (GO_WHERE_PAGE==START_HOME){
-                   Intent homeIntent = new Intent(WelcomeActivity.this, HomeActivity.class);
-                   homeIntent.putExtra(IVariable.USER_INFO,userInfo);
-                   homeIntent.putExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK,isNetWork);
-                   startActivity(homeIntent);
-               }else {
-                   startActivity(new Intent(WelcomeActivity.this,SplashActivity.class));
-               }
-               finish();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (GO_WHERE_PAGE == START_HOME) {
+                    Intent homeIntent = new Intent(WelcomeActivity.this, HomeActivity.class);
+                    homeIntent.putExtra(IVariable.USER_INFO, userInfo);
+                    homeIntent.putExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, isNetWork);
+                    startActivity(homeIntent);
+                } else {
+                    startActivity(new Intent(WelcomeActivity.this, SplashActivity.class));
+                }
+                finish();
 
-           }
-       }).start();
+            }
+        }).start();
     }
 
     @Override
@@ -91,19 +93,19 @@ public class WelcomeActivity extends FullTransparencyActivity {
         super.onStart();
         int code = sharedPreferences.getInt(IVariable.KEY_CODE, -1);
         //获取key
-        if (code!=IVariable.OK_KEY_CODE){
-            String url=IVariable.API_KEY+IVariable.GET_KEY;
-            VolleyUtils.getStringRequest(url,requestQueue ,IVariable.TYPE_GET_KEY);
-        }else {
-            GlobalValue.KEY_VALUE=sharedPreferences.getString(IVariable.KEY_VALUE, "");
+        if (code != IVariable.OK_KEY_CODE) {
+            String url = IVariable.API_KEY + IVariable.GET_KEY;
+            XEventUtils.getUseCommonBackJson(url, null, IVariable.TYPE_GET_KEY);
+        } else {
+            GlobalValue.KEY_VALUE = sharedPreferences.getString(IVariable.KEY_VALUE, "");
             //验证缓存的登录
             String userName = sharedPreferences.getString(IVariable.SAVE_NAME, "");
             String userPwd = sharedPreferences.getString(IVariable.SAVE_PWD, "");
-            if (!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(userPwd)){
+            if (!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(userPwd)) {
                 checkNetAndCheckLogin(userName, userPwd);
-            }else {
+            } else {
                 //缓存信息为空，重新去登录
-                GO_WHERE_PAGE=START_SPLASH;
+                GO_WHERE_PAGE = START_SPLASH;
             }
         }
 
@@ -111,11 +113,17 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
     private void checkNetAndCheckLogin(String userName, String userPwd) {
         //网络不可用，且缓存了信息，直接跳入主页
-        if (!NetworkUtils.isNetworkConnected(this)){
-            GO_WHERE_PAGE=START_HOME;
-        }else {
-            VolleyUtils.LoginStringRequest(requestQueue, sharedPreferences.getString(IVariable.KEY_VALUE, ""), userName, userPwd);
-            isNetWork=true;
+        if (!NetworkUtils.isNetworkConnected(this)) {
+            GO_WHERE_PAGE = START_HOME;
+        } else {
+            //网络可用验证登录
+            Map<String, String> stringMap = new HashMap<>();
+            stringMap.put(IVariable.KEY, KeyUtils.getKey(this));
+            stringMap.put(IVariable.USERNAME, userName);
+            stringMap.put(IVariable.PASSWORD, userPwd);
+            String url = IVariable.LOGIN_URL;
+            XEventUtils.postUseCommonBackJson(url, stringMap, IVariable.TYPE_POST_LOGIN);
+            isNetWork = true;
         }
     }
 
@@ -125,55 +133,50 @@ public class WelcomeActivity extends FullTransparencyActivity {
         EventBus.getDefault().unregister(this);
     }
 
-    public void onEvent(VolleyStringEvent event) {
-        if (event.getType()==IVariable.TYPE_GET_KEY) {
+    public void onEvent(HttpEvent event) {
+        if (event.getType() == IVariable.TYPE_GET_KEY) {
             getKey(event);
         }
-        if (event.getType()==IVariable.TYPE_POST_LOGIN){
+        if (event.getType() == IVariable.TYPE_POST_LOGIN) {
             login(event);
         }
     }
 
     /**
      * 登錄后的結果
+     *
      * @param event
      */
-    private void login(VolleyStringEvent event) {
-        if (event.isSuccess() ){
-            if (event.getCode()== IVariable.SUCCESS) {
+    private void login(HttpEvent event) {
+        if (event.isSuccess()) {
+            if (event.getCode() == IVariable.SUCCESS) {
                 String result = event.getResult();
                 Gson gson = new Gson();
                 Login login = gson.fromJson(result, Login.class);
                 userInfo = login.getData();
-                GO_WHERE_PAGE=START_HOME;
-            }else {
-                GO_WHERE_PAGE=START_SPLASH;
+                GO_WHERE_PAGE = START_HOME;
+            } else {
+                GO_WHERE_PAGE = START_SPLASH;
             }
 
-        }else {
-            LogUtils.e(event.getError().getMessage());
         }
     }
-    /**
-     *獲取key后的結果
-     */
-    private void getKey(VolleyStringEvent event) {
-            if (event.isSuccess() ){
-                if (event.getCode()==IVariable.SUCCESS) {
-                    String result = event.getResult();
-                    Gson gson = new Gson();
-                    Key key = gson.fromJson(result, Key.class);
-                    LogUtils.e(key.getData().getValue());
-                    ShareUtil.putString(this, IVariable.KEY_VALUE, MD5Utils.encode(MD5Utils.encode(key.getData().getValue())));
-                    ShareUtil.putInt(this, IVariable.KEY_CODE, key.getCode());
-                }else {
-                    LogUtils.e(event.getMessage());
-                }
 
-            }else {
-                LogUtils.e(event.getError().getMessage());
-            }
-        GO_WHERE_PAGE=START_SPLASH;
+    /**
+     * 獲取key后的結果
+     */
+    private void getKey(HttpEvent event) {
+        if (event.isSuccess()) {
+            Key key = GsonUtils.getObject(event.getResult(), Key.class);
+            GlobalValue.KEY_VALUE = MD5Utils.encode(MD5Utils.encode(key.getData().getValue()));
+            ShareUtil.putString(this, IVariable.KEY_VALUE, GlobalValue.KEY_VALUE);
+            ShareUtil.putInt(this, IVariable.KEY_CODE, key.getCode());
+        } else {
+            LogUtils.e(event.getMessage());
+        }
+
+
+        GO_WHERE_PAGE = START_SPLASH;
 
     }
 }

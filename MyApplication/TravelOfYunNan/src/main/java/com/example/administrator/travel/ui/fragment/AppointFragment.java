@@ -10,14 +10,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.event.AppointEvent;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.KeyUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.ToastUtils;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.ResponseHandlerInterface;
+import com.example.administrator.travel.utils.Xutils;
+
 
 import org.xutils.common.Callback;
 import org.xutils.ex.HttpException;
@@ -26,11 +28,12 @@ import org.xutils.x;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
-import cz.msebera.android.httpclient.Header;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import de.greenrobot.event.EventBus;
 
 
@@ -79,61 +82,33 @@ public class AppointFragment extends BaseFragment {
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-              /*  AsyncHttpClient asyncHttpClient=new AsyncHttpClient();
-                com.loopj.android.http.RequestParams requestParams = new com.loopj.android.http.RequestParams();
-                File file = new File("/storage/emulated/0/DCIM/100MEDIA/IMAG0003.jpg");
-                try {
-                    requestParams.put("file",file);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                asyncHttpClient.post("http://192.168.1.158/api.php?s=/Circle/setCircleforum/key/bfd18989ff0aa0f6ea67e4e9a1a57a18/", requestParams, new AsyncHttpResponseHandler() {
+                Map<String, String> createPostMap = Xutils.getCreatePostMap(KeyUtils.getKey(getContext()),"测试标题", "测试内容", "1", "3");
+                Map<String, File> fileMap = new HashMap<String, File>();
+                Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0003.jpg", fileMap);
+                Xutils.postFileAndText(IVariable.CIRCLE_CREATE_POST, createPostMap, fileMap, new Callback.ProgressCallback<String>() {
                     @Override
-                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                        LogUtils.e("onSuccess"+responseBody.toString());
-                        String string=new String(responseBody);
-                        LogUtils.e(string);
+                    public void onWaiting() {
+                        LogUtils.e("onWaiting");
                     }
 
                     @Override
-                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                        LogUtils.e("onFailure");
+                    public void onStarted() {
+                        LogUtils.e("onStarted");
                     }
-                });*/
-                String url = "http://192.168.1.158/api.php?s=/Circle/setCircleforum/key/bfd18989ff0aa0f6ea67e4e9a1a57a18/";
-                RequestParams requestParams = new RequestParams(url);
-                requestParams.addBodyParameter("title", "测试");
-                requestParams.addBodyParameter("content", "测试");
-                requestParams.addBodyParameter("user_id", "1");
-                requestParams.addBodyParameter("cid", "3");
-                requestParams.setMultipart(true);
-                File file = new File("/storage/emulated/0/DCIM/100MEDIA/IMAG0003.jpg");
-                if (file.exists()) {
-                    LogUtils.e("图片存在");
-                } else {
-                    LogUtils.e("图片不存在");
-                }
-                requestParams.addBodyParameter("file", file);
-                x.http().post(requestParams, new Callback.CommonCallback<String>() {
+
+                    @Override
+                    public void onLoading(long total, long current, boolean isDownloading) {
+                        LogUtils.e("onLoading"+current/(float)total);
+                    }
+
                     @Override
                     public void onSuccess(String result) {
-                        LogUtils.e("成功啦" + result);
+                       ToastUtils.showToast(getContext(),result);
                     }
 
                     @Override
                     public void onError(Throwable ex, boolean isOnCallback) {
-                        if (ex instanceof HttpException) { // 网络错误
-                            HttpException httpEx = (HttpException) ex;
-                            int responseCode = httpEx.getCode();
-                            String responseMsg = httpEx.getMessage();
-                            String errorResult = httpEx.getResult();
-                            LogUtils.e(responseMsg + errorResult + "网络错误");
-                            // ...
-                        } else { // 其他错误
-                            // ...
-                            LogUtils.e("其他网络错误");
-                        }
+                        LogUtils.e("onError");
                     }
 
                     @Override
@@ -143,7 +118,7 @@ public class AppointFragment extends BaseFragment {
 
                     @Override
                     public void onFinished() {
-                        LogUtils.e("onFinished");
+
                     }
                 });
             }
