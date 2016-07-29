@@ -19,18 +19,18 @@
         <activity
             android:name=".ui.activity.WelcomeActivity"
             android:theme="@style/SplashTheme">
+          <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".ui.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.activity.HomeActivity">
-        <!--    <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
         </activity>
         <activity android:name=".ui.activity.CircleActivity" />
         <activity android:name=".ui.activity.BaseActivity" />
@@ -51,6 +51,9 @@
         <activity android:name=".ui.activity.ActivateDetailActivity"></activity>
         <activity android:name=".ui.activity.DeliciousDetailActivity"></activity>
         <activity android:name=".ui.activity.LoginActivity"></activity>
+        <activity android:name=".ui.activity.CreatePostActivity"
+            android:windowSoftInputMode="adjustResize"
+            ></activity>
     </application>
 
 </manifest>

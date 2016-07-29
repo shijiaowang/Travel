@@ -11,13 +11,22 @@ import java.util.Map;
  * Created by Administrator on 2016/7/29 0029.
  */
 public class MapUtils {
-     Map<String,String> stringMap=new HashMap<>();
-    public  MapUtils getConmmonMap(Context context){
-        stringMap.put(IVariable.KEY,KeyUtils.getKey(context));
-        return this;
+     static Map<String,String> stringMap=new HashMap<>();
+    public static Builder Build(){
+        stringMap.clear();
+        return new Builder();
     }
-    public  MapUtils addParams(String key,String value){
-        stringMap.put(key,value);
-        return this;
+    public static class Builder{
+        public Builder addKey(Context context){
+            stringMap.put(IVariable.KEY,KeyUtils.getKey(context));
+            return this;
+        }
+        public Builder add(String key,String value){
+            stringMap.put(key,value);
+            return this;
+        }
+        public Map<String,String> end(){
+            return stringMap;
+        }
     }
 }

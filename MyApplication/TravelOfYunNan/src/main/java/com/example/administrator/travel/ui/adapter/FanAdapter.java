@@ -2,9 +2,9 @@ package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
 
-import com.example.administrator.travel.bean.FollowAndFan;
+import com.example.administrator.travel.bean.Fan;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.holer.FollowAndFanHolder;
+import com.example.administrator.travel.ui.adapter.holer.FanHolder;
 
 
 import java.util.List;
@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/18 0018.
  */
-public class FollowAndFanAdapter extends TravelBaseAdapter<FollowAndFan> {
-    public FollowAndFanAdapter(Context mContext, List mDatas) {
+public class FanAdapter extends TravelBaseAdapter<Fan.FanPeople> {
+    public FanAdapter(Context mContext, List mDatas) {
         super(mContext, mDatas);
     }
 
@@ -23,13 +23,16 @@ public class FollowAndFanAdapter extends TravelBaseAdapter<FollowAndFan> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, FollowAndFan item) {
+    protected void initListener(BaseHolder baseHolder, Fan.FanPeople item) {
 
     }
 
 
+
+
+
     @Override
     protected BaseHolder initHolder(int position) {
-        return new FollowAndFanHolder(super.mContext);
+        return new FanHolder(super.mContext);
     }
 }

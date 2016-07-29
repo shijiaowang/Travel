@@ -1,6 +1,5 @@
 package com.example.administrator.travel.event;
 
-import com.android.volley.VolleyError;
 
 /**
  * Created by Administrator on 2016/7/27 0027.

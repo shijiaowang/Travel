@@ -2,7 +2,6 @@ package com.example.administrator.travel.ui.activity;
 
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,10 +11,10 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
-import com.example.administrator.travel.ui.fragment.FollowAndFanFragment;
+import com.example.administrator.travel.ui.fragment.FanFragment;
 import com.example.administrator.travel.ui.fragment.MeFragment;
+import com.example.administrator.travel.ui.fragment.FollowFragment;
 import com.example.administrator.travel.utils.FontsIconUtil;
-import com.example.administrator.travel.utils.TypefaceUtis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,9 +58,9 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initData() {
+        fragments.add(new FollowFragment());
+        fragments.add(new FanFragment());
 
-        fragments.add(new FollowAndFanFragment());
-        fragments.add(new FollowAndFanFragment());
         mVpFollowFan.setAdapter(new FollowFanAdapter(getSupportFragmentManager()));
         mVpFollowFan.setCurrentItem(currentPosition, false);
         changeSelect();
@@ -140,4 +139,8 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
             return fragments.size();
         }
     }
+
+
+
+
 }

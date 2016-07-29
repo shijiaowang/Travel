@@ -1,7 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -12,8 +11,6 @@ import com.example.administrator.travel.ui.adapter.CircleAdapter;
 import com.example.administrator.travel.ui.view.SlippingScrollView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FontsIconUtil;
-import com.example.administrator.travel.utils.LogUtils;
-import com.example.administrator.travel.utils.TypefaceUtis;
 
 /**
  * Created by Administrator on 2016/7/8 0008.
@@ -22,7 +19,7 @@ import com.example.administrator.travel.utils.TypefaceUtis;
 public class CircleActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView mTvBack;//返回
-    private TextView mCreatePost;//创建帖子按钮
+    private TextView mTvCreatePost;//创建帖子按钮
     private ToShowAllListView mLvPost;//帖子列表
     private SlippingScrollView mSvScroll;//惯性滚动监听
     private ImageView mIvPostBg;//帖子背景
@@ -39,7 +36,7 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initView() {
         mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back,this);
-        mCreatePost = FontsIconUtil.findIconFontsById(R.id.tv_create_post,this);
+        mTvCreatePost = FontsIconUtil.findIconFontsById(R.id.tv_create_post,this);
         mLvPost = (ToShowAllListView) findViewById(R.id.lv_post);
         mSvScroll = (SlippingScrollView) findViewById(R.id.sv_scroll);
         mIvPostBg = (ImageView) findViewById(R.id.iv_post_bg);
@@ -50,6 +47,7 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initListener() {
         mTvBack.setOnClickListener(this);
+        mTvCreatePost.setOnClickListener(this);
         mLvPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -98,6 +96,9 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.tv_back:
                 finish();
+                break;
+            case R.id.tv_create_post:
+                startActivity(new Intent(CircleActivity.this,CreatePostActivity.class));
                 break;
         }
     }

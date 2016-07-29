@@ -26,7 +26,7 @@
 
         <TextView
             android:text="我是谁？"
-            android:id="@+id/tv_action"
+            android:id="@+id/tv_nike_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#8c8c8c"

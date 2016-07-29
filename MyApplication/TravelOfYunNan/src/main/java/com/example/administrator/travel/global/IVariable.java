@@ -13,7 +13,8 @@ public interface IVariable {
     String LOGIN_URL=API_KEY+"User/Login/";
     String FIRST_CIRCLE_URL=API_KEY+"Circle/getCirclelists/";
     String NORMAL_CIRCLE_URL=API_KEY+"Circle/getCirclechildlists/";
-    String CIRCLE_CREATE_POST=API_KEY+"/Circle/setCircleforum";//圈子发帖
+    String CIRCLE_CREATE_POST=API_KEY+"Circle/setCircleforum/";//圈子发帖
+    String GET_FOLLOW_USER=API_KEY+"User/getInformlists/";//圈子发帖
 
 
 
@@ -64,7 +65,9 @@ public interface IVariable {
 
     int  FIRST_REQ_CIRCLE =0;//第一次请求
     int NORMAL_REQ_CIRCLE =1;//之后的请求
-
+    int TYPE_GET_FAN =2;//获取关注人列表
 
     int X_UTLIS_ERROR=100;//xutil相关错误
+
+    int TYPE_REFRESH =3 ;//刷新
 }

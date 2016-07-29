@@ -1,11 +1,5 @@
 package com.example.administrator.travel.utils;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 
@@ -16,10 +10,7 @@ import org.xutils.ex.HttpException;
 import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
-
-import java.util.HashMap;
 import java.util.Map;
-
 import de.greenrobot.event.EventBus;
 
 /**
@@ -103,11 +94,7 @@ public class XEventUtils {
             httpEvent.setIsSuccess(false);
             httpEvent.setCode(IVariable.X_UTLIS_ERROR);
             if (ex != null) {
-                if (ex instanceof HttpException) { // 网络错误
-                    message = "网络错误";
-                } else { // 其他错误
-                    message = "未知错误";
-                }
+                message = "请链接网络";
             }
             httpEvent.setMessage(message);
             EventBus.getDefault().post(httpEvent);

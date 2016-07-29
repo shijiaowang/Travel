@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.activity;
 
 import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.TextView;
@@ -47,7 +48,13 @@ public abstract class BarBaseActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
+        if (leftIsFontIcon()) {
+            mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
+        }else {
+            mTvBack= (TextView)findViewById(R.id.tv_back);
+            mTvBack.setText(getLeftText());
+        }
+        mTvBack.setTextSize(TypedValue.COMPLEX_UNIT_SP,getLeftTextSize());
         mTitleName = (TextView) findViewById(R.id.tv_name);
         mVsContent = (ViewStub) findViewById(R.id.vs_content);
         mBg1 = findViewById(R.id.bg_1);
@@ -60,6 +67,26 @@ public abstract class BarBaseActivity extends BaseActivity {
             mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);
         }
         initContentView();
+    }
+
+    /**
+     * 默认返回左边的大小
+     * @return
+     */
+    protected float getLeftTextSize() {
+        return 25;
+    }
+
+    protected String getLeftText() {
+        return "";
+    }
+
+    /**
+     * 左边的是不是文字
+     * @return
+     */
+    protected  boolean leftIsFontIcon(){
+        return true;
     }
 
     /**
@@ -157,4 +184,6 @@ public abstract class BarBaseActivity extends BaseActivity {
     public float getAlpha() {
         return alpha;
     }
+
+
 }

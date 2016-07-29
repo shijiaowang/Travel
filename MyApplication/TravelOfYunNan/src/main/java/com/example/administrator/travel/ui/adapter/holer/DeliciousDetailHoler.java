@@ -27,8 +27,7 @@ public class DeliciousDetailHoler extends BaseHolder<DeliciousDetail> {
     public View initRootView(Context mContext) {
         View inflate = View.inflate(mContext, R.layout.item_activity_delicious_top_store, null);
         mRbStar = (RatingBar) inflate.findViewById(R.id.rb_star);
-        mRbStar.setStepSize(0.5f);
-        mRbStar.setRating(1.5f);
+        mRbStar.setRating(4.5f);
         return inflate;
     }
 }

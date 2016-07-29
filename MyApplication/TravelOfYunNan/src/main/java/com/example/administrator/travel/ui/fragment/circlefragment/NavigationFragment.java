@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Circle;
 import com.example.administrator.travel.bean.CircleNavRight;
@@ -20,14 +17,10 @@ import com.example.administrator.travel.ui.adapter.CircleNavLeftAdapter;
 import com.example.administrator.travel.ui.adapter.CircleNavRightAdapter;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 import com.example.administrator.travel.utils.CircleUtils;
-import com.example.administrator.travel.utils.KeyUtils;
-import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
-import com.example.administrator.travel.utils.Xutils;
-import com.google.gson.Gson;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +35,6 @@ public class NavigationFragment extends BaseFragment {
     private ListView mLvRightNav;
     private RelativeLayout mRlPost;
     private int preCircleNavLeftPosition = -1;
-    private RequestQueue requestQueue;
     private List<Circle.DataBean.CircleLeftBean> leftList;
     private List<CircleNavRight.RightCircle> rightList;
 
@@ -58,18 +50,16 @@ public class NavigationFragment extends BaseFragment {
     protected void initView() {
         mLvLeftNav = (ListView) super.root.findViewById(R.id.lv_left_nav);
         mLvRightNav = (ListView) super.root.findViewById(R.id.lv_right_nav);
-        requestQueue = Volley.newRequestQueue(getContext());
-
-
     }
 
     @Override
     protected void initData() {
-         String commonUrl = IVariable.FIRST_CIRCLE_URL + "key" + "/" + KeyUtils.getKey(getContext()) + "/user_id/1";
-        Map<String, String> commonMap = Xutils.getCommonMap(getContext());
-        XEventUtils.getStringRequest(commonUrl, requestQueue, IVariable.FIRST_REQ_CIRCLE);
+        firstReq();
+    }
 
-
+    private void firstReq() {
+        Map<String, String> map = MapUtils.Build().addKey(getContext()).add("user_id", "1").end();
+        XEventUtils.postUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ_CIRCLE);
     }
 
     @Override
@@ -80,12 +70,11 @@ public class NavigationFragment extends BaseFragment {
                 String cid = leftList.get(position).getCid();
                 selectNavLeft(position);
 
-                if (position==0){
-                    String commonUrl = IVariable.FIRST_CIRCLE_URL + "key" + "/" + KeyUtils.getKey(getContext()) + "/user_id/1";
-                    XEventUtils.getStringRequest(commonUrl, requestQueue, IVariable.FIRST_REQ_CIRCLE);
-                }else {
-                    String commonUrl = IVariable.NORMAL_CIRCLE_URL + "key" + "/" + KeyUtils.getKey(getContext()) + "/cid/";
-                    XEventUtils.getStringRequest(commonUrl + cid, requestQueue, IVariable.NORMAL_REQ_CIRCLE);
+                if (position == 0) {
+                    firstReq();
+                } else {
+                    Map<String, String> map = MapUtils.Build().addKey(getContext()).add("cid", cid).end();
+                    XEventUtils.postUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ_CIRCLE);
                 }
             }
         });
@@ -126,36 +115,20 @@ public class NavigationFragment extends BaseFragment {
         if (event.isSuccess()) {
             if (event.getType() == IVariable.FIRST_REQ_CIRCLE) {
                 firstReq(event);//第一次请求
-            }else {
-                if (event.getCode() == IVariable.SUCCESS) {
-                    String result = event.getResult();
-                    Gson gson = new Gson();
-                    CircleNavRight circle = gson.fromJson(result, CircleNavRight.class);
-                    circleNavRightAdapter.notifyData(circle.getData());
-                } else {
-                    ToastUtils.showToast(getContext(), event.getMessage());
-
-                }
+            } else {
+                CircleNavRight circleNavRight = GsonUtils.getObject(event.getResult(), CircleNavRight.class);
+                circleNavRightAdapter.notifyData(circleNavRight.getData());
             }
-
-
         } else {
-            ToastUtils.showToast(getContext(), "网络错误");
+            ToastUtils.showToast(getContext(), event.getMessage());
         }
     }
 
     private void firstReq(HttpEvent event) {
-        if (event.getCode() == IVariable.SUCCESS) {
-            String result = event.getResult();
-            Gson gson = new Gson();
-            Circle circle = gson.fromJson(result, Circle.class);
-            leftList = circle.getData().getCircle_left();
-            rightList = CircleUtils.circleRightBean2RightCircleList(circle.getData().getCircle_right());
-            setListData();
-        } else {
-            ToastUtils.showToast(getContext(), event.getMessage()+"key"+KeyUtils.getKey(getContext()));
-            LogUtils.e("key" + KeyUtils.getKey(getContext()));
-        }
+        Circle circle = GsonUtils.getObject(event.getResult(), Circle.class);
+        leftList = circle.getData().getCircle_left();
+        rightList = CircleUtils.circleRightBean2RightCircleList(circle.getData().getCircle_right());
+        setListData();
     }
 
     /**

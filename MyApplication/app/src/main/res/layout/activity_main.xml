@@ -1,36 +1,48 @@
-<yunshuo.yneb.com.yunnantravel.StickyNavLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true" >
 
-    <RelativeLayout
-        android:id="@id/id_stickynavlayout_topview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#4400ff00" >
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_dark"
+            >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:gravity="center"
-            android:text="软件介绍"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layout_content"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="6.0dip"
+                android:layout_marginLeft="6.0dip"
+                android:layout_marginRight="6.0dip"
+                android:layout_marginTop="8.0dip"
+                android:background="@android:color/holo_red_dark"
+                android:minHeight="150.0dip"
+                android:orientation="vertical"
+                android:paddingBottom="150.0dip" >
 
-    <yunshuo.yneb.com.yunnantravel.SimpleViewPagerIndicator
-        android:id="@id/id_stickynavlayout_indicator"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#ffffffff" >
-    </yunshuo.yneb.com.yunnantravel.SimpleViewPagerIndicator>
+                <EditText
+                    android:id="@+id/mood_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@null"
+                    android:focusableInTouchMode="true"
+                    android:gravity="top"
+                    android:hint="adafg"
+                    android:maxLength="120"
+                    android:minHeight="46.0dip"
+                    android:padding="10.0dip"
+                    android:textSize="16sp"
+                    >
+                </EditText>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@id/id_stickynavlayout_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#44ff0000" >
-    </android.support.v4.view.ViewPager>
-
-</yunshuo.yneb.com.yunnantravel.StickyNavLayout>
