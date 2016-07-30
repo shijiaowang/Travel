@@ -23,4 +23,23 @@ public class FontsIconUtil {
         iconView.setTypeface(TypefaceUtis.getTypeface(context));
         return iconView;
     }
+
+    /**
+     * 文字变粗
+     * @param resId
+     * @param context
+     * @param root
+     * @return
+     */
+    public static TextView findIconFontsByIdAndFakeBoldText(int resId,Context context,View root){
+        TextView iconFontsById = findIconFontsById(resId, context, root);
+        iconFontsById.getPaint().setFakeBoldText(true);
+        return iconFontsById;
+    }
+    public static TextView findIconFontsByIdAndFakeBoldText(int resId,BaseActivity activity){
+        TextView iconFontsById = findIconFontsById(resId, activity);
+        iconFontsById.getPaint().setFakeBoldText(true);
+        return iconFontsById;
+    }
+
 }

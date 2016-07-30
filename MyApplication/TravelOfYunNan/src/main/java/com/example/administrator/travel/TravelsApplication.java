@@ -23,7 +23,7 @@ public class TravelsApplication extends Application {
     public void onCreate() {
         super.onCreate();
         x.Ext.init(this);
-        x.Ext.setDebug(BuildConfig.DEBUG); // 开启debug会影响性能
+       /* x.Ext.setDebug(BuildConfig.DEBUG); // 开启debug会影响性能*/
         mContext = getApplicationContext();
         mHandler = new Handler();
         mainThreadId = android.os.Process.myTid();//获取主线程的id

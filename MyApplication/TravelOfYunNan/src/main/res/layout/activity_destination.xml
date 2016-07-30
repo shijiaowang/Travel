@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+        android:background="@color/colorFAFAFA">
+
+        <RelativeLayout
+            android:id="@+id/rl_search"
+            android:layout_marginTop="12dp"
+            android:layout_width="280dp"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/activity_travels_search_bg">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="45dp"
+                android:background="@null"
+                android:hint="输入感兴趣的关键字"
+                android:textColorHint="@color/colorC1c1c1"
+                android:textCursorDrawable="@null"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:text="@string/fragment_circle_search"
+                android:textColor="@color/colorC1c1c1"
+                android:textSize="20sp" />
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_below="@id/rl_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+          <TextView
+            android:text="地区"
+            style="@style/activityDestinationTv"
+            />
+            <View
+                style="@style/activityDestinationLine"/>
+            <TextView
+                android:text="分类"
+                style="@style/activityDestinationTv"
+                />
+            <View
+                style="@style/activityDestinationLine"/>
+            <TextView
+                android:text="默认"
+                style="@style/activityDestinationTv"
+                />
+            <View
+                style="@style/activityDestinationLine"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <ListView
+        android:id="@+id/lv_destination"
+        android:dividerHeight="0dp"
+        android:divider="@null"
+        android:cacheColorHint="@android:color/transparent"
+        android:layout_marginTop="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

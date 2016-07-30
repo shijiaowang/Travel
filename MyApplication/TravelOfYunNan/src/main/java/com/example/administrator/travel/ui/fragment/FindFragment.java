@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.activity.ActiveActivity;
 import com.example.administrator.travel.ui.activity.DeliciousFoodActivity;
+import com.example.administrator.travel.ui.activity.DestinationActivity;
 import com.example.administrator.travel.ui.activity.TravelsActivity;
 import com.example.administrator.travel.ui.adapter.FindHotAdapter;
 import com.example.administrator.travel.ui.adapter.FindRecommendAdapter;
@@ -31,6 +32,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mLlActive;
     private LinearLayout mLlDeliciousFood;
     private LinearLayout mLlTravels;
+    private LinearLayout mLlAdd;
 
     @Override
     protected int initLayoutRes() {
@@ -49,6 +51,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
         mGvRecommend = (ToShowAllGridView) root.findViewById(R.id.gv_recommend);
         mLlActive = (LinearLayout) root.findViewById(R.id.ll_active);
         mLlDeliciousFood = (LinearLayout) root.findViewById(R.id.ll_delicious_food);
+        mLlAdd = (LinearLayout) root.findViewById(R.id.ll_add);
         mLlTravels = (LinearLayout) root.findViewById(R.id.ll_travels);
         mLvHot = (ToShowAllListView) root.findViewById(R.id.lv_hot);//热门
     }
@@ -64,6 +67,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
         mLlActive.setOnClickListener(this);
         mLlDeliciousFood.setOnClickListener(this);
         mLlTravels.setOnClickListener(this);
+        mLlAdd.setOnClickListener(this);
     }
 
     @Override
@@ -77,6 +81,9 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.ll_travels:
                 startActivity(new Intent(getContext(), TravelsActivity.class));
+                break;
+            case R.id.ll_add:
+                startActivity(new Intent(getContext(), DestinationActivity.class));
                 break;
         }
     }

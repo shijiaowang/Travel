@@ -76,7 +76,10 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <LinearLayout style="@style/fragmentFindIconLl">
+                <LinearLayout
+
+                    android:id="@+id/ll_add"
+                    style="@style/fragmentFindIconLl">
 
                     <TextView
                         android:id="@+id/tv_icon_add"

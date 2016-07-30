@@ -80,7 +80,7 @@
                         style="@style/CircleText"
                         android:layout_marginLeft="2dp"
                         android:text="1123"
-                        android:textColor="@color/circleDesNum" />
+                        android:textColor="@color/Ffbf75" />
 
                     <TextView
                         style="@style/CircleText"
@@ -91,7 +91,7 @@
                         style="@style/CircleText"
                         android:layout_marginLeft="2dp"
                         android:text="1123"
-                        android:textColor="@color/circleDesNum" />
+                        android:textColor="@color/Ffbf75" />
 
                 </LinearLayout>
 

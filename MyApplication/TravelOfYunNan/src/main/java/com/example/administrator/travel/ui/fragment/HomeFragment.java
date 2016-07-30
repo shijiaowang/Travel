@@ -87,7 +87,7 @@ public class HomeFragment extends BaseFragment {
         mGvChosen.setAdapter(chosenAdapter);
 
         mRvHotSpots.setAdapter(new HotSpotsAdapter(getActivity(), null));
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRvHotSpots.setLayoutManager(manager);
         mRvHotSpots.setItemAnimator(new DefaultItemAnimator());
         mRvHotSpots.addItemDecoration(new HotSpotsItemDecoration(RECYCLE_VIEW_ITEM_SPACE));//设置孩子间距为24px;
