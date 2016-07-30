@@ -1,5 +1,8 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,7 +33,12 @@ public class DestinationActivity extends BarBaseActivity {
 
     @Override
     protected void initEvent() {
-
+       mLvDestination.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               startActivity(new Intent(DestinationActivity.this,DestinationDetailActivity.class));
+           }
+       });
     }
 
     @Override

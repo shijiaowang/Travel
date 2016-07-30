@@ -93,6 +93,8 @@
     <string name="activity_create_post_smell">筱</string><!--微笑-->
     <string name="activity_create_post_picture">骈</string><!--照片-->
     <string name="activity_add_detail_team_profile">揭</string><!--队伍简介-->
+    <string name="activity_add_detail_spot">靖</string><!--景点-->
+    <string name="activity_add_detail_spot_add">炜</string><!--景点位置-->
     <string name="activity_setting_log_out">莞</string>
     <!--退出登录-->
     <!--留言-->
