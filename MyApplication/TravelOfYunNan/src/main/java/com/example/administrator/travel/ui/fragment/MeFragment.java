@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.activity.CreatePostActivity;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
@@ -34,6 +35,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mLlAlbum;
     private LinearLayout mLlSetting;
     private ImageView mIvSetting;
+    private TextView mTvAppoint;
 
     @Override
     protected int initLayoutRes() {
@@ -46,6 +48,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         inflater = LayoutInflater.from(getContext());
         mTvMessageCenter = (TextView) root.findViewById(R.id.tv_message_center);
         mTvFollowName = (TextView) root.findViewById(R.id.tv_follow_name);
+        mTvAppoint = (TextView) root.findViewById(R.id.tv_appoint);
         mTvFollowNumber = (TextView) root.findViewById(R.id.tv_follow_number);
         mTvFanName = (TextView) root.findViewById(R.id.tv_fan_name);
         mTvFanNumber = (TextView) root.findViewById(R.id.tv_fan_number);
@@ -79,6 +82,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     protected void initListener() {
         mTvMessageCenter.setOnClickListener(this);//消息中心
+        mTvAppoint.setOnClickListener(this);//我的约伴
         mTvFollowName.setOnClickListener(this);//关注
         mTvFollowNumber.setOnClickListener(this);
         mTvFanName.setOnClickListener(this);//粉丝
@@ -111,6 +115,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.iv_setting:
             case R.id.ll_setting:
                 startActivity(new Intent(getContext(), SettingActivity.class));
+                break;
+            case R.id.tv_appoint:
+                startActivity(new Intent(getContext(), CreatePostActivity.class));//测试方便使用
                 break;
         }
     }

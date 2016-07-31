@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -30,7 +31,7 @@ import de.greenrobot.event.EventBus;
 public class LoginActivity extends FullTransparencyActivity {
 
     private EditText mEdPassword;
-    private EditText mEdName;
+    private AutoCompleteTextView mEdName;
     private Button mBtLogin;
     private SharedPreferences sharedPreferences;
     private String key;
@@ -44,8 +45,8 @@ public class LoginActivity extends FullTransparencyActivity {
     @Override
     protected void initView() {
         sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
-        mEdName = (EditText) findViewById(R.id.ed_name);
-        mEdPassword = (EditText) findViewById(R.id.ed_password);
+        mEdName = (AutoCompleteTextView) findViewById(R.id.et_name);
+        mEdPassword = (EditText) findViewById(R.id.et_password);
         mBtLogin = (Button) findViewById(R.id.bt_login);
     }
 

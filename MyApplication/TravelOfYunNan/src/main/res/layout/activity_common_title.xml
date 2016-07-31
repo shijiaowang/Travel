@@ -1,17 +1,17 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="74dp">
+    android:layout_height="@dimen/commonTotalHeight">
     <View
         android:id="@+id/bg_1"
         android:background="@color/otherTitleBg"
         android:layout_width="match_parent"
-        android:layout_height="74dp"/>
+        android:layout_height="@dimen/commonTotalHeight"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginTop="25dp">
+        android:layout_height="49dp"
+        android:layout_marginTop="@dimen/commonStatusHeight">
 
         <TextView
             android:id="@+id/tv_back"

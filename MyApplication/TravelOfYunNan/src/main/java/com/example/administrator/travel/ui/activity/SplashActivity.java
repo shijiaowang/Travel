@@ -33,7 +33,7 @@ public class SplashActivity extends FullTransparencyActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SplashActivity.this,LoginActivity.class));
-                finish();
+
             }
         });
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
