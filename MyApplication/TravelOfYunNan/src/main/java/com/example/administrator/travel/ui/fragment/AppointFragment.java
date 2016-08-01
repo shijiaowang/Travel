@@ -1,19 +1,29 @@
 package com.example.administrator.travel.ui.fragment;
 
 
+import android.app.Dialog;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.event.AppointEvent;
-import com.example.administrator.travel.global.IVariable;
+
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
+
+import com.example.administrator.travel.utils.FastBlur;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.KeyUtils;
 import com.example.administrator.travel.utils.LogUtils;
@@ -51,6 +61,7 @@ public class AppointFragment extends BaseFragment {
     private TextView mTvPlayWithMe;
     private List<BaseFragment> fragments;
     private FloatingActionButton mFabAdd;
+    private LinearLayout mLlRoot;
 
     @Override
     protected int initLayoutRes() {
@@ -64,6 +75,7 @@ public class AppointFragment extends BaseFragment {
         mTvPlayTogether = (TextView) root.findViewById(R.id.tv_play_together);
         mTvPlayWithMe = (TextView) root.findViewById(R.id.tv_play_with_me);
         mFabAdd = (FloatingActionButton) root.findViewById(R.id.fab_add);
+        mLlRoot = (LinearLayout) root.findViewById(R.id.ll_root);
 
 
     }
@@ -77,12 +89,21 @@ public class AppointFragment extends BaseFragment {
 
     }
 
+    public Bitmap createViewBitmap(View v) {
+
+        Bitmap bitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        v.draw(canvas);
+        return bitmap;
+    }
     @Override
     protected void initListener() {
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, String> createPostMap = Xutils.getCreatePostMap(KeyUtils.getKey(getContext()),"测试标题", "测试内容", "1", "3");
+                showAppointDialog();//展示约伴框
+               /* Map<String, String> createPostMap = Xutils.getCreatePostMap(KeyUtils.getKey(getContext()),"测试标题", "测试内容", "1", "3");
                 Map<String, File> fileMap = new HashMap<String, File>();
                 Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0003.jpg", fileMap);
                 Xutils.postFileAndText(IVariable.CIRCLE_CREATE_POST, createPostMap, fileMap, new Callback.ProgressCallback<String>() {
@@ -120,7 +141,7 @@ public class AppointFragment extends BaseFragment {
                     public void onFinished() {
 
                     }
-                });
+                });*/
             }
         });
         mLlSwitch.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +175,38 @@ public class AppointFragment extends BaseFragment {
 
             }
         });
+    }
+
+    private void showAppointDialog() {
+        Bitmap viewBitmap = createViewBitmap(mLlRoot);
+        Bitmap bitmap = FastBlur.zoomImage(viewBitmap, 300, 500);//压缩图片
+        viewBitmap.recycle();
+        Bitmap blurBg = FastBlur.doBlur( bitmap, 10,true);
+        showPop(blurBg);
+    }
+
+    private void showPop(final Bitmap blurBg) {
+        final View dialogView=View.inflate(getContext(), R.layout.popup_window_create_appoiint, null);
+        //创建 Dialog
+        ImageView mIvBg = (ImageView) dialogView.findViewById(R.id.iv_bg);
+       mIvBg.setImageBitmap(blurBg);//设置模糊背景
+
+//		Dialog dialog=new Dialog(上下文,风格style);
+        final Dialog dialog=new Dialog(getContext(),R.style.myDialog);
+        //layout_width layout_height
+        RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
+        dialog.setContentView(dialogView, params);
+        dialogView.findViewById(R.id.iv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                blurBg.recycle();
+            }
+        });
+        Window window = dialog.getWindow();
+        window.setWindowAnimations(R.style.myDialog);
+        dialog.show();
+
     }
 
     @Override

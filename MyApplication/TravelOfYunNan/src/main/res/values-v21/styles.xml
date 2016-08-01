@@ -2,10 +2,23 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/otherTitleBg</item>
       <!--  <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>-->
+        -->
+        <item name="colorAccent">#fafafa</item>
+    </style>
+    <style name="myDialog" parent="@android:style/Theme.Holo.DialogWhenLarge">
+        <item name="android:windowFullscreen">true</item><!--//全屏-->
+        <item name="android:windowTranslucentStatus">true</item><!--状态栏颜色透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowEnterAnimation">@anim/enter_anima</item>
+        <item name="android:windowExitAnimation">@anim/exit_anima</item>
+        <!-- 去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 将背景透明化 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
     <style name="CreatePostTheme" parent="Theme.AppCompat.Light.NoActionBar">
 

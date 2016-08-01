@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -20,6 +21,8 @@ import com.example.administrator.travel.ui.fragment.EmojiFragment;
 import com.example.administrator.travel.utils.DensityUtils;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
+
+import org.xutils.common.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +63,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     private void initListener() {
         mTvPicture.setOnClickListener(this);
         mTvEmoji.setOnClickListener(this);
+        mTvAite.setOnClickListener(this);
     }
 
 
@@ -148,8 +152,12 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
                     mGvPhoto.setVisibility(View.GONE);
                 }
                 break;
+            case R.id.tv_aite:
+                startActivity(new Intent(this,AiteActivity.class));
+                break;
 
         }
+
     }
 
     class FragmentEmojiAdapter extends FragmentPagerAdapter {

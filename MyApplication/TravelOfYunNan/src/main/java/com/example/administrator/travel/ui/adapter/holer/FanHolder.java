@@ -6,10 +6,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Fan;
-import com.example.administrator.travel.bean.FollowAndFan;
 import com.example.administrator.travel.utils.FontsIconUtil;
-
-import org.xutils.x;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

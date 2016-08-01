@@ -51,10 +51,12 @@
         <activity android:name=".ui.activity.ActivateDetailActivity"></activity>
         <activity android:name=".ui.activity.DeliciousDetailActivity"></activity>
         <activity android:name=".ui.activity.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             ></activity>
         <activity android:name=".ui.activity.DestinationActivity"></activity>
         <activity android:name=".ui.activity.TravelsDetailActivity"></activity>
         <activity android:name=".ui.activity.DestinationDetailActivity"></activity>
+        <activity android:name=".ui.activity.AiteActivity"></activity>
         <activity android:name=".ui.activity.CreatePostActivity"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/CreatePostTheme"

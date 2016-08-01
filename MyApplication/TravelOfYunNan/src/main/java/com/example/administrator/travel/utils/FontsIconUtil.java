@@ -1,6 +1,7 @@
 package com.example.administrator.travel.utils;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -14,7 +15,7 @@ import com.example.administrator.travel.ui.activity.BaseActivity;
  * 初始化字体图标
  */
 public class FontsIconUtil {
-    public static TextView findIconFontsById(int resId,FragmentActivity activity){
+    public static TextView findIconFontsById(int resId,Activity activity){
         TextView iconView = (TextView) activity.findViewById(resId);
         iconView.setTypeface(TypefaceUtis.getTypeface(activity));
         return iconView;

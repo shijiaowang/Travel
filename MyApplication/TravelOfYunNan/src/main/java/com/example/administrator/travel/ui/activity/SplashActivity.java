@@ -3,14 +3,16 @@ package com.example.administrator.travel.ui.activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.utils.LogUtils;
 
 public class SplashActivity extends FullTransparencyActivity {
-
+   public static final int GO_LOGIN=0;
 
     private VideoView mVideoView;
     private int currentPosition;
@@ -59,7 +61,7 @@ public class SplashActivity extends FullTransparencyActivity {
 
     private void gotoHome() {
         Intent homeIntent=new Intent(this,HomeActivity.class);
-        startActivity(homeIntent);
+       startActivityForResult(homeIntent, GO_LOGIN);
         finish();
     }
 
@@ -78,9 +80,30 @@ public class SplashActivity extends FullTransparencyActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GO_LOGIN && resultCode == LoginActivity.SPLASH_RESULT) {
+            if (mVideoView != null) {
+                mVideoView.pause();
+            }
+            finish();
+        }
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
 
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
         currentPosition = mVideoView.getCurrentPosition();
+        if (mVideoView!=null) {
+            mVideoView.pause();
+            mVideoView=null;
+        }
     }
 }

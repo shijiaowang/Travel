@@ -23,6 +23,7 @@
 
             style="@style/fragmentAppointWithMeLl">
             <TextView
+                android:textColor="@color/otherTitleBg"
                 android:id="@+id/tv_icon_time"
                 android:text="@string/fragment_play_with_me_time"
                 style="@style/fragmentAppointWithMeIconFont"/>

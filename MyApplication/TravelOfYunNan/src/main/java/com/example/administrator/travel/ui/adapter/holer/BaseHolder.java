@@ -24,6 +24,9 @@ public abstract class BaseHolder<T> {
 
     public void setDatas(T datas){
         this.datas=datas;
+        if (datas==null){
+            return;
+        }
         initItemDatas(datas,mContext);
     }
   //赋值item
