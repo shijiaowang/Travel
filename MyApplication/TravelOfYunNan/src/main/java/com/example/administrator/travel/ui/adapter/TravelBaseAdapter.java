@@ -64,12 +64,12 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
         }else {
             baseHolder= (BaseHolder) convertView.getTag();
         }
-        if (mDatas!=null){
+        if (mDatas!=null) {
             baseHolder.setDatas(getItem(position));
-
+            initListener(baseHolder, getItem(position));
+        }else {
+            initListener(baseHolder, null);//暂时传，没有数据
         }
-        //baseHolder.setDatas();
-        initListener(baseHolder,null);//暂时传，没有数据
 
         return convertView;
     }

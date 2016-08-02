@@ -12,6 +12,7 @@ import com.example.administrator.travel.ui.activity.CreatePostActivity;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
+import com.example.administrator.travel.ui.activity.MyAppointActivity;
 import com.example.administrator.travel.ui.activity.SettingActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 
@@ -117,7 +118,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
             case R.id.tv_appoint:
-                startActivity(new Intent(getContext(), CreatePostActivity.class));//测试方便使用
+                startActivity(new Intent(getContext(), MyAppointActivity.class));
                 break;
         }
     }

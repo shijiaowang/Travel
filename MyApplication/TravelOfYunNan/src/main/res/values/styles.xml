@@ -8,9 +8,9 @@
         <item name="colorAccent">@android:color/transparent</item>
     </style>
     <!-- 自定义对话框 系统默认 :1.白边 2.标题 -->
-    <style name="myDialog" parent="@android:style/Theme.Holo.DialogWhenLarge">
+
+    <style name="commonDialog" parent="@android:style/Theme.Holo.DialogWhenLarge">
        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
         <item name="android:windowEnterAnimation">@anim/enter_anima</item>
@@ -20,6 +20,7 @@
         <!-- 将背景透明化 -->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+    <style name="myDialog" parent="commonDialog"/>
 
     <style name="CreatePostTheme" parent="AppTheme">
         <item name="colorPrimary">@android:color/transparent</item>
@@ -252,6 +253,8 @@
 
     <style name="fragmentAppointWithMeText">
         <item name="android:layout_width">wrap_content</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">8dp</item>
         <item name="android:textColor">@color/color323232</item>
@@ -362,4 +365,13 @@
     </style>
 
 
+    <style name="commonListViewStyle">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:divider">@null</item>
+    </style>
+    <style name="commonSingleLineTextStyle">
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
 </resources>

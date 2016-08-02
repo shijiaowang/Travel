@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorFAFAFA"
+    android:orientation="vertical"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_top"
+            android:text="置顶"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textColor="@color/colorFAFAFA"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:background="@color/colorFf8076"
+            android:layout_width="wrap_content"
+            android:layout_height="13dp" />
+        <View
+            android:id="@+id/v_dot"
+            android:background="@drawable/activity_bulletin_board_dot"
+            android:layout_width="3dp"
+            android:layout_height="3dp"/>
+        <TextView
+            android:text="鞠萍姐姐说你好"
+            android:layout_marginLeft="7dp"
+            android:textSize="13sp"
+            style="@style/commonSingleLineTextStyle"
+            android:textColor="@color/Ffbf75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <TextView
+        android:text="    公告，是指政府、团体对重大事件当众正式公布或者公开宣告，宣布。国务院2012年4月16日发布、2012年7月1日起施行的《党政机关公文处理工作条例》，对公告的使用表述为：“适用于向国内外宣布重要事项或者法定事项”。其中包含两方面的内容..."
+        android:layout_marginTop="11dp"
+        android:textSize="13sp"
+        android:textColor="@color/color858585"
+        android:maxLines="5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"/>
+        <TextView
+            android:text="2016-6-6 23:04:51"
+            android:textSize="11sp"
+            android:textColor="@color/colorA7a7a7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

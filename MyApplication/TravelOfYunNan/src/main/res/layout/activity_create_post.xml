@@ -37,7 +37,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="我的相册"
+                        android:text="发表帖子"
                         android:textColor="#fafafa"
                         android:textSize="18sp" />
 
@@ -57,6 +57,9 @@
                 </RelativeLayout>
 
                 <EditText
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"
+                    android:clickable="true"
                     android:id="@+id/et_enter"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -77,6 +80,7 @@
                     android:background="#dcdcdc" />
 
                 <EditText
+                    android:clickable="true"
                     android:id="@+id/et_content"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

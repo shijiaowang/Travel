@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginRight="3dp"
+        android:background="@color/colorFAFAFA"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="32dp">
+            <TextView
+                android:id="@+id/tv_appointing"
+                android:layout_marginLeft="13sp"
+                android:text="约伴中"
+                android:textSize="13sp"
+                android:textColor="@color/otherFcae04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/tv_appointing"
+                android:text="¥200"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_delete"
+                android:text="@string/activity_my_appoint_delete"
+                android:layout_marginRight="9dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorb5b5b5"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <View
+            android:background="@color/meLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="14dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+           <ImageView
+               android:src="@drawable/appoint_icon_test"
+               android:scaleType="fitXY"
+               android:layout_width="80dp"
+               android:layout_height="80dp" />
+             <include layout="@layout/activity_my_appoint_common"/>
+            <TextView
+                android:gravity="center"
+                android:text="队伍聊天"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="12sp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/activity_my_appoint_chat_bg"
+                android:layout_width="74dp"
+                android:layout_height="24dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="29dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="29dp">
+            <RelativeLayout
+                android:layout_width="74dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:gravity="center"
+                    android:text="成员详情"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/otherTitleBg"
+                    android:textSize="12sp"
+                    android:background="@drawable/activity_my_appoint_rl_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+                <TextView
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="5sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorFAFAFA"
+                    android:text="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/activity_my_appoint_message_number_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_bulletin_board"
+                android:layout_marginLeft="20dp"
+                android:layout_width="66dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:gravity="center"
+                    android:text="公告板"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/otherTitleBg"
+                    android:textSize="12sp"
+                    android:background="@drawable/activity_my_appoint_rl_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+                <TextView
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="5sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorFAFAFA"
+                    android:text="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/activity_my_appoint_message_number_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+        <View
+            android:background="@color/meLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <include layout="@layout/appoint_bottom_common"/>
+    </LinearLayout>
+    <LinearLayout
+        android:paddingTop="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="137dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/activity_my_appoint_key_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp">
+        <TextView
+            android:textSize="12sp"
+            android:textColor="@color/colorFAFAFA"
+            android:text="口令："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="12sp"
+            android:textColor="@color/colorFAFAFA"
+            android:text="284g"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>
