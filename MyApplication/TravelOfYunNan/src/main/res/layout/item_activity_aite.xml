@@ -3,8 +3,18 @@
     android:id="@+id/rl_select"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@android:color/white">
+    >
+    <TextView
+        android:id="@+id/tv_aite"
+        android:layout_marginLeft="13dp"
+        android:layout_centerVertical="true"
+        android:text="@string/activity_aite_ok"
+        android:textColor="@color/colorE4e4e4"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_toRightOf="@id/tv_aite"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:id="@+id/iv_icon"
@@ -12,7 +22,7 @@
         android:layout_height="43dp"
         android:src="@drawable/user_icon"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="20dp"
         android:gravity="center"
        />
 
@@ -27,6 +37,8 @@
 
         <TextView
             android:text="我是谁？"
+            android:lines="1"
+            android:ellipsize="end"
             android:id="@+id/tv_nike_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,6 +51,8 @@
 
         <TextView
             android:text="谁是我？"
+            android:lines="1"
+            android:ellipsize="end"
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

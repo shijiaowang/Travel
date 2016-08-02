@@ -95,10 +95,14 @@
     <string name="activity_add_detail_team_profile">揭</string><!--队伍简介-->
     <string name="activity_add_detail_spot">靖</string><!--景点-->
     <string name="activity_add_detail_spot_add">炜</string><!--景点位置-->
+    <string name="activity_aite_ok">垢</string><!--aite页面对勾-->
     <string name="activity_setting_log_out">莞</string>
+
     <!--退出登录-->
     <!--留言-->
     <!--//首页字体-->
+    <string name="cat_more">查看全部 ∨ </string>
+    <string name="close_more">收起全部 ∧ </string>
 
 
 </resources>

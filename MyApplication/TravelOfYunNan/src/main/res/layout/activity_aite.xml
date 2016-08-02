@@ -1,21 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ListView
-        android:id="@+id/lv_follow_people"
-        android:dividerHeight="0dp"
-        android:divider="@null"
-        android:cacheColorHint="@android:color/transparent"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorFAFAFA"
+    android:orientation="vertical">
 
-    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/rl_search"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/activity_aite_search_bg">
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_marginLeft="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/fragment_circle_search"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_toRightOf="@id/tv_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:hint="搜索"
+            android:textColorHint="@color/colorFAFAFA"
+            android:textCursorDrawable="@null"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
     <View
-        android:background="@color/otherTitleBg"
-        android:layout_width="14dp"
-        android:layout_height="match_parent"/>
+        android:background="@color/meLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/lv_follow_people"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:scrollbars="none">
+
+        </ListView>
+
+        <com.example.administrator.travel.ui.view.FastQueryIndex
+            android:id="@+id/fqi_index"
+            android:layout_width="14dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical" />
+
+    </LinearLayout>
 
 </LinearLayout>

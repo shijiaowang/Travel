@@ -1,16 +1,16 @@
 package com.example.administrator.travel.ui.activity;
 
+
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AiteFollow;
 import com.example.administrator.travel.ui.adapter.AiteAdapter;
-import com.example.administrator.travel.utils.LogUtils;
-import com.github.promeg.pinyinhelper.Pinyin;
+import com.example.administrator.travel.ui.view.FastQueryIndex;
+import com.example.administrator.travel.utils.FontsIconUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,13 +22,16 @@ import java.util.List;
  * @联系人列表
  */
 public class AiteActivity  extends BarBaseActivity {
-    private String[] names={"1","麻辣鸡丝","刘","关羽","张","奇怪","和","阿","只","有","你","我","他","1","A","a","1"};
+    private String[] names={"1","麻辣鸡丝","刘","关羽","张","奇怪","和","阿","只","有","你","我","他","1","A","a","1","阿","只","有","你","我","他","1","A","阿","只","有","你","我","他","1","A"};
     private List<AiteFollow> followAndFans;
 
     private TextView mTvOk;
     private ListView mLvFollowPeople;
     private AiteAdapter adapter;
     private int selectPosition=0;
+    private FastQueryIndex mFqiIndex;
+    private List<String> indexList;
+    private TextView mTvSearch;
 
 
     @Override
@@ -39,6 +42,8 @@ public class AiteActivity  extends BarBaseActivity {
         mTvOk = (TextView) findViewById(R.id.tv_ok);
         mTvOk.setText("确定");
         mLvFollowPeople = (ListView) findViewById(R.id.lv_follow_people);
+        mFqiIndex = (FastQueryIndex) findViewById(R.id.fqi_index);
+        mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
 
     }
 
@@ -49,19 +54,25 @@ public class AiteActivity  extends BarBaseActivity {
 
     @Override
     protected void initEvent() {
+        mFqiIndex.setOnItemClickListener(new FastQueryIndex.OnItemClickListener() {
+            @Override
+            public void onClickWord(char c) {
+                queryAndSmooth(c);
+            }
+        });
       mLvFollowPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
           @Override
           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
               AiteFollow followAndFan = followAndFans.get(position);
               if (followAndFan.isChecked()) {
                   followAndFan.setIsChecked(false);
-                  if (selectPosition>0){
+                  if (selectPosition > 0) {
                       selectPosition--;
-                      mTvOk.setText("确定("+selectPosition+")");
+                      mTvOk.setText("确定(" + selectPosition + ")");
                   }
-              }else {
+              } else {
                   selectPosition++;
-                  mTvOk.setText("确定("+selectPosition+")");
+                  mTvOk.setText("确定(" + selectPosition + ")");
                   followAndFan.setIsChecked(true);
               }
               adapter.notifyData(followAndFans);
@@ -70,8 +81,40 @@ public class AiteActivity  extends BarBaseActivity {
       });
     }
 
+    /**
+     * 查询并且滑动到需要的地方
+     * @param c
+     */
+    private void queryAndSmooth(char c) {
+        if (c=='*'){
+            mLvFollowPeople.setSelection(0);
+            return;
+        }
+        for (int i=0;i<followAndFans.size();i++){
+            AiteFollow aiteFollow = followAndFans.get(i);
+            if (c=='#'){
+                if (aiteFollow.getIndexChar()>='{'){//与之前的bean对象有关
+                    mLvFollowPeople.setSelection(i);
+                    break;
+                }
+            }
+            if (aiteFollow.getIndexChar()==c){
+                mLvFollowPeople.setSelection(i);
+                break;
+            }
+        }
+
+    }
+
     @Override
     protected void initViewData() {
+        initDataAndSort();
+        initIndexQuery();
+        adapter = new AiteAdapter(this, followAndFans);
+        mLvFollowPeople.setAdapter(adapter);
+    }
+
+    private void initDataAndSort() {
         followAndFans=new ArrayList<>();
         for (int i=0;i<names.length;i++) {
             AiteFollow aiteFollow = new AiteFollow();
@@ -80,21 +123,33 @@ public class AiteActivity  extends BarBaseActivity {
         }
         Collections.sort(followAndFans, new Comparator<AiteFollow>() {
             @Override
-            public int compare(AiteFollow lhs, AiteFollow rhs){
-                char first = lhs.getNikeName().charAt(0);
-                char second = rhs.getNikeName().charAt(0);
-                char firstCase = Pinyin.toPinyin(first).charAt(0);
-                char secondCase=Pinyin.toPinyin(second).charAt(0);
-                char firstIndex=isLowCaseAndChangeBigCase(firstCase);
-                char secondIndex=isLowCaseAndChangeBigCase(secondCase);
-                return firstIndex-secondIndex;
+            public int compare(AiteFollow lhs, AiteFollow rhs) {
+                char firstIndex = lhs.getIndexChar();
+                char secondIndex = rhs.getIndexChar();
+                return firstIndex - secondIndex;
             }
         });
+    }
+
+    private void initIndexQuery() {
+        indexList = new ArrayList<>();
+        indexList.add("*");//第一个默认
+        //排好序后获得有序索引
         for (AiteFollow aiteFollow:followAndFans){
-            LogUtils.e(aiteFollow.getNikeName());
+            String index;
+            char indexChar = aiteFollow.getIndexChar();
+            if (indexChar>='{'){//与之前的排序设置有关，bean对象中的
+                index="#";
+            }else {
+                index=String.valueOf(indexChar);
+            }
+
+            if (!indexList.contains(index)){
+                indexList.add(index);
+            }
         }
-        adapter = new AiteAdapter(this, followAndFans);
-        mLvFollowPeople.setAdapter(adapter);
+        //完毕后，初始化所以列表
+        mFqiIndex.initWordIndex(indexList);
     }
 
     @Override
@@ -111,26 +166,4 @@ public class AiteActivity  extends BarBaseActivity {
     public float getAlpha() {
         return 1f;
     }
-    /**
-     * 小写转换为大写
-     * @param c
-     */
-    public char isLowCaseAndChangeBigCase(char c) {
-        char heightA='A';
-        char a = 'a';
-        char z = 'z';
-        if (a <= c && c <= z) {
-            String string = Character.toString(c);
-            c = string.toUpperCase().charAt(0);
-        }
-        /**
-         * 将数字和特殊字符放在最后
-         */
-        if (c < heightA) {
-            c = '{';
-        }
-        return c;
-    }
-
-
 }

@@ -82,6 +82,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_destination_des"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -103,11 +104,14 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/tv_show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="11dp"
-                android:text="查看全部  ∨ "
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="1dp"
+                android:text="@string/cat_more"
                 android:textColor="@color/otherTitleBg"
                 android:textSize="12sp" />
 
