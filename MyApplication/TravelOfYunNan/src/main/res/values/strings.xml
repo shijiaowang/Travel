@@ -98,6 +98,9 @@
     <string name="activity_aite_ok">垢</string><!--aite页面对勾-->
     <string name="activity_my_appoint_delete">邋</string><!--删除-->
     <string name="activity_my_appoint_key">仟</string><!--秘钥-->
+    <string name="activity_my_publication_team">対</string><!--队伍-->
+    <string name="activity_my_publication_other">沓</string><!--其他-->
+    <string name="activity_my_publication_post">貼</string><!--帖子-->
     <string name="activity_setting_log_out">莞</string>
 
     <!--退出登录-->

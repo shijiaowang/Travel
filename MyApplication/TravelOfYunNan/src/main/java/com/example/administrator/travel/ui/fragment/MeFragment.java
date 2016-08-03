@@ -13,6 +13,7 @@ import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
 import com.example.administrator.travel.ui.activity.MyAppointActivity;
+import com.example.administrator.travel.ui.activity.MyCollectionActivity;
 import com.example.administrator.travel.ui.activity.SettingActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 
@@ -37,6 +38,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mLlSetting;
     private ImageView mIvSetting;
     private TextView mTvAppoint;
+    private TextView mTvMyCollection;
 
     @Override
     protected int initLayoutRes() {
@@ -56,6 +58,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mLlAlbum = (LinearLayout) root.findViewById(R.id.ll_album);
         mLlSetting = (LinearLayout) root.findViewById(R.id.ll_setting);
         mIvSetting = (ImageView) root.findViewById(R.id.iv_setting);
+        mTvMyCollection = (TextView) root.findViewById(R.id.tv_my_collection);
 
 
     }
@@ -90,6 +93,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvFollowNumber.setOnClickListener(this);
         mLlSetting.setOnClickListener(this);//设置
         mLlAlbum.setOnClickListener(this);//相册
+        mTvMyCollection.setOnClickListener(this);//我的收藏
     }
 
     @Override
@@ -119,6 +123,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.tv_appoint:
                 startActivity(new Intent(getContext(), MyAppointActivity.class));
+                break;
+            case R.id.tv_my_collection:
+                startActivity(new Intent(getContext(), MyCollectionActivity.class));
                 break;
         }
     }
