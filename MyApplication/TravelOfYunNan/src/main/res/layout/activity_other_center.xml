@@ -33,11 +33,11 @@
                 <RelativeLayout
                     android:id="@+id/rl_title"
                     android:layout_width="match_parent"
-                    android:layout_height="74dp"
+                    android:layout_height="@dimen/commonTotalHeight"
                     android:background="@color/otherTitleBg"
                     android:visibility="gone">
                     <RelativeLayout
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="@dimen/commonStatusHeight"
                         android:layout_width="match_parent"
                         android:layout_height="49dp">
                         <TextView

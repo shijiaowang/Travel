@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,10 +42,27 @@ public class TravelsDetailActivity extends BarBaseActivity {
     protected int setContentLayout() {
         return R.layout.activity_travels_detail;
     }
-
+    private boolean isFirst=true;//避免第一次margin为0
     @Override
     protected void initEvent() {
+        mRvAddLine.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (isFirst) {
+                    isFirst = false;
+                }else {
+                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mRvAddLine.getLayoutParams();
+                    layoutParams.leftMargin = 0;
+                    mRvAddLine.setLayoutParams(layoutParams);
+                }
+            }
 
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
     }
 
     @Override

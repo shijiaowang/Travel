@@ -20,50 +20,56 @@ import com.example.administrator.travel.utils.LogUtils;
  * Created by Administrator on 2016/7/18 0018.
  *我的相册
  */
-public class MyAlbumActivity extends BaseActivity implements View.OnClickListener {
+public class MyAlbumActivity extends BarBaseActivity implements View.OnClickListener {
 
-    private TextView mTvBack;
     private TextView mTvAdd;
     private RecyclerView mRvAlbum;
 
+
+
     @Override
-    protected int initLayoutRes() {
+    protected void initContentView() {
+        mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, this);//添加
+        mRvAlbum = (RecyclerView) findViewById(R.id.rv_album);
+    }
+
+    @Override
+    protected int setContentLayout() {
         return R.layout.activity_my_album;
     }
 
-    @Override
-    protected void initView() {
-        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);//返回
-        mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, this);//添加
-
-        mRvAlbum = (RecyclerView) findViewById(R.id.rv_album);
-
-
-    }
 
     @Override
-    protected void initListener() {
-       mTvBack.setOnClickListener(this);
+    protected void initEvent() {
+
         mTvAdd.setOnClickListener(this);
     }
 
+
     @Override
-    protected void initData() {
+    protected void initViewData() {
         mRvAlbum.setAdapter(new MyAlbumAdapter(this, null));
         mRvAlbum.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         mRvAlbum.setItemAnimator(new DefaultItemAnimator());
     }
 
     @Override
+    protected String setTitleName() {
+        return "我的相册";
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_back:
-                finish();
-                break;
             case R.id.tv_add:
                 startActivity(new Intent(MyAlbumActivity.this, CreateAlbumActivity.class));
                 break;
         }
 
+    }
+
+    @Override
+    public float getAlpha() {
+        return 1.0f;
     }
 }

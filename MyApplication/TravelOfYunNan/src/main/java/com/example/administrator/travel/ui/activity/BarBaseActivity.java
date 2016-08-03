@@ -62,6 +62,8 @@ public abstract class BarBaseActivity extends BaseActivity {
         mVsContent.inflate();
         if (haveRightIcon()){
             mVsRightIcon = (ViewStub) findViewById(R.id.vs_right_icon);
+
+
         }
         if (canScrollToChangeTitleBgColor()){
             mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);

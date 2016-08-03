@@ -7,30 +7,6 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:background="@color/otherTitleBg" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="@color/otherTitleBg">
-
-        <TextView
-            android:id="@+id/tv_back"
-            style="@style/backFontsIcon"
-            android:layout_marginLeft="22dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="我的相册"
-            android:textColor="#fafafa"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
     <TextView
         android:id="@+id/tv_add"
         android:layout_width="55dp"

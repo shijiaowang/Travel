@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="12dp"
-            android:layout="@layout/activity_travels_menu_fonts_icon"
+            android:layout="@layout/activity_right_common_text"
             />
     </RelativeLayout>
 </RelativeLayout>

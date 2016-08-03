@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.ViewTreeObserver;
@@ -38,7 +40,7 @@ import java.util.concurrent.DelayQueue;
  * Created by Administrator on 2016/7/29 0029.
  * 发表帖子
  */
-public class CreatePostActivity extends FragmentActivity implements View.OnClickListener{
+public class CreatePostActivity extends FragmentActivity implements View.OnClickListener, View.OnFocusChangeListener {
     private static final int SHOW_PHOTO=0;
     private static final int SHOW_EMOJI=1;
     private TextView mTvAite;
@@ -93,6 +95,9 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         mTvAite.setOnClickListener(this);
         mEtEnter.setOnClickListener(this);
         mEtContent.setOnClickListener(this);
+        mEtEnter.setOnFocusChangeListener(this);
+        mEtContent.setOnFocusChangeListener(this);
+
     }
 
 
@@ -148,10 +153,11 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         super.onResume();
         mEtEnter.setFocusable(true);
         mEtEnter.requestFocus();
-        if (!imm.isActive()){
-            //第一次进入强制显示软键盘
-            imm.showSoftInputFromInputMethod(mEtEnter.getWindowToken(), 0);
+        //第一次进入强制显示软键盘
+        if(!imm.isActive()){
+            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         }
+
     }
 
     @Override
@@ -162,7 +168,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
                  hideEmojiOrPhoto();
                 break;
             case R.id.tv_aite:
-                startActivity(new Intent(this,AiteActivity.class));
+                startActivity(new Intent(this, AiteActivity.class));
                 break;
             default:
                 hideSoftClick(v);
@@ -237,6 +243,14 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
             mGvPhoto.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus){
+            hideEmojiOrPhoto();
+        }
+    }
+
 
     class FragmentEmojiAdapter extends FragmentPagerAdapter {
 

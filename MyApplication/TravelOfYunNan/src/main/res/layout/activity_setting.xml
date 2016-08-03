@@ -4,33 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:background="@color/homeTitleBg" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="@color/homeTitleBg">
-
-        <TextView
-            android:id="@+id/tv_back"
-            style="@style/backFontsIcon"
-            android:layout_marginLeft="12dp"
-            android:text="@string/activity_circle_back_font_icon" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="设置"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
-
-    </RelativeLayout>
-
     <ScrollView
         android:scrollbars="none"
         android:layout_width="match_parent"

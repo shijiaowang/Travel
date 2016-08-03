@@ -11,44 +11,61 @@ import com.example.administrator.travel.utils.FontsIconUtil;
  * 创建相册
  */
 
-public class CreateAlbumActivity extends BaseActivity implements View.OnClickListener {
+public class CreateAlbumActivity extends BarBaseActivity implements View.OnClickListener {
 
-
-    private TextView mTvBack;//返回
     private TextView mTvMore;//更多
 
     @Override
-    protected int initLayoutRes() {
+    protected void initContentView() {
+        getmVsRightIcon().inflate();
+        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
+        mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
+    }
+
+    @Override
+    protected int setContentLayout() {
         return R.layout.activity_create_album;
     }
 
-    @Override
-    protected void initView() {
-        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
-        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_more, this);
 
-    }
 
     @Override
-    protected void initListener() {
-       mTvBack.setOnClickListener(this);
+    protected void initEvent() {
         mTvMore.setOnClickListener(this);
+    }
+
+
+    @Override
+    protected void initViewData() {
 
     }
 
     @Override
-    protected void initData() {
-
+    protected String setTitleName() {
+        return "创建相册";
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_back:
-                finish();
-                break;
+
             case R.id.tv_more:
                 break;
         }
+    }
+
+    @Override
+    protected boolean haveRightIcon() {
+        return true;
+    }
+
+    @Override
+    protected boolean rootIsLinearLayout() {
+        return false;
+    }
+
+    @Override
+    protected boolean canScrollToChangeTitleBgColor() {
+        return true;
     }
 }

@@ -37,7 +37,7 @@ public class AiteActivity  extends BarBaseActivity {
     @Override
     protected void initContentView() {
         ViewStub rightText = getmVsRightIcon();
-        rightText.setLayoutResource(R.layout.activity_create_post_right_text);
+        rightText.setLayoutResource(R.layout.activity_right_common_text);
         rightText.inflate();
         mTvOk = (TextView) findViewById(R.id.tv_ok);
         mTvOk.setText("确定");

@@ -4,45 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:background="@color/homeTitleBg" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="@color/homeTitleBg">
-
-        <TextView
-            android:id="@+id/tv_back"
-            style="@style/backFontsIcon"
-            android:layout_marginLeft="12dp"
-            android:text="@string/activity_circle_back_font_icon"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="消息中心"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tv_more"
-            android:layout_marginRight="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="@string/activity_message_center_more"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-
-    </RelativeLayout>
-
     <com.example.administrator.travel.ui.view.SimpleViewPagerIndicator
         android:id="@+id/svpi_indicator"
         android:layout_width="match_parent"
@@ -52,7 +13,6 @@
    >
 
     </com.example.administrator.travel.ui.view.SimpleViewPagerIndicator>
-
 
     <View
         android:layout_width="match_parent"

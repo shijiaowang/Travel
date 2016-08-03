@@ -13,40 +13,48 @@ import com.example.administrator.travel.utils.FontsIconUtil;
  * Created by Administrator on 2016/7/15 0015.
  * 消息中心
  */
-public class MessageCenterActivity extends BaseActivity implements View.OnClickListener {
+public class MessageCenterActivity extends BarBaseActivity implements View.OnClickListener {
 
-    private TextView mTvBack;
+
     private TextView mTvMore;
     private ViewPager mVpMessageCenter;
     private SimpleViewPagerIndicator mIndicator;
 
 
-    @Override
-    protected int initLayoutRes() {
-        return R.layout.activity_message_center;
-    }
+
+
+
 
     @Override
-    protected void initView() {
-        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
-        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_more, this);
+    protected void initContentView() {
+        getmVsRightIcon().inflate();
+        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
+        mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
         mVpMessageCenter = (ViewPager) findViewById(R.id.vp_message_center);
-
         mIndicator = (SimpleViewPagerIndicator) findViewById(R.id.svpi_indicator);
         mIndicator.setTitles(new String[]{"系统消息", "私信"});
         mIndicator.setViewPager(mVpMessageCenter);
-
-
     }
 
     @Override
-    protected void initData() {
+    protected int setContentLayout() {
+        return R.layout.activity_message_center;
+    }
+
+
+    @Override
+    protected void initViewData() {
         mVpMessageCenter.setAdapter(new SystemMessagePagerAdapter(getSupportFragmentManager()));
     }
 
     @Override
-    protected void initListener() {
-        mTvBack.setOnClickListener(this);
+    protected String setTitleName() {
+        return "系统消息";
+    }
+
+
+    @Override
+    protected void initEvent() {
         mVpMessageCenter.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -63,7 +71,6 @@ public class MessageCenterActivity extends BaseActivity implements View.OnClickL
 
             }
         });
-
     }
 
     @Override
@@ -89,7 +96,14 @@ public class MessageCenterActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    @Override
+    public float getAlpha() {
+        return 1.0f;
+    }
 
-
+    @Override
+    protected boolean haveRightIcon() {
+        return true;
+    }
 }
 

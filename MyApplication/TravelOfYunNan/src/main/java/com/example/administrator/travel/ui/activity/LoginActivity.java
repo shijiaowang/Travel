@@ -118,11 +118,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             edit.putString(IVariable.KEY, key);
         }
         edit.apply();
+        setResult(SPLASH_RESULT);
         Intent intent = new Intent(this, HomeActivity.class);
         Login.UserInfo data = login.getData();
         intent.putExtra(IVariable.USER_INFO, data);
         startActivity(intent);
-        setResult(SPLASH_RESULT);
+
         finish();
     }
 
