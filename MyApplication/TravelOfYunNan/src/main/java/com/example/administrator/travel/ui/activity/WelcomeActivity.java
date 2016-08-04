@@ -28,6 +28,7 @@ import de.greenrobot.event.EventBus;
 
 /**
  * Created by Administrator on 2016/7/27 0027.
+ * 欢迎页面
  */
 public class WelcomeActivity extends FullTransparencyActivity {
     private static final int START_HOME = 0;

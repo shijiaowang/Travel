@@ -16,6 +16,7 @@ import com.example.administrator.travel.utils.FontsIconUtil;
 public class MyAppointSuccessHolder extends BaseHolder<MyAppoint> {
 
     public RelativeLayout mRlBulletinBoard;
+    public RelativeLayout mRlMemberDetail;
 
     public MyAppointSuccessHolder(Context context) {
         super(context);
@@ -38,6 +39,7 @@ public class MyAppointSuccessHolder extends BaseHolder<MyAppoint> {
         TextView mTvIconLove= FontsIconUtil.findIconFontsById(R.id.tv_icon_love, mContext, inflate);
         TextView mTvDelete= FontsIconUtil.findIconFontsById(R.id.tv_delete, mContext, inflate);
         mRlBulletinBoard = (RelativeLayout) inflate.findViewById(R.id.rl_bulletin_board);
+        mRlMemberDetail = (RelativeLayout) inflate.findViewById(R.id.rl_member_detail);
         return inflate;
     }
 }

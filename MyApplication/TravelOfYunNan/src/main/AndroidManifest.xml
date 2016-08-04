@@ -60,6 +60,8 @@
         <activity android:name=".ui.activity.MyAppointActivity"/>
         <activity android:name=".ui.activity.BulletinBoardActivity"/>
         <activity android:name=".ui.activity.MyCollectionActivity"/>
+        <activity android:name=".ui.activity.LinePlanActivity"/>
+        <activity android:name=".ui.activity.MemberDetailActivity"/>
         <activity android:name=".ui.activity.CreatePostActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/CreatePostTheme"

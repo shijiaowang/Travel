@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.administrator.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorFAFAFA"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_joined"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:gravity="center"
+            android:text="已加入(4) ∨ "
+            android:textColor="#444444"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/gradient_line" />
+
+        <com.example.administrator.travel.ui.view.ToShowAllListView
+            android:id="@+id/lv_joined"
+            style="@style/commonListViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="0dp">
+
+        </com.example.administrator.travel.ui.view.ToShowAllListView>
+
+        <TextView
+            android:id="@+id/tv_enter"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:gravity="center"
+            android:text="报名中(6) ∨ "
+            android:textColor="#444444"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/gradient_line" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_enter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+</com.example.administrator.travel.ui.view.SlippingScrollView>

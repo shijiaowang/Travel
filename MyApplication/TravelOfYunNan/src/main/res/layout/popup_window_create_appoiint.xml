@@ -2,89 +2,98 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/iv_bg"
-        android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
     <ImageView
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="75dp"
         android:id="@+id/iv_cancel"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/fragment_appoint_create_cancel"
-        android:layout_width="40dp"
-        android:layout_height="40dp" />
+        android:layout_marginBottom="75dp"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/fragment_appoint_create_cancel" />
+
     <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/iv_cancel"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:background="@color/colorFAFAFA"
         android:layout_width="300dp"
-        android:layout_height="308dp">
+        android:layout_height="308dp"
+        android:layout_above="@id/iv_cancel"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorFAFAFA"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
         <TextView
-            android:text="发布约伴"
-            android:gravity="center"
-            android:textColor="@color/colorFAFAFA"
-            android:background="@color/otherTitleBg"
-            android:textSize="14sp"
             android:layout_width="match_parent"
-            android:layout_height="33dp" />
+            android:layout_height="33dp"
+            android:background="@color/otherTitleBg"
+            android:gravity="center"
+            android:text="发布约伴"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="14sp" />
 
 
-            <RelativeLayout
-                android:layout_marginTop="19dp"
-                android:layout_centerHorizontal="true"
-                android:layout_width="210dp"
-                android:layout_height="104dp">
-
-                <TextView
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/fragment_appoint_create_bg"
-                    android:layout_centerVertical="true"
-                    android:text="一起玩"
-                    android:textSize="23sp"
-                    android:paddingLeft="110dp"
-                    android:textColor="@color/otherTitleBg"
-                    android:gravity="center_vertical"
-                    android:layout_width="210dp"
-                    android:layout_height="65dp" />
-                <ImageView
-                    android:layout_marginBottom="6dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="6dp"
-                    android:src="@drawable/fragment_appoint_create_together_monkey"
-                    android:layout_width="93dp"
-                    android:layout_height="97dp" />
-
-            </RelativeLayout>
         <RelativeLayout
-            android:layout_marginTop="23dp"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/rl_together"
             android:layout_width="210dp"
-            android:layout_height="104dp">
+            android:layout_height="104dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dp">
 
             <TextView
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/fragment_appoint_create_bg"
-                android:layout_centerVertical="true"
-                android:text="带我玩"
-                android:paddingLeft="25dp"
-                android:textSize="23sp"
-                android:textColor="@color/otherTitleBg"
-                android:gravity="center_vertical"
                 android:layout_width="210dp"
-                android:layout_height="65dp" />
-            <ImageView
-                android:layout_marginBottom="6dp"
-                android:layout_alignParentRight="true"
+                android:layout_height="65dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginRight="6dp"
-                android:src="@drawable/fragment_appoint_create_with_me_monkey"
+                android:layout_centerVertical="true"
+                android:background="@drawable/fragment_appoint_create_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="110dp"
+                android:text="一起玩"
+                android:textColor="@color/otherTitleBg"
+                android:textSize="23sp" />
+
+            <ImageView
                 android:layout_width="93dp"
-                android:layout_height="97dp" />
+                android:layout_height="97dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/fragment_appoint_create_together_monkey" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_with_me"
+            android:layout_width="210dp"
+            android:layout_height="104dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp">
+
+            <TextView
+                android:layout_width="210dp"
+                android:layout_height="65dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/fragment_appoint_create_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="25dp"
+                android:text="带我玩"
+                android:textColor="@color/otherTitleBg"
+                android:textSize="23sp" />
+
+            <ImageView
+                android:layout_width="93dp"
+                android:layout_height="97dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="6dp"
+                android:layout_marginRight="6dp"
+                android:src="@drawable/fragment_appoint_create_with_me_monkey" />
 
         </RelativeLayout>
     </LinearLayout>

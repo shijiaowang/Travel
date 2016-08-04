@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.fragment;
 
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,6 +22,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.event.AppointEvent;
 
+import com.example.administrator.travel.ui.activity.LinePlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 
 import com.example.administrator.travel.utils.FastBlur;
@@ -76,8 +78,6 @@ public class AppointFragment extends BaseFragment {
         mTvPlayWithMe = (TextView) root.findViewById(R.id.tv_play_with_me);
         mFabAdd = (FloatingActionButton) root.findViewById(R.id.fab_add);
         mLlRoot = (LinearLayout) root.findViewById(R.id.ll_root);
-
-
     }
 
     @Override
@@ -196,6 +196,12 @@ public class AppointFragment extends BaseFragment {
         //layout_width layout_height
         RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         dialog.setContentView(dialogView, params);
+        dialogView.findViewById(R.id.rl_together).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), LinePlanActivity.class));
+            }
+        });
         dialogView.findViewById(R.id.iv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

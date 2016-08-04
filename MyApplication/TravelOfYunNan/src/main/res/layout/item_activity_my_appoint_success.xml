@@ -77,10 +77,12 @@
             android:layout_width="match_parent"
             android:layout_height="29dp">
             <RelativeLayout
+                android:id="@+id/rl_member_detail"
                 android:layout_width="74dp"
                 android:layout_height="match_parent">
 
                 <TextView
+
                     android:gravity="center"
                     android:text="成员详情"
                     android:layout_alignParentBottom="true"

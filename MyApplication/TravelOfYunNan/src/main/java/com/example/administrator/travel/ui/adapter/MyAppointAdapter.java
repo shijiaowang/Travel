@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.example.administrator.travel.bean.MyAppoint;
 import com.example.administrator.travel.ui.activity.BulletinBoardActivity;
+import com.example.administrator.travel.ui.activity.MemberDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.MyAppointSuccessHolder;
 import com.example.administrator.travel.ui.adapter.holer.MyAppointingHolder;
@@ -37,6 +38,12 @@ public class MyAppointAdapter extends TravelBaseAdapter<MyAppoint> {
                 @Override
                 public void onClick(View v) {
                     mContext.startActivity(new Intent(mContext, BulletinBoardActivity.class));
+                }
+            });
+            myAppointSuccessHolder.mRlMemberDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, MemberDetailActivity.class));
                 }
             });
         }

@@ -38,5 +38,12 @@ public abstract class BaseHolder<T> {
 
     public abstract View initRootView(Context mContext);
 
+    /**
+     * 初始化ID
+     * @param resId
+     */
+    public View  inflateView(int resId){
+        return View.inflate(mContext, resId, null);
+    }
 
 }
