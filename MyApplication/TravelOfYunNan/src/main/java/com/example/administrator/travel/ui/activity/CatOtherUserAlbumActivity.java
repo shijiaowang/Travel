@@ -10,9 +10,10 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.CatOtherAlbumAdapter;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 public class CatOtherUserAlbumActivity extends BaseActivity {
-
-
+    @ViewInject(R.id.lv_album)
     private ListView mLvAlbum;//相册列表
     private TextView mTvBack;//返回
 
@@ -23,22 +24,22 @@ public class CatOtherUserAlbumActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mLvAlbum = (ListView) findViewById(R.id.lv_album);
+
         mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
     }
 
     @Override
     protected void initListener() {
-       mTvBack.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               finish();
-           }
-       });
+        mTvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
     protected void initData() {
-      mLvAlbum.setAdapter(new CatOtherAlbumAdapter(this,null));
+        mLvAlbum.setAdapter(new CatOtherAlbumAdapter(this, null));
     }
 }

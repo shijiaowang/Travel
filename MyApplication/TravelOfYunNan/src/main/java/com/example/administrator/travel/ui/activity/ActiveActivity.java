@@ -12,17 +12,19 @@ import com.example.administrator.travel.ui.adapter.ActiveAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by Administrator on 2016/7/25 0025.
  * 活动界面
  */
 public class ActiveActivity extends BarBaseActivity {
-
+    @ViewInject(R.id.lv_active)
     private ToShowAllListView mLvActive;//活动列表
 
     @Override
     protected void initContentView() {
-        mLvActive = (ToShowAllListView) findViewById(R.id.lv_active);
+
     }
 
     @Override

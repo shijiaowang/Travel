@@ -12,6 +12,8 @@ import com.example.administrator.travel.ui.adapter.AiteAdapter;
 import com.example.administrator.travel.ui.view.FastQueryIndex;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,9 +28,11 @@ public class AiteActivity  extends BarBaseActivity {
     private List<AiteFollow> followAndFans;
 
     private TextView mTvOk;
+    @ViewInject(R.id.lv_follow_people)
     private ListView mLvFollowPeople;
     private AiteAdapter adapter;
     private int selectPosition=0;
+    @ViewInject(R.id.fqi_index)
     private FastQueryIndex mFqiIndex;
     private List<String> indexList;
     private TextView mTvSearch;
@@ -41,8 +45,6 @@ public class AiteActivity  extends BarBaseActivity {
         rightText.inflate();
         mTvOk = (TextView) findViewById(R.id.tv_ok);
         mTvOk.setText("确定");
-        mLvFollowPeople = (ListView) findViewById(R.id.lv_follow_people);
-        mFqiIndex = (FastQueryIndex) findViewById(R.id.fqi_index);
         mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
 
     }

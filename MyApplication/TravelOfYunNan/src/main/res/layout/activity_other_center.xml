@@ -22,7 +22,7 @@
             <View
                 android:id="@+id/v_sup"
                 android:layout_width="match_parent"
-                android:layout_height="74dp"
+                android:layout_height="@dimen/commonTotalHeight"
                 android:background="@android:color/transparent" />
 
             <LinearLayout

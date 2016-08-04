@@ -79,6 +79,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
+
         initView();
         initListener();
         initData();

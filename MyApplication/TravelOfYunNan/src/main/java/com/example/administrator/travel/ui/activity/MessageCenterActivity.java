@@ -9,6 +9,8 @@ import com.example.administrator.travel.ui.adapter.fragment.SystemMessagePagerAd
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by Administrator on 2016/7/15 0015.
  * 消息中心
@@ -17,7 +19,9 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
 
 
     private TextView mTvMore;
+    @ViewInject(R.id.vp_message_center)
     private ViewPager mVpMessageCenter;
+    @ViewInject(R.id.svpi_indicator)
     private SimpleViewPagerIndicator mIndicator;
 
 
@@ -30,8 +34,6 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
         getmVsRightIcon().inflate();
         mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
         mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
-        mVpMessageCenter = (ViewPager) findViewById(R.id.vp_message_center);
-        mIndicator = (SimpleViewPagerIndicator) findViewById(R.id.svpi_indicator);
         mIndicator.setTitles(new String[]{"系统消息", "私信"});
         mIndicator.setViewPager(mVpMessageCenter);
     }

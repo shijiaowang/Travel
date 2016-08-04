@@ -12,12 +12,15 @@ import android.widget.VideoView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.utils.LogUtils;
 
+import org.xutils.view.annotation.ViewInject;
+
 public class SplashActivity extends FullTransparencyActivity {
     private static final String CURRENT_POSITION = "current_position";
     public static final int GO_LOGIN = 0;
-
+    @ViewInject(R.id.vv_video)
     private VideoView mVideoView;
     private int currentPosition;
+    @ViewInject(R.id.bt_login)
     private Button mBtLogin;
 
     @Override
@@ -27,8 +30,7 @@ public class SplashActivity extends FullTransparencyActivity {
 
     @Override
     protected void initView() {
-        mVideoView = (VideoView) findViewById(R.id.vv_video);
-        mBtLogin = (Button) findViewById(R.id.bt_login);
+
         initVideoView();
     }
 

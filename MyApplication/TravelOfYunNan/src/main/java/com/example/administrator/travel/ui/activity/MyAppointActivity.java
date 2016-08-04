@@ -6,6 +6,8 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.MyAppoint;
 import com.example.administrator.travel.ui.adapter.MyAppointAdapter;
 
+import org.xutils.view.annotation.ViewInject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +15,12 @@ import java.util.List;
  * Created by Administrator on 2016/8/1 0001.
  */
 public class MyAppointActivity extends BarBaseActivity {
-
+    @ViewInject(R.id.lv_my_appoint)
     private ListView mLvMyAppoint;
 
     @Override
     protected void initContentView() {
-        mLvMyAppoint = (ListView) findViewById(R.id.lv_my_appoint);
+
     }
 
     @Override

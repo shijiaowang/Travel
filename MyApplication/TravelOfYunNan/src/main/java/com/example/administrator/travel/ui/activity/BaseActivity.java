@@ -13,6 +13,8 @@ import android.widget.VideoView;
 
 import com.example.administrator.travel.utils.LogUtils;
 
+import org.xutils.x;
+
 import de.greenrobot.event.EventBus;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -41,8 +43,8 @@ public abstract class BaseActivity extends AppCompatActivity {
           //  window.setNavigationBarColor(Color.TRANSPARENT);
         }
         setContentView(initLayoutRes());
+        x.view().inject(this);
         initView();
-
         initListener();
         initData();
 

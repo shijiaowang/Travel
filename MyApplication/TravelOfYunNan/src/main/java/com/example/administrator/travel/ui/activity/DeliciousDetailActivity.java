@@ -8,22 +8,23 @@ import com.example.administrator.travel.ui.adapter.DeliciousDiscussAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by Administrator on 2016/7/26 0026.
  * 美食详情
  */
 public class DeliciousDetailActivity extends BarBaseActivity {
-
+    @ViewInject(R.id.lv_delicious_detail)
     private ToShowAllListView mLvDeliciousDetail;
+    @ViewInject(R.id.lv_delicious_discuss)
     private ToShowAllListView mLvDeliciousDiscuss;
 
     @Override
     protected void initContentView() {
-        mLvDeliciousDetail = (ToShowAllListView) findViewById(R.id.lv_delicious_detail);
-        mLvDeliciousDiscuss = (ToShowAllListView) findViewById(R.id.lv_delicious_discuss);
-        TextView mTvFood = FontsIconUtil.findIconFontsById(R.id.tv_food,this);
-        TextView mTvStore = FontsIconUtil.findIconFontsById(R.id.tv_store,this);
-        TextView mTvSay = FontsIconUtil.findIconFontsById(R.id.tv_say,this);
+        TextView mTvFood = FontsIconUtil.findIconFontsById(R.id.tv_food, this);
+        TextView mTvStore = FontsIconUtil.findIconFontsById(R.id.tv_store, this);
+        TextView mTvSay = FontsIconUtil.findIconFontsById(R.id.tv_say, this);
     }
 
     @Override
@@ -38,8 +39,8 @@ public class DeliciousDetailActivity extends BarBaseActivity {
 
     @Override
     protected void initViewData() {
-         mLvDeliciousDetail.setAdapter(new DeliciousDetailAdapter(this,null));
-         mLvDeliciousDiscuss.setAdapter(new DeliciousDiscussAdapter(this,null));
+        mLvDeliciousDetail.setAdapter(new DeliciousDetailAdapter(this, null));
+        mLvDeliciousDiscuss.setAdapter(new DeliciousDiscussAdapter(this, null));
     }
 
     @Override

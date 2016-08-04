@@ -33,6 +33,8 @@ import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 import com.google.common.collect.Lists;
 
+import org.xutils.view.annotation.ViewInject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -74,25 +76,36 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
             }
         }
     };
+    @ViewInject(R.id.pb_load)
     private View mPbLoad;
     private int i = -1;
     private LayoutInflater inflater;
     private AnimationSet animationSet;
     private TextView mTvPrivateIcon;
     private TextView mTvFollowIcon;
+    @ViewInject(R.id.tv_follow)
     private TextView mTvFollow;
+    @ViewInject(R.id.ll_private)
     private LinearLayout mLlPrivate;
+    @ViewInject(R.id.ll_follow)
     private LinearLayout mLlFollow;
 
-
+    @ViewInject(R.id.vp_dynamic)
     private ViewPager mVpDynamic;
+    @ViewInject(R.id.drag_layout)
     private DragTopLayout mDragLayout;
     private ModelPagerAdapter adapter;
+    @ViewInject(R.id.fivpi_indicator)
     private FontsIconViewPagerIndicator mIndicator;
+    @ViewInject(R.id.fl_title)
     private FlowLayout mFlTitle;
+    @ViewInject(R.id.ll_new_user)
     private LinearLayout mLlNewUser;
+    @ViewInject(R.id.top_view)
     private LinearLayout mTopView;
+    @ViewInject(R.id.rl_title)
     private RelativeLayout mRlTitle;
+    @ViewInject(R.id.v_sup)
     private View mVSup;
 
     private TextView mTvBack;
@@ -112,20 +125,8 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         inflater = LayoutInflater.from(this);
         mTvPrivateIcon = FontsIconUtil.findIconFontsById(R.id.tv_private_icon, this);
         mTvFollowIcon =  FontsIconUtil.findIconFontsById(R.id.tv_follow_icon, this);
-        mTvFollow = (TextView) findViewById(R.id.tv_follow);
-        mLlPrivate = (LinearLayout) findViewById(R.id.ll_private);
-        mLlFollow = (LinearLayout) findViewById(R.id.ll_follow);
-        mVpDynamic = (ViewPager) findViewById(R.id.vp_dynamic);
-        mDragLayout = (DragTopLayout) findViewById(R.id.drag_layout);
-
-        mTopView = (LinearLayout) findViewById(R.id.top_view);
-        mIndicator = (FontsIconViewPagerIndicator) findViewById(R.id.fivpi_indicator);
-        mFlTitle = (FlowLayout) findViewById(R.id.fl_title);
-        mLlNewUser = (LinearLayout) findViewById(R.id.ll_new_user);
-        mRlTitle = (RelativeLayout) findViewById(R.id.rl_title);
         mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
         mTvTitleBack = FontsIconUtil.findIconFontsById(R.id.tv_title_back, this);
-        mVSup = findViewById(R.id.v_sup);
     }
 
     @Override

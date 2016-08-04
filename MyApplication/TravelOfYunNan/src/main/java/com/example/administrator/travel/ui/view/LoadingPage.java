@@ -74,7 +74,8 @@ public abstract class LoadingPage extends FrameLayout {
         if (mCurrentState == STATE_LOAD_SUCCESS && successView == null) {
             successView = onCreateSuccessView();
             //不为空加
-            if (successView != null) {
+            if (successView != null && successView.getParent()==null) {
+
                 addView(successView);
             }
         }
@@ -85,22 +86,33 @@ public abstract class LoadingPage extends FrameLayout {
     }
 
     /**
-     * 读取网络数据
+     * 发送网络请求
      */
     public void loadData() {
         if (mCurrentState != STATE_LOAD_LOADING) {
             mCurrentState = STATE_LOAD_LOADING;
             onLoad();
-            ResultState resultState = changeState();//xutils的加载数据使用了多线程，导致未空，需要 好好研究
-            if (resultState != null) {
-                mCurrentState = resultState.getState(); //获取返回的结�?,更新网络状�??
-            }
-            if (mPreState != mCurrentState) {
-                showRightView();
-                mPreState = mCurrentState;
-            } else {
-                mCurrentState = STATE_LOAD_UNLOAD;
-            }
+
+        }
+    }
+
+    /**
+     * 发送网络请求之后
+     */
+    public void afterLoadData(){
+        showPage();
+    }
+
+    private void showPage() {
+        ResultState resultState = changeState();//xutils的加载数据使用了多线程，导致未空，需要 好好研究
+        if (resultState != null) {
+            mCurrentState = resultState.getState(); //获取返回的结�?,更新网络状�??
+        }
+        if (mPreState != mCurrentState) {
+            showRightView();
+            mPreState = mCurrentState;
+        } else {
+            mCurrentState = STATE_LOAD_UNLOAD;
         }
     }
 

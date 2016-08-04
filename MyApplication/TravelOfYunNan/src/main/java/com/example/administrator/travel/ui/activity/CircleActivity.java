@@ -12,6 +12,8 @@ import com.example.administrator.travel.ui.adapter.CircleAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by Administrator on 2016/7/8 0008.
  * 圈子
@@ -20,7 +22,9 @@ public class CircleActivity extends BarBaseActivity implements View.OnClickListe
 
 
     private TextView mTvCreatePost;//创建帖子按钮
+    @ViewInject(R.id.lv_post)
     private ToShowAllListView mLvPost;//帖子列表
+    @ViewInject(R.id.iv_post_bg)
     private ImageView mIvPostBg;//帖子背景
 
 
@@ -33,8 +37,7 @@ public class CircleActivity extends BarBaseActivity implements View.OnClickListe
        getmVsRightIcon().inflate();
         mTvCreatePost = FontsIconUtil.findIconFontsById(R.id.tv_ok,this);
         mTvCreatePost.setText(getResources().getString(R.string.activity_circle_create_post_font_icon));//设置创建帖子按钮
-        mLvPost = (ToShowAllListView) findViewById(R.id.lv_post);
-        mIvPostBg = (ImageView) findViewById(R.id.iv_post_bg);
+
     }
 
     @Override

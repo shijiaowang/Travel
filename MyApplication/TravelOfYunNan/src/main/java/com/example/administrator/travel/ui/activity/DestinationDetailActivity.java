@@ -9,14 +9,18 @@ import com.example.administrator.travel.ui.adapter.DeliciousDiscussAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by android on 2016/7/30.
  * 目的地详情
  */
 public class DestinationDetailActivity extends BarBaseActivity implements View.OnClickListener {
-
+    @ViewInject(R.id.lv_discuss)
     private ToShowAllListView mLvDiscuss;
+    @ViewInject(R.id.tv_destination_des)
     private TextView mTvDestinationDes;
+    @ViewInject(R.id.tv_show)
     private TextView mTvShow;
     private boolean isShowAllFlag =false;
 
@@ -26,10 +30,6 @@ public class DestinationDetailActivity extends BarBaseActivity implements View.O
         TextView mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
         TextView mTvSpot = FontsIconUtil.findIconFontsById(R.id.tv_spot, this);
         TextView mTvSpotAdd = FontsIconUtil.findIconFontsById(R.id.tv_spot_add, this);
-        mLvDiscuss = (ToShowAllListView) findViewById(R.id.lv_discuss);
-        mTvDestinationDes = (TextView) findViewById(R.id.tv_destination_des);
-        mTvShow = (TextView) findViewById(R.id.tv_show);
-
     }
 
     @Override

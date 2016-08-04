@@ -7,12 +7,12 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="@dimen/commonStatusHeight"
         android:background="@color/homeTitleBg" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="49dp"
         android:background="@color/homeTitleBg">
 
         <TextView

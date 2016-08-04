@@ -10,18 +10,19 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.DestinationAdapter;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by android on 2016/7/30.
  * 目的地
  */
 public class DestinationActivity extends BarBaseActivity {
-
+   @ViewInject(R.id.lv_destination)
     private ListView mLvDestination;
     private TextView mTvSearch;
 
     @Override
     protected void initContentView() {
-        mLvDestination = (ListView) findViewById(R.id.lv_destination);
         mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
 
     }

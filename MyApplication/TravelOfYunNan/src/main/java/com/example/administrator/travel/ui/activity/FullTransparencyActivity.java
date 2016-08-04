@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import org.xutils.x;
+
 /**
  * Created by Administrator on 2016/7/27 0027.
  */
@@ -30,6 +32,7 @@ public abstract class FullTransparencyActivity extends BaseActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
             window.setNavigationBarColor(Color.TRANSPARENT);
         }
+        x.view().inject(this);
         return initContentRes();
     }
 

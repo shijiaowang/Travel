@@ -16,6 +16,8 @@ import com.example.administrator.travel.ui.adapter.SpaceItemDecoration;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by Administrator on 2016/7/18 0018.
  *我的相册
@@ -23,6 +25,7 @@ import com.example.administrator.travel.utils.LogUtils;
 public class MyAlbumActivity extends BarBaseActivity implements View.OnClickListener {
 
     private TextView mTvAdd;
+    @ViewInject(R.id.rv_album)
     private RecyclerView mRvAlbum;
 
 
@@ -30,7 +33,6 @@ public class MyAlbumActivity extends BarBaseActivity implements View.OnClickList
     @Override
     protected void initContentView() {
         mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, this);//添加
-        mRvAlbum = (RecyclerView) findViewById(R.id.rv_album);
     }
 
     @Override

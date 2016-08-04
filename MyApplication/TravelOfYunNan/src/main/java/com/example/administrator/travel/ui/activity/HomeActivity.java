@@ -26,6 +26,9 @@ import com.example.administrator.travel.ui.fragment.HomeFragment;
 import com.example.administrator.travel.ui.fragment.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.TypefaceUtis;
+
+import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,20 +40,40 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     private List<GradientTextView> iconFonts = new ArrayList<>(5);
     private List<TextView> iconNames = new ArrayList<>(5);
+    @ViewInject(R.id.vp_home)
     private ViewPager mVpHome;
     private List<Fragment> fragments;
     //渐变图标
+    @ViewInject(R.id.tv_home_fonts_icon)
     private GradientTextView mTvHomeIconFonts;
+    @ViewInject(R.id.tv_appoint_fonts_icon)
     private GradientTextView mTvAppointIconFonts;
+    @ViewInject(R.id.tv_circle_fonts_icon)
     private GradientTextView mTvCircleIconFonts;
+    @ViewInject(R.id.tv_find_fonts_icon)
     private GradientTextView mTvFindIconFonts;
+    @ViewInject(R.id.tv_me_fonts_icon)
     private GradientTextView mTvMeIconFonts;
-
+    @ViewInject(R.id.tv_circle_name)
     private TextView mTvCircleName;
+    @ViewInject(R.id.tv_appoint_name)
     private TextView mTvAppointName;
+    @ViewInject(R.id.tv_me_name)
     private TextView mTvMeName;
+    @ViewInject(R.id.tv_find_name)
     private TextView mTvFindName;
+    @ViewInject(R.id.tv_home_name)
     private TextView mTvHomeName;
+    @ViewInject(R.id.ll_appoint_click)
+    private LinearLayout mLlAppointClick;
+    @ViewInject(R.id.ll_circle_click)
+    private LinearLayout mLlCircleClick;
+    @ViewInject(R.id.ll_me_click)
+    private LinearLayout mLlMeClick;
+    @ViewInject(R.id.ll_find_click)
+    private LinearLayout mLlFindClick;
+    @ViewInject(R.id.ll_main_click)
+    private LinearLayout mLlMainClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,36 +87,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
     @Override
     protected void initView() {
-        mVpHome = (ViewPager) findViewById(R.id.vp_home);
-        //按钮点击
-        LinearLayout mLlAppointClick = (LinearLayout) findViewById(R.id.ll_appoint_click);
-        LinearLayout mLlCircleClick = (LinearLayout) findViewById(R.id.ll_circle_click);
-        LinearLayout mLlMeClick = (LinearLayout) findViewById(R.id.ll_me_click);
-        LinearLayout mLlFindClick = (LinearLayout) findViewById(R.id.ll_find_click);
-        LinearLayout mLlMainClick = (LinearLayout) findViewById(R.id.ll_main_click);
-        mLlAppointClick.setOnClickListener(this);
-        mLlCircleClick.setOnClickListener(this);
-        mLlMeClick.setOnClickListener(this);
-        mLlFindClick.setOnClickListener(this);
-        mLlMainClick.setOnClickListener(this);
-
-
-        mTvHomeIconFonts = (GradientTextView) findViewById(R.id.tv_home_fonts_icon);//主页按钮
         iconFonts.add(mTvHomeIconFonts);
-        mTvAppointIconFonts = (GradientTextView) findViewById(R.id.tv_appoint_fonts_icon);
         iconFonts.add(mTvAppointIconFonts);
-        mTvCircleIconFonts = (GradientTextView) findViewById(R.id.tv_circle_fonts_icon);
         iconFonts.add(mTvCircleIconFonts);
-        mTvFindIconFonts = (GradientTextView) findViewById(R.id.tv_find_fonts_icon);
         iconFonts.add(mTvFindIconFonts);
-        mTvMeIconFonts = (GradientTextView) findViewById(R.id.tv_me_fonts_icon);
         iconFonts.add(mTvMeIconFonts);
-        //主页按钮名字
-        mTvCircleName = (TextView) findViewById(R.id.tv_circle_name);
-        mTvAppointName = (TextView) findViewById(R.id.tv_appoint_name);
-        mTvMeName = (TextView) findViewById(R.id.tv_me_name);
-        mTvFindName = (TextView) findViewById(R.id.tv_find_name);
-        mTvHomeName = (TextView) findViewById(R.id.tv_home_name);
         iconNames.add(mTvHomeName);
         iconNames.add(mTvAppointName);
         iconNames.add(mTvCircleName);
@@ -103,6 +101,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
     @Override
     protected void initListener() {
+        mLlAppointClick.setOnClickListener(this);
+        mLlCircleClick.setOnClickListener(this);
+        mLlMeClick.setOnClickListener(this);
+        mLlFindClick.setOnClickListener(this);
+        mLlMainClick.setOnClickListener(this);
         mVpHome.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -139,7 +142,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      * 初始化字体图标
      */
     private void initIconFonts() {
-        Typeface fromAsset = Typeface.createFromAsset(getAssets(), "fonts/icomoon.ttf");
+        Typeface fromAsset = TypefaceUtis.getTypeface(this);
         for (GradientTextView font : iconFonts) {
             font.setTypeface(fromAsset);
         }

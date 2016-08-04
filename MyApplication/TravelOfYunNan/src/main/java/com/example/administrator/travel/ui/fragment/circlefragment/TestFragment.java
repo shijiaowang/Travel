@@ -15,7 +15,7 @@ import com.example.administrator.travel.bean.CircleNavRight;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.CircleActivity;
-import com.example.administrator.travel.ui.activity.LoadBaseFragment;
+import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.adapter.CircleNavLeftAdapter;
 import com.example.administrator.travel.ui.adapter.CircleNavRightAdapter;
 import com.example.administrator.travel.ui.view.LoadingPage;
@@ -147,6 +147,9 @@ public class TestFragment extends LoadBaseFragment {
             ToastUtils.showToast(getContext(), event.getMessage());
             setState(LoadingPage.ResultState.STATE_ERROR);
         }
+
+        //通知自定义view去显示正确读取后界面
+        afterLoadData();
     }
 
     private void firstReq(HttpEvent event) {

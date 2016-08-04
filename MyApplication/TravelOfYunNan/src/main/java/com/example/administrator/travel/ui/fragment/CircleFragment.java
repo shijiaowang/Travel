@@ -13,6 +13,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.fragment.circlefragment.HotFragment;
 import com.example.administrator.travel.ui.fragment.circlefragment.NavigationFragment;
 import com.example.administrator.travel.ui.fragment.circlefragment.TestFragment;
+import com.example.administrator.travel.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,10 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     protected void initData() {
-        fragments.add(new NavigationFragment());
-        fragments.add(new HotFragment());
+        if (fragments.size()<2) {
+            fragments.add(new TestFragment());
+            fragments.add(new HotFragment());
+        }
         mVpCircle.setAdapter(new CirclePagerAdapter(getChildFragmentManager()));
         initTitle(0);
     }

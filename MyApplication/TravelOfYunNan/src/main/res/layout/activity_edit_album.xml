@@ -13,21 +13,9 @@
         android:layout_height="200dp"
         android:background="@drawable/activity_create_bg">
 
-        <TextView
-            android:id="@+id/tv_back"
-            style="@style/backFontsIcon"
-            android:layout_centerVertical="false"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="40dp" />
 
-        <TextView
-            android:id="@+id/tv_more"
-            style="@style/backFontsIcon"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="false"
-            android:layout_marginRight="22dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/activity_message_center_more" />
+
+
 
         <TextView
             android:id="@+id/tv_set_cover"

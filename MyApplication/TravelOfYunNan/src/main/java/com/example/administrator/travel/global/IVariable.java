@@ -6,7 +6,7 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    String DOMAIN_NAME="http://192.168.1.158/";
+    String DOMAIN_NAME="http://192.168.1.38/";
     String API_KEY=DOMAIN_NAME+"api.php?s=/";
     //下面为请求链接
     String GET_KEY="api/getKeys";

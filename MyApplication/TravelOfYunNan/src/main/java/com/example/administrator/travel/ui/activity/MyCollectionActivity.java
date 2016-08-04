@@ -11,6 +11,8 @@ import com.example.administrator.travel.ui.fragment.MyCollectionFragment;
 import com.example.administrator.travel.ui.fragment.MyPublicationFragment;
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 
+import org.xutils.view.annotation.ViewInject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,15 +20,14 @@ import java.util.List;
  * Created by Administrator on 2016/8/3 0003.
  */
 public class MyCollectionActivity extends BarBaseActivity {
-
+   @ViewInject(R.id.vp_collection)
     private ViewPager mVpCollection;
+    @ViewInject(R.id.svpi_indicator)
     private SimpleViewPagerIndicator mSvpiIndicator;
     private List<BaseFragment> fragments;
 
     @Override
     protected void initContentView() {
-        mVpCollection = (ViewPager) findViewById(R.id.vp_collection);
-        mSvpiIndicator = (SimpleViewPagerIndicator) findViewById(R.id.svpi_indicator);
         mSvpiIndicator.setTitles(new String[]{"我的收藏", "我的发表"});
     }
 

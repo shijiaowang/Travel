@@ -16,6 +16,8 @@ import com.example.administrator.travel.ui.fragment.MeFragment;
 import com.example.administrator.travel.ui.fragment.FollowFragment;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +29,13 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
     private int currentPosition = 0;
     private List<BaseFragment> fragments = new ArrayList<>(2);
 
-
+  @ViewInject(R.id.vp_follow_fan)
     private ViewPager mVpFollowFan;//pager
+
     private TextView mTvBack;//返回
+    @ViewInject(R.id.tv_fan)
     private TextView mTvFan;//粉丝
+    @ViewInject(R.id.tv_follow)
     private TextView mTvFollow;//关注
 
     @Override
@@ -42,10 +47,7 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
     protected void initView() {
         boolean isFollow = getIntent().getBooleanExtra(MeFragment.FOLLOW_SELECT, false);
         currentPosition = isFollow ? 0 : 1;
-        mVpFollowFan = (ViewPager) findViewById(R.id.vp_follow_fan);
         mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
-        mTvFan = (TextView) findViewById(R.id.tv_fan);
-        mTvFollow = (TextView) findViewById(R.id.tv_follow);
     }
 
     @Override

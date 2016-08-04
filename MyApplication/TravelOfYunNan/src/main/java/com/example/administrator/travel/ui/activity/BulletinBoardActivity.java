@@ -6,6 +6,8 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.MyAppoint;
 import com.example.administrator.travel.ui.adapter.BulletinBoardAdapter;
 
+import org.xutils.view.annotation.ViewInject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +16,12 @@ import java.util.List;
  * 公告栏
  */
 public class BulletinBoardActivity extends BarBaseActivity {
-
+   @ViewInject(R.id.lv_bulletin_board)
     private ListView mLvBulletinBoard;
 
     @Override
     protected void initContentView() {
-        mLvBulletinBoard = (ListView) findViewById(R.id.lv_bulletin_board);
+
     }
 
     @Override

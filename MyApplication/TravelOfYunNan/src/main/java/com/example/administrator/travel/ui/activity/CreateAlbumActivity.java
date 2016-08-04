@@ -11,7 +11,7 @@ import com.example.administrator.travel.utils.FontsIconUtil;
  * 创建相册
  */
 
-public class CreateAlbumActivity extends BarBaseActivity implements View.OnClickListener {
+public class CreateAlbumActivity extends BarBaseActivity {
 
     private TextView mTvMore;//更多
 
@@ -31,7 +31,7 @@ public class CreateAlbumActivity extends BarBaseActivity implements View.OnClick
 
     @Override
     protected void initEvent() {
-        mTvMore.setOnClickListener(this);
+
     }
 
 
@@ -45,14 +45,7 @@ public class CreateAlbumActivity extends BarBaseActivity implements View.OnClick
         return "创建相册";
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
 
-            case R.id.tv_more:
-                break;
-        }
-    }
 
     @Override
     protected boolean haveRightIcon() {
@@ -68,4 +61,6 @@ public class CreateAlbumActivity extends BarBaseActivity implements View.OnClick
     protected boolean canScrollToChangeTitleBgColor() {
         return true;
     }
+
+
 }

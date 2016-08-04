@@ -6,36 +6,6 @@
     android:background="#fafafa"
     android:orientation="vertical"
     tools:context="com.example.administrator.travel.ui.activity.PostActivity">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="74dp"
-        android:background="#5cd0c2"
-        android:paddingTop="25dp">
-
-        <TextView
-            android:id="@+id/tv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/activity_circle_back_font_icon"
-            android:textSize="25sp"
-            android:padding="7dp"
-            android:textColor="@color/colorFAFAFA"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="5dp"
-             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:text="帖子详情"
-            android:textColor="#fafafa"
-            android:textSize="18sp" />
-
-    </RelativeLayout>
-
     <ListView
         android:id="@+id/lv_post_detail"
         android:layout_width="match_parent"
@@ -43,13 +13,11 @@
         android:layout_weight="1"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null">
-
     </ListView>
     <View
         android:background="@drawable/gradient_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -57,7 +25,6 @@
         android:background="#fafafa"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-
         <ImageView
             android:layout_marginLeft="28dp"
             android:layout_width="23dp"
@@ -72,7 +39,6 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
-
 
         <ImageView
             android:layout_width="21dp"

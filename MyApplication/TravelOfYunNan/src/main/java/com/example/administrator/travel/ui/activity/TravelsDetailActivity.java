@@ -14,14 +14,18 @@ import com.example.administrator.travel.ui.adapter.TravelsAddAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by android on 2016/7/30.
  * 游记详情
  */
 public class TravelsDetailActivity extends BarBaseActivity {
-
+    @ViewInject(R.id.rv_add_line)
     private RecyclerView mRvAddLine;
+    @ViewInject(R.id.rv_member)
     private RecyclerView mRvMember;
+    @ViewInject(R.id.lv_discuss)
     private ToShowAllListView mLvDiscuss;
 
     @Override
@@ -29,9 +33,6 @@ public class TravelsDetailActivity extends BarBaseActivity {
         TextView mTvLine = FontsIconUtil.findIconFontsById(R.id.tv_line, this);
         TextView mTvdisscuss = FontsIconUtil.findIconFontsById(R.id.tv_discuss, this);
         TextView mTvTeamProfile = FontsIconUtil.findIconFontsById(R.id.tv_team_profile, this);
-        mRvAddLine = (RecyclerView) findViewById(R.id.rv_add_line);
-        mRvMember = (RecyclerView) findViewById(R.id.rv_member);
-        mLvDiscuss = (ToShowAllListView) findViewById(R.id.lv_discuss);
         TextView mTvIconAdd = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_add, this);
         TextView mTvIconAir = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_air, this);
         TextView mTvIconPeople = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_people, this);
