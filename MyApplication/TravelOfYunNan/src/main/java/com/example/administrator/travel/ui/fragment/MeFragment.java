@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.activity.CreatePostActivity;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
+import com.example.administrator.travel.ui.activity.LinePlanActivity;
 import com.example.administrator.travel.ui.activity.MemberDetailActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
@@ -132,7 +133,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getContext(), MyCollectionActivity.class));
                 break;
             case R.id.tv_my_order:
-                startActivity(new Intent(getContext(), MemberDetailActivity.class));
+                startActivity(new Intent(getContext(), LinePlanActivity.class));
                 break;
         }
     }

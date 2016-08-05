@@ -47,6 +47,7 @@ public class TestFragment extends LoadBaseFragment {
     private CircleNavRightAdapter circleNavRightAdapter;
     private String cid;
     private View root;
+    private int prePosition=-1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,10 @@ public class TestFragment extends LoadBaseFragment {
         mLvLeftNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (prePosition==position){
+                    return;
+                }
+                prePosition=position;
                 cid = leftList.get(position).getCid();
                 selectNavLeft(position);
                 loadData();
@@ -91,7 +96,11 @@ public class TestFragment extends LoadBaseFragment {
     }
 
     private void normalReq(String cid) {
-        Map<String, String> map = MapUtils.Build().addKey(getContext()).add("cid", cid).end();
+        MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).add("cid", cid);
+        if (cid.equals("1")){//再次获取关注
+            builder.add("user_id","1");
+        }
+        Map<String, String> map =builder.end();
         XEventUtils.postUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ_CIRCLE);
     }
 

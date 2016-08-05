@@ -61,10 +61,10 @@ public class MemberDetailActivity extends BarBaseActivity implements View.OnClic
 
         mLvJoined.setAdapter(new MemberJoinedAdapter(this, null));
         // TODO: 2016/8/4 0004 页面太卡  就是这里出问题了
-        /*mRvEnter.setAdapter(new MemberEnterAdapter(this, null));
+        mRvEnter.setAdapter(new MemberEnterAdapter(this, null));
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         mRvEnter.setLayoutManager(linearLayoutManager);
-        mRvEnter.setItemAnimator(new DefaultItemAnimator());*/
+        mRvEnter.setItemAnimator(new DefaultItemAnimator());
     }
 
     @Override

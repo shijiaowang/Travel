@@ -29,6 +29,7 @@ public class MyCollectionActivity extends BarBaseActivity {
     @Override
     protected void initContentView() {
         mSvpiIndicator.setTitles(new String[]{"我的收藏", "我的发表"});
+        mSvpiIndicator.setViewPager(mVpCollection);
     }
 
     @Override

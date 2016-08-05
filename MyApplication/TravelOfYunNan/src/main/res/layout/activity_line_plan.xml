@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorFAFAFA"
-    android:orientation="vertical"
+<com.example.administrator.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ListView
+    <RelativeLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="43dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/activity_line_plan_add"
+            android:gravity="center"
+            android:text="集合地"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="13sp" />
+        <TextView
+            android:layout_marginTop="19dp"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/tv_add"
+            android:id="@+id/tv_add_add"
+            android:textColor="@color/colorb5b5b5"
+            android:textSize="18sp"
+            android:text="@string/activity_other_follow"
+            android:gravity="center"
+            android:background="@drawable/activity_line_plan_add_bg"
+            android:layout_width="55dp"
+            android:layout_height="27dp" />
 
-    </ListView>
+        <com.example.administrator.travel.ui.view.DottedLineView
+            android:layout_below="@id/tv_add"
+            android:id="@+id/dlv_line_top"
+            android:layout_width="1dp"
+            android:layout_height="32dp" />
 
-</LinearLayout>
+        <com.example.administrator.travel.ui.view.ToShowAllListView
+            android:layout_below="@id/dlv_line_top"
+            android:id="@+id/lv_line"
+            style="@style/commonListViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="0dp"
+            android:scrollbars="none">
+
+        </com.example.administrator.travel.ui.view.ToShowAllListView>
+
+    </RelativeLayout>
+</com.example.administrator.travel.ui.view.SlippingScrollView>
