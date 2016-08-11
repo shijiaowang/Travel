@@ -157,7 +157,6 @@ public abstract class BarBaseActivity extends BaseActivity {
         mTitleName.setText(setTitleName());
         mBg1.setBackgroundColor(getBgColor());
         mBg1.setAlpha(getAlpha());
-
         initViewData();
     }
 

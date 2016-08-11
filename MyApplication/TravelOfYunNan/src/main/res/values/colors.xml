@@ -23,12 +23,15 @@
     <!--CircleActivity-->
     <color name="circleDesText">#7e7e7e</color>
     <color name="Ffbf75">#ffbf75</color>
+    <color name="colorFf8888">#ff8888</color>
     <color name="meLine">#efeff4</color>
     <color name="otherTitleBg">#5cd0c2</color>
     <color name="otherFcae04">#fcae04</color>
     <color name="colorFAFAFA">#fafafa</color>
     <color name="colorA7a7a7">#a7a7a7</color>
     <color name="color323232">#323232</color>
+    <color name="color363535">#363535</color>
+    <color name="colorB1b1b1">#b1b1b1</color>
     <color name="color858585">#858585</color>
     <color name="color767676">#767676</color>
     <color name="color646464">#646464</color>

@@ -16,7 +16,7 @@
             android:layout_height="37dp"
             android:gravity="center"
             android:text="已加入(4) ∨ "
-            android:textColor="#444444"
+            android:textColor="@color/otherTitleBg"
             android:textSize="12sp" />
 
         <View
@@ -39,7 +39,7 @@
             android:layout_height="37dp"
             android:gravity="center"
             android:text="报名中(6) ∨ "
-            android:textColor="#444444"
+            android:textColor="@color/otherTitleBg"
             android:textSize="12sp" />
 
         <View

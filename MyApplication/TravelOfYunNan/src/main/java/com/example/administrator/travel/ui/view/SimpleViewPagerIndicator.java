@@ -13,13 +13,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.administrator.travel.R;
+
 import java.lang.reflect.Type;
 
 public class SimpleViewPagerIndicator extends LinearLayout {
 
     private static final int COLOR_TEXT_NORMAL = Color.parseColor("#686868");
     private static final int COLOR_INDICATOR_COLOR = Color.parseColor("#5cd0c2");
-
+    private boolean isShowPop = false;//默认不弹出pop
     private String[] mTitles;
     private int mTabCount;
     private int mIndicatorColor = COLOR_INDICATOR_COLOR;
@@ -43,6 +45,14 @@ public class SimpleViewPagerIndicator extends LinearLayout {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mTabWidth = (w - childMargin * (mTabCount - 1)) / mTabCount;
+    }
+
+
+    /**
+     * 点击展示pop
+     */
+    public void changeToShowPop() {
+        this.isShowPop = true;
     }
 
     public void setTitles(String[] titles) {
@@ -90,7 +100,8 @@ public class SimpleViewPagerIndicator extends LinearLayout {
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return super.dispatchTouchEvent(ev);
     }
-    public  void setViewPager(ViewPager viewPager){
+
+    public void setViewPager(ViewPager viewPager) {
         this.viewPager = viewPager;
     }
 
@@ -101,12 +112,15 @@ public class SimpleViewPagerIndicator extends LinearLayout {
 
         setWeightSum(count);
         for (int i = 0; i < count; i++) {
-            TextView tv = new TextView(getContext());
+            final TextView tv = new TextView(getContext());
             LayoutParams lp = new LayoutParams(0,
                     LayoutParams.MATCH_PARENT);
             lp.weight = 1;
             if (i > 0) {
                 lp.leftMargin = childMargin;
+            }
+            if (i == 1 && isShowPop) {
+                tv.setBackgroundResource(R.drawable.activity_my_orders_cursor);
             }
             tv.setGravity(Gravity.CENTER);
             tv.setTextColor(COLOR_TEXT_NORMAL);
@@ -117,11 +131,27 @@ public class SimpleViewPagerIndicator extends LinearLayout {
             tv.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   viewPager.setCurrentItem(clickPosition,false);
+                    viewPager.setCurrentItem(clickPosition, false);
+                    if (clickPosition == 1 && isShowPop) {//我的订单中的一个页面需要展示pop
+                        if (onPopShowListener != null) {
+                            onPopShowListener.onShow(tv);
+                        }
+                    }
+
+
                 }
             });
             addView(tv);
         }
     }
 
+    public interface OnPopShowListener {
+        void onShow(TextView tv);
+    }
+
+    private OnPopShowListener onPopShowListener;
+
+    public void setOnPopShowListener(OnPopShowListener onPopShowListener) {
+        this.onPopShowListener = onPopShowListener;
+    }
 }

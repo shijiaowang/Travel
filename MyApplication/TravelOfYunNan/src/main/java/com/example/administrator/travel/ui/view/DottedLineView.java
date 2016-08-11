@@ -9,6 +9,7 @@ import android.graphics.PathEffect;
 import android.util.AttributeSet;
 import android.view.View;
 
+
 import com.example.administrator.travel.R;
 
 /**
@@ -40,8 +41,15 @@ public class DottedLineView extends View {
         mPaint.setFakeBoldText(true);
         mPath = new Path();
         /*数组单数代表线条长度，双数位代表空余长度，最后1代表偏移量*/
-        PathEffect effects = new DashPathEffect(new float[]{5,5,5,5},1);
+        PathEffect effects = new DashPathEffect(new float[]{5, 5, 5, 5}, 1);
         mPaint.setPathEffect(effects);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int height = View.MeasureSpec.getSize(heightMeasureSpec);
+        int width = View.MeasureSpec.getSize(widthMeasureSpec);
+        setMeasuredDimension(width, height);
     }
 
     @Override

@@ -51,7 +51,7 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
 
     @Override
     protected String setTitleName() {
-        return "系统消息";
+        return "消息中心";
     }
 
 

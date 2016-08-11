@@ -2,31 +2,92 @@ package com.example.administrator.travel.ui.adapter.holer;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Line;
+import com.example.administrator.travel.ui.view.DottedLineView;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.LogUtils;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/8/5 0005.
  */
-public class LinePlanHolder extends BaseHolder {
+public class LinePlanHolder extends BaseHolder<Line> {
 
-    private TextView mTvAdd;
+    public TextView mTvAdd;
+    private LinearLayout mLlLine;
+    private DottedLineView mDlvLine;
+    private TextView mTvNumber;
+    private TextView mTvTime;
+
 
     public LinePlanHolder(Context context) {
         super(context);
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext) {
-
+    protected void initItemDatas(Line datas, Context mContext) {
+        mTvNumber.setText(datas.getDayNumber());
+        mTvTime.setText(datas.getDayTime());
+        List<String> add = datas.getAdd();
+        if (add!=null && add.size()>0){
+            if (mLlLine.getChildCount()>1){
+                mLlLine.removeViews(0,mLlLine.getChildCount()-1);
+            }
+            for (String s:add) {
+                addAdd(s);
+            }
+        }
     }
+
+
 
     @Override
     public View initRootView(Context mContext) {
         View view = inflateView(R.layout.item_activity_line_plan);
         mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, mContext, view);
+        mLlLine = (LinearLayout) view.findViewById(R.id.ll_destination_line);
+        mTvNumber = (TextView) view.findViewById(R.id.tv_number);
+        mTvTime = (TextView) view.findViewById(R.id.tv_time);
+        mDlvLine = (DottedLineView) view.findViewById(R.id.dlv_line);
+
+        setLineHeight();
         return view;
+    }
+
+    public void setLineHeight() {
+        mLlLine.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int h = mLlLine.getHeight();
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mDlvLine.getLayoutParams();
+                layoutParams.height = h + 25;//弥补空隙
+                mDlvLine.setLayoutParams(layoutParams);
+                mLlLine.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+            }
+        });
+    }
+    public void addAdd(String text){
+        final View view = inflateView(R.layout.item_activity_line_plan_add_item);
+        TextView mTvAdd = (TextView) view.findViewById(R.id.tv_add);
+        mTvAdd.setText(text);
+        TextView mTvDelete = FontsIconUtil.findIconFontsById(R.id.tv_delete, mContext, view);
+        mTvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLlLine.removeView(view);
+                setLineHeight();
+            }
+        });
+        int childCount = mLlLine.getChildCount();
+        mLlLine.addView(view,childCount-1);
+        setLineHeight();
     }
 }
