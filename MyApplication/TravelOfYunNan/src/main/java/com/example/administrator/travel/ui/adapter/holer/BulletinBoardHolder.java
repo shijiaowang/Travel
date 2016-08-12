@@ -20,7 +20,7 @@ public class BulletinBoardHolder extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_bulletin_board, null);
+        View inflate = inflateView(R.layout.item_activity_bulletin_board);
         return inflate;
     }
 }

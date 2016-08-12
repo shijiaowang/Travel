@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.administrator.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:scrollbars="none"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorFAFAFA"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            style="@style/activityConfirmOrdersRl"
+            android:layout_height="36dp"
+            android:background="@color/colorFcfcfd">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:gravity="center"
+                android:text="订单号：EAD3G66834264F"
+                android:textColor="@color/color8c8c8c"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:text="约伴订单"
+                android:textColor="@color/Ffbf75"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/meLine" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/activityConfirmOrdersTextTitle"
+                android:text="· 基本项目" />
+
+            <TextView
+                style="@style/activityConfirmOrdersText"
+                android:layout_below="@id/tv_title"
+                android:layout_marginBottom="11dp"
+                android:layout_marginTop="14dp"
+                android:text="先筹路费" />
+
+            <TextView
+                style="@style/activityConfirmOrdersTextMoney"
+                android:layout_marginTop="41dp"
+                android:text="¥3.00" />
+        </RelativeLayout>
+
+        <View style="@style/activityConfirmOrdersTextLine" />
+
+        <RelativeLayout style="@style/activityConfirmOrdersRl">
+
+            <TextView
+                style="@style/activityConfirmOrdersText"
+                android:text="个人旅游保险" />
+
+            <TextView
+                style="@style/activityConfirmOrdersTextMoney"
+                android:text="¥1.00" />
+        </RelativeLayout>
+
+        <View style="@style/activityConfirmOrdersTextLine" />
+
+        <RelativeLayout style="@style/activityConfirmOrdersRl">
+
+            <TextView
+                style="@style/activityConfirmOrdersText"
+                android:text="平台服务费" />
+
+            <TextView
+                style="@style/activityConfirmOrdersTextMoney"
+                android:text="¥1.00" />
+        </RelativeLayout>
+
+        <View
+            style="@style/activityConfirmOrdersTextLine"
+            android:layout_marginBottom="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/meLine" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorFAFAFA">
+
+            <TextView
+                android:id="@+id/tv_title1"
+                style="@style/activityConfirmOrdersTextTitle"
+                android:text="· 折扣方案" />
+
+            <TextView
+                style="@style/activityConfirmOrdersText"
+                android:layout_below="@id/tv_title1"
+                android:layout_marginBottom="11dp"
+                android:layout_marginTop="14dp"
+                android:text="折扣券" />
+
+            <TextView
+                style="@style/activityConfirmOrdersTextMoney"
+                android:layout_marginTop="41dp"
+                android:text="¥-3.00" />
+        </RelativeLayout>
+
+        <View style="@style/activityConfirmOrdersTextLine"
+            android:layout_marginBottom="10dp"
+            />
+
+        <com.example.administrator.travel.ui.view.ToShowAllListView
+            android:id="@+id/lv_coupon"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            style="@style/commonListViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+          >
+        </com.example.administrator.travel.ui.view.ToShowAllListView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="16dp"
+                android:text="合计：¥4.00"
+                android:textColor="@color/colorFf8888"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/meLine" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorFcfcfd"
+            android:orientation="vertical">
+            <TextView
+                style="@style/activityConfirmOrdersTextTitle"
+                android:text="· 付款方式" />
+
+
+            <RelativeLayout
+                android:id="@+id/rl_zfb"
+                android:paddingTop="17dp"
+                android:paddingBottom="8dp"
+                style="@style/activityConfirmOrdersRl"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:text="支付宝"
+                    android:textColor="@android:color/black"
+                    android:textSize="11sp" />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_pay_zfb"
+                    android:text="@string/activity_aite_ok"
+                    android:textSize="12sp"
+                    android:textColor="@color/Ffbf75"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <View
+                style="@style/activityConfirmOrdersTextLine"/>
+            <RelativeLayout
+                android:id="@+id/rl_wx"
+                android:paddingTop="17dp"
+                android:paddingBottom="8dp"
+                style="@style/activityConfirmOrdersRl"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:text="微信支付"
+                    android:textColor="@android:color/black"
+                    android:textSize="11sp" />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_pay_wx"
+                    android:text="@string/activity_aite_ok"
+                    android:textSize="12sp"
+                    android:textColor="@color/Ffbf75"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <View
+                style="@style/activityConfirmOrdersTextLine"/>
+            <LinearLayout
+                android:layout_marginTop="28dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:id="@+id/cb_agree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="同意《云说软件服务许可协议》"
+                    android:textColor="@color/color7f7f7f"
+                    android:textSize="11sp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_marginBottom="30dp"
+                android:id="@+id/tv_submit"
+                android:layout_marginTop="33dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:background="@drawable/fragment_find_search_bg"
+                android:textColor="@color/colorFAFAFA"
+                android:text="提交订单"
+                android:layout_width="212dp"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</com.example.administrator.travel.ui.view.SlippingScrollView>

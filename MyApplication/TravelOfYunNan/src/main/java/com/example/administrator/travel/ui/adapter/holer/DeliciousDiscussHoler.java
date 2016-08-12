@@ -23,7 +23,7 @@ public class DeliciousDiscussHoler extends BaseHolder<Discuss> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_common_disscuss, null);
+        View inflate =inflateView(R.layout.item_common_disscuss);
         TextView mTvLove = FontsIconUtil.findIconFontsById(R.id.tv_love, mContext, inflate);
         return inflate;
     }

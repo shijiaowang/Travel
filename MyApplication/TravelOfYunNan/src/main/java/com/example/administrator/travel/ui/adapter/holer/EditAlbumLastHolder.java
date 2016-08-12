@@ -21,7 +21,7 @@ public class EditAlbumLastHolder extends BaseHolder<EditAlbum> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_edit_album_last, null);
+        View inflate =inflateView(R.layout.item_activity_edit_album_last);
         return inflate;
     }
 }

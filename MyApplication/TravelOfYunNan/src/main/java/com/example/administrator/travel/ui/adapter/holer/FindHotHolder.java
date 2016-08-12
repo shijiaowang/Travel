@@ -26,7 +26,7 @@ public class FindHotHolder extends BaseHolder<FindHot>{
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_fragment_find_hot, null);
+        View inflate = inflateView(R.layout.item_fragment_find_hot);
         mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, mContext, inflate);
         return inflate;
     }

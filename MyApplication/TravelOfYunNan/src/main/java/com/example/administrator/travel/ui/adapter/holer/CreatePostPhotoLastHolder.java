@@ -25,7 +25,7 @@ public class CreatePostPhotoLastHolder extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_create_post_photo_add, null);
+        View inflate = inflateView(R.layout.item_activity_create_post_photo_add);
         mTvAdd = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_add, mContext, inflate);
         return inflate;
     }

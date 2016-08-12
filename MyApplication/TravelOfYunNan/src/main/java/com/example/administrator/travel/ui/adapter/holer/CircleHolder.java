@@ -23,7 +23,7 @@ public class CircleHolder extends BaseHolder<Circle> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_circle, null);
+        View inflate = inflateView(R.layout.item_activity_circle);
         TextView mTvIconLove = FontsIconUtil.findIconFontsById(R.id.tv_icon_love, mContext, inflate);
         TextView mTvIconDiscuss = FontsIconUtil.findIconFontsById(R.id.tv_icon_discuss, mContext, inflate);
         return inflate;

@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
+import org.xutils.x;
+
 import java.util.List;
 
 /**
@@ -61,6 +63,7 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
         if (convertView==null || convertView.getTag()==null){
             baseHolder=initHolder(position);
             convertView=baseHolder.getRootView();
+            x.view().inject(baseHolder,convertView);
         }else {
             baseHolder= (BaseHolder) convertView.getTag();
         }

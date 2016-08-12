@@ -5,7 +5,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
-        <item name="colorAccent">@android:color/transparent</item>
+        <item name="colorAccent">@color/otherTitleBg</item>
     </style>
     <!-- 自定义对话框 系统默认 :1.白边 2.标题 -->
 
@@ -367,6 +367,7 @@
 
     <style name="commonListViewStyle">
         <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:scrollbars">none</item>
         <item name="android:divider">@null</item>
     </style>
     <style name="commonSingleLineTextStyle">
@@ -402,6 +403,43 @@
     </style>
     <style name="fragmentOrderText" parent="fragmentAppointWithMeText">
         <item name="android:layout_marginLeft">0dp</item>
+    </style>
+    <style name="activityConfirmOrdersText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:textColor">@color/color868686</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="activityConfirmOrdersRl">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+    <style name="activityConfirmOrdersTextMoney">
+        <item name="android:textColor">@color/color494848</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="activityConfirmOrdersTextLine">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:background">@color/meLine</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="activityConfirmOrdersTextTitle">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">11dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/color323232</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>

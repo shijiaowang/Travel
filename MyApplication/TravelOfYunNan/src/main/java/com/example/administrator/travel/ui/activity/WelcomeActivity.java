@@ -63,6 +63,32 @@ public class WelcomeActivity extends FullTransparencyActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        int code = sharedPreferences.getInt(IVariable.KEY_CODE, -1);
+        //获取key
+        if (code != IVariable.OK_KEY_CODE) {
+            LogUtils.e("状态码错误，开始重新获取");
+            String url = IVariable.API_KEY + IVariable.GET_KEY;
+            XEventUtils.getUseCommonBackJson(url, null, IVariable.TYPE_GET_KEY);
+        } else {
+            LogUtils.e("开始验证");
+            GlobalValue.KEY_VALUE = sharedPreferences.getString(IVariable.KEY_VALUE, "");
+            //验证缓存的登录
+            String userName = sharedPreferences.getString(IVariable.SAVE_NAME, "");
+            String userPwd = sharedPreferences.getString(IVariable.SAVE_PWD, "");
+            if (!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(userPwd)) {
+                GO_WHERE_PAGE=START_HOME;//去首页，之后会验证是否经过网络验证
+                checkNetAndCheckLogin(userName, userPwd);
+            } else {
+
+                //缓存信息为空，重新去登录
+                GO_WHERE_PAGE = START_SPLASH;
+            }
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
@@ -86,35 +112,13 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
             }
         }).start();
-        int code = sharedPreferences.getInt(IVariable.KEY_CODE, -1);
-        //获取key
-        if (code != IVariable.OK_KEY_CODE) {
-            LogUtils.e("状态码错误，开始重新获取");
-            String url = IVariable.API_KEY + IVariable.GET_KEY;
-            XEventUtils.getUseCommonBackJson(url, null, IVariable.TYPE_GET_KEY);
-        } else {
-            LogUtils.e("开始验证");
-            GlobalValue.KEY_VALUE = sharedPreferences.getString(IVariable.KEY_VALUE, "");
-            //验证缓存的登录
-            String userName = sharedPreferences.getString(IVariable.SAVE_NAME, "");
-            String userPwd = sharedPreferences.getString(IVariable.SAVE_PWD, "");
-            if (!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(userPwd)) {
-                LogUtils.e("开始检查用户名和密码");
-                checkNetAndCheckLogin(userName, userPwd);
-            } else {
-                LogUtils.e("没有缓存信息，去登录页");
-                //缓存信息为空，重新去登录
-                GO_WHERE_PAGE = START_SPLASH;
-            }
-        }
+
     }
     private void checkNetAndCheckLogin(String userName, String userPwd) {
         //网络不可用，且缓存了信息，直接跳入主页
         if (!NetworkUtils.isNetworkConnected(this)) {
-            LogUtils.e("没有网络，去主页");
-            GO_WHERE_PAGE = START_HOME;
+            isNetWork=false;
         } else {
-            LogUtils.e("开始网络验证");
             //网络可用验证登录
             Map<String, String> stringMap = new HashMap<>();
             stringMap.put(IVariable.KEY, KeyUtils.getKey(this));
@@ -122,7 +126,6 @@ public class WelcomeActivity extends FullTransparencyActivity {
             stringMap.put(IVariable.PASSWORD, userPwd);
             String url = IVariable.LOGIN_URL;
             XEventUtils.postUseCommonBackJson(url, stringMap, IVariable.TYPE_POST_LOGIN);
-            isNetWork = true;
         }
     }
 
@@ -147,19 +150,16 @@ public class WelcomeActivity extends FullTransparencyActivity {
      * @param event
      */
     private void login(HttpEvent event) {
-        LogUtils.e(event.getMessage());
         if (event.isSuccess()) {
             if (event.getCode() == IVariable.SUCCESS) {
-                GO_WHERE_PAGE = START_HOME;
                 String result = event.getResult();
                 Gson gson = new Gson();
                 Login login = gson.fromJson(result, Login.class);
                 userInfo = login.getData();
+                isNetWork = true;
             } else {
-                LogUtils.e("网络验证失败");
                 GO_WHERE_PAGE = START_SPLASH;
             }
-
         }
     }
 

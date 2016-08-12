@@ -21,7 +21,7 @@ public class PostReplyTextHolder extends BaseHolder<PostReply> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_post_reply, null);
+        View inflate = inflateView(R.layout.item_activity_post_reply);
         return inflate;
     }
 }

@@ -3,7 +3,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">@color/otherTitleBg</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="colorAccent">#fafafa</item>
+        <item name="colorAccent">@color/otherTitleBg</item>
     </style>
     <style name="CreatePostTheme" parent="Theme.AppCompat.Light.NoActionBar">
 

@@ -10,12 +10,16 @@ import com.example.administrator.travel.bean.Circle;
 import com.example.administrator.travel.bean.CircleNavLeft;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by Administrator on 2016/7/8 0008.
  */
 public class CircleNavLeftHolder extends BaseHolder<Circle.DataBean.CircleLeftBean> {
+    @ViewInject(R.id.tv_place)
     private TextView mTvPlace;
     private TextView mTvCursor;
+    @ViewInject(R.id.v_line)
     private View mVLine;
 
     public CircleNavLeftHolder(Context context) {
@@ -41,10 +45,11 @@ public class CircleNavLeftHolder extends BaseHolder<Circle.DataBean.CircleLeftBe
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_fragment_circle_nav_left, null);
-        mTvPlace = (TextView) inflate.findViewById(R.id.tv_place);
+        View inflate =inflateView(R.layout.item_fragment_circle_nav_left);
+        /*mTvPlace = (TextView) inflate.findViewById(R.id.tv_place);
+        mVLine = inflate.findViewById(R.id.v_line);*/
         mTvCursor = FontsIconUtil.findIconFontsById(R.id.tv_cursor, mContext, inflate);
-        mVLine = inflate.findViewById(R.id.v_line);
+
         return inflate;
     }
 }

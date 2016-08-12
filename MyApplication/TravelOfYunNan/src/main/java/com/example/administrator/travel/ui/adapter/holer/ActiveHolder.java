@@ -26,7 +26,7 @@ public class ActiveHolder extends BaseHolder<Active> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_active, null);
+        View inflate = inflateView(R.layout.item_activity_active);
         mTvAir = FontsIconUtil.findIconFontsById(R.id.tv_air, mContext, inflate);
         return inflate;
     }

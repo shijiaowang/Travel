@@ -26,7 +26,7 @@ public class MyAppointingHolder extends BaseHolder<MyAppoint> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_my_appointting, null);
+        View inflate = inflateView(R.layout.item_activity_my_appointting);
         TextView mTvIconAdd = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_add, mContext, inflate);
         TextView mTvIconAir = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_air, mContext, inflate);
         TextView mTvIconPeople = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_people, mContext, inflate);

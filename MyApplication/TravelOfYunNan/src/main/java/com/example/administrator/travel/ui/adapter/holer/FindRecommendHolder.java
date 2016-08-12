@@ -21,7 +21,7 @@ public class FindRecommendHolder extends BaseHolder<FindRecommend> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_fragment_find_recommend, null);
+        View inflate = inflateView(R.layout.item_fragment_find_recommend);
         return inflate;
     }
 }

@@ -24,7 +24,7 @@ public class CircleHotHolder extends BaseHolder<CircleHot> {
 
     @Override
     public View initRootView(Context mContext) {
-        View root = View.inflate(mContext, R.layout.item_fragment_circle_hot,null);
+        View root = inflateView(R.layout.item_fragment_circle_hot);
         return root;
     }
 }

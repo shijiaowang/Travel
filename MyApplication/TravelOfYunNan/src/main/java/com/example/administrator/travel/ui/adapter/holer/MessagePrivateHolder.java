@@ -21,7 +21,7 @@ public class MessagePrivateHolder extends BaseHolder<SystemPrivate> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_fragment_message_center_private_message, null);
+        View inflate = inflateView(R.layout.item_fragment_message_center_private_message);
         return inflate;
     }
 }

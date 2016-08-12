@@ -22,7 +22,7 @@ public class MyCollectionHolder extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_fragment_my_collection, null);
+        View inflate = inflateView(R.layout.item_fragment_my_collection);
         TextView mTvDelete = FontsIconUtil.findIconFontsById(R.id.tv_delete, mContext, inflate);
         return inflate;
     }

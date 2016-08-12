@@ -6,10 +6,10 @@ import android.view.View;
 import com.example.administrator.travel.R;
 
 /**
- * Created by android on 2016/7/31.
+ * Created by Administrator on 2016/8/12 0012.
  */
-public class EmojiHolder extends BaseHolder {
-    public EmojiHolder(Context context) {
+public class OrdersCouponHolder extends BaseHolder {
+    public OrdersCouponHolder(Context context) {
         super(context);
     }
 
@@ -20,7 +20,7 @@ public class EmojiHolder extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_activity_create_post_emoji);
-        return inflate;
+        View view = inflateView(R.layout.item_activity_confirm_orders);
+        return view;
     }
 }

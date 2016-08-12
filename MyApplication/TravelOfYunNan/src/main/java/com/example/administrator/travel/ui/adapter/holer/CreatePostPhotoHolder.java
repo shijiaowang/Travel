@@ -20,7 +20,7 @@ public class CreatePostPhotoHolder extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_create_post_photo_normal, null);
+        View inflate = inflateView(R.layout.item_activity_create_post_photo_normal);
         return inflate;
     }
 }

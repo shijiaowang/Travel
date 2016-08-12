@@ -9,11 +9,13 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AiteFollow;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by Administrator on 2016/8/1 0001.
  */
 public class AiteHolder extends BaseHolder<AiteFollow> {
-
+   @ViewInject(R.id.tv_nike_name)
     private TextView mTvNikeName;
     private TextView mTvAite;
 
@@ -34,8 +36,8 @@ public class AiteHolder extends BaseHolder<AiteFollow> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_aite, null);
-        mTvNikeName = (TextView) inflate.findViewById(R.id.tv_nike_name);
+        View inflate = inflateView(R.layout.item_activity_aite);
+       /* mTvNikeName = (TextView) inflate.findViewById(R.id.tv_nike_name);*/
         mTvAite = FontsIconUtil.findIconFontsById(R.id.tv_aite, mContext, inflate);
         return inflate;
     }

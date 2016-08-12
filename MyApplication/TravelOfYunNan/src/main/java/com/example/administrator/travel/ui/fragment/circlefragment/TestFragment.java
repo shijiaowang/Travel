@@ -21,6 +21,7 @@ import com.example.administrator.travel.ui.adapter.CircleNavRightAdapter;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.CircleUtils;
 import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.UIUtils;
@@ -97,7 +98,7 @@ public class TestFragment extends LoadBaseFragment {
 
     private void normalReq(String cid) {
         MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).add("cid", cid);
-        if (cid.equals("1")){//再次获取关注
+        if (cid!=null && cid.equals("1")){//再次获取关注
             builder.add("user_id","1");
         }
         Map<String, String> map =builder.end();
@@ -148,6 +149,7 @@ public class TestFragment extends LoadBaseFragment {
             if (event.getType() == IVariable.FIRST_REQ_CIRCLE) {
                 firstReq(event);//第一次请求
             } else {
+                LogUtils.e(event.getResult());
                 CircleNavRight circleNavRight = GsonUtils.getObject(event.getResult(), CircleNavRight.class);
                 circleNavRightAdapter.notifyData(circleNavRight.getData());
             }

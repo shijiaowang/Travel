@@ -1,8 +1,12 @@
 package com.example.administrator.travel.ui.fragment;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.activity.ConfirmOrdersActivity;
 import com.example.administrator.travel.ui.adapter.MyOrdersAdapter;
 
 /**
@@ -29,6 +33,11 @@ public class MyOrdersFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
-
+         mLvOrders.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 getContext().startActivity(new Intent(getContext(), ConfirmOrdersActivity.class));
+             }
+         });
     }
 }

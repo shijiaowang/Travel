@@ -22,7 +22,7 @@ public class DestinationHoler extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_destination, null);
+        View inflate = inflateView(R.layout.item_activity_destination);
         TextView mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, mContext, inflate);
         return inflate;
     }

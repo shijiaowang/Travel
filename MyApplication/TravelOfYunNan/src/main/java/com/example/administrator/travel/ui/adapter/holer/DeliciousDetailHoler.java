@@ -7,11 +7,13 @@ import android.widget.RatingBar;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.DeliciousDetail;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by Administrator on 2016/7/26 0026.
  */
 public class DeliciousDetailHoler extends BaseHolder<DeliciousDetail> {
-
+    @ViewInject(R.id.rb_star)
     private RatingBar mRbStar;
 
     public DeliciousDetailHoler(Context context) {
@@ -25,9 +27,9 @@ public class DeliciousDetailHoler extends BaseHolder<DeliciousDetail> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = View.inflate(mContext, R.layout.item_activity_delicious_top_store, null);
-        mRbStar = (RatingBar) inflate.findViewById(R.id.rb_star);
-        mRbStar.setRating(4.5f);
+        View inflate =inflateView(R.layout.item_activity_delicious_top_store);
+
+
         return inflate;
     }
 }
