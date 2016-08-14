@@ -64,6 +64,7 @@
         <activity android:name=".ui.activity.MemberDetailActivity"/>
         <activity android:name=".ui.activity.MyOrdersActivity"/>
         <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
+        <activity android:name=".ui.activity.CollectionDetailActivity"/>
         <activity android:name=".ui.activity.CreatePostActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/CreatePostTheme"

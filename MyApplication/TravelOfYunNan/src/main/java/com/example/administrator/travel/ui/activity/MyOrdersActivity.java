@@ -11,6 +11,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.fragment.CouponFragment;
 import com.example.administrator.travel.ui.fragment.MyOrdersFragment;
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 
@@ -145,7 +146,7 @@ public class MyOrdersActivity extends BarBaseActivity {
         fragments = new ArrayList<>();
         fragments.add(new MyOrdersFragment());
         fragments.add(new MyOrdersFragment());
-        fragments.add(new MyOrdersFragment());
+        fragments.add(new CouponFragment());
         mVpOrders.setAdapter(new OrdersPagerAdapter(getSupportFragmentManager()));
 
 

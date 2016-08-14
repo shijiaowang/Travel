@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <TextView
+            android:gravity="center"
+            android:background="@drawable/fragment_find_search_bg"
+            android:text="激活/添加优惠券"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="12sp"
+            android:layout_width="115dp"
+            android:layout_height="26dp" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="13dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/Ffbf75"
+        android:text="优惠券"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ListView
+        android:id="@+id/lv_coupon"
+        style="@style/commonListViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+</LinearLayout>
