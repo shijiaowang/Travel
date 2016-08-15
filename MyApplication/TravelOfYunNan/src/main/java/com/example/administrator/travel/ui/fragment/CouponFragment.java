@@ -24,7 +24,7 @@ public class CouponFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        mLvCoupon.setAdapter(new OrdersCouponAdapter(getContext(),null));
+        mLvCoupon.setAdapter(new OrdersCouponAdapter(getContext(),null,true));
     }
 
     @Override

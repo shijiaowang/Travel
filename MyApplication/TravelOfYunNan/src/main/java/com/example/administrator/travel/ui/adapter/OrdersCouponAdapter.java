@@ -12,8 +12,11 @@ import java.util.List;
  * 优惠券
  */
 public class OrdersCouponAdapter extends TravelBaseAdapter {
-    public OrdersCouponAdapter(Context mContext, List mDatas) {
+    private boolean isCouponFragment;
+
+    public OrdersCouponAdapter(Context mContext, List mDatas,boolean isCouponFragment) {
         super(mContext, mDatas);
+        this.isCouponFragment = isCouponFragment;
     }
 
     @Override
@@ -28,6 +31,6 @@ public class OrdersCouponAdapter extends TravelBaseAdapter {
 
     @Override
     protected BaseHolder initHolder(int position) {
-        return new OrdersCouponHolder(mContext);
+        return new OrdersCouponHolder(mContext,isCouponFragment);
     }
 }

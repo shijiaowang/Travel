@@ -24,7 +24,7 @@ import java.util.List;
  * Created by Administrator on 2016/8/11 0011.
  * 我的订单
  */
-public class MyOrdersActivity extends BarBaseActivity {
+public class OrdersCenterActivity extends BarBaseActivity {
     private String[] mTitles = {"最近订单", "全部订单", "优惠券"};
     private String[] ordersType = {"全部订单", "约伴订单", "活动订单"};
     private int currentOrders = 0;//当前为全部订单
@@ -45,7 +45,7 @@ public class MyOrdersActivity extends BarBaseActivity {
 
     @Override
     protected int setContentLayout() {
-        return R.layout.activity_my_orders;
+        return R.layout.activity_orders_center;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class MyOrdersActivity extends BarBaseActivity {
     private void showPop(final TextView tv) {
 
         // 获取弹出视图对象
-        View viewPopup = View.inflate(MyOrdersActivity.this, R.layout.activity_my_orders_pop, null);
+        View viewPopup = View.inflate(OrdersCenterActivity.this, R.layout.activity_my_orders_pop, null);
         // 创建 弹出窗口
         // PopupWindow window=new PopupWindow(视图对象, 宽度, 高度);
         final PopupWindow window = new PopupWindow(viewPopup, tv.getWidth(), (int) getResources().getDimension(R.dimen.activityMyOrdersPopHeight));

@@ -55,6 +55,7 @@ public abstract class LoadingPage extends FrameLayout {
                 @Override
                 public void onClick(View v) {
                     //重新加载数据
+                    mCurrentState=STATE_LOAD_UNLOAD;
                     loadData();
                 }
             });
@@ -75,7 +76,6 @@ public abstract class LoadingPage extends FrameLayout {
             successView = onCreateSuccessView();
             //不为空加
             if (successView != null && successView.getParent()==null) {
-
                 addView(successView);
             }
         }
@@ -92,7 +92,6 @@ public abstract class LoadingPage extends FrameLayout {
         if (mCurrentState != STATE_LOAD_LOADING) {
             mCurrentState = STATE_LOAD_LOADING;
             onLoad();
-
         }
     }
 
@@ -104,13 +103,14 @@ public abstract class LoadingPage extends FrameLayout {
     }
 
     private void showPage() {
-        ResultState resultState = changeState();//xutils的加载数据使用了多线程，导致未空，需要 好好研究
+        ResultState resultState = changeState();
         if (resultState != null) {
             mCurrentState = resultState.getState(); //获取返回的结�?,更新网络状�??
         }
         if (mPreState != mCurrentState) {
             showRightView();
             mPreState = mCurrentState;
+
         } else {
             mCurrentState = STATE_LOAD_UNLOAD;
         }

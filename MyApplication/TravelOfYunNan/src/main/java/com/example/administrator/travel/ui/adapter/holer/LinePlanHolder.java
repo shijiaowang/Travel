@@ -23,7 +23,6 @@ import java.util.List;
 public class LinePlanHolder extends BaseHolder<Line> {
 
     public TextView mTvAdd;
-    @ViewInject(R.id.ll_destination_line)
     private LinearLayout mLlLine;
     @ViewInject(R.id.dlv_line)
     private DottedLineView mDlvLine;
@@ -58,11 +57,10 @@ public class LinePlanHolder extends BaseHolder<Line> {
     public View initRootView(Context mContext) {
         View view = inflateView(R.layout.item_activity_line_plan);
         mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, mContext, view);
-       /* mLlLine = (LinearLayout) view.findViewById(R.id.ll_destination_line);
-        mTvNumber = (TextView) view.findViewById(R.id.tv_number);
+        mLlLine = (LinearLayout) view.findViewById(R.id.ll_destination_line);
+       /* mTvNumber = (TextView) view.findViewById(R.id.tv_number);
         mTvTime = (TextView) view.findViewById(R.id.tv_time);
         mDlvLine = (DottedLineView) view.findViewById(R.id.dlv_line);*/
-
         setLineHeight();
         return view;
     }

@@ -10,12 +10,15 @@ import android.view.ViewGroup;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.LogUtils;
 
+import org.xutils.x;
+
 /**
  * Created by Administrator on 2016/8/3 0003.
  */
 public  abstract class LoadBaseFragment extends Fragment {
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
+
 
 
 
@@ -44,6 +47,12 @@ public  abstract class LoadBaseFragment extends Fragment {
             }
         };
         return loadingPage;
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
     }
 

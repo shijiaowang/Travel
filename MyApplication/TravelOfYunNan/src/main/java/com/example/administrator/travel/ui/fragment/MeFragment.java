@@ -8,15 +8,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.activity.CreatePostActivity;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
-import com.example.administrator.travel.ui.activity.LinePlanActivity;
-import com.example.administrator.travel.ui.activity.MemberDetailActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
 import com.example.administrator.travel.ui.activity.MyAppointActivity;
 import com.example.administrator.travel.ui.activity.MyCollectionActivity;
-import com.example.administrator.travel.ui.activity.MyOrdersActivity;
+import com.example.administrator.travel.ui.activity.OrdersCenterActivity;
 import com.example.administrator.travel.ui.activity.SettingActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 
@@ -134,7 +131,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getContext(), MyCollectionActivity.class));
                 break;
             case R.id.tv_my_order:
-                startActivity(new Intent(getContext(), MyOrdersActivity.class));
+                startActivity(new Intent(getContext(), OrdersCenterActivity.class));
                 break;
         }
     }

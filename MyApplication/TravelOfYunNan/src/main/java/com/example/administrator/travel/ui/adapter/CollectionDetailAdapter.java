@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.adapter;
 import android.content.Context;
 
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.adapter.holer.CollectionDetailHolder;
 
 import java.util.List;
 
@@ -26,6 +27,6 @@ public class CollectionDetailAdapter extends TravelBaseAdapter {
 
     @Override
     protected BaseHolder initHolder(int position) {
-        return null;
+        return new CollectionDetailHolder(mContext);
     }
 }

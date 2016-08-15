@@ -121,6 +121,10 @@ public abstract class BarBaseActivity extends BaseActivity {
         return mVsRightIcon;
     }
 
+    public void changeTitle(String title){
+        mTitleName.setText(title);
+    }
+
     /**
      * 初始化布局
      */

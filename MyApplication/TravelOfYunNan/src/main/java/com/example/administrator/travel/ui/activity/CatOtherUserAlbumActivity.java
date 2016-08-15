@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.CatOtherAlbumAdapter;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.LogUtils;
 
 import org.xutils.view.annotation.ViewInject;
 

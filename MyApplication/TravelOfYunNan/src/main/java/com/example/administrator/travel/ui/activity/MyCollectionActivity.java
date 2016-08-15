@@ -60,8 +60,9 @@ public class MyCollectionActivity extends BarBaseActivity {
     @Override
     protected void initViewData() {
         fragments = new ArrayList<>();
-        fragments.add(new MyPublicationFragment());
         fragments.add(new MyCollectionFragment());
+        fragments.add(new MyPublicationFragment());
+
         mVpCollection.setAdapter(new MyCollectionPagerAdapter(getSupportFragmentManager()));
     }
 

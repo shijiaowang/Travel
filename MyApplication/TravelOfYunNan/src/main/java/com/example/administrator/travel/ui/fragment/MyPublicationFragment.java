@@ -1,15 +1,17 @@
 package com.example.administrator.travel.ui.fragment;
 
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.ui.adapter.MyCollectionAdapter;
 
 /**
  * Created by Administrator on 2016/8/3 0003.
- * 我的收藏
  */
 public class MyPublicationFragment extends BaseFragment {
+
+    private ListView mLvCollection;
+
     @Override
     protected int initLayoutRes() {
         return R.layout.fragment_my_publication;
@@ -17,18 +19,12 @@ public class MyPublicationFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        TextView mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, getContext(), root);
-        TextView mTvActive = FontsIconUtil.findIconFontsById(R.id.tv_active, getContext(), root);
-        TextView mTvTravels = FontsIconUtil.findIconFontsById(R.id.tv_travels, getContext(), root);
-        TextView mTvOther = FontsIconUtil.findIconFontsById(R.id.tv_other, getContext(), root);
-        TextView mTvPost = FontsIconUtil.findIconFontsById(R.id.tv_post, getContext(), root);
-        TextView mTvTeam = FontsIconUtil.findIconFontsById(R.id.tv_team, getContext(), root);
-
+        mLvCollection = (ListView) root.findViewById(R.id.lv_collection);
     }
 
     @Override
     protected void initData() {
-
+      mLvCollection.setAdapter(new MyCollectionAdapter(getContext(),null));
     }
 
     @Override

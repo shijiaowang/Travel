@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.activity;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -85,6 +86,8 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private TextView mTvFollowIcon;
     @ViewInject(R.id.tv_follow)
     private TextView mTvFollow;
+    @ViewInject(R.id.rl_root)
+    private RelativeLayout mRlRoot;
     @ViewInject(R.id.ll_private)
     private LinearLayout mLlPrivate;
     @ViewInject(R.id.ll_follow)
@@ -112,6 +115,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private TextView mTvTitleBack;
     private int mTopViewHeight;
     private int mTitleHeight;
+    private String phoneName;
 
 
     @Override
@@ -121,6 +125,8 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void initView() {
+        phoneName = android.os.Build.MODEL;
+        LogUtils.e(phoneName);
         mPbLoad = findViewById(R.id.pb_load);
         inflater = LayoutInflater.from(this);
         mTvPrivateIcon = FontsIconUtil.findIconFontsById(R.id.tv_private_icon, this);
@@ -263,6 +269,13 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     @Override
     protected void onResume() {
         super.onResume();
+        //使用透明度解决魅族手机闪屏问题
+        if (Build.MANUFACTURER.contains("Meizu") ||Build.MANUFACTURER.contains("魅族")){
+            AlphaAnimation alphaAnimation=new AlphaAnimation(0,1);
+            alphaAnimation.setDuration(1500);
+            alphaAnimation.setFillAfter(true);
+            mRlRoot.startAnimation(alphaAnimation);
+        }
         EventBus.getDefault().register(this);
 
         if (!isInflate) {

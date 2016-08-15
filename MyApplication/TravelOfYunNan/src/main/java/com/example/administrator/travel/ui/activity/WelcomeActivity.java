@@ -78,7 +78,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
             String userName = sharedPreferences.getString(IVariable.SAVE_NAME, "");
             String userPwd = sharedPreferences.getString(IVariable.SAVE_PWD, "");
             if (!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(userPwd)) {
-                GO_WHERE_PAGE=START_HOME;//去首页，之后会验证是否经过网络验证
+                GO_WHERE_PAGE = START_HOME;//去首页，之后会验证是否经过网络验证
                 checkNetAndCheckLogin(userName, userPwd);
             } else {
 
@@ -90,6 +90,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
         EventBus.getDefault().register(this);
         new Thread(new Runnable() {
@@ -114,10 +115,11 @@ public class WelcomeActivity extends FullTransparencyActivity {
         }).start();
 
     }
+
     private void checkNetAndCheckLogin(String userName, String userPwd) {
         //网络不可用，且缓存了信息，直接跳入主页
         if (!NetworkUtils.isNetworkConnected(this)) {
-            isNetWork=false;
+            isNetWork = false;
         } else {
             //网络可用验证登录
             Map<String, String> stringMap = new HashMap<>();
@@ -175,9 +177,6 @@ public class WelcomeActivity extends FullTransparencyActivity {
         } else {
             LogUtils.e(event.getMessage());
         }
-
-
         GO_WHERE_PAGE = START_SPLASH;
-
     }
 }

@@ -6,13 +6,14 @@
     android:orientation="vertical"
 
     >
+
     <LinearLayout
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,40 +25,64 @@
             android:textSize="9sp" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="11dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2元优惠券"
-                android:textColor="@color/color8c8c8c"
-                android:textSize="12sp" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="有效期至2016-8-5"
-                android:textColor="@color/colorB1b1b1"
-                android:textSize="10sp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="11dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2元优惠券"
+                        android:textColor="@color/color8c8c8c"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="有效期至2016-8-5"
+                        android:textColor="@color/colorB1b1b1"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可使用"
+                    android:textColor="@color/color90c75c"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <View
+                android:layout_marginLeft="11dp"
+                android:id="@+id/v_line"
+                android:background="@color/meLine"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="可使用"
-            android:textColor="@color/color90c75c"
-            android:textSize="12sp" />
     </LinearLayout>
+
+
     <View
-        android:background="@color/colorFAFAFA"
+        android:id="@+id/v_line2"
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:layout_height="10dp"
+        android:background="@color/colorFAFAFA" />
 
 </LinearLayout>

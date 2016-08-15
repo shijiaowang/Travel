@@ -59,7 +59,7 @@ public class ConfirmOrdersActivity extends BarBaseActivity implements View.OnCli
 
     @Override
     protected void initViewData() {
-        mLvCoupon.setAdapter(new OrdersCouponAdapter(this, null));
+        mLvCoupon.setAdapter(new OrdersCouponAdapter(this, null,false));
     }
 
     @Override
