@@ -17,13 +17,13 @@ import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
-import com.example.administrator.travel.utils.KeyUtils;
 import com.example.administrator.travel.utils.MD5Utils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.UserUtils;
 import com.example.administrator.travel.utils.XEventUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +41,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private String key;
     private int tryGetKey=0;
     private TextView mTvBack;
+    private String name;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +69,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         mBtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String name = mEdName.getText().toString();
-                final String password = mEdPassword.getText().toString();
+                name = mEdName.getText().toString().trim();
+                password = mEdPassword.getText().toString().trim();
                 if (StringUtils.isEmpty(name) || StringUtils.isEmpty(password)) {
-                    ToastUtils.showToast(LoginActivity.this, "密码或者用户名为空");
+                    ToastUtils.showToast("密码或者用户名为空");
                     return;
                 }
                 goToLogin();
@@ -82,10 +84,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private void goToLogin() {
         Map<String, String> logMap = new HashMap<String, String>();
-        key = KeyUtils.getKey(LoginActivity.this);
+        key = GlobalUtils.getKey(LoginActivity.this);
         logMap.put(IVariable.KEY, key);
-        logMap.put(IVariable.USERNAME, "18281614311");
-        logMap.put(IVariable.PASSWORD, MD5Utils.encode(MD5Utils.encode("123456")));
+        logMap.put(IVariable.USERNAME, name);
+        logMap.put(IVariable.PASSWORD, MD5Utils.encode(MD5Utils.encode(password)));
         XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, logMap, IVariable.TYPE_POST_LOGIN);
     }
 
@@ -97,14 +99,18 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     goToLogin();
                 }
             }else {
-                GlobalValue.KEY_VALUE = sharedPreferences.getString(IVariable.KEY, "");
+                GlobalValue.KEY_VALUE = GlobalUtils.getKey(this);
+                Login object = GsonUtils.getObject(event.getResult(), Login.class);
+                Login.UserInfo userInfo = object.getData();
+                GlobalValue.userInfo=userInfo;//赋值
+                UserUtils.saveUserInfo(userInfo);//序列化
                 goToHomeActivity(event);
             }
         } else {
             if (event.getCode()==IVariable.KEY_ERROR){
                 XEventUtils.getUseCommonBackJson(IVariable.GET_KEY,null,IVariable.TYPE_GET_KEY);
             }else {
-                ToastUtils.showToast(this, event.getMessage());
+                ToastUtils.showToast(event.getMessage());
             }
         }
     }

@@ -10,10 +10,14 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.utils.UIUtils;
 
 import java.lang.reflect.Type;
 
@@ -119,14 +123,30 @@ public class SimpleViewPagerIndicator extends LinearLayout {
             if (i > 0) {
                 lp.leftMargin = childMargin;
             }
-            if (i == 1 && isShowPop) {
-                tv.setBackgroundResource(R.drawable.activity_my_orders_cursor);
-            }
             tv.setGravity(Gravity.CENTER);
             tv.setTextColor(COLOR_TEXT_NORMAL);
             tv.setText(mTitles[i]);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            tv.setLayoutParams(lp);
+
+            if (i == 1 && isShowPop) {
+                RelativeLayout relativeLayout=new RelativeLayout(getContext());
+                ImageView imageView=new ImageView(getContext());
+                RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(24,24);
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                layoutParams.bottomMargin=10;
+                RelativeLayout.LayoutParams layoutParams2=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
+                imageView.setImageResource(R.drawable.activity_my_orders_cursor);
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                imageView.setLayoutParams(layoutParams);
+                relativeLayout.setLayoutParams(lp);
+                relativeLayout.addView(imageView);
+                tv.setLayoutParams(layoutParams2);
+                relativeLayout.addView(tv);
+                addView(relativeLayout);
+            }else {
+                tv.setLayoutParams(lp);
+            }
             final int clickPosition = i;
             tv.setOnClickListener(new OnClickListener() {
                 @Override
@@ -141,7 +161,9 @@ public class SimpleViewPagerIndicator extends LinearLayout {
 
                 }
             });
-            addView(tv);
+            if (!(i == 1 && isShowPop)) {
+                addView(tv);
+            }
         }
     }
 

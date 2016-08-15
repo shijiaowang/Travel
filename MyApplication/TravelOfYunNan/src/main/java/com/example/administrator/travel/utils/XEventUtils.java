@@ -6,6 +6,7 @@ import com.example.administrator.travel.global.IVariable;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
+import org.xutils.common.util.LogUtil;
 import org.xutils.ex.HttpException;
 import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
@@ -94,7 +95,7 @@ public class XEventUtils {
             httpEvent.setIsSuccess(false);
             httpEvent.setCode(IVariable.X_UTLIS_ERROR);
             if (ex != null) {
-                message = "请链接网络";
+                message = ex.getMessage();
             }
             httpEvent.setMessage(message);
             EventBus.getDefault().post(httpEvent);

@@ -1,14 +1,9 @@
 package com.example.administrator.travel.utils;
-
 import android.content.Context;
-import android.os.SystemClock;
-
 import com.example.administrator.travel.global.IVariable;
-
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -71,7 +66,7 @@ public class Xutils {
      */
     public static Map<String,String> getCommonMap(Context context){
         Map<String,String> stringMap=new HashMap<>();
-        stringMap.put(IVariable.KEY,KeyUtils.getKey(context));
+        stringMap.put(IVariable.KEY,GlobalUtils.getKey(context));
         return stringMap;
     }
     public static boolean checkFileAndAdd(String path,Map<String,File> fileMap){

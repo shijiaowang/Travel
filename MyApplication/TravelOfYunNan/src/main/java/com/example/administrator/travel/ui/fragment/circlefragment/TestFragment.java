@@ -20,6 +20,7 @@ import com.example.administrator.travel.ui.adapter.CircleNavLeftAdapter;
 import com.example.administrator.travel.ui.adapter.CircleNavRightAdapter;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.CircleUtils;
+import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -57,8 +58,8 @@ public class TestFragment extends LoadBaseFragment {
     }
 
     private void firstReq() {
-        Map<String, String> map = MapUtils.Build().addKey(getContext()).add("user_id", "1").end();
-        XEventUtils.postUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ_CIRCLE);
+        Map<String, String> map = MapUtils.Build().addKey(getContext()).add("user_id", GlobalUtils.getUserInfo().getId()).end();
+        XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ_CIRCLE);
     }
 
     @Override
@@ -99,10 +100,10 @@ public class TestFragment extends LoadBaseFragment {
     private void normalReq(String cid) {
         MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).add("cid", cid);
         if (cid!=null && cid.equals("1")){//再次获取关注
-            builder.add("user_id","1");
+            builder.add("user_id",GlobalUtils.getUserInfo().getId());
         }
         Map<String, String> map =builder.end();
-        XEventUtils.postUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ_CIRCLE);
+        XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ_CIRCLE);
     }
 
     private boolean isFirst=true;
@@ -155,10 +156,9 @@ public class TestFragment extends LoadBaseFragment {
             }
             setState(LoadingPage.ResultState.STATE_SUCCESS);
         } else {
-            ToastUtils.showToast(getContext(), event.getMessage());
+            ToastUtils.showToast(event.getMessage());
             setState(LoadingPage.ResultState.STATE_ERROR);
         }
-
         //通知自定义view去显示正确读取后界面
         afterLoadData();
     }

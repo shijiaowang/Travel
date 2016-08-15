@@ -23,6 +23,8 @@ public class SplashActivity extends FullTransparencyActivity {
     private int currentPosition;
     @ViewInject(R.id.bt_login)
     private Button mBtLogin;
+    @ViewInject(R.id.bt_register)
+    private Button mBtRegister;
 
     @Override
     protected int initContentRes() {
@@ -43,6 +45,12 @@ public class SplashActivity extends FullTransparencyActivity {
 
     @Override
     protected void initListener() {
+        mBtRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startActivity(new Intent(SplashActivity.this,RegisterActivity.class));
+            }
+        });
         mBtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

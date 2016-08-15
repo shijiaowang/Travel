@@ -1,9 +1,6 @@
 package com.example.administrator.travel.utils;
-
 import android.content.Context;
-
 import com.example.administrator.travel.global.IVariable;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +15,7 @@ public class MapUtils {
     }
     public static class Builder{
         public Builder addKey(Context context){
-            stringMap.put(IVariable.KEY,KeyUtils.getKey(context));
+            stringMap.put(IVariable.KEY,GlobalUtils.getKey(context));
             return this;
         }
         public Builder add(String key,String value){

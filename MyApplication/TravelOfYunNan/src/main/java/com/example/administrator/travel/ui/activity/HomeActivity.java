@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.ui.fragment.AppointFragment;
 import com.example.administrator.travel.ui.fragment.CircleFragment;
 import com.example.administrator.travel.ui.fragment.FindFragment;
@@ -27,7 +28,9 @@ import com.example.administrator.travel.ui.fragment.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
+import com.example.administrator.travel.utils.UserUtils;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -74,13 +77,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout mLlFindClick;
     @ViewInject(R.id.ll_main_click)
     private LinearLayout mLlMainClick;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
     @Override
     protected int initLayoutRes() {
         return R.layout.activity_home;
@@ -135,7 +131,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mVpHome.setOffscreenPageLimit(3);//设置缓存距离为3
         initIconFonts();
         setCheckedOfPosition(0);
-
     }
 
     /**

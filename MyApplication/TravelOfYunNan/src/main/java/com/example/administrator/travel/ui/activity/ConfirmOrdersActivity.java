@@ -77,11 +77,11 @@ public class ConfirmOrdersActivity extends BarBaseActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.tv_submit:
                 if (!mCbAgree.isChecked()) {
-                    ToastUtils.showToast(ConfirmOrdersActivity.this, "请阅读并勾选协议");
+                    ToastUtils.showToast( "请阅读并勾选协议");
                     return;
                 }
                 if (mTvPayWx.getVisibility()==View.GONE && mTvPayZfb.getVisibility()==View.GONE){
-                    ToastUtils.showToast(ConfirmOrdersActivity.this, "请选这一种支付方式");
+                    ToastUtils.showToast("请选这一种支付方式");
                     return;
                 }
                 break;

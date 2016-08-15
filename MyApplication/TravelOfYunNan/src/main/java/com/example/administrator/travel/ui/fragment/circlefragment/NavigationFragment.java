@@ -120,7 +120,7 @@ public class NavigationFragment extends BaseFragment {
                 circleNavRightAdapter.notifyData(circleNavRight.getData());
             }
         } else {
-            ToastUtils.showToast(getContext(), event.getMessage());
+            ToastUtils.showToast(event.getMessage());
         }
     }
 

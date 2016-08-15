@@ -6,15 +6,18 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    String DOMAIN_NAME="http://yuns.yunspeak.com/";
+   /* String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
+    String DOMAIN_NAME="http://192.168.1.38/";
     String API_KEY=DOMAIN_NAME+"api.php?s=/";
     //下面为请求链接
-    String GET_KEY="api/getKeys";
+    String GET_KEY=API_KEY+"api/getKeys";
     String LOGIN_URL=API_KEY+"User/Login/";
     String FIRST_CIRCLE_URL=API_KEY+"Circle/getCirclelists/";
     String NORMAL_CIRCLE_URL=API_KEY+"Circle/getCirclechildlists/";
     String CIRCLE_CREATE_POST=API_KEY+"Circle/setCircleforum/";//圈子发帖
     String GET_FOLLOW_USER=API_KEY+"User/getInformlists/";//圈子发帖
+    String REGISTER_USER=API_KEY+"User/register/";//注册
+    String GET_VERIFICATIO_CODE=API_KEY+"User/sendRegistermsg/";//获取验证码
 
 
 

@@ -13,9 +13,9 @@ public class ToastUtils {
 
     }
     public static Toast mToast=null;
-    public static void showToast( Context mContext,String text){
+    public static void showToast( String text){
         if (mToast==null) {
-            mToast=Toast.makeText(mContext,text, Toast.LENGTH_SHORT);
+            mToast=Toast.makeText(UIUtils.getContext(),text, Toast.LENGTH_SHORT);
         }
         mToast.setText(text);
         mToast.show();

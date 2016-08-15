@@ -6,46 +6,21 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.event.AppointEvent;
-
 import com.example.administrator.travel.ui.activity.LinePlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
-
 import com.example.administrator.travel.utils.FastBlur;
-import com.example.administrator.travel.utils.FontsIconUtil;
-import com.example.administrator.travel.utils.KeyUtils;
-import com.example.administrator.travel.utils.LogUtils;
-import com.example.administrator.travel.utils.ToastUtils;
-import com.example.administrator.travel.utils.Xutils;
-
-
-import org.xutils.common.Callback;
-import org.xutils.ex.HttpException;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
-
-import java.io.ByteArrayInputStream;
-import java.io.File;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import de.greenrobot.event.EventBus;
 
 
@@ -103,7 +78,7 @@ public class AppointFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 showAppointDialog();//展示约伴框
-               /* Map<String, String> createPostMap = Xutils.getCreatePostMap(KeyUtils.getKey(getContext()),"测试标题", "测试内容", "1", "3");
+               /* Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(getContext()),"测试标题", "测试内容", "1", "3");
                 Map<String, File> fileMap = new HashMap<String, File>();
                 Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0003.jpg", fileMap);
                 Xutils.postFileAndText(IVariable.CIRCLE_CREATE_POST, createPostMap, fileMap, new Callback.ProgressCallback<String>() {

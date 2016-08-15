@@ -10,8 +10,8 @@ import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
-import com.example.administrator.travel.utils.KeyUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MD5Utils;
 import com.example.administrator.travel.utils.NetworkUtils;
@@ -69,8 +69,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
         //获取key
         if (code != IVariable.OK_KEY_CODE) {
             LogUtils.e("状态码错误，开始重新获取");
-            String url = IVariable.API_KEY + IVariable.GET_KEY;
-            XEventUtils.getUseCommonBackJson(url, null, IVariable.TYPE_GET_KEY);
+            XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY);
         } else {
             LogUtils.e("开始验证");
             GlobalValue.KEY_VALUE = sharedPreferences.getString(IVariable.KEY_VALUE, "");
@@ -123,7 +122,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
         } else {
             //网络可用验证登录
             Map<String, String> stringMap = new HashMap<>();
-            stringMap.put(IVariable.KEY, KeyUtils.getKey(this));
+            stringMap.put(IVariable.KEY, GlobalUtils.getKey(this));
             stringMap.put(IVariable.USERNAME, userName);
             stringMap.put(IVariable.PASSWORD, userPwd);
             String url = IVariable.LOGIN_URL;

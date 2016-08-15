@@ -9,6 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <Button
+        android:layout_alignParentLeft="true"
+        android:id="@+id/bt_register"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="@color/colorFAFAFA"
+        android:text="注册"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/otherTitleBg"
+        android:layout_width="80dp"
+        android:layout_height="40dp" />
+    <Button
+        android:layout_alignParentRight="true"
         android:id="@+id/bt_login"
         android:gravity="center"
         android:textSize="15sp"

@@ -31,6 +31,8 @@ import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
 
 import org.xutils.common.Callback;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +45,10 @@ import java.util.concurrent.DelayQueue;
 public class CreatePostActivity extends FragmentActivity implements View.OnClickListener, View.OnFocusChangeListener {
     private static final int SHOW_PHOTO=0;
     private static final int SHOW_EMOJI=1;
+
     private TextView mTvAite;
     private TextView mTvPicture;
     private TextView mTvEmoji;
-    private TextView mTvCreate;
     private GridView mGvPhoto;
     private ViewStub mVsPhoto;
     private ViewStub mVsEmoji;
@@ -75,6 +77,9 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
            }
        }
    };
+    private TextView mTvBack;
+    private TextView mTvCreate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,10 +88,10 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         initView();
         initListener();
         initData();
+
     }
 
     private void initData() {
-
 
     }
 
@@ -98,7 +103,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         mEtContent.setOnClickListener(this);
         mEtEnter.setOnFocusChangeListener(this);
         mEtContent.setOnFocusChangeListener(this);
-
+        mTvBack.setOnClickListener(this);
     }
 
 
@@ -109,6 +114,9 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         mEtEnter = (EditText) findViewById(R.id.et_enter);
         mEtContent = (EditText) findViewById(R.id.et_content);
         imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        mTvBack = ((TextView) findViewById(R.id.tv_back));
+
+        mTvCreate = ((TextView) findViewById(R.id.tv_push));
     }
 
     /**
@@ -164,6 +172,9 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_back:
+                finish();
+                break;
             case R.id.et_enter:
             case R.id.et_content:
                  hideEmojiOrPhoto();
