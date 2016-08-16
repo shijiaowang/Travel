@@ -78,45 +78,6 @@ public class AppointFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 showAppointDialog();//展示约伴框
-               /* Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(getContext()),"测试标题", "测试内容", "1", "3");
-                Map<String, File> fileMap = new HashMap<String, File>();
-                Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0003.jpg", fileMap);
-                Xutils.postFileAndText(IVariable.CIRCLE_CREATE_POST, createPostMap, fileMap, new Callback.ProgressCallback<String>() {
-                    @Override
-                    public void onWaiting() {
-                        LogUtils.e("onWaiting");
-                    }
-
-                    @Override
-                    public void onStarted() {
-                        LogUtils.e("onStarted");
-                    }
-
-                    @Override
-                    public void onLoading(long total, long current, boolean isDownloading) {
-                        LogUtils.e("onLoading"+current/(float)total);
-                    }
-
-                    @Override
-                    public void onSuccess(String result) {
-                       ToastUtils.showToast(getContext(),result);
-                    }
-
-                    @Override
-                    public void onError(Throwable ex, boolean isOnCallback) {
-                        LogUtils.e("onError");
-                    }
-
-                    @Override
-                    public void onCancelled(CancelledException cex) {
-                        LogUtils.e("onCancelled");
-                    }
-
-                    @Override
-                    public void onFinished() {
-
-                    }
-                });*/
             }
         });
         mLlSwitch.setOnClickListener(new View.OnClickListener() {

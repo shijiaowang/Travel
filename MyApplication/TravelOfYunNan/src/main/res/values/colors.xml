@@ -20,7 +20,7 @@
     <color name="circleTitleColorUnChecked">#fafafa</color>
     <color name="circleTitleColorChecked">#f1da60</color>
     <color name="circleNavLeftChecked">#ffbf75</color>
-    <!--CircleActivity-->
+    <!--圈子详情-->
     <color name="circleDesText">#7e7e7e</color>
     <color name="Ffbf75">#ffbf75</color>
     <color name="colorFf8888">#ff8888</color>

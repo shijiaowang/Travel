@@ -32,7 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".ui.activity.CircleActivity" />
         <activity android:name=".ui.activity.BaseActivity" />
         <activity android:name=".ui.activity.FullTransparencyActivity" />
         <activity android:name=".ui.activity.PostActivity" />
@@ -66,6 +65,7 @@
         <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
         <activity android:name=".ui.activity.CollectionDetailActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"/>
+        <activity android:name=".ui.activity.CircleDetailActivity"/>
         <activity android:name=".ui.activity.CreatePostActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/CreatePostTheme"

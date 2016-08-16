@@ -4,8 +4,10 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.administrator.travel.R;
 import com.example.administrator.travel.utils.UIUtils;
 
 /**
@@ -21,7 +23,7 @@ public abstract class LoadingPage extends FrameLayout {
     private int mCurrentState = STATE_LOAD_UNLOAD;//当前
     private int mPreState = STATE_LOAD_UNLOAD;//上一次
     private TextView loadingView;
-    private TextView errorView;
+    private ImageView errorView;
     private View successView;
 
     public LoadingPage(Context context) {
@@ -49,8 +51,7 @@ public abstract class LoadingPage extends FrameLayout {
         }
         //加载错误页面
         if (errorView == null) {
-            errorView = new TextView(getContext());
-            errorView.setText("加载失败");
+            errorView= (ImageView) UIUtils.inflate(R.layout.page_error);
             errorView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

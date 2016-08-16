@@ -7,7 +7,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
-import com.example.administrator.travel.ui.activity.CircleActivity;
 import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;

@@ -11,7 +11,10 @@ import org.xutils.ex.HttpException;
 import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import java.net.ConnectException;
 import java.util.Map;
+
 import de.greenrobot.event.EventBus;
 
 /**
@@ -39,6 +42,7 @@ public class XEventUtils {
 
     /**
      * post请求
+     *
      * @param url
      * @param stringMap
      * @param type
@@ -77,9 +81,9 @@ public class XEventUtils {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (code==1){
+            if (code == 1) {
                 httpEvent.setIsSuccess(true);
-            }else {
+            } else {
                 httpEvent.setIsSuccess(false);
             }
             httpEvent.setMessage(message);
@@ -95,8 +99,13 @@ public class XEventUtils {
             httpEvent.setIsSuccess(false);
             httpEvent.setCode(IVariable.X_UTLIS_ERROR);
             if (ex != null) {
-                message = ex.getMessage();
+                if (ex instanceof ConnectException) {
+                    message = "网络错误";
+                } else {
+                    message = ex.getMessage();
+                }
             }
+
             httpEvent.setMessage(message);
             EventBus.getDefault().post(httpEvent);
         }

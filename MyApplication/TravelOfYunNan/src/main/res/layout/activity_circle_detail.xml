@@ -23,7 +23,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="202dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/activity_circle_bg" />
+                    />
 
                 <ImageView
                     android:id="@+id/iv_post_icon"
@@ -32,15 +32,16 @@
                     android:layout_marginLeft="14dp"
                     android:layout_marginTop="175dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/activity_circle_post_icon" />
+                   />
 
                 <TextView
+                    android:id="@+id/tv_circle_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="180dp"
                     android:layout_toRightOf="@id/iv_post_icon"
-                    android:text="业余摄影圈"
+
                     android:textColor="#ffffff"
                     android:textSize="14sp" />
 
@@ -54,17 +55,17 @@
                     android:src="@drawable/activity_circle_follow" />
 
                 <TextView
-                    android:id="@+id/iv_des"
+                    android:id="@+id/tv_des"
                     style="@style/CircleText"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="208dp"
                     android:layout_toRightOf="@id/iv_post_icon"
-                    android:text="简介: 学生党，上班族，业余爱好者集结地。" />
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/iv_des"
+                    android:layout_below="@id/tv_des"
                     android:layout_marginTop="4dp"
                     android:layout_toRightOf="@id/iv_post_icon"
                     android:orientation="horizontal">
@@ -72,23 +73,23 @@
                     <TextView
                         style="@style/CircleText"
                         android:layout_marginLeft="15dp"
-                        android:text="关注：" />
+                        android:text="@string/post" />
 
                     <TextView
+                        android:id="@+id/tv_post_number"
                         style="@style/CircleText"
                         android:layout_marginLeft="2dp"
-                        android:text="1123"
                         android:textColor="@color/Ffbf75" />
 
                     <TextView
                         style="@style/CircleText"
                         android:layout_marginLeft="33dp"
-                        android:text="关注：" />
+                        android:text="@string/follow" />
 
                     <TextView
+                        android:id="@+id/tv_follow_number"
                         style="@style/CircleText"
                         android:layout_marginLeft="2dp"
-                        android:text="1123"
                         android:textColor="@color/Ffbf75" />
 
                 </LinearLayout>

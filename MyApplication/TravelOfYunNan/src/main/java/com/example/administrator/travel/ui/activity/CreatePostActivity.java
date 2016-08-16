@@ -10,8 +10,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.ViewTreeObserver;
@@ -23,20 +21,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.Circle;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.CreatePostPhotoAdapter;
 import com.example.administrator.travel.ui.fragment.EmojiFragment;
 import com.example.administrator.travel.utils.DensityUtils;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.StringUtils;
+import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.Xutils;
 
 import org.xutils.common.Callback;
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
+import org.xutils.common.util.LogUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.DelayQueue;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/7/29 0029.
@@ -60,7 +62,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     private int mFirstDotLeft;
     private View mVDot;
     private InputMethodManager imm;
-    private EditText mEtEnter;
+    private EditText mEtTitle;
     private EditText mEtContent;
     private int sendDelayTime=0;//延迟发送广播时间，解决软键盘弹出情况下，再弹出表情包等等闪屏状况
    private Handler mHandler=new Handler(){
@@ -99,11 +101,12 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         mTvPicture.setOnClickListener(this);
         mTvEmoji.setOnClickListener(this);
         mTvAite.setOnClickListener(this);
-        mEtEnter.setOnClickListener(this);
+        mEtTitle.setOnClickListener(this);
         mEtContent.setOnClickListener(this);
-        mEtEnter.setOnFocusChangeListener(this);
+        mEtTitle.setOnFocusChangeListener(this);
         mEtContent.setOnFocusChangeListener(this);
         mTvBack.setOnClickListener(this);
+        mTvCreate.setOnClickListener(this);
     }
 
 
@@ -111,7 +114,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         mTvAite = FontsIconUtil.findIconFontsById(R.id.tv_aite, this);
         mTvPicture = FontsIconUtil.findIconFontsById(R.id.tv_picture, this);
         mTvEmoji = FontsIconUtil.findIconFontsById(R.id.tv_emoji, this);
-        mEtEnter = (EditText) findViewById(R.id.et_enter);
+        mEtTitle = (EditText) findViewById(R.id.et_title);
         mEtContent = (EditText) findViewById(R.id.et_content);
         imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         mTvBack = ((TextView) findViewById(R.id.tv_back));
@@ -160,8 +163,8 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     @Override
     protected void onResume() {
         super.onResume();
-        mEtEnter.setFocusable(true);
-        mEtEnter.requestFocus();
+        mEtTitle.setFocusable(true);
+        mEtTitle.requestFocus();
         //第一次进入强制显示软键盘
         if(!imm.isActive()){
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
@@ -175,7 +178,10 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
             case R.id.tv_back:
                 finish();
                 break;
-            case R.id.et_enter:
+            case R.id.tv_push:
+                createPost();
+                break;
+            case R.id.et_title:
             case R.id.et_content:
                  hideEmojiOrPhoto();
                 break;
@@ -193,7 +199,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     private void hideSoftClick(View v) {
         sendDelayTime=0;//初始化
         if (imm.isActive()){
-            imm.hideSoftInputFromWindow(mEtEnter.getWindowToken(), 0); //强制隐藏键盘
+            imm.hideSoftInputFromWindow(mEtTitle.getWindowToken(), 0); //强制隐藏键盘
             sendDelayTime=300;
         }
         switch (v.getId()) {
@@ -305,6 +311,55 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
 
         }
     }
+      private void createPost() {
+          String title = mEtTitle.getText().toString().trim();
+          String content = mEtContent.getText().toString().trim();
+          if (StringUtils.isEmpty(content)){
+              ToastUtils.showToast("请输入内容");
+              return;
+          }
+          Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content, GlobalUtils.getUserInfo().getId(), "3");
+          List<File> list = new ArrayList<>();
+          Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0003.jpg", list);
+          Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0009.jpg", list);
+          Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0010.jpg", list);
+          Xutils.postFileAndText(IVariable.CIRCLE_CREATE_POST, createPostMap, list, new Callback.ProgressCallback<String>() {
+              @Override
+              public void onWaiting() {
+                  LogUtils.e("onWaiting");
+              }
+
+              @Override
+              public void onStarted() {
+                  LogUtils.e("onStarted");
+              }
+
+              @Override
+              public void onLoading(long total, long current, boolean isDownloading) {
+                  LogUtils.e("onLoading" + current / (float) total+"总数"+total );
+              }
+
+              @Override
+              public void onSuccess(String result) {
+                  ToastUtils.showToast(result);
+              }
+
+              @Override
+              public void onError(Throwable ex, boolean isOnCallback) {
+                  LogUtils.e("onError");
+              }
+
+              @Override
+              public void onCancelled(CancelledException cex) {
+                  LogUtils.e("onCancelled");
+              }
+
+              @Override
+              public void onFinished() {
+
+              }
+          });
+      }
 
 
 }

@@ -6,6 +6,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,21 +18,23 @@ public class Xutils {
      * post提交文件和文字
      * @param url  链接
      * @param stringMap 文字map集合
-     * @param fileMap 文件集合
+     * @param fileList 文件集合
      * @param callback 回调
      * @return 可取消的对象
      */
-    public static Callback.Cancelable postFileAndText(String url,Map<String,String> stringMap,Map<String,File> fileMap,Callback.CommonCallback<String> callback){
+    public static Callback.Cancelable postFileAndText(String url,Map<String,String> stringMap,List<File> fileList,Callback.CommonCallback<String> callback){
         RequestParams requestParams=new RequestParams(url);
         if (stringMap!=null) {
             for (Map.Entry<String, String> entry : stringMap.entrySet()) {
                 requestParams.addBodyParameter(entry.getKey(), entry.getValue());
             }
         }
-        if (fileMap!=null){
+        if (fileList!=null){
             requestParams.setMultipart(true);
-            for (Map.Entry<String,File> entry:fileMap.entrySet()){
-                requestParams.addBodyParameter(entry.getKey(),entry.getValue(),"", System.currentTimeMillis()+".jpg");
+            int i=0;
+            for (File file:fileList){
+                requestParams.addBodyParameter("file["+i+"]",file);
+                i++;
             }
         }
         return x.http().post(requestParams,callback);
@@ -69,12 +72,12 @@ public class Xutils {
         stringMap.put(IVariable.KEY,GlobalUtils.getKey(context));
         return stringMap;
     }
-    public static boolean checkFileAndAdd(String path,Map<String,File> fileMap){
+    public static boolean checkFileAndAdd(String path,List<File> files){
         File file=new File(path);
         if (!file.exists()){
             return false;
         }
-        fileMap.put("file",file);
+        files.add(file);
         return true;
     }
 }

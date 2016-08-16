@@ -14,7 +14,7 @@ import com.example.administrator.travel.bean.Circle;
 import com.example.administrator.travel.bean.CircleNavRight;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.CircleActivity;
+import com.example.administrator.travel.ui.activity.CircleDetailActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.adapter.CircleNavLeftAdapter;
 import com.example.administrator.travel.ui.adapter.CircleNavRightAdapter;
@@ -36,7 +36,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by Administrator on 2016/7/7 0007.
  */
-public class TestFragment extends LoadBaseFragment {
+public class NavLeftFragment extends LoadBaseFragment {
 
     private ListView mLvLeftNav;
     private ListView mLvRightNav;
@@ -59,7 +59,7 @@ public class TestFragment extends LoadBaseFragment {
 
     private void firstReq() {
         Map<String, String> map = MapUtils.Build().addKey(getContext()).add("user_id", GlobalUtils.getUserInfo().getId()).end();
-        XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ_CIRCLE);
+        XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ);
     }
 
     @Override
@@ -91,7 +91,9 @@ public class TestFragment extends LoadBaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
-                Intent intent = new Intent(getActivity(), CircleActivity.class);
+                Intent intent = new Intent(getActivity(), CircleDetailActivity.class);
+                intent.putExtra(IVariable.C_ID, rightList.get(position).getCid());
+                intent.putExtra(IVariable.C_NAME, rightList.get(position).getCname());
                 ActivityCompat.startActivity(getActivity(), intent, compat.toBundle());
             }
         });
@@ -103,7 +105,7 @@ public class TestFragment extends LoadBaseFragment {
             builder.add("user_id",GlobalUtils.getUserInfo().getId());
         }
         Map<String, String> map =builder.end();
-        XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ_CIRCLE);
+        XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ);
     }
 
     private boolean isFirst=true;
@@ -147,12 +149,17 @@ public class TestFragment extends LoadBaseFragment {
 
     public void onEvent(HttpEvent event) {
         if (event.isSuccess()) {
-            if (event.getType() == IVariable.FIRST_REQ_CIRCLE) {
+            if (event.getType() == IVariable.FIRST_REQ) {
                 firstReq(event);//第一次请求
             } else {
+                if (circleNavRightAdapter==null){
+                    firstReq();//第一次就为进行加载，所以为空，在这里重新加载
+                    return;
+                }
                 LogUtils.e(event.getResult());
                 CircleNavRight circleNavRight = GsonUtils.getObject(event.getResult(), CircleNavRight.class);
-                circleNavRightAdapter.notifyData(circleNavRight.getData());
+                rightList= circleNavRight.getData();
+                circleNavRightAdapter.notifyData(rightList);
             }
             setState(LoadingPage.ResultState.STATE_SUCCESS);
         } else {

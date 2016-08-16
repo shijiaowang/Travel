@@ -11,9 +11,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.fragment.circlefragment.HotFragment;
-import com.example.administrator.travel.ui.fragment.circlefragment.NavigationFragment;
-import com.example.administrator.travel.ui.fragment.circlefragment.TestFragment;
-import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.ui.fragment.circlefragment.NavLeftFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +46,7 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
     @Override
     protected void initData() {
         if (fragments.size()<2) {
-            fragments.add(new TestFragment());
+            fragments.add(new NavLeftFragment());
             fragments.add(new HotFragment());
         }
         mVpCircle.setAdapter(new CirclePagerAdapter(getChildFragmentManager()));
