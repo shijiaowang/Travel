@@ -53,6 +53,7 @@ public class CircleNavRightHolder extends BaseHolder<CircleNavRight.RightCircle>
                     datas.getCircle_img(),
                     imageOptions
             );
+            x.image().bind(mCivCircleIcon,datas.getCircle_ico(),ImageOptionsUtil.getUserIconImageOptions());
 
 
 

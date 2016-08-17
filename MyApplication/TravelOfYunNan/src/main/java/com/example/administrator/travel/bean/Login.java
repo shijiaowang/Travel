@@ -6,27 +6,12 @@ import java.io.Serializable;
  * Created by Administrator on 2016/7/26 0026.
  */
 public class Login {
-    /**
-     * code : 1
-     * message : 成功
-     * data : {"id":"1","tel":"18281614311","pwd":"14e1b600b1fd579f47433b88e8d85291","nick_name":"18281614311","name":"","sex":"1","birthday":"0000-00-00 00:00:00","email":"","id_card":"","user_img":"","add_time":"0"}
-     */
+
+
 
     private int code;
     private String message;
-    /**
-     * id : 1
-     * tel : 18281614311
-     * pwd : 14e1b600b1fd579f47433b88e8d85291
-     * nick_name : 18281614311
-     * name :
-     * sex : 1
-     * birthday : 0000-00-00 00:00:00
-     * email :
-     * id_card :
-     * user_img :
-     * add_time : 0
-     */
+
 
     private UserInfo data;
 
@@ -57,14 +42,18 @@ public class Login {
     public static class UserInfo implements Serializable{
         private String id;
         private String tel;
+        private String name;
         private String pwd;
         private String nick_name;
-        private String name;
         private String sex;
         private String birthday;
+        private String province;
+        private String city;
         private String email;
         private String id_card;
         private String user_img;
+        private String content;
+        private String status;
         private String add_time;
 
         public String getId() {
@@ -83,6 +72,14 @@ public class Login {
             this.tel = tel;
         }
 
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
         public String getPwd() {
             return pwd;
         }
@@ -99,14 +96,6 @@ public class Login {
             this.nick_name = nick_name;
         }
 
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
         public String getSex() {
             return sex;
         }
@@ -121,6 +110,22 @@ public class Login {
 
         public void setBirthday(String birthday) {
             this.birthday = birthday;
+        }
+
+        public String getProvince() {
+            return province;
+        }
+
+        public void setProvince(String province) {
+            this.province = province;
+        }
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
         }
 
         public String getEmail() {
@@ -145,6 +150,22 @@ public class Login {
 
         public void setUser_img(String user_img) {
             this.user_img = user_img;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
 
         public String getAdd_time() {

@@ -21,7 +21,7 @@ public class BulletinBoardAdapter extends TravelBaseAdapter{
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Object item) {
+    protected void initListener(BaseHolder baseHolder, Object item, int position) {
 
     }
 

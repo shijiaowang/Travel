@@ -22,7 +22,7 @@ public class SystemMessageAdapter extends TravelBaseAdapter<SystemMessage> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, SystemMessage item) {
+    protected void initListener(BaseHolder baseHolder, SystemMessage item, int position) {
 
     }
 

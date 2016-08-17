@@ -1,9 +1,6 @@
 package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import com.example.administrator.travel.bean.Album;
 import com.example.administrator.travel.ui.adapter.holer.AlbumHolder;
@@ -26,7 +23,7 @@ public class AlbumAdapter extends TravelBaseAdapter<Album> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Album item) {
+    protected void initListener(BaseHolder baseHolder, Album item, int position) {
 
     }
 

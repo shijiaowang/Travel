@@ -22,7 +22,7 @@ public class FindRecommendAdapter extends TravelBaseAdapter<FindRecommend> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, FindRecommend item) {
+    protected void initListener(BaseHolder baseHolder, FindRecommend item, int position) {
 
     }
 

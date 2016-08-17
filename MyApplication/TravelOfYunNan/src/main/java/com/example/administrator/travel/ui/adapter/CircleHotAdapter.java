@@ -24,7 +24,7 @@ public class CircleHotAdapter extends TravelBaseAdapter<CircleHot> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, CircleHot item) {
+    protected void initListener(BaseHolder baseHolder, CircleHot item, int position) {
 
     }
 

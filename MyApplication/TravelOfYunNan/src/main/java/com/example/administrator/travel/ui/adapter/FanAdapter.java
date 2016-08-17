@@ -23,7 +23,7 @@ public class FanAdapter extends TravelBaseAdapter<Fan.FanPeople> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Fan.FanPeople item) {
+    protected void initListener(BaseHolder baseHolder, Fan.FanPeople item, int position) {
 
     }
 

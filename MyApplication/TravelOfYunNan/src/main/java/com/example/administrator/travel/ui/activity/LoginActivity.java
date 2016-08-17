@@ -16,6 +16,7 @@ import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.view.LineEditText;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
@@ -34,7 +35,7 @@ import de.greenrobot.event.EventBus;
  */
 public class LoginActivity extends Activity implements View.OnClickListener {
     public static final int SPLASH_RESULT=1;//返回
-    private EditText mEdPassword;
+    private LineEditText mEdPassword;
     private AutoCompleteTextView mEdName;
     private Button mBtLogin;
     private SharedPreferences sharedPreferences;
@@ -59,7 +60,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
         mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
         mEdName = (AutoCompleteTextView) findViewById(R.id.et_name);
-        mEdPassword = (EditText) findViewById(R.id.et_password);
+        mEdPassword = (LineEditText) findViewById(R.id.et_password);
         mBtLogin = (Button) findViewById(R.id.bt_login);
     }
 

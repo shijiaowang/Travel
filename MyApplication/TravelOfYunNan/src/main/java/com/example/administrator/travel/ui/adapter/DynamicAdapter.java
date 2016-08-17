@@ -22,7 +22,7 @@ public class DynamicAdapter extends TravelBaseAdapter<Dynamic> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Dynamic item) {
+    protected void initListener(BaseHolder baseHolder, Dynamic item, int position) {
 
     }
 

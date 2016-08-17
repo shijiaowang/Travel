@@ -1,7 +1,6 @@
 package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
-import android.view.View;
 
 import com.example.administrator.travel.bean.Discuss;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
@@ -23,7 +22,7 @@ public class DeliciousDiscussAdapter extends TravelBaseAdapter<Discuss> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Discuss item) {
+    protected void initListener(BaseHolder baseHolder, Discuss item, int position) {
 
     }
 

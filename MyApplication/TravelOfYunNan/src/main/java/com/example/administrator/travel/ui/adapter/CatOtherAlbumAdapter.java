@@ -22,7 +22,7 @@ public class CatOtherAlbumAdapter extends TravelBaseAdapter<CatOtherAlbum> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, CatOtherAlbum item) {
+    protected void initListener(BaseHolder baseHolder, CatOtherAlbum item, int position) {
 
     }
 

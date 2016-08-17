@@ -22,7 +22,7 @@ public class AppointWithMeAdapter extends TravelBaseAdapter<AppointWithMe> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, AppointWithMe item) {
+    protected void initListener(BaseHolder baseHolder, AppointWithMe item, int position) {
 
     }
 

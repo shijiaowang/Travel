@@ -22,7 +22,7 @@ public class AiteAdapter extends TravelBaseAdapter<AiteFollow> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, AiteFollow item) {
+    protected void initListener(BaseHolder baseHolder, AiteFollow item, int position) {
 
     }
 

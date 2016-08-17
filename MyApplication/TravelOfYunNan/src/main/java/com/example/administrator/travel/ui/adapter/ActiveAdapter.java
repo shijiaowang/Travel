@@ -22,7 +22,7 @@ public class ActiveAdapter extends TravelBaseAdapter<Active> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Active item) {
+    protected void initListener(BaseHolder baseHolder, Active item, int position) {
 
     }
 

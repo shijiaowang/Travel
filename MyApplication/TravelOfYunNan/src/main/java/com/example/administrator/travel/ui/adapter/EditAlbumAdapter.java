@@ -39,7 +39,7 @@ public class EditAlbumAdapter extends TravelBaseAdapter<EditAlbum>{
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, EditAlbum item) {
+    protected void initListener(BaseHolder baseHolder, EditAlbum item, int position) {
 
     }
 

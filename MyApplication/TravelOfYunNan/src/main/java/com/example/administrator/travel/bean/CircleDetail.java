@@ -7,18 +7,11 @@ import java.util.List;
  */
 public class CircleDetail {
 
-    /**
-     * code : 1
-     * message : 加载成功
-     * data : {"head":{"cid":"4","cname":"摆龙门阵","circle_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889114ece.png","title_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889439ca6.png","circle_ico":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b288a78346e.png","title":"这是一个侧但的地方","count_follow":"1","count_forum":"16"},"body":[{"id":"17","cid":"4","user_id":"10002","title":"啦啦啦啦","contents":"","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b2852bca526.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd2226.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd9f26.jpg","time":"1471317291","status":"1","is_hot":"0","update_time":"0","nick_name":"","user_img":"http://192.168.1.38","cname":"摆龙门阵","count_reply":"0","count_like":"0"},{"id":"16","cid":"4","user_id":"10002","title":"啦啦啦啦","contents":"","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b2852bca526.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd2226.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd9f26.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b28515c08e6.jpg|/Uploads/Api/Forum/2016-08-16/57b28515c9586.jpg|/Uploads/Api/Forum/2016-08-16/57b28515d1286.jpg","time":"1471317269","status":"1","is_hot":"0","update_time":"0","nick_name":"","user_img":"http://192.168.1.38","cname":"摆龙门阵","count_reply":"0","count_like":"0"},{"id":"15","cid":"4","user_id":"1","title":"cheshi","contents":"","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b2852bca526.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd2226.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd9f26.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b28515c08e6.jpg|/Uploads/Api/Forum/2016-08-16/57b28515c9586.jpg|/Uploads/Api/Forum/2016-08-16/57b28515d1286.jpg,http://192.168.1.38","time":"1471316898","status":"1","is_hot":"0","update_time":"0","nick_name":"云说","user_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","cname":"摆龙门阵","count_reply":"0","count_like":"0"}]}
-     */
+
 
     private int code;
     private String message;
-    /**
-     * head : {"cid":"4","cname":"摆龙门阵","circle_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889114ece.png","title_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889439ca6.png","circle_ico":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b288a78346e.png","title":"这是一个侧但的地方","count_follow":"1","count_forum":"16"}
-     * body : [{"id":"17","cid":"4","user_id":"10002","title":"啦啦啦啦","contents":"","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b2852bca526.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd2226.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd9f26.jpg","time":"1471317291","status":"1","is_hot":"0","update_time":"0","nick_name":"","user_img":"http://192.168.1.38","cname":"摆龙门阵","count_reply":"0","count_like":"0"},{"id":"16","cid":"4","user_id":"10002","title":"啦啦啦啦","contents":"","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b2852bca526.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd2226.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd9f26.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b28515c08e6.jpg|/Uploads/Api/Forum/2016-08-16/57b28515c9586.jpg|/Uploads/Api/Forum/2016-08-16/57b28515d1286.jpg","time":"1471317269","status":"1","is_hot":"0","update_time":"0","nick_name":"","user_img":"http://192.168.1.38","cname":"摆龙门阵","count_reply":"0","count_like":"0"},{"id":"15","cid":"4","user_id":"1","title":"cheshi","contents":"","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b2852bca526.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd2226.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd9f26.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b28515c08e6.jpg|/Uploads/Api/Forum/2016-08-16/57b28515c9586.jpg|/Uploads/Api/Forum/2016-08-16/57b28515d1286.jpg,http://192.168.1.38","time":"1471316898","status":"1","is_hot":"0","update_time":"0","nick_name":"云说","user_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","cname":"摆龙门阵","count_reply":"0","count_like":"0"}]
-     */
+
 
     private DataBean data;
 
@@ -47,36 +40,10 @@ public class CircleDetail {
     }
 
     public static class DataBean {
-        /**
-         * cid : 4
-         * cname : 摆龙门阵
-         * circle_img : http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889114ece.png
-         * title_img : http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889439ca6.png
-         * circle_ico : http://192.168.1.38/Uploads/Picture/2016-08-16/57b288a78346e.png
-         * title : 这是一个侧但的地方
-         * count_follow : 1
-         * count_forum : 16
-         */
+
 
         private HeadBean head;
-        /**
-         * id : 17
-         * cid : 4
-         * user_id : 10002
-         * title : 啦啦啦啦
-         * contents :
-         * inform :
-         * forum_img : http://192.168.1.38/Uploads/Api/Forum/2016-08-16/57b2852bca526.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd2226.jpg|/Uploads/Api/Forum/2016-08-16/57b2852bd9f26.jpg
-         * time : 1471317291
-         * status : 1
-         * is_hot : 0
-         * update_time : 0
-         * nick_name :
-         * user_img : http://192.168.1.38
-         * cname : 摆龙门阵
-         * count_reply : 0
-         * count_like : 0
-         */
+
 
         private List<BodyBean> body;
 
@@ -105,6 +72,7 @@ public class CircleDetail {
             private String title;
             private String count_follow;
             private String count_forum;
+            private String is_follow;
 
             public String getCid() {
                 return cid;
@@ -169,6 +137,14 @@ public class CircleDetail {
             public void setCount_forum(String count_forum) {
                 this.count_forum = count_forum;
             }
+
+            public String getIs_follow() {
+                return is_follow;
+            }
+
+            public void setIs_follow(String is_follow) {
+                this.is_follow = is_follow;
+            }
         }
 
         public static class BodyBean {
@@ -176,7 +152,7 @@ public class CircleDetail {
             private String cid;
             private String user_id;
             private String title;
-            private String contents;
+            private String content;
             private String inform;
             private String forum_img;
             private String time;
@@ -188,6 +164,7 @@ public class CircleDetail {
             private String cname;
             private String count_reply;
             private String count_like;
+            private String is_like;
 
             public String getId() {
                 return id;
@@ -221,12 +198,12 @@ public class CircleDetail {
                 this.title = title;
             }
 
-            public String getContents() {
-                return contents;
+            public String getContent() {
+                return content;
             }
 
-            public void setContents(String contents) {
-                this.contents = contents;
+            public void setContent(String content) {
+                this.content = content;
             }
 
             public String getInform() {
@@ -315,6 +292,14 @@ public class CircleDetail {
 
             public void setCount_like(String count_like) {
                 this.count_like = count_like;
+            }
+
+            public String getIs_like() {
+                return is_like;
+            }
+
+            public void setIs_like(String is_like) {
+                this.is_like = is_like;
             }
         }
     }

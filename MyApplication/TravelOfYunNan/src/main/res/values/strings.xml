@@ -118,6 +118,9 @@
     <string name="close_more">收起全部 ∧ </string>
     <string name="post">帖子：</string>
     <string name="follow">关注：</string>
+    <!--关注和已关注-->
+    <string name="activity_circle_detail_follow">＋ 关注</string>
+    <string name="activity_circle_detail_followed">√ 已关注</string>
 
 
 </resources>

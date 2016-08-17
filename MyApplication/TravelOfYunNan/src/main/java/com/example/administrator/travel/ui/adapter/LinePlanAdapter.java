@@ -23,7 +23,7 @@ public class LinePlanAdapter extends TravelBaseAdapter<Line> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder,  final Line item) {
+    protected void initListener(BaseHolder baseHolder, final Line item, int position) {
         if (baseHolder instanceof LinePlanHolder){
             final LinePlanHolder linePlanHolder = (LinePlanHolder) baseHolder;
             linePlanHolder.mTvAdd.setOnClickListener(new View.OnClickListener() {

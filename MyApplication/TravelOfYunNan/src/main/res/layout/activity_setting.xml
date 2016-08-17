@@ -49,8 +49,9 @@
                     android:text="用户ID" />
 
                 <TextView
+                    android:id="@+id/tv_user_id"
                     style="@style/activitySettingTvValue"
-                    android:text="5758642" />
+                    />
             </LinearLayout>
 
             <View style="@style/activitySettingLine" />
@@ -62,8 +63,9 @@
                     android:text="昵称" />
 
                 <TextView
+                    android:id="@+id/tv_user_nick_name"
                     style="@style/activitySettingTvValue"
-                    android:text="安阳" />
+                     />
             </LinearLayout>
 
             <View style="@style/activitySettingLine" />
@@ -75,8 +77,9 @@
                     android:text="性别" />
 
                 <TextView
+                    android:id="@+id/tv_user_sex"
                     style="@style/activitySettingTvValue"
-                    android:text="女" />
+                     />
             </LinearLayout>
 
             <View style="@style/activitySettingLine" />
@@ -88,8 +91,9 @@
                     android:text="地区" />
 
                 <TextView
+                    android:id="@+id/tv_user_live_place"
                     style="@style/activitySettingTvValue"
-                    android:text="云南-昆明" />
+                     />
             </LinearLayout>
 
             <View style="@style/activitySettingLine" />
@@ -129,10 +133,11 @@
                     android:layout_height="1dp"
                     android:layout_weight="1" />
 
-                <TextView
+                <com.example.administrator.travel.ui.view.PhoneTextView
+                    android:id="@+id/ptv_phone"
                     style="@style/activitySettingTvValue"
                     android:layout_marginRight="17dp"
-                    android:text="13********4" />
+                   />
 
                 <TextView
                     android:id="@+id/tv_cursor_phone"

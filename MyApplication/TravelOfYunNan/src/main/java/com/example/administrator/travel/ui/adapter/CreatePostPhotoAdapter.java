@@ -22,7 +22,7 @@ public class CreatePostPhotoAdapter extends TravelBaseAdapter {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Object item) {
+    protected void initListener(BaseHolder baseHolder, Object item, int position) {
 
     }
 

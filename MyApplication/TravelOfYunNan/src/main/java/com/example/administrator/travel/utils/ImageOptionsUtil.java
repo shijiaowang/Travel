@@ -1,6 +1,7 @@
 package com.example.administrator.travel.utils;
 
 
+import org.xutils.common.util.DensityUtil;
 import org.xutils.image.ImageOptions;
 
 /**
@@ -33,8 +34,9 @@ public class ImageOptionsUtil {
             userIconImageOptions = new ImageOptions.Builder()
                     .setCircular(true)//使用圆形图片
                     .setUseMemCache(true)//使用缓存
+                    .setRadius(DensityUtil.dip2px(5))
                     /*.setSize(DensityUtil.dip2px(120), DensityUtil.dip2px(120))
-                    .setRadius(DensityUtil.dip2px(5))*/
+
                     // 如果ImageView的大小不是定义为wrap_content, 不要crop.
                    /* .setCrop(true) */// 很多时候设置了合适的scaleType也不需要它.
                     // 加载中或错误图片的ScaleType

@@ -23,7 +23,7 @@ public class FindHotAdapter  extends TravelBaseAdapter<FindHot>{
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, FindHot item) {
+    protected void initListener(BaseHolder baseHolder, FindHot item, int position) {
 
     }
 

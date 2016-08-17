@@ -22,7 +22,7 @@ public class DeliciousDetailAdapter extends TravelBaseAdapter<DeliciousDetail> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, DeliciousDetail item) {
+    protected void initListener(BaseHolder baseHolder, DeliciousDetail item, int position) {
 
     }
 

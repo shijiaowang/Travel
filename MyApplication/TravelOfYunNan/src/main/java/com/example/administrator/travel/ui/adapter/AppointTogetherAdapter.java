@@ -22,7 +22,7 @@ public class AppointTogetherAdapter extends TravelBaseAdapter<AppointTogether> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, AppointTogether item) {
+    protected void initListener(BaseHolder baseHolder, AppointTogether item, int position) {
 
     }
 

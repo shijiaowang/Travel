@@ -7,6 +7,7 @@ import com.example.administrator.travel.bean.Fan;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.FanAdapter;
+import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -39,7 +40,7 @@ public class FanFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        Map<String, String> follwMap = MapUtils.Build().addKey(getContext()).add("user_id", UserUtils.getUserInfo().getId()).end();
+        Map<String, String> follwMap = MapUtils.Build().addKey(getContext()).add("user_id", GlobalUtils.getUserInfo().getId()).end();
         XEventUtils.getUseCommonBackJson(IVariable.GET_FOLLOW_USER, follwMap, IVariable.TYPE_GET_FAN);
 
     }

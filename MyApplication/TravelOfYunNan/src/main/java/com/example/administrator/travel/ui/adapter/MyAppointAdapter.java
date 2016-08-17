@@ -27,7 +27,7 @@ public class MyAppointAdapter extends TravelBaseAdapter<MyAppoint> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, MyAppoint item) {
+    protected void initListener(BaseHolder baseHolder, MyAppoint item, int position) {
         if (item == null) {
             return;
         }

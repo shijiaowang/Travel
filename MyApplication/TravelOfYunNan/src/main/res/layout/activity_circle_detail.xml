@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorFAFAFA"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:focusableInTouchMode="true">
+
     <com.example.administrator.travel.ui.view.SlippingScrollView
         android:id="@id/ssv_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,8 +24,7 @@
                     android:id="@+id/iv_post_bg"
                     android:layout_width="match_parent"
                     android:layout_height="202dp"
-                    android:scaleType="fitXY"
-                    />
+                    android:scaleType="fitXY" />
 
                 <ImageView
                     android:id="@+id/iv_post_icon"
@@ -31,8 +32,7 @@
                     android:layout_height="63dp"
                     android:layout_marginLeft="14dp"
                     android:layout_marginTop="175dp"
-                    android:scaleType="fitXY"
-                   />
+                    android:scaleType="fitXY" />
 
                 <TextView
                     android:id="@+id/tv_circle_name"
@@ -41,26 +41,26 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="180dp"
                     android:layout_toRightOf="@id/iv_post_icon"
-
                     android:textColor="#ffffff"
                     android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/iv_follow"
+                <TextView
+                    android:id="@+id/tv_follow"
+                    android:textColor="@color/colorFAFAFA"
+                    android:gravity="center"
                     android:layout_width="60dp"
                     android:layout_height="23dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="14dp"
                     android:layout_marginTop="170dp"
-                    android:src="@drawable/activity_circle_follow" />
+                    android:background="@drawable/activity_circle_detail_follow_bg" />
 
                 <TextView
                     android:id="@+id/tv_des"
                     style="@style/CircleText"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="208dp"
-                    android:layout_toRightOf="@id/iv_post_icon"
-                    />
+                    android:layout_toRightOf="@id/iv_post_icon" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -102,22 +102,18 @@
                 android:layout_marginTop="10dp"
                 android:background="#f6f6f6" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"></LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#f6f6f6" />
 
             <com.example.administrator.travel.ui.view.ToShowAllListView
-                android:layout_marginTop="17dp"
-                android:divider="@null"
                 android:id="@+id/lv_post"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:cacheColorHint="@android:color/transparent">
+                android:layout_marginTop="17dp"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="@null">
             </com.example.administrator.travel.ui.view.ToShowAllListView>
         </LinearLayout>
     </com.example.administrator.travel.ui.view.SlippingScrollView>

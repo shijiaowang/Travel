@@ -45,7 +45,7 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Object item) {
+    protected void initListener(BaseHolder baseHolder, Object item, int position) {
         if (baseHolder instanceof PostReplyImageHolder){
 
             PostReplyImageHolder postReplyImageHolder = (PostReplyImageHolder) baseHolder;

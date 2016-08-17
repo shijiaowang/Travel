@@ -22,7 +22,7 @@ public class MessagePrivateAdapter extends TravelBaseAdapter<SystemPrivate> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, SystemPrivate item) {
+    protected void initListener(BaseHolder baseHolder, SystemPrivate item, int position) {
 
     }
 

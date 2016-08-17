@@ -15,6 +15,8 @@ public interface IVariable {
     String FIRST_CIRCLE_URL = API_KEY + "Circle/getCirclelists/";
     String NORMAL_CIRCLE_URL = API_KEY + "Circle/getCirclechildlists/";
     String CIRCLE_CREATE_POST = API_KEY + "Circle/setCircleforum/";//圈子发帖
+    String CIRCLE_LIKE_POST = API_KEY + "Circle/setForumlike/";//帖子点赞
+    String CIRCLE_FOLLOW = API_KEY + "Circle/setCirclefollow/";//关注圈子
     String GET_CIRCLE_POST = API_KEY + "Circle/getCircleforumlists/";//获取圈子内帖子列表
     String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注自己的列表
     String REGISTER_USER = API_KEY + "User/register/";//注册
@@ -73,4 +75,10 @@ public interface IVariable {
     String PAGE_SIZE = "PageSize";//每一页有多少数据
     String PAGE = "Page";//第几页
 
+    String FORUM_ID = "forum_id";//帖子id
+    String USER_ID = "user_id";//用户id
+
+
+ String CIRCLE_ID = "circle_id";//圈子ID
+ String TYPE = "type";//取消关注，与关注
 }

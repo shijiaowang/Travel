@@ -3,11 +3,9 @@ package com.example.administrator.travel.ui.adapter;
 import android.content.Context;
 
 import com.example.administrator.travel.bean.Circle;
-import com.example.administrator.travel.bean.CircleNavLeft;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.CircleNavLeftHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +23,7 @@ public class CircleNavLeftAdapter extends TravelBaseAdapter<Circle.DataBean.Circ
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Circle.DataBean.CircleLeftBean item) {
+    protected void initListener(BaseHolder baseHolder, Circle.DataBean.CircleLeftBean item, int position) {
 
     }
 
