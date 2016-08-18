@@ -134,7 +134,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     }
 
     /**
-     * 设置错误信息
+     * 设置 错误信息
      * @param request
      * @param errorMessage
      */
