@@ -21,6 +21,7 @@ public interface IVariable {
     String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注自己的列表
     String REGISTER_USER = API_KEY + "User/register/";//注册
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
+    String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善xinxi
 
 
     //请求type
@@ -66,7 +67,7 @@ public interface IVariable {
     int FIRST_REQ = 0;//第一次请求
     int NORMAL_REQ = 1;//之后的请求
     int TYPE_GET_FAN = 2;//获取关注人列表
-
+ int TYPE_REGISTER_USER = 6;//注册
     int X_UTLIS_ERROR = 100;//xutil相关错误
 
     int TYPE_REFRESH = 3;//刷新
@@ -81,4 +82,7 @@ public interface IVariable {
 
  String CIRCLE_ID = "circle_id";//圈子ID
  String TYPE = "type";//取消关注，与关注
+ String SEX = "sex";//性别
+ String NICK_NAME = "nick_name";//昵称
+
 }

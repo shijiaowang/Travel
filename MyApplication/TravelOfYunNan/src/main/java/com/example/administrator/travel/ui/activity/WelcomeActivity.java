@@ -68,10 +68,8 @@ public class WelcomeActivity extends FullTransparencyActivity {
         int code = sharedPreferences.getInt(IVariable.KEY_CODE, -1);
         //获取key
         if (code != IVariable.OK_KEY_CODE) {
-            LogUtils.e("状态码错误，开始重新获取");
             XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY);
         } else {
-            LogUtils.e("开始验证");
             GlobalValue.KEY_VALUE = sharedPreferences.getString(IVariable.KEY_VALUE, "");
             //验证缓存的登录
             String userName = sharedPreferences.getString(IVariable.SAVE_NAME, "");

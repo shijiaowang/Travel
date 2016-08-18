@@ -18,6 +18,8 @@ import org.xutils.view.annotation.ViewInject;
 public class SplashActivity extends FullTransparencyActivity {
     private static final String CURRENT_POSITION = "current_position";
     public static final int GO_LOGIN = 0;
+    public static final int GO_REGISTER = 1;
+    private static final int GO_REGISTER_SUCCESS = 2;
     @ViewInject(R.id.vv_video)
     private VideoView mVideoView;
     private int currentPosition;
@@ -48,14 +50,15 @@ public class SplashActivity extends FullTransparencyActivity {
         mBtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(SplashActivity.this,RegisterActivity.class));
+                Intent intent = new Intent(SplashActivity.this, RegisterActivity.class);
+                startActivityForResult(intent, GO_REGISTER);
             }
         });
         mBtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivityForResult(intent,GO_LOGIN);
+                startActivityForResult(intent, GO_LOGIN);
 
             }
         });
@@ -111,6 +114,15 @@ public class SplashActivity extends FullTransparencyActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GO_LOGIN && resultCode == LoginActivity.SPLASH_RESULT) {
             finish();
+        }
+        if (requestCode == GO_REGISTER_SUCCESS && resultCode == RegisterSuccessActivity.SPLASH_RESULT) {
+            finish();
+        }
+        if (requestCode == GO_REGISTER && resultCode == RegisterActivity.REGISTER_SUCCESS) {
+            if (data!=null) {
+                data.setClass(this, RegisterSuccessActivity.class);
+                startActivityForResult(data,GO_REGISTER_SUCCESS);
+            }
         }
     }
 

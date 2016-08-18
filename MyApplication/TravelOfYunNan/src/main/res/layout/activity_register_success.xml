@@ -1,6 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+   <View
+       android:alpha="0.85"
+       android:background="@android:color/black"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:paddingTop="15dp"
+            android:layout_marginTop="@dimen/commonStatusHeight"
+            android:layout_gravity="center_horizontal"
+            android:text="注册成功"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+        <LinearLayout
+            style="@style/activityRegisterLl"
+            android:layout_marginTop="39dp">
+
+            <TextView
+                android:id="@+id/tv_nick_name"
+                style="@style/activityRegisterTextIcon"
+                android:text="@string/activity_register_nick_name" />
+
+            <TextView
+                style="@style/activityRegisterText"
+                android:text="昵称" />
+        </LinearLayout>
+
+        <com.example.administrator.travel.ui.view.LineEditText
+            android:paddingTop="20dp"
+            android:maxLength="8"
+            android:id="@+id/et_nick_name"
+            android:layout_height="wrap_content"
+            style="@style/activityRegisterEditText"
+            android:hint="中文/英文/数字" />
+        <LinearLayout
+            style="@style/activityRegisterLl"
+            android:layout_marginTop="28dp">
+
+            <TextView
+                android:id="@+id/tv_sex"
+                style="@style/activityRegisterTextIcon"
+                android:text="@string/activity_register_sex" />
+
+            <TextView
+                style="@style/activityRegisterText"
+                android:text="性别" />
+        </LinearLayout>
+        <RadioGroup
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/rl_boy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/boy"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/activity_register_success_sex_boy"
+                    android:layout_width="30dp"
+                    android:layout_height="44dp" />
+                <RadioButton
+                    android:clickable="false"
+                    android:id="@+id/rb_boy"
+                    android:background="@drawable/select_sex_selector"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/boy"
+                    android:layout_marginLeft="10dp"
+                    android:text="男"
+                    android:textColor="@color/select_sex_selector"
+                    android:textSize="14sp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_girl"
+                android:layout_marginLeft="92dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/girl"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/activity_register_success_sex_girl"
+                    android:layout_width="38dp"
+                    android:layout_height="44dp" />
+                <RadioButton
+                    android:clickable="false"
+                    android:id="@+id/rb_girl"
+                    android:background="@drawable/select_sex_selector"
+                    android:gravity="center"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:button="@null"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/girl"
+                    android:layout_marginLeft="10dp"
+                    android:text="女"
+                    android:textColor="@color/select_sex_selector"
+                    android:textSize="14sp"
+                   />
+            </RelativeLayout>
+
+        </RadioGroup>
+        <Button
+            android:id="@+id/bt_start"
+            android:text="开启云说之旅"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/fragment_find_search_bg"
+            android:layout_width="match_parent"
+            android:layout_height="41dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

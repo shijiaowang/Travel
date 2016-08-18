@@ -153,7 +153,7 @@ public class NavLeftFragment extends LoadBaseFragment {
                 firstReq(event);//第一次请求
             } else {
                 if (circleNavRightAdapter==null){
-                    firstReq();//第一次就为进行加载，所以为空，在这里重新加载
+                    firstReq();//第一次就没有进行加载，所以为空，在这里重新加载
                     return;
                 }
                 LogUtils.e(event.getResult());

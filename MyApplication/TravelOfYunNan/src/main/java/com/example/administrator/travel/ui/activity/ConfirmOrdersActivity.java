@@ -40,6 +40,7 @@ public class ConfirmOrdersActivity extends BarBaseActivity implements View.OnCli
     protected void initContentView() {
         mTvPayZfb = FontsIconUtil.findIconFontsById(R.id.tv_pay_zfb, this);
         mTvPayWx = FontsIconUtil.findIconFontsById(R.id.tv_pay_wx, this);
+        FontsIconUtil.findIconFontsById(this,R.id.tv_zfb,R.id.tv_we_chat);
         selectPayWay.add(mTvPayZfb);
         selectPayWay.add(mTvPayWx);
 

@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.activity.CustomerServiceActivity;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
@@ -40,6 +41,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private TextView mTvAppoint;
     private TextView mTvMyCollection;
     private TextView mTvMyOrder;
+    private LinearLayout mLlCustomerCenter;
 
     @Override
     protected int initLayoutRes() {
@@ -58,6 +60,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvFanNumber = (TextView) root.findViewById(R.id.tv_fan_number);
         mLlAlbum = (LinearLayout) root.findViewById(R.id.ll_album);
         mLlSetting = (LinearLayout) root.findViewById(R.id.ll_setting);
+        mLlCustomerCenter = (LinearLayout) root.findViewById(R.id.ll_customer_center);
         mIvSetting = (ImageView) root.findViewById(R.id.iv_setting);
         mTvMyCollection = (TextView) root.findViewById(R.id.tv_my_collection);
         mTvMyOrder = (TextView) root.findViewById(R.id.tv_my_order);
@@ -97,6 +100,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mLlAlbum.setOnClickListener(this);//相册
         mTvMyCollection.setOnClickListener(this);//我的收藏
         mTvMyOrder.setOnClickListener(this);//我的订单
+        mLlCustomerCenter.setOnClickListener(this);//客服中心
     }
 
     @Override
@@ -132,6 +136,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.tv_my_order:
                 startActivity(new Intent(getContext(), OrdersCenterActivity.class));
+                break;
+            case R.id.ll_customer_center:
+                startActivity(new Intent(getContext(), CustomerServiceActivity.class));
                 break;
         }
     }

@@ -458,7 +458,7 @@
          <item name="android:layout_marginLeft">14dp</item>
     </style>
     <style name="activityRegisterEditText">
-
+        <item name="android:singleLine">true</item>
         <item name="android:textColor">@color/colorFAFAFA</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
