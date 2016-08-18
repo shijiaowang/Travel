@@ -49,6 +49,8 @@
         <activity android:name=".ui.activity.TravelsActivity"/>
         <activity android:name=".ui.activity.ActivateDetailActivity"/>
         <activity android:name=".ui.activity.DeliciousDetailActivity"/>
+        <activity android:name=".ui.activity.BaseTransActivity"
+            />
         <activity android:name=".ui.activity.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />
@@ -64,7 +66,12 @@
         <activity android:name=".ui.activity.OrdersCenterActivity"/>
         <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
         <activity android:name=".ui.activity.CollectionDetailActivity"/>
-        <activity android:name=".ui.activity.RegisterActivity"/>
+        <activity android:name=".ui.activity.RegisterActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            />
+        <activity android:name=".ui.activity.RegisterSuccessActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            />
         <activity android:name=".ui.activity.CircleDetailActivity"/>
         <activity android:name=".ui.activity.CreatePostActivity"
             android:windowSoftInputMode="adjustResize"

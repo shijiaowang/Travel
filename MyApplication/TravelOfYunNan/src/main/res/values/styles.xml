@@ -441,5 +441,35 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+    <style name="activityRegisterLl">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginTop">33dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="activityRegisterTextIcon">
+        <item name="android:textColor">@color/colorFAFAFA</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="activityRegisterText" parent="activityRegisterTextIcon">
+         <item name="android:layout_marginLeft">14dp</item>
+    </style>
+    <style name="activityRegisterEditText">
+
+        <item name="android:textColor">@color/colorFAFAFA</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:textColorHint">@color/colorDddddd</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">29dp</item>
+    </style>
+
+
 
 </resources>

@@ -35,8 +35,9 @@ public class LineEditText extends EditText {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setAntiAlias(true);
-        mPaint.setColor(getContext().getResources().getColor(R.color.colorFAFAFA));
         lineHeight = UIUtils.dip2px(1f, getContext());
+        mPaint.setColor(getContext().getResources().getColor(R.color.colorFAFAFA));
+        mPaint.setStrokeWidth(UIUtils.dip2px(1f, getContext()));
         setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -57,6 +58,7 @@ public class LineEditText extends EditText {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 //      画底线
+
         canvas.drawLine(0, this.getHeight() - lineHeight, this.getWidth(), this.getHeight(), mPaint);
     }
     private FocusChangeListener focusChangeListener;

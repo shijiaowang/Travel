@@ -1,13 +1,10 @@
 package com.example.administrator.travel.ui.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -25,6 +22,9 @@ import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.UserUtils;
 import com.example.administrator.travel.utils.XEventUtils;
+
+import org.xutils.view.annotation.ViewInject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,10 +33,13 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by Administrator on 2016/7/26 0026.
  */
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends BaseTransActivity implements View.OnClickListener {
     public static final int SPLASH_RESULT=1;//返回
+    @ViewInject(R.id.et_password)
     private LineEditText mEdPassword;
+    @ViewInject(R.id.et_name)
     private AutoCompleteTextView mEdName;
+    @ViewInject(R.id.bt_login)
     private Button mBtLogin;
     private SharedPreferences sharedPreferences;
     private String key;
@@ -45,27 +48,21 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private String name;
     private String password;
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initView();
-        initListener();
+    protected void initData() {
+
     }
 
-
-
-
-    private void initView() {
-        sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
+    @Override
+    protected void initView() {
         mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
-        mEdName = (AutoCompleteTextView) findViewById(R.id.et_name);
-        mEdPassword = (LineEditText) findViewById(R.id.et_password);
-        mBtLogin = (Button) findViewById(R.id.bt_login);
+        sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
     }
 
-
-    private void initListener() {
+   @Override
+    protected void initListener() {
         mTvBack.setOnClickListener(this);
         mBtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +78,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         });
 
+    }
+
+    @Override
+    protected int initRes() {
+        return R.layout.activity_login;
     }
 
     private void goToLogin() {

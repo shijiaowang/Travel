@@ -27,6 +27,18 @@ public class FontsIconUtil {
     }
 
     /**
+     * 可变数组设置字体图标
+     * @param activity
+     * @param resId
+     */
+    public static void findIconFontsById(Activity activity,int ... resId){
+        for (Integer integer:resId) {
+            TextView iconView = (TextView) activity.findViewById(integer);
+            iconView.setTypeface(TypefaceUtis.getTypeface(activity));
+        }
+    }
+
+    /**
      * 文字变粗
      * @param resId
      * @param context

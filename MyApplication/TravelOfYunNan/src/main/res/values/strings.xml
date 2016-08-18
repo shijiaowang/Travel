@@ -80,6 +80,9 @@
     <string name="fragment_home_spot">娣</string>
     <!--热门景点-->
     <string name="activity_active_item_air">萱</string>
+    <string name="activity_register_phone">冀</string><!--手机-->
+    <string name="activity_register_message">芯</string><!--短信-->
+    <string name="activity_register_password">觅</string><!--锁-->
     <!--纸飞机-->
     <string name="fragment_play_with_me_add">桁</string>
     <!--地点-->
@@ -121,6 +124,12 @@
     <!--关注和已关注-->
     <string name="activity_circle_detail_follow">＋ 关注</string>
     <string name="activity_circle_detail_followed">√ 已关注</string>
+    <string name="ver_is_error">验证码不正确</string>
+    <string name="enter_right_11_number">请输入11位手机号</string>
+    <string name="enterr_right_number_with_11">请输入正确的11位手机号</string>
+    <string name="please_enter_password">请输入密码</string>
+    <string name="password_not_consistent">密码不一致</string>
+    <string name="ver_is_empty">请输入验证码</string>
 
 
 </resources>
