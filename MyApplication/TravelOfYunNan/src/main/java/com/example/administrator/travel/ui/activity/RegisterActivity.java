@@ -134,7 +134,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
             requestAndSetErrorMessage(mEtPassword, getString(R.string.password_not_consistent));
             return;
         }
-        Map<String, String> map = MapUtils.Build().addKey(RegisterActivity.this).add("name", phone).add("pwd", password).add("code", ver).end();
+        Map<String, String> map = MapUtils.Build().addKey(RegisterActivity.this).add(IVariable.USERNAME, phone).add(IVariable.PASSWORD, password).add(IVariable.CODE, ver).end();
         XEventUtils.postUseCommonBackJson(IVariable.REGISTER_USER, map, REGISTER_REQ);
     }
 
@@ -163,7 +163,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     private void sendVerCode() {
         String phone = mEtPhone.getText().toString().trim();
         if (checkPhoneNumber(phone)) return;
-        Map<String, String> map = MapUtils.Build().addKey(RegisterActivity.this).add("tel", phone).end();
+        Map<String, String> map = MapUtils.Build().addKey(RegisterActivity.this).add(IVariable.TEL, phone).end();
         XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, VERIFICATION_REQ);
     }
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorFAFAFA"
+    android:paddingLeft="22dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="请输入手机号码"
+       style="@style/activityChangePhoneText"
+        android:layout_marginTop="21dp"
+    />
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="+86"
+            style="@style/activityChangePhoneText"/>
+        <EditText
+            android:paddingLeft="10dp"
+            android:id="@+id/et_phone"
+            android:layout_marginLeft="10dp"
+            android:lines="1"
+            android:singleLine="true"
+            android:maxLength="11"
+            android:background="@drawable/activity_change_phone_bg"
+            android:layout_width="230dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/bt_next"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="@color/colorFAFAFA"
+        android:textSize="14sp"
+        android:background="@drawable/button_bg_un_click"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="280dp"
+        android:layout_height="40dp" />
+
+</LinearLayout>

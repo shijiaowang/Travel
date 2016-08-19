@@ -1,6 +1,8 @@
 package com.example.administrator.travel.ui.activity;
 
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -53,12 +55,13 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
 
     @Override
     protected void initView() {
-        FontsIconUtil.findIconFontsById(this,R.id.tv_nick_name,R.id.tv_sex);
+        FontsIconUtil.findIconFontsById(this, R.id.tv_nick_name, R.id.tv_sex);
     }
 
     @Override
     protected void initData() {
         user_id = getIntent().getStringExtra(IVariable.USER_ID);
+        btIsClick(mBtStart, false);
     }
 
     @Override
@@ -66,6 +69,22 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
         mBtStart.setOnClickListener(this);
         mRlBoy.setOnClickListener(this);
         mRlGirl.setOnClickListener(this);
+        mEtNickName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+               setClicked();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
@@ -79,14 +98,29 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
             case R.id.bt_start:
                 perfectInformation();
                 break;
+            default:
+                selectSex(v.getId());
+                break;
+        }
+    }
+
+    private void selectSex(int id) {
+        setClicked();
+        switch (id) {
             case R.id.rl_girl:
                 mRbGirl.setChecked(true);
                 mRbBoy.setChecked(false);
-                break;
+                return;
             case R.id.rl_boy:
                 mRbBoy.setChecked(true);
                 mRbGirl.setChecked(false);
                 break;
+        }
+    }
+
+    private void setClicked() {
+        if (!(StringUtils.isEmpty(mEtNickName.getText().toString().trim())) && (mRbBoy.isChecked() || mRbBoy.isChecked())){
+            btIsClick(mBtStart,true);
         }
     }
 
@@ -114,13 +148,13 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
         if (StringUtils.isEmpty(user_id)) {
             return;
         }
-        if (!(mRbGirl.isChecked() || mRbBoy.isChecked())){
+        if (!(mRbGirl.isChecked() || mRbBoy.isChecked())) {
             ToastUtils.showToast(getString(R.string.please_select_your_sex));
             return;
         }
 
-            Map<String, String> infoMap = MapUtils.Build().addKey(RegisterSuccessActivity.this).add(IVariable.USER_ID, user_id).add(IVariable.SEX, "1").add(IVariable.NICK_NAME, nickName).end();
-            XEventUtils.postUseCommonBackJson(IVariable.PERFECT_INFORMATION, infoMap, IVariable.TYPE_REGISTER_USER);
+        Map<String, String> infoMap = MapUtils.Build().addKey(RegisterSuccessActivity.this).add(IVariable.USER_ID, user_id).add(IVariable.SEX,mRbBoy.isChecked()?"1":"0").add(IVariable.NICK_NAME, nickName).end();
+        XEventUtils.postUseCommonBackJson(IVariable.PERFECT_INFORMATION, infoMap, IVariable.TYPE_REGISTER_USER);
 
     }
 
@@ -147,13 +181,12 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
     }
 
     private void dealData(HttpEvent event) {
-        switch (event.getType()){
+        switch (event.getType()) {
             case IVariable.TYPE_REGISTER_USER:
                 dealRegister(event);
                 break;
         }
     }
-
 
 
     private void gotoHomeActivity() {

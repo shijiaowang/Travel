@@ -138,6 +138,7 @@
     <string name="please_enter_nick_name">请输入昵称(最多8位)</string>
     <string name="please_select_your_sex">请选择性别</string>
     <string name="not_send_ver">尚未请求验证码</string>
+    <string name="save_change">保存修改</string>
 
 
 </resources>

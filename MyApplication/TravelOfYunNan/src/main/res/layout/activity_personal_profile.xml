@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/colorFAFAFA"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <EditText
+            android:id="@+id/et_profile"
+            android:maxLength="80"
+            android:textSize="12sp"
+            android:textColor="@color/color323232"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/ll_hint"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_write"
+                android:text="@string/activity_activate_detail_pen"
+                android:textColor="@color/colorC1c1c1"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:text="介绍一下你自己吧"
+                android:textColor="@color/colorC1c1c1"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_marginRight="10dp"
+            android:text="0/80"
+            android:textColor="@color/colorC1c1c1"
+            android:textSize="12sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/bt_save_change"
+        android:text="@string/save_change"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_bg_un_click"
+        android:textColor="@color/colorFAFAFA"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_marginTop="29dp"
+        android:layout_width="150dp"
+        android:layout_height="35dp" />
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorFAFAFA"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_marginLeft="22dp"
+        android:text="请输入短信验证码"
+       style="@style/activityChangePhoneText"
+        android:layout_marginTop="21dp"
+    />
+        <EditText
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:id="@+id/et_ver"
+            android:lines="1"
+            android:singleLine="true"
+            android:maxLength="6"
+            android:background="@drawable/activity_change_phone_bg"
+            android:layout_width="230dp"
+            android:layout_height="30dp" />
+    <Button
+        android:id="@+id/bt_submit"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/colorFAFAFA"
+        android:textSize="14sp"
+        android:background="@drawable/button_bg_un_click"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="280dp"
+        android:layout_height="40dp" />
+
+</LinearLayout>

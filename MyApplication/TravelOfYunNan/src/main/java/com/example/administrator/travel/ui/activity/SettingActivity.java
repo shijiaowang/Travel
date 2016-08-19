@@ -1,6 +1,9 @@
 package com.example.administrator.travel.ui.activity;
 
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -15,7 +18,7 @@ import org.xutils.view.annotation.ViewInject;
  * Created by Administrator on 2016/7/22 0022.
  * 设置界面
  */
-public class SettingActivity extends LoadingBarBaseActivity{
+public class SettingActivity extends LoadingBarBaseActivity implements View.OnClickListener {
     @ViewInject(R.id.tv_user_id)
     private TextView mTvUserId;
     @ViewInject(R.id.tv_user_nick_name)
@@ -24,6 +27,10 @@ public class SettingActivity extends LoadingBarBaseActivity{
     private TextView mTvUserLivePlace;
     @ViewInject(R.id.tv_user_sex)
     private TextView mTvUserSex;
+    @ViewInject(R.id.ll_phone)
+    private LinearLayout mLlPhone;//更改手机
+    @ViewInject(R.id.ll_profile)
+    private LinearLayout mLlProfile;//个人简介
     @ViewInject(R.id.ptv_phone)
     private PhoneTextView mPtvPhone;
 
@@ -45,7 +52,8 @@ public class SettingActivity extends LoadingBarBaseActivity{
 
     @Override
     protected void initEvent() {
-
+         mLlPhone.setOnClickListener(this);
+        mLlProfile.setOnClickListener(this);
     }
 
     @Override
@@ -79,5 +87,23 @@ public class SettingActivity extends LoadingBarBaseActivity{
     @Override
     public float getAlpha() {
         return 1f;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ll_phone:
+                startActivity(new Intent(this,ChangePhoneActivity.class));
+                break;
+            case R.id.ll_profile:
+                startActivity(new Intent(this,PersonalProfileActivity.class));
+                break;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initViewData();
     }
 }
