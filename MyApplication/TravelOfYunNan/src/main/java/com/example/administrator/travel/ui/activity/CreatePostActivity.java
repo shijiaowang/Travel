@@ -111,9 +111,9 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
 
 
     private void initView() {
-        mTvAite = FontsIconUtil.findIconFontsById(R.id.tv_aite, this);
-        mTvPicture = FontsIconUtil.findIconFontsById(R.id.tv_picture, this);
-        mTvEmoji = FontsIconUtil.findIconFontsById(R.id.tv_emoji, this);
+        mTvAite = ((TextView) findViewById(R.id.tv_aite));
+        mTvPicture = ((TextView) findViewById(R.id.tv_picture));
+        mTvEmoji = ((TextView) findViewById(R.id.tv_emoji));
         mEtTitle = (EditText) findViewById(R.id.et_title);
         mEtContent = (EditText) findViewById(R.id.et_content);
         imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);

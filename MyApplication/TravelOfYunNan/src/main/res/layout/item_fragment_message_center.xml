@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:background="@color/colorFAFAFA">
-    <TextView
+    <com.example.administrator.travel.ui.view.FontsIconTextView
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:id="@+id/tv_icon"
@@ -74,7 +74,7 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="9sp" />
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:layout_gravity="center_vertical"
             android:id="@+id/tv_cursor"
             android:layout_width="wrap_content"

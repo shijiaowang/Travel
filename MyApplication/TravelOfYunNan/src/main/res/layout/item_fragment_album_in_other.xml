@@ -26,8 +26,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="1dp"/>
-        <TextView
-            android:id="@+id/tv_icon"
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             style="@style/activityOtherAlbumFont"
             android:layout_marginRight="5dp"
             android:text="@string/activity_other_album_eye"

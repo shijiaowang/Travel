@@ -19,13 +19,10 @@ import org.xutils.view.annotation.ViewInject;
 public class DestinationActivity extends BarBaseActivity {
    @ViewInject(R.id.lv_destination)
     private ListView mLvDestination;
+    @ViewInject(R.id.tv_search)
     private TextView mTvSearch;
 
-    @Override
-    protected void initContentView() {
-        mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
 
-    }
 
     @Override
     protected int setContentLayout() {

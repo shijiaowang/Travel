@@ -160,8 +160,7 @@
             android:orientation="horizontal"
             android:layout_width="65dp"
             android:layout_height="20dp">
-            <TextView
-                android:text="@string/activity_activate_detail_pen"
+            <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_pen"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"

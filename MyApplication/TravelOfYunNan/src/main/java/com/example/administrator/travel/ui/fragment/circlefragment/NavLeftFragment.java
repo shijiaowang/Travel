@@ -58,6 +58,10 @@ public class NavLeftFragment extends LoadBaseFragment {
     }
 
     private void firstReq() {
+        if ( GlobalUtils.getUserInfo().getId()==null){
+            //// TODO: 2016/8/19 0019 让用户去重新登录
+            return;
+        }
         Map<String, String> map = MapUtils.Build().addKey(getContext()).add("user_id", GlobalUtils.getUserInfo().getId()).end();
         XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ);
     }

@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_delete"
             android:text="@string/activity_my_appoint_delete"
             android:textSize="13sp"

@@ -35,9 +35,6 @@ public class FanHolder extends BaseHolder<Fan.FanPeople> {
     @Override
     public View initRootView(Context mContext) {
         View inflate =inflateView(R.layout.item_activity_follow_and_fan);
-        TextView mTvCursor = FontsIconUtil.findIconFontsById(R.id.tv_cursor, mContext, inflate);
-       /* mIvIcon = (CircleImageView) inflate.findViewById(R.id.iv_icon);
-        mTvName = (TextView) inflate.findViewById(R.id.tv_nike_name);*/
 
         return inflate;
     }

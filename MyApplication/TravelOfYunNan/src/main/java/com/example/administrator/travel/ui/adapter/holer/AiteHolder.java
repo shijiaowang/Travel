@@ -17,6 +17,7 @@ import org.xutils.view.annotation.ViewInject;
 public class AiteHolder extends BaseHolder<AiteFollow> {
    @ViewInject(R.id.tv_nike_name)
     private TextView mTvNikeName;
+    @ViewInject(R.id.tv_aite)
     private TextView mTvAite;
 
     public AiteHolder(Context context) {
@@ -37,8 +38,6 @@ public class AiteHolder extends BaseHolder<AiteFollow> {
     @Override
     public View initRootView(Context mContext) {
         View inflate = inflateView(R.layout.item_activity_aite);
-       /* mTvNikeName = (TextView) inflate.findViewById(R.id.tv_nike_name);*/
-        mTvAite = FontsIconUtil.findIconFontsById(R.id.tv_aite, mContext, inflate);
         return inflate;
     }
 }

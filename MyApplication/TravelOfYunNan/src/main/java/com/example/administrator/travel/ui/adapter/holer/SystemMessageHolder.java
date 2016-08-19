@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.SystemMessage;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
@@ -18,14 +19,16 @@ import org.xutils.view.annotation.ViewInject;
 public class SystemMessageHolder extends BaseHolder<SystemMessage>{
     @ViewInject(R.id.tv_number)
     private TextView mTvNumber;
-    private TextView mTvCursor;
+    @ViewInject(R.id.tv_cursor)
+    private FontsIconTextView mTvCursor;
     @ViewInject(R.id.tv_time)
     private TextView mTvTime;
     @ViewInject(R.id.tv_content)
     private TextView mTvContent;
     @ViewInject(R.id.tv_action)
     private TextView mTvAction;
-    private TextView mTvIcon;
+    @ViewInject(R.id.tv_icon)
+    private FontsIconTextView mTvIcon;
 
     public SystemMessageHolder(Context context) {
         super(context);
@@ -54,8 +57,6 @@ public class SystemMessageHolder extends BaseHolder<SystemMessage>{
     @Override
     public View initRootView(Context mContext) {
         View inflate = inflateView(R.layout.item_fragment_message_center);
-        mTvIcon=FontsIconUtil.findIconFontsById(R.id.tv_icon,mContext,inflate);
-        mTvCursor=FontsIconUtil.findIconFontsById(R.id.tv_cursor,mContext,inflate);
 
 
         return inflate;

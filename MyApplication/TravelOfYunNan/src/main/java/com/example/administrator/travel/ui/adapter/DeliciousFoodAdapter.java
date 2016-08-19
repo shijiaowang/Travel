@@ -51,11 +51,11 @@ public class DeliciousFoodAdapter extends RecyclerView.Adapter<RecyclerView.View
 
    public class DeliciousHolder extends RecyclerView.ViewHolder {
 
-       private  TextView mTvCursor;
+
 
        public DeliciousHolder(View itemView) {
             super(itemView);
-           mTvCursor = FontsIconUtil.findIconFontsById(R.id.tv_cursor,mContext,itemView);
+
 
               itemView.setOnClickListener(new View.OnClickListener() {
                    @Override

@@ -2,6 +2,8 @@ package com.example.administrator.travel.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -13,6 +15,8 @@ import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.view.AvoidFastButton;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.LineEditText;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -33,18 +37,19 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by Administrator on 2016/7/26 0026.
  */
-public class LoginActivity extends BaseTransActivity implements View.OnClickListener {
+public class LoginActivity extends BaseTransActivity implements View.OnClickListener, TextWatcher {
     public static final int SPLASH_RESULT=1;//返回
     @ViewInject(R.id.et_password)
     private LineEditText mEdPassword;
     @ViewInject(R.id.et_name)
     private AutoCompleteTextView mEdName;
     @ViewInject(R.id.bt_login)
-    private Button mBtLogin;
+    private AvoidFastButton mBtLogin;
     private SharedPreferences sharedPreferences;
     private String key;
     private int tryGetKey=0;
-    private TextView mTvBack;
+    @ViewInject(R.id.tv_back)
+    private FontsIconTextView mTvBack;
     private String name;
     private String password;
 
@@ -52,23 +57,24 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
 
     @Override
     protected void initData() {
-
+       btIsClick(mBtLogin,false);
     }
 
     @Override
     protected void initView() {
-        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
         sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
     }
 
    @Override
     protected void initListener() {
         mTvBack.setOnClickListener(this);
-        mBtLogin.setOnClickListener(new View.OnClickListener() {
+        mEdName.addTextChangedListener(this);
+        mEdPassword.addTextChangedListener(this);
+        mBtLogin.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
-                name = mEdName.getText().toString().trim();
-                password = mEdPassword.getText().toString().trim();
+                name = getString(mEdName);
+                password =getString(mEdPassword);
                 if (StringUtils.isEmpty(name) || StringUtils.isEmpty(password)) {
                     ToastUtils.showToast("密码或者用户名为空");
                     return;
@@ -156,5 +162,24 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (StringUtils.isEmpty(getString(mEdName)) || StringUtils.isEmpty(getString(mEdPassword))){
+            btIsClick(mBtLogin,false);
+        }else {
+            btIsClick(mBtLogin,true);
+        }
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
     }
 }

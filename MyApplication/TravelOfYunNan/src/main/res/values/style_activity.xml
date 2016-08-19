@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--activity的一些布局样式-->
+    <style name="oneHeightMatchLine">
+        <item name="android:background">@color/meLine</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        </style>
+
+
+
+
+    <!--认证页面-->
+    <style name="activityIdentityAuthenticationRl">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+    <style name="activityIdentityAuthenticationText">
+        <item name="android:layout_marginLeft">35dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/color323232</item>
+    </style>
+    <style name="activityIdentityAuthenticationIcon" parent="activityIdentityAuthenticationText">
+        <item name="android:layout_marginLeft">0dp</item>
+    </style>
+    <style name="activityIdentityAuthenticationCursor" parent="activityIdentityAuthenticationIcon">
+        <item name="android:textColor">@color/color969696</item>
+        <item name="android:text">@string/activity_message_center_cursor</item>
+        <item name="android:layout_alignParentRight">true</item>
+
+    </style>
+    <style name="activityIdentityAuthenticationType" parent="activityIdentityAuthenticationCursor">
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_alignParentRight">false</item>
+    </style>
+
+</resources>

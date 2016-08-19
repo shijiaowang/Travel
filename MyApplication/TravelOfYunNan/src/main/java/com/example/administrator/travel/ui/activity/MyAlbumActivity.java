@@ -13,6 +13,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.HotSpotsAdapter;
 import com.example.administrator.travel.ui.adapter.MyAlbumAdapter;
 import com.example.administrator.travel.ui.adapter.SpaceItemDecoration;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
 
@@ -23,17 +24,13 @@ import org.xutils.view.annotation.ViewInject;
  *我的相册
  */
 public class MyAlbumActivity extends BarBaseActivity implements View.OnClickListener {
-
-    private TextView mTvAdd;
+   @ViewInject(R.id.tv_add)
+    private FontsIconTextView mTvAdd;
     @ViewInject(R.id.rv_album)
     private RecyclerView mRvAlbum;
 
 
 
-    @Override
-    protected void initContentView() {
-        mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, this);//添加
-    }
 
     @Override
     protected int setContentLayout() {

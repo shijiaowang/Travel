@@ -29,14 +29,6 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
 
 
 
-    @Override
-    protected void initContentView() {
-        getmVsRightIcon().inflate();
-        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
-        mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
-        mIndicator.setTitles(new String[]{"系统消息", "私信"});
-        mIndicator.setViewPager(mVpMessageCenter);
-    }
 
     @Override
     protected int setContentLayout() {
@@ -57,6 +49,7 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
 
     @Override
     protected void initEvent() {
+        init();
         mVpMessageCenter.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -73,6 +66,14 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
 
             }
         });
+    }
+
+    private void init() {
+        getmVsRightIcon().inflate();
+        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
+        mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
+        mIndicator.setTitles(new String[]{"系统消息", "私信"});
+        mIndicator.setViewPager(mVpMessageCenter);
     }
 
     @Override

@@ -7,7 +7,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <TextView
+    <com.example.administrator.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_add"
         android:layout_width="55dp"
         android:layout_height="55dp"

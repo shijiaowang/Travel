@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.ActivityTravelsAdapter;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
@@ -17,12 +18,10 @@ public class TravelsActivity extends BarBaseActivity {
 
     @ViewInject(R.id.lv_travels)
     private ListView mLvTravels;
-    private TextView mTvSearch;
+    @ViewInject(R.id.tv_search)
+    private FontsIconTextView mTvSearch;
 
-    @Override
-    protected void initContentView() {
-        mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
-    }
+
 
     @Override
     protected int setContentLayout() {

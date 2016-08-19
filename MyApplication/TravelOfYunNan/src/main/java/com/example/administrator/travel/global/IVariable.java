@@ -6,8 +6,8 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-   /* String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
-    String DOMAIN_NAME = "http://192.168.1.38/";
+    String DOMAIN_NAME="http://yuns.yunspeak.com/";
+   /* String DOMAIN_NAME = "http://192.168.1.38/";*/
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -22,7 +22,8 @@ public interface IVariable {
     String REGISTER_USER = API_KEY + "User/register/";//注册
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
-    String CHANGE_PHONE = API_KEY + "User/sendRegistermsg/";//更换绑定的手机号
+    String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
+    String CHANGE_USER_INFO = API_KEY + "User/updateUser/";//更改用户信息
 
 
     //请求type
@@ -88,4 +89,5 @@ public interface IVariable {
  String TEL = "tel";//电话
 
  String CODE = "code";//验证码
+ String CONTENT = "content";//个人简介
 }

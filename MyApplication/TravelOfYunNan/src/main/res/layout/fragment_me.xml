@@ -124,6 +124,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/tv_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
@@ -131,7 +132,6 @@
             android:layout_marginRight="45dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="你是风儿他是啥，你是风儿他是啥你是风儿他是啥你是风儿他是啥你是风儿他是啥"
             android:textColor="#323232"
             android:textSize="14sp" />
 
@@ -317,6 +317,7 @@
         <View
            style="@style/fragmentMeLine" />
         <LinearLayout
+            android:id="@+id/ll_identity"
             style="@style/lLFragmentMeAlbum">
             <TextView
                 android:text="身份认证"

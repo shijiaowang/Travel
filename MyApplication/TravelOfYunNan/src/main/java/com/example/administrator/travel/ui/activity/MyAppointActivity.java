@@ -18,10 +18,7 @@ public class MyAppointActivity extends BarBaseActivity {
     @ViewInject(R.id.lv_my_appoint)
     private ListView mLvMyAppoint;
 
-    @Override
-    protected void initContentView() {
 
-    }
 
     @Override
     protected int setContentLayout() {

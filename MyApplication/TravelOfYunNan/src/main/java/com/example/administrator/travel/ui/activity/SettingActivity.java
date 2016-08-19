@@ -33,22 +33,10 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     private LinearLayout mLlProfile;//个人简介
     @ViewInject(R.id.ptv_phone)
     private PhoneTextView mPtvPhone;
-
-
-
-    @Override
-    protected void initContentView() {
-        TextView mTvCursorPro = FontsIconUtil.findIconFontsById(R.id.tv_cursor_pro,this);
-        TextView mTvCursorPhone = FontsIconUtil.findIconFontsById(R.id.tv_cursor_phone,this);
-        TextView mTvLogout = FontsIconUtil.findIconFontsById(R.id.tv_logout_icon,this);
-        TextView mTvCamera = FontsIconUtil.findIconFontsById(R.id.tv_camera,this);
-    }
-
     @Override
     protected int setContentLayout() {
         return  R.layout.activity_setting;
     }
-
 
     @Override
     protected void initEvent() {

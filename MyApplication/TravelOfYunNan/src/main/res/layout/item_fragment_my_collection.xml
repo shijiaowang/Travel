@@ -47,7 +47,7 @@
 
 
         </LinearLayout>
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_delete"
             android:text="@string/activity_my_appoint_delete"
             android:textColor="@color/Ffbf75"

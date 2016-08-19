@@ -74,7 +74,7 @@ public abstract class BarBaseActivity extends BaseActivity {
             mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);
         }
         x.view().inject(this);
-        initContentView();
+
     }
 
     /**
@@ -125,10 +125,7 @@ public abstract class BarBaseActivity extends BaseActivity {
         mTitleName.setText(title);
     }
 
-    /**
-     * 初始化布局
-     */
-    protected abstract void initContentView();
+
 
     /**
      * 设置布局

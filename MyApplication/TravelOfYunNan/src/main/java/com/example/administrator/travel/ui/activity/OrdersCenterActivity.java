@@ -35,13 +35,7 @@ public class OrdersCenterActivity extends BarBaseActivity {
     private ViewPager mVpOrders;
     private List<Fragment> fragments;
 
-    @Override
-    protected void initContentView() {
-        mIndicator.setChildMargin(10);
-        mIndicator.changeToShowPop();
-        mIndicator.setTitles(mTitles);
-        mIndicator.setViewPager(mVpOrders);
-    }
+
 
     @Override
     protected int setContentLayout() {
@@ -50,6 +44,7 @@ public class OrdersCenterActivity extends BarBaseActivity {
 
     @Override
     protected void initEvent() {
+        init();
         mIndicator.setOnPopShowListener(new SimpleViewPagerIndicator.OnPopShowListener() {
             @Override
             public void onShow(TextView tv) {
@@ -73,6 +68,13 @@ public class OrdersCenterActivity extends BarBaseActivity {
 
             }
         });
+    }
+
+    private void init() {
+        mIndicator.setChildMargin(10);
+        mIndicator.changeToShowPop();
+        mIndicator.setTitles(mTitles);
+        mIndicator.setViewPager(mVpOrders);
     }
 
     private void showPop(final TextView tv) {

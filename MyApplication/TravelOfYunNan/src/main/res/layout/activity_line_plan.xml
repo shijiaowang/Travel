@@ -27,8 +27,8 @@
                 android:textColor="@color/colorFAFAFA"
                 android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/tv_add_add"
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_start_add"
                 android:layout_width="55dp"
                 android:layout_height="27dp"
                 android:layout_marginLeft="25dp"
@@ -82,7 +82,7 @@
                 android:textColor="@color/colorFAFAFA"
                 android:textSize="13sp" />
 
-            <TextView
+            <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_end_add"
                 android:layout_width="55dp"
                 android:layout_height="27dp"

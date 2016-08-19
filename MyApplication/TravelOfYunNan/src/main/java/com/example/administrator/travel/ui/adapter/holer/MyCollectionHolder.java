@@ -5,12 +5,19 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
+
+import org.xutils.view.annotation.ViewInject;
 
 /**
  * Created by Administrator on 2016/8/3 0003.
  */
 public class MyCollectionHolder extends BaseHolder {
+
+    @ViewInject(R.id.tv_delete)
+    private FontsIconTextView mTvDelete;
+
     public MyCollectionHolder(Context context) {
         super(context);
     }
@@ -23,7 +30,6 @@ public class MyCollectionHolder extends BaseHolder {
     @Override
     public View initRootView(Context mContext) {
         View inflate = inflateView(R.layout.item_fragment_my_collection);
-        TextView mTvDelete = FontsIconUtil.findIconFontsById(R.id.tv_delete, mContext, inflate);
         return inflate;
     }
 }

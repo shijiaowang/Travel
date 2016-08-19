@@ -4,14 +4,38 @@ import java.io.Serializable;
 
 /**
  * Created by Administrator on 2016/7/26 0026.
+ * 登录，包含用户信息
  */
 public class Login {
 
-
+    /**
+     * code : 1
+     * message : 成功
+     * data : {"id":"10009","tel":"15828358360","name":"17608009032","pwd":"14e1b600b1fd579f47433b88e8d85291","nick_name":"我叫王小","sex":"1","birthday":"0000-00-00 00:00:00","province":"0","city":"0","email":"","id_card":"","drive_card":"0","run_card":"0","user_img":"","content":"张飞在此","status":"1","add_time":"1471577459","update_time":"1471594877"}
+     */
 
     private int code;
     private String message;
-
+    /**
+     * id : 10009
+     * tel : 15828358360
+     * name : 17608009032
+     * pwd : 14e1b600b1fd579f47433b88e8d85291
+     * nick_name : 我叫王小
+     * sex : 1
+     * birthday : 0000-00-00 00:00:00
+     * province : 0
+     * city : 0
+     * email :
+     * id_card :
+     * drive_card : 0
+     * run_card : 0
+     * user_img :
+     * content : 张飞在此
+     * status : 1
+     * add_time : 1471577459
+     * update_time : 1471594877
+     */
 
     private UserInfo data;
 
@@ -39,7 +63,7 @@ public class Login {
         this.data = data;
     }
 
-    public static class UserInfo implements Serializable{
+    public static class UserInfo extends TravelBean{
         private String id;
         private String tel;
         private String name;
@@ -51,10 +75,13 @@ public class Login {
         private String city;
         private String email;
         private String id_card;
+        private String drive_card;
+        private String run_card;
         private String user_img;
         private String content;
         private String status;
         private String add_time;
+        private String update_time;
 
         public String getId() {
             return id;
@@ -144,6 +171,22 @@ public class Login {
             this.id_card = id_card;
         }
 
+        public String getDrive_card() {
+            return drive_card;
+        }
+
+        public void setDrive_card(String drive_card) {
+            this.drive_card = drive_card;
+        }
+
+        public String getRun_card() {
+            return run_card;
+        }
+
+        public void setRun_card(String run_card) {
+            this.run_card = run_card;
+        }
+
         public String getUser_img() {
             return user_img;
         }
@@ -174,6 +217,14 @@ public class Login {
 
         public void setAdd_time(String add_time) {
             this.add_time = add_time;
+        }
+
+        public String getUpdate_time() {
+            return update_time;
+        }
+
+        public void setUpdate_time(String update_time) {
+            this.update_time = update_time;
         }
     }
 }

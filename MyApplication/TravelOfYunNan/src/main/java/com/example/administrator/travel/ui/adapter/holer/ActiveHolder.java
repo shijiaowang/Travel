@@ -8,11 +8,13 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Active;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.xutils.view.annotation.ViewInject;
+
 /**
  * Created by Administrator on 2016/7/25 0025.
  */
 public class ActiveHolder extends BaseHolder<Active> {
-
+    @ViewInject(R.id.tv_air)
     private TextView mTvAir;
 
     public ActiveHolder(Context context) {
@@ -27,7 +29,7 @@ public class ActiveHolder extends BaseHolder<Active> {
     @Override
     public View initRootView(Context mContext) {
         View inflate = inflateView(R.layout.item_activity_active);
-        mTvAir = FontsIconUtil.findIconFontsById(R.id.tv_air, mContext, inflate);
+
         return inflate;
     }
 }

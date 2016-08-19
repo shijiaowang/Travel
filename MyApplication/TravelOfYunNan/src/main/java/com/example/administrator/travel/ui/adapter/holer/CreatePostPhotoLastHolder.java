@@ -5,14 +5,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
+
+import org.xutils.view.annotation.ViewInject;
 
 /**
  * Created by android on 2016/7/31.
  */
 public class CreatePostPhotoLastHolder extends BaseHolder {
-
-    public TextView mTvAdd;
+   @ViewInject(R.id.tv_add)
+    public FontsIconTextView mTvAdd;
 
     public CreatePostPhotoLastHolder(Context context) {
         super(context);
@@ -26,7 +29,6 @@ public class CreatePostPhotoLastHolder extends BaseHolder {
     @Override
     public View initRootView(Context mContext) {
         View inflate = inflateView(R.layout.item_activity_create_post_photo_add);
-        mTvAdd = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_add, mContext, inflate);
         return inflate;
     }
 }

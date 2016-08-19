@@ -26,11 +26,6 @@ public class MyCollectionActivity extends BarBaseActivity {
     private SimpleViewPagerIndicator mSvpiIndicator;
     private List<BaseFragment> fragments;
 
-    @Override
-    protected void initContentView() {
-        mSvpiIndicator.setTitles(new String[]{"我的收藏", "我的发表"});
-        mSvpiIndicator.setViewPager(mVpCollection);
-    }
 
     @Override
     protected int setContentLayout() {
@@ -39,6 +34,7 @@ public class MyCollectionActivity extends BarBaseActivity {
 
     @Override
     protected void initEvent() {
+        init();
         mVpCollection.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -55,6 +51,11 @@ public class MyCollectionActivity extends BarBaseActivity {
 
             }
         });
+    }
+
+    private void init() {
+        mSvpiIndicator.setTitles(new String[]{"我的收藏", "我的发表"});
+        mSvpiIndicator.setViewPager(mVpCollection);
     }
 
     @Override

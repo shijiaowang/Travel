@@ -20,12 +20,7 @@ public class DeliciousDetailActivity extends BarBaseActivity {
     @ViewInject(R.id.lv_delicious_discuss)
     private ToShowAllListView mLvDeliciousDiscuss;
 
-    @Override
-    protected void initContentView() {
-        TextView mTvFood = FontsIconUtil.findIconFontsById(R.id.tv_food, this);
-        TextView mTvStore = FontsIconUtil.findIconFontsById(R.id.tv_store, this);
-        TextView mTvSay = FontsIconUtil.findIconFontsById(R.id.tv_say, this);
-    }
+
 
     @Override
     protected int setContentLayout() {

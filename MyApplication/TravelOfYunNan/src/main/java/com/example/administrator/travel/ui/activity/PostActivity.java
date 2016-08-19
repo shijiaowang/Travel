@@ -14,9 +14,6 @@ public class PostActivity extends BarBaseActivity {
     private ListView mLvPostDetail;
 
 
-    @Override
-    protected void initContentView() {
-    }
 
     @Override
     protected int setContentLayout() {

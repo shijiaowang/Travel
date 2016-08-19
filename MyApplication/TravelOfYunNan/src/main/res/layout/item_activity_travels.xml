@@ -55,9 +55,8 @@
         android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:paddingTop="1dp"
-            android:id="@+id/tv_time"
             android:text="@string/fragment_play_with_me_time"
             android:textColor="@color/color989898"
             android:textSize="8sp"
@@ -70,10 +69,9 @@
             android:textSize="9sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:paddingBottom="1dp"
             android:gravity="center"
-            android:id="@+id/tv_eye"
             android:text="@string/activity_other_album_eye"
             android:layout_marginLeft="20dp"
             android:textColor="@color/color989898"

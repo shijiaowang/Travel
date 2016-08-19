@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointWithMe;
 import com.example.administrator.travel.ui.view.FlowLayout;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
@@ -18,6 +19,8 @@ import org.xutils.view.annotation.ViewInject;
 public class AppointWithMeHolder extends BaseHolder<AppointWithMe> {
     @ViewInject(R.id.fl_title)
     private FlowLayout mFlTitle;
+    @ViewInject(R.id.tv_icon_love)
+    private FontsIconTextView mTvIconLove;
     private String[] titles = new String[]{"就是这么任性", "游的就是寂寞", "玩", "有责任心", "乡村一日游"};
     public AppointWithMeHolder(Context context) {
         super(context);
@@ -38,14 +41,6 @@ public class AppointWithMeHolder extends BaseHolder<AppointWithMe> {
     @Override
     public View initRootView(Context mContext) {
         View inflate =inflateView(R.layout.item_fragment_appoint_play_with_me);
-        TextView mTvIconAdd = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_add, mContext, inflate);
-        TextView mTvIconAir = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_air, mContext, inflate);
-        TextView mTvIconPeople = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_people, mContext, inflate);
-        TextView mTvIconTime = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_time, mContext, inflate);
-        TextView mTvIconEye = FontsIconUtil.findIconFontsById(R.id.tv_icon_eye, mContext, inflate);
-        TextView mTvIconLove= FontsIconUtil.findIconFontsById(R.id.tv_icon_love, mContext, inflate);
-
-       /* mFlTitle = (FlowLayout) inflate.findViewById(R.id.fl_title);*/
         return inflate;
     }
 }

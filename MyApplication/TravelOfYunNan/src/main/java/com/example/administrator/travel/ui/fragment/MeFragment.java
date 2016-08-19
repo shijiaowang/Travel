@@ -8,8 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.ui.activity.CustomerServiceActivity;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
+import com.example.administrator.travel.ui.activity.IdentityAuthenticationActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
 import com.example.administrator.travel.ui.activity.MyAppointActivity;
@@ -17,6 +19,8 @@ import com.example.administrator.travel.ui.activity.MyCollectionActivity;
 import com.example.administrator.travel.ui.activity.OrdersCenterActivity;
 import com.example.administrator.travel.ui.activity.SettingActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
+import com.example.administrator.travel.utils.GlobalUtils;
+import com.example.administrator.travel.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +46,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private TextView mTvMyCollection;
     private TextView mTvMyOrder;
     private LinearLayout mLlCustomerCenter;
+    private TextView mTvProfile;
+    private LinearLayout mLlIdentity;
 
     @Override
     protected int initLayoutRes() {
@@ -61,11 +67,11 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mLlAlbum = (LinearLayout) root.findViewById(R.id.ll_album);
         mLlSetting = (LinearLayout) root.findViewById(R.id.ll_setting);
         mLlCustomerCenter = (LinearLayout) root.findViewById(R.id.ll_customer_center);
+        mLlIdentity = (LinearLayout) root.findViewById(R.id.ll_identity);
         mIvSetting = (ImageView) root.findViewById(R.id.iv_setting);
         mTvMyCollection = (TextView) root.findViewById(R.id.tv_my_collection);
         mTvMyOrder = (TextView) root.findViewById(R.id.tv_my_order);
-
-
+        mTvProfile = (TextView) root.findViewById(R.id.tv_profile);
     }
 
     @Override
@@ -84,7 +90,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             mTvTitle.setText(titles.get(i));
             mFlLabel.addView(mTvTitle);
         }
-
+        Login.UserInfo userInfo = GlobalUtils.getUserInfo();
+        if (StringUtils.isEmpty(userInfo.getContent())){
+            mTvProfile.setText("这个人很懒，什么都没有留下。。。");
+        }else {
+            mTvProfile.setText(userInfo.getContent());
+        }
 
     }
 
@@ -101,6 +112,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvMyCollection.setOnClickListener(this);//我的收藏
         mTvMyOrder.setOnClickListener(this);//我的订单
         mLlCustomerCenter.setOnClickListener(this);//客服中心
+        mLlIdentity.setOnClickListener(this);//身份认证
     }
 
     @Override
@@ -139,6 +151,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.ll_customer_center:
                 startActivity(new Intent(getContext(), CustomerServiceActivity.class));
+                break;
+            case R.id.ll_identity:
+                startActivity(new Intent(getContext(), IdentityAuthenticationActivity.class));
                 break;
         }
     }

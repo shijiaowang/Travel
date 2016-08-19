@@ -15,7 +15,7 @@
         android:layout_height="49dp"
         android:background="@color/homeTitleBg">
 
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_back"
             style="@style/backFontsIcon"
             android:layout_marginLeft="12dp"

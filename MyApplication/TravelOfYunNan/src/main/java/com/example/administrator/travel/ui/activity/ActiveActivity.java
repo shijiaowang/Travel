@@ -22,10 +22,7 @@ public class ActiveActivity extends BarBaseActivity {
     @ViewInject(R.id.lv_active)
     private ToShowAllListView mLvActive;//活动列表
 
-    @Override
-    protected void initContentView() {
 
-    }
 
     @Override
     protected int setContentLayout() {

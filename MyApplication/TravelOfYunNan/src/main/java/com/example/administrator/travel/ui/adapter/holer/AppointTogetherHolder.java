@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointTogether;
 import com.example.administrator.travel.ui.view.FlowLayout;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
@@ -18,8 +19,8 @@ import org.xutils.view.annotation.ViewInject;
  * Created by Administrator on 2016/7/20 0020.
  */
 public class AppointTogetherHolder extends BaseHolder<AppointTogether> {
-
-    private TextView mLoveIcon;
+   @ViewInject(R.id.tv_love_icon)
+    private FontsIconTextView mLoveIcon;
     @ViewInject(R.id.fl_title)
     private FlowLayout mFlTitle;
     private String[] titles = new String[]{"号码百事通118114服务", "仅限人妖", "郊区游玩", "有责任心", "大神"};
@@ -45,9 +46,6 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether> {
     public View initRootView(Context mContext) {
         View inflate =inflateView(R.layout.item_fragment_appoint_play_together);
         inflater = LayoutInflater.from(mContext);
-        mLoveIcon = FontsIconUtil.findIconFontsById(R.id.tv_icon_love, mContext, inflate);
-      /*  mFlTitle = (FlowLayout) inflate.findViewById(R.id.fl_title);*/
-        TextView mEyeIcon = FontsIconUtil.findIconFontsById(R.id.tv_icon_eye, mContext, inflate);
         return inflate;
     }
 }

@@ -24,13 +24,7 @@ public class DestinationDetailActivity extends BarBaseActivity implements View.O
     private TextView mTvShow;
     private boolean isShowAllFlag =false;
 
-    @Override
-    protected void initContentView() {
-        TextView mTvDisscuss = FontsIconUtil.findIconFontsById(R.id.tv_discuss, this);
-        TextView mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
-        TextView mTvSpot = FontsIconUtil.findIconFontsById(R.id.tv_spot, this);
-        TextView mTvSpotAdd = FontsIconUtil.findIconFontsById(R.id.tv_spot_add, this);
-    }
+
 
     @Override
     protected int setContentLayout() {

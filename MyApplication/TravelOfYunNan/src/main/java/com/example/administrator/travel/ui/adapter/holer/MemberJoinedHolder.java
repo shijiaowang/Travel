@@ -5,14 +5,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
+
+import org.xutils.view.annotation.ViewInject;
 
 /**
  * Created by Administrator on 2016/8/4 0004.
  */
 public class MemberJoinedHolder extends BaseHolder {
 
-    private TextView mTvSex;
+    @ViewInject(R.id.tv_sex)
+    private FontsIconTextView mTvSex;
 
     public MemberJoinedHolder(Context context) {
         super(context);
@@ -26,8 +30,6 @@ public class MemberJoinedHolder extends BaseHolder {
     @Override
     public View initRootView(Context mContext) {
         View view = inflateView(R.layout.item_activity_member_joined);
-        mTvSex = FontsIconUtil.findIconFontsById(R.id.tv_sex, mContext, view);
-        TextView mTvAge = FontsIconUtil.findIconFontsById(R.id.tv_age, mContext, view);
         return view;
     }
 }

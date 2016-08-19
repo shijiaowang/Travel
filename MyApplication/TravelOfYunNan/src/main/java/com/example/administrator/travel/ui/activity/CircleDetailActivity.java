@@ -70,14 +70,6 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
     private CircleDetailAdapter circleDetailAdapter;
 
 
-    @Override
-    protected void initContentView() {
-        cId = getIntent().getStringExtra(IVariable.C_ID);
-        getmVsRightIcon().inflate();
-        mTvCreatePost = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
-        mTvCreatePost.setText(getResources().getString(R.string.activity_circle_create_post_font_icon));//设置创建帖子按钮
-
-    }
 
     @Override
     protected int setContentLayout() {
@@ -86,6 +78,10 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
 
     @Override
     protected void initEvent() {
+        cId = getIntent().getStringExtra(IVariable.C_ID);
+        getmVsRightIcon().inflate();
+        mTvCreatePost = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
+        mTvCreatePost.setText(getResources().getString(R.string.activity_circle_create_post_font_icon));//设置创建帖子按钮
         mTvCreatePost.setOnClickListener(this);
         mTvFollow.setOnClickListener(this);
         mLvPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -106,6 +102,7 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
 
     @Override
     protected void initViewData() {
+
 
         String cName = getIntent().getStringExtra(IVariable.C_NAME);
         changeTitle(cName);

@@ -14,12 +14,13 @@
             android:id="@+id/et_profile"
             android:maxLength="80"
             android:textSize="12sp"
+            android:gravity="start"
             android:textColor="@color/color323232"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@null"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
         <LinearLayout
             android:id="@+id/ll_hint"
             android:layout_marginLeft="10dp"
@@ -27,8 +28,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_write"
+            <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:text="@string/activity_activate_detail_pen"
                 android:textColor="@color/colorC1c1c1"
                 android:textSize="12sp"
@@ -54,11 +54,11 @@
             android:layout_height="wrap_content" />
 
     </RelativeLayout>
-    <Button
+    <com.example.administrator.travel.ui.view.AvoidFastButton
         android:id="@+id/bt_save_change"
         android:text="@string/save_change"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/button_bg_un_click"
+        android:background="@drawable/fragment_find_search_bg"
         android:textColor="@color/colorFAFAFA"
         android:textSize="15sp"
         android:gravity="center"

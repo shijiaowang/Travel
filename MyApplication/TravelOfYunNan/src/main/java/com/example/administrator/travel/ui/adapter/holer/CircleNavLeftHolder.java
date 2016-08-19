@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Circle;
 import com.example.administrator.travel.bean.CircleNavLeft;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
@@ -18,7 +19,8 @@ import org.xutils.view.annotation.ViewInject;
 public class CircleNavLeftHolder extends BaseHolder<Circle.DataBean.CircleLeftBean> {
     @ViewInject(R.id.tv_place)
     private TextView mTvPlace;
-    private TextView mTvCursor;
+    @ViewInject(R.id.tv_cursor)
+    private FontsIconTextView mTvCursor;
     @ViewInject(R.id.v_line)
     private View mVLine;
 
@@ -46,10 +48,6 @@ public class CircleNavLeftHolder extends BaseHolder<Circle.DataBean.CircleLeftBe
     @Override
     public View initRootView(Context mContext) {
         View inflate =inflateView(R.layout.item_fragment_circle_nav_left);
-        /*mTvPlace = (TextView) inflate.findViewById(R.id.tv_place);
-        mVLine = inflate.findViewById(R.id.v_line);*/
-        mTvCursor = FontsIconUtil.findIconFontsById(R.id.tv_cursor, mContext, inflate);
-
         return inflate;
     }
 }

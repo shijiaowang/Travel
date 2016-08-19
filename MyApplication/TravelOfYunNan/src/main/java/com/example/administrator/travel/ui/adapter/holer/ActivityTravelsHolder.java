@@ -24,8 +24,6 @@ public class ActivityTravelsHolder extends BaseHolder<Travels> {
     @Override
     public View initRootView(Context mContext) {
         View inflate =inflateView(R.layout.item_activity_travels);
-        TextView mTvEye = FontsIconUtil.findIconFontsById(R.id.tv_eye, mContext, inflate);
-        TextView mTvTime = FontsIconUtil.findIconFontsById(R.id.tv_time, mContext, inflate);
         return inflate;
     }
 }

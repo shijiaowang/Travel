@@ -19,10 +19,6 @@ public class BulletinBoardActivity extends BarBaseActivity {
    @ViewInject(R.id.lv_bulletin_board)
     private ListView mLvBulletinBoard;
 
-    @Override
-    protected void initContentView() {
-
-    }
 
     @Override
     protected int setContentLayout() {

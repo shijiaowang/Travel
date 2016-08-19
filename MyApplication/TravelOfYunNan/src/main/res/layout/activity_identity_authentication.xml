@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        style="@style/activityIdentityAuthenticationRl">
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:text="@string/activity_identity_phone"
+            style="@style/activityIdentityAuthenticationIcon" />
+        <TextView
+            style="@style/activityIdentityAuthenticationText"
+            android:text="绑定手机"
+            />
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_cursor1"
+            style="@style/activityIdentityAuthenticationCursor"
+
+            />
+        <TextView
+            android:id="@+id/tv_identity_phone"
+            style="@style/activityIdentityAuthenticationType"
+            android:layout_toLeftOf="@id/tv_cursor1"
+            />
+    </RelativeLayout>
+    <View
+        style="@style/oneHeightMatchLine"/>
+    <RelativeLayout
+        style="@style/activityIdentityAuthenticationRl">
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:text="@string/activity_identity_id_card"
+            style="@style/activityIdentityAuthenticationIcon" />
+        <TextView
+            style="@style/activityIdentityAuthenticationText"
+            android:text="身份证"
+            />
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_cursor2"
+            style="@style/activityIdentityAuthenticationCursor"
+
+            />
+        <TextView
+            android:id="@+id/tv_identity_id_card"
+            style="@style/activityIdentityAuthenticationType"
+            android:layout_toLeftOf="@id/tv_cursor2"
+            />
+    </RelativeLayout>
+    <View
+        style="@style/oneHeightMatchLine"/>
+    <RelativeLayout
+        style="@style/activityIdentityAuthenticationRl">
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:text="@string/activity_identity_run_card"
+            style="@style/activityIdentityAuthenticationIcon" />
+        <TextView
+            style="@style/activityIdentityAuthenticationText"
+            android:text="驾驶证"
+            />
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_cursor3"
+            style="@style/activityIdentityAuthenticationCursor"
+
+            />
+        <TextView
+            android:id="@+id/tv_identity_device_card"
+            style="@style/activityIdentityAuthenticationType"
+            android:layout_toLeftOf="@id/tv_cursor3"
+            />
+    </RelativeLayout>
+    <View
+        style="@style/oneHeightMatchLine"/>
+    <RelativeLayout
+        style="@style/activityIdentityAuthenticationRl">
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:text="@string/activity_identity_car_card"
+            style="@style/activityIdentityAuthenticationIcon" />
+        <TextView
+            style="@style/activityIdentityAuthenticationText"
+            android:text="车辆认证/行驶证"
+            />
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_cursor4"
+            style="@style/activityIdentityAuthenticationCursor"
+
+            />
+        <TextView
+            android:id="@+id/tv_identity_car_card"
+            style="@style/activityIdentityAuthenticationType"
+            android:layout_toLeftOf="@id/tv_cursor4"
+            />
+    </RelativeLayout>
+    <View
+        style="@style/oneHeightMatchLine"/>
+    <TextView
+        android:layout_marginTop="25dp"
+        android:text="认证说明"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color323232"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:text="    这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住这只是一个人住"
+        android:textColor="@color/color646464"
+        android:textSize="13sp"
+        android:lineSpacingExtra="8dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

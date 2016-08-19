@@ -81,8 +81,7 @@
                     android:id="@+id/ll_add"
                     style="@style/fragmentFindIconLl">
 
-                    <TextView
-                        android:id="@+id/tv_icon_add"
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_find_add"
@@ -97,8 +96,7 @@
 
                 <LinearLayout style="@style/fragmentFindIconLl">
 
-                    <TextView
-                        android:id="@+id/tv_icon_hotel"
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_find_hotel"
@@ -116,8 +114,8 @@
                     android:id="@+id/ll_travels"
                     style="@style/fragmentFindIconLl">
 
-                    <TextView
-                        android:id="@+id/tv_icon_travels"
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_find_travels"
@@ -134,8 +132,7 @@
                     android:id="@+id/ll_delicious_food"
                     style="@style/fragmentFindIconLl">
 
-                    <TextView
-                        android:id="@+id/tv_icon_food"
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_find_food"
@@ -152,9 +149,8 @@
                     android:id="@+id/ll_active"
                     >
 
-                    <TextView
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
                         android:paddingBottom="5dp"
-                        android:id="@+id/tv_icon_active"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_find_active"

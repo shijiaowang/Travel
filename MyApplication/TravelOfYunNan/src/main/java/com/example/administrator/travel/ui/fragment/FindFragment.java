@@ -41,13 +41,6 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initView() {
-        mTvIconAdd = FontsIconUtil.findIconFontsById(R.id.tv_icon_add, getContext(), root);
-        mTvIconActive = FontsIconUtil.findIconFontsById(R.id.tv_icon_active, getContext(), root);
-        mTvIconHotel = FontsIconUtil.findIconFontsById(R.id.tv_icon_hotel, getContext(), root);
-        mTvIconFood = FontsIconUtil.findIconFontsById(R.id.tv_icon_food, getContext(), root);
-        mTvIconTravels = FontsIconUtil.findIconFontsById(R.id.tv_icon_travels, getContext(), root);
-        mTvIconSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, getContext(), root);
-
         mGvRecommend = (ToShowAllGridView) root.findViewById(R.id.gv_recommend);
         mLlActive = (LinearLayout) root.findViewById(R.id.ll_active);
         mLlDeliciousFood = (LinearLayout) root.findViewById(R.id.ll_delicious_food);

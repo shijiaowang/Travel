@@ -31,7 +31,7 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
 
   @ViewInject(R.id.vp_follow_fan)
     private ViewPager mVpFollowFan;//pager
-
+    @ViewInject(R.id.tv_back)
     private TextView mTvBack;//返回
     @ViewInject(R.id.tv_fan)
     private TextView mTvFan;//粉丝
@@ -47,7 +47,7 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
     protected void initView() {
         boolean isFollow = getIntent().getBooleanExtra(MeFragment.FOLLOW_SELECT, false);
         currentPosition = isFollow ? 0 : 1;
-        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
+
     }
 
     @Override

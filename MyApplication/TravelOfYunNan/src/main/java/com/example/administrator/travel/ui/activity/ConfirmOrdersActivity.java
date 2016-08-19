@@ -36,14 +36,15 @@ public class ConfirmOrdersActivity extends BarBaseActivity implements View.OnCli
     private CheckBox mCbAgree;
     private List<TextView> selectPayWay=new ArrayList<>();
 
-    @Override
-    protected void initContentView() {
+
+
+
+
+    private void init() {
         mTvPayZfb = FontsIconUtil.findIconFontsById(R.id.tv_pay_zfb, this);
         mTvPayWx = FontsIconUtil.findIconFontsById(R.id.tv_pay_wx, this);
-        FontsIconUtil.findIconFontsById(this,R.id.tv_zfb,R.id.tv_we_chat);
         selectPayWay.add(mTvPayZfb);
         selectPayWay.add(mTvPayWx);
-
     }
 
     @Override
@@ -53,6 +54,7 @@ public class ConfirmOrdersActivity extends BarBaseActivity implements View.OnCli
 
     @Override
     protected void initEvent() {
+        init();
         mTvSubmit.setOnClickListener(this);
         mRlZfb.setOnClickListener(this);
         mRlWx.setOnClickListener(this);

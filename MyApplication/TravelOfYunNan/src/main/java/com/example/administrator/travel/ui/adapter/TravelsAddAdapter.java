@@ -46,7 +46,6 @@ public class TravelsAddAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         public TravelAddHolder(View itemView) {
             super(itemView);
-            TextView mTvTime = FontsIconUtil.findIconFontsById(R.id.tv_time, mContext, itemView);
         }
     }
 }

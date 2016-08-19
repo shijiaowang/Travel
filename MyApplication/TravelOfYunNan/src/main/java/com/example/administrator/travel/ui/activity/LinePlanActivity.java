@@ -20,14 +20,11 @@ import java.util.List;
 public class LinePlanActivity extends BarBaseActivity {
     @ViewInject(R.id.lv_line)
     private ListView mLvLine;
+    @ViewInject(R.id.tv_start_add)
     private TextView tvAddStart;
+    @ViewInject(R.id.tv_end_add)
     private TextView tvAddEnd;
 
-    @Override
-    protected void initContentView() {
-        tvAddStart = FontsIconUtil.findIconFontsById(R.id.tv_add_add, this);
-        tvAddEnd = FontsIconUtil.findIconFontsById(R.id.tv_end_add, this);
-    }
 
     @Override
     protected int setContentLayout() {

@@ -14,6 +14,7 @@ import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.ui.view.LineEditText;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -36,11 +37,11 @@ import de.greenrobot.event.EventBus;
  * Created by Administrator on 2016/8/18 0018.
  * 注册成功页面
  */
-public class RegisterSuccessActivity extends BaseTransActivity implements View.OnClickListener {
+public class RegisterSuccessActivity extends BaseTransActivity implements View.OnClickListener, AvoidFastButton.AvoidFastOnClickListener {
     public static final int SPLASH_RESULT = 1;//返回
 
     @ViewInject(R.id.bt_start)
-    private Button mBtStart;
+    private AvoidFastButton mBtStart;
     @ViewInject(R.id.et_nick_name)
     private LineEditText mEtNickName;
     @ViewInject(R.id.rl_girl)
@@ -55,7 +56,6 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
 
     @Override
     protected void initView() {
-        FontsIconUtil.findIconFontsById(this, R.id.tv_nick_name, R.id.tv_sex);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
 
     @Override
     protected void initListener() {
-        mBtStart.setOnClickListener(this);
+        mBtStart.setOnAvoidFastOnClickListener(this);
         mRlBoy.setOnClickListener(this);
         mRlGirl.setOnClickListener(this);
         mEtNickName.addTextChangedListener(new TextWatcher() {

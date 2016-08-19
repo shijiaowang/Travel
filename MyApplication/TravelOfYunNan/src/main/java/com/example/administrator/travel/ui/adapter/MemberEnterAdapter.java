@@ -85,10 +85,8 @@ public class MemberEnterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public MemberDetailAdapter(View itemView) {
             super(itemView);
-            TextView mTvSex = FontsIconUtil.findIconFontsById(R.id.tv_sex, mContext, itemView);
-            TextView mTvAge = FontsIconUtil.findIconFontsById(R.id.tv_age, mContext, itemView);
-            mTvOk = FontsIconUtil.findIconFontsById(R.id.tv_ok, mContext, itemView);
-            mTvDelete = FontsIconUtil.findIconFontsById(R.id.tv_delete, mContext, itemView);
+            mTvOk = ((TextView) itemView.findViewById(R.id.tv_ok));
+            mTvDelete = ((TextView) itemView.findViewById(R.id.tv_delete));
             mTvCatAll = (TextView) itemView.findViewById(R.id.tv_cat_all);
             mTvDiscuss = (TextView) itemView.findViewById(R.id.tv_discuss);
             mTvOkText = (TextView) itemView.findViewById(R.id.tv_ok_text);

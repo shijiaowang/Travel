@@ -37,12 +37,6 @@ public class MyCollectionFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     protected void initView() {
-        TextView mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, getContext(), root);
-        TextView mTvActive = FontsIconUtil.findIconFontsById(R.id.tv_active, getContext(), root);
-        TextView mTvTravels = FontsIconUtil.findIconFontsById(R.id.tv_travels, getContext(), root);
-        TextView mTvOther = FontsIconUtil.findIconFontsById(R.id.tv_other, getContext(), root);
-        TextView mTvPost = FontsIconUtil.findIconFontsById(R.id.tv_post, getContext(), root);
-        TextView mTvTeam = FontsIconUtil.findIconFontsById(R.id.tv_team, getContext(), root);
         mLlActive= ((LinearLayout) root.findViewById(R.id.ll_active));
         mLlTeam= ((LinearLayout) root.findViewById(R.id.ll_team));
         mLlTravels= ((LinearLayout) root.findViewById(R.id.ll_travels));

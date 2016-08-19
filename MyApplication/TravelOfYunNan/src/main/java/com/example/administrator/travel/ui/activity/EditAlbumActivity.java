@@ -21,12 +21,7 @@ public class EditAlbumActivity extends BarBaseActivity {
     private TextView mTvMore;
 
 
-    @Override
-    protected void initContentView() {
-        getmVsRightIcon().inflate();
-        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
-        mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
-    }
+
 
     @Override
     protected int setContentLayout() {
@@ -36,7 +31,13 @@ public class EditAlbumActivity extends BarBaseActivity {
 
     @Override
     protected void initEvent() {
+        init();
+    }
 
+    private void init() {
+        getmVsRightIcon().inflate();
+        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
+        mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
     }
 
     @Override

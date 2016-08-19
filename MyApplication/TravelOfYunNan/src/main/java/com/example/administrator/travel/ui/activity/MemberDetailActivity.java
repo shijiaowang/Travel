@@ -34,10 +34,6 @@ public class MemberDetailActivity extends BarBaseActivity implements View.OnClic
     private TextView mTvEnter;
 
     @Override
-    protected void initContentView() {
-    }
-
-    @Override
     protected int setContentLayout() {
         return R.layout.activity_member_detail;
     }

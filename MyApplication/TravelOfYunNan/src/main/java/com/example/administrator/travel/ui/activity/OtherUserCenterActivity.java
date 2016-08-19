@@ -28,6 +28,7 @@ import com.example.administrator.travel.ui.activity.dragtopview.ListViewFragment
 import com.example.administrator.travel.ui.activity.dragtopview.ScrollViewFragment;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 import com.example.administrator.travel.ui.view.FlowLayout;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.FontsIconViewPagerIndicator;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
@@ -82,8 +83,10 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private int i = -1;
     private LayoutInflater inflater;
     private AnimationSet animationSet;
-    private TextView mTvPrivateIcon;
-    private TextView mTvFollowIcon;
+    @ViewInject(R.id.tv_private_icon)
+    private FontsIconTextView mTvPrivateIcon;
+    @ViewInject(R.id.tv_follow_icon)
+    private FontsIconTextView mTvFollowIcon;
     @ViewInject(R.id.tv_follow)
     private TextView mTvFollow;
     @ViewInject(R.id.rl_root)
@@ -110,9 +113,10 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private RelativeLayout mRlTitle;
     @ViewInject(R.id.v_sup)
     private View mVSup;
-
-    private TextView mTvBack;
-    private TextView mTvTitleBack;
+   @ViewInject(R.id.tv_back)
+    private FontsIconTextView mTvBack;
+    @ViewInject(R.id.tv_title_back)
+    private FontsIconTextView mTvTitleBack;
     private int mTopViewHeight;
     private int mTitleHeight;
     private String phoneName;
@@ -129,10 +133,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         LogUtils.e(phoneName);
         mPbLoad = findViewById(R.id.pb_load);
         inflater = LayoutInflater.from(this);
-        mTvPrivateIcon = FontsIconUtil.findIconFontsById(R.id.tv_private_icon, this);
-        mTvFollowIcon =  FontsIconUtil.findIconFontsById(R.id.tv_follow_icon, this);
-        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
-        mTvTitleBack = FontsIconUtil.findIconFontsById(R.id.tv_title_back, this);
+
     }
 
     @Override

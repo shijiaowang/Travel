@@ -58,7 +58,7 @@
         android:textColor="#b7b7b7"
         android:textSize="12sp" />
 
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:text="@string/activity_message_center_cursor"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

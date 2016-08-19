@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Line;
 import com.example.administrator.travel.ui.view.DottedLineView;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
 
@@ -21,8 +22,8 @@ import java.util.List;
  * Created by Administrator on 2016/8/5 0005.
  */
 public class LinePlanHolder extends BaseHolder<Line> {
-
-    public TextView mTvAdd;
+    @ViewInject(R.id.tv_add)
+    public FontsIconTextView mTvAdd;
     private LinearLayout mLlLine;
     @ViewInject(R.id.dlv_line)
     private DottedLineView mDlvLine;
@@ -30,6 +31,8 @@ public class LinePlanHolder extends BaseHolder<Line> {
     private TextView mTvNumber;
     @ViewInject(R.id.tv_time)
     private TextView mTvTime;
+    @ViewInject(R.id.tv_delete)
+    private TextView mTvDelete;
 
 
     public LinePlanHolder(Context context) {
@@ -56,11 +59,8 @@ public class LinePlanHolder extends BaseHolder<Line> {
     @Override
     public View initRootView(Context mContext) {
         View view = inflateView(R.layout.item_activity_line_plan);
-        mTvAdd = FontsIconUtil.findIconFontsById(R.id.tv_add, mContext, view);
+
         mLlLine = (LinearLayout) view.findViewById(R.id.ll_destination_line);
-       /* mTvNumber = (TextView) view.findViewById(R.id.tv_number);
-        mTvTime = (TextView) view.findViewById(R.id.tv_time);
-        mDlvLine = (DottedLineView) view.findViewById(R.id.dlv_line);*/
         setLineHeight();
         return view;
     }
@@ -81,7 +81,6 @@ public class LinePlanHolder extends BaseHolder<Line> {
         final View view = inflateView(R.layout.item_activity_line_plan_add_item);
         TextView mTvAdd = (TextView) view.findViewById(R.id.tv_add);
         mTvAdd.setText(text);
-        TextView mTvDelete = FontsIconUtil.findIconFontsById(R.id.tv_delete, mContext, view);
         mTvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

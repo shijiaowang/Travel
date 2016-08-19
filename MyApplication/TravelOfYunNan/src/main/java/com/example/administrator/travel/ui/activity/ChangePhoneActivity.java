@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.PhoneUtils;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -19,6 +20,7 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+
 /**
  * Created by Administrator on 2016/8/19 0019.
  * 更改手机号
@@ -26,14 +28,10 @@ import java.util.Map;
 public class ChangePhoneActivity extends LoadingBarBaseActivity {
     private static final int CHANGE_VER = 1;//更改手机验证码
     @ViewInject(R.id.bt_next)
-    private Button mBtNex;
+    private AvoidFastButton mBtNex;
     @ViewInject(R.id.et_phone)
     private EditText mEtPhone;
-
-    @Override
-    protected void initContentView() {
-
-    }
+    private boolean isClick=false;
 
     @Override
     protected int setContentLayout() {
@@ -42,15 +40,19 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity {
 
     @Override
     protected void initEvent() {
-        mBtNex.setOnClickListener(new View.OnClickListener() {
+        mBtNex.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!PhoneUtils.isMobileNO(getString(mEtPhone))) {
                     requestAndSetErrorMessage(mEtPhone, "请输入正确的号码");
                     return;
                 }
-                Map<String, String> map = MapUtils.Build().addKey(ChangePhoneActivity.this).add(IVariable.TEL, getString(mEtPhone)).end();
-                XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, 0);
+                if (!isClick) {
+                    isClick= true;
+                    Map<String, String> map = MapUtils.Build().addKey(ChangePhoneActivity.this).add(IVariable.TEL, getString(mEtPhone)).end();
+                    XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, 0);
+                }
+
             }
 
         });
@@ -111,6 +113,7 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity {
         }else {
             ToastUtils.showToast(event.getMessage());
         }
+        isClick=false;
     }
 
     @Override

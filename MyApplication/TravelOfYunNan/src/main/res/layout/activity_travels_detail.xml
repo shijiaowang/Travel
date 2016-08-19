@@ -37,8 +37,7 @@
 
             <LinearLayout style="@style/activityDeliciousDetailLl">
 
-                <TextView
-                    android:id="@+id/tv_line"
+                <com.example.administrator.travel.ui.view.FontsIconTextView
                     style="@style/activityDeliciousDetailTvIcon"
                     android:text="@string/activity_add_detail_line" />
 
@@ -62,8 +61,7 @@
 
             <LinearLayout style="@style/activityDeliciousDetailLl">
 
-                <TextView
-                    android:id="@+id/tv_team_profile"
+                <com.example.administrator.travel.ui.view.FontsIconTextView
                     style="@style/activityDeliciousDetailTvIcon"
                     android:text="@string/activity_add_detail_team_profile" />
 
@@ -139,8 +137,7 @@
 
             <LinearLayout style="@style/activityDeliciousDetailLl">
 
-                <TextView
-                    android:id="@+id/tv_discuss"
+                <com.example.administrator.travel.ui.view.FontsIconTextView
                     style="@style/activityDeliciousDetailTvIcon"
                     android:text="@string/activity_circle_discuss" />
 

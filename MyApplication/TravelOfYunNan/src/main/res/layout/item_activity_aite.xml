@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     >
-    <TextView
+    <com.example.administrator.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_aite"
         android:layout_marginLeft="13dp"
         android:layout_centerVertical="true"

@@ -28,16 +28,6 @@ public class TravelsDetailActivity extends BarBaseActivity {
     @ViewInject(R.id.lv_discuss)
     private ToShowAllListView mLvDiscuss;
 
-    @Override
-    protected void initContentView() {
-        TextView mTvLine = FontsIconUtil.findIconFontsById(R.id.tv_line, this);
-        TextView mTvdisscuss = FontsIconUtil.findIconFontsById(R.id.tv_discuss, this);
-        TextView mTvTeamProfile = FontsIconUtil.findIconFontsById(R.id.tv_team_profile, this);
-        TextView mTvIconAdd = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_add, this);
-        TextView mTvIconAir = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_air, this);
-        TextView mTvIconPeople = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_people, this);
-        TextView mTvIconTime = FontsIconUtil.findIconFontsByIdAndFakeBoldText(R.id.tv_icon_time, this);
-    }
 
     @Override
     protected int setContentLayout() {

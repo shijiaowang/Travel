@@ -22,11 +22,6 @@ public class DeliciousFoodActivity extends BarBaseActivity {
     private DeliciousFoodAdapter deliciousFoodAdapter;
 
     @Override
-    protected void initContentView() {
-
-    }
-
-    @Override
     protected int setContentLayout() {
         return R.layout.activity_delicious_food;
     }

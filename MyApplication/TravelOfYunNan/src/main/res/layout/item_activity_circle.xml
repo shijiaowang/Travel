@@ -86,7 +86,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="1dp"/>
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_icon_love"
             android:text="@string/activity_circle_love"
             android:textColor="@color/colorA1a1a1"
@@ -100,7 +100,7 @@
             android:textSize="11sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_icon_discuss"
             android:layout_marginLeft="27dp"
             android:text="@string/activity_circle_discuss"

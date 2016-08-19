@@ -6,12 +6,17 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Discuss;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
+
+import org.xutils.view.annotation.ViewInject;
 
 /**
  * Created by Administrator on 2016/7/26 0026.
  */
 public class DeliciousDiscussHoler extends BaseHolder<Discuss> {
+    @ViewInject(R.id.tv_love)
+    private FontsIconTextView mTvLove;
     public DeliciousDiscussHoler(Context context) {
         super(context);
     }
@@ -24,7 +29,7 @@ public class DeliciousDiscussHoler extends BaseHolder<Discuss> {
     @Override
     public View initRootView(Context mContext) {
         View inflate =inflateView(R.layout.item_common_disscuss);
-        TextView mTvLove = FontsIconUtil.findIconFontsById(R.id.tv_love, mContext, inflate);
+
         return inflate;
     }
 }

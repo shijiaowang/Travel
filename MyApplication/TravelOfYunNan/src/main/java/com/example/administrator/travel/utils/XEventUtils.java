@@ -1,13 +1,12 @@
 package com.example.administrator.travel.utils;
 
+
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
-import org.xutils.common.util.LogUtil;
-import org.xutils.ex.HttpException;
 import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -39,6 +38,8 @@ public class XEventUtils {
         }
         return x.http().get(requestParams, new MyCommonCallback(type));
     }
+
+
 
     /**
      * post请求

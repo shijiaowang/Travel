@@ -45,7 +45,7 @@
                         android:textColor="#444444"
                         android:textSize="12sp" />
 
-                    <TextView
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
                         android:id="@+id/tv_sex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                         android:textColor="@color/color97bcf0"
                         android:textSize="12sp" />
 
-                    <TextView
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
                         android:id="@+id/tv_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <TextView
+                <com.example.administrator.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                     android:textColor="@color/otherTitleBg"
                     android:textSize="20sp" />
 
-                <TextView
+                <com.example.administrator.travel.ui.view.FontsIconTextView
                     android:layout_marginLeft="19dp"
                     android:id="@+id/tv_delete"
                     android:layout_width="wrap_content"

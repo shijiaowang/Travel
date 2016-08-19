@@ -53,10 +53,8 @@ public class HomeFragment extends BaseFragment {
         mRvHotSpots = (RecyclerView) root.findViewById(R.id.rv_hot_spots);
         mLvTravels = (ListView) root.findViewById(R.id.lv_travels);
         mVpActive = (ViewPager) root.findViewById(R.id.vp_active);
-        TextView mTvSpot = FontsIconUtil.findIconFontsById(R.id.tv_spot,getContext(),root);
         mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, getContext(), root);
-        TextView mTvChosen = FontsIconUtil.findIconFontsById(R.id.tv_chosen,getContext(),root);
-        TextView mTvTravels = FontsIconUtil.findIconFontsById(R.id.tv_travels,getContext(),root);
+
 
 
     }

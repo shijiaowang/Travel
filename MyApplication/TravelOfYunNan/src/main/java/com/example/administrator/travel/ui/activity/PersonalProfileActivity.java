@@ -9,29 +9,35 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.GlobalUtils;
+import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.StringUtils;
+import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.UserUtils;
+import com.example.administrator.travel.utils.XEventUtils;
 
 import org.xutils.view.annotation.ViewInject;
+
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/8/19 0019.
  * 个人简介
  */
 public class PersonalProfileActivity extends LoadingBarBaseActivity {
-    @ViewInject(R.id.tv_write)
-    private TextView mTvWrite;
     @ViewInject(R.id.et_profile)
     private EditText mEtProfile;
     @ViewInject(R.id.bt_save_change)
-    private Button mBtSaveChange;
+    private AvoidFastButton mBtSaveChange;
     @ViewInject(R.id.tv_number)
     private TextView mTvNumber;
     @ViewInject(R.id.ll_hint)
     private LinearLayout mLlHint;
-    @Override
-    protected void initContentView() {
-        FontsIconUtil.findIconFontsById(this,R.id.tv_write);
-    }
 
     @Override
     protected int setContentLayout() {
@@ -40,10 +46,11 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
 
     @Override
     protected void initEvent() {
-        mBtSaveChange.setOnClickListener(new View.OnClickListener() {
+        mBtSaveChange.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Map<String, String> contentMap = MapUtils.Build().addKey(PersonalProfileActivity.this).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.CONTENT, getString(mEtProfile)).end();
+                XEventUtils.postUseCommonBackJson(IVariable.CHANGE_USER_INFO,contentMap,0);
             }
         });
    mEtProfile.addTextChangedListener(new TextWatcher() {
@@ -55,12 +62,7 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
        @Override
        public void onTextChanged(CharSequence s, int start, int before, int count) {
           if (mLlHint.getVisibility()== View.VISIBLE)mLlHint.setVisibility(View.GONE);
-           mTvNumber.setText(getString(mEtProfile).length()+"");
-           if (getString(mEtProfile).length()>0){
-               btIsClick(mBtSaveChange,true);
-           }else {
-               btIsClick(mBtSaveChange,false);
-           }
+           mTvNumber.setText(getString(mEtProfile).length()+"/80");
        }
 
        @Override
@@ -77,8 +79,14 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
 
     @Override
     protected void initViewData() {
-     setIsProgress(false);
-        btIsClick(mBtSaveChange,false);
+      setIsProgress(false);
+        String content = GlobalUtils.getUserInfo().getContent();
+        if (!StringUtils.isEmpty(content)){
+            mLlHint.setVisibility(View.GONE);
+            mEtProfile.setText(content);
+            mTvNumber.setText(content.length()+"/80");
+        }
+
     }
 
     @Override
@@ -88,5 +96,26 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerEventBus(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterEventBus(this);
+    }
+    public void onEvent(HttpEvent event){
+        if (event.isSuccess()){
+            Login.UserInfo userInfo = GlobalUtils.getUserInfo();
+            userInfo.setContent(getString(mEtProfile));
+            UserUtils.saveUserInfo(userInfo);
+            finish();
+        }
+        ToastUtils.showToast(event.getMessage());
     }
 }

@@ -55,7 +55,7 @@
                     android:textCursorDrawable="@null"
                     android:textSize="15sp" />
 
-                <TextView
+                <com.example.administrator.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_search"
                     android:textColor="@color/colorFAFAFA"
                     android:textSize="15sp"
@@ -93,9 +93,8 @@
 
             <LinearLayout style="@style/HomeTopicParent">
 
-                <TextView
+                <com.example.administrator.travel.ui.view.FontsIconTextView
                     android:layout_marginTop="1dp"
-                    android:id="@+id/tv_chosen"
                     android:text="@string/fragment_home_chosen"
                     android:textColor="@color/homeTopicTextColor"
                     android:textSize="15sp"
@@ -135,9 +134,8 @@
 
             <LinearLayout style="@style/HomeTopicParent">
 
-                <TextView
+                <com.example.administrator.travel.ui.view.FontsIconTextView
                     android:layout_marginTop="1dp"
-                    android:id="@+id/tv_spot"
                     android:text="@string/fragment_home_spot"
                     android:textColor="@color/homeTopicTextColor"
                     android:textSize="15sp"
@@ -161,9 +159,8 @@
 
             <LinearLayout style="@style/HomeTopicParent">
 
-                <TextView
+                <com.example.administrator.travel.ui.view.FontsIconTextView
                     android:layout_marginTop="1dp"
-                    android:id="@+id/tv_travels"
                     android:textColor="@color/homeTopicTextColor"
                     android:text="@string/fragment_find_travels"
                     android:textSize="15sp"

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.CircleDetail;
 import com.example.administrator.travel.ui.adapter.CircleDetailPhotoAdapter;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.FormatDateUtils;
@@ -43,7 +44,8 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
     private ToShowAllGridView mGvPhoto;
     private CircleDetailPhotoAdapter circleDetailPhotoAdapter;
     private List<String> list;
-    public TextView mTvIconLove;
+    @ViewInject(R.id.tv_icon_love)
+    public FontsIconTextView mTvIconLove;
 
     public CircleDetailHolder(Context context) {
         super(context);
@@ -117,8 +119,6 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
     @Override
     public View initRootView(Context mContext) {
         View inflate = inflateView(R.layout.item_activity_circle);
-        mTvIconLove = FontsIconUtil.findIconFontsById(R.id.tv_icon_love, mContext, inflate);
-        TextView mTvIconDiscuss = FontsIconUtil.findIconFontsById(R.id.tv_icon_discuss, mContext, inflate);
         return inflate;
     }
 }

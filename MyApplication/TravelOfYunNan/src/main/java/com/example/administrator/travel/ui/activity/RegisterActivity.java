@@ -15,6 +15,7 @@ import com.example.administrator.travel.bean.Register;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.ui.view.LineEditText;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -37,7 +38,7 @@ import de.greenrobot.event.EventBus;
  * Created by Administrator on 2016/8/15 0015.
  * 注册界面
  */
-public class RegisterActivity extends BaseTransActivity implements View.OnClickListener, TextWatcher {
+public class RegisterActivity extends BaseTransActivity implements View.OnClickListener, TextWatcher, AvoidFastButton.AvoidFastOnClickListener {
     //请求
     private static final int REGISTER_REQ = 0;//注册
     private static final int VERIFICATION_REQ = 1;//验证码
@@ -56,9 +57,10 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     @ViewInject(R.id.et_ver)
     private LineEditText mEtVer;
     @ViewInject(R.id.bt_next)
-    private Button mBtNext;
+    private AvoidFastButton mBtNext;
     @ViewInject(R.id.bt_ver)
-    private Button mBtVer;
+    private AvoidFastButton mBtVer;
+    @ViewInject(R.id.tv_back)
     private TextView mTvBack;
     private int verTime = 60;//验证码时间
     private boolean isSendVer = false;
@@ -81,8 +83,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
 
     @Override
     protected void initView() {
-        FontsIconUtil.findIconFontsById(this, R.id.tv_phone, R.id.tv_password, R.id.tv_re_password, R.id.tv_message);
-        mTvBack = FontsIconUtil.findIconFontsById(R.id.tv_back, this);
+
     }
 
     @Override
@@ -94,9 +95,9 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
 
     @Override
     protected void initListener() {
-        mBtVer.setOnClickListener(this);
+        mBtVer.setOnAvoidFastOnClickListener(this);
+        mBtNext.setOnAvoidFastOnClickListener(this);
         mTvBack.setOnClickListener(this);
-        mBtNext.setOnClickListener(this);
         mEtPhone.addTextChangedListener(this);
         mEtVer.addTextChangedListener(this);
         mEtPassword.addTextChangedListener(this);

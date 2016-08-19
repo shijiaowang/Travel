@@ -99,7 +99,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="1dp"/>
-            <TextView
+            <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:gravity="center"
                 android:id="@+id/tv_love"
                 android:textColor="#ff7f6c"

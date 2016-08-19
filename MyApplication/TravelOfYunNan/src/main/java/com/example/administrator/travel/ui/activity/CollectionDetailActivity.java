@@ -20,11 +20,6 @@ public class CollectionDetailActivity extends BarBaseActivity {
     private String name;
 
 
-    @Override
-    protected void initContentView() {
-        int collectionType = getIntent().getIntExtra(MyCollectionFragment.COLLECTION_TYPE, -1);
-        setName(collectionType);
-    }
 
     private void setName(int collectionType) {
         name = "收藏详情";
@@ -57,7 +52,12 @@ public class CollectionDetailActivity extends BarBaseActivity {
 
     @Override
     protected void initEvent() {
+        init();
+    }
 
+    private void init() {
+        int collectionType = getIntent().getIntExtra(MyCollectionFragment.COLLECTION_TYPE, -1);
+        setName(collectionType);
     }
 
     @Override

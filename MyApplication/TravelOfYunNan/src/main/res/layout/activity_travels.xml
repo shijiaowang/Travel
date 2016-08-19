@@ -32,7 +32,7 @@
                 android:textCursorDrawable="@null"
                 android:textSize="12sp" />
 
-            <TextView
+            <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

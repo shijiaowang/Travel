@@ -117,6 +117,10 @@
     <string name="activity_customer_center_tel">殿</string><!--电话号码-->
     <string name="activity_confirm_orders_zfb">芝</string><!--支付宝-->
     <string name="activity_confirm_orders_we_chat">微</string><!--微信支付-->
+    <string name="activity_identity_phone">皓</string><!--手机认证-->
+    <string name="activity_identity_id_card">绅</string><!--身份证认证-->
+    <string name="activity_identity_run_card">驾</string><!--驾驶证认证-->
+    <string name="activity_identity_car_card">筝</string><!--车辆认证-->
     <string name="activity_setting_log_out">莞</string>
 
     <!--退出登录-->

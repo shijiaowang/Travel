@@ -55,7 +55,7 @@
             android:layout_marginLeft="27dp"
             android:orientation="vertical">
 
-            <TextView
+            <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:layout_marginTop="20dp"
                 android:id="@+id/tv_add"
                 android:layout_width="70dp"

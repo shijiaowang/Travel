@@ -10,10 +10,6 @@ import com.example.administrator.travel.utils.FontsIconUtil;
  * 活动详情
  */
 public class ActivateDetailActivity extends BarBaseActivity {
-    @Override
-    protected void initContentView() {
-        TextView mTvPen = FontsIconUtil.findIconFontsById(R.id.tv_pen, this);
-    }
 
     @Override
     protected int setContentLayout() {
