@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
@@ -22,6 +23,8 @@ import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MD5Utils;
+import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.ShareUtil;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.UserUtils;
@@ -52,6 +55,7 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
     private FontsIconTextView mTvBack;
     private String name;
     private String password;
+    private boolean isFirstError=true;
 
 
 
@@ -92,19 +96,21 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
     }
 
     private void goToLogin() {
-        Map<String, String> logMap = new HashMap<String, String>();
-        key = GlobalUtils.getKey(LoginActivity.this);
-        logMap.put(IVariable.KEY, key);
-        logMap.put(IVariable.USERNAME, name);
-        logMap.put(IVariable.PASSWORD, MD5Utils.encode(MD5Utils.encode(password)));
+        Map<String, String> logMap = MapUtils.Build().addKey(LoginActivity.this).add(IVariable.USERNAME, name).add(IVariable.PASSWORD, MD5Utils.encode(MD5Utils.encode(password))).end();
         XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, logMap, IVariable.TYPE_POST_LOGIN);
     }
 
     public void onEvent(HttpEvent event) {
+        ToastUtils.showToast(event.getMessage()+"---这是登录结果解析前的信息");
         if (event.isSuccess()) {
             if (event.getType()==IVariable.TYPE_GET_KEY ){
                 if (tryGetKey==0){//只重复尝试一次请求key
                     tryGetKey++;
+                    //处理初次key出问题
+                    Key key = GsonUtils.getObject(event.getResult(), Key.class);
+                    GlobalValue.KEY_VALUE = MD5Utils.encode(MD5Utils.encode(key.getData().getValue()));
+                    ShareUtil.putString(this, IVariable.KEY_VALUE, GlobalValue.KEY_VALUE);
+                    ShareUtil.putInt(this, IVariable.KEY_CODE, key.getCode());
                     goToLogin();
                 }
             }else {
@@ -116,7 +122,8 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
                 goToHomeActivity(event);
             }
         } else {
-            if (event.getCode()==IVariable.KEY_ERROR){
+            if (event.getCode()==IVariable.KEY_ERROR && isFirstError){
+                isFirstError=false;//避免无限循环key错误
                 XEventUtils.getUseCommonBackJson(IVariable.GET_KEY,null,IVariable.TYPE_GET_KEY);
             }else {
                 ToastUtils.showToast(event.getMessage());

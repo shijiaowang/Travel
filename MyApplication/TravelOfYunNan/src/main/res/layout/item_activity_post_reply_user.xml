@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_activity_post_reply" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="17dp"
+        android:background="@color/meLine"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                style="@style/commonSingleLineTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="岳阳岳阳"
+                android:textColor="@color/color323232"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_reply_floor_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1楼"
+                android:textColor="@color/color969696"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_reply_content"
+            android:textColor="@color/color606060"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="很有同感，一点也不赞同！" />
+    </LinearLayout>
+
+
+</LinearLayout>

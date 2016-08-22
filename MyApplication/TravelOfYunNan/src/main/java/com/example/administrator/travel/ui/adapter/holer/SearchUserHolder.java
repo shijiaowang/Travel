@@ -4,13 +4,12 @@ import android.content.Context;
 import android.view.View;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.PostReply;
 
 /**
- * Created by Administrator on 2016/7/11 0011.
+ * Created by Administrator on 2016/8/22 0022.
  */
-public class PostReplyTextHolder extends BaseHolder<Object> {
-    public PostReplyTextHolder(Context context) {
+public class SearchUserHolder extends BaseHolder {
+    public SearchUserHolder(Context context) {
         super(context);
     }
 
@@ -21,7 +20,7 @@ public class PostReplyTextHolder extends BaseHolder<Object> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_activity_post_reply);
-        return inflate;
+        View view = inflateView(R.layout.item_activity_home_search_1);
+        return view;
     }
 }

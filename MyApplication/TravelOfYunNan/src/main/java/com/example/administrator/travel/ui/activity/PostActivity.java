@@ -4,6 +4,10 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.PostAdapter;
 import org.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 
 /**
  * 帖子
@@ -25,7 +29,24 @@ public class PostActivity extends BarBaseActivity {
     }
     @Override
     protected void initViewData() {
-        mLvPostDetail.setAdapter(new PostAdapter(this, null));
+        List list=new ArrayList();
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        mLvPostDetail.setAdapter(new PostAdapter(this, list));
     }
 
     @Override

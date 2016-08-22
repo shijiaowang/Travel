@@ -10,8 +10,8 @@ import android.view.View;
 import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;
-import com.example.administrator.travel.ui.adapter.holer.PostReplyImageHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyTextHolder;
+import com.example.administrator.travel.ui.adapter.holer.PostReplyUserHolder;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
         if (position==0){
             return TYPE_POST_OP;
         }else if (position<4){
-            return TYPE_POST_IMG;
+            return TYPE_POST_USER;
         }else {
             return TYPE_POST_NORMAL;
         }
@@ -46,9 +46,8 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
 
     @Override
     protected void initListener(BaseHolder baseHolder, Object item, int position) {
-        if (baseHolder instanceof PostReplyImageHolder){
-
-            PostReplyImageHolder postReplyImageHolder = (PostReplyImageHolder) baseHolder;
+        if (baseHolder instanceof PostReplyUserHolder){
+            PostReplyUserHolder postReplyImageHolder = (PostReplyUserHolder) baseHolder;
             postReplyImageHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -66,8 +65,8 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
         int itemViewType = getItemViewType(position);
         if (itemViewType==TravelBaseAdapter.TYPE_POST_OP){
             return new PostOpHolder(super.mContext);
-        }else if (itemViewType==TravelBaseAdapter.TYPE_POST_IMG){
-            return new PostReplyImageHolder(super.mContext);
+        }else if (itemViewType==TravelBaseAdapter.TYPE_POST_USER){
+            return new PostReplyUserHolder(super.mContext);
         }else {
             return new PostReplyTextHolder(super.mContext);
         }

@@ -35,10 +35,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
     private static final int START_SPLASH = 1;
     private int GO_WHERE_PAGE = -1;
     private boolean isNetWork = false;//缓存登录时是否有网
-
-
     private SharedPreferences sharedPreferences;
-    private Login.UserInfo userInfo;
 
 
     @Override
@@ -100,7 +97,6 @@ public class WelcomeActivity extends FullTransparencyActivity {
                 }
                 if (GO_WHERE_PAGE == START_HOME) {
                     Intent homeIntent = new Intent(WelcomeActivity.this, HomeActivity.class);
-                    homeIntent.putExtra(IVariable.USER_INFO, userInfo);
                     homeIntent.putExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, isNetWork);
                     startActivity(homeIntent);
                 } else {
@@ -149,16 +145,12 @@ public class WelcomeActivity extends FullTransparencyActivity {
      * @param event
      */
     private void login(HttpEvent event) {
+        LogUtils.e(event.getMessage()+event.getCode());
         if (event.isSuccess()) {
-            if (event.getCode() == IVariable.SUCCESS) {
-                String result = event.getResult();
-                Gson gson = new Gson();
-                Login login = gson.fromJson(result, Login.class);
-                userInfo = login.getData();
-                isNetWork = true;
-            } else {
-                GO_WHERE_PAGE = START_SPLASH;
-            }
+            isNetWork = true;
+            GO_WHERE_PAGE=START_HOME;
+        } else {
+            GO_WHERE_PAGE = START_SPLASH;
         }
     }
 

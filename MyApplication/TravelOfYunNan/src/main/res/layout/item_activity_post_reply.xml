@@ -4,14 +4,34 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
     <View
+        android:id="@+id/v_line"
         android:layout_marginRight="17dp"
         android:layout_marginLeft="60dp"
         android:background="#efeff4"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="17dp"
+            android:id="@+id/tv_floor_number"
+            android:text="1楼"
+            android:textColor="@color/color969696"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <RelativeLayout
         android:layout_marginLeft="17dp"
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -44,36 +64,47 @@
                 android:textSize="10sp" />
 
         </LinearLayout>
-        <LinearLayout
-            android:gravity="center_vertical"
-            android:layout_marginRight="22dp"
-            android:layout_marginTop="6dp"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/activity_post_reply_love"
-                android:layout_width="14dp"
-                android:layout_height="11dp" />
-            <TextView
-                android:text="3"
-                android:layout_marginLeft="5dp"
-                android:textColor="#969696"
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="22dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_reply_message"
+            android:textSize="12sp"
+            android:textColor="#606060"
+            android:text="有些感觉，那画面太美，不敢看。"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_lovee"
+                android:text="@string/activity_circle_love_empty"
+                android:textColor="@color/color969696"
                 android:textSize="11sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tv_love_number"
+                android:text="3"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color969696"
+                android:textSize="11sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ViewStub
+        android:id="@+id/vs_image"
+        android:layout_marginRight="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout="@layout/item_activity_post_reply_image"
+        android:layout_width="match_parent"
+        android:layout_height="165dp" />
 
-    </RelativeLayout>
-    <TextView
-        android:id="@+id/tv_reply_message"
-        android:layout_marginBottom="9dp"
-        android:textSize="12sp"
-        android:textColor="#606060"
-        android:text="有些感觉，那画面太美，不敢看。"
-        android:layout_marginTop="9dp"
-        android:layout_marginLeft="60dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

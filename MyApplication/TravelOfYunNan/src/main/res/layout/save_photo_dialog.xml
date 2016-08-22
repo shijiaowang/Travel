@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/activity_photo_dialog_bg"
+    android:layout_width="match_parent"
+    android:layout_height="93dp">
+    <TextView
+        android:id="@+id/tv_save"
+        android:text="保存图片"
+        android:textColor="@color/color232323"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="42dp" />
+    <View
+        android:background="@color/otherTitleBg"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:text="取消"
+        android:id="@+id/tv_cancel"
+        android:textColor="@color/color232323"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
+</LinearLayout>

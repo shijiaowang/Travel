@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.widget.GridView;
 
 /**
@@ -9,6 +10,8 @@ import android.widget.GridView;
  * 解决嵌套ScorllView只显示一行数据
  */
 public class ToShowAllGridView extends GridView {
+
+    private boolean isClick=true;
 
     public ToShowAllGridView(Context context) {
         super(context);
@@ -32,5 +35,12 @@ public class ToShowAllGridView extends GridView {
         int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
                 MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
+    }
+   public void setCanClick(boolean isClick){
+       this.isClick = isClick;
+   }
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return isClick;
     }
 }

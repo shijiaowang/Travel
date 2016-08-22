@@ -66,12 +66,14 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
             mTvTitle.setText(datas.getTitle());
         }
         mTvIconLove.setTextColor(datas.getIs_like().equals("1")?mContext.getResources().getColor(R.color.otherFf7f6c):mContext.getResources().getColor(R.color.colorA1a1a1));
+        mTvLoveNumber.setTextColor(datas.getIs_like().equals("1")?mContext.getResources().getColor(R.color.otherFf7f6c):mContext.getResources().getColor(R.color.colorA1a1a1));
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-M-dd HH:mm", datas.getTime()));
         mTvUserNickName.setText(datas.getNick_name());
         mTvContent.setText(datas.getContent());
         String imageUrl = datas.getForum_img();
         if (!StringUtils.isEmpty(imageUrl)) {
             mGvPhoto.setVisibility(View.VISIBLE);
+            mGvPhoto.setCanClick(false);//不消费事件
             String[] split = imageUrl.split(",");
             list = new ArrayList<>();
             list.clear();

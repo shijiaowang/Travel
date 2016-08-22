@@ -14,7 +14,7 @@ import org.xutils.view.annotation.ViewInject;
 /**
  * Created by Administrator on 2016/7/11 0011.
  */
-public class PostOpHolder  extends BaseHolder<PostOp>{
+public class PostOpHolder  extends BaseHolder<Object>{
     @ViewInject(R.id.iv_post_op_icon)
     private ImageView mIvPostOpIcon;
 
@@ -23,15 +23,13 @@ public class PostOpHolder  extends BaseHolder<PostOp>{
     }
 
     @Override
-    protected void initItemDatas(PostOp datas, final Context mContext) {
+    protected void initItemDatas(Object datas, final Context mContext) {
 
     }
 
     @Override
     public View initRootView(Context mContext) {
         View inflate = inflateView(R.layout.item_activity_post_op);
-       /* mIvPostOpIcon = (ImageView) inflate.findViewById(R.id.iv_post_op_icon);*/
-
         return inflate;
     }
 }
