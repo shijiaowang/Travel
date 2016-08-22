@@ -43,17 +43,19 @@ public class IdentityAuthenticationActivity extends LoadingBarBaseActivity {
     protected void initViewData() {
         setIsProgress(false);
         Login.UserInfo userInfo = GlobalUtils.getUserInfo();
-        initIdentity(mTvIdentityPhone,userInfo.getTel());
-        initIdentity(mTvIdentityIdCard,userInfo.getId_card());
-        initIdentity(mTvIdentityCarCard,userInfo.getRun_card());
-        initIdentity(mTvIdentityDeviceCard,userInfo.getDrive_card());
+        if (userInfo != null) {
+            initIdentity(mTvIdentityPhone, userInfo.getTel());
+            initIdentity(mTvIdentityIdCard, userInfo.getId_card());
+            initIdentity(mTvIdentityCarCard, userInfo.getRun_card());
+            initIdentity(mTvIdentityDeviceCard, userInfo.getDrive_card());
+        }
 
     }
 
-    private void initIdentity(TextView tv,String text) {
-        if (StringUtils.isEmpty(text) || text.equals("0")){
+    private void initIdentity(TextView tv, String text) {
+        if (StringUtils.isEmpty(text) || text.equals("0")) {
             tv.setText("未认证");
-        }else {
+        } else {
             tv.setText("已认证");
             tv.setTextColor(getResources().getColor(R.color.otherTitleBg));
         }

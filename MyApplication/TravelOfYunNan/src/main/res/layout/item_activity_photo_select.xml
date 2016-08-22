@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorFAFAFA"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/iv_picture"
+        android:scaleType="fitXY"
+        android:layout_width="76dp"
+        android:layout_height="78dp" />
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_marginLeft="17dp"
+        android:text="weibo(33)"
+        android:textColor="#454545"
+        android:textSize="14sp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+    <com.example.administrator.travel.ui.view.FontsIconTextView
+        android:layout_marginRight="17dp"
+        android:text="@string/activity_message_center_cursor"
+        android:textColor="#454545"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

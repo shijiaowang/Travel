@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.ui.activity.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.activity.CustomerServiceActivity;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
 import com.example.administrator.travel.ui.activity.IdentityAuthenticationActivity;
@@ -91,6 +92,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             mFlLabel.addView(mTvTitle);
         }
         Login.UserInfo userInfo = GlobalUtils.getUserInfo();
+        if (userInfo==null)return;
         if (StringUtils.isEmpty(userInfo.getContent())){
             mTvProfile.setText("这个人很懒，什么都没有留下。。。");
         }else {

@@ -58,7 +58,7 @@ public class NavLeftFragment extends LoadBaseFragment {
     }
 
     private void firstReq() {
-        if ( GlobalUtils.getUserInfo().getId()==null){
+        if ( GlobalUtils.getUserInfo()==null){
             //// TODO: 2016/8/19 0019 让用户去重新登录
             return;
         }

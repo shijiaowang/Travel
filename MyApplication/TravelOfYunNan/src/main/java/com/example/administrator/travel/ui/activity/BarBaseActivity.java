@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -27,6 +28,8 @@ public abstract class BarBaseActivity extends BaseActivity {
     private TextView mTitleName;
     @ViewInject(R.id.bg_1)
     private View mBg1;
+    @ViewInject(R.id.pb_progress)
+    private ProgressBar mPbProgress;
 
     private int normalBgColor = Color.parseColor("#5cd0c2");
     private float alpha = 0f;
@@ -63,6 +66,7 @@ public abstract class BarBaseActivity extends BaseActivity {
         }else {
             mTvBack.setText(getLeftText());
         }
+        mPbProgress.setVisibility(View.GONE);
         mTvBack.setTextSize(TypedValue.COMPLEX_UNIT_SP, getLeftTextSize());
         mTitleName.setText(setTitleName());
         mVsContent.setLayoutResource(setContentLayout());
@@ -195,4 +199,7 @@ public abstract class BarBaseActivity extends BaseActivity {
     }
 
 
+    public TextView getmTvBack() {
+        return mTvBack;
+    }
 }
