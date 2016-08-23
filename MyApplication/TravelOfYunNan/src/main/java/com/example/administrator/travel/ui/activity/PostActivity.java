@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.app.Activity;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.PostDetail;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.adapter.PostAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -17,8 +19,11 @@ import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -29,21 +34,12 @@ import java.util.Map;
 public class PostActivity extends LoadingBarBaseActivity {
     @ViewInject(R.id.lv_post_detail)
     private ListView mLvPostDetail;
-    @ViewInject(R.id.tv_icon)
-    private ImageView mTvUserIcon;
-    @ViewInject(R.id.tv_nick_name)
-    private TextView mTvNickName;
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.tv_type)
-    private TextView mTvType;
-    @ViewInject(R.id.tv_content)
-    private TextView mTvContent;
-    @ViewInject(R.id.lv_post_image)
-    private ToShowAllListView mLvPostImage;
+
+
     private String forum_id;
     private int currentPage = 0;
-    private boolean isFirst=true;
+    List<Object> postDatas=new ArrayList<>();
+    private PostAdapter postAdapter;
 
     @Override
     protected int setContentLayout() {
@@ -63,8 +59,9 @@ public class PostActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void initViewData() {
+    protected Activity initViewData() {
         forum_id = getIntent().getStringExtra(IVariable.FORUM_ID);
+        return this;
     }
 
     @Override
@@ -77,6 +74,7 @@ public class PostActivity extends LoadingBarBaseActivity {
     public float getAlpha() {
         return 1;
     }
+    @Subscribe
     public void onEvent(HttpEvent event){
         if (event.isSuccess()){
             dealData(event);
@@ -87,22 +85,35 @@ public class PostActivity extends LoadingBarBaseActivity {
     }
 
     private void dealData(HttpEvent event) {
-        LogUtils.e(event.getResult());
-        PostDetail object = GsonUtils.getObject(event.getResult(), PostDetail.class);
-        if (isFirst){
-            isFirst=false;
-            PostDetail.DataBean.ForumBean forum = object.getData().getForum();
-            mTvNickName.setText(forum.getNick_name());
-            mTvTime.setText(FormatDateUtils.FormatLongTime("YYYY-MM-dd HH:mm",forum.getTime()));
-            mTvContent.setText(forum.getContent());
+        setIsProgress(false);
+        if (event.isSuccess()) {
+            dealPost(event);
+        }else {
+            ToastUtils.showToast(event.getMessage());
         }
+
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerEventBus(this);
+    private void dealPost(HttpEvent event) {
+        PostDetail object = GsonUtils.getObject(event.getResult(), PostDetail.class);
+        PostDetail.DataBean.ForumBean forum = object.getData().getForum();
+        List<PostDetail.DataBean.ForumReplyBean> forumReply = object.getData().getForum_reply();
+        if (postAdapter==null) {
+            postDatas.add(forum);
+            postDatas.addAll(forumReply);
+            postAdapter = new PostAdapter(this, postDatas);
+            mLvPostDetail.setAdapter(postAdapter);
+        }else {
+            //第一个更换，可能增加点赞等
+            postDatas.remove(0);
+            postDatas.add(0,forum);
+            postDatas.addAll(forumReply);
+            postAdapter.notifyData(postDatas);
+        }
+
     }
+
+
 
     @Override
     protected void onPause() {

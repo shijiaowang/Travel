@@ -27,11 +27,13 @@ import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.UserUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
+
 
 /**
  * Created by Administrator on 2016/8/18 0018.
@@ -157,7 +159,7 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
         XEventUtils.postUseCommonBackJson(IVariable.PERFECT_INFORMATION, infoMap, IVariable.TYPE_REGISTER_USER);
 
     }
-
+    @Subscribe
     public void onEvent(HttpEvent event) {
         if (event.isSuccess()) {
             dealData(event);

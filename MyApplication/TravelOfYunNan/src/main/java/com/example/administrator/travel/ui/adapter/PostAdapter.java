@@ -7,8 +7,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
+import com.example.administrator.travel.bean.PostDetail;
 import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyTextHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyUserHolder;
 
@@ -23,27 +25,30 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
     }
 
     @Override
-    protected int testDataSize() {
-        return 30;
-    }
-    @Override
     public int getViewTypeCount() {
         return 3;
     }
 
     @Override
     public int getItemViewType(int position) {
-
-         if (position<4){
+        PostDetail.DataBean.ForumReplyBean forumReplyBean=null;
+        if (mDatas.get(position) instanceof PostDetail.DataBean.ForumReplyBean){
+            forumReplyBean= (PostDetail.DataBean.ForumReplyBean) mDatas.get(position);
+        }
+        if (position == 0) {
+            return TYPE_POST_OP;
+        } else if (forumReplyBean!=null && !(forumReplyBean.getPid().equals("0"))) {
             return TYPE_POST_USER;
-        }else {
+        } else if (forumReplyBean!=null){
             return TYPE_POST_NORMAL;
+        }else {
+            return -1;
         }
     }
 
     @Override
     protected void initListener(BaseHolder baseHolder, Object item, int position) {
-        if (baseHolder instanceof PostReplyUserHolder){
+        if (baseHolder instanceof PostReplyUserHolder) {
             PostReplyUserHolder postReplyImageHolder = (PostReplyUserHolder) baseHolder;
             postReplyImageHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -60,10 +65,13 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
     @Override
     protected BaseHolder initHolder(int position) {
         int itemViewType = getItemViewType(position);
-        if(itemViewType==TravelBaseAdapter.TYPE_POST_USER){
+        if (itemViewType == TravelBaseAdapter.TYPE_POST_USER) {
             return new PostReplyUserHolder(super.mContext);
-        }else {
+        } else if (itemViewType == TYPE_POST_NORMAL) {
             return new PostReplyTextHolder(super.mContext);
+        } else {
+            return new PostOpHolder(mContext);
         }
+
     }
 }

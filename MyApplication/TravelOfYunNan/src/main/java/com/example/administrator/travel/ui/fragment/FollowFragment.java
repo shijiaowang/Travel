@@ -5,9 +5,10 @@ import android.widget.ListView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.ui.adapter.FanAdapter;
-import com.example.administrator.travel.ui.fragment.BaseFragment;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 
 /**
  * Created by Administrator on 2016/7/18 0018.
@@ -42,7 +43,7 @@ public class FollowFragment extends BaseFragment {
         super.onResume();
         EventBus.getDefault().register(this);
     }
-
+    @Subscribe
     public void onEvent(HttpEvent event){
 
     }

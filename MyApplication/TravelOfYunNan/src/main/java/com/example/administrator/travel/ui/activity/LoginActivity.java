@@ -30,12 +30,14 @@ import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.UserUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
-import java.util.HashMap;
+
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
+
 
 /**
  * Created by Administrator on 2016/7/26 0026.
@@ -99,7 +101,7 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         Map<String, String> logMap = MapUtils.Build().addKey(LoginActivity.this).add(IVariable.USERNAME, name).add(IVariable.PASSWORD, MD5Utils.encode(MD5Utils.encode(password))).end();
         XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, logMap, IVariable.TYPE_POST_LOGIN);
     }
-
+    @Subscribe
     public void onEvent(HttpEvent event) {
         ToastUtils.showToast(event.getMessage()+"---这是登录结果解析前的信息");
         if (event.isSuccess()) {

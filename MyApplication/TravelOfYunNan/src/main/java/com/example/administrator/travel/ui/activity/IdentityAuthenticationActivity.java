@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.app.Activity;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -40,7 +41,7 @@ public class IdentityAuthenticationActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void initViewData() {
+    protected Activity initViewData() {
         setIsProgress(false);
         Login.UserInfo userInfo = GlobalUtils.getUserInfo();
         if (userInfo != null) {
@@ -49,7 +50,7 @@ public class IdentityAuthenticationActivity extends LoadingBarBaseActivity {
             initIdentity(mTvIdentityCarCard, userInfo.getRun_card());
             initIdentity(mTvIdentityDeviceCard, userInfo.getDrive_card());
         }
-
+       return null;
     }
 
     private void initIdentity(TextView tv, String text) {

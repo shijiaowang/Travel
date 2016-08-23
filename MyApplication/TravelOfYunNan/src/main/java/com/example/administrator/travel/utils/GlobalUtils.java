@@ -12,7 +12,7 @@ import com.example.administrator.travel.global.IVariable;
 public class GlobalUtils {
     public static String getKey(Context context){
         if (StringUtils.isEmpty(GlobalValue.KEY_VALUE)){
-            GlobalValue.KEY_VALUE=context.getSharedPreferences(IVariable.SHARE_NAME,Context.MODE_PRIVATE).getString(IVariable.KEY,"");
+            GlobalValue.KEY_VALUE=context.getSharedPreferences(IVariable.SHARE_NAME,Context.MODE_PRIVATE).getString(IVariable.KEY_VALUE,"");
         }
         return GlobalValue.KEY_VALUE;
     }

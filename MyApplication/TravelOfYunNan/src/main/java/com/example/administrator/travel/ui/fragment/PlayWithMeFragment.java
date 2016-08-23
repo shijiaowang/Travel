@@ -8,10 +8,12 @@ import com.example.administrator.travel.bean.AppointWithMe;
 import com.example.administrator.travel.event.AppointEvent;
 import com.example.administrator.travel.ui.adapter.AppointWithMeAdapter;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
+
 
 /**
  * Created by Administrator on 2016/7/21 0021.

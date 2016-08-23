@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +23,7 @@ import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -29,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
+
 
 /**
  * Created by Administrator on 2016/7/8 0008.
@@ -88,7 +90,7 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CircleDetailActivity.this, PostActivity.class);
-                intent.putExtra(IVariable.FORUM_ID,postList.get(position).getId());
+                intent.putExtra(IVariable.FORUM_ID, postList.get(position).getId());
                 startActivity(intent);
             }
         });
@@ -102,12 +104,10 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
     }
 
     @Override
-    protected void initViewData() {
-
-
+    protected Activity initViewData() {
         String cName = getIntent().getStringExtra(IVariable.C_NAME);
         changeTitle(cName);
-
+        return this;
     }
 
     @Override
@@ -146,21 +146,8 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
         XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_FOLLOW, followMap, TYPE_FOLLOW_CIRCLE);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        EventBus.getDefault().register(this);
 
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        EventBus.getDefault().unregister(this);
-
-    }
-
-
+    @Subscribe
     public void onEvent(HttpEvent event) {
         setIsProgress(false);
         if (event.isSuccess()) {

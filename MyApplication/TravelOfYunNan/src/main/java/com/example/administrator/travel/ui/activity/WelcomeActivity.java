@@ -21,10 +21,13 @@ import com.example.administrator.travel.utils.XEventUtils;
 import com.google.gson.Gson;
 
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
+
 
 /**
  * Created by Administrator on 2016/7/27 0027.
@@ -129,7 +132,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
         super.onPause();
         EventBus.getDefault().unregister(this);
     }
-
+    @Subscribe
     public void onEvent(HttpEvent event) {
         if (event.getType() == IVariable.TYPE_GET_KEY) {
             getKey(event);

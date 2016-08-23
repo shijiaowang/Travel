@@ -9,11 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.travel.ui.view.LoadingPage;
-import com.example.administrator.travel.utils.LogUtils;
 
-import org.xutils.x;
+import org.greenrobot.eventbus.EventBus;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Administrator on 2016/8/3 0003.
@@ -21,8 +19,19 @@ import de.greenrobot.event.EventBus;
 public abstract class LoadBaseFragment extends Fragment {
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
-    private boolean childIsResume=false;
+    private Fragment fragment;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fragment = registerEvent();
+        if (fragment != null) {
+            registerEventBus(fragment);
+        }
+
+    }
+
+    protected abstract Fragment registerEvent();
 
     @Nullable
     @Override
@@ -52,33 +61,32 @@ public abstract class LoadBaseFragment extends Fragment {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 
     private void load() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (childIsResume) {
-                        onLoad();
-                        break;
-                    }
-                }
-            }
-        }).start();
+        onLoad();
+    }
 
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (fragment!=null){
+            unregisterEventBus(fragment);
+            fragment=null;
+        }
     }
-    public void registerEventBus(Fragment f){
-        EventBus.getDefault().register(f);
-        this.childIsResume=true;
+
+    public void registerEventBus(Fragment f) {
+        if (!EventBus.getDefault().isRegistered(f)) {
+            EventBus.getDefault().register(f);
+        }
+
     }
-    public void unregisterEventBus(Fragment f){
-        EventBus.getDefault().unregister(f);
-        this.childIsResume=false;
+
+    public void unregisterEventBus(Fragment f) {
+        if (EventBus.getDefault().isRegistered(f)) {
+            EventBus.getDefault().unregister(f);
+        }
     }
 
     @Override

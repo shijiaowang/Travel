@@ -1,17 +1,15 @@
 package com.example.administrator.travel.ui.activity;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -26,22 +24,22 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.activity.dragtopview.GridViewFragment;
 import com.example.administrator.travel.ui.activity.dragtopview.ListViewFragment;
 import com.example.administrator.travel.ui.activity.dragtopview.ScrollViewFragment;
-import com.example.administrator.travel.ui.fragment.BaseFragment;
+import com.example.administrator.travel.ui.fragment.OtherCenterAlbumFragment;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.FontsIconViewPagerIndicator;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.LogUtils;
-import com.example.administrator.travel.utils.TypefaceUtis;
 import com.google.common.collect.Lists;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import de.greenrobot.event.EventBus;
+
 import github.chenupt.dragtoplayout.DragTopLayout;
 import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
@@ -130,7 +128,6 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     @Override
     protected void initView() {
         phoneName = android.os.Build.MODEL;
-        LogUtils.e(phoneName);
         mPbLoad = findViewById(R.id.pb_load);
         inflater = LayoutInflater.from(this);
 
@@ -193,15 +190,13 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
                 mTvFollowIcon.setText(getResources().getString(R.string.activity_other_followed));
             }
         });
-
     }
 
 
     @Override
     protected void initData() {
-
-        mIndicator.setTitles(mTitles);
-
+        EventBus.getDefault().register(this);
+         mIndicator.setTitles(mTitles);
         if (mFlTitle.getChildCount() > 0) {
             mFlTitle.removeAllViews();
         }
@@ -210,11 +205,10 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
             textView.setText(titles[i]);
             mFlTitle.addView(textView);
         }
-        PagerModelManager factory = new PagerModelManager();
+   PagerModelManager factory = new PagerModelManager();
         factory.addCommonFragment(getFragments(), getTitles());
         adapter = new ModelPagerAdapter(getSupportFragmentManager(), factory);
         mVpDynamic.setAdapter(adapter);
-
         //获取数据
         Random random = new Random();
         i = random.nextInt(2);
@@ -259,10 +253,10 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private List<Fragment> getFragments() {
         List<Fragment> list = new ArrayList<>();
         Fragment listFragment = new ListViewFragment();
-        Fragment recyclerFragment = new GridViewFragment();
+        Fragment recyclerFragment = new OtherCenterAlbumFragment();
         Fragment gridViewFragment = new ScrollViewFragment();
-        list.add(listFragment);
-        list.add(recyclerFragment);
+       list.add(listFragment);
+        /* list.add(recyclerFragment);*/
         list.add(gridViewFragment);
         return list;
     }
@@ -277,8 +271,6 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
             alphaAnimation.setFillAfter(true);
             mRlRoot.startAnimation(alphaAnimation);
         }
-        EventBus.getDefault().register(this);
-
         if (!isInflate) {
             mPbLoad.startAnimation(animationSet);
             mHandler.sendEmptyMessageDelayed(i, 1500);
@@ -286,7 +278,8 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
 
     }
 
-    // Handle scroll event from fragments
+
+    @Subscribe
     public void onEvent(Boolean b) {
         mDragLayout.setTouchMode(b);
     }
@@ -312,5 +305,22 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    class PagerAdapter extends FragmentPagerAdapter{
+
+        public PagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return OtherUserCenterActivity.this.getFragments().get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return OtherUserCenterActivity.this.getFragments().size();
+        }
     }
 }

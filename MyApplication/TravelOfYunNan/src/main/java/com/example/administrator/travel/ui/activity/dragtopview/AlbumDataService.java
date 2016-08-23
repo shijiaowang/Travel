@@ -1,7 +1,7 @@
 package com.example.administrator.travel.ui.activity.dragtopview;
 
 import com.example.administrator.travel.bean.Album;
-import com.example.administrator.travel.bean.Dynamic;
+
 
 import java.util.ArrayList;
 import java.util.List;

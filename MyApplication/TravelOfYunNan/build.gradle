@@ -35,7 +35,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.github.chenupt.android:dragtoplayout:1.2.1@aar'
     compile 'com.github.chenupt.android:multiplemodel:1.1.0@aar'
-    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.google.guava:guava:18.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.google.code.gson:gson:2.6.2'

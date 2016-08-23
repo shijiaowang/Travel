@@ -14,10 +14,11 @@ import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.UserUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 import java.util.Map;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Administrator on 2016/7/18 0018.
@@ -55,7 +56,7 @@ public class FanFragment extends BaseFragment {
         super.onResume();
         EventBus.getDefault().register(this);
     }
-
+    @Subscribe
     public void onEvent(HttpEvent event){
         if (event.getType()!=IVariable.TYPE_GET_FAN && event.getType()!=IVariable.TYPE_REFRESH){
             return;

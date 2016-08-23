@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.TypedValue;
@@ -44,6 +45,7 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
     private ViewStub mVsRightIcon;
     private SlippingScrollView mSsvScroll;
     private ImageView mIvError;
+    private Activity activity;
 
     @Override
     protected int initLayoutRes() {
@@ -169,21 +171,14 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
         mTitleName.setText(setTitleName());
         mBg1.setBackgroundColor(getBgColor());
         mBg1.setAlpha(getAlpha());
-        initViewData();
+        activity = initViewData();
+        if (activity !=null){
+            registerEventBus(activity);
+        }
         onLoad();
-      /*  new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (childIsResume) {
-                        onLoad();//读取网络数据
-                        break;
-                    }
-                }
-            }
-        }).start();*/
-
     }
+
+
     protected void setIsProgress(boolean show){
         mPbProgress.setVisibility(show ? View.VISIBLE : View.GONE);
     }
@@ -209,8 +204,16 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
     /**
      * 初始化数据
      */
-    protected abstract void initViewData();
+    protected abstract Activity initViewData();
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (activity!=null){
+            unregisterEventBus(this);
+            activity=null;
+        }
+    }
 
     /**
      * 设置标题

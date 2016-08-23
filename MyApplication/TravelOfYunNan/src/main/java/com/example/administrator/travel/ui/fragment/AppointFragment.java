@@ -19,9 +19,13 @@ import com.example.administrator.travel.event.AppointEvent;
 import com.example.administrator.travel.ui.activity.LinePlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.utils.FastBlur;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
-import de.greenrobot.event.EventBus;
+
 
 
 /**
@@ -179,6 +183,7 @@ public class AppointFragment extends BaseFragment {
      *
      * @param event
      */
+    @Subscribe
     public void onEvent(AppointEvent event) {
         if (event.isSmooth()) {
             mFabAdd.setVisibility(View.INVISIBLE);

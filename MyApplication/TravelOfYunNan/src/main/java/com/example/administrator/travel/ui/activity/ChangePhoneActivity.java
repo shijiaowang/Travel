@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +17,7 @@ import com.example.administrator.travel.utils.PhoneUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
@@ -84,8 +86,9 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void initViewData() {
+    protected Activity initViewData() {
         btIsClick(mBtNex, false);
+        return this;
     }
 
     @Override
@@ -93,18 +96,7 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity {
         return "更改绑定";
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerEventBus(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterEventBus(this);
-    }
-
+    @Subscribe
     public void onEvent(HttpEvent event) {
         if (event.isSuccess()) {
             Intent intent = new Intent(ChangePhoneActivity.this, ChangePhoneVerActivity.class);

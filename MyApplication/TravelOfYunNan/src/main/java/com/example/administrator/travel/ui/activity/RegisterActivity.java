@@ -28,11 +28,13 @@ import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
+
 
 /**
  * Created by Administrator on 2016/8/15 0015.
@@ -179,7 +181,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
         super.onResume();
         EventBus.getDefault().register(this);
     }
-
+    @Subscribe
     public void onEvent(HttpEvent event) {
         if (event.isSuccess()) {
             dealResult(event);

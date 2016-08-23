@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.activity;
 
 
+import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 
@@ -21,6 +22,7 @@ import com.example.administrator.travel.utils.UserUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
@@ -66,26 +68,26 @@ public class ChangePhoneVerActivity extends LoadingBarBaseActivity {
             );
             mEtVer.addTextChangedListener(new
 
-            TextWatcher() {
-                @Override
-                public void beforeTextChanged (CharSequence s,int start, int count, int after){
+                                                  TextWatcher() {
+                                                      @Override
+                                                      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
+                                                      }
 
-                @Override
-                public void onTextChanged (CharSequence s,int start, int before, int count){
-                    if (getString(mEtVer).length() > 0) {
-                        btIsClick(mBtSubmit, true);
-                    } else {
-                        btIsClick(mBtSubmit, false);
-                    }
-                }
+                                                      @Override
+                                                      public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                                          if (getString(mEtVer).length() > 0) {
+                                                              btIsClick(mBtSubmit, true);
+                                                          } else {
+                                                              btIsClick(mBtSubmit, false);
+                                                          }
+                                                      }
 
-                @Override
-                public void afterTextChanged (Editable s){
+                                                      @Override
+                                                      public void afterTextChanged(Editable s) {
 
-                }
-            }
+                                                      }
+                                                  }
 
             );
         }
@@ -96,8 +98,9 @@ public class ChangePhoneVerActivity extends LoadingBarBaseActivity {
         }
 
         @Override
-        protected void initViewData () {
+        protected Activity initViewData () {
             btIsClick(mBtSubmit, false);
+            return this;
         }
 
         @Override
@@ -105,18 +108,7 @@ public class ChangePhoneVerActivity extends LoadingBarBaseActivity {
             return "更改绑定";
         }
 
-        @Override
-        protected void onResume () {
-            super.onResume();
-            registerEventBus(this);
-        }
-
-        @Override
-        protected void onPause () {
-            super.onPause();
-            unregisterEventBus(this);
-        }
-
+    @Subscribe
     public void onEvent(HttpEvent event) {
         if (event.isSuccess()) {
             Login.UserInfo userInfo = GlobalUtils.getUserInfo();

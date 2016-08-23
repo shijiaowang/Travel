@@ -15,7 +15,9 @@ import android.widget.GridView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.activity.CatOtherUserAlbumActivity;
 
-import de.greenrobot.event.EventBus;
+
+import org.greenrobot.eventbus.EventBus;
+
 import github.chenupt.dragtoplayout.AttachUtil;
 import github.chenupt.multiplemodel.ModelListAdapter;
 
@@ -49,7 +51,6 @@ public class GridViewFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 startActivity(new Intent(getContext(), CatOtherUserAlbumActivity.class));
-
             }
 
         });
@@ -60,7 +61,6 @@ public class GridViewFragment extends Fragment {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
             }
-
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 EventBus.getDefault().post(AttachUtil.isAdapterViewAttach(view));

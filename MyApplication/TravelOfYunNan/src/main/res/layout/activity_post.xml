@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.administrator.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,14 +6,13 @@
     android:background="#fafafa"
     android:orientation="vertical"
     tools:context="com.example.administrator.travel.ui.activity.PostActivity">
-    <include layout="@layout/item_activity_post_op"/>
-    <ListView
+    <com.example.administrator.travel.ui.view.refreshview.XListView
         android:id="@+id/lv_post_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         style="@style/commonListViewStyle">
-    </ListView>
+    </com.example.administrator.travel.ui.view.refreshview.XListView>
     <View
         android:background="@drawable/gradient_line"
         android:layout_width="match_parent"
@@ -61,4 +56,3 @@
     </LinearLayout>
 
 </LinearLayout>
-</com.example.administrator.travel.ui.view.SlippingScrollView>

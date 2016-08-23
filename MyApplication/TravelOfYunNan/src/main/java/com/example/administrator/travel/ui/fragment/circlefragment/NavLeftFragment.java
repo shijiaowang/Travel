@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -28,10 +29,13 @@ import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.UIUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.Callback;
+
 import java.util.List;
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
+
 
 /**
  * Created by Administrator on 2016/7/7 0007.
@@ -50,11 +54,17 @@ public class NavLeftFragment extends LoadBaseFragment {
     private String cid;
     private View root;
     private int prePosition=-1;
+    private Callback.Cancelable useCommonBackJson;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         root = UIUtils.inflate(R.layout.fragment_circle_navigation);
+    }
+
+    @Override
+    protected Fragment registerEvent() {
+        return this;
     }
 
     private void firstReq() {
@@ -63,7 +73,7 @@ public class NavLeftFragment extends LoadBaseFragment {
             return;
         }
         Map<String, String> map = MapUtils.Build().addKey(getContext()).add("user_id", GlobalUtils.getUserInfo().getId()).end();
-        XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ);
+        useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ);
     }
 
     @Override
@@ -82,13 +92,20 @@ public class NavLeftFragment extends LoadBaseFragment {
         mLvLeftNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (prePosition==position){
+                LogUtils.e("正在点击导航"+position);
+                // TODO: 2016/8/23 0023 需要做取消请求
+                if (prePosition==position ){//重复点击或者加载中不让继续
                     return;
+                }
+                if (useCommonBackJson!=null){
+                    useCommonBackJson.cancel();
+                    useCommonBackJson=null;
+                    LogUtils.e("取消啦");//如果点击过快就取消之前的
                 }
                 prePosition=position;
                 cid = leftList.get(position).getCid();
                 selectNavLeft(position);
-                loadData();
+                onLoad();
             }
         });
         mLvRightNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -109,13 +126,13 @@ public class NavLeftFragment extends LoadBaseFragment {
             builder.add("user_id",GlobalUtils.getUserInfo().getId());
         }
         Map<String, String> map =builder.end();
-        XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ);
+        useCommonBackJson=XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ);
     }
 
     private boolean isFirst=true;
     @Override
     protected void onLoad() {
-        LogUtils.e("圈子加载数据页面开始初次加载了");
+        LogUtils.e("圈子加载数据页面开始加载了");
         if (isFirst) {
             isFirst=false;
             firstReq();
@@ -147,14 +164,10 @@ public class NavLeftFragment extends LoadBaseFragment {
         preCircleNavLeftPosition = position;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-      registerEventBus(this);
-    }
-
+    @Subscribe
     public void onEvent(HttpEvent event) {
         LogUtils.e("圈子数据加载结束了");
+        useCommonBackJson=null;
         if (event.isSuccess()) {
             if (event.getType() == IVariable.FIRST_REQ) {
                 firstReq(event);//第一次请求
@@ -201,9 +214,5 @@ public class NavLeftFragment extends LoadBaseFragment {
 
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-      unregisterEventBus(this);
-    }
+
 }

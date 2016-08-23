@@ -30,7 +30,9 @@ import android.widget.Toast;
 
 import com.example.administrator.travel.R;
 
-import de.greenrobot.event.EventBus;
+
+import org.greenrobot.eventbus.EventBus;
+
 import github.chenupt.dragtoplayout.AttachUtil;
 import github.chenupt.multiplemodel.ModelListAdapter;
 

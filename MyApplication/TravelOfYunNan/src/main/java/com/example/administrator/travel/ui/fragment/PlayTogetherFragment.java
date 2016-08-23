@@ -10,10 +10,11 @@ import com.example.administrator.travel.event.AppointEvent;
 import com.example.administrator.travel.ui.adapter.AppointTogetherAdapter;
 import com.example.administrator.travel.utils.LogUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Administrator on 2016/7/21 0021.

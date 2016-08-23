@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.activity;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -51,7 +52,7 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
 
 
     @Override
-    protected void initViewData() {
+    protected Activity initViewData() {
         //// TODO: 2016/8/17 0017 如果userinfo为空，之后做处理
         Login.UserInfo userInfo = GlobalUtils.getUserInfo();
         try{
@@ -64,7 +65,7 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
             e.printStackTrace();
         }
         setIsProgress(false);
-
+return null;
     }
 
     @Override

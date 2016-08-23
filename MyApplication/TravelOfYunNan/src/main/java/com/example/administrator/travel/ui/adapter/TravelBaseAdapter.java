@@ -19,7 +19,9 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
     protected Context mContext;
     protected List<T> mDatas;
 
-    public static final int TYPE_POST_NORMAL=1;//恢复搂主
+
+    public static final int TYPE_POST_NORMAL=1;//回复搂主
+    public static final int TYPE_POST_OP=0;//搂主
     public static final int TYPE_POST_USER =2;//回复其他人
 
     public TravelBaseAdapter(Context mContext, List<T> mDatas) {

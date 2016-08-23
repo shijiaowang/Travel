@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.UserUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
@@ -50,7 +52,7 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
             @Override
             public void onClick(View v) {
                 Map<String, String> contentMap = MapUtils.Build().addKey(PersonalProfileActivity.this).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.CONTENT, getString(mEtProfile)).end();
-                XEventUtils.postUseCommonBackJson(IVariable.CHANGE_USER_INFO,contentMap,0);
+                XEventUtils.postUseCommonBackJson(IVariable.CHANGE_USER_INFO, contentMap, 0);
             }
         });
    mEtProfile.addTextChangedListener(new TextWatcher() {
@@ -78,7 +80,7 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void initViewData() {
+    protected Activity initViewData() {
       setIsProgress(false);
         String content = GlobalUtils.getUserInfo().getContent();
         if (!StringUtils.isEmpty(content)){
@@ -86,7 +88,7 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
             mEtProfile.setText(content);
             mTvNumber.setText(content.length()+"/80");
         }
-
+return this;
     }
 
     @Override
@@ -98,17 +100,7 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
         return 1.0f;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerEventBus(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterEventBus(this);
-    }
+    @Subscribe
     public void onEvent(HttpEvent event){
         if (event.isSuccess()){
             Login.UserInfo userInfo = GlobalUtils.getUserInfo();

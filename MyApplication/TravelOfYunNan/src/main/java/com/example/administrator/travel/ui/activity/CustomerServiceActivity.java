@@ -1,5 +1,7 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.app.Activity;
+
 import com.example.administrator.travel.R;
 
 
@@ -25,8 +27,8 @@ public class CustomerServiceActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void initViewData() {
-
+    protected Activity initViewData() {
+          return this;
     }
 
     @Override

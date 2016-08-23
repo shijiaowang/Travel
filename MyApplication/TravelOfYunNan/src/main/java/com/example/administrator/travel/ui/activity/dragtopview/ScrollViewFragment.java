@@ -28,7 +28,9 @@ import android.widget.ScrollView;
 
 import com.example.administrator.travel.R;
 
-import de.greenrobot.event.EventBus;
+
+import org.greenrobot.eventbus.EventBus;
+
 import github.chenupt.dragtoplayout.AttachUtil;
 
 /**
