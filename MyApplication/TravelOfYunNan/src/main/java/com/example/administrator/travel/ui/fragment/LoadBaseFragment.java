@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,14 +13,15 @@ import com.example.administrator.travel.utils.LogUtils;
 
 import org.xutils.x;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by Administrator on 2016/8/3 0003.
  */
-public  abstract class LoadBaseFragment extends Fragment {
+public abstract class LoadBaseFragment extends Fragment {
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
-
-
+    private boolean childIsResume=false;
 
 
     @Nullable
@@ -33,7 +35,7 @@ public  abstract class LoadBaseFragment extends Fragment {
 
             @Override
             public void onLoad() {
-                 LoadBaseFragment.this.onLoad();
+                LoadBaseFragment.this.load();
             }
 
             /**
@@ -51,6 +53,35 @@ public  abstract class LoadBaseFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    private void load() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (childIsResume) {
+                        onLoad();
+                        break;
+                    }
+                }
+            }
+        }).start();
+
+
+    }
+    public void registerEventBus(Fragment f){
+        EventBus.getDefault().register(f);
+        this.childIsResume=true;
+    }
+    public void unregisterEventBus(Fragment f){
+        EventBus.getDefault().unregister(f);
+        this.childIsResume=false;
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -65,14 +96,13 @@ public  abstract class LoadBaseFragment extends Fragment {
     }
 
 
-
     /**
      * 初次加载数据
      */
     protected abstract void initLoad();
 
-    public void loadData(){
-        if (loadingPage!=null){
+    public void loadData() {
+        if (loadingPage != null) {
             loadingPage.loadData();
         }
     }
@@ -94,17 +124,20 @@ public  abstract class LoadBaseFragment extends Fragment {
 
     /**
      * 跟布局
+     *
      * @return
      */
     protected abstract View initView();
 
     /**
      * 设置读取状态
+     *
      * @param state
      */
-    public void setState(LoadingPage.ResultState state){
-        currentState=state;
+    public void setState(LoadingPage.ResultState state) {
+        currentState = state;
     }
+
     /**
      * 获取网络状态
      */
@@ -115,8 +148,9 @@ public  abstract class LoadBaseFragment extends Fragment {
     /**
      * eventbus返回时调用
      */
-    public void afterLoadData(){
-        if (loadingPage!=null){
+    public void afterLoadData() {
+
+        if (loadingPage != null) {
             loadingPage.afterLoadData();
         }
     }

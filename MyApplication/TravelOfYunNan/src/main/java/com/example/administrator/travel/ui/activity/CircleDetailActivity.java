@@ -88,6 +88,7 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CircleDetailActivity.this, PostActivity.class);
+                intent.putExtra(IVariable.FORUM_ID,postList.get(position).getId());
                 startActivity(intent);
             }
         });

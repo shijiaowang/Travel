@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyTextHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyUserHolder;
 
@@ -35,9 +34,7 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
     @Override
     public int getItemViewType(int position) {
 
-        if (position==0){
-            return TYPE_POST_OP;
-        }else if (position<4){
+         if (position<4){
             return TYPE_POST_USER;
         }else {
             return TYPE_POST_NORMAL;
@@ -63,9 +60,7 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
     @Override
     protected BaseHolder initHolder(int position) {
         int itemViewType = getItemViewType(position);
-        if (itemViewType==TravelBaseAdapter.TYPE_POST_OP){
-            return new PostOpHolder(super.mContext);
-        }else if (itemViewType==TravelBaseAdapter.TYPE_POST_USER){
+        if(itemViewType==TravelBaseAdapter.TYPE_POST_USER){
             return new PostReplyUserHolder(super.mContext);
         }else {
             return new PostReplyTextHolder(super.mContext);

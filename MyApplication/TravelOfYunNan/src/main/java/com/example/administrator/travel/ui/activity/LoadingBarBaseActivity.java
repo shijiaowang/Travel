@@ -170,7 +170,19 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
         mBg1.setBackgroundColor(getBgColor());
         mBg1.setAlpha(getAlpha());
         initViewData();
-        onLoad();//读取网络数据
+        onLoad();
+      /*  new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (childIsResume) {
+                        onLoad();//读取网络数据
+                        break;
+                    }
+                }
+            }
+        }).start();*/
+
     }
     protected void setIsProgress(boolean show){
         mPbProgress.setVisibility(show ? View.VISIBLE : View.GONE);

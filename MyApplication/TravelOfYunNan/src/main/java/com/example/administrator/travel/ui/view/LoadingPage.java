@@ -111,7 +111,6 @@ public abstract class LoadingPage extends FrameLayout {
         if (mPreState != mCurrentState) {
             showRightView();
             mPreState = mCurrentState;
-
         } else {
             mCurrentState = STATE_LOAD_UNLOAD;
         }

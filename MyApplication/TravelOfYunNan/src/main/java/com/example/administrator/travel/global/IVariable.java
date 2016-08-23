@@ -24,6 +24,7 @@ public interface IVariable {
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
     String CHANGE_USER_INFO = API_KEY + "User/updateUser/";//更改用户信息
+    String POST_DETAIL = API_KEY + "Circle/getForum/";//获取帖子数据
 
 
     //请求type

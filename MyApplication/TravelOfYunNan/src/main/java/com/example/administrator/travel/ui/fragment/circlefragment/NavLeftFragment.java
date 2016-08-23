@@ -115,9 +115,11 @@ public class NavLeftFragment extends LoadBaseFragment {
     private boolean isFirst=true;
     @Override
     protected void onLoad() {
+        LogUtils.e("圈子加载数据页面开始初次加载了");
         if (isFirst) {
             isFirst=false;
             firstReq();
+            LogUtils.e("发送了第一次请求");
         }else {
             normalReq(cid);
         }
@@ -148,10 +150,11 @@ public class NavLeftFragment extends LoadBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        EventBus.getDefault().register(this);
+      registerEventBus(this);
     }
 
     public void onEvent(HttpEvent event) {
+        LogUtils.e("圈子数据加载结束了");
         if (event.isSuccess()) {
             if (event.getType() == IVariable.FIRST_REQ) {
                 firstReq(event);//第一次请求
@@ -201,6 +204,6 @@ public class NavLeftFragment extends LoadBaseFragment {
     @Override
     public void onPause() {
         super.onPause();
-        EventBus.getDefault().unregister(this);
+      unregisterEventBus(this);
     }
 }

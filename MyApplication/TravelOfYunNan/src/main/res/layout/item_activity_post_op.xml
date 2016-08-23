@@ -1,129 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?><!--发帖人-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/ll_op"
-    android:background="@color/homeTopicChosenBg"
-    android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="36dp">
-
-        <ImageView
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:clickable="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/iv_post_op_icon"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:src="@drawable/activity_post_item_icon" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/iv_post_op_icon"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_post_op_nike_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="洛丽塔"
-                android:textColor="#323232"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_post_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="2016-7-10 6:32"
-                android:textColor="#646464"
-                android:textSize="10sp" />
-
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_marginRight="19dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="11dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="#阅读"
-            android:textColor="#878686"
-            android:textSize="14sp" />
-    </RelativeLayout>
-    <TextView
-        android:text="故事发生在500年之前，500年之前，500年之前500年之前500年之前500年之前500年之前500年之前500年之前500年之前500年之前。"
-        android:textColor="#646464"
-        android:layout_marginTop="25dp"
-        android:textSize="15sp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <ImageView
-        android:scaleType="fitXY"
-        android:src="@drawable/activity_post_pic1"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_width="match_parent"
-        android:layout_height="169dp" />
-    <ImageView
-        android:scaleType="fitXY"
-        android:src="@drawable/activity_post_pic2"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_width="match_parent"
-        android:layout_height="169dp" />
 
     <LinearLayout
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="14dp"
-        android:orientation="horizontal"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:layout_height="14dp">
-        <ImageView
-            android:src="@drawable/activity_post_op_love"
-            android:layout_width="16dp"
-            android:layout_height="14dp" />
-        <TextView
-            android:layout_marginLeft="5dp"
-            android:textColor="#969696"
-            android:textSize="11sp"
-            android:text="金毛狮王，张三丰，张无忌"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <View
-        android:background="#efeff4"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"/>
-    <TextView
-        android:text="评论(4)"
-        android:textSize="14sp"
-        android:textColor="#323232"
-        android:layout_marginBottom="9dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <View
-        android:layout_marginRight="17dp"
-        android:layout_marginLeft="17dp"
-        android:background="#efeff4"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="match_parent"
+        android:background="@color/homeTopicChosenBg"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="36dp">
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:src="@drawable/activity_post_item_icon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/iv_icon"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_nick_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="洛丽塔"
+                    android:textColor="#323232"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="2016-7-10 6:32"
+                    android:textColor="#646464"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="19dp"
+                android:layout_marginTop="11dp"
+                android:text="#阅读"
+                android:textColor="#878686"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginTop="25dp"
+            android:text="故事发生在500年之前，500年之前，500年之前500年之前500年之前500年之前500年之前500年之前500年之前500年之前500年之前。"
+            android:textColor="#646464"
+            android:textSize="15sp" />
+
+        <com.example.administrator.travel.ui.view.ToShowAllListView
+            android:id="@+id/lv_post_image"
+            style="@style/commonListViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginTop="24dp"
+            android:dividerHeight="5dp">
+
+        </com.example.administrator.travel.ui.view.ToShowAllListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginBottom="14dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="14dp"
+                android:src="@drawable/activity_post_op_love" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="金毛狮王，张三丰，张无忌"
+                android:textColor="#969696"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#efeff4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="10dp"
+            android:text="评论(4)"
+            android:textColor="#323232"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:background="#efeff4" />
+
+    </LinearLayout>

@@ -119,11 +119,14 @@ public abstract class BaseActivity extends FragmentActivity {
         String message="<font color=#5cd0c2>"+errorMessage+"</font>";
         request.setError(Html.fromHtml(message));
     }
+    public boolean childIsResume=false;
     protected void registerEventBus(Activity activity){
         EventBus.getDefault().register(activity);
+        childIsResume=true;
     }
     protected void unregisterEventBus(Activity activity){
         EventBus.getDefault().unregister(activity);
+        childIsResume=false;
     }
 
 

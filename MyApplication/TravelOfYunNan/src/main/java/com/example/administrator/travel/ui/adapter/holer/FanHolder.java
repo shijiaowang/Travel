@@ -16,8 +16,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by Administrator on 2016/7/18 0018.
  */
 public class FanHolder extends BaseHolder<Fan.FanPeople> {
-    @ViewInject(R.id.tv_nike_name)
-    private TextView mTvName;
+    @ViewInject(R.id.tv_nick_name)
+    private TextView mTvNickName;
     @ViewInject(R.id.iv_icon)
     private CircleImageView mIvIcon;
 
@@ -27,7 +27,7 @@ public class FanHolder extends BaseHolder<Fan.FanPeople> {
 
     @Override
     protected void initItemDatas(Fan.FanPeople datas, Context mContext) {
-        mTvName.setText(datas.getNick_name());
+        mTvNickName.setText(datas.getNick_name());
     }
 
 

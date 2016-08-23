@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AiteFollow;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -15,8 +14,8 @@ import org.xutils.view.annotation.ViewInject;
  * Created by Administrator on 2016/8/1 0001.
  */
 public class AiteHolder extends BaseHolder<AiteFollow> {
-   @ViewInject(R.id.tv_nike_name)
-    private TextView mTvNikeName;
+   @ViewInject(R.id.tv_nick_name)
+    private TextView mTvNickName;
     @ViewInject(R.id.tv_aite)
     private TextView mTvAite;
 
@@ -26,7 +25,7 @@ public class AiteHolder extends BaseHolder<AiteFollow> {
 
     @Override
     protected void initItemDatas(AiteFollow datas, Context mContext) {
-        mTvNikeName.setText(datas.getNikeName());
+        mTvNickName.setText(datas.getNikeName());
         if (datas.isChecked()){
             mTvAite.setTextColor(Color.parseColor("#ffbf75"));
         }else {
