@@ -49,6 +49,7 @@
         <activity android:name=".ui.activity.TravelsActivity"/>
         <activity android:name=".ui.activity.ActivateDetailActivity"/>
         <activity android:name=".ui.activity.DeliciousDetailActivity"/>
+        <activity android:name=".ui.activity.PictureSelectorActivity"/>
         <activity android:name=".ui.activity.BaseTransActivity"
             />
         <activity android:name=".ui.activity.LoginActivity"

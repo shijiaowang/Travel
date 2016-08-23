@@ -7,9 +7,12 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.ImageFolder;
-import com.example.administrator.travel.utils.ImageLoader;
 
+
+import org.xutils.common.util.DensityUtil;
+import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 /**
  * Created by android on 2016/8/22.
@@ -19,6 +22,8 @@ public class SelectFolderHolder extends BaseHolder<ImageFolder> {
     private ImageView mIvPicture;
     @ViewInject(R.id.tv_count)
     private TextView mTvCount;
+    ImageOptions imageOptions = new ImageOptions.Builder().setSize(DensityUtil.dip2px(76), DensityUtil.dip2px(78)).setCrop(true).build();
+
     public SelectFolderHolder(Context context) {
         super(context);
     }
@@ -26,8 +31,8 @@ public class SelectFolderHolder extends BaseHolder<ImageFolder> {
     @Override
     protected void initItemDatas(ImageFolder datas, Context mContext) {
         String firstImagePath = datas.getFirstImagePath();
-        ImageLoader.getInstance(4, ImageLoader.Type.LIFO).loadImage(firstImagePath,mIvPicture);
-        mTvCount.setText(datas.getName()+"("+datas.getCount()+")");
+        x.image().bind(mIvPicture, firstImagePath, imageOptions);
+        mTvCount.setText(datas.getName() + "(" + datas.getCount() + ")");
     }
 
     @Override

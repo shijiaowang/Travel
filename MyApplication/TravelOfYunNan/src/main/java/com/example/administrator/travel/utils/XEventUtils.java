@@ -91,6 +91,7 @@ public class XEventUtils {
             httpEvent.setMessage(message);
             httpEvent.setResult(result);
             httpEvent.setCode(code);
+            LogUtils.e("成功获取到消息了");
             EventBus.getDefault().post(httpEvent);
         }
 
@@ -109,6 +110,7 @@ public class XEventUtils {
             }
 
             httpEvent.setMessage(message);
+            LogUtils.e("取到消息失败了");
             EventBus.getDefault().post(httpEvent);
         }
 

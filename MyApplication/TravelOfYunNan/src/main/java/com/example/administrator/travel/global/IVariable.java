@@ -91,4 +91,5 @@ public interface IVariable {
 
  String CODE = "code";//验证码
  String CONTENT = "content";//个人简介
+    String IMAGE_FOLDER = "image_folder";//图片选择器用到
 }

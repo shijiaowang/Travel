@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.activity;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
@@ -10,12 +11,14 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.ImageFolder;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.SelectFolderAdapter;
 import com.example.administrator.travel.utils.ToastUtils;
 
@@ -137,6 +140,15 @@ public class AlbumSelectorActivity extends BarBaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        mLvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(AlbumSelectorActivity.this,PictureSelectorActivity.class);
+                ImageFolder imageFolder = imageFolders.get(position);
+                intent.putExtra(IVariable.IMAGE_FOLDER,imageFolder);
+                startActivity(intent);
             }
         });
 

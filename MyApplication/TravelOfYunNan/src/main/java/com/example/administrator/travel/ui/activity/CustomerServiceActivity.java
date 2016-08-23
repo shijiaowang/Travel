@@ -23,12 +23,12 @@ public class CustomerServiceActivity extends LoadingBarBaseActivity {
 
     @Override
     protected void onLoad() {
-       setIsProgress(false);
+        setIsProgress(false);
     }
 
     @Override
     protected Activity initViewData() {
-          return this;
+        return null;
     }
 
     @Override
