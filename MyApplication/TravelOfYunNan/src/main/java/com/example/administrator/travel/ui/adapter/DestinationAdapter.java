@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
 
+import com.example.administrator.travel.bean.Destination;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.DestinationHoler;
 
@@ -10,8 +11,8 @@ import java.util.List;
 /**
  * Created by android on 2016/7/30.
  */
-public class DestinationAdapter extends TravelBaseAdapter {
-    public DestinationAdapter(Context mContext, List mDatas) {
+public class DestinationAdapter extends TravelBaseAdapter<Destination.DataBean.BodyBean> {
+    public DestinationAdapter(Context mContext, List<Destination.DataBean.BodyBean> mDatas) {
         super(mContext, mDatas);
     }
 
@@ -21,9 +22,10 @@ public class DestinationAdapter extends TravelBaseAdapter {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Object item, int position) {
+    protected void initListener(BaseHolder baseHolder, Destination.DataBean.BodyBean item, int position) {
 
     }
+
 
     @Override
     protected BaseHolder initHolder(int position) {

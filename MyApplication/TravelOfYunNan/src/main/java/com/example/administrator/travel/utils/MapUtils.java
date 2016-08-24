@@ -18,6 +18,22 @@ public class MapUtils {
             stringMap.put(IVariable.KEY,GlobalUtils.getKey(context));
             return this;
         }
+        public Builder addPageSize(String pageSize){
+            stringMap.put(IVariable.PAGE_SIZE,pageSize);
+            return this;
+        }
+        public Builder addUserId(){
+            stringMap.put(IVariable.USER_ID,GlobalUtils.getUserInfo().getId());
+            return this;
+        }
+        public Builder addPage(String page){
+            stringMap.put(IVariable.PAGE,page);
+            return this;
+        }
+        public Builder addTId(String tId){
+            stringMap.put(IVariable.T_ID,tId);
+            return this;
+        }
         public Builder add(String key,String value){
             stringMap.put(key,value);
             return this;

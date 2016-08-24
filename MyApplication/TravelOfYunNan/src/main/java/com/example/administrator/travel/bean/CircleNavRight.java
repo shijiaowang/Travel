@@ -1,5 +1,6 @@
 package com.example.administrator.travel.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -50,7 +51,7 @@ public class CircleNavRight {
         this.data = data;
     }
 
-    public static class RightCircle {
+    public static class RightCircle extends TravelObjBean {
         private String cid;
         private String cname;
         private String circle_img;

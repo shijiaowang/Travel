@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.fragment.circlefragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -32,9 +33,10 @@ import com.example.administrator.travel.utils.XEventUtils;
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.Callback;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 
 
 /**
@@ -53,7 +55,7 @@ public class NavLeftFragment extends LoadBaseFragment {
     private CircleNavRightAdapter circleNavRightAdapter;
     private String cid;
     private View root;
-    private int prePosition=-1;
+    private int prePosition = -1;
     private Callback.Cancelable useCommonBackJson;
 
     @Override
@@ -68,7 +70,7 @@ public class NavLeftFragment extends LoadBaseFragment {
     }
 
     private void firstReq() {
-        if ( GlobalUtils.getUserInfo()==null){
+        if (GlobalUtils.getUserInfo() == null) {
             //// TODO: 2016/8/19 0019 让用户去重新登录
             return;
         }
@@ -92,20 +94,22 @@ public class NavLeftFragment extends LoadBaseFragment {
         mLvLeftNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                LogUtils.e("正在点击导航"+position);
+                LogUtils.e("正在点击导航" + position);
                 // TODO: 2016/8/23 0023 需要做取消请求
-                if (prePosition==position ){//重复点击或者加载中不让继续
+                if (prePosition == position) {//重复点击或者加载中不让继续
                     return;
                 }
-                if (useCommonBackJson!=null){
+                if (useCommonBackJson != null) {
                     useCommonBackJson.cancel();
-                    useCommonBackJson=null;
+                    useCommonBackJson = null;
                     LogUtils.e("取消啦");//如果点击过快就取消之前的
                 }
-                prePosition=position;
-                cid = leftList.get(position).getCid();
-                selectNavLeft(position);
-                onLoad();
+                prePosition = position;
+                if (leftList != null) {
+                    cid = leftList.get(position).getCid();
+                    selectNavLeft(position);
+                    onLoad();
+                }
             }
         });
         mLvRightNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -122,29 +126,30 @@ public class NavLeftFragment extends LoadBaseFragment {
 
     private void normalReq(String cid) {
         MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).add("cid", cid);
-        if (cid!=null && cid.equals("1")){//再次获取关注
-            builder.add("user_id",GlobalUtils.getUserInfo().getId());
+        if (cid != null && cid.equals("1")) {//再次获取关注
+            builder.add("user_id", GlobalUtils.getUserInfo().getId());
         }
-        Map<String, String> map =builder.end();
-        useCommonBackJson=XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ);
+        Map<String, String> map = builder.end();
+        useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ);
     }
 
-    private boolean isFirst=true;
+    private boolean isFirst = true;
+
     @Override
     protected void onLoad() {
         LogUtils.e("圈子加载数据页面开始加载了");
         if (isFirst) {
-            isFirst=false;
+            isFirst = false;
             firstReq();
             LogUtils.e("发送了第一次请求");
-        }else {
+        } else {
             normalReq(cid);
         }
     }
 
     @Override
     protected View initView() {
-        return  root;
+        return root;
     }
 
     /**
@@ -167,18 +172,18 @@ public class NavLeftFragment extends LoadBaseFragment {
     @Subscribe
     public void onEvent(HttpEvent event) {
         LogUtils.e("圈子数据加载结束了");
-        useCommonBackJson=null;
+        useCommonBackJson = null;
         if (event.isSuccess()) {
             if (event.getType() == IVariable.FIRST_REQ) {
                 firstReq(event);//第一次请求
             } else {
-                if (circleNavRightAdapter==null){
+                if (circleNavRightAdapter == null) {
                     firstReq();//第一次就没有进行加载，所以为空，在这里重新加载
                     return;
                 }
                 LogUtils.e(event.getResult());
                 CircleNavRight circleNavRight = GsonUtils.getObject(event.getResult(), CircleNavRight.class);
-                rightList= circleNavRight.getData();
+                rightList = circleNavRight.getData();
                 circleNavRightAdapter.notifyData(rightList);
             }
             setState(LoadingPage.ResultState.STATE_SUCCESS);
@@ -214,5 +219,25 @@ public class NavLeftFragment extends LoadBaseFragment {
 
     }
 
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState!=null) {
+            LogUtils.e("开始恢复数据了");
+            leftList = (ArrayList<Circle.DataBean.CircleLeftBean>) savedInstanceState.getSerializable(LEFT_DATA);
+            rightList = (ArrayList<CircleNavRight.RightCircle>) savedInstanceState.getSerializable(RIGHT_DATA);
 
+        }
+    }
+
+    String LEFT_DATA = "left_data";
+    String RIGHT_DATA = "right_data";
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        LogUtils.e("开始了存储数据了");
+        outState.putSerializable(LEFT_DATA, (Serializable) leftList);
+        outState.putSerializable(RIGHT_DATA, (Serializable) rightList);
+        super.onSaveInstanceState(outState);
+    }
 }

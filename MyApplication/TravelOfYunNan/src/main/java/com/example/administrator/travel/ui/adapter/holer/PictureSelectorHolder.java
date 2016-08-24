@@ -27,7 +27,7 @@ public class PictureSelectorHolder extends BaseHolder<String> {
     @ViewInject(R.id.iv_picture_1)
      public View mImage;
 
-    ImageOptions imageOptions = new ImageOptions.Builder().setSize(DensityUtil.dip2px(100), DensityUtil.dip2px(100)).setCrop(true).build();
+
     private String dir;
 
     public PictureSelectorHolder(Context context, String dir) {
@@ -39,7 +39,7 @@ public class PictureSelectorHolder extends BaseHolder<String> {
     protected void initItemDatas(String datas, Context mContext) {
         mImage.setBackgroundColor(Color.TRANSPARENT);
         mTvSelect.setTextColor(mContext.getResources().getColor(R.color.colorFAFAFA));
-        x.image().bind(mIvPicture, dir + File.separator + datas, imageOptions);
+        x.image().bind(mIvPicture, dir + File.separator + datas, getImageOptions(100,100));
         if (GlobalValue.mSelectImages!=null && GlobalValue.mSelectImages.contains(dir+File.separator+datas)){
             mImage.setBackgroundColor(Color.parseColor("#77000000"));
             mTvSelect.setTextColor(mContext.getResources().getColor(R.color.otherTitleBg));

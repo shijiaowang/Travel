@@ -22,9 +22,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".Main2Activity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-            ></activity>
+        <activity
+            android:name=".Main2Activity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity android:name=".Main22Activity"></activity>
     </application>
 
 </manifest>

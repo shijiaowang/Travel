@@ -99,7 +99,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
                 currentPage--;
         }
         setIsProgress(false);
-        loadEnd();//关闭加载或者刷新
+        loadEnd(mLvPostDetail);//关闭加载或者刷新
 
     }
 
@@ -168,13 +168,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
         requestData(LOAD_MORE);
     }
 
-    private void loadEnd() {
-        mLvPostDetail.stopLoadMore();
-        mLvPostDetail.stopRefresh();
-        mLvPostDetail.setRefreshTime(getTime());
-    }
 
-    private String getTime() {
-        return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
-    }
+
+
 }

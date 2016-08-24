@@ -48,4 +48,7 @@ public class ImageOptionsUtil {
         }
         return imageOptions;
     }
+    public static ImageOptions getBySetSize(int width,int height){
+       return new ImageOptions.Builder().setSize(width,height).setCrop(true).build();
+    }
 }

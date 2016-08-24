@@ -1,7 +1,5 @@
 package com.example.administrator.travel.bean;
 
-import java.io.Serializable;
-
 /**
  * Created by Administrator on 2016/7/26 0026.
  * 登录，包含用户信息
@@ -63,7 +61,7 @@ public class Login {
         this.data = data;
     }
 
-    public static class UserInfo extends TravelBean{
+    public static class UserInfo extends TravelObjBean {
         private String id;
         private String tel;
         private String name;

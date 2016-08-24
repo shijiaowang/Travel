@@ -20,6 +20,9 @@
             android:background="@drawable/activity_travels_search_bg">
 
             <EditText
+                android:id="@+id/et_destination_search"
+                style="@style/commonSingleLineTextStyle"
+                android:maxLength="18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -37,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
+                android:paddingRight="15dp"
                 android:text="@string/fragment_circle_search"
                 android:textColor="@color/colorC1c1c1"
                 android:textSize="20sp" />
@@ -70,7 +73,7 @@
         </LinearLayout>
 
     </RelativeLayout>
-    <ListView
+    <com.example.administrator.travel.ui.view.refreshview.XListView
         android:id="@+id/lv_destination"
         android:dividerHeight="0dp"
         android:divider="@null"
@@ -79,6 +82,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+    </com.example.administrator.travel.ui.view.refreshview.XListView>
 
 </LinearLayout>

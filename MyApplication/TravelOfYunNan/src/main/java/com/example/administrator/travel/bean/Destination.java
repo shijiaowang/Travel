@@ -12,7 +12,7 @@ public class Destination {
     /**
      * code : 1
      * message : 加载成功
-     * data : {"province":[{"province":"12","name":"安徽省"},{"province":"15","name":"山东省"},{"province":"23","name":"四川省"},{"province":"24","name":"贵州省"},{"province":"25","name":"云南省"},{"province":"26","name":"西藏自治区"}],"city":[{"city":"385","name":"成都市","upid":"23"},{"city":"386","name":"自贡市","upid":"23"},{"city":"417","name":"曲靖","upid":"25"},{"city":"418","name":"玉溪","upid":"25"},{"city":"419","name":"保山","upid":"25"},{"city":"420","name":"昭通","upid":"25"},{"city":"530","name":"沙田区","upid":"33"}],"body":[{"id":"1","title":"牛逼山","province":"25","city":"385","star":"3","logo_img":"http://192.168.1.3810","address":"云南省成都市昆明周边路由大家上帝阿迪"},{"id":"2","title":"测试1","province":"24","city":"417","star":"3","logo_img":"http://192.168.1.3812","address":"贵州省曲靖21312阿斯大声大气"},{"id":"7","title":"测试2","province":"12","city":"418","star":"3","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859dec9a96.png","address":"安徽省玉溪实打实电话卡上的卡号"},{"id":"8","title":"测试","province":"15","city":"419","star":"2","logo_img":"http://192.168.1.38","address":"山东省保山qweqwe"},{"id":"9","title":"231","province":"15","city":"420","star":"3","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981bd2cc976.jpg","address":"山东省昭通31231231"},{"id":"11","title":"测试景区1","province":"23","city":"530","star":"4","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859dec9a96.png","address":"四川省沙田区你猜猜"}]}
+     * data : {"province":[{"id":"12","name":"安徽省"},{"id":"15","name":"山东省"},{"id":"23","name":"四川省"},{"id":"24","name":"贵州省"},{"id":"25","name":"云南省"},{"id":"26","name":"西藏自治区"}],"city":[{"id":"385","name":"成都市","upid":"23"},{"id":"386","name":"自贡市","upid":"23"},{"id":"417","name":"曲靖","upid":"25"},{"id":"418","name":"玉溪","upid":"25"},{"id":"419","name":"保山","upid":"25"},{"id":"420","name":"昭通","upid":"25"},{"id":"530","name":"沙田区","upid":"33"}],"body":[{"id":"1","title":"牛逼山","province":"25","city":"385","star":"3","logo_img":"http://192.168.1.3810","address":"云南省成都市昆明周边路由大家上帝阿迪"},{"id":"2","title":"测试1","province":"24","city":"417","star":"3","logo_img":"http://192.168.1.3812","address":"贵州省曲靖21312阿斯大声大气"},{"id":"7","title":"测试2","province":"12","city":"418","star":"3","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859dec9a96.png","address":"安徽省玉溪实打实电话卡上的卡号"},{"id":"8","title":"测试","province":"15","city":"419","star":"2","logo_img":"http://192.168.1.38","address":"山东省保山qweqwe"},{"id":"9","title":"231","province":"15","city":"420","star":"3","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981bd2cc976.jpg","address":"山东省昭通31231231"},{"id":"11","title":"测试景区1","province":"23","city":"530","star":"4","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859dec9a96.png","address":"四川省沙田区你猜猜"}]}
      */
 
     private int code;
@@ -45,13 +45,13 @@ public class Destination {
 
     public static class DataBean {
         /**
-         * province : 12
+         * id : 12
          * name : 安徽省
          */
 
         private List<ProvinceBean> province;
         /**
-         * city : 385
+         * id : 385
          * name : 成都市
          * upid : 23
          */
@@ -94,15 +94,15 @@ public class Destination {
         }
 
         public static class ProvinceBean {
-            private String province;
+            private String id;
             private String name;
 
-            public String getProvince() {
-                return province;
+            public String getId() {
+                return id;
             }
 
-            public void setProvince(String province) {
-                this.province = province;
+            public void setId(String id) {
+                this.id = id;
             }
 
             public String getName() {
@@ -115,16 +115,16 @@ public class Destination {
         }
 
         public static class CityBean {
-            private String city;
+            private String id;
             private String name;
             private String upid;
 
-            public String getCity() {
-                return city;
+            public String getId() {
+                return id;
             }
 
-            public void setCity(String city) {
-                this.city = city;
+            public void setId(String id) {
+                this.id = id;
             }
 
             public String getName() {

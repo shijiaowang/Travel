@@ -22,7 +22,6 @@ public class SelectFolderHolder extends BaseHolder<ImageFolder> {
     private ImageView mIvPicture;
     @ViewInject(R.id.tv_count)
     private TextView mTvCount;
-    ImageOptions imageOptions = new ImageOptions.Builder().setSize(DensityUtil.dip2px(76), DensityUtil.dip2px(78)).setCrop(true).build();
 
     public SelectFolderHolder(Context context) {
         super(context);
@@ -31,7 +30,7 @@ public class SelectFolderHolder extends BaseHolder<ImageFolder> {
     @Override
     protected void initItemDatas(ImageFolder datas, Context mContext) {
         String firstImagePath = datas.getFirstImagePath();
-        x.image().bind(mIvPicture, firstImagePath, imageOptions);
+        x.image().bind(mIvPicture, firstImagePath, getImageOptions(76,78));
         mTvCount.setText(datas.getName() + "(" + datas.getCount() + ")");
     }
 

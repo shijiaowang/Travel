@@ -14,12 +14,18 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.SlippingScrollView;
+import com.example.administrator.travel.ui.view.refreshview.XListView;
+import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.UIUtils;
 
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Administrator on 2016/7/25 0025.
@@ -44,6 +50,7 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
     private ViewStub mVsError;
     private ViewStub mVsRightIcon;
     private SlippingScrollView mSsvScroll;
+    private XScrollView xScrollView;
     private ImageView mIvError;
     private Activity activity;
 
@@ -83,10 +90,18 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
             mVsRightIcon = (ViewStub) findViewById(R.id.vs_right_icon);
         }
         if (canScrollToChangeTitleBgColor()) {
-            mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);
+            if (!isXScrollView()) {
+                mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);
+            } else {
+                xScrollView = (XScrollView) findViewById(R.id.ssv_scroll);
+            }
         }
         x.view().inject(this);
 
+    }
+
+    protected boolean isXScrollView() {
+        return false;
     }
 
     /**
@@ -160,6 +175,14 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
                 }
             });
         }
+        if (canScrollToChangeTitleBgColor() && xScrollView != null) {
+            xScrollView.setSlippingListener(new XScrollView.SlippingListener() {
+                @Override
+                public void slipping(int l, int i, int oldl, int t) {
+                    getmBg1().setAlpha(Math.abs(t / CHANGE_COLOR_LIMIT) > 1 ? 1f : Math.abs(t / CHANGE_COLOR_LIMIT));
+                }
+            });
+        }
         initEvent();
     }
 
@@ -172,19 +195,19 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
         mBg1.setBackgroundColor(getBgColor());
         mBg1.setAlpha(getAlpha());
         activity = initViewData();
-        if (activity !=null){
+        if (activity != null) {
             registerEventBus(activity);
         }
         onLoad();
     }
 
 
-    protected void setIsProgress(boolean show){
+    protected void setIsProgress(boolean show) {
         mPbProgress.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    protected void setIsError(boolean show){
-        if (mIvError==null) {
+    protected void setIsError(boolean show) {
+        if (mIvError == null) {
             mVsError.inflate();
             mIvError = (ImageView) findViewById(R.id.iv_error);
             mIvError.setOnClickListener(new View.OnClickListener() {
@@ -195,15 +218,19 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
                 }
             });
         }
-        mIvError.setVisibility(show?View.VISIBLE:View.GONE);
+        mIvError.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     protected abstract void onLoad();
 
+    public XScrollView getxScrollView() {
+        return xScrollView;
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        if (activity !=null){//避免退出界面注销
+        if (activity != null) {//避免退出界面注销
             registerEventBus(activity);
         }
     }
@@ -216,9 +243,11 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (activity!=null){
+        if (activity != null) {
             unregisterEventBus(this);
         }
+
+
     }
 
     /**
@@ -247,5 +276,13 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
         return alpha;
     }
 
+    protected void loadEnd(XListView xListView) {
+        xListView.stopLoadMore();
+        xListView.stopRefresh();
+        xListView.setRefreshTime(getTime());
+    }
 
+    protected String getTime() {
+        return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
+    }
 }

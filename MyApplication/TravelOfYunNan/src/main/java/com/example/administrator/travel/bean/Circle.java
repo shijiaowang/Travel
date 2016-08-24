@@ -77,7 +77,7 @@ public class Circle {
             this.circle_right = circle_right;
         }
 
-        public static class CircleLeftBean {
+        public static class CircleLeftBean extends TravelObjBean {
             private String cid;
             private String cname;
             public boolean isCheck=false;

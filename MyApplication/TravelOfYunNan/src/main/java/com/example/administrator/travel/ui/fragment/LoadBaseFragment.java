@@ -80,8 +80,8 @@ public abstract class LoadBaseFragment extends Fragment {
 
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroy() {
+        super.onDestroy();
         if (fragment!=null){
             unregisterEventBus(fragment);
             LogUtils.e("fragment的Event注销了");

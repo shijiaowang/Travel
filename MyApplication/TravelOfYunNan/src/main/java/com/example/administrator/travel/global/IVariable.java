@@ -35,6 +35,7 @@ public interface IVariable {
      * 发现
      */
     String FIND_DESTINATION = API_KEY + "Find/getfindDestination/";//目的地
+    String FIND_DESTINATION_DETAIL = API_KEY + "Find/getfindDestinationdetail/";//目的地详情
 
     //请求type
     int TYPE_GET_KEY = 0;
@@ -79,12 +80,13 @@ public interface IVariable {
     int FIRST_REQ = 0;//第一次请求
     int NORMAL_REQ = 1;//之后的请求
     int TYPE_GET_FAN = 2;//获取关注人列表
- int TYPE_REGISTER_USER = 6;//注册
+    int TYPE_REGISTER_USER = 6;//注册
     int X_UTLIS_ERROR = 100;//xutil相关错误
 
     int TYPE_REFRESH = 3;//刷新
     String C_ID = "cid";
     String C_NAME = "cname";
+    String NAME = "name";//通用名字
     String PAGE_SIZE = "PageSize";//每一页有多少数据
     String PAGE = "Page";//第几页
 
@@ -92,13 +94,19 @@ public interface IVariable {
     String USER_ID = "user_id";//用户id
 
 
- String CIRCLE_ID = "circle_id";//圈子ID
- String TYPE = "type";//取消关注，与关注
- String SEX = "sex";//性别
- String NICK_NAME = "nick_name";//昵称
- String TEL = "tel";//电话
-
- String CODE = "code";//验证码
- String CONTENT = "content";//个人简介
+    String CIRCLE_ID = "circle_id";//圈子ID
+    String TYPE = "type";//取消关注，与关注
+    String SEX = "sex";//性别
+    String NICK_NAME = "nick_name";//昵称
+    String TEL = "tel";//电话
+    String PROVINCE = "province";//省份
+    String CITY = "city";//市
+    String TYPELIST  = "typelist";//类型
+    String STAR  = "star";//星级
+    String SCORE  = "score";//评分
+    String CODE = "code";//验证码
+    String CONTENT = "content";//个人简介
     String IMAGE_FOLDER = "image_folder";//图片选择器用到
+    
+    String T_ID ="t_id";//目的地id
 }

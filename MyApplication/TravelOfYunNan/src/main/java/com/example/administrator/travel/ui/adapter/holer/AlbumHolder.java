@@ -21,7 +21,6 @@ public class AlbumHolder extends BaseHolder<Album>{
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_fragment_album_in_other);
-        return inflate;
+        return inflateView(R.layout.item_fragment_album_in_other);
     }
 }
