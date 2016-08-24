@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -32,6 +33,8 @@ public class PictureSelectorActivity extends BarBaseActivity {
     private GridView mGvPhoto;
     @ViewInject(R.id.tv_send)
     private TextView mTvSend;
+    @ViewInject(R.id.tv_watch)
+    private TextView mTvWatch;
     @ViewInject(R.id.tv_cancel)
     private TextView mTvCancel;
     private ImageFolder mFolder;
@@ -49,16 +52,29 @@ public class PictureSelectorActivity extends BarBaseActivity {
     protected void initEvent() {
         mTvSend.setText("发送");
         if (GlobalValue.mSelectImages!=null){
-            mTvSend.setText("发送("+GlobalValue.mSelectImages.size()+")");
+            mTvSend.setText("发送(" + GlobalValue.mSelectImages.size() + ")");
         }
-        getmVsRightIcon().inflate();
-        TextView mTvCancel = (TextView) findViewById(R.id.tv_ok);
+
+        TextView mTvCancel = getmTvRightIcon();
         mTvCancel.setText("取消");
-        mTvCancel.setTextSize(12, TypedValue.COMPLEX_UNIT_SP);
         mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                GlobalValue.mSelectImages = null;
+                if (adapter != null) {
+                    adapter.notifyDataSetChanged();
+                }
+                mTvSend.setText("发送(0)");
+            }
+        });
+        mTvWatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (GlobalValue.mSelectImages==null || GlobalValue.mSelectImages.size()==0){
+                    ToastUtils.showToast("对不起，你尚未选中任何图片");
+                }else {
+                    startActivity(new Intent(PictureSelectorActivity.this,PreviewPicturesActivity.class));
+                }
             }
         });
     }
@@ -105,10 +121,6 @@ public class PictureSelectorActivity extends BarBaseActivity {
         return 1.0f;
     }
 
-    @Override
-    protected boolean haveRightIcon() {
-        return true;
-    }
 
 
 

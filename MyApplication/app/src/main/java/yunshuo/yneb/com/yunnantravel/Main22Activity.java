@@ -14,10 +14,11 @@ public class Main22Activity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main22);
+        final Event0 event0=new Event1();
         (findViewById(R.id.tv_1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new Event1());
+                EventBus.getDefault().post(event0);
                 System.out.println("点击了");
             }
         });

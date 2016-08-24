@@ -68,6 +68,7 @@
         <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
         <activity android:name=".ui.activity.CollectionDetailActivity"/>
         <activity android:name=".ui.activity.CustomerServiceActivity"/>
+        <activity android:name=".ui.activity.PreviewPicturesActivity"/>
         <activity android:name=".ui.activity.ChangePhoneActivity"/>
         <activity android:name=".ui.activity.ChangePhoneVerActivity"/>
         <activity android:name=".ui.activity.PersonalProfileActivity"/>

@@ -21,6 +21,7 @@ import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -81,8 +82,8 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
     @Override
     protected void initEvent() {
         cId = getIntent().getStringExtra(IVariable.C_ID);
-        getmVsRightIcon().inflate();
-        mTvCreatePost = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
+        mTvCreatePost = getmTvRightIcon();
+        mTvCreatePost.setTypeface(TypefaceUtis.getTypeface(this));
         mTvCreatePost.setText(getResources().getString(R.string.activity_circle_create_post_font_icon));//设置创建帖子按钮
         mTvCreatePost.setOnClickListener(this);
         mTvFollow.setOnClickListener(this);
@@ -124,7 +125,7 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
             case R.id.tv_follow:
                 followOrCancelFollow();
                 break;
-            case R.id.tv_ok:
+            case R.id.tv_right_icon:
                 startActivity(new Intent(CircleDetailActivity.this, CreatePostActivity.class));
                 break;
         }
@@ -259,8 +260,4 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
         return false;
     }
 
-    @Override
-    protected boolean haveRightIcon() {
-        return true;
-    }
 }

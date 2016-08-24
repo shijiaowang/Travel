@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.ImageFolder;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.SelectFolderAdapter;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -132,22 +133,20 @@ public class AlbumSelectorActivity extends BarBaseActivity {
 
     @Override
     protected void initEvent() {
-        getmVsRightIcon().inflate();
-        mTvCancel = (TextView) findViewById(R.id.tv_ok);
+        mTvCancel = getmTvRightIcon();
         mTvCancel.setText("取消");
-        mTvCancel.setTextSize(12, TypedValue.COMPLEX_UNIT_SP);
         mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                GlobalValue.mSelectImages=null;
             }
         });
         mLvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(AlbumSelectorActivity.this,PictureSelectorActivity.class);
+                Intent intent = new Intent(AlbumSelectorActivity.this, PictureSelectorActivity.class);
                 ImageFolder imageFolder = imageFolders.get(position);
-                intent.putExtra(IVariable.IMAGE_FOLDER,imageFolder);
+                intent.putExtra(IVariable.IMAGE_FOLDER, imageFolder);
                 startActivity(intent);
             }
         });
@@ -157,9 +156,6 @@ public class AlbumSelectorActivity extends BarBaseActivity {
     @Override
     protected void initViewData() {
         initImages();
-        getmTvBack().setVisibility(View.GONE);
-
-
     }
 
     @Override
@@ -172,8 +168,4 @@ public class AlbumSelectorActivity extends BarBaseActivity {
         return 1.0f;
     }
 
-    @Override
-    protected boolean haveRightIcon() {
-        return true;
-    }
 }

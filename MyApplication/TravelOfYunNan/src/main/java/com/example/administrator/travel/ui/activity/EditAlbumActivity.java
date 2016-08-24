@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.EditAlbumAdapter;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.TypefaceUtis;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -35,8 +36,8 @@ public class EditAlbumActivity extends BarBaseActivity {
     }
 
     private void init() {
-        getmVsRightIcon().inflate();
-        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
+        mTvMore = getmTvRightIcon();
+        mTvMore.setTypeface(TypefaceUtis.getTypeface(this));
         mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
     }
 
@@ -55,8 +56,4 @@ public class EditAlbumActivity extends BarBaseActivity {
         return false;
     }
 
-    @Override
-    protected boolean haveRightIcon() {
-        return true;
-    }
 }

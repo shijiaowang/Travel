@@ -203,7 +203,6 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
             sendDelayTime=300;
         }
         switch (v.getId()) {
-
             case R.id.tv_picture:
                 mHandler.sendEmptyMessageDelayed(SHOW_PHOTO,sendDelayTime);
                 return;

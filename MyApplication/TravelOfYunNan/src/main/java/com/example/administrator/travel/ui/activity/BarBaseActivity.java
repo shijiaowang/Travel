@@ -30,13 +30,21 @@ public abstract class BarBaseActivity extends BaseActivity {
     private View mBg1;
     @ViewInject(R.id.pb_progress)
     private ProgressBar mPbProgress;
-
+    @ViewInject(R.id.tv_right_icon)
+    private TextView mTvRightIcon;
     private int normalBgColor = Color.parseColor("#5cd0c2");
     private float alpha = 0f;
     @ViewInject(R.id.vs_content)
     private ViewStub mVsContent;
-    private ViewStub mVsRightIcon;
     private SlippingScrollView mSsvScroll;
+
+    public TextView getmTvRightIcon() {
+        return mTvRightIcon;
+    }
+
+    public void setmTvRightIcon(TextView mTvRightIcon) {
+        this.mTvRightIcon = mTvRightIcon;
+    }
 
     @Override
     protected int initLayoutRes() {
@@ -71,9 +79,6 @@ public abstract class BarBaseActivity extends BaseActivity {
         mTitleName.setText(setTitleName());
         mVsContent.setLayoutResource(setContentLayout());
         mVsContent.inflate();
-        if (haveRightIcon()) {
-            mVsRightIcon = (ViewStub) findViewById(R.id.vs_right_icon);
-        }
         if (canScrollToChangeTitleBgColor()) {
             mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);
         }
@@ -112,18 +117,9 @@ public abstract class BarBaseActivity extends BaseActivity {
         return false;
     }
 
-    protected boolean haveRightIcon() {
-        return false;
-    }
 
-    /**
-     * 如果需要动态添加右边的图标
-     *
-     * @return
-     */
-    public ViewStub getmVsRightIcon() {
-        return mVsRightIcon;
-    }
+
+
 
     public void changeTitle(String title){
         mTitleName.setText(title);

@@ -29,4 +29,5 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     compile 'net.robinx:lib.blur:1.0.1'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.TypefaceUtis;
 
 /**
  * 创建相册
@@ -30,8 +31,8 @@ public class CreateAlbumActivity extends BarBaseActivity {
     }
 
     private void init() {
-        getmVsRightIcon().inflate();
-        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
+        mTvMore = getmTvRightIcon();
+        mTvMore.setTypeface(TypefaceUtis.getTypeface(this));
         mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
     }
 
@@ -48,10 +49,6 @@ public class CreateAlbumActivity extends BarBaseActivity {
 
 
 
-    @Override
-    protected boolean haveRightIcon() {
-        return true;
-    }
 
     @Override
     protected boolean rootIsLinearLayout() {

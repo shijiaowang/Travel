@@ -76,10 +76,7 @@ public class AiteActivity extends BarBaseActivity {
     }
 
     private void init() {
-        ViewStub rightText = getmVsRightIcon();
-        rightText.setLayoutResource(R.layout.activity_right_common_text);
-        rightText.inflate();
-        mTvOk = (TextView) findViewById(R.id.tv_ok);
+        mTvOk = getmTvRightIcon();
         mTvOk.setText("确定");
         mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
     }
@@ -161,10 +158,7 @@ public class AiteActivity extends BarBaseActivity {
         return "关注的人";
     }
 
-    @Override
-    protected boolean haveRightIcon() {
-        return true;
-    }
+
 
     @Override
     public float getAlpha() {

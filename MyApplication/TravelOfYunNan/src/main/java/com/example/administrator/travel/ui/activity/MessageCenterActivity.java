@@ -8,6 +8,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.fragment.SystemMessagePagerAdapter;
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.TypefaceUtis;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -69,8 +70,8 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
     }
 
     private void init() {
-        getmVsRightIcon().inflate();
-        mTvMore = FontsIconUtil.findIconFontsById(R.id.tv_ok, this);
+        mTvMore = getmTvRightIcon();
+        mTvMore.setTypeface(TypefaceUtis.getTypeface(this));
         mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
         mIndicator.setTitles(new String[]{"系统消息", "私信"});
         mIndicator.setViewPager(mVpMessageCenter);
@@ -104,9 +105,5 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
         return 1.0f;
     }
 
-    @Override
-    protected boolean haveRightIcon() {
-        return true;
-    }
 }
 
