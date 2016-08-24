@@ -241,13 +241,11 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
     protected abstract Activity initViewData();
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         if (activity != null) {
             unregisterEventBus(this);
         }
-
-
     }
 
     /**
