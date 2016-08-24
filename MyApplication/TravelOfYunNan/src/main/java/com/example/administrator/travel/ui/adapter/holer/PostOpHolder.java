@@ -59,7 +59,7 @@ public class PostOpHolder extends BaseHolder<Object> {
         if (isFirst){
             isFirst=false;
             mTvNickName.setText(forum.getNick_name());
-            mTvTime.setText(FormatDateUtils.FormatLongTime("YYYY-MM-dd HH:mm", forum.getTime()));
+            mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forum.getTime()));
             mTvContent.setText(forum.getContent());
         }
         List<PostDetail.DataBean.ForumBean.LikeBean> like = forum.getLike();

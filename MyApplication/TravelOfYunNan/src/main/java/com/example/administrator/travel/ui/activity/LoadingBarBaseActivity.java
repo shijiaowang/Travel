@@ -200,6 +200,13 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
 
     protected abstract void onLoad();
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (activity !=null){//避免退出界面注销
+            registerEventBus(activity);
+        }
+    }
 
     /**
      * 初始化数据
@@ -211,7 +218,6 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
         super.onPause();
         if (activity!=null){
             unregisterEventBus(this);
-            activity=null;
         }
     }
 

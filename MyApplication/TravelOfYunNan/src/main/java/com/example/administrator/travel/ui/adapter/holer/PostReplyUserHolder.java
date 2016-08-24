@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.PostDetail;
 import com.example.administrator.travel.bean.PostReply;
+import com.example.administrator.travel.utils.FormatDateUtils;
+import com.example.administrator.travel.utils.StringUtils;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -21,7 +23,8 @@ import org.xutils.view.annotation.ViewInject;
  * 回复其他楼层
  */
 public class PostReplyUserHolder extends BaseHolder<Object> {
-
+    @ViewInject(R.id.v_line)
+    public View line;
     @ViewInject(R.id.iv_reply_icon)
     public ImageView mIvReplyIcon;
     @ViewInject(R.id.tv_reply_nick_name)
@@ -54,17 +57,34 @@ public class PostReplyUserHolder extends BaseHolder<Object> {
     protected void initItemDatas(Object datas, Context mContext) {
         if (datas instanceof PostDetail.DataBean.ForumReplyBean){
             PostDetail.DataBean.ForumReplyBean forumReplyBean = (PostDetail.DataBean.ForumReplyBean) datas;
+            mTvReplyNickName.setText(forumReplyBean.getNick_name());
+            mTvReplyMessage.setText(forumReplyBean.getContent());
+            mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forumReplyBean.getReply_time()));
+            mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
+            mTvLoveNumber.setText(forumReplyBean.getLike_count());
+            mTvLove.setTextColor(forumReplyBean.getIs_like().equals("1") ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
+            PostDetail.DataBean.ForumReplyBean.ReplyBean reply = forumReplyBean.getReply();
+
+            if (!StringUtils.isEmpty(reply.getReply_img())){
+                String content=reply.getContent()+"【图片】";
+                mTvReplyContent.setText(content);
+                mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
+                SpannableStringBuilder spannable = new SpannableStringBuilder(content);
+                spannable.setSpan(new SomeTextClick(mContext, ""), content.length() - 4, content.length()
+                        , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                mTvReplyContent.setText(spannable);
+            }else {
+                mTvReplyName.setText(reply.getNick_name());
+            }
+            mTvReplyFloorNumber.setText(reply.getFloor()+"楼");
 
 
 
 
         }
-        String content = mTvReplyContent.getText().toString().trim();
-        mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
-        SpannableStringBuilder spannable = new SpannableStringBuilder(content);
-        spannable.setSpan(new SomeTextClick(mContext,""),content.length()-3,content.length()
-                , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        mTvReplyContent.setText(spannable);
+
+
+
     }
 
     @Override

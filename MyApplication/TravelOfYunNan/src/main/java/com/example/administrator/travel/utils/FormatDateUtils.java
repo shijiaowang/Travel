@@ -16,7 +16,6 @@ public class FormatDateUtils {
         try {
             long l = Long.parseLong(time);
             SimpleDateFormat simpleDateFormat=new SimpleDateFormat(format);
-
             return simpleDateFormat.format(l);
         }catch (Exception e){
             return time;

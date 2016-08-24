@@ -1,14 +1,13 @@
 package com.example.administrator.travel.ui.fragment;
 
-import android.view.View;
+
 import android.widget.AbsListView;
 import android.widget.ListView;
-
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointTogether;
 import com.example.administrator.travel.event.AppointEvent;
 import com.example.administrator.travel.ui.adapter.AppointTogetherAdapter;
-import com.example.administrator.travel.utils.LogUtils;
+
 
 import org.greenrobot.eventbus.EventBus;
 

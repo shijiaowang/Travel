@@ -6,26 +6,35 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    String DOMAIN_NAME="http://yuns.yunspeak.com/";
-/*    String DOMAIN_NAME = "http://192.168.1.38/";*/
+    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
+    String DOMAIN_NAME = "http://192.168.1.38/";
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
-    String LOGIN_URL = API_KEY + "User/Login/";
-    String FIRST_CIRCLE_URL = API_KEY + "Circle/getCirclelists/";
-    String NORMAL_CIRCLE_URL = API_KEY + "Circle/getCirclechildlists/";
-    String CIRCLE_CREATE_POST = API_KEY + "Circle/setCircleforum/";//圈子发帖
-    String CIRCLE_LIKE_POST = API_KEY + "Circle/setForumlike/";//帖子点赞
-    String CIRCLE_FOLLOW = API_KEY + "Circle/setCirclefollow/";//关注圈子
-    String GET_CIRCLE_POST = API_KEY + "Circle/getCircleforumlists/";//获取圈子内帖子列表
+    /**
+     * User
+     */
     String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注自己的列表
     String REGISTER_USER = API_KEY + "User/register/";//注册
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
     String CHANGE_USER_INFO = API_KEY + "User/updateUser/";//更改用户信息
+    String LOGIN_URL = API_KEY + "User/Login/";
+    /**
+     * 圈子
+     */
+    String FIRST_CIRCLE_URL = API_KEY + "Circle/getCirclelists/";
+    String NORMAL_CIRCLE_URL = API_KEY + "Circle/getCirclechildlists/";
+    String CIRCLE_CREATE_POST = API_KEY + "Circle/setCircleforum/";//圈子发帖
+    String CIRCLE_LIKE_POST = API_KEY + "Circle/setForumlike/";//帖子点赞
+    String CIRCLE_FOLLOW = API_KEY + "Circle/setCirclefollow/";//关注圈子
+    String GET_CIRCLE_POST = API_KEY + "Circle/getCircleforumlists/";//获取圈子内帖子列表
     String POST_DETAIL = API_KEY + "Circle/getForum/";//获取帖子数据
-
+    /**
+     * 发现
+     */
+    String FIND_DESTINATION = API_KEY + "Find/getfindDestination/";//目的地
 
     //请求type
     int TYPE_GET_KEY = 0;

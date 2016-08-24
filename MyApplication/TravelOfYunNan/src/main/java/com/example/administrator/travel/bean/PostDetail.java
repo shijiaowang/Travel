@@ -7,18 +7,17 @@ import java.util.List;
  */
 public class PostDetail {
 
-
     /**
      * code : 1
      * message : 成功
-     * data : {"forum":{"id":"24","cid":"4","user_id":"10009","title":"11111111111111","content":"这是一个内容","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe6834e9.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe694659.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe6834e9.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe694659.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg","time":"1471401958","status":"1","is_hot":"0","update_time":"0","nick_name":"我叫王小","user_img":"","cname":"摆龙门阵","like":[{"nick_name":"我叫王小","id":"10009"},{"nick_name":"我叫王小","id":"10009"}]},"forum_reply":[{"id":"3","forum_id":"24","user_id":"10009","r_user_id":"10009","pid":"0","content":"我是1楼","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg","reply_time":"1471846358","floor":"1","status":"1","is_read":"0","update_time":"0","is_like":"1","nick_name":"我叫王小","user_img":"","r_nick_name":"我叫王小","r_user_img":"","reply":{"nick_name":"","content":"","floor":"","reply_img":""}},{"id":"4","forum_id":"24","user_id":"10009","r_user_id":"10009","pid":"3","content":"我是2楼","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg","reply_time":"1471846372","floor":"2","status":"1","is_read":"0","update_time":"0","is_like":"1","nick_name":"我叫王小","user_img":"","r_nick_name":"我叫王小","r_user_img":"","reply":{"nick_name":"我叫王小","content":"我是1楼","floor":"1","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg"}}]}
+     * data : {"forum":{"id":"24","cid":"4","user_id":"10009","title":"11111111111111","content":"这是一个内容","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-17/1.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/2.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/3.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/4.jpg","time":"1471401958","status":"1","is_hot":"0","update_time":"0","nick_name":"我叫王小","user_img":"","cname":"摆龙门阵","like":[{"nick_name":"我叫王小","id":"10009"},{"nick_name":"我叫王小","id":"10009"}]},"forum_reply":[{"id":"3","forum_id":"24","user_id":"10009","r_user_id":"10009","pid":"0","content":"我是1楼","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg","reply_time":"1471846358","floor":"1","status":"1","is_read":"0","update_time":"0","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"","r_nick_name":"我叫王小","r_user_img":"","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"4","forum_id":"24","user_id":"10009","r_user_id":"10009","pid":"3","content":"我是2楼","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg","reply_time":"1471846372","floor":"2","status":"1","is_read":"0","update_time":"0","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"","r_nick_name":"我叫王小","r_user_img":"","reply":{"nick_name":"我叫王小","content":"我是1楼","floor":"1","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg"}}]}
      */
 
     private int code;
     private String message;
     /**
-     * forum : {"id":"24","cid":"4","user_id":"10009","title":"11111111111111","content":"这是一个内容","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe6834e9.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe694659.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe6834e9.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe694659.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg","time":"1471401958","status":"1","is_hot":"0","update_time":"0","nick_name":"我叫王小","user_img":"","cname":"摆龙门阵","like":[{"nick_name":"我叫王小","id":"10009"},{"nick_name":"我叫王小","id":"10009"}]}
-     * forum_reply : [{"id":"3","forum_id":"24","user_id":"10009","r_user_id":"10009","pid":"0","content":"我是1楼","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg","reply_time":"1471846358","floor":"1","status":"1","is_read":"0","update_time":"0","is_like":"1","nick_name":"我叫王小","user_img":"","r_nick_name":"我叫王小","r_user_img":"","reply":{"nick_name":"","content":"","floor":"","reply_img":""}},{"id":"4","forum_id":"24","user_id":"10009","r_user_id":"10009","pid":"3","content":"我是2楼","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg","reply_time":"1471846372","floor":"2","status":"1","is_read":"0","update_time":"0","is_like":"1","nick_name":"我叫王小","user_img":"","r_nick_name":"我叫王小","r_user_img":"","reply":{"nick_name":"我叫王小","content":"我是1楼","floor":"1","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg"}}]
+     * forum : {"id":"24","cid":"4","user_id":"10009","title":"11111111111111","content":"这是一个内容","inform":"","forum_img":"http://192.168.1.38/Uploads/Api/Forum/2016-08-17/1.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/2.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/3.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/4.jpg","time":"1471401958","status":"1","is_hot":"0","update_time":"0","nick_name":"我叫王小","user_img":"","cname":"摆龙门阵","like":[{"nick_name":"我叫王小","id":"10009"},{"nick_name":"我叫王小","id":"10009"}]}
+     * forum_reply : [{"id":"3","forum_id":"24","user_id":"10009","r_user_id":"10009","pid":"0","content":"我是1楼","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg","reply_time":"1471846358","floor":"1","status":"1","is_read":"0","update_time":"0","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"","r_nick_name":"我叫王小","r_user_img":"","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"4","forum_id":"24","user_id":"10009","r_user_id":"10009","pid":"3","content":"我是2楼","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg","reply_time":"1471846372","floor":"2","status":"1","is_read":"0","update_time":"0","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"","r_nick_name":"我叫王小","r_user_img":"","reply":{"nick_name":"我叫王小","content":"我是1楼","floor":"1","reply_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9f2c6f6.jpg"}}]
      */
 
     private DataBean data;
@@ -55,7 +54,7 @@ public class PostDetail {
          * title : 11111111111111
          * content : 这是一个内容
          * inform :
-         * forum_img : http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe6834e9.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe694659.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe6834e9.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe694659.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/57b3cfe68c959.jpg
+         * forum_img : http://192.168.1.38/Uploads/Api/Forum/2016-08-17/1.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/2.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/3.jpg,http://192.168.1.38/Uploads/Api/Forum/2016-08-17/4.jpg
          * time : 1471401958
          * status : 1
          * is_hot : 0
@@ -80,12 +79,13 @@ public class PostDetail {
          * status : 1
          * is_read : 0
          * update_time : 0
+         * like_count : 1
          * is_like : 1
          * nick_name : 我叫王小
          * user_img :
          * r_nick_name : 我叫王小
          * r_user_img :
-         * reply : {"nick_name":"","content":"","floor":"","reply_img":""}
+         * reply : {"floor":"","nick_name":"","content":"","reply_img":""}
          */
 
         private List<ForumReplyBean> forum_reply;
@@ -283,15 +283,16 @@ public class PostDetail {
             private String status;
             private String is_read;
             private String update_time;
+            private String like_count;
             private String is_like;
             private String nick_name;
             private String user_img;
             private String r_nick_name;
             private String r_user_img;
             /**
+             * floor :
              * nick_name :
              * content :
-             * floor :
              * reply_img :
              */
 
@@ -393,6 +394,14 @@ public class PostDetail {
                 this.update_time = update_time;
             }
 
+            public String getLike_count() {
+                return like_count;
+            }
+
+            public void setLike_count(String like_count) {
+                this.like_count = like_count;
+            }
+
             public String getIs_like() {
                 return is_like;
             }
@@ -442,10 +451,18 @@ public class PostDetail {
             }
 
             public static class ReplyBean {
+                private String floor;
                 private String nick_name;
                 private String content;
-                private String floor;
                 private String reply_img;
+
+                public String getFloor() {
+                    return floor;
+                }
+
+                public void setFloor(String floor) {
+                    this.floor = floor;
+                }
 
                 public String getNick_name() {
                     return nick_name;
@@ -461,14 +478,6 @@ public class PostDetail {
 
                 public void setContent(String content) {
                     this.content = content;
-                }
-
-                public String getFloor() {
-                    return floor;
-                }
-
-                public void setFloor(String floor) {
-                    this.floor = floor;
                 }
 
                 public String getReply_img() {

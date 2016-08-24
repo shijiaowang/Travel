@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.travel.ui.view.LoadingPage;
+import com.example.administrator.travel.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -27,8 +28,19 @@ public abstract class LoadBaseFragment extends Fragment {
         fragment = registerEvent();
         if (fragment != null) {
             registerEventBus(fragment);
+            LogUtils.e("fragment的Event注册了");
         }
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        fragment = registerEvent();
+        if (fragment != null) {
+            registerEventBus(fragment);
+            LogUtils.e("fragment的Event注册了");
+        }
     }
 
     protected abstract Fragment registerEvent();
@@ -72,7 +84,7 @@ public abstract class LoadBaseFragment extends Fragment {
         super.onPause();
         if (fragment!=null){
             unregisterEventBus(fragment);
-            fragment=null;
+            LogUtils.e("fragment的Event注销了");
         }
     }
 

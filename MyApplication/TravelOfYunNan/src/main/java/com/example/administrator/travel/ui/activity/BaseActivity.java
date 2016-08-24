@@ -17,6 +17,7 @@ import android.widget.EditText;
 
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.x;
@@ -129,12 +130,14 @@ public abstract class BaseActivity extends FragmentActivity {
 
     protected void registerEventBus(Activity activity) {
         if (!EventBus.getDefault().isRegistered(activity)) {
+            LogUtils.e("activity的Event注册了");
             EventBus.getDefault().register(activity);
         }
     }
 
     protected void unregisterEventBus(Activity activity) {
         if (EventBus.getDefault().isRegistered(activity)) {
+            LogUtils.e("activity的Event注销了");
             EventBus.getDefault().unregister(activity);
         }
     }
