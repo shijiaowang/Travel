@@ -13,6 +13,7 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.CircleDetailHolder;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import java.util.List;
@@ -35,11 +36,14 @@ public class CircleDetailAdapter extends TravelBaseAdapter<CircleDetail.DataBean
                 public void onClick(View v) {
                     if (!item.getIs_like().equals("1")) {
                         circleDetailHolder.mTvIconLove.setTextColor(mContext.getResources().getColor(R.color.otherFf7f6c));
+                        GlobalValue.CIRCLE_FOLLOW_LIKE_POSITION=position;
+                        //点赞
+                        Map<String, String> likeMap = MapUtils.Build().addKey(mContext).add(IVariable.FORUM_ID, item.getId()).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).end();
+                        XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_LIKE_POST, likeMap, CircleDetailActivity.TYPE_LIKE_POST, new CircleDetailEvent());
+                    }else {
+                        ToastUtils.showToast("你已经点过赞了");
                     }
-                    GlobalValue.CIRCLE_FOLLOW_LIKE_POSITION=position;
-                    //点赞
-                    Map<String, String> likeMap = MapUtils.Build().addKey(mContext).add(IVariable.FORUM_ID, item.getId()).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).end();
-                    XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_LIKE_POST,likeMap, CircleDetailActivity.TYPE_LIKE_POST,new CircleDetailEvent());
+
                 }
             });
         }

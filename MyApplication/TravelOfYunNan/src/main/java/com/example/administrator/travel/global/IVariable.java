@@ -103,12 +103,24 @@ public interface IVariable {
     String TEL = "tel";//电话
     String PROVINCE = "province";//省份
     String CITY = "city";//市
-    String TYPELIST  = "typelist";//类型
-    String STAR  = "star";//星级
-    String SCORE  = "score";//评分
+    String TYPELIST = "typelist";//类型
+    String STAR = "star";//星级
+    String SCORE = "score";//评分
     String CODE = "code";//验证码
     String CONTENT = "content";//个人简介
     String IMAGE_FOLDER = "image_folder";//图片选择器用到
-    
-    String T_ID ="t_id";//目的地id
+
+    String T_ID = "t_id";//目的地id
+    String F_ID = "f_id";//发现ID
+    String R_ID = "r_id";//发现评论id
+
+
+ String TYPE_DESTINATION = "3";//类型，type  所属类型 1 游记 2美食 3 目的地
+ String TYPE_TRAVELS = "1";//类型，type  所属类型 1 游记 2美食 3 目的地
+ String TYPE_DELICIOUS = "2";//类型，type  所属类型 1 游记 2美食 3 目的地
+ 
+ String PID = "pid";
+
+ String NEXT_PAGE = "nextpage";//发现评论，是否有下一页
+ String COUNT = "count";//发现评论，当前拥有数据数量
 }

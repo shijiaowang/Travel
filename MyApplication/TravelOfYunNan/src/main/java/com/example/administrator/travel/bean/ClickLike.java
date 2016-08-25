@@ -4,7 +4,7 @@ package com.example.administrator.travel.bean;
  * Created by Administrator on 2016/8/17 0017.
  * 点赞
  */
-public class CircleLike {
+public class ClickLike {
 
     /**
      * code : 1

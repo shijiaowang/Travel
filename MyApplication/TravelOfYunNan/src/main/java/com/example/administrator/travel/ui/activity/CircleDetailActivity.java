@@ -10,14 +10,13 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.CircleDetail;
 import com.example.administrator.travel.bean.CircleFollow;
-import com.example.administrator.travel.bean.CircleLike;
+import com.example.administrator.travel.bean.ClickLike;
 import com.example.administrator.travel.event.CircleDetailEvent;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.CircleDetailAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -167,7 +166,7 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
      * @param result
      */
     private void dealLikeData(String result) {
-        CircleLike circleLike = GsonUtils.getObject(result, CircleLike.class);
+        ClickLike circleLike = GsonUtils.getObject(result, ClickLike.class);
         String count_like = circleLike.getData().getCount_like();
         if (GlobalValue.CIRCLE_FOLLOW_LIKE_POSITION<postList.size()) {
             CircleDetail.DataBean.BodyBean bodyBean = postList.get(GlobalValue.CIRCLE_FOLLOW_LIKE_POSITION);

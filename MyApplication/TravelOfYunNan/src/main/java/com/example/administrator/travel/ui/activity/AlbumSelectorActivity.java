@@ -32,6 +32,8 @@ import java.util.HashSet;
 import java.util.List;
 
 public class AlbumSelectorActivity extends BarBaseActivity {
+    protected static final int GET_PICTURE=0;
+    protected static final int SEND_PICTURE=1;
     @ViewInject(R.id.lv_photo)
     private ListView mLvPhoto;
     private ProgressDialog mProgressDialog;
@@ -138,7 +140,7 @@ public class AlbumSelectorActivity extends BarBaseActivity {
         mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GlobalValue.mSelectImages=null;
+                initSelect();
             }
         });
         mLvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -147,10 +149,19 @@ public class AlbumSelectorActivity extends BarBaseActivity {
                 Intent intent = new Intent(AlbumSelectorActivity.this, PictureSelectorActivity.class);
                 ImageFolder imageFolder = imageFolders.get(position);
                 intent.putExtra(IVariable.IMAGE_FOLDER, imageFolder);
-                startActivity(intent);
+                startActivityForResult(intent,GET_PICTURE);
             }
         });
 
+    }
+
+    private void initSelect() {
+        if (GlobalValue.mSelectImages==null || GlobalValue.mSelectImages.size()==0){
+            ToastUtils.showToast("你尚未选中任何图片");
+        }else {
+            GlobalValue.mSelectImages=null;
+            ToastUtils.showToast("所选照片已清除");
+        }
     }
 
     @Override
@@ -168,4 +179,11 @@ public class AlbumSelectorActivity extends BarBaseActivity {
         return 1.0f;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==GET_PICTURE && resultCode==SEND_PICTURE){
+            finish();
+        }
+    }
 }

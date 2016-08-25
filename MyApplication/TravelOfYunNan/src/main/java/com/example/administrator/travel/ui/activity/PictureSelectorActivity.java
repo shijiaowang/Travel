@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.ImageFolder;
+import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.PictureSelectorAdapter;
@@ -28,7 +29,7 @@ import java.util.List;
  * Created by android on 2016/8/23.
  * 相册中图片选择
  */
-public class PictureSelectorActivity extends BarBaseActivity {
+public class PictureSelectorActivity extends BarBaseActivity implements View.OnClickListener {
     @ViewInject(R.id.gv_photo)
     private GridView mGvPhoto;
     @ViewInject(R.id.tv_send)
@@ -40,9 +41,6 @@ public class PictureSelectorActivity extends BarBaseActivity {
     private ImageFolder mFolder;
     private List<String> mImages;
     private PictureSelectorAdapter adapter;
-
-
-
     @Override
     protected int setContentLayout() {
         return R.layout.activity_picture_selector;
@@ -57,26 +55,28 @@ public class PictureSelectorActivity extends BarBaseActivity {
 
         TextView mTvCancel = getmTvRightIcon();
         mTvCancel.setText("取消");
-        mTvCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GlobalValue.mSelectImages = null;
-                if (adapter != null) {
-                    adapter.notifyDataSetChanged();
-                }
-                mTvSend.setText("发送(0)");
-            }
-        });
-        mTvWatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (GlobalValue.mSelectImages==null || GlobalValue.mSelectImages.size()==0){
-                    ToastUtils.showToast("对不起，你尚未选中任何图片");
-                }else {
-                    startActivity(new Intent(PictureSelectorActivity.this,PreviewPicturesActivity.class));
-                }
-            }
-        });
+        mTvSend.setOnClickListener(this);
+        mTvCancel.setOnClickListener(this);
+        mTvWatch.setOnClickListener(this);
+    }
+
+    private void cancelOrSelect() {
+        GlobalValue.mSelectImages = null;
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
+        mTvSend.setText("发送(0)");
+    }
+
+    /**
+     * 打开预览界面
+     */
+    private void startWatch() {
+        if (GlobalValue.mSelectImages==null || GlobalValue.mSelectImages.size()==0){
+            ToastUtils.showToast("对不起，你尚未选中任何图片");
+        }else {
+            startActivityForResult(new Intent(PictureSelectorActivity.this, PreviewPicturesActivity.class), AlbumSelectorActivity.GET_PICTURE);
+        }
     }
 
     @Override
@@ -121,7 +121,40 @@ public class PictureSelectorActivity extends BarBaseActivity {
         return 1.0f;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==AlbumSelectorActivity.GET_PICTURE && resultCode==AlbumSelectorActivity.SEND_PICTURE){
+            setResult(AlbumSelectorActivity.SEND_PICTURE);
+            finish();
+        }
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_cancel:
+                cancelOrSelect();
+                break;
+            case R.id.tv_send:
+                sendPicture();
+                break;
+            case R.id.tv_watch:
+                startWatch();
+                break;
+        }
+    }
 
-
+    private void sendPicture() {
+        if (GlobalValue.mSelectImages==null || GlobalValue.mSelectImages.size()==0){
+            ToastUtils.showToast("对不起，你尚未选中任何图片");
+        }else {
+            CreatePostEvent createPostEvent = new CreatePostEvent();
+            createPostEvent.setmImages(GlobalValue.mSelectImages);
+            GlobalValue.mSelectImages=null;
+            EventBus.getDefault().post(createPostEvent);
+            setResult(AlbumSelectorActivity.SEND_PICTURE);
+            finish();
+        }
+    }
 }

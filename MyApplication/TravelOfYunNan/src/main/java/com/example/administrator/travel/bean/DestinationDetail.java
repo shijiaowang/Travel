@@ -7,17 +7,19 @@ import java.util.List;
  */
 public class DestinationDetail {
 
+
     /**
      * code : 1
      * message : 获取成功
-     * data : {"travel":{"id":"12","title":"测试景点2","content":"策划师而已 ","play_way":"露营,购物,徒步","picture_id":"10","logo_img":"/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","star":"5","score":"","province":"26","city":"386","address":"西藏自治区自贡市niadhashdoa","longitude":"131","latitude":"312","status":"1","add_time":"1470723007","update_time":"1470796007","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981bd2cc976.jpg,http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg,http://192.168.1.38/Uploads/Picture/2016-07-27/579859dec9a96.png"},"travel_reply":[{"id":"3","f_id":"12","user_id":"10009","pid":"0","content":"这是一个测试内容","reply_img":"","reply_time":"1471939164","floor":"1","type":"3","status":"1","like_count":"2","is_like":"0","nick_name":"我叫王小","user_img":"","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"4","f_id":"12","user_id":"10009","pid":"3","content":"这是一个测试内容","reply_img":"","reply_time":"1471939205","floor":"2","type":"3","status":"1","like_count":"2","is_like":"0","nick_name":"我叫王小","user_img":"","reply":{"nick_name":"我叫王小","content":"这是一个测试内容","floor":"1","reply_img":""}}]}
+     * data : {"travel":{"id":"12","title":"测试景点2","content":"策划师而已 ","play_way":"露营,购物,徒步","picture_id":"10","logo_img":"/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","star":"5","score":"","province":"26","city":"386","address":"西藏自治区自贡市niadhashdoa","longitude":"131","latitude":"312","status":"1","add_time":"1470723007","update_time":"1470796007","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981bd2cc976.jpg,http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg,http://192.168.1.38/Uploads/Picture/2016-07-27/579859dec9a96.png"},"travel_reply":[{"id":"3","f_id":"12","user_id":"10009","pid":"0","content":"这是一个测试内容","reply_img":"","reply_time":"1471939164","floor":"1","type":"3","status":"1","like_count":"3","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b288d6d58d6.png","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"4","f_id":"12","user_id":"10009","pid":"3","content":"这是一个测试内容","reply_img":"","reply_time":"1471939205","floor":"2","type":"3","status":"1","like_count":"3","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b288d6d58d6.png","reply":{"nick_name":"我叫王小","content":"这是一个测试内容","floor":"1","reply_img":""}},{"id":"5","f_id":"12","user_id":"10009","pid":"0","content":"","reply_img":"","reply_time":"1472109446","floor":"3","type":"3","status":"1","like_count":"3","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b288d6d58d6.png","reply":{"floor":"","nick_name":"","content":"","reply_img":""}}],"have_next":{"nextpage":"0"}}
      */
 
     private int code;
     private String message;
     /**
      * travel : {"id":"12","title":"测试景点2","content":"策划师而已 ","play_way":"露营,购物,徒步","picture_id":"10","logo_img":"/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","star":"5","score":"","province":"26","city":"386","address":"西藏自治区自贡市niadhashdoa","longitude":"131","latitude":"312","status":"1","add_time":"1470723007","update_time":"1470796007","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981bd2cc976.jpg,http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg,http://192.168.1.38/Uploads/Picture/2016-07-27/579859dec9a96.png"}
-     * travel_reply : [{"id":"3","f_id":"12","user_id":"10009","pid":"0","content":"这是一个测试内容","reply_img":"","reply_time":"1471939164","floor":"1","type":"3","status":"1","like_count":"2","is_like":"0","nick_name":"我叫王小","user_img":"","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"4","f_id":"12","user_id":"10009","pid":"3","content":"这是一个测试内容","reply_img":"","reply_time":"1471939205","floor":"2","type":"3","status":"1","like_count":"2","is_like":"0","nick_name":"我叫王小","user_img":"","reply":{"nick_name":"我叫王小","content":"这是一个测试内容","floor":"1","reply_img":""}}]
+     * travel_reply : [{"id":"3","f_id":"12","user_id":"10009","pid":"0","content":"这是一个测试内容","reply_img":"","reply_time":"1471939164","floor":"1","type":"3","status":"1","like_count":"3","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b288d6d58d6.png","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"4","f_id":"12","user_id":"10009","pid":"3","content":"这是一个测试内容","reply_img":"","reply_time":"1471939205","floor":"2","type":"3","status":"1","like_count":"3","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b288d6d58d6.png","reply":{"nick_name":"我叫王小","content":"这是一个测试内容","floor":"1","reply_img":""}},{"id":"5","f_id":"12","user_id":"10009","pid":"0","content":"","reply_img":"","reply_time":"1472109446","floor":"3","type":"3","status":"1","like_count":"3","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b288d6d58d6.png","reply":{"floor":"","nick_name":"","content":"","reply_img":""}}]
+     * have_next : {"nextpage":"0"}
      */
 
     private DataBean data;
@@ -69,6 +71,11 @@ public class DestinationDetail {
 
         private TravelBean travel;
         /**
+         * nextpage : 0
+         */
+
+        private HaveNextBean have_next;
+        /**
          * id : 3
          * f_id : 12
          * user_id : 10009
@@ -79,10 +86,10 @@ public class DestinationDetail {
          * floor : 1
          * type : 3
          * status : 1
-         * like_count : 2
-         * is_like : 0
+         * like_count : 3
+         * is_like : 1
          * nick_name : 我叫王小
-         * user_img :
+         * user_img : http://192.168.1.38/Uploads/Picture/2016-08-16/57b288d6d58d6.png
          * reply : {"floor":"","nick_name":"","content":"","reply_img":""}
          */
 
@@ -94,6 +101,14 @@ public class DestinationDetail {
 
         public void setTravel(TravelBean travel) {
             this.travel = travel;
+        }
+
+        public HaveNextBean getHave_next() {
+            return have_next;
+        }
+
+        public void setHave_next(HaveNextBean have_next) {
+            this.have_next = have_next;
         }
 
         public List<TravelReplyBean> getTravel_reply() {
@@ -260,188 +275,18 @@ public class DestinationDetail {
             }
         }
 
-        public static class TravelReplyBean {
-            private String id;
-            private String f_id;
-            private String user_id;
-            private String pid;
-            private String content;
-            private String reply_img;
-            private String reply_time;
-            private String floor;
-            private String type;
-            private String status;
-            private String like_count;
-            private String is_like;
-            private String nick_name;
-            private String user_img;
-            /**
-             * floor :
-             * nick_name :
-             * content :
-             * reply_img :
-             */
+        public static class HaveNextBean {
+            private String nextpage;
 
-            private ReplyBean reply;
-
-            public String getId() {
-                return id;
+            public String getNextpage() {
+                return nextpage;
             }
 
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getF_id() {
-                return f_id;
-            }
-
-            public void setF_id(String f_id) {
-                this.f_id = f_id;
-            }
-
-            public String getUser_id() {
-                return user_id;
-            }
-
-            public void setUser_id(String user_id) {
-                this.user_id = user_id;
-            }
-
-            public String getPid() {
-                return pid;
-            }
-
-            public void setPid(String pid) {
-                this.pid = pid;
-            }
-
-            public String getContent() {
-                return content;
-            }
-
-            public void setContent(String content) {
-                this.content = content;
-            }
-
-            public String getReply_img() {
-                return reply_img;
-            }
-
-            public void setReply_img(String reply_img) {
-                this.reply_img = reply_img;
-            }
-
-            public String getReply_time() {
-                return reply_time;
-            }
-
-            public void setReply_time(String reply_time) {
-                this.reply_time = reply_time;
-            }
-
-            public String getFloor() {
-                return floor;
-            }
-
-            public void setFloor(String floor) {
-                this.floor = floor;
-            }
-
-            public String getType() {
-                return type;
-            }
-
-            public void setType(String type) {
-                this.type = type;
-            }
-
-            public String getStatus() {
-                return status;
-            }
-
-            public void setStatus(String status) {
-                this.status = status;
-            }
-
-            public String getLike_count() {
-                return like_count;
-            }
-
-            public void setLike_count(String like_count) {
-                this.like_count = like_count;
-            }
-
-            public String getIs_like() {
-                return is_like;
-            }
-
-            public void setIs_like(String is_like) {
-                this.is_like = is_like;
-            }
-
-            public String getNick_name() {
-                return nick_name;
-            }
-
-            public void setNick_name(String nick_name) {
-                this.nick_name = nick_name;
-            }
-
-            public String getUser_img() {
-                return user_img;
-            }
-
-            public void setUser_img(String user_img) {
-                this.user_img = user_img;
-            }
-
-            public ReplyBean getReply() {
-                return reply;
-            }
-
-            public void setReply(ReplyBean reply) {
-                this.reply = reply;
-            }
-
-            public static class ReplyBean {
-                private String floor;
-                private String nick_name;
-                private String content;
-                private String reply_img;
-
-                public String getFloor() {
-                    return floor;
-                }
-
-                public void setFloor(String floor) {
-                    this.floor = floor;
-                }
-
-                public String getNick_name() {
-                    return nick_name;
-                }
-
-                public void setNick_name(String nick_name) {
-                    this.nick_name = nick_name;
-                }
-
-                public String getContent() {
-                    return content;
-                }
-
-                public void setContent(String content) {
-                    this.content = content;
-                }
-
-                public String getReply_img() {
-                    return reply_img;
-                }
-
-                public void setReply_img(String reply_img) {
-                    this.reply_img = reply_img;
-                }
+            public void setNextpage(String nextpage) {
+                this.nextpage = nextpage;
             }
         }
+
+
     }
 }

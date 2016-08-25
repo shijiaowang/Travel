@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.CreatePostPhotoAdapter;
 import com.example.administrator.travel.ui.fragment.EmojiFragment;
@@ -32,6 +33,8 @@ import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.Xutils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
 
@@ -47,7 +50,6 @@ import java.util.Map;
 public class CreatePostActivity extends FragmentActivity implements View.OnClickListener, View.OnFocusChangeListener {
     private static final int SHOW_PHOTO=0;
     private static final int SHOW_EMOJI=1;
-
     private TextView mTvAite;
     private TextView mTvPicture;
     private TextView mTvEmoji;
@@ -86,7 +88,9 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
-
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         initView();
         initListener();
         initData();
@@ -286,6 +290,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         }
     }
 
+
     //监听事件
     class EmojiOnPagerChangeListener implements ViewPager.OnPageChangeListener {
         @Override
@@ -359,6 +364,15 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
               }
           });
       }
-
-
+     @Subscribe
+     public void onEvent(CreatePostEvent event){
+        LogUtils.e("收到消息啦");
+     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().unregister(this);
+        }
+    }
 }

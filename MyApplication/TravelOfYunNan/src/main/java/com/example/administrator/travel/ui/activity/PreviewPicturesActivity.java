@@ -9,10 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.pageranim.ZoomOutPageTransformer;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
+import com.example.administrator.travel.utils.ToastUtils;
 
 
+import org.greenrobot.eventbus.EventBus;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -69,6 +73,7 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
     protected void initListener() {
         mTvBack.setOnClickListener(this);
         mTvCancel.setOnClickListener(this);
+        mTvSend.setOnClickListener(this);
         mVpPicture.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -94,6 +99,7 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void initData() {
+        mVpPicture.setPageTransformer(true, new ZoomOutPageTransformer());
         mVpPicture.setAdapter(new PictureAdapter());
     }
 
@@ -107,6 +113,7 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
                 changeSelect(currentPosition, mTvCancel);
                 break;
             case R.id.tv_send:
+                sendPicture();
                 break;
         }
     }
@@ -138,6 +145,21 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    /**
+     * 发送图片
+     */
+    private void sendPicture() {
+        if (GlobalValue.mSelectImages==null || GlobalValue.mSelectImages.size()==0){
+            ToastUtils.showToast("对不起，你尚未选中任何图片");
+        }else {
+            CreatePostEvent createPostEvent = new CreatePostEvent();
+            createPostEvent.setmImages(GlobalValue.mSelectImages);
+            GlobalValue.mSelectImages=null;
+            EventBus.getDefault().post(createPostEvent);
+            setResult(AlbumSelectorActivity.SEND_PICTURE);
+            finish();
+        }
+    }
 
 }
 

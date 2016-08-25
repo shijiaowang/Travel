@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.DestinationDetail;
 import com.example.administrator.travel.bean.PostDetail;
+import com.example.administrator.travel.bean.TravelReplyBean;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.StringUtils;
 
@@ -20,7 +22,7 @@ import org.xutils.view.annotation.ViewInject;
  * Created by Administrator on 2016/7/11 0011.
  * 回复其他楼层
  */
-public class DestinationDetailReplyUserHolder extends BaseHolder<DestinationDetail.DataBean.TravelReplyBean> {
+public class DestinationDetailReplyUserHolder extends BaseHolder<TravelReplyBean> {
     @ViewInject(R.id.v_line)
     public View line;
     @ViewInject(R.id.iv_reply_icon)
@@ -36,7 +38,7 @@ public class DestinationDetailReplyUserHolder extends BaseHolder<DestinationDeta
     @ViewInject(R.id.tv_reply_time)
     private TextView mTvReplyTime;
     @ViewInject(R.id.tv_love)
-    private TextView mTvLove;
+    public FontsIconTextView mTvLove;
 
 
     @ViewInject(R.id.tv_reply_content)
@@ -51,14 +53,14 @@ public class DestinationDetailReplyUserHolder extends BaseHolder<DestinationDeta
     }
 
     @Override
-    protected void initItemDatas(DestinationDetail.DataBean.TravelReplyBean datas, Context mContext) {
+    protected void initItemDatas(TravelReplyBean datas, Context mContext) {
         mTvReplyNickName.setText(datas.getNick_name());
         mTvReplyMessage.setText(datas.getContent());
         mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", datas.getReply_time()));
         mTvFloorNumber.setText(datas.getFloor() + "楼");
         mTvLoveNumber.setText(datas.getLike_count());
         mTvLove.setTextColor(datas.getIs_like().equals("1") ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
-        DestinationDetail.DataBean.TravelReplyBean.ReplyBean reply = datas.getReply();
+        TravelReplyBean.ReplyBean reply = datas.getReply();
         if (!StringUtils.isEmpty(reply.getReply_img())) {
             String content = reply.getContent() + "【图片】";
             mTvReplyContent.setText(content);
