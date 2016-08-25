@@ -4,6 +4,7 @@ import android.widget.ListView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Fan;
+import com.example.administrator.travel.event.FanEvent;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.FanAdapter;
@@ -42,7 +43,7 @@ public class FanFragment extends BaseFragment {
     @Override
     protected void initData() {
         Map<String, String> follwMap = MapUtils.Build().addKey(getContext()).add("user_id", GlobalUtils.getUserInfo().getId()).end();
-        XEventUtils.getUseCommonBackJson(IVariable.GET_FOLLOW_USER, follwMap, IVariable.TYPE_GET_FAN);
+        XEventUtils.getUseCommonBackJson(IVariable.GET_FOLLOW_USER, follwMap, IVariable.TYPE_GET_FAN,new FanEvent());
 
     }
 
@@ -57,7 +58,7 @@ public class FanFragment extends BaseFragment {
         EventBus.getDefault().register(this);
     }
     @Subscribe
-    public void onEvent(HttpEvent event){
+    public void onEvent(FanEvent event){
         if (event.getType()!=IVariable.TYPE_GET_FAN && event.getType()!=IVariable.TYPE_REFRESH){
             return;
         }

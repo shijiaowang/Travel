@@ -74,8 +74,9 @@ public class PostReplyUserHolder extends BaseHolder<Object> {
                         , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 mTvReplyContent.setText(spannable);
             }else {
-                mTvReplyName.setText(reply.getNick_name());
+               mTvReplyContent.setText(reply.getContent());
             }
+            mTvReplyName.setText(reply.getNick_name());
             mTvReplyFloorNumber.setText(reply.getFloor()+"楼");
 
 

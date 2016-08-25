@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 /**
  * Created by Administrator on 2016/7/29 0029.
  */
-public class GsonUtils<T>{
+public class GsonUtils{
     /**
      * 返回数据
      * @param result
@@ -14,8 +14,14 @@ public class GsonUtils<T>{
      * @return
      */
     public static <T> T getObject(String result,Class<T> clazz){
-        Gson gson=new Gson();
-        T t = gson.fromJson(result,clazz);
+        T t=null;
+        try {
+            Gson gson = new Gson();
+             t = gson.fromJson(result, clazz);
+        }catch (Exception e){
+            e.printStackTrace();
+            LogUtils.e("json解析出错了");
+        }
         return t;
     }
 }

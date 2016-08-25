@@ -24,7 +24,6 @@
             android:layout_marginBottom="10dp"
             android:layout_marginRight="17dp"
             android:id="@+id/tv_floor_number"
-            android:text="1楼"
             android:textColor="@color/color969696"
             android:textSize="12sp"
             android:layout_width="wrap_content"
@@ -36,7 +35,6 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/iv_reply_icon"
-            android:src="@drawable/activity_circle_post_icon"
             android:layout_width="33dp"
             android:layout_height="33dp" />
         <LinearLayout
@@ -50,7 +48,6 @@
                 android:id="@+id/tv_reply_nick_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="洛丽塔"
                 android:textColor="#323232"
                 android:textSize="14sp" />
 
@@ -59,7 +56,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="2016-7-10 6:32"
                 android:textColor="#949494"
                 android:textSize="10sp" />
 
@@ -78,20 +74,18 @@
             android:id="@+id/tv_reply_message"
             android:textSize="12sp"
             android:textColor="#606060"
-            android:text="有些感觉，那画面太美，不敢看。"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
             <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_love"
-                android:text="@string/activity_circle_love_empty"
+                android:text="@string/activity_circle_love_full"
                 android:textColor="@color/color969696"
                 android:textSize="11sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tv_love_number"
-                android:text="3"
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/color969696"
                 android:textSize="11sp"

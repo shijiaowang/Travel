@@ -49,6 +49,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mLlCustomerCenter;
     private TextView mTvProfile;
     private LinearLayout mLlIdentity;
+    private TextView mTvNickName;
 
     @Override
     protected int initLayoutRes() {
@@ -73,6 +74,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvMyCollection = (TextView) root.findViewById(R.id.tv_my_collection);
         mTvMyOrder = (TextView) root.findViewById(R.id.tv_my_order);
         mTvProfile = (TextView) root.findViewById(R.id.tv_profile);
+        mTvNickName = (TextView) root.findViewById(R.id.tv_nick_name);
     }
 
     @Override
@@ -93,6 +95,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         }
         Login.UserInfo userInfo = GlobalUtils.getUserInfo();
         if (userInfo==null)return;
+        mTvNickName.setText(userInfo.getNick_name());
         if (StringUtils.isEmpty(userInfo.getContent())){
             mTvProfile.setText("这个人很懒，什么都没有留下。。。");
         }else {

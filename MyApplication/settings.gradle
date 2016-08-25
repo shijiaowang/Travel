@@ -1,1 +1,1 @@
-include ':app', ':TravelOfYunNan', ':sample', ':xutils'
+include ':xutils', ':TravelOfYunNan', ':app', ':sample'

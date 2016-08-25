@@ -11,6 +11,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.CircleDetail;
 import com.example.administrator.travel.bean.CircleFollow;
 import com.example.administrator.travel.bean.CircleLike;
+import com.example.administrator.travel.event.CircleDetailEvent;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
@@ -101,7 +102,7 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
     protected void onLoad() {
         setIsProgress(true);
         Map<String, String> stringMap = MapUtils.Build().addKey(this).add(IVariable.C_ID, cId).add(IVariable.PAGE_SIZE, "5").add(IVariable.PAGE, loadPage + "").add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).end();
-        XEventUtils.getUseCommonBackJson(IVariable.GET_CIRCLE_POST, stringMap, TYPE_FIRST_REQ);
+        XEventUtils.getUseCommonBackJson(IVariable.GET_CIRCLE_POST, stringMap, TYPE_FIRST_REQ,new CircleDetailEvent());
     }
 
     @Override
@@ -144,12 +145,12 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
             builder.add(IVariable.TYPE, TYPE_FOLLOW);
         }
         Map<String, String> followMap = builder.end();
-        XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_FOLLOW, followMap, TYPE_FOLLOW_CIRCLE);
+        XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_FOLLOW, followMap, TYPE_FOLLOW_CIRCLE,new CircleDetailEvent());
     }
 
 
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(CircleDetailEvent event) {
         setIsProgress(false);
         if (event.isSuccess()) {
             dealData(event);

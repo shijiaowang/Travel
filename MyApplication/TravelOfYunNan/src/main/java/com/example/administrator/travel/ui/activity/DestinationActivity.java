@@ -3,7 +3,9 @@ package com.example.administrator.travel.ui.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Destination;
+import com.example.administrator.travel.event.DestinationEvent;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.DestinationAdapter;
@@ -33,7 +36,7 @@ import java.util.Map;
  * Created by android on 2016/7/30.
  * 目的地
  */
-public class DestinationActivity extends LoadingBarBaseActivity implements XListView.IXListViewListener {
+public class DestinationActivity extends LoadingBarBaseActivity implements XListView.IXListViewListener, View.OnKeyListener {
     @ViewInject(R.id.lv_destination)
     private XListView mLvDestination;
     @ViewInject(R.id.tv_search)
@@ -63,6 +66,7 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
         mLvDestination.setPullRefreshEnable(false);
         mLvDestination.setPullLoadEnable(true);
         mLvDestination.setXListViewListener(this);
+        mEtSearch.setOnKeyListener(this);
         mLvDestination.setRefreshTime(getTime());
         mLvDestination.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,10 +81,14 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
         mTvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                content=getString(mEtSearch);
-                requestData(LOAD_SEARCH);
+                search();
             }
         });
+    }
+
+    private void search() {
+        content=getString(mEtSearch);
+        requestData(LOAD_SEARCH);
     }
 
     @Override
@@ -93,7 +101,7 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
                 add(IVariable.CONTENT, content).add(IVariable.PROVINCE, province).add(IVariable.CITY,city).add(IVariable.TYPELIST,typelist)
                 .add(IVariable.STAR, star).add(IVariable.SCORE, score).
                 end();
-        XEventUtils.getUseCommonBackJson(IVariable.FIND_DESTINATION, destinationMap,type);
+        XEventUtils.getUseCommonBackJson(IVariable.FIND_DESTINATION, destinationMap,type,new DestinationEvent());
     }
 
     @Override
@@ -112,7 +120,7 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
     }
 
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(DestinationEvent event) {
         setIsProgress(false);
         if (event.isSuccess()) {
             dealDestinationData(event);
@@ -122,7 +130,7 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
         }
         loadEnd(mLvDestination);
     }
-    private void dealDestinationData(HttpEvent event) {
+    private void dealDestinationData(DestinationEvent event) {
         Destination destination = GsonUtils.getObject(event.getResult(), Destination.class);
         if (destinationAdapter == null) {
             destinationData = destination.getData().getBody();
@@ -148,5 +156,16 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
     public void onLoadMore() {
         currentPage++;
         onLoad();
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(mEtSearch.getWindowToken(), 0); //强制隐藏键盘
+            search();
+            return true;
+        }
+        return false;
     }
 }

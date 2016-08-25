@@ -12,6 +12,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.event.RegisterSuccessEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
@@ -156,11 +157,11 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
         }
 
         Map<String, String> infoMap = MapUtils.Build().addKey(RegisterSuccessActivity.this).add(IVariable.USER_ID, user_id).add(IVariable.SEX,mRbBoy.isChecked()?"1":"0").add(IVariable.NICK_NAME, nickName).end();
-        XEventUtils.postUseCommonBackJson(IVariable.PERFECT_INFORMATION, infoMap, IVariable.TYPE_REGISTER_USER);
+        XEventUtils.postUseCommonBackJson(IVariable.PERFECT_INFORMATION, infoMap, IVariable.TYPE_REGISTER_USER,new RegisterSuccessEvent());
 
     }
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(RegisterSuccessEvent event) {
         if (event.isSuccess()) {
             dealData(event);
         }

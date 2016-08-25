@@ -29,7 +29,7 @@ public class XEventUtils {
      * @param type
      * @return
      */
-    public static Callback.Cancelable getUseCommonBackJson(String url, Map<String, String> stringMap, int type) {
+    public static<T> Callback.Cancelable getUseCommonBackJson(String url, Map<String, String> stringMap, int type,HttpEvent event) {
         RequestParams requestParams = new RequestParams(url);
         requestParams.setMethod(HttpMethod.GET);
         if (stringMap != null) {
@@ -37,7 +37,7 @@ public class XEventUtils {
                 requestParams.addBodyParameter(entry.getKey(), entry.getValue());
             }
         }
-        return x.http().get(requestParams, new MyCommonCallback(type));
+        return x.http().get(requestParams, new MyCommonCallback(type,event));
     }
 
 
@@ -50,7 +50,7 @@ public class XEventUtils {
      * @param type
      * @return
      */
-    public static Callback.Cancelable postUseCommonBackJson(String url, Map<String, String> stringMap, int type) {
+    public static Callback.Cancelable postUseCommonBackJson(String url, Map<String, String> stringMap, int type,HttpEvent event) {
         RequestParams requestParams = new RequestParams(url);
         requestParams.setMethod(HttpMethod.POST);
         if (stringMap != null) {
@@ -58,17 +58,17 @@ public class XEventUtils {
                 requestParams.addBodyParameter(entry.getKey(), entry.getValue());
             }
         }
-        return x.http().post(requestParams, new MyCommonCallback(type));
+        return x.http().post(requestParams, new MyCommonCallback(type,event));
     }
 
 
     static class MyCommonCallback implements Callback.CommonCallback<String> {
         int type = -10;
-        HttpEvent httpEvent = new HttpEvent();
-
-        public MyCommonCallback(int type) {
+        HttpEvent httpEvent;
+        public MyCommonCallback(int type,HttpEvent httpEvent) {
             this.type = type;
-            httpEvent.setType(type);
+            this.httpEvent=httpEvent;
+            this.httpEvent.setType(type);
         }
 
 

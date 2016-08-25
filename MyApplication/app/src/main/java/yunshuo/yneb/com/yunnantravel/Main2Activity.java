@@ -19,7 +19,7 @@ public class Main2Activity extends Activity {
         startActivity(new Intent(this, Main22Activity.class));
     }
     @Subscribe
-    public void onEvent(Event1 event) {
+    public void onEvent(Event0 event) {
         System.out.println("输出了数字+++");
     }
     @Override

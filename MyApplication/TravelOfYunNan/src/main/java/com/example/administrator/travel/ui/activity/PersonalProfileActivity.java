@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.event.PersonalProfileEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.utils.FontsIconUtil;
@@ -52,7 +53,7 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
             @Override
             public void onClick(View v) {
                 Map<String, String> contentMap = MapUtils.Build().addKey(PersonalProfileActivity.this).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.CONTENT, getString(mEtProfile)).end();
-                XEventUtils.postUseCommonBackJson(IVariable.CHANGE_USER_INFO, contentMap, 0);
+                XEventUtils.postUseCommonBackJson(IVariable.CHANGE_USER_INFO, contentMap, 0,new PersonalProfileEvent());
             }
         });
    mEtProfile.addTextChangedListener(new TextWatcher() {
@@ -101,7 +102,7 @@ return this;
     }
 
     @Subscribe
-    public void onEvent(HttpEvent event){
+    public void onEvent(PersonalProfileEvent event){
         if (event.isSuccess()){
             Login.UserInfo userInfo = GlobalUtils.getUserInfo();
             userInfo.setContent(getString(mEtProfile));

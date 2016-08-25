@@ -14,6 +14,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.event.LoginEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
@@ -99,10 +100,10 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
 
     private void goToLogin() {
         Map<String, String> logMap = MapUtils.Build().addKey(LoginActivity.this).add(IVariable.USERNAME, name).add(IVariable.PASSWORD, MD5Utils.encode(MD5Utils.encode(password))).end();
-        XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, logMap, IVariable.TYPE_POST_LOGIN);
+        XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, logMap, IVariable.TYPE_POST_LOGIN,new LoginEvent());
     }
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(LoginEvent event) {
         ToastUtils.showToast(event.getMessage()+"---这是登录结果解析前的信息");
         if (event.isSuccess()) {
             if (event.getType()==IVariable.TYPE_GET_KEY ){
@@ -126,14 +127,14 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         } else {
             if (event.getCode()==IVariable.KEY_ERROR && isFirstError){
                 isFirstError=false;//避免无限循环key错误
-                XEventUtils.getUseCommonBackJson(IVariable.GET_KEY,null,IVariable.TYPE_GET_KEY);
+                XEventUtils.getUseCommonBackJson(IVariable.GET_KEY,null,IVariable.TYPE_GET_KEY,new LoginEvent());
             }else {
                 ToastUtils.showToast(event.getMessage());
             }
         }
     }
 
-    private void goToHomeActivity(HttpEvent event) {
+    private void goToHomeActivity(LoginEvent event) {
         Login login = GsonUtils.getObject(event.getResult(), Login.class);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString(IVariable.SAVE_NAME, login.getData().getName());

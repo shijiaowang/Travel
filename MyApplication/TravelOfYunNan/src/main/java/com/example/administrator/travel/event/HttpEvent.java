@@ -5,11 +5,11 @@ package com.example.administrator.travel.event;
  * Created by Administrator on 2016/7/27 0027.
  */
 public class HttpEvent {
-    private boolean isSuccess;
-    private String result;
-    private int code=200;
-    private String message;
-    private int type;//身份识别，
+    protected boolean isSuccess;
+    protected String result;
+    protected int code=200;
+    protected String message;
+    protected int type;//身份识别，
 
     public String getMessage() {
         return message;

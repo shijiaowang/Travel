@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.CircleDetail;
+import com.example.administrator.travel.event.CircleDetailEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.CircleDetailActivity;
@@ -38,7 +39,7 @@ public class CircleDetailAdapter extends TravelBaseAdapter<CircleDetail.DataBean
                     GlobalValue.CIRCLE_FOLLOW_LIKE_POSITION=position;
                     //点赞
                     Map<String, String> likeMap = MapUtils.Build().addKey(mContext).add(IVariable.FORUM_ID, item.getId()).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).end();
-                    XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_LIKE_POST,likeMap, CircleDetailActivity.TYPE_LIKE_POST);
+                    XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_LIKE_POST,likeMap, CircleDetailActivity.TYPE_LIKE_POST,new CircleDetailEvent());
                 }
             });
         }

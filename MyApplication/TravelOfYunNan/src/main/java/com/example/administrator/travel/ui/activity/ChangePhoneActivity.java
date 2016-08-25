@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.ChangePhoneEvent;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
@@ -52,7 +53,7 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity {
                 if (!isClick) {
                     isClick= true;
                     Map<String, String> map = MapUtils.Build().addKey(ChangePhoneActivity.this).add(IVariable.TEL, getString(mEtPhone)).end();
-                    XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, 0);
+                    XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, 0,new ChangePhoneEvent());
                 }
 
             }
@@ -97,7 +98,7 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity {
     }
 
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(ChangePhoneEvent event) {
         if (event.isSuccess()) {
             Intent intent = new Intent(ChangePhoneActivity.this, ChangePhoneVerActivity.class);
             intent.putExtra(IVariable.TEL,getString(mEtPhone));

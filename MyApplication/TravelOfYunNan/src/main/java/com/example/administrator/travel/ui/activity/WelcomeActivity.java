@@ -8,6 +8,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.event.WelcomeEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -26,7 +27,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 
 /**
@@ -68,7 +68,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
         int code = sharedPreferences.getInt(IVariable.KEY_CODE, -1);
         //获取key
         if (code != IVariable.OK_KEY_CODE) {
-            XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY);
+            XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new WelcomeEvent());
         } else {
             GlobalValue.KEY_VALUE = sharedPreferences.getString(IVariable.KEY_VALUE, "");
             //验证缓存的登录
@@ -123,7 +123,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
             stringMap.put(IVariable.USERNAME, userName);
             stringMap.put(IVariable.PASSWORD, userPwd);
             String url = IVariable.LOGIN_URL;
-            XEventUtils.postUseCommonBackJson(url, stringMap, IVariable.TYPE_POST_LOGIN);
+            XEventUtils.postUseCommonBackJson(url, stringMap, IVariable.TYPE_POST_LOGIN, new WelcomeEvent());
         }
     }
 
@@ -132,8 +132,9 @@ public class WelcomeActivity extends FullTransparencyActivity {
         super.onPause();
         EventBus.getDefault().unregister(this);
     }
+
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(WelcomeEvent event) {
         if (event.getType() == IVariable.TYPE_GET_KEY) {
             getKey(event);
         }
@@ -148,12 +149,14 @@ public class WelcomeActivity extends FullTransparencyActivity {
      * @param event
      */
     private void login(HttpEvent event) {
-        LogUtils.e(event.getMessage()+event.getCode());
+        LogUtils.e(event.getMessage() + event.getCode());
         if (event.isSuccess()) {
             isNetWork = true;
-            GO_WHERE_PAGE=START_HOME;
+            GO_WHERE_PAGE = START_HOME;
         } else {
-            GO_WHERE_PAGE = START_SPLASH;
+            isNetWork=false;
+            GO_WHERE_PAGE = event.getCode() == 0 ? START_SPLASH : START_HOME;
+
         }
     }
 

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.PostDetail;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.event.PostEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.PostAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
@@ -64,7 +65,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
 
     private void requestData(int type) {
         Map<String, String> postMap = MapUtils.Build().addKey(this).add(IVariable.FORUM_ID, "24").add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.PAGE_SIZE, "4").add(IVariable.PAGE, currentPage + "").end();
-        XEventUtils.getUseCommonBackJson(IVariable.POST_DETAIL, postMap, type);
+        XEventUtils.getUseCommonBackJson(IVariable.POST_DETAIL, postMap, type,new PostEvent());
     }
 
     @Override
@@ -89,7 +90,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
     }
 
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(PostEvent event) {
 
         if (event.isSuccess()) {
             dealData(event);

@@ -13,6 +13,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.bean.Register;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.event.RegisterEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
@@ -138,7 +139,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
             return;
         }
         Map<String, String> map = MapUtils.Build().addKey(RegisterActivity.this).add(IVariable.USERNAME, phone).add(IVariable.PASSWORD, password).add(IVariable.CODE, ver).end();
-        XEventUtils.postUseCommonBackJson(IVariable.REGISTER_USER, map, REGISTER_REQ);
+        XEventUtils.postUseCommonBackJson(IVariable.REGISTER_USER, map, REGISTER_REQ,new RegisterEvent());
     }
 
     /**
@@ -167,7 +168,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
         String phone = mEtPhone.getText().toString().trim();
         if (checkPhoneNumber(phone)) return;
         Map<String, String> map = MapUtils.Build().addKey(RegisterActivity.this).add(IVariable.TEL, phone).end();
-        XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, VERIFICATION_REQ);
+        XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, VERIFICATION_REQ,new RegisterEvent());
     }
 
     @Override
@@ -182,7 +183,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
         EventBus.getDefault().register(this);
     }
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(RegisterEvent event) {
         if (event.isSuccess()) {
             dealResult(event);
         }
@@ -224,7 +225,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
                 break;
             case R.id.bt_ver:
                 if (GlobalUtils.getKey(this) == null) {
-                    XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY);
+                    XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY,new RegisterEvent());
                     return;
                 }
                 sendVerCode();

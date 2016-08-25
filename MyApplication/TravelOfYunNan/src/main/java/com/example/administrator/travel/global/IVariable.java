@@ -6,8 +6,8 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    String DOMAIN_NAME="http://yuns.yunspeak.com/";
-   /* String DOMAIN_NAME = "http://192.168.1.38/";*/
+   /* String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
+    String DOMAIN_NAME = "http://192.168.1.38/";
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -36,6 +36,8 @@ public interface IVariable {
      */
     String FIND_DESTINATION = API_KEY + "Find/getfindDestination/";//目的地
     String FIND_DESTINATION_DETAIL = API_KEY + "Find/getfindDestinationdetail/";//目的地详情
+    String FIND_CLICK_LIKE = API_KEY + "Find/isLikeFind/";//发现评论点赞
+    String FIND_REPLY_DISCUSS = API_KEY + "Find/replayFind/";//发现回复评论
 
     //请求type
     int TYPE_GET_KEY = 0;

@@ -15,6 +15,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Circle;
 import com.example.administrator.travel.bean.CircleNavRight;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.event.NavLeftEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.CircleDetailActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
@@ -75,7 +76,7 @@ public class NavLeftFragment extends LoadBaseFragment {
             return;
         }
         Map<String, String> map = MapUtils.Build().addKey(getContext()).add("user_id", GlobalUtils.getUserInfo().getId()).end();
-        useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ);
+        useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ,new NavLeftEvent());
     }
 
     @Override
@@ -130,7 +131,7 @@ public class NavLeftFragment extends LoadBaseFragment {
             builder.add("user_id", GlobalUtils.getUserInfo().getId());
         }
         Map<String, String> map = builder.end();
-        useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ);
+        useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ,new NavLeftEvent());
     }
 
     private boolean isFirst = true;
@@ -170,7 +171,7 @@ public class NavLeftFragment extends LoadBaseFragment {
     }
 
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(NavLeftEvent event) {
         LogUtils.e("圈子数据加载结束了");
         useCommonBackJson = null;
         if (event.isSuccess()) {

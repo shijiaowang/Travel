@@ -11,6 +11,8 @@ import android.widget.EditText;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.event.ChangePhoneEvent;
+import com.example.administrator.travel.event.ChangePhoneVerEvent;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
@@ -59,7 +61,7 @@ public class ChangePhoneVerActivity extends LoadingBarBaseActivity {
                     return;
                 }
                 Map<String, String> changeMap = MapUtils.Build().addKey(ChangePhoneVerActivity.this).add(IVariable.TEL, phone).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.CODE, getString(mEtVer)).end();
-                XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE, changeMap, 0);
+                XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE, changeMap, 0,new ChangePhoneEvent());
 
             }
 
@@ -109,7 +111,7 @@ public class ChangePhoneVerActivity extends LoadingBarBaseActivity {
         }
 
     @Subscribe
-    public void onEvent(HttpEvent event) {
+    public void onEvent(ChangePhoneVerEvent event) {
         if (event.isSuccess()) {
             Login.UserInfo userInfo = GlobalUtils.getUserInfo();
             userInfo.setTel(phone);

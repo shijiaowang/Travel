@@ -7,6 +7,7 @@
     <include layout="@layout/item_activity_post_reply" />
 
     <LinearLayout
+        android:layout_marginBottom="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
@@ -28,7 +29,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="岳阳岳阳"
                 android:textColor="@color/color323232"
                 android:textSize="13sp" />
 
@@ -36,7 +36,6 @@
                 android:id="@+id/tv_reply_floor_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1楼"
                 android:textColor="@color/color969696"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -48,7 +47,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="很有同感，一点也不赞同！" />
+           />
     </LinearLayout>
 
 

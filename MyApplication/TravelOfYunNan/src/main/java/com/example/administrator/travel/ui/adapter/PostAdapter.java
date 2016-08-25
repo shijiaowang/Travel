@@ -26,7 +26,7 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
 
     @Override
     public int getViewTypeCount() {
-        return 3;
+        return 4;
     }
 
     @Override

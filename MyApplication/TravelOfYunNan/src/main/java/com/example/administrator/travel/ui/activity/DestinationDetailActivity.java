@@ -13,8 +13,11 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.DestinationDetail;
-import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.event.DestinationDetailEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.adapter.DiscussCommonAdapter;
+import com.example.administrator.travel.ui.view.FlowLayout;
+import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.ImageOptionsUtil;
@@ -25,9 +28,10 @@ import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.util.DensityUtil;
-import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,7 +45,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
     private TextView mTvShow;
     private boolean isShowAllFlag =false;
     private XScrollView mSsvScroll;
-    private ListView mLvDisscuss;
+    private ToShowAllListView mLvDiscuss;
     private ImageView mIvbg;
     private LinearLayout mLlSearchAppoint;
     private ImageView mIvAddPicture;
@@ -50,6 +54,9 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
     private String tId;
     private String tName;
     private boolean isFirst=true;
+    private FlowLayout mFlowLayout;
+    private List<DestinationDetail.DataBean.TravelReplyBean> travelReply=new ArrayList<>();
+    private DiscussCommonAdapter discussCommonAdapter;
 
     @Override
     protected int setContentLayout() {
@@ -69,13 +76,14 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
             mSsvScroll.setPullLoadEnable(true);
             mSsvScroll.setIXScrollViewListener(this);
             mSsvScroll.setRefreshTime(getTime());
-            mLvDisscuss = (ListView) inflate.findViewById(R.id.content_list);
-            mLvDisscuss.setFocusable(false);
-            mLvDisscuss.setFocusableInTouchMode(false);
+            mLvDiscuss = (ToShowAllListView) inflate.findViewById(R.id.content_list);
+            mLvDiscuss.setFocusable(false);
+            mLvDiscuss.setFocusableInTouchMode(false);
             mTvDestinationDes= ((TextView) inflate.findViewById(R.id.tv_destination_des));
             mTvShow= ((TextView) inflate.findViewById(R.id.tv_show));
             mIvbg = ((ImageView) inflate.findViewById(R.id.iv_bg));
             mLlSearchAppoint = ((LinearLayout) inflate.findViewById(R.id.ll_search_appoint));
+            mFlowLayout = ((FlowLayout) inflate.findViewById(R.id.fl_play_title));
             mIvAddPicture = ((ImageView) inflate.findViewById(R.id.iv_add_picture));
             mTvAdd = ((TextView) inflate.findViewById(R.id.tv_add));
             mSsvScroll.setView(inflate);
@@ -94,7 +102,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
     protected void onLoad() {
         if (!StringUtils.isEmpty(tId)) {
             Map<String, String> destiantionDetailMap = MapUtils.Build().addKey(this).addPageSize("6").addPage(currentPosition + "").addTId(tId).addUserId().end();
-            XEventUtils.getUseCommonBackJson(IVariable.FIND_DESTINATION_DETAIL,destiantionDetailMap,0);
+            XEventUtils.getUseCommonBackJson(IVariable.FIND_DESTINATION_DETAIL,destiantionDetailMap,0,new DestinationDetailEvent());
         }
     }
 
@@ -148,7 +156,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
         isShowAllFlag=!isShowAllFlag;
     }
     @Subscribe
-    public void onEvent(HttpEvent event){
+    public void onEvent(DestinationDetailEvent event){
         setIsProgress(false);
          if (event.isSuccess()){
              dealDestinationDetailData(event);
@@ -162,19 +170,57 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
      * 目的地详情
      * @param event
      */
-    private void dealDestinationDetailData(HttpEvent event) {
+    private void dealDestinationDetailData(DestinationDetailEvent event) {
         DestinationDetail destinationDetail = GsonUtils.getObject(event.getResult(), DestinationDetail.class);
+        if (destinationDetail==null)return;
         if (isFirst){
             isFirst=false;
-            DestinationDetail.DataBean.TravelBean travel = destinationDetail.getData().getTravel();
-            changeTitle(travel.getTitle());
-            mTvDestinationDes.setText(travel.getContent());
-            mTvAdd.setText("·  "+travel.getAddress());
-            String travel_img = travel.getTravel_img();
-            String url="";
-            if (!StringUtils.isEmpty(travel_img))url=travel_img.split(",")[0];
-            x.image().bind(mIvbg,url, ImageOptionsUtil.getBySetSize(DensityUtil.getScreenWidth(),DensityUtil.dip2px(200)));
+            firstLoad(destinationDetail);
+        }
+        if (discussCommonAdapter ==null) {
+            travelReply = destinationDetail.getData().getTravel_reply();
+            discussCommonAdapter = new DiscussCommonAdapter(this, travelReply);
+            mLvDiscuss.setAdapter(discussCommonAdapter);
+        }else {
+            travelReply=destinationDetail.getData().getTravel_reply();
+            discussCommonAdapter.notifyData(travelReply);
+        }
+      
 
+
+    }
+
+    /**
+     * 初次加载时才初始化的数据
+     * @param destinationDetail
+     */
+    private void firstLoad(DestinationDetail destinationDetail) {
+        DestinationDetail.DataBean.TravelBean travel = destinationDetail.getData().getTravel();
+        changeTitle(travel.getTitle());
+        mTvDestinationDes.setText(travel.getContent());
+        mTvAdd.setText("·  "+travel.getAddress());
+        String travel_img = travel.getTravel_img();
+        String play_way = travel.getPlay_way();
+        String url="";
+        if (!StringUtils.isEmpty(travel_img))url=travel_img.split(",")[0];
+        x.image().bind(mIvbg,url, ImageOptionsUtil.getBySetSize(DensityUtil.getScreenWidth(), DensityUtil.dip2px(200)));
+        initPlayWay(play_way);
+    }
+
+    /**
+     * 目的地标签，游玩方式
+     * @param play_way
+     */
+    private void initPlayWay(String play_way) {
+        String[] split=null;
+        if (!StringUtils.isEmpty(play_way)) {
+            split = play_way.split(",");
+        }
+        if (split==null)return;
+        for (int i = 0; i < split.length; i++) {
+            TextView mTvTitle = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_me_title, mFlowLayout, false);
+            mTvTitle.setText(split[i]);
+            mFlowLayout.addView(mTvTitle);
         }
     }
 
