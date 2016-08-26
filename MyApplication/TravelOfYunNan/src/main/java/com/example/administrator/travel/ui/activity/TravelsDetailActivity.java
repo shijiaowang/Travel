@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.TravelsDetailEvent;
 import com.example.administrator.travel.ui.adapter.DeliciousDiscussAdapter;
 import com.example.administrator.travel.ui.adapter.HotSpotsItemDecoration;
 import com.example.administrator.travel.ui.adapter.TravelMemberAdapter;
@@ -15,6 +16,7 @@ import com.example.administrator.travel.ui.adapter.TravelsAddAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 /**
@@ -89,5 +91,9 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity {
     @Override
     protected boolean rootIsLinearLayout() {
         return false;
+    }
+    @Subscribe
+    public void onEvent(TravelsDetailEvent event){
+        setIsProgress(false);
     }
 }

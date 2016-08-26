@@ -43,7 +43,6 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
     private TextView mTvSearch;
     @ViewInject(R.id.et_destination_search)
     private EditText mEtSearch;
-    private int currentPage = 0;
     private List<Destination.DataBean.BodyBean> destinationData;
     private DestinationAdapter destinationAdapter;
     private static final int LOAD_MORE=0;//加载
@@ -97,8 +96,9 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
     }
 
     private void requestData(int type) {
-        Map<String, String> destinationMap = MapUtils.Build().addKey(this).add(IVariable.PAGE_SIZE, "6").add(IVariable.PAGE, currentPage + "").
-                add(IVariable.CONTENT, content).add(IVariable.PROVINCE, province).add(IVariable.CITY,city).add(IVariable.TYPELIST,typelist)
+        int count= destinationData==null?0:destinationData.size();
+        Map<String, String> destinationMap = MapUtils.Build().addKey(this).addPageSize(6).addCount(count).
+                add(IVariable.CONTENT, content).add(IVariable.PROVINCE, province).add(IVariable.CITY,city).add(IVariable.TYPELIST, typelist)
                 .add(IVariable.STAR, star).add(IVariable.SCORE, score).
                 end();
         XEventUtils.getUseCommonBackJson(IVariable.FIND_DESTINATION, destinationMap,type,new DestinationEvent());
@@ -125,7 +125,6 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
         if (event.isSuccess()) {
             dealDestinationData(event);
         } else {
-            if (currentPage>0)currentPage--;
             ToastUtils.showToast(event.getMessage());
         }
         loadEnd(mLvDestination);
@@ -153,7 +152,6 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
 
     @Override
     public void onLoadMore() {
-        currentPage++;
         onLoad();
     }
 

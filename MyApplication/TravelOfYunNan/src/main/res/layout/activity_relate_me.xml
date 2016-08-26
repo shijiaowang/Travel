@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_discuss"
+        android:background="@color/colorFAFAFA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/tv_icon_discuss"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="@string/activity_circle_discuss"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/fragment_message_discuss_bg"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/tv_icon_discuss"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评论我的"
+                android:textColor="#8c8c8c"
+                android:textSize="12sp" />
+            <View
+                android:layout_weight="1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"/>
+
+            <TextView
+                android:id="@+id/tv_content_discuss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#b3b3b3"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_time_discuss"
+            android:text="07-14 16:35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#b7b7b7"
+            android:textSize="11sp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/tv_time_discuss"
+
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp">
+            <TextView
+                android:text="1"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/tv_number_discuss"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/fragment_message_number_bg"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="9sp" />
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/tv_cursor_discuss"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_below="@id/tv_time_discuss"
+                android:layout_marginRight="13dp"
+                android:gravity="center"
+                android:textColor="#7b7b7b"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:layout_marginLeft="0dp"
+        style="@style/fragmentMeLine"/>
+    <RelativeLayout
+        android:id="@+id/rl_aite"
+        android:background="@color/colorFAFAFA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/tv_icon_aite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="@string/activity_message_center_aite"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/fragment_message_aite_bg"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/tv_icon_aite"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\@我的"
+                android:textColor="#8c8c8c"
+                android:textSize="12sp" />
+            <View
+                android:layout_weight="1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"/>
+
+            <TextView
+                android:id="@+id/tv_content_aite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#b3b3b3"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_time_aite"
+            android:text="07-14 16:35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#b7b7b7"
+            android:textSize="11sp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/tv_time_aite"
+
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp">
+            <TextView
+                android:text="1"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/tv_number_aite"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/fragment_message_number_bg"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="9sp" />
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/tv_cursor_aite"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_below="@id/tv_time_aite"
+                android:layout_marginRight="13dp"
+                android:gravity="center"
+                android:textColor="#7b7b7b"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:layout_marginLeft="0dp"
+        style="@style/fragmentMeLine"/>
+    <RelativeLayout
+        android:id="@+id/rl_zambia"
+        android:background="@color/colorFAFAFA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/tv_icon_zan"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="@string/activity_circle_love_empty"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/fragment_message_praise_bg"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/tv_icon_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="赞"
+                android:textColor="#8c8c8c"
+                android:textSize="12sp" />
+            <View
+                android:layout_weight="1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"/>
+
+            <TextView
+                android:id="@+id/tv_content_zan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#b3b3b3"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_time_zan"
+            android:text="07-14 16:35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#b7b7b7"
+            android:textSize="11sp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/tv_time_zan"
+
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp">
+            <TextView
+                android:text="1"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/tv_number_zan"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/fragment_message_number_bg"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="9sp" />
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/tv_cursor"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_below="@id/tv_time_zan"
+                android:layout_marginRight="13dp"
+                android:gravity="center"
+                android:textColor="#7b7b7b"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

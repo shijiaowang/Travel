@@ -2,28 +2,96 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorFAFAFA"
-    android:orientation="vertical">
-    <com.example.administrator.travel.ui.view.SimpleViewPagerIndicator
-        android:id="@+id/svpi_indicator"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-   >
+    android:orientation="vertical"
+    >
 
-    </com.example.administrator.travel.ui.view.SimpleViewPagerIndicator>
+    <LinearLayout
+        android:id="@+id/ll_appoint_message"
+        style="@style/activityMessageCenterLl">
 
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+
+            style="@style/activityMessageCenterIconText"
+            android:text="@string/activity_my_publication_team"
+            android:textColor="@color/otherFcae04" />
+
+        <TextView
+            style="@style/activityMessageCenterText"
+            android:text="约伴消息" />
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_cursor_appoint"
+            style="@style/activityMessageCenterCursor"
+            android:text="@string/activity_message_center_cursor" />
+    </LinearLayout>
     <View
+        android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:background="@color/meLine" />
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:id="@+id/ll_system_message"
+        style="@style/activityMessageCenterLl">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_message_center"
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+
+            style="@style/activityMessageCenterIconText"
+            android:text="@string/activity_my_publication_team"
+            android:textColor="@color/otherFcae04" />
+
+        <TextView
+            style="@style/activityMessageCenterText"
+            android:text="系统消息" />
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_cursor_system"
+            style="@style/activityMessageCenterCursor"
+            android:text="@string/activity_message_center_cursor" />
+    </LinearLayout>
+    <View
+        android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:id="@+id/ll_private"
+        style="@style/activityMessageCenterLl">
 
-    </android.support.v4.view.ViewPager>
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityMessageCenterIconText"
+            android:text="@string/activity_other_private_message"
+            android:textColor="@color/color97cb66" />
+
+        <TextView
+            style="@style/activityMessageCenterText"
+            android:text="私信" />
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_cursor_private"
+            style="@style/activityMessageCenterCursor"
+            android:text="@string/activity_message_center_cursor" />
+    </LinearLayout>
+    <View
+        android:background="@color/meLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:id="@+id/ll_relate_me"
+        style="@style/activityMessageCenterLl">
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityMessageCenterIconText"
+            android:text="@string/home_activity_button_me"
+            android:textColor="@color/otherTitleBg" />
+
+        <TextView
+            style="@style/activityMessageCenterText"
+            android:text="与我相关" />
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_cursor_relate"
+            style="@style/activityMessageCenterCursor"
+            android:text="@string/activity_message_center_cursor" />
+    </LinearLayout>
+
+
 
 </LinearLayout>

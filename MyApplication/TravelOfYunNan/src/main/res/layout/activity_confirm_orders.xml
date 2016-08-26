@@ -39,53 +39,7 @@
             android:layout_height="1dp"
             android:background="@color/meLine" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_title"
-                style="@style/activityConfirmOrdersTextTitle"
-                android:text="· 基本项目" />
-
-            <TextView
-                style="@style/activityConfirmOrdersText"
-                android:layout_below="@id/tv_title"
-                android:layout_marginBottom="11dp"
-                android:layout_marginTop="14dp"
-                android:text="先筹路费" />
-
-            <TextView
-                style="@style/activityConfirmOrdersTextMoney"
-                android:layout_marginTop="41dp"
-                android:text="¥3.00" />
-        </RelativeLayout>
-
-        <View style="@style/activityConfirmOrdersTextLine" />
-
-        <RelativeLayout style="@style/activityConfirmOrdersRl">
-
-            <TextView
-                style="@style/activityConfirmOrdersText"
-                android:text="个人旅游保险" />
-
-            <TextView
-                style="@style/activityConfirmOrdersTextMoney"
-                android:text="¥1.00" />
-        </RelativeLayout>
-
-        <View style="@style/activityConfirmOrdersTextLine" />
-
-        <RelativeLayout style="@style/activityConfirmOrdersRl">
-
-            <TextView
-                style="@style/activityConfirmOrdersText"
-                android:text="平台服务费" />
-
-            <TextView
-                style="@style/activityConfirmOrdersTextMoney"
-                android:text="¥1.00" />
-        </RelativeLayout>
+          <include layout="@layout/orders_detail_common"/>
 
         <View
             style="@style/activityConfirmOrdersTextLine"

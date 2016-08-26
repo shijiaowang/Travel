@@ -121,6 +121,8 @@
     <!--景点位置-->
     <string name="activity_aite_ok">垢</string>
     <!--aite页面对勾-->
+    <string name="activity_orders_detail_pay">傅</string>
+    <!--已付款-->
     <string name="activity_my_appoint_delete">邋</string>
     <!--删除-->
     <string name="activity_my_appoint_key">仟</string>

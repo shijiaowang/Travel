@@ -27,6 +27,7 @@
     <color name="meLine">#efeff4</color>
     <color name="otherTitleBg">#5cd0c2</color>
     <color name="color888888">#888888</color>
+    <color name="color97cb66">#97cb66</color>
     <color name="colorA1a1a1">#a1a1a1</color>
     <color name="otherFf7f6c">#ff7f6c</color>
     <color name="otherFcae04">#fcae04</color>
@@ -34,6 +35,7 @@
     <color name="colorA7a7a7">#a7a7a7</color>
     <color name="colorA9a8a8">#a9a8a8</color>
     <color name="color323232">#323232</color>
+    <color name="color575555">#575555</color>
     <color name="color232323">#232323</color>
     <color name="color7d7d7d">#7d7d7d</color>
     <color name="color363535">#363535</color>
@@ -51,6 +53,7 @@
     <color name="color90c75c">#90c75c</color>
     <color name="color8c8c8c">#8c8c8c</color>
     <color name="colorb5b5b5">#b5b5b5</color>
+    <color name="colorb2b2b2">#b2b2b2</color>
     <color name="colorB8b8b8">#b8b8b8</color>
     <color name="color969696">#969696</color>
     <color name="color606060">#606060</color>

@@ -1,13 +1,11 @@
 package com.example.administrator.travel.ui.activity;
 
-import android.support.v4.view.ViewPager;
+import android.content.Intent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.adapter.fragment.SystemMessagePagerAdapter;
-import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
 import org.xutils.view.annotation.ViewInject;
@@ -17,18 +15,15 @@ import org.xutils.view.annotation.ViewInject;
  * 消息中心
  */
 public class MessageCenterActivity extends BarBaseActivity implements View.OnClickListener {
-
-
     private TextView mTvMore;
-    @ViewInject(R.id.vp_message_center)
-    private ViewPager mVpMessageCenter;
-    @ViewInject(R.id.svpi_indicator)
-    private SimpleViewPagerIndicator mIndicator;
-
-
-
-
-
+    @ViewInject(R.id.ll_appoint_message)
+    private LinearLayout mLlAppointMessage;
+    @ViewInject(R.id.ll_private)
+    private LinearLayout mLlPrivate;
+    @ViewInject(R.id.ll_relate_me)
+    private LinearLayout mLlRelateMe;
+    @ViewInject(R.id.ll_system_message)
+    private LinearLayout mLlSystemMessage;
 
 
     @Override
@@ -39,7 +34,7 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
 
     @Override
     protected void initViewData() {
-        mVpMessageCenter.setAdapter(new SystemMessagePagerAdapter(getSupportFragmentManager()));
+
     }
 
     @Override
@@ -51,37 +46,33 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
     @Override
     protected void initEvent() {
         init();
-        mVpMessageCenter.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mIndicator.scroll(position,positionOffset);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        mLlAppointMessage.setOnClickListener(this);
+        mLlPrivate.setOnClickListener(this);
+        mLlRelateMe.setOnClickListener(this);
+        mLlSystemMessage.setOnClickListener(this);
     }
 
     private void init() {
         mTvMore = getmTvRightIcon();
         mTvMore.setTypeface(TypefaceUtis.getTypeface(this));
         mTvMore.setText(getResources().getString(R.string.activity_message_center_more));
-        mIndicator.setTitles(new String[]{"系统消息", "私信"});
-        mIndicator.setViewPager(mVpMessageCenter);
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_back:
-                finish();
+            case R.id.ll_system_message:
+                startActivity(new Intent(this,SystemMessageActivity.class));
+                break;
+            case R.id.ll_appoint_message:
+                startActivity(new Intent(this,AppointMessageActivity.class));
+                break;
+            case R.id.ll_private:
+                startActivity(new Intent(this,MessagePrivateActivity.class));
+                break;
+            case R.id.ll_relate_me:
+                startActivity(new Intent(this,RelateMeActivity.class));
                 break;
         }
     }

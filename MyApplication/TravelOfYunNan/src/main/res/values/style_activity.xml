@@ -51,4 +51,32 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <!--消息中心-->
+    <style name="activityMessageCenterLl">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@color/colorFAFAFA</item>
+        <item name="android:paddingLeft">13dp</item>
+        <item name="android:paddingRight">13dp</item>
+    </style>
+    <style name="activityMessageCenterIconText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="activityMessageCenterText" parent="activityMessageCenterIconText">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/color8c8c8c</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="activityMessageCenterCursor" parent="activityMessageCenterIconText">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">#7b7b7b</item>
+    </style>
+
 </resources>

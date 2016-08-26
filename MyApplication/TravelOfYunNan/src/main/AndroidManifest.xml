@@ -50,6 +50,7 @@
         <activity android:name=".ui.activity.ActivateDetailActivity"/>
         <activity android:name=".ui.activity.DeliciousDetailActivity"/>
         <activity android:name=".ui.activity.PictureSelectorActivity"/>
+        <activity android:name=".ui.activity.OrdersDetailActivity"/>
         <activity android:name=".ui.activity.BaseTransActivity"
             />
         <activity android:name=".ui.activity.LoginActivity"
@@ -70,11 +71,16 @@
         <activity android:name=".ui.activity.CustomerServiceActivity"/>
         <activity android:name=".ui.activity.PreviewPicturesActivity"/>
         <activity android:name=".ui.activity.ChangePhoneActivity"/>
+        <activity android:name=".ui.activity.MessagePrivateActivity"/>
+        <activity android:name=".ui.activity.RelateMeDetailActivity"/>
         <activity android:name=".ui.activity.ChangePhoneVerActivity"/>
         <activity android:name=".ui.activity.PersonalProfileActivity"/>
         <activity android:name=".ui.activity.HomeSearchActivity"/>
+        <activity android:name=".ui.activity.AppointMessageActivity"/>
         <activity android:name=".ui.activity.IdentityAuthenticationActivity"/>
+        <activity android:name=".ui.activity.SystemMessageActivity"/>
         <activity android:name=".ui.activity.AlbumSelectorActivity"/>
+        <activity android:name=".ui.activity.RelateMeActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />

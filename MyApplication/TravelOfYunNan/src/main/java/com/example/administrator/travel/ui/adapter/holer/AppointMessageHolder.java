@@ -8,8 +8,8 @@ import com.example.administrator.travel.R;
 /**
  * Created by Administrator on 2016/8/26 0026.
  */
-public class SystemMessageHolder extends BaseHolder {
-    public SystemMessageHolder(Context context) {
+public class AppointMessageHolder extends BaseHolder {
+    public AppointMessageHolder(Context context) {
         super(context);
     }
 
@@ -20,6 +20,7 @@ public class SystemMessageHolder extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_activity_system_message);
+        View view = inflateView(R.layout.item_activity_appoint_message);
+        return view;
     }
 }
