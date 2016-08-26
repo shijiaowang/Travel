@@ -12,7 +12,9 @@ import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
 import java.net.ConnectException;
+import java.util.List;
 import java.util.Map;
 
 
@@ -29,7 +31,7 @@ public class XEventUtils {
      * @param type
      * @return
      */
-    public static<T> Callback.Cancelable getUseCommonBackJson(String url, Map<String, String> stringMap, int type,HttpEvent event) {
+    public static Callback.Cancelable getUseCommonBackJson(String url, Map<String, String> stringMap, int type,HttpEvent event) {
         RequestParams requestParams = new RequestParams(url);
         requestParams.setMethod(HttpMethod.GET);
         if (stringMap != null) {
@@ -56,6 +58,34 @@ public class XEventUtils {
         if (stringMap != null) {
             for (Map.Entry<String, String> entry : stringMap.entrySet()) {
                 requestParams.addBodyParameter(entry.getKey(), entry.getValue());
+            }
+        }
+        return x.http().post(requestParams, new MyCommonCallback(type, event));
+    }
+    /**
+     * post请求
+     *
+     * @param url
+     * @param stringMap
+     * @param type
+     * @return
+     */
+    public static Callback.Cancelable posFileCommonBackJson(String url, Map<String, String> stringMap,List<String> files, int type,HttpEvent event) {
+        RequestParams requestParams = new RequestParams(url);
+        requestParams.setMethod(HttpMethod.POST);
+        if (stringMap != null) {
+            for (Map.Entry<String, String> entry : stringMap.entrySet()) {
+                requestParams.addBodyParameter(entry.getKey(), entry.getValue());
+            }
+        }
+        if (files != null) {
+            requestParams.setMultipart(true);
+            for (int i=0;i<files.size();i++) {
+                File file=new File(files.get(i));
+                if (!file.exists()){
+                    continue;
+                }
+                requestParams.addBodyParameter("file["+i+"]", file);
             }
         }
         return x.http().post(requestParams, new MyCommonCallback(type,event));
@@ -123,6 +153,14 @@ public class XEventUtils {
         public void onFinished() {
 
         }
+    }
+    public static boolean checkFileAndAdd(String path,List<File> files){
+        File file=new File(path);
+        if (!file.exists()){
+            return false;
+        }
+        files.add(file);
+        return true;
     }
 }
 

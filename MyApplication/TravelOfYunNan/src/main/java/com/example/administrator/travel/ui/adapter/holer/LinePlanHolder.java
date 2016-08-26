@@ -24,15 +24,14 @@ import java.util.List;
 public class LinePlanHolder extends BaseHolder<Line> {
     @ViewInject(R.id.tv_add)
     public FontsIconTextView mTvAdd;
-    private LinearLayout mLlLine;
+    public LinearLayout mLlLine;
     @ViewInject(R.id.dlv_line)
     private DottedLineView mDlvLine;
     @ViewInject(R.id.tv_number)
     private TextView mTvNumber;
     @ViewInject(R.id.tv_time)
     private TextView mTvTime;
-    @ViewInject(R.id.tv_delete)
-    private TextView mTvDelete;
+    private FontsIconTextView mTvDelete;
 
 
     public LinePlanHolder(Context context) {
@@ -59,7 +58,7 @@ public class LinePlanHolder extends BaseHolder<Line> {
     @Override
     public View initRootView(Context mContext) {
         View view = inflateView(R.layout.item_activity_line_plan);
-
+        mTvDelete=((FontsIconTextView) view.findViewById(R.id.tv_delete));
         mLlLine = (LinearLayout) view.findViewById(R.id.ll_destination_line);
         setLineHeight();
         return view;
@@ -81,13 +80,13 @@ public class LinePlanHolder extends BaseHolder<Line> {
         final View view = inflateView(R.layout.item_activity_line_plan_add_item);
         TextView mTvAdd = (TextView) view.findViewById(R.id.tv_add);
         mTvAdd.setText(text);
-        mTvDelete.setOnClickListener(new View.OnClickListener() {
+      /*  mTvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mLlLine.removeView(view);
                 setLineHeight();
             }
-        });
+        });*/
         int childCount = mLlLine.getChildCount();
         mLlLine.addView(view,childCount-1);
         setLineHeight();

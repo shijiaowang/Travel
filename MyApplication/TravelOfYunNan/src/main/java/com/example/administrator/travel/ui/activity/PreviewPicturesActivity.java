@@ -2,7 +2,6 @@ package com.example.administrator.travel.ui.activity;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -154,6 +153,8 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
         }else {
             CreatePostEvent createPostEvent = new CreatePostEvent();
             createPostEvent.setmImages(GlobalValue.mSelectImages);
+            createPostEvent.setType(CreatePostActivity.SEND_PICTURE);
+            createPostEvent.setIsSuccess(true);
             GlobalValue.mSelectImages=null;
             EventBus.getDefault().post(createPostEvent);
             setResult(AlbumSelectorActivity.SEND_PICTURE);

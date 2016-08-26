@@ -144,7 +144,6 @@ public class DestinationActivity extends LoadingBarBaseActivity implements XList
             destinationData.addAll(body);
             destinationAdapter.notifyData(destinationData);
         }
-        LogUtils.e(destinationData.size()+"");
     }
 
     @Override

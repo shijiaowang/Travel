@@ -1,10 +1,7 @@
 package com.example.administrator.travel.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -17,7 +14,6 @@ import com.example.administrator.travel.ui.adapter.PictureSelectorAdapter;
 import com.example.administrator.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.io.File;
@@ -150,6 +146,8 @@ public class PictureSelectorActivity extends BarBaseActivity implements View.OnC
             ToastUtils.showToast("对不起，你尚未选中任何图片");
         }else {
             CreatePostEvent createPostEvent = new CreatePostEvent();
+            createPostEvent.setType(CreatePostActivity.SEND_PICTURE);
+            createPostEvent.setIsSuccess(true);
             createPostEvent.setmImages(GlobalValue.mSelectImages);
             GlobalValue.mSelectImages=null;
             EventBus.getDefault().post(createPostEvent);

@@ -14,32 +14,35 @@ import java.util.List;
 /**
  * Created by android on 2016/7/31.
  */
-public class CreatePostPhotoAdapter extends TravelBaseAdapter {
-    public CreatePostPhotoAdapter(Context mContext, List mDatas) {
+public class CreatePostPhotoAdapter extends TravelBaseAdapter<String> {
+    private static  final  int TYPE_NORMAL =0;
+    private static final  int TYPE_ADD =1;
+
+    public CreatePostPhotoAdapter(Context mContext, List<String> mDatas) {
         super(mContext, mDatas);
     }
 
     @Override
-    protected int testDataSize() {
-        return 12;
+    public int getViewTypeCount() {
+        return 2;
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Object item, int position) {
-         if (baseHolder instanceof CreatePostPhotoLastHolder){
-             CreatePostPhotoLastHolder createPostPhotoLastHolder = (CreatePostPhotoLastHolder) baseHolder;
-              createPostPhotoLastHolder.mTvAdd.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                      mContext.startActivity(new Intent(mContext, AlbumSelectorActivity.class));
-                  }
-              });
-         }
+    public int getItemViewType(int position) {
+        if (position==mDatas.size()-1 && mDatas.get(position).equals("add"))
+        {
+            return TYPE_ADD;
+        }
+        return TYPE_NORMAL;
+    }
+
+    @Override
+    protected void initListener(BaseHolder baseHolder, String item, int position) {
     }
 
     @Override
     protected BaseHolder initHolder(int position) {
-        if (position==11){
+        if (getItemViewType(position)==TYPE_ADD){
             return new CreatePostPhotoLastHolder(mContext);
         }
         return new CreatePostPhotoHolder(mContext);

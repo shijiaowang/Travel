@@ -64,7 +64,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
     }
 
     private void requestData(int type) {
-        Map<String, String> postMap = MapUtils.Build().addKey(this).add(IVariable.FORUM_ID, "24").add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.PAGE_SIZE, "4").add(IVariable.PAGE, currentPage + "").end();
+        Map<String, String> postMap = MapUtils.Build().addKey(this).add(IVariable.FORUM_ID, forum_id).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.PAGE_SIZE, "4").add(IVariable.PAGE, currentPage + "").end();
         XEventUtils.getUseCommonBackJson(IVariable.POST_DETAIL, postMap, type,new PostEvent());
     }
 

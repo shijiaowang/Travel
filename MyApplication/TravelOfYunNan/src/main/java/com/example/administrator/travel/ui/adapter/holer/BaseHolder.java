@@ -52,5 +52,10 @@ public abstract class BaseHolder<T> {
     protected ImageOptions getImageOptions(int width,int height){
         return new ImageOptions.Builder().setSize(DensityUtil.dip2px(width), DensityUtil.dip2px(height)).setCrop(true).build();
     }
+    protected ImageOptions getUserImageOptions(int width,int height){
+        return new ImageOptions.Builder().setSize(DensityUtil.dip2px(width), DensityUtil.dip2px(height)).
+                setCircular(true).setRadius(50).
+                setCrop(true).build();
+    }
 
 }

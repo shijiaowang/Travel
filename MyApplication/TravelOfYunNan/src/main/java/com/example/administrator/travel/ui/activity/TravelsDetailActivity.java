@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.activity;
 
+import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
@@ -20,7 +21,7 @@ import org.xutils.view.annotation.ViewInject;
  * Created by android on 2016/7/30.
  * 游记详情
  */
-public class TravelsDetailActivity extends BarBaseActivity {
+public class TravelsDetailActivity extends LoadingBarBaseActivity {
     @ViewInject(R.id.rv_add_line)
     private RecyclerView mRvAddLine;
     @ViewInject(R.id.rv_member)
@@ -57,7 +58,12 @@ public class TravelsDetailActivity extends BarBaseActivity {
     }
 
     @Override
-    protected void initViewData() {
+    protected void onLoad() {
+
+    }
+
+    @Override
+    protected Activity initViewData() {
         mRvAddLine.setAdapter(new TravelsAddAdapter(this, null));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRvAddLine.setLayoutManager(linearLayoutManager);
@@ -67,6 +73,7 @@ public class TravelsDetailActivity extends BarBaseActivity {
         mRvMember.setLayoutManager(memberLayoutManager);
         mRvMember.addItemDecoration(new HotSpotsItemDecoration(24));
         mLvDiscuss.setAdapter(new DeliciousDiscussAdapter(this, null));
+        return this;
     }
 
     @Override

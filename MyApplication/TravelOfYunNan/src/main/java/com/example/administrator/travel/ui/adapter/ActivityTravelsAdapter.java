@@ -11,18 +11,15 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/25 0025.
  */
-public class ActivityTravelsAdapter extends TravelBaseAdapter<Travels> {
-    public ActivityTravelsAdapter(Context mContext, List<Travels> mDatas) {
+public class ActivityTravelsAdapter extends TravelBaseAdapter<Travels.DataBean> {
+    public ActivityTravelsAdapter(Context mContext, List<Travels.DataBean> mDatas) {
         super(mContext, mDatas);
     }
 
-    @Override
-    protected int testDataSize() {
-        return 10;
-    }
+
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Travels item, int position) {
+    protected void initListener(BaseHolder baseHolder, Travels.DataBean item, int position) {
 
     }
 

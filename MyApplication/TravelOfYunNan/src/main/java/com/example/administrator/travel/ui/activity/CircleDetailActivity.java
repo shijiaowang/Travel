@@ -126,7 +126,9 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
                 followOrCancelFollow();
                 break;
             case R.id.tv_right_icon:
-                startActivity(new Intent(CircleDetailActivity.this, CreatePostActivity.class));
+                Intent intent = new Intent(CircleDetailActivity.this, CreatePostActivity.class);
+                intent.putExtra(IVariable.C_ID,cId);
+                startActivity(intent);
                 break;
         }
     }

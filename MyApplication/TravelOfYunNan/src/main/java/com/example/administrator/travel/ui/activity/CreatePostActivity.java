@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -22,21 +23,21 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.CreatePostEvent;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.CreatePostPhotoAdapter;
 import com.example.administrator.travel.ui.fragment.EmojiFragment;
 import com.example.administrator.travel.utils.DensityUtils;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.XEventUtils;
 import com.example.administrator.travel.utils.Xutils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.Callback;
-import org.xutils.common.util.LogUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -48,8 +49,10 @@ import java.util.Map;
  * 发表帖子
  */
 public class CreatePostActivity extends FragmentActivity implements View.OnClickListener, View.OnFocusChangeListener {
-    private static final int SHOW_PHOTO=0;
-    private static final int SHOW_EMOJI=1;
+    private static final int SHOW_PHOTO = 0;
+    private static final int SHOW_EMOJI = 1;
+    protected static final int SEND_PICTURE = 2;//发送图片
+    private static final int CREATE_POST = 3;//创建帖子
     private TextView mTvAite;
     private TextView mTvPicture;
     private TextView mTvEmoji;
@@ -66,31 +69,37 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     private InputMethodManager imm;
     private EditText mEtTitle;
     private EditText mEtContent;
-    private int sendDelayTime=0;//延迟发送广播时间，解决软键盘弹出情况下，再弹出表情包等等闪屏状况
-   private Handler mHandler=new Handler(){
-       @Override
-       public void handleMessage(Message msg) {
-           removeCallbacksAndMessages(null);
-           switch (msg.what){
-               case SHOW_PHOTO:
-                   showPicture();
-                   break;
-               case SHOW_EMOJI:
-                   showEmoji();
-                   break;
-           }
-       }
-   };
+    private int sendDelayTime = 0;//延迟发送广播时间，解决软键盘弹出情况下，再弹出表情包等等闪屏状况
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            removeCallbacksAndMessages(null);
+            switch (msg.what) {
+                case SHOW_PHOTO:
+                    showPicture();
+                    break;
+                case SHOW_EMOJI:
+                    showEmoji();
+                    break;
+            }
+        }
+    };
     private TextView mTvBack;
     private TextView mTvCreate;
+    private List<String> mImages;
+    private List<String> pictures;
+    private CreatePostPhotoAdapter createPostPhotoAdapter;
+    private String addFlag="add";
+    private String cId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
-        if (!EventBus.getDefault().isRegistered(this)){
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
+        cId = getIntent().getStringExtra(IVariable.C_ID);
         initView();
         initListener();
         initData();
@@ -111,6 +120,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         mEtContent.setOnFocusChangeListener(this);
         mTvBack.setOnClickListener(this);
         mTvCreate.setOnClickListener(this);
+
     }
 
 
@@ -120,7 +130,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         mTvEmoji = ((TextView) findViewById(R.id.tv_emoji));
         mEtTitle = (EditText) findViewById(R.id.et_title);
         mEtContent = (EditText) findViewById(R.id.et_content);
-        imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mTvBack = ((TextView) findViewById(R.id.tv_back));
 
         mTvCreate = ((TextView) findViewById(R.id.tv_push));
@@ -155,7 +165,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
                 mFirstDotLeft = mLlDot.getChildAt(0).getLeft();
                 //初始化小圆点
                 RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mVDot.getLayoutParams();
-                layoutParams.leftMargin=mFirstDotLeft;
+                layoutParams.leftMargin = mFirstDotLeft;
                 mVDot.setLayoutParams(layoutParams);
                 //移除监听事件
                 mLlDot.getViewTreeObserver().removeGlobalOnLayoutListener(this);
@@ -170,7 +180,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         mEtTitle.setFocusable(true);
         mEtTitle.requestFocus();
         //第一次进入强制显示软键盘
-        if(!imm.isActive()){
+        if (!imm.isActive()) {
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         }
 
@@ -187,7 +197,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
                 break;
             case R.id.et_title:
             case R.id.et_content:
-                 hideEmojiOrPhoto();
+                hideEmojiOrPhoto();
                 break;
             case R.id.tv_aite:
                 startActivity(new Intent(this, AiteActivity.class));
@@ -201,17 +211,17 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     }
 
     private void hideSoftClick(View v) {
-        sendDelayTime=0;//初始化
-        if (imm.isActive()){
+        sendDelayTime = 0;//初始化
+        if (imm.isActive()) {
             imm.hideSoftInputFromWindow(mEtTitle.getWindowToken(), 0); //强制隐藏键盘
-            sendDelayTime=300;
+            sendDelayTime = 300;
         }
         switch (v.getId()) {
             case R.id.tv_picture:
-                mHandler.sendEmptyMessageDelayed(SHOW_PHOTO,sendDelayTime);
+                mHandler.sendEmptyMessageDelayed(SHOW_PHOTO, sendDelayTime);
                 return;
             case R.id.tv_emoji:
-                mHandler.sendEmptyMessageDelayed(SHOW_EMOJI,sendDelayTime);
+                mHandler.sendEmptyMessageDelayed(SHOW_EMOJI, sendDelayTime);
                 break;
         }
     }
@@ -246,7 +256,21 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
             mVsPhoto = (ViewStub) findViewById(R.id.vs_photo);
             mVsPhoto.inflate();
             mGvPhoto = (GridView) findViewById(R.id.gv_photo);
-            mGvPhoto.setAdapter(new CreatePostPhotoAdapter(CreatePostActivity.this, null));
+            pictures = new ArrayList<>();
+            pictures.add(addFlag);
+            createPostPhotoAdapter = new CreatePostPhotoAdapter(CreatePostActivity.this, pictures);
+            mGvPhoto.setAdapter(createPostPhotoAdapter);
+            mGvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (pictures == null) return;
+                    if (pictures.size() != 12 && position == pictures.size() - 1) {
+                        startActivity(new Intent(CreatePostActivity.this, AlbumSelectorActivity.class));
+                        GlobalValue.mSelectImages = pictures;
+                        GlobalValue.mSelectImages.remove(addFlag);
+                    }
+                }
+            });
         } else {
             mGvPhoto.setVisibility(mGvPhoto.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
         }
@@ -257,17 +281,17 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
 
 
     private void hideEmojiOrPhoto() {
-        if (mRlEmoji!=null && mRlEmoji.getVisibility()== View.VISIBLE){
+        if (mRlEmoji != null && mRlEmoji.getVisibility() == View.VISIBLE) {
             mRlEmoji.setVisibility(View.GONE);
         }
-        if (mGvPhoto!=null && mGvPhoto.getVisibility()==View.VISIBLE){
+        if (mGvPhoto != null && mGvPhoto.getVisibility() == View.VISIBLE) {
             mGvPhoto.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus){
+        if (hasFocus) {
             hideEmojiOrPhoto();
         }
     }
@@ -315,64 +339,51 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
 
         }
     }
-      private void createPost() {
-          String title = mEtTitle.getText().toString().trim();
-          String content = mEtContent.getText().toString().trim();
-          if (StringUtils.isEmpty(content)){
-              ToastUtils.showToast("请输入内容");
-              return;
-          }
-          Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content, GlobalUtils.getUserInfo().getId(), "3");
-          List<File> list = new ArrayList<>();
-          Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0003.jpg", list);
-          Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0009.jpg", list);
-          Xutils.checkFileAndAdd("/storage/emulated/0/DCIM/100MEDIA/IMAG0010.jpg", list);
-          Xutils.postFileAndText(IVariable.CIRCLE_CREATE_POST, createPostMap, list, new Callback.ProgressCallback<String>() {
-              @Override
-              public void onWaiting() {
-                  LogUtils.e("onWaiting");
-              }
 
-              @Override
-              public void onStarted() {
-                  LogUtils.e("onStarted");
-              }
+    /**
+     * 创建帖子
+     */
+    private void createPost() {
+        String title = mEtTitle.getText().toString().trim();
+        String content = mEtContent.getText().toString().trim();
+        if (StringUtils.isEmpty(content)) {
+            ToastUtils.showToast("请输入内容");
+            return;
+        }
+        Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content, GlobalUtils.getUserInfo().getId(), cId);
+        XEventUtils.posFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,CREATE_POST,new CreatePostEvent());
+    }
 
-              @Override
-              public void onLoading(long total, long current, boolean isDownloading) {
-                  LogUtils.e("onLoading" + current / (float) total+"总数"+total );
-              }
+    @Subscribe
+    public void onEvent(CreatePostEvent event) {
+        if (event.isSuccess()) {
+            dealData(event);
+        } else {
+            ToastUtils.showToast(event.getMessage());
+        }
+    }
 
-              @Override
-              public void onSuccess(String result) {
-                  ToastUtils.showToast(result);
-              }
+    private void dealData(CreatePostEvent event) {
+        if (event.getType() == SEND_PICTURE) {
+            pictures.clear();
+            pictures.addAll(event.getmImages());
+            if (pictures.size() != 12 && !pictures.contains("add")) {
+                pictures.add(addFlag);
+            }
+            createPostPhotoAdapter.notifyData(pictures);
+        } else {
+            ToastUtils.showToast("创建成功");
+            finish();
+        }
+    }
 
-              @Override
-              public void onError(Throwable ex, boolean isOnCallback) {
-                  LogUtils.e("onError");
-              }
-
-              @Override
-              public void onCancelled(CancelledException cex) {
-                  LogUtils.e("onCancelled");
-              }
-
-              @Override
-              public void onFinished() {
-
-              }
-          });
-      }
-     @Subscribe
-     public void onEvent(CreatePostEvent event){
-        LogUtils.e("收到消息啦");
-     }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (EventBus.getDefault().isRegistered(this)){
+        if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
+        GlobalValue.mSelectImages=null;
+
     }
 }
