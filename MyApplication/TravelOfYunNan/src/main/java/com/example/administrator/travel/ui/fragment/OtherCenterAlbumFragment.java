@@ -24,7 +24,7 @@ public class OtherCenterAlbumFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        viewById = (GridView) root.findViewById(R.id.gv_album);
+        viewById = (GridView) root.findViewById(R.id.rv_album);
         viewById.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {

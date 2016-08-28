@@ -14,7 +14,7 @@
  * imitations under the License.
  */
 
-package com.example.administrator.travel.ui.activity.dragtopview;
+package com.example.administrator.travel.ui.activity.drag;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,13 +25,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
-
 import com.example.administrator.travel.R;
-
+import com.example.administrator.travel.event.DragEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
 import github.chenupt.dragtoplayout.AttachUtil;
+
 
 /**
  * Created by chenupt@gmail.com on 1/23/15.
@@ -59,7 +59,8 @@ public class ScrollViewFragment extends Fragment {
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                EventBus.getDefault().post(AttachUtil.isScrollViewAttach(scrollView));
+                // EventBus.getDefault().post(AttachUtil.isScrollViewAttach(scrollView));
+                EventBus.getDefault().post(new DragEvent(2,AttachUtil.isScrollViewAttach(scrollView)));
                 return false;
             }
         });

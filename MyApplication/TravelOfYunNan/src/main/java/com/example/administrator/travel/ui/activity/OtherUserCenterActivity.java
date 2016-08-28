@@ -21,10 +21,11 @@ import android.widget.TextView;
 
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.activity.dragtopview.GridViewFragment;
-import com.example.administrator.travel.ui.activity.dragtopview.ListViewFragment;
-import com.example.administrator.travel.ui.activity.dragtopview.ScrollViewFragment;
-import com.example.administrator.travel.ui.fragment.OtherCenterAlbumFragment;
+import com.example.administrator.travel.event.DragEvent;
+import com.example.administrator.travel.ui.activity.drag.RecyclerBaseFragment;
+import com.example.administrator.travel.ui.activity.drag.RecyclerFragmentDynamic;
+import com.example.administrator.travel.ui.activity.drag.RecyclerFragmentAlbum;
+import com.example.administrator.travel.ui.activity.drag.ScrollViewFragment;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.FontsIconViewPagerIndicator;
@@ -65,13 +66,13 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
                     mPbLoad.clearAnimation();
                     mPbLoad.setVisibility(View.GONE);
                     mFlTitle.setVisibility(View.VISIBLE);
-                    isInflate=true;
+                    isInflate = true;
                     break;
                 case 1:
                     mPbLoad.clearAnimation();
                     mPbLoad.setVisibility(View.GONE);
                     mLlNewUser.setVisibility(View.VISIBLE);
-                    isInflate=true;
+                    isInflate = true;
                     break;
             }
         }
@@ -111,13 +112,16 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     private RelativeLayout mRlTitle;
     @ViewInject(R.id.v_sup)
     private View mVSup;
-   @ViewInject(R.id.tv_back)
+    @ViewInject(R.id.tv_back)
     private FontsIconTextView mTvBack;
     @ViewInject(R.id.tv_title_back)
     private FontsIconTextView mTvTitleBack;
     private int mTopViewHeight;
     private int mTitleHeight;
     private String phoneName;
+
+    private int currentIndex = 0;
+    private Fragment fragment;
 
 
     @Override
@@ -138,14 +142,33 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         mIndicator.setTagClick(mVpDynamic);
         mTvBack.setOnClickListener(this);
         mTvTitleBack.setOnClickListener(this);
-        mDragLayout.setOverDrag(false).setCollapseOffset(0).listener(new DragTopLayout.SimplePanelListener() {
+        mDragLayout.setOverDrag(true).setCollapseOffset(0).setPanelListener(new DragTopLayout.PanelListener() {
+
+            @Override
+            public void onPanelStateChanged(DragTopLayout.PanelState panelState) {
+               /* // 有一个到顶部，其他都到顶部
+                if (panelState == DragTopLayout.PanelState.EXPANDED) {
+                    for (int i = 0; i < getFragments().size(); i++) {
+                        if (i != currentIndex && i < 2) {//前两个才是
+                            ((RecyclerBaseFragment) (getFragments().get(i))).scrollToFirstItem();
+                        }
+                    }
+                }*/
+                if (panelState== DragTopLayout.PanelState.COLLAPSED && currentIndex<2){
+                    boolean shouldDelegateTouch = ((RecyclerBaseFragment) (getFragments().get(currentIndex))).getShouldDelegateTouch();
+                    LogUtils.e(shouldDelegateTouch+"是否需要拦截");
+                    mDragLayout.setTouchMode(shouldDelegateTouch);
+
+                }
+
+            }
 
             @Override
             public void onSliding(float ratio) {
                 if (mTopViewHeight == 0) {
                     mTopViewHeight = mTopView.getHeight();
                 }
-                if (mTitleHeight==0){
+                if (mTitleHeight == 0) {
                     mTitleHeight = mVSup.getHeight();
                 }
                 if (ratio < 1.0 && mRlTitle.getVisibility() != View.GONE) {
@@ -153,15 +176,20 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
                     mTopView.setVisibility(View.VISIBLE);
                 }
                 //显示标题
-                if (mTopViewHeight * ratio <= mTitleHeight  ) {
+                if (mTopViewHeight * ratio <= mTitleHeight) {
 
                     if (mRlTitle.getVisibility() != View.VISIBLE) {
                         mRlTitle.setVisibility(View.VISIBLE);
                     }
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mRlTitle.getLayoutParams();
-                    layoutParams.height= (int) (mTitleHeight-mTopViewHeight*ratio);
+                    layoutParams.height = (int) (mTitleHeight - mTopViewHeight * ratio);
                     mRlTitle.setLayoutParams(layoutParams);
                 }
+            }
+
+            @Override
+            public void onRefresh() {
+
             }
         });
         mVpDynamic.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -172,7 +200,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
 
             @Override
             public void onPageSelected(int position) {
-
+                setSelectedFragment(position);
             }
 
             @Override
@@ -196,7 +224,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     @Override
     protected void initData() {
         EventBus.getDefault().register(this);
-         mIndicator.setTitles(mTitles);
+        mIndicator.setTitles(mTitles);
         if (mFlTitle.getChildCount() > 0) {
             mFlTitle.removeAllViews();
         }
@@ -205,7 +233,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
             textView.setText(titles[i]);
             mFlTitle.addView(textView);
         }
-   PagerModelManager factory = new PagerModelManager();
+        PagerModelManager factory = new PagerModelManager();
         factory.addCommonFragment(getFragments(), getTitles());
         adapter = new ModelPagerAdapter(getSupportFragmentManager(), factory);
         mVpDynamic.setAdapter(adapter);
@@ -222,8 +250,6 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         }
         initAnimation();
     }
-
-
 
 
     private void initAnimation() {
@@ -252,12 +278,12 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
 
     private List<Fragment> getFragments() {
         List<Fragment> list = new ArrayList<>();
-        Fragment listFragment = new ListViewFragment();
-        Fragment recyclerFragment = new OtherCenterAlbumFragment();
-        Fragment gridViewFragment = new ScrollViewFragment();
-       list.add(listFragment);
-        /* list.add(recyclerFragment);*/
+        Fragment listFragment = new RecyclerFragmentAlbum();
+        Fragment gridViewFragment = new RecyclerFragmentDynamic();
+        Fragment scrollViewFragment = new ScrollViewFragment();
+        list.add(listFragment);
         list.add(gridViewFragment);
+        list.add(scrollViewFragment);
         return list;
     }
 
@@ -265,8 +291,8 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
     protected void onResume() {
         super.onResume();
         //使用透明度解决魅族手机闪屏问题
-        if (Build.MANUFACTURER.contains("Meizu") ||Build.MANUFACTURER.contains("魅族")){
-            AlphaAnimation alphaAnimation=new AlphaAnimation(0,1);
+        if (Build.MANUFACTURER.contains("Meizu") || Build.MANUFACTURER.contains("魅族")) {
+            AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
             alphaAnimation.setDuration(1500);
             alphaAnimation.setFillAfter(true);
             mRlRoot.startAnimation(alphaAnimation);
@@ -278,10 +304,51 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
 
     }
 
+    private void setSelectedFragment(int type) {
+        currentIndex = type;
+        // update status
+        //updateTopStatus(currentIndex);
+
+    }
+
+    /**
+     * todo：2.切换时更新各个Viewpager下Fragment的状态
+     *
+     * @param currentIndex
+     */
+    private void updateTopStatus(int currentIndex) {
+        fragment = getFragments().get(currentIndex);
+        if (mDragLayout.getState() != DragTopLayout.PanelState.COLLAPSED) {
+            if (isRecycleFragment() && !((RecyclerBaseFragment) fragment).getShouldDelegateTouch()) {
+                // topView显示时，却不是首条显示时，更换为首条显示===防止意外情况，实际可能不会出现
+                ((RecyclerBaseFragment) fragment).scrollToFirstItem();
+                mDragLayout.setTouchMode(true);
+            }
+        } else if (isRecycleFragment()) {
+            mDragLayout.setTouchMode(((RecyclerBaseFragment) fragment).getShouldDelegateTouch());
+        }
+    }
+
+    public boolean isRecycleFragment() {
+        return currentIndex < 2;
+    }
+
 
     @Subscribe
-    public void onEvent(Boolean b) {
-        mDragLayout.setTouchMode(b);
+    public void onEvent(DragEvent dragEvent) {
+        if (dragEvent.getIndex()!=currentIndex)return;
+        boolean canScroll = dragEvent.isTouch();
+        if (currentIndex < 2 && mDragLayout.getState() == DragTopLayout.PanelState.COLLAPSED) {
+            RecyclerBaseFragment recyclerBaseFragment = (RecyclerBaseFragment) getFragments().get(currentIndex);
+            canScroll = recyclerBaseFragment.getShouldDelegateTouch();
+        }
+        mDragLayout.setTouchMode(canScroll);
+        if (!dragEvent.isTouch() && mDragLayout.getState() == DragTopLayout.PanelState.EXPANDED) {
+            // 防止异常情况的补充
+            mDragLayout.closeTopView(false);
+        }
+
+
     }
 
 
@@ -302,12 +369,13 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
         super.onPause();
         EventBus.getDefault().unregister(this);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
 
-    class PagerAdapter extends FragmentPagerAdapter{
+    class PagerAdapter extends FragmentPagerAdapter {
 
         public PagerAdapter(FragmentManager fm) {
             super(fm);

@@ -4,17 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <GridView
+    <android.support.v7.widget.RecyclerView
         android:layout_marginTop="5dp"
         android:scrollbars="none"
-        android:id="@+id/gv_album"
+        android:id="@+id/rv_album"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:horizontalSpacing="14dp"
         android:numColumns="2"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:verticalSpacing="14dp">
+        >
 
-    </GridView>
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

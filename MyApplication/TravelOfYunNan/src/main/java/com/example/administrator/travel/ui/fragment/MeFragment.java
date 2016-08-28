@@ -18,6 +18,7 @@ import com.example.administrator.travel.ui.activity.MyAlbumActivity;
 import com.example.administrator.travel.ui.activity.MyAppointActivity;
 import com.example.administrator.travel.ui.activity.MyCollectionActivity;
 import com.example.administrator.travel.ui.activity.OrdersCenterActivity;
+import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.activity.SettingActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -25,6 +26,8 @@ import com.example.administrator.travel.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Administrator on 2016/7/12 0012.
@@ -75,6 +78,14 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvMyOrder = (TextView) root.findViewById(R.id.tv_my_order);
         mTvProfile = (TextView) root.findViewById(R.id.tv_profile);
         mTvNickName = (TextView) root.findViewById(R.id.tv_nick_name);
+
+        CircleImageView viewById = (CircleImageView) root.findViewById(R.id.civ_icon);
+        viewById.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), OtherUserCenterActivity.class));
+            }
+        });
     }
 
     @Override

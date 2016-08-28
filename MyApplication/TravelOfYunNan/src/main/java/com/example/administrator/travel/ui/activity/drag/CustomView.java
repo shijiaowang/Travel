@@ -14,33 +14,25 @@
  * limitations under the License.
  */
 
-package com.example.administrator.travel.ui.activity.dragtopview;
+package com.example.administrator.travel.ui.activity.drag;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.Dynamic;
-import com.example.administrator.travel.utils.FontsIconUtil;
-import com.example.administrator.travel.utils.LogUtils;
-
-import java.util.List;
 
 import github.chenupt.multiplemodel.BaseItemModel;
-import github.chenupt.multiplemodel.ItemEntity;
 
 /**
  * Created by chenupt@gmail.com on 2015/1/18.
  * Description TODO
  */
-public class DynamicView extends BaseItemModel<Dynamic> {
+public class CustomView extends BaseItemModel<String> {
 
+    private TextView textView;
 
-    private TextView mTvType;
-
-    public DynamicView(Context context) {
+    public CustomView(Context context) {
         super(context);
         onFinishInflate();
     }
@@ -49,20 +41,11 @@ public class DynamicView extends BaseItemModel<Dynamic> {
     protected void onFinishInflate() {
         super.onFinishInflate();
         LayoutInflater.from(getContext()).inflate(R.layout.item_fragment_dynamic, this, true);
-        mTvType = (TextView) findViewById(R.id.tv_type);
-        TextView  mTvType = FontsIconUtil.findIconFontsById(R.id.tv_icon,getContext(),this);
 
     }
 
     @Override
     public void bindView() {
-        List<ItemEntity<Dynamic>> modelList = getModelList();
-        ItemEntity<Dynamic> dynamicItemEntity = modelList.get(viewPosition);
-        Dynamic content = dynamicItemEntity.getContent();
-        String type = content.getType();
-        mTvType.setText(type);
-
-
 
     }
 }
