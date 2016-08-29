@@ -1,2 +1,2 @@
-include ':xutils', ':TravelOfYunNan', ':app', ':sample', ':library'
-include ':wheel'
+include ':library',':app',':sample','TravelOfYunNan'
+

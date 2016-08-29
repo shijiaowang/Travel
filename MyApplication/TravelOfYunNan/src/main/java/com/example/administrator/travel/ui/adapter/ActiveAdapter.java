@@ -11,18 +11,14 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/25 0025.
  */
-public class ActiveAdapter extends TravelBaseAdapter<Active> {
-    public ActiveAdapter(Context mContext, List<Active> mDatas) {
+public class ActiveAdapter extends TravelBaseAdapter<Active.DataBean> {
+    public ActiveAdapter(Context mContext, List<Active.DataBean> mDatas) {
         super(mContext, mDatas);
     }
 
-    @Override
-    protected int testDataSize() {
-        return 10;
-    }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Active item, int position) {
+    protected void initListener(BaseHolder baseHolder, Active.DataBean item, int position) {
 
     }
 

@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.DecelerateInterpolator;
@@ -65,6 +66,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     private boolean mEnablePullLoad = true;
     private boolean mEnableAutoLoad = false;
     private boolean mPullLoading = false;
+    private ViewStub mRefreshHeader;//上来加载之上的头布局
 
     public XScrollView(Context context) {
         super(context);
@@ -81,8 +83,17 @@ public class XScrollView extends ScrollView implements OnScrollListener {
         initWithContext(context);
     }
 
+    public ViewStub getmRefreshHeader() {
+        return mRefreshHeader;
+    }
+
+    public void setmRefreshHeader(ViewStub mRefreshHeader) {
+        this.mRefreshHeader = mRefreshHeader;
+    }
+
     private void initWithContext(Context context) {
         mLayout = (LinearLayout) View.inflate(context, R.layout.vw_xscrollview_layout, null);
+        mRefreshHeader = (ViewStub) mLayout.findViewById(R.id.vs_header);
         mContentLayout = (LinearLayout) mLayout.findViewById(R.id.content_layout);
 
         mScroller = new Scroller(context, new DecelerateInterpolator());

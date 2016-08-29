@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.administrator.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.administrator.travel.ui.view.refreshview.XScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@id/ssv_scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
-    <LinearLayout
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/meLine"
-        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="174dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/activity_active_holder_test" />
 
-        <com.example.administrator.travel.ui.view.ToShowAllListView
-            android:id="@+id/lv_active"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:divider="@null"
-            android:dividerHeight="10dp">
 
-        </com.example.administrator.travel.ui.view.ToShowAllListView>
-
-    </LinearLayout>
-</com.example.administrator.travel.ui.view.SlippingScrollView>
+</com.example.administrator.travel.ui.view.refreshview.XScrollView>

@@ -58,7 +58,9 @@ public class TravelsActivity extends LoadingBarBaseActivity implements View.OnKe
         mLvTravels.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(TravelsActivity.this, TravelsDetailActivity.class));
+                Intent intent = new Intent(TravelsActivity.this, TravelsDetailActivity.class);
+                intent.putExtra(IVariable.T_ID,travelsData.get(position-1).getId());
+                startActivity(intent);
             }
         });
     }

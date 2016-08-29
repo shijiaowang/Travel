@@ -233,9 +233,7 @@ public class OtherUserCenterActivity extends BaseActivity implements View.OnClic
             textView.setText(titles[i]);
             mFlTitle.addView(textView);
         }
-        PagerModelManager factory = new PagerModelManager();
-        factory.addCommonFragment(getFragments(), getTitles());
-        adapter = new ModelPagerAdapter(getSupportFragmentManager(), factory);
+        PagerAdapter adapter=new PagerAdapter(getSupportFragmentManager());
         mVpDynamic.setAdapter(adapter);
         //获取数据
         Random random = new Random();

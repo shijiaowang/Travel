@@ -290,7 +290,7 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
      * @param mListView
      * @return
      */
-    private int measureHeight(ListView mListView) {
+    protected int measureHeight(ListView mListView) {
         // get ListView adapter
         ListAdapter adapter = mListView.getAdapter();
         if (null == adapter) {
