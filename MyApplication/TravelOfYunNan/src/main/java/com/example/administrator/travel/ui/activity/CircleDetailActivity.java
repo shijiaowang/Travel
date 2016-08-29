@@ -25,6 +25,8 @@ import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.util.DensityUtil;
+import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -225,7 +227,8 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
         CircleDetail.DataBean.HeadBean head = circle.getData().getHead();
         if (isFirst) {
             isFirst = false;
-            x.image().bind(mIvPostBg, head.getCircle_img());
+            ImageOptions imageOptions=new ImageOptions.Builder().setSize(DensityUtil.getScreenWidth(),DensityUtil.dip2px(202)).setCrop(true).build();
+            x.image().bind(mIvPostBg, head.getTitle_img(),imageOptions);
             x.image().bind(mIvPostIcon, head.getCircle_ico());
             mTvCircleName.setText(head.getCname());
             mTvDes.setText("简介：" + head.getTitle());

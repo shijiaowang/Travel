@@ -135,7 +135,7 @@
 
     <com.example.administrator.travel.ui.view.ToShowAllListView
         android:id="@+id/lv_discuss"
-        style="@style/commonListViewStyle"
+        style="@style/XScrollViewListViewCommon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

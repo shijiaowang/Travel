@@ -22,6 +22,10 @@ public class MapUtils {
             stringMap.put(IVariable.PAGE_SIZE,pageSize+"");
             return this;
         }
+        public Builder addAId(String aId){
+            stringMap.put(IVariable.A_ID,aId);
+            return this;
+        }
         public Builder addUserId(){
             stringMap.put(IVariable.USER_ID,GlobalUtils.getUserInfo().getId());
             return this;

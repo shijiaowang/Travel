@@ -155,6 +155,8 @@
     <!--驾驶证认证-->
     <string name="activity_identity_car_card">筝</string>
     <!--车辆认证-->
+    <string name="activity_message_center_setting">置</string>
+    <!--车辆认证-->
     <string name="activity_setting_log_out">莞</string>
 
     <!--退出登录-->

@@ -34,8 +34,8 @@
         <com.example.administrator.travel.ui.view.FontsIconTextView
 
             style="@style/activityMessageCenterIconText"
-            android:text="@string/activity_my_publication_team"
-            android:textColor="@color/otherFcae04" />
+            android:text="@string/activity_message_center_setting"
+            android:textColor="@color/otherTitleBg" />
 
         <TextView
             style="@style/activityMessageCenterText"
@@ -79,7 +79,7 @@
         <com.example.administrator.travel.ui.view.FontsIconTextView
             style="@style/activityMessageCenterIconText"
             android:text="@string/home_activity_button_me"
-            android:textColor="@color/otherTitleBg" />
+            android:textColor="@color/colorff806d" />
 
         <TextView
             style="@style/activityMessageCenterText"

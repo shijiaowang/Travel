@@ -4,12 +4,9 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -17,7 +14,7 @@ import com.example.administrator.travel.bean.ClickLike;
 import com.example.administrator.travel.bean.DestinationDetail;
 import com.example.administrator.travel.bean.FindLastReply;
 import com.example.administrator.travel.bean.TravelReplyBean;
-import com.example.administrator.travel.event.DestinationDetailEvent;
+import com.example.administrator.travel.event.DetailCommonEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.DiscussCommonAdapter;
 import com.example.administrator.travel.ui.view.FlowLayout;
@@ -35,7 +32,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.x;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,9 +42,8 @@ import java.util.Map;
 public class DestinationDetailActivity extends LoadingBarBaseActivity implements View.OnClickListener, XScrollView.IXScrollViewListener {
 
 
-    public static final int TYPE_LIKE_DISCUSS = 0;//点赞请求
-    private static final int TYPE_LOAD = 1;//普通读取请求
-    private static final int TYPE_DISCUSS = 2;//留言
+
+
     private TextView mTvDestinationDes;
     private TextView mTvShow;
     private boolean isShowAllFlag = false;
@@ -113,7 +108,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
                         addContent("这只是一个测试评论而已，而已").addPId(travelReply.get(position).getId()).add(IVariable.TYPE, IVariable.TYPE_DESTINATION).
                         addNextPage(haveNextPage).addCount(travelReply.size()).
                         end();
-                XEventUtils.postUseCommonBackJson(IVariable.FIND_REPLY_DISCUSS, destinationMap, TYPE_DISCUSS, new DestinationDetailEvent());
+                XEventUtils.postUseCommonBackJson(IVariable.FIND_REPLY_DISCUSS, destinationMap, TYPE_DISCUSS, new DetailCommonEvent());
             }
         });
     }
@@ -123,7 +118,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
         if (!StringUtils.isEmpty(tId)) {
             count = travelReply == null ? 0 : travelReply.size();
             Map<String, String> destinationDetailMap = MapUtils.Build().addKey(this).addPageSize(pageSize).addCount(count).addTId(tId).addUserId().end();
-            XEventUtils.getUseCommonBackJson(IVariable.FIND_DESTINATION_DETAIL, destinationDetailMap, TYPE_LOAD, new DestinationDetailEvent());
+            XEventUtils.getUseCommonBackJson(IVariable.FIND_DESTINATION_DETAIL, destinationDetailMap, TYPE_LOAD, new DetailCommonEvent());
         }
     }
 
@@ -178,7 +173,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
     }
 
     @Subscribe
-    public void onEvent(DestinationDetailEvent event) {
+    public void onEvent(DetailCommonEvent event) {
         setIsProgress(false);
         loadEnd(mSsvScroll);
         if (event.isSuccess()) {
@@ -188,7 +183,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
         }
     }
 
-    private void dealData(DestinationDetailEvent event) {
+    private void dealData(DetailCommonEvent event) {
         switch (event.getType()) {
             case TYPE_LOAD:
                 dealDestinationDetailData(event);
@@ -207,7 +202,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
      *
      * @param event
      */
-    private void dealReplyData(DestinationDetailEvent event) {
+    private void dealReplyData(DetailCommonEvent event) {
         if (haveNextPage.equals("0")){
             //如果没有更多数据则会返回评论的数据
             addNewData(event);
@@ -218,7 +213,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
      * 添加新返回的评论数据
      * @param event
      */
-    private void addNewData(DestinationDetailEvent event) {
+    private void addNewData(DetailCommonEvent event) {
         try {
             FindLastReply findLastReply = GsonUtils.getObject(event.getResult(), FindLastReply.class);
             //数据强转
@@ -235,7 +230,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
      *
      * @param event
      */
-    private void dealClickData(DestinationDetailEvent event) {
+    private void dealClickData(DetailCommonEvent event) {
         ClickLike clickLike = GsonUtils.getObject(event.getResult(), ClickLike.class);
         if (clickLike == null) return;
         TravelReplyBean travelReplyBean = travelReply.get(event.getClickPosition());
@@ -250,7 +245,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
      *
      * @param event
      */
-    private void dealDestinationDetailData(DestinationDetailEvent event) {
+    private void dealDestinationDetailData(DetailCommonEvent event) {
         DestinationDetail destinationDetail = GsonUtils.getObject(event.getResult(), DestinationDetail.class);
         if (destinationDetail == null) return;
         haveNextPage = destinationDetail.getData().getHave_next().getNextpage();
@@ -262,7 +257,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
         if (travelData == null) return;//数据为空取消
         if (discussCommonAdapter == null) {
             travelReply = travelData;
-            discussCommonAdapter = new DiscussCommonAdapter(this, travelReply);
+            discussCommonAdapter = new DiscussCommonAdapter(this, travelReply, IVariable.TYPE_DESTINATION);
             mLvDiscuss.setAdapter(discussCommonAdapter);
         } else {
             travelReply.addAll(travelData);

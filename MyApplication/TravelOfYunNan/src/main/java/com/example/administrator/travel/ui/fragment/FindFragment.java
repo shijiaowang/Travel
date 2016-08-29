@@ -6,15 +6,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.ActiveActivity;
-import com.example.administrator.travel.ui.activity.DeliciousFoodActivity;
-import com.example.administrator.travel.ui.activity.DestinationActivity;
+import com.example.administrator.travel.ui.activity.FindCommonActivity;
 import com.example.administrator.travel.ui.activity.TravelsActivity;
 import com.example.administrator.travel.ui.adapter.FindHotAdapter;
 import com.example.administrator.travel.ui.adapter.FindRecommendAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 /**
  * Created by Administrator on 2016/7/19 0019.
@@ -70,13 +69,17 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getContext(), ActiveActivity.class));
                 break;
             case R.id.ll_delicious_food:
-                startActivity(new Intent(getContext(), DeliciousFoodActivity.class));
+                Intent food = new Intent(getContext(), FindCommonActivity.class);
+                food.putExtra(IVariable.TYPE,IVariable.TYPE_DELICIOUS);
+                startActivity(food);
                 break;
             case R.id.ll_travels:
                 startActivity(new Intent(getContext(), TravelsActivity.class));
                 break;
             case R.id.ll_add:
-                startActivity(new Intent(getContext(), DestinationActivity.class));
+                Intent intent = new Intent(getContext(), FindCommonActivity.class);
+                intent.putExtra(IVariable.TYPE,IVariable.TYPE_DESTINATION);
+                startActivity(intent);
                 break;
         }
     }

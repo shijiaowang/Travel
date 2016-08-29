@@ -44,7 +44,6 @@
         <activity android:name=".ui.activity.CatOtherUserAlbumActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.ActiveActivity" />
-        <activity android:name=".ui.activity.DeliciousFoodActivity" />
         <activity android:name=".ui.activity.BarBaseActivity" />
         <activity android:name=".ui.activity.TravelsActivity"/>
         <activity android:name=".ui.activity.ActivateDetailActivity"/>
@@ -56,7 +55,7 @@
         <activity android:name=".ui.activity.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />
-        <activity android:name=".ui.activity.DestinationActivity"/>
+        <activity android:name=".ui.activity.FindCommonActivity"/>
         <activity android:name=".ui.activity.TravelsDetailActivity"/>
         <activity android:name=".ui.activity.DestinationDetailActivity"/>
         <activity android:name=".ui.activity.AiteActivity"/>

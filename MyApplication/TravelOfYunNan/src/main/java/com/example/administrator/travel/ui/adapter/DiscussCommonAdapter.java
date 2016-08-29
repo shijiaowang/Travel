@@ -6,22 +6,17 @@ import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.DestinationDetail;
 import com.example.administrator.travel.bean.TravelReplyBean;
-import com.example.administrator.travel.event.CircleDetailEvent;
-import com.example.administrator.travel.event.DestinationDetailEvent;
+import com.example.administrator.travel.event.DetailCommonEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.CircleDetailActivity;
-import com.example.administrator.travel.ui.activity.DestinationDetailActivity;
+import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.DestinationDetailReplyTextHolder;
 import com.example.administrator.travel.ui.adapter.holer.DestinationDetailReplyUserHolder;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
-import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
@@ -37,8 +32,12 @@ import java.util.Map;
 public class DiscussCommonAdapter extends TravelBaseAdapter<TravelReplyBean> {
 
 
-    public DiscussCommonAdapter(Context mContext, List<TravelReplyBean> mDatas) {
+    private  String typeDestination;
+
+    public DiscussCommonAdapter(Context mContext, List<TravelReplyBean> mDatas, String typeDestination) {
         super(mContext, mDatas);
+
+        this.typeDestination = typeDestination;
     }
 
     @Override
@@ -97,11 +96,11 @@ public class DiscussCommonAdapter extends TravelBaseAdapter<TravelReplyBean> {
         if (!item.getIs_like().equals("1")) {
             mTvLove.setTextColor(mContext.getResources().getColor(R.color.otherFf7f6c));
             Map<String, String> likeMap = MapUtils.Build().addKey(mContext).addFId(item.getF_id()).addUserId().
-                   addRId(item.getId()).add(IVariable.TYPE,IVariable.TYPE_DESTINATION).
+                   addRId(item.getId()).add(IVariable.TYPE,typeDestination).
                     end();
-            DestinationDetailEvent destinationDetailEvent = new DestinationDetailEvent();
-            destinationDetailEvent.setClickPosition(position);
-            XEventUtils.postUseCommonBackJson(IVariable.FIND_CLICK_LIKE, likeMap, DestinationDetailActivity.TYPE_LIKE_DISCUSS, destinationDetailEvent);
+            DetailCommonEvent detailCommonEvent = new DetailCommonEvent();
+            detailCommonEvent.setClickPosition(position);
+            XEventUtils.postUseCommonBackJson(IVariable.FIND_CLICK_LIKE, likeMap, LoadingBarBaseActivity.TYPE_LIKE_DISCUSS, detailCommonEvent);
         }else {
             ToastUtils.showToast("你已经点过赞了");
         }

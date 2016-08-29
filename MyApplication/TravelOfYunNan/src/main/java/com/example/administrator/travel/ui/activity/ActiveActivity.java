@@ -60,7 +60,9 @@ public class ActiveActivity extends LoadingBarBaseActivity implements XScrollVie
         mLvActive.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(ActiveActivity.this,ActivateDetailActivity.class));
+                Intent intent = new Intent(ActiveActivity.this, ActivateDetailActivity.class);
+                intent.putExtra(IVariable.A_ID,actives.get(position).getId());
+                startActivity(intent);
             }
         });
     }

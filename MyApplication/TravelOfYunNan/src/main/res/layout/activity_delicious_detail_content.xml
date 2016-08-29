@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFAFAFA"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="228dp"
+        />
+
+    <LinearLayout style="@style/activityDeliciousDetailLl">
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityDeliciousDetailTvIcon"
+            android:text="@string/activity_delicious_detail_wan" />
+
+        <TextView
+            style="@style/activityDeliciousDetailTvName"
+            android:text="美食简介" />
+    </LinearLayout>
+
+    <View style="@style/activityDeliciousDetailLine" />
+
+    <TextView
+        android:id="@+id/tv_des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="9dp"
+       />
+
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/meLine" />
+
+    <LinearLayout style="@style/activityDeliciousDetailLl">
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_food"
+            style="@style/activityDeliciousDetailTvIcon"
+            android:text="@string/activity_delicious_detail_store" />
+
+        <TextView
+            style="@style/activityDeliciousDetailTvName"
+            android:text="店家TOP3" />
+    </LinearLayout>
+
+    <View style="@style/activityDeliciousDetailLine" />-->
+
+    <com.example.administrator.travel.ui.view.ToShowAllListView
+        android:id="@+id/lv_delicious_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="11dp"
+        style="@style/XScrollViewListViewCommon"
+        android:dividerHeight="0dp">
+
+    </com.example.administrator.travel.ui.view.ToShowAllListView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/meLine" />
+
+    <LinearLayout style="@style/activityDeliciousDetailLl">
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_say"
+            style="@style/activityDeliciousDetailTvIcon"
+            android:text="@string/activity_circle_discuss" />
+
+        <TextView
+            style="@style/activityDeliciousDetailTvName"
+            android:text="实话实话" />
+    </LinearLayout>
+
+    <View style="@style/activityDeliciousDetailLine" />
+
+    <com.example.administrator.travel.ui.view.ToShowAllListView
+        android:id="@+id/lv_delicious_discuss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        style="@style/XScrollViewListViewCommon"
+        android:dividerHeight="0dp">
+
+    </com.example.administrator.travel.ui.view.ToShowAllListView>
+
+</LinearLayout>

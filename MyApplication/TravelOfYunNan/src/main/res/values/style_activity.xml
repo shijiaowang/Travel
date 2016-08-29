@@ -79,4 +79,11 @@
         <item name="android:textColor">#7b7b7b</item>
     </style>
 
+
+
+    <style name="XScrollViewListViewCommon" parent="commonListViewStyle">
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
+
 </resources>

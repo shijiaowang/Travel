@@ -41,6 +41,9 @@ public interface IVariable {
     String FIND_TRAVELS = API_KEY + "Find/getFindtravels/";//获取游记列表
     String FIND_TRAVELS_DETAIL = API_KEY + "Find/getFindtravelsdetail/";//获取游记详情
     String FIND_ACTIVITY = API_KEY + "Find/getFindActivity/";//活动列表
+    String FIND_ACTIVITY_DETAIL = API_KEY + "Find/getFindActivitydetail/";//活动列表详情
+    String FIND_FOOD = API_KEY + "Find/getFindfood/";//美食
+    String FIND_FOOD_DETAIL = API_KEY + "Find/getFindfoodDetail/";//美食详情
 
     //请求type
     int TYPE_GET_KEY = 0;
@@ -126,4 +129,5 @@ public interface IVariable {
 
  String NEXT_PAGE = "nextpage";//发现评论，是否有下一页
  String COUNT = "count";//发现评论，当前拥有数据数量
+    String A_ID = "a_id";//活动id
 }

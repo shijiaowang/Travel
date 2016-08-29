@@ -5,25 +5,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.DetailCommonEvent;
 import com.example.administrator.travel.event.TravelsDetailEvent;
 import com.example.administrator.travel.event.TravelsEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.adapter.DeliciousDiscussAdapter;
 import com.example.administrator.travel.ui.adapter.HotSpotsItemDecoration;
 import com.example.administrator.travel.ui.adapter.TravelMemberAdapter;
 import com.example.administrator.travel.ui.adapter.TravelsAddAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
-import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
@@ -43,7 +41,9 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     protected int setContentLayout() {
         return R.layout.activity_travels_detail;
     }
-    private boolean isFirst=true;//避免第一次margin为0
+
+    private boolean isFirst = true;//避免第一次margin为0
+
     @Override
     protected void initEvent() {
         init();
@@ -53,7 +53,7 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
                 super.onScrolled(recyclerView, dx, dy);
                 if (isFirst) {
                     isFirst = false;
-                }else {
+                } else {
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mRvAddLine.getLayoutParams();
                     layoutParams.leftMargin = 0;
                     mRvAddLine.setLayoutParams(layoutParams);
@@ -76,18 +76,21 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
             mSsvScroll.setPullLoadEnable(true);
             mSsvScroll.setIXScrollViewListener(this);
             mSsvScroll.setRefreshTime(getTime());
-           mRvMember=((RecyclerView) inflate.findViewById(R.id.rv_member));
-           mRvAddLine=((RecyclerView) inflate.findViewById(R.id.rv_add_line));
-           mLvDiscuss=((ToShowAllListView) inflate.findViewById(R.id.lv_discuss));
-
+            mRvMember = ((RecyclerView) inflate.findViewById(R.id.rv_member));
+            mRvAddLine = ((RecyclerView) inflate.findViewById(R.id.rv_add_line));
+            mLvDiscuss = ((ToShowAllListView) inflate.findViewById(R.id.lv_discuss));
             mSsvScroll.setView(inflate);
         }
     }
 
     @Override
     protected void onLoad() {
+        requestData(TYPE_LOAD);
+    }
+
+    private void requestData(int type) {
         Map<String, String> detailMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(0).addTId(tId).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.FIND_TRAVELS_DETAIL,detailMap,0,new TravelsEvent());
+        XEventUtils.getUseCommonBackJson(IVariable.FIND_TRAVELS_DETAIL, detailMap, type, new DetailCommonEvent());
     }
 
     @Override
@@ -100,7 +103,7 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
         mRvMember.setAdapter(new TravelMemberAdapter(this, null));
         mRvMember.setLayoutManager(memberLayoutManager);
         mRvMember.addItemDecoration(new HotSpotsItemDecoration(24));
-        mLvDiscuss.setAdapter(new DeliciousDiscussAdapter(this, null));
+
         return this;
     }
 
@@ -118,15 +121,43 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     protected boolean rootIsLinearLayout() {
         return false;
     }
+
     @Subscribe
-    public void onEvent(TravelsDetailEvent event){
+    public void onEvent(DetailCommonEvent event) {
         setIsProgress(false);
+        loadEnd(mSsvScroll);
+        if (event.isSuccess()){
+            dealData(event);
+        }else {
+            ToastUtils.showToast(event.getMessage());
+        }
+
+    }
+
+    private void dealData(DetailCommonEvent event) {
+        LogUtils.e(event.getType() + "这是类型");
+        switch (event.getType()){
+            case TYPE_LOAD:
+                dealDestinationDetailData(event);
+                break;
+            case TYPE_LIKE_DISCUSS:
+                //dealClickData(event);
+                break;
+            case TYPE_DISCUSS:
+                //dealReplyData(event);
+                break;
+        }
+    }
+
+    private void dealDestinationDetailData(DetailCommonEvent event) {
+
     }
 
     @Override
     protected boolean isXScrollView() {
         return true;
     }
+
 
     @Override
     public void onRefresh() {
@@ -135,6 +166,7 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
 
     @Override
     public void onLoadMore() {
-
+        requestData(TYPE_LOAD);
     }
+
 }
