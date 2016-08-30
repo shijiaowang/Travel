@@ -1,2 +1,2 @@
-include ':library',':app',':sample','TravelOfYunNan'
+include ':library', ':app', ':sample', 'TravelOfYunNan', ':pickerview'
 

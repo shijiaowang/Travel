@@ -47,6 +47,7 @@
         <activity android:name=".ui.activity.BarBaseActivity" />
         <activity android:name=".ui.activity.TravelsActivity"/>
         <activity android:name=".ui.activity.ActivateDetailActivity"/>
+        <activity android:name=".ui.activity.PersonnelEquipmentActivity"/>
         <activity android:name=".ui.activity.DeliciousDetailActivity"/>
         <activity android:name=".ui.activity.PictureSelectorActivity"/>
         <activity android:name=".ui.activity.OrdersDetailActivity"/>

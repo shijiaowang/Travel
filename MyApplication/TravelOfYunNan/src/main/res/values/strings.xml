@@ -75,8 +75,9 @@
     <string name="fragment_play_with_me_air">籍</string>
     <!--飞机-->
     <string name="fragment_play_with_me_people">頭</string>
-
     <!--人-->
+    <string name="activity_personnel_equipment_people">仞</string>
+    <!--人员计划-->
     <string name="activity_setting_camera">昭</string>
     <!--相机-->
     <string name="fragment_home_chosen">菁</string>
@@ -107,6 +108,8 @@
     <!--钢笔-->
     <string name="activity_add_detail_line">炉</string>
     <!--路线-->
+    <string name="activity_personnel_equipment_equ">俱</string>
+    <!--道具-->
     <string name="activity_delicious_detail_wan">炽</string>
     <!--美味-->
     <string name="activity_delicious_detail_store">厨</string>
