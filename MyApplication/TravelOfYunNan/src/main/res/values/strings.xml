@@ -56,6 +56,10 @@
     <!--搜索-->
     <string name="fragment_find_add">睇</string>
     <!--目的地-->
+    <string name="activity_travels_plan_time">食</string>
+    <!--时间-->
+    <string name="activity_travels_plan_data">轴</string>
+    <!--日历-->
     <string name="fragment_find_hotel">玖</string>
     <!--酒店-->
     <string name="fragment_find_travels">搵</string>
@@ -156,7 +160,9 @@
     <string name="activity_identity_car_card">筝</string>
     <!--车辆认证-->
     <string name="activity_message_center_setting">置</string>
-    <!--车辆认证-->
+    <!--设置-->
+    <string name="activity_travels_plan_car">車</string>
+    <!--车-->
     <string name="activity_setting_log_out">莞</string>
 
     <!--退出登录-->
@@ -180,7 +186,7 @@
     <string name="not_send_ver">尚未请求验证码</string>
     <string name="save_change">保存修改</string>
     <string name="recommend_user">· 推荐用户</string>
-
+    <string name="next">下一步</string>
 
 
 
@@ -191,6 +197,8 @@
     <string name="header_hint_refresh_time">Time：</string>
     <string name="footer_hint_load_normal">Load more</string>
     <string name="footer_hint_load_ready">Release to load more</string>
+    <string name="activity_travels_plan_remark">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;备注</string>
+
 
 
 </resources>

@@ -63,13 +63,7 @@ public class CircleNavRightHolder extends BaseHolder<CircleNavRight.RightCircle>
 
     @Override
     public View initRootView(Context mContext) {
-        View root = inflateView(R.layout.item_fragment_circle_nav_right);
-    /*    mRlPost = (RelativeLayout) root.findViewById(R.id.rl_post);
-        mIvCircleBg = (ImageView) root.findViewById(R.id.iv_picture);
-        mCivCircleIcon = (CircleImageView) root.findViewById(R.id.civ_circle_icon);
-        mTvCircleName = (TextView) root.findViewById(R.id.tv_circle_name);
-        mTvFollowNumber = (TextView) root.findViewById(R.id.tv_follow_number);
-        mTvPostNumber = (TextView) root.findViewById(R.id.tv_post_number);*/
-        return root;
+
+        return  inflateView(R.layout.item_fragment_circle_nav_right);
     }
 }

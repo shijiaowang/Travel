@@ -350,7 +350,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
             ToastUtils.showToast("请输入内容");
             return;
         }
-        Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content, GlobalUtils.getUserInfo().getId(), cId);
+        Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content,cId);
         XEventUtils.posFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,CREATE_POST,new CreatePostEvent());
     }
 

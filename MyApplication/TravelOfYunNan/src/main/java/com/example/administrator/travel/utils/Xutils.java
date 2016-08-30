@@ -52,12 +52,12 @@ public class Xutils {
     }
 
 
-    public static Map<String,String> getCreatePostMap(String key,String title,String content,String user_id,String cid){
+    public static Map<String,String> getCreatePostMap(String key,String title,String content,String cid){
         Map<String,String> stringMap=new HashMap<>();
         stringMap.put(IVariable.KEY,key);
         stringMap.put("title",title);
         stringMap.put("content",content);
-        stringMap.put("user_id",user_id);
+        stringMap.put("user_id",GlobalUtils.getUserInfo().getId());
         stringMap.put("cid",cid);
         return stringMap;
     }

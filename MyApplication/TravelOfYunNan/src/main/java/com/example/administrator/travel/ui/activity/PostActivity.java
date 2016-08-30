@@ -54,7 +54,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
 
     @Override
     protected void initEvent() {
-
+        forum_id = getIntent().getStringExtra(IVariable.FORUM_ID);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
         mLvPostDetail.setPullLoadEnable(true);
         mLvPostDetail.setXListViewListener(this);
         mLvPostDetail.setRefreshTime(getTime());
-        forum_id = getIntent().getStringExtra(IVariable.FORUM_ID);
+
         return this;
     }
 

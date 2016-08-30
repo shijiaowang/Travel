@@ -15,6 +15,7 @@ import android.util.TypedValue;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.utils.TypefaceUtis;
 
 /**
  * Created by Administrator on 2016/7/7 0007.
@@ -38,12 +39,14 @@ public class GradientTextView extends TextView {
 
     public GradientTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context,attrs,defStyleAttr);
+        init(context, attrs, defStyleAttr);
+        setTypeface(TypefaceUtis.getTypeface(context));
     }
 
     private void init(Context context,AttributeSet attrs,int defStyleAttr) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.GradientTextView, defStyleAttr, 0);
         int indexCount = typedArray.getIndexCount();//获取自定义属性个数
+
         for (int i = 0; i < indexCount; i++) {
             int index = typedArray.getIndex(i);
             switch (index) {

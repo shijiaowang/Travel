@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.AppointEvent;
 import com.example.administrator.travel.ui.activity.LinePlanActivity;
+import com.example.administrator.travel.ui.activity.TravelsPlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.utils.FastBlur;
 
@@ -139,7 +140,7 @@ public class AppointFragment extends BaseFragment {
         dialogView.findViewById(R.id.rl_together).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), LinePlanActivity.class));
+                startActivity(new Intent(getContext(), TravelsPlanActivity.class));
             }
         });
         dialogView.findViewById(R.id.iv_cancel).setOnClickListener(new View.OnClickListener() {
