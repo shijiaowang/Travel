@@ -60,6 +60,7 @@
         <activity android:name=".ui.activity.FindCommonActivity"/>
         <activity android:name=".ui.activity.TravelsDetailActivity"/>
         <activity android:name=".ui.activity.DestinationDetailActivity"/>
+        <activity android:name=".ui.activity.ChoicePropsActivity"/>
         <activity android:name=".ui.activity.AiteActivity"/>
         <activity android:name=".ui.activity.MyAppointActivity"/>
         <activity android:name=".ui.activity.BulletinBoardActivity"/>
