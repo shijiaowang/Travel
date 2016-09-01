@@ -9,15 +9,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.travel.ui.view.LoadingPage;
+import com.example.administrator.travel.ui.view.refreshview.XListView;
+import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 /**
  * Created by Administrator on 2016/8/3 0003.
  */
 public abstract class LoadBaseFragment extends Fragment {
+    public static final  int FIRST_REFRESH=0;
+    public static final  int LOAD_MORE=1;
+    public static final  int REFRESH=2;
+
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
     private Fragment fragment;
@@ -82,7 +92,7 @@ public abstract class LoadBaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (fragment!=null){
+        if (fragment != null) {
             unregisterEventBus(fragment);
             LogUtils.e("fragment的Event注销了");
         }
@@ -112,20 +122,24 @@ public abstract class LoadBaseFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initContentView();
         initListener();
-        initLoad();
+        loadData();
     }
 
 
-    /**
-     * 初次加载数据
-     */
-    protected abstract void initLoad();
 
     public void loadData() {
         if (loadingPage != null) {
             loadingPage.loadData();
         }
     }
+
+
+    /**
+     * 跟布局
+     *
+     * @return
+     */
+    protected abstract View initView();
 
     /**
      * 初始化布局view
@@ -142,12 +156,6 @@ public abstract class LoadBaseFragment extends Fragment {
      */
     protected abstract void onLoad();
 
-    /**
-     * 跟布局
-     *
-     * @return
-     */
-    protected abstract View initView();
 
     /**
      * 设置读取状态
@@ -173,5 +181,22 @@ public abstract class LoadBaseFragment extends Fragment {
         if (loadingPage != null) {
             loadingPage.afterLoadData();
         }
+    }
+
+    protected String getTime() {
+        return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
+    }
+
+    protected void loadEnd(XListView xListView) {
+        xListView.stopLoadMore();
+        xListView.stopRefresh();
+        xListView.setRefreshTime(getTime());
+    }
+
+    protected void loadEnd(XScrollView xListView) {
+        xListView.stopLoadMore();
+        xListView.stopRefresh();
+        xListView.setRefreshTime(getTime());
+
     }
 }

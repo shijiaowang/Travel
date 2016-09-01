@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.fragment;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -91,7 +92,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mRvHotSpots.addItemDecoration(new HotSpotsItemDecoration(RECYCLE_VIEW_ITEM_SPACE));//设置孩子间距为24px;
 
         mLvTravels.setAdapter(new TravelsAdapter(getActivity(), null));
-        List<BaseFragment> fragments=new ArrayList<>();
+        List<Fragment> fragments=new ArrayList<>();
         fragments.add(new HomeActiveFragment());
         fragments.add(new HomeActiveFragment());
         fragments.add(new HomeActiveFragment());

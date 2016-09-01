@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/20 0020.
  */
-public class AppointTogetherAdapter extends TravelBaseAdapter<AppointTogether> {
-    public AppointTogetherAdapter(Context mContext, List<AppointTogether> mDatas) {
+public class AppointTogetherAdapter extends TravelBaseAdapter<AppointTogether.DataBean> {
+    public AppointTogetherAdapter(Context mContext, List<AppointTogether.DataBean> mDatas) {
         super(mContext, mDatas);
     }
 
@@ -22,7 +22,7 @@ public class AppointTogetherAdapter extends TravelBaseAdapter<AppointTogether> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, AppointTogether item, int position) {
+    protected void initListener(BaseHolder baseHolder, AppointTogether.DataBean item, int position) {
 
     }
 

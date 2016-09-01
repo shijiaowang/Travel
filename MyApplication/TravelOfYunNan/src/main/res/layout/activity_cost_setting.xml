@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/activityTravelsPlanRl"
+        android:layout_marginTop="35dp">
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityTravelsPlanTv"
+
+            android:text="@string/activity_personnel_equipment_people" />
+
+        <TextView
+            style="@style/activityTravelsPlanDes"
+            android:text="费用设置" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="53dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            style="@style/activityTravelsPlanTvTime"
+            android:text="每人收费" />
+
+        <EditText
+            android:layout_marginLeft="15dp"
+            style="@style/activityTravelsPlanTvTimeSelect"
+            android:layout_width="51dp"
+            android:gravity="start|center_vertical"
+            android:text="1" />
+
+        <TextView
+            style="@style/activityTravelsPlanTv"
+            android:layout_marginLeft="15dp"
+            android:text="元" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="15dp"
+        android:text="(此为领队佣金或先筹费用，不含用餐及其他个人消费)"
+        android:textSize="11dp"
+        android:textColor="@color/colorb5b5b5"
+        android:layout_marginLeft="53dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

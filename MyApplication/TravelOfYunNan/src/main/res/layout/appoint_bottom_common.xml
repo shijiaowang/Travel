@@ -18,9 +18,10 @@
         android:text="@string/activity_other_album_eye" />
 
     <TextView
+        android:id="@+id/tv_watch_number"
         style="@style/fragmentAppointBottomText"
         android:layout_marginLeft="6dp"
-        android:text="11" />
+       />
 
     <com.example.administrator.travel.ui.view.FontsIconTextView
         android:layout_marginTop="0.5dp"
@@ -30,9 +31,10 @@
         android:text="@string/activity_circle_love_empty" />
 
     <TextView
+        android:id="@+id/tv_love_number"
         style="@style/fragmentAppointBottomText"
         android:layout_marginLeft="6dp"
-        android:text="11" />
+     />
 
     <View
         android:layout_width="0dp"
@@ -40,9 +42,9 @@
         android:layout_weight="1" />
 
     <TextView
+        android:id="@+id/tv_how_long"
         style="@style/fragmentAppointBottomText"
         android:layout_marginRight="15dp"
-        android:text="5分钟前"
         android:textColor="@color/color969696"
         android:textSize="13sp" />
 

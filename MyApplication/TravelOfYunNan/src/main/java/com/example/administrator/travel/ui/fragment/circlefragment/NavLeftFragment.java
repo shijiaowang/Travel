@@ -79,10 +79,7 @@ public class NavLeftFragment extends LoadBaseFragment {
         useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ,new NavLeftEvent());
     }
 
-    @Override
-    protected void initLoad() {
-        loadData();
-    }
+
 
     @Override
     protected void initContentView() {
@@ -218,27 +215,5 @@ public class NavLeftFragment extends LoadBaseFragment {
             mLvRightNav.setAdapter(circleNavRightAdapter);
         }
 
-    }
-
-    @Override
-    public void onViewStateRestored(Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        if (savedInstanceState!=null) {
-            LogUtils.e("开始恢复数据了");
-            leftList = (ArrayList<Circle.DataBean.CircleLeftBean>) savedInstanceState.getSerializable(LEFT_DATA);
-            rightList = (ArrayList<CircleNavRight.RightCircle>) savedInstanceState.getSerializable(RIGHT_DATA);
-
-        }
-    }
-
-    String LEFT_DATA = "left_data";
-    String RIGHT_DATA = "right_data";
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        LogUtils.e("开始了存储数据了");
-        outState.putSerializable(LEFT_DATA, (Serializable) leftList);
-        outState.putSerializable(RIGHT_DATA, (Serializable) rightList);
-        super.onSaveInstanceState(outState);
     }
 }

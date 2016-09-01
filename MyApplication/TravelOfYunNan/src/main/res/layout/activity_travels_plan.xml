@@ -31,20 +31,20 @@
                 android:textColor="@color/colorb5b5b5"
                 android:textSize="16sp" />
 
-            <LinearLayout style="@style/activityTravelsPlanRl">
+            <RelativeLayout style="@style/activityTravelsPlanRl">
 
                 <com.example.administrator.travel.ui.view.FontsIconTextView
                     style="@style/activityTravelsPlanTv"
-                    android:gravity="center_vertical"
                     android:text="@string/activity_travels_plan_time" />
 
                 <TextView
-                    style="@style/activityTravelsPlanTv"
-                    android:layout_marginLeft="15dp"
+                    android:id="@+id/tv_time"
+                    style="@style/activityTravelsPlanDes"
                     android:text="时间计划" />
 
                 <TextView
-
+                   android:layout_toRightOf="@id/tv_time"
+                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -52,7 +52,7 @@
                     android:textColor="@color/color909090"
                     android:textSize="12sp" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
             <LinearLayout
@@ -189,19 +189,17 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp" />
 
-            <LinearLayout style="@style/activityTravelsPlanRl">
+            <RelativeLayout style="@style/activityTravelsPlanRl">
 
                 <com.example.administrator.travel.ui.view.FontsIconTextView
                     style="@style/activityTravelsPlanTv"
-                    android:gravity="center_vertical"
                     android:text="@string/activity_add_detail_line" />
 
                 <TextView
-                    style="@style/activityTravelsPlanTv"
-                    android:layout_marginLeft="15dp"
+                    style="@style/activityTravelsPlanDes"
                     android:text="路线计划" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/bt_select_line"
@@ -222,19 +220,17 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp" />
 
-            <LinearLayout style="@style/activityTravelsPlanRl">
+            <RelativeLayout style="@style/activityTravelsPlanRl">
 
                 <com.example.administrator.travel.ui.view.FontsIconTextView
                     style="@style/activityTravelsPlanTv"
-                    android:gravity="center_vertical"
                     android:text="@string/activity_travels_plan_car" />
 
                 <TextView
-                    style="@style/activityTravelsPlanTv"
-                    android:layout_marginLeft="15dp"
+                    style="@style/activityTravelsPlanDes"
                     android:text="交通计划" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <ListView
+    <com.example.administrator.travel.ui.view.refreshview.XListView
         android:id="@+id/lv_appoint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,6 +12,6 @@
         android:paddingTop="10dp"
         android:scrollbars="none">
 
-    </ListView>
+    </com.example.administrator.travel.ui.view.refreshview.XListView>
 
 </LinearLayout>

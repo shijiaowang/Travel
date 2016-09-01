@@ -13,14 +13,14 @@ import java.util.List;
  * Created by Administrator on 2016/7/12 0012.
  */
 public class CommonPagerAdapter extends FragmentPagerAdapter {
-    private List<BaseFragment> mDatas;
-    public CommonPagerAdapter(FragmentManager fm, List<BaseFragment> mDatas) {
+    private List<Fragment> mDatas;
+    public CommonPagerAdapter(FragmentManager fm, List<Fragment> mDatas) {
         super(fm);
         this.mDatas=mDatas;
     }
 
     @Override
-    public BaseFragment getItem(int position) {
+    public Fragment getItem(int position) {
         return mDatas.get(position);
     }
 

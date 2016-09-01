@@ -15,9 +15,10 @@
             android:layout_height="match_parent"/>
 
         <ImageView
+            android:id="@+id/iv_icon"
             android:layout_width="112dp"
             android:layout_height="112dp"
-            android:src="@drawable/fragment_appoint_icon_test" />
+             />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -30,31 +31,31 @@
             android:paddingLeft="10dp">
 
             <TextView
+                android:id="@+id/tv_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:text="昆明-丽江-大理"
                 android:textColor="@color/color323232"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:text="行程日期： 2016.7.14-2016.7.18"
                 android:textColor="@color/otherTitleBg"
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/tv_start_and_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:text="昆明出发 四天三晚"
                 android:textColor="@color/color646464"
                 android:textSize="13sp" />
 
@@ -69,18 +70,17 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:text="计划：5人"
                     android:textColor="@color/color646464"
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/tv_have_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@id/tv_plan_number"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:text="已有：2人"
                     android:textColor="@color/color646464"
                     android:textSize="13sp" />
             </RelativeLayout>
@@ -109,11 +109,11 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    android:id="@+id/tv_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_icon_title"
                     android:layout_centerHorizontal="true"
-                    android:text="20"
                     android:textColor="@color/colorFAFAFA"
                     android:textSize="11sp" />
             </RelativeLayout>

@@ -87,9 +87,7 @@
     </style>
   <!--旅行计划-->
     <style name="activityTravelsPlanRl">
-        <item name="android:layout_marginLeft">22dp</item>
         <item name="android:layout_marginTop">15dp</item>
-        <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -97,12 +95,19 @@
     <style name="activityTravelsPlanTv">
         <item name="android:textColor">@color/color323232</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginLeft">22dp</item>
+        <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="activityTravelsPlanDes" parent="activityTravelsPlanTv">
+        <item name="android:layout_marginLeft">53dp</item>
     </style>
     <style name="activityTravelsPlanTvTime" parent="activityTravelsPlanTv">
         <item name="android:textColor">@color/color646464</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+
     </style>
     <style name="activityTravelsPlanTvTimeSelect">
         <item name="android:textColor">@color/color323232</item>

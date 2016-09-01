@@ -12,6 +12,10 @@ public interface IVariable {
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
     /**
+    * 约伴
+    * */
+    String PLAY_TOGTHER = API_KEY + "Travel/travelLists/";//一起玩
+    /**
      * User
      */
     String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注自己的列表
@@ -130,4 +134,5 @@ public interface IVariable {
  String NEXT_PAGE = "nextpage";//发现评论，是否有下一页
  String COUNT = "count";//发现评论，当前拥有数据数量
     String A_ID = "a_id";//活动id
+    int NO_MORE = 2;//没有跟多数据了
 }

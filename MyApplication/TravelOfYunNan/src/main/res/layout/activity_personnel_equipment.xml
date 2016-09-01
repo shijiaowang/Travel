@@ -10,20 +10,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             style="@style/activityTravelsPlanRl"
             android:layout_marginTop="36dp">
 
             <com.example.administrator.travel.ui.view.FontsIconTextView
                 style="@style/activityTravelsPlanTv"
-                android:gravity="center_vertical"
                 android:text="@string/activity_personnel_equipment_people" />
 
             <TextView
-                style="@style/activityTravelsPlanTv"
-                android:layout_marginLeft="15dp"
+                style="@style/activityTravelsPlanDes"
                 android:text="人员计划" />
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <LinearLayout
@@ -202,20 +200,20 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="19dp" />
 
-        <LinearLayout style="@style/activityTravelsPlanRl">
+        <RelativeLayout style="@style/activityTravelsPlanRl">
 
             <com.example.administrator.travel.ui.view.FontsIconTextView
                 style="@style/activityTravelsPlanTv"
-                android:gravity="center_vertical"
                 android:text="@string/activity_personnel_equipment_equ" />
 
             <TextView
-                style="@style/activityTravelsPlanTv"
-                android:layout_marginLeft="15dp"
+                android:id="@+id/tv_equ"
+                style="@style/activityTravelsPlanDes"
                 android:text="道具租用" />
 
             <TextView
-
+                android:layout_centerVertical="true"
+               android:layout_toRightOf="@id/tv_equ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -223,7 +221,7 @@
                 android:textColor="@color/color909090"
                 android:textSize="12sp" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <Button
             android:id="@+id/bt_select_equ"
