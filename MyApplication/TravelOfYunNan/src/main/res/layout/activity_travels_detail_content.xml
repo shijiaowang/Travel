@@ -70,7 +70,7 @@
             android:layout_height="53dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="18dp"
-            android:src="@drawable/user_icon" />
+            />
 
         <include layout="@layout/activity_common_appoint_detail" />
 
@@ -81,13 +81,13 @@
         android:layout_height="27dp">
 
         <TextView
+            android:id="@+id/tv_money"
             android:layout_width="53dp"
             android:layout_height="26dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@color/Ffbf75"
             android:gravity="center"
-            android:text="¥52"
             android:textColor="@color/colorFAFAFA"
             android:textSize="12sp" />
 
@@ -113,6 +113,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
+        android:layout_marginBottom="5dp"
         android:paddingLeft="10dp">
 
     </android.support.v7.widget.RecyclerView>

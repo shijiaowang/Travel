@@ -56,7 +56,7 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
     private void reqData(int type) {
         int count = type==LOAD_MORE?mDatas.size():0;
         Map<String, String> appointMap = MapUtils.Build().addKey(getContext()).addPageSize(10).addCount(count).end();
-        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGTHER, appointMap,type,new AppointTogetherEvent());
+        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER, appointMap,type,new AppointTogetherEvent());
     }
 
     @Override

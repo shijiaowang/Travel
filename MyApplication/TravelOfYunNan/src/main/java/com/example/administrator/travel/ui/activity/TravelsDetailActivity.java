@@ -4,25 +4,40 @@ import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.ClickLike;
+import com.example.administrator.travel.bean.FindLastReply;
+import com.example.administrator.travel.bean.TravelReplyBean;
+import com.example.administrator.travel.bean.TravelsDetail;
 import com.example.administrator.travel.event.DetailCommonEvent;
-import com.example.administrator.travel.event.TravelsDetailEvent;
-import com.example.administrator.travel.event.TravelsEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.adapter.DiscussCommonAdapter;
 import com.example.administrator.travel.ui.adapter.HotSpotsItemDecoration;
 import com.example.administrator.travel.ui.adapter.TravelMemberAdapter;
 import com.example.administrator.travel.ui.adapter.TravelsAddAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
+import com.example.administrator.travel.utils.CalendarUtils;
+import com.example.administrator.travel.utils.FormatDateUtils;
+import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.ImageOptionsUtil;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.util.DensityUtil;
+import org.xutils.x;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,6 +50,17 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     private ToShowAllListView mLvDiscuss;
     private String tId;
     private XScrollView mSsvScroll;
+    private  boolean isFirstLoad=true;
+    private ImageView mIvBg;
+    private ImageView mIvIcon;
+    private TextView mTvStartAndLong;
+    private TextView mTvTime;
+    private TextView mTvDream;
+    private String haveNextPage;
+    private TextView mTvHaveNumber;
+    private TextView mTvMoney;
+    private DiscussCommonAdapter discussCommonAdapter;
+    private List<TravelReplyBean> travelReply=new ArrayList<>();
 
 
     @Override
@@ -65,6 +91,16 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
+        mLvDiscuss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Map<String, String> destinationMap = MapUtils.Build().addKey(TravelsDetailActivity.this).addFId(travelReply.get(position).getF_id()).addUserId().
+                        addContent("这只是一个测试评论而已，而已").addPId(travelReply.get(position).getId()).add(IVariable.TYPE, IVariable.TYPE_TRAVELS).
+                        addNextPage(haveNextPage).addCount(travelReply.size()).
+                        end();
+                XEventUtils.postUseCommonBackJson(IVariable.FIND_REPLY_DISCUSS, destinationMap, TYPE_DISCUSS, new DetailCommonEvent());
+            }
+        });
     }
 
     private void init() {
@@ -79,6 +115,13 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
             mRvMember = ((RecyclerView) inflate.findViewById(R.id.rv_member));
             mRvAddLine = ((RecyclerView) inflate.findViewById(R.id.rv_add_line));
             mLvDiscuss = ((ToShowAllListView) inflate.findViewById(R.id.lv_discuss));
+            mIvBg = (ImageView) inflate.findViewById(R.id.iv_bg);
+            mIvIcon = (ImageView) inflate.findViewById(R.id.iv_icon);
+            mTvStartAndLong = (TextView) inflate.findViewById(R.id.tv_start_and_long);
+            mTvTime = (TextView) inflate.findViewById(R.id.tv_time);
+            mTvDream = (TextView) inflate.findViewById(R.id.tv_dream);
+            mTvHaveNumber = (TextView) inflate.findViewById(R.id.tv_have_number);
+            mTvMoney = (TextView) inflate.findViewById(R.id.tv_money);
             mSsvScroll.setView(inflate);
         }
     }
@@ -89,20 +132,12 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     }
 
     private void requestData(int type) {
-        Map<String, String> detailMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(0).addTId(tId).addUserId().end();
+        Map<String, String> detailMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(travelReply.size()).addTId(tId).addUserId().end();
         XEventUtils.getUseCommonBackJson(IVariable.FIND_TRAVELS_DETAIL, detailMap, type, new DetailCommonEvent());
     }
 
     @Override
     protected Activity initViewData() {
-        mRvAddLine.setAdapter(new TravelsAddAdapter(this, null));
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mRvAddLine.setLayoutManager(linearLayoutManager);
-        mRvAddLine.addItemDecoration(new HotSpotsItemDecoration(18));
-        LinearLayoutManager memberLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mRvMember.setAdapter(new TravelMemberAdapter(this, null));
-        mRvMember.setLayoutManager(memberLayoutManager);
-        mRvMember.addItemDecoration(new HotSpotsItemDecoration(24));
 
         return this;
     }
@@ -141,16 +176,75 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
                 dealDestinationDetailData(event);
                 break;
             case TYPE_LIKE_DISCUSS:
-                //dealClickData(event);
+                dealClickData(event);
                 break;
             case TYPE_DISCUSS:
-                //dealReplyData(event);
+                dealReplyData(event);
                 break;
         }
     }
+    /**
+     * 评论回复
+     *
+     * @param event
+     */
+    private void dealReplyData(DetailCommonEvent event) {
+        if (haveNextPage.equals("0")){
+            //如果没有更多数据则会返回评论的数据
+            addNewData(event);
+        }
+    }
 
+    /**
+     * 添加新返回的评论数据
+     * @param event
+     */
+    private void addNewData(DetailCommonEvent event) {
+        try {
+            FindLastReply findLastReply = GsonUtils.getObject(event.getResult(), FindLastReply.class);
+            //数据强转
+            travelReply.addAll(findLastReply.getData());
+            discussCommonAdapter.notifyData(travelReply);
+        }catch (Exception e){
+            LogUtils.e("目的地详情评论返回数据时出现异常");
+            e.printStackTrace();
+        }
+    }
     private void dealDestinationDetailData(DetailCommonEvent event) {
-
+        TravelsDetail object = GsonUtils.getObject(event.getResult(), TravelsDetail.class);
+        TravelsDetail.DataBean data = object.getData();
+        haveNextPage = object.getData().getHave_next().getNextpage();
+        if (isFirstLoad){
+            isFirstLoad=false;
+            String url = data.getTravel().getTravels_img().split(",")[0];
+            x.image().bind(mIvBg, url, ImageOptionsUtil.getBySetSize(DensityUtil.getScreenWidth(), DensityUtil.dip2px(225)));
+            TravelsDetail.DataBean.TravelRoutesBean travelRoutes = data.getTravel_routes();
+            x.image().bind(mIvIcon, travelRoutes.getTravel_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(53), DensityUtil.dip2px(53)));
+            mTvDream.setText(data.getTravel().getTravel_way());
+            mTvStartAndLong.setText(travelRoutes.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(travelRoutes.getStar_time(), travelRoutes.getEnd_time()));
+            mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getStar_time() + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getEnd_time())));
+            mTvHaveNumber.setText("已有: " + travelRoutes.getCount());
+            mTvMoney.setText(travelRoutes.getTotal_price());
+            List<TravelsDetail.DataBean.TravelRoutesBean.RoutesBean> routes = travelRoutes.getRoutes();
+            mRvAddLine.setAdapter(new TravelsAddAdapter(this, routes));
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+            mRvAddLine.setLayoutManager(linearLayoutManager);
+            mRvAddLine.addItemDecoration(new HotSpotsItemDecoration(18));
+            LinearLayoutManager memberLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+            List<TravelsDetail.DataBean.TravelRoutesBean.UserBean> user = travelRoutes.getUser();
+            mRvMember.setAdapter(new TravelMemberAdapter(this, user));
+            mRvMember.setLayoutManager(memberLayoutManager);
+            mRvMember.addItemDecoration(new HotSpotsItemDecoration(24));
+        }
+        List<TravelReplyBean> travelData = data.getTravel_reply();
+        if (discussCommonAdapter == null) {
+            travelReply = travelData;
+            discussCommonAdapter = new DiscussCommonAdapter(this, travelReply, IVariable.TYPE_TRAVELS);
+            mLvDiscuss.setAdapter(discussCommonAdapter);
+        } else {
+            travelReply.addAll(travelData);
+            discussCommonAdapter.notifyData(travelReply);
+        }
     }
 
     @Override
@@ -168,5 +262,20 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     public void onLoadMore() {
         requestData(TYPE_LOAD);
     }
+    /**
+     * 点击信息
+     *
+     * @param event
+     */
+    private void dealClickData(DetailCommonEvent event) {
+        ClickLike clickLike = GsonUtils.getObject(event.getResult(), ClickLike.class);
+        if (clickLike == null) return;
+        TravelReplyBean travelReplyBean = travelReply.get(event.getClickPosition());
+        travelReplyBean.setIs_like("1");
+        travelReplyBean.setLike_count(clickLike.getData().getCount_like());
+        //// TODO: 2016/8/25 0025 将来设置单独更新一条item
+        discussCommonAdapter.notifyData(travelReply);
+    }
+
 
 }

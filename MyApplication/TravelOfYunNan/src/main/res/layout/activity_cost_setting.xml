@@ -4,54 +4,277 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        style="@style/activityTravelsPlanRl"
-        android:layout_marginTop="35dp">
-
-        <com.example.administrator.travel.ui.view.FontsIconTextView
-            style="@style/activityTravelsPlanTv"
-
-            android:text="@string/activity_personnel_equipment_people" />
-
-        <TextView
-            style="@style/activityTravelsPlanDes"
-            android:text="费用设置" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_marginLeft="53dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
 
-        <TextView
-            style="@style/activityTravelsPlanTvTime"
-            android:text="每人收费" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <EditText
-            android:layout_marginLeft="15dp"
-            style="@style/activityTravelsPlanTvTimeSelect"
-            android:layout_width="51dp"
-            android:gravity="start|center_vertical"
-            android:text="1" />
 
-        <TextView
-            style="@style/activityTravelsPlanTv"
-            android:layout_marginLeft="15dp"
-            android:text="元" />
+            <RelativeLayout
+                style="@style/activityTravelsPlanRl"
+                android:layout_marginTop="35dp">
 
-    </LinearLayout>
-    <TextView
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="15dp"
-        android:text="(此为领队佣金或先筹费用，不含用餐及其他个人消费)"
-        android:textSize="11dp"
-        android:textColor="@color/colorb5b5b5"
-        android:layout_marginLeft="53dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+                <com.example.administrator.travel.ui.view.FontsIconTextView
+                    style="@style/activityTravelsPlanTv"
+
+                    android:text="@string/activity_personnel_equipment_people" />
+
+                <TextView
+                    style="@style/activityTravelsPlanDes"
+                    android:text="费用设置" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="53dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    style="@style/activityTravelsPlanTvTime"
+                    android:text="每人收费" />
+
+                <EditText
+                    style="@style/activityTravelsPlanTvTimeSelect"
+                    android:layout_width="51dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="start|center_vertical"
+                    android:text="1" />
+
+                <TextView
+                    style="@style/activityTravelsPlanTv"
+                    android:layout_marginLeft="15dp"
+                    android:text="元" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="53dp"
+                android:layout_marginTop="14dp"
+                android:text="(此为领队佣金或先筹费用，不含用餐及其他个人消费)"
+                android:textColor="@color/colorb5b5b5"
+                android:textSize="11dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="53dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/activityTravelsPlanTvTime"
+                    android:layout_height="23dp"
+                    android:gravity="center_vertical"
+                    android:text="其他费用" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="39dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="10dp"
+                            android:text="平台服务费" />
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:layout_marginLeft="22dp"
+                            android:text="2元/日" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="39dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="10dp"
+                            android:text="个人旅游险" />
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:layout_marginLeft="22dp"
+                            android:text="2元/日" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="27dp"
+                    android:text="费用合计："
+                    android:textColor="@color/otherTitleBg"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="43dp"
+                    android:layout_marginTop="27dp"
+                    android:text="56元/人"
+                    android:textColor="@color/otherTitleBg"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="53dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/activityTravelsPlanTvTime"
+                    android:layout_height="23dp"
+                    android:gravity="center_vertical"
+                    android:text="费用详情" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/activityTravelsPlanTv"
+                        android:layout_marginLeft="39dp"
+                        android:text="费用包含" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:layout_marginLeft="37dp"
+                            android:text="【" />
+
+                        <TextView
+                            style="@style/activityCostSettingText"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="9dp"
+                            android:text="保险" />
+
+                        <TextView
+                            style="@style/activityCostSettingText"
+                            android:layout_marginLeft="20dp"
+                            android:text="全程路费" />
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:layout_marginLeft="5dp"
+                            android:text="】" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/activityTravelsPlanTv"
+                        android:layout_marginLeft="39dp"
+                        android:layout_marginTop="14dp"
+                        android:text="费用不包含" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:layout_marginLeft="37dp"
+                            android:text="【" />
+
+                        <TextView
+                            style="@style/activityCostSettingText"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="9dp"
+                            android:text="用餐" />
+
+                        <TextView
+                            style="@style/activityCostSettingText"
+                            android:layout_marginLeft="20dp"
+                            android:text="其他个人消费" />
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:layout_marginLeft="5dp"
+                            android:text="】" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/meLine" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="31dp"
+                android:text="取消条例"
+                android:textColor="@color/color969696"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+   android:id="@+id/bt_next"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/otherTitleBg"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="@color/colorFAFAFA"
+        android:textSize="15sp" />
 
 </LinearLayout>

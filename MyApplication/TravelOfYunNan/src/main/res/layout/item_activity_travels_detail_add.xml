@@ -8,10 +8,9 @@
         android:layout_width="91dp"
         android:layout_height="55dp">
         <ImageView
-            android:scaleType="fitXY"
-            android:src="@drawable/activity_travels_bg_test"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:id="@+id/iv_route_bg"
+            android:layout_width="91dp"
+            android:layout_height="55dp" />
         <View
             android:alpha="0.28"
             android:background="@android:color/black"
@@ -19,7 +18,7 @@
             android:layout_height="match_parent"/>
         <TextView
             android:layout_centerInParent="true"
-            android:text="腾冲"
+            android:id="@+id/tv_route_name"
             android:textColor="@color/colorFAFAFA"
             android:textSize="11sp"
             android:layout_width="wrap_content"
@@ -30,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.example.administrator.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_time"
+            android:id="@+id/time"
             android:text="@string/fragment_play_with_me_time"
             android:textColor="@color/otherTitleBg"
             android:textSize="15sp"
@@ -39,14 +38,14 @@
         <View
             android:background="@color/otherTitleBg"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/tv_time"
+            android:layout_toRightOf="@id/time"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
     </RelativeLayout>
     <TextView
         android:layout_marginTop="5dp"
-        android:text="Day1"
+        android:id="@+id/tv_time"
         android:textColor="@color/colorb5b5b5"
         android:textSize="12sp"
         android:layout_width="wrap_content"

@@ -17,6 +17,8 @@ import org.xutils.view.annotation.ViewInject;
 public class PersonnelEquipmentActivity extends BarBaseActivity implements View.OnClickListener {
     @ViewInject(R.id.bt_select_equ)
     private Button mTvSelectEqu;
+    @ViewInject(R.id.bt_next)
+    private Button mBtNext;
     @Override
     protected int setContentLayout() {
         return R.layout.activity_personnel_equipment;
@@ -28,6 +30,7 @@ public class PersonnelEquipmentActivity extends BarBaseActivity implements View.
         mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         mTvRightNext.setText(R.string.next);
        mTvSelectEqu.setOnClickListener(this);
+        mBtNext.setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +53,9 @@ public class PersonnelEquipmentActivity extends BarBaseActivity implements View.
         switch (v.getId()){
             case R.id.bt_select_equ:
                 startActivity(new Intent(this,ChoicePropsActivity.class));
+                break;
+            case R.id.bt_next:
+                startActivity(new Intent(this,CostSettingActivity.class));
                 break;
         }
     }

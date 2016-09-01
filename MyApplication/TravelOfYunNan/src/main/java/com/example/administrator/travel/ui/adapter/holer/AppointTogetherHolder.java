@@ -11,6 +11,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointTogether;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
+import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
@@ -18,6 +19,8 @@ import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,8 +28,6 @@ import java.util.List;
  * Created by Administrator on 2016/7/20 0020.
  */
 public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> {
-    @ViewInject(R.id.tv_icon_love)
-    private FontsIconTextView mLoveIcon;
     @ViewInject(R.id.fl_title)
     private FlowLayout mFlTitle;
     @ViewInject(R.id.iv_icon)
@@ -61,7 +62,7 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
     protected void initItemDatas(AppointTogether.DataBean datas, Context mContext) {
         mTvMoney.setText(datas.getTotal_price());
         mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStar_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
-        mLoveIcon.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
+        mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
         mTvLoveNumber.setText(datas.getCount_like());
 
         if (mFlTitle != null && mFlTitle.getChildCount() > 0) {
@@ -75,11 +76,19 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
             mFlTitle.addView(textView);
         }
         List<AppointTogether.DataBean.RoutesBean> routes = datas.getRoutes();
-        StringBuffer stringBuffer=new StringBuffer();
-        for (AppointTogether.DataBean.RoutesBean bean:routes){
-            stringBuffer.append(bean.getTitle());
-        }
-        mTvAdd.setText(stringBuffer.toString());
+        StringBuffer stringBuffer = new StringBuffer();
+         if (routes!=null && routes.size()!=0) {
+             for (AppointTogether.DataBean.RoutesBean bean : routes) {
+                 stringBuffer.append(bean.getTitle() + "-");
+             }
+             String add = stringBuffer.toString().substring(0, stringBuffer.toString().length() - 1);
+             mTvAdd.setText(add);
+         }
+        mTvHaveNumber.setText("已有: "+datas.getNow_people()+"人");
+        mTvPlanNumber.setText("计划: "+datas.getMax_people()+"人");
+        mTvStartAndTime.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStar_time(),datas.getEnd_time()));
+
+
     }
 
     @Override

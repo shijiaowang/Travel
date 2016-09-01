@@ -17,11 +17,6 @@ public class AppointTogetherAdapter extends TravelBaseAdapter<AppointTogether.Da
     }
 
     @Override
-    protected int testDataSize() {
-        return 10;
-    }
-
-    @Override
     protected void initListener(BaseHolder baseHolder, AppointTogether.DataBean item, int position) {
 
     }

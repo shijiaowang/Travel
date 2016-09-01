@@ -14,7 +14,7 @@
                 android:text="@string/fragment_play_with_me_air"
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
-                android:text="理想地：丽江"
+                android:id="@+id/tv_dream"
                 style="@style/fragmentAppointWithMeText"/>
 
         </LinearLayout>
@@ -26,9 +26,9 @@
                 android:text="@string/fragment_play_with_me_time"
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
+                android:id="@+id/tv_time"
                 android:textSize="11sp"
                 android:textColor="@color/otherTitleBg"
-                android:text="行程日期：2017-6-1至2018-5-1"
                 style="@style/fragmentAppointWithMeText"/>
 
         </LinearLayout>
@@ -41,9 +41,9 @@
                 android:text="@string/fragment_play_with_me_add"
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
+                android:id="@+id/tv_start_and_long"
                 android:textSize="12sp"
                 android:textColor="@color/color646464"
-                android:text="昆明出发 四天四夜"
                 style="@style/fragmentAppointWithMeText"/>
 
         </LinearLayout>
@@ -56,9 +56,9 @@
                 android:text="@string/fragment_play_with_me_people"
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
+                android:id="@+id/tv_have_number"
                 android:textSize="12sp"
                 android:textColor="@color/color646464"
-                android:text="已有：2人"
                 style="@style/fragmentAppointWithMeText"/>
 
         </LinearLayout>

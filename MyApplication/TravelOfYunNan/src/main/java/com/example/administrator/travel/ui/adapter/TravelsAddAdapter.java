@@ -5,11 +5,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.HotSpots;
+import com.example.administrator.travel.bean.TravelsDetail;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.FormatDateUtils;
+import com.example.administrator.travel.utils.ImageOptionsUtil;
+
+import org.xutils.common.util.DensityUtil;
+import org.xutils.x;
 
 import java.util.List;
 
@@ -19,9 +26,9 @@ import java.util.List;
  */
 public class TravelsAddAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
-    private List<HotSpots> mDatas;
+    private List<TravelsDetail.DataBean.TravelRoutesBean.RoutesBean> mDatas;
 
-    public TravelsAddAdapter(Context mContext, List<HotSpots> mDatas) {
+    public TravelsAddAdapter(Context mContext, List<TravelsDetail.DataBean.TravelRoutesBean.RoutesBean> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
     }
@@ -34,18 +41,27 @@ public class TravelsAddAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        TravelAddHolder travelAddHolder = (TravelAddHolder) holder;
+        x.image().bind(travelAddHolder.mIvRouteBg,mDatas.get(position).getLogo_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(91),DensityUtil.dip2px(55)));
+        travelAddHolder.mTvName.setText(mDatas.get(position).getTitle());
+        travelAddHolder.mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd",mDatas.get(position).getTime()));
 
     }
 
     @Override
     public int getItemCount() {
-        return 15;
+        return mDatas.size();
     }
     class TravelAddHolder extends RecyclerView.ViewHolder{
-
+        private  TextView mTvTime;
+        private  ImageView mIvRouteBg;
+        private  TextView mTvName;
 
         public TravelAddHolder(View itemView) {
             super(itemView);
+            mTvTime = (TextView) itemView.findViewById(R.id.tv_time);
+            mIvRouteBg = (ImageView) itemView.findViewById(R.id.iv_route_bg);
+            mTvName = (TextView) itemView.findViewById(R.id.tv_route_name);
         }
     }
 }
