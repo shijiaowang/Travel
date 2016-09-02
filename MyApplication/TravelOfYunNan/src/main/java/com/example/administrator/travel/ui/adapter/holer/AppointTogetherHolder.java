@@ -53,6 +53,7 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
     @ViewInject(R.id.tv_how_long)
     private TextView mTvHowLong;
     private LayoutInflater inflater;
+    public View root;
 
     public AppointTogetherHolder(Context context) {
         super(context);
@@ -64,7 +65,7 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
         mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStar_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
         mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
         mTvLoveNumber.setText(datas.getCount_like());
-
+        mTvWatchNumber.setText(datas.getBrowse());
         if (mFlTitle != null && mFlTitle.getChildCount() > 0) {
             mFlTitle.removeAllViews();
         }
@@ -94,6 +95,7 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
     @Override
     public View initRootView(Context mContext) {
         inflater = LayoutInflater.from(mContext);
-        return inflateView(R.layout.item_fragment_appoint_play_together);
+        root = inflateView(R.layout.item_fragment_appoint_play_together);
+        return root;
     }
 }

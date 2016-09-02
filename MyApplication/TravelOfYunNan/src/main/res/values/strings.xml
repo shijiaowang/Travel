@@ -110,6 +110,10 @@
     <!--路线-->
     <string name="activity_personnel_equipment_equ">俱</string>
     <!--道具-->
+    <string name="activity_des_remark_title">q</string>
+    <!--标签-->
+    <string name="activity_des_remark_des">榕</string>
+    <!--简介-->
     <string name="activity_delicious_detail_wan">炽</string>
     <!--美味-->
     <string name="activity_delicious_detail_store">厨</string>

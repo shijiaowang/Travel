@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
         <include layout="@layout/activity_common_appoint_detail"/>
         <ImageView
-            android:src="@drawable/fragment_appoint_icon_test"
+            android:id="@+id/iv_bg"
             android:layout_width="112dp"
             android:layout_height="112dp" />
         
@@ -36,11 +36,11 @@
             android:layout_width="0dp"
             android:layout_height="1dp"/>
         <TextView
+            android:id="@+id/tv_money"
             android:paddingLeft="15dp"
             android:paddingRight="10dp"
             android:textSize="11sp"
             android:textColor="@color/colorFAFAFA"
-            android:text="预算¥222220"
             android:gravity="center"
             android:background="@drawable/fragment_play_with_me_money_bg"
             android:layout_width="wrap_content"

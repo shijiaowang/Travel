@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.example.administrator.travel.ui.view.refreshview.XListView
         android:id="@+id/lv_play_with_me"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,6 +11,5 @@
         android:layout_marginRight="3dp"
         android:divider="@null"
         android:dividerHeight="5dp">
-
-    </ListView>
+    </com.example.administrator.travel.ui.view.refreshview.XListView>
 </LinearLayout>

@@ -124,4 +124,13 @@
         <item name="android:textColor">@color/color646464</item>
     </style>
 
+
+    <!--一起玩详情页-->
+    <style name="activityTogetherDetail">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">@color/colorb5b5b5</item>
+    </style>
+
 </resources>

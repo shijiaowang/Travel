@@ -15,7 +15,7 @@ public interface IVariable {
     * 约伴
     * */
     String PLAY_TOGETHER = API_KEY + "Travel/travelLists/";//一起玩
-   // String PLAY_WITHE_ME = API_KEY + "Travel/travelLists/";//带我玩
+    String PLAY_WITHE_ME = API_KEY + "Travel/travelplanLists/";//带我玩
     /**
      * User
      */

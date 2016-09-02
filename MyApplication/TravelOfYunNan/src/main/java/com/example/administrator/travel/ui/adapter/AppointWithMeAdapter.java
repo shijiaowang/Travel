@@ -11,18 +11,14 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/21 0021.
  */
-public class AppointWithMeAdapter extends TravelBaseAdapter<AppointWithMe> {
-    public AppointWithMeAdapter(Context mContext, List<AppointWithMe> mDatas) {
+public class AppointWithMeAdapter extends TravelBaseAdapter<AppointWithMe.DataBean> {
+    public AppointWithMeAdapter(Context mContext, List<AppointWithMe.DataBean> mDatas) {
         super(mContext, mDatas);
     }
 
-    @Override
-    protected int testDataSize() {
-        return 10;
-    }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, AppointWithMe item, int position) {
+    protected void initListener(BaseHolder baseHolder, AppointWithMe.DataBean item, int position) {
 
     }
 
