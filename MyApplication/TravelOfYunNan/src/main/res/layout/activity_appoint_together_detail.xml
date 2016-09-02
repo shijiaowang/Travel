@@ -4,12 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorFAFAFA"
-        android:paddingLeft="22dp"
-        android:paddingRight="10dp">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,186 +15,504 @@
             android:orientation="vertical">
 
 
-            <LinearLayout
-                android:id="@+id/ll"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:background="@color/colorFAFAFA"
+                android:paddingLeft="22dp"
+                android:paddingRight="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_user_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/user_icon" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_user_icon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/user_icon" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="9dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_user_nick_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="安阳安阳"
+                                android:textColor="@color/color646464"
+                                android:textSize="12sp" />
+
+                            <com.example.administrator.travel.ui.view.FontsIconTextView
+                                android:id="@+id/tv_sex"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_toRightOf="@id/tv_user_nick_name"
+                                android:text="@string/activity_member_detail_boy"
+                                android:textColor="@color/color97bcf0"
+                                android:textSize="13sp" />
+
+                            <TextView
+
+                                android:id="@+id/tv_day"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tv_user_nick_name"
+                                android:layout_marginTop="5dp"
+                                android:text="07-12"
+                                android:textColor="@color/colorb5b5b5"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/tv_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tv_user_nick_name"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_toRightOf="@id/tv_day"
+                                android:text="15:44"
+                                android:textColor="@color/colorb5b5b5"
+                                android:textSize="11sp" />
+
+                        </RelativeLayout>
+
+                        <com.example.administrator.travel.ui.view.FontsIconTextView
+                            style="@style/activityTogetherDetail"
+                            android:layout_marginRight="6dp"
+                            android:text="@string/activity_other_album_eye" />
+
+                        <TextView
+                            style="@style/activityTogetherDetail"
+                            android:layout_marginRight="15dp"
+                            android:text="1" />
+
+                        <com.example.administrator.travel.ui.view.FontsIconTextView
+                            style="@style/activityTogetherDetail"
+                            android:layout_marginRight="6dp"
+                            android:text="@string/activity_circle_love_empty" />
+
+                        <TextView
+                            style="@style/activityTogetherDetail"
+                            android:layout_marginRight="3dp"
+                            android:text="1" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/meLine" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="说走九州的旅行，丽江忘忧行"
+                        android:textColor="@color/color323232"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorFAFAFA" />
 
                 <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="9dp"
-                    android:layout_weight="1">
+                    android:layout_width="116dp"
+                    android:layout_height="116dp"
 
-                    <TextView
-                        android:id="@+id/tv_user_nick_name"
+                    android:layout_marginLeft="17dp"
+                    android:background="@color/colorFAFAFA">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="3dp"
+                        android:src="@drawable/icon_test1" />
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="安阳安阳"
-                        android:textColor="@color/color646464"
-                        android:textSize="12sp" />
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/trangle" />
 
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
-                        android:id="@+id/tv_sex"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_toRightOf="@id/tv_user_nick_name"
-                        android:text="@string/activity_member_detail_boy"
-                        android:textColor="@color/color97bcf0"
-                        android:textSize="13sp" />
+                        android:layout_marginLeft="147dp"
+                        android:layout_marginTop="20dp">
 
-                    <TextView
-
-                        android:id="@+id/tv_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_user_nick_name"
-                        android:layout_marginTop="5dp"
-                        android:text="07-12"
-                        android:textColor="@color/colorb5b5b5"
-                        android:textSize="11sp" />
-
-                    <TextView
-                        android:id="@+id/tv_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_user_nick_name"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_toRightOf="@id/tv_day"
-                        android:text="15:44"
-                        android:textColor="@color/colorb5b5b5"
-                        android:textSize="11sp" />
+                        <include layout="@layout/activity_my_appoint_common" />
+                    </LinearLayout>
 
                 </RelativeLayout>
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
-                    style="@style/activityTogetherDetail"
-                    android:layout_marginRight="6dp"
-                    android:text="@string/activity_other_album_eye" />
+            </RelativeLayout>
 
-                <TextView
-                    style="@style/activityTogetherDetail"
-                    android:layout_marginRight="15dp"
-                    android:text="1" />
-
-                <com.example.administrator.travel.ui.view.FontsIconTextView
-                    style="@style/activityTogetherDetail"
-                    android:layout_marginRight="6dp"
-                    android:text="@string/activity_circle_love_empty" />
-
-                <TextView
-                    style="@style/activityTogetherDetail"
-                    android:layout_marginRight="3dp"
-                    android:text="1" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/meLine" />
-            <TextView
-                android:text="说走九州的旅行，丽江忘忧行"
-                android:textColor="@color/color323232"
-                android:textSize="16sp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="6dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <View
-            android:background="@color/colorFAFAFA"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="128dp"/>
-        <RelativeLayout
-            android:background="@color/colorFAFAFA"
-            android:layout_marginLeft="17dp"
-
-            android:layout_width="116dp"
-            android:layout_height="116dp">
-            <ImageView
-                android:src="@drawable/icon_test1"
-                android:padding="3dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <ImageView
-               android:src="@drawable/trangle"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
             <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="147dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <include layout="@layout/activity_my_appoint_common"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorFAFAFA"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/meLine" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="这还是要结果回到家老客户发生较好的发生了较好的发烧级啦啦啦啦啦啦啦啦啦这还是要结果回到家老客户发生较好的发生了较好的发烧级啦啦啦啦啦啦啦啦啦"
+                    android:textColor="@color/color323232"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/meLine" />
+
+                <FrameLayout
+                    android:id="@+id/fl_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:background="@color/meLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginLeft="22dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="约伴口令:"
+                        android:textColor="@color/color323232"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="31dp"
+                        android:text="6319G"
+                        android:textColor="@color/otherTitleBg"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/meLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="22dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="交通方式:"
+                            android:textColor="@color/color323232"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="31dp"
+                            android:text="自驾"
+                            android:textColor="@color/otherTitleBg"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="\u3000\u3000备注:"
+                            android:textColor="@color/color646464"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="31dp"
+                            android:text="自驾"
+                            android:textColor="@color/color646464"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/meLine" />
+
             </LinearLayout>
 
-        </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorFAFAFA"
+                android:orientation="vertical">
 
-    </RelativeLayout>
-    <LinearLayout
-        android:background="@color/colorFAFAFA"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <View
-            android:background="@color/meLine"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:text="这还是要结果回到家老客户发生较好的发生了较好的发烧级啦啦啦啦啦啦啦啦啦这还是要结果回到家老客户发生较好的发生了较好的发烧级啦啦啦啦啦啦啦啦啦"
-            android:textColor="@color/color323232"
-            android:textSize="14sp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <View
-            android:background="@color/meLine"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-        <FrameLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:id="@+id/fl_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <View
-            android:background="@color/meLine"
-            android:layout_width="match_parent"
-            android:layout_height="6dp"/>
-        <LinearLayout
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="34dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="人员计划:"
+                        android:textColor="@color/color323232"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="31dp"
+                        android:text="2-5人"
+                        android:textColor="@color/otherTitleBg"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="19dp"
+                    android:text="已报名(2)"
+                    android:textColor="@color/color969696"
+                    android:textSize="14sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="14dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:text="报名中(2)"
+                    android:textColor="@color/color969696"
+                    android:textSize="14sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="29dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="14dp"
+                   />
+                <View
+                    android:background="@color/meLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv"
+                        android:text="行程安排"
+                        android:textColor="@color/color323232"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:text="详情图"
+                        android:textColor="@color/otherTitleBg"
+                        android:background="@drawable/activity_detail_map_bg"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="54dp"
+                        android:layout_height="20dp" />
+                    <com.example.administrator.travel.ui.view.ToShowAllListView
+                        android:layout_marginBottom="32dp"
+                        android:layout_below="@id/tv"
+                        android:layout_marginTop="35dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+                <View
+                    android:background="@color/meLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"/>
+                <TextView
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="道具提供"
+                    android:textColor="@color/color323232"
+                    android:textSize="16sp" />
+                   <com.example.administrator.travel.ui.view.ToShowAllListView
+                       android:layout_marginTop="13dp"
+                       android:layout_marginBottom="15dp"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"/>
+                <View
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/meLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+                <TextView
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="费用详情"
+                    android:textColor="@color/color323232"
+                    android:textSize="16sp" />
+                <com.example.administrator.travel.ui.view.ToShowAllListView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/meLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+                <TextView
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="注意事项"
+                    android:textColor="@color/color323232"
+                    android:textSize="16sp" />
+                <TextView
+                    android:text="请一定要注意安全注意安全注意安全注意安全注意安全注意安全请一定要注意安全注意安全注意安全注意安全注意安全注意安全"
+                    android:textColor="@color/color969696"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="8dp"
+                    android:layout_marginBottom="39dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#185cd0c2"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:text="¥200"
+            android:textColor="@color/otherFf7f6c"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_enter"
+            android:layout_width="74dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="#4a5cd0c2"
+            android:gravity="center"
+            android:text="报名"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="105dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/tv_enter"
+            android:background="#305cd0c2"
+            android:gravity="center"
+            android:text="联系发布人"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="15sp" />
+    </RelativeLayout>
 </LinearLayout>
