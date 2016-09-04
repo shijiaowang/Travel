@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Line;
 import com.example.administrator.travel.ui.adapter.LinePlanAdapter;
-import com.example.administrator.travel.utils.FontsIconUtil;
+
 
 import org.xutils.view.annotation.ViewInject;
 

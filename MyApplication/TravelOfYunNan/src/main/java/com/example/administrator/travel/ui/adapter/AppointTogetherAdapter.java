@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.example.administrator.travel.bean.AppointTogether;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.AppointTogetherDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.AppointTogetherHolder;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
@@ -20,12 +21,14 @@ public class AppointTogetherAdapter extends TravelBaseAdapter<AppointTogether.Da
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, AppointTogether.DataBean item, int position) {
+    protected void initListener(BaseHolder baseHolder, final AppointTogether.DataBean item, final int position) {
         AppointTogetherHolder appointTogetherHolder = (AppointTogetherHolder) baseHolder;
         appointTogetherHolder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, AppointTogetherDetailActivity.class));
+                Intent intent = new Intent(mContext, AppointTogetherDetailActivity.class);
+                intent.putExtra(IVariable.T_ID,item.getId());
+                mContext.startActivity(intent);
             }
         });
     }
