@@ -151,7 +151,9 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
      */
     private void firstLoad(PostDetail.DataBean.ForumBean forum, List<PostDetail.DataBean.ForumReplyBean> forumReply) {
         postDatas.add(forum);
-        postDatas.addAll(forumReply);
+        if (forumReply!=null) {//有时候没有评论
+            postDatas.addAll(forumReply);
+        }
         postAdapter = new PostAdapter(this, postDatas);
         mLvPostDetail.setAdapter(postAdapter);
     }

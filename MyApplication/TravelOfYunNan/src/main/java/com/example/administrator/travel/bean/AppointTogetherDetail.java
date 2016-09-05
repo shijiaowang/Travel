@@ -1,5 +1,6 @@
 package com.example.administrator.travel.bean;
 
+
 import java.util.List;
 
 /**
@@ -7,11 +8,10 @@ import java.util.List;
  */
 public class AppointTogetherDetail {
 
-
     /**
      * code : 1
      * message : 加载成功
-     * data : {"id":"4","user_id":"10000","title":"123123","content":"wqeqweqweq","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","star_time":"1472140800","end_time":"1472400000","traffic":"火车","traffic_text":"哦请问恶趣味额·","car_type":"","min_people":"2","max_people":"5","sex_condition":"2","bind_condition":"3","agree":"1","price":"111.00","total_price":"471.00","label":"实名达人,美食,徒步","meet_address":"大苏打","over_address":"发送多个地方","add_time":"1472436752","status":"1","state":"1","management":"10000","browse":"0","id_code":"","into_people":[{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"},{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"}],"now_people":2,"ing_people":"","count_like":"0","is_like":"0","routes":[{"time":"1472140800","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"},{"time":"1472140800","id":"2","title":"测试1","content":"测试","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"贵州省","city":"曲靖","address":"21312阿斯大声大气"},{"time":"1472227200","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"}],"prop":[{"id":"3","name":"加长超级摄像头","content":"","number":"2"}],"pricebasec":[{"id":"1","key":"平台服务费","value":"20","type":"1","time":"1469586077","status":"1"},{"id":"2","key":"个人旅游险","value":"100","type":"1","time":"1472024625","status":"1"}]}
+     * data : {"id":"4","user_id":"10000","title":"123123","content":"wqeqweqweq","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","star_time":"1472140800","end_time":"1472400000","traffic":"火车","traffic_text":"哦请问恶趣味额·","car_type":"","min_people":"2","max_people":"5","sex_condition":"2","bind_condition":"3","agree":"1","price":"111.00","total_price":"471.00","label":"实名达人,美食,徒步","meet_address":"大苏打","over_address":"发送多个地方","add_time":"1472436752","status":"1","state":"1","management":"10000","browse":"0","id_code":"","user_name":"yuns客服","user_img":"http://192.168.1.38/Uploads/0.png","sex":"1","into_people":[{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"},{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"}],"now_people":2,"ing_people":[],"count_like":"0","is_like":"0","routes_title":"牛逼山-测试1-牛逼山","routes":[{"time":"1472140800","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"},{"time":"1472140800","id":"2","title":"测试1","content":"测试","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"贵州省","city":"曲靖","address":"21312阿斯大声大气"},{"time":"1472227200","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"}],"prop":[{"id":"3","name":"加长超级摄像头","content":"","number":"2"}],"pricebasec":[{"id":"1","key":"平台服务费","value":"20","type":"1","time":"1469586077","status":"1"},{"id":"2","key":"个人旅游险","value":"100","type":"1","time":"1472024625","status":"1"}]}
      */
 
     private int code;
@@ -43,11 +43,15 @@ public class AppointTogetherDetail {
      * management : 10000
      * browse : 0
      * id_code :
+     * user_name : yuns客服
+     * user_img : http://192.168.1.38/Uploads/0.png
+     * sex : 1
      * into_people : [{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"},{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"}]
      * now_people : 2
-     * ing_people :
+     * ing_people : []
      * count_like : 0
      * is_like : 0
+     * routes_title : 牛逼山-测试1-牛逼山
      * routes : [{"time":"1472140800","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"},{"time":"1472140800","id":"2","title":"测试1","content":"测试","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"贵州省","city":"曲靖","address":"21312阿斯大声大气"},{"time":"1472227200","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"}]
      * prop : [{"id":"3","name":"加长超级摄像头","content":"","number":"2"}]
      * pricebasec : [{"id":"1","key":"平台服务费","value":"20","type":"1","time":"1469586077","status":"1"},{"id":"2","key":"个人旅游险","value":"100","type":"1","time":"1472024625","status":"1"}]
@@ -106,10 +110,13 @@ public class AppointTogetherDetail {
         private String management;
         private String browse;
         private String id_code;
+        private String user_name;
+        private String user_img;
+        private String sex;
         private int now_people;
-        private String ing_people;
         private String count_like;
         private String is_like;
+        private String routes_title;
         /**
          * id : 10000
          * user_img : http://192.168.1.38/Uploads/0.png
@@ -117,6 +124,7 @@ public class AppointTogetherDetail {
          */
 
         private List<IntoPeopleBean> into_people;
+        private List<?> ing_people;
         /**
          * time : 1472140800
          * id : 1
@@ -356,20 +364,36 @@ public class AppointTogetherDetail {
             this.id_code = id_code;
         }
 
+        public String getUser_name() {
+            return user_name;
+        }
+
+        public void setUser_name(String user_name) {
+            this.user_name = user_name;
+        }
+
+        public String getUser_img() {
+            return user_img;
+        }
+
+        public void setUser_img(String user_img) {
+            this.user_img = user_img;
+        }
+
+        public String getSex() {
+            return sex;
+        }
+
+        public void setSex(String sex) {
+            this.sex = sex;
+        }
+
         public int getNow_people() {
             return now_people;
         }
 
         public void setNow_people(int now_people) {
             this.now_people = now_people;
-        }
-
-        public String getIng_people() {
-            return ing_people;
-        }
-
-        public void setIng_people(String ing_people) {
-            this.ing_people = ing_people;
         }
 
         public String getCount_like() {
@@ -388,12 +412,28 @@ public class AppointTogetherDetail {
             this.is_like = is_like;
         }
 
+        public String getRoutes_title() {
+            return routes_title;
+        }
+
+        public void setRoutes_title(String routes_title) {
+            this.routes_title = routes_title;
+        }
+
         public List<IntoPeopleBean> getInto_people() {
             return into_people;
         }
 
         public void setInto_people(List<IntoPeopleBean> into_people) {
             this.into_people = into_people;
+        }
+
+        public List<?> getIng_people() {
+            return ing_people;
+        }
+
+        public void setIng_people(List<?> ing_people) {
+            this.ing_people = ing_people;
         }
 
         public List<RoutesBean> getRoutes() {

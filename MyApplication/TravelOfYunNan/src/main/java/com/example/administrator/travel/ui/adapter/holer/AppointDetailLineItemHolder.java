@@ -5,13 +5,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.AppointTogetherDetail;
 
 import org.xutils.view.annotation.ViewInject;
 
 /**
  * Created by Administrator on 2016/9/5 0005.
  */
-public class AppointDetailLineItemHolder extends BaseHolder<String> {
+public class AppointDetailLineItemHolder extends BaseHolder<AppointTogetherDetail.DataBean.RoutesBean> {
     @ViewInject(R.id.tv_spot_name)
     private TextView mTvSpotName;
     public AppointDetailLineItemHolder(Context context) {
@@ -19,8 +20,8 @@ public class AppointDetailLineItemHolder extends BaseHolder<String> {
     }
 
     @Override
-    protected void initItemDatas(String datas, Context mContext, int position) {
-        mTvSpotName.setText(datas);
+    protected void initItemDatas(AppointTogetherDetail.DataBean.RoutesBean datas, Context mContext, int position) {
+        mTvSpotName.setText(datas.getTitle());
     }
 
     @Override

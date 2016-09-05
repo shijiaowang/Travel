@@ -15,8 +15,9 @@
             android:text="@string/fragment_play_with_me_air" />
 
         <TextView
+            android:id="@+id/tv_line"
             style="@style/fragmentAppointWithMeText"
-            android:text="昆明-丽江-香格里拉" />
+           />
 
     </LinearLayout>
 
@@ -32,8 +33,8 @@
             android:textColor="@color/otherTitleBg" />
 
         <TextView
+            android:id="@+id/tv_day_and_night"
             style="@style/fragmentAppointWithMeText"
-            android:text="行程日期：2017-6-1至2018-5-1"
             android:textColor="@color/otherTitleBg"
             android:textSize="10sp" />
 
@@ -51,7 +52,7 @@
 
         <TextView
             style="@style/fragmentAppointWithMeText"
-            android:text="昆明出发 四天四夜"
+           android:id="@+id/tv_start_and_long"
             android:textColor="@color/color646464"
             android:textSize="12sp" />
 
@@ -69,13 +70,13 @@
 
         <TextView
             style="@style/fragmentAppointWithMeText"
-            android:text="计划：5人"
+            android:id="@+id/tv_plan_number"
             android:textColor="@color/color646464"
             android:textSize="12sp" />
         <TextView
             android:layout_marginLeft="19dp"
             style="@style/fragmentAppointWithMeText"
-            android:text="已有：2人"
+            android:id="@+id/tv_have_number"
             android:textColor="@color/color646464"
             android:textSize="12sp" />
 

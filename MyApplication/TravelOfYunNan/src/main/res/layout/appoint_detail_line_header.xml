@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_marginTop="35dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="50dp"
+
+            android:background="@drawable/activity_line_plan_add"
+            android:gravity="center"
+            android:text="集合地"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="13sp" />
+        <TextView
+            android:id="@+id/tv_start_add"
+            android:textColor="@color/color323232"
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <com.example.administrator.travel.ui.view.DottedLineView
+        android:layout_width="1dp"
+        android:layout_marginLeft="82dp"
+        android:layout_height="27dp" />
+
+
+</LinearLayout>

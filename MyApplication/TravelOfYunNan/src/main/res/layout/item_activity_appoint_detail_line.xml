@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="14dp"
         android:text="7月1日"
         android:textColor="@color/color646464"
         android:textSize="12sp" />
@@ -26,7 +26,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="7dp"
             android:background="@drawable/activity_line_plan_day_number_bg"
             android:gravity="center"
             android:orientation="vertical">
@@ -48,16 +48,14 @@
         </LinearLayout>
 
         <com.example.administrator.travel.ui.view.ToShowAllListView
+            android:paddingBottom="25dp"
             android:id="@+id/lv_line"
             android:layout_marginTop="22dp"
-            android:layout_marginBottom="25dp"
             android:layout_marginLeft="40dp"
             style="@style/commonListViewStyle"
-            android:dividerHeight="25dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"/>
 
-        </com.example.administrator.travel.ui.view.ToShowAllListView>
 
     </LinearLayout>
 
@@ -69,7 +67,7 @@
         <com.example.administrator.travel.ui.view.DottedLineView
             android:id="@+id/iv_top_line"
             android:layout_width="1dp"
-            android:layout_height="31dp"
+            android:layout_height="13dp"
             android:layout_marginLeft="9dp" />
 
         <ImageView
@@ -80,7 +78,7 @@
         <com.example.administrator.travel.ui.view.DottedLineView
             android:id="@+id/dlv_line"
             android:layout_width="1dp"
-            android:layout_height="28dp"
+            android:layout_height="53dp"
             android:layout_marginLeft="9dp" />
 
     </LinearLayout>

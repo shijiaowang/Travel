@@ -14,8 +14,11 @@ import java.util.List;
  */
 public class TravelDetailLineAdapter extends TravelBaseAdapter<List<AppointTogetherDetail.DataBean.RoutesBean>> {
 
-    public TravelDetailLineAdapter(Context mContext, List<List<AppointTogetherDetail.DataBean.RoutesBean>> mDatas) {
+    private boolean isDetail;
+
+    public TravelDetailLineAdapter(Context mContext, List<List<AppointTogetherDetail.DataBean.RoutesBean>> mDatas, boolean isDetail) {
         super(mContext, mDatas);
+        this.isDetail = isDetail;
     }
 
     @Override
@@ -25,6 +28,6 @@ public class TravelDetailLineAdapter extends TravelBaseAdapter<List<AppointToget
 
     @Override
     protected BaseHolder initHolder(int position) {
-        return new TravelDetailLineHolder(mContext);
+        return new TravelDetailLineHolder(mContext,isDetail);
     }
 }

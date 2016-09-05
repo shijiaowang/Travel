@@ -6,14 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointTogetherDetail;
+import com.example.administrator.travel.ui.adapter.AppointDetailLineDetailAdapter;
 import com.example.administrator.travel.ui.adapter.AppointDetailLineItemAdapter;
 import com.example.administrator.travel.ui.view.DottedLineView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 
+import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -31,26 +35,79 @@ public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetai
     private TextView mTvNumber;
     @ViewInject(R.id.lv_line)
     private ToShowAllListView mLvLine;
-    public TravelDetailLineHolder(Context context) {
+
+    private boolean isDetail;
+
+    public TravelDetailLineHolder(Context context, boolean isDetail) {
         super(context);
+        this.isDetail = isDetail;
+    }
+    /**
+     * 测量listview的高度
+     *
+     * @param mListView
+     * @return
+     */
+    protected int measureHeight(ListView mListView) {
+        // get ListView adapter
+        ListAdapter adapter = mListView.getAdapter();
+        if (null == adapter) {
+            return 0;
+        }
+
+        int totalHeight = 0;
+
+        for (int i = 0, len = adapter.getCount(); i < len; i++) {
+            View item = adapter.getView(i, null, mListView);
+            if (null == item) continue;
+            // measure each item width and height
+            item.measure(0, 0);
+            // calculate all height
+            totalHeight += item.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = mListView.getLayoutParams();
+
+        if (null == params) {
+            params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+        // calculate ListView height
+        params.height = totalHeight + (mListView.getDividerHeight() * (adapter.getCount() - 1));
+
+        mListView.setLayoutParams(params);
+
+        return params.height;
     }
 
     @Override
     protected void initItemDatas(List<AppointTogetherDetail.DataBean.RoutesBean> datas, final Context mContext, int position) {
         mTvTime.setText(datas.get(0).getTime());
         mTvNumber.setText((position + 1) + "");
-        List<String> list=new ArrayList<>();
-        for (AppointTogetherDetail.DataBean.RoutesBean routesBean:datas){
-            list.add(routesBean.getTitle());
+        if (!isDetail) {
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)mLvLine.getLayoutParams();
+            layoutParams.leftMargin= DensityUtil.dip2px(40);
+            layoutParams.topMargin= DensityUtil.dip2px(22);
+            mLvLine.setAdapter(new AppointDetailLineItemAdapter(mContext, datas));
+
+        }else {
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)mLvLine.getLayoutParams();
+            layoutParams.leftMargin= DensityUtil.dip2px(65);
+            layoutParams.topMargin= DensityUtil.dip2px(13);
+            mLvLine.setAdapter(new AppointDetailLineDetailAdapter(mContext, datas));
         }
-        mLvLine.setAdapter(new AppointDetailLineItemAdapter(mContext,list));
+        measureHeight(mLvLine);
+        setLineHeight();
+    }
+
+    private void setLineHeight() {
         mLvLine.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 mLvLine.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 int height = mLvLine.getHeight();
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mDlvLine.getLayoutParams();
-                layoutParams.height = layoutParams.height+height;
+                layoutParams.height = DensityUtil.dip2px(53) + height;
                 mDlvLine.setLayoutParams(layoutParams);
             }
         });

@@ -229,12 +229,12 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
             mRvAddLine.setAdapter(new TravelsAddAdapter(this, routes));
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
             mRvAddLine.setLayoutManager(linearLayoutManager);
-            mRvAddLine.addItemDecoration(new HotSpotsItemDecoration(18));
+            mRvAddLine.addItemDecoration(new HotSpotsItemDecoration(DensityUtil.dip2px(9)));
             LinearLayoutManager memberLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
             List<TravelsDetail.DataBean.TravelRoutesBean.UserBean> user = travelRoutes.getUser();
             mRvMember.setAdapter(new TravelMemberAdapter(this, user));
             mRvMember.setLayoutManager(memberLayoutManager);
-            mRvMember.addItemDecoration(new HotSpotsItemDecoration(24));
+            mRvMember.addItemDecoration(new HotSpotsItemDecoration(DensityUtil.dip2px(12)));
         }
         List<TravelReplyBean> travelData = data.getTravel_reply();
         if (discussCommonAdapter == null) {
