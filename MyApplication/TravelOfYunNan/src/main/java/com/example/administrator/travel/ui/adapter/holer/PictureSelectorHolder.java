@@ -9,8 +9,6 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 
-import org.xutils.common.util.DensityUtil;
-import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -36,7 +34,7 @@ public class PictureSelectorHolder extends BaseHolder<String> {
     }
 
     @Override
-    protected void initItemDatas(String datas, Context mContext) {
+    protected void initItemDatas(String datas, Context mContext, int position) {
         mImage.setBackgroundColor(Color.TRANSPARENT);
         mTvSelect.setTextColor(mContext.getResources().getColor(R.color.colorFAFAFA));
         x.image().bind(mIvPicture, dir + File.separator + datas, getImageOptions(100,100));

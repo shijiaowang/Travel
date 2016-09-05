@@ -10,10 +10,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Line;
 import com.example.administrator.travel.ui.view.DottedLineView;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
-import com.example.administrator.travel.utils.FontsIconUtil;
-import com.example.administrator.travel.utils.LogUtils;
 
-import org.w3c.dom.Text;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
@@ -39,7 +36,7 @@ public class LinePlanHolder extends BaseHolder<Line> {
     }
 
     @Override
-    protected void initItemDatas(Line datas, Context mContext) {
+    protected void initItemDatas(Line datas, Context mContext, int position) {
         mTvNumber.setText(datas.getDayNumber());
         mTvTime.setText(datas.getDayTime());
         List<String> add = datas.getAdd();

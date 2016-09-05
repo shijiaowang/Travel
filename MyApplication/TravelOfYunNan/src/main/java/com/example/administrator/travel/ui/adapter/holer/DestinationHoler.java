@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Destination;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -32,7 +31,7 @@ public class DestinationHoler extends BaseHolder<Destination.DataBean.BodyBean> 
     }
 
     @Override
-    protected void initItemDatas(Destination.DataBean.BodyBean datas, Context mContext) {
+    protected void initItemDatas(Destination.DataBean.BodyBean datas, Context mContext, int position) {
         x.image().bind(mIvSpot, datas.getLogo_img(), getImageOptions(115, 80));
         mTvName.setText(datas.getTitle());
         mTvAdd.setText(datas.getAddress());

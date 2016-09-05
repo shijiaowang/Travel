@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.PostDetail;
-import com.example.administrator.travel.bean.PostReply;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
 import org.xutils.view.annotation.ViewInject;
@@ -37,7 +36,7 @@ public class PostReplyTextHolder extends BaseHolder<Object> {
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext) {
+    protected void initItemDatas(Object datas, Context mContext, int position) {
         if (datas instanceof PostDetail.DataBean.ForumReplyBean) {
             PostDetail.DataBean.ForumReplyBean forumReplyBean = (PostDetail.DataBean.ForumReplyBean) datas;
             mTvReplyNickName.setText(forumReplyBean.getNick_name());

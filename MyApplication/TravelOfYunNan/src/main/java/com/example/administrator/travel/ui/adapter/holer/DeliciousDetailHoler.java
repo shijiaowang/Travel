@@ -21,7 +21,7 @@ public class DeliciousDetailHoler extends BaseHolder<DeliciousDetail> {
     }
 
     @Override
-    protected void initItemDatas(DeliciousDetail datas, Context mContext) {
+    protected void initItemDatas(DeliciousDetail datas, Context mContext, int position) {
 
     }
 

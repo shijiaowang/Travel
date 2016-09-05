@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.DestinationDetail;
-import com.example.administrator.travel.bean.PostDetail;
 import com.example.administrator.travel.bean.TravelReplyBean;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FormatDateUtils;
@@ -53,7 +51,7 @@ public class DestinationDetailReplyUserHolder extends BaseHolder<TravelReplyBean
     }
 
     @Override
-    protected void initItemDatas(TravelReplyBean datas, Context mContext) {
+    protected void initItemDatas(TravelReplyBean datas, Context mContext, int position) {
         mTvReplyNickName.setText(datas.getNick_name());
         mTvReplyMessage.setText(datas.getContent());
         mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", datas.getReply_time()));

@@ -15,7 +15,7 @@ public class EditAlbumNormalHolder extends BaseHolder<EditAlbum>{
     }
 
     @Override
-    protected void initItemDatas(EditAlbum datas, Context mContext) {
+    protected void initItemDatas(EditAlbum datas, Context mContext, int position) {
 
     }
 

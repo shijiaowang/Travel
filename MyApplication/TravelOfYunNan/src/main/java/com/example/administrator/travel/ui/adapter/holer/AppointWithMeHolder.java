@@ -11,7 +11,6 @@ import com.example.administrator.travel.bean.AppointWithMe;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
 import org.xutils.common.util.DensityUtil;
@@ -49,7 +48,7 @@ public class AppointWithMeHolder extends BaseHolder<AppointWithMe.DataBean> {
     }
 
     @Override
-    protected void initItemDatas(AppointWithMe.DataBean datas, Context mContext) {
+    protected void initItemDatas(AppointWithMe.DataBean datas, Context mContext, int position) {
         mTvDream.setText("理想地:"+datas.getRoutes());
         mTvHaveNumber.setText("已有:"+datas.getNow_people()+"人");
         mTvMoney.setText("预算：¥"+datas.getTotal_price());

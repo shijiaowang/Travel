@@ -2,9 +2,6 @@ package com.example.administrator.travel.ui.adapter.holer;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.CircleHot;
@@ -18,7 +15,7 @@ public class CircleHotHolder extends BaseHolder<CircleHot> {
     }
 
     @Override
-    protected void initItemDatas(CircleHot circleHot, Context mContext) {
+    protected void initItemDatas(CircleHot circleHot, Context mContext, int position) {
 
     }
 

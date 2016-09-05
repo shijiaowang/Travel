@@ -15,7 +15,7 @@ public class DynamicHoler extends BaseHolder<Dynamic> {
     }
 
     @Override
-    protected void initItemDatas(Dynamic datas, Context mContext) {
+    protected void initItemDatas(Dynamic datas, Context mContext, int position) {
 
     }
 

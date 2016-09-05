@@ -7,10 +7,8 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Travels;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
-import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -35,7 +33,7 @@ public class ActivityTravelsHolder extends BaseHolder<Travels.DataBean> {
     }
 
     @Override
-    protected void initItemDatas(Travels.DataBean datas, Context mContext) {
+    protected void initItemDatas(Travels.DataBean datas, Context mContext, int position) {
         x.image().bind(mIvPicture,datas.getTitle_img(),getImageOptions(340,165));
         mTvNickName.setText(datas.getAuthor());
         x.image().bind(mIvUserIcon, datas.getLogo_img(), getUserImageOptions(44, 44));

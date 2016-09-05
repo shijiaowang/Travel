@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -21,7 +20,7 @@ public class CollectionDetailHolder extends BaseHolder {
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext) {
+    protected void initItemDatas(Object datas, Context mContext, int position) {
 
     }
 

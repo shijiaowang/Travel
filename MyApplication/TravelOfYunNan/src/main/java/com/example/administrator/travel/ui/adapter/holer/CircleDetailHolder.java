@@ -11,7 +11,6 @@ import com.example.administrator.travel.bean.CircleDetail;
 import com.example.administrator.travel.ui.adapter.CircleDetailPhotoAdapter;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.StringUtils;
 
@@ -52,7 +51,7 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
     }
 
     @Override
-    protected void initItemDatas(CircleDetail.DataBean.BodyBean datas, Context mContext) {
+    protected void initItemDatas(CircleDetail.DataBean.BodyBean datas, Context mContext, int position) {
         if (datas == null) {
             return;
         }

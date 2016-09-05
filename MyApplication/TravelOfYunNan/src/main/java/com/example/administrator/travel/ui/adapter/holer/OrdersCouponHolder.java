@@ -24,7 +24,7 @@ public class OrdersCouponHolder extends BaseHolder {
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext) {
+    protected void initItemDatas(Object datas, Context mContext, int position) {
         /**
          * 优惠券页面没有line2，确认订单页面没有line1
          */

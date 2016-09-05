@@ -15,7 +15,7 @@ public class AlbumHolder extends BaseHolder<Album>{
     }
 
     @Override
-    protected void initItemDatas(Album datas, Context mContext) {
+    protected void initItemDatas(Album datas, Context mContext, int position) {
 
     }
 

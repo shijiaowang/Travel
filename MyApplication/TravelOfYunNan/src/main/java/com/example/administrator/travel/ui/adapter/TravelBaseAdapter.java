@@ -70,7 +70,7 @@ abstract class TravelBaseAdapter<T> extends BaseAdapter{
             baseHolder= (BaseHolder) convertView.getTag();
         }
         if (mDatas!=null && baseHolder!=null) {
-            baseHolder.setDatas(getItem(position));
+            baseHolder.setDatas(getItem(position),position);
             initListener(baseHolder, getItem(position),position);
         }else {
             initListener(baseHolder, null, position);//暂时传，没有数据

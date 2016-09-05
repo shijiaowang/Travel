@@ -3,11 +3,9 @@ package com.example.administrator.travel.ui.adapter.holer;
 import android.content.Context;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.MyAppoint;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -26,7 +24,7 @@ public class MyAppointSuccessHolder extends BaseHolder<MyAppoint> {
     }
 
     @Override
-    protected void initItemDatas(MyAppoint datas, Context mContext) {
+    protected void initItemDatas(MyAppoint datas, Context mContext, int position) {
 
     }
 

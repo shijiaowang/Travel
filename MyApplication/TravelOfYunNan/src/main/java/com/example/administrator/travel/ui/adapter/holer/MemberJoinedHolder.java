@@ -2,11 +2,9 @@ package com.example.administrator.travel.ui.adapter.holer;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -23,7 +21,7 @@ public class MemberJoinedHolder extends BaseHolder {
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext) {
+    protected void initItemDatas(Object datas, Context mContext, int position) {
 
     }
 

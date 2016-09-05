@@ -15,7 +15,7 @@ public class FindRecommendHolder extends BaseHolder<FindRecommend> {
     }
 
     @Override
-    protected void initItemDatas(FindRecommend datas, Context mContext) {
+    protected void initItemDatas(FindRecommend datas, Context mContext, int position) {
 
     }
 

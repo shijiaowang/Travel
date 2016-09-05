@@ -1,0 +1,33 @@
+<application>
+  <component name="SexyEditor">
+    <option name="configs">
+      <list>
+        <BackgroundConfiguration>
+          <option name="fileNames">
+            <array>
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\115049-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\196029-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\20741-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\218250-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\219889-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\228039-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\282166-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\320488-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\332924-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\335677-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\46453-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\51121-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\71900-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\71929-106.jpg" />
+            </array>
+          </option>
+          <option name="position" value="4" />
+          <option name="positionOffset" value="0" />
+          <option name="shrinkValue" value="11" />
+          <option name="slideshow" value="true" />
+          <option name="slideshowPause" value="30000" />
+        </BackgroundConfiguration>
+      </list>
+    </option>
+  </component>
+</application>

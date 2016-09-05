@@ -4,9 +4,6 @@ import android.content.Context;
 import android.view.View;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.view.FontsIconTextView;
-
-import org.xutils.view.annotation.ViewInject;
 
 /**
  * Created by android on 2016/7/31.
@@ -19,7 +16,7 @@ public class CreatePostPhotoLastHolder extends BaseHolder {
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext) {
+    protected void initItemDatas(Object datas, Context mContext, int position) {
 
     }
 

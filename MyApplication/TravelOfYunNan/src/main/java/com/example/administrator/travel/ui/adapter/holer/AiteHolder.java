@@ -24,7 +24,7 @@ public class AiteHolder extends BaseHolder<AiteFollow> {
     }
 
     @Override
-    protected void initItemDatas(AiteFollow datas, Context mContext) {
+    protected void initItemDatas(AiteFollow datas, Context mContext, int position) {
         mTvNickName.setText(datas.getNikeName());
         if (datas.isChecked()){
             mTvAite.setTextColor(Color.parseColor("#ffbf75"));

@@ -14,7 +14,7 @@ public class SearchUserHolder extends BaseHolder {
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext) {
+    protected void initItemDatas(Object datas, Context mContext, int position) {
 
     }
 

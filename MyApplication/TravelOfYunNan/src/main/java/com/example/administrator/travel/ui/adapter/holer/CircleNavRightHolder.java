@@ -1,7 +1,6 @@
 package com.example.administrator.travel.ui.adapter.holer;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -10,14 +9,10 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.CircleNavRight;
 import com.example.administrator.travel.utils.ImageOptionsUtil;
-import com.example.administrator.travel.utils.LogUtils;
 
-import org.xutils.common.Callback;
 import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Administrator on 2016/7/8 0008.
@@ -44,7 +39,7 @@ public class CircleNavRightHolder extends BaseHolder<CircleNavRight.RightCircle>
     }
 
     @Override
-    protected void initItemDatas(CircleNavRight.RightCircle datas, Context mContext) {
+    protected void initItemDatas(CircleNavRight.RightCircle datas, Context mContext, int position) {
         if (datas != null){
             mTvFollowNumber.setText(datas.getCount_follow());
             mTvPostNumber.setText(datas.getCount_forum());

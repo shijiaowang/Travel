@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.utils.ImageOptionsUtil;
 
 import org.xutils.common.util.DensityUtil;
 import org.xutils.image.ImageOptions;
@@ -24,7 +23,7 @@ public class PostImageHolder extends BaseHolder<String> {
     }
 
     @Override
-    protected void initItemDatas(String datas, Context mContext) {
+    protected void initItemDatas(String datas, Context mContext, int position) {
         x.image().bind(mIvPicture,datas,imageOptions);
     }
 

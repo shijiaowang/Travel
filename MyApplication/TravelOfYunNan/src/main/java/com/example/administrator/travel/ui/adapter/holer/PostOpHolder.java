@@ -2,12 +2,10 @@ package com.example.administrator.travel.ui.adapter.holer;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.Fan;
 import com.example.administrator.travel.bean.PostDetail;
 import com.example.administrator.travel.ui.adapter.PostImageAdapter;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
@@ -50,7 +48,7 @@ public class PostOpHolder extends BaseHolder<Object> {
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext) {
+    protected void initItemDatas(Object datas, Context mContext, int position) {
         if (datas instanceof PostDetail.DataBean.ForumBean){
             forum = (PostDetail.DataBean.ForumBean) datas;
         }else {

@@ -23,7 +23,7 @@ public class CircleDetailPhotoHolder extends BaseHolder<String> {
     }
 
     @Override
-    protected void initItemDatas(String datas, Context mContext) {
+    protected void initItemDatas(String datas, Context mContext, int position) {
         x.image().bind(mImage, datas, imageOptions);
     }
 

@@ -15,7 +15,7 @@ public class MessagePrivateHolder extends BaseHolder<SystemPrivate> {
     }
 
     @Override
-    protected void initItemDatas(SystemPrivate datas, Context mContext) {
+    protected void initItemDatas(SystemPrivate datas, Context mContext, int position) {
 
     }
 

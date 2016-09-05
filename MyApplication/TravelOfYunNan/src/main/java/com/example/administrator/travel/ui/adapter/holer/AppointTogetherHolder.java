@@ -12,15 +12,12 @@ import com.example.administrator.travel.bean.AppointTogether;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
 import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -60,7 +57,7 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
     }
 
     @Override
-    protected void initItemDatas(AppointTogether.DataBean datas, Context mContext) {
+    protected void initItemDatas(AppointTogether.DataBean datas, Context mContext, int position) {
         mTvMoney.setText(datas.getTotal_price());
         mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStar_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
         mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));

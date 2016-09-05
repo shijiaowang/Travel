@@ -4,15 +4,12 @@ import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.PostDetail;
-import com.example.administrator.travel.bean.PostReply;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.StringUtils;
 
@@ -54,7 +51,7 @@ public class PostReplyUserHolder extends BaseHolder<Object> {
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext) {
+    protected void initItemDatas(Object datas, Context mContext, int position) {
         if (datas instanceof PostDetail.DataBean.ForumReplyBean){
             PostDetail.DataBean.ForumReplyBean forumReplyBean = (PostDetail.DataBean.ForumReplyBean) datas;
             mTvReplyNickName.setText(forumReplyBean.getNick_name());

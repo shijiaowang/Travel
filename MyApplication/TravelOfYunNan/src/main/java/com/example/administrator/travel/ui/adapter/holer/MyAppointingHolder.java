@@ -2,11 +2,9 @@ package com.example.administrator.travel.ui.adapter.holer;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.MyAppoint;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 /**
  * Created by Administrator on 2016/8/2 0002.
@@ -18,7 +16,7 @@ public class MyAppointingHolder extends BaseHolder<MyAppoint> {
     }
 
     @Override
-    protected void initItemDatas(MyAppoint datas, Context mContext) {
+    protected void initItemDatas(MyAppoint datas, Context mContext, int position) {
 
     }
 

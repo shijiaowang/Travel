@@ -21,7 +21,7 @@ public class CreatePostPhotoHolder extends BaseHolder<String> {
     }
 
     @Override
-    protected void initItemDatas(String datas, Context mContext) {
+    protected void initItemDatas(String datas, Context mContext, int position) {
         x.image().bind(mIvPicture,datas,getImageOptions(DensityUtil.dip2px(80),DensityUtil.dip2px(80)));
     }
 

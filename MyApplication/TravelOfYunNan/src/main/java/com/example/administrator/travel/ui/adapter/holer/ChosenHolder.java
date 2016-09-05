@@ -24,7 +24,7 @@ public class ChosenHolder extends BaseHolder<Chosen> {
     }
 
     @Override
-    protected void initItemDatas(Chosen datas, Context mContext) {
+    protected void initItemDatas(Chosen datas, Context mContext, int position) {
 
     }
 

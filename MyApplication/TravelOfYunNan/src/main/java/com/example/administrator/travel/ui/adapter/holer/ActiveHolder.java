@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Active;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -32,7 +31,7 @@ public class ActiveHolder extends BaseHolder<Active.DataBean> {
     }
 
     @Override
-    protected void initItemDatas(Active.DataBean datas, Context mContext) {
+    protected void initItemDatas(Active.DataBean datas, Context mContext, int position) {
          mTvName.setText(datas.getTitle());
         mTvPeople.setText(datas.getNow_people()+"人参赛");
         mTvType.setText(datas.getType().equals("1")?"线下活动":"线上活动");

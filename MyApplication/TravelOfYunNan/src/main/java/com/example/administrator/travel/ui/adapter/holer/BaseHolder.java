@@ -25,15 +25,15 @@ public abstract class BaseHolder<T> {
         return root;
     }
 
-    public void setDatas(T datas){
+    public void setDatas(T datas, int position){
         this.datas=datas;
         if (datas==null){
             return;
         }
-        initItemDatas(datas,mContext);
+        initItemDatas(datas,mContext,position);
     }
   //赋值item
-    protected abstract void initItemDatas(T datas, Context mContext);
+    protected abstract void initItemDatas(T datas, Context mContext, int position);
 
     public T getDatas(){
         return this.datas;

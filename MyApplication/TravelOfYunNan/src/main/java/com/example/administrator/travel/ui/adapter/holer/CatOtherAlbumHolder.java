@@ -15,7 +15,7 @@ public class CatOtherAlbumHolder extends BaseHolder<CatOtherAlbum> {
     }
 
     @Override
-    protected void initItemDatas(CatOtherAlbum datas, Context mContext) {
+    protected void initItemDatas(CatOtherAlbum datas, Context mContext, int position) {
 
     }
 

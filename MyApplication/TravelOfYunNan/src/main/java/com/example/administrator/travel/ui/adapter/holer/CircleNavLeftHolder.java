@@ -7,9 +7,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Circle;
-import com.example.administrator.travel.bean.CircleNavLeft;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -29,7 +27,7 @@ public class CircleNavLeftHolder extends BaseHolder<Circle.DataBean.CircleLeftBe
     }
 
     @Override
-    protected void initItemDatas(Circle.DataBean.CircleLeftBean datas, Context mContext) {
+    protected void initItemDatas(Circle.DataBean.CircleLeftBean datas, Context mContext, int position) {
         mTvPlace.setText(datas.getCname());
         if (datas.isCheck){
             mVLine.setBackgroundColor(Color.parseColor("#ffbf75"));
