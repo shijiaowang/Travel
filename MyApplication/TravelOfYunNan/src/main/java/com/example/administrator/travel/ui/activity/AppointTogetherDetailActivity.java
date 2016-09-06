@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.example.administrator.travel.ui.adapter.AppointDetailHaveEnterAdapter
 import com.example.administrator.travel.ui.adapter.AppointDetailInsuranceAdapter;
 import com.example.administrator.travel.ui.adapter.ProviderAdapter;
 import com.example.administrator.travel.ui.adapter.TravelDetailLineAdapter;
+import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.CalendarUtils;
@@ -94,12 +96,16 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
     private TextView mTvSitch;
     @ViewInject(R.id.rv_have_enter)
     private RecyclerView mRvHaveEnter;
-    @ViewInject(R.id.rv_enter)
+    @ViewInject(R.id.rv_entering)
     private RecyclerView mRvEnter;
     @ViewInject(R.id.lv_equ_provider)
     private ToShowAllListView mLvEquProvider;
     @ViewInject(R.id.lv_insurance)
     private ToShowAllListView mLvInsurance;//保险
+    @ViewInject(R.id.fl_title)
+    private FlowLayout mFlTitle;
+    @ViewInject(R.id.tv_price)
+    private TextView mTvPrice;
 
    private boolean isDetail=false;//默认缩略图
     private String tId;
@@ -120,8 +126,8 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
 
     @Override
     protected void onLoad() {
-        Map<String, String> travelDetailMap = MapUtils.Build().addKey(this).addUserId().add(IVariable.TID,"4").end();
-        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER_DETAIL,travelDetailMap,0,new AppointTogetherDetailEvent());
+        Map<String, String> travelDetailMap = MapUtils.Build().addKey(this).addUserId().add(IVariable.TID,tId).end();
+        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER_DETAIL, travelDetailMap, 0, new AppointTogetherDetailEvent());
     }
 
     @Override
@@ -161,7 +167,12 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
         List<AppointTogetherDetail.DataBean.RoutesBean> routes = dealDate(data);
         initSomeData(data);
         classificationDay(lists, routes);
-        mLvRouteLine.setAdapter(new TravelDetailLineAdapter(this, lists,isDetail));
+        mLvRouteLine.setAdapter(new TravelDetailLineAdapter(this, lists, isDetail));
+        List<AppointTogetherDetail.DataBean.IntoPeopleBean> ingPeople = data.getIng_people();
+        if (ingPeople!=null && ingPeople.size()!=0){
+            mRvEnter.setAdapter(new AppointDetailHaveEnterAdapter(this, ingPeople));
+            mRvEnter.setLayoutManager(new GridLayoutManager(this, ingPeople.size()));
+        }
         List<AppointTogetherDetail.DataBean.IntoPeopleBean> intoPeople = data.getInto_people();
         if (intoPeople!=null && intoPeople.size()!=0){
             mRvHaveEnter.setAdapter(new AppointDetailHaveEnterAdapter(this, intoPeople));
@@ -170,10 +181,12 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
         List<AppointTogetherDetail.DataBean.PropBean> prop = data.getProp();
         if (prop!=null && prop.size()!=0){
            mLvEquProvider.setAdapter(new ProviderAdapter(this,prop));
+            measureHeight(mLvEquProvider);
         }
         List<AppointTogetherDetail.DataBean.PricebasecBean> pricebasec = data.getPricebasec();
         if (pricebasec!=null && pricebasec.size()!=0){
-           mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this,pricebasec));
+           mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
+            measureHeight(mLvInsurance);
         }
     }
 
@@ -185,6 +198,13 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
         mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
         x.image().bind(mIvAppointBg, data.getTravel_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(116), DensityUtil.dip2px(116)));
         x.image().bind(mIvUserIcon, data.getUser_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(30), DensityUtil.dip2px(30)));
+        if (mFlTitle.getChildCount()>0)mFlTitle.removeAllViews();
+        String[] split = data.getLabel().split(",");
+        for (int i=0;i<split.length;i++){
+            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
+            textView.setText(split[i]);
+            mFlTitle.addView(textView);
+        }
         mTvUserNickName.setText(data.getUser_name());
         mTvLoveNumber.setText(data.getCount_like());
         mTvWatchNumber.setText(data.getBrowse());
@@ -200,6 +220,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
         mTvSex.setText(data.getSex().equals("0")?R.string.activity_member_detail_boy:R.string.activity_member_detail_girl);
         mTvPlanPeople.setText(data.getMin_people()+"-"+data.getMax_people()+"人");
         mTvTraffic.setText(data.getTraffic());
+        mTvPrice.setText("¥"+data.getPrice());
         mTvRemark.setText(data.getTraffic_text());
         mTvStartAdd.setText(data.getMeet_address());
         mTvEndAdd.setText(data.getOver_address());

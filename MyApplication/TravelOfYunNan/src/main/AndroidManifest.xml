@@ -53,6 +53,7 @@
         <activity android:name=".ui.activity.OrdersDetailActivity"/>
         <activity android:name=".ui.activity.TravelsPlanActivity"/>
         <activity android:name=".ui.activity.CostSettingActivity"/>
+        <activity android:name=".ui.activity.AppointWithMeDetailActivity"/>
         <activity android:name=".ui.activity.BaseTransActivity"
             />
         <activity android:name=".ui.activity.LoginActivity"
@@ -87,6 +88,7 @@
         <activity android:name=".ui.activity.DesRemarkActivity"/>
         <activity android:name=".ui.activity.AppointTogetherDetailActivity"/>
         <activity android:name=".ui.activity.RelateMeActivity"/>
+        <activity android:name=".ui.activity.SettingTitleActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />

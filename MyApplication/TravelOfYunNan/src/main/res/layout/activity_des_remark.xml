@@ -23,7 +23,7 @@
             <TextView
                 android:id="@+id/tv_equ"
                 style="@style/activityTravelsPlanDes"
-                android:text="道具租用" />
+                android:text="设置标签" />
 
             <TextView
                 android:layout_width="wrap_content"

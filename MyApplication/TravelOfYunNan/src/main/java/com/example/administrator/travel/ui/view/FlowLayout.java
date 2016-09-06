@@ -4,9 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
-
+import com.example.administrator.travel.R;
+import com.example.administrator.travel.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,8 @@ import java.util.List;
  * 标签页
  */
 public class FlowLayout extends ViewGroup {
+    private static final int TYPE_ADD = 0;
+
     public FlowLayout(Context context) {
         super(context);
     }
@@ -141,6 +145,37 @@ public class FlowLayout extends ViewGroup {
         }
 
     }
+    private OnItemClickListener listener;
+
+    public void changeColorAndBg(int type,int prePosition) {
+        TextView textView = (TextView)getChildAt(prePosition);
+        if (type==TYPE_ADD){
+            textView.setTextColor(getContext().getResources().getColor(R.color.otherTitleBg));
+            textView.setBackgroundResource(R.drawable.activity_my_appoint_rl_bg);
+        }else {
+            textView.setTextColor(getContext().getResources().getColor(R.color.colorb5b5b5));
+            textView.setBackgroundResource(R.drawable.circle_b5_bg);
+        }
+    }
+
+    public interface OnItemClickListener{
+        void OnItemClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+        for (int i=0;i<getChildCount();i++){
+            final int position = i;
+            getChildAt(i).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (FlowLayout.this.listener!=null){
+                        FlowLayout.this.listener.OnItemClick(position);
+                    }
+                }
+            });
+        }
+    }
+
 
     /**
      * 设置LayoutParams，与距离有关所以使用MarginLayoutParams

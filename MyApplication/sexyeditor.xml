@@ -7,23 +7,27 @@
             <array>
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\115049-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\196029-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\206459-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\20741-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\218250-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\219889-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\228039-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\236533-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\248911-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\248922-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\282166-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\320488-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\332924-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\335677-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\46453-106.jpg" />
               <option value="D:\Users\Administrator\Pictures\lovewallpaper\51121-106.jpg" />
-              <option value="D:\Users\Administrator\Pictures\lovewallpaper\71900-106.jpg" />
-              <option value="D:\Users\Administrator\Pictures\lovewallpaper\71929-106.jpg" />
+              <option value="D:\Users\Administrator\Pictures\lovewallpaper\51138-106.jpg" />
             </array>
           </option>
           <option name="position" value="4" />
-          <option name="positionOffset" value="0" />
-          <option name="shrinkValue" value="11" />
+          <option name="random" value="true" />
+          <option name="shrink" value="true" />
+          <option name="shrinkValue" value="69" />
           <option name="slideshow" value="true" />
           <option name="slideshowPause" value="30000" />
         </BackgroundConfiguration>

@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.utils.UIUtils;
 
+import org.xutils.common.util.DensityUtil;
+
 import java.lang.reflect.Type;
 
 public class SimpleViewPagerIndicator extends LinearLayout {
@@ -49,8 +51,20 @@ public class SimpleViewPagerIndicator extends LinearLayout {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mTabWidth = (w - childMargin * (mTabCount - 1)) / mTabCount;
+        if (isTitle)mTabWidth=DensityUtil.dip2px(69);
     }
 
+  private boolean isTitle=false;//设置标签页面
+
+    public boolean isTitle() {
+        return isTitle;
+    }
+
+    public void setIsTitle(boolean isTitle) {
+        childMargin=0;
+        mTabWidth=DensityUtil.dip2px(68);
+        this.isTitle = isTitle;
+    }
 
     /**
      * 点击展示pop
@@ -75,6 +89,7 @@ public class SimpleViewPagerIndicator extends LinearLayout {
         super.dispatchDraw(canvas);
         canvas.save();
         canvas.translate(mTranslationX, getHeight() - 2);
+
         canvas.drawLine(0, 0, mTabWidth, 0, mPaint);
         canvas.restore();
     }
@@ -93,9 +108,10 @@ public class SimpleViewPagerIndicator extends LinearLayout {
          *  0-1:position=0 ;1-0:postion=0;
          * </pre>
          */
-
         mTranslationX = (getWidth() + childMargin * (mTabCount - 1)) / mTabCount * (position + offset);
-
+        if (isTitle){
+            mTranslationX=mTabWidth * (position + offset);
+        }
         invalidate();
     }
 
@@ -113,8 +129,44 @@ public class SimpleViewPagerIndicator extends LinearLayout {
         if (getChildCount() > 0)
             this.removeAllViews();
         int count = mTitles.length;
-
         setWeightSum(count);
+        if (isTitle){
+           for (int i=0;i<count;i++){
+               TextView textView=new TextView(getContext());
+               LayoutParams lp = new LayoutParams(DensityUtil.dip2px(68),
+                       LayoutParams.MATCH_PARENT);
+
+               textView.setText(mTitles[i]);
+               textView.setTextColor(getResources().getColor(R.color.color646464));
+               textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+               textView.setGravity(Gravity.CENTER);
+               textView.setLayoutParams(lp);
+               addView(textView);
+               if (i!=count-1){
+                   View view=new View(getContext());
+                   LayoutParams v = new LayoutParams(DensityUtil.dip2px(1),
+                           DensityUtil.dip2px(12));
+                   view.setLayoutParams(v);
+                   view.setBackgroundColor(getResources().getColor(R.color.colorafafb0));
+                   addView(view);
+               }
+               final int finalI = i;
+               textView.setOnClickListener(new OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       if (viewPager!=null){
+                           viewPager.setCurrentItem(finalI,false);
+                       }
+                   }
+               });
+           }
+        }else {
+            other(count);
+        }
+    }
+
+    private void other(int count) {
+
         for (int i = 0; i < count; i++) {
             final TextView tv = new TextView(getContext());
             LayoutParams lp = new LayoutParams(0,

@@ -90,15 +90,24 @@
             android:layout_width="35dp"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:background="@color/colorFAFAFA"
-            android:paddingRight="10dp">
+
+           >
+            <View
+                android:background="@color/colorFAFAFA"
+                android:layout_width="33dp"
+                android:layout_height="match_parent"/>
 
             <RelativeLayout
-                android:layout_width="25dp"
-                android:layout_height="50dp"
-                android:background="@drawable/fragment_appoint_title">
+                android:layout_alignParentRight="true"
+                android:paddingTop="4dp"
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_height="27dp"
+                android:background="@drawable/activity_my_appoint_key_bg">
 
                 <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
                     android:id="@+id/tv_icon_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,10 +118,14 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    style="@style/commonSingleLineTextStyle"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="3dp"
                     android:id="@+id/tv_money"
+                    android:text="10000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_icon_title"
+                    android:layout_toRightOf="@id/tv_icon_title"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/colorFAFAFA"
                     android:textSize="11sp" />
@@ -127,12 +140,14 @@
         android:paddingTop="12dp"
         android:paddingBottom="11dp"
         android:layout_width="match_parent"
+        android:layout_marginRight="2dp"
         android:layout_height="wrap_content">
 
     </com.example.administrator.travel.ui.view.FlowLayout>
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
+        android:layout_marginRight="2dp"
         android:layout_height="1dp"/>
    <include layout="@layout/appoint_bottom_common"/>
 

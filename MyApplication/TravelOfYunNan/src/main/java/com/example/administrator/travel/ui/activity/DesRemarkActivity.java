@@ -13,6 +13,8 @@ import org.xutils.view.annotation.ViewInject;
  * 说明备注
  */
 public class DesRemarkActivity extends BarBaseActivity implements View.OnClickListener {
+    @ViewInject(R.id.bt_select_equ)
+    private Button mBtSelect;
     @ViewInject(R.id.bt_next)
     private Button mBtNext;
     @Override
@@ -23,6 +25,7 @@ public class DesRemarkActivity extends BarBaseActivity implements View.OnClickLi
     @Override
     protected void initEvent() {
         mBtNext.setOnClickListener(this);
+        mBtSelect.setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +48,9 @@ public class DesRemarkActivity extends BarBaseActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.bt_next:
                 startActivity(new Intent(this,CreateAppointSuccessActivity.class));
+                break;
+            case R.id.bt_select_equ:
+                startActivity(new Intent(this,SettingTitleActivity.class));
                 break;
         }
     }

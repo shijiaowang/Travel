@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,7 +27,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
 
                     <LinearLayout
                         android:id="@+id/ll"
@@ -138,38 +136,16 @@
                     android:layout_marginTop="5dp"
                     android:background="@color/colorFAFAFA" />
 
-                <RelativeLayout
-                    android:layout_width="116dp"
-                    android:layout_height="116dp"
 
-                    android:layout_marginLeft="17dp"
-                    android:background="@color/colorFAFAFA">
-
-                    <ImageView
-                        android:id="@+id/iv_appoint_bg"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="3dp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/trangle" />
-
-                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="147dp"
                     android:layout_marginTop="20dp">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="11dp"
+                        android:layout_marginLeft="22dp"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
 
@@ -250,6 +226,28 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="116dp"
+                    android:layout_height="116dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorFAFAFA">
+
+                    <ImageView
+                        android:id="@+id/iv_appoint_bg"
+                        android:src="@drawable/icon_test1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="3dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/trangle" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
@@ -294,144 +292,62 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="6dp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/meLine" />
-
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="34dp"
-                    android:layout_marginLeft="22dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp">
+                  <TextView
+                      android:text="招募截止日期：2016-7-3"
+                      android:textColor="@color/otherTitleBg"
+                      android:textSize="15sp"
+                      android:layout_marginLeft="39dp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="约伴口令:"
-                        android:textColor="@color/color323232"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/tv_key"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="31dp"
+                        android:text="剩余:7日"
+                        android:layout_marginLeft="39dp"
                         android:textColor="@color/otherTitleBg"
-                        android:textSize="15sp" />
-
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
-
                 <View
+                    android:background="@color/meLine"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/meLine" />
+                    android:layout_height="6dp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginLeft="22dp"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="交通方式:"
-                            android:textColor="@color/color323232"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/tv_traffic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="31dp"
-                            android:textColor="@color/otherTitleBg"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="\u3000\u3000备注:"
-                            android:textColor="@color/color646464"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/tv_remark"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="31dp"
-                            android:textColor="@color/color646464"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/meLine" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorFAFAFA"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
-                    android:layout_marginTop="9dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="15dp"
+                    android:text="理想地"
+                    android:textColor="@color/color323232"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="人员计划:"
-                        android:textColor="@color/color323232"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/tv_plan_people"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="31dp"
-                        android:textColor="@color/otherTitleBg"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
+                <com.example.administrator.travel.ui.view.ToShowAllListView
+                    android:id="@+id/lv_route_line"
+                    style="@style/commonListViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <View
+                    android:background="@color/meLine"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
                 <TextView
                     android:id="@+id/tv_have_enter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
-                    android:layout_marginTop="19dp"
-
+                    android:layout_marginTop="14dp"
                     android:textColor="@color/color969696"
                     android:textSize="14sp" />
 
@@ -441,105 +357,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="14dp"
                     android:layout_marginLeft="22dp"
-                    android:layout_marginTop="14dp" />
-
-                <TextView
-                    android:id="@+id/tv_entering"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:textColor="@color/color969696"
-                    android:textSize="14sp" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_entering"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="29dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="14dp" />
-
+                    android:layout_marginTop="10dp" />
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:background="@color/meLine" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="22dp"
-                        android:layout_marginTop="15dp"
-                        android:text="行程安排"
-                        android:textColor="@color/color323232"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tv_switch"
-                        android:layout_width="54dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/activity_detail_map_bg"
-                        android:gravity="center"
-                        android:text="缩略图"
-                        android:textColor="@color/otherTitleBg"
-                        android:textSize="16sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv"
-                        android:orientation="vertical">
-
-                        <include layout="@layout/appoint_detail_line_header" />
-
-                        <com.example.administrator.travel.ui.view.ToShowAllListView
-                            android:id="@+id/lv_route_line"
-                            style="@style/commonListViewStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                             />
-                        <include layout="@layout/appoint_detail_line_footer" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:background="@color/meLine" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="15dp"
-                    android:text="道具提供"
-                    android:textColor="@color/color323232"
-                    android:textSize="16sp" />
-
-                <com.example.administrator.travel.ui.view.ToShowAllListView
-                    android:id="@+id/lv_equ_provider"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/commonListViewStyle"
-
-                    android:layout_marginTop="13dp" />
-
-                <View
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
+                    android:background="@color/meLine"
                     android:layout_marginRight="10dp"
-                    android:background="@color/meLine" />
-
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -592,11 +416,7 @@
                     android:text="请一定要注意安全注意安全注意安全注意安全注意安全注意安全请一定要注意安全注意安全注意安全注意安全注意安全注意安全"
                     android:textColor="@color/color969696"
                     android:textSize="14sp" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 
@@ -607,11 +427,11 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
+            android:text="¥200"
             android:textColor="@color/otherFf7f6c"
             android:textSize="18sp" />
 

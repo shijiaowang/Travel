@@ -8,52 +8,53 @@ import java.util.List;
  */
 public class AppointTogetherDetail {
 
+
     /**
      * code : 1
      * message : 加载成功
-     * data : {"id":"4","user_id":"10000","title":"123123","content":"wqeqweqweq","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","star_time":"1472140800","end_time":"1472400000","traffic":"火车","traffic_text":"哦请问恶趣味额·","car_type":"","min_people":"2","max_people":"5","sex_condition":"2","bind_condition":"3","agree":"1","price":"111.00","total_price":"471.00","label":"实名达人,美食,徒步","meet_address":"大苏打","over_address":"发送多个地方","add_time":"1472436752","status":"1","state":"1","management":"10000","browse":"0","id_code":"","user_name":"yuns客服","user_img":"http://192.168.1.38/Uploads/0.png","sex":"1","into_people":[{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"},{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"}],"now_people":2,"ing_people":[],"count_like":"0","is_like":"0","routes_title":"牛逼山-测试1-牛逼山","routes":[{"time":"1472140800","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"},{"time":"1472140800","id":"2","title":"测试1","content":"测试","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"贵州省","city":"曲靖","address":"21312阿斯大声大气"},{"time":"1472227200","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"}],"prop":[{"id":"3","name":"加长超级摄像头","content":"","number":"2"}],"pricebasec":[{"id":"1","key":"平台服务费","value":"20","type":"1","time":"1469586077","status":"1"},{"id":"2","key":"个人旅游险","value":"100","type":"1","time":"1472024625","status":"1"}]}
+     * data : {"id":"3","user_id":"10000","title":"第二个测试这","content":"这是第二个测试","travel_img":"http://192.168.1.38/Uploads/Picture/2016-09-01/57c7dea37b18f.jpg","star_time":"1472090400","end_time":"1472202000","traffic":"火车","traffic_text":"火车方便","car_type":"","min_people":"2","max_people":"6","sex_condition":"3","bind_condition":"5","agree":"1","price":"300.00","total_price":"455.00","label":"购物,徒步","meet_address":"成都","over_address":"昆明","add_time":"1473042864","status":"1","state":"1","management":"10000","browse":"0","id_code":"yut3","user_name":"yuns客服","user_img":"http://192.168.1.38/Uploads/0.png","sex":"1","into_people":[{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"},{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"}],"now_people":2,"ing_people":[{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"},{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"}],"count_like":"0","is_like":"0","routes_title":"牛逼山-泸沽湖","routes":[{"time":"1472090400","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"},{"time":"1472176800","id":"18","title":"泸沽湖","content":"位于四川省凉山彝族自治州盐源县与云南省丽江市宁蒗彝族自治县之间的泸沽湖，是现今仍旧保留有母系社会传统的摩梭族心中的\u201c母亲湖\u201d，更是无数旅行者梦中的隔世仙境。无论是恍如隔世的自然景观，还是今世仅存的文化传统，都吸引着热爱旅行与探索的人们。 泸沽湖素有\u201c高原明珠\u201d之称，是一个未被污染的处女湖。湖中各岛婷婷玉立，形态各异，林木葱郁，翠绿如画，身临其间，水天一色，清澈如镜，缓缓滑行于碧波之上的猪槽船和徐徐飘浮于水天之间的摩梭民歌，使其更增添几分古朴、几分宁静。 这里还是传说中的女儿国，摩梭人世代生活在泸沽湖畔，至今仍保留着由女性当家和女性成员传宗接代的的母系大家庭，以及\u201c男不婚、女不嫁、结合自愿、离散自由\u201d的母系氏族婚姻制度。 在这里，一切都是那么神奇，那么古朴，无论是成丁礼、阿肖婚、母系家庭、丧葬，都是绝无仅有的。每个礼仪，每种风俗，都是一个优美动人的故事，一支优扬动听的牧歌。 除了奇特的婚姻和风俗外，泸沽湖畔姑娘小伙那一身独特的服饰更是令人瞩目。泸沽湖既是女儿国，又是歌舞的王国，一踏上这片热土，游人无不为那远远近近、悠悠扬扬的\u201c阿哈巴拉\u201d所动容，无不为那如巨龙滚动的甲搓所诱惑。看吧，那远方漂来的猪槽船，载着阿妹，向你招手、向你放喉：\u201c呵，朋友，来了就莫走，阿妹陪你到月落西山头\u201d。","logo_img":"http://192.168.1.38/Uploads/Picture/2016-09-01/57c7de30826bf.jpg","province":"云南省","city":"丽江","address":"宁蒗县"}],"prop":[{"id":"3","name":"加长超级摄像头","content":"加长超级摄像头","number":"3"},{"id":"1","name":"帐篷","content":"帐篷","number":"1"},{"id":"3","name":"加长超级摄像头","content":"加长超级摄像头","number":"2"}],"pricebasec":[{"id":"1","key":"平台服务费","value":"20","type":"1","time":"1469586077","status":"1"},{"id":"2","key":"个人旅游险","value":"100","type":"1","time":"1472024625","status":"1"}]}
      */
 
     private int code;
     private String message;
     /**
-     * id : 4
+     * id : 3
      * user_id : 10000
-     * title : 123123
-     * content : wqeqweqweq
-     * travel_img : http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg
-     * star_time : 1472140800
-     * end_time : 1472400000
+     * title : 第二个测试这
+     * content : 这是第二个测试
+     * travel_img : http://192.168.1.38/Uploads/Picture/2016-09-01/57c7dea37b18f.jpg
+     * star_time : 1472090400
+     * end_time : 1472202000
      * traffic : 火车
-     * traffic_text : 哦请问恶趣味额·
+     * traffic_text : 火车方便
      * car_type :
      * min_people : 2
-     * max_people : 5
-     * sex_condition : 2
-     * bind_condition : 3
+     * max_people : 6
+     * sex_condition : 3
+     * bind_condition : 5
      * agree : 1
-     * price : 111.00
-     * total_price : 471.00
-     * label : 实名达人,美食,徒步
-     * meet_address : 大苏打
-     * over_address : 发送多个地方
-     * add_time : 1472436752
+     * price : 300.00
+     * total_price : 455.00
+     * label : 购物,徒步
+     * meet_address : 成都
+     * over_address : 昆明
+     * add_time : 1473042864
      * status : 1
      * state : 1
      * management : 10000
      * browse : 0
-     * id_code :
+     * id_code : yut3
      * user_name : yuns客服
      * user_img : http://192.168.1.38/Uploads/0.png
      * sex : 1
-     * into_people : [{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"},{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"}]
+     * into_people : [{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"},{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"}]
      * now_people : 2
-     * ing_people : []
+     * ing_people : [{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"},{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"}]
      * count_like : 0
      * is_like : 0
-     * routes_title : 牛逼山-测试1-牛逼山
-     * routes : [{"time":"1472140800","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"},{"time":"1472140800","id":"2","title":"测试1","content":"测试","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"贵州省","city":"曲靖","address":"21312阿斯大声大气"},{"time":"1472227200","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"}]
-     * prop : [{"id":"3","name":"加长超级摄像头","content":"","number":"2"}]
+     * routes_title : 牛逼山-泸沽湖
+     * routes : [{"time":"1472090400","id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"},{"time":"1472176800","id":"18","title":"泸沽湖","content":"位于四川省凉山彝族自治州盐源县与云南省丽江市宁蒗彝族自治县之间的泸沽湖，是现今仍旧保留有母系社会传统的摩梭族心中的\u201c母亲湖\u201d，更是无数旅行者梦中的隔世仙境。无论是恍如隔世的自然景观，还是今世仅存的文化传统，都吸引着热爱旅行与探索的人们。 泸沽湖素有\u201c高原明珠\u201d之称，是一个未被污染的处女湖。湖中各岛婷婷玉立，形态各异，林木葱郁，翠绿如画，身临其间，水天一色，清澈如镜，缓缓滑行于碧波之上的猪槽船和徐徐飘浮于水天之间的摩梭民歌，使其更增添几分古朴、几分宁静。 这里还是传说中的女儿国，摩梭人世代生活在泸沽湖畔，至今仍保留着由女性当家和女性成员传宗接代的的母系大家庭，以及\u201c男不婚、女不嫁、结合自愿、离散自由\u201d的母系氏族婚姻制度。 在这里，一切都是那么神奇，那么古朴，无论是成丁礼、阿肖婚、母系家庭、丧葬，都是绝无仅有的。每个礼仪，每种风俗，都是一个优美动人的故事，一支优扬动听的牧歌。 除了奇特的婚姻和风俗外，泸沽湖畔姑娘小伙那一身独特的服饰更是令人瞩目。泸沽湖既是女儿国，又是歌舞的王国，一踏上这片热土，游人无不为那远远近近、悠悠扬扬的\u201c阿哈巴拉\u201d所动容，无不为那如巨龙滚动的甲搓所诱惑。看吧，那远方漂来的猪槽船，载着阿妹，向你招手、向你放喉：\u201c呵，朋友，来了就莫走，阿妹陪你到月落西山头\u201d。","logo_img":"http://192.168.1.38/Uploads/Picture/2016-09-01/57c7de30826bf.jpg","province":"云南省","city":"丽江","address":"宁蒗县"}]
+     * prop : [{"id":"3","name":"加长超级摄像头","content":"加长超级摄像头","number":"3"},{"id":"1","name":"帐篷","content":"帐篷","number":"1"},{"id":"3","name":"加长超级摄像头","content":"加长超级摄像头","number":"2"}]
      * pricebasec : [{"id":"1","key":"平台服务费","value":"20","type":"1","time":"1469586077","status":"1"},{"id":"2","key":"个人旅游险","value":"100","type":"1","time":"1472024625","status":"1"}]
      */
 
@@ -118,15 +119,21 @@ public class AppointTogetherDetail {
         private String is_like;
         private String routes_title;
         /**
-         * id : 10000
-         * user_img : http://192.168.1.38/Uploads/0.png
-         * nick_name : yuns客服
+         * id : 10009
+         * user_img : http://192.168.1.38/Uploads/1.png
+         * nick_name : 我叫王小
          */
 
         private List<IntoPeopleBean> into_people;
-        private List<?> ing_people;
         /**
-         * time : 1472140800
+         * id : 10009
+         * user_img : http://192.168.1.38/Uploads/1.png
+         * nick_name : 我叫王小
+         */
+
+        private List<IntoPeopleBean> ing_people;
+        /**
+         * time : 1472090400
          * id : 1
          * title : 牛逼山
          * content : 就是很厉害很厉害很来还的挥洒大时代和
@@ -140,8 +147,8 @@ public class AppointTogetherDetail {
         /**
          * id : 3
          * name : 加长超级摄像头
-         * content :
-         * number : 2
+         * content : 加长超级摄像头
+         * number : 3
          */
 
         private List<PropBean> prop;
@@ -428,11 +435,11 @@ public class AppointTogetherDetail {
             this.into_people = into_people;
         }
 
-        public List<?> getIng_people() {
+        public List<IntoPeopleBean> getIng_people() {
             return ing_people;
         }
 
-        public void setIng_people(List<?> ing_people) {
+        public void setIng_people(List<IntoPeopleBean> ing_people) {
             this.ing_people = ing_people;
         }
 
@@ -489,6 +496,8 @@ public class AppointTogetherDetail {
                 this.nick_name = nick_name;
             }
         }
+
+
 
         public static class RoutesBean {
             private String time;
