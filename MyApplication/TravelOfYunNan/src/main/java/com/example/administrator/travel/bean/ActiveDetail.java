@@ -9,7 +9,7 @@ public class ActiveDetail {
     /**
      * code : 1
      * message : 加载成功
-     * data : {"id":"1","title":"活动测试","content":"活动测试内容","star_time":"1471410000","end_time":"1480435200","activity_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b27d441569e.png","title_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b27d441569e.png","max_people":"10","now_people":"2","price":"500.00","add_time":"1471340931","type":"1","status":"1","is_into":"0"}
+     * data : {"id":"1","title":"活动测试","content":"活动测试内容","star_time":"1471410000","end_time":"1480435200","activity_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b27d441569e.png","title_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b27d441569e.png","max_people":"10","now_people":"2","price":"500.00","add_time":"1471340931","type":"1","status":"1","url":"http://192.168.1.38/index.php?s=/Home/article/detailapp/type/2/id/1","is_into":"0"}
      */
 
     private int code;
@@ -28,6 +28,7 @@ public class ActiveDetail {
      * add_time : 1471340931
      * type : 1
      * status : 1
+     * url : http://192.168.1.38/index.php?s=/Home/article/detailapp/type/2/id/1
      * is_into : 0
      */
 
@@ -71,6 +72,7 @@ public class ActiveDetail {
         private String add_time;
         private String type;
         private String status;
+        private String url;
         private String is_into;
 
         public String getId() {
@@ -175,6 +177,14 @@ public class ActiveDetail {
 
         public void setStatus(String status) {
             this.status = status;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
         }
 
         public String getIs_into() {

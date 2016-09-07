@@ -99,9 +99,9 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity {
     public void onEvent(ActiveDetailEvent event){
         setIsProgress(false);
         if (event.isSuccess()){
-            mWvHtml.loadUrl("http://192.168.1.38/index.php?s=/Home/article/detailapp/id/4.html");
             ActiveDetail activeDetail = GsonUtils.getObject(event.getResult(), ActiveDetail.class);
             ActiveDetail.DataBean data = activeDetail.getData();
+            mWvHtml.loadUrl(data.getUrl());
             ImageOptions imageOptions=new ImageOptions.Builder().setSize(DensityUtil.getScreenWidth(),DensityUtil.dip2px(228)).setCrop(true).build();
             x.image().bind(mIvBg,data.getTitle_img(),imageOptions);
             x.image().bind(mIvIcon,data.getActivity_img());

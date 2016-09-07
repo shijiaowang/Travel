@@ -11,16 +11,16 @@ public class TravelsDetail {
     /**
      * code : 1
      * message : 获取成功
-     * data : {"travel":{"id":"2","title":"游记测试","content":"这只是一个测试而已daslkdhakshdfklashgdilahdi","author":"你才","logo_img":"/Uploads/Picture/2016-08-15/57b17f9d00af6.png","title_img":"/Uploads/Picture/2016-08-16/57b287bb7617e.png","travel_id":"4","add_time":"1472433810","status":"1","browse":"10","travels_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b287be47b4e.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889114ece.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889439ca6.png","travel_way":"牛逼山-测试1-牛逼山"},"travel_routes":{"star_time":"1472140800","end_time":"1472400000","meet_address":"大苏打","total_price":"471.00","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","count":2,"user":[{"user_img":"http://192.168.1.38/Uploads/0.png","id":"10000","nick_name":"yuns客服"},{"user_img":"http://192.168.1.38/Uploads/1.png","id":"10009","nick_name":"我叫王小"}],"routes":[{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472140800"},{"id":"2","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"测试1","time":"1472140800"},{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472227200"}]},"travel_reply":[{"id":"52","f_id":"2","user_id":"10009","pid":"0","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117758","floor":"9","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"53","f_id":"2","user_id":"10009","pid":"52","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117785","floor":"10","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"9","reply_img":""}},{"id":"54","f_id":"2","user_id":"10009","pid":"53","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117801","floor":"11","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"10","reply_img":""}},{"id":"56","f_id":"2","user_id":"10009","pid":"53","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472174808","floor":"13","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"10","reply_img":""}}],"have_next":{"nextpage":"0"}}
+     * data : {"travel":{"id":"2","author":"唐人立逃学去旅行","logo_img":"/Uploads/Picture/2016-09-07/57cfc9f43f164.png","title_img":"/Uploads/Picture/2016-09-07/57cfc9fd49d44.jpg","travel_id":"4","add_time":"1473235530","status":"1","browse":"49","travels_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b287be47b4e.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889114ece.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889439ca6.png,http://192.168.1.38,http://192.168.1.38,http://192.168.1.38","url":"http://192.168.1.38/index.php?s=/Home/article/detailapp/type/1/id/2","travel_way":"牛逼山-牛逼山-测试1"},"travel_routes":{"star_time":"1472140800","end_time":"1472400000","meet_address":"大苏打","total_price":"471.00","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","count":2,"user":[{"user_img":"http://192.168.1.38/Uploads/1.png","id":"10009","nick_name":"我叫王小"},{"user_img":"http://192.168.1.38/Uploads/0.png","id":"10000","nick_name":"yuns客服"}],"routes":[{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472140800"},{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472227200"},{"id":"2","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"测试1","time":"1472140800"}]},"travel_reply":[{"id":"52","f_id":"2","user_id":"10009","pid":"0","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117758","floor":"9","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"53","f_id":"2","user_id":"10009","pid":"52","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117785","floor":"10","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"9","reply_img":""}},{"id":"54","f_id":"2","user_id":"10009","pid":"53","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117801","floor":"11","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"10","reply_img":""}},{"id":"56","f_id":"2","user_id":"10009","pid":"53","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472174808","floor":"13","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"10","reply_img":""}},{"id":"106","f_id":"2","user_id":"10009","pid":"56","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472720453","floor":"14","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"13","reply_img":""}},{"id":"107","f_id":"2","user_id":"10009","pid":"106","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472720455","floor":"15","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"14","reply_img":""}}],"have_next":{"nextpage":"1"}}
      */
 
     private int code;
     private String message;
     /**
-     * travel : {"id":"2","title":"游记测试","content":"这只是一个测试而已daslkdhakshdfklashgdilahdi","author":"你才","logo_img":"/Uploads/Picture/2016-08-15/57b17f9d00af6.png","title_img":"/Uploads/Picture/2016-08-16/57b287bb7617e.png","travel_id":"4","add_time":"1472433810","status":"1","browse":"10","travels_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b287be47b4e.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889114ece.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889439ca6.png","travel_way":"牛逼山-测试1-牛逼山"}
-     * travel_routes : {"star_time":"1472140800","end_time":"1472400000","meet_address":"大苏打","total_price":"471.00","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","count":2,"user":[{"user_img":"http://192.168.1.38/Uploads/0.png","id":"10000","nick_name":"yuns客服"},{"user_img":"http://192.168.1.38/Uploads/1.png","id":"10009","nick_name":"我叫王小"}],"routes":[{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472140800"},{"id":"2","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"测试1","time":"1472140800"},{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472227200"}]}
-     * travel_reply : [{"id":"52","f_id":"2","user_id":"10009","pid":"0","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117758","floor":"9","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"53","f_id":"2","user_id":"10009","pid":"52","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117785","floor":"10","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"9","reply_img":""}},{"id":"54","f_id":"2","user_id":"10009","pid":"53","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117801","floor":"11","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"10","reply_img":""}},{"id":"56","f_id":"2","user_id":"10009","pid":"53","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472174808","floor":"13","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"10","reply_img":""}}]
-     * have_next : {"nextpage":"0"}
+     * travel : {"id":"2","author":"唐人立逃学去旅行","logo_img":"/Uploads/Picture/2016-09-07/57cfc9f43f164.png","title_img":"/Uploads/Picture/2016-09-07/57cfc9fd49d44.jpg","travel_id":"4","add_time":"1473235530","status":"1","browse":"49","travels_img":"http://192.168.1.38/Uploads/Picture/2016-08-16/57b287be47b4e.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889114ece.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889439ca6.png,http://192.168.1.38,http://192.168.1.38,http://192.168.1.38","url":"http://192.168.1.38/index.php?s=/Home/article/detailapp/type/1/id/2","travel_way":"牛逼山-牛逼山-测试1"}
+     * travel_routes : {"star_time":"1472140800","end_time":"1472400000","meet_address":"大苏打","total_price":"471.00","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","count":2,"user":[{"user_img":"http://192.168.1.38/Uploads/1.png","id":"10009","nick_name":"我叫王小"},{"user_img":"http://192.168.1.38/Uploads/0.png","id":"10000","nick_name":"yuns客服"}],"routes":[{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472140800"},{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472227200"},{"id":"2","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"测试1","time":"1472140800"}]}
+     * travel_reply : [{"id":"52","f_id":"2","user_id":"10009","pid":"0","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117758","floor":"9","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"floor":"","nick_name":"","content":"","reply_img":""}},{"id":"53","f_id":"2","user_id":"10009","pid":"52","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117785","floor":"10","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"9","reply_img":""}},{"id":"54","f_id":"2","user_id":"10009","pid":"53","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472117801","floor":"11","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"10","reply_img":""}},{"id":"56","f_id":"2","user_id":"10009","pid":"53","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472174808","floor":"13","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"10","reply_img":""}},{"id":"106","f_id":"2","user_id":"10009","pid":"56","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472720453","floor":"14","type":"1","status":"1","like_count":"1","is_like":"1","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"13","reply_img":""}},{"id":"107","f_id":"2","user_id":"10009","pid":"106","content":"这只是一个测试评论而已，而已","reply_img":"","reply_time":"1472720455","floor":"15","type":"1","status":"1","like_count":"1","is_like":"0","nick_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","reply":{"nick_name":"我叫王小","content":"这只是一个测试评论而已，而已","floor":"14","reply_img":""}}]
+     * have_next : {"nextpage":"1"}
      */
 
     private DataBean data;
@@ -52,17 +52,16 @@ public class TravelsDetail {
     public static class DataBean {
         /**
          * id : 2
-         * title : 游记测试
-         * content : 这只是一个测试而已daslkdhakshdfklashgdilahdi
-         * author : 你才
-         * logo_img : /Uploads/Picture/2016-08-15/57b17f9d00af6.png
-         * title_img : /Uploads/Picture/2016-08-16/57b287bb7617e.png
+         * author : 唐人立逃学去旅行
+         * logo_img : /Uploads/Picture/2016-09-07/57cfc9f43f164.png
+         * title_img : /Uploads/Picture/2016-09-07/57cfc9fd49d44.jpg
          * travel_id : 4
-         * add_time : 1472433810
+         * add_time : 1473235530
          * status : 1
-         * browse : 10
-         * travels_img : http://192.168.1.38/Uploads/Picture/2016-08-16/57b287be47b4e.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889114ece.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889439ca6.png
-         * travel_way : 牛逼山-测试1-牛逼山
+         * browse : 49
+         * travels_img : http://192.168.1.38/Uploads/Picture/2016-08-16/57b287be47b4e.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889114ece.png,http://192.168.1.38/Uploads/Picture/2016-08-16/57b2889439ca6.png,http://192.168.1.38,http://192.168.1.38,http://192.168.1.38
+         * url : http://192.168.1.38/index.php?s=/Home/article/detailapp/type/1/id/2
+         * travel_way : 牛逼山-牛逼山-测试1
          */
 
         private TravelBean travel;
@@ -73,13 +72,13 @@ public class TravelsDetail {
          * total_price : 471.00
          * travel_img : http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg
          * count : 2
-         * user : [{"user_img":"http://192.168.1.38/Uploads/0.png","id":"10000","nick_name":"yuns客服"},{"user_img":"http://192.168.1.38/Uploads/1.png","id":"10009","nick_name":"我叫王小"}]
-         * routes : [{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472140800"},{"id":"2","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"测试1","time":"1472140800"},{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472227200"}]
+         * user : [{"user_img":"http://192.168.1.38/Uploads/1.png","id":"10009","nick_name":"我叫王小"},{"user_img":"http://192.168.1.38/Uploads/0.png","id":"10000","nick_name":"yuns客服"}]
+         * routes : [{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472140800"},{"id":"1","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"牛逼山","time":"1472227200"},{"id":"2","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","title":"测试1","time":"1472140800"}]
          */
 
         private TravelRoutesBean travel_routes;
         /**
-         * nextpage : 0
+         * nextpage : 1
          */
 
         private HaveNextBean have_next;
@@ -95,7 +94,7 @@ public class TravelsDetail {
          * type : 1
          * status : 1
          * like_count : 1
-         * is_like : 0
+         * is_like : 1
          * nick_name : 我叫王小
          * user_img : http://192.168.1.38/Uploads/1.png
          * reply : {"floor":"","nick_name":"","content":"","reply_img":""}
@@ -137,8 +136,6 @@ public class TravelsDetail {
 
         public static class TravelBean {
             private String id;
-            private String title;
-            private String content;
             private String author;
             private String logo_img;
             private String title_img;
@@ -147,6 +144,7 @@ public class TravelsDetail {
             private String status;
             private String browse;
             private String travels_img;
+            private String url;
             private String travel_way;
 
             public String getId() {
@@ -155,22 +153,6 @@ public class TravelsDetail {
 
             public void setId(String id) {
                 this.id = id;
-            }
-
-            public String getTitle() {
-                return title;
-            }
-
-            public void setTitle(String title) {
-                this.title = title;
-            }
-
-            public String getContent() {
-                return content;
-            }
-
-            public void setContent(String content) {
-                this.content = content;
             }
 
             public String getAuthor() {
@@ -237,6 +219,14 @@ public class TravelsDetail {
                 this.travels_img = travels_img;
             }
 
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
             public String getTravel_way() {
                 return travel_way;
             }
@@ -254,9 +244,9 @@ public class TravelsDetail {
             private String travel_img;
             private int count;
             /**
-             * user_img : http://192.168.1.38/Uploads/0.png
-             * id : 10000
-             * nick_name : yuns客服
+             * user_img : http://192.168.1.38/Uploads/1.png
+             * id : 10009
+             * nick_name : 我叫王小
              */
 
             private List<UserBean> user;

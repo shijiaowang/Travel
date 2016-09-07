@@ -21,6 +21,9 @@ import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.utils.LogUtils;
+
+import java.util.TreeMap;
 
 
 public class XScrollView extends ScrollView implements OnScrollListener {
@@ -67,6 +70,8 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     private boolean mEnableAutoLoad = false;
     private boolean mPullLoading = false;
     private ViewStub mRefreshHeader;//上来加载之上的头布局
+    private boolean isBreak=true;
+
 
     public XScrollView(Context context) {
         super(context);
@@ -379,7 +384,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
         if (mLastY == -1) {
             mLastY = ev.getRawY();
         }
-
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mLastY = ev.getRawY();
@@ -388,7 +392,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
             case MotionEvent.ACTION_MOVE:
                 final float deltaY = ev.getRawY() - mLastY;
                 mLastY = ev.getRawY();
-
                 if (isTop() && (mHeader.getVisibleHeight() > 0 || deltaY > 0)) {
                     // the first item is showing, header has shown or pull down.
                     updateHeaderHeight(deltaY / OFFSET_RADIO);
@@ -431,7 +434,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
         }
     }
 
-    private boolean isTop() {
+    public boolean isTop() {
         return getScrollY() <= 0 || mHeader.getVisibleHeight() > mHeaderHeight || mContentLayout.getTop() > 0;
     }
 
@@ -498,6 +501,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
     private void refresh() {
         if (mEnablePullRefresh && null != mListener) {
+            isBreak = true;
             mListener.onRefresh();
         }
     }

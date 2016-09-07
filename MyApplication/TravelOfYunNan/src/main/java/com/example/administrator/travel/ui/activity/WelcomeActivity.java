@@ -2,6 +2,9 @@ package com.example.administrator.travel.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 
 
 import com.example.administrator.travel.R;
@@ -24,6 +27,7 @@ import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.view.annotation.ViewInject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +43,8 @@ public class WelcomeActivity extends FullTransparencyActivity {
     private int GO_WHERE_PAGE = -1;
     private boolean isNetWork = false;//缓存登录时是否有网
     private SharedPreferences sharedPreferences;
+    @ViewInject(R.id.pb_load)
+    private View mPbLoad;
 
 
     @Override
@@ -59,7 +65,10 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
     @Override
     protected void initData() {
-
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 8888, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotateAnimation.setDuration(10000);
+        rotateAnimation.setFillAfter(true);
+        mPbLoad.startAnimation(rotateAnimation);
     }
 
     @Override
@@ -173,5 +182,11 @@ public class WelcomeActivity extends FullTransparencyActivity {
             LogUtils.e(event.getMessage());
         }
         GO_WHERE_PAGE = START_SPLASH;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPbLoad.clearAnimation();
     }
 }

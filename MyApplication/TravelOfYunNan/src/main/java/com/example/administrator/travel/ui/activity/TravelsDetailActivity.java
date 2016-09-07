@@ -5,6 +5,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -61,6 +63,7 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     private TextView mTvMoney;
     private DiscussCommonAdapter discussCommonAdapter;
     private List<TravelReplyBean> travelReply=new ArrayList<>();
+    private WebView mWvHtml;
 
 
     @Override
@@ -117,6 +120,11 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
             mLvDiscuss = ((ToShowAllListView) inflate.findViewById(R.id.lv_discuss));
             mIvBg = (ImageView) inflate.findViewById(R.id.iv_bg);
             mIvIcon = (ImageView) inflate.findViewById(R.id.iv_icon);
+            mWvHtml = (WebView) inflate.findViewById(R.id.wv_html);
+            WebSettings settings = mWvHtml.getSettings();
+            settings.setJavaScriptEnabled(true);
+            settings.setLoadWithOverviewMode(true);
+            settings.setUseWideViewPort(true);
             mTvStartAndLong = (TextView) inflate.findViewById(R.id.tv_start_and_long);
             mTvTime = (TextView) inflate.findViewById(R.id.tv_time);
             mTvDream = (TextView) inflate.findViewById(R.id.tv_dream);
@@ -132,7 +140,8 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     }
 
     private void requestData(int type) {
-        Map<String, String> detailMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(travelReply.size()).addTId(tId).addUserId().end();
+        int count=travelReply==null?0:travelReply.size();
+        Map<String, String> detailMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(count).addTId(tId).addUserId().end();
         XEventUtils.getUseCommonBackJson(IVariable.FIND_TRAVELS_DETAIL, detailMap, type, new DetailCommonEvent());
     }
 
@@ -216,8 +225,13 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
         haveNextPage = object.getData().getHave_next().getNextpage();
         if (isFirstLoad){
             isFirstLoad=false;
-            String url = data.getTravel().getTravels_img().split(",")[0];
-            x.image().bind(mIvBg, url, ImageOptionsUtil.getBySetSize(DensityUtil.getScreenWidth(), DensityUtil.dip2px(225)));
+           try {
+               String url = data.getTravel().getTravels_img().split(",")[0];
+               x.image().bind(mIvBg, url, ImageOptionsUtil.getBySetSize(DensityUtil.getScreenWidth(), DensityUtil.dip2px(225)));
+           }catch (Exception e){
+               e.printStackTrace();
+           }
+
             TravelsDetail.DataBean.TravelRoutesBean travelRoutes = data.getTravel_routes();
             x.image().bind(mIvIcon, travelRoutes.getTravel_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(53), DensityUtil.dip2px(53)));
             mTvDream.setText(data.getTravel().getTravel_way());
@@ -235,8 +249,10 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
             mRvMember.setAdapter(new TravelMemberAdapter(this, user));
             mRvMember.setLayoutManager(memberLayoutManager);
             mRvMember.addItemDecoration(new HotSpotsItemDecoration(DensityUtil.dip2px(12)));
+            mWvHtml.loadUrl(data.getTravel().getUrl());
         }
         List<TravelReplyBean> travelData = data.getTravel_reply();
+        if (travelData==null)return;
         if (discussCommonAdapter == null) {
             travelReply = travelData;
             discussCommonAdapter = new DiscussCommonAdapter(this, travelReply, IVariable.TYPE_TRAVELS);

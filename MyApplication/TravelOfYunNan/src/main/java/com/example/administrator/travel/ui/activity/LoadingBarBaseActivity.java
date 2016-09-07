@@ -19,6 +19,7 @@ import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.SlippingScrollView;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.UIUtils;
 
@@ -178,6 +179,11 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
             xScrollView.setSlippingListener(new XScrollView.SlippingListener() {
                 @Override
                 public void slipping(int l, int i, int oldl, int t) {
+                    LogUtils.e("t=" + t + "i=" + i + "l=" + l + "oldl" + oldl);
+                    if (xScrollView.isTop()) {//解决 下拉刷新引发title变色问题
+                        t=0;
+                    }
+
                     getmBg1().setAlpha(Math.abs(t / CHANGE_COLOR_LIMIT) > 1 ? 1f : Math.abs(t / CHANGE_COLOR_LIMIT));
                 }
             });
