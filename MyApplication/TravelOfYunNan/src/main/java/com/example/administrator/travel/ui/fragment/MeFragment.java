@@ -20,6 +20,7 @@ import com.example.administrator.travel.ui.activity.MyCollectionActivity;
 import com.example.administrator.travel.ui.activity.OrdersCenterActivity;
 import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.activity.SettingActivity;
+import com.example.administrator.travel.ui.activity.TitleManagementActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.StringUtils;
@@ -53,6 +54,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private TextView mTvProfile;
     private LinearLayout mLlIdentity;
     private TextView mTvNickName;
+    private ImageView mIvTitleEdit;
 
     @Override
     protected int initLayoutRes() {
@@ -78,6 +80,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvMyOrder = (TextView) root.findViewById(R.id.tv_my_order);
         mTvProfile = (TextView) root.findViewById(R.id.tv_profile);
         mTvNickName = (TextView) root.findViewById(R.id.tv_nick_name);
+        mIvTitleEdit = (ImageView) root.findViewById(R.id.iv_title_edit);
 
         CircleImageView viewById = (CircleImageView) root.findViewById(R.id.civ_icon);
         viewById.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +132,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvMyOrder.setOnClickListener(this);//我的订单
         mLlCustomerCenter.setOnClickListener(this);//客服中心
         mLlIdentity.setOnClickListener(this);//身份认证
+        mIvTitleEdit.setOnClickListener(this);//称号管理
     }
 
     @Override
@@ -170,6 +174,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.ll_identity:
                 startActivity(new Intent(getContext(), IdentityAuthenticationActivity.class));
+                break;
+            case R.id.iv_title_edit:
+                startActivity(new Intent(getContext(), TitleManagementActivity.class));
                 break;
         }
     }

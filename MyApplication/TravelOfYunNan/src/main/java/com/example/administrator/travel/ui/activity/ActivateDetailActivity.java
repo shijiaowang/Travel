@@ -1,6 +1,8 @@
 package com.example.administrator.travel.ui.activity;
 
 import android.app.Activity;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,8 @@ import java.util.Map;
  * 活动详情
  */
 public class ActivateDetailActivity extends LoadingBarBaseActivity {
+    @ViewInject(R.id.wv_html)
+    private WebView mWvHtml;
     @ViewInject(R.id.iv_bg)
     private ImageView mIvBg;
     @ViewInject(R.id.iv_icon)
@@ -65,6 +69,10 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity {
 
     @Override
     protected Activity initViewData() {
+        WebSettings settings = mWvHtml.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setUseWideViewPort(true);
         return this;
     }
 
@@ -89,7 +97,9 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity {
     }
     @Subscribe
     public void onEvent(ActiveDetailEvent event){
+        setIsProgress(false);
         if (event.isSuccess()){
+            mWvHtml.loadUrl("http://192.168.1.38/index.php?s=/Home/article/detailapp/id/4.html");
             ActiveDetail activeDetail = GsonUtils.getObject(event.getResult(), ActiveDetail.class);
             ActiveDetail.DataBean data = activeDetail.getData();
             ImageOptions imageOptions=new ImageOptions.Builder().setSize(DensityUtil.getScreenWidth(),DensityUtil.dip2px(228)).setCrop(true).build();

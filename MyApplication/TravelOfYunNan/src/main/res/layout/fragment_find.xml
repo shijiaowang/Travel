@@ -94,7 +94,9 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/fragmentFindIconLl">
+                <LinearLayout
+                    android:id="@+id/ll_hotel"
+                    style="@style/fragmentFindIconLl">
 
                     <com.example.administrator.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"

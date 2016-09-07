@@ -27,6 +27,8 @@
     <!--留言-->
     <string name="activity_circle_love_empty">簪</string>
     <!--空心-->
+    <string name="activity_title_management_title">颢</string>
+    <!--称号-->
     <string name="activity_circle_love_full">昝</string>
     <!--实心-->
     <string name="activity_other_private_message">辛</string>

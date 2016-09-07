@@ -9,6 +9,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.ActiveActivity;
 import com.example.administrator.travel.ui.activity.FindCommonActivity;
+import com.example.administrator.travel.ui.activity.HotelActivity;
 import com.example.administrator.travel.ui.activity.TravelsActivity;
 import com.example.administrator.travel.ui.adapter.FindHotAdapter;
 import com.example.administrator.travel.ui.adapter.FindRecommendAdapter;
@@ -32,6 +33,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mLlDeliciousFood;
     private LinearLayout mLlTravels;
     private LinearLayout mLlAdd;
+    private LinearLayout mLlHotel;
 
     @Override
     protected int initLayoutRes() {
@@ -43,9 +45,11 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
         mGvRecommend = (ToShowAllGridView) root.findViewById(R.id.gv_recommend);
         mLlActive = (LinearLayout) root.findViewById(R.id.ll_active);
         mLlDeliciousFood = (LinearLayout) root.findViewById(R.id.ll_delicious_food);
+        mLlHotel = (LinearLayout) root.findViewById(R.id.ll_hotel);
         mLlAdd = (LinearLayout) root.findViewById(R.id.ll_add);
         mLlTravels = (LinearLayout) root.findViewById(R.id.ll_travels);
         mLvHot = (ToShowAllListView) root.findViewById(R.id.lv_hot);//热门
+
     }
 
     @Override
@@ -60,6 +64,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
         mLlDeliciousFood.setOnClickListener(this);
         mLlTravels.setOnClickListener(this);
         mLlAdd.setOnClickListener(this);
+        mLlHotel.setOnClickListener(this);
     }
 
     @Override
@@ -80,6 +85,9 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent = new Intent(getContext(), FindCommonActivity.class);
                 intent.putExtra(IVariable.TYPE,IVariable.TYPE_DESTINATION);
                 startActivity(intent);
+                break;
+            case R.id.ll_hotel:
+                startActivity(new Intent(getContext(), HotelActivity.class));
                 break;
         }
     }

@@ -46,6 +46,7 @@
         <activity android:name=".ui.activity.ActiveActivity" />
         <activity android:name=".ui.activity.BarBaseActivity" />
         <activity android:name=".ui.activity.TravelsActivity"/>
+        <activity android:name=".ui.activity.TitleManagementActivity"/>
         <activity android:name=".ui.activity.ActivateDetailActivity"/>
         <activity android:name=".ui.activity.PersonnelEquipmentActivity"/>
         <activity android:name=".ui.activity.DeliciousDetailActivity"/>
@@ -88,6 +89,7 @@
         <activity android:name=".ui.activity.DesRemarkActivity"/>
         <activity android:name=".ui.activity.AppointTogetherDetailActivity"/>
         <activity android:name=".ui.activity.RelateMeActivity"/>
+        <activity android:name=".ui.activity.HotelActivity"/>
         <activity android:name=".ui.activity.SettingTitleActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
