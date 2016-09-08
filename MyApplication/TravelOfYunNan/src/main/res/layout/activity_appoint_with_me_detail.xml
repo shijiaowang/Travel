@@ -212,15 +212,8 @@
                                 android:textStyle="italic" />
 
                             <TextView
-                                android:id="@+id/tv_plan_number"
-                                style="@style/fragmentAppointWithMeText"
-                                android:textColor="@color/color646464"
-                                android:textSize="12sp" />
-
-                            <TextView
                                 android:id="@+id/tv_have_number"
                                 style="@style/fragmentAppointWithMeText"
-                                android:layout_marginLeft="19dp"
                                 android:textColor="@color/color646464"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -235,7 +228,6 @@
 
                     <ImageView
                         android:id="@+id/iv_appoint_bg"
-                        android:src="@drawable/icon_test1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="3dp" />
@@ -301,14 +293,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp">
                   <TextView
-                      android:text="招募截止日期：2016-7-3"
+                      android:id="@+id/tv_enter_end_time"
                       android:textColor="@color/otherTitleBg"
                       android:textSize="15sp"
                       android:layout_marginLeft="39dp"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content" />
                     <TextView
-                        android:text="剩余:7日"
+                        android:id="@+id/tv_surplus_day"
                         android:layout_marginLeft="39dp"
                         android:textColor="@color/otherTitleBg"
                         android:textSize="15sp"
@@ -331,6 +323,8 @@
                     android:textSize="16sp" />
 
                 <com.example.administrator.travel.ui.view.ToShowAllListView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
                     android:id="@+id/lv_route_line"
                     style="@style/commonListViewStyle"
                     android:layout_width="match_parent"
@@ -427,6 +421,7 @@
         android:gravity="center_vertical">
 
         <TextView
+            android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

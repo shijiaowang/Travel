@@ -196,6 +196,7 @@ public class DeliciousDetailActivity extends LoadingBarBaseActivity implements X
         haveNextPage = deliciousDetail.getData().getHave_next().getNextpage();
         if (isFirst){
             mTvDes.setText(travel.getContent());
+            changeTitle(deliciousDetail.getData().getTravel().getTitle());
             String foodUrl = travel.getFood_img().split(",")[0];
             x.image().bind(mIvBg, foodUrl, ImageOptionsUtil.getBySetSize(DensityUtil.getScreenWidth(), DensityUtil.dip2px(228)));
         }

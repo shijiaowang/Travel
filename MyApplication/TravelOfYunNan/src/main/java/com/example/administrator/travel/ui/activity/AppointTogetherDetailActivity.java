@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointTogetherDetail;
-import com.example.administrator.travel.event.AppointTogetherDetailEvent;
+import com.example.administrator.travel.bean.PeopleBean;
+import com.example.administrator.travel.bean.PricebasecBean;
+import com.example.administrator.travel.event.AppointDetailEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.AppointDetailHaveEnterAdapter;
 import com.example.administrator.travel.ui.adapter.AppointDetailInsuranceAdapter;
@@ -127,7 +129,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
     @Override
     protected void onLoad() {
         Map<String, String> travelDetailMap = MapUtils.Build().addKey(this).addUserId().add(IVariable.TID,tId).end();
-        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER_DETAIL, travelDetailMap, 0, new AppointTogetherDetailEvent());
+        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER_DETAIL, travelDetailMap, 0, new AppointDetailEvent());
     }
 
     @Override
@@ -145,7 +147,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
         return 1.0f;
     }
     @Subscribe
-    public void onEvent(AppointTogetherDetailEvent event){
+    public void onEvent(AppointDetailEvent event){
         setIsProgress(false);
         lists = new ArrayList<>();
          if (event.isSuccess()){
@@ -161,19 +163,19 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
      * @param event
      * @param lists
      */
-    private void dealData(AppointTogetherDetailEvent event, List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists) {
+    private void dealData(AppointDetailEvent event, List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists) {
         AppointTogetherDetail appointTogetherDetail = GsonUtils.getObject(event.getResult(), AppointTogetherDetail.class);
         AppointTogetherDetail.DataBean data = appointTogetherDetail.getData();
         List<AppointTogetherDetail.DataBean.RoutesBean> routes = dealDate(data);
         initSomeData(data);
         classificationDay(lists, routes);
         mLvRouteLine.setAdapter(new TravelDetailLineAdapter(this, lists, isDetail));
-        List<AppointTogetherDetail.DataBean.IntoPeopleBean> ingPeople = data.getIng_people();
+        List<PeopleBean> ingPeople = data.getIng_people();
         if (ingPeople!=null && ingPeople.size()!=0){
             mRvEnter.setAdapter(new AppointDetailHaveEnterAdapter(this, ingPeople));
             mRvEnter.setLayoutManager(new GridLayoutManager(this, ingPeople.size()));
         }
-        List<AppointTogetherDetail.DataBean.IntoPeopleBean> intoPeople = data.getInto_people();
+        List<PeopleBean> intoPeople = data.getInto_people();
         if (intoPeople!=null && intoPeople.size()!=0){
             mRvHaveEnter.setAdapter(new AppointDetailHaveEnterAdapter(this, intoPeople));
             mRvHaveEnter.setLayoutManager(new GridLayoutManager(this, intoPeople.size()));
@@ -183,11 +185,16 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
            mLvEquProvider.setAdapter(new ProviderAdapter(this,prop));
             measureHeight(mLvEquProvider);
         }
-        List<AppointTogetherDetail.DataBean.PricebasecBean> pricebasec = data.getPricebasec();
-        if (pricebasec!=null && pricebasec.size()!=0){
-           mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
-            measureHeight(mLvInsurance);
+        List<PricebasecBean> pricebasec = data.getPricebasec();
+        if (pricebasec==null){
+           pricebasec=new ArrayList<>();
         }
+        PricebasecBean pricebasecBean=new PricebasecBean();
+        pricebasecBean.setKey("路程费用");
+        pricebasecBean.setValue(data.getPrice());
+        pricebasec.add(pricebasecBean);
+        mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
+        measureHeight(mLvInsurance);
     }
 
     /**
@@ -220,7 +227,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
         mTvSex.setText(data.getSex().equals("0")?R.string.activity_member_detail_boy:R.string.activity_member_detail_girl);
         mTvPlanPeople.setText(data.getMin_people()+"-"+data.getMax_people()+"人");
         mTvTraffic.setText(data.getTraffic());
-        mTvPrice.setText("¥"+data.getPrice());
+        mTvPrice.setText("¥"+data.getTotal_price());
         mTvRemark.setText(data.getTraffic_text());
         mTvStartAdd.setText(data.getMeet_address());
         mTvEndAdd.setText(data.getOver_address());

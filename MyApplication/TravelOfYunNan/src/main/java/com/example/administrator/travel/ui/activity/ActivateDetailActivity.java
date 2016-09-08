@@ -46,7 +46,7 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity {
     private TextView mTvMoney2;
     @ViewInject(R.id.tv_number)//人数
     private TextView mTvNumber;
-    @ViewInject(R.id.tv_time)//人数
+    @ViewInject(R.id.tv_time)//时间
     private TextView mTvTime;
     private String aId;
 

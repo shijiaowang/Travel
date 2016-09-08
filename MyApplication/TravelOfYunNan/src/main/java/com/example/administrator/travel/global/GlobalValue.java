@@ -13,4 +13,5 @@ public class GlobalValue {
     public static int CIRCLE_FOLLOW_LIKE_POSITION = 0;//圈子用于设置当前点击的位置
     public static List<String> mSelectImages;//选中的图
     public static  int selectTitleNumber;//选中的标签个数
+    public static  int mAppointType;//发布约伴类型
 }

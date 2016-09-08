@@ -39,8 +39,10 @@ public class PostOpHolder extends BaseHolder<Object> {
     private FontsIconTextView mFitvLike;
     @ViewInject(R.id.tv_like_user)
     private TextView mTvLikeUser;
+    @ViewInject(R.id.tv_discuss_count)
+    private TextView mTvDiscussCount;
 
-    private boolean isFirst=true;
+    private boolean isFirst = true;
     private PostDetail.DataBean.ForumBean forum;
 
     public PostOpHolder(Context context) {
@@ -49,35 +51,41 @@ public class PostOpHolder extends BaseHolder<Object> {
 
     @Override
     protected void initItemDatas(Object datas, Context mContext, int position) {
-        if (datas instanceof PostDetail.DataBean.ForumBean){
+        if (datas instanceof PostDetail.DataBean.ForumBean) {
             forum = (PostDetail.DataBean.ForumBean) datas;
-        }else {
+        } else {
             return;
         }
-        if (isFirst){
-            isFirst=false;
+        if (isFirst) {
+            isFirst = false;
             mTvNickName.setText(forum.getNick_name());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forum.getTime()));
             mTvContent.setText(forum.getContent());
         }
         List<PostDetail.DataBean.ForumBean.LikeBean> like = forum.getLike();
-        boolean isLike=false;
-        StringBuffer likeName=new StringBuffer();
-        for (PostDetail.DataBean.ForumBean.LikeBean bean:like){
-            if (!StringUtils.isEmpty(bean.getNick_name())){
-                likeName.append(bean.getNick_name()+"、");
+
+        boolean isLike = false;
+        StringBuffer likeName = new StringBuffer();
+        if (like != null && like.size() != 0) {
+            for (PostDetail.DataBean.ForumBean.LikeBean bean : like) {
+                if (!StringUtils.isEmpty(bean.getNick_name())) {
+                    likeName.append(bean.getNick_name() + "、");
+                }
+                if (bean.getId().equals(GlobalUtils.getUserInfo().getId())) {
+                    isLike = true;
+                }
             }
-            if (bean.getId().equals(GlobalUtils.getUserInfo().getId())){
-             isLike=true;
+            if (!StringUtils.isEmpty(likeName.toString())) {
+                String likeUser = likeName.toString().substring(0, likeName.length() - 1);//去掉最后的点
+                mTvLikeUser.setText(likeUser);
             }
         }
-        String likeUser = likeName.toString().substring(0, likeName.length() - 1);//去掉最后的点
-        mTvLikeUser.setText(likeUser);
-        mFitvLike.setTextColor(isLike?mContext.getResources().getColor(R.color.otherFf7f6c):mContext.getResources().getColor(R.color.color969696));
-        if (!StringUtils.isEmpty(forum.getForum_img())){
+        mTvDiscussCount.setText("评论("+forum.getReplay_count()+")");
+        mFitvLike.setTextColor(isLike ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
+        if (!StringUtils.isEmpty(forum.getForum_img())) {
             String[] split = forum.getForum_img().split(",");
             List<String> list = Arrays.asList(split);
-            mLvPostImage.setAdapter(new PostImageAdapter(mContext,list));
+            mLvPostImage.setAdapter(new PostImageAdapter(mContext, list));
         }
     }
 

@@ -38,6 +38,10 @@ public class MapUtils {
             stringMap.put(IVariable.T_ID,tId);
             return this;
         }
+        public Builder addtId(String tId){
+            stringMap.put(IVariable.TID,tId);
+            return this;
+        }
         public Builder addFId(String fId){
             stringMap.put(IVariable.F_ID,fId);
             return this;

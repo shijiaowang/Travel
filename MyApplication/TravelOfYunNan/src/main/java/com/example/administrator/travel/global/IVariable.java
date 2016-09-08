@@ -17,6 +17,7 @@ public interface IVariable {
     String PLAY_TOGETHER = API_KEY + "Travel/travelLists/";//一起玩
     String PLAY_WITHE_ME = API_KEY + "Travel/travelplanLists/";//带我玩
     String PLAY_TOGETHER_DETAIL = API_KEY + "Travel/getTravel/";//一起玩详情
+    String WITHE_ME_DETAIL = API_KEY + "Travel/getTravelplan/";//找人带详情
     /**
      * User
      */
@@ -138,4 +139,7 @@ public interface IVariable {
  String COUNT = "count";//发现评论，当前拥有数据数量
     String A_ID = "a_id";//活动id
     int NO_MORE = 2;//没有跟多数据了
+
+    int TYPE_TOGETHER=0;//以前玩
+    int TYPE_WITH_ME=1;//带我玩
 }

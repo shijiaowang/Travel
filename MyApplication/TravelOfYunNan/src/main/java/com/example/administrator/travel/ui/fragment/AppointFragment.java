@@ -17,6 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.AppointEvent;
+import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.LinePlanActivity;
 import com.example.administrator.travel.ui.activity.TravelsPlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
@@ -141,7 +143,9 @@ public class AppointFragment extends BaseFragment {
         dialogView.findViewById(R.id.rl_together).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GlobalValue.mAppointType= IVariable.TYPE_TOGETHER;
                 startActivity(new Intent(getContext(), TravelsPlanActivity.class));
+
             }
         });
         dialogView.findViewById(R.id.iv_cancel).setOnClickListener(new View.OnClickListener() {

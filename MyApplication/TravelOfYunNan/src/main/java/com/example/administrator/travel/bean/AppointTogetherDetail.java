@@ -124,14 +124,14 @@ public class AppointTogetherDetail {
          * nick_name : 我叫王小
          */
 
-        private List<IntoPeopleBean> into_people;
+        private List<PeopleBean> into_people;
         /**
          * id : 10009
          * user_img : http://192.168.1.38/Uploads/1.png
          * nick_name : 我叫王小
          */
 
-        private List<IntoPeopleBean> ing_people;
+        private List<PeopleBean> ing_people;
         /**
          * time : 1472090400
          * id : 1
@@ -427,19 +427,19 @@ public class AppointTogetherDetail {
             this.routes_title = routes_title;
         }
 
-        public List<IntoPeopleBean> getInto_people() {
+        public List<PeopleBean> getInto_people() {
             return into_people;
         }
 
-        public void setInto_people(List<IntoPeopleBean> into_people) {
+        public void setInto_people(List<PeopleBean> into_people) {
             this.into_people = into_people;
         }
 
-        public List<IntoPeopleBean> getIng_people() {
+        public List<PeopleBean> getIng_people() {
             return ing_people;
         }
 
-        public void setIng_people(List<IntoPeopleBean> ing_people) {
+        public void setIng_people(List<PeopleBean> ing_people) {
             this.ing_people = ing_people;
         }
 
@@ -465,36 +465,6 @@ public class AppointTogetherDetail {
 
         public void setPricebasec(List<PricebasecBean> pricebasec) {
             this.pricebasec = pricebasec;
-        }
-
-        public static class IntoPeopleBean {
-            private String id;
-            private String user_img;
-            private String nick_name;
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getUser_img() {
-                return user_img;
-            }
-
-            public void setUser_img(String user_img) {
-                this.user_img = user_img;
-            }
-
-            public String getNick_name() {
-                return nick_name;
-            }
-
-            public void setNick_name(String nick_name) {
-                this.nick_name = nick_name;
-            }
         }
 
 
@@ -610,63 +580,6 @@ public class AppointTogetherDetail {
 
             public void setNumber(String number) {
                 this.number = number;
-            }
-        }
-
-        public static class PricebasecBean {
-            private String id;
-            private String key;
-            private String value;
-            private String type;
-            private String time;
-            private String status;
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getKey() {
-                return key;
-            }
-
-            public void setKey(String key) {
-                this.key = key;
-            }
-
-            public String getValue() {
-                return value;
-            }
-
-            public void setValue(String value) {
-                this.value = value;
-            }
-
-            public String getType() {
-                return type;
-            }
-
-            public void setType(String type) {
-                this.type = type;
-            }
-
-            public String getTime() {
-                return time;
-            }
-
-            public void setTime(String time) {
-                this.time = time;
-            }
-
-            public String getStatus() {
-                return status;
-            }
-
-            public void setStatus(String status) {
-                this.status = status;
             }
         }
     }

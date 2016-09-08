@@ -21,7 +21,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:src="@drawable/activity_post_item_icon" />
+              />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -35,7 +35,6 @@
                     android:id="@+id/tv_nick_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="洛丽塔"
                     android:textColor="#323232"
                     android:textSize="14sp" />
 
@@ -44,7 +43,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="2016-7-10 6:32"
                     android:textColor="#646464"
                     android:textSize="10sp" />
 
@@ -58,7 +56,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="19dp"
                 android:layout_marginTop="11dp"
-                android:text="#阅读"
                 android:textColor="#878686"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -70,7 +67,6 @@
             android:layout_marginLeft="17dp"
             android:layout_marginRight="17dp"
             android:layout_marginTop="25dp"
-            android:text="故事发生在500年之前，500年之前，500年之前500年之前500年之前500年之前500年之前500年之前500年之前500年之前500年之前。"
             android:textColor="#646464"
             android:textSize="15sp" />
 
@@ -108,7 +104,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="金毛狮王，张三丰，张无忌"
                 android:textColor="@color/color969696"
                 android:textSize="11sp" />
         </LinearLayout>
@@ -119,12 +114,12 @@
             android:background="#efeff4" />
 
         <TextView
+            android:id="@+id/tv_discuss_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="9dp"
             android:layout_marginLeft="17dp"
             android:layout_marginTop="10dp"
-            android:text="评论(4)"
             android:textColor="#323232"
             android:textSize="14sp" />
 

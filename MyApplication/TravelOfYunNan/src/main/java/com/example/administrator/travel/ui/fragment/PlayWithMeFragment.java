@@ -1,11 +1,13 @@
 package com.example.administrator.travel.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
@@ -15,6 +17,7 @@ import com.example.administrator.travel.event.AppointEvent;
 import com.example.administrator.travel.event.AppointTogetherEvent;
 import com.example.administrator.travel.event.AppointWithMeEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.activity.AppointWithMeDetailActivity;
 import com.example.administrator.travel.ui.adapter.AppointTogetherAdapter;
 import com.example.administrator.travel.ui.adapter.AppointWithMeAdapter;
 import com.example.administrator.travel.ui.view.LoadingPage;
@@ -72,6 +75,15 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
 
     @Override
     protected void initListener() {
+        mPlayWithMe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(getContext(), AppointWithMeDetailActivity.class);
+                intent.putExtra(IVariable.TID,mDatas.get(position).getId());
+                startActivity(intent);
+            }
+        });
         mPlayWithMe.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {

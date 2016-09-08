@@ -33,8 +33,8 @@ public class AppointDetailLineDetailHolder extends BaseHolder<AppointTogetherDet
     protected void initItemDatas(AppointTogetherDetail.DataBean.RoutesBean datas, Context mContext, int position) {
         x.image().bind(mIvBg,datas.getLogo_img(),getImageOptions(DensityUtil.dip2px(168),DensityUtil.dip2px(87)));
         mTvAddress.setText(datas.getAddress());
-        mTvDes.setText(datas.getContent());
-        mTvName.setText(datas.getTitle());
+        mTvDes.setText(datas.getProvince()+datas.getContent());
+        mTvName.setText(datas.getCity()+" · "+datas.getTitle());
     }
 
     @Override

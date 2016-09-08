@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointTogetherDetail;
+import com.example.administrator.travel.bean.PeopleBean;
 import com.example.administrator.travel.bean.TravelsDetail;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.ImageOptionsUtil;
@@ -25,9 +26,9 @@ import java.util.List;
  */
 public class AppointDetailHaveEnterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
-    private List<AppointTogetherDetail.DataBean.IntoPeopleBean> mDatas;
+    private List<PeopleBean> mDatas;
 
-    public AppointDetailHaveEnterAdapter(Context mContext, List<AppointTogetherDetail.DataBean.IntoPeopleBean> mDatas) {
+    public AppointDetailHaveEnterAdapter(Context mContext, List<PeopleBean> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
     }

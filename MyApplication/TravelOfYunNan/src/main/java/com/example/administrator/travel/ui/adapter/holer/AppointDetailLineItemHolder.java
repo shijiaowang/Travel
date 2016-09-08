@@ -21,7 +21,7 @@ public class AppointDetailLineItemHolder extends BaseHolder<AppointTogetherDetai
 
     @Override
     protected void initItemDatas(AppointTogetherDetail.DataBean.RoutesBean datas, Context mContext, int position) {
-        mTvSpotName.setText(datas.getTitle());
+        mTvSpotName.setText(datas.getCity()+" · "+datas.getTitle());
     }
 
     @Override
