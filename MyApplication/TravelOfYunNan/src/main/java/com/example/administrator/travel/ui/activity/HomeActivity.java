@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.activity;
 
 
 
+import android.content.Intent;
 import android.graphics.Typeface;
 
 import android.os.Bundle;
@@ -40,7 +41,8 @@ import java.util.List;
  * 主页面
  */
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
-
+   public static final  int REQ=0;
+    public static final  int RESULT=1;
     private List<GradientTextView> iconFonts = new ArrayList<>(5);
     private List<TextView> iconNames = new ArrayList<>(5);
     @ViewInject(R.id.vp_home)
@@ -263,5 +265,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         public int getCount() {
             return fragments.size();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 }

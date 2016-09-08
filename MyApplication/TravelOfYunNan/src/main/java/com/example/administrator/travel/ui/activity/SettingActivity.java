@@ -9,9 +9,11 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.PhoneTextView;
 import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.GlobalUtils;
+import com.example.administrator.travel.utils.ShareUtil;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -34,6 +36,8 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     private LinearLayout mLlProfile;//个人简介
     @ViewInject(R.id.ptv_phone)
     private PhoneTextView mPtvPhone;
+    @ViewInject(R.id.ll_logout)
+    private LinearLayout mLlLogout;
     @Override
     protected int setContentLayout() {
         return  R.layout.activity_setting;
@@ -43,6 +47,7 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     protected void initEvent() {
          mLlPhone.setOnClickListener(this);
         mLlProfile.setOnClickListener(this);
+        mLlLogout.setOnClickListener(this);
     }
 
     @Override
@@ -86,6 +91,13 @@ return null;
                 break;
             case R.id.ll_profile:
                 startActivity(new Intent(this,PersonalProfileActivity.class));
+                break;
+            case R.id.ll_logout:
+                ShareUtil.putString(this, IVariable.SAVE_NAME,"");
+                ShareUtil.putString(this, IVariable.SAVE_PWD, "");
+                startActivity(new Intent(this, SplashActivity.class));
+                setResult(HomeActivity.RESULT);
+                finish();
                 break;
         }
     }

@@ -99,13 +99,7 @@
         </LinearLayout>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/otherTitleBg"
-            android:gravity="center"
-            android:text="下一步"
-            android:textColor="@color/colorFAFAFA"
-            android:textSize="15sp" />
+        <Button
+            style="@style/commonButtonNext" />
     </LinearLayout>
 </com.example.administrator.travel.ui.view.SlippingScrollView>

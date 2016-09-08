@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorFAFAFA"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <ScrollView
@@ -302,13 +304,6 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/bt_next"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/otherTitleBg"
-        android:gravity="center"
-        android:text="下一步"
-        android:textColor="@color/colorFAFAFA"
-        android:textSize="15sp" />
+        style="@style/commonButtonNext"/>
 
 </LinearLayout>

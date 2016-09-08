@@ -6,19 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.AppointTogether;
 import com.example.administrator.travel.bean.AppointWithMe;
-import com.example.administrator.travel.event.AppointEvent;
-import com.example.administrator.travel.event.AppointTogetherEvent;
 import com.example.administrator.travel.event.AppointWithMeEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.AppointWithMeDetailActivity;
-import com.example.administrator.travel.ui.adapter.AppointTogetherAdapter;
 import com.example.administrator.travel.ui.adapter.AppointWithMeAdapter;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
@@ -27,7 +21,6 @@ import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -80,27 +73,8 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(getContext(), AppointWithMeDetailActivity.class);
-                intent.putExtra(IVariable.TID,mDatas.get(position).getId());
+                intent.putExtra(IVariable.TID, mDatas.get(position).getId());
                 startActivity(intent);
-            }
-        });
-        mPlayWithMe.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (scrollState == 1) {
-                    AppointEvent appointEvent = new AppointEvent();
-                    appointEvent.setIsSmooth(true);
-                    EventBus.getDefault().post(appointEvent);
-                } else {
-                    AppointEvent appointEvent = new AppointEvent();
-                    appointEvent.setIsSmooth(false);
-                    EventBus.getDefault().post(appointEvent);
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
             }
         });
     }

@@ -1,21 +1,17 @@
 package com.example.administrator.travel.ui.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointTogether;
-import com.example.administrator.travel.event.AppointEvent;
 import com.example.administrator.travel.event.AppointTogetherEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.AppointTogetherDetailActivity;
 import com.example.administrator.travel.ui.adapter.AppointTogetherAdapter;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
@@ -73,25 +69,8 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
 
     @Override
     protected void initListener() {
-        mLvAppoint.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (scrollState == 1) {
-                    AppointEvent appointEvent = new AppointEvent();
-                    appointEvent.setIsSmooth(true);
-                    EventBus.getDefault().post(appointEvent);
-                } else {
-                    AppointEvent appointEvent = new AppointEvent();
-                    appointEvent.setIsSmooth(false);
-                    EventBus.getDefault().post(appointEvent);
-                }
-            }
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
-            }
-        });
     }
     @Subscribe
     public void onEvent(AppointTogetherEvent event){

@@ -136,8 +136,9 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
             if (pvTime!=null && pvTime.isShowing()){
                 pvTime.dismiss();
+                return true;
             }
-            return true;
+
         }
 
         return super.onKeyDown(keyCode, event);

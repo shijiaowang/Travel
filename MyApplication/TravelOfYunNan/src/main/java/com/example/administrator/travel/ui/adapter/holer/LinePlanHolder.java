@@ -39,15 +39,7 @@ public class LinePlanHolder extends BaseHolder<Line> {
     protected void initItemDatas(Line datas, Context mContext, int position) {
         mTvNumber.setText(datas.getDayNumber());
         mTvTime.setText(datas.getDayTime());
-        List<String> add = datas.getAdd();
-        if (add!=null && add.size()>0){
-            if (mLlLine.getChildCount()>1){
-                mLlLine.removeViews(0,mLlLine.getChildCount()-1);
-            }
-            for (String s:add) {
-                addAdd(s);
-            }
-        }
+
     }
 
 

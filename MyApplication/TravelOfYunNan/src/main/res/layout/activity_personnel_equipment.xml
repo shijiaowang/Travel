@@ -255,13 +255,5 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/bt_next"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/otherTitleBg"
-        android:gravity="center"
-        android:text="下一步"
-        android:textColor="@color/colorFAFAFA"
-        android:textSize="15sp" />
+        style="@style/commonButtonNext" />
 </RelativeLayout>

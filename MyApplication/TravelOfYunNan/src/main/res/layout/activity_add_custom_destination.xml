@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        style="@style/activityAddDestinationLl"
+        android:layout_marginTop="32dp"
+        >
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityAddDestinationIcon"
+            android:text="@string/activity_add_detail_spot"
+            />
+        <TextView
+            style="@style/activityAddDestinationText"
+            android:text="景点名称"
+            />
+        <EditText
+            style="@style/activityAddDestinationEd"
+            android:layout_width="183dp"
+            android:layout_height="32dp" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/activityAddDestinationLl"
+        android:layout_marginTop="15dp"
+        >
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityAddDestinationIcon"
+            android:text="@string/activity_add_detail_team_profile"
+            />
+        <TextView
+            style="@style/activityAddDestinationText"
+            android:text="景点简介"
+            />
+        <EditText
+            style="@style/activityAddDestinationEd"
+            android:padding="3dp"
+            android:gravity="start"
+            android:hint="*选填"
+            android:textColorHint="@color/colorFAFAFA"
+            android:textSize="11sp"
+            android:layout_width="183dp"
+            android:layout_height="105dp" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/activityAddDestinationLl"
+        android:layout_marginTop="30dp"
+        >
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityAddDestinationIcon"
+            android:text="@string/fragment_play_with_me_add"
+            />
+        <TextView
+            style="@style/activityAddDestinationText"
+            android:text="景点地址"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                android:text="选择地址▼"
+                android:textSize="13sp"
+                android:textColor="@color/otherTitleBg"
+                style="@style/activityAddDestinationEd"
+                android:layout_width="80dp"
+                android:layout_height="32dp" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:textColor="@color/otherTitleBg"
+                style="@style/activityAddDestinationEd"
+                android:layout_width="183dp"
+                android:layout_height="32dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/activityAddDestinationLl"
+        android:layout_marginTop="32dp"
+        >
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityAddDestinationIcon"
+            android:text="@string/activity_create_post_picture"
+            />
+        <TextView
+            style="@style/activityAddDestinationText"
+            android:text="景点照片"
+            />
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:textColor="@color/colorb5b5b5"
+            android:textSize="25sp"
+            android:text="@string/activity_my_album_add"
+            android:gravity="center"
+            android:layout_marginLeft="23dp"
+            android:background="@drawable/activity_line_plan_add_bg"
+            android:layout_width="160dp"
+            android:layout_height="78dp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <Button
+        android:text="保存修改"
+        style="@style/commonButtonNext" />
+
+</LinearLayout>

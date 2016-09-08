@@ -6,7 +6,17 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         </style>
-
+    <!--公用button-->
+    <style name="commonButtonNext">
+        <item name="android:id">@id/bt_next</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:text">下一步</item>
+        <item name="android:background">@color/otherTitleBg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorFAFAFA</item>
+    </style>
 
 
 
@@ -131,6 +141,46 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">9sp</item>
         <item name="android:textColor">@color/colorb5b5b5</item>
+    </style>
+    <!--目的地选择-->
+    <style name="activitySelectDestinationText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorC1c1c1</item>
+    </style>
+    <!--添加景点-->
+    <style name="activityAddDestinationLl">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:orientation">horizontal</item>
+    <item name="android:layout_marginLeft">22dp</item>
+</style>
+    <style name="activityAddDestinationIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textColor">@color/color313131</item>
+
+    </style>
+    <style name="activityAddDestinationText" parent="activityAddDestinationIcon">
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+    <style name="activityAddDestinationEd">
+        <item name="android:layout_marginLeft">23dp</item>
+        <item name="android:background">@drawable/activity_travels_plan_time_bg</item>
+    </style>
+    <!--pop-->
+    <style name="appointPopText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/colorFAFAFA</item>
+        <item name="android:layout_centerVertical">true</item>
     </style>
 
 </resources>

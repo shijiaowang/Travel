@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorFAFAFA"
+    android:paddingTop="15dp">
+
+    <ImageView
+        android:id="@+id/iv_spot"
+        android:layout_width="115dp"
+        android:layout_height="80dp"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:id="@+id/ll_des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/iv_spot"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:text="哇哈哈附近还"
+               android:id="@+id/tv_name"
+               style="@style/commonSingleLineTextStyle"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/color323232"
+               android:textSize="16sp" />
+           <com.example.administrator.travel.ui.view.FontsIconTextView
+               android:id="@+id/tv_delete"
+               android:layout_marginRight="12dp"
+               android:layout_alignParentRight="true"
+               android:text="@string/activity_my_appoint_delete"
+               android:textColor="@color/colorb5b5b5"
+               android:textSize="15sp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+       </RelativeLayout>
+
+
+        <com.example.administrator.travel.ui.view.ShowAllTextView
+            android:id="@+id/tv_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textColor="@color/colorC1c1c1"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_fragment_find_add"
+                android:textColor="@color/colorC1c1c1"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_add"
+                style="@style/commonSingleLineTextStyle"
+                android:layout_width="0dp"
+                android:text="我机甲发哈咖啡馆哈咖啡噶开发和"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:textColor="@color/colorC1c1c1"
+                android:textSize="12sp" />
+
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="@string/activity_aite_ok"
+                android:textColor="@color/colorb5b5b5"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_custom_destination_user"
+                android:textColor="@color/colorb5b5b5"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="观察者"
+                android:textColor="@color/Ffbf75"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/ll_des"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/meLine" />
+</RelativeLayout>

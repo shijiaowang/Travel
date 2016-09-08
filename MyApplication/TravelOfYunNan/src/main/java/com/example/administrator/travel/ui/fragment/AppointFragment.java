@@ -16,16 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.event.AppointEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.LinePlanActivity;
 import com.example.administrator.travel.ui.activity.TravelsPlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
+import com.example.administrator.travel.ui.pop.AppointCommonPop;
 import com.example.administrator.travel.utils.FastBlur;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +32,7 @@ import java.util.List;
  * Created by Administrator on 2016/7/20 0020.
  * 约伴
  */
-public class AppointFragment extends BaseFragment {
+public class AppointFragment extends BaseFragment implements View.OnClickListener {
 
 
     private ViewPager mVpAppoint;
@@ -47,6 +43,10 @@ public class AppointFragment extends BaseFragment {
     private List<Fragment> fragments;
     private FloatingActionButton mFabAdd;
     private LinearLayout mLlRoot;
+    private TextView mTvTime;
+    private TextView mTvType;
+    private TextView mTvOrder;
+    private AppointCommonPop appointCommonPop;
 
     @Override
     protected int initLayoutRes() {
@@ -61,6 +61,9 @@ public class AppointFragment extends BaseFragment {
         mTvPlayWithMe = (TextView) root.findViewById(R.id.tv_play_with_me);
         mFabAdd = (FloatingActionButton) root.findViewById(R.id.fab_add);
         mLlRoot = (LinearLayout) root.findViewById(R.id.ll_root);
+        mTvTime = (TextView) root.findViewById(R.id.tv_time);
+        mTvType = (TextView) root.findViewById(R.id.tv_type);
+        mTvOrder = (TextView) root.findViewById(R.id.tv_order);
     }
 
     @Override
@@ -73,7 +76,6 @@ public class AppointFragment extends BaseFragment {
     }
 
     public Bitmap createViewBitmap(View v) {
-
         Bitmap bitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(),
                 Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -82,6 +84,7 @@ public class AppointFragment extends BaseFragment {
     }
     @Override
     protected void initListener() {
+        mTvType.setOnClickListener(this);
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,11 +164,6 @@ public class AppointFragment extends BaseFragment {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        EventBus.getDefault().register(this);
-    }
 
     private void selectPager(int position) {
         if (position < 0 || position > fragments.size() - 1) {
@@ -184,24 +182,23 @@ public class AppointFragment extends BaseFragment {
         }
     }
 
-    /**
-     * 事件 与 fragment通信
-     *
-     * @param event
-     */
-    @Subscribe
-    public void onEvent(AppointEvent event) {
-        if (event.isSmooth()) {
-            mFabAdd.setVisibility(View.INVISIBLE);
-        } else {
-            mFabAdd.setVisibility(View.VISIBLE);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_type:
+                showType();
+                break;
         }
-
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        EventBus.getDefault().unregister(this);
+    private void showType() {
+        if (appointCommonPop==null) {
+            appointCommonPop = AppointCommonPop.newInstance(null, null);
+        }
+        if (appointCommonPop.isShowing()){
+            appointCommonPop.dismiss();
+        }else {
+            appointCommonPop.showDown(getContext(),mTvType);
+        }
     }
 }

@@ -12,6 +12,7 @@ import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.ui.activity.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.activity.CustomerServiceActivity;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
+import com.example.administrator.travel.ui.activity.HomeActivity;
 import com.example.administrator.travel.ui.activity.IdentityAuthenticationActivity;
 import com.example.administrator.travel.ui.activity.MessageCenterActivity;
 import com.example.administrator.travel.ui.activity.MyAlbumActivity;
@@ -158,7 +159,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.iv_setting:
             case R.id.ll_setting:
-                startActivity(new Intent(getContext(), SettingActivity.class));
+                Intent intent = new Intent(getContext(), SettingActivity.class);
+               startActivityForResult(intent, HomeActivity.REQ);
                 break;
             case R.id.tv_appoint:
                 startActivity(new Intent(getContext(), MyAppointActivity.class));
@@ -178,6 +180,14 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.iv_title_edit:
                 startActivity(new Intent(getContext(), TitleManagementActivity.class));
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==HomeActivity.REQ && resultCode==HomeActivity.RESULT){
+            ((HomeActivity) getActivity()).finish();
         }
     }
 }

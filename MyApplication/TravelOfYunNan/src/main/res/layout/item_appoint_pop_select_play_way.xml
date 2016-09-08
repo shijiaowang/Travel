@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        >
+        <ListView
+            android:background="@color/colorFAFAFA"
+            android:id="@+id/lv_left"
+            android:layout_width="89dp"
+            style="@style/commonListViewStyle"
+            android:layout_height="match_parent">
+
+        </ListView>
+        <ListView
+            android:background="@color/meLine"
+            android:id="@+id/lv_right"
+            style="@style/commonListViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:background="@color/otherTitleBg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="47dp">
+        <TextView
+            android:text="取消"
+            style="@style/appointPopText"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+             />
+        <LinearLayout
+            android:id="@+id/ll_delete"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:text="@string/activity_member_detail_delete"
+                style="@style/appointPopText" />
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:text="清除已选"
+                style="@style/appointPopText"  />
+        </LinearLayout>
+        <TextView
+            android:text="确定"
+            android:layout_alignParentRight="true"
+            style="@style/appointPopText"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            />
+
+    </RelativeLayout>
+    <View
+        android:alpha="0.6"
+        android:background="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

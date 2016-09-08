@@ -100,6 +100,8 @@
     <!--纸飞机-->
     <string name="fragment_play_with_me_add">桁</string>
     <!--地点-->
+    <string name="activity_custom_destination_user">者</string>
+    <!--创建者-->
 
 
     <string name="activity_message_center_cursor">暇</string>
@@ -154,6 +156,8 @@
     <!--男-->
     <string name="activity_member_detail_delete">叉</string>
     <!--叉-->
+    <string name="activity_pop_delete">桶</string>
+    <!--垃圾桶-->
     <string name="activity_customer_center_tel">殿</string>
     <!--电话号码-->
     <string name="activity_confirm_orders_zfb">芝</string>
