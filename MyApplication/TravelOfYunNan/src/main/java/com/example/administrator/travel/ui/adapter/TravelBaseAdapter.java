@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Administrator on 2016/7/8 0008.
  * BaseAdapter封装
  */
-abstract class TravelBaseAdapter<T> extends BaseAdapter{
+public abstract class TravelBaseAdapter<T> extends BaseAdapter{
     protected Context mContext;
     protected List<T> mDatas;
 

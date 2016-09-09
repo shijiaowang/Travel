@@ -66,8 +66,9 @@
         android:orientation="vertical">
         <com.example.administrator.travel.ui.view.DottedLineView
             android:id="@+id/iv_top_line"
-            android:layout_width="1dp"
+            android:layout_width="2dp"
             android:layout_height="13dp"
+
             android:layout_marginLeft="9dp" />
 
         <ImageView
@@ -77,8 +78,9 @@
             android:src="@drawable/activity_line_add1" />
         <com.example.administrator.travel.ui.view.DottedLineView
             android:id="@+id/dlv_line"
-            android:layout_width="1dp"
-            android:layout_height="53dp"
+            android:layout_width="2dp"
+            android:layerType="software"
+            android:layout_height="match_parent"
             android:layout_marginLeft="9dp" />
 
     </LinearLayout>

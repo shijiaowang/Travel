@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.example.administrator.travel.bean.MyAppoint;
 import com.example.administrator.travel.ui.activity.BulletinBoardActivity;
-import com.example.administrator.travel.ui.activity.MemberDetailActivity;
+import com.example.administrator.travel.ui.appoint.memberdetail.MemberDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.MyAppointSuccessHolder;
 import com.example.administrator.travel.ui.adapter.holer.MyAppointingHolder;

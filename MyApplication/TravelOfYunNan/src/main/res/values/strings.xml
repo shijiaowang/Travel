@@ -176,6 +176,8 @@
     <!--设置-->
     <string name="activity_travels_plan_car">車</string>
     <!--车-->
+    <string name="activity_select_cursor">佑</string>
+    <!--选择游标-->
     <string name="activity_setting_log_out">莞</string>
 
     <!--退出登录-->
@@ -211,7 +213,6 @@
     <string name="footer_hint_load_normal">Load more</string>
     <string name="footer_hint_load_ready">Release to load more</string>
     <string name="activity_travels_plan_remark">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;备注</string>
-
 
 
 </resources>

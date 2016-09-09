@@ -18,6 +18,8 @@ public interface IVariable {
     String PLAY_WITHE_ME = API_KEY + "Travel/travelplanLists/";//带我玩
     String PLAY_TOGETHER_DETAIL = API_KEY + "Travel/getTravel/";//一起玩详情
     String WITHE_ME_DETAIL = API_KEY + "Travel/getTravelplan/";//找人带详情
+    String GET_CUSTOM_SPOT = API_KEY + "Travel/getTravelbyUser/";//获取用户自定义景点列表
+    String DELETE_CUSTOM_SPOT = API_KEY + "Travel/delTravelbyUser/";//用户删除自定义景点
     /**
      * User
      */
@@ -107,6 +109,27 @@ public interface IVariable {
 
     String FORUM_ID = "forum_id";//帖子id
     String USER_ID = "user_id";//用户id
+    String START_TIME = "start_time";//开始时间
+    String END_TIME = "end_time";//结束时间
+    String TRAFFIC = "traffic";//交通
+    String TRAFFIC_TEXT = "traffic_text";//出游备注
+    String MIN_PEOPLE = "min_people";//最少人数
+    String MAX_PEOPLE = "max_people";//最多人数
+    String TOTAL_PRICE = "total_price";//总价
+    String LABEL = "label";//标签
+    String SEX_CONDITION = "sex_condition";//性别认证
+    String BIND_CONDITION = "bind_condition";//身份认证
+    String AGREE = "agree";//
+    String PRICE = "price";//路费
+    String MEET_ADDRESS = "meet_address";//出发地
+    String OVER_ADDRESS = "over_address";//解散地
+    String BASEC = "basec";//约伴信息
+    String ROUTES = "routes";//约伴路线
+    String PROP = "prop";//租借道具
+    String TD_ID = "td_id";//
+    String TIME = "time";
+    String TP_ID = "tp_id";
+    String NUMBER = "number";
 
 
     String CIRCLE_ID = "circle_id";//圈子ID

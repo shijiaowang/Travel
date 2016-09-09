@@ -91,6 +91,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     private CreatePostPhotoAdapter createPostPhotoAdapter;
     private String addFlag="add";
     private String cId;
+    private boolean isCreateing=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -350,12 +351,16 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
             ToastUtils.showToast("请输入内容");
             return;
         }
+
+        if (isCreateing)return;
+        isCreateing = true;
         Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content,cId);
         XEventUtils.posFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,CREATE_POST,new CreatePostEvent());
     }
 
     @Subscribe
     public void onEvent(CreatePostEvent event) {
+        isCreateing=false;
         if (event.isSuccess()) {
             dealData(event);
         } else {

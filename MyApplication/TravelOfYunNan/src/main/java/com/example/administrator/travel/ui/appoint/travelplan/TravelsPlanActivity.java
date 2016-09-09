@@ -1,15 +1,25 @@
-package com.example.administrator.travel.ui.activity;
+package com.example.administrator.travel.ui.appoint.travelplan;
 
 import android.content.Intent;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.activity.LinePlanActivity;
+import com.example.administrator.travel.ui.activity.PersonnelEquipmentActivity;
+import com.example.administrator.travel.utils.CalendarUtils;
+import com.example.administrator.travel.utils.GlobalUtils;
+import com.example.administrator.travel.utils.JsonUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 
+import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
 import java.text.SimpleDateFormat;
@@ -33,10 +43,16 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
     private Button mBtNext;
     @ViewInject(R.id.tv_start_time)
     private TextView mTvStartTime;
+    @ViewInject(R.id.tv_how_day)
+    private TextView mTvHowDay;
+    @ViewInject(R.id.et_remark)
+    private EditText mEtRemark;
     private TextView mTvRightNext;
     private TimePickerView pvTime;
     private Date startDate=new Date();
     private Date endDate=new Date();
+    private String traffic="";//交通工具
+
 
     @Override
     protected int setContentLayout() {
@@ -88,9 +104,37 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
                 showTime(mTvEndTime);
                 break;
             case R.id.bt_next:
-                startActivity(new Intent(this,PersonnelEquipmentActivity.class));
+                addJson();
+
                 break;
         }
+    }
+
+    /**
+     * 添加json
+     */
+    private void addJson() {
+        try{
+            JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
+            JsonUtils.putString(IVariable.USER_ID, GlobalUtils.getUserInfo().getId(),basecJsonObject);
+            JsonUtils.putString(IVariable.START_TIME, startDate.getTime()+"",basecJsonObject);
+            JsonUtils.putString(IVariable.END_TIME, endDate.getTime()+"",basecJsonObject);
+            JsonUtils.putString(IVariable.TRAFFIC, endDate.getTime()+"",basecJsonObject);
+            basecJsonObject.put(IVariable.TRAFFIC_TEXT,getTrafficText());
+
+            startActivity(new Intent(this, PersonnelEquipmentActivity.class));
+        }catch (Exception e){
+            e.printStackTrace();
+            ToastUtils.showToast("您尚有未填的项目");
+        }
+    }
+
+    /**
+     * 获取留言
+     * @return
+     */
+    private String getTrafficText() {
+          return getString(mEtRemark);
     }
 
 
@@ -126,7 +170,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
      * 计算一个用了几天几晚m
      */
     private void howDay() {
-
+        mTvHowDay.setText("共计"+CalendarUtils.getHowDayHowNight(endDate.getTime()+"",startDate.getTime()+""));
     }
 
     @Override
@@ -143,4 +187,6 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
 
         return super.onKeyDown(keyCode, event);
     }
+
+
 }

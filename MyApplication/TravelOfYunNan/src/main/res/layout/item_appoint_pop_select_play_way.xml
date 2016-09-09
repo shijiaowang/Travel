@@ -18,7 +18,7 @@
 
         </ListView>
         <ListView
-            android:background="@color/meLine"
+            android:background="@color/colorf7f7f9"
             android:id="@+id/lv_right"
             style="@style/commonListViewStyle"
             android:layout_width="match_parent"
@@ -33,13 +33,14 @@
         android:layout_width="match_parent"
         android:layout_height="47dp">
         <TextView
+            android:id="@+id/tv_cancel"
             android:text="取消"
             style="@style/appointPopText"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
              />
         <LinearLayout
-            android:id="@+id/ll_delete"
+            android:id="@+id/ll_clear"
             android:orientation="horizontal"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
@@ -53,6 +54,7 @@
                 style="@style/appointPopText"  />
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_sure"
             android:text="确定"
             android:layout_alignParentRight="true"
             style="@style/appointPopText"
@@ -62,6 +64,7 @@
 
     </RelativeLayout>
     <View
+        android:id="@+id/v_out"
         android:alpha="0.6"
         android:background="@android:color/black"
         android:layout_width="match_parent"

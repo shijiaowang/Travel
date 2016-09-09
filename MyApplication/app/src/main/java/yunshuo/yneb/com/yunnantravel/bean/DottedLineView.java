@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.view;
+package yunshuo.yneb.com.yunnantravel.bean;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,7 +9,7 @@ import android.graphics.PathEffect;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.administrator.travel.R;
+import yunshuo.yneb.com.yunnantravel.R;
 
 
 /**
@@ -36,7 +36,7 @@ public class DottedLineView extends View {
     private void init() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(getResources().getColor(R.color.bgColor_overlay));
+        mPaint.setColor(getResources().getColor(R.color.black_overlay));
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setFakeBoldText(true);
         mPath = new Path();
@@ -46,14 +46,14 @@ public class DottedLineView extends View {
     }
 
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        // TODO Auto-generated method stub
-        super.onDraw(canvas);
-        mPath.moveTo(0, 0);
-        mPath.lineTo(0,getHeight());
-        canvas.drawPath(mPath, mPaint);
-    }
+        @Override
+        protected void onDraw(Canvas canvas) {
+            // TODO Auto-generated method stub
+            super.onDraw(canvas);
+            mPath.moveTo(0, 0);
+            mPath.lineTo(0,getHeight());
+            canvas.drawPath(mPath, mPaint);
+        }
 
     public int getCurrentHeight() {
         return currentHeight;

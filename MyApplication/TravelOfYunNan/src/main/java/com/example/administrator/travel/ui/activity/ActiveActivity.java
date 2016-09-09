@@ -43,8 +43,6 @@ public class ActiveActivity extends LoadingBarBaseActivity implements XScrollVie
     private ToShowAllListView mLvActive;//活动列表
     private XScrollView mSsvScroll;
     private ImageView mActiveTop;
-    private static final int LOAD_MORE=0;
-    private static final int LOAD_REFRESH=1;
     private ActiveAdapter activeAdapter;
     private List<Active.DataBean> actives;
 
@@ -69,11 +67,11 @@ public class ActiveActivity extends LoadingBarBaseActivity implements XScrollVie
 
     @Override
     protected void onLoad() {
-        request(LOAD_MORE);
+        request(TYPE_LOAD);
     }
 
     private void request(int type) {
-        int count= actives==null || type==LOAD_REFRESH?0:actives.size();//去掉头布局
+        int count= actives==null || type==TYPE_REFRESH?0:actives.size();//去掉头布局
         Map<String, String> activeMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(count).end();
         XEventUtils.getUseCommonBackJson(IVariable.FIND_ACTIVITY, activeMap, type, new ActiveEvent());
     }
@@ -118,7 +116,7 @@ public class ActiveActivity extends LoadingBarBaseActivity implements XScrollVie
             actives =data;
             activeAdapter = new ActiveAdapter(this, actives);
             mLvActive.setAdapter(activeAdapter);
-        }else if (event.getCode()==LOAD_MORE){
+        }else if (event.getCode()==TYPE_LOAD){
             actives.addAll(data);
             activeAdapter.notifyData(actives);
         }else {
@@ -157,12 +155,12 @@ public class ActiveActivity extends LoadingBarBaseActivity implements XScrollVie
 
     @Override
     public void onRefresh() {
-        request(LOAD_REFRESH);
+        request(TYPE_REFRESH);
     }
 
     @Override
     public void onLoadMore() {
-     request(LOAD_MORE);
+     request(TYPE_LOAD);
     }
 
 }

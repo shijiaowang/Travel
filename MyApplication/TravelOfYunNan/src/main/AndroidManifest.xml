@@ -49,13 +49,13 @@
         <activity android:name=".ui.activity.BarBaseActivity" />
         <activity android:name=".ui.activity.TravelsActivity"/>
         <activity android:name=".ui.activity.TitleManagementActivity"/>
-        <activity android:name=".ui.activity.CustomDestinationActivity"/>
+        <activity android:name=".ui.appoint.customdestination.CustomDestinationActivity"/>
         <activity android:name=".ui.activity.ActivateDetailActivity"/>
         <activity android:name=".ui.activity.PersonnelEquipmentActivity"/>
         <activity android:name=".ui.activity.DeliciousDetailActivity"/>
         <activity android:name=".ui.activity.PictureSelectorActivity"/>
         <activity android:name=".ui.activity.OrdersDetailActivity"/>
-        <activity android:name=".ui.activity.TravelsPlanActivity"/>
+        <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"/>
         <activity android:name=".ui.activity.CostSettingActivity"/>
         <activity android:name=".ui.activity.AppointWithMeDetailActivity"/>
         <activity android:name=".ui.activity.BaseTransActivity"
@@ -72,7 +72,7 @@
         <activity android:name=".ui.activity.BulletinBoardActivity"/>
         <activity android:name=".ui.activity.MyCollectionActivity"/>
         <activity android:name=".ui.activity.LinePlanActivity"/>
-        <activity android:name=".ui.activity.MemberDetailActivity"/>
+        <activity android:name=".ui.appoint.memberdetail.MemberDetailActivity"/>
         <activity android:name=".ui.activity.OrdersCenterActivity"/>
         <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
         <activity android:name=".ui.activity.CollectionDetailActivity"/>

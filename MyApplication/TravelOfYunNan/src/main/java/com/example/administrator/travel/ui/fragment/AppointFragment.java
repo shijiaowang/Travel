@@ -16,11 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.bean.SelectCommonBean;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.TravelsPlanActivity;
+import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
-import com.example.administrator.travel.ui.pop.AppointCommonPop;
+import com.example.administrator.travel.ui.pop.appoint.AppointCommonPop;
 import com.example.administrator.travel.utils.FastBlur;
 
 import java.util.ArrayList;
@@ -84,6 +85,13 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     }
     @Override
     protected void initListener() {
+
+        mTvTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         mTvType.setOnClickListener(this);
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +131,9 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             }
         });
     }
+
+
+
 
     private void showAppointDialog() {
         Bitmap viewBitmap = createViewBitmap(mLlRoot);
@@ -192,8 +203,19 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void showType() {
+        List<SelectCommonBean> left=new ArrayList<>();
+        List<SelectCommonBean> right=new ArrayList<>();
+        SelectCommonBean playWay = new SelectCommonBean("玩法");
+        playWay.setIsChecked(true);
+        left.add(playWay);
+        left.add(new SelectCommonBean("路线"));
+        left.add(new SelectCommonBean("路线1"));
+        left.add(new SelectCommonBean("路线2"));
+        for (int i=0;i<20;i++){
+            right.add(new SelectCommonBean("游戏"+i));
+        }
         if (appointCommonPop==null) {
-            appointCommonPop = AppointCommonPop.newInstance(null, null);
+            appointCommonPop = AppointCommonPop.newInstance(left, right);
         }
         if (appointCommonPop.isShowing()){
             appointCommonPop.dismiss();

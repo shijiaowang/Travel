@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.activity;
+package com.example.administrator.travel.ui.appoint.memberdetail;
 
 
 import android.support.v7.widget.DefaultItemAnimator;
@@ -6,10 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.activity.BarBaseActivity;
 import com.example.administrator.travel.ui.adapter.MemberEnterAdapter;
 import com.example.administrator.travel.ui.adapter.MemberJoinedAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;

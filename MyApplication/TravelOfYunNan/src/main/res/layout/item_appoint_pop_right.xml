@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="46dp">
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_type"
+        android:layout_marginLeft="20dp"
+        android:text="骑行"
+        android:textSize="13sp"
+        android:textColor="@color/color4d4d4d"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp" />
+    <com.example.administrator.travel.ui.view.FontsIconTextView
+        android:id="@+id/tv_ok"
+        android:gravity="center"
+        android:layout_marginRight="21dp"
+        android:layout_alignParentRight="true"
+        android:text="@string/activity_aite_ok"
+        android:textSize="13sp"
+        android:textColor="@color/colordbdbdb"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"/>
+    <View
+        android:layout_alignParentBottom="true"
+        android:background="@color/meLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</RelativeLayout>

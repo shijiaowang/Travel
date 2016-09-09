@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.appoint.customdestination.CustomDestinationActivity;
 import com.example.administrator.travel.ui.adapter.SelectDestinationAdapter;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 

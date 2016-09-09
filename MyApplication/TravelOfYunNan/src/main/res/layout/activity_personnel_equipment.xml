@@ -255,5 +255,6 @@
     </LinearLayout>
 
     <Button
+        android:layout_alignParentBottom="true"
         style="@style/commonButtonNext" />
 </RelativeLayout>
