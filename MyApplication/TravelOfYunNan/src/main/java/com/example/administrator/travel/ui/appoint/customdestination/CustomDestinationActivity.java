@@ -21,6 +21,7 @@ import com.example.administrator.travel.utils.XEventUtils;
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
     private EditText mEtSearch;
     @ViewInject(R.id.tv_search)
     private TextView mTvSearch;
-    private List<CustomDestinationBean.DataBean> mCustomData;
+    private List<CustomDestinationBean.DataBean> mCustomData=new ArrayList<>(0);
     private String content = "";
     private CustomDestinationAdapter customDestinationAdapter;
 
@@ -126,11 +127,11 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
         }else {
             CustomDestinationBean data = GsonUtils.getObject(event.getResult(), CustomDestinationBean.class);
             List<CustomDestinationBean.DataBean> customData = data.getData();
-            if (event.getType() == TYPE_LOAD) {
-                mCustomData.addAll(customData);
+            if (event.getType() == TYPE_REFRESH) {
+                mCustomData = customData;
                 customDestinationAdapter.notifyData(mCustomData);
             } else {
-                mCustomData = customData;
+                mCustomData.addAll(customData);
                 customDestinationAdapter = new CustomDestinationAdapter(this, mCustomData);
                 mLvDestination.setAdapter(customDestinationAdapter);
             }

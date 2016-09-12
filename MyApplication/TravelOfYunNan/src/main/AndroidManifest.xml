@@ -37,7 +37,7 @@
         <activity android:name=".ui.activity.PostActivity" />
         <activity android:name=".ui.activity.OtherUserCenterActivity" />
         <activity android:name=".ui.activity.MessageCenterActivity" />
-        <activity android:name=".ui.activity.SelectDestinationActivity" />
+        <activity android:name=".ui.appoint.selectdestination.SelectDestinationActivity" />
         <activity android:name=".ui.activity.AddCustomDestinationActivity" />
         <activity android:name=".ui.activity.FollowAndFanActivity" />
         <activity android:name=".ui.activity.MyAlbumActivity" />

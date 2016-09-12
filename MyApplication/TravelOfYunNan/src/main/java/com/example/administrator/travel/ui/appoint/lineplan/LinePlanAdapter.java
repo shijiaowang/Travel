@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.example.administrator.travel.bean.Line;
-import com.example.administrator.travel.ui.activity.SelectDestinationActivity;
+import com.example.administrator.travel.ui.appoint.selectdestination.SelectDestinationActivity;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 

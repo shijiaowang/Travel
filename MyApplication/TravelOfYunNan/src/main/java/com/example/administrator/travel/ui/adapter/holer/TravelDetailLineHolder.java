@@ -30,7 +30,7 @@ public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetai
     @ViewInject(R.id.tv_time)
     private TextView mTvTime;
     @ViewInject(R.id.dlv_line)
-    private DottedLineView mDlvLine;
+    private View mDlvLine;
     @ViewInject(R.id.tv_number)
     private TextView mTvNumber;
     @ViewInject(R.id.lv_line)

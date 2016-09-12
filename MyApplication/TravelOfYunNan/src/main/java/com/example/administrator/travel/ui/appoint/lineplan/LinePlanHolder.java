@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/8/5 0005.
  */
-public class LinePlanHolder extends BaseHolder<Line> {
+public class LinePlanHolder extends BaseHolder<String> {
     @ViewInject(R.id.tv_add)
     public FontsIconTextView mTvAdd;
     public LinearLayout mLlLine;
@@ -37,9 +37,9 @@ public class LinePlanHolder extends BaseHolder<Line> {
     }
 
     @Override
-    protected void initItemDatas(Line datas, Context mContext, int position) {
-        mTvNumber.setText(datas.getDayNumber());
-        mTvTime.setText(datas.getDayTime());
+    protected void initItemDatas(String datas, Context mContext, int position) {
+        mTvTime.setText(datas);
+        mTvNumber.setText((position+1)+"");
 
     }
 

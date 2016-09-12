@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Line;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.LinePlanAdapter;
 
 
@@ -24,6 +25,7 @@ public class LinePlanActivity extends BarBaseActivity {
     private TextView tvAddStart;
     @ViewInject(R.id.tv_end_add)
     private TextView tvAddEnd;
+    private ArrayList<String> dayList;
 
 
     @Override
@@ -33,25 +35,12 @@ public class LinePlanActivity extends BarBaseActivity {
 
     @Override
     protected void initEvent() {
-
+        dayList = getIntent().getStringArrayListExtra(IVariable.DATA);
     }
 
     @Override
     protected void initViewData() {
-        List<Line> lines=new ArrayList<>();
-        for (int i=0;i<5;i++) {
-            Line line = new Line();
-            line.setDayNumber(i+"");
-            line.setDayTime("7月"+(i+1)+"日");
-            List<String> list=new ArrayList<>();
-            list.add("云南.丽江");
-            list.add("湖南.丽江");
-            list.add("河南.丽江");
-            list.add("上海.丽江");
-            line.setAdd(list);
-            lines.add(line);
-        }
-        mLvLine.setAdapter(new LinePlanAdapter(this,lines));
+        mLvLine.setAdapter(new LinePlanAdapter(this,dayList));
     }
 
     @Override

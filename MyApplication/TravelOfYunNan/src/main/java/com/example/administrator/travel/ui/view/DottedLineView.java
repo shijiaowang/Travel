@@ -36,7 +36,7 @@ public class DottedLineView extends View {
     private void init() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(getResources().getColor(R.color.bgColor_overlay));
+        mPaint.setColor(getResources().getColor(R.color.otherTitleBg));
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setFakeBoldText(true);
         mPath = new Path();

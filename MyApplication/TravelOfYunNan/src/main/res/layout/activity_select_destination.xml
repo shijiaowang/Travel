@@ -15,17 +15,20 @@
             android:layout_width="230dp"
             android:layout_height="27dp" >
             <EditText
+                android:id="@+id/et_search"
+                android:paddingLeft="27dp"
                 android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <com.example.administrator.travel.ui.view.FontsIconTextView
-                android:layout_marginLeft="15dp"
+                android:id="@+id/tv_search"
                 android:layout_centerVertical="true"
                 android:text="@string/fragment_circle_search"
+                android:gravity="center"
                 android:textColor="@color/otherTitleBg"
                 android:textSize="12sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="27dp"
+                android:layout_height="match_parent" />
 
         </RelativeLayout>
         <Button

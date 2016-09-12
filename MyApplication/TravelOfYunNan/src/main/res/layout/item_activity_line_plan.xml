@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="52dp"
         android:text="7月1日"
         android:textColor="@color/color646464"
         android:textSize="12sp" />
@@ -26,8 +26,8 @@
             android:id="@+id/rl_day"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="19dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="45dp"
             android:background="@drawable/activity_line_plan_day_number_bg"
             android:gravity="center"
             android:orientation="vertical">
@@ -48,36 +48,36 @@
                 android:textSize="9sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_destination_line"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="27dp"
-            android:orientation="vertical">
+       <com.example.administrator.travel.ui.view.ToShowAllListView
+           android:id="@+id/lv_add"
+           android:layout_marginLeft="37dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_add"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/activity_create_album_add_bg"
+            android:gravity="center"
+            android:text="@string/activity_other_follow"
+            android:textColor="@color/otherTitleBg"
+            android:textSize="18sp" />
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
-                android:layout_marginTop="20dp"
-                android:id="@+id/tv_add"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:background="@drawable/activity_create_album_add_bg"
-                android:gravity="center"
-                android:text="@string/activity_other_follow"
-                android:textColor="@color/otherTitleBg"
-                android:textSize="18sp" />
-        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="70dp"
         android:orientation="vertical">
+
         <com.example.administrator.travel.ui.view.DottedLineView
             android:id="@+id/iv_top_line"
-            android:layout_width="1dp"
-            android:layout_height="31dp"
+            android:layout_width="2dp"
+            android:layout_height="51dp"
             android:layout_marginLeft="9dp" />
 
         <ImageView
@@ -89,7 +89,7 @@
         <com.example.administrator.travel.ui.view.DottedLineView
             android:id="@+id/dlv_line"
             android:layout_width="1dp"
-            android:layout_height="match_parent"
+            android:layout_height="57dp"
             android:layout_marginLeft="9dp" />
 
     </LinearLayout>

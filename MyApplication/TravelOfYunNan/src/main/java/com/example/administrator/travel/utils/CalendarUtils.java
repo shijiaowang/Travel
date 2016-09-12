@@ -8,15 +8,15 @@ import java.util.zip.Adler32;
  * Created by Administrator on 2016/9/1 0001.
  */
 public class CalendarUtils {
-    public static String getHowDayHowNight(String time,String time2){
+    public static String getHowDayHowNight(String start,String end){
         String day="";
         String night="";
         try {
             Calendar calendar=Calendar.getInstance();
-            calendar.setTime(new Date(Long.parseLong(time)));
+            calendar.setTime(new Date(Long.parseLong(start)));
              int startDay = calendar.get(Calendar.DAY_OF_YEAR);
              int startYear = calendar.get(Calendar.YEAR);
-            calendar.setTime(new Date(Long.parseLong(time2)));
+            calendar.setTime(new Date(Long.parseLong(end)));
             int endDay = calendar.get(Calendar.DAY_OF_YEAR);
             int endYear = calendar.get(Calendar.YEAR);
             if (startYear==endYear){

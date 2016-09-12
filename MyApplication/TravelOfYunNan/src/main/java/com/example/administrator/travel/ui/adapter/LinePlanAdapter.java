@@ -4,8 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.example.administrator.travel.bean.Line;
-import com.example.administrator.travel.ui.activity.SelectDestinationActivity;
+import com.example.administrator.travel.ui.appoint.selectdestination.SelectDestinationActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.appoint.lineplan.LinePlanHolder;
 
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/8/5 0005.
  */
-public class LinePlanAdapter extends TravelBaseAdapter<Line> {
+public class LinePlanAdapter extends TravelBaseAdapter<String> {
     public LinePlanAdapter(Context mContext, List mDatas) {
         super(mContext, mDatas);
     }
@@ -25,7 +24,7 @@ public class LinePlanAdapter extends TravelBaseAdapter<Line> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, final Line item, int position) {
+    protected void initListener(BaseHolder baseHolder, final String item, int position) {
         if (baseHolder instanceof LinePlanHolder){
             final LinePlanHolder linePlanHolder = (LinePlanHolder) baseHolder;
             linePlanHolder.mTvAdd.setOnClickListener(new View.OnClickListener() {
