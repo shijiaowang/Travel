@@ -166,4 +166,7 @@ public interface IVariable {
     int TYPE_TOGETHER=0;//以前玩
     int TYPE_WITH_ME=1;//带我玩
     String DATA = "data";
+    String ITEM_DATA = "item_data";
+
+    String POSITION = "position";
 }

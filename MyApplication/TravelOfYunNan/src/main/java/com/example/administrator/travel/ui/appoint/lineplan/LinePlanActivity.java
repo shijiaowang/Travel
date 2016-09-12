@@ -1,16 +1,18 @@
 package com.example.administrator.travel.ui.appoint.lineplan;
 
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.Line;
+import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.BarBaseActivity;
-import com.example.administrator.travel.ui.adapter.LinePlanAdapter;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +27,8 @@ public class LinePlanActivity extends BarBaseActivity {
     @ViewInject(R.id.tv_end_add)
     private TextView tvAddEnd;
 
+    private LinePlanAdapter linePlanAdapter;
+
 
     @Override
     protected int setContentLayout() {
@@ -33,26 +37,15 @@ public class LinePlanActivity extends BarBaseActivity {
 
     @Override
     protected void initEvent() {
-
+        registerEventBus(this);
     }
 
     @Override
     protected void initViewData() {
-        List<Line> lines=new ArrayList<>();
-        for (int i=0;i<5;i++) {
-            Line line = new Line();
-            line.setDayNumber(i+"");
-            line.setDayTime("7月"+(i+1)+"日");
-            List<String> list=new ArrayList<>();
-            list.add("云南.丽江");
-            list.add("湖南.丽江");
-            list.add("河南.丽江");
-            list.add("上海.丽江");
-            line.setAdd(list);
-            lines.add(line);
-        }
-        mLvLine.setAdapter(new LinePlanAdapter(this,lines));
+        linePlanAdapter = new LinePlanAdapter(this, GlobalValue.mLineBeans);
+        mLvLine.setAdapter(linePlanAdapter);
     }
+
 
     @Override
     protected String setTitleName() {
@@ -64,4 +57,29 @@ public class LinePlanActivity extends BarBaseActivity {
         return 1f;
     }
 
+    @Subscribe
+    public void onEvent(LinePlanEvent linePlanEvent) {
+        try {
+            dealData(linePlanEvent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void dealData(LinePlanEvent linePlanEvent) {
+        if (linePlanEvent.isDelete()) {
+
+        } else {
+            LineBean lineBean = GlobalValue.mLineBeans.get(linePlanEvent.getPosition());
+            lineBean.getDestinations().add(linePlanEvent.getAdd());
+            linePlanAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterEventBus(this);
+    }
 }

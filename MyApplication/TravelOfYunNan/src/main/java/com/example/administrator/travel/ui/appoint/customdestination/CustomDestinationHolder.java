@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.ShowAllTextView;
 
@@ -43,6 +44,8 @@ public class CustomDestinationHolder extends BaseHolder<CustomDestinationBean.Da
         mTvAdd.setText(datas.getProvince() + datas.getCity() + datas.getAddress());
         mTvShow.setContent(datas.getContent());
         mTvUser.setText(datas.getUser_name());
+        mTvSelect.setTextColor(GlobalValue.clickPosition == position ? mContext.getResources().getColor(R.color.Ffbf75) : mContext.getResources().getColor(R.color.colorb5b5b5));
+
     }
 
     @Override

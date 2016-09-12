@@ -1,7 +1,9 @@
 package com.example.administrator.travel.ui.appoint.selectdestination;
 
 import android.content.Context;
+import android.view.View;
 
+import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Destination;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
@@ -14,17 +16,14 @@ import java.util.List;
 public class SelectDestinationAdapter extends TravelBaseAdapter<Destination.DataBean.BodyBean>{
     public SelectDestinationAdapter(Context mContext, List<Destination.DataBean.BodyBean> mDatas) {
         super(mContext, mDatas);
+
     }
 
     @Override
-    protected int testDataSize() {
-        return 10;
+    protected void initListener(BaseHolder baseHolder, final Destination.DataBean.BodyBean item, final int position) {
     }
 
-    @Override
-    protected void initListener(BaseHolder baseHolder, Destination.DataBean.BodyBean item, int position) {
 
-    }
 
     @Override
     protected BaseHolder initHolder(int position) {

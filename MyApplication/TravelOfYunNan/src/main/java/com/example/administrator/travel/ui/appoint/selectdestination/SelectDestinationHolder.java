@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Destination;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 import org.xutils.view.annotation.ViewInject;
@@ -28,18 +29,29 @@ public class SelectDestinationHolder extends BaseHolder<Destination.DataBean.Bod
     private TextView mTvAdd;
     @ViewInject(R.id.tv_select)
     private TextView mTvSelect;
+
+
+
     public SelectDestinationHolder(Context context) {
         super(context);
     }
 
     @Override
-    protected void initItemDatas(Destination.DataBean.BodyBean datas, Context mContext, int position) {
+    public void initItemDatas(Destination.DataBean.BodyBean datas, Context mContext, int position) {
         x.image().bind(mIvSpot, datas.getLogo_img(), getImageOptions(115, 80));
         mTvName.setText(datas.getTitle());
         mTvAdd.setText(datas.getAddress());
         float star=5.0f;
         star = getStar(datas, star);
         mRbStart.setRating(star);
+        mTvSelect.setTextColor(GlobalValue.clickPosition ==position?mContext.getResources().getColor(R.color.Ffbf75):mContext.getResources().getColor(R.color.colorb5b5b5));
+       if (GlobalValue.mSelectSpot!=null && GlobalValue.mSelectSpot.contains(datas.getId())){
+           getRootView().setAlpha(0.3f);
+           mTvSelect.setVisibility(View.GONE);
+       }else {
+           getRootView().setAlpha(1.0f);
+           mTvSelect.setVisibility(View.VISIBLE);
+       }
     }
     private float getStar(Destination.DataBean.BodyBean datas, float star) {
         try {
@@ -51,6 +63,7 @@ public class SelectDestinationHolder extends BaseHolder<Destination.DataBean.Bod
     }
     @Override
     public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_activity_select_destination);
+
+        return  inflateView(R.layout.item_activity_select_destination);
     }
 }

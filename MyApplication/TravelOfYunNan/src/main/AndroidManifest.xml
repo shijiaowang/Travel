@@ -71,7 +71,6 @@
         <activity android:name=".ui.activity.MyAppointActivity"/>
         <activity android:name=".ui.activity.BulletinBoardActivity"/>
         <activity android:name=".ui.activity.MyCollectionActivity"/>
-        <activity android:name=".ui.activity.LinePlanActivity"/>
         <activity android:name=".ui.appoint.memberdetail.MemberDetailActivity"/>
         <activity android:name=".ui.activity.OrdersCenterActivity"/>
         <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
@@ -86,6 +85,7 @@
         <activity android:name=".ui.activity.HomeSearchActivity"/>
         <activity android:name=".ui.activity.AppointMessageActivity"/>
         <activity android:name=".ui.activity.IdentityAuthenticationActivity"/>
+        <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
         <activity android:name=".ui.activity.SystemMessageActivity"/>
         <activity android:name=".ui.activity.AlbumSelectorActivity"/>
         <activity android:name=".ui.activity.CreateAppointSuccessActivity"/>

@@ -296,42 +296,6 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
     protected String getTime() {
         return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
     }
-    /**
-     * 测量listview的高度
-     *
-     * @param mListView
-     * @return
-     */
-    protected int measureHeight(ListView mListView) {
-        // get ListView adapter
-        ListAdapter adapter = mListView.getAdapter();
-        if (null == adapter) {
-            return 0;
-        }
 
-        int totalHeight = 0;
-
-        for (int i = 0, len = adapter.getCount(); i < len; i++) {
-            View item = adapter.getView(i, null, mListView);
-            if (null == item) continue;
-            // measure each item width and height
-            item.measure(0, 0);
-            // calculate all height
-            totalHeight += item.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = mListView.getLayoutParams();
-
-        if (null == params) {
-            params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-        }
-        // calculate ListView height
-        params.height = totalHeight + (mListView.getDividerHeight() * (adapter.getCount() - 1));
-
-        mListView.setLayoutParams(params);
-
-        return params.height;
-    }
 
 }

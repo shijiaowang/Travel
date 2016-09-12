@@ -3,11 +3,13 @@ package com.example.administrator.travel.ui.appoint.customdestination;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.AddCustomDestinationActivity;
 import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
@@ -41,6 +43,7 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
     private List<CustomDestinationBean.DataBean> mCustomData=new ArrayList<>(0);
     private String content = "";
     private CustomDestinationAdapter customDestinationAdapter;
+    private TextView mTvRight;
 
     @Override
     protected int setContentLayout() {
@@ -49,7 +52,15 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
 
     @Override
     protected void initEvent() {
+        GlobalValue.clickPosition=-1;//初始化，避免之前选中的对这边造成影响
         init();
+        mLvDestination.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                GlobalValue.clickPosition=position-1;
+                customDestinationAdapter.notifyDataSetChanged();
+            }
+        });
         mTvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +84,8 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
     }
 
     private void init() {
+        mTvRight = getmTvRightIcon();
+        mTvRight.setText("确定");
         mLvDestination.setPullRefreshEnable(true);
         mLvDestination.setPullLoadEnable(true);
         mLvDestination.setXListViewListener(this);
@@ -146,5 +159,10 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
     @Override
     public void onLoadMore() {
         requestData(TYPE_LOAD);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        GlobalValue.clickPosition=-1;
     }
 }

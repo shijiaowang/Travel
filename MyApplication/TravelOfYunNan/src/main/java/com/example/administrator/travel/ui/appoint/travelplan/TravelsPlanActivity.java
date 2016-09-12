@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.appoint.travelplan;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,14 +11,15 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.BarBaseActivity;
-import com.example.administrator.travel.ui.activity.LinePlanActivity;
 import com.example.administrator.travel.ui.activity.PersonnelEquipmentActivity;
+import com.example.administrator.travel.ui.appoint.lineplan.LineBean;
+import com.example.administrator.travel.ui.appoint.lineplan.LinePlanActivity;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
-import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 
 import org.json.JSONObject;
@@ -57,6 +59,8 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
     private String traffic = "";//交通工具
     private int dayOfYear;
     private int year;
+    private Date endLine;
+    private Date startLine;
 
 
     @Override
@@ -119,28 +123,50 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         }
     }
 
+    /**
+     * 计算日期，启动路线规划页面
+     */
     private void calculationDay() {
         try {
-            ArrayList<String> dayList = new ArrayList<>();
-            String howDay = CalendarUtils.getHowDay(startDate.getTime() + "", endDate.getTime() + "");
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(startDate);
-            int countDay = Integer.parseInt(howDay);
-            int month = calendar.get(Calendar.MONTH) + 1;
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            dayList.add(month + "月" + day + "日");
-            for (int i = 0; i < countDay - 1; i++) {
-                calendar.add(Calendar.DATE, 1);
-                month = calendar.get(Calendar.MONTH);
-                day = calendar.get(Calendar.DAY_OF_MONTH);
-                dayList.add(month + "月" + day + "日");
+            if (!(endLine !=null && startLine!=null && endLine == endDate && startLine == startDate)) {
+                List<LineBean> lineBeans = new ArrayList<>();
+                String howDay = CalendarUtils.getHowDay(startDate.getTime() + "", endDate.getTime() + "");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(startDate);
+                int countDay = Integer.parseInt(howDay);
+                int month = calendar.get(Calendar.MONTH) + 1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                lineBeans.add(new LineBean(month + "月" + day + "日"));
+                for (int i = 0; i < countDay; i++) {//这里没-1是因为添加了解散地
+                    if (i==countDay-1) {
+                        lineBeans.add(new LineBean(0 + "月" + 0 + "日"));
+                        break;
+                    }
+                    calendar.add(Calendar.DATE, 1);
+                    month = calendar.get(Calendar.MONTH)+1;
+                    day = calendar.get(Calendar.DAY_OF_MONTH);
+                    lineBeans.add(new LineBean(month + "月" + day + "日"));
+                }
+                if (GlobalValue.mLineBeans == null) {
+                    GlobalValue.mLineBeans = lineBeans;
+                } else {
+                    for (int i = 0; i < lineBeans.size(); i++) {
+                        for (int j = 0; j < GlobalValue.mLineBeans.size(); j++) {
+                            if (lineBeans.get(i).getTime().equals(GlobalValue.mLineBeans.get(j).getTime())) {
+                                lineBeans.add(i, GlobalValue.mLineBeans.get(j));
+                                lineBeans.remove(i+1);
+                                break;
+                            }
+                        }
+                    }
+                    GlobalValue.mLineBeans = lineBeans;
+                    lineBeans = null;
+                }
+                endLine = endDate;
+                startLine = startDate;
             }
             Intent intent = new Intent(this, LinePlanActivity.class);
-            intent.putStringArrayListExtra(IVariable.DATA, dayList);
             startActivity(intent);
-            for (String s : dayList) {
-                LogUtils.e(s);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -256,5 +282,10 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         return super.onKeyDown(keyCode, event);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        GlobalValue.mSelectSpot = null;
+        GlobalValue.mLineBeans = null;
+    }
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.example.administrator.travel.ui.view.DottedLineView
+        android:layout_width="2dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="-4dp"
+        android:layout_marginLeft="79dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="92dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:layout_below="@id/end_line"
+            android:layout_marginLeft="53dp"
+            android:background="@drawable/activity_line_plan_add"
+            android:gravity="center"
+            android:text="结束"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="13sp" />
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_end_add"
+            android:layout_width="55dp"
+            android:layout_height="27dp"
+            android:layout_below="@id/end_line"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/tv_end"
+            android:background="@drawable/activity_line_plan_add_bg"
+            android:gravity="center"
+            android:text="@string/activity_other_follow"
+            android:textColor="@color/colorb5b5b5"
+            android:textSize="18sp" />
+    </LinearLayout>
+</LinearLayout>
