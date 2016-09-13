@@ -18,8 +18,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="40dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="40dp">
 
             <TextView
                 android:layout_width="159dp"
@@ -46,11 +46,11 @@
 
                 <TextView
                     android:id="@+id/tv_how_day"
-                   android:layout_toRightOf="@id/tv_time"
-                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/tv_time"
                     android:textColor="@color/color909090"
                     android:textSize="12sp" />
 
@@ -89,37 +89,42 @@
                         android:textColor="@color/otherTitleBg"
                         android:textSize="20sp" />
 
-                    <com.example.administrator.travel.ui.view.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="31dp"
-                        android:text="@string/activity_aite_ok"
-                        app:gradient_checked_down_color="#5ad7fb"
-                        app:gradient_checked_up_color="#5febb0" />
+                    <RelativeLayout
+                        android:id="@+id/rl_start_morning"
+                        style="@style/activityTravelsPlanIconRl">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:text="上午"
-                        android:textColor="@color/color323232"
-                        android:textSize="12sp" />
+                        <com.example.administrator.travel.ui.view.GradientTextView
+                            android:id="@+id/tv_start_morning"
+                            app:gradient_checked_down_color="#5ad7fb"
+                            app:gradient_checked_up_color="#5febb0"
+                            app:gradient_normal_color="@color/colorb5b5b5"
+                            style="@style/activityTravelsPlanIcon" />
 
-                    <com.example.administrator.travel.ui.view.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:text="@string/activity_aite_ok"
-                        app:gradient_checked_down_color="#5ad7fb"
-                        app:gradient_checked_up_color="#5febb0" />
+                        <TextView
+                            style="@style/activityTravelsPlanIconText"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toRightOf="@id/tv_start_morning"
+                            android:text="上午" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="下午"
-                        android:textColor="@color/color323232"
-                        android:textSize="12sp" />
+                    <RelativeLayout
+                        android:id="@+id/rl_start_night"
+                        style="@style/activityTravelsPlanIconRl"
+                        android:layout_marginLeft="15dp">
+
+                        <com.example.administrator.travel.ui.view.GradientTextView
+                            android:id="@+id/tv_start_night"
+                            app:gradient_checked_down_color="#5ad7fb"
+                            app:gradient_checked_up_color="#5febb0"
+                            app:gradient_normal_color="@color/colorb5b5b5"
+                            style="@style/activityTravelsPlanIcon" />
+
+                        <TextView
+                            style="@style/activityTravelsPlanIconText"
+                            android:layout_marginLeft="7dp"
+                            android:layout_toRightOf="@id/tv_start_night"
+                            android:text="下午" />
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -149,38 +154,43 @@
                         android:textColor="@color/otherTitleBg"
                         android:textSize="20sp" />
 
-                    <com.example.administrator.travel.ui.view.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="31dp"
-                        android:text="@string/activity_aite_ok"
-                        app:gradient_checked_down_color="#5ad7fb"
-                        app:gradient_checked_up_color="#5febb0" />
+                    <RelativeLayout
+                        android:id="@+id/rl_end_morning"
+                        style="@style/activityTravelsPlanIconRl">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:text="上午"
-                        android:textColor="@color/color323232"
-                        android:textSize="12sp" />
+                        <com.example.administrator.travel.ui.view.GradientTextView
+                            android:id="@+id/tv_end_morning"
+                            app:gradient_checked_down_color="#5ad7fb"
+                            app:gradient_checked_up_color="#5febb0"
+                            app:gradient_normal_color="@color/colorb5b5b5"
+                            style="@style/activityTravelsPlanIcon" />
 
-                    <com.example.administrator.travel.ui.view.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:text="@string/activity_aite_ok"
-                        app:gradient_checked_down_color="#5ad7fb"
-                        app:gradient_checked_up_color="#5febb0" />
+                        <TextView
+                            style="@style/activityTravelsPlanIconText"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toRightOf="@id/tv_end_morning"
+                            android:text="上午" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="下午"
-                        android:textColor="@color/color323232"
-                        android:textSize="12sp" />
+                    <RelativeLayout
+                        android:id="@+id/rl_end_night"
+                        style="@style/activityTravelsPlanIconRl"
+                        android:layout_marginLeft="15dp">
 
+
+                        <com.example.administrator.travel.ui.view.GradientTextView
+                            android:id="@+id/tv_end_night"
+                            app:gradient_checked_down_color="#5ad7fb"
+                            app:gradient_checked_up_color="#5febb0"
+                            app:gradient_normal_color="@color/colorb5b5b5"
+                            style="@style/activityTravelsPlanIcon" />
+
+                        <TextView
+                            android:layout_toRightOf="@id/tv_end_night"
+                            android:layout_marginLeft="7dp"
+                            android:text="下午"
+                            style="@style/activityTravelsPlanIconText" />
+                    </RelativeLayout>
                 </LinearLayout>
 
             </LinearLayout>
@@ -304,7 +314,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        style="@style/commonButtonNext"/>
+    <Button style="@style/commonButtonNext" />
 
 </LinearLayout>

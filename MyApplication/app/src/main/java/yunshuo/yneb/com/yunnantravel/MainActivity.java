@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
         options2Items.add(options2Items_02);
         options2Items.add(options2Items_03);
 
-        //选项3
+       /* //选项3
         ArrayList<ArrayList<IPickerViewData>> options3Items_01 = new ArrayList<>();
         ArrayList<ArrayList<IPickerViewData>> options3Items_02 = new ArrayList<>();
         ArrayList<ArrayList<IPickerViewData>> options3Items_03 = new ArrayList<>();
@@ -148,9 +148,9 @@ public class MainActivity extends Activity {
         options3Items.add(options3Items_01);
         options3Items.add(options3Items_02);
         options3Items.add(options3Items_03);
-
+*/
         //三级联动效果
-        pvOptions.setPicker(options1Items, options2Items, options3Items, true);
+        pvOptions.setPicker(options1Items, options2Items, true);
         //设置选择的三级单位
 //        pwOptions.setLabels("省", "市", "区");
         pvOptions.setTitle("选择城市");
@@ -164,8 +164,7 @@ public class MainActivity extends Activity {
             public void onOptionsSelect(int options1, int option2, int options3) {
                 //返回的分别是三个级别的选中位置
                 String tx = options1Items.get(options1).getPickerViewText()
-                        + options2Items.get(options1).get(option2)
-                        + options3Items.get(options1).get(option2).get(options3).getPickerViewText();
+                        + options2Items.get(options1).get(option2);
                 tvOptions.setText(tx);
                 vMasker.setVisibility(View.GONE);
             }

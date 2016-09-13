@@ -22,6 +22,18 @@ public class MapUtils {
             stringMap.put(IVariable.PAGE_SIZE,pageSize+"");
             return this;
         }
+        public Builder addProvince(String province){
+            stringMap.put(IVariable.PROVINCE,province);
+            return this;
+        }
+        public Builder addCity(String city){
+            stringMap.put(IVariable.CITY,city);
+            return this;
+        }
+        public Builder addAddress(String address){
+            stringMap.put(IVariable.ADDRESS,address);
+            return this;
+        }
         public Builder addAId(String aId){
             stringMap.put(IVariable.A_ID,aId);
             return this;
@@ -40,6 +52,10 @@ public class MapUtils {
         }
         public Builder addtId(String tId){
             stringMap.put(IVariable.TID,tId);
+            return this;
+        }
+        public Builder addTitle(String title){
+            stringMap.put(IVariable.TITLE,title);
             return this;
         }
         public Builder addFId(String fId){

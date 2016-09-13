@@ -20,6 +20,7 @@ public interface IVariable {
     String WITHE_ME_DETAIL = API_KEY + "Travel/getTravelplan/";//找人带详情
     String GET_CUSTOM_SPOT = API_KEY + "Travel/getTravelbyUser/";//获取用户自定义景点列表
     String DELETE_CUSTOM_SPOT = API_KEY + "Travel/delTravelbyUser/";//用户删除自定义景点
+    String ADD_CUSTOM_SPOT = API_KEY + "Travel/addTravelbyUser/";//用户添加自定义景点
     /**
      * User
      */
@@ -163,10 +164,13 @@ public interface IVariable {
     String A_ID = "a_id";//活动id
     int NO_MORE = 2;//没有跟多数据了
 
-    int TYPE_TOGETHER=0;//以前玩
+    int TYPE_TOGETHER=0;//一起玩
     int TYPE_WITH_ME=1;//带我玩
     String DATA = "data";
     String ITEM_DATA = "item_data";
 
     String POSITION = "position";
+    String TITLE = "title";//name
+
+    String ADDRESS = "address";//地址
 }

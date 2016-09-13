@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -181,5 +183,15 @@ public abstract class BaseActivity extends FragmentActivity {
         mListView.setLayoutParams(params);
 
         return params.height;
+    }
+    /**
+     * 隐藏软键盘
+     * @param view
+     */
+    public void hideSoftWore(EditText view){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive()) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
+        }
     }
 }

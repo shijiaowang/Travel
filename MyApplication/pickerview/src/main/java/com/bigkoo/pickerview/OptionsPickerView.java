@@ -30,6 +30,12 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
         btnSubmit.setTag(TAG_SUBMIT);
         btnCancel = findViewById(R.id.btnCancel);
         btnCancel.setTag(TAG_CANCEL);
+        findViewById(R.id.tvTitle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //不做任何操作
+            }
+        });
         btnSubmit.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
         //顶部标题

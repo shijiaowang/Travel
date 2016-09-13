@@ -88,10 +88,10 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (GlobalValue.mSelectSpot == null) {
                     GlobalValue.mSelectSpot = new ArrayList<String>();
-                    if (GlobalValue.mSelectSpot.contains(destinationData.get(position).getId())) {
-                        ToastUtils.showToast("已在行程中！");
-                        return;
-                    }
+                }
+                if (GlobalValue.mSelectSpot.contains(destinationData.get(position-1).getId())) {
+                    ToastUtils.showToast("已在行程中！");
+                    return;
                 }
                 GlobalValue.clickPosition = position - 1;
                 destinationAdapter.notifyDataSetChanged();
@@ -106,9 +106,17 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
         mTvDiy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SelectDestinationActivity.this, CustomDestinationActivity.class));
+                Intent intent = new Intent(SelectDestinationActivity.this, CustomDestinationActivity.class);
+                intent.putExtra(IVariable.POSITION,position);
+                startActivityForResult(intent, 1);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        finish();
     }
 
     private void search() {

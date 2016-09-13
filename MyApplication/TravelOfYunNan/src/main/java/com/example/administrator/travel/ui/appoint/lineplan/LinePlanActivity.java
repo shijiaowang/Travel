@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.appoint.lineplan;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -26,6 +27,8 @@ public class LinePlanActivity extends BarBaseActivity {
     private TextView tvAddStart;
     @ViewInject(R.id.tv_end_add)
     private TextView tvAddEnd;
+    @ViewInject(R.id.ssv_scroll)
+    private ScrollView mSsvScroll;
 
     private LinePlanAdapter linePlanAdapter;
 

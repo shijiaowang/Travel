@@ -7,6 +7,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -296,6 +298,8 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
     protected String getTime() {
         return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
     }
+
+
 
 
 }

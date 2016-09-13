@@ -9,7 +9,7 @@ import android.view.animation.RotateAnimation;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
-import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.db.DBManager;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.WelcomeEvent;
 import com.example.administrator.travel.global.GlobalValue;
@@ -22,7 +22,6 @@ import com.example.administrator.travel.utils.NetworkUtils;
 import com.example.administrator.travel.utils.ShareUtil;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.XEventUtils;
-import com.google.gson.Gson;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -103,8 +102,12 @@ public class WelcomeActivity extends FullTransparencyActivity {
             @Override
             public void run() {
                 try {
+                    //初始化数据表
+                    if(!DBManager.cityDBIsExits()){
+                        DBManager.initCityDB(WelcomeActivity.this);
+                    }
                     Thread.sleep(2000);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 if (GO_WHERE_PAGE == START_HOME) {
@@ -115,10 +118,8 @@ public class WelcomeActivity extends FullTransparencyActivity {
                     startActivity(new Intent(WelcomeActivity.this, SplashActivity.class));
                 }
                 finish();
-
             }
         }).start();
-
     }
 
     private void checkNetAndCheckLogin(String userName, String userPwd) {

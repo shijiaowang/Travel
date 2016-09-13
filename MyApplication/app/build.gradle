@@ -30,5 +30,5 @@ dependencies {
     compile 'net.robinx:lib.blur:1.0.1'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'com.bigkoo:pickerview:2.1.1'
+    compile project(':pickerview')
 }

@@ -34,6 +34,12 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         LayoutInflater.from(context).inflate(R.layout.pickerview_time, contentContainer);
         // -----确定和取消按钮
         btnSubmit = findViewById(R.id.btnSubmit);
+        findViewById(R.id.tvTitle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 //不做任何操作
+            }
+        });
         btnSubmit.setTag(TAG_SUBMIT);
         btnCancel = findViewById(R.id.btnCancel);
         btnCancel.setTag(TAG_CANCEL);

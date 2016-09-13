@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
@@ -17,6 +18,7 @@ import com.example.administrator.travel.ui.activity.BarBaseActivity;
 import com.example.administrator.travel.ui.activity.PersonnelEquipmentActivity;
 import com.example.administrator.travel.ui.appoint.lineplan.LineBean;
 import com.example.administrator.travel.ui.appoint.lineplan.LinePlanActivity;
+import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
@@ -52,6 +54,22 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
     private TextView mTvHowDay;
     @ViewInject(R.id.et_remark)
     private EditText mEtRemark;
+    @ViewInject(R.id.tv_start_morning)
+    private GradientTextView mTvStartMorning;
+    @ViewInject(R.id.tv_start_night)
+    private GradientTextView mTvStartNight;
+    @ViewInject(R.id.tv_end_morning)
+    private GradientTextView mTvEndMorning;
+    @ViewInject(R.id.tv_end_night)
+    private GradientTextView mTvEndNight;
+    @ViewInject(R.id.rl_start_morning)
+    private RelativeLayout mRlStartMorning;
+    @ViewInject(R.id.rl_start_night)
+    private RelativeLayout mRlStartNight;
+    @ViewInject(R.id.rl_end_morning)
+    private RelativeLayout mRlEndMorning;
+    @ViewInject(R.id.rl_end_night)
+    private RelativeLayout mRlEndNight;
     private TextView mTvRightNext;
     private TimePickerView pvTime;
     private Date startDate = new Date();
@@ -79,6 +97,10 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         mTvStart.setOnClickListener(this);
         mTvEnd.setOnClickListener(this);
         mBtNext.setOnClickListener(this);
+        mRlStartMorning.setOnClickListener(this);
+        mRlEndMorning.setOnClickListener(this);
+        mRlStartNight.setOnClickListener(this);
+        mRlEndNight.setOnClickListener(this);
     }
 
     private void init() {
@@ -120,8 +142,27 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
             case R.id.bt_next:
                 addJson();
                 break;
+            case R.id.rl_start_morning:
+                mTvStartMorning.setChecked(true);
+                mTvStartNight.setChecked(false);
+                break;
+            case R.id.rl_start_night:
+                mTvStartMorning.setChecked(false);
+                mTvStartNight.setChecked(true);
+                break;
+            case R.id.rl_end_morning:
+                mTvEndMorning.setChecked(true);
+                mTvEndNight.setChecked(false);
+                break;
+            case R.id.rl_end_night:
+                mTvEndMorning.setChecked(false);
+                mTvEndNight.setChecked(true);
+                break;
+
         }
     }
+
+
 
     /**
      * 计算日期，启动路线规划页面
@@ -256,6 +297,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
                 howDay();
             }
         });
+        hideSoftWore(mEtRemark);
         pvTime.show();
 
     }

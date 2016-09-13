@@ -45,7 +45,13 @@ public class CustomDestinationHolder extends BaseHolder<CustomDestinationBean.Da
         mTvShow.setContent(datas.getContent());
         mTvUser.setText(datas.getUser_name());
         mTvSelect.setTextColor(GlobalValue.clickPosition == position ? mContext.getResources().getColor(R.color.Ffbf75) : mContext.getResources().getColor(R.color.colorb5b5b5));
-
+        if (GlobalValue.mSelectSpot!=null && GlobalValue.mSelectSpot.contains(datas.getId())){
+            getRootView().setAlpha(0.3f);
+            mTvSelect.setVisibility(View.GONE);
+        }else {
+            getRootView().setAlpha(1.0f);
+            mTvSelect.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

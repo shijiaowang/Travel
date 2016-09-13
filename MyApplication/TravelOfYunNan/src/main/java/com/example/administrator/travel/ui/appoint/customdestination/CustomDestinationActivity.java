@@ -11,8 +11,9 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.AddCustomDestinationActivity;
+import com.example.administrator.travel.ui.appoint.adddestination.AddCustomDestinationActivity;
 import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.appoint.lineplan.LinePlanEvent;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -20,6 +21,7 @@ import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
@@ -44,6 +46,7 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
     private String content = "";
     private CustomDestinationAdapter customDestinationAdapter;
     private TextView mTvRight;
+    private int position;
 
     @Override
     protected int setContentLayout() {
@@ -54,9 +57,36 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
     protected void initEvent() {
         GlobalValue.clickPosition=-1;//初始化，避免之前选中的对这边造成影响
         init();
+        mTvRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (GlobalValue.clickPosition < 0 || GlobalValue.clickPosition > mCustomData.size()) {
+                    ToastUtils.showToast("您尚未选择任何景点。");
+                    return;
+                }
+                if (GlobalValue.mSelectSpot != null) {
+                    GlobalValue.mSelectSpot.add(mCustomData.get(GlobalValue.clickPosition).getId());
+                }
+                CustomDestinationBean.DataBean bodyBean = mCustomData.get(GlobalValue.clickPosition);
+                String add = bodyBean.getCity() + "·" + bodyBean.getTitle();
+                LinePlanEvent linePlanEvent = new LinePlanEvent();
+                linePlanEvent.setPosition(position);
+                linePlanEvent.setAdd(add);
+                EventBus.getDefault().post(linePlanEvent);
+                setResult(0);
+                finish();
+            }
+        });
         mLvDestination.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (GlobalValue.mSelectSpot == null) {
+                    GlobalValue.mSelectSpot = new ArrayList<String>();
+                }
+                if (GlobalValue.mSelectSpot.contains(mCustomData.get(position-1).getId())) {
+                    ToastUtils.showToast("已在行程中！");
+                    return;
+                }
                 GlobalValue.clickPosition=position-1;
                 customDestinationAdapter.notifyDataSetChanged();
             }
@@ -90,6 +120,7 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
         mLvDestination.setPullLoadEnable(true);
         mLvDestination.setXListViewListener(this);
         mLvDestination.setRefreshTime(getTime());
+        position = getIntent().getIntExtra(IVariable.POSITION, -1);
     }
 
 
