@@ -73,7 +73,7 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
                 linePlanEvent.setPosition(position);
                 linePlanEvent.setAdd(add);
                 EventBus.getDefault().post(linePlanEvent);
-                setResult(0);
+                setResult(RESULT_CODE);
                 finish();
             }
         });

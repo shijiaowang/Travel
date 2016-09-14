@@ -90,7 +90,7 @@
         <activity android:name=".ui.activity.AlbumSelectorActivity"/>
         <activity android:name=".ui.activity.CreateAppointSuccessActivity"/>
         <activity android:name=".ui.activity.DesRemarkActivity"/>
-        <activity android:name=".ui.activity.AppointTogetherDetailActivity"/>
+        <activity android:name=".ui.appoint.togetherdetail.AppointTogetherDetailActivity"/>
         <activity android:name=".ui.activity.RelateMeActivity"/>
         <activity android:name=".ui.activity.HotelActivity"/>
         <activity android:name=".ui.activity.SettingTitleActivity"/>

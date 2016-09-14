@@ -107,8 +107,8 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SelectDestinationActivity.this, CustomDestinationActivity.class);
-                intent.putExtra(IVariable.POSITION,position);
-                startActivityForResult(intent, 1);
+                intent.putExtra(IVariable.POSITION, position);
+                startActivityForResult(intent, REQ_CODE);
             }
         });
     }
@@ -116,7 +116,10 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        finish();
+        if (requestCode==REQ_CODE && resultCode==RESULT_CODE) {
+            finish();
+        }
+
     }
 
     private void search() {

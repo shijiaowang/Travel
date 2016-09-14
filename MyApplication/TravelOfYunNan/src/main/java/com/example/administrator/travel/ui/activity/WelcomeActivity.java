@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 
 
@@ -67,6 +68,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
         RotateAnimation rotateAnimation = new RotateAnimation(0, 8888, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(10000);
         rotateAnimation.setFillAfter(true);
+        rotateAnimation.setInterpolator(new LinearInterpolator());
         mPbLoad.startAnimation(rotateAnimation);
     }
 

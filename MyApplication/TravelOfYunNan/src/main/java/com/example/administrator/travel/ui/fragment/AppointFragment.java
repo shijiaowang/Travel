@@ -19,10 +19,12 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.SelectCommonBean;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.appoint.popwindow.AppointOrderPop;
 import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
-import com.example.administrator.travel.ui.pop.appoint.AppointCommonPop;
+import com.example.administrator.travel.ui.appoint.popwindow.AppointCommonPop;
 import com.example.administrator.travel.utils.FastBlur;
+import com.example.administrator.travel.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,10 @@ import java.util.List;
  * 约伴
  */
 public class AppointFragment extends BaseFragment implements View.OnClickListener {
-
+   String[] orderType={"智能排序","按星级","按口碑"};
+   String[] timeType={"一周内","一月内","一个月以上"};
+    String []clickType;
+   String[] timeTypePop={"·\u3000一周内","·\u3000一月内","·\u3000一个月以上"};
 
     private ViewPager mVpAppoint;
     private LinearLayout mLlSwitch;
@@ -48,6 +53,9 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     private TextView mTvType;
     private TextView mTvOrder;
     private AppointCommonPop appointCommonPop;
+    private AppointOrderPop appointOrderPop;
+    private int timePosition=-1;
+    private int orderPosition=-1;//选中的
 
     @Override
     protected int initLayoutRes() {
@@ -93,12 +101,14 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             }
         });
         mTvType.setOnClickListener(this);
+        mTvTime.setOnClickListener(this);
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAppointDialog();//展示约伴框
             }
         });
+        mTvOrder.setOnClickListener(this);
         mLlSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -199,7 +209,35 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             case R.id.tv_type:
                 showType();
                 break;
+            case R.id.tv_order:
+                clickType=orderType;
+                orderPop(mTvOrder,null,orderPosition);
+                break;
+            case R.id.tv_time:
+                clickType=timeType;
+                orderPop(mTvTime,timeTypePop,timePosition);
+
+                break;
         }
+    }
+
+    private void orderPop(final TextView textView,String[] titile,int clickPosition) {
+        if (appointOrderPop==null) {
+            appointOrderPop = new AppointOrderPop();
+
+        }
+        appointOrderPop.setOnItemClickListener(new AppointOrderPop.OnItemClickListener() {
+            @Override
+            public void onItemClick(int type) {
+                textView.setText(clickType[type]);
+                if (textView==mTvTime){
+                    timePosition=type;
+                }else {
+                    orderPosition=type;
+                }
+            }
+        });
+        appointOrderPop.showOrderPop(getContext(),mTvOrder,titile,clickPosition);
     }
 
     private void showType() {

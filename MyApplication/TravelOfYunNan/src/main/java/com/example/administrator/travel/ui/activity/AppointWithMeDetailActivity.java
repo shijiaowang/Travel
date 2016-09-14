@@ -8,14 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.AppointTogetherDetail;
 import com.example.administrator.travel.bean.AppointWithMeDetail;
 import com.example.administrator.travel.bean.PeopleBean;
 import com.example.administrator.travel.bean.PricebasecBean;
 import com.example.administrator.travel.event.AppointDetailEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.adapter.AppointDetailHaveEnterAdapter;
-import com.example.administrator.travel.ui.adapter.AppointDetailInsuranceAdapter;
+import com.example.administrator.travel.ui.appoint.togetherdetail.AppointDetailHaveEnterAdapter;
+import com.example.administrator.travel.ui.appoint.togetherdetail.AppointDetailInsuranceAdapter;
 import com.example.administrator.travel.ui.adapter.AppointWithMeDetailDestinationAdapter;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;

@@ -10,7 +10,7 @@
     <!-- 自定义对话框 系统默认 :1.白边 2.标题 -->
 
     <style name="commonDialog" parent="@android:style/Theme.Holo.DialogWhenLarge">
-       <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
         <item name="android:windowEnterAnimation">@anim/enter_anima</item>
@@ -20,8 +20,20 @@
         <!-- 将背景透明化 -->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
-    <style name="myDialog" parent="commonDialog"/>
 
+    <style name="myDialog" parent="commonDialog" />
+
+    <style name="dialogAnima">
+        <item name="android:windowEnterAnimation">@anim/enter_anima</item>
+        <item name="android:windowExitAnimation">@anim/exit_anima</item>
+    </style>
+    <style name="noTitleDialog" parent="@android:style/Theme.Dialog">
+
+        <!-- 去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 将背景透明化 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
     <style name="CreatePostTheme" parent="AppTheme">
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
@@ -371,11 +383,13 @@
         <item name="android:divider">@null</item>
         <item name="android:dividerHeight">0dp</item>
     </style>
+
     <style name="commonSingleLineTextStyle">
         <item name="android:singleLine">true</item>
         <item name="android:lines">1</item>
         <item name="android:ellipsize">end</item>
     </style>
+
     <style name="fragmentMyPublicationRl">
         <item name="android:layout_marginRight">13dp</item>
         <item name="android:orientation">horizontal</item>
@@ -384,11 +398,13 @@
         <item name="android:layout_height">45dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+
     <style name="fragmentMyPublicationIcon">
         <item name="android:textSize">20sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="fragmentMyPublicationText">
         <item name="android:textColor">@color/color8c8c8c</item>
         <item name="android:layout_width">wrap_content</item>
@@ -396,15 +412,18 @@
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:textSize">12sp</item>
     </style>
+
     <style name="fragmentMyPublicationCursor">
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:src">@drawable/fragment_my_publication_cursor</item>
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">15dp</item>
     </style>
+
     <style name="fragmentOrderText" parent="fragmentAppointWithMeText">
         <item name="android:layout_marginLeft">0dp</item>
     </style>
+
     <style name="activityConfirmOrdersText">
         <item name="android:textSize">12sp</item>
         <item name="android:layout_marginLeft">16dp</item>
@@ -418,6 +437,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">30dp</item>
     </style>
+
     <style name="activityConfirmOrdersTextMoney">
         <item name="android:textColor">@color/color494848</item>
         <item name="android:textSize">11sp</item>
@@ -426,6 +446,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="activityConfirmOrdersTextLine">
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginRight">16dp</item>
@@ -442,6 +463,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="activityRegisterLl">
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
@@ -449,15 +471,18 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="activityRegisterTextIcon">
         <item name="android:textColor">@color/colorFAFAFA</item>
         <item name="android:textSize">13sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="activityRegisterText" parent="activityRegisterTextIcon">
-         <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_marginLeft">14dp</item>
     </style>
+
     <style name="activityRegisterEditText">
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@color/colorFAFAFA</item>
@@ -477,7 +502,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-
 
 
 </resources>

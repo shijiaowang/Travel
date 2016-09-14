@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.example.administrator.travel.bean.AppointTogether;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.AppointTogetherDetailActivity;
+import com.example.administrator.travel.ui.appoint.togetherdetail.AppointTogetherDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.AppointTogetherHolder;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 

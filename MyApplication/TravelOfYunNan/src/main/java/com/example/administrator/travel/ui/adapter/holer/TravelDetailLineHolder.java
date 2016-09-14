@@ -3,24 +3,19 @@ package com.example.administrator.travel.ui.adapter.holer;
 import android.content.Context;
 
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.AppointTogetherDetail;
-import com.example.administrator.travel.ui.adapter.AppointDetailLineDetailAdapter;
-import com.example.administrator.travel.ui.adapter.AppointDetailLineItemAdapter;
-import com.example.administrator.travel.ui.view.DottedLineView;
+import com.example.administrator.travel.ui.appoint.togetherdetail.AppointTogetherDetail;
+import com.example.administrator.travel.ui.appoint.togetherdetail.AppointDetailLineDetailAdapter;
+import com.example.administrator.travel.ui.appoint.togetherdetail.AppointDetailLineItemAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 
 import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -2,8 +2,7 @@ package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
 
-import com.example.administrator.travel.bean.AppointTogetherDetail;
-import com.example.administrator.travel.bean.TravelsDetail;
+import com.example.administrator.travel.ui.appoint.togetherdetail.AppointTogetherDetail;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.TravelDetailLineHolder;
 

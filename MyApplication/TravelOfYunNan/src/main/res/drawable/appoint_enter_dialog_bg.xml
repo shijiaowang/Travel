@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--约伴报名dialog背景-->
+    <item>
+        <shape android:shape="rectangle">
+            <size
+                android:width="275dp"
+                android:height="100dp"/>
+            <solid
+                android:color="@color/colorFAFAFA" />
+            <corners android:radius="5dp"/>
+        </shape>
+    </item>
+</layer-list>
