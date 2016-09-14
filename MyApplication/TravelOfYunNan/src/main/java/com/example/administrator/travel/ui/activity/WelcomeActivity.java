@@ -67,6 +67,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
     protected void initData() {
         RotateAnimation rotateAnimation = new RotateAnimation(0, 8888, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(10000);
+
         rotateAnimation.setFillAfter(true);
         rotateAnimation.setInterpolator(new LinearInterpolator());
         mPbLoad.startAnimation(rotateAnimation);
