@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.example.administrator.travel.bean.Line;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.example.administrator.travel.ui.appoint.selectdestination.SelectDestinationActivity;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
@@ -32,6 +33,15 @@ public class LinePlanAdapter extends TravelBaseAdapter<LineBean> {
                     Intent intent = new Intent(mContext, SelectDestinationActivity.class);
                     intent.putExtra(IVariable.POSITION,position);
                     mContext.startActivity(intent);
+                }
+            });
+        }
+        if (baseHolder instanceof LinePlanBottomHolder){
+            final LinePlanBottomHolder linePlanBottomHolder = (LinePlanBottomHolder) baseHolder;
+            linePlanBottomHolder.mTvEndAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EnterAppointDialog.showDialogAddDestination(mContext);
                 }
             });
         }

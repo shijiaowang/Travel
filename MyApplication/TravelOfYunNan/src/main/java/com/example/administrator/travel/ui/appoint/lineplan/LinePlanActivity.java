@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.appoint.lineplan;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -10,6 +11,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
@@ -24,7 +26,7 @@ public class LinePlanActivity extends BarBaseActivity {
     @ViewInject(R.id.lv_line)
     private ListView mLvLine;
     @ViewInject(R.id.tv_start_add)
-    private TextView tvAddStart;
+    private TextView mTvAddStart;
     @ViewInject(R.id.tv_end_add)
     private TextView tvAddEnd;
     @ViewInject(R.id.ssv_scroll)
@@ -41,6 +43,13 @@ public class LinePlanActivity extends BarBaseActivity {
     @Override
     protected void initEvent() {
         registerEventBus(this);
+        mTvAddStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EnterAppointDialog.showDialogAddDestination(LinePlanActivity.this);
+            }
+        });
+
     }
 
     @Override

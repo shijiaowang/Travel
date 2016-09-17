@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class LinePlanBottomHolder extends BaseHolder<LineBean> {
     @ViewInject(R.id.tv_end_add)
-    private TextView mTvEndAdd;
+    public TextView mTvEndAdd;
 
 
     public LinePlanBottomHolder(Context context) {

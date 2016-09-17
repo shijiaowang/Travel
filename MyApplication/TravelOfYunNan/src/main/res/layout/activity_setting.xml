@@ -163,7 +163,9 @@
                 android:layout_height="7dp"
                 android:background="@color/meLine" />
 
-            <LinearLayout style="@style/activitySettingLl">
+            <LinearLayout
+                android:id="@+id/ll_about"
+                style="@style/activitySettingLl">
 
                 <TextView
                     style="@style/activitySettingTvType"

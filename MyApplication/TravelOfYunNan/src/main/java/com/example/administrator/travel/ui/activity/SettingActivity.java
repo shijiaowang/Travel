@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.me.AboutActivity;
 import com.example.administrator.travel.ui.view.PhoneTextView;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.ShareUtil;
 
@@ -38,16 +38,20 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     private PhoneTextView mPtvPhone;
     @ViewInject(R.id.ll_logout)
     private LinearLayout mLlLogout;
+    @ViewInject(R.id.ll_about)
+    private LinearLayout mLlAbout;
+
     @Override
     protected int setContentLayout() {
-        return  R.layout.activity_setting;
+        return R.layout.activity_setting;
     }
 
     @Override
     protected void initEvent() {
-         mLlPhone.setOnClickListener(this);
+        mLlPhone.setOnClickListener(this);
         mLlProfile.setOnClickListener(this);
         mLlLogout.setOnClickListener(this);
+        mLlAbout.setOnClickListener(this);
     }
 
     @Override
@@ -60,17 +64,17 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     protected Activity initViewData() {
         //// TODO: 2016/8/17 0017 如果userinfo为空，之后做处理
         Login.UserInfo userInfo = GlobalUtils.getUserInfo();
-        try{
+        try {
             mTvUserId.setText(userInfo.getId());
-            mTvUserLivePlace.setText(userInfo.getProvince()+"-"+userInfo.getCity());
+            mTvUserLivePlace.setText(userInfo.getProvince() + "-" + userInfo.getCity());
             mTvUserNickName.setText(userInfo.getNick_name());
-            mTvUserSex.setText(userInfo.getSex().equals("1")?"男":"女");
+            mTvUserSex.setText(userInfo.getSex().equals("1") ? "男" : "女");
             mPtvPhone.setPhoneNumber(userInfo.getTel());
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
         setIsProgress(false);
-return null;
+        return null;
     }
 
     @Override
@@ -85,19 +89,22 @@ return null;
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ll_phone:
-                startActivity(new Intent(this,ChangePhoneActivity.class));
+                startActivity(new Intent(this, ChangePhoneActivity.class));
                 break;
             case R.id.ll_profile:
-                startActivity(new Intent(this,PersonalProfileActivity.class));
+                startActivity(new Intent(this, PersonalProfileActivity.class));
                 break;
             case R.id.ll_logout:
-                ShareUtil.putString(this, IVariable.SAVE_NAME,"");
+                ShareUtil.putString(this, IVariable.SAVE_NAME, "");
                 ShareUtil.putString(this, IVariable.SAVE_PWD, "");
                 startActivity(new Intent(this, SplashActivity.class));
                 setResult(HomeActivity.RESULT);
                 finish();
+                break;
+            case R.id.ll_about:
+                startActivity(new Intent(this, AboutActivity.class));
                 break;
         }
     }

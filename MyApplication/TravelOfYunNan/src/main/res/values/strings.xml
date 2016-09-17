@@ -72,6 +72,12 @@
     <!--活动-->
     <string name="item_fragment_find_add">芷</string>
     <!--item地址-->
+    <string name="activity_appoint_detail_share">享</string>
+    <!--分享-->
+    <string name="activity_appoint_detail_collection">仓</string>
+    <!--收藏-->
+    <string name="activity_appoint_detail_complaint">诉</string>
+    <!--投诉-->
     <string name="fragment_play_with_me_time">誓</string>
     <!--时间-->
     <string name="fragment_play_with_me_air">籍</string>

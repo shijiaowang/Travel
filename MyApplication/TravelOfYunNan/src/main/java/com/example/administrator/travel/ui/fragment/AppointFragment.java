@@ -23,6 +23,7 @@ import com.example.administrator.travel.ui.appoint.popwindow.AppointOrderPop;
 import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointCommonPop;
+import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
 import com.example.administrator.travel.utils.FastBlur;
 import com.example.administrator.travel.utils.ToastUtils;
 
@@ -167,8 +168,16 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
         dialogView.findViewById(R.id.rl_together).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GlobalValue.mAppointType= IVariable.TYPE_TOGETHER;
+                GlobalValue.mAppointType = IVariable.TYPE_TOGETHER;
                 startActivity(new Intent(getContext(), TravelsPlanActivity.class));
+
+            }
+        });
+        dialogView.findViewById(R.id.rl_with_me).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalValue.mAppointType= IVariable.TYPE_WITH_ME;
+                startActivity(new Intent(getContext(), TravelsPlanWithMeActivity.class));
 
             }
         });

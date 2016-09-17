@@ -44,8 +44,10 @@
         <activity android:name=".ui.activity.CreateAlbumActivity" />
         <activity android:name=".ui.activity.EditAlbumActivity" />
         <activity android:name=".ui.activity.CatOtherUserAlbumActivity" />
+        <activity android:name=".ui.me.LevelActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.ActiveActivity" />
+        <activity android:name=".ui.appoint.travelplan.TravelsPlanWithMeActivity" />
         <activity android:name=".ui.activity.BarBaseActivity" />
         <activity android:name=".ui.activity.TravelsActivity"/>
         <activity android:name=".ui.activity.TitleManagementActivity"/>
@@ -88,6 +90,7 @@
         <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
         <activity android:name=".ui.activity.SystemMessageActivity"/>
         <activity android:name=".ui.activity.AlbumSelectorActivity"/>
+        <activity android:name=".ui.me.AboutActivity"/>
         <activity android:name=".ui.activity.CreateAppointSuccessActivity"/>
         <activity android:name=".ui.activity.DesRemarkActivity"/>
         <activity android:name=".ui.appoint.togetherdetail.AppointTogetherDetailActivity"/>

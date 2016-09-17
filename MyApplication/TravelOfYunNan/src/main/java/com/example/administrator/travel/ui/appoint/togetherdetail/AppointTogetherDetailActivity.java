@@ -18,6 +18,7 @@ import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.adapter.ProviderAdapter;
 import com.example.administrator.travel.ui.adapter.TravelDetailLineAdapter;
 import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.example.administrator.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
@@ -27,6 +28,7 @@ import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.ImageOptionsUtil;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -114,6 +116,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
     private String tId;
 
     private List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists;
+    private TextView mTvRight;
 
 
     @Override
@@ -123,6 +126,10 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
 
     @Override
     protected void initEvent() {
+        mTvRight = getmTvRightIcon();
+        mTvRight.setTypeface(TypefaceUtis.getTypeface(this));
+        mTvRight.setText("掸");
+        mTvRight.setOnClickListener(this);
         tId = getIntent().getStringExtra(IVariable.T_ID);
         mTvSitch.setOnClickListener(this);
         mTvEnter.setOnClickListener(this);
@@ -297,7 +304,10 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
                 mTvSitch.setText(isDetail?"详情图":"缩略图");
                 break;
             case R.id.tv_enter:
-                    EnterAppointDialog.showDialog(this);
+                    EnterAppointDialog.showDialogSuccess(this);
+                break;
+            case R.id.tv_right_icon:
+                AppointDetailMorePop.showMorePop(this,mTvRight);
                 break;
         }
     }

@@ -22,6 +22,7 @@ import com.example.administrator.travel.ui.activity.OrdersCenterActivity;
 import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.activity.SettingActivity;
 import com.example.administrator.travel.ui.activity.TitleManagementActivity;
+import com.example.administrator.travel.ui.me.LevelActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.StringUtils;
@@ -56,6 +57,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mLlIdentity;
     private TextView mTvNickName;
     private ImageView mIvTitleEdit;
+    private TextView mTvLevel;
 
     @Override
     protected int initLayoutRes() {
@@ -82,6 +84,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mTvProfile = (TextView) root.findViewById(R.id.tv_profile);
         mTvNickName = (TextView) root.findViewById(R.id.tv_nick_name);
         mIvTitleEdit = (ImageView) root.findViewById(R.id.iv_title_edit);
+        mTvLevel = (TextView) root.findViewById(R.id.tv_level);
 
         CircleImageView viewById = (CircleImageView) root.findViewById(R.id.civ_icon);
         viewById.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +137,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         mLlCustomerCenter.setOnClickListener(this);//客服中心
         mLlIdentity.setOnClickListener(this);//身份认证
         mIvTitleEdit.setOnClickListener(this);//称号管理
+        mTvLevel.setOnClickListener(this);//等级
     }
 
     @Override
@@ -179,6 +183,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.iv_title_edit:
                 startActivity(new Intent(getContext(), TitleManagementActivity.class));
+                break;
+            case R.id.tv_level:
+                startActivity(new Intent(getContext(), LevelActivity.class));
                 break;
         }
     }

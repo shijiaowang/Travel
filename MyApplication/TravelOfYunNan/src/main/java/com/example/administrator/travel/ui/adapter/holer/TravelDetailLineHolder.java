@@ -66,7 +66,7 @@ public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetai
                 mLvLine.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 int height = mLvLine.getHeight();
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mDlvLine.getLayoutParams();
-                layoutParams.height = DensityUtil.dip2px(52) + height;
+                layoutParams.height = DensityUtil.dip2px(30) + height;
                 mDlvLine.setLayoutParams(layoutParams);
             }
         });
