@@ -53,13 +53,14 @@
         <activity android:name=".ui.activity.TitleManagementActivity"/>
         <activity android:name=".ui.appoint.customdestination.CustomDestinationActivity"/>
         <activity android:name=".ui.activity.ActivateDetailActivity"/>
-        <activity android:name=".ui.activity.PersonnelEquipmentActivity"/>
+        <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentActivity"/>
         <activity android:name=".ui.activity.DeliciousDetailActivity"/>
         <activity android:name=".ui.activity.PictureSelectorActivity"/>
         <activity android:name=".ui.activity.OrdersDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"/>
         <activity android:name=".ui.activity.CostSettingActivity"/>
         <activity android:name=".ui.activity.AppointWithMeDetailActivity"/>
+        <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentWithMeActivity"/>
         <activity android:name=".ui.activity.BaseTransActivity"
             />
         <activity android:name=".ui.activity.LoginActivity"

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="334dp"
+    android:layout_height="211dp"
+    android:background="@drawable/appoint_enter_dialog_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:background="@color/otherTitleBg"
+        android:gravity="center"
+        android:text="投诉举报"
+        android:textColor="@color/colorFAFAFA"
+        android:textSize="15sp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_marginLeft="0dp"
+            style="@style/complaintRb"
+            android:text="政治煽动"
+            />
+
+        <RadioButton
+            style="@style/complaintRb"
+            android:text="诈骗"
+             />
+
+        <RadioButton
+            style="@style/complaintRb"
+            android:text="色情"
+             />
+
+        <RadioButton
+            style="@style/complaintRb"
+            android:text="侵权"
+             />
+
+        <RadioButton
+            style="@style/complaintRb"
+            android:text="其它"
+           />
+
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_weight="1">
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="2dp"
+            android:text="@string/activity_activate_detail_pen"
+            android:textColor="@color/colorb5b5b5" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@null"
+            android:paddingLeft="20dp"
+            android:text="请输入地点"
+            android:textColor="@color/colorb5b5b5"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/line_dot" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/meLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/color646464"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/meLine" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/otherTitleBg"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

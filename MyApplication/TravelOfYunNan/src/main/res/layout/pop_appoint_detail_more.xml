@@ -1,97 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="110dp"
-    android:background="@color/colorFAFAFA"
     android:layout_height="114dp"
-    android:orientation="vertical">
+>
 
-    <LinearLayout
-        android:id="@+id/ll_share"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="110dp"
+        android:layout_height="114dp"
+        android:background="@color/colorFAFAFA"
+        android:orientation="vertical">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="@string/activity_appoint_detail_share"
-            android:textColor="@color/colorf79283" />
+        <LinearLayout
+            android:id="@+id/ll_share"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="分享"
-            android:textColor="@color/color646464"
-            android:textSize="14sp" />
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="@string/activity_appoint_detail_share"
+                android:textColor="@color/colorf79283" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="分享"
+                android:textColor="@color/color646464"
+                android:textSize="14sp" />
 
 
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/meLine" />
+
+        <LinearLayout
+            android:id="@+id/ll_collection"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="@string/activity_appoint_detail_collection"
+                android:textColor="@color/colorf5b731" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="收藏"
+                android:textColor="@color/color646464"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/meLine" />
+
+        <LinearLayout
+            android:id="@+id/ll_complaint"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="@string/activity_appoint_detail_complaint"
+                android:textColor="@color/color89bff7" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="投诉"
+                android:textColor="@color/color646464"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
     </LinearLayout>
-
     <View
+        android:id="@+id/root"
+        android:alpha="0"
+        android:background="#80000000"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/meLine" />
-
-    <LinearLayout
-        android:id="@+id/ll_collection"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <com.example.administrator.travel.ui.view.FontsIconTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="@string/activity_appoint_detail_collection"
-            android:textColor="@color/colorf5b731" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="收藏"
-            android:textColor="@color/color646464"
-            android:textSize="14sp" />
-
-
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/meLine" />
-    <LinearLayout
-        android:id="@+id/ll_complaint"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <com.example.administrator.travel.ui.view.FontsIconTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="@string/activity_appoint_detail_complaint"
-            android:textColor="@color/color89bff7" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="投诉"
-            android:textColor="@color/color646464"
-            android:textSize="14sp" />
-
-
-    </LinearLayout>
-</LinearLayout>
+        android:layout_height="match_parent"/>
+</RelativeLayout>

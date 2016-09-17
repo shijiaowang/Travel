@@ -27,6 +27,11 @@
         <item name="android:windowEnterAnimation">@anim/enter_anima</item>
         <item name="android:windowExitAnimation">@anim/exit_anima</item>
     </style>
+<!--从下向上-->
+    <style name="popDownToUp">
+        <item name="android:windowEnterAnimation">@anim/down_to_up_enter</item>
+        <item name="android:windowExitAnimation">@anim/down_to_up_exit</item>
+    </style>
     <style name="noTitleDialog" parent="@android:style/Theme.Dialog">
 
         <!-- 去除标题 -->

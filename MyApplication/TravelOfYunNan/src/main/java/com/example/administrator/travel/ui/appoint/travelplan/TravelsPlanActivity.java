@@ -1,7 +1,6 @@
 package com.example.administrator.travel.ui.appoint.travelplan;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,7 +14,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.BarBaseActivity;
-import com.example.administrator.travel.ui.activity.PersonnelEquipmentActivity;
+import com.example.administrator.travel.ui.appoint.personnelequipment.PersonnelEquipmentActivity;
 import com.example.administrator.travel.ui.appoint.lineplan.LineBean;
 import com.example.administrator.travel.ui.appoint.lineplan.LinePlanActivity;
 import com.example.administrator.travel.ui.view.GradientTextView;

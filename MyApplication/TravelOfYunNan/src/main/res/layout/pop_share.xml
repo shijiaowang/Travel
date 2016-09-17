@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:background="@color/colorFAFAFA"
+    android:gravity="center_horizontal"
+    >
+    <LinearLayout
+        android:layout_marginTop="38dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="0dp"
+            android:drawableTop="@drawable/share_people_zone"
+            style="@style/shareText"
+            android:text="微信朋友圈"
+            />
+        <TextView
+            android:drawableTop="@drawable/share_we_chat"
+            style="@style/shareText"
+            android:text="微信好友"
+            />
+        <TextView
+           style="@style/shareText"
+            android:drawableTop="@drawable/share_sina"
+            android:text="新浪微博"
+            />
+        <TextView
+            style="@style/shareText"
+            android:drawableTop="@drawable/share_qq_zone"
+            android:text="QQ空间"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:text="取消"
+        android:textColor="@color/color646464"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_width="80dp"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

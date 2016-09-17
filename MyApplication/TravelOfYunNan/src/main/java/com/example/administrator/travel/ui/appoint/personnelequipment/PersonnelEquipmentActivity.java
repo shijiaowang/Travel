@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.activity;
+package com.example.administrator.travel.ui.appoint.personnelequipment;
 
 import android.content.Intent;
 import android.util.TypedValue;
@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.activity.ChoicePropsActivity;
+import com.example.administrator.travel.ui.activity.CostSettingActivity;
 
 import org.xutils.view.annotation.ViewInject;
 

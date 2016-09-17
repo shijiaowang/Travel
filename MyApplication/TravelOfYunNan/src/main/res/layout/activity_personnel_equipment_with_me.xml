@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFAFAFA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            style="@style/activityTravelsPlanRl"
+            android:layout_marginTop="36dp">
+
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                style="@style/activityTravelsPlanTv"
+                android:text="@string/activity_personnel_equipment_people" />
+
+            <TextView
+                android:id="@+id/tv"
+                style="@style/activityTravelsPlanDes"
+                android:text="人员计划" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv"
+                android:text="已有7人"
+                android:textColor="@color/color909090"
+                android:textSize="12sp" />
+        </RelativeLayout>
+        <TextView
+            android:layout_marginLeft="53dp"
+            android:layout_marginTop="14dp"
+            android:text="安阳安阳"
+            android:textColor="@color/colorface04"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.example.administrator.travel.ui.view.FlowLayout
+            android:layout_marginLeft="53dp"
+            android:id="@+id/fl_people"
+            android:layout_marginBottom="26dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.example.administrator.travel.ui.view.FlowLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="53dp"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/bt_select_equ"
+                android:layout_width="125dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/activity_travels_plan_line_bg"
+                android:gravity="center"
+                android:text="邀请好友"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/activityTravelsPlanTvTime"
+                    android:layout_height="23dp"
+                    android:gravity="center_vertical"
+                    android:text="出发日期" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:text="性别筛选" />
+
+                        <RelativeLayout
+                            android:layout_width="105dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="@drawable/activity_travels_plan_time_bg">
+
+                            <TextView
+                                android:layout_width="84dp"
+                                android:layout_height="23dp"
+                                android:gravity="center"
+                                android:text="不限"
+                                android:textColor="@color/color323232"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="22dp"
+                                android:layout_height="23dp"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/activity_travels_plan_time_bg"
+                                android:gravity="center"
+                                android:text="▼"
+                                android:textColor="@color/color323232"
+                                android:textSize="10sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/activityTravelsPlanTv"
+                            android:text="认证筛选" />
+
+                        <RelativeLayout
+                            android:layout_width="105dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="@drawable/activity_travels_plan_time_bg">
+
+                            <TextView
+                                android:layout_width="84dp"
+                                android:layout_height="23dp"
+                                android:gravity="center"
+                                android:text="不限"
+                                android:textColor="@color/color323232"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="22dp"
+                                android:layout_height="23dp"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/activity_travels_plan_time_bg"
+                                android:gravity="center"
+                                android:text="▼"
+                                android:textColor="@color/color323232"
+                                android:textSize="10sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <Button
+        style="@style/commonButtonNext"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>
