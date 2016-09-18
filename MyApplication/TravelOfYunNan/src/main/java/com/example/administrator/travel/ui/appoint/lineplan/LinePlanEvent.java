@@ -6,6 +6,7 @@ package com.example.administrator.travel.ui.appoint.lineplan;
 public class LinePlanEvent {
     private int position;
 
+
     public int getPosition() {
         return position;
     }
@@ -15,7 +16,15 @@ public class LinePlanEvent {
     }
 
     private boolean isDelete=false;
-    private String add="";
+    private LineBean.Destination destination;
+
+    public LineBean.Destination getDestination() {
+        return destination;
+    }
+
+    public void setDestination(LineBean.Destination destination) {
+        this.destination = destination;
+    }
 
     public boolean isDelete() {
         return isDelete;
@@ -25,11 +34,5 @@ public class LinePlanEvent {
         this.isDelete = isDelete;
     }
 
-    public String getAdd() {
-        return add;
-    }
 
-    public void setAdd(String add) {
-        this.add = add;
-    }
 }

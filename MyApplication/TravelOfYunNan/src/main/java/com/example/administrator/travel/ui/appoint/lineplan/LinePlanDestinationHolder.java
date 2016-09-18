@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/9/12 0012.
  */
-public class LinePlanDestinationHolder extends BaseHolder<String> {
+public class LinePlanDestinationHolder extends BaseHolder<LineBean.Destination> {
     @ViewInject(R.id.tv_add)
     private TextView mTvAdd;
     @ViewInject(R.id.tv_delete)
@@ -26,8 +26,8 @@ public class LinePlanDestinationHolder extends BaseHolder<String> {
     }
 
     @Override
-    protected void initItemDatas(String datas, Context mContext, int position) {
-        mTvAdd.setText(datas);
+    protected void initItemDatas(LineBean.Destination datas, Context mContext, int position) {
+        mTvAdd.setText(datas.getName());
     }
 
     @Override

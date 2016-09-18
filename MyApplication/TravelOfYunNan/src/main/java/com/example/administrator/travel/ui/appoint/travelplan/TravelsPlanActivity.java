@@ -162,30 +162,30 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
     }
 
 
-
     /**
      * 计算日期，启动路线规划页面
      */
     private void calculationDay() {
         try {
-            if (!(endLine !=null && startLine!=null && endLine == endDate && startLine == startDate)) {
+            if (!(endLine != null && startLine != null && endLine == endDate && startLine == startDate)) {
                 List<LineBean> lineBeans = new ArrayList<>();
                 String howDay = CalendarUtils.getHowDay(startDate.getTime() + "", endDate.getTime() + "");
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(startDate);
                 int countDay = Integer.parseInt(howDay);
-                int month = calendar.get(Calendar.MONTH) + 1;
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                lineBeans.add(new LineBean(month + "月" + day + "日"));
-                for (int i = 0; i < countDay; i++) {//这里没-1是因为添加了解散地
-                    if (i==countDay-1) {
-                        lineBeans.add(new LineBean(0 + "月" + 0 + "日"));
+                lineBeans.add(new LineBean(""));
+                for (int i = 0; i <= countDay+1; i++) {//这里判断条件是因为添加了集合地和解散地
+                    if (i == countDay) {
+                        lineBeans.add(new LineBean(""));
                         break;
                     }
+                    int month = calendar.get(Calendar.MONTH) + 1;
+                    int day = calendar.get(Calendar.DAY_OF_MONTH);
+                    LineBean lineBean = new LineBean(month + "月" + day + "日");
+                    lineBean.setDate(calendar.getTime().getTime()+"");
+                    lineBeans.add(lineBean);
+
                     calendar.add(Calendar.DATE, 1);
-                    month = calendar.get(Calendar.MONTH)+1;
-                    day = calendar.get(Calendar.DAY_OF_MONTH);
-                    lineBeans.add(new LineBean(month + "月" + day + "日"));
                 }
                 if (GlobalValue.mLineBeans == null) {
                     GlobalValue.mLineBeans = lineBeans;
@@ -194,7 +194,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
                         for (int j = 0; j < GlobalValue.mLineBeans.size(); j++) {
                             if (lineBeans.get(i).getTime().equals(GlobalValue.mLineBeans.get(j).getTime())) {
                                 lineBeans.add(i, GlobalValue.mLineBeans.get(j));
-                                lineBeans.remove(i+1);
+                                lineBeans.remove(i + 1);
                                 break;
                             }
                         }

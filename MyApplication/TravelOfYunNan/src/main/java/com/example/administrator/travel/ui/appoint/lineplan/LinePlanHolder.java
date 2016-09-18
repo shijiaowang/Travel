@@ -49,12 +49,14 @@ public class LinePlanHolder extends BaseHolder<LineBean> {
     @Override
     protected void initItemDatas(LineBean datas, Context mContext, int position) {
         mTvTime.setText(datas.getTime());
-        mTvNumber.setText((position + 1) + "");
-        List<String> destinations = datas.getDestinations();
+        mTvNumber.setText(position + "");
+        List<LineBean.Destination> destinations = datas.getDestinations();
         if (destinations!=null && destinations.size()>0){
+            mLvAdd.setVisibility(View.VISIBLE);
             mLvAdd.setAdapter(new LinePlanDestinationAdapter(mContext,destinations));
-            initHeight();
+            initHeight(destinations.size());
         }else {
+            mLvAdd.setVisibility(View.GONE);
             ViewGroup.LayoutParams layoutParams = mDlvLine.getLayoutParams();
             layoutParams.height= DensityUtil.dip2px(58);
             mDlvLine.setLayoutParams(layoutParams);
@@ -69,14 +71,16 @@ public class LinePlanHolder extends BaseHolder<LineBean> {
 
     }
 
-    private void initHeight() {
+    private void initHeight(final int size) {
         mLvAdd.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 mLvAdd.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 int height = mLvAdd.getHeight();
                 ViewGroup.LayoutParams layoutParams = mDlvLine.getLayoutParams();
-                layoutParams.height= DensityUtil.dip2px(58)+height;
+                int addHeight=0;
+                if (size>=3)addHeight=-DensityUtil.dip2px(30);//减去添加框被隐藏的高度
+                layoutParams.height= DensityUtil.dip2px(58)+height+addHeight;
                 mDlvLine.setLayoutParams(layoutParams);
 
             }

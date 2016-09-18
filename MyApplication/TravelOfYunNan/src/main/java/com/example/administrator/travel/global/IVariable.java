@@ -6,8 +6,8 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    String DOMAIN_NAME="http://yuns.yunspeak.com/";
-    /*String DOMAIN_NAME = "http://192.168.1.38/";*/
+    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
+    String DOMAIN_NAME = "http://192.168.1.38/";
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -21,6 +21,7 @@ public interface IVariable {
     String GET_CUSTOM_SPOT = API_KEY + "Travel/getTravelbyUser/";//获取用户自定义景点列表
     String DELETE_CUSTOM_SPOT = API_KEY + "Travel/delTravelbyUser/";//用户删除自定义景点
     String ADD_CUSTOM_SPOT = API_KEY + "Travel/addTravelbyUser/";//用户添加自定义景点
+    String GET_PROP_REMARK = API_KEY + "Travel/getPropcontent/";//道具备注
     /**
      * User
      */

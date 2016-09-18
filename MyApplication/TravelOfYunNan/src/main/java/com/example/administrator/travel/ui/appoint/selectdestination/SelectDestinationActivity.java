@@ -15,6 +15,7 @@ import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.appoint.customdestination.CustomDestinationActivity;
+import com.example.administrator.travel.ui.appoint.lineplan.LineBean;
 import com.example.administrator.travel.ui.appoint.lineplan.LinePlanEvent;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.GsonUtils;
@@ -76,9 +77,10 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
                 }
                 Destination.DataBean.BodyBean bodyBean = destinationData.get(GlobalValue.clickPosition);
                 String add = bodyBean.getCity() + "·" + bodyBean.getTitle();
+                String id = bodyBean.getId();
                 LinePlanEvent linePlanEvent = new LinePlanEvent();
                 linePlanEvent.setPosition(position);
-                linePlanEvent.setAdd(add);
+                linePlanEvent.setDestination(new LineBean.Destination(id,add));
                 EventBus.getDefault().post(linePlanEvent);
                 finish();
             }

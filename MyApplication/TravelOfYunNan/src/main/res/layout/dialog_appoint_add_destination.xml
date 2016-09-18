@@ -27,9 +27,11 @@
             android:layout_height="wrap_content" />
 
         <EditText
+            android:id="@+id/et_destination"
             android:textColor="@color/colorb5b5b5"
             android:textSize="13sp"
-            android:text="请输入地点"
+            android:hint="请输入地点"
+            android:textColorHint="@color/colorb5b5b5"
             android:layout_alignParentBottom="true"
             android:paddingLeft="20dp"
             android:background="@null"
@@ -70,6 +72,7 @@
             android:layout_width="1dp"
             android:layout_height="27dp"/>
         <TextView
+            android:id="@+id/tv_ok"
             android:gravity="center"
             android:textColor="@color/otherTitleBg"
             android:textSize="14sp"

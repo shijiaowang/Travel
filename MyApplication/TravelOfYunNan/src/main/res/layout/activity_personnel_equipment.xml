@@ -5,256 +5,267 @@
     android:layout_height="match_parent"
     android:background="@color/colorFAFAFA">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            style="@style/activityTravelsPlanRl"
-            android:layout_marginTop="36dp">
-
-            <com.example.administrator.travel.ui.view.FontsIconTextView
-                style="@style/activityTravelsPlanTv"
-                android:text="@string/activity_personnel_equipment_people" />
-
-            <TextView
-                style="@style/activityTravelsPlanDes"
-                android:text="人员计划" />
-        </RelativeLayout>
+        android:layout_height="match_parent">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="53dp"
-            android:layout_marginTop="15dp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <RelativeLayout
+                style="@style/activityTravelsPlanRl"
+                android:layout_marginTop="36dp">
+
+                <com.example.administrator.travel.ui.view.FontsIconTextView
+                    style="@style/activityTravelsPlanTv"
+                    android:text="@string/activity_personnel_equipment_people" />
 
                 <TextView
-                    style="@style/activityTravelsPlanTvTime"
-                    android:layout_height="23dp"
-                    android:gravity="center_vertical"
-                    android:text="约伴人数" />
+                    style="@style/activityTravelsPlanDes"
+                    android:text="人员计划" />
+            </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="24dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginRight="10dp"
-                            android:text="至少" />
-
-                        <EditText
-                            style="@style/activityTravelsPlanTvTimeSelect"
-                            android:layout_width="51dp"
-                            android:gravity="start|center_vertical"
-                            android:text="1" />
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="6dp"
-                            android:text="人" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginRight="10dp"
-                            android:text="最多" />
-
-                        <EditText
-                            style="@style/activityTravelsPlanTvTimeSelect"
-                            android:layout_width="51dp"
-                            android:gravity="start|center_vertical"
-                            android:text="5" />
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="6dp"
-                            android:text="人" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/activityTravelsPlanTvTime"
-                    android:layout_height="23dp"
-                    android:gravity="center_vertical"
-                    android:text="出发日期" />
+                android:layout_marginLeft="53dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/activityTravelsPlanTvTime"
+                        android:layout_height="23dp"
+                        android:gravity="center_vertical"
+                        android:text="约伴人数" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="24dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:text="性别筛选" />
-
-                        <RelativeLayout
-                            android:layout_width="105dp"
-                            android:layout_height="23dp"
-                            android:layout_marginLeft="16dp"
-                            android:background="@drawable/activity_travels_plan_time_bg">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="84dp"
-                                android:layout_height="23dp"
-                                android:gravity="center"
-                                android:text="不限"
-                                android:textColor="@color/color323232"
-                                android:textSize="15sp" />
+                                style="@style/activityTravelsPlanTv"
+                                android:layout_marginRight="10dp"
+                                android:text="至少" />
+
+                            <EditText
+                                android:id="@+id/tv_least"
+                                style="@style/activityTravelsPlanTvTimeSelect"
+                                android:layout_width="51dp"
+                                android:gravity="start|center_vertical"
+                                android:hint="1" />
 
                             <TextView
-                                android:layout_width="22dp"
-                                android:layout_height="23dp"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/activity_travels_plan_time_bg"
-                                android:gravity="center"
-                                android:text="▼"
-                                android:textColor="@color/color323232"
-                                android:textSize="10sp" />
-                        </RelativeLayout>
+                                style="@style/activityTravelsPlanTv"
+                                android:layout_marginLeft="6dp"
+                                android:text="人" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/activityTravelsPlanTv"
+                                android:layout_marginRight="10dp"
+                                android:text="最多" />
+
+                            <EditText
+                                android:id="@+id/tv_most"
+                                style="@style/activityTravelsPlanTvTimeSelect"
+                                android:layout_width="51dp"
+                                android:gravity="start|center_vertical"
+                                android:hint="5" />
+
+                            <TextView
+                                style="@style/activityTravelsPlanTv"
+                                android:layout_marginLeft="6dp"
+                                android:text="人" />
+                        </LinearLayout>
                     </LinearLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/activityTravelsPlanTvTime"
+                        android:layout_height="23dp"
+                        android:gravity="center_vertical"
+                        android:text="出发日期" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:text="性别筛选" />
-
-                        <RelativeLayout
-                            android:layout_width="105dp"
-                            android:layout_height="23dp"
-                            android:layout_marginLeft="16dp"
-                            android:background="@drawable/activity_travels_plan_time_bg">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="84dp"
+                                style="@style/activityTravelsPlanTv"
+                                android:text="性别筛选" />
+
+                            <RelativeLayout
+                                android:layout_width="105dp"
                                 android:layout_height="23dp"
-                                android:gravity="center"
-                                android:text="不限"
-                                android:textColor="@color/color323232"
-                                android:textSize="15sp" />
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/activity_travels_plan_time_bg">
+
+                                <TextView
+                                    android:layout_width="84dp"
+                                    android:layout_height="23dp"
+                                    android:gravity="center"
+                                    android:text="不限"
+                                    android:textColor="@color/color323232"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:layout_width="22dp"
+                                    android:layout_height="23dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/activity_travels_plan_time_bg"
+                                    android:gravity="center"
+                                    android:text="▼"
+                                    android:textColor="@color/color323232"
+                                    android:textSize="10sp" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="22dp"
+                                style="@style/activityTravelsPlanTv"
+                                android:text="性别筛选" />
+
+                            <RelativeLayout
+                                android:layout_width="105dp"
                                 android:layout_height="23dp"
-                                android:layout_alignParentRight="true"
-                                android:background="@drawable/activity_travels_plan_time_bg"
-                                android:gravity="center"
-                                android:text="▼"
-                                android:textColor="@color/color323232"
-                                android:textSize="10sp" />
-                        </RelativeLayout>
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/activity_travels_plan_time_bg">
+
+                                <TextView
+                                    android:layout_width="84dp"
+                                    android:layout_height="23dp"
+                                    android:gravity="center"
+                                    android:text="不限"
+                                    android:textColor="@color/color323232"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:layout_width="22dp"
+                                    android:layout_height="23dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/activity_travels_plan_time_bg"
+                                    android:gravity="center"
+                                    android:text="▼"
+                                    android:textColor="@color/color323232"
+                                    android:textSize="10sp" />
+                            </RelativeLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <View
-            style="@style/fragmentMeLine"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="19dp" />
+            <View
+                style="@style/fragmentMeLine"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="19dp" />
 
-        <RelativeLayout style="@style/activityTravelsPlanRl">
+            <RelativeLayout style="@style/activityTravelsPlanRl">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
-                style="@style/activityTravelsPlanTv"
-                android:text="@string/activity_personnel_equipment_equ" />
+                <com.example.administrator.travel.ui.view.FontsIconTextView
+                    style="@style/activityTravelsPlanTv"
+                    android:text="@string/activity_personnel_equipment_equ" />
+
+                <TextView
+                    android:id="@+id/tv_equ"
+                    style="@style/activityTravelsPlanDes"
+                    android:text="道具租用" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/tv_equ"
+                    android:text="免费租用"
+                    android:textColor="@color/color909090"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/bt_select_equ"
+                android:layout_width="125dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/activity_travels_plan_line_bg"
+                android:gravity="center"
+                android:text="选择编辑"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_equ"
-                style="@style/activityTravelsPlanDes"
-                android:text="道具租用" />
-
-            <TextView
-                android:layout_centerVertical="true"
-               android:layout_toRightOf="@id/tv_equ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="免费租用"
-                android:textColor="@color/color909090"
-                android:textSize="12sp" />
+                android:layout_marginLeft="53dp"
+                android:text="备注"
+                android:textColor="@color/color646464"
+                android:textSize="15sp" />
 
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/bt_select_equ"
-            android:layout_width="125dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/activity_travels_plan_line_bg"
-            android:gravity="center"
-            android:text="选择编辑"
-            android:textColor="@color/colorFAFAFA"
-            android:textSize="16sp" />
-        <TextView
-            android:textSize="15sp"
-            android:text="备注"
-            android:textColor="@color/color646464"
-            android:layout_marginLeft="53dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:lineSpacingExtra="6dp"
-            android:text="我一个衣服收到后佛奥骨化喀什分哈佛路哈利好伐啦是伐啦放假哈利就恢复垃是伐啦放假哈利就恢复垃是伐啦放假哈利就恢复垃圾"
-            android:layout_marginTop="6dp"
-            android:textColor="@color/color969696"
-            android:textSize="14sp"
-            android:layout_marginRight="53dp"
-            android:layout_marginLeft="53dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="53dp"
+                android:layout_marginRight="53dp"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="6dp"
+                android:text="我一个衣服收到后佛奥骨化喀什分哈佛路哈利好伐啦是伐啦放假哈利就恢复垃是伐啦放假哈利就恢复垃是伐啦放假哈利就恢复垃圾"
+                android:textColor="@color/color969696"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
-        android:layout_alignParentBottom="true"
-        style="@style/commonButtonNext" />
+        style="@style/commonButtonNext"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

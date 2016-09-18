@@ -11,11 +11,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.appoint.lineplan.LinePlanEvent;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointDetailMorePop;
+import com.example.administrator.travel.utils.GlobalUtils;
+import com.example.administrator.travel.utils.JsonUtils;
+import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.StringUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 
 /**
@@ -61,13 +72,37 @@ public class EnterAppointDialog {
 
     /**
      * 添加目的地
+     * @param isStart
      * @param context
+     * @param b
      */
-    public static void showDialogAddDestination(Context context) {
+    public static void showDialogAddDestination(Context context, final TextView textView, final boolean isStart) {
         //创建视图
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
+        final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
+        dialogView.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trim = mEtDestination.getText().toString().trim();
+                if (StringUtils.isEmpty(trim)){
+                    ToastUtils.showToast("目的地不能为空!");
+                    return;
+                }
 
+                try {
+                    JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
+                    String key=isStart?IVariable.MEET_ADDRESS:IVariable.OVER_ADDRESS;
+                    JsonUtils.putString(key,trim, basecJsonObject);
+                    LogUtils.e(basecJsonObject.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                textView.setText(trim);
+                dialog.dismiss();
+
+            }
+        });
         dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

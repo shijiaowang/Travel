@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.example.administrator.travel.bean.Line;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.example.administrator.travel.ui.appoint.selectdestination.SelectDestinationActivity;
@@ -17,6 +16,7 @@ import java.util.List;
  * Created by Administrator on 2016/8/5 0005.
  */
 public class LinePlanAdapter extends TravelBaseAdapter<LineBean> {
+
     public LinePlanAdapter(Context mContext, List<LineBean> mDatas) {
         super(mContext, mDatas);
     }
@@ -41,18 +41,43 @@ public class LinePlanAdapter extends TravelBaseAdapter<LineBean> {
             linePlanBottomHolder.mTvEndAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EnterAppointDialog.showDialogAddDestination(mContext);
+                    EnterAppointDialog.showDialogAddDestination(mContext, linePlanBottomHolder.mTvEndAdd,false);
+                }
+            });
+        }
+        if (baseHolder instanceof LinePlanTopHolder){
+            final LinePlanTopHolder linePlanTopHolder = (LinePlanTopHolder) baseHolder;
+            linePlanTopHolder.mTvStartAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EnterAppointDialog.showDialogAddDestination(mContext,linePlanTopHolder.mTvStartAdd, true);
                 }
             });
         }
     }
 
+    @Override
+    public int getViewTypeCount() {
+        return 3;
+    }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (position==0){
+            return TYPE_POST_OP;//集合地
+        }else if (position==mDatas.size()-1){
+            return TYPE_POST_USER;//解散地
+        }
+        return TYPE_POST_NORMAL;//路线
+    }
 
     @Override
     protected BaseHolder initHolder(int position) {
-        if (position==mDatas.size()-1){
+        int itemViewType = getItemViewType(position);
+        if (itemViewType==TYPE_POST_USER){
             return new LinePlanBottomHolder(mContext);
+        }else if (itemViewType==TYPE_POST_OP){
+            return new LinePlanTopHolder(mContext);
         }
         return new LinePlanHolder(mContext);
     }

@@ -6,24 +6,24 @@ import org.json.JSONObject;
  * Created by Administrator on 2016/9/9 0009.
  */
 public class JsonUtils {
-    public static JSONObject basecObject=null;
-    public static JSONObject routesObject=null;
-    public static JSONObject propObject=null;
+    public static JSONObject basecObject;
+    public static JSONObject routesObject;
+    public static JSONObject propObject;
     public  static JSONObject getBasecJsonObject(){
         if (basecObject==null){
-            return new JSONObject();
+            basecObject= new JSONObject();
         }
         return basecObject;
     }
     public  static JSONObject getRoutesJsonObject(){
         if (routesObject==null){
-            return new JSONObject();
+            routesObject= new JSONObject();
         }
         return routesObject;
     }
     public  static JSONObject getPropJsonObject(){
         if (propObject==null){
-            return new JSONObject();
+            propObject= new JSONObject();
         }
         return propObject;
     }

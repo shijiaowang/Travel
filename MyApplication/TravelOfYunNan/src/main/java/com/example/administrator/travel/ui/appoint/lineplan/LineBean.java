@@ -9,10 +9,27 @@ import java.util.List;
  */
 public class LineBean implements Serializable {
     private String time;
-    private List<String> destinations=new ArrayList<>();
+    private String date;//时间戳
+    public List<Destination> getDestinations() {
+        return destinations;
+    }
+
+    public void setDestinations(List<Destination> destinations) {
+        this.destinations = destinations;
+    }
+
+    private List<Destination> destinations=new ArrayList<>();
 
     public LineBean(String time) {
         this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTime() {
@@ -23,11 +40,30 @@ public class LineBean implements Serializable {
         this.time = time;
     }
 
-    public List<String> getDestinations() {
-        return destinations;
-    }
 
-    public void setDestinations(List<String> destinations) {
-        this.destinations = destinations;
+    public static class Destination{
+        private String id;
+        private String name;
+
+        public Destination(String id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }

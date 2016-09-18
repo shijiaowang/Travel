@@ -1,75 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
-        android:id="@id/ssv_scroll"
+
+    <ListView
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:id="@+id/lv_line"
+        style="@style/commonListViewStyle"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:dividerHeight="0dp"
+        android:scrollbars="none">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+    </ListView>
 
-                <TextView
-                    android:id="@+id/tv_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="53dp"
-                    android:background="@drawable/activity_line_plan_add"
-                    android:gravity="center"
-                    android:text="集合地"
-                    android:textColor="@color/colorFAFAFA"
-                    android:textSize="13sp" />
-
-
-                <com.example.administrator.travel.ui.view.FontsIconTextView
-                    android:id="@+id/tv_start_add"
-                    android:layout_width="55dp"
-                    android:layout_height="27dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_toRightOf="@id/tv_add"
-                    android:background="@drawable/activity_line_plan_add_bg"
-                    android:gravity="center"
-                    android:text="@string/activity_other_follow"
-                    android:textColor="@color/colorb5b5b5"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <com.example.administrator.travel.ui.view.DottedLineView
-                android:id="@+id/end_line"
-                android:layout_marginTop="-2dp"
-                android:layout_width="2dp"
-                android:layout_height="4dp"
-                android:layout_marginLeft="79dp"
-                android:layerType="software" />
-
-            <com.example.administrator.travel.ui.view.ToShowAllListView
-                android:id="@+id/lv_line"
-                style="@style/commonListViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:dividerHeight="0dp"
-                android:scrollbars="none">
-
-            </com.example.administrator.travel.ui.view.ToShowAllListView>
-        </LinearLayout>
-    </ScrollView>
 
     <Button
+        android:layout_alignParentBottom="true"
         style="@style/commonButtonNext"
         android:text="保存修改" />
-</LinearLayout>
+</RelativeLayout>
