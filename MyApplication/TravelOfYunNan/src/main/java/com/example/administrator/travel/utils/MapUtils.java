@@ -18,8 +18,16 @@ public class MapUtils {
             stringMap.put(IVariable.KEY,GlobalUtils.getKey(context));
             return this;
         }
+        public Builder addJsonTravel(String json){
+            stringMap.put(IVariable.JSON_TRAVEL,json);
+            return this;
+        }
         public Builder addPageSize(int pageSize){
             stringMap.put(IVariable.PAGE_SIZE,pageSize+"");
+            return this;
+        }
+        public Builder addType(String type){
+            stringMap.put(IVariable.TYPE,type+"");
             return this;
         }
         public Builder addProvince(String province){

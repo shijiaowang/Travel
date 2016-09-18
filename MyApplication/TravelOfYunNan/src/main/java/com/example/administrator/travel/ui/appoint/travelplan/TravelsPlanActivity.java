@@ -222,7 +222,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
             JsonUtils.putString(IVariable.USER_ID, GlobalUtils.getUserInfo().getId(), basecJsonObject);
             JsonUtils.putString(IVariable.START_TIME, startDate.getTime() + "", basecJsonObject);
             JsonUtils.putString(IVariable.END_TIME, endDate.getTime() + "", basecJsonObject);
-            JsonUtils.putString(IVariable.TRAFFIC, endDate.getTime() + "", basecJsonObject);
+            JsonUtils.putString(IVariable.TRAFFIC, 1 + "", basecJsonObject);
             basecJsonObject.put(IVariable.TRAFFIC_TEXT, getTrafficText());
             startActivity(new Intent(this, PersonnelEquipmentActivity.class));
         } catch (Exception e) {
@@ -328,5 +328,6 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         super.onDestroy();
         GlobalValue.mSelectSpot = null;
         GlobalValue.mLineBeans = null;
+        JsonUtils.reset();//释放json
     }
 }

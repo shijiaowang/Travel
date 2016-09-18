@@ -22,6 +22,7 @@ public interface IVariable {
     String DELETE_CUSTOM_SPOT = API_KEY + "Travel/delTravelbyUser/";//用户删除自定义景点
     String ADD_CUSTOM_SPOT = API_KEY + "Travel/addTravelbyUser/";//用户添加自定义景点
     String GET_PROP_REMARK = API_KEY + "Travel/getPropcontent/";//道具备注
+    String GET_PROP_LIST = API_KEY + "Travel/getProplists/";//获取道具列表
     /**
      * User
      */
@@ -42,6 +43,7 @@ public interface IVariable {
     String CIRCLE_FOLLOW = API_KEY + "Circle/setCirclefollow/";//关注圈子
     String GET_CIRCLE_POST = API_KEY + "Circle/getCircleforumlists/";//获取圈子内帖子列表
     String POST_DETAIL = API_KEY + "Circle/getForum/";//获取帖子数据
+    String CREATE_APPOINT_TOGETHER = API_KEY + "Travel/addTravel/";//发布约伴-一起玩
     /**
      * 发现
      */
@@ -73,6 +75,7 @@ public interface IVariable {
     //登录
     String USERNAME = "name";
     String KEY = "key";
+    String JSON_TRAVEL = "json_travel";
     String PASSWORD = "pwd";
 
     //保存登录

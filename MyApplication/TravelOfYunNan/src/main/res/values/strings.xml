@@ -6,8 +6,10 @@
     <string name="home_topic_travels">经典游记</string>
     <string name="home_topic_hot_spots">热门景点</string>
     <string name="text_down">已加入(%1$d) ∨</string>
+    <string name="prop_select_number">已选择：%1$d件物品</string>
     <string name="down">∨</string>
     <string name="up">∧</string>
+    <string name="text_limit_200">%1$d/200</string>
     <string name="text_up">已加入(%1$d) ∧</string>
     <!--底部导航-->
     <string name="home_activity_button_appoint">樾</string>
@@ -222,6 +224,7 @@
     <string name="pop_order">·\u3000智能排序</string>
     <string name="pop_star">·\u3000按星级</string>
     <string name="pop_mouth">·\u3000按口碑</string>
+
 
 
 </resources>

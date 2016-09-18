@@ -44,11 +44,13 @@
                     android:text="每人收费" />
 
                 <EditText
+                    android:id="@+id/et_price"
+                    android:inputType="number"
                     style="@style/activityTravelsPlanTvTimeSelect"
                     android:layout_width="51dp"
                     android:layout_marginLeft="15dp"
                     android:gravity="start|center_vertical"
-                    android:text="1" />
+                     />
 
                 <TextView
                     style="@style/activityTravelsPlanTv"

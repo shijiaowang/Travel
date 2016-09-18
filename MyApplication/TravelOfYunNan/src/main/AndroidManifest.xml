@@ -57,8 +57,12 @@
         <activity android:name=".ui.activity.DeliciousDetailActivity"/>
         <activity android:name=".ui.activity.PictureSelectorActivity"/>
         <activity android:name=".ui.activity.OrdersDetailActivity"/>
-        <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"/>
-        <activity android:name=".ui.activity.CostSettingActivity"/>
+        <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity android:name=".ui.appoint.costsetting.CostSettingActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
         <activity android:name=".ui.activity.AppointWithMeDetailActivity"/>
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentWithMeActivity"/>
         <activity android:name=".ui.activity.BaseTransActivity"
@@ -69,7 +73,7 @@
         <activity android:name=".ui.activity.FindCommonActivity"/>
         <activity android:name=".ui.activity.TravelsDetailActivity"/>
         <activity android:name=".ui.activity.DestinationDetailActivity"/>
-        <activity android:name=".ui.activity.ChoicePropsActivity"/>
+        <activity android:name=".ui.appoint.choicesequipment.ChoicePropsActivity"/>
         <activity android:name=".ui.activity.AiteActivity"/>
         <activity android:name=".ui.activity.MyAppointActivity"/>
         <activity android:name=".ui.activity.BulletinBoardActivity"/>
@@ -93,7 +97,9 @@
         <activity android:name=".ui.activity.AlbumSelectorActivity"/>
         <activity android:name=".ui.me.AboutActivity"/>
         <activity android:name=".ui.activity.CreateAppointSuccessActivity"/>
-        <activity android:name=".ui.activity.DesRemarkActivity"/>
+        <activity android:name=".ui.appoint.desremark.DesRemarkActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity android:name=".ui.appoint.togetherdetail.AppointTogetherDetailActivity"/>
         <activity android:name=".ui.activity.RelateMeActivity"/>
         <activity android:name=".ui.activity.HotelActivity"/>

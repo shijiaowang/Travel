@@ -1,31 +1,21 @@
 package com.example.administrator.travel.ui.appoint.lineplan;
 
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.BarBaseActivity;
-import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
-import com.example.administrator.travel.ui.view.ToShowAllListView;
-import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
-
-import java.util.List;
 
 /**
  * Created by Administrator on 2016/8/4 0004.
@@ -52,7 +42,7 @@ public class LinePlanActivity extends BarBaseActivity {
             public void onClick(View v) {
                 try {
                     saveRoutes();//保存路程信息
-                    LogUtils.e(JsonUtils.getRoutesJsonObject().toString());
+                    LogUtils.e(JsonUtils.getRoutesJsonArray().toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -66,8 +56,7 @@ public class LinePlanActivity extends BarBaseActivity {
      * 保存线路计划
      */
     private void saveRoutes() throws JSONException {
-        JSONObject routesJsonObject = JsonUtils.getRoutesJsonObject();
-        JSONArray jsonArray=new JSONArray();
+        JSONArray routesJsonArray = JsonUtils.getRoutesJsonArray();
        for (int i=1;i<GlobalValue.mLineBeans.size()-1;i++){//去掉集合地和解散地
            LineBean lineBean = GlobalValue.mLineBeans.get(i);
            if (lineBean.getDestinations()!=null && lineBean.getDestinations().size()>0){
@@ -75,11 +64,10 @@ public class LinePlanActivity extends BarBaseActivity {
                for (LineBean.Destination destination:lineBean.getDestinations()){
                    jsonObject.put(IVariable.TD_ID,destination.getId());
                    jsonObject.put(IVariable.TIME,lineBean.getDate());
-                   jsonArray.put(jsonObject);
+                   routesJsonArray.put(jsonObject);
                }
            }
        }
-        routesJsonObject.put(IVariable.ROUTES,jsonArray);
 
     }
 

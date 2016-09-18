@@ -1,9 +1,13 @@
 package com.example.administrator.travel.global;
 
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropBean;
+import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropSelectBean;
 import com.example.administrator.travel.ui.appoint.lineplan.LineBean;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2016/7/27 0027.
@@ -19,4 +23,9 @@ public class GlobalValue {
     public static  int mAppointType;//发布约伴类型
 
     public static int clickPosition=-1;//点击的目的地
+
+    public static int choicePropType=0;//租用道具选项
+    public static Map<String,ChoicePropSelectBean> mPropSelects;//选择的道具
+
+
 }

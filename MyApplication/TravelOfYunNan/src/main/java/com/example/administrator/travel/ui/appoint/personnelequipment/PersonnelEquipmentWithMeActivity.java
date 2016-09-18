@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.activity.BarBaseActivity;
-import com.example.administrator.travel.ui.activity.ChoicePropsActivity;
-import com.example.administrator.travel.ui.activity.CostSettingActivity;
+import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropsActivity;
+import com.example.administrator.travel.ui.appoint.costsetting.CostSettingActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 
 import org.xutils.view.annotation.ViewInject;

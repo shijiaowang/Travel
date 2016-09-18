@@ -65,11 +65,12 @@
                                 android:text="至少" />
 
                             <EditText
-                                android:id="@+id/tv_least"
+                                android:inputType="number"
+                                android:id="@+id/et_least"
                                 style="@style/activityTravelsPlanTvTimeSelect"
                                 android:layout_width="51dp"
                                 android:gravity="start|center_vertical"
-                                android:hint="1" />
+                                />
 
                             <TextView
                                 style="@style/activityTravelsPlanTv"
@@ -91,11 +92,12 @@
                                 android:text="最多" />
 
                             <EditText
-                                android:id="@+id/tv_most"
+                                android:inputType="number"
+                                android:id="@+id/et_most"
                                 style="@style/activityTravelsPlanTvTimeSelect"
                                 android:layout_width="51dp"
                                 android:gravity="start|center_vertical"
-                                android:hint="5" />
+                                 />
 
                             <TextView
                                 style="@style/activityTravelsPlanTv"
@@ -116,7 +118,7 @@
                         style="@style/activityTravelsPlanTvTime"
                         android:layout_height="23dp"
                         android:gravity="center_vertical"
-                        android:text="出发日期" />
+                        android:text="认证筛选" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

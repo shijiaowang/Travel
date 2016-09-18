@@ -1,5 +1,6 @@
 package com.example.administrator.travel.utils;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -7,25 +8,25 @@ import org.json.JSONObject;
  */
 public class JsonUtils {
     public static JSONObject basecObject;
-    public static JSONObject routesObject;
-    public static JSONObject propObject;
+    public static JSONArray routesArray;
+    public static JSONArray propArray;
     public  static JSONObject getBasecJsonObject(){
         if (basecObject==null){
             basecObject= new JSONObject();
         }
         return basecObject;
     }
-    public  static JSONObject getRoutesJsonObject(){
-        if (routesObject==null){
-            routesObject= new JSONObject();
+    public  static JSONArray getRoutesJsonArray(){
+        if (routesArray ==null){
+            routesArray = new JSONArray();
         }
-        return routesObject;
+        return routesArray;
     }
-    public  static JSONObject getPropJsonObject(){
-        if (propObject==null){
-            propObject= new JSONObject();
+    public  static JSONArray getPropJsonArray(){
+        if (propArray ==null){
+            propArray = new JSONArray();
         }
-        return propObject;
+        return propArray;
     }
 
     /**
@@ -46,7 +47,7 @@ public class JsonUtils {
      */
     public static void reset(){
         basecObject=null;
-        propObject=null;
-        routesObject=null;
+        propArray =null;
+        routesArray =null;
     }
 }

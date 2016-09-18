@@ -75,48 +75,17 @@ public class AppointTogetherDetail {
         private String count_like;
         private String is_like;
         private String routes_title;
-        /**
-         * id : 10009
-         * user_img : http://192.168.1.38/Uploads/1.png
-         * nick_name : 我叫王小
-         */
 
         private List<PeopleBean> into_people;
-        /**
-         * id : 10009
-         * user_img : http://192.168.1.38/Uploads/1.png
-         * nick_name : 我叫王小
-         */
+
 
         private List<PeopleBean> ing_people;
-        /**
-         * time : 1472090400
-         * id : 1
-         * title : 牛逼山
-         * content : 就是很厉害很厉害很来还的挥洒大时代和
-         * logo_img : http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg
-         * province : 云南省
-         * city : 成都市
-         * address : 昆明周边路由大家上帝阿迪
-         */
+
 
         private List<RoutesBean> routes;
-        /**
-         * id : 3
-         * name : 加长超级摄像头
-         * content : 加长超级摄像头
-         * number : 3
-         */
 
         private List<PropBean> prop;
-        /**
-         * id : 1
-         * key : 平台服务费
-         * value : 20
-         * type : 1
-         * time : 1469586077
-         * status : 1
-         */
+
 
         private List<PricebasecBean> pricebasec;
 
