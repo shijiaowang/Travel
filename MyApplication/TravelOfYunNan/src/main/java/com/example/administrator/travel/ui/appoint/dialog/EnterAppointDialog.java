@@ -1,9 +1,11 @@
 package com.example.administrator.travel.ui.appoint.dialog;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -13,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -74,7 +77,6 @@ public class EnterAppointDialog {
      * 添加目的地
      * @param isStart
      * @param context
-     * @param b
      */
     public static void showDialogAddDestination(Context context, final TextView textView, final boolean isStart) {
         //创建视图
@@ -135,7 +137,7 @@ public class EnterAppointDialog {
      * 投诉
      * @param context
      */
-    public static void showDialogAddComplaint(Context context, final View view) {
+    public static void showDialogAddComplaint(Context context) {
         //创建视图
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_complaint, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
@@ -149,7 +151,6 @@ public class EnterAppointDialog {
         Window window = dialog.getWindow(); //得到对话框
         window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
         window.setGravity(Gravity.CENTER);
-        view.setAlpha(AppointDetailMorePop.ALPHA);
 
         //创建 Dialog
 //		Dialog dialog=new Dialog(上下文,风格style);
@@ -159,12 +160,6 @@ public class EnterAppointDialog {
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                view.setAlpha(0);
-            }
-        });
         dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
             @Override
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
@@ -175,6 +170,42 @@ public class EnterAppointDialog {
         });
         dialog.show();
     }
+    /**
+     * 分享
+     *  @param context
+     *
+     */
+    public static void showShareDialog(final Context context) {
+        // 获取弹出视图对象
+        final View dialogView = View.inflate(context, R.layout.pop_share, null);
+        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
+        View rlBottom = ((Activity) context).findViewById(R.id.rl_bottom);
+        Window window = dialog.getWindow(); //得到对话框
+        window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
+        window.setGravity(Gravity.CENTER);
 
+        WindowManager.LayoutParams wl = window.getAttributes();
+        int[] location = new int[2];
+        rlBottom.getLocationInWindow(location);
+        wl.x = 0;
+        wl.y = location[1];
+        //设置显示位置
+        dialog.onWindowAttributesChanged(wl);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.getScreenWidth(),DensityUtil.dip2px(200));
+        dialog.setContentView(dialogView, params);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK)
+                    dialog.dismiss();
+                return true;
+            }
+        });
+        dialog.show();
+
+    }
 
 }

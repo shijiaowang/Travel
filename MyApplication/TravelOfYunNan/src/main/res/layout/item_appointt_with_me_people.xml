@@ -8,7 +8,8 @@
     android:paddingRight="20dp"
     >
     <TextView
-        android:text="洛阳岳阳"
+        android:id="@+id/tv_name"
+        style="@style/commonSingleLineTextStyle"
         android:textColor="@color/color646464"
         android:textSize="14sp"
         android:layout_width="wrap_content"

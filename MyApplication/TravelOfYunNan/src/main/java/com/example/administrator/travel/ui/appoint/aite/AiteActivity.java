@@ -1,34 +1,43 @@
-package com.example.administrator.travel.ui.activity;
+package com.example.administrator.travel.ui.appoint.aite;
 
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.AiteFollow;
-import com.example.administrator.travel.ui.adapter.AiteAdapter;
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.view.FastQueryIndex;
 import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/8/1 0001.
  *
  * @联系人列表
  */
-public class AiteActivity extends BarBaseActivity {
-    private String[] names = {"1", "麻辣鸡丝", "刘", "关羽", "张", "奇怪", "和", "阿", "只", "有", "你", "我", "他", "1", "A", "a", "1", "阿", "只", "有", "你", "我", "他", "1", "A", "阿", "只", "有", "你", "我", "他", "1", "A"};
+public class AiteActivity extends LoadingBarBaseActivity {
     private List<AiteFollow> followAndFans;
-
+    private List<AiteFollow> mSelectPeople;
     private TextView mTvOk;
     @ViewInject(R.id.lv_follow_people)
     private ListView mLvFollowPeople;
@@ -54,17 +63,31 @@ public class AiteActivity extends BarBaseActivity {
                 queryAndSmooth(c);
             }
         });
+        mTvOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                if (mSelectPeople!=null && mSelectPeople.size()>0) {
+                    intent.putExtra(IVariable.DATA, (Serializable) mSelectPeople);
+                }
+                setResult(RESULT_CODE,intent);
+                finish();
+            }
+        });
         mLvFollowPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (mSelectPeople==null)mSelectPeople=new ArrayList<>();
                 AiteFollow followAndFan = followAndFans.get(position);
                 if (followAndFan.isChecked()) {
                     followAndFan.setIsChecked(false);
+                    mSelectPeople.remove(followAndFan);
                     if (selectPosition > 0) {
                         selectPosition--;
                         mTvOk.setText("确定(" + selectPosition + ")");
                     }
                 } else {
+                    mSelectPeople.add(followAndFan);
                     selectPosition++;
                     mTvOk.setText("确定(" + selectPosition + ")");
                     followAndFan.setIsChecked(true);
@@ -73,6 +96,12 @@ public class AiteActivity extends BarBaseActivity {
             }
 
         });
+    }
+
+    @Override
+    protected void onLoad() {
+        Map<String, String> aiteMap = MapUtils.Build().addKey(this).addUserId().end();
+        XEventUtils.getUseCommonBackJson(IVariable.GET_FOLLOW_USER,aiteMap,0,new AiteEvent());
     }
 
     private void init() {
@@ -108,18 +137,16 @@ public class AiteActivity extends BarBaseActivity {
     }
 
     @Override
-    protected void initViewData() {
-        initDataAndSort();
-        initIndexQuery();
-        adapter = new AiteAdapter(this, followAndFans);
-        mLvFollowPeople.setAdapter(adapter);
+    protected Activity initViewData() {
+
+        return this;
     }
 
-    private void initDataAndSort() {
+    private void initDataAndSort(List<Follow> data) {
         followAndFans = new ArrayList<>();
-        for (int i = 0; i < names.length; i++) {
+        for (Follow follow:data) {
             AiteFollow aiteFollow = new AiteFollow();
-            aiteFollow.setNikeName(names[i]);
+            aiteFollow.setFollow(follow);
             followAndFans.add(aiteFollow);
         }
         Collections.sort(followAndFans, new Comparator<AiteFollow>() {
@@ -130,6 +157,30 @@ public class AiteActivity extends BarBaseActivity {
                 return firstIndex - secondIndex;
             }
         });
+    }
+    @Subscribe
+    public void onEvent(AiteEvent event){
+        setIsProgress(false);
+         if (event.isSuccess()){
+             dealData(event);
+         }else {
+             ToastUtils.showToast(event.getMessage());
+             setIsError(true);
+         }
+    }
+
+    private void dealData(AiteEvent event) {
+        AiteBean aiteBean = GsonUtils.getObject(event.getResult(), AiteBean.class);
+        List<Follow> data = aiteBean.getData();
+        if (data==null || data.size()==0){
+            ToastUtils.showToast("您尚未关注任何人！");
+        }else {
+            initDataAndSort(data);
+            initIndexQuery();
+            adapter = new AiteAdapter(this, followAndFans);
+            mLvFollowPeople.setAdapter(adapter);
+        }
+
     }
 
     private void initIndexQuery() {

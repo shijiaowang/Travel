@@ -27,10 +27,19 @@ import com.example.administrator.travel.utils.LogUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.x;
 
+import java.util.List;
+
 
 public abstract class BaseActivity extends FragmentActivity {
 
-
+    public static final int TYPE_LOAD = 1;//普通读取请求
+    public static final int TYPE_REFRESH = 3;//刷新
+    public static final int TYPE_SEARCH = 5;//搜索
+    public static final int TYPE_DISCUSS = 2;//留言
+    public static final int TYPE_LIKE_DISCUSS = 0;//点赞请求
+    public static final int TYPE_DELETE = 4;//删除
+    public static final  int REQ_CODE=0;
+    public static final  int RESULT_CODE=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,5 +202,11 @@ public abstract class BaseActivity extends FragmentActivity {
         if (imm.isActive()) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
         }
+    }
+    public boolean ListIsEmpty(List list){
+        if (list ==null || list.size()==0){
+            return true;
+        }
+        return false;
     }
 }

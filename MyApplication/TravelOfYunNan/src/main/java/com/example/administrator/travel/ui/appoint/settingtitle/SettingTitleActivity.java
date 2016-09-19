@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.activity;
+package com.example.administrator.travel.ui.appoint.settingtitle;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
@@ -13,21 +13,26 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.SettingTitle;
-import com.example.administrator.travel.event.SettingTitleEvent;
-import com.example.administrator.travel.event.TabEvent;
 import com.example.administrator.travel.global.GlobalValue;
-import com.example.administrator.travel.ui.fragment.TabFragment;
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 import com.example.administrator.travel.utils.DensityUtils;
+import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.JsonUtils;
+import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/9/6 0006.
@@ -95,21 +100,25 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
         mIndicator.setIsTitle(true);
         mIndicator.setViewPager(mVpPager);
         mIndicator.setTitles(mTitles);
-        String[] title1 = {"我叫老司机", "我叫老司机", "小", "我叫老司机", "老司机称霸武林", "我叫老sdff司机", "神棍上路", "我叫老司机", "我就sdf呵呵", "我叫老sdff司机", "神棍上路", "我叫老司机", "我就sdf呵呵", "我叫老sdff司机", "神棍上路", "我叫老司机", "我就sdf呵呵", "我叫老sdff司机", "神棍上路", "我叫老司机", "我就sdf呵呵"};
-        String[] title2 = {"我叫老司机", "我叫老机", "小", "我叫老司机", "老司机称霸武林", "我司机", "神棍上路", "我叫老司机", "我就呵呵"};
-        String[] title3 = {"我叫老司机", "我叫老司机", "小", "我叫机", "老司机称霸武林", "我叫老司机", "神棍上路", "我叫老司机", "我就呵yuk呵"};
-        String[] title4 = {"我叫老司机", "我叫司机", "小", "我叫老司机", "老司机称霸武林", "我叫老司机", "神棍上路", "我叫机", "我就呵呵"};
-        TabFragment tabFragment1 = TabFragment.newInstance(title1, TYPE_MY_TITLE);
-        TabFragment tabFragment2 = TabFragment.newInstance(title2, TYPE_VER_TITLE);
-        TabFragment tabFragment3 = TabFragment.newInstance(title3, TYPE_PLAY_WAY);
-        TabFragment tabFragment4 = TabFragment.newInstance(title4, TYPE_DIY_TITLE);
-        fragmentList.add(tabFragment1);
-        fragmentList.add(tabFragment2);
-        fragmentList.add(tabFragment3);
-        fragmentList.add(tabFragment4);
-        mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager()));
-        mVpPager.setOffscreenPageLimit(3);
-        initDot();
+        TextView mTvRightIcon = getmTvRightIcon();
+        mTvRightIcon.setText("确定");
+        mTvRightIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringBuffer sb=new StringBuffer("");
+                for (SettingTitle settingTitle:settingTitles){
+                    sb.append(settingTitle.getTitle());
+                }
+                JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
+                try {
+                    basecJsonObject.put(IVariable.LABEL,sb.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                finish();
+            }
+        });
+
     }
 
     /**
@@ -151,7 +160,40 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
 
     @Override
     protected void onLoad() {
+        Map<String, String> titleMap = MapUtils.Build().addKey(this).addUserId().end();
+        XEventUtils.getUseCommonBackJson(IVariable.GET_TITLE_LIST,titleMap,0,new AddTitleEvent());
+    }
+    @Subscribe
+    public void onEvent(AddTitleEvent event){
+        setIsProgress(false);
+        if (event.isSuccess()){
+            try {
+                dealData(event);
+            } catch (Exception e) {
+                e.printStackTrace();
+                setIsError(true);
+            }
+        }else {
+            setIsError(true);
+        }
+    }
 
+    private void dealData(AddTitleEvent event) throws Exception{
+        SettingTitleBean settingTitleBean = GsonUtils.getObject(event.getResult(), SettingTitleBean.class);
+        List<UserLabelBean> userLabel = settingTitleBean.getData().getUser_label();
+        List<UserLabelBean> platformLabel = settingTitleBean.getData().getPlatform_label();
+        List<UserLabelBean> playWayLabel = settingTitleBean.getData().getPlay_way();
+        TabFragment tabFragment1 = TabFragment.newInstance(userLabel, TYPE_MY_TITLE);
+        TabFragment tabFragment2 = TabFragment.newInstance(platformLabel, TYPE_VER_TITLE);
+        TabFragment tabFragment3 = TabFragment.newInstance(playWayLabel, TYPE_PLAY_WAY);
+        TabFragment tabFragment4 = TabFragment.newInstance(userLabel, TYPE_DIY_TITLE);
+        fragmentList.add(tabFragment1);
+        fragmentList.add(tabFragment2);
+        fragmentList.add(tabFragment3);
+        fragmentList.add(tabFragment4);
+        mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager()));
+        mVpPager.setOffscreenPageLimit(3);
+        initDot();
     }
 
     @Override
@@ -233,8 +275,7 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
     private void remove(SettingTitle settingTitle) {
         SettingTitle temp=null;
         for (SettingTitle settingTitle1:settingTitles){
-            if (settingTitle.getType()==settingTitle1.getType() && settingTitle.getPosition()==settingTitle1.getPosition()
-                    && settingTitle.getType()==settingTitle1.getType()){
+            if (settingTitle1.getId().equals(settingTitle.getId())){
                 temp=settingTitle1;
                 break;
             }

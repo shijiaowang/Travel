@@ -26,10 +26,10 @@ import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.CreatePostPhotoAdapter;
+import com.example.administrator.travel.ui.appoint.aite.AiteActivity;
 import com.example.administrator.travel.ui.fragment.EmojiFragment;
 import com.example.administrator.travel.utils.DensityUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
-import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
@@ -37,9 +37,7 @@ import com.example.administrator.travel.utils.Xutils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.common.Callback;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

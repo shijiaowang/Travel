@@ -1,9 +1,8 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.appoint.aite;
 
 import android.content.Context;
 
-import com.example.administrator.travel.bean.AiteFollow;
-import com.example.administrator.travel.ui.adapter.holer.AiteHolder;
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 import java.util.List;

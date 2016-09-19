@@ -50,10 +50,7 @@ public class MapUtils {
             stringMap.put(IVariable.USER_ID,GlobalUtils.getUserInfo().getId());
             return this;
         }
-        public Builder addPage(String page){
-            stringMap.put(IVariable.PAGE,page);
-            return this;
-        }
+
         public Builder addTId(String tId){
             stringMap.put(IVariable.T_ID,tId);
             return this;

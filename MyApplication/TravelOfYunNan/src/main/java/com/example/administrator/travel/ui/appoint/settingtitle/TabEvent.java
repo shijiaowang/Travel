@@ -1,4 +1,4 @@
-package com.example.administrator.travel.event;
+package com.example.administrator.travel.ui.appoint.settingtitle;
 
 /**
  * Created by Administrator on 2016/9/6 0006.

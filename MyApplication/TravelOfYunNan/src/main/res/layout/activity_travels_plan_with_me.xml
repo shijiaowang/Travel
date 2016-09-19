@@ -133,6 +133,7 @@
 
             </RelativeLayout>
             <TextView
+                android:id="@+id/tv_start_city"
                 android:layout_marginTop="13dp"
                 android:background="@drawable/activity_create_album_add_bg"
                 android:textColorHint="@color/colorb5b5b5"
@@ -162,7 +163,8 @@
                     android:text="理想地" />
 
             </RelativeLayout>
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.example.administrator.travel.ui.view.FontsIconButton
+                android:id="@+id/bt_destination"
                 android:layout_marginTop="13dp"
                 android:background="@drawable/activity_create_album_add_bg"
                 android:gravity="center"

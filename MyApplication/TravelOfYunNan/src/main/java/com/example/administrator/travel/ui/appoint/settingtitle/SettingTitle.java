@@ -1,4 +1,4 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.appoint.settingtitle;
 
 /**
  * Created by Administrator on 2016/9/6 0006.
@@ -7,6 +7,18 @@ public class SettingTitle {
     private int type;
     private String title;
     private int changeType;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
+
+
 
     public int getChangeType() {
         return changeType;

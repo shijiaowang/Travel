@@ -23,10 +23,11 @@ public interface IVariable {
     String ADD_CUSTOM_SPOT = API_KEY + "Travel/addTravelbyUser/";//用户添加自定义景点
     String GET_PROP_REMARK = API_KEY + "Travel/getPropcontent/";//道具备注
     String GET_PROP_LIST = API_KEY + "Travel/getProplists/";//获取道具列表
+    String GET_TITLE_LIST = API_KEY + "Travel/getLabellists/";//获取标签列表
     /**
      * User
      */
-    String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注自己的列表
+    String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注列表
     String REGISTER_USER = API_KEY + "User/register/";//注册
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息

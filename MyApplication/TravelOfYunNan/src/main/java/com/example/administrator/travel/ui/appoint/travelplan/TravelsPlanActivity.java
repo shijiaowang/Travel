@@ -87,10 +87,9 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
 
     @Override
     protected void initEvent() {
-        Calendar currentDay = Calendar.getInstance();
-        currentDay.setTime(new Date());
-        dayOfYear = currentDay.get(Calendar.DAY_OF_YEAR);
-        year = currentDay.get(Calendar.YEAR);
+        mTvRightNext = getmTvRightIcon();
+        mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        mTvRightNext.setText(R.string.next);
         init();
         mBtSelectLine.setOnClickListener(this);
         mTvStart.setOnClickListener(this);
@@ -102,13 +101,6 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         mRlEndNight.setOnClickListener(this);
     }
 
-    private void init() {
-        mTvRightNext = getmTvRightIcon();
-        mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        mTvRightNext.setText(R.string.next);
-        mTvStartTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(startDate));
-        mTvEndTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(endDate));
-    }
 
     @Override
     protected void initViewData() {
@@ -129,8 +121,9 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_select_line:
-                calculationDay();
-
+                if (checkTimeAgain()) {
+                    calculationDay();
+                }
                 break;
             case R.id.tv_start:
                 showTime(mTvStartTime);
@@ -139,7 +132,9 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
                 showTime(mTvEndTime);
                 break;
             case R.id.bt_next:
-                addJson();
+                if (checkTimeAgain()) {
+                    addJson();
+                }
                 break;
             case R.id.rl_start_morning:
                 mTvStartMorning.setChecked(true);
@@ -174,7 +169,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
                 calendar.setTime(startDate);
                 int countDay = Integer.parseInt(howDay);
                 lineBeans.add(new LineBean(""));
-                for (int i = 0; i <= countDay+1; i++) {//这里判断条件是因为添加了集合地和解散地
+                for (int i = 0; i <= countDay + 1; i++) {//这里判断条件是因为添加了集合地和解散地
                     if (i == countDay) {
                         lineBeans.add(new LineBean(""));
                         break;
@@ -182,7 +177,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
                     int month = calendar.get(Calendar.MONTH) + 1;
                     int day = calendar.get(Calendar.DAY_OF_MONTH);
                     LineBean lineBean = new LineBean(month + "月" + day + "日");
-                    lineBean.setDate(calendar.getTime().getTime()+"");
+                    lineBean.setDate(calendar.getTime().getTime() + "");
                     lineBeans.add(lineBean);
 
                     calendar.add(Calendar.DATE, 1);
@@ -241,60 +236,46 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
     }
 
 
-    private void showTime(final TextView textView) {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        GlobalValue.mSelectSpot = null;
+        GlobalValue.mLineBeans = null;
+        JsonUtils.reset();//释放json
+    }
+
+    //公用初始化
+    public void init() {
+        Calendar currentDay = Calendar.getInstance();
+        currentDay.setTime(new Date());
+        dayOfYear = currentDay.get(Calendar.DAY_OF_YEAR);
+        year = currentDay.get(Calendar.YEAR);
+        mTvStartTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        mTvEndTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+    }
+
+    private void showTime(final TextView currentText) {
         if (pvTime == null) {
             pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
             //控制时间范围
             Calendar calendar = Calendar.getInstance();
-            pvTime.setRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 1);//要在setTime 之前才有效果哦
+            pvTime.setRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 1);//要在setTime 之前才有效果
             pvTime.setTime(new Date());
             pvTime.setCyclic(false);
             pvTime.setCancelable(true);
-            pvTime.setTitle(textView == mTvStartTime ? "开始时间" : "结束时间");
+            pvTime.setTitle(currentText == mTvStartTime ? "开始时间" : "结束时间");
         } else {
-            pvTime.setTitle(textView == mTvStartTime ? "开始时间" : "结束时间");
+            pvTime.setTitle(currentText == mTvStartTime ? "开始时间" : "结束时间");
         }
         //时间选择后回调
         pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
 
             @Override
             public void onTimeSelect(Date date) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-                if (calendar.get(Calendar.DAY_OF_YEAR) < dayOfYear && calendar.get(Calendar.YEAR) == year) {
-                    ToastUtils.showToast("对不起，您所选的时间已过期");
-                    return;
-                }
-                if (((textView == mTvEndTime && date.getTime() < startDate.getTime()) ||
-                        (textView == mTvStartTime && date.getTime() > endDate.getTime()))
-                        && !(calendar.get(Calendar.DAY_OF_YEAR) == dayOfYear && calendar.get(Calendar.YEAR) == year)) {
-                    ToastUtils.showToast("对不起，结束时间不能小于出发时间");
-                    return;
-                }
-
-                if (textView == mTvEndTime) {
-                    String howDay = CalendarUtils.getHowDay(startDate.getTime() + "", date.getTime() + "");
-                    if (Integer.parseInt(howDay) > 30) {
-                        ToastUtils.showToast("对不起，计划最长时间为30天，若有特殊需要请联系客服。");
-                        return;
-                    }
-                }
-                if (textView == mTvStartTime) {
-                    String howDay = CalendarUtils.getHowDay(date.getTime() + "", endDate.getTime() + "");
-                    if (Integer.parseInt(howDay) > 30) {
-                        ToastUtils.showToast("对不起，计划最长时间为30天，若有特殊需要请联系客服。");
-                        return;
-                    }
-                }
-                textView.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
-                if (textView == mTvStartTime) {
-                    startDate = date;
-                } else {
-                    endDate = date;
-                }
-                //计算几天几夜
-                howDay();
+                checkTime(currentText, date);
             }
+
+
         });
         hideSoftWore(mEtRemark);
         pvTime.show();
@@ -302,32 +283,42 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
     }
 
     /**
-     * 计算一个用了几天几晚m
+     * 检查日期是否合法
+     *
+     * @param currentText
+     * @param date
      */
-    private void howDay() {
-        mTvHowDay.setText("共计" + CalendarUtils.getHowDayHowNight(startDate.getTime() + "", endDate.getTime() + ""));
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        // 过滤按键动作
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-            if (pvTime != null && pvTime.isShowing()) {
-                pvTime.dismiss();
-                return true;
-            }
-
+    public void checkTime(TextView currentText, Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        if (calendar.get(Calendar.DAY_OF_YEAR) < dayOfYear && calendar.get(Calendar.YEAR) == year) {
+            ToastUtils.showToast("对不起，您所选的时间已过期");
+            return;
         }
 
-        return super.onKeyDown(keyCode, event);
+        currentText.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
+        if (currentText == mTvStartTime) {
+            startDate = date;
+        } else {
+            endDate = date;
+        }
+        if (mTvHowDay != null) {
+            mTvHowDay.setText("共计" + CalendarUtils.getHowDayHowNight(startDate.getTime() + "", endDate.getTime() + ""));
+        }
+
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        GlobalValue.mSelectSpot = null;
-        GlobalValue.mLineBeans = null;
-        JsonUtils.reset();//释放json
+    private boolean checkTimeAgain() {
+        if (endDate.getTime() < startDate.getTime()) {
+            ToastUtils.showToast("对不起，结束时间不能小于出发时间");
+            return false;
+        }
+
+        String howDay = CalendarUtils.getHowDay(startDate.getTime() + "", endDate.getTime() + "");
+        if (Integer.parseInt(howDay) > 30) {
+            ToastUtils.showToast("对不起，计划最长时间为30天，若有特殊需要请联系客服。");
+            return false;
+        }
+        return true;
     }
 }

@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.fragment.TabFragment;
 import com.example.administrator.travel.ui.fragment.TitleManagementFragment;
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 

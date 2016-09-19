@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.fragment;
+package com.example.administrator.travel.ui.appoint.settingtitle;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,17 +6,17 @@ import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.SettingTitle;
-import com.example.administrator.travel.event.SettingTitleEvent;
-import com.example.administrator.travel.event.TabEvent;
 import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.ui.fragment.BaseFragment;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -31,7 +31,7 @@ public class TabFragment extends BaseFragment
     public  int mTitleType = -1;
     public static final int TYPE_ADD = 0;
     public static final int REMOVE = 1;
-    private String[] mTitle = null;
+    private List<UserLabelBean> mTitle = null;
     private FlowLayout mFlTitle;
     private Set<Integer> integerset=new HashSet<>();
     private int prePosition=-1;
@@ -43,18 +43,18 @@ public class TabFragment extends BaseFragment
         super.onCreate(savedInstanceState);
         if (getArguments() != null)
         {
-            mTitle = getArguments().getStringArray(TITLE);
+            mTitle = (List<UserLabelBean>) getArguments().getSerializable(TITLE);
             mTitleType=getArguments().getInt(TITLE_TYPE);
         }
         registerEventBus();
 
     }
 
-    public static TabFragment newInstance(String[] title,int type)
+    public static TabFragment newInstance(List<UserLabelBean> title, int type)
     {
         TabFragment tabFragment = new TabFragment();
         Bundle bundle = new Bundle();
-        bundle.putStringArray(TITLE, title);
+        bundle.putSerializable(TITLE, (Serializable) title);
         bundle.putInt(TITLE_TYPE, type);
         tabFragment.setArguments(bundle);
         return tabFragment;
@@ -72,11 +72,11 @@ public class TabFragment extends BaseFragment
 
     @Override
     protected void initData() {
-        int count=mTitle==null?0:mTitle.length;
+        int count=mTitle==null?0:mTitle.size();
         inflater = LayoutInflater.from(getContext());
         for (int i=0;i<count;i++){
             TextView textView = (TextView) inflater.inflate(R.layout.item_fragment_tab_title, mFlTitle, false);
-            textView.setText(mTitle[i]);
+            textView.setText(mTitle.get(i).getName());
             mFlTitle.addView(textView);
         }
         mFlTitle.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -117,7 +117,8 @@ public class TabFragment extends BaseFragment
         settingTitle.setPosition(prePosition);
         settingTitle.setType(mTitleType);
         settingTitle.setChangeType(type);
-        settingTitle.setTitle(mTitle[prePosition]);
+        settingTitle.setId(mTitle.get(prePosition).getId());
+        settingTitle.setTitle(mTitle.get(prePosition).getName());
         SettingTitleEvent settingTitleEvent = new SettingTitleEvent();
         settingTitleEvent.setSettingTitle(settingTitle);
         EventBus.getDefault().post(settingTitleEvent);

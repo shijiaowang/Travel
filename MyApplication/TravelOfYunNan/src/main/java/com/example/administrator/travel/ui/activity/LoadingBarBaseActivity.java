@@ -39,15 +39,7 @@ import java.util.Locale;
  */
 public abstract class LoadingBarBaseActivity extends BaseActivity {
     private static final float CHANGE_COLOR_LIMIT = 600f;//设置变色区间
-    public static final int TYPE_LOAD = 1;//普通读取请求
-    public static final int TYPE_REFRESH = 3;//刷新
-    public static final int TYPE_SEARCH = 5;//搜索
-    public static final int TYPE_DISCUSS = 2;//留言
-    public static final int TYPE_LIKE_DISCUSS = 0;//点赞请求
-    public static final int TYPE_DELETE = 4;//删除
 
-    public static final  int REQ_CODE=0;
-    public static final  int RESULT_CODE=1;
     @ViewInject(R.id.tv_back)
     private TextView mTvBack;
     @ViewInject(R.id.tv_name)

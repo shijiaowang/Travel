@@ -37,7 +37,9 @@
         <activity android:name=".ui.activity.PostActivity" />
         <activity android:name=".ui.activity.OtherUserCenterActivity" />
         <activity android:name=".ui.activity.MessageCenterActivity" />
-        <activity android:name=".ui.appoint.selectdestination.SelectDestinationActivity" />
+        <activity android:name=".ui.appoint.selectdestination.SelectDestinationActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
         <activity android:name=".ui.appoint.adddestination.AddCustomDestinationActivity" />
         <activity android:name=".ui.activity.FollowAndFanActivity" />
         <activity android:name=".ui.activity.MyAlbumActivity" />
@@ -74,7 +76,7 @@
         <activity android:name=".ui.activity.TravelsDetailActivity"/>
         <activity android:name=".ui.activity.DestinationDetailActivity"/>
         <activity android:name=".ui.appoint.choicesequipment.ChoicePropsActivity"/>
-        <activity android:name=".ui.activity.AiteActivity"/>
+        <activity android:name=".ui.appoint.aite.AiteActivity"/>
         <activity android:name=".ui.activity.MyAppointActivity"/>
         <activity android:name=".ui.activity.BulletinBoardActivity"/>
         <activity android:name=".ui.activity.MyCollectionActivity"/>
@@ -103,7 +105,7 @@
         <activity android:name=".ui.appoint.togetherdetail.AppointTogetherDetailActivity"/>
         <activity android:name=".ui.activity.RelateMeActivity"/>
         <activity android:name=".ui.activity.HotelActivity"/>
-        <activity android:name=".ui.activity.SettingTitleActivity"/>
+        <activity android:name=".ui.appoint.settingtitle.SettingTitleActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />

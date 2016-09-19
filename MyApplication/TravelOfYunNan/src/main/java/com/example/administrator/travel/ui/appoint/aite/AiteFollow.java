@@ -1,17 +1,28 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.appoint.aite;
 
 
 import com.github.promeg.pinyinhelper.Pinyin;
+
+import java.io.Serializable;
 
 /**
  * Created by Administrator on 2016/7/18 0018.
  * 粉丝和关注
  */
-public class AiteFollow {
+public class AiteFollow implements Serializable{
     private String nikeName = "";
     public char indexChar;
     public boolean isFirst=true;
+    private Follow follow;
 
+    public Follow getFollow() {
+        return follow;
+    }
+
+    public void setFollow(Follow follow) {
+        this.follow = follow;
+        setNikeName(follow.getNick_name());
+    }
 
     public String getNikeName() {
         return nikeName;

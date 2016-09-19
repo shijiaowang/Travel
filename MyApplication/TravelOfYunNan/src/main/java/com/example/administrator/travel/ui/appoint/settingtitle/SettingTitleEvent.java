@@ -1,11 +1,11 @@
-package com.example.administrator.travel.event;
+package com.example.administrator.travel.ui.appoint.settingtitle;
 
-import com.example.administrator.travel.bean.SettingTitle;
+import com.example.administrator.travel.event.HttpEvent;
 
 /**
  * Created by Administrator on 2016/9/6 0006.
  */
-public class SettingTitleEvent {
+public class SettingTitleEvent extends HttpEvent {
     private SettingTitle settingTitle;
 
     public SettingTitle getSettingTitle() {

@@ -11,10 +11,9 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.BarBaseActivity;
 import com.example.administrator.travel.ui.activity.CreateAppointSuccessActivity;
 import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
-import com.example.administrator.travel.ui.activity.SettingTitleActivity;
+import com.example.administrator.travel.ui.appoint.settingtitle.SettingTitleActivity;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;

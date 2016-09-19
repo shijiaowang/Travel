@@ -43,7 +43,7 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
     @ViewInject(R.id.lv_destination)
     private XListView mLvDestination;
     @ViewInject(R.id.bv_diy)
-    private Button mTvDiy;
+    private Button mBtDiy;
     private TextView mTvRight;
     private String content = "";//搜索内容
     private String province = "";
@@ -105,14 +105,7 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
                 search();
             }
         });
-        mTvDiy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SelectDestinationActivity.this, CustomDestinationActivity.class);
-                intent.putExtra(IVariable.POSITION, position);
-                startActivityForResult(intent, REQ_CODE);
-            }
-        });
+
     }
 
     @Override
@@ -137,6 +130,18 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
         mLvDestination.setXListViewListener(this);
         mLvDestination.setRefreshTime(getTime());
         position = getIntent().getIntExtra(IVariable.POSITION, -1);
+        if (GlobalValue.mAppointType==IVariable.TYPE_WITH_ME){
+            mBtDiy.setVisibility(View.GONE);
+        }else {
+            mBtDiy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(SelectDestinationActivity.this, CustomDestinationActivity.class);
+                    intent.putExtra(IVariable.POSITION, position);
+                    startActivityForResult(intent, REQ_CODE);
+                }
+            });
+        }
     }
 
     @Override
