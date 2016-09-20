@@ -3,6 +3,7 @@ package com.example.administrator.travel.utils;
 import android.content.Context;
 
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 
@@ -16,7 +17,7 @@ public class GlobalUtils {
         }
         return GlobalValue.KEY_VALUE;
     }
-    public static Login.UserInfo getUserInfo(){
+    public static UserInfo getUserInfo(){
         if (GlobalValue.userInfo==null){
             GlobalValue.userInfo= UserUtils.getUserInfo();
         }

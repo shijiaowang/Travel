@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.ui.activity.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.activity.CustomerServiceActivity;
 import com.example.administrator.travel.ui.activity.FollowAndFanActivity;
@@ -111,7 +112,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             mTvTitle.setText(titles.get(i));
             mFlLabel.addView(mTvTitle);
         }
-        Login.UserInfo userInfo = GlobalUtils.getUserInfo();
+        UserInfo userInfo = GlobalUtils.getUserInfo();
         if (userInfo==null)return;
         mTvNickName.setText(userInfo.getNick_name());
         if (StringUtils.isEmpty(userInfo.getContent())){

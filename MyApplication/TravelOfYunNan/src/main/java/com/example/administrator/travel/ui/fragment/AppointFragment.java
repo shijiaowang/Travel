@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.fragment;
 
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -57,6 +58,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     private AppointOrderPop appointOrderPop;
     private int timePosition=-1;
     private int orderPosition=-1;//选中的
+     private boolean isShowDialog=false;
 
     @Override
     protected int initLayoutRes() {
@@ -106,7 +108,10 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAppointDialog();//展示约伴框
+                if (!isShowDialog) {
+                    isShowDialog=true;
+                    showAppointDialog();//展示约伴框
+                }
             }
         });
         mTvOrder.setOnClickListener(this);
@@ -147,6 +152,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
 
 
     private void showAppointDialog() {
+
         Bitmap viewBitmap = createViewBitmap(mLlRoot);
         Bitmap bitmap = FastBlur.zoomImage(viewBitmap, 300, 500);//压缩图片
         viewBitmap.recycle();
@@ -161,7 +167,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
        mIvBg.setImageBitmap(blurBg);//设置模糊背景
 
 //		Dialog dialog=new Dialog(上下文,风格style);
-        final Dialog dialog=new Dialog(getContext(),R.style.myDialog);
+        final Dialog dialog = new Dialog(getContext(), R.style.myDialog);
         //layout_width layout_height
         RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         dialog.setContentView(dialogView, params);
@@ -186,6 +192,12 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             public void onClick(View v) {
                 dialog.dismiss();
                 blurBg.recycle();
+            }
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                isShowDialog=false;
             }
         });
         Window window = dialog.getWindow();

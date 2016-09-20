@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.me.AboutActivity;
 import com.example.administrator.travel.ui.view.PhoneTextView;
@@ -63,7 +64,7 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     @Override
     protected Activity initViewData() {
         //// TODO: 2016/8/17 0017 如果userinfo为空，之后做处理
-        Login.UserInfo userInfo = GlobalUtils.getUserInfo();
+        UserInfo userInfo = GlobalUtils.getUserInfo();
         try {
             mTvUserId.setText(userInfo.getId());
             mTvUserLivePlace.setText(userInfo.getProvince() + "-" + userInfo.getCity());

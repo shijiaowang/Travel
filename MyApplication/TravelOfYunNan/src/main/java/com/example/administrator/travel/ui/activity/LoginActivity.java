@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.LoginEvent;
 import com.example.administrator.travel.global.GlobalValue;
@@ -119,7 +120,7 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
             }else {
                 GlobalValue.KEY_VALUE = GlobalUtils.getKey(this);
                 Login object = GsonUtils.getObject(event.getResult(), Login.class);
-                Login.UserInfo userInfo = object.getData();
+                UserInfo userInfo = object.getData();
                 GlobalValue.userInfo=userInfo;//赋值
                 UserUtils.saveUserInfo(userInfo);//序列化
                 goToHomeActivity(event);
@@ -145,7 +146,7 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         edit.apply();
         setResult(SPLASH_RESULT);
         Intent intent = new Intent(this, HomeActivity.class);
-        Login.UserInfo data = login.getData();
+        UserInfo data = login.getData();
         intent.putExtra(IVariable.USER_INFO, data);
         startActivity(intent);
 

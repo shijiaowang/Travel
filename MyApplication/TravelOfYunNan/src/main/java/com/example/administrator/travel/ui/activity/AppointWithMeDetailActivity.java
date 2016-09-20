@@ -159,11 +159,11 @@ public class AppointWithMeDetailActivity extends LoadingBarBaseActivity {
             mTvTitle.setText(data.getTitle());
             mTvContent.setText(data.getContent());
             mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
-            mTvDayAndNight.setText(data.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(data.getStar_time(), data.getEnd_time()));
-            mTvStartAndLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStar_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
+            mTvDayAndNight.setText(data.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
+            mTvStartAndLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
            // mTvHaveNumber.setText("已有："+data.get()+"人");
             String currentTime=new Date().getTime()+"";
-            mTvSurplusDay.setText("剩余："+CalendarUtils.getHowDay(currentTime,data.getEnd_time())+"天");
+            mTvSurplusDay.setText("剩余："+CalendarUtils.getHowDay(currentTime,data.getEnd_time()+"000")+"天");
             mTvLine.setText(data.getRoutes_title());
             mTvSex.setText(data.getSex().equals("0")?R.string.activity_member_detail_boy:R.string.activity_member_detail_girl);
             mTvPrice.setText("¥"+data.getTotal_price());

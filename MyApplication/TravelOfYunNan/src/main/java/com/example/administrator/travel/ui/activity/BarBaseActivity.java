@@ -76,6 +76,7 @@ public abstract class BarBaseActivity extends BaseActivity {
         }
         mPbProgress.setVisibility(View.GONE);
         mTvBack.setTextSize(TypedValue.COMPLEX_UNIT_SP, getLeftTextSize());
+
         mTitleName.setText(setTitleName());
         mVsContent.setLayoutResource(setContentLayout());
         mVsContent.inflate();
@@ -85,6 +86,8 @@ public abstract class BarBaseActivity extends BaseActivity {
         x.view().inject(this);
 
     }
+
+
 
     /**
      * 默认返回左边的大小

@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.StringUtils;
 
@@ -43,7 +44,7 @@ public class IdentityAuthenticationActivity extends LoadingBarBaseActivity {
     @Override
     protected Activity initViewData() {
         setIsProgress(false);
-        Login.UserInfo userInfo = GlobalUtils.getUserInfo();
+        UserInfo userInfo = GlobalUtils.getUserInfo();
         if (userInfo != null) {
             initIdentity(mTvIdentityPhone, userInfo.getTel());
             initIdentity(mTvIdentityIdCard, userInfo.getId_card());

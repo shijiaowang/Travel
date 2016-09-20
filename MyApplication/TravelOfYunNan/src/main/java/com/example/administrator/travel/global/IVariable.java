@@ -45,6 +45,8 @@ public interface IVariable {
     String GET_CIRCLE_POST = API_KEY + "Circle/getCircleforumlists/";//获取圈子内帖子列表
     String POST_DETAIL = API_KEY + "Circle/getForum/";//获取帖子数据
     String CREATE_APPOINT_TOGETHER = API_KEY + "Travel/addTravel/";//发布约伴-一起玩
+    String CREATE_WITH_ME = API_KEY + "Travel/addTravelplan/";//发布约伴-找人带
+
     /**
      * 发现
      */
@@ -178,4 +180,5 @@ public interface IVariable {
     String TITLE = "title";//name
 
     String ADDRESS = "address";//地址
+    String USER="user";
 }

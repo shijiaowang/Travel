@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+<Switch
+    android:textSize="10sp"
+    android:textColor="@color/colorFAFAFA"
+    android:textOn="On"
+    android:textOff="Off"
+    android:layout_centerInParent="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/colorFAFAFA"
+        android:layout_width="match_parent"
+        android:layout_height="175dp">
+        <TextView
+            android:text="更换图片"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="@color/otherTitleBg"
+            android:textSize="15sp"
+            android:background="@drawable/activity_cut_picture_button_bg"
+            android:layout_width="105dp"
+            android:layout_height="35dp" />
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="21dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/color969696"
+            android:textSize="15sp"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="21dp"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/otherTitleBg"
+            android:textSize="15sp"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

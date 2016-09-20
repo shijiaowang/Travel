@@ -157,7 +157,6 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
     }
     @Subscribe
     public void onEvent(AppointDetailEvent event){
-        setIsProgress(false);
         lists = new ArrayList<>();
          if (event.isSuccess()){
              dealData(event, lists);
@@ -165,6 +164,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
              setIsError(true);
              ToastUtils.showToast(event.getMessage());
          }
+        setIsProgress(false);
     }
 
     /**
@@ -172,8 +172,9 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
      * @param event
      * @param lists
      */
-    private void dealData(AppointDetailEvent event, List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists) {
+    private void dealData (AppointDetailEvent event, List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists) {
         AppointTogetherDetail appointTogetherDetail = GsonUtils.getObject(event.getResult(), AppointTogetherDetail.class);
+        if (appointTogetherDetail==null)return;
         AppointTogetherDetail.DataBean data = appointTogetherDetail.getData();
         List<AppointTogetherDetail.DataBean.RoutesBean> routes = dealDate(data);
         initSomeData(data);
@@ -228,8 +229,8 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
         mTvContent.setText(data.getContent());
         mTvDay.setText(FormatDateUtils.FormatLongTime("MM-dd", data.getAdd_time()));
         mTvTime.setText(FormatDateUtils.FormatLongTime("hh:mm", data.getAdd_time()));
-        mTvDayAndNight.setText(data.getMeet_address()+"出发  "+ CalendarUtils.getHowDayHowNight(data.getStar_time(), data.getEnd_time()));
-        mTvStartAndLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStar_time())+"至"+FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
+        mTvDayAndNight.setText(data.getMeet_address()+"出发  "+ CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
+        mTvStartAndLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStart_time())+"至"+FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
         mTvHaveNumber.setText("已有："+data.getNow_people()+"人");
         mTvPlanNumber.setText("计划："+data.getMax_people()+"人");
         mTvLine.setText(data.getRoutes_title());

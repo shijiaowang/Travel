@@ -25,7 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.HomeActivity">
+        <activity android:name=".ui.activity.HomeActivity"
+            android:launchMode="singleTop"
+            >
            <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -81,6 +83,7 @@
         <activity android:name=".ui.activity.BulletinBoardActivity"/>
         <activity android:name=".ui.activity.MyCollectionActivity"/>
         <activity android:name=".ui.appoint.memberdetail.MemberDetailActivity"/>
+        <activity android:name=".ui.appoint.cutpicture.CutPictureActivity"/>
         <activity android:name=".ui.activity.OrdersCenterActivity"/>
         <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
         <activity android:name=".ui.activity.CollectionDetailActivity"/>
@@ -98,7 +101,7 @@
         <activity android:name=".ui.activity.SystemMessageActivity"/>
         <activity android:name=".ui.activity.AlbumSelectorActivity"/>
         <activity android:name=".ui.me.AboutActivity"/>
-        <activity android:name=".ui.activity.CreateAppointSuccessActivity"/>
+        <activity android:name=".ui.appoint.createsuccess.CreateAppointSuccessActivity"/>
         <activity android:name=".ui.appoint.desremark.DesRemarkActivity"
             android:windowSoftInputMode="adjustPan"
             />

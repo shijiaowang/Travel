@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.PersonalProfileEvent;
 import com.example.administrator.travel.global.IVariable;
@@ -104,7 +105,7 @@ return this;
     @Subscribe
     public void onEvent(PersonalProfileEvent event){
         if (event.isSuccess()){
-            Login.UserInfo userInfo = GlobalUtils.getUserInfo();
+            UserInfo userInfo = GlobalUtils.getUserInfo();
             userInfo.setContent(getString(mEtProfile));
             UserUtils.saveUserInfo(userInfo);
             finish();

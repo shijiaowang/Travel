@@ -2,16 +2,19 @@ package com.example.administrator.travel.ui.appoint.desremark;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.CreateAppointSuccessActivity;
+import com.example.administrator.travel.ui.appoint.createsuccess.CreateAppointSuccessActivity;
 import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.appoint.settingtitle.SettingTitleActivity;
 import com.example.administrator.travel.utils.JsonUtils;
@@ -44,6 +47,11 @@ public class DesRemarkActivity extends LoadingBarBaseActivity implements View.On
     @ViewInject(R.id.tv_number)
     private TextView mTvNumber;
     private Object json;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GlobalValue.mActivity.add(this);
+    }
 
     @Override
     protected int setContentLayout() {
@@ -52,6 +60,10 @@ public class DesRemarkActivity extends LoadingBarBaseActivity implements View.On
 
     @Override
     protected void initEvent() {
+        TextView mTvRightNext = getmTvRightIcon();
+        mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+        mTvRightNext.setText("下一步");
+        mTvRightNext.setOnClickListener(this);
         mBtNext.setOnClickListener(this);
         mBtSelect.setOnClickListener(this);
         mEtContent.addTextChangedListener(new TextWatcher() {
@@ -96,6 +108,7 @@ public class DesRemarkActivity extends LoadingBarBaseActivity implements View.On
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_right_icon:
             case R.id.bt_next:
                 saveJsonData();
                 break;
@@ -135,13 +148,14 @@ public class DesRemarkActivity extends LoadingBarBaseActivity implements View.On
         try {
             JSONArray jsonArray = new JSONArray();
             JSONObject jsonObject = new JSONObject();
+            String type=GlobalValue.mAppointType==IVariable.TYPE_WITH_ME?IVariable.USER:IVariable.PROP;
+            String url=GlobalValue.mAppointType==IVariable.TYPE_WITH_ME?IVariable.CREATE_WITH_ME:IVariable.CREATE_APPOINT_TOGETHER;
             jsonObject.put(IVariable.BASEC, JsonUtils.getBasecJsonObject());
             jsonObject.put(IVariable.ROUTES, JsonUtils.getRoutesJsonArray());
-            jsonObject.put(IVariable.PROP, JsonUtils.getPropJsonArray());
+            jsonObject.put(type, JsonUtils.getPropJsonArray());
             jsonArray.put(jsonObject);
-            LogUtils.e(jsonArray.toString());
             Map<String, String> createMap = MapUtils.Build().addKey(this).addJsonTravel(jsonArray.toString()).end();
-            XEventUtils.postUseCommonBackJson(IVariable.CREATE_APPOINT_TOGETHER, createMap, 0, new DesRemarkEvent());
+            XEventUtils.postUseCommonBackJson(url,createMap, 0, new DesRemarkEvent());
         } catch (JSONException e) {
             e.printStackTrace();
         }

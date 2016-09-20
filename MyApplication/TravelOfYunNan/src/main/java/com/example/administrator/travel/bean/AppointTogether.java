@@ -7,29 +7,9 @@ import java.util.List;
  */
 public class AppointTogether {
 
-    /**
-     * code : 1
-     * message : 加载成功
-     * data : [{"id":"6","travel_img":"http://192.168.1.38","star_time":"1472608800","end_time":"1472799600","meet_address":"成都","max_people":"5","label":"实名达人,美食,徒步","total_price":"420.00","browse":"0","now_people":"0","count_like":"0","is_like":"0","routes":[{"title":"牛逼山"},{"title":"牛逼山"}]},{"id":"4","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","star_time":"1472140800","end_time":"1472400000","meet_address":"大苏打","max_people":"5","label":"实名达人,美食,徒步","total_price":"471.00","browse":"0","now_people":"2","count_like":"0","is_like":"0","routes":[{"title":"牛逼山"},{"title":"测试1"},{"title":"牛逼山"}]},{"id":"5","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57985a17124fe.jpg","star_time":"1472140800","end_time":"1472140800","meet_address":"巍峨我","max_people":"5","label":"实名达人","total_price":"111.00","browse":"0","now_people":"0","count_like":"0","is_like":"0","routes":[{"title":"牛逼山"},{"title":"测试1"},{"title":"牛逼山"}]},{"id":"3","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859e0d84f6.jpg","star_time":"1472054400","end_time":"1472140800","meet_address":"成都","max_people":"6","label":"实名达人,购物","total_price":"420.00","browse":"0","now_people":"2","count_like":"0","is_like":"0","routes":[{"title":"牛逼山"},{"title":"测试1"}]},{"id":"2","travel_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57985a17124fe.jpg","star_time":"1472054400","end_time":"1472140800","meet_address":"1","max_people":"5","label":"","total_price":"0.00","browse":"0","now_people":"0","count_like":"0","is_like":"0","routes":""}]
-     */
 
     private int code;
     private String message;
-    /**
-     * id : 6
-     * travel_img : http://192.168.1.38
-     * star_time : 1472608800
-     * end_time : 1472799600
-     * meet_address : 成都
-     * max_people : 5
-     * label : 实名达人,美食,徒步
-     * total_price : 420.00
-     * browse : 0
-     * now_people : 0
-     * count_like : 0
-     * is_like : 0
-     * routes : [{"title":"牛逼山"},{"title":"牛逼山"}]
-     */
 
     private List<DataBean> data;
 
@@ -60,7 +40,7 @@ public class AppointTogether {
     public static class DataBean {
         private String id;
         private String travel_img;
-        private String star_time;
+        private String start_time;
         private String end_time;
         private String meet_address;
         private String max_people;
@@ -70,9 +50,7 @@ public class AppointTogether {
         private String now_people;
         private String count_like;
         private String is_like;
-        /**
-         * title : 牛逼山
-         */
+
 
         private List<RoutesBean> routes;
 
@@ -92,12 +70,12 @@ public class AppointTogether {
             this.travel_img = travel_img;
         }
 
-        public String getStar_time() {
-            return star_time;
+        public String getStart_time() {
+            return start_time;
         }
 
-        public void setStar_time(String star_time) {
-            this.star_time = star_time;
+        public void setStart_time(String start_time) {
+            this.start_time = start_time;
         }
 
         public String getEnd_time() {

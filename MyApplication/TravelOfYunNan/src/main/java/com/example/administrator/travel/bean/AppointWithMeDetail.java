@@ -8,41 +8,10 @@ import java.util.List;
 public class AppointWithMeDetail {
 
 
-    /**
-     * code : 1
-     * message : 加载成功
-     * data : {"id":"3","user_id":"10009","title":"第一次出现","content":"第一次出现内容","travel_img":"http://192.168.1.38","star_time":"1472608800","end_time":"1472799600","sex_condition":"2","bind_condition":"2","price":"400.00","total_price":"420.00","label":"实名达人,美食,徒步","meet_address":"成都","add_time":"1473230822","status":"1","browse":"0","user_name":"我叫王小","user_img":"http://192.168.1.38/Uploads/1.png","sex":"1","people":[{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"},{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"}],"count_like":"0","is_like":"0","routes_title":"牛逼山-牛逼山","routes":[{"id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"},{"id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"}],"pricebasec":[{"id":"1","key":"平台服务费","value":"20","type":"1","time":"1469586077","status":"1"},{"id":"2","key":"个人旅游险","value":"100","type":"1","time":"1472024625","status":"1"}]}
-     */
+
 
     private int code;
     private String message;
-    /**
-     * id : 3
-     * user_id : 10009
-     * title : 第一次出现
-     * content : 第一次出现内容
-     * travel_img : http://192.168.1.38
-     * star_time : 1472608800
-     * end_time : 1472799600
-     * sex_condition : 2
-     * bind_condition : 2
-     * price : 400.00
-     * total_price : 420.00
-     * label : 实名达人,美食,徒步
-     * meet_address : 成都
-     * add_time : 1473230822
-     * status : 1
-     * browse : 0
-     * user_name : 我叫王小
-     * user_img : http://192.168.1.38/Uploads/1.png
-     * sex : 1
-     * people : [{"id":"10009","user_img":"http://192.168.1.38/Uploads/1.png","nick_name":"我叫王小"},{"id":"10000","user_img":"http://192.168.1.38/Uploads/0.png","nick_name":"yuns客服"}]
-     * count_like : 0
-     * is_like : 0
-     * routes_title : 牛逼山-牛逼山
-     * routes : [{"id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"},{"id":"1","title":"牛逼山","content":"就是很厉害很厉害很来还的挥洒大时代和","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg","province":"云南省","city":"成都市","address":"昆明周边路由大家上帝阿迪"}]
-     * pricebasec : [{"id":"1","key":"平台服务费","value":"20","type":"1","time":"1469586077","status":"1"},{"id":"2","key":"个人旅游险","value":"100","type":"1","time":"1472024625","status":"1"}]
-     */
 
     private DataBean data;
 
@@ -76,7 +45,7 @@ public class AppointWithMeDetail {
         private String title;
         private String content;
         private String travel_img;
-        private String star_time;
+        private String start_time;
         private String end_time;
         private String sex_condition;
         private String bind_condition;
@@ -93,32 +62,10 @@ public class AppointWithMeDetail {
         private String count_like;
         private String is_like;
         private String routes_title;
-        /**
-         * id : 10009
-         * user_img : http://192.168.1.38/Uploads/1.png
-         * nick_name : 我叫王小
-         */
 
         private List<PeopleBean> people;
-        /**
-         * id : 1
-         * title : 牛逼山
-         * content : 就是很厉害很厉害很来还的挥洒大时代和
-         * logo_img : http://192.168.1.38/Uploads/Picture/2016-07-27/57981a9d1ccf6.jpg
-         * province : 云南省
-         * city : 成都市
-         * address : 昆明周边路由大家上帝阿迪
-         */
 
         private List<RoutesBean> routes;
-        /**
-         * id : 1
-         * key : 平台服务费
-         * value : 20
-         * type : 1
-         * time : 1469586077
-         * status : 1
-         */
 
         private List<PricebasecBean> pricebasec;
 
@@ -162,12 +109,12 @@ public class AppointWithMeDetail {
             this.travel_img = travel_img;
         }
 
-        public String getStar_time() {
-            return star_time;
+        public String getStart_time() {
+            return start_time;
         }
 
-        public void setStar_time(String star_time) {
-            this.star_time = star_time;
+        public void setStart_time(String start_time) {
+            this.start_time = start_time;
         }
 
         public String getEnd_time() {

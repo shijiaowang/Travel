@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.ChangePhoneEvent;
 import com.example.administrator.travel.event.ChangePhoneVerEvent;
 import com.example.administrator.travel.event.HttpEvent;
@@ -113,7 +114,7 @@ public class ChangePhoneVerActivity extends LoadingBarBaseActivity {
     @Subscribe
     public void onEvent(ChangePhoneVerEvent event) {
         if (event.isSuccess()) {
-            Login.UserInfo userInfo = GlobalUtils.getUserInfo();
+           UserInfo userInfo = GlobalUtils.getUserInfo();
             userInfo.setTel(phone);
             UserUtils.saveUserInfo(userInfo);
             setResult(SUCCESS);

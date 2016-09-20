@@ -42,7 +42,6 @@ public class LinePlanActivity extends BarBaseActivity {
             public void onClick(View v) {
                 try {
                     saveRoutes();//保存路程信息
-                    LogUtils.e(JsonUtils.getRoutesJsonArray().toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

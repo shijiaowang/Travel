@@ -199,6 +199,10 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
      * 已选择的道具
      */
     private void showSelected() {
+        if (GlobalValue.mPropSelects == null || GlobalValue.mPropSelects.size() == 0) {
+            ToastUtils.showToast("您尚未选择任何道具。");
+            return;
+        }
         if (mRlSelect.getVisibility() == View.VISIBLE) {
             mRlSelect.setVisibility(View.INVISIBLE);
         } else {
@@ -211,10 +215,7 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
     }
 
     private void showSelect() {
-        if (GlobalValue.mPropSelects == null || GlobalValue.mPropSelects.size() == 0) {
-            ToastUtils.showToast("您尚未选择任何道具。");
-            return;
-        }
+
         Iterator<String> iterator = GlobalValue.mPropSelects.keySet().iterator();
         List<ChoicePropSelectBean> choicePropSelectBeans = new ArrayList<>();
         while (iterator.hasNext()) {

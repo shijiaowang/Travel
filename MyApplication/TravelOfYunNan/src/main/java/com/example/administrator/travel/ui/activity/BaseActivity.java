@@ -40,6 +40,10 @@ public abstract class BaseActivity extends FragmentActivity {
     public static final int TYPE_DELETE = 4;//删除
     public static final  int REQ_CODE=0;
     public static final  int RESULT_CODE=1;
+
+    public static final int TRAFFIC_TYPE =0;//交通方式
+    public static final int SEX_TYPE=1;//性别赛选
+    public static final int AUTH_TYPE=2;//认证筛选
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -42,7 +42,6 @@ public class AiteActivity extends LoadingBarBaseActivity {
     @ViewInject(R.id.lv_follow_people)
     private ListView mLvFollowPeople;
     private AiteAdapter adapter;
-    private int selectPosition = 0;
     @ViewInject(R.id.fqi_index)
     private FastQueryIndex mFqiIndex;
     private List<String> indexList;
@@ -67,7 +66,7 @@ public class AiteActivity extends LoadingBarBaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                if (mSelectPeople!=null && mSelectPeople.size()>0) {
+                if (mSelectPeople!=null) {
                     intent.putExtra(IVariable.DATA, (Serializable) mSelectPeople);
                 }
                 setResult(RESULT_CODE,intent);
@@ -80,18 +79,12 @@ public class AiteActivity extends LoadingBarBaseActivity {
                 if (mSelectPeople==null)mSelectPeople=new ArrayList<>();
                 AiteFollow followAndFan = followAndFans.get(position);
                 if (followAndFan.isChecked()) {
-                    followAndFan.setIsChecked(false);
                     mSelectPeople.remove(followAndFan);
-                    if (selectPosition > 0) {
-                        selectPosition--;
-                        mTvOk.setText("确定(" + selectPosition + ")");
-                    }
                 } else {
                     mSelectPeople.add(followAndFan);
-                    selectPosition++;
-                    mTvOk.setText("确定(" + selectPosition + ")");
-                    followAndFan.setIsChecked(true);
                 }
+                followAndFan.setIsChecked(!followAndFan.isChecked());
+                mTvOk.setText(getString(R.string.sure_number,mSelectPeople.size()));
                 adapter.notifyData(followAndFans);
             }
 
@@ -105,6 +98,11 @@ public class AiteActivity extends LoadingBarBaseActivity {
     }
 
     private void init() {
+        try {
+            mSelectPeople = (List<AiteFollow>) getIntent().getSerializableExtra(IVariable.DATA);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mTvOk = getmTvRightIcon();
         mTvOk.setText("确定");
         mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
@@ -144,9 +142,16 @@ public class AiteActivity extends LoadingBarBaseActivity {
 
     private void initDataAndSort(List<Follow> data) {
         followAndFans = new ArrayList<>();
+
         for (Follow follow:data) {
-            AiteFollow aiteFollow = new AiteFollow();
-            aiteFollow.setFollow(follow);
+            AiteFollow aiteFollow=null;
+            if (mSelectPeople!=null){
+                aiteFollow = changeOldData(follow);
+            }
+            if (aiteFollow==null){
+                aiteFollow = new AiteFollow();
+                aiteFollow.setFollow(follow);
+            }
             followAndFans.add(aiteFollow);
         }
         Collections.sort(followAndFans, new Comparator<AiteFollow>() {
@@ -158,6 +163,23 @@ public class AiteActivity extends LoadingBarBaseActivity {
             }
         });
     }
+
+    /**
+     * 如果再次进入邀请好友，就将之前的旧数据替换为最新获取的数据，并且将选中状态赋值给新数据
+     * @param follow
+     * @return
+     */
+    private AiteFollow changeOldData(Follow follow) {
+        AiteFollow aiteFollow=null;
+        for (AiteFollow aiteFollow1:mSelectPeople){
+            if (aiteFollow1.equalsFollow(follow)){
+                aiteFollow1.setFollow(follow);
+                aiteFollow=aiteFollow1;
+            }
+        }
+        return aiteFollow;
+    }
+
     @Subscribe
     public void onEvent(AiteEvent event){
         setIsProgress(false);

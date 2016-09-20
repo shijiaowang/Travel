@@ -15,10 +15,6 @@ public class AiteAdapter extends TravelBaseAdapter<AiteFollow> {
         super(mContext, mDatas);
     }
 
-    @Override
-    protected int testDataSize() {
-        return 22;
-    }
 
     @Override
     protected void initListener(BaseHolder baseHolder, AiteFollow item, int position) {

@@ -10,6 +10,8 @@ import android.view.animation.RotateAnimation;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
+import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.db.DBManager;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.WelcomeEvent;
@@ -22,6 +24,7 @@ import com.example.administrator.travel.utils.MD5Utils;
 import com.example.administrator.travel.utils.NetworkUtils;
 import com.example.administrator.travel.utils.ShareUtil;
 import com.example.administrator.travel.utils.StringUtils;
+import com.example.administrator.travel.utils.UserUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 
@@ -166,6 +169,13 @@ public class WelcomeActivity extends FullTransparencyActivity {
         if (event.isSuccess()) {
             isNetWork = true;
             GO_WHERE_PAGE = START_HOME;
+            try {
+                Login object = GsonUtils.getObject(event.getResult(), Login.class);
+                UserInfo data = object.getData();
+                UserUtils.saveUserInfo(data);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             isNetWork=false;
             GO_WHERE_PAGE = event.getCode() == 0 ? START_SPLASH : START_HOME;

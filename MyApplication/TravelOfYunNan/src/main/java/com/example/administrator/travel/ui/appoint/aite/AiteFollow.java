@@ -19,9 +19,12 @@ public class AiteFollow implements Serializable{
         return follow;
     }
 
+
+
     public void setFollow(Follow follow) {
         this.follow = follow;
         setNikeName(follow.getNick_name());
+        this.isFirst=true;
     }
 
     public String getNikeName() {
@@ -72,5 +75,14 @@ public class AiteFollow implements Serializable{
     }
 
 
+    public boolean equalsFollow(Follow o) {
 
+        if (this.follow==null || o==null){
+            return false;
+        }
+        if (this.follow.getId().equals(o.getId())){
+            return true;
+        }
+        return false;
+    }
 }

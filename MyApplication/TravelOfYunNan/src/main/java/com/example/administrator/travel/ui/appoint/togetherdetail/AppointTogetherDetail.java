@@ -47,7 +47,7 @@ public class AppointTogetherDetail {
         private String title;
         private String content;
         private String travel_img;
-        private String star_time;
+        private String start_time;
         private String end_time;
         private String traffic;
         private String traffic_text;
@@ -129,12 +129,12 @@ public class AppointTogetherDetail {
             this.travel_img = travel_img;
         }
 
-        public String getStar_time() {
-            return star_time;
+        public String getStart_time() {
+            return start_time;
         }
 
-        public void setStar_time(String star_time) {
-            this.star_time = star_time;
+        public void setStart_time(String start_time) {
+            this.start_time = start_time;
         }
 
         public String getEnd_time() {

@@ -63,7 +63,6 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
 
     @Override
     protected void initEvent() {
-
         init();
         mTvRight.setOnClickListener(new View.OnClickListener() {
             @Override

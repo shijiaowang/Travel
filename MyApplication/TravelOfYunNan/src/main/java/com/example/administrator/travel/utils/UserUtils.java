@@ -1,6 +1,7 @@
 package com.example.administrator.travel.utils;
 
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,13 +32,13 @@ public class UserUtils {
             IOUtils.close(oos);
         }
     }
-    public static Login.UserInfo getUserInfo(){
+    public static UserInfo getUserInfo(){
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
             fis = UIUtils.getContext().openFileInput("user.txt");
             ois = new ObjectInputStream(fis);
-            return (Login.UserInfo) ois.readObject();
+            return (UserInfo) ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

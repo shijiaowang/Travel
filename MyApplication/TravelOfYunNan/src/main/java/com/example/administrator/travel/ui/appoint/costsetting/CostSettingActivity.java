@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.appoint.costsetting;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,12 @@ public class CostSettingActivity extends BarBaseActivity implements View.OnClick
     @ViewInject(R.id.et_price)
     private EditText mEtPrice;//价格
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GlobalValue.mActivity.add(this);
+    }
+
+    @Override
     protected int setContentLayout() {
         return R.layout.activity_cost_setting;
     }
@@ -40,6 +47,7 @@ public class CostSettingActivity extends BarBaseActivity implements View.OnClick
         TextView mTvRightNext = getmTvRightIcon();
         mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         mTvRightNext.setText(R.string.next);
+        mTvRightNext.setOnClickListener(this);
         mBtNext.setOnClickListener(this);
       if (GlobalValue.mAppointType== IVariable.TYPE_TOGETHER){
           mLlWithMe.setVisibility(View.GONE);
@@ -64,6 +72,7 @@ public class CostSettingActivity extends BarBaseActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.tv_right_icon:
             case R.id.bt_next:
                 saveData();
                 break;

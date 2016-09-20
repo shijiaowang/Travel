@@ -16,10 +16,10 @@
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="50dp" />
-    <TextView
+    <com.example.administrator.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_cursor"
         android:textColor="@color/otherTitleBg"
-        android:text="◀"
+        android:text="@string/activity_cursor_left"
         android:textSize="12sp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"

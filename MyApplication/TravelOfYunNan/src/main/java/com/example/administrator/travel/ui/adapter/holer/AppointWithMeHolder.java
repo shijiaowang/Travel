@@ -54,8 +54,8 @@ public class AppointWithMeHolder extends BaseHolder<AppointWithMe.DataBean> {
         mTvMoney.setText("预算：¥"+datas.getTotal_price());
         x.image().bind(mIvBg, datas.getTravel_img(), getImageOptions(DensityUtil.dip2px(112), DensityUtil.dip2px(112)));
         mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
-        mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStar_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
-        mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStar_time(), datas.getEnd_time()));
+        mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
+        mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time()+"000", datas.getEnd_time()+"000"));
         mTvLoveNumber.setText(datas.getCount_like());
         mTvWatchNumber.setText(datas.getBrowse());
         if (mFlTitle!=null && mFlTitle.getChildCount()>0){

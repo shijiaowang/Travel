@@ -1,8 +1,8 @@
 package com.example.administrator.travel.ui.appoint.travelplan;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,15 +14,20 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.appoint.cutpicture.CutPictureActivity;
 import com.example.administrator.travel.ui.appoint.personnelequipment.PersonnelEquipmentActivity;
 import com.example.administrator.travel.ui.appoint.lineplan.LineBean;
 import com.example.administrator.travel.ui.appoint.lineplan.LinePlanActivity;
+import com.example.administrator.travel.ui.appoint.popwindow.AppointSpinnerPop;
+import com.example.administrator.travel.ui.appoint.popwindow.SpinnerBean;
 import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
@@ -69,16 +74,39 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
     private RelativeLayout mRlEndMorning;
     @ViewInject(R.id.rl_end_night)
     private RelativeLayout mRlEndNight;
+    @ViewInject(R.id.tv_traffic)
+    private TextView mTvTraffic;
+    @ViewInject(R.id.rl_traffic)
+    private RelativeLayout mRlTraffic;
+    @ViewInject(R.id.tv_icon)
+    private TextView mTvIcon;
     private TextView mTvRightNext;
     private TimePickerView pvTime;
     private Date startDate = new Date();
     private Date endDate = new Date();
-    private String traffic = "";//交通工具
+    private String trafficType = "1";//交通工具
     private int dayOfYear;
     private int year;
     private Date endLine;
     private Date startLine;
+    private List<SpinnerBean> traffics;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GlobalValue.mActivity=new ArrayList<>();
+        GlobalValue.mActivity.add(this);
+        registerEventBus(this);
+
+    }
+
+    private void initTrafficeData() {
+        traffics = new ArrayList<>();
+        traffics.add(new SpinnerBean("自驾游","1", TRAFFIC_TYPE));
+        traffics.add(new SpinnerBean("火车","2", TRAFFIC_TYPE));
+        traffics.add(new SpinnerBean("汽车","3", TRAFFIC_TYPE));
+        mRlTraffic.setOnClickListener(this);
+    }
 
     @Override
     protected int setContentLayout() {
@@ -87,10 +115,13 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
 
     @Override
     protected void initEvent() {
+
         mTvRightNext = getmTvRightIcon();
         mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         mTvRightNext.setText(R.string.next);
         init();
+        initTrafficeData();
+        mTvRightNext.setOnClickListener(this);
         mBtSelectLine.setOnClickListener(this);
         mTvStart.setOnClickListener(this);
         mTvEnd.setOnClickListener(this);
@@ -99,6 +130,12 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         mRlEndMorning.setOnClickListener(this);
         mRlStartNight.setOnClickListener(this);
         mRlEndNight.setOnClickListener(this);
+        mTvIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TravelsPlanActivity.this, CutPictureActivity.class));
+            }
+        });
     }
 
 
@@ -131,6 +168,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
             case R.id.tv_end:
                 showTime(mTvEndTime);
                 break;
+            case R.id.tv_right_icon:
             case R.id.bt_next:
                 if (checkTimeAgain()) {
                     addJson();
@@ -152,7 +190,9 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
                 mTvEndMorning.setChecked(false);
                 mTvEndNight.setChecked(true);
                 break;
-
+            case R.id.rl_traffic:
+                AppointSpinnerPop.showSpinnerPop(this,mRlTraffic,traffics);
+               break;
         }
     }
 
@@ -215,10 +255,11 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         try {
             JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
             JsonUtils.putString(IVariable.USER_ID, GlobalUtils.getUserInfo().getId(), basecJsonObject);
-            JsonUtils.putString(IVariable.START_TIME, startDate.getTime() + "", basecJsonObject);
-            JsonUtils.putString(IVariable.END_TIME, endDate.getTime() + "", basecJsonObject);
-            JsonUtils.putString(IVariable.TRAFFIC, 1 + "", basecJsonObject);
+            JsonUtils.putString(IVariable.START_TIME, startDate.getTime()/1000 + "", basecJsonObject);
+            JsonUtils.putString(IVariable.END_TIME, endDate.getTime()/1000 + "", basecJsonObject);
+            JsonUtils.putString(IVariable.TRAFFIC, trafficType, basecJsonObject);
             basecJsonObject.put(IVariable.TRAFFIC_TEXT, getTrafficText());
+            LogUtils.e(basecJsonObject.toString());
             startActivity(new Intent(this, PersonnelEquipmentActivity.class));
         } catch (Exception e) {
             e.printStackTrace();
@@ -235,13 +276,21 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         return getString(mEtRemark);
     }
 
-
+    @Subscribe
+    public void onEvent(SpinnerBean spinnerBean){
+        if (spinnerBean.getSpinnerId()== TRAFFIC_TYPE){
+            trafficType =spinnerBean.getId();
+            mTvTraffic.setText(spinnerBean.getType());
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
         GlobalValue.mSelectSpot = null;
         GlobalValue.mLineBeans = null;
+        GlobalValue.mActivity=null;
         JsonUtils.reset();//释放json
+        unregisterEventBus(this);
     }
 
     //公用初始化
@@ -321,4 +370,5 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         }
         return true;
     }
+
 }

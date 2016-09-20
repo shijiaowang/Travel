@@ -2,17 +2,22 @@ package com.example.administrator.travel.ui.appoint.personnelequipment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropsActivity;
 import com.example.administrator.travel.ui.appoint.costsetting.CostSettingActivity;
 import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.appoint.popwindow.AppointSpinnerPop;
+import com.example.administrator.travel.ui.appoint.popwindow.SpinnerBean;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -24,6 +29,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,6 +48,24 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
     private EditText mEtLeast;
     @ViewInject(R.id.et_most)
     private EditText mEtMost;
+    @ViewInject(R.id.rl_auth_select)
+    private RelativeLayout mRlAuthSelect;//认证赛选
+    @ViewInject(R.id.rl_sex_select)
+    private RelativeLayout mRlSexSelect;//性别赛选
+    @ViewInject(R.id.tv_sex)
+    private TextView mTvSex;
+    @ViewInject(R.id.tv_auth)
+    private TextView mTvAuth;
+    private List<SpinnerBean> sexs;
+    private List<SpinnerBean> auths;
+    private String sexType="3";
+    private String authType="5";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GlobalValue.mActivity.add(this);
+    }
+
     @Override
     protected int setContentLayout() {
         return R.layout.activity_personnel_equipment;
@@ -51,10 +76,28 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
         TextView mTvRightNext = getmTvRightIcon();
         mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         mTvRightNext.setText(R.string.next);
+        mTvRightNext.setOnClickListener(this);
         mTvSelectEqu.setOnClickListener(this);
         mBtNext.setOnClickListener(this);
+        initSpinnerData();
+        mRlAuthSelect.setOnClickListener(this);
+        mRlSexSelect.setOnClickListener(this);
     }
-
+    /**
+     * 数据
+     */
+    private void initSpinnerData() {
+        sexs = new ArrayList<>();
+        sexs.add(new SpinnerBean("男", "1",SEX_TYPE));
+        sexs.add(new SpinnerBean("女", "2",SEX_TYPE));
+        sexs.add(new SpinnerBean("不限", "3",SEX_TYPE));
+        auths = new ArrayList<>();
+        auths.add(new SpinnerBean("电话", "1",AUTH_TYPE));
+        auths.add(new SpinnerBean("身份证", "2",AUTH_TYPE));
+        auths.add(new SpinnerBean("驾驶证", "3",AUTH_TYPE));
+        auths.add(new SpinnerBean("行驶证", "4",AUTH_TYPE));
+        auths.add(new SpinnerBean("不限", "5",AUTH_TYPE));
+    }
     @Override
     protected void onLoad() {
         Map<String, String> remarkMap = MapUtils.Build().addKey(this).end();
@@ -92,6 +135,7 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
             case R.id.bt_select_equ:
                 startActivity(new Intent(this, ChoicePropsActivity.class));
                 break;
+            case R.id.tv_right_icon:
             case R.id.bt_next:
                 try {
                     saveData();
@@ -101,6 +145,12 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
                     ToastUtils.showToast("请完善人员信息");
                 }
 
+                break;
+            case R.id.rl_auth_select:
+                AppointSpinnerPop.showSpinnerPop(this,mRlAuthSelect,auths);
+                break;
+            case R.id.rl_sex_select:
+                AppointSpinnerPop.showSpinnerPop(this,mRlSexSelect,sexs);
                 break;
         }
     }
@@ -122,8 +172,8 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
         JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
         JsonUtils.putString(IVariable.MIN_PEOPLE,least,basecJsonObject);
         JsonUtils.putString(IVariable.MAX_PEOPLE,most,basecJsonObject);
-        JsonUtils.putString(IVariable.SEX_CONDITION,"2",basecJsonObject);
-        JsonUtils.putString(IVariable.BIND_CONDITION,"1",basecJsonObject);
+        JsonUtils.putString(IVariable.SEX_CONDITION,sexType,basecJsonObject);
+        JsonUtils.putString(IVariable.BIND_CONDITION,authType,basecJsonObject);
         startActivity(new Intent(this, CostSettingActivity.class));
     }
 }

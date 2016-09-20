@@ -73,7 +73,7 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(getContext(), AppointWithMeDetailActivity.class);
-                intent.putExtra(IVariable.TID, mDatas.get(position).getId());
+                intent.putExtra(IVariable.TID, mDatas.get(position-1).getId());
                 startActivity(intent);
             }
         });

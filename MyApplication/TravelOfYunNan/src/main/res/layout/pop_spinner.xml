@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView
+    android:layout_marginTop="-3dp"
+    style="@style/commonListViewStyle"
+    android:dividerHeight="0dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/activity_travels_plan_spinner_bg"
+    android:layout_width="105dp"
+    android:layout_height="wrap_content">
+
+</ListView>

@@ -13,7 +13,6 @@ import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.FormatDateUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 
 import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
@@ -60,7 +59,7 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
     @Override
     protected void initItemDatas(AppointTogether.DataBean datas, Context mContext, int position) {
         mTvMoney.setText(datas.getTotal_price());
-        mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStar_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
+        mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
         mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
         mTvLoveNumber.setText(datas.getCount_like());
         mTvWatchNumber.setText(datas.getBrowse());
@@ -85,7 +84,7 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
          }
         mTvHaveNumber.setText("已有: "+datas.getNow_people()+"人");
         mTvPlanNumber.setText("计划: "+datas.getMax_people()+"人");
-        mTvStartAndTime.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStar_time(),datas.getEnd_time()));
+        mTvStartAndTime.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time()+"000",datas.getEnd_time()+"000"));
 
 
     }

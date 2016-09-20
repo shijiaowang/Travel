@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
 import com.example.administrator.travel.bean.Login;
+import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.RegisterSuccessEvent;
 import com.example.administrator.travel.global.GlobalValue;
@@ -172,7 +173,7 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
         //序列化保存信息
         setResult(SPLASH_RESULT);
         Login object = GsonUtils.getObject(event.getResult(), Login.class);
-        Login.UserInfo userInfo = object.getData();
+        UserInfo userInfo = object.getData();
         GlobalValue.userInfo = userInfo;//赋值
         UserUtils.saveUserInfo(userInfo);//序列化
         ShareUtil.putString(this, IVariable.SAVE_NAME, userInfo.getName());

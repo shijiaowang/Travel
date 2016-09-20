@@ -97,12 +97,14 @@
                             android:text="性别筛选" />
 
                         <RelativeLayout
+                            android:id="@+id/rl_sex_select"
                             android:layout_width="105dp"
                             android:layout_height="23dp"
                             android:layout_marginLeft="16dp"
                             android:background="@drawable/activity_travels_plan_time_bg">
 
                             <TextView
+                                android:id="@+id/tv_sex"
                                 android:layout_width="84dp"
                                 android:layout_height="23dp"
                                 android:gravity="center"
@@ -132,15 +134,17 @@
 
                         <TextView
                             style="@style/activityTravelsPlanTv"
-                            android:text="认证筛选" />
+                            android:text="身份筛选" />
 
                         <RelativeLayout
+                            android:id="@+id/rl_auth_select"
                             android:layout_width="105dp"
                             android:layout_height="23dp"
                             android:layout_marginLeft="16dp"
                             android:background="@drawable/activity_travels_plan_time_bg">
 
                             <TextView
+                                android:id="@+id/tv_auth"
                                 android:layout_width="84dp"
                                 android:layout_height="23dp"
                                 android:gravity="center"
