@@ -23,12 +23,16 @@ public class PopEquHolder extends BaseHolder<ChoicePropSelectBean> {
 
     @Override
     protected void initItemDatas(ChoicePropSelectBean datas, Context mContext, int position) {
-        mTvNmae.setText(datas.getName());
-        mTvNumber.setText("x"+datas.getNumber());
+
+            mTvNmae.setText(datas.getName());
+            mTvNumber.setText("x" + datas.getNumber());
+
     }
 
     @Override
     public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_pop_equ);
+
+            return inflateView(R.layout.item_pop_equ);
+
     }
 }

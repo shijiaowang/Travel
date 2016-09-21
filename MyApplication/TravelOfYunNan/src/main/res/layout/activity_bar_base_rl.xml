@@ -3,16 +3,11 @@
     android:layout_height="match_parent"
     android:background="@color/meLine">
 
-    <ViewStub
-        android:id="@+id/vs_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <ViewStub
-        android:id="@+id/vs_error"
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout="@layout/page_error" />
+    />
 
     <ProgressBar
         android:id="@+id/pb_progress"

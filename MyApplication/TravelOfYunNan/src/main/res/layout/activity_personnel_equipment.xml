@@ -202,6 +202,30 @@
                                     android:textColor="@color/color323232"
                                     android:textSize="10sp" />
                             </RelativeLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="19dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/activityTravelsPlanTv"
+                                android:text="自动通过报名" />
+                            <Switch
+                                android:id="@+id/s_toggle"
+                                android:showText="true"
+                                android:textOn="开"
+                                android:textOff="关"
+                                android:layout_marginLeft="10dp"
+                                android:switchTextAppearance="@style/mySwitchStyle"
+                                android:textColorLink="@color/colorFAFAFA"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -235,6 +259,16 @@
                     android:textSize="12sp" />
 
             </RelativeLayout>
+            <com.example.administrator.travel.ui.view.ToShowAllListView
+                android:id="@+id/lv_equ"
+                android:visibility="gone"
+                style="@style/commonListViewStyle"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="31dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.example.administrator.travel.ui.view.ToShowAllListView>
 
             <Button
                 android:id="@+id/bt_select_equ"
@@ -258,6 +292,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:layout_marginBottom="40dp"
                 android:id="@+id/tv_remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

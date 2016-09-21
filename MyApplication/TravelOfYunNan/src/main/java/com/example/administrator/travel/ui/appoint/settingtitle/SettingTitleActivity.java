@@ -1,10 +1,16 @@
 package com.example.administrator.travel.ui.appoint.settingtitle;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -13,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.TravelsApplication;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
@@ -21,6 +28,7 @@ import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 import com.example.administrator.travel.utils.DensityUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.JsonUtils;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
@@ -30,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,11 +64,14 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
     private SimpleViewPagerIndicator mIndicator;
     @ViewInject(R.id.fl_title)
     private FlowLayout mFlTitle;
+    private boolean isSure=false;//如果用户一旦确认过就一只保存标签，除非用户清除
     private int mPointDistance;
     private int mFirstDotLeft;
     private LayoutInflater inflater;
     private TextView mTvTitle;
     private List<SettingTitle>  settingTitles=new ArrayList<>();
+
+
 
     @Override
     protected int setContentLayout() {
@@ -96,7 +108,14 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
 
 
     private void init() {
+        settingTitles= (List<SettingTitle>) getIntent().getSerializableExtra(IVariable.DATA);
         inflater = LayoutInflater.from(this);
+        if (settingTitles!=null){
+            for (SettingTitle settingTitle:settingTitles) {
+                addTitle(settingTitle);
+            }
+        }
+
         mIndicator.setIsTitle(true);
         mIndicator.setViewPager(mVpPager);
         mIndicator.setTitles(mTitles);
@@ -115,6 +134,7 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                setResult(RESULT_CODE,new Intent().putExtra(IVariable.DATA, (Serializable) settingTitles));
                 finish();
             }
         });
@@ -183,10 +203,10 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
         List<UserLabelBean> userLabel = settingTitleBean.getData().getUser_label();
         List<UserLabelBean> platformLabel = settingTitleBean.getData().getPlatform_label();
         List<UserLabelBean> playWayLabel = settingTitleBean.getData().getPlay_way();
-        TabFragment tabFragment1 = TabFragment.newInstance(userLabel, TYPE_MY_TITLE);
-        TabFragment tabFragment2 = TabFragment.newInstance(platformLabel, TYPE_VER_TITLE);
-        TabFragment tabFragment3 = TabFragment.newInstance(playWayLabel, TYPE_PLAY_WAY);
-        TabFragment tabFragment4 = TabFragment.newInstance(userLabel, TYPE_DIY_TITLE);
+        TabFragment tabFragment1 = TabFragment.newInstance(userLabel, TYPE_MY_TITLE,settingTitles);
+        TabFragment tabFragment2 = TabFragment.newInstance(platformLabel, TYPE_VER_TITLE,settingTitles);
+        TabFragment tabFragment3 = TabFragment.newInstance(playWayLabel, TYPE_PLAY_WAY,settingTitles);
+        TabFragment tabFragment4 = TabFragment.newInstance(userLabel, TYPE_DIY_TITLE,settingTitles);
         fragmentList.add(tabFragment1);
         fragmentList.add(tabFragment2);
         fragmentList.add(tabFragment3);
@@ -232,7 +252,9 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         GlobalValue.selectTitleNumber = 0;
+        LogUtils.e("设置标签页面被销毁了");
     }
+
 
     @Subscribe
     public void onEvent(SettingTitleEvent event) {
@@ -246,14 +268,17 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
      * @param settingTitle
      */
     private void addTitle(final SettingTitle settingTitle) {
+        if (settingTitles==null)settingTitles=new ArrayList<>();
         if (settingTitle.getChangeType() == TabFragment.TYPE_ADD && settingTitles.size()<7) {
-            settingTitles.add(settingTitle);
+            if (!settingTitles.contains(settingTitle)){
+                settingTitles.add(settingTitle);
+            }
             View inflate = inflater.inflate(R.layout.item_activity_setting_title_select, mFlTitle, false);
             inflate.findViewById(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     TabEvent tabEvent = new TabEvent();
-                    tabEvent.setPosition(settingTitle.getPosition());
+                    tabEvent.setId(settingTitle.getId());
                     tabEvent.setType(settingTitle.getType());
                     EventBus.getDefault().post(tabEvent);
                     remove(settingTitle);
@@ -268,21 +293,22 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
         }
     }
 
+
+
     /**
      * 移除
      * @param settingTitle
      */
     private void remove(SettingTitle settingTitle) {
-        SettingTitle temp=null;
         for (SettingTitle settingTitle1:settingTitles){
             if (settingTitle1.getId().equals(settingTitle.getId())){
-                temp=settingTitle1;
+                int index = settingTitles.indexOf(settingTitle1);
+                settingTitles.remove(settingTitle1);
+                mFlTitle.removeViewAt(index);
                 break;
             }
         }
-        int index = settingTitles.indexOf(temp);
-        settingTitles.remove(temp);
-        mFlTitle.removeViewAt(index);
+
     }
 }
 

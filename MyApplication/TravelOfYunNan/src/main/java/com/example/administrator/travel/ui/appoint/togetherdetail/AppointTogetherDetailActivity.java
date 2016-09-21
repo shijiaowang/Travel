@@ -15,7 +15,6 @@ import com.example.administrator.travel.bean.PricebasecBean;
 import com.example.administrator.travel.event.AppointDetailEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
-import com.example.administrator.travel.ui.adapter.ProviderAdapter;
 import com.example.administrator.travel.ui.adapter.TravelDetailLineAdapter;
 import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointDetailMorePop;
@@ -158,13 +157,14 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
     @Subscribe
     public void onEvent(AppointDetailEvent event){
         lists = new ArrayList<>();
+        setIsProgress(false);
          if (event.isSuccess()){
              dealData(event, lists);
          }else {
              setIsError(true);
              ToastUtils.showToast(event.getMessage());
          }
-        setIsProgress(false);
+
     }
 
     /**
@@ -267,22 +267,27 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
     }
 
     /**
-     * 分类目的地
+     * 分类目的地 根据时间进行天数归类
      * @param lists
      * @param routes
      */
     private void classificationDay(List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists, List<AppointTogetherDetail.DataBean.RoutesBean> routes) {
-        List<AppointTogetherDetail.DataBean.RoutesBean> dayList=new ArrayList<>();
-        String preTime=routes.get(0).getTime();
-        for (AppointTogetherDetail.DataBean.RoutesBean routesBean: routes){
-            if (!routesBean.getTime().equals(preTime)){
-                lists.add(dayList);
-                dayList=new ArrayList<>();
-                 preTime=routesBean.getTime();
+
+        try {
+            List<AppointTogetherDetail.DataBean.RoutesBean> dayList=new ArrayList<>();
+            String preTime=routes.get(0).getTime();
+            for (AppointTogetherDetail.DataBean.RoutesBean routesBean: routes){
+                if (!routesBean.getTime().equals(preTime)){
+                    lists.add(dayList);
+                    dayList=new ArrayList<>();
+                     preTime=routesBean.getTime();
+                }
+                dayList.add(routesBean);
             }
-            dayList.add(routesBean);
+            lists.add(dayList);//加入最后一列
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        lists.add(dayList);//加入最后一列
 
 
     }

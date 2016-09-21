@@ -1,9 +1,11 @@
 package com.example.administrator.travel.ui.appoint.settingtitle;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/9/6 0006.
  */
-public class SettingTitle {
+public class SettingTitle implements Serializable{
     private int type;
     private String title;
     private int changeType;

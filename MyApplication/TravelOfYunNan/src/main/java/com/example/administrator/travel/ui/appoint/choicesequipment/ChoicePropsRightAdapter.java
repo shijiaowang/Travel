@@ -66,6 +66,7 @@ public class ChoicePropsRightAdapter extends TravelBaseAdapter<ChoicePropBean.Da
                     choicePropSelectBean.setNumber(++number);
                     choicePropSelectBean.setId(item.getId());
                     choicePropSelectBean.setName(item.getName());
+                    choicePropSelectBean.setContent(item.getContent());
                     GlobalValue.mPropSelects.put(item.getId(), choicePropSelectBean);
                 }
                 getTextAndAdd(choicePropsRightHolder.mTvNumber, false);

@@ -11,6 +11,8 @@ import java.util.List;
  * Created by Administrator on 2016/8/31 0031.
  */
 public class PopEquAdapter extends TravelBaseAdapter<ChoicePropSelectBean> {
+
+
     public PopEquAdapter(Context mContext, List<ChoicePropSelectBean> mDatas) {
         super(mContext, mDatas);
     }

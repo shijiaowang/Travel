@@ -29,6 +29,14 @@ public class JsonUtils {
         return propArray;
     }
 
+    public static JSONArray getPropArray() {
+        return propArray;
+    }
+
+    public static void setPropArray(JSONArray propArray) {
+        JsonUtils.propArray = propArray;
+    }
+
     /**
      * 输入的数据如果为空就抛出异常，方便之后确保不能为空的value，之后直接捕获异常即可
      * @param key

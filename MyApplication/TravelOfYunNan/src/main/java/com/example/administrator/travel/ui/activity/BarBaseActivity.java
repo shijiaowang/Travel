@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -34,8 +35,8 @@ public abstract class BarBaseActivity extends BaseActivity {
     private TextView mTvRightIcon;
     private int normalBgColor = Color.parseColor("#5cd0c2");
     private float alpha = 0f;
-    @ViewInject(R.id.vs_content)
-    private ViewStub mVsContent;
+    @ViewInject(R.id.fl_content)
+    private FrameLayout mFlContent;
     private SlippingScrollView mSsvScroll;
 
     public TextView getmTvRightIcon() {
@@ -78,8 +79,7 @@ public abstract class BarBaseActivity extends BaseActivity {
         mTvBack.setTextSize(TypedValue.COMPLEX_UNIT_SP, getLeftTextSize());
 
         mTitleName.setText(setTitleName());
-        mVsContent.setLayoutResource(setContentLayout());
-        mVsContent.inflate();
+        mFlContent.addView(View.inflate(this,setContentLayout(),null));
         if (canScrollToChangeTitleBgColor()) {
             mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);
         }

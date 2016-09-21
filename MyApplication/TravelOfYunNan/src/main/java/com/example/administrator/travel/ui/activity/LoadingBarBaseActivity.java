@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -50,6 +51,7 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
     private ProgressBar mPbProgress;
     @ViewInject(R.id.tv_right_icon)
     private TextView mTvRightIcon;
+    private View root;
 
     public TextView getmTvRightIcon() {
         return mTvRightIcon;
@@ -57,10 +59,8 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
 
     private int normalBgColor = Color.parseColor("#5cd0c2");
     private float alpha = 0f;
-    @ViewInject(R.id.vs_content)
-    private ViewStub mVsContent;
-    @ViewInject(R.id.vs_error)
-    private ViewStub mVsError;
+    @ViewInject(R.id.fl_content)
+    private FrameLayout mFlContent;
     private SlippingScrollView mSsvScroll;
     private XScrollView xScrollView;
     private ImageView mIvError;
@@ -96,8 +96,9 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
         }
         mTvBack.setTextSize(TypedValue.COMPLEX_UNIT_SP, getLeftTextSize());
         mTitleName.setText(setTitleName());
-        mVsContent.setLayoutResource(setContentLayout());
-        mVsContent.inflate();
+        root = View.inflate(this, setContentLayout(), null);
+        root.setVisibility(View.GONE);
+        mFlContent.addView(root);
         if (canScrollToChangeTitleBgColor()) {
             if (!isXScrollView()) {
                 mSsvScroll = (SlippingScrollView) findViewById(R.id.ssv_scroll);
@@ -209,21 +210,24 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
 
     protected void setIsProgress(boolean show) {
         mPbProgress.setVisibility(show ? View.VISIBLE : View.GONE);
+        root.setVisibility(View.VISIBLE);
     }
 
     protected void setIsError(boolean show) {
         if (mIvError == null) {
-            mVsError.inflate();
-            mIvError = (ImageView) findViewById(R.id.iv_error);
+            mIvError = (ImageView) View.inflate(this,R.layout.page_error,null);
+            mFlContent.addView(mIvError);
             mIvError.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mIvError.setVisibility(View.GONE);
                     onLoad();
+                    root.setVisibility(View.VISIBLE);
                 }
             });
         }
         mIvError.setVisibility(show ? View.VISIBLE : View.GONE);
+        root.setVisibility(show?View.GONE:View.VISIBLE);
     }
 
     protected abstract void onLoad();

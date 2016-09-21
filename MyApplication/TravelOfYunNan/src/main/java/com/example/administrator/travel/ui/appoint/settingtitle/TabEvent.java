@@ -5,7 +5,15 @@ package com.example.administrator.travel.ui.appoint.settingtitle;
  */
 public class TabEvent {
     private int type;
-    private int position;
+   private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public int getType() {
         return type;
@@ -15,11 +23,5 @@ public class TabEvent {
         this.type = type;
     }
 
-    public int getPosition() {
-        return position;
-    }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
 }

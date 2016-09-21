@@ -7,9 +7,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.TravelsApplication;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.utils.ActivityUtils;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -39,9 +41,7 @@ public class CreateAppointSuccessActivity extends BarBaseActivity {
     }
 
     private void finishActivity() {
-        for (Activity activity: GlobalValue.mActivity){
-            activity.finish();
-        }
+        ActivityUtils.getInstance().exit();
     }
 
     @Override

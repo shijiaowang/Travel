@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.TravelsApplication;
 import com.example.administrator.travel.bean.Destination;
 import com.example.administrator.travel.db.DBManager;
 import com.example.administrator.travel.global.GlobalValue;
@@ -25,6 +26,7 @@ import com.example.administrator.travel.ui.appoint.personnelequipment.PersonnelE
 import com.example.administrator.travel.ui.appoint.selectdestination.SelectDestinationActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconButton;
+import com.example.administrator.travel.utils.ActivityUtils;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
@@ -84,8 +86,7 @@ public class TravelsPlanWithMeActivity extends BarBaseActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GlobalValue.mActivity = new ArrayList<>();
-        GlobalValue.mActivity.add(this);
+        ActivityUtils.getInstance().addActivity(this);
         registerEventBus(this);
         inflater = LayoutInflater.from(this);
     }
@@ -362,7 +363,6 @@ public class TravelsPlanWithMeActivity extends BarBaseActivity implements View.O
         JsonUtils.reset();
         GlobalValue.mSelectSpot = null;
         GlobalValue.mLineBeans = null;
-        GlobalValue.mActivity = null;
         unregisterEventBus(this);
     }
 }

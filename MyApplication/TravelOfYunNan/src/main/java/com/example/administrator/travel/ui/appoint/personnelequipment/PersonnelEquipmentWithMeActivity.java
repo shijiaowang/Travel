@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.TravelsApplication;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.aite.AiteActivity;
@@ -19,6 +20,7 @@ import com.example.administrator.travel.ui.appoint.costsetting.CostSettingActivi
 import com.example.administrator.travel.ui.appoint.popwindow.AppointSpinnerPop;
 import com.example.administrator.travel.ui.appoint.popwindow.SpinnerBean;
 import com.example.administrator.travel.ui.view.FlowLayout;
+import com.example.administrator.travel.utils.ActivityUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -63,7 +65,7 @@ public class PersonnelEquipmentWithMeActivity extends BarBaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GlobalValue.mActivity.add(this);
+        ActivityUtils.getInstance().addActivity(this);
         registerEventBus(this);
 
     }

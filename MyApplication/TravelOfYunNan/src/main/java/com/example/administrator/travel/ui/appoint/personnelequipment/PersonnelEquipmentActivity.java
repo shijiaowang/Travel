@@ -6,30 +6,39 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.TravelsApplication;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropSelectBean;
 import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropsActivity;
+import com.example.administrator.travel.ui.appoint.choicesequipment.PopEquAdapter;
 import com.example.administrator.travel.ui.appoint.costsetting.CostSettingActivity;
 import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointSpinnerPop;
 import com.example.administrator.travel.ui.appoint.popwindow.SpinnerBean;
+import com.example.administrator.travel.ui.appoint.togetherdetail.ProviderAdapter;
+import com.example.administrator.travel.ui.view.ToShowAllListView;
+import com.example.administrator.travel.utils.ActivityUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -56,14 +65,19 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
     private TextView mTvSex;
     @ViewInject(R.id.tv_auth)
     private TextView mTvAuth;
+    @ViewInject(R.id.s_toggle)
+    private Switch mSToggle;
+    @ViewInject(R.id.lv_equ)
+    private ToShowAllListView mLvEqu;
     private List<SpinnerBean> sexs;
     private List<SpinnerBean> auths;
     private String sexType="3";
     private String authType="5";
+    private String autoPass="2";//自动通过
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GlobalValue.mActivity.add(this);
+        ActivityUtils.getInstance().addActivity(this);
     }
 
     @Override
@@ -82,6 +96,12 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
         initSpinnerData();
         mRlAuthSelect.setOnClickListener(this);
         mRlSexSelect.setOnClickListener(this);
+        mSToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+              autoPass=isChecked?"1":"2";//自动通过验证
+            }
+        });
     }
     /**
      * 数据
@@ -115,8 +135,6 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
             PropRemarkBean propRemarkBean = GsonUtils.getObject(event.getResult(), PropRemarkBean.class);
             mTvRemark.setText(propRemarkBean.getData().getContent());
         }
-
-
     }
 
     @Override
@@ -133,7 +151,8 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_select_equ:
-                startActivity(new Intent(this, ChoicePropsActivity.class));
+                Intent intent = new Intent(this, ChoicePropsActivity.class);
+                startActivityForResult(intent,REQ_CODE);
                 break;
             case R.id.tv_right_icon:
             case R.id.bt_next:
@@ -174,6 +193,38 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
         JsonUtils.putString(IVariable.MAX_PEOPLE,most,basecJsonObject);
         JsonUtils.putString(IVariable.SEX_CONDITION,sexType,basecJsonObject);
         JsonUtils.putString(IVariable.BIND_CONDITION,authType,basecJsonObject);
+        JsonUtils.putString(IVariable.AGREE,autoPass,basecJsonObject);
         startActivity(new Intent(this, CostSettingActivity.class));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==REQ_CODE && resultCode==RESULT_CODE){
+            JSONArray propJsonArray = JsonUtils.getPropJsonArray();
+            try {
+                if ( propJsonArray.length()>0){//不为空就说明有数据,用户确定了
+                      showSelect();
+                }else {
+                    GlobalValue.mPropSelects=null;//清理之前选中的
+                    mLvEqu.setVisibility(View.GONE);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        }
+    }
+    private void showSelect() {
+        if (GlobalValue.mPropSelects==null)return;
+        mLvEqu.setVisibility(View.VISIBLE);
+        Iterator<String> iterator = GlobalValue.mPropSelects.keySet().iterator();
+        List<ChoicePropSelectBean> choicePropSelectBeans = new ArrayList<>();
+        while (iterator.hasNext()) {
+            ChoicePropSelectBean choicePropSelectBean = GlobalValue.mPropSelects.get(iterator.next());
+            choicePropSelectBeans.add(choicePropSelectBean);
+        }
+        ProviderAdapter popEquAdapter = new ProviderAdapter(this,choicePropSelectBeans);
+        mLvEqu.setAdapter(popEquAdapter);
     }
 }

@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Choreographer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -147,15 +148,22 @@ public class FlowLayout extends ViewGroup {
     }
     private OnItemClickListener listener;
 
-    public void changeColorAndBg(int type,int prePosition) {
-        TextView textView = (TextView)getChildAt(prePosition);
-        if (type==TYPE_ADD){
-            textView.setTextColor(getContext().getResources().getColor(R.color.otherTitleBg));
-            textView.setBackgroundResource(R.drawable.activity_my_appoint_rl_bg);
-        }else {
-            textView.setTextColor(getContext().getResources().getColor(R.color.colorb5b5b5));
-            textView.setBackgroundResource(R.drawable.circle_b5_bg);
+    public int changeColorAndBg(int type, String id) {
+        for (int i=0;i<getChildCount();i++){
+            TextView textView = (TextView) getChildAt(i);
+            String tag = (String) textView.getTag();
+            if (tag.equals(id)){
+                if (type==TYPE_ADD){
+                    textView.setTextColor(getContext().getResources().getColor(R.color.otherTitleBg));
+                    textView.setBackgroundResource(R.drawable.activity_my_appoint_rl_bg);
+                }else {
+                    textView.setTextColor(getContext().getResources().getColor(R.color.colorb5b5b5));
+                    textView.setBackgroundResource(R.drawable.circle_b5_bg);
+                }
+                return i;
+            }
         }
+        return -1;
     }
 
     public interface OnItemClickListener{

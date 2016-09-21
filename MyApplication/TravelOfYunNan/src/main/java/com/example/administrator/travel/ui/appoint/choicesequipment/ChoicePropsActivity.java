@@ -98,6 +98,7 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
 
     @Override
     protected Activity initViewData() {
+        changeNumber();//初始化
         return this;
     }
 
@@ -131,6 +132,7 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
     }
 
     private void changeNumber() {
+        if (GlobalValue.mPropSelects==null)return;
         Iterator<String> iterator = GlobalValue.mPropSelects.keySet().iterator();
         int selectTotal = 0;
         while (iterator.hasNext()) {
@@ -178,7 +180,7 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
             finish();
             return;
         }
-        JSONArray propJsonArray = JsonUtils.getPropJsonArray();
+        JSONArray jsonArray=new JSONArray();
         Set<String> set = GlobalValue.mPropSelects.keySet();
         Iterator<String> iterator = set.iterator();
         while (iterator.hasNext()) {
@@ -186,8 +188,10 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
             JSONObject jsonObject = new JSONObject();
             JsonUtils.putString(IVariable.TP_ID, choicePropSelectBean.getId(), jsonObject);
             JsonUtils.putString(IVariable.NUMBER, choicePropSelectBean.getNumber() + "", jsonObject);
-            propJsonArray.put(jsonObject);
+            jsonArray.put(jsonObject);
         }
+        JsonUtils.setPropArray(jsonArray);
+        setResult(RESULT_CODE);//没有出异常设置result
         finish();
     }
 
@@ -245,6 +249,5 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
     protected void onDestroy() {
         super.onDestroy();
         GlobalValue.choicePropType = 0;
-        GlobalValue.mPropSelects = null;
     }
 }

@@ -16,7 +16,7 @@ import org.xutils.view.annotation.ViewInject;
 public class AppointDetailInsuranceHolder extends BaseHolder<PricebasecBean> {
     @ViewInject(R.id.tv_name)
     private TextView mTvName;
-    @ViewInject(R.id.tv_des)
+    @ViewInject(R.id.tv_number)
     private TextView mTvDes;
     public AppointDetailInsuranceHolder(Context context) {
         super(context);
@@ -24,6 +24,7 @@ public class AppointDetailInsuranceHolder extends BaseHolder<PricebasecBean> {
 
     @Override
     protected void initItemDatas(PricebasecBean datas, Context mContext, int position) {
+
         mTvName.setText(datas.getKey());
         mTvDes.setText(datas.getValue()+"元");
     }

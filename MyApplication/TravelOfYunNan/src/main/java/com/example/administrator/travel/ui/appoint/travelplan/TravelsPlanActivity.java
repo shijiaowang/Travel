@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.TravelsApplication;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.activity.BarBaseActivity;
@@ -21,6 +22,7 @@ import com.example.administrator.travel.ui.appoint.lineplan.LinePlanActivity;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointSpinnerPop;
 import com.example.administrator.travel.ui.appoint.popwindow.SpinnerBean;
 import com.example.administrator.travel.ui.view.GradientTextView;
+import com.example.administrator.travel.utils.ActivityUtils;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
@@ -94,8 +96,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GlobalValue.mActivity=new ArrayList<>();
-        GlobalValue.mActivity.add(this);
+        ActivityUtils.getInstance().addActivity(this);
         registerEventBus(this);
 
     }
@@ -288,7 +289,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         super.onDestroy();
         GlobalValue.mSelectSpot = null;
         GlobalValue.mLineBeans = null;
-        GlobalValue.mActivity=null;
+        GlobalValue.mPropSelects=null;
         JsonUtils.reset();//释放json
         unregisterEventBus(this);
     }

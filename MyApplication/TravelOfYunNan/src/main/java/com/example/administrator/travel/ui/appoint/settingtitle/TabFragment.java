@@ -24,38 +24,38 @@ import java.util.Set;
  * 标签
  */
 
-public class TabFragment extends BaseFragment
-{
+public class TabFragment extends BaseFragment {
     public static final String TITLE = "title";
     public static final String TITLE_TYPE = "type";
-    public  int mTitleType = -1;
+    public static final String TITLES = "titles";
+    public int mTitleType = -1;
     public static final int TYPE_ADD = 0;
     public static final int REMOVE = 1;
     private List<UserLabelBean> mTitle = null;
     private FlowLayout mFlTitle;
-    private Set<Integer> integerset=new HashSet<>();
-    private int prePosition=-1;
+    private Set<Integer> integerSet = new HashSet<>();
+    private int prePosition = -1;
     private LayoutInflater inflater;
+    private List<SettingTitle> mTitles;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null)
-        {
+        if (getArguments() != null) {
             mTitle = (List<UserLabelBean>) getArguments().getSerializable(TITLE);
-            mTitleType=getArguments().getInt(TITLE_TYPE);
+            mTitles = (List<SettingTitle>) getArguments().getSerializable(TITLES);
+            mTitleType = getArguments().getInt(TITLE_TYPE);
         }
         registerEventBus();
 
     }
 
-    public static TabFragment newInstance(List<UserLabelBean> title, int type)
-    {
+    public static TabFragment newInstance(List<UserLabelBean> title, int type, List<SettingTitle> settingTitles) {
         TabFragment tabFragment = new TabFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(TITLE, (Serializable) title);
         bundle.putInt(TITLE_TYPE, type);
+        bundle.putSerializable(TITLES, ((Serializable)settingTitles));
         tabFragment.setArguments(bundle);
         return tabFragment;
     }
@@ -72,11 +72,14 @@ public class TabFragment extends BaseFragment
 
     @Override
     protected void initData() {
-        int count=mTitle==null?0:mTitle.size();
+        int count = mTitle == null ? 0 : mTitle.size();
         inflater = LayoutInflater.from(getContext());
-        for (int i=0;i<count;i++){
+        for (int i = 0; i < count; i++) {
             TextView textView = (TextView) inflater.inflate(R.layout.item_fragment_tab_title, mFlTitle, false);
             textView.setText(mTitle.get(i).getName());
+            textView.setTag(mTitle.get(i).getId());
+            //如果之前退出再次进入后，设置之前被选中的过的颜色
+            changeBeforeSelect(i, textView);
             mFlTitle.addView(textView);
         }
         mFlTitle.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -87,8 +90,8 @@ public class TabFragment extends BaseFragment
                     @Override
                     public void OnItemClick(int position) {
                         prePosition = position;
-                        if (integerset.contains(position)) {
-                            integerset.remove(position);
+                        if (integerSet.contains(position)) {
+                            integerSet.remove(position);
                             GlobalValue.selectTitleNumber--;
                             notifyTitle(REMOVE);
                         } else {
@@ -97,7 +100,7 @@ public class TabFragment extends BaseFragment
                                 return;
                             }
                             GlobalValue.selectTitleNumber++;
-                            integerset.add(position);
+                            integerSet.add(position);
                             notifyTitle(TYPE_ADD);
                         }
 
@@ -107,13 +110,27 @@ public class TabFragment extends BaseFragment
         });
 
     }
-   public void notifyTitleByPosition(int position){
-       if (integerset.contains(position))integerset.remove(position);
-       notifyTitle(TYPE_ADD);
-   }
+
+    private void changeBeforeSelect(int i, TextView textView) {
+        if(mTitles!=null) {
+            for (SettingTitle settingTitle : mTitles) {
+                if (settingTitle.getId().equals(mTitle.get(i).getId()) && mTitleType==settingTitle.getType()) {
+                    textView.setTextColor(getContext().getResources().getColor(R.color.otherTitleBg));
+                    textView.setBackgroundResource(R.drawable.activity_my_appoint_rl_bg);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void notifyTitleByPosition(int position) {
+        if (integerSet.contains(position)) integerSet.remove(position);
+        notifyTitle(TYPE_ADD);
+    }
+
     private void notifyTitle(int type) {
         //发送消息，更新activity界面
-        SettingTitle settingTitle=new SettingTitle();
+        SettingTitle settingTitle = new SettingTitle();
         settingTitle.setPosition(prePosition);
         settingTitle.setType(mTitleType);
         settingTitle.setChangeType(type);
@@ -122,7 +139,7 @@ public class TabFragment extends BaseFragment
         SettingTitleEvent settingTitleEvent = new SettingTitleEvent();
         settingTitleEvent.setSettingTitle(settingTitle);
         EventBus.getDefault().post(settingTitleEvent);
-       mFlTitle.changeColorAndBg(type, prePosition);
+        mFlTitle.changeColorAndBg(type, mTitle.get(prePosition).getId());
     }
 
 
@@ -130,19 +147,25 @@ public class TabFragment extends BaseFragment
     protected void initListener() {
 
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         unregisterEventBus();
     }
+
     @Subscribe
-   public void onEvent(TabEvent event){
-       if (event.getType()==mTitleType){
-           mFlTitle.changeColorAndBg(REMOVE, event.getPosition());
-           integerset.remove(event.getPosition());
-           GlobalValue.selectTitleNumber--;
-       }
-   }
+    public void onEvent(TabEvent event) {
+        if (event.getType() == mTitleType) {
+            //更改颜色
+            int i = mFlTitle.changeColorAndBg(REMOVE, event.getId());
+            if (i > 0) {
+                integerSet.remove(i);
+                GlobalValue.selectTitleNumber--;
+            }
+        }
+    }
+
     public void registerEventBus() {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
