@@ -24,6 +24,7 @@ import com.example.administrator.travel.ui.appoint.popwindow.AppointOrderPop;
 import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointCommonPop;
+import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanBaseActivity;
 import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
 import com.example.administrator.travel.utils.FastBlur;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -175,7 +176,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onClick(View v) {
                 GlobalValue.mAppointType = IVariable.TYPE_TOGETHER;
-                startActivity(new Intent(getContext(), TravelsPlanActivity.class));
+                startActivity(new Intent(getContext(), TravelsPlanBaseActivity.class));
 
             }
         });
@@ -197,7 +198,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                isShowDialog=false;
+                isShowDialog = false;
             }
         });
         Window window = dialog.getWindow();

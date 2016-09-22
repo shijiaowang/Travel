@@ -88,6 +88,7 @@
         <activity android:name=".ui.activity.MyAppointActivity"/>
         <activity android:name=".ui.activity.BulletinBoardActivity"/>
         <activity android:name=".ui.activity.MyCollectionActivity"/>
+        <activity android:name=".ui.appoint.travelplan.TravelsPlanBaseActivity"/>
         <activity android:name=".ui.appoint.memberdetail.MemberDetailActivity"/>
         <activity android:name=".ui.activity.OrdersCenterActivity"/>
         <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
