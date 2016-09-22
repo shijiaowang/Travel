@@ -33,6 +33,28 @@
                 android:text="您的自拍"
                 android:textColor="@color/colorb5b5b5"
                 android:textSize="16sp" />
+            <RelativeLayout
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/rl_icon"
+                android:visibility="gone"
+                android:layout_width="95dp"
+                android:layout_height="95dp">
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp" />
+                <com.example.administrator.travel.ui.view.FontsIconTextView
+                    android:id="@+id/tv_delete"
+                    android:padding="5dp"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/activity_member_detail_delete"
+                    android:textColor="@color/color9e9c9c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
 
             <RelativeLayout style="@style/activityTravelsPlanRl">
 

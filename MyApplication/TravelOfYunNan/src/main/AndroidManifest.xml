@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <application
         android:name=".TravelsApplication"
         android:allowBackup="true"
@@ -48,6 +49,10 @@
         <activity android:name=".ui.activity.CreateAlbumActivity" />
         <activity android:name=".ui.activity.EditAlbumActivity" />
         <activity android:name=".ui.activity.CatOtherUserAlbumActivity" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".ui.me.LevelActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.ActiveActivity" />
@@ -84,7 +89,6 @@
         <activity android:name=".ui.activity.BulletinBoardActivity"/>
         <activity android:name=".ui.activity.MyCollectionActivity"/>
         <activity android:name=".ui.appoint.memberdetail.MemberDetailActivity"/>
-        <activity android:name=".ui.appoint.cutpicture.CutPictureActivity"/>
         <activity android:name=".ui.activity.OrdersCenterActivity"/>
         <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
         <activity android:name=".ui.activity.CollectionDetailActivity"/>
