@@ -9,6 +9,8 @@
       <module fileurl="file://$PROJECT_DIR$/pickerview/pickerview.iml" filepath="$PROJECT_DIR$/pickerview/pickerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/sampleUcrop/sampleUcrop.iml" filepath="$PROJECT_DIR$/sampleUcrop/sampleUcrop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sampleUcrop/sampleUcrop.iml" filepath="$PROJECT_DIR$/sampleUcrop/sampleUcrop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ucrop/ucrop.iml" filepath="$PROJECT_DIR$/ucrop/ucrop.iml" />
       <module fileurl="file://$PROJECT_DIR$/ucrop/ucrop.iml" filepath="$PROJECT_DIR$/ucrop/ucrop.iml" />
     </modules>
   </component>

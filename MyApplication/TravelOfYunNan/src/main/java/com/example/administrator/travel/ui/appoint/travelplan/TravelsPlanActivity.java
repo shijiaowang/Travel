@@ -54,6 +54,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -514,6 +515,7 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
             Bitmap bitmap = null;
             try {
                 bitmap = BitmapUtils.getBitmapFormUri(this,resultUri);
+                if (bitmap==null)return;
                 //将图片保存在本地
                 mIvIcon.setImageBitmap(bitmap);
 
@@ -536,7 +538,12 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
             Toast.makeText(TravelsPlanActivity.this, R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
         }
     }
-    private void saveCroppedImage(Bitmap b) {
+
+    /**
+     * 将截图存在本地
+     * @param b
+     */
+    private void saveCroppedImage(final Bitmap b) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -546,9 +553,19 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
             if (b != null) {
                 try {
                     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                        String downloadsDirectoryPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-                        String saveName=System.currentTimeMillis()+"icon.jpg";
-                        saveMyBitmap(b,downloadsDirectoryPath,saveName);
+                        final String downloadsDirectoryPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                        final String saveName=System.currentTimeMillis()+"icon.jpg";
+                        x.task().run(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    saveMyBitmap(b, downloadsDirectoryPath, saveName);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
 
                     }else{
                         ToastUtils.showToast("SD卡未挂载！");
@@ -563,14 +580,19 @@ public class TravelsPlanActivity extends BarBaseActivity implements View.OnClick
         }
     }
     public boolean saveMyBitmap(Bitmap bmp,String path, String bitName) throws IOException {
-        File f = new File(path + bitName);
+        File f = new File(path);
+        if (!f.exists()){
+            f.mkdirs();
+        }
+        String url=path+"/"+bitName;
+        File file=new File(url);
         boolean flag = false;
         FileOutputStream fOut = null;
         try {
-            fOut = new FileOutputStream(f);
+            fOut = new FileOutputStream(file);
             bmp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
             flag = true;
-            filename=path+bitName;
+            filename=url;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
