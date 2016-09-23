@@ -7,14 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.EditAlbum;
 import com.example.administrator.travel.bean.HotSpots;
-import com.example.administrator.travel.ui.activity.EditAlbumActivity;
+import com.example.administrator.travel.ui.baseui.EditAlbumActivity;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointWithMe;
 import com.example.administrator.travel.event.AppointWithMeEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.AppointWithMeDetailActivity;
+import com.example.administrator.travel.ui.baseui.AppointWithMeDetailActivity;
 import com.example.administrator.travel.ui.adapter.AppointWithMeAdapter;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.refreshview.XListView;

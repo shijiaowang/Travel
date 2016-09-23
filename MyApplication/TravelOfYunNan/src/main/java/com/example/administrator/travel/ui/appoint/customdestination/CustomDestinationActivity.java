@@ -12,7 +12,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.adddestination.AddCustomDestinationActivity;
-import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.appoint.lineplan.LineBean;
 import com.example.administrator.travel.ui.appoint.lineplan.LinePlanEvent;
 import com.example.administrator.travel.ui.view.refreshview.XListView;

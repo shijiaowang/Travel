@@ -1,7 +1,7 @@
 package com.example.administrator.travel.ui.me;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 
 /**
  * Created by android on 2016/9/17.

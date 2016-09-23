@@ -14,7 +14,7 @@ import com.example.administrator.travel.bean.PeopleBean;
 import com.example.administrator.travel.bean.PricebasecBean;
 import com.example.administrator.travel.event.AppointDetailEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.adapter.TravelDetailLineAdapter;
 import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointDetailMorePop;

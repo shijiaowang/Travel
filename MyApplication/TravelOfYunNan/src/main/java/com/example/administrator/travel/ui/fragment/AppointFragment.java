@@ -176,7 +176,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onClick(View v) {
                 GlobalValue.mAppointType = IVariable.TYPE_TOGETHER;
-                startActivity(new Intent(getContext(), TravelsPlanBaseActivity.class));
+                startActivity(new Intent(getContext(), TravelsPlanActivity.class));
 
             }
         });

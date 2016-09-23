@@ -3,7 +3,7 @@ package com.example.administrator.travel.ui.me;
 import android.app.Activity;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 
 /**
  * Created by android on 2016/9/17.

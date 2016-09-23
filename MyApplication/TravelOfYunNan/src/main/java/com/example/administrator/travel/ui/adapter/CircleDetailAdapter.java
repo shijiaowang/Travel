@@ -8,7 +8,7 @@ import com.example.administrator.travel.bean.CircleDetail;
 import com.example.administrator.travel.event.CircleDetailEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.CircleDetailActivity;
+import com.example.administrator.travel.ui.baseui.CircleDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.CircleDetailHolder;
 import com.example.administrator.travel.utils.GlobalUtils;

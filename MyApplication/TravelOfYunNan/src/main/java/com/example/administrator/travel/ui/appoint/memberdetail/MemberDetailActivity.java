@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.adapter.MemberEnterAdapter;
 import com.example.administrator.travel.ui.adapter.MemberJoinedAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;

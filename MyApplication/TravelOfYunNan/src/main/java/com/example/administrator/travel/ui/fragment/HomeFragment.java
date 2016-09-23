@@ -7,14 +7,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.activity.HomeSearchActivity;
+import com.example.administrator.travel.ui.baseui.HomeSearchActivity;
 import com.example.administrator.travel.ui.adapter.HotSpotsItemDecoration;
 import com.example.administrator.travel.ui.adapter.ChosenAdapter;
 import com.example.administrator.travel.ui.adapter.HotSpotsAdapter;
@@ -22,7 +20,6 @@ import com.example.administrator.travel.ui.adapter.TravelsAdapter;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.ui.fragment.homefragment.HomeActiveFragment;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
-import com.example.administrator.travel.utils.FontsIconUtil;
 
 import java.util.ArrayList;
 import java.util.List;

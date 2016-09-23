@@ -7,7 +7,7 @@ import android.widget.ListView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 
@@ -26,10 +26,7 @@ public class LinePlanActivity extends BarBaseActivity {
     private ListView mLvLine;
     @ViewInject(R.id.bt_next)
     private Button mBtNext;
-
     private LinePlanAdapter linePlanAdapter;
-
-
     @Override
     protected int setContentLayout() {
         return R.layout.activity_line_plan;
@@ -50,6 +47,7 @@ public class LinePlanActivity extends BarBaseActivity {
         });
         registerEventBus(this);
     }
+
 
     /**
      * 保存线路计划
@@ -77,7 +75,6 @@ public class LinePlanActivity extends BarBaseActivity {
         // TODO: 2016/9/18 0018 之后再做数据合法性校验
         try {
             JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
-            LogUtils.e(basecJsonObject.toString());
             String meet = basecJsonObject.getString(IVariable.MEET_ADDRESS);
             String over = basecJsonObject.getString(IVariable.OVER_ADDRESS);
             finish();//验证数据成功就finsh

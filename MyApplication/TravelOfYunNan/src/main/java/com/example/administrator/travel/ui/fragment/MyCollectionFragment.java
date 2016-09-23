@@ -3,13 +3,9 @@ package com.example.administrator.travel.ui.fragment;
 import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.activity.CollectionDetailActivity;
-import com.example.administrator.travel.utils.FontsIconUtil;
-
-import org.xutils.view.annotation.ViewInject;
+import com.example.administrator.travel.ui.baseui.CollectionDetailActivity;
 
 /**
  * Created by Administrator on 2016/8/3 0003.

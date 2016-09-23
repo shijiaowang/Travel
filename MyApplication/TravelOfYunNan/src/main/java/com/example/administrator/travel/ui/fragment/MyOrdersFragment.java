@@ -6,7 +6,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.activity.ConfirmOrdersActivity;
+import com.example.administrator.travel.ui.baseui.ConfirmOrdersActivity;
 import com.example.administrator.travel.ui.adapter.MyOrdersAdapter;
 
 /**

@@ -1,16 +1,12 @@
 package com.example.administrator.travel.ui.appoint.createsuccess;
 
-import android.app.Activity;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.TravelsApplication;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.utils.ActivityUtils;
 
 import org.xutils.view.annotation.ViewInject;

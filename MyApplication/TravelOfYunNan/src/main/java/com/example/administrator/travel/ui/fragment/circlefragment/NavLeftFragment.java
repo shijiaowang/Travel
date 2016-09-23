@@ -2,7 +2,6 @@ package com.example.administrator.travel.ui.fragment.circlefragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -17,7 +16,7 @@ import com.example.administrator.travel.bean.CircleNavRight;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.NavLeftEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.CircleDetailActivity;
+import com.example.administrator.travel.ui.baseui.CircleDetailActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.adapter.CircleNavLeftAdapter;
 import com.example.administrator.travel.ui.adapter.CircleNavRightAdapter;
@@ -34,8 +33,6 @@ import com.example.administrator.travel.utils.XEventUtils;
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.Callback;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

@@ -1,17 +1,12 @@
 package com.example.administrator.travel.ui.fragment.circlefragment;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.activity.PostActivity;
+import com.example.administrator.travel.ui.baseui.PostActivity;
 import com.example.administrator.travel.ui.adapter.CircleHotAdapter;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 

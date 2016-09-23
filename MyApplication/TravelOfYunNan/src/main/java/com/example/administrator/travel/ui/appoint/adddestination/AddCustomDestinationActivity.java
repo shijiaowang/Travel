@@ -11,8 +11,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.db.DBManager;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.BarBaseActivity;
-import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
@@ -24,7 +23,6 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**

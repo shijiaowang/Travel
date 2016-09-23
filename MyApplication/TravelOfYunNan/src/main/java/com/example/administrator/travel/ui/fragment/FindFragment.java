@@ -7,10 +7,10 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.ActiveActivity;
-import com.example.administrator.travel.ui.activity.FindCommonActivity;
-import com.example.administrator.travel.ui.activity.HotelActivity;
-import com.example.administrator.travel.ui.activity.TravelsActivity;
+import com.example.administrator.travel.ui.baseui.ActiveActivity;
+import com.example.administrator.travel.ui.baseui.FindCommonActivity;
+import com.example.administrator.travel.ui.baseui.HotelActivity;
+import com.example.administrator.travel.ui.baseui.TravelsActivity;
 import com.example.administrator.travel.ui.adapter.FindHotAdapter;
 import com.example.administrator.travel.ui.adapter.FindRecommendAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;

@@ -14,11 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".ui.baseui.SplashActivity"
             android:theme="@style/SplashTheme">
         </activity>
         <activity
-            android:name=".ui.activity.WelcomeActivity"
+            android:name=".ui.baseui.WelcomeActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.HomeActivity"
+        <activity android:name=".ui.baseui.HomeActivity"
             android:launchMode="singleTop"
             >
            <!-- <intent-filter>
@@ -35,77 +35,77 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".ui.activity.BaseActivity" />
-        <activity android:name=".ui.activity.FullTransparencyActivity" />
-        <activity android:name=".ui.activity.PostActivity" />
-        <activity android:name=".ui.activity.OtherUserCenterActivity" />
-        <activity android:name=".ui.activity.MessageCenterActivity" />
+        <activity android:name=".ui.baseui.BaseActivity" />
+        <activity android:name=".ui.baseui.FullTransparencyActivity" />
+        <activity android:name=".ui.baseui.PostActivity" />
+        <activity android:name=".ui.baseui.OtherUserCenterActivity" />
+        <activity android:name=".ui.baseui.MessageCenterActivity" />
         <activity android:name=".ui.appoint.selectdestination.SelectDestinationActivity"
             android:windowSoftInputMode="stateHidden"
             />
         <activity android:name=".ui.appoint.adddestination.AddCustomDestinationActivity" />
-        <activity android:name=".ui.activity.FollowAndFanActivity" />
-        <activity android:name=".ui.activity.MyAlbumActivity" />
-        <activity android:name=".ui.activity.CreateAlbumActivity" />
-        <activity android:name=".ui.activity.EditAlbumActivity" />
-        <activity android:name=".ui.activity.CatOtherUserAlbumActivity" />
+        <activity android:name=".ui.baseui.FollowAndFanActivity" />
+        <activity android:name=".ui.baseui.MyAlbumActivity" />
+        <activity android:name=".ui.baseui.CreateAlbumActivity" />
+        <activity android:name=".ui.baseui.EditAlbumActivity" />
+        <activity android:name=".ui.baseui.CatOtherUserAlbumActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".ui.me.LevelActivity" />
-        <activity android:name=".ui.activity.SettingActivity" />
-        <activity android:name=".ui.activity.ActiveActivity" />
+        <activity android:name=".ui.baseui.SettingActivity" />
+        <activity android:name=".ui.baseui.ActiveActivity" />
         <activity android:name=".ui.appoint.travelplan.TravelsPlanWithMeActivity" />
-        <activity android:name=".ui.activity.BarBaseActivity" />
-        <activity android:name=".ui.activity.TravelsActivity"/>
-        <activity android:name=".ui.activity.TitleManagementActivity"/>
+        <activity android:name=".ui.baseui.BarBaseActivity" />
+        <activity android:name=".ui.baseui.TravelsActivity"/>
+        <activity android:name=".ui.baseui.TitleManagementActivity"/>
         <activity android:name=".ui.appoint.customdestination.CustomDestinationActivity"/>
-        <activity android:name=".ui.activity.ActivateDetailActivity"/>
+        <activity android:name=".ui.baseui.ActivateDetailActivity"/>
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentActivity"/>
-        <activity android:name=".ui.activity.DeliciousDetailActivity"/>
-        <activity android:name=".ui.activity.PictureSelectorActivity"/>
-        <activity android:name=".ui.activity.OrdersDetailActivity"/>
+        <activity android:name=".ui.baseui.DeliciousDetailActivity"/>
+        <activity android:name=".ui.baseui.PictureSelectorActivity"/>
+        <activity android:name=".ui.baseui.OrdersDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"
             android:windowSoftInputMode="adjustPan"
             />
         <activity android:name=".ui.appoint.costsetting.CostSettingActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
-        <activity android:name=".ui.activity.AppointWithMeDetailActivity"/>
+        <activity android:name=".ui.baseui.AppointWithMeDetailActivity"/>
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentWithMeActivity"/>
-        <activity android:name=".ui.activity.BaseTransActivity"
+        <activity android:name=".ui.baseui.BaseTransActivity"
             />
-        <activity android:name=".ui.activity.LoginActivity"
+        <activity android:name=".ui.baseui.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTop"
             />
-        <activity android:name=".ui.activity.FindCommonActivity"/>
-        <activity android:name=".ui.activity.TravelsDetailActivity"/>
-        <activity android:name=".ui.activity.DestinationDetailActivity"/>
+        <activity android:name=".ui.baseui.FindCommonActivity"/>
+        <activity android:name=".ui.baseui.TravelsDetailActivity"/>
+        <activity android:name=".ui.baseui.DestinationDetailActivity"/>
         <activity android:name=".ui.appoint.choicesequipment.ChoicePropsActivity"/>
         <activity android:name=".ui.appoint.aite.AiteActivity"/>
-        <activity android:name=".ui.activity.MyAppointActivity"/>
-        <activity android:name=".ui.activity.BulletinBoardActivity"/>
-        <activity android:name=".ui.activity.MyCollectionActivity"/>
+        <activity android:name=".ui.baseui.MyAppointActivity"/>
+        <activity android:name=".ui.baseui.BulletinBoardActivity"/>
+        <activity android:name=".ui.baseui.MyCollectionActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanBaseActivity"/>
         <activity android:name=".ui.appoint.memberdetail.MemberDetailActivity"/>
-        <activity android:name=".ui.activity.OrdersCenterActivity"/>
-        <activity android:name=".ui.activity.ConfirmOrdersActivity"/>
-        <activity android:name=".ui.activity.CollectionDetailActivity"/>
-        <activity android:name=".ui.activity.CustomerServiceActivity"/>
-        <activity android:name=".ui.activity.PreviewPicturesActivity"/>
-        <activity android:name=".ui.activity.ChangePhoneActivity"/>
-        <activity android:name=".ui.activity.MessagePrivateActivity"/>
-        <activity android:name=".ui.activity.RelateMeDetailActivity"/>
-        <activity android:name=".ui.activity.ChangePhoneVerActivity"/>
-        <activity android:name=".ui.activity.PersonalProfileActivity"/>
-        <activity android:name=".ui.activity.HomeSearchActivity"/>
-        <activity android:name=".ui.activity.AppointMessageActivity"/>
-        <activity android:name=".ui.activity.IdentityAuthenticationActivity"/>
+        <activity android:name=".ui.baseui.OrdersCenterActivity"/>
+        <activity android:name=".ui.baseui.ConfirmOrdersActivity"/>
+        <activity android:name=".ui.baseui.CollectionDetailActivity"/>
+        <activity android:name=".ui.baseui.CustomerServiceActivity"/>
+        <activity android:name=".ui.baseui.PreviewPicturesActivity"/>
+        <activity android:name=".ui.baseui.ChangePhoneActivity"/>
+        <activity android:name=".ui.baseui.MessagePrivateActivity"/>
+        <activity android:name=".ui.baseui.RelateMeDetailActivity"/>
+        <activity android:name=".ui.baseui.ChangePhoneVerActivity"/>
+        <activity android:name=".ui.baseui.PersonalProfileActivity"/>
+        <activity android:name=".ui.baseui.HomeSearchActivity"/>
+        <activity android:name=".ui.baseui.AppointMessageActivity"/>
+        <activity android:name=".ui.baseui.IdentityAuthenticationActivity"/>
         <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
-        <activity android:name=".ui.activity.SystemMessageActivity"/>
-        <activity android:name=".ui.activity.AlbumSelectorActivity"/>
+        <activity android:name=".ui.baseui.SystemMessageActivity"/>
+        <activity android:name=".ui.baseui.AlbumSelectorActivity"/>
         <activity android:name=".ui.me.AboutActivity"/>
         <activity android:name=".ui.appoint.createsuccess.CreateAppointSuccessActivity"/>
         <activity android:name=".ui.appoint.desremark.DesRemarkActivity"
@@ -113,20 +113,20 @@
             android:launchMode="singleTask"
             />
         <activity android:name=".ui.appoint.togetherdetail.AppointTogetherDetailActivity"/>
-        <activity android:name=".ui.activity.RelateMeActivity"/>
-        <activity android:name=".ui.activity.HotelActivity"/>
+        <activity android:name=".ui.baseui.RelateMeActivity"/>
+        <activity android:name=".ui.baseui.HotelActivity"/>
         <activity android:name=".ui.appoint.settingtitle.SettingTitleActivity"
             android:launchMode="singleTask"
             />
-        <activity android:name=".ui.activity.RegisterActivity"
+        <activity android:name=".ui.baseui.RegisterActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTop"
             />
-        <activity android:name=".ui.activity.RegisterSuccessActivity"
+        <activity android:name=".ui.baseui.RegisterSuccessActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />
-        <activity android:name=".ui.activity.CircleDetailActivity"/>
-        <activity android:name=".ui.activity.CreatePostActivity"
+        <activity android:name=".ui.baseui.CircleDetailActivity"/>
+        <activity android:name=".ui.baseui.CreatePostActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/CreatePostTheme"
             />

@@ -13,14 +13,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.TravelsApplication;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropSelectBean;
 import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropsActivity;
-import com.example.administrator.travel.ui.appoint.choicesequipment.PopEquAdapter;
 import com.example.administrator.travel.ui.appoint.costsetting.CostSettingActivity;
-import com.example.administrator.travel.ui.activity.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointSpinnerPop;
 import com.example.administrator.travel.ui.appoint.popwindow.SpinnerBean;
 import com.example.administrator.travel.ui.appoint.togetherdetail.ProviderAdapter;

@@ -8,7 +8,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
 import com.example.administrator.travel.bean.PostDetail;
-import com.example.administrator.travel.ui.activity.OtherUserCenterActivity;
+import com.example.administrator.travel.ui.baseui.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;
 import com.example.administrator.travel.ui.adapter.holer.PostReplyTextHolder;

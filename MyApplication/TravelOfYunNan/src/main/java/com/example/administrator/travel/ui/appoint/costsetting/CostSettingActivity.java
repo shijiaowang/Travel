@@ -10,10 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.TravelsApplication;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.activity.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.appoint.desremark.DesRemarkActivity;
 import com.example.administrator.travel.utils.ActivityUtils;
 import com.example.administrator.travel.utils.JsonUtils;

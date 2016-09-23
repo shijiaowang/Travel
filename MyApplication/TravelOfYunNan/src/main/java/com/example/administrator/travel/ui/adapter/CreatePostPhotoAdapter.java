@@ -1,10 +1,7 @@
 package com.example.administrator.travel.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.view.View;
 
-import com.example.administrator.travel.ui.activity.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.CreatePostPhotoHolder;
 import com.example.administrator.travel.ui.adapter.holer.CreatePostPhotoLastHolder;
