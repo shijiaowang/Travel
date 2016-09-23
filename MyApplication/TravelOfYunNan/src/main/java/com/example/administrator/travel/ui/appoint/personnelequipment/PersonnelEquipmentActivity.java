@@ -225,4 +225,14 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
         ProviderAdapter popEquAdapter = new ProviderAdapter(this,choicePropSelectBeans);
         mLvEqu.setAdapter(popEquAdapter);
     }
+    @Subscribe
+    public void onEvent(SpinnerBean spinnerBean){
+        if (spinnerBean.getSpinnerId()==AUTH_TYPE){
+            authType=spinnerBean.getId();
+            mTvAuth.setText(spinnerBean.getType());
+        }else if (spinnerBean.getSpinnerId()==SEX_TYPE){
+            sexType=spinnerBean.getId();
+            mTvSex.setText(spinnerBean.getType());
+        }
+    }
 }

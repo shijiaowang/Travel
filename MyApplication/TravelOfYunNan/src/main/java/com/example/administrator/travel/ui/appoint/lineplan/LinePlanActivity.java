@@ -85,6 +85,7 @@ public class LinePlanActivity extends BarBaseActivity {
 
     @Override
     protected void initViewData() {
+        //再次进入加载目的地
         linePlanAdapter = new LinePlanAdapter(this, GlobalValue.mLineBeans);
         mLvLine.setAdapter(linePlanAdapter);
     }

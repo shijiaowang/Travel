@@ -28,4 +28,5 @@ public class GlobalValue {
     public static Map<String,ChoicePropSelectBean> mPropSelects;//选择的道具
 
 
+    public static String mFileName;
 }

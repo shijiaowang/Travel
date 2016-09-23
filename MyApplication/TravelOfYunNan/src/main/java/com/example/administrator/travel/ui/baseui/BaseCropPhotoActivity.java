@@ -201,6 +201,9 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
         options.setToolbarColor(getResources().getColor(R.color.otherTitleBg));
         options.setStatusBarColor(getResources().getColor(R.color.otherTitleBg));
         options.setAspectRatioOptions(0,new AspectRatio("1",1,1));
+        options.setCompressionQuality(10);
+        options.setMaxBitmapSize(800);//图片压缩
+        options.setImageToCropBoundsAnimDuration(100);
 
         /*
         If you want to configure how gestures work for all UCropActivity tabs

@@ -9,10 +9,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.DottedLineView;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
+import com.example.administrator.travel.utils.JsonUtils;
 
+import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 
@@ -33,6 +36,13 @@ public class LinePlanBottomHolder extends BaseHolder<LineBean> {
 
     @Override
     protected void initItemDatas(LineBean datas, Context mContext, int position) {
+        try{
+            JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
+            mTvEndAdd.setText(basecJsonObject.getString(IVariable.OVER_ADDRESS));
+        }catch (Exception e){
+            e.printStackTrace();
+            mTvEndAdd.setText(mContext.getString(R.string.activity_my_album_add));
+        }
 
     }
 

@@ -28,6 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by Administrator on 2016/7/21 0021.
@@ -35,7 +38,7 @@ import java.util.Map;
  */
 public class PlayTogetherFragment extends LoadBaseFragment implements XListView.IXListViewListener {
 
-    private XListView mLvAppoint;
+    @BindView(R.id.lv_appoint) XListView mLvAppoint;
     private List<AppointTogether.DataBean> mDatas=new ArrayList<>();
     private View root;
     private AppointTogetherAdapter appointTogetherAdapter;
@@ -50,6 +53,7 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         root = LayoutInflater.from(getContext()).inflate(R.layout.fragment_appoint_play_together, null);
+        ButterKnife.bind(this,root);
     }
 
     private void reqData(int type) {
@@ -58,18 +62,13 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
         XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER, appointMap,type,new AppointTogetherEvent());
     }
 
+
     @Override
-    protected void initContentView() {
-        mLvAppoint=((XListView) root.findViewById(R.id.lv_appoint));
+    protected void initListener() {
         mLvAppoint.setPullLoadEnable(true);
         mLvAppoint.setAutoLoadEnable(true);
         mLvAppoint.setXListViewListener(this);
         mLvAppoint.setRefreshTime(getTime());
-    }
-
-    @Override
-    protected void initListener() {
-
 
     }
     @Subscribe

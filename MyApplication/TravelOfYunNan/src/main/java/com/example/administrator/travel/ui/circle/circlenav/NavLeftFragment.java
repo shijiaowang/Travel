@@ -1,7 +1,8 @@
-package com.example.administrator.travel.ui.fragment.circlefragment;
+package com.example.administrator.travel.ui.circle.circlenav;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -36,14 +37,16 @@ import org.xutils.common.Callback;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by Administrator on 2016/7/7 0007.
  */
 public class NavLeftFragment extends LoadBaseFragment {
-
-    private ListView mLvLeftNav;
-    private ListView mLvRightNav;
+    @BindView(R.id.lv_left_nav)  ListView mLvLeftNav;
+    @BindView(R.id.lv_right_nav) ListView mLvRightNav;
     private RelativeLayout mRlPost;
     private int preCircleNavLeftPosition = -1;
     private List<Circle.DataBean.CircleLeftBean> leftList;
@@ -57,10 +60,12 @@ public class NavLeftFragment extends LoadBaseFragment {
     private Callback.Cancelable useCommonBackJson;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        root = UIUtils.inflate(R.layout.fragment_circle_navigation);
+        root = View.inflate(getContext(), R.layout.fragment_circle_navigation, null);
+        ButterKnife.bind(this,root);
     }
+
 
     @Override
     protected Fragment registerEvent() {
@@ -77,12 +82,6 @@ public class NavLeftFragment extends LoadBaseFragment {
     }
 
 
-
-    @Override
-    protected void initContentView() {
-        mLvLeftNav = (ListView) root.findViewById(R.id.lv_left_nav);
-        mLvRightNav = (ListView) root.findViewById(R.id.lv_right_nav);
-    }
 
     @Override
     protected void initListener() {

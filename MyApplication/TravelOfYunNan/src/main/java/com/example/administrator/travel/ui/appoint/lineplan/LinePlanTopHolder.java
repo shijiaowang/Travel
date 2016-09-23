@@ -5,8 +5,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.utils.JsonUtils;
 
+import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
 /**
@@ -24,7 +27,13 @@ public class LinePlanTopHolder extends BaseHolder<LineBean> {
 
     @Override
     protected void initItemDatas(LineBean datas, Context mContext, int position) {
-
+        try{
+            JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
+            mTvStartAdd.setText(basecJsonObject.getString(IVariable.MEET_ADDRESS));
+        }catch (Exception e){
+            e.printStackTrace();
+            mTvStartAdd.setText(mContext.getString(R.string.activity_my_album_add));
+        }
     }
 
 

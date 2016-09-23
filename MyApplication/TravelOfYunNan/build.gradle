@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 23
@@ -7,7 +8,7 @@ android {
     aaptOptions.useNewCruncher = false
 
     defaultConfig {
-        applicationId "com.example.administrator.travel"
+        applicationId "com.yunspeak.travel"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
@@ -43,4 +44,6 @@ dependencies {
     compile 'com.github.promeg:tinypinyin:1.0.0'
     compile project(':pickerview')
     compile project(path: ':ucrop')
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
 }

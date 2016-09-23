@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,18 +20,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import butterknife.ButterKnife;
+
 
 /**
  * Created by Administrator on 2016/8/3 0003.
  */
 public abstract class LoadBaseFragment extends Fragment {
-    public static final  int FIRST_REFRESH=0;
-    public static final  int LOAD_MORE=1;
-    public static final  int REFRESH=2;
+    public static final int FIRST_REFRESH = 0;
+    public static final int LOAD_MORE = 1;
+    public static final int REFRESH = 2;
 
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
     private Fragment fragment;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,11 +47,13 @@ public abstract class LoadBaseFragment extends Fragment {
 
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
-        fragment = registerEvent();
-        if (fragment != null) {
+        if (fragment == null) {
+            fragment = registerEvent();
+            if (fragment==null)return;
             registerEventBus(fragment);
             LogUtils.e("fragment的Event注册了");
         }
@@ -61,7 +67,9 @@ public abstract class LoadBaseFragment extends Fragment {
         loadingPage = new LoadingPage(getContext()) {
             @Override
             public View onCreateSuccessView() {
-                return initView();
+
+
+                return    initView();
             }
 
             @Override
@@ -79,6 +87,7 @@ public abstract class LoadBaseFragment extends Fragment {
                 return LoadBaseFragment.this.getCurrentState();
             }
         };
+
         return loadingPage;
 
     }
@@ -120,11 +129,9 @@ public abstract class LoadBaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initContentView();
         initListener();
         loadData();
     }
-
 
 
     public void loadData() {
@@ -141,10 +148,7 @@ public abstract class LoadBaseFragment extends Fragment {
      */
     protected abstract View initView();
 
-    /**
-     * 初始化布局view
-     */
-    protected abstract void initContentView();
+
 
     /**
      * 初始化监听

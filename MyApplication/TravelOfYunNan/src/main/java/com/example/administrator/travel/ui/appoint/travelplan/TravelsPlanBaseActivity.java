@@ -22,6 +22,7 @@ import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
+import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 
 import org.json.JSONObject;
@@ -208,14 +209,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
         return 1.0f;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        GlobalValue.mSelectSpot = null;
-        GlobalValue.mLineBeans = null;
-        GlobalValue.mPropSelects=null;
-        JsonUtils.reset();//释放json
-    }
+
     protected void showTime(final TextView currentText) {
         if (pvTime == null) {
             pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
@@ -303,6 +297,10 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
             addChildJson(basecJsonObject);
             Class c=isHideRight()? PersonnelEquipmentWithMeActivity.class:PersonnelEquipmentActivity.class;
             Intent intent = new Intent(this, c);
+            if (StringUtils.isEmpty(filename)){
+                throw new Exception();
+            }
+            GlobalValue.mFileName=filename;
             startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
@@ -324,5 +322,13 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
     }
 
     protected abstract void addChildJson(JSONObject basecJsonObject) throws Exception;
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        GlobalValue.mSelectSpot = null;
+        GlobalValue.mLineBeans = null;
+        GlobalValue.mPropSelects=null;
+        GlobalValue.mFileName=null;
+        JsonUtils.reset();//释放json
+    }
 }

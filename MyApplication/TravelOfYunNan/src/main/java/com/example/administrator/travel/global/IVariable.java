@@ -24,6 +24,8 @@ public interface IVariable {
     String GET_PROP_REMARK = API_KEY + "Travel/getPropcontent/";//道具备注
     String GET_PROP_LIST = API_KEY + "Travel/getProplists/";//获取道具列表
     String GET_TITLE_LIST = API_KEY + "Travel/getLabellists/";//获取标签列表
+    String CREATE_APPOINT_TOGETHER = API_KEY + "Travel/addTravel/";//发布约伴-一起玩
+    String CREATE_WITH_ME = API_KEY + "Travel/addTravelplan/";//发布约伴-找人带
     /**
      * User
      */
@@ -44,8 +46,7 @@ public interface IVariable {
     String CIRCLE_FOLLOW = API_KEY + "Circle/setCirclefollow/";//关注圈子
     String GET_CIRCLE_POST = API_KEY + "Circle/getCircleforumlists/";//获取圈子内帖子列表
     String POST_DETAIL = API_KEY + "Circle/getForum/";//获取帖子数据
-    String CREATE_APPOINT_TOGETHER = API_KEY + "Travel/addTravel/";//发布约伴-一起玩
-    String CREATE_WITH_ME = API_KEY + "Travel/addTravelplan/";//发布约伴-找人带
+    String HOT_POST = API_KEY + "Circle/getForumishot/";//热帖
 
     /**
      * 发现
@@ -181,4 +182,6 @@ public interface IVariable {
 
     String ADDRESS = "address";//地址
     String USER="user";
+    String FILE_NAME = "file_name";
+
 }

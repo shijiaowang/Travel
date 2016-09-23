@@ -10,8 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.fragment.circlefragment.HotFragment;
-import com.example.administrator.travel.ui.fragment.circlefragment.NavLeftFragment;
+import com.example.administrator.travel.ui.circle.hotpost.HotFragment;
+import com.example.administrator.travel.ui.circle.circlenav.NavLeftFragment;
 
 import java.util.ArrayList;
 import java.util.List;

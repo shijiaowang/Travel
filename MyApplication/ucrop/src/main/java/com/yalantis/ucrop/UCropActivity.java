@@ -29,6 +29,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -64,6 +65,7 @@ public class UCropActivity extends AppCompatActivity {
     public static final int ROTATE = 2;
     public static final int ALL = 3;
     private boolean mShowCustomView;
+    private ProgressBar mPbProgress;
 
     @IntDef({NONE, SCALE, ROTATE, ALL})
     @Retention(RetentionPolicy.SOURCE)
@@ -132,6 +134,7 @@ public class UCropActivity extends AppCompatActivity {
                 Log.i(TAG, String.format("%s - %s", e.getMessage(), getString(R.string.ucrop_mutate_exception_hint)));
             }
             ((Animatable) menuItemLoader.getIcon()).start();
+
         }
 
         MenuItem menuItemCrop = menu.findItem(R.id.menu_crop);
@@ -149,6 +152,7 @@ public class UCropActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.menu_crop).setVisible(!mShowLoader);
         menu.findItem(R.id.menu_loader).setVisible(mShowLoader);
+
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -156,6 +160,7 @@ public class UCropActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_crop) {
             cropAndSaveImage();
+
         } else if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
@@ -277,7 +282,8 @@ public class UCropActivity extends AppCompatActivity {
 
         setupAppBar();
         initiateRootViews();
-
+        //进度条
+        mPbProgress = (ProgressBar) findViewById(R.id.pb_progress);
         if (mShowBottomControls) {
             ViewGroup photoBox = (ViewGroup) findViewById(R.id.ucrop_photobox);
             View.inflate(this, R.layout.ucrop_controls, photoBox);
@@ -352,6 +358,7 @@ public class UCropActivity extends AppCompatActivity {
 
     private void initiateRootViews() {
         mUCropView = (UCropView) findViewById(R.id.ucrop);
+
         mGestureCropImageView = mUCropView.getCropImageView();
         mOverlayView = mUCropView.getOverlayView();
 
@@ -620,6 +627,7 @@ public class UCropActivity extends AppCompatActivity {
     }
 
     protected void cropAndSaveImage() {
+        mPbProgress.setVisibility(View.VISIBLE);
         mBlockingView.setClickable(true);
         mShowLoader = true;
         supportInvalidateOptionsMenu();

@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by Administrator on 2016/7/21 0021.
@@ -34,7 +37,7 @@ import java.util.Map;
  */
 public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IXListViewListener {
 
-    private XListView mPlayWithMe;
+    @BindView(R.id.lv_play_with_me) XListView mPlayWithMe;
     private View inflate;
     private List<AppointWithMe.DataBean> mDatas = new ArrayList<>();
     private AppointWithMeAdapter appointWithMeAdapter;
@@ -43,6 +46,7 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         inflate = LayoutInflater.from(getContext()).inflate(R.layout.fragment_appoint_play_with_me, null);
+        ButterKnife.bind(this,inflate);
     }
 
     @Override
@@ -56,18 +60,13 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
     }
 
 
+
     @Override
-    protected void initContentView() {
-        mPlayWithMe = (XListView) inflate.findViewById(R.id.lv_play_with_me);
+    protected void initListener() {
         mPlayWithMe.setPullLoadEnable(true);
         mPlayWithMe.setAutoLoadEnable(true);
         mPlayWithMe.setXListViewListener(this);
         mPlayWithMe.setRefreshTime(getTime());
-    }
-
-
-    @Override
-    protected void initListener() {
         mPlayWithMe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -70,7 +70,7 @@ public class XEventUtils {
      * @param type
      * @return
      */
-    public static Callback.Cancelable posFileCommonBackJson(String url, Map<String, String> stringMap,List<String> files, int type,HttpEvent event) {
+    public static Callback.Cancelable postFileCommonBackJson(String url, Map<String, String> stringMap, List<String> files, int type, HttpEvent event) {
         RequestParams requestParams = new RequestParams(url);
         requestParams.setMethod(HttpMethod.POST);
         if (stringMap != null) {

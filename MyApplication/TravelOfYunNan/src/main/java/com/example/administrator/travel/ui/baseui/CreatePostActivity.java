@@ -352,8 +352,9 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
 
         if (isCreateing)return;
         isCreateing = true;
+
         Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content,cId);
-        XEventUtils.posFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,CREATE_POST,new CreatePostEvent());
+        XEventUtils.postFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,CREATE_POST,new CreatePostEvent());
     }
 
     @Subscribe

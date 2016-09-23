@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.createsuccess.CreateAppointSuccessActivity;
@@ -20,10 +21,13 @@ import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.appoint.settingtitle.SettingTitle;
 import com.example.administrator.travel.ui.appoint.settingtitle.SettingTitleActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
+import com.example.administrator.travel.utils.ActivityUtils;
+import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
+import com.example.administrator.travel.utils.Xutils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
@@ -32,6 +36,7 @@ import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -56,10 +61,11 @@ public class DesRemarkActivity extends LoadingBarBaseActivity implements View.On
     private List<SettingTitle> settingTitles;
     private LayoutInflater inflater;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // ActivityUtils.getInstance().addActivity(this);
+        ActivityUtils.getInstance().addActivity(this);
         inflater=LayoutInflater.from(this);
 
     }
@@ -202,8 +208,12 @@ public class DesRemarkActivity extends LoadingBarBaseActivity implements View.On
             jsonObject.put(IVariable.ROUTES, JsonUtils.getRoutesJsonArray());
             jsonObject.put(type, JsonUtils.getPropJsonArray());
             jsonArray.put(jsonObject);
+            List<String> file = new ArrayList<>();
+            file.add(GlobalValue.mFileName);
             Map<String, String> createMap = MapUtils.Build().addKey(this).addJsonTravel(jsonArray.toString()).end();
-            XEventUtils.postUseCommonBackJson(url,createMap, 0, new DesRemarkEvent());
+            XEventUtils.postFileCommonBackJson(url,createMap,file,0, new DesRemarkEvent());
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
