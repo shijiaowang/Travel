@@ -9,12 +9,13 @@ import com.example.administrator.travel.bean.DeliciousDetail;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/26 0026.
  */
 public class DeliciousDetailHoler extends BaseHolder<DeliciousDetail> {
-    @ViewInject(R.id.rb_star)
-    private RatingBar mRbStar;
+    @BindView(R.id.rb_star) RatingBar mRbStar;
 
     public DeliciousDetailHoler(Context context) {
         super(context);

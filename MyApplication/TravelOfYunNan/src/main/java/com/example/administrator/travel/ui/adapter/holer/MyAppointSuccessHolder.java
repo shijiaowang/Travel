@@ -9,15 +9,15 @@ import com.example.administrator.travel.bean.MyAppoint;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/2 0002.
  * 成功约伴
  */
 public class MyAppointSuccessHolder extends BaseHolder<MyAppoint> {
-   @ViewInject(R.id.rl_bulletin_board)
-    public RelativeLayout mRlBulletinBoard;
-    @ViewInject(R.id.rl_member_detail)
-    public RelativeLayout mRlMemberDetail;
+   @BindView(R.id.rl_bulletin_board) public RelativeLayout mRlBulletinBoard;
+    @BindView(R.id.rl_member_detail) public RelativeLayout mRlMemberDetail;
 
     public MyAppointSuccessHolder(Context context) {
         super(context);

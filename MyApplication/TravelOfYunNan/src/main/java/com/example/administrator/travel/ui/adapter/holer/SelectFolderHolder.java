@@ -12,14 +12,14 @@ import com.example.administrator.travel.bean.ImageFolder;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by android on 2016/8/22.
  */
 public class SelectFolderHolder extends BaseHolder<ImageFolder> {
-    @ViewInject(R.id.iv_picture)
-    private ImageView mIvPicture;
-    @ViewInject(R.id.tv_count)
-    private TextView mTvCount;
+    @BindView(R.id.iv_picture) ImageView mIvPicture;
+    @BindView(R.id.tv_count) TextView mTvCount;
 
     public SelectFolderHolder(Context context) {
         super(context);

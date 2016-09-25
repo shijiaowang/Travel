@@ -10,14 +10,14 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/9/9 0009.
  */
 public class AppointCommonPopRightHolder extends BaseHolder<SelectCommonBean> {
-    @ViewInject(R.id.tv_type)
-    private TextView mTvType;
-    @ViewInject(R.id.tv_ok)
-    private TextView mTvOk;
+    @BindView(R.id.tv_type) TextView mTvType;
+    @BindView(R.id.tv_ok) TextView mTvOk;
     public AppointCommonPopRightHolder(Context context) {
         super(context);
     }

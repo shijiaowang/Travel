@@ -21,30 +21,23 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/11 0011.
  */
 public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBean> {
-    @ViewInject(R.id.iv_user_icon)
-    private ImageView mIvUserIcon;
-    @ViewInject(R.id.tv_user_nick_name)
-    private TextView mTvUserNickName;
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.tv_love_number)
-    private TextView mTvLoveNumber;
-    @ViewInject(R.id.tv_title)
-    private TextView mTvTitle;
-    @ViewInject(R.id.tv_discuss_number)
-    private TextView mTvDiscussNumber;
-    @ViewInject(R.id.tv_content)
-    private TextView mTvContent;
-    @ViewInject(R.id.gv_photo)
-    private ToShowAllGridView mGvPhoto;
+    @BindView(R.id.iv_user_icon) ImageView mIvUserIcon;
+    @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
+    @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+    @BindView(R.id.tv_title) TextView mTvTitle;
+    @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
+    @BindView(R.id.tv_content) TextView mTvContent;
+    @BindView(R.id.gv_photo) ToShowAllGridView mGvPhoto;
     private CircleDetailPhotoAdapter circleDetailPhotoAdapter;
     private List<String> list;
-    @ViewInject(R.id.tv_icon_love)
-    public FontsIconTextView mTvIconLove;
+    @BindView(R.id.tv_icon_love) public FontsIconTextView mTvIconLove;
 
     public CircleDetailHolder(Context context) {
         super(context);

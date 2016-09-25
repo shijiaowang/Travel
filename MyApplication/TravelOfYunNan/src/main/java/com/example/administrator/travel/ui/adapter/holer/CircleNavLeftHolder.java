@@ -11,16 +11,15 @@ import com.example.administrator.travel.ui.view.FontsIconTextView;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/8 0008.
  */
 public class CircleNavLeftHolder extends BaseHolder<Circle.DataBean.CircleLeftBean> {
-    @ViewInject(R.id.tv_place)
-    private TextView mTvPlace;
-    @ViewInject(R.id.tv_cursor)
-    private FontsIconTextView mTvCursor;
-    @ViewInject(R.id.v_line)
-    private View mVLine;
+    @BindView(R.id.tv_place) TextView mTvPlace;
+    @BindView(R.id.tv_cursor)FontsIconTextView mTvCursor;
+    @BindView(R.id.v_line)View mVLine;
 
     public CircleNavLeftHolder(Context context) {
         super(context);

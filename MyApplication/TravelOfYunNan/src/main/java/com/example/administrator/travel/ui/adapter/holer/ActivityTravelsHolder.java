@@ -12,22 +12,18 @@ import com.example.administrator.travel.utils.FormatDateUtils;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/25 0025.
  */
 public class ActivityTravelsHolder extends BaseHolder<Travels.DataBean> {
-    @ViewInject(R.id.iv_picture)
-    private ImageView mIvPicture;
-    @ViewInject(R.id.iv_user_icon)
-    private ImageView mIvUserIcon;
-    @ViewInject(R.id.tv_nick_name)
-    private TextView mTvNickName;
-    @ViewInject(R.id.tv_content)
-    private TextView mTvContent;
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.tv_watch_number)
-    private TextView mTvWatchNumber;
+    @BindView(R.id.iv_picture) ImageView mIvPicture;
+    @BindView(R.id.iv_user_icon) ImageView mIvUserIcon;
+    @BindView(R.id.tv_nick_name) TextView mTvNickName;
+    @BindView(R.id.tv_content) TextView mTvContent;
+    @BindView(R.id.tv_time)TextView mTvTime;
+    @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
     public ActivityTravelsHolder(Context context) {
         super(context);
     }

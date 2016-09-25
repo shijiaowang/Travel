@@ -15,22 +15,18 @@ import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/31 0031.
  */
 public class ChoicePropsRightHolder extends BaseHolder<ChoicePropBean.DataBean.ProplistsBean> {
-    @ViewInject(R.id.tv_number)
-    public TextView mTvNumber;
-    @ViewInject(R.id.tv_select_number)
-    public TextView mTvSelectNumber;
-    @ViewInject(R.id.tv_name)
-    private TextView mTvName;
-    @ViewInject(R.id.iv_picture)
-    private ImageView mIvPicture;
-    @ViewInject(R.id.bt_reduce)
-    public Button mBtReduce;
-    @ViewInject(R.id.bt_add)
-    public Button mBtAdd;
+    @BindView(R.id.tv_number)public TextView mTvNumber;
+    @BindView(R.id.tv_select_number)public TextView mTvSelectNumber;
+    @BindView(R.id.tv_name) TextView mTvName;
+    @BindView(R.id.iv_picture)  ImageView mIvPicture;
+    @BindView(R.id.bt_reduce)public Button mBtReduce;
+    @BindView(R.id.bt_add) public Button mBtAdd;
 
     public ChoicePropsRightHolder(Context context) {
         super(context);

@@ -8,13 +8,14 @@ import com.example.administrator.travel.ui.view.FontsIconTextView;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/4 0004.
  */
 public class MemberJoinedHolder extends BaseHolder {
 
-    @ViewInject(R.id.tv_sex)
-    private FontsIconTextView mTvSex;
+    @BindView(R.id.tv_sex) FontsIconTextView mTvSex;
 
     public MemberJoinedHolder(Context context) {
         super(context);

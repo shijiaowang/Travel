@@ -21,22 +21,19 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/5 0005.
  */
 public class LinePlanHolder extends BaseHolder<LineBean> {
-    private  int total;
-    @ViewInject(R.id.tv_add)
-    public FontsIconTextView mTvAdd;
-    @ViewInject(R.id.dlv_line)
-    private DottedLineView mDlvLine;
-    @ViewInject(R.id.tv_number)
-    private TextView mTvNumber;
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.lv_add)
-    private ListView mLvAdd;
-    private FontsIconTextView mTvDelete;
+
+    @BindView(R.id.tv_add) FontsIconTextView mTvAdd;
+    @BindView(R.id.dlv_line) DottedLineView mDlvLine;
+    @BindView(R.id.tv_number) TextView mTvNumber;
+    @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.lv_add)  ListView mLvAdd;
+
 
 
 

@@ -19,28 +19,21 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.Arrays;
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/11 0011.
  */
 public class PostOpHolder extends BaseHolder<Object> {
-    @ViewInject(R.id.tv_icon)
-    private ImageView mTvUserIcon;
-    @ViewInject(R.id.tv_nick_name)
-    private TextView mTvNickName;
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.tv_type)
-    private TextView mTvType;
-    @ViewInject(R.id.tv_content)
-    private TextView mTvContent;
-    @ViewInject(R.id.lv_post_image)
-    private ToShowAllListView mLvPostImage;
-    @ViewInject(R.id.fitv_like)
-    private FontsIconTextView mFitvLike;
-    @ViewInject(R.id.tv_like_user)
-    private TextView mTvLikeUser;
-    @ViewInject(R.id.tv_discuss_count)
-    private TextView mTvDiscussCount;
+    @BindView(R.id.tv_icon) ImageView mTvUserIcon;
+    @BindView(R.id.tv_nick_name) TextView mTvNickName;
+    @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.tv_type)TextView mTvType;
+    @BindView(R.id.tv_content) TextView mTvContent;
+    @BindView(R.id.lv_post_image) ToShowAllListView mLvPostImage;
+    @BindView(R.id.fitv_like) FontsIconTextView mFitvLike;
+    @BindView(R.id.tv_like_user) TextView mTvLikeUser;
+    @BindView(R.id.tv_discuss_count) TextView mTvDiscussCount;
 
     private boolean isFirst = true;
     private PostDetail.DataBean.ForumBean forum;

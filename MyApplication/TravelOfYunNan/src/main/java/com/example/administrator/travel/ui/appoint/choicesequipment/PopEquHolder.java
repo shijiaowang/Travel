@@ -9,14 +9,14 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/31 0031.
  */
 public class PopEquHolder extends BaseHolder<ChoicePropSelectBean> {
-    @ViewInject(R.id.tv_name)
-    private TextView mTvNmae;
-    @ViewInject(R.id.tv_number)
-    private TextView mTvNumber;
+    @BindView(R.id.tv_name) TextView mTvNmae;
+    @BindView(R.id.tv_number) TextView mTvNumber;
     public PopEquHolder(Context context) {
         super(context);
     }

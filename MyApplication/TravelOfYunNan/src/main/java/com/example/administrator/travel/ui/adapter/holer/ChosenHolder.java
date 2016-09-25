@@ -10,14 +10,14 @@ import com.example.administrator.travel.bean.Chosen;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/8 0008.
  */
 public class ChosenHolder extends BaseHolder<Chosen> {
-    @ViewInject(R.id.tv_chosen_text)
-    private TextView mTvChosenText;
-    @ViewInject(R.id.iv_chosen_picture)
-    private ImageView mIvChosenPicture;
+    @BindView(R.id.tv_chosen_text) TextView mTvChosenText;
+    @BindView(R.id.iv_chosen_picture) ImageView mIvChosenPicture;
 
     public ChosenHolder(Context context) {
         super(context);

@@ -17,32 +17,23 @@ import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/21 0021.
  */
 public class AppointWithMeHolder extends BaseHolder<AppointWithMe.DataBean> {
-    @ViewInject(R.id.fl_title)
-    private FlowLayout mFlTitle;
-    @ViewInject(R.id.tv_icon_love)
-    private FontsIconTextView mTvIconLove;
-    @ViewInject(R.id.iv_bg)
-    private ImageView mIvBg;
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.tv_dream)
-    private TextView mTvDream;
-    @ViewInject(R.id.tv_have_number)
-    private TextView mTvHaveNumber;
-    @ViewInject(R.id.tv_money)
-    private TextView mTvMoney;
-    @ViewInject(R.id.tv_watch_number)
-    private TextView mTvWatchNumber;
-    @ViewInject(R.id.tv_love_number)
-    private TextView mTvLoveNumber;
-    @ViewInject(R.id.tv_how_long)
-    private TextView mTvHowLong;
-    @ViewInject(R.id.tv_start_and_long)
-    private TextView mTvStartAndLong;
+    @BindView(R.id.fl_title) FlowLayout mFlTitle;
+    @BindView(R.id.tv_icon_love) FontsIconTextView mTvIconLove;
+    @BindView(R.id.iv_bg) ImageView mIvBg;
+    @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.tv_dream) TextView mTvDream;
+    @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
+    @BindView(R.id.tv_money) TextView mTvMoney;
+    @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
+    @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+    @BindView(R.id.tv_how_long) TextView mTvHowLong;
+    @BindView(R.id.tv_start_and_long)TextView mTvStartAndLong;
     public AppointWithMeHolder(Context context) {
         super(context);
     }

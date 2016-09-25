@@ -10,17 +10,16 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/31 0031.
  * 选择道具类型
  */
 public class ChoicePropsLeftHolder extends BaseHolder<ChoicePropBean.DataBean.ProptypeBean> {
-    @ViewInject(R.id.tv_type)
-    private TextView mTvType;
-    @ViewInject(R.id.v_cursor)
-    private View mVCursor;
-    @ViewInject(R.id.tv_cursor)
-    private TextView mTvCursor;
+    @BindView(R.id.tv_type) TextView mTvType;
+    @BindView(R.id.v_cursor) View mVCursor;
+    @BindView(R.id.tv_cursor) TextView mTvCursor;
     public ChoicePropsLeftHolder(Context context) {
         super(context);
     }

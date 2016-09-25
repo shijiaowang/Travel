@@ -12,14 +12,14 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/9/12 0012.
  */
 public class LinePlanDestinationHolder extends BaseHolder<LineBean.Destination> {
-    @ViewInject(R.id.tv_add)
-    private TextView mTvAdd;
-    @ViewInject(R.id.tv_delete)
-    public TextView mTvDelete;
+    @BindView(R.id.tv_add)TextView mTvAdd;
+    @BindView(R.id.tv_delete)public TextView mTvDelete;
 
     public LinePlanDestinationHolder(Context context) {
         super(context);

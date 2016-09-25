@@ -9,14 +9,14 @@ import com.example.administrator.travel.R;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/9/7 0007.
  */
 public class TitleManagementHolder extends BaseHolder {
-    @ViewInject(R.id.tv_toggle)
-    public TextView mTvToggle;
-    @ViewInject(R.id.ll_toggle)
-    public LinearLayout mLlToggle;
+    @BindView(R.id.tv_toggle)public TextView mTvToggle;
+    @BindView(R.id.ll_toggle)public LinearLayout mLlToggle;
     public TitleManagementHolder(Context context) {
         super(context);
     }

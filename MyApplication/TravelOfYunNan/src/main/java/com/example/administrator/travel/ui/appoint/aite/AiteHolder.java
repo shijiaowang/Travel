@@ -11,14 +11,14 @@ import com.example.administrator.travel.ui.appoint.aite.AiteFollow;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/1 0001.
  */
 public class AiteHolder extends BaseHolder<AiteFollow> {
-   @ViewInject(R.id.tv_nick_name)
-    private TextView mTvNickName;
-    @ViewInject(R.id.tv_aite)
-    private TextView mTvAite;
+    @BindView(R.id.tv_nick_name) TextView mTvNickName;
+    @BindView(R.id.tv_aite)TextView mTvAite;
 
     public AiteHolder(Context context) {
         super(context);

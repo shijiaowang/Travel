@@ -14,21 +14,18 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/9/8 0008.
  * 选择景点
  */
 public class SelectDestinationHolder extends BaseHolder<Destination.DataBean.BodyBean> {
-    @ViewInject(R.id.iv_spot)
-    private ImageView mIvSpot;
-    @ViewInject(R.id.tv_name)
-    private TextView mTvName;
-    @ViewInject(R.id.rb_star)
-    private RatingBar mRbStart;
-    @ViewInject(R.id.tv_add)
-    private TextView mTvAdd;
-    @ViewInject(R.id.tv_select)
-    private TextView mTvSelect;
+    @BindView(R.id.iv_spot) ImageView mIvSpot;
+    @BindView(R.id.tv_name) TextView mTvName;
+    @BindView(R.id.rb_star) RatingBar mRbStart;
+    @BindView(R.id.tv_add) TextView mTvAdd;
+    @BindView(R.id.tv_select) TextView mTvSelect;
 
 
 

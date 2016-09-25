@@ -14,22 +14,18 @@ import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/8 0008.
  */
 public class CircleNavRightHolder extends BaseHolder<CircleNavRight.RightCircle> {
-    @ViewInject(R.id.rl_post)
-    private RelativeLayout mRlPost;
-    @ViewInject(R.id.iv_picture)
-    private ImageView mIvCircleBg;
-    @ViewInject(R.id.civ_circle_icon)
-    private ImageView mCivCircleIcon;
-    @ViewInject(R.id.tv_circle_name)
-    private TextView mTvCircleName;
-    @ViewInject(R.id.tv_follow_number)
-    private TextView mTvFollowNumber;
-    @ViewInject(R.id.tv_post_number)
-    private TextView mTvPostNumber;
+    @BindView(R.id.rl_post) RelativeLayout mRlPost;
+    @BindView(R.id.iv_picture) ImageView mIvCircleBg;
+    @BindView(R.id.civ_circle_icon) ImageView mCivCircleIcon;
+    @BindView(R.id.tv_circle_name) TextView mTvCircleName;
+    @BindView(R.id.tv_follow_number) TextView mTvFollowNumber;
+    @BindView(R.id.tv_post_number) TextView mTvPostNumber;
     private ImageOptions imageOptions= ImageOptionsUtil.getImageOptions();
 
 

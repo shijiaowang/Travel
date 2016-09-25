@@ -10,12 +10,13 @@ import com.example.administrator.travel.ui.appoint.togetherdetail.AppointTogethe
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/9/5 0005.
  */
 public class AppointDetailLineItemHolder extends BaseHolder<AppointTogetherDetail.DataBean.RoutesBean> {
-    @ViewInject(R.id.tv_spot_name)
-    private TextView mTvSpotName;
+    @BindView(R.id.tv_spot_name) TextView mTvSpotName;
     public AppointDetailLineItemHolder(Context context) {
         super(context);
     }

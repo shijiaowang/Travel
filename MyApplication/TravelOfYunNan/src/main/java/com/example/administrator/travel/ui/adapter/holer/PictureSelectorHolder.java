@@ -14,16 +14,15 @@ import org.xutils.x;
 
 import java.io.File;
 
+import butterknife.BindView;
+
 /**
  * Created by android on 2016/8/23.
  */
 public class PictureSelectorHolder extends BaseHolder<String> {
-    @ViewInject(R.id.iv_picture)
-    public ImageView mIvPicture;
-    @ViewInject(R.id.tv_select)
-    public FontsIconTextView mTvSelect;
-    @ViewInject(R.id.iv_picture_1)
-     public View mImage;
+    @BindView(R.id.iv_picture) public ImageView mIvPicture;
+    @BindView(R.id.tv_select)public FontsIconTextView mTvSelect;
+    @BindView(R.id.iv_picture_1) public View mImage;
 
 
     private String dir;

@@ -13,18 +13,16 @@ import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/9/5 0005.
  */
 public class AppointDetailLineDetailHolder extends BaseHolder<AppointTogetherDetail.DataBean.RoutesBean> {
-    @ViewInject(R.id.iv_bg)
-    private ImageView mIvBg;
-    @ViewInject(R.id.tv_des)
-    private TextView mTvDes;
-    @ViewInject(R.id.tv_address)
-    private TextView mTvAddress;
-    @ViewInject(R.id.tv_name)
-    private TextView mTvName;
+    @BindView(R.id.iv_bg) ImageView mIvBg;
+    @BindView(R.id.tv_des) TextView mTvDes;
+    @BindView(R.id.tv_address) TextView mTvAddress;
+    @BindView(R.id.tv_name) TextView mTvName;
 
     public AppointDetailLineDetailHolder(Context context) {
         super(context);

@@ -18,18 +18,16 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by android on 2016/9/4.
  */
 public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetail.DataBean.RoutesBean>>{
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.dlv_line)
-    private View mDlvLine;
-    @ViewInject(R.id.tv_number)
-    private TextView mTvNumber;
-    @ViewInject(R.id.lv_line)
-    private ToShowAllListView mLvLine;
+    @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.dlv_line) View mDlvLine;
+    @BindView(R.id.tv_number) TextView mTvNumber;
+    @BindView(R.id.lv_line) ToShowAllListView mLvLine;
 
     private boolean isDetail;
 

@@ -21,12 +21,13 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/5 0005.
  */
 public class LinePlanBottomHolder extends BaseHolder<LineBean> {
-    @ViewInject(R.id.tv_end_add)
-    public TextView mTvEndAdd;
+    @BindView(R.id.tv_end_add) TextView mTvEndAdd;
 
 
     public LinePlanBottomHolder(Context context) {

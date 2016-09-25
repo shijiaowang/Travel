@@ -10,12 +10,13 @@ import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by android on 2016/7/31.
  */
 public class CreatePostPhotoHolder extends BaseHolder<String> {
-    @ViewInject(R.id.iv_picture)
-    private ImageView mIvPicture;
+    @BindView(R.id.iv_picture) ImageView mIvPicture;
     public CreatePostPhotoHolder(Context context) {
         super(context);
     }

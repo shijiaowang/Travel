@@ -11,12 +11,13 @@ import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/23 0023.
  */
 public class PostImageHolder extends BaseHolder<String> {
-    @ViewInject(R.id.iv_picture)
-    private ImageView mIvPicture;
+    @BindView(R.id.iv_picture) ImageView mIvPicture;
     ImageOptions imageOptions= new ImageOptions.Builder().setSize(DensityUtil.dip2px(326), DensityUtil.dip2px(165)).setCrop(true).build();
     public PostImageHolder(Context context) {
         super(context);

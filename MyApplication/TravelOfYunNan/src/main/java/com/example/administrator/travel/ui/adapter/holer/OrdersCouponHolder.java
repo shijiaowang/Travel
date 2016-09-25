@@ -7,15 +7,15 @@ import com.example.administrator.travel.R;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/12 0012.
  */
 public class OrdersCouponHolder extends BaseHolder {
 
-    @ViewInject(R.id.v_line)
-    private View line1;
-    @ViewInject(R.id.v_line2)
-    private View line2;
+    @BindView(R.id.v_line) View line1;
+    @BindView(R.id.v_line2) View line2;
     private boolean isCouponFragment;
     public OrdersCouponHolder(Context context,boolean isCouponFragment) {
         super(context);

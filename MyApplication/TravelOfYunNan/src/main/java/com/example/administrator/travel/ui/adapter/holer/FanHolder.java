@@ -9,16 +9,15 @@ import com.example.administrator.travel.bean.Fan;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Administrator on 2016/7/18 0018.
  */
 public class FanHolder extends BaseHolder<Fan.FanPeople> {
-    @ViewInject(R.id.tv_nick_name)
-    private TextView mTvNickName;
-    @ViewInject(R.id.iv_icon)
-    private CircleImageView mIvIcon;
+    @BindView(R.id.tv_nick_name) TextView mTvNickName;
+    @BindView(R.id.iv_icon) CircleImageView mIvIcon;
 
     public FanHolder(Context context) {
         super(context);

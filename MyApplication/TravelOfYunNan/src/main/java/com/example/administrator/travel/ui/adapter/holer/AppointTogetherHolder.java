@@ -20,35 +20,25 @@ import org.xutils.x;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 
 /**
  * Created by Administrator on 2016/7/20 0020.
  */
 public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> {
-    @ViewInject(R.id.fl_title)
-    private FlowLayout mFlTitle;
-    @ViewInject(R.id.iv_icon)
-    private ImageView mIvIcon;
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.tv_have_number)
-    private TextView mTvHaveNumber;
-    @ViewInject(R.id.tv_add)
-    private TextView mTvAdd;
-    @ViewInject(R.id.tv_plan_number)
-    private TextView mTvPlanNumber;
-    @ViewInject(R.id.tv_money)
-    private TextView mTvMoney;
-    @ViewInject(R.id.tv_start_and_time)
-    private TextView mTvStartAndTime;
-    @ViewInject(R.id.tv_icon_love)
-    private FontsIconTextView mTvIconLove;
-    @ViewInject(R.id.tv_watch_number)
-    private TextView mTvWatchNumber;
-    @ViewInject(R.id.tv_love_number)
-    private TextView mTvLoveNumber;
-    @ViewInject(R.id.tv_how_long)
-    private TextView mTvHowLong;
+    @BindView(R.id.fl_title) FlowLayout mFlTitle;
+    @BindView(R.id.iv_icon) ImageView mIvIcon;
+    @BindView(R.id.tv_time)TextView mTvTime;
+    @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
+    @BindView(R.id.tv_add) TextView mTvAdd;
+    @BindView(R.id.tv_plan_number) TextView mTvPlanNumber;
+    @BindView(R.id.tv_money) TextView mTvMoney;
+    @BindView(R.id.tv_start_and_time) TextView mTvStartAndTime;
+    @BindView(R.id.tv_icon_love) FontsIconTextView mTvIconLove;
+    @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
+    @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+    @BindView(R.id.tv_how_long) TextView mTvHowLong;
     private LayoutInflater inflater;
     public View root;
 

@@ -15,27 +15,21 @@ import com.example.administrator.travel.utils.StringUtils;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/11 0011.
  * 回复其他楼层
  */
 public class PostReplyUserHolder extends BaseHolder<Object> {
-    @ViewInject(R.id.v_line)
-    public View line;
-    @ViewInject(R.id.iv_reply_icon)
-    public ImageView mIvReplyIcon;
-    @ViewInject(R.id.tv_reply_nick_name)
-    private TextView mTvReplyNickName;
-    @ViewInject(R.id.tv_reply_message)
-    private TextView mTvReplyMessage;
-    @ViewInject(R.id.tv_floor_number)
-    private TextView mTvFloorNumber;
-    @ViewInject(R.id.tv_love_number)
-    private TextView mTvLoveNumber;
-    @ViewInject(R.id.tv_reply_time)
-    private TextView mTvReplyTime;
-    @ViewInject(R.id.tv_love)
-    private TextView mTvLove;
+    @BindView(R.id.v_line) public View line;
+    @BindView(R.id.iv_reply_icon)public ImageView mIvReplyIcon;
+    @BindView(R.id.tv_reply_nick_name) TextView mTvReplyNickName;
+    @BindView(R.id.tv_reply_message) TextView mTvReplyMessage;
+    @BindView(R.id.tv_floor_number) TextView mTvFloorNumber;
+    @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+    @BindView(R.id.tv_reply_time) TextView mTvReplyTime;
+    @BindView(R.id.tv_love) TextView mTvLove;
 
 
 

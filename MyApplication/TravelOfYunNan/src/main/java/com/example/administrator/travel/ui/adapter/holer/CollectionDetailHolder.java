@@ -8,12 +8,13 @@ import com.example.administrator.travel.R;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by android on 2016/8/14.
  */
 public class CollectionDetailHolder extends BaseHolder {
-  @ViewInject(R.id.tv_delete)
-    private TextView mTvDelete;
+  @BindView(R.id.tv_delete) TextView mTvDelete;
 
     public CollectionDetailHolder(Context context) {
         super(context);

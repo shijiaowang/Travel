@@ -11,6 +11,8 @@ import org.xutils.x;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Administrator on 2016/7/8 0008.
  * BaseAdapter封装
@@ -65,7 +67,7 @@ public abstract class TravelBaseAdapter<T> extends BaseAdapter{
         if (convertView==null || convertView.getTag()==null){
             baseHolder=initHolder(position);
             convertView=baseHolder.getRootView();
-            x.view().inject(baseHolder,convertView);
+            ButterKnife.bind(baseHolder,convertView);
         }else {
             baseHolder= (BaseHolder) convertView.getTag();
         }

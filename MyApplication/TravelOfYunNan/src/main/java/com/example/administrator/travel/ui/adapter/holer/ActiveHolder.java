@@ -11,20 +11,17 @@ import com.example.administrator.travel.bean.Active;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/25 0025.
  */
 public class ActiveHolder extends BaseHolder<Active.DataBean> {
-    @ViewInject(R.id.tv_air)
-    private TextView mTvAir;
-    @ViewInject(R.id.tv_type)
-    private TextView mTvType;
-    @ViewInject(R.id.tv_people)
-    private TextView mTvPeople;
-    @ViewInject(R.id.tv_name)
-    private TextView mTvName;
-    @ViewInject(R.id.iv_bg)
-    private ImageView mIvBg;
+    @BindView(R.id.tv_air) TextView mTvAir;
+    @BindView(R.id.tv_type) TextView mTvType;
+    @BindView(R.id.tv_people) TextView mTvPeople;
+    @BindView(R.id.tv_name) TextView mTvName;
+    @BindView(R.id.iv_bg) ImageView mIvBg;
 
     public ActiveHolder(Context context) {
         super(context);

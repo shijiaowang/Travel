@@ -12,12 +12,13 @@ import com.example.administrator.travel.utils.JsonUtils;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/5 0005.
  */
 public class LinePlanTopHolder extends BaseHolder<LineBean> {
-    @ViewInject(R.id.tv_start_add)
-    public TextView mTvStartAdd;
+    @BindView(R.id.tv_start_add) public TextView mTvStartAdd;
 
 
     public LinePlanTopHolder(Context context) {

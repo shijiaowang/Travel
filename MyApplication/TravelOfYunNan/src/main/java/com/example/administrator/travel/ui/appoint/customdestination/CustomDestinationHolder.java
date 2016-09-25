@@ -14,24 +14,19 @@ import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/9/8 0008.
  */
 public class CustomDestinationHolder extends BaseHolder<CustomDestinationBean.DataBean> {
-    @ViewInject(R.id.iv_spot)
-    private ImageView mIvSpot;
-    @ViewInject(R.id.tv_name)
-    private TextView mTvName;
-    @ViewInject(R.id.tv_user)
-    private TextView mTvUser;
-    @ViewInject(R.id.tv_show)
-    private ShowAllTextView mTvShow;
-    @ViewInject(R.id.tv_add)
-    private TextView mTvAdd;
-    @ViewInject(R.id.tv_select)
-    private TextView mTvSelect;
-    @ViewInject(R.id.tv_delete)
-    public TextView mTvDelete;
+    @BindView(R.id.iv_spot)ImageView mIvSpot;
+    @BindView(R.id.tv_name)TextView mTvName;
+    @BindView(R.id.tv_user) TextView mTvUser;
+    @BindView(R.id.tv_show) ShowAllTextView mTvShow;
+    @BindView(R.id.tv_add) TextView mTvAdd;
+    @BindView(R.id.tv_select) TextView mTvSelect;
+    @BindView(R.id.tv_delete) TextView mTvDelete;
     public CustomDestinationHolder(Context context) {
         super(context);
     }

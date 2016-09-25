@@ -12,16 +12,15 @@ import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/9/8 0008.
  */
 public class AppointWithMeDetailDestinationHolder extends BaseHolder<AppointWithMeDetail.DataBean.RoutesBean> {
-    @ViewInject(R.id.iv_bg)
-    private ImageView mIvBg;
-    @ViewInject(R.id.tv_name)
-    private TextView mTvName;
-    @ViewInject(R.id.tv_add)
-    private TextView mTvAdd;
+    @BindView(R.id.iv_bg) ImageView mIvBg;
+    @BindView(R.id.tv_name) TextView mTvName;
+    @BindView(R.id.tv_add) TextView mTvAdd;
     public AppointWithMeDetailDestinationHolder(Context context) {
         super(context);
     }

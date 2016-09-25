@@ -8,13 +8,14 @@ import com.example.administrator.travel.ui.view.FontsIconTextView;
 
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/8/3 0003.
  */
 public class MyCollectionHolder extends BaseHolder {
 
-    @ViewInject(R.id.tv_delete)
-    private FontsIconTextView mTvDelete;
+    @BindView(R.id.tv_delete) FontsIconTextView mTvDelete;
 
     public MyCollectionHolder(Context context) {
         super(context);
