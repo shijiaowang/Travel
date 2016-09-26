@@ -78,15 +78,12 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
         });
     }
 
-    private void reqData(int type) {
-        int count = type == LOAD_MORE ? mDatas.size() : 0;
-        Map<String, String> appointMap = MapUtils.Build().addKey(getContext()).addUserId().addPageSize(10).addCount(count).end();
-        XEventUtils.getUseCommonBackJson(IVariable.PLAY_WITHE_ME, appointMap, type, new AppointWithMeEvent());
-    }
 
     @Override
-    protected void onLoad() {
-        reqData(LOAD_MORE);
+    protected void onLoad(int type) {
+        int count = type == LOAD_MORE ? getListSize(mDatas) : 0;
+        Map<String, String> appointMap = MapUtils.Build().addKey(getContext()).addUserId().addPageSize(10).addCount(count).end();
+        XEventUtils.getUseCommonBackJson(IVariable.PLAY_WITHE_ME, appointMap, type, new AppointWithMeEvent());
     }
 
     @Subscribe
@@ -102,8 +99,7 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
             ToastUtils.showToast(event.getMessage());
             setState(LoadingPage.ResultState.STATE_ERROR);
         }
-        //通知自定义view去显示正确读取后界面
-        afterLoadData();
+
     }
     private void dealData(AppointWithMeEvent event) {
         AppointWithMe appointWithMe = GsonUtils.getObject(event.getResult(), AppointWithMe.class);
@@ -123,13 +119,4 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
 
     }
 
-    @Override
-    public void onRefresh() {
-        reqData(REFRESH);
-    }
-
-    @Override
-    public void onLoadMore() {
-        reqData(LOAD_MORE);
-    }
 }

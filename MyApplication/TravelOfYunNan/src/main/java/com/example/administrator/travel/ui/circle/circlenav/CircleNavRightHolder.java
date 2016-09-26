@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.circle.circlenav;
 
 import android.content.Context;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.CircleNavRight;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.utils.ImageOptionsUtil;
 
 import org.xutils.image.ImageOptions;

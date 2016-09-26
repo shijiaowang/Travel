@@ -1,203 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorFAFAFA"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="40dp">
 
-    <ScrollView
+    <View
+        style="@style/fragmentMeLine"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp" />
+
+    <RelativeLayout style="@style/activityTravelsPlanRl">
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityTravelsPlanTv"
+            android:text="@string/fragment_find_add" />
+
+        <TextView
+            style="@style/activityTravelsPlanDes"
+            android:text="出发地" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_start_city"
+        android:layout_width="130dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/activity_create_album_add_bg"
+        android:gravity="center_vertical"
+        android:hint="选择您的出发地..."
+        android:paddingLeft="6dp"
+        android:textColorHint="@color/colorb5b5b5"
+        android:textSize="13sp" />
+
+
+    <View
+        style="@style/fragmentMeLine"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp" />
+
+    <RelativeLayout style="@style/activityTravelsPlanRl">
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            style="@style/activityTravelsPlanTv"
+            android:text="@string/activity_add_detail_spot_add" />
+
+        <TextView
+            style="@style/activityTravelsPlanDes"
+            android:text="理想地" />
+
+    </RelativeLayout>
+
+    <com.example.administrator.travel.ui.view.FlowLayout
+        android:id="@+id/fl_destination"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="23dp"
+        android:visibility="gone">
 
+    </com.example.administrator.travel.ui.view.FlowLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="40dp">
+    <com.example.administrator.travel.ui.view.FontsIconButton
+        android:id="@+id/bt_destination"
+        android:layout_width="130dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/activity_create_album_add_bg"
+        android:gravity="center"
+        android:paddingLeft="6dp"
+        android:text="@string/activity_my_album_add"
+        android:textColor="@color/otherTitleBg"
+        android:textSize="15sp" />
+</LinearLayout>
 
-            <TextView
-                android:layout_width="159dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="19dp"
-                android:background="@drawable/activity_line_plan_add_bg"
-                android:gravity="center"
-                android:text="您的自拍"
-                android:textColor="@color/colorb5b5b5"
-                android:textSize="16sp" />
-
-            <RelativeLayout style="@style/activityTravelsPlanRl">
-
-                <com.example.administrator.travel.ui.view.FontsIconTextView
-                    style="@style/activityTravelsPlanTv"
-                    android:text="@string/activity_travels_plan_time" />
-
-                <TextView
-                    android:id="@+id/tv_time"
-                    style="@style/activityTravelsPlanDes"
-                    android:text="时间计划" />
-
-                <TextView
-                    android:id="@+id/tv_how_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/tv_time"
-                    android:textColor="@color/color909090"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="53dp"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/activityTravelsPlanTvTime"
-                    android:text="出发日期" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_start_time"
-                        style="@style/activityTravelsPlanTvTimeSelect"
-                        android:text="01/03/2016" />
-
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
-                        android:id="@+id/tv_start"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="@string/activity_travels_plan_data"
-                        android:textColor="@color/otherTitleBg"
-                        android:textSize="20sp" />
-
-
-                </LinearLayout>
-
-                <TextView
-                    style="@style/activityTravelsPlanTvTime"
-                    android:layout_marginTop="20dp"
-                    android:text="结束日期" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_end_time"
-                        style="@style/activityTravelsPlanTvTimeSelect"
-                        android:text="01/03/2016" />
-
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
-                        android:id="@+id/tv_end"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="@string/activity_travels_plan_data"
-                        android:textColor="@color/otherTitleBg"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <View
-                style="@style/fragmentMeLine"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp" />
-
-            <RelativeLayout style="@style/activityTravelsPlanRl">
-
-                <com.example.administrator.travel.ui.view.FontsIconTextView
-                    style="@style/activityTravelsPlanTv"
-                    android:text="@string/fragment_find_add" />
-
-                <TextView
-                    style="@style/activityTravelsPlanDes"
-                    android:text="出发地" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/tv_start_city"
-                android:layout_width="130dp"
-                android:layout_height="28dp"
-                android:layout_marginLeft="53dp"
-                android:layout_marginTop="13dp"
-                android:background="@drawable/activity_create_album_add_bg"
-                android:gravity="center_vertical"
-                android:hint="选择您的出发地..."
-                android:paddingLeft="6dp"
-                android:textColorHint="@color/colorb5b5b5"
-                android:textSize="13sp" />
-
-
-            <View
-                style="@style/fragmentMeLine"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp" />
-
-            <RelativeLayout style="@style/activityTravelsPlanRl">
-
-                <com.example.administrator.travel.ui.view.FontsIconTextView
-                    style="@style/activityTravelsPlanTv"
-                    android:text="@string/activity_add_detail_spot_add" />
-
-                <TextView
-                    style="@style/activityTravelsPlanDes"
-                    android:text="理想地" />
-
-            </RelativeLayout>
-
-            <com.example.administrator.travel.ui.view.FlowLayout
-                android:id="@+id/fl_destination"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="53dp"
-                android:layout_marginTop="23dp"
-                android:visibility="gone">
-
-            </com.example.administrator.travel.ui.view.FlowLayout>
-
-            <com.example.administrator.travel.ui.view.FontsIconButton
-                android:layout_marginBottom="50dp"
-                android:id="@+id/bt_destination"
-                android:layout_width="130dp"
-                android:layout_height="28dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="13dp"
-                android:background="@drawable/activity_create_album_add_bg"
-                android:gravity="center"
-                android:paddingLeft="6dp"
-                android:text="@string/activity_my_album_add"
-                android:textColor="@color/otherTitleBg"
-                android:textSize="15sp" />
-        </LinearLayout>
-    </ScrollView>
-
-    <Button
-        style="@style/commonButtonNext"
-        android:layout_alignParentBottom="true" />
-
-</RelativeLayout>

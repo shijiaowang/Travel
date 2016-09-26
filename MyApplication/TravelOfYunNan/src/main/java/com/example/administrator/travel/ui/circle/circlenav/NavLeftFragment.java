@@ -19,8 +19,6 @@ import com.example.administrator.travel.event.NavLeftEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.CircleDetailActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
-import com.example.administrator.travel.ui.adapter.CircleNavLeftAdapter;
-import com.example.administrator.travel.ui.adapter.CircleNavRightAdapter;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.CircleUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -28,7 +26,6 @@ import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
-import com.example.administrator.travel.utils.UIUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -102,7 +99,7 @@ public class NavLeftFragment extends LoadBaseFragment {
                 if (leftList != null) {
                     cid = leftList.get(position).getCid();
                     selectNavLeft(position);
-                    onLoad();
+                    onLoad(REFRESH);
                 }
             }
         });
@@ -130,7 +127,7 @@ public class NavLeftFragment extends LoadBaseFragment {
     private boolean isFirst = true;
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int type) {
         LogUtils.e("圈子加载数据页面开始加载了");
         if (isFirst) {
             isFirst = false;
@@ -185,8 +182,6 @@ public class NavLeftFragment extends LoadBaseFragment {
             ToastUtils.showToast(event.getMessage());
             setState(LoadingPage.ResultState.STATE_ERROR);
         }
-        //通知自定义view去显示正确读取后界面
-        afterLoadData();
     }
 
     private void firstReq(HttpEvent event) {

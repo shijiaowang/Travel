@@ -15,7 +15,6 @@ import org.xutils.image.ImageOptions;
  */
 public abstract class BaseHolder<T> {
     public Context mContext;
-
     public View root;
     public T datas;
     public BaseHolder(Context context) {
@@ -33,7 +32,11 @@ public abstract class BaseHolder<T> {
         if (datas==null){
             return;
         }
-        initItemDatas(datas,mContext,position);
+        try {
+            initItemDatas(datas,mContext,position);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
   //赋值item
     protected abstract void initItemDatas(T datas, Context mContext, int position);

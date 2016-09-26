@@ -56,11 +56,6 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
         ButterKnife.bind(this,root);
     }
 
-    private void reqData(int type) {
-        int count = type==LOAD_MORE?mDatas.size():0;
-        Map<String, String> appointMap = MapUtils.Build().addKey(getContext()).addUserId().addPageSize(10).addCount(count).end();
-        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER, appointMap,type,new AppointTogetherEvent());
-    }
 
 
     @Override
@@ -84,8 +79,7 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
             ToastUtils.showToast(event.getMessage());
             setState(LoadingPage.ResultState.STATE_ERROR);
         }
-        //通知自定义view去显示正确读取后界面
-        afterLoadData();
+
     }
 
     private void dealData(AppointTogetherEvent event) {
@@ -107,23 +101,15 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
     }
 
     @Override
-    protected void onLoad() {
-        reqData(LOAD_MORE);
+    protected void onLoad(int type) {
+        int count = type==LOAD_MORE?getListSize(mDatas):0;
+        Map<String, String> appointMap = MapUtils.Build().addKey(getContext()).addUserId().addPageSize(10).addCount(count).end();
+        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER, appointMap,type,new AppointTogetherEvent());
     }
 
     @Override
     protected View initView() {
-
         return root;
     }
 
-    @Override
-    public void onRefresh() {
-        reqData(REFRESH);
-    }
-
-    @Override
-    public void onLoadMore() {
-       reqData(LOAD_MORE);
-    }
 }

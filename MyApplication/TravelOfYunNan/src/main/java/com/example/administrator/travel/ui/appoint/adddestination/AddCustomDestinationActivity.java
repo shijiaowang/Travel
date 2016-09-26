@@ -1,10 +1,18 @@
 package com.example.administrator.travel.ui.appoint.adddestination;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
@@ -12,6 +20,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.db.DBManager;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
+import com.example.administrator.travel.utils.BitmapUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
@@ -22,7 +31,9 @@ import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,14 +43,20 @@ import java.util.Map;
 public class AddCustomDestinationActivity extends LoadingBarBaseActivity implements View.OnClickListener {
     @ViewInject(R.id.tv_address)
     private TextView mTvAddress;
-    @ViewInject(R.id.tv_add)
-    private TextView mTvAdd;
+    @ViewInject(R.id.et_add)
+    private EditText mEtAdd;
     @ViewInject(R.id.bt_next)
     private Button mBtNext;//保存修改
     @ViewInject(R.id.et_des)
     private EditText mEtDes;
     @ViewInject(R.id.et_name)
     private EditText mEtName;
+    @ViewInject(R.id.iv_image)
+    private ImageView mIvImage;
+    @ViewInject(R.id.tv_delete)
+    private TextView mTvDelete;
+    @ViewInject(R.id.tv_picture)
+    private TextView mTvPicture;
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private OptionsPickerView pvOptions;
@@ -48,6 +65,8 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity impleme
     private String address;
     private String id;
     private String cityName;
+    private static final int OPEN_ALBUM=5;//打开相册
+    private String imageAbsolutePath;
 
     @Override
     protected int setContentLayout() {
@@ -59,6 +78,7 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity impleme
         initCity();
         mTvAddress.setOnClickListener(this);
         mBtNext.setOnClickListener(this);
+        mTvPicture.setOnClickListener(this);
     }
 
     @Override
@@ -89,7 +109,7 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity impleme
                     address = tx;
                     id = options1Items.get(options1).getId();//省得id
                     cityName = options2Items.get(options1).get(option2);
-                    mTvAdd.setText(tx);
+                    mTvAddress.setText(tx);
                 }
             });
 
@@ -153,23 +173,87 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity impleme
             case R.id.bt_next:
                 createSpot();
                 break;
+            case R.id.tv_picture:
+                openAlbum();
+                break;
+        }
+    }
+
+    /**
+     * 打开相册获取图片
+     */
+    private void openAlbum() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
+                    getString(R.string.permission_read_storage_rationale),
+                    REQUEST_STORAGE_READ_ACCESS_PERMISSION);
+        } else {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            startActivityForResult(intent,OPEN_ALBUM);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==OPEN_ALBUM && resultCode==RESULT_OK){
+            Uri uri = data.getData();
+            try {
+                imageAbsolutePath = BitmapUtils.getImageAbsolutePath(this, uri);
+                if (imageAbsolutePath ==null){
+                    ToastUtils.showToast("未找到图片地址");
+                    return;
+                }
+               /* Bitmap bitmap = BitmapUtils.getBitmapFormUri(this, uri);
+                final Bitmap newBitMap = BitmapUtils.compressImage(bitmap);
+                mIvImage.setImageBitmap(newBitMap);*/
+                mIvImage.setVisibility(View.VISIBLE);
+                mTvPicture.setVisibility(View.GONE);
+                mTvDelete.setVisibility(View.VISIBLE);
+                x.image().bind(mIvImage, imageAbsolutePath);
+                mTvDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mTvDelete.setVisibility(View.GONE);
+                        mIvImage.setVisibility(View.GONE);
+                        mTvPicture.setVisibility(View.VISIBLE);
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                ToastUtils.showToast("未找到相关图片");
+            }
+
+
         }
     }
 
     private void createSpot() {
         name = getString(mEtName);
-        des = getString(mEtName);
+        des = getString(mEtDes);
+        String add = getString(mEtAdd);
         if (StringUtils.isEmpty(name)) {
             ToastUtils.showToast("自定义景点名称不能为空。");
             return;
         }
-        if (StringUtils.isEmpty(des)) {
-            ToastUtils.showToast("自定义景点地址不能为空。");
+        if (StringUtils.isEmpty(add)){
+            ToastUtils.showToast("自定义景点地址不能为空");
+            return;
+        }
+        if (StringUtils.isEmpty(imageAbsolutePath)){
+            ToastUtils.showToast("请上传一张图片");
             return;
         }
         String cityId = DBManager.getCityId(cityName, id);
-        Map<String, String> createSpotMap = MapUtils.Build().addKey(this).addUserId().addTitle(name).addContent(des).addProvince(id).addCity(cityId).addAddress(address).end();
-        XEventUtils.postUseCommonBackJson(IVariable.ADD_CUSTOM_SPOT, createSpotMap, 0, new AddCustomSpotEvent());
+        Map<String, String> createSpotMap = MapUtils.Build().addKey(this).addUserId().addTitle(name).addContent(des).addProvince(id).addCity(cityId).addAddress(add).end();
+        List<String> fileList=new ArrayList<>();
+        fileList.add(imageAbsolutePath);
+        XEventUtils.postFileCommonBackJson(IVariable.ADD_CUSTOM_SPOT, createSpotMap,fileList,0, new AddCustomSpotEvent());
     }
     @Subscribe
     public void onEvent(AddCustomSpotEvent event){

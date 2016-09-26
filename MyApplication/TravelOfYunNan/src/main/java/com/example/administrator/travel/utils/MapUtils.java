@@ -72,6 +72,10 @@ public class MapUtils {
             stringMap.put(IVariable.F_ID,fId);
             return this;
         }
+        public Builder addFroumId(String froumId){
+            stringMap.put(IVariable.FORUM_ID,froumId);
+            return this;
+        }
         public Builder addPId(String pId){
             stringMap.put(IVariable.PID,pId);
             return this;

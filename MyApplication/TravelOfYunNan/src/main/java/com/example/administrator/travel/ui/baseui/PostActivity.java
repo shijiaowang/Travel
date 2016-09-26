@@ -30,8 +30,7 @@ import java.util.Map;
 public class PostActivity extends LoadingBarBaseActivity implements XListView.IXListViewListener {
     @ViewInject(R.id.lv_post_detail)
     private XListView mLvPostDetail;
-    public static final int TYPE_REFRESH = 1;
-    public static final int LOAD_MORE = 0;
+
 
     private String forum_id;
     private int currentPage = 0;
@@ -51,11 +50,11 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
     @Override
     protected void onLoad() {
         if (forum_id == null) return;
-        requestData(LOAD_MORE);
+        requestData(TYPE_LOAD);
     }
 
     private void requestData(int type) {
-        Map<String, String> postMap = MapUtils.Build().addKey(this).add(IVariable.FORUM_ID, forum_id).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.PAGE_SIZE, "4").add(IVariable.PAGE, currentPage + "").end();
+        Map<String, String> postMap = MapUtils.Build().addKey(this).addFroumId(forum_id).addUserId().addPageSize(10).add(IVariable.PAGE, currentPage + "").end();
         XEventUtils.getUseCommonBackJson(IVariable.POST_DETAIL, postMap, type,new PostEvent());
     }
 
@@ -87,7 +86,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
             dealData(event);
         } else {
             ToastUtils.showToast(event.getMessage());
-            if (event.getType() == LOAD_MORE && event.getCode() == 0 && currentPage > 0)
+            if (event.getType() == TYPE_LOAD && event.getCode() == 0 && currentPage > 0)
                 currentPage--;
         }
         setIsProgress(false);
@@ -159,7 +158,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
     @Override
     public void onLoadMore() {
         currentPage++;
-        requestData(LOAD_MORE);
+        requestData(TYPE_LOAD);
     }
 
 

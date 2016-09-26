@@ -18,6 +18,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
@@ -26,7 +27,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2016/8/3 0003.
  */
-public abstract class LoadBaseFragment extends Fragment {
+public abstract class LoadBaseFragment extends Fragment implements XListView.IXListViewListener{
     public static final int FIRST_REFRESH = 0;
     public static final int LOAD_MORE = 1;
     public static final int REFRESH = 2;
@@ -94,9 +95,12 @@ public abstract class LoadBaseFragment extends Fragment {
 
 
     private void load() {
-        onLoad();
+        onLoad(REFRESH);//第一次加载,使用刷新
     }
-
+   protected int getListSize(List list){
+       if (list==null)return 0;
+       return list.size();
+   }
 
     @Override
     public void onDestroy() {
@@ -158,7 +162,7 @@ public abstract class LoadBaseFragment extends Fragment {
     /**
      * 发起网络请求，
      */
-    protected abstract void onLoad();
+    protected abstract void onLoad(int type);
 
 
     /**
@@ -168,6 +172,7 @@ public abstract class LoadBaseFragment extends Fragment {
      */
     public void setState(LoadingPage.ResultState state) {
         currentState = state;
+        afterLoadData();
     }
 
     /**
@@ -181,7 +186,6 @@ public abstract class LoadBaseFragment extends Fragment {
      * eventbus返回时调用
      */
     public void afterLoadData() {
-
         if (loadingPage != null) {
             loadingPage.afterLoadData();
         }
@@ -192,15 +196,26 @@ public abstract class LoadBaseFragment extends Fragment {
     }
 
     protected void loadEnd(XListView xListView) {
+        if (xListView==null)return;
         xListView.stopLoadMore();
         xListView.stopRefresh();
         xListView.setRefreshTime(getTime());
     }
 
     protected void loadEnd(XScrollView xListView) {
+        if (xListView==null)return;
         xListView.stopLoadMore();
         xListView.stopRefresh();
         xListView.setRefreshTime(getTime());
 
+    }
+    @Override
+    public void onRefresh() {
+        onLoad(REFRESH);
+    }
+
+    @Override
+    public void onLoadMore() {
+        onLoad(LOAD_MORE);
     }
 }
