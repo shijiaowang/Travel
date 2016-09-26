@@ -114,7 +114,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         if (!StringUtils.isEmpty(tId)) {
             count = travelReply == null ? 0 : travelReply.size();
             Map<String, String> destinationDetailMap = MapUtils.Build().addKey(this).addPageSize(pageSize).addCount(count).addTId(tId).addUserId().end();
@@ -311,6 +311,6 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
 
     @Override
     public void onLoadMore() {
-        onLoad();
+        onLoad(TYPE_REFRESH);
     }
 }

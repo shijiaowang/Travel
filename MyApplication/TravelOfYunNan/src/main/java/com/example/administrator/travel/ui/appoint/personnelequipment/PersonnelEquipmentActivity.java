@@ -117,7 +117,7 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
         auths.add(new SpinnerBean("不限", "5",AUTH_TYPE));
     }
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         Map<String, String> remarkMap = MapUtils.Build().addKey(this).end();
         XEventUtils.getUseCommonBackJson(IVariable.GET_PROP_REMARK, remarkMap, 0, new PersonnelEquipmentEvent());
     }

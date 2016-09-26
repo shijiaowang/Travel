@@ -1,10 +1,10 @@
-package com.example.administrator.travel.ui.me;
+package com.example.administrator.travel.ui.me.about;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 
 /**
- * Created by android on 2016/9/17.
+ * Created by wangyang on 2016/9/17.
  * 关于界面
  */
 public class AboutActivity extends BarBaseActivity {

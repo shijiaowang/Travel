@@ -1,10 +1,10 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.myappoint;
 
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.MyAppoint;
-import com.example.administrator.travel.ui.adapter.MyAppointAdapter;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/1 0001.
+ * Created by wangyang on 2016/8/1 0001.
+ * 我的约伴
  */
 public class MyAppointActivity extends BarBaseActivity {
     @ViewInject(R.id.lv_my_appoint)

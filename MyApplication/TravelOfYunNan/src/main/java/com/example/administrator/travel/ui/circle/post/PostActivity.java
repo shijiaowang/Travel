@@ -1,15 +1,13 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.circle.post;
 
 import android.app.Activity;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.PostDetail;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.PostEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.adapter.PostAdapter;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
-import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -48,7 +46,7 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         if (forum_id == null) return;
         requestData(TYPE_LOAD);
     }
@@ -81,7 +79,6 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
 
     @Subscribe
     public void onEvent(PostEvent event) {
-
         if (event.isSuccess()) {
             dealData(event);
         } else {
@@ -103,7 +100,6 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
         PostDetail object = GsonUtils.getObject(event.getResult(), PostDetail.class);
         PostDetail.DataBean.ForumBean forum = object.getData().getForum();
         List<PostDetail.DataBean.ForumReplyBean> forumReply = object.getData().getForum_reply();
-
         if (postAdapter == null) {
             firstLoad(forum, forumReply);
         } else if (event.getType() == TYPE_REFRESH) {

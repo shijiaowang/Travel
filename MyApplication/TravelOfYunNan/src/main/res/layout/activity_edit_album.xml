@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#efeff4"
     android:orientation="vertical"
-    tools:context="com.example.administrator.travel.ui.baseui.CreateAlbumActivity">
+    tools:context="com.example.administrator.travel.ui.me.createalbum.CreateAlbumActivity">
 
     <RelativeLayout
         android:id="@+id/rl_bg"

@@ -59,7 +59,7 @@ public class ActiveActivity extends LoadingBarBaseActivity implements XScrollVie
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         request(TYPE_LOAD);
     }
 

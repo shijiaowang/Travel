@@ -29,7 +29,7 @@
             android:layout_width="3dp"
             android:layout_height="3dp"/>
         <TextView
-            android:text="鞠萍姐姐说你好"
+            android:id="@+id/tv_title"
             android:layout_marginLeft="7dp"
             android:textSize="13sp"
             style="@style/commonSingleLineTextStyle"
@@ -39,7 +39,7 @@
 
     </LinearLayout>
     <TextView
-        android:text="    公告，是指政府、团体对重大事件当众正式公布或者公开宣告，宣布。国务院2012年4月16日发布、2012年7月1日起施行的《党政机关公文处理工作条例》，对公告的使用表述为：“适用于向国内外宣布重要事项或者法定事项”。其中包含两方面的内容..."
+       android:id="@+id/tv_content"
         android:layout_marginTop="11dp"
         android:textSize="13sp"
         android:textColor="@color/color858585"
@@ -57,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"/>
         <TextView
-            android:text="2016-6-6 23:04:51"
+            android:id="@+id/tv_time"
             android:textSize="11sp"
             android:textColor="@color/colorA7a7a7"
             android:layout_width="wrap_content"

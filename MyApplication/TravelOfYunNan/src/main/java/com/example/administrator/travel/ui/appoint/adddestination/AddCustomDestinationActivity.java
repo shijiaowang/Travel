@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -31,7 +30,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +80,7 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity impleme
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         setIsProgress(false);
     }
 
@@ -233,6 +231,9 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity impleme
         }
     }
 
+    /**
+     * 创建景点，检查数据对不对
+     */
     private void createSpot() {
         name = getString(mEtName);
         des = getString(mEtDes);

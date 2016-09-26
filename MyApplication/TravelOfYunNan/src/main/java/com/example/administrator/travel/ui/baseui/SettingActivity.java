@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.me.AboutActivity;
+import com.example.administrator.travel.ui.me.about.AboutActivity;
 import com.example.administrator.travel.ui.view.PhoneTextView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.ShareUtil;
@@ -55,7 +55,7 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
 
     }
 

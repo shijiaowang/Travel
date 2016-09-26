@@ -23,6 +23,7 @@
         android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/tv_create_album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -40,7 +41,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/activity_my_album_sum_bg"
         android:gravity="center"
-        android:text="共有4个相册"
+        android:text="@string/total_album"
         android:textColor="#fcae04"
         android:textSize="10sp" />
       <LinearLayout
@@ -50,6 +51,7 @@
           android:layout_width="match_parent"
           android:gravity="center_horizontal"
           android:layout_height="match_parent">
+
           <android.support.v7.widget.RecyclerView
               android:id="@+id/rv_album"
               android:layout_width="wrap_content"

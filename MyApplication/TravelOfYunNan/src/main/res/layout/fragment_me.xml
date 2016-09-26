@@ -307,20 +307,55 @@
             style="@style/lLFragmentMeAlbum">
             <TextView
                 android:text="我的相册"
-               style="@style/fragmentMeAlbum"
+                style="@style/fragmentMeAlbum"
                 android:drawableLeft="@drawable/fragment_me_album"
                 />
             <View
-               style="@style/AVGLine"/>
+                style="@style/AVGLine"/>
             <ImageView
-               style="@style/ivFragmentMeAlbumButton" />
+                style="@style/ivFragmentMeAlbumButton" />
         </LinearLayout>
 
         <View
            style="@style/fragmentMeLine" />
         <LinearLayout
+            android:id="@+id/ll_theme"
+            style="@style/lLFragmentMeAlbum">
+            <TextView
+                android:text="我的主题"
+                style="@style/fragmentMeAlbum"
+                android:drawableLeft="@drawable/fragment_me_theme"
+                />
+            <View
+                style="@style/AVGLine"/>
+            <ImageView
+                style="@style/ivFragmentMeAlbumButton" />
+        </LinearLayout>
+
+        <View
+            style="@style/fragmentMeLine" />
+        <LinearLayout
+            android:id="@+id/ll_hobby"
+            style="@style/lLFragmentMeAlbum">
+
+            <TextView
+                android:text="我的兴趣"
+                style="@style/fragmentMeAlbum"
+                android:drawableLeft="@drawable/fragment_me_hobby"
+                />
+
+            <View
+                style="@style/AVGLine"/>
+            <ImageView
+                style="@style/ivFragmentMeAlbumButton" />
+        </LinearLayout>
+
+        <View
+            style="@style/fragmentMeLine" />
+        <LinearLayout
             android:id="@+id/ll_identity"
             style="@style/lLFragmentMeAlbum">
+
             <TextView
                 android:text="身份认证"
                 style="@style/fragmentMeAlbum"

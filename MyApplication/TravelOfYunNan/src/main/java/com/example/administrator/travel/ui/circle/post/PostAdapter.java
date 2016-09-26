@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.circle.post;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,12 +7,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
-import com.example.administrator.travel.bean.PostDetail;
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.baseui.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.holer.PostOpHolder;
-import com.example.administrator.travel.ui.adapter.holer.PostReplyTextHolder;
-import com.example.administrator.travel.ui.adapter.holer.PostReplyUserHolder;
 
 import java.util.List;
 

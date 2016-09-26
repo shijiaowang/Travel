@@ -14,10 +14,10 @@
         android:layout_width="165dp"
         android:layout_height="122dp" />
     <TextView
+        android:id="@+id/tv_title"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:textSize="13sp"
-        android:text="海边自由行"
         android:ellipsize="end"
         android:lines="1"
         android:textColor="#323232"
@@ -30,7 +30,7 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:layout_marginLeft="10dp"
            android:text="@string/activity_circle_love_empty"
             android:textColor="#b5b5b5"
@@ -40,22 +40,27 @@
             android:layout_height="wrap_content" />
         <TextView
             android:paddingLeft="5dp"
-            android:text="123"
             android:textColor="#b5b5b5"
             android:textSize="9sp"
             android:id="@+id/tv_love_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
+
+        <com.example.administrator.travel.ui.view.FontsIconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:drawableLeft="@drawable/activity_my_album_discuss"
-            android:drawablePadding="5dp"
-            android:text="123"
+            android:text="@string/activity_circle_discuss"
             android:textColor="#b5b5b5"
             android:textSize="9sp"
-            android:id="@+id/tv_discuss"
+            android:id="@+id/fontsIconTextView" />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:paddingRight="10dp"
+            android:textColor="#b5b5b5"
+            android:textSize="9sp"
+            android:id="@+id/tv_discuss_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

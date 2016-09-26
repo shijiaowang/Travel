@@ -90,7 +90,7 @@ public class AiteActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int type) {
         Map<String, String> aiteMap = MapUtils.Build().addKey(this).addUserId().end();
         XEventUtils.getUseCommonBackJson(IVariable.GET_FOLLOW_USER,aiteMap,0,new AiteEvent());
     }

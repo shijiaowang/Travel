@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.me.myalbum;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,12 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.HotSpots;
 import com.example.administrator.travel.ui.baseui.EditAlbumActivity;
+import com.example.administrator.travel.ui.me.myalbum.MyAlbumBean;
+
+import org.xutils.x;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2016/7/6 0006.
@@ -21,9 +28,9 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int SHORT_ITEM = 1;
     private static final int LENGTH_ITEM = 2;
     private Context mContext;
-    private List<HotSpots> mDatas;
+    private List<MyAlbumBean.DataBean> mDatas;
 
-    public MyAlbumAdapter(Context mContext, List<HotSpots> mDatas) {
+    public MyAlbumAdapter(Context mContext, List<MyAlbumBean.DataBean> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
     }
@@ -37,15 +44,14 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = null;
+
         if (viewType == LENGTH_ITEM) {
-            inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_my_album_length, parent, false);
+            View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_my_album_length, parent, false);
             return new MyAlbumLengthHolder(inflate);
         } else {
-            inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_my_album_short, parent, false);
+            View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_my_album_short, parent, false);
             return new MyAlbumLengthHolder(inflate);
         }
 
@@ -53,16 +59,25 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof MyAlbumShortHolder){
+        MyAlbumBean.DataBean dataBean = mDatas.get(position);
+        if (holder instanceof MyAlbumShortHolder) {
             MyAlbumShortHolder shortHolder = (MyAlbumShortHolder) holder;
+            x.image().bind(shortHolder.mIvCover, dataBean.getCover_img());
+            shortHolder.mTvDiscussNumber.setText(dataBean.getBrowse());
+            shortHolder.mTvTitle.setText(dataBean.getTitle());
+            shortHolder.mTvLoveNumber.setText(dataBean.getLike());
             shortHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mContext.startActivity(new Intent(mContext, EditAlbumActivity.class));
                 }
             });
-        }else {
+        } else {
             MyAlbumLengthHolder lengthHolder = (MyAlbumLengthHolder) holder;
+            x.image().bind(lengthHolder.mIvCover, dataBean.getCover_img());
+            lengthHolder.mTvDiscussNumber.setText(dataBean.getBrowse());
+            lengthHolder.mTvTitle.setText(dataBean.getTitle());
+            lengthHolder.mTvLoveNumber.setText(dataBean.getLike());
             lengthHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -74,26 +89,37 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mDatas.size();
     }
 
     public class MyAlbumShortHolder extends RecyclerView.ViewHolder {
-
         ImageView mIvCover;
+        TextView mTvDiscussNumber;
+        TextView mTvLoveNumber;
+        TextView mTvTitle;
 
         public MyAlbumShortHolder(View itemView) {
             super(itemView);
             mIvCover = (ImageView) itemView.findViewById(R.id.iv_cover);
+            mTvDiscussNumber = (TextView) itemView.findViewById(R.id.tv_discuss_number);
+            mTvLoveNumber = (TextView) itemView.findViewById(R.id.tv_love_number);
+            mTvTitle = (TextView) itemView.findViewById(R.id.tv_title);
+
         }
     }
 
     public class MyAlbumLengthHolder extends RecyclerView.ViewHolder {
-
         ImageView mIvCover;
+        TextView mTvDiscussNumber;
+        TextView mTvLoveNumber;
+        TextView mTvTitle;
 
         public MyAlbumLengthHolder(View itemView) {
             super(itemView);
             mIvCover = (ImageView) itemView.findViewById(R.id.iv_cover);
+            mTvDiscussNumber = (TextView) itemView.findViewById(R.id.tv_discuss_number);
+            mTvLoveNumber = (TextView) itemView.findViewById(R.id.tv_love_number);
+            mTvTitle = (TextView) itemView.findViewById(R.id.tv_title);
         }
     }
 }

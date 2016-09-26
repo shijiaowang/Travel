@@ -61,7 +61,7 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         Map<String, String> activeMap = MapUtils.Build().addKey(this).addAId(aId).addUserId().end();
         XEventUtils.getUseCommonBackJson(IVariable.FIND_ACTIVITY_DETAIL,activeMap,0,new ActiveDetailEvent());
     }

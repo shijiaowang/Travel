@@ -65,7 +65,7 @@ public class TravelsActivity extends LoadingBarBaseActivity implements View.OnKe
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
       requestData(LOAD_MORE);
     }
 

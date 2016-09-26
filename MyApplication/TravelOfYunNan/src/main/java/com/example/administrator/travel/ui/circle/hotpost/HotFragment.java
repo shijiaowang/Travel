@@ -7,11 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.PostActivity;
+import com.example.administrator.travel.ui.circle.post.PostActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
@@ -19,20 +18,16 @@ import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
-import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * Created by Administrator on 2016/7/7 0007.
  */
-public class HotFragment extends LoadBaseFragment implements XListView.IXListViewListener {
+public class HotFragment extends LoadBaseFragment {
      private XListView mLvCircleHot;
     private CircleHotAdapter circleHotAdapter;
     private int count=0;
@@ -47,22 +42,21 @@ public class HotFragment extends LoadBaseFragment implements XListView.IXListVie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLvCircleHot = (XListView) View.inflate(getContext(), R.layout.fragment_circle_hot, null);
+        mLvCircleHot = (XListView) inflate;
     }
 
     @Override
-    protected View initView() {
-        return mLvCircleHot;
+    protected int initResLayout() {
+        return R.layout.fragment_circle_hot;
     }
+
+
 
 
 
     @Override
     protected void initListener() {
-        mLvCircleHot.setPullLoadEnable(true);
-        mLvCircleHot.setPullRefreshEnable(true);
-        mLvCircleHot.setXListViewListener(this);
-        mLvCircleHot.setRefreshTime(getTime());
+         initXListView(mLvCircleHot,true,true);
        mLvCircleHot.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

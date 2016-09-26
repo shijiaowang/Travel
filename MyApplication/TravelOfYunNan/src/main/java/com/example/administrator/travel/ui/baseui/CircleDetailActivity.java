@@ -16,6 +16,7 @@ import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.CircleDetailAdapter;
+import com.example.administrator.travel.ui.circle.post.PostActivity;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
@@ -100,7 +101,7 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         setIsProgress(true);
         Map<String, String> stringMap = MapUtils.Build().addKey(this).add(IVariable.C_ID, cId).add(IVariable.PAGE_SIZE, "5").add(IVariable.PAGE, loadPage + "").add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).end();
         XEventUtils.getUseCommonBackJson(IVariable.GET_CIRCLE_POST, stringMap, TYPE_FIRST_REQ,new CircleDetailEvent());

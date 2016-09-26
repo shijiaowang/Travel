@@ -20,7 +20,7 @@ public class OrdersDetailActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
 
     }
 

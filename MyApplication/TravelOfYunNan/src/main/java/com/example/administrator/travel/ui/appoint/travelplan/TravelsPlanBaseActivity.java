@@ -134,7 +134,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
           setIsProgress(false);
     }
 

@@ -97,7 +97,7 @@ public class FindCommonActivity extends LoadingBarBaseActivity implements XListV
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         requestData(TYPE_LOAD);
     }
 
@@ -160,7 +160,7 @@ public class FindCommonActivity extends LoadingBarBaseActivity implements XListV
 
     @Override
     public void onLoadMore() {
-        onLoad();
+        onLoad(TYPE_REFRESH);
     }
 
     @Override

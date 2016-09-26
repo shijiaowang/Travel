@@ -38,15 +38,14 @@ import butterknife.ButterKnife;
 public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IXListViewListener {
 
     @BindView(R.id.lv_play_with_me) XListView mPlayWithMe;
-    private View inflate;
     private List<AppointWithMe.DataBean> mDatas = new ArrayList<>();
     private AppointWithMeAdapter appointWithMeAdapter;
 
+
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        inflate = LayoutInflater.from(getContext()).inflate(R.layout.fragment_appoint_play_with_me, null);
-        ButterKnife.bind(this,inflate);
+    protected int initResLayout() {
+        return R.layout.fragment_appoint_play_with_me;
     }
 
     @Override
@@ -54,19 +53,13 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
         return this;
     }
 
-    @Override
-    protected View initView() {
-        return inflate;
-    }
+
 
 
 
     @Override
     protected void initListener() {
-        mPlayWithMe.setPullLoadEnable(true);
-        mPlayWithMe.setAutoLoadEnable(true);
-        mPlayWithMe.setXListViewListener(this);
-        mPlayWithMe.setRefreshTime(getTime());
+       initXListView(mPlayWithMe,true,true);
         mPlayWithMe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

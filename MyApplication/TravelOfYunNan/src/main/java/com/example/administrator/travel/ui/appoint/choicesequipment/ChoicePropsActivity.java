@@ -86,7 +86,7 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         reqData();
     }
 

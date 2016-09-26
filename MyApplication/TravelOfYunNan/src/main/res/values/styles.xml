@@ -120,7 +120,10 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:layout_marginLeft">20dp</item>
+
+
     </style>
+
     <!--相册等的父控件-->
     <style name="lLFragmentMeAlbum">
         <item name="android:orientation">horizontal</item>

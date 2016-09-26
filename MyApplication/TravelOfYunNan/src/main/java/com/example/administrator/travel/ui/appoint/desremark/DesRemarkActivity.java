@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.createsuccess.CreateAppointSuccessActivity;
@@ -22,12 +21,10 @@ import com.example.administrator.travel.ui.appoint.settingtitle.SettingTitle;
 import com.example.administrator.travel.ui.appoint.settingtitle.SettingTitleActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.utils.ActivityUtils;
-import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
-import com.example.administrator.travel.utils.Xutils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
@@ -103,7 +100,7 @@ public class DesRemarkActivity extends LoadingBarBaseActivity implements View.On
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         setIsProgress(false);
     }
 

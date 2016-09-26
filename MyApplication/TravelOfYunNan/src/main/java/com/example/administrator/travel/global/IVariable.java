@@ -26,6 +26,7 @@ public interface IVariable {
     String GET_TITLE_LIST = API_KEY + "Travel/getLabellists/";//获取标签列表
     String CREATE_APPOINT_TOGETHER = API_KEY + "Travel/addTravel/";//发布约伴-一起玩
     String CREATE_WITH_ME = API_KEY + "Travel/addTravelplan/";//发布约伴-找人带
+    String BULLETIN_BOARD = API_KEY + "UserTravel/getBulletinlists/";//我的约伴-公告栏
     /**
      * User
      */
@@ -61,6 +62,11 @@ public interface IVariable {
     String FIND_ACTIVITY_DETAIL = API_KEY + "Find/getFindActivitydetail/";//活动列表详情
     String FIND_FOOD = API_KEY + "Find/getFindfood/";//美食
     String FIND_FOOD_DETAIL = API_KEY + "Find/getFindfoodDetail/";//美食详情
+    /**
+     * 我
+     */
+    String CREATE_ALBUM = API_KEY + "User/creatUserImg/";//创建相册
+    String ALBUM_LIST = API_KEY + "User/getUserImglists/";//相册列表
 
     //请求type
     int TYPE_GET_KEY = 0;
@@ -105,7 +111,8 @@ public interface IVariable {
 
     int FIRST_REQ = 0;//第一次请求
     int NORMAL_REQ = 1;//之后的请求
-    int TYPE_GET_FAN = 2;//获取关注人列表
+    int TYPE_GET_FAN = 2;//粉丝列表
+    int TYPE_GET_FOLLOW = 3;//获取关注人列表
     int TYPE_REGISTER_USER = 6;//注册
     int X_UTLIS_ERROR = 100;//xutil相关错误
 
@@ -184,4 +191,6 @@ public interface IVariable {
     String USER="user";
     String FILE_NAME = "file_name";
 
+    String TRUE = "1";//正确
+    String FAILE = "0";//错误
 }

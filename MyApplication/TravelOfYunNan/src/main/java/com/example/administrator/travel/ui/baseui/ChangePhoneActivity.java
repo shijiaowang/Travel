@@ -80,7 +80,7 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         setIsProgress(false);
     }
 

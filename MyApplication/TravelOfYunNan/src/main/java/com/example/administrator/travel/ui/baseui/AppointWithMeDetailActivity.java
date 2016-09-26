@@ -108,7 +108,7 @@ public class AppointWithMeDetailActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         if(StringUtils.isEmpty(tId))return;
         Map<String, String> withMeDetailMap = MapUtils.Build().addKey(this).addUserId().addtId(tId).end();
         XEventUtils.getUseCommonBackJson(IVariable.WITHE_ME_DETAIL,withMeDetailMap,0,new AppointDetailEvent());

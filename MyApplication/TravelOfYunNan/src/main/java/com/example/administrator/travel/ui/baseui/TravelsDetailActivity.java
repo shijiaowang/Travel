@@ -135,7 +135,7 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         requestData(TYPE_LOAD);
     }
 

@@ -71,7 +71,7 @@ public class DeliciousDetailActivity extends LoadingBarBaseActivity implements X
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
 
         requestData(TYPE_LOAD);
 

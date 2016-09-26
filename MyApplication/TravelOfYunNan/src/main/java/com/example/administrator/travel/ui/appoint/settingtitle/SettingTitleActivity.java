@@ -173,7 +173,7 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         Map<String, String> titleMap = MapUtils.Build().addKey(this).addUserId().end();
         XEventUtils.getUseCommonBackJson(IVariable.GET_TITLE_LIST,titleMap,0,new AddTitleEvent());
     }

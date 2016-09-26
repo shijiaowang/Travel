@@ -121,6 +121,10 @@
     <!--钢笔-->
     <string name="activity_cursor_left">佐</string>
     <!--左边-->
+    <string name="fragment_me_my_theme">嫦</string>
+    <!--主题-->
+    <string name="fragment_me_my_hobby">趣</string>
+    <!--兴趣-->
     <string name="activity_add_detail_line">炉</string>
     <!--路线-->
     <string name="activity_personnel_equipment_equ">俱</string>
@@ -233,6 +237,7 @@
     <string name="toast_cannot_retrieve_selected_image">未接受到图片</string>
     <string name="toast_unexpected_error">未知错误</string>
     <string name="permission_write_storage_rationale">写入sd卡权限</string>
+    <string name="total_album">共有%1$d个相册</string>
 
 
 </resources>

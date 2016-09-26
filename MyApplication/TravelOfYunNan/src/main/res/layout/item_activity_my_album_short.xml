@@ -14,13 +14,13 @@
         android:src="@drawable/activity_my_album_test" />
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="海边自由行"
         android:textColor="#323232"
         android:textSize="13sp" />
 
@@ -31,7 +31,7 @@
         android:layout_marginTop="9dp"
         android:gravity="center_vertical">
 
-        <TextView
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_love_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,15 +48,19 @@
             android:text="123"
             android:textColor="#b5b5b5"
             android:textSize="9sp" />
-
-        <TextView
-            android:id="@+id/tv_discuss"
+        <com.example.administrator.travel.ui.view.FontsIconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:drawableLeft="@drawable/activity_my_album_discuss"
-            android:drawablePadding="5dp"
-            android:paddingLeft="10dp"
+            android:text="@string/activity_circle_discuss"
+            android:textColor="#b5b5b5"
+            android:textSize="9sp" />
+
+        <TextView
+            android:id="@+id/tv_discuss_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:paddingRight="10dp"
             android:text="123"
             android:textColor="#b5b5b5"

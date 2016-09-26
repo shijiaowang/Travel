@@ -1,21 +1,19 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.createalbum;
 
 
+import android.app.Activity;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
 /**
- * 创建相册
+ * Created by wangyang on 2016/8/2 0002.
  */
-
-public class CreateAlbumActivity extends BarBaseActivity {
-
+public class CreateAlbumActivity extends LoadingBarBaseActivity {
     private TextView mTvMore;//更多
-
-
-
     @Override
     protected int setContentLayout() {
         return R.layout.activity_create_album;
@@ -28,6 +26,11 @@ public class CreateAlbumActivity extends BarBaseActivity {
         init();
     }
 
+    @Override
+    protected void onLoad(int type) {
+        setIsProgress(false);
+    }
+
     private void init() {
         mTvMore = getmTvRightIcon();
         mTvMore.setTypeface(TypefaceUtis.getTypeface(this));
@@ -36,8 +39,8 @@ public class CreateAlbumActivity extends BarBaseActivity {
 
 
     @Override
-    protected void initViewData() {
-
+    protected Activity initViewData() {
+          return this;
     }
 
     @Override

@@ -127,7 +127,7 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
 
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         requestData(TYPE_LOAD);
     }
     private void requestData(int type) {

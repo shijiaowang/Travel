@@ -37,23 +37,23 @@
         </activity>
         <activity android:name=".ui.baseui.BaseActivity" />
         <activity android:name=".ui.baseui.FullTransparencyActivity" />
-        <activity android:name=".ui.baseui.PostActivity" />
+        <activity android:name=".ui.circle.post.PostActivity" />
         <activity android:name=".ui.baseui.OtherUserCenterActivity" />
         <activity android:name=".ui.baseui.MessageCenterActivity" />
         <activity android:name=".ui.appoint.selectdestination.SelectDestinationActivity"
             android:windowSoftInputMode="stateHidden"
             />
         <activity android:name=".ui.appoint.adddestination.AddCustomDestinationActivity" />
-        <activity android:name=".ui.baseui.FollowAndFanActivity" />
-        <activity android:name=".ui.baseui.MyAlbumActivity" />
-        <activity android:name=".ui.baseui.CreateAlbumActivity" />
+        <activity android:name=".ui.me.fansandfollow.FollowAndFanActivity" />
+        <activity android:name=".ui.me.myalbum.MyAlbumActivity" />
+        <activity android:name=".ui.me.createalbum.CreateAlbumActivity" />
         <activity android:name=".ui.baseui.EditAlbumActivity" />
         <activity android:name=".ui.baseui.CatOtherUserAlbumActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".ui.me.LevelActivity" />
+        <activity android:name=".ui.me.level.LevelActivity" />
         <activity android:name=".ui.baseui.SettingActivity" />
         <activity android:name=".ui.baseui.ActiveActivity" />
         <activity android:name=".ui.appoint.travelplan.TravelsPlanWithMeActivity" />
@@ -85,8 +85,8 @@
         <activity android:name=".ui.baseui.DestinationDetailActivity"/>
         <activity android:name=".ui.appoint.choicesequipment.ChoicePropsActivity"/>
         <activity android:name=".ui.appoint.aite.AiteActivity"/>
-        <activity android:name=".ui.baseui.MyAppointActivity"/>
-        <activity android:name=".ui.baseui.BulletinBoardActivity"/>
+        <activity android:name=".ui.me.myappoint.MyAppointActivity"/>
+        <activity android:name=".ui.me.bulltetinboard.BulletinBoardActivity"/>
         <activity android:name=".ui.baseui.MyCollectionActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanBaseActivity"/>
         <activity android:name=".ui.appoint.memberdetail.MemberDetailActivity"/>
@@ -106,7 +106,7 @@
         <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
         <activity android:name=".ui.baseui.SystemMessageActivity"/>
         <activity android:name=".ui.baseui.AlbumSelectorActivity"/>
-        <activity android:name=".ui.me.AboutActivity"/>
+        <activity android:name=".ui.me.about.AboutActivity"/>
         <activity android:name=".ui.appoint.createsuccess.CreateAppointSuccessActivity"/>
         <activity android:name=".ui.appoint.desremark.DesRemarkActivity"
             android:windowSoftInputMode="adjustPan"

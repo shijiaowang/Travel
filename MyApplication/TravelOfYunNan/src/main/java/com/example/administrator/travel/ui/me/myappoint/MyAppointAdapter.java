@@ -1,20 +1,20 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.me.myappoint;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
 import com.example.administrator.travel.bean.MyAppoint;
-import com.example.administrator.travel.ui.baseui.BulletinBoardActivity;
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
+import com.example.administrator.travel.ui.me.bulltetinboard.BulletinBoardActivity;
 import com.example.administrator.travel.ui.appoint.memberdetail.MemberDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.holer.MyAppointSuccessHolder;
-import com.example.administrator.travel.ui.adapter.holer.MyAppointingHolder;
+
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/2 0002.
+ * Created by wangyang on 2016/8/2 0002.
  */
 public class MyAppointAdapter extends TravelBaseAdapter<MyAppoint> {
     public MyAppointAdapter(Context mContext, List mDatas) {

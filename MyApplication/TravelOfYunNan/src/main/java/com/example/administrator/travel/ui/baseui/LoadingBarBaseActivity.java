@@ -22,13 +22,14 @@ import org.xutils.x;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
  * Created by Administrator on 2016/7/25 0025.
  * 带有相同头布局,网络加载
  */
-public abstract class LoadingBarBaseActivity extends BaseActivity {
+public abstract class LoadingBarBaseActivity extends BaseActivity implements XListView.IXListViewListener {
     private static final float CHANGE_COLOR_LIMIT = 600f;//设置变色区间
 
     @ViewInject(R.id.tv_back)
@@ -194,7 +195,7 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
         if (activity != null) {
             registerEventBus(activity);
         }
-        onLoad();
+        onLoad(TYPE_REFRESH);
     }
 
 
@@ -211,7 +212,7 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     mIvError.setVisibility(View.GONE);
-                    onLoad();
+                    onLoad(TYPE_REFRESH);
                     root.setVisibility(View.VISIBLE);
                 }
             });
@@ -220,7 +221,7 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
         root.setVisibility(show?View.GONE:View.VISIBLE);
     }
 
-    protected abstract void onLoad();
+    protected abstract void onLoad(int type);
 
     public XScrollView getxScrollView() {
         return xScrollView;
@@ -287,8 +288,31 @@ public abstract class LoadingBarBaseActivity extends BaseActivity {
     protected String getTime() {
         return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
     }
+    /**
+     * 初始化XlistView
+     * @param listView
+     * @param canPull 是否能下拉刷新
+     * @param canLoadMore 是否可以LoadMore
+     */
+    protected void initXListView(XListView listView, boolean canPull, boolean canLoadMore){
+        listView.setPullLoadEnable(canLoadMore);
+        listView.setPullRefreshEnable(canPull);
+        listView.setXListViewListener(this);
+        listView.setRefreshTime(getTime());
+    }
 
+   protected int getListSize(List list){
+       if (list==null)return 0;
+       return list.size();
+   }
 
+    @Override
+    public void onRefresh() {
+        onLoad(TYPE_REFRESH);
+    }
 
-
+    @Override
+    public void onLoadMore() {
+      onLoad(TYPE_LOAD);
+    }
 }

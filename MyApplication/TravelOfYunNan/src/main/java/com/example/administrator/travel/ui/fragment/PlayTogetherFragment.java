@@ -40,7 +40,6 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
 
     @BindView(R.id.lv_appoint) XListView mLvAppoint;
     private List<AppointTogether.DataBean> mDatas=new ArrayList<>();
-    private View root;
     private AppointTogetherAdapter appointTogetherAdapter;
 
 
@@ -49,21 +48,17 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
         return this;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        root = LayoutInflater.from(getContext()).inflate(R.layout.fragment_appoint_play_together, null);
-        ButterKnife.bind(this,root);
-    }
 
+
+    @Override
+    protected int initResLayout() {
+        return R.layout.fragment_appoint_play_together;
+    }
 
 
     @Override
     protected void initListener() {
-        mLvAppoint.setPullLoadEnable(true);
-        mLvAppoint.setAutoLoadEnable(true);
-        mLvAppoint.setXListViewListener(this);
-        mLvAppoint.setRefreshTime(getTime());
+        initXListView(mLvAppoint,true,true);
 
     }
     @Subscribe
@@ -107,9 +102,6 @@ public class PlayTogetherFragment extends LoadBaseFragment implements XListView.
         XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER, appointMap,type,new AppointTogetherEvent());
     }
 
-    @Override
-    protected View initView() {
-        return root;
-    }
+
 
 }

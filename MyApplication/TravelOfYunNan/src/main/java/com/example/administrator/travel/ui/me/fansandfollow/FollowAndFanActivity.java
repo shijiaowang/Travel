@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.fansandfollow;
 
 
 import android.graphics.Color;
@@ -10,10 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.fragment.BaseFragment;
-import com.example.administrator.travel.ui.fragment.FanFragment;
+import com.example.administrator.travel.ui.baseui.BaseActivity;
 import com.example.administrator.travel.ui.fragment.MeFragment;
-import com.example.administrator.travel.ui.fragment.FollowFragment;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -21,14 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 粉丝和关注
+ * Created by wangyang on 2016/7/18 0018.
  */
 
 public class FollowAndFanActivity extends BaseActivity implements View.OnClickListener {
     private int currentPosition = 0;
-    private List<BaseFragment> fragments = new ArrayList<>(2);
+    private List<Fragment> fragments = new ArrayList<>(2);
 
-  @ViewInject(R.id.vp_follow_fan)
+   @ViewInject(R.id.vp_follow_fan)
     private ViewPager mVpFollowFan;//pager
     @ViewInject(R.id.tv_back)
     private TextView mTvBack;//返回
@@ -59,9 +57,8 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initData() {
-        fragments.add(new FollowFragment());
-        fragments.add(new FanFragment());
-
+        fragments.add(FanAndFollowFragment.newInstance("1"));
+        fragments.add(FanAndFollowFragment.newInstance("2"));
         mVpFollowFan.setAdapter(new FollowFanAdapter(getSupportFragmentManager()));
         mVpFollowFan.setCurrentItem(currentPosition, false);
         changeSelect();

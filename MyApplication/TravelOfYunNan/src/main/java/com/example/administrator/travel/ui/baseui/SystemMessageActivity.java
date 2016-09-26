@@ -26,7 +26,7 @@ public class SystemMessageActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
 
     }
 

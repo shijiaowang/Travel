@@ -52,15 +52,13 @@ public class NavLeftFragment extends LoadBaseFragment {
     private CircleNavLeftAdapter circleNavLeftAdapter;
     private CircleNavRightAdapter circleNavRightAdapter;
     private String cid;
-    private View root;
     private int prePosition = -1;
     private Callback.Cancelable useCommonBackJson;
 
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        root = View.inflate(getContext(), R.layout.fragment_circle_navigation, null);
-        ButterKnife.bind(this,root);
+    protected int initResLayout() {
+        return R.layout.fragment_circle_navigation;
     }
 
 
@@ -138,10 +136,6 @@ public class NavLeftFragment extends LoadBaseFragment {
         }
     }
 
-    @Override
-    protected View initView() {
-        return root;
-    }
 
     /**
      * 更改左边导航

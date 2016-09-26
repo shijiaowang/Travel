@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
@@ -35,12 +36,14 @@ public abstract class LoadBaseFragment extends Fragment implements XListView.IXL
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
     private Fragment fragment;
+    protected View inflate;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fragment = registerEvent();
+        inflate = View.inflate(getContext(),initResLayout(), null);
+        ButterKnife.bind(fragment = registerEvent(), inflate);
         if (fragment != null) {
             registerEventBus(fragment);
             LogUtils.e("fragment的Event注册了");
@@ -48,17 +51,9 @@ public abstract class LoadBaseFragment extends Fragment implements XListView.IXL
 
     }
 
+    protected abstract int initResLayout();
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (fragment == null) {
-            fragment = registerEvent();
-            if (fragment==null)return;
-            registerEventBus(fragment);
-            LogUtils.e("fragment的Event注册了");
-        }
-    }
+
 
     protected abstract Fragment registerEvent();
 
@@ -70,7 +65,7 @@ public abstract class LoadBaseFragment extends Fragment implements XListView.IXL
             public View onCreateSuccessView() {
 
 
-                return    initView();
+                return  inflate;
             }
 
             @Override
@@ -145,13 +140,6 @@ public abstract class LoadBaseFragment extends Fragment implements XListView.IXL
     }
 
 
-    /**
-     * 跟布局
-     *
-     * @return
-     */
-    protected abstract View initView();
-
 
 
     /**
@@ -217,5 +205,18 @@ public abstract class LoadBaseFragment extends Fragment implements XListView.IXL
     @Override
     public void onLoadMore() {
         onLoad(LOAD_MORE);
+    }
+
+    /**
+     * 初始化XlistView
+     * @param listView
+     * @param canPull 是否能下拉刷新
+     * @param canLoadMore 是否可以LoadMore
+     */
+    protected void initXListView(XListView listView, boolean canPull, boolean canLoadMore){
+        listView.setPullLoadEnable(canLoadMore);
+        listView.setPullRefreshEnable(canPull);
+        listView.setXListViewListener(this);
+        listView.setRefreshTime(getTime());
     }
 }

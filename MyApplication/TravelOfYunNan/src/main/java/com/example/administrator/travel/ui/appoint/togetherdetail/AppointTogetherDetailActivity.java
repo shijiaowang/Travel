@@ -135,7 +135,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
         Map<String, String> travelDetailMap = MapUtils.Build().addKey(this).addUserId().add(IVariable.TID,tId).end();
         XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER_DETAIL, travelDetailMap, 0, new AppointDetailEvent());
     }

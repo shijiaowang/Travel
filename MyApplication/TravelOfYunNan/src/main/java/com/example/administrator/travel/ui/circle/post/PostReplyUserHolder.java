@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.circle.post;
 
 import android.content.Context;
 import android.text.Spannable;
@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.PostDetail;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.adapter.holer.SomeTextClick;
+import com.example.administrator.travel.ui.circle.post.PostDetail;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.StringUtils;
 

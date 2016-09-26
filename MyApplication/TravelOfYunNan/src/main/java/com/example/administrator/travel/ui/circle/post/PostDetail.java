@@ -1,4 +1,4 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.circle.post;
 
 import java.util.List;
 

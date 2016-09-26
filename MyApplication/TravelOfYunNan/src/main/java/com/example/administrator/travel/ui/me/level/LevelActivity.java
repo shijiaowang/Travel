@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me;
+package com.example.administrator.travel.ui.me.level;
 
 import android.app.Activity;
 
@@ -6,7 +6,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 
 /**
- * Created by android on 2016/9/17.
+ * Created by wangyang on 2016/9/17.
  * 等级
  */
 public class LevelActivity extends LoadingBarBaseActivity {
@@ -21,7 +21,7 @@ public class LevelActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onLoad() {
+    protected void onLoad(int typeRefresh) {
 
     }
 

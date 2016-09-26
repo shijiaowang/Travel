@@ -3,13 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:background="@android:color/white">
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:id="@+id/iv_icon"
         android:layout_width="43dp"
         android:layout_height="43dp"
-        android:src="@drawable/user_icon"
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
         android:gravity="center"
@@ -25,7 +24,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="我是谁？"
             android:id="@+id/tv_nick_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +35,6 @@
             android:layout_height="0dp"/>
 
         <TextView
-            android:text="谁是我？"
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,18 +43,6 @@
 
 
     </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/tv_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="13dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#b7b7b7"
-        android:textSize="12sp" />
-
         <com.example.administrator.travel.ui.view.FontsIconTextView
             android:text="@string/activity_message_center_cursor"
             android:layout_alignParentRight="true"
@@ -71,6 +56,7 @@
             android:textColor="#7b7b7b"
             android:textSize="11sp" />
     <View
+        android:id="@+id/v_line"
         android:layout_marginRight="13dp"
         android:layout_marginLeft="71dp"
         android:background="#efeff4"
