@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.administrator.travel.ui.view.SlippingScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@id/ssv_scroll"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#efeff4"
@@ -13,10 +9,13 @@
         tools:context="com.example.administrator.travel.ui.me.createalbum.CreateAlbumActivity">
 
         <RelativeLayout
-            android:id="@+id/rl_bg"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/activity_create_bg">
+            <ImageView
+                android:id="@+id/iv_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             <TextView
                 android:id="@+id/tv_set_cover"
@@ -32,6 +31,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:maxLength="10"
                 android:id="@+id/ed_set_name"
                 android:layout_width="254dp"
                 android:layout_height="39dp"
@@ -41,13 +41,64 @@
                 android:background="@drawable/activity_create_album_set_name_bg"
                 android:gravity="center"
                 android:lines="1"
-                android:text="请设置相册名称"
+                android:hint="请设置相册名称"
+                android:textColorHint="#fafafa"
                 android:textColor="#fafafa"
                 android:textCursorDrawable="@null"
                 android:textSize="17sp" />
         </RelativeLayout>
 
-        <include layout="@layout/item_activity_edit_album_last" />
+        <RelativeLayout
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorFAFAFA"
+            android:layout_width="315dp"
+            android:layout_height="170dp">
+            <EditText
+                android:maxLength="80"
+                android:padding="10dp"
+                android:id="@+id/et_des"
+                android:gravity="start"
+                android:textSize="12sp"
+                android:textColor="@color/colorC1c1c1"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <LinearLayout
+                android:id="@+id/ll_des"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.example.administrator.travel.ui.view.FontsIconTextView
+                    android:text="@string/activity_activate_detail_pen"
+                    android:textColor="@color/colorC1c1c1"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="相册简介"
+                    android:layout_marginLeft="6dp"
+                    android:textColor="@color/colorC1c1c1"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_count"
+                android:textColor="@color/colorC1c1c1"
+                android:textSize="12sp"
+                android:text="0/80"
+                android:layout_margin="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
@@ -55,6 +106,7 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/bt_sure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -64,5 +116,16 @@
             android:text="完成"
             android:textColor="#fafafa"
             android:textSize="18sp" />
+    <View
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <View
+        android:id="@+id/v_bottom"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
     </LinearLayout>
-</com.example.administrator.travel.ui.view.SlippingScrollView>
+

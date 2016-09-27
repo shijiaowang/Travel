@@ -22,7 +22,7 @@ import com.example.administrator.travel.ui.fragment.AppointFragment;
 import com.example.administrator.travel.ui.fragment.CircleFragment;
 import com.example.administrator.travel.ui.fragment.FindFragment;
 import com.example.administrator.travel.ui.fragment.HomeFragment;
-import com.example.administrator.travel.ui.fragment.MeFragment;
+import com.example.administrator.travel.ui.me.me.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
@@ -73,6 +73,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout mLlFindClick;
     @ViewInject(R.id.ll_main_click)
     private LinearLayout mLlMainClick;
+    @ViewInject(R.id.ll_bottom)
+    private LinearLayout mLlBottom;
+
+    public LinearLayout getmLlBottom() {
+        return mLlBottom;
+    }
+
     @Override
     protected int initLayoutRes() {
         return R.layout.activity_home;
@@ -210,12 +217,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-
-    }
     /**
      * 根据viewpager切换的位置设置选中button
      * @param position

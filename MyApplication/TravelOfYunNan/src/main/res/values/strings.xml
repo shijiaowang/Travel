@@ -121,6 +121,8 @@
     <!--钢笔-->
     <string name="activity_cursor_left">佐</string>
     <!--左边-->
+    <string name="activity_cursor_down">峡</string>
+    <!--下-->
     <string name="fragment_me_my_theme">嫦</string>
     <!--主题-->
     <string name="fragment_me_my_hobby">趣</string>
@@ -191,6 +193,8 @@
     <!--设置-->
     <string name="activity_travels_plan_car">車</string>
     <!--车-->
+    <string name="activity_album_add">添</string>
+    <!--照片添加-->
     <string name="activity_select_cursor">佑</string>
     <!--选择游标-->
     <string name="activity_setting_log_out">莞</string>
@@ -229,6 +233,7 @@
     <string name="pop_order">·\u3000智能排序</string>
     <string name="pop_star">·\u3000按星级</string>
     <string name="pop_mouth">·\u3000按口碑</string>
+    <string name="kongge">\u3000\u3000</string>
     <string name="permission_title_rationale">需要相关权限</string>
     <string name="label_ok">确定</string>
     <string name="label_cancel">取消</string>

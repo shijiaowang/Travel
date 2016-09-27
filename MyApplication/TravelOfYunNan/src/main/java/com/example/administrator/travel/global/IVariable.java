@@ -67,6 +67,13 @@ public interface IVariable {
      */
     String CREATE_ALBUM = API_KEY + "User/creatUserImg/";//创建相册
     String ALBUM_LIST = API_KEY + "User/getUserImglists/";//相册列表
+    String TITLE_LIST = API_KEY + "User/setlabellists/";//称号管理，获取标签列表
+    String SAVE_TITLE = API_KEY + "User/setlabel/";//保存称号
+    String MY_COLLECTION = API_KEY + "User/getUsercollectlists/";//我的收藏
+    String CHANGE_BG = API_KEY + "User/updateUserbackgroundImg/";//更改个人中心背景
+    String EDIT_ALBUM = API_KEY + "User/getUserImgpicture/";//查看编辑相册
+    String UPDATE_ALBUM = API_KEY + "User/updateUserAlbum/";//更新相册
+    String ADD_ALBUM_PHOTO = API_KEY + "User/addUserImgpicture/";//添加图片
 
     //请求type
     int TYPE_GET_KEY = 0;
@@ -132,7 +139,7 @@ public interface IVariable {
     String MIN_PEOPLE = "min_people";//最少人数
     String MAX_PEOPLE = "max_people";//最多人数
     String TOTAL_PRICE = "total_price";//总价
-    String LABEL = "label";//标签
+
     String SEX_CONDITION = "sex_condition";//性别认证
     String BIND_CONDITION = "bind_condition";//身份认证
     String AGREE = "agree";//
@@ -177,6 +184,7 @@ public interface IVariable {
  String NEXT_PAGE = "nextpage";//发现评论，是否有下一页
  String COUNT = "count";//发现评论，当前拥有数据数量
     String A_ID = "a_id";//活动id
+    String ID = "id";//活动id
     int NO_MORE = 2;//没有跟多数据了
 
     int TYPE_TOGETHER=0;//一起玩
@@ -186,6 +194,7 @@ public interface IVariable {
 
     String POSITION = "position";
     String TITLE = "title";//name
+    String LABEL = "label";//name
 
     String ADDRESS = "address";//地址
     String USER="user";
@@ -193,4 +202,5 @@ public interface IVariable {
 
     String TRUE = "1";//正确
     String FAILE = "0";//错误
+    String PICTURE_ID ="picture_id";//更新相册
 }

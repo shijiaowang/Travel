@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.baseui.BaseActivity;
-import com.example.administrator.travel.ui.fragment.MeFragment;
+import com.example.administrator.travel.ui.me.me.MeFragment;
 
 import org.xutils.view.annotation.ViewInject;
 

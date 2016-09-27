@@ -22,15 +22,25 @@ import java.io.InputStream;
  * Created by Administrator on 2016/9/22 0022.
  */
 public class BitmapUtils {
-
-    public static Bitmap getBitmapFormUri(Activity ac, Uri uri) throws FileNotFoundException, IOException {
+    /**
+     *
+     * @param ac
+     * @param uri
+     * @param kb 最大多少
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public static Bitmap getBitmapFormUri(Activity ac, Uri uri,int kb) throws FileNotFoundException, IOException {
         InputStream input = ac.getContentResolver().openInputStream(uri);
         BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
         onlyBoundsOptions.inJustDecodeBounds = true;
         onlyBoundsOptions.inDither = true;//optional
         onlyBoundsOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
         BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
-        input.close();
+        if (input!=null) {
+            input.close();
+        }
         int originalWidth = onlyBoundsOptions.outWidth;
         int originalHeight = onlyBoundsOptions.outHeight;
         if ((originalWidth == -1) || (originalHeight == -1))
@@ -54,22 +64,24 @@ public class BitmapUtils {
         bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
         input = ac.getContentResolver().openInputStream(uri);
         Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
-        input.close();
+        if (input!=null) {
+            input.close();
+        }
 
-        return compressImage(bitmap);//再进行质量压缩
+        return compressImage(bitmap,kb);//再进行质量压缩
     }
     /**
      * 质量压缩方法
-     *
+     *   压缩到多大
      * @param image
      * @return
      */
-    public static Bitmap compressImage(Bitmap image) {
+    public static Bitmap compressImage(Bitmap image,int kb) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;
-        while (baos.toByteArray().length / 1024 > 100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
+        while (baos.toByteArray().length / 1024 > kb) {  //循环判断如果压缩后图片是否大于200kb,大于继续压缩
             baos.reset();//重置baos即清空baos
             //第一个参数 ：图片格式 ，第二个参数： 图片质量，100为最高，0为最差  ，第三个参数：保存压缩后的数据的流
             image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中

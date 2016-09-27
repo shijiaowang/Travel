@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical"
     android:layout_height="match_parent">
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <com.example.administrator.travel.ui.view.FlowLayout
+        android:id="@+id/fl_title"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="25dp"
         android:layout_width="match_parent"
@@ -41,10 +43,17 @@
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
-    <com.example.administrator.travel.ui.view.SimpleViewPagerIndicator
-        android:id="@+id/indicator"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_title"
+        app:tabMode="scrollable"
         android:gravity="center_vertical"
         android:layout_marginLeft="26dp"
+        android:layout_marginRight="26dp"
+        app:tabSelectedTextColor="@color/otherTitleBg"
+        app:tabTextColor="@color/color646464"
+        app:tabIndicatorColor="@color/otherTitleBg"
+        app:tabGravity="fill"
+        app:tabTextAppearance="@style/tabStyle"
         android:layout_width="match_parent"
         android:layout_height="39dp"/>
     <View

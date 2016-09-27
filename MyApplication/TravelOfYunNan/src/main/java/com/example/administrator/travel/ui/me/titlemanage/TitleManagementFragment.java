@@ -1,41 +1,46 @@
-package com.example.administrator.travel.ui.fragment;
+package com.example.administrator.travel.ui.me.titlemanage;
 
 import android.os.Bundle;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.adapter.TitleManagementAdapter;
+import com.example.administrator.travel.ui.appoint.settingtitle.AddTitleEvent;
+import com.example.administrator.travel.ui.fragment.BaseFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
- * Created by Administrator on 2016/9/7 0007.
+ * Created by wangyang on 2016/9/7 0007.
  * 称号管理
  */
 public class TitleManagementFragment extends BaseFragment {
     private static final String TITLE = "title";
     private static final String TITLE_TYPE = "title_type";
-    private String[] mTitle;
-    private int mTitleType;
+    private List<OfficialLabelBean> mTitle;
+    private String mTitleType;
     private ListView mLvTitle;
+    private TitleManagementAdapter titleManagementAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mTitle = getArguments().getStringArray(TITLE);
-            mTitleType = getArguments().getInt(TITLE_TYPE);
+            mTitle = (List<OfficialLabelBean>) getArguments().getSerializable(TITLE);
+            mTitleType = getArguments().getString(TITLE_TYPE);
         }
         registerEventBus();
 
     }
 
-    public static TitleManagementFragment newInstance(String[] title, int type) {
+    public static TitleManagementFragment newInstance(List<OfficialLabelBean> title, String type) {
         TitleManagementFragment tabFragment = new TitleManagementFragment();
         Bundle bundle = new Bundle();
-        bundle.putStringArray(TITLE, title);
-        bundle.putInt(TITLE_TYPE, type);
+        bundle.putSerializable(TITLE, (Serializable) title);
+        bundle.putString(TITLE_TYPE, type);
         tabFragment.setArguments(bundle);
         return tabFragment;
     }
@@ -52,7 +57,9 @@ public class TitleManagementFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        mLvTitle.setAdapter(new TitleManagementAdapter(getContext(), null));
+        if (mTitle==null)return;
+        titleManagementAdapter = new TitleManagementAdapter(getContext(), mTitle);
+        mLvTitle.setAdapter(titleManagementAdapter);
     }
 
     @Override
@@ -61,8 +68,15 @@ public class TitleManagementFragment extends BaseFragment {
     }
 
     @Subscribe
-    public void onEvent(boolean b) {
-
+    public void onEvent(TitleDeleteEvent event) {
+       if (event.getType().equals(mTitleType)){
+           for (OfficialLabelBean labelBean:mTitle){
+               if (labelBean.getId().equals(event.getId())){
+                   labelBean.setStatus("1");//改成已获得，未佩戴
+                   titleManagementAdapter.notifyDataSetChanged();
+               }
+           }
+       }
     }
 
     @Override

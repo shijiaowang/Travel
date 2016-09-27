@@ -47,7 +47,7 @@
         <activity android:name=".ui.me.fansandfollow.FollowAndFanActivity" />
         <activity android:name=".ui.me.myalbum.MyAlbumActivity" />
         <activity android:name=".ui.me.createalbum.CreateAlbumActivity" />
-        <activity android:name=".ui.baseui.EditAlbumActivity" />
+        <activity android:name=".ui.me.editalbum.EditAlbumActivity" />
         <activity android:name=".ui.baseui.CatOtherUserAlbumActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
@@ -59,7 +59,7 @@
         <activity android:name=".ui.appoint.travelplan.TravelsPlanWithMeActivity" />
         <activity android:name=".ui.baseui.BarBaseActivity" />
         <activity android:name=".ui.baseui.TravelsActivity"/>
-        <activity android:name=".ui.baseui.TitleManagementActivity"/>
+        <activity android:name=".ui.me.titlemanage.TitleManagementActivity"/>
         <activity android:name=".ui.appoint.customdestination.CustomDestinationActivity"/>
         <activity android:name=".ui.baseui.ActivateDetailActivity"/>
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentActivity"/>

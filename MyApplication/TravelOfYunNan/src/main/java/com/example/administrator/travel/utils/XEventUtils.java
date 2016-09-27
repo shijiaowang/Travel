@@ -81,7 +81,11 @@ public class XEventUtils {
         if (files != null) {
             requestParams.setMultipart(true);
             for (int i=0;i<files.size();i++) {
-                File file=new File(files.get(i));
+                String fileDir = files.get(i);
+                if (StringUtils.isEmpty(fileDir)){
+                    continue;
+                }
+                File file=new File(fileDir);
                 if (!file.exists()){
                     continue;
                 }

@@ -26,6 +26,10 @@ public class MapUtils {
             stringMap.put(IVariable.PAGE_SIZE,pageSize+"");
             return this;
         }
+        public Builder addPictureId(String pictureId){
+            stringMap.put(IVariable.PICTURE_ID,pictureId);
+            return this;
+        }
         public Builder addType(String type){
             stringMap.put(IVariable.TYPE,type+"");
             return this;
@@ -42,8 +46,12 @@ public class MapUtils {
             stringMap.put(IVariable.ADDRESS,address);
             return this;
         }
-        public Builder addAId(String aId){
-            stringMap.put(IVariable.A_ID,aId);
+        public Builder addAId(String aid){
+            stringMap.put(IVariable.A_ID,aid);
+            return this;
+        }
+        public Builder addId(String id){
+            stringMap.put(IVariable.ID,id);
             return this;
         }
         public Builder addUserId(){
@@ -66,6 +74,10 @@ public class MapUtils {
         }
         public Builder addTitle(String title){
             stringMap.put(IVariable.TITLE,title);
+            return this;
+        }
+        public Builder addLabel(String label){
+            stringMap.put(IVariable.TITLE,label);
             return this;
         }
         public Builder addFId(String fId){

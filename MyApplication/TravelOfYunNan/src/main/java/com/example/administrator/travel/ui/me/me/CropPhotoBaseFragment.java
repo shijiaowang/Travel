@@ -1,5 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
-
+package com.example.administrator.travel.ui.me.me;
 
 import android.Manifest;
 import android.content.Intent;
@@ -19,6 +18,7 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.utils.BitmapUtils;
 import com.example.administrator.travel.utils.IOUtils;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -34,41 +34,29 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Created by Administrator on 2016/9/23 0023.
- * 裁剪图片的公共父类
+ * Created by wangyang on 2016/9/27 0027.
  */
-public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
+
+public abstract class CropPhotoBaseFragment extends LoadBaseFragment {
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
+    protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
+    protected static final int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
     protected static final String IMAGE_NAME = "CropImage";
-    protected String filename;
+    protected String fileName;
     private Intent intent;//存放图片的uri
-    private boolean notCrop=false;//默认需要裁剪
 
-    public boolean isNeedCrop() {
-        return notCrop;
-    }
 
-    public void setNeedCrop(boolean notCrop) {
-        this.notCrop = notCrop;
-    }
 
-    @Override
-    protected void initEvent() {
-        x.view().inject(this);
-        initChildListener();
-    }
-
-    protected abstract void initChildListener();
 
     /**
      * 弹出窗口
      */
     public void showPictureCutPop(View view) {
         // 获取弹出视图对象
-        View viewPopup = View.inflate(this, R.layout.pop_cut_icon, null);
+        View viewPopup = View.inflate(getContext(), R.layout.pop_cut_icon, null);
         // 创建 弹出窗口
         final PopupWindow window = new PopupWindow(viewPopup, DensityUtil.getScreenWidth(), DensityUtil.dip2px(151));
-        final WindowManager.LayoutParams lp = getWindow().getAttributes();
+        final WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
         viewPopup.findViewById(R.id.tv_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,12 +76,12 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
             }
         });
         lp.alpha = 0.7f;
-        getWindow().setAttributes(lp);
+        getActivity().getWindow().setAttributes(lp);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
                 lp.alpha = 1f;
-                getWindow().setAttributes(lp);
+                getActivity().getWindow().setAttributes(lp);
             }
         });
         // 响应 视图外的地方 点击关闭当前
@@ -111,7 +99,7 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
      */
     private void pickFromGallery() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
                     getString(R.string.permission_read_storage_rationale),
@@ -148,13 +136,13 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode ==RESULT_OK) {
+        if (resultCode == getActivity().RESULT_OK) {
             if (requestCode == REQUEST_SELECT_PICTURE) {
                 final Uri selectedUri = data.getData();
                 if (selectedUri != null) {
                     startCropActivity(data.getData());
                 } else {
-                    Toast.makeText(this, R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
                 }
             } else if (requestCode == UCrop.REQUEST_CROP) {
                 handleCropResult(data);
@@ -172,9 +160,9 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
     private void handleCropError(@NonNull Intent result) {
         final Throwable cropError = UCrop.getError(result);
         if (cropError != null) {
-            Toast.makeText(this, cropError.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), cropError.getMessage(), Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, R.string.toast_unexpected_error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.toast_unexpected_error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -184,9 +172,9 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
      */
     private void startCropActivity(@NonNull Uri uri) {
         String destinationFileName = IMAGE_NAME+".jpg";
-        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
+        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getActivity().getCacheDir(), destinationFileName)));
         uCrop = advancedConfig(uCrop);
-        uCrop.start(this);
+        uCrop.start(getContext(),this);//Fragment中使用
     }
     /**
      * Sometimes you want to adjust more options, it's done via {@link com.yalantis.ucrop.UCrop.Options} class.
@@ -208,11 +196,10 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
         options.setActiveWidgetColor(getResources().getColor(R.color.otherTitleBg));
         options.setToolbarColor(getResources().getColor(R.color.otherTitleBg));
         options.setStatusBarColor(getResources().getColor(R.color.otherTitleBg));
-        options.setAspectRatioOptions(0,new AspectRatio("1",1,1));
+        options.setAspectRatioOptions(0,new AspectRatio("1",16,9));
         options.setCompressionQuality(50);
         //options.setMaxBitmapSize(800);//图片压缩
         options.setImageToCropBoundsAnimDuration(100);
-        setOptions(options);
 
         /*
         If you want to configure how gestures work for all UCropActivity tabs
@@ -260,15 +247,6 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
 
         return uCrop.withOptions(options);
     }
-
-    /**
-     * 子类修改选项
-     * @param options
-     */
-    protected void setOptions(UCrop.Options options) {
-
-    }
-
     /**
      * 将截图存在本地
      *
@@ -293,13 +271,13 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
                     });
                 } else {
                     ToastUtils.showToast("SD卡未挂载！");
-                    filename = null;
+                    fileName = null;
                 }
             } catch (Exception e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(this, getString(R.string.toast_unexpected_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.toast_unexpected_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -325,11 +303,9 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
             fOut = new FileOutputStream(file);
             bmp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
             flag = true;
-            filename = url;
-            ImageView imageView = childViewShow();
-            if (imageView!=null) {
-                x.image().bind(imageView, filename);
-            }
+            fileName = url;
+            x.image().bind(childViewShow(),url);
+            childUpImage();
             bmp.recycle();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -345,11 +321,13 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
         return flag;
     }
 
+    protected abstract void childUpImage();
+
     /**
      * 孩子显示图片控件图片，并且可以做一些处理
      * @return
      */
-   protected  abstract ImageView childViewShow();
+    protected  abstract ImageView childViewShow();
     /**
      * 处理裁剪图片  保存压缩
      *
@@ -357,7 +335,7 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
      */
     private void handleCropResult(@NonNull Intent result) {
         intent = result;
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     getString(R.string.permission_write_storage_rationale),
@@ -368,18 +346,16 @@ public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
 
                 try {
                     Bitmap bitmap = null;
-
-                        bitmap = BitmapUtils.getBitmapFormUri(this, resultUri,100);
+                        bitmap = BitmapUtils.getBitmapFormUri(getActivity(), resultUri,200);
                         if (bitmap == null) return;
                         saveCroppedImage(bitmap);//保存图片到本地
-
                 } catch (Exception e) {
                     e.printStackTrace();
                     ToastUtils.showToast("未解析到图片");
                 }
 
             } else {
-                Toast.makeText(this, R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -112,7 +112,6 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_activity_circle);
-        return inflate;
+        return inflateView(R.layout.item_activity_circle);
     }
 }

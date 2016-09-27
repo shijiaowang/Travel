@@ -10,16 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.HotSpots;
-import com.example.administrator.travel.ui.baseui.EditAlbumActivity;
-import com.example.administrator.travel.ui.me.myalbum.MyAlbumBean;
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.me.editalbum.EditAlbumActivity;
 
 import org.xutils.x;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2016/7/6 0006.
@@ -58,7 +54,7 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         MyAlbumBean.DataBean dataBean = mDatas.get(position);
         if (holder instanceof MyAlbumShortHolder) {
             MyAlbumShortHolder shortHolder = (MyAlbumShortHolder) holder;
@@ -69,7 +65,7 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             shortHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mContext.startActivity(new Intent(mContext, EditAlbumActivity.class));
+                    startEditAlbum(position);
                 }
             });
         } else {
@@ -81,10 +77,16 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             lengthHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mContext.startActivity(new Intent(mContext, EditAlbumActivity.class));
+                    startEditAlbum(position);
                 }
             });
         }
+    }
+
+    private void startEditAlbum(int position) {
+        Intent intent = new Intent(mContext, EditAlbumActivity.class);
+        intent.putExtra(IVariable.ID,mDatas.get(position).getId());
+        mContext.startActivity(intent);
     }
 
     @Override

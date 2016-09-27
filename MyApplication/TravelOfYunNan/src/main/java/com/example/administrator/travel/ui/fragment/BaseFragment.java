@@ -15,9 +15,15 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        root=View.inflate(getActivity(),initLayoutRes(),null);
         return root;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        root=View.inflate(getActivity(),initLayoutRes(),null);
+    }
+
     public View getRoot(){
         return root;
     }
