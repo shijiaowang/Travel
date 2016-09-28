@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.previewpicture;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,7 +10,11 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.pageranim.ZoomOutPageTransformer;
+import com.example.administrator.travel.ui.baseui.BaseActivity;
+import com.example.administrator.travel.ui.me.albumselector.AlbumSelectorActivity;
+import com.example.administrator.travel.ui.me.pictureselector.PictureSelectorEvent;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.ToastUtils;
 
@@ -23,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by android on 2016/8/24.
+ * Created by wangyang on 2016/8/24.
  * 预览图片
  */
 public class PreviewPicturesActivity extends BaseActivity implements View.OnClickListener {
@@ -37,24 +41,21 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
     private TextView mTvSend;
     private int currentPosition = 0;
     private List<String> mTempImage = new ArrayList<>();
+    private boolean sendFlag=false;
 
 
     private void changeSelect(int position, TextView mTvCancel) {
-        mTvSend.setText("发送("+(GlobalValue.mSelectImages.size()-mTempImage.size())+")");
+
         if (mTempImage.contains(GlobalValue.mSelectImages.get(position))) {
             mTempImage.remove(GlobalValue.mSelectImages.get(position));
-            mTvCancel.setTextColor(getResources().getColor(R.color.otherTitleBg));
+            mTvCancel.setTextColor(getResources().getColor(R.color.colorb5b5b5));
 
         } else {
             mTempImage.add(GlobalValue.mSelectImages.get(position));
-            mTvCancel.setTextColor(getResources().getColor(R.color.colorb5b5b5));
+            mTvCancel.setTextColor(getResources().getColor(R.color.otherTitleBg));
         }
+        mTvSend.setText("发送("+mTempImage.size()+")");
     }
-
-
-
-
-
 
 
     @Override
@@ -83,9 +84,9 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
             public void onPageSelected(int position) {
                 currentPosition = position;
                 if (mTempImage.contains(GlobalValue.mSelectImages.get(position))) {
-                    mTvCancel.setTextColor(getResources().getColor(R.color.colorb5b5b5));
-                } else {
                     mTvCancel.setTextColor(getResources().getColor(R.color.otherTitleBg));
+                } else {
+                    mTvCancel.setTextColor(getResources().getColor(R.color.colorb5b5b5));
                 }
             }
 
@@ -98,6 +99,8 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void initData() {
+        mTempImage.clear();
+        mTempImage.addAll(GlobalValue.mSelectImages);
         mVpPicture.setPageTransformer(true, new ZoomOutPageTransformer());
         mVpPicture.setAdapter(new PictureAdapter());
     }
@@ -148,12 +151,13 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
      * 发送图片
      */
     private void sendPicture() {
-        if (GlobalValue.mSelectImages==null || GlobalValue.mSelectImages.size()==0){
+        if (mTempImage==null || mTempImage.size()==0){
             ToastUtils.showToast("对不起，你尚未选中任何图片");
         }else {
+            sendFlag = true;
             CreatePostEvent createPostEvent = new CreatePostEvent();
-            createPostEvent.setmImages(GlobalValue.mSelectImages);
-            createPostEvent.setType(CreatePostActivity.SEND_PICTURE);
+            createPostEvent.setmImages(mTempImage);
+            createPostEvent.setType(IVariable.SEND_PICTURE);
             createPostEvent.setIsSuccess(true);
             GlobalValue.mSelectImages=null;
             EventBus.getDefault().post(createPostEvent);
@@ -162,5 +166,14 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (!sendFlag && mTempImage!=null){//如果没发送过重新赋值
+            GlobalValue.mSelectImages.clear();
+            GlobalValue.mSelectImages.addAll(mTempImage);
+           EventBus.getDefault().post(new PictureSelectorEvent());
+        }
+    }
 }
 

@@ -1,9 +1,10 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.me.mytheme;
 
 import android.content.Context;
 import android.view.View;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 
 import org.xutils.view.annotation.ViewInject;
@@ -28,7 +29,6 @@ public class MyCollectionHolder extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_fragment_my_collection);
-        return inflate;
+        return inflateView(R.layout.item_fragment_my_collection);
     }
 }

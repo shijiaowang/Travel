@@ -164,6 +164,9 @@ public abstract class LoadingBarBaseActivity extends BaseActivity implements XLi
                 @Override
                 public void slipping(int l, int i, int oldl, int t) {
                     getmBg1().setAlpha(Math.abs(t / CHANGE_COLOR_LIMIT) > 1 ? 1f : Math.abs(t / CHANGE_COLOR_LIMIT));
+                    if (scrollListener!=null){
+                        scrollListener.percent(Math.abs(t/CHANGE_COLOR_LIMIT));
+                    }
                 }
             });
         }
@@ -214,6 +217,7 @@ public abstract class LoadingBarBaseActivity extends BaseActivity implements XLi
                     mIvError.setVisibility(View.GONE);
                     onLoad(TYPE_REFRESH);
                     root.setVisibility(View.VISIBLE);
+                    setIsProgress(true);
                 }
             });
         }
@@ -314,5 +318,15 @@ public abstract class LoadingBarBaseActivity extends BaseActivity implements XLi
     @Override
     public void onLoadMore() {
       onLoad(TYPE_LOAD);
+    }
+    private ScrollListener scrollListener;
+
+
+    public void setScrollListener(ScrollListener scrollListener) {
+        this.scrollListener = scrollListener;
+    }
+
+    public interface ScrollListener{
+        void percent(float percent);
     }
 }

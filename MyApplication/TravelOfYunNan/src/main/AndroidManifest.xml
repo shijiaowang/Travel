@@ -64,7 +64,7 @@
         <activity android:name=".ui.baseui.ActivateDetailActivity"/>
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentActivity"/>
         <activity android:name=".ui.baseui.DeliciousDetailActivity"/>
-        <activity android:name=".ui.baseui.PictureSelectorActivity"/>
+        <activity android:name=".ui.me.pictureselector.PictureSelectorActivity"/>
         <activity android:name=".ui.baseui.OrdersDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"
             android:windowSoftInputMode="adjustPan"
@@ -87,25 +87,26 @@
         <activity android:name=".ui.appoint.aite.AiteActivity"/>
         <activity android:name=".ui.me.myappoint.MyAppointActivity"/>
         <activity android:name=".ui.me.bulltetinboard.BulletinBoardActivity"/>
-        <activity android:name=".ui.baseui.MyCollectionActivity"/>
+        <activity android:name=".ui.me.mycollection.MyCollectionActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanBaseActivity"/>
         <activity android:name=".ui.appoint.memberdetail.MemberDetailActivity"/>
         <activity android:name=".ui.baseui.OrdersCenterActivity"/>
         <activity android:name=".ui.baseui.ConfirmOrdersActivity"/>
-        <activity android:name=".ui.baseui.CollectionDetailActivity"/>
+        <activity android:name=".ui.me.collectiondetail.CollectionDetailActivity"/>
         <activity android:name=".ui.baseui.CustomerServiceActivity"/>
-        <activity android:name=".ui.baseui.PreviewPicturesActivity"/>
+        <activity android:name=".ui.me.previewpicture.PreviewPicturesActivity"/>
         <activity android:name=".ui.baseui.ChangePhoneActivity"/>
         <activity android:name=".ui.baseui.MessagePrivateActivity"/>
         <activity android:name=".ui.baseui.RelateMeDetailActivity"/>
         <activity android:name=".ui.baseui.ChangePhoneVerActivity"/>
+        <activity android:name=".ui.me.myhobby.MyHobbyActivity"/>
         <activity android:name=".ui.baseui.PersonalProfileActivity"/>
         <activity android:name=".ui.baseui.HomeSearchActivity"/>
         <activity android:name=".ui.baseui.AppointMessageActivity"/>
         <activity android:name=".ui.baseui.IdentityAuthenticationActivity"/>
         <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
         <activity android:name=".ui.baseui.SystemMessageActivity"/>
-        <activity android:name=".ui.baseui.AlbumSelectorActivity"/>
+        <activity android:name=".ui.me.albumselector.AlbumSelectorActivity"/>
         <activity android:name=".ui.me.about.AboutActivity"/>
         <activity android:name=".ui.appoint.createsuccess.CreateAppointSuccessActivity"/>
         <activity android:name=".ui.appoint.desremark.DesRemarkActivity"
@@ -126,10 +127,11 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />
         <activity android:name=".ui.baseui.CircleDetailActivity"/>
-        <activity android:name=".ui.baseui.CreatePostActivity"
+        <activity android:name=".ui.circle.createpost.CreatePostActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/CreatePostTheme"
             />
+        <activity android:name=".ui.me.mytheme.MyThemeActivity" />
     </application>
 
 </manifest>

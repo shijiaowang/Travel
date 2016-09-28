@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.me.albumselector;
 
 import android.content.Context;
 import android.view.View;
@@ -6,16 +6,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.ImageFolder;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.me.albumselector.ImageFolder;
 
 
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import butterknife.BindView;
 
 /**
- * Created by android on 2016/8/22.
+ * Created by wangyang on 2016/8/22.
  */
 public class SelectFolderHolder extends BaseHolder<ImageFolder> {
     @BindView(R.id.iv_picture) ImageView mIvPicture;

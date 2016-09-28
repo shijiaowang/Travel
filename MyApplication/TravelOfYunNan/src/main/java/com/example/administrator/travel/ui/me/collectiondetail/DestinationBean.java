@@ -1,17 +1,15 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.me.collectiondetail;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/7 0007.
- * 游记列表
+ * Created by wangyang on 2016/9/28 0028.
  */
-public class Travels {
 
+public class DestinationBean {
 
     private int code;
     private String message;
-
 
     private List<DataBean> data;
 
@@ -42,12 +40,10 @@ public class Travels {
     public static class DataBean {
         private String id;
         private String title;
-        private String author;
+        private String province;
         private String logo_img;
-        private String title_img;
-        private String travel_id;
         private String add_time;
-        private String status;
+        private String add_ress;
 
         public String getId() {
             return id;
@@ -65,12 +61,12 @@ public class Travels {
             this.title = title;
         }
 
-        public String getAuthor() {
-            return author;
+        public String getProvince() {
+            return province;
         }
 
-        public void setAuthor(String author) {
-            this.author = author;
+        public void setProvince(String province) {
+            this.province = province;
         }
 
         public String getLogo_img() {
@@ -81,22 +77,6 @@ public class Travels {
             this.logo_img = logo_img;
         }
 
-        public String getTitle_img() {
-            return title_img;
-        }
-
-        public void setTitle_img(String title_img) {
-            this.title_img = title_img;
-        }
-
-        public String getTravel_id() {
-            return travel_id;
-        }
-
-        public void setTravel_id(String travel_id) {
-            this.travel_id = travel_id;
-        }
-
         public String getAdd_time() {
             return add_time;
         }
@@ -105,12 +85,12 @@ public class Travels {
             this.add_time = add_time;
         }
 
-        public String getStatus() {
-            return status;
+        public String getAdd_ress() {
+            return add_ress;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setAdd_ress(String add_ress) {
+            this.add_ress = add_ress;
         }
     }
 }

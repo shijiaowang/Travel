@@ -1,15 +1,14 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.me.albumselector;
 
 import android.content.Context;
 
-import com.example.administrator.travel.bean.ImageFolder;
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.holer.SelectFolderHolder;
 
 import java.util.List;
 
 /**
- * Created by android on 2016/8/22.
+ * Created by wangyang on 2016/8/22.
  */
 public class SelectFolderAdapter extends TravelBaseAdapter<ImageFolder> {
     public SelectFolderAdapter(Context mContext, List<ImageFolder> mDatas) {

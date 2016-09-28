@@ -1,4 +1,4 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.me.albumselector;
 
 import java.io.Serializable;
 

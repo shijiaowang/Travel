@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.me.pictureselector;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 
 import org.xutils.view.annotation.ViewInject;
@@ -17,7 +18,7 @@ import java.io.File;
 import butterknife.BindView;
 
 /**
- * Created by android on 2016/8/23.
+ * Created by wangyang on 2016/8/23.
  */
 public class PictureSelectorHolder extends BaseHolder<String> {
     @BindView(R.id.iv_picture) public ImageView mIvPicture;
@@ -34,12 +35,13 @@ public class PictureSelectorHolder extends BaseHolder<String> {
 
     @Override
     protected void initItemDatas(String datas, Context mContext, int position) {
-        mImage.setBackgroundColor(Color.TRANSPARENT);
-        mTvSelect.setTextColor(mContext.getResources().getColor(R.color.colorFAFAFA));
         x.image().bind(mIvPicture, dir + File.separator + datas, getImageOptions(100,100));
         if (GlobalValue.mSelectImages!=null && GlobalValue.mSelectImages.contains(dir+File.separator+datas)){
             mImage.setBackgroundColor(Color.parseColor("#77000000"));
             mTvSelect.setTextColor(mContext.getResources().getColor(R.color.otherTitleBg));
+        }else {
+            mImage.setBackgroundColor(Color.TRANSPARENT);
+            mTvSelect.setTextColor(mContext.getResources().getColor(R.color.colorFAFAFA));
         }
     }
 

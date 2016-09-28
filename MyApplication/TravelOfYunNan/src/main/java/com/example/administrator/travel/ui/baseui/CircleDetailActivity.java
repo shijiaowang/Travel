@@ -16,6 +16,7 @@ import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.CircleDetailAdapter;
+import com.example.administrator.travel.ui.circle.createpost.CreatePostActivity;
 import com.example.administrator.travel.ui.circle.post.PostActivity;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.GlobalUtils;

@@ -11,8 +11,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.me.myhobby.LabelTitleBean;
+import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -42,7 +45,7 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
     private TabLayout mTlTitle;
     @ViewInject(R.id.fl_title)
     private FlowLayout mFlTitle;
-    private List<TitleManagementBean.DataBean.UserLabelBean> userLabel=new ArrayList<>(5);
+    private List<UserLabelBean> userLabel=new ArrayList<>(5);
     private LayoutInflater inflater;
     private TextView mTvRight;
 
@@ -81,7 +84,7 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
     private String getLabelIds() {
         StringBuilder stringBuffer=new StringBuilder("");
         if (userLabel==null || userLabel.size()==0)return "";
-        for (TitleManagementBean.DataBean.UserLabelBean labelBean:userLabel){
+        for (UserLabelBean labelBean:userLabel){
             if (userLabel.indexOf(labelBean)==userLabel.size()-1){
                 stringBuffer.append(labelBean.getId());//最后一位没有逗号
             }else {
@@ -120,9 +123,9 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
      * 移除标签
      * @param userLabelBean
      */
-    private void removeLabel(TitleManagementBean.DataBean.UserLabelBean userLabelBean) {
+    private void removeLabel(UserLabelBean userLabelBean) {
         if (userLabel==null || userLabel.size()==0)return;
-        for (TitleManagementBean.DataBean.UserLabelBean userLabelBean1:userLabel){
+        for (UserLabelBean userLabelBean1:userLabel){
             if (userLabelBean1.getId().equals(userLabelBean.getId())){
                 int index = userLabel.indexOf(userLabelBean1);
                 mFlTitle.removeViewAt(index);
@@ -143,7 +146,6 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
              }
          } catch (Exception e) {
              e.printStackTrace();
-             setIsError(true);
          }
      }else {
          if (event.getType()==TYPE_LOAD) {
@@ -157,11 +159,11 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
         TitleManagementBean titleManagementBean = GsonUtils.getObject(event.getResult(), TitleManagementBean.class);
         TitleManagementBean.DataBean data = titleManagementBean.getData();
         initTitle(data.getUser_label());
-        List<TitleManagementBean.DataBean.LabelTitleBean> labelTitle = data.getLabel_title();
+        List<LabelTitleBean> labelTitle = data.getLabel_title();
         mVpPager.setOffscreenPageLimit(labelTitle.size());
         mTitles=new String[labelTitle.size()];
         int i=0;
-        for (TitleManagementBean.DataBean.LabelTitleBean labelTitleBean:labelTitle){
+        for (LabelTitleBean labelTitleBean:labelTitle){
                 mTitles[i]=labelTitleBean.getName();
                 i++;
         }
@@ -172,7 +174,7 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
             fragments.add(newInstance);
             i++;
         }
-        mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager()));
+        mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager(),fragments,mTitles));
         mTlTitle.setupWithViewPager(mVpPager);
     }
 
@@ -180,28 +182,29 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
      * 初始化用户已经佩戴的标签
      * @param user_label
      */
-    private void initTitle(List<TitleManagementBean.DataBean.UserLabelBean> user_label) {
+    private void initTitle(List<UserLabelBean> user_label) {
         if (!(user_label==null|| user_label.size()==0)){
             mFlTitle.removeAllViews();
-            for (TitleManagementBean.DataBean.UserLabelBean labelBean:user_label) {
+            for (UserLabelBean labelBean:user_label) {
                 addLabel(labelBean);
             }
         }
     }
 
-    private void addLabel(TitleManagementBean.DataBean.UserLabelBean labelBean) {
+    private void addLabel(UserLabelBean labelBean) {
         if (labelBean==null)return;
         if (userLabel.size()==7){
             ToastUtils.showToast("您当前最多佩戴7个称号");
         }
         userLabel.add(labelBean);
+        GlobalValue.count=userLabel.size();
         View inflate = inflater.inflate(R.layout.item_activity_setting_title_select, mFlTitle, false);
         View delete = inflate.findViewById(R.id.tv_delete);
         delete.setTag(labelBean);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TitleManagementBean.DataBean.UserLabelBean tag = (TitleManagementBean.DataBean.UserLabelBean) v.getTag();
+                UserLabelBean tag = (UserLabelBean) v.getTag();
                 int index = userLabel.indexOf(tag);
                 EventBus.getDefault().post(new TitleDeleteEvent(tag.getClassX(),tag.getId()));
                 mFlTitle.removeViewAt(index);
@@ -218,25 +221,10 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
     public float getAlpha() {
         return 1.0f;
     }
-    class TitlePagerAdapter extends FragmentPagerAdapter{
 
-        public TitlePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mTitles[position];
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        GlobalValue.count=0;
     }
 }

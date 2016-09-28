@@ -1,12 +1,12 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.me.collectiondetail;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/7 0007.
- * 游记列表
+ * Created by wangyang on 2016/9/28 0028.
  */
-public class Travels {
+
+public class ActiveBean {
 
 
     private int code;
@@ -42,12 +42,10 @@ public class Travels {
     public static class DataBean {
         private String id;
         private String title;
-        private String author;
-        private String logo_img;
-        private String title_img;
-        private String travel_id;
+        private String activity_img;
+        private String start_time;
+        private String end_time;
         private String add_time;
-        private String status;
 
         public String getId() {
             return id;
@@ -65,36 +63,28 @@ public class Travels {
             this.title = title;
         }
 
-        public String getAuthor() {
-            return author;
+        public String getActivity_img() {
+            return activity_img;
         }
 
-        public void setAuthor(String author) {
-            this.author = author;
+        public void setActivity_img(String activity_img) {
+            this.activity_img = activity_img;
         }
 
-        public String getLogo_img() {
-            return logo_img;
+        public String getStart_time() {
+            return start_time;
         }
 
-        public void setLogo_img(String logo_img) {
-            this.logo_img = logo_img;
+        public void setStart_time(String start_time) {
+            this.start_time = start_time;
         }
 
-        public String getTitle_img() {
-            return title_img;
+        public String getEnd_time() {
+            return end_time;
         }
 
-        public void setTitle_img(String title_img) {
-            this.title_img = title_img;
-        }
-
-        public String getTravel_id() {
-            return travel_id;
-        }
-
-        public void setTravel_id(String travel_id) {
-            this.travel_id = travel_id;
+        public void setEnd_time(String end_time) {
+            this.end_time = end_time;
         }
 
         public String getAdd_time() {
@@ -103,14 +93,6 @@ public class Travels {
 
         public void setAdd_time(String add_time) {
             this.add_time = add_time;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
         }
     }
 }

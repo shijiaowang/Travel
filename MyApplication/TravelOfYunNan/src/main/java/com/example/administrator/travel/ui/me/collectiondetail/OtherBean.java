@@ -1,12 +1,13 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.me.collectiondetail;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/7 0007.
- * 游记列表
+ * Created by wangyang on 2016/9/28 0028.
  */
-public class Travels {
+
+public class OtherBean {
+
 
 
     private int code;
@@ -42,12 +43,10 @@ public class Travels {
     public static class DataBean {
         private String id;
         private String title;
-        private String author;
+        private String content;
         private String logo_img;
-        private String title_img;
-        private String travel_id;
+        private String cname;
         private String add_time;
-        private String status;
 
         public String getId() {
             return id;
@@ -65,12 +64,12 @@ public class Travels {
             this.title = title;
         }
 
-        public String getAuthor() {
-            return author;
+        public String getContent() {
+            return content;
         }
 
-        public void setAuthor(String author) {
-            this.author = author;
+        public void setContent(String content) {
+            this.content = content;
         }
 
         public String getLogo_img() {
@@ -81,20 +80,12 @@ public class Travels {
             this.logo_img = logo_img;
         }
 
-        public String getTitle_img() {
-            return title_img;
+        public String getCname() {
+            return cname;
         }
 
-        public void setTitle_img(String title_img) {
-            this.title_img = title_img;
-        }
-
-        public String getTravel_id() {
-            return travel_id;
-        }
-
-        public void setTravel_id(String travel_id) {
-            this.travel_id = travel_id;
+        public void setCname(String cname) {
+            this.cname = cname;
         }
 
         public String getAdd_time() {
@@ -103,14 +94,6 @@ public class Travels {
 
         public void setAdd_time(String add_time) {
             this.add_time = add_time;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
         }
     }
 }

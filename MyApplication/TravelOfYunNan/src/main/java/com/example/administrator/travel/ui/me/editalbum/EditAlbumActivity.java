@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.me.editalbum;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,8 +15,10 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.me.albumselector.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.baseui.BaseCropPhotoActivity;
 import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -25,6 +28,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +59,7 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
     private RelativeLayout mRlEditDes;
     @ViewInject(R.id.tv_photo)
     private TextView mTvPhoto;
-    @ViewInject(R.id.tv_name)
+    @ViewInject(R.id.tv_album_name)
     private TextView mTvName;
     private TextView mTvMore;
     private boolean isEdit=false;
@@ -64,6 +68,7 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
     private List<EditAlbumBean.DataBean.BodyBean> body;
     private String name;
     private String des;
+    private String title;
 
 
     @Override
@@ -86,6 +91,19 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
         mTvMore.setText("编辑");
         mTvPhoto.setOnClickListener(this);
         mTvMore.setOnClickListener(this);
+        setScrollListener(new ScrollListener() {
+            @Override
+            public void percent(float percent) {
+                LogUtils.e(percent+"");
+                percent=percent>1?1f:percent;
+                if (percent<=0.5){
+                    changeTitle("");
+                }else {
+                    changeTitle(title);
+                }
+                mTvName.setAlpha(1f-percent);
+            }
+        });
         mEtDes.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -126,7 +144,9 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
      */
     private void updateAlbum(String name, String des) {
         Map<String, String> updateMap = MapUtils.Build().addKey(this).addId(id).addUserId().addTitle(name).addContent(des).addPictureId(getPictureId()).end();
-       XEventUtils.postUseCommonBackJson(IVariable.UPDATE_ALBUM,updateMap,TYPE_UPDATE,new EditAlbumEvent());
+        List<String> files=new ArrayList<>();
+        files.add(filename);
+        XEventUtils.postFileCommonBackJson(IVariable.UPDATE_ALBUM,updateMap,files,TYPE_UPDATE,new EditAlbumEvent());
     }
 
     /**
@@ -184,8 +204,10 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
                 mTvName.setText(name);
                 mTvDes.setText(des);
                 changeViewShow(isEdit);
-                EditAlbumHolder.canDelete=false;
-                editAlbumAdapter.notifyDataSetChanged();
+                if (editAlbumAdapter!=null) {
+                    EditAlbumHolder.canDelete = false;
+                    editAlbumAdapter.notifyDataSetChanged();
+                }
                 ToastUtils.showToast(event.getMessage());
                 break;
         }
@@ -201,7 +223,8 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
         if (data==null)return;
         EditAlbumBean.DataBean.HeadBean head = data.getHead();
         mTvDes.setText(getString(R.string.kongge)+head.getContent());
-        mTvName.setText(head.getTitle());
+        title = head.getTitle();
+        mTvName.setText(title);
         x.image().bind(mIvCover,head.getBackground_img());
         body = data.getBody();
         if (body ==null || body.size()==0)return;
@@ -234,6 +257,7 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_photo:
+                startActivity(new Intent(this, AlbumSelectorActivity.class));
                 break;
             case R.id.tv_set_cover:
                 hideSoftWore(mEtDes);
@@ -248,10 +272,12 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
     private void changeEdit() {
         isEdit=!isEdit;
         if (isEdit){
-            mEdSetName.setText(mTvName.getText().toString());
-            mEtDes.setText(mTvDes.getText().toString());
-            EditAlbumHolder.canDelete=true;
-            editAlbumAdapter.notifyDataSetChanged();
+            mEdSetName.setText(mTvName.getText().toString().trim());
+            mEtDes.setText(mTvDes.getText().toString().trim());
+            if (editAlbumAdapter!=null) {
+                EditAlbumHolder.canDelete = true;
+                editAlbumAdapter.notifyDataSetChanged();
+            }
             changeViewShow(isEdit);
         }else {
             name = mEdSetName.getText().toString().trim();
@@ -263,5 +289,10 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
             des = mEtDes.getText().toString().trim();
             updateAlbum(name, des);
         }
+    }
+
+    @Override
+    protected boolean canScrollToChangeTitleBgColor() {
+        return true;
     }
 }

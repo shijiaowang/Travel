@@ -1,14 +1,14 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.me.mytheme;
 
 import android.content.Context;
 
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.holer.MyCollectionHolder;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/3 0003.
+ * Created by wangyang on 2016/8/3 0003.
  */
 public class MyCollectionAdapter extends TravelBaseAdapter {
     public MyCollectionAdapter(Context mContext, List mDatas) {

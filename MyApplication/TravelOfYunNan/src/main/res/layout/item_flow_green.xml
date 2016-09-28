@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_title"
+    android:background="@drawable/activity_my_appoint_rl_bg"
+    style="@style/commonSingleLineTextStyle"
+    android:gravity="center"
+    android:textColor="@color/otherTitleBg"
+    android:textSize="11sp"
+    android:layout_width="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    >
+
+</TextView>

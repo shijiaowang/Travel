@@ -6,8 +6,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
+import com.example.administrator.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -36,13 +39,17 @@ public class TitleManagementAdapter extends TravelBaseAdapter<OfficialLabelBean>
             public void onClick(View v) {
                 int type=-1;
                 if (item.getStatus().equals("1")){//拥有未佩戴
+                    if (GlobalValue.count>=7){
+                        ToastUtils.showToast("最多佩戴7个称号");
+                        return;
+                    }
                     item.setStatus("2");
                     type=TitleManagementActivity.ADD_TITLE;
                 }else {
                     item.setStatus("1");
                     type=TitleManagementActivity.REMOVE_TITLE;
                 }
-                TitleManagementBean.DataBean.UserLabelBean userLabelBean=new TitleManagementBean.DataBean.UserLabelBean();
+                UserLabelBean userLabelBean=new UserLabelBean();
                 userLabelBean.setId(item.getId());
                 userLabelBean.setName(item.getName());
                 userLabelBean.setType(item.getType());

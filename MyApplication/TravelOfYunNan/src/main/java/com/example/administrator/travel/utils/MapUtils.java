@@ -34,6 +34,10 @@ public class MapUtils {
             stringMap.put(IVariable.TYPE,type+"");
             return this;
         }
+        public Builder addTypeId(String typeId){
+            stringMap.put(IVariable.TYPE_ID,typeId+"");
+            return this;
+        }
         public Builder addProvince(String province){
             stringMap.put(IVariable.PROVINCE,province);
             return this;

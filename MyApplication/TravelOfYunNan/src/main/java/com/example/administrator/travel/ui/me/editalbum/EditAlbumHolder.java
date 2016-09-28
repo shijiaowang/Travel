@@ -46,4 +46,5 @@ public class EditAlbumHolder extends BaseHolder<EditAlbumBean.DataBean.BodyBean>
     public View initRootView(Context mContext) {
         return inflateView(R.layout.item_activity_edit_album);
     }
+
 }

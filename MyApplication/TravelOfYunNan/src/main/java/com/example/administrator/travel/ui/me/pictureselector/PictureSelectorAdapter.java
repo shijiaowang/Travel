@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.me.pictureselector;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -6,18 +6,16 @@ import android.view.View;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.holer.PictureSelectorHolder;
 import com.example.administrator.travel.utils.ToastUtils;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by android on 2016/8/23.
+ * Created by wangyang on 2016/8/23.
  */
 public class PictureSelectorAdapter extends TravelBaseAdapter<String> {
     private String dir;

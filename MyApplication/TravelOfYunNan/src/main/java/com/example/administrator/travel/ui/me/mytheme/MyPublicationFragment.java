@@ -1,12 +1,13 @@
-package com.example.administrator.travel.ui.fragment;
+package com.example.administrator.travel.ui.me.mytheme;
 
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.adapter.MyCollectionAdapter;
+import com.example.administrator.travel.ui.fragment.BaseFragment;
 
 /**
- * Created by Administrator on 2016/8/3 0003.
+ * Created by wangyang on 2016/8/3 0003.
+ * 我的发表
  */
 public class MyPublicationFragment extends BaseFragment {
 

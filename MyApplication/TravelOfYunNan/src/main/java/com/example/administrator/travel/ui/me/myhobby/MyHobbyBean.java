@@ -1,16 +1,14 @@
-package com.example.administrator.travel.ui.me.titlemanage;
+package com.example.administrator.travel.ui.me.myhobby;
 
-import com.example.administrator.travel.ui.me.myhobby.LabelTitleBean;
-import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 /**
- * Created by wangyang on 2016/9/27 0027.
+ * Created by wangyang on 2016/9/28 0028.
  */
 
-public class TitleManagementBean {
+public class MyHobbyBean {
 
     private int code;
     private String message;
@@ -41,10 +39,14 @@ public class TitleManagementBean {
     }
 
     public static class DataBean {
+
+
         private List<LabelTitleBean> label_title;
 
         private List<UserLabelBean> user_label;
-        private List<List<OfficialLabelBean>> official_label;
+
+
+        private List<List<UserLabelBean>> official_label;
 
         public List<LabelTitleBean> getLabel_title() {
             return label_title;
@@ -62,15 +64,13 @@ public class TitleManagementBean {
             this.user_label = user_label;
         }
 
-        public List<List<OfficialLabelBean>> getOfficial_label() {
+        public List<List<UserLabelBean>> getOfficial_label() {
             return official_label;
         }
 
-        public void setOfficial_label(List<List<OfficialLabelBean>> official_label) {
+        public void setOfficial_label(List<List<UserLabelBean>> official_label) {
             this.official_label = official_label;
         }
 
-
     }
-
 }

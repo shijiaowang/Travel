@@ -62,6 +62,7 @@ public interface IVariable {
     String FIND_ACTIVITY_DETAIL = API_KEY + "Find/getFindActivitydetail/";//活动列表详情
     String FIND_FOOD = API_KEY + "Find/getFindfood/";//美食
     String FIND_FOOD_DETAIL = API_KEY + "Find/getFindfoodDetail/";//美食详情
+
     /**
      * 我
      */
@@ -69,11 +70,13 @@ public interface IVariable {
     String ALBUM_LIST = API_KEY + "User/getUserImglists/";//相册列表
     String TITLE_LIST = API_KEY + "User/setlabellists/";//称号管理，获取标签列表
     String SAVE_TITLE = API_KEY + "User/setlabel/";//保存称号
-    String MY_COLLECTION = API_KEY + "User/getUsercollectlists/";//我的收藏
     String CHANGE_BG = API_KEY + "User/updateUserbackgroundImg/";//更改个人中心背景
     String EDIT_ALBUM = API_KEY + "User/getUserImgpicture/";//查看编辑相册
     String UPDATE_ALBUM = API_KEY + "User/updateUserAlbum/";//更新相册
     String ADD_ALBUM_PHOTO = API_KEY + "User/addUserImgpicture/";//添加图片
+    String GET_HOBBY_LIST = API_KEY + "User/getInterestlists/";//获取兴趣列表
+    String MY_COLLECTION_DETAIL = API_KEY + "User/getUsercollectlists/";//我的收藏详情
+    String CANCEL_COLLECTION = API_KEY + "User/delUsercollectlists/";//取消收藏
 
     //请求type
     int TYPE_GET_KEY = 0;
@@ -157,6 +160,7 @@ public interface IVariable {
 
     String CIRCLE_ID = "circle_id";//圈子ID
     String TYPE = "type";//取消关注，与关注
+    String TYPE_ID = "type_id";//我的收藏详情类型
     String SEX = "sex";//性别
     String NICK_NAME = "nick_name";//昵称
     String TEL = "tel";//电话
@@ -191,6 +195,9 @@ public interface IVariable {
     int TYPE_WITH_ME=1;//带我玩
     String DATA = "data";
     String ITEM_DATA = "item_data";
+      int SEND_PICTURE = 2;//发送图片
+      int CREATE_POST = 3;//创建帖子
+
 
     String POSITION = "position";
     String TITLE = "title";//name

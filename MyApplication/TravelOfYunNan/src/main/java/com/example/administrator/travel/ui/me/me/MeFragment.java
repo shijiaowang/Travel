@@ -18,9 +18,11 @@ import com.example.administrator.travel.ui.baseui.IdentityAuthenticationActivity
 import com.example.administrator.travel.ui.baseui.MessageCenterActivity;
 import com.example.administrator.travel.ui.me.myalbum.MyAlbumActivity;
 import com.example.administrator.travel.ui.me.myappoint.MyAppointActivity;
-import com.example.administrator.travel.ui.baseui.MyCollectionActivity;
+import com.example.administrator.travel.ui.me.mycollection.MyCollectionActivity;
 import com.example.administrator.travel.ui.baseui.OrdersCenterActivity;
 import com.example.administrator.travel.ui.baseui.SettingActivity;
+import com.example.administrator.travel.ui.me.myhobby.MyHobbyActivity;
+import com.example.administrator.travel.ui.me.mytheme.MyThemeActivity;
 import com.example.administrator.travel.ui.me.titlemanage.TitleManagementActivity;
 import com.example.administrator.travel.ui.me.level.LevelActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
@@ -85,6 +87,8 @@ public class MeFragment extends CropPhotoBaseFragment implements View.OnClickLis
     TextView mTvLevel;
     @BindView(R.id.iv_icon) ImageView mIvIcon;
     @BindView(R.id.iv_bg) ImageView mIvBg;
+    @BindView(R.id.ll_hobby) LinearLayout mLlHobby;
+    @BindView(R.id.ll_theme) LinearLayout mLlTheme;
     private int upType=-1;
     private static final int UP_BG=1;
     private static final int UP_ICON=2;
@@ -119,6 +123,8 @@ public class MeFragment extends CropPhotoBaseFragment implements View.OnClickLis
         mTvLevel.setOnClickListener(this);//等级
         mIvIcon.setOnClickListener(this);//更换头像
         mIvBg.setOnClickListener(this);//设置背景
+        mLlHobby.setOnClickListener(this);//我的兴趣
+        mLlTheme.setOnClickListener(this);//我的主题
     }
 
     private void init() {
@@ -189,6 +195,12 @@ public class MeFragment extends CropPhotoBaseFragment implements View.OnClickLis
                 LinearLayout homeBottom = ((HomeActivity) getActivity()).getmLlBottom();
                 upType = UP_BG;
                 showPictureCutPop(homeBottom);
+                break;
+            case R.id.ll_hobby:
+                startActivity(new Intent(getContext(), MyHobbyActivity.class));
+                break;
+            case R.id.ll_theme:
+                startActivity(new Intent(getContext(), MyThemeActivity.class));
                 break;
         }
     }

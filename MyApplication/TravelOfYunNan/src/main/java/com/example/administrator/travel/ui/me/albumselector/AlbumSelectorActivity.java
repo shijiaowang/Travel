@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.albumselector;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -15,10 +15,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.ImageFolder;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.adapter.SelectFolderAdapter;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
+import com.example.administrator.travel.ui.me.pictureselector.PictureSelectorActivity;
 import com.example.administrator.travel.utils.ToastUtils;
 
 import org.xutils.view.annotation.ViewInject;
@@ -29,9 +29,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * 相册选择 powered by wangyang
+ */
 public class AlbumSelectorActivity extends BarBaseActivity {
-    protected static final int GET_PICTURE=0;
-    protected static final int SEND_PICTURE=1;
+    public static final int GET_PICTURE=0;
+    public static final int SEND_PICTURE=1;
+    public static final int CANCEL_PER=2;//取消预览
     @ViewInject(R.id.lv_photo)
     private ListView mLvPhoto;
     private ProgressDialog mProgressDialog;

@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.circle.createpost;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +27,7 @@ import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.CreatePostPhotoAdapter;
 import com.example.administrator.travel.ui.appoint.aite.AiteActivity;
+import com.example.administrator.travel.ui.me.albumselector.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.fragment.EmojiFragment;
 import com.example.administrator.travel.utils.DensityUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -43,14 +44,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/7/29 0029.
+ * Created by wangyang on 2016/7/29 0029.
  * 发表帖子
  */
 public class CreatePostActivity extends FragmentActivity implements View.OnClickListener, View.OnFocusChangeListener {
     private static final int SHOW_PHOTO = 0;
     private static final int SHOW_EMOJI = 1;
-    protected static final int SEND_PICTURE = 2;//发送图片
-    private static final int CREATE_POST = 3;//创建帖子
+
     private TextView mTvAite;
     private TextView mTvPicture;
     private TextView mTvEmoji;
@@ -354,7 +354,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
         isCreateing = true;
 
         Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content,cId);
-        XEventUtils.postFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,CREATE_POST,new CreatePostEvent());
+        XEventUtils.postFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,IVariable.CREATE_POST,new CreatePostEvent());
     }
 
     @Subscribe
@@ -368,7 +368,7 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
     }
 
     private void dealData(CreatePostEvent event) {
-        if (event.getType() == SEND_PICTURE) {
+        if (event.getType() == IVariable.SEND_PICTURE) {
             pictures.clear();
             pictures.addAll(event.getmImages());
             if (pictures.size() != 12 && !pictures.contains("add")) {
