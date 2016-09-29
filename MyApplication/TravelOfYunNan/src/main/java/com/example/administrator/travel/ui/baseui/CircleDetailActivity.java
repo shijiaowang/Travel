@@ -2,9 +2,12 @@ package com.example.administrator.travel.ui.baseui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -19,6 +22,7 @@ import com.example.administrator.travel.ui.adapter.CircleDetailAdapter;
 import com.example.administrator.travel.ui.circle.createpost.CreatePostActivity;
 import com.example.administrator.travel.ui.circle.post.PostActivity;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
+import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -36,47 +40,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
  * Created by Administrator on 2016/7/8 0008.
  * 圈子
  */
-public class CircleDetailActivity extends LoadingBarBaseActivity implements View.OnClickListener {
+public class CircleDetailActivity extends LoadingBarBaseActivity<CircleDetailEvent> implements View.OnClickListener {
     public static final int TYPE_LIKE_POST = 0;//点赞
     public static final int TYPE_LOAD_MORE = 1;//加载更多
     public static final int TYPE_REFRESH_POST = 2;//刷新
     public static final int TYPE_FIRST_REQ = 3;//普通加载
     public static final int TYPE_FOLLOW_CIRCLE = 4;//关注圈子
-
     private static final String TYPE_FOLLOW="1";//关注
     private static final String TYPE_CANCEL_FOLLOW="2";//取消关注
-
-
     private TextView mTvCreatePost;//创建帖子按钮
-    @ViewInject(R.id.lv_post)
-    private ToShowAllListView mLvPost;//帖子列表
-    @ViewInject(R.id.iv_post_bg)
-    private ImageView mIvPostBg;//帖子背景
-    @ViewInject(R.id.iv_post_icon)
-    private ImageView mIvPostIcon;//帖子小头像
-    @ViewInject(R.id.tv_post_number)
-    private TextView mTvPostNumber;//帖子数
-    @ViewInject(R.id.tv_follow)
-    private TextView mTvFollow;//关注数
-    @ViewInject(R.id.tv_follow_number)
-    private TextView mTvFollowNumber;//关注按钮
-    @ViewInject(R.id.tv_des)
-    private TextView mTvDes;//描述
-    @ViewInject(R.id.tv_circle_name)
-    private TextView mTvCircleName;//圈子名称
-    private int loadPage = 0;//网络加载的页数
     private String cId;
     private boolean isFirst = true;//只有第一次才设置圈子名字和图片
     private List<CircleDetail.DataBean.BodyBean> postList = new ArrayList<>();
     private CircleDetailAdapter circleDetailAdapter;
+    private ToShowAllListView mLvPost;
+    private ImageView mIvPostBg;
+    private ImageView mIvPostIcon;
+    private TextView mTvPostNumber;
+    private TextView mTvFollow;
+    private TextView mTvFollowNumber;
+    private TextView mTvDes;
+    private TextView mTvCircleName;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+    }
 
     @Override
     protected int setContentLayout() {
@@ -85,26 +83,47 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
 
     @Override
     protected void initEvent() {
-        cId = getIntent().getStringExtra(IVariable.C_ID);
-        mTvCreatePost = getmTvRightIcon();
-        mTvCreatePost.setTypeface(TypefaceUtis.getTypeface(this));
-        mTvCreatePost.setText(getResources().getString(R.string.activity_circle_create_post_font_icon));//设置创建帖子按钮
-        mTvCreatePost.setOnClickListener(this);
-        mTvFollow.setOnClickListener(this);
-        mLvPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(CircleDetailActivity.this, PostActivity.class);
-                intent.putExtra(IVariable.FORUM_ID, postList.get(position).getId());
-                startActivity(intent);
-            }
-        });
+        XScrollView mSsvScroll = getxScrollView();
+        LinearLayout inflate = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_circle_detail_content, null);
+        if (mSsvScroll != null) {
+            initXScrollView(false,true);
+            //帖子列表
+            mLvPost = (ToShowAllListView) inflate.findViewById(R.id.lv_post);
+            //帖子背景
+            mIvPostBg = (ImageView) inflate.findViewById(R.id.iv_post_bg);
+            //帖子小头像
+            mIvPostIcon = (ImageView) inflate.findViewById(R.id.iv_post_icon);
+            //帖子数
+            mTvPostNumber = (TextView) inflate.findViewById(R.id.tv_post_number);
+            //关注数
+            mTvFollow = (TextView) inflate.findViewById(R.id.tv_follow);
+            //关注按钮
+            mTvFollowNumber = (TextView) inflate.findViewById(R.id.tv_follow_number);
+            //描述
+            mTvDes = (TextView) inflate.findViewById(R.id.tv_des);
+            //圈子名称
+            mTvCircleName = (TextView) inflate.findViewById(R.id.tv_circle_name);
+            mSsvScroll.setView(inflate);
+            cId = getIntent().getStringExtra(IVariable.C_ID);
+            mTvCreatePost = getmTvRightIcon();
+            mTvCreatePost.setTypeface(TypefaceUtis.getTypeface(this));
+            mTvCreatePost.setText(getResources().getString(R.string.activity_circle_create_post_font_icon));//设置创建帖子按钮
+            mTvCreatePost.setOnClickListener(this);
+            mTvFollow.setOnClickListener(this);
+            mLvPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(CircleDetailActivity.this, PostActivity.class);
+                    intent.putExtra(IVariable.FORUM_ID, postList.get(position).getId());
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
-    protected void onLoad(int typeRefresh) {
-        setIsProgress(true);
-        Map<String, String> stringMap = MapUtils.Build().addKey(this).add(IVariable.C_ID, cId).add(IVariable.PAGE_SIZE, "5").add(IVariable.PAGE, loadPage + "").add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).end();
+    protected void onLoad(int type) {
+        Map<String, String> stringMap = MapUtils.Build().addKey(this).addCId(cId).addPageSize().addUserId().end();
         XEventUtils.getUseCommonBackJson(IVariable.GET_CIRCLE_POST, stringMap, TYPE_FIRST_REQ,new CircleDetailEvent());
     }
 
@@ -118,6 +137,11 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
     @Override
     protected String setTitleName() {
         return "圈子详情";
+    }
+
+    @Override
+    protected void onSuccess(CircleDetailEvent circleDetailEvent) {
+        dealData(circleDetailEvent);
     }
 
     @Override
@@ -154,18 +178,7 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
     }
 
 
-    @Subscribe
-    public void onEvent(CircleDetailEvent event) {
-        setIsProgress(false);
-        if (event.isSuccess()) {
-            dealData(event);
-        } else {
-            ToastUtils.showToast(event.getMessage());
-            if (event.getCode() == TYPE_FIRST_REQ) {
-                setIsError(true);
-            }
-        }
-    }
+
 
     /**
      * 更新点赞数
@@ -267,4 +280,8 @@ public class CircleDetailActivity extends LoadingBarBaseActivity implements View
         return false;
     }
 
+    @Override
+    protected boolean isXScrollView() {
+        return true;
+    }
 }

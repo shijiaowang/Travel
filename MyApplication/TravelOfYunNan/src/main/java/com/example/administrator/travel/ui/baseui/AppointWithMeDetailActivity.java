@@ -43,7 +43,7 @@ import java.util.Map;
  * Created by Administrator on 2016/9/6 0006.
  * 带我玩约伴详情
  */
-public class AppointWithMeDetailActivity extends LoadingBarBaseActivity {
+public class AppointWithMeDetailActivity extends LoadingBarBaseActivity<AppointDetailEvent> {
 
     @ViewInject(R.id.lv_route_line)
     private ToShowAllListView mLvRouteLine;
@@ -128,15 +128,12 @@ public class AppointWithMeDetailActivity extends LoadingBarBaseActivity {
     public float getAlpha() {
         return 1.0f;
     }
-    @Subscribe
-    public void onEvent(AppointDetailEvent event){
-        setIsProgress(false);
-       if (event.isSuccess()){
-           dealData(event);
-       }else {
-           ToastUtils.showToast(event.getMessage());
-       }
+
+    @Override
+    protected void onSuccess(AppointDetailEvent appointDetailEvent) {
+        dealData(appointDetailEvent);
     }
+
 
     private void dealData(AppointDetailEvent event) {
         AppointWithMeDetail appointWithMeDetail = GsonUtils.getObject(event.getResult(), AppointWithMeDetail.class);
@@ -159,8 +156,8 @@ public class AppointWithMeDetailActivity extends LoadingBarBaseActivity {
             mTvTitle.setText(data.getTitle());
             mTvContent.setText(data.getContent());
             mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
-            mTvDayAndNight.setText(data.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
-            mTvStartAndLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
+            mTvStartAndLong.setText(data.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
+            mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
            // mTvHaveNumber.setText("已有："+data.get()+"人");
             String currentTime=new Date().getTime()+"";
             mTvSurplusDay.setText("剩余："+CalendarUtils.getHowDay(currentTime,data.getEnd_time()+"000")+"天");

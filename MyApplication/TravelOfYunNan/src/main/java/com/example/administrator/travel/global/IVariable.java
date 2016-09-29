@@ -77,6 +77,10 @@ public interface IVariable {
     String GET_HOBBY_LIST = API_KEY + "User/getInterestlists/";//获取兴趣列表
     String MY_COLLECTION_DETAIL = API_KEY + "User/getUsercollectlists/";//我的收藏详情
     String CANCEL_COLLECTION = API_KEY + "User/delUsercollectlists/";//取消收藏
+    String GET_APPOINT_MESSAGE = API_KEY + "UserMsg/getTravelMsg/";//获取约伴消息
+    String GET_SYSTEM_MESSAGE = API_KEY + "UserMsg/getSystemMsg/";//获取系统消息
+    String REPLY_ME_MESSAGE = API_KEY + "UserMsg/getreplyMsg/";//评论我的消息
+    String AITE_ME_MESSAGE = API_KEY + "UserMsg/getInformMsg/";//@我的消息
 
     //请求type
     int TYPE_GET_KEY = 0;

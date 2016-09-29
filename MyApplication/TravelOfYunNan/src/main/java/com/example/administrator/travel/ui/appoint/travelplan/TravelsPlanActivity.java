@@ -109,6 +109,10 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
         return this;
     }
 
+    @Override
+    protected void onSuccess(Object o) {
+
+    }
 
 
     @Override

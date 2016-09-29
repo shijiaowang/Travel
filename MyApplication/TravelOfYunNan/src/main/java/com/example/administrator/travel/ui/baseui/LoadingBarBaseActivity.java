@@ -10,12 +10,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.ui.me.messagecenter.MessageCommonEvent;
 import com.example.administrator.travel.ui.view.SlippingScrollView;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -29,7 +33,7 @@ import java.util.Locale;
  * Created by Administrator on 2016/7/25 0025.
  * 带有相同头布局,网络加载
  */
-public abstract class LoadingBarBaseActivity extends BaseActivity implements XListView.IXListViewListener {
+public abstract class LoadingBarBaseActivity<T> extends BaseActivity implements XListView.IXListViewListener, XScrollView.IXScrollViewListener {
     private static final float CHANGE_COLOR_LIMIT = 600f;//设置变色区间
 
     @ViewInject(R.id.tv_back)
@@ -279,11 +283,13 @@ public abstract class LoadingBarBaseActivity extends BaseActivity implements XLi
     }
 
     protected void loadEnd(XListView xListView) {
+        if (xListView==null)return;
         xListView.stopLoadMore();
         xListView.stopRefresh();
         xListView.setRefreshTime(getTime());
     }
     protected void loadEnd(XScrollView xListView) {
+        if (xListView==null)return;
         xListView.stopLoadMore();
         xListView.stopRefresh();
         xListView.setRefreshTime(getTime());
@@ -329,4 +335,49 @@ public abstract class LoadingBarBaseActivity extends BaseActivity implements XLi
     public interface ScrollListener{
         void percent(float percent);
     }
+    @Subscribe
+    public void onEvent(HttpEvent event){
+        setIsProgress(false);
+        if (getxScrollView()!=null){
+            loadEnd(getxScrollView());
+        }
+       if (event.isSuccess()){
+           try {
+               isSuccessed = true;
+               T t = (T) event;
+               onSuccess(t);
+           }catch (Exception e){
+               e.printStackTrace();
+               LogUtils.e("出现异常了");
+           }
+       }else {
+           ToastUtils.showToast(event.getMessage());
+           onFail(event);
+       }
+
+    }
+
+    /**
+     * 处理失败的消息
+     * @param event
+     */
+    private boolean isSuccessed=false;
+    protected  void onFail(HttpEvent event){
+        if (!isSuccessed){
+            setIsError(true);
+        }
+    }
+    protected void initXScrollView(boolean pull,boolean load){
+        if (getxScrollView()==null)return;
+        xScrollView.setPullRefreshEnable(pull);
+        xScrollView.setPullLoadEnable(load);
+        xScrollView.setIXScrollViewListener(this);
+        xScrollView.setRefreshTime(getTime());
+    }
+
+    /**
+     * 链接网络后处理成功的消息
+     * @param t
+     */
+    protected abstract void onSuccess(T t);
 }

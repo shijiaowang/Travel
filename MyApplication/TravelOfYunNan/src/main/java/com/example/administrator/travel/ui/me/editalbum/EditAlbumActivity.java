@@ -36,7 +36,7 @@ import java.util.Map;
  * 编辑相册  powered by wangyang
  */
 
-public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnClickListener {
+public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> implements View.OnClickListener {
     @ViewInject(R.id.iv_cover)
     private ImageView mIvCover;
     @ViewInject(R.id.tv_set_cover)
@@ -177,23 +177,7 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
         mRlEditDes.setVisibility(isEdit?View.VISIBLE:View.GONE);
         mTvSetCover.setVisibility(isEdit?View.VISIBLE:View.GONE);
     }
-    @Subscribe
-    public void onEvent(EditAlbumEvent event){
-        setIsProgress(false);
-        if (event.isSuccess()){
-            try {
-                dealData(event);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }else {
-            if (event.getType()==TYPE_LOAD){
-                setIsError(true);
-            }
-            ToastUtils.showToast(event.getMessage());
-        }
 
-  }
 
     private void dealData(EditAlbumEvent event) {
         switch (event.getType()){
@@ -246,6 +230,11 @@ public class EditAlbumActivity extends BaseCropPhotoActivity implements View.OnC
     @Override
     protected String setTitleName() {
         return "";
+    }
+
+    @Override
+    protected void onSuccess(EditAlbumEvent event) {
+        dealData(event);
     }
 
     @Override

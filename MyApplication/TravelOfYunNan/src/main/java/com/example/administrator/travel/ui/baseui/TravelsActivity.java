@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Travels;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.TravelsEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.ActivityTravelsAdapter;
@@ -28,7 +29,7 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.List;
 import java.util.Map;
 
-public class TravelsActivity extends LoadingBarBaseActivity implements View.OnKeyListener, XListView.IXListViewListener {
+public class TravelsActivity extends LoadingBarBaseActivity<TravelsEvent> implements View.OnKeyListener {
 
     private static final int LOAD_MORE = 0;
     private static final int SEARCH = 1;
@@ -50,10 +51,7 @@ public class TravelsActivity extends LoadingBarBaseActivity implements View.OnKe
 
     @Override
     protected void initEvent() {
-        mLvTravels.setPullRefreshEnable(false);
-        mLvTravels.setPullLoadEnable(true);
-        mLvTravels.setXListViewListener(this);
-        mEtSearch.setOnKeyListener(this);
+        initXListView(mLvTravels,false,true);
         mLvTravels.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,7 +64,9 @@ public class TravelsActivity extends LoadingBarBaseActivity implements View.OnKe
 
     @Override
     protected void onLoad(int typeRefresh) {
-      requestData(LOAD_MORE);
+        int count=travelsData==null?0:travelsData.size();
+        Map<String, String> travelsMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(count).addContent(content).end();
+        XEventUtils.getUseCommonBackJson(IVariable.FIND_TRAVELS, travelsMap, typeRefresh, new TravelsEvent());
     }
 
     @Override
@@ -83,26 +83,20 @@ public class TravelsActivity extends LoadingBarBaseActivity implements View.OnKe
     public float getAlpha() {
         return 1.0f;
     }
-    @Subscribe
-    public void onEvent(TravelsEvent event){
-        setIsProgress(false);
-        loadEnd(mLvTravels);
-        if (event.isSuccess()){
-            Travels travels = GsonUtils.getObject(event.getResult(), Travels.class);
-            if (travels.getData()==null)return;
-            if (activityTravelsAdapter==null) {
-                travelsData = travels.getData();
-                activityTravelsAdapter = new ActivityTravelsAdapter(this, travelsData);
-                mLvTravels.setAdapter(activityTravelsAdapter);
-            }else if (event.getType()==SEARCH){
-                travelsData = travels.getData();
-                activityTravelsAdapter.notifyData(travelsData);
-            }else {
-                travelsData.addAll(travels.getData());
-                activityTravelsAdapter.notifyData(travelsData);
-            }
+
+    private void dealData(TravelsEvent event) {
+        Travels travels = GsonUtils.getObject(event.getResult(), Travels.class);
+        if (travels.getData()==null)return;
+        if (activityTravelsAdapter==null) {
+            travelsData = travels.getData();
+            activityTravelsAdapter = new ActivityTravelsAdapter(this, travelsData);
+            mLvTravels.setAdapter(activityTravelsAdapter);
+        }else if (event.getType()==SEARCH){
+            travelsData = travels.getData();
+            activityTravelsAdapter.notifyData(travelsData);
         }else {
-            ToastUtils.showToast(event.getMessage());
+            travelsData.addAll(travels.getData());
+            activityTravelsAdapter.notifyData(travelsData);
         }
     }
 
@@ -112,18 +106,10 @@ public class TravelsActivity extends LoadingBarBaseActivity implements View.OnKe
      */
     private void search() {
             content=getString(mEtSearch);
-            requestData(SEARCH);
+            onLoad(SEARCH);
     }
 
-    /**
-     * 请求数据
-     * @param type
-     */
-    private void requestData(int type) {
-        int count=travelsData==null?0:travelsData.size();
-        Map<String, String> travelsMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(count).addContent(content).end();
-        XEventUtils.getUseCommonBackJson(IVariable.FIND_TRAVELS, travelsMap, type, new TravelsEvent());
-    }
+
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -135,14 +121,15 @@ public class TravelsActivity extends LoadingBarBaseActivity implements View.OnKe
         }
         return false;
     }
-
     @Override
-    public void onRefresh() {
-
+    protected void onSuccess(TravelsEvent travelsEvent) {
+        dealData(travelsEvent);
+        loadEnd(mLvTravels);
     }
 
     @Override
-    public void onLoadMore() {
-        requestData(LOAD_MORE);
+    protected void onFail(HttpEvent event) {
+        super.onFail(event);
+        loadEnd(mLvTravels);
     }
 }

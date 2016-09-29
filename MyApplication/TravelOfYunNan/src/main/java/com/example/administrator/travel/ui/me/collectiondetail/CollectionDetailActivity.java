@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by wangyang on 2016/8/14.
  *收藏详情
  */
-public class CollectionDetailActivity extends LoadingBarBaseActivity {
+public class CollectionDetailActivity extends LoadingBarBaseActivity<CollectionDetailEvent> {
    @ViewInject(R.id.lv_collection_detail)
     private XListView mLvCollectionDetail;
     private String name;
@@ -87,15 +87,6 @@ public class CollectionDetailActivity extends LoadingBarBaseActivity {
         changeTitle(name);
         return this;
     }
-    @Subscribe
-    public void onEvent(CollectionDetailEvent event){
-        setIsProgress(false);
-         if (event.isSuccess()){
-              dealData(event);
-         }else {
-             ToastUtils.showToast(event.getMessage());
-         }
-   }
 
     private void dealData(CollectionDetailEvent event) {
         switch (event.getType()){
@@ -180,5 +171,10 @@ public class CollectionDetailActivity extends LoadingBarBaseActivity {
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onSuccess(CollectionDetailEvent event) {
+        dealData(event);
     }
 }

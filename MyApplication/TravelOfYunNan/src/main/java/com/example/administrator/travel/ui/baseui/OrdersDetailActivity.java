@@ -33,4 +33,9 @@ public class OrdersDetailActivity extends LoadingBarBaseActivity {
     protected String setTitleName() {
         return "订单详情";
     }
+
+    @Override
+    protected void onSuccess(Object o) {
+
+    }
 }

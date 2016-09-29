@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.messagecenter;
 
 import android.content.Intent;
 import android.view.View;
@@ -6,12 +6,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.me.messagecenter.appointmessage.AppointMessageActivity;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.MessagePrivateActivity;
+import com.example.administrator.travel.ui.baseui.RelateMeActivity;
+import com.example.administrator.travel.ui.baseui.SystemMessageActivity;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
 import org.xutils.view.annotation.ViewInject;
 
 /**
- * Created by Administrator on 2016/7/15 0015.
+ * Created by wangyang on 2016/7/15 0015.
  * 消息中心
  */
 public class MessageCenterActivity extends BarBaseActivity implements View.OnClickListener {
@@ -77,19 +82,7 @@ public class MessageCenterActivity extends BarBaseActivity implements View.OnCli
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
-    }
 
     @Override
     public float getAlpha() {

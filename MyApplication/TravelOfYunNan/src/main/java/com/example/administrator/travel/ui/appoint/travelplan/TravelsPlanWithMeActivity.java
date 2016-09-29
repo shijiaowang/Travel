@@ -111,6 +111,11 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity implement
         return this;
     }
 
+    @Override
+    protected void onSuccess(Object o) {
+
+    }
+
     private void showCitySelect() {
         //选项选择器
         if (pvOptions == null) {

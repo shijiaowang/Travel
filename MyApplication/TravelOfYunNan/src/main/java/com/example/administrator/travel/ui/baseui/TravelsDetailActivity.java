@@ -46,7 +46,7 @@ import java.util.Map;
  * Created by android on 2016/7/30.
  * 游记详情
  */
-public class TravelsDetailActivity extends LoadingBarBaseActivity implements XScrollView.IXScrollViewListener {
+public class TravelsDetailActivity extends LoadingBarBaseActivity<DetailCommonEvent>{
     private RecyclerView mRvAddLine;
     private RecyclerView mRvMember;
     private ToShowAllListView mLvDiscuss;
@@ -111,10 +111,7 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
         mSsvScroll = getxScrollView();
         LinearLayout inflate = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_travels_detail_content, null);
         if (inflate != null && mSsvScroll != null) {
-            mSsvScroll.setPullRefreshEnable(false);
-            mSsvScroll.setPullLoadEnable(true);
-            mSsvScroll.setIXScrollViewListener(this);
-            mSsvScroll.setRefreshTime(getTime());
+            initXScrollView(false,true);
             mRvMember = ((RecyclerView) inflate.findViewById(R.id.rv_member));
             mRvAddLine = ((RecyclerView) inflate.findViewById(R.id.rv_add_line));
             mLvDiscuss = ((ToShowAllListView) inflate.findViewById(R.id.lv_discuss));
@@ -136,13 +133,9 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
 
     @Override
     protected void onLoad(int typeRefresh) {
-        requestData(TYPE_LOAD);
-    }
-
-    private void requestData(int type) {
         int count=travelReply==null?0:travelReply.size();
         Map<String, String> detailMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(count).addTId(tId).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.FIND_TRAVELS_DETAIL, detailMap, type, new DetailCommonEvent());
+        XEventUtils.getUseCommonBackJson(IVariable.FIND_TRAVELS_DETAIL, detailMap, typeRefresh, new DetailCommonEvent());
     }
 
     @Override
@@ -157,6 +150,11 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     }
 
     @Override
+    protected void onSuccess(DetailCommonEvent detailCommonEvent) {
+        dealData(detailCommonEvent);
+    }
+
+    @Override
     protected boolean canScrollToChangeTitleBgColor() {
         return true;
     }
@@ -164,18 +162,6 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     @Override
     protected boolean rootIsLinearLayout() {
         return false;
-    }
-
-    @Subscribe
-    public void onEvent(DetailCommonEvent event) {
-        setIsProgress(false);
-        loadEnd(mSsvScroll);
-        if (event.isSuccess()){
-            dealData(event);
-        }else {
-            ToastUtils.showToast(event.getMessage());
-        }
-
     }
 
     private void dealData(DetailCommonEvent event) {
@@ -269,15 +255,7 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity implements XSc
     }
 
 
-    @Override
-    public void onRefresh() {
 
-    }
-
-    @Override
-    public void onLoadMore() {
-        requestData(TYPE_LOAD);
-    }
     /**
      * 点击信息
      *

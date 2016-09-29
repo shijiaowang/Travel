@@ -13,6 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropSelectBean;
@@ -44,7 +45,7 @@ import java.util.Map;
  * Created by Administrator on 2016/8/30 0030.
  * 人员装备
  */
-public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implements View.OnClickListener {
+public class PersonnelEquipmentActivity extends LoadingBarBaseActivity<PersonnelEquipmentEvent> implements View.OnClickListener {
     @ViewInject(R.id.bt_select_equ)
     private Button mTvSelectEqu;
     @ViewInject(R.id.bt_next)
@@ -126,14 +127,7 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
     protected Activity initViewData() {
         return this;
     }
-    @Subscribe
-    public void onEvent(PersonnelEquipmentEvent event) {
-        setIsProgress(false);
-        if (event.isSuccess()){
-            PropRemarkBean propRemarkBean = GsonUtils.getObject(event.getResult(), PropRemarkBean.class);
-            mTvRemark.setText(propRemarkBean.getData().getContent());
-        }
-    }
+
 
     @Override
     protected String setTitleName() {
@@ -143,6 +137,16 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity implement
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onSuccess(PersonnelEquipmentEvent personnelEquipmentEvent) {
+        PropRemarkBean propRemarkBean = GsonUtils.getObject(personnelEquipmentEvent.getResult(), PropRemarkBean.class);
+        mTvRemark.setText(propRemarkBean.getData().getContent());
+    }
+
+    @Override
+    protected void onFail(HttpEvent event) {
     }
 
     @Override

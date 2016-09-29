@@ -41,7 +41,7 @@ import java.util.Map;
  * Created by Administrator on 2016/9/2 0002.
  * 说明备注
  */
-public class DesRemarkActivity extends LoadingBarBaseActivity implements View.OnClickListener {
+public class DesRemarkActivity extends LoadingBarBaseActivity<DesRemarkEvent> implements View.OnClickListener {
     @ViewInject(R.id.bt_select_equ)
     private Button mBtSelect;
     @ViewInject(R.id.bt_next)
@@ -120,6 +120,11 @@ public class DesRemarkActivity extends LoadingBarBaseActivity implements View.On
     }
 
     @Override
+    protected void onSuccess(DesRemarkEvent desRemarkEvent) {
+        startActivity(new Intent(this, CreateAppointSuccessActivity.class));
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_right_icon:
@@ -136,14 +141,7 @@ public class DesRemarkActivity extends LoadingBarBaseActivity implements View.On
         }
     }
 
-    @Subscribe
-    public void onEvent(DesRemarkEvent event) {
-        if (event.isSuccess()) {
-            startActivity(new Intent(this, CreateAppointSuccessActivity.class));
-        }
-        ToastUtils.showToast(event.getMessage());
 
-    }
 
     private void saveJsonData() {
         try {

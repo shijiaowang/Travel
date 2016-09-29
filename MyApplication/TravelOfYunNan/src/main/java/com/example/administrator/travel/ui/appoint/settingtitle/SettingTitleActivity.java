@@ -38,10 +38,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/9/6 0006.
+ * Created by wangyang on 2016/9/6 0006.
  * 设置标签页面
  */
-public class SettingTitleActivity extends LoadingBarBaseActivity {
+public class SettingTitleActivity extends LoadingBarBaseActivity<AddTitleEvent> {
     private static final int TYPE_MY_TITLE = 0;
     private static final int TYPE_VER_TITLE = 1;//认证标志
     private static final int TYPE_PLAY_WAY = 2;//玩法
@@ -173,26 +173,13 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onLoad(int typeRefresh) {
+    protected void onLoad(int type) {
         Map<String, String> titleMap = MapUtils.Build().addKey(this).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.GET_TITLE_LIST,titleMap,0,new AddTitleEvent());
-    }
-    @Subscribe
-    public void onEvent(AddTitleEvent event){
-        setIsProgress(false);
-        if (event.isSuccess()){
-            try {
-                dealData(event);
-            } catch (Exception e) {
-                e.printStackTrace();
-                setIsError(true);
-            }
-        }else {
-            setIsError(true);
-        }
+        XEventUtils.getUseCommonBackJson(IVariable.GET_TITLE_LIST,titleMap,type,new AddTitleEvent());
     }
 
-    private void dealData(AddTitleEvent event) throws Exception{
+
+    private void dealData(AddTitleEvent event){
         SettingTitleBean settingTitleBean = GsonUtils.getObject(event.getResult(), SettingTitleBean.class);
         List<UserLabelBean> userLabel = settingTitleBean.getData().getUser_label();
         List<UserLabelBean> platformLabel = settingTitleBean.getData().getPlatform_label();
@@ -223,6 +210,11 @@ public class SettingTitleActivity extends LoadingBarBaseActivity {
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onSuccess(AddTitleEvent addTitleEvent) {
+        dealData(addTitleEvent);
     }
 
     public class TitlePagerAdapter extends FragmentPagerAdapter {

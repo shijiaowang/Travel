@@ -37,7 +37,7 @@ import java.util.Map;
  * Created by Administrator on 2016/7/26 0026.
  * 美食详情
  */
-public class DeliciousDetailActivity extends LoadingBarBaseActivity implements XScrollView.IXScrollViewListener {
+public class DeliciousDetailActivity extends LoadingBarBaseActivity<DetailCommonEvent> implements XScrollView.IXScrollViewListener {
     private ToShowAllListView mLvDeliciousDiscuss;
     private String id;
     private XScrollView mSsvScroll;
@@ -72,16 +72,10 @@ public class DeliciousDetailActivity extends LoadingBarBaseActivity implements X
 
     @Override
     protected void onLoad(int typeRefresh) {
-
-        requestData(TYPE_LOAD);
-
-    }
-
-    private void requestData(int typeLoad) {
         int count =travelReply==null?0:travelReply.size();
-        LogUtils.e("当前共有"+count+"条评论");
-        Map<String, String> deliciousDetail = MapUtils.Build().addKey(this).addPageSize(10).addCount(count).addFId(id).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.FIND_FOOD_DETAIL, deliciousDetail, typeLoad, new DetailCommonEvent());
+        Map<String, String> deliciousDetail = MapUtils.Build().addKey(this).addPageSize().addCount(count).addFId(id).addUserId().end();
+        XEventUtils.getUseCommonBackJson(IVariable.FIND_FOOD_DETAIL, deliciousDetail, TYPE_LOAD, new DetailCommonEvent());
+
     }
 
     private void init() {
@@ -91,10 +85,7 @@ public class DeliciousDetailActivity extends LoadingBarBaseActivity implements X
         mSsvScroll = getxScrollView();
         LinearLayout inflate = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_delicious_detail_content, null);
         if (inflate != null && mSsvScroll != null) {
-            mSsvScroll.setPullRefreshEnable(false);
-            mSsvScroll.setPullLoadEnable(true);
-            mSsvScroll.setIXScrollViewListener(this);
-            mSsvScroll.setRefreshTime(getTime());
+           initXScrollView(false,true);
             mLvDeliciousDiscuss = (ToShowAllListView) inflate.findViewById(R.id.lv_delicious_discuss);
             mIvBg = (ImageView) inflate.findViewById(R.id.iv_bg);
             mTvDes = (TextView) inflate.findViewById(R.id.tv_des);
@@ -128,25 +119,12 @@ public class DeliciousDetailActivity extends LoadingBarBaseActivity implements X
     }
 
     @Override
-    public void onRefresh() {
-
+    protected void onSuccess(DetailCommonEvent detailCommonEvent) {
+        dealData(detailCommonEvent);
     }
 
-    @Override
-    public void onLoadMore() {
-        requestData(TYPE_LOAD);
-    }
 
-    @Subscribe
-    public void onEvent(DetailCommonEvent event) {
-        setIsProgress(false);
-        loadEnd(mSsvScroll);
-        if (event.isSuccess()) {
-            dealData(event);
-        } else {
-            ToastUtils.showToast(event.getMessage());
-        }
-    }
+
 
     private void dealData(DetailCommonEvent event) {
        LogUtils.e(event.getType()+"这是类型");

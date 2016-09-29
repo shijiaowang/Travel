@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Destination;
 import com.example.administrator.travel.event.DestinationEvent;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
@@ -35,7 +36,7 @@ import java.util.Map;
  * Created by Administrator on 2016/9/8 0008.
  * 选择目的地
  */
-public class SelectDestinationActivity extends LoadingBarBaseActivity implements XListView.IXListViewListener {
+public class SelectDestinationActivity extends LoadingBarBaseActivity<DestinationEvent> implements XListView.IXListViewListener {
     @ViewInject(R.id.tv_search)
     private TextView mTvSearch;
     @ViewInject(R.id.et_search)
@@ -118,7 +119,7 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
 
     private void search() {
         content = getString(mEtSearch);
-        requestData(TYPE_SEARCH);
+        onLoad(TYPE_SEARCH);
     }
 
     private void init() {
@@ -144,18 +145,15 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
     }
 
     @Override
-    protected void onLoad(int typeRefresh) {
-        requestData(TYPE_LOAD);
-    }
-
-    private void requestData(int type) {
+    protected void onLoad(int type) {
         int count = destinationData == null ? 0 : destinationData.size();
         Map<String, String> destinationMap = MapUtils.Build().addKey(this).addPageSize(6).addCount(count).
                 add(IVariable.CONTENT, content).add(IVariable.PROVINCE, province).add(IVariable.CITY, city).add(IVariable.TYPELIST, typelist)
                 .add(IVariable.STAR, star).add(IVariable.SCORE, score).
                         end();
-        XEventUtils.getUseCommonBackJson(IVariable.FIND_DESTINATION, destinationMap, type, new DestinationEvent());
+        XEventUtils.getUseCommonBackJson(IVariable.FIND_DESTINATION, destinationMap, type, new DestinationEvent()   );
     }
+
 
     @Override
     protected Activity initViewData() {
@@ -173,16 +171,7 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
         return 1.0f;
     }
 
-    @Subscribe
-    public void onEvent(DestinationEvent event) {
-        setIsProgress(false);
-        if (event.isSuccess()) {
-            dealDestinationData(event);
-        } else {
-            ToastUtils.showToast(event.getMessage());
-        }
-        loadEnd(mLvDestination);
-    }
+
 
     private void dealDestinationData(DestinationEvent event) {
         Destination destination = GsonUtils.getObject(event.getResult(), Destination.class);
@@ -200,14 +189,17 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity implements
         }
     }
 
-    @Override
-    public void onRefresh() {
 
+    @Override
+    protected void onSuccess(DestinationEvent destinationEvent) {
+        loadEnd(mLvDestination);
+        dealDestinationData(destinationEvent);
     }
 
     @Override
-    public void onLoadMore() {
-        requestData(TYPE_LOAD);
+    protected void onFail(HttpEvent event) {
+        super.onFail(event);
+        loadEnd(mLvDestination);
     }
 
     @Override

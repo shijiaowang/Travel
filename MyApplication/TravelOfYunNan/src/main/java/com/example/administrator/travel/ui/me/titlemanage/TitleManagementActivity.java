@@ -34,7 +34,7 @@ import java.util.Map;
  * Created by wangyang on 2016/9/7 0007.
  * 称号管理
  */
-public class TitleManagementActivity extends LoadingBarBaseActivity {
+public class TitleManagementActivity extends LoadingBarBaseActivity<TitleManagementEvent> {
     public static final int ADD_TITLE=0;
     public static final int REMOVE_TITLE=1;
     private List<Fragment> fragments=new ArrayList<>();
@@ -134,26 +134,7 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
         }
     }
 
-    @Subscribe
-    public void onEvent(TitleManagementEvent event){
-        setIsProgress(false);
-     if (event.isSuccess()){
-         try {
-             if (event.getType()==TYPE_SAVE){
-                 ToastUtils.showToast(event.getMessage());
-             }else {
-                 dealData(event);
-             }
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-     }else {
-         if (event.getType()==TYPE_LOAD) {
-             setIsError(true);
-         }
-         ToastUtils.showToast(event.getMessage());
-     }
-    }
+
 
     private void dealData(TitleManagementEvent event) {
         TitleManagementBean titleManagementBean = GsonUtils.getObject(event.getResult(), TitleManagementBean.class);
@@ -220,6 +201,15 @@ public class TitleManagementActivity extends LoadingBarBaseActivity {
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onSuccess(TitleManagementEvent titleManagementEvent) {
+        if (titleManagementEvent.getType()==TYPE_SAVE){
+            ToastUtils.showToast(titleManagementEvent.getMessage());
+        }else {
+            dealData(titleManagementEvent);
+        }
     }
 
     @Override

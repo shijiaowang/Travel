@@ -5,7 +5,7 @@ import android.widget.ListView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.adapter.AppointMessageAdapter;
+import com.example.administrator.travel.ui.me.messagecenter.appointmessage.AppointMessageAdapter;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -64,5 +64,10 @@ public class RelateMeDetailActivity extends LoadingBarBaseActivity{
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onSuccess(Object o) {
+
     }
 }

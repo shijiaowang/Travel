@@ -1,14 +1,14 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.me.messagecenter.appointmessage;
 
 import android.content.Context;
 
-import com.example.administrator.travel.ui.adapter.holer.AppointMessageHolder;
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/26 0026.
+ * Created by wangyang on 2016/8/26 0026.
  */
 public class AppointMessageAdapter extends TravelBaseAdapter {
     public AppointMessageAdapter(Context mContext, List mDatas) {

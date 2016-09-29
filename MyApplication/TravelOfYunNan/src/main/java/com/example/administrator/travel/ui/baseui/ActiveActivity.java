@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Active;
 import com.example.administrator.travel.event.ActiveEvent;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.ActiveAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
@@ -32,7 +33,7 @@ import java.util.Map;
  * Created by Administrator on 2016/7/25 0025.
  * 活动界面
  */
-public class ActiveActivity extends LoadingBarBaseActivity implements XScrollView.IXScrollViewListener {
+public class ActiveActivity extends LoadingBarBaseActivity<ActiveEvent> implements XScrollView.IXScrollViewListener {
     private ToShowAllListView mLvActive;//活动列表
     private XScrollView mSsvScroll;
     private ImageView mActiveTop;
@@ -59,24 +60,16 @@ public class ActiveActivity extends LoadingBarBaseActivity implements XScrollVie
     }
 
     @Override
-    protected void onLoad(int typeRefresh) {
-        request(TYPE_LOAD);
-    }
-
-    private void request(int type) {
+    protected void onLoad(int type) {
         int count= actives==null || type==TYPE_REFRESH?0:actives.size();//去掉头布局
         Map<String, String> activeMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(count).end();
         XEventUtils.getUseCommonBackJson(IVariable.FIND_ACTIVITY, activeMap, type, new ActiveEvent());
     }
-
     private void init() {
         mSsvScroll = getxScrollView();
         LinearLayout inflate = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_active_content, null);
         if (inflate != null && mSsvScroll != null) {
-            mSsvScroll.setPullRefreshEnable(true);
-            mSsvScroll.setPullLoadEnable(true);
-            mSsvScroll.setIXScrollViewListener(this);
-            mSsvScroll.setRefreshTime(getTime());
+
             mLvActive = (ToShowAllListView) inflate.findViewById(R.id.lv_active);
             mLvActive.setFocusable(false);
             mLvActive.setFocusableInTouchMode(false);
@@ -90,16 +83,7 @@ public class ActiveActivity extends LoadingBarBaseActivity implements XScrollVie
     protected Activity initViewData() {
         return this;
     }
-    @Subscribe
-    public void onEvent(ActiveEvent event){
-        loadEnd(mSsvScroll);
-        setIsProgress(false);
-       if (event.isSuccess()){
-           dealData(event);
-       }else {
-           ToastUtils.showToast(event.getMessage());
-       }
-    }
+
 
     private void dealData(ActiveEvent event) {
         Active object = GsonUtils.getObject(event.getResult(), Active.class);
@@ -146,14 +130,16 @@ public class ActiveActivity extends LoadingBarBaseActivity implements XScrollVie
         return true;
     }
 
+
     @Override
-    public void onRefresh() {
-        request(TYPE_REFRESH);
+    protected void onSuccess(ActiveEvent activeEvent) {
+        dealData(activeEvent);
+        loadEnd(mSsvScroll);
     }
 
     @Override
-    public void onLoadMore() {
-     request(TYPE_LOAD);
+    protected void onFail(HttpEvent event) {
+        super.onFail(event);
+        loadEnd(mSsvScroll);
     }
-
 }

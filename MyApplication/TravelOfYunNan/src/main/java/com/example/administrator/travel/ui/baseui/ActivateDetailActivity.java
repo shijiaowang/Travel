@@ -28,7 +28,7 @@ import java.util.Map;
  * Created by Administrator on 2016/7/26 0026.
  * 活动详情
  */
-public class ActivateDetailActivity extends LoadingBarBaseActivity {
+public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailEvent> {
     @ViewInject(R.id.wv_html)
     private WebView mWvHtml;
     @ViewInject(R.id.iv_bg)
@@ -94,24 +94,26 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity {
     public float getAlpha() {
         return 0f;
     }
-    @Subscribe
-    public void onEvent(ActiveDetailEvent event){
-        setIsProgress(false);
-        if (event.isSuccess()){
-            ActiveDetail activeDetail = GsonUtils.getObject(event.getResult(), ActiveDetail.class);
-            ActiveDetail.DataBean data = activeDetail.getData();
-            mWvHtml.loadUrl(data.getUrl());
-            ImageOptions imageOptions=new ImageOptions.Builder().setSize(DensityUtil.getScreenWidth(),DensityUtil.dip2px(228)).setCrop(true).build();
-            x.image().bind(mIvBg,data.getTitle_img(),imageOptions);
-            x.image().bind(mIvIcon,data.getActivity_img());
-            mTvName.setText(data.getTitle());
-            mTvContnet.setText(data.getContent());
-            mTvMoney.setText("¥" + data.getPrice());
-            mTvMoney2.setText("¥"+data.getPrice());
-            mTvNumber.setText(data.getMax_people()+"人");
-            mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getStar_time())+"-"+FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getEnd_time()));
-        }else {
-            ToastUtils.showToast(event.getMessage());
-        }
+
+    @Override
+    protected void onSuccess(ActiveDetailEvent activeDetailEvent) {
+        dealData(activeDetailEvent);
+    }
+
+
+
+    private void dealData(ActiveDetailEvent event) {
+        ActiveDetail activeDetail = GsonUtils.getObject(event.getResult(), ActiveDetail.class);
+        ActiveDetail.DataBean data = activeDetail.getData();
+        mWvHtml.loadUrl(data.getUrl());
+        ImageOptions imageOptions=new ImageOptions.Builder().setSize(DensityUtil.getScreenWidth(),DensityUtil.dip2px(228)).setCrop(true).build();
+        x.image().bind(mIvBg,data.getTitle_img(),imageOptions);
+        x.image().bind(mIvIcon,data.getActivity_img());
+        mTvName.setText(data.getTitle());
+        mTvContnet.setText(data.getContent());
+        mTvMoney.setText("¥" + data.getPrice());
+        mTvMoney2.setText("¥"+data.getPrice());
+        mTvNumber.setText(data.getMax_people()+"人");
+        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getStar_time())+"-"+FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getEnd_time()));
     }
 }

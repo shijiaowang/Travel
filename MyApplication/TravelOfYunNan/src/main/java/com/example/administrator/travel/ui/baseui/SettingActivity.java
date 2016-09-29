@@ -88,6 +88,11 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     }
 
     @Override
+    protected void onSuccess(Object o) {
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_phone:

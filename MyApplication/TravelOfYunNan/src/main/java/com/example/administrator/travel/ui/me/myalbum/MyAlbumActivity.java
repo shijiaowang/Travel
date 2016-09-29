@@ -25,7 +25,7 @@ import java.util.Map;
  * Created by wangyang on 2016/7/18 0018.
  *我的相册
  */
-public class MyAlbumActivity extends LoadingBarBaseActivity implements View.OnClickListener {
+public class MyAlbumActivity extends LoadingBarBaseActivity<MyAlbumEvent> implements View.OnClickListener {
    @ViewInject(R.id.tv_add)
     private FontsIconTextView mTvAdd;
     @ViewInject(R.id.rv_album)
@@ -34,8 +34,8 @@ public class MyAlbumActivity extends LoadingBarBaseActivity implements View.OnCl
     private TextView mTvCreateAlbum;
     @ViewInject(R.id.tv_sum)
     private TextView mTvAlbumSum;
-
-
+    private List<MyAlbumBean.DataBean> myAlbumBeanData;
+    private MyAlbumAdapter myAlbumAdapter;
 
 
     @Override
@@ -52,8 +52,9 @@ public class MyAlbumActivity extends LoadingBarBaseActivity implements View.OnCl
 
     @Override
     protected void onLoad(int type) {
-        Map<String, String> albumMap = MapUtils.Build().addKey(this).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.ALBUM_LIST,albumMap,0,new MyAlbumEvent());
+        int count=type==TYPE_REFRESH?0:getListSize(myAlbumBeanData);
+        Map<String, String> albumMap = MapUtils.Build().addKey(this).addUserId().addPageSize().addCount(count).end();
+        XEventUtils.getUseCommonBackJson(IVariable.ALBUM_LIST,albumMap,type,new MyAlbumEvent());
     }
 
 
@@ -77,34 +78,32 @@ public class MyAlbumActivity extends LoadingBarBaseActivity implements View.OnCl
         }
 
     }
-    @Subscribe
-    public void onEvent(MyAlbumEvent event){
-      setIsProgress(false);
-        if (event.isSuccess()){
-            try {
-                dealData(event);
-            } catch (Exception e) {
-                e.printStackTrace();
-                setIsError(true);
-            }
-        }else {
-            ToastUtils.showToast(event.getMessage());
-            setIsError(true);
-        }
-    }
+
 
     private void dealData(MyAlbumEvent event) {
         MyAlbumBean myAlbumBean = GsonUtils.getObject(event.getResult(), MyAlbumBean.class);
-        List<MyAlbumBean.DataBean> data = myAlbumBean.getData();
-        mRvAlbum.setAdapter(new MyAlbumAdapter(this, data));
-        mRvAlbum.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        mRvAlbum.setItemAnimator(new DefaultItemAnimator());
-        mTvAlbumSum.setText(getString(R.string.total_album,data.size()));
+       if (myAlbumAdapter==null){
+           myAlbumBeanData = myAlbumBean.getData();
+           myAlbumAdapter = new MyAlbumAdapter(this, myAlbumBeanData);
+           mRvAlbum.setAdapter(myAlbumAdapter);
+           mRvAlbum.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+           mRvAlbum.setItemAnimator(new DefaultItemAnimator());
+           mTvAlbumSum.setText(getString(R.string.total_album,myAlbumBeanData.size()));
+       }else {
+           myAlbumBeanData.addAll(myAlbumBean.getData());
+           myAlbumAdapter.notifyDataSetChanged();
+       }
+
 
     }
 
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onSuccess(MyAlbumEvent event) {
+        dealData(event);
     }
 }

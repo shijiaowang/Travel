@@ -43,7 +43,7 @@ import java.util.Map;
  * Created by Administrator on 2016/9/2 0002.
  * 一起玩约伴详情
  */
-public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implements View.OnClickListener {
+public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<AppointDetailEvent> implements View.OnClickListener {
     @ViewInject(R.id.tv_start_add)
     private TextView mTvStartAdd;
     @ViewInject(R.id.tv_end_add)
@@ -114,7 +114,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
    private boolean isDetail=false;//默认缩略图
     private String tId;
 
-    private List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists;
+    private List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists=new ArrayList<>();
     private TextView mTvRight;
 
 
@@ -154,25 +154,18 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity implem
     public float getAlpha() {
         return 1.0f;
     }
-    @Subscribe
-    public void onEvent(AppointDetailEvent event){
-        lists = new ArrayList<>();
-        setIsProgress(false);
-         if (event.isSuccess()){
-             dealData(event, lists);
-         }else {
-             setIsError(true);
-             ToastUtils.showToast(event.getMessage());
-         }
 
+    @Override
+    protected void onSuccess(AppointDetailEvent appointDetailEvent) {
+        dealData(appointDetailEvent);
     }
+
 
     /**
      * 填充数据
      * @param event
-     * @param lists
      */
-    private void dealData (AppointDetailEvent event, List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists) {
+    private void dealData (AppointDetailEvent event) {
         AppointTogetherDetail appointTogetherDetail = GsonUtils.getObject(event.getResult(), AppointTogetherDetail.class);
         if (appointTogetherDetail==null)return;
         AppointTogetherDetail.DataBean data = appointTogetherDetail.getData();

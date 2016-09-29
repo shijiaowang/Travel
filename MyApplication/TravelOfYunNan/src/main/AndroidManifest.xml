@@ -39,7 +39,7 @@
         <activity android:name=".ui.baseui.FullTransparencyActivity" />
         <activity android:name=".ui.circle.post.PostActivity" />
         <activity android:name=".ui.baseui.OtherUserCenterActivity" />
-        <activity android:name=".ui.baseui.MessageCenterActivity" />
+        <activity android:name=".ui.me.messagecenter.MessageCenterActivity" />
         <activity android:name=".ui.appoint.selectdestination.SelectDestinationActivity"
             android:windowSoftInputMode="stateHidden"
             />
@@ -102,7 +102,7 @@
         <activity android:name=".ui.me.myhobby.MyHobbyActivity"/>
         <activity android:name=".ui.baseui.PersonalProfileActivity"/>
         <activity android:name=".ui.baseui.HomeSearchActivity"/>
-        <activity android:name=".ui.baseui.AppointMessageActivity"/>
+        <activity android:name=".ui.me.messagecenter.appointmessage.AppointMessageActivity"/>
         <activity android:name=".ui.baseui.IdentityAuthenticationActivity"/>
         <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
         <activity android:name=".ui.baseui.SystemMessageActivity"/>

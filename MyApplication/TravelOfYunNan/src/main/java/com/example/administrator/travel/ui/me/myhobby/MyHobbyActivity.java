@@ -38,7 +38,7 @@ import java.util.Map;
  * 我的兴趣
  */
 
-public class MyHobbyActivity extends LoadingBarBaseActivity{
+public class MyHobbyActivity extends LoadingBarBaseActivity<MyHobbyEvent>{
     @ViewInject(R.id.fl_title)
     private FlexboxLayout mFlTitle;
     @ViewInject(R.id.vp_pager)
@@ -71,22 +71,7 @@ public class MyHobbyActivity extends LoadingBarBaseActivity{
             addLabel(userLabelBean);
         }
     }
-    @Subscribe
-   public void onEvent(MyHobbyEvent event){
-        setIsProgress(false);
-        if (event.isSuccess()){
-            try {
-                dealData(event);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }else {
-            if (event.getType()==TYPE_LOAD){
-                setIsError(true);
-            }
-            ToastUtils.showToast(event.getMessage());
-        }
-   }
+
 
     private void dealData(MyHobbyEvent event) {
         switch (event.getType()){
@@ -186,5 +171,10 @@ public class MyHobbyActivity extends LoadingBarBaseActivity{
     @Override
     public float getAlpha() {
         return 1f;
+    }
+
+    @Override
+    protected void onSuccess(MyHobbyEvent event) {
+        dealData(event);
     }
 }

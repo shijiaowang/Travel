@@ -45,4 +45,9 @@ public class SystemMessageActivity extends LoadingBarBaseActivity {
     public float getAlpha() {
         return 1.0f;
     }
+
+    @Override
+    protected void onSuccess(Object o) {
+
+    }
 }

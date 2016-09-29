@@ -26,6 +26,10 @@ public class MapUtils {
             stringMap.put(IVariable.PAGE_SIZE,pageSize+"");
             return this;
         }
+        public Builder addPageSize(){
+            stringMap.put(IVariable.PAGE_SIZE,10+"");
+            return this;
+        }
         public Builder addPictureId(String pictureId){
             stringMap.put(IVariable.PICTURE_ID,pictureId);
             return this;
@@ -56,6 +60,10 @@ public class MapUtils {
         }
         public Builder addId(String id){
             stringMap.put(IVariable.ID,id);
+            return this;
+        }
+        public Builder addCId(String cid){
+            stringMap.put(IVariable.C_ID,cid);
             return this;
         }
         public Builder addUserId(){

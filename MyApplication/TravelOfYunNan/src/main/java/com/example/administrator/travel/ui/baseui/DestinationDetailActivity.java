@@ -39,7 +39,7 @@ import java.util.Map;
  * Created by android on 2016/7/30.
  * 目的地详情
  */
-public class DestinationDetailActivity extends LoadingBarBaseActivity implements View.OnClickListener, XScrollView.IXScrollViewListener {
+public class DestinationDetailActivity extends LoadingBarBaseActivity<DetailCommonEvent> implements View.OnClickListener {
 
 
 
@@ -77,10 +77,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
         mSsvScroll = getxScrollView();
         LinearLayout inflate = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_destination_detail_content, null);
         if (inflate != null && mSsvScroll != null) {
-            mSsvScroll.setPullRefreshEnable(false);
-            mSsvScroll.setPullLoadEnable(true);
-            mSsvScroll.setIXScrollViewListener(this);
-            mSsvScroll.setRefreshTime(getTime());
+            initXScrollView(false,true);
             mLvDiscuss = (ToShowAllListView) inflate.findViewById(R.id.content_list);
             mLvDiscuss.setFocusable(false);
             mLvDiscuss.setFocusableInTouchMode(false);
@@ -92,6 +89,17 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
             mIvAddPicture = ((ImageView) inflate.findViewById(R.id.iv_add_picture));
             mTvAdd = ((TextView) inflate.findViewById(R.id.tv_add));
             mSsvScroll.setView(inflate);
+            mTvShow.setOnClickListener(this);
+            mLvDiscuss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Map<String, String> destinationMap = MapUtils.Build().addKey(DestinationDetailActivity.this).addFId(travelReply.get(position).getF_id()).addUserId().
+                            addContent("这只是一个测试评论而已，而已").addPId(travelReply.get(position).getId()).add(IVariable.TYPE, IVariable.TYPE_DESTINATION).
+                            addNextPage(haveNextPage).addCount(travelReply.size()).
+                            end();
+                    XEventUtils.postUseCommonBackJson(IVariable.FIND_REPLY_DISCUSS, destinationMap, TYPE_DISCUSS, new DetailCommonEvent());
+                }
+            });
         }
 
     }
@@ -100,17 +108,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
     protected void initEvent() {
 
         initScrollView();
-        mTvShow.setOnClickListener(this);
-        mLvDiscuss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Map<String, String> destinationMap = MapUtils.Build().addKey(DestinationDetailActivity.this).addFId(travelReply.get(position).getF_id()).addUserId().
-                        addContent("这只是一个测试评论而已，而已").addPId(travelReply.get(position).getId()).add(IVariable.TYPE, IVariable.TYPE_DESTINATION).
-                        addNextPage(haveNextPage).addCount(travelReply.size()).
-                        end();
-                XEventUtils.postUseCommonBackJson(IVariable.FIND_REPLY_DISCUSS, destinationMap, TYPE_DISCUSS, new DetailCommonEvent());
-            }
-        });
+
     }
 
     @Override
@@ -172,16 +170,7 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
         isShowAllFlag = !isShowAllFlag;
     }
 
-    @Subscribe
-    public void onEvent(DetailCommonEvent event) {
-        setIsProgress(false);
-        loadEnd(mSsvScroll);
-        if (event.isSuccess()) {
-            dealData(event);
-        } else {
-            ToastUtils.showToast(event.getMessage());
-        }
-    }
+
 
     private void dealData(DetailCommonEvent event) {
         switch (event.getType()) {
@@ -312,5 +301,10 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity implements
     @Override
     public void onLoadMore() {
         onLoad(TYPE_REFRESH);
+    }
+
+    @Override
+    protected void onSuccess(DetailCommonEvent detailCommonEvent) {
+        dealData(detailCommonEvent);
     }
 }

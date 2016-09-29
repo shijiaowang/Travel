@@ -35,7 +35,7 @@ import java.util.Set;
  * Created by Administrator on 2016/8/31 0031.
  * 选择道具界面
  */
-public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.OnClickListener {
+public class ChoicePropsActivity extends LoadingBarBaseActivity<ChoicePropEvent> implements View.OnClickListener {
     @ViewInject(R.id.lv_type)
     private ListView mLvType;
     @ViewInject(R.id.lv_equ)
@@ -102,19 +102,6 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
         return this;
     }
 
-    @Subscribe
-    public void onEvent(ChoicePropEvent event) {
-        setIsProgress(false);
-        if (event.isSuccess()) {
-            try {
-                dealData(event);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            ToastUtils.showToast(event.getMessage());
-        }
-    }
 
     private void dealData(ChoicePropEvent event) {
         if (event.isSelectEqu()) {//处理选中后更新个数
@@ -151,6 +138,11 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity implements View.
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onSuccess(ChoicePropEvent choicePropEvent) {
+        dealData(choicePropEvent);
     }
 
     @Override

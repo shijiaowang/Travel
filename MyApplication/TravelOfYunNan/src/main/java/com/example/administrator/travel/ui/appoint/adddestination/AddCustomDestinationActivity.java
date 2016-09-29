@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.db.DBManager;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.utils.BitmapUtils;
@@ -38,7 +39,7 @@ import java.util.Map;
  * Created by Administrator on 2016/9/8 0008.
  * 添加自定义景点
  */
-public class AddCustomDestinationActivity extends LoadingBarBaseActivity implements View.OnClickListener {
+public class AddCustomDestinationActivity extends LoadingBarBaseActivity<AddCustomSpotEvent> implements View.OnClickListener {
     @ViewInject(R.id.tv_address)
     private TextView mTvAddress;
     @ViewInject(R.id.et_add)
@@ -145,6 +146,16 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity impleme
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onSuccess(AddCustomSpotEvent addCustomSpotEvent) {
+        ToastUtils.showToast(addCustomSpotEvent.getMessage());
+    }
+
+    @Override
+    protected void onFail(HttpEvent event) {
+        ToastUtils.showToast(event.getMessage());
     }
 
     @Override
@@ -255,12 +266,5 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity impleme
         List<String> fileList=new ArrayList<>();
         fileList.add(imageAbsolutePath);
         XEventUtils.postFileCommonBackJson(IVariable.ADD_CUSTOM_SPOT, createSpotMap,fileList,0, new AddCustomSpotEvent());
-    }
-    @Subscribe
-    public void onEvent(AddCustomSpotEvent event){
-        ToastUtils.showToast(event.getMessage());
-        if (event.isSuccess()){
-            LogUtils.e(event.getResult());
-        }
     }
 }

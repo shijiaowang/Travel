@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.adddestination.AddCustomDestinationActivity;
@@ -34,7 +35,7 @@ import java.util.Map;
  * Created by Administrator on 2016/9/8 0008.
  * 自定义景点列表
  */
-public class CustomDestinationActivity extends LoadingBarBaseActivity implements XListView.IXListViewListener {
+public class CustomDestinationActivity extends LoadingBarBaseActivity<CustomDestinationEvent> implements XListView.IXListViewListener {
     @ViewInject(R.id.lv_destination)
     private XListView mLvDestination;
     @ViewInject(R.id.bt_diy)
@@ -151,20 +152,7 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
         return 1.0f;
     }
 
-    @Subscribe
-    public void onEvent(CustomDestinationEvent event) {
-        setIsProgress(false);
-        loadEnd(mLvDestination);
-        if (event.isSuccess()) {
-            try {
-                dealData(event);
-            }catch (Exception e){
-               e.printStackTrace();
-            }
-        } else {
-            ToastUtils.showToast(event.getMessage());
-        }
-    }
+
 
     private void dealData(CustomDestinationEvent event) {
         if (event.getType()==TYPE_DELETE){//删除逻辑
@@ -193,6 +181,19 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity implements
     public void onLoadMore() {
         requestData(TYPE_LOAD);
     }
+
+    @Override
+    protected void onSuccess(CustomDestinationEvent customDestinationEvent) {
+        loadEnd(mLvDestination);
+        dealData(customDestinationEvent);
+    }
+
+    @Override
+    protected void onFail(HttpEvent event) {
+        super.onFail(event);
+        loadEnd(mLvDestination);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Destination;
 import com.example.administrator.travel.event.DestinationEvent;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.DestinationAdapter;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
@@ -31,7 +32,7 @@ import java.util.Map;
  * Created by android on 2016/7/30.
  * 目的地  美食共用
  */
-public class FindCommonActivity extends LoadingBarBaseActivity implements XListView.IXListViewListener, View.OnKeyListener {
+public class FindCommonActivity extends LoadingBarBaseActivity<DestinationEvent> implements XListView.IXListViewListener, View.OnKeyListener {
     @ViewInject(R.id.lv_destination)
     private XListView mLvDestination;
     @ViewInject(R.id.tv_search)
@@ -93,22 +94,19 @@ public class FindCommonActivity extends LoadingBarBaseActivity implements XListV
 
     private void search() {
         content = getString(mEtSearch);
-        requestData(TYPE_SEARCH);
+        onLoad(TYPE_SEARCH);
     }
 
     @Override
     protected void onLoad(int typeRefresh) {
-        requestData(TYPE_LOAD);
-    }
-
-    private void requestData(int type) {
         int count = destinationData == null ? 0 : destinationData.size();
         Map<String, String> destinationMap = MapUtils.Build().addKey(this).addPageSize(6).addCount(count).
                 add(IVariable.CONTENT, content).add(IVariable.PROVINCE, province).add(IVariable.CITY, city).add(IVariable.TYPELIST, typelist)
                 .add(IVariable.STAR, star).add(IVariable.SCORE, score).
                         end();
-        XEventUtils.getUseCommonBackJson(url, destinationMap, type, new DestinationEvent());
+        XEventUtils.getUseCommonBackJson(url, destinationMap, typeRefresh, new DestinationEvent());
     }
+
 
     @Override
     protected Activity initViewData() {
@@ -126,16 +124,6 @@ public class FindCommonActivity extends LoadingBarBaseActivity implements XListV
         return 1f;
     }
 
-    @Subscribe
-    public void onEvent(DestinationEvent event) {
-        setIsProgress(false);
-        if (event.isSuccess()) {
-            dealDestinationData(event);
-        } else {
-            ToastUtils.showToast(event.getMessage());
-        }
-        loadEnd(mLvDestination);
-    }
 
     private void dealDestinationData(DestinationEvent event) {
         Destination destination = GsonUtils.getObject(event.getResult(), Destination.class);
@@ -153,14 +141,19 @@ public class FindCommonActivity extends LoadingBarBaseActivity implements XListV
         }
     }
 
-    @Override
-    public void onRefresh() {
 
+
+
+    @Override
+    protected void onSuccess(DestinationEvent destinationEvent) {
+        dealDestinationData(destinationEvent);
+        loadEnd(mLvDestination);
     }
 
     @Override
-    public void onLoadMore() {
-        onLoad(TYPE_REFRESH);
+    protected void onFail(HttpEvent event) {
+        super.onFail(event);
+        loadEnd(mLvDestination);
     }
 
     @Override

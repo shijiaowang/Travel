@@ -1,12 +1,13 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.me.messagecenter.appointmessage;
 
 import android.content.Context;
 import android.view.View;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 /**
- * Created by Administrator on 2016/8/26 0026.
+ * Created by wangyang on 2016/8/26 0026.
  */
 public class AppointMessageHolder extends BaseHolder {
     public AppointMessageHolder(Context context) {
@@ -20,7 +21,6 @@ public class AppointMessageHolder extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        View view = inflateView(R.layout.item_activity_appoint_message);
-        return view;
+        return inflateView(R.layout.item_activity_appoint_message);
     }
 }

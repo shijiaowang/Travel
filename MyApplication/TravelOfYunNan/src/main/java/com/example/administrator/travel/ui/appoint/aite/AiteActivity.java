@@ -33,7 +33,7 @@ import java.util.Map;
  *
  * @联系人列表
  */
-public class AiteActivity extends LoadingBarBaseActivity {
+public class AiteActivity extends LoadingBarBaseActivity<AiteEvent> {
     private List<AiteFollow> followAndFans;
     private List<AiteFollow> mSelectPeople;
     private TextView mTvOk;
@@ -178,16 +178,7 @@ public class AiteActivity extends LoadingBarBaseActivity {
         return aiteFollow;
     }
 
-    @Subscribe
-    public void onEvent(AiteEvent event){
-        setIsProgress(false);
-         if (event.isSuccess()){
-             dealData(event);
-         }else {
-             ToastUtils.showToast(event.getMessage());
-             setIsError(true);
-         }
-    }
+
 
     private void dealData(AiteEvent event) {
         AiteBean aiteBean = GsonUtils.getObject(event.getResult(), AiteBean.class);
@@ -234,5 +225,10 @@ public class AiteActivity extends LoadingBarBaseActivity {
     @Override
     public float getAlpha() {
         return 1f;
+    }
+
+    @Override
+    protected void onSuccess(AiteEvent aiteEvent) {
+        dealData(aiteEvent);
     }
 }

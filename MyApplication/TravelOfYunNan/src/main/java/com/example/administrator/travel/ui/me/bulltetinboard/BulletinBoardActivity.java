@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.me.bulltetinboard;
 import android.app.Activity;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
@@ -21,7 +22,7 @@ import java.util.Map;
  * Created by wangyang on 2016/8/2 0002.
  * 公告栏
  */
-public class BulletinBoardActivity extends LoadingBarBaseActivity {
+public class BulletinBoardActivity extends LoadingBarBaseActivity<BulletinBoardEvent> {
    @ViewInject(R.id.lv_bulletin_board)
     private XListView mLvBulletinBoard;
     private int count=0;
@@ -50,17 +51,7 @@ public class BulletinBoardActivity extends LoadingBarBaseActivity {
 
         return this;
     }
-    @Subscribe
-   public void onEvent(BulletinBoardEvent event){
-        setIsProgress(false);
-        loadEnd(mLvBulletinBoard);
-       if (event.isSuccess()){
-           dealData(event);
-       }else {
-           ToastUtils.showToast(event.getMessage());
-           setIsError(true);
-       }
-   }
+
     private void dealData(BulletinBoardEvent event) {
         BulletinBoardBean bulletinBoardBean = GsonUtils.getObject(event.getResult(), BulletinBoardBean.class);
         List<BulletinBoardBean.DataBean> data = bulletinBoardBean.getData();
@@ -87,5 +78,17 @@ public class BulletinBoardActivity extends LoadingBarBaseActivity {
     @Override
     public float getAlpha() {
         return 1f;
+    }
+
+    @Override
+    protected void onSuccess(BulletinBoardEvent bulletinBoardEvent) {
+        dealData(bulletinBoardEvent);
+        loadEnd(mLvBulletinBoard);
+    }
+
+    @Override
+    protected void onFail(HttpEvent event) {
+        super.onFail(event);
+        loadEnd(mLvBulletinBoard);
     }
 }

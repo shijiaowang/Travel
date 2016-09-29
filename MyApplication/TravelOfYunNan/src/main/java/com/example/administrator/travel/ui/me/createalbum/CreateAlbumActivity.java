@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.baseui.BaseCropPhotoActivity;
@@ -36,7 +37,7 @@ import java.util.Map;
 /**
  * Created by wangyang on 2016/8/2 0002.
  */
-public class CreateAlbumActivity extends BaseCropPhotoActivity {
+public class CreateAlbumActivity extends BaseCropPhotoActivity<CreateAlbumEvent> {
     private TextView mTvMore;//更多
     @ViewInject(R.id.iv_bg)
     private ImageView mIvBg;
@@ -123,10 +124,7 @@ public class CreateAlbumActivity extends BaseCropPhotoActivity {
     }
 
 
-   @Subscribe
-   public void onEvent(CreateAlbumEvent event){
-       ToastUtils.showToast(event.getMessage());
-   }
+
 
     @Override
     protected void onLoad(int type) {
@@ -150,8 +148,15 @@ public class CreateAlbumActivity extends BaseCropPhotoActivity {
         return "创建相册";
     }
 
+    @Override
+    protected void onSuccess(CreateAlbumEvent event) {
+        ToastUtils.showToast(event.getMessage());
+    }
 
+    @Override
+    protected void onFail(HttpEvent event) {
 
+    }
 
     @Override
     protected boolean rootIsLinearLayout() {

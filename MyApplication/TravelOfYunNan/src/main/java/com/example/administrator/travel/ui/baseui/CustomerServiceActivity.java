@@ -37,6 +37,11 @@ public class CustomerServiceActivity extends LoadingBarBaseActivity {
     }
 
     @Override
+    protected void onSuccess(Object o) {
+
+    }
+
+    @Override
     protected String setTitleName() {
         return "客服中心";
     }

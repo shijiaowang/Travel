@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.ChangePhoneEvent;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.utils.MapUtils;
@@ -23,10 +24,10 @@ import java.util.Map;
 
 
 /**
- * Created by Administrator on 2016/8/19 0019.
+ * Created by wangyang on 2016/8/19 0019.
  * 更改手机号
  */
-public class ChangePhoneActivity extends LoadingBarBaseActivity {
+public class ChangePhoneActivity extends LoadingBarBaseActivity<ChangePhoneEvent> {
     private static final int CHANGE_VER = 1;//更改手机验证码
     @ViewInject(R.id.bt_next)
     private AvoidFastButton mBtNex;
@@ -95,17 +96,6 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity {
         return "更改绑定";
     }
 
-    @Subscribe
-    public void onEvent(ChangePhoneEvent event) {
-        if (event.isSuccess()) {
-            Intent intent = new Intent(ChangePhoneActivity.this, ChangePhoneVerActivity.class);
-            intent.putExtra(IVariable.TEL,getString(mEtPhone));
-            startActivityForResult(intent, CHANGE_VER);
-        }else {
-            ToastUtils.showToast(event.getMessage());
-        }
-        isClick=false;
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -118,5 +108,19 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity {
     @Override
     public float getAlpha() {
         return 1.0f;
+    }
+
+    @Override
+    protected void onSuccess(ChangePhoneEvent changePhoneEvent) {
+        Intent intent = new Intent(ChangePhoneActivity.this, ChangePhoneVerActivity.class);
+        intent.putExtra(IVariable.TEL,getString(mEtPhone));
+        startActivityForResult(intent, CHANGE_VER);
+        isClick=false;
+    }
+
+    @Override
+    protected void onFail(HttpEvent event) {
+
+        isClick=false;
     }
 }

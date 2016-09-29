@@ -37,7 +37,7 @@ import java.io.IOException;
  * Created by Administrator on 2016/9/23 0023.
  * 裁剪图片的公共父类
  */
-public abstract class BaseCropPhotoActivity extends LoadingBarBaseActivity {
+public abstract class BaseCropPhotoActivity<T> extends LoadingBarBaseActivity<T> {
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
     protected static final String IMAGE_NAME = "CropImage";
     protected String filename;

@@ -9,44 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/commonTotalHeight"
         android:background="@color/otherTitleBg"
-        android:paddingTop="@dimen/commonStatusHeight">
-
-        <RelativeLayout
-            android:layout_width="280dp"
-            android:layout_height="49dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/fragment_find_search_bg" />
-
-            <EditText
-                android:layout_width="220dp"
-                android:layout_height="28dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:background="@null"
-                android:hint="请输入关键字"
-                android:paddingLeft="15dp"
-                android:singleLine="true"
-                android:textColorHint="#d2ffee"
-                android:textCursorDrawable="@null"
-                android:textSize="11sp" />
-
-            <com.example.administrator.travel.ui.view.FontsIconTextView
-                android:id="@+id/tv_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="13dp"
-                android:text="@string/fragment_circle_search"
-                android:textColor="#aef4e4"
-                android:textSize="20sp" />
-        </RelativeLayout>
+       >
 
     </RelativeLayout>
 

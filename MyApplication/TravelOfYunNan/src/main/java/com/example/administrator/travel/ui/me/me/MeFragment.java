@@ -15,7 +15,7 @@ import com.example.administrator.travel.ui.baseui.CustomerServiceActivity;
 import com.example.administrator.travel.ui.me.fansandfollow.FollowAndFanActivity;
 import com.example.administrator.travel.ui.baseui.HomeActivity;
 import com.example.administrator.travel.ui.baseui.IdentityAuthenticationActivity;
-import com.example.administrator.travel.ui.baseui.MessageCenterActivity;
+import com.example.administrator.travel.ui.me.messagecenter.MessageCenterActivity;
 import com.example.administrator.travel.ui.me.myalbum.MyAlbumActivity;
 import com.example.administrator.travel.ui.me.myappoint.MyAppointActivity;
 import com.example.administrator.travel.ui.me.mycollection.MyCollectionActivity;

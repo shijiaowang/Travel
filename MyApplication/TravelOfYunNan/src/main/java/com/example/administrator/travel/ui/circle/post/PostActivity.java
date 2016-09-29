@@ -25,13 +25,10 @@ import java.util.Map;
  * 帖子
  */
 
-public class PostActivity extends LoadingBarBaseActivity implements XListView.IXListViewListener {
+public class PostActivity extends LoadingBarBaseActivity<PostEvent> {
     @ViewInject(R.id.lv_post_detail)
     private XListView mLvPostDetail;
-
-
     private String forum_id;
-    private int currentPage = 0;
     List<Object> postDatas = new ArrayList<>();
     private PostAdapter postAdapter;
 
@@ -48,21 +45,15 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
     @Override
     protected void onLoad(int typeRefresh) {
         if (forum_id == null) return;
-        requestData(TYPE_LOAD);
+        int count=typeRefresh==TYPE_REFRESH ?0:getListSize(postDatas);
+        Map<String, String> postMap = MapUtils.Build().addKey(this).addFroumId(forum_id).addUserId().addPageSize().addCount(count).end();
+        XEventUtils.getUseCommonBackJson(IVariable.POST_DETAIL, postMap, typeRefresh,new PostEvent());
     }
 
-    private void requestData(int type) {
-        Map<String, String> postMap = MapUtils.Build().addKey(this).addFroumId(forum_id).addUserId().addPageSize(10).add(IVariable.PAGE, currentPage + "").end();
-        XEventUtils.getUseCommonBackJson(IVariable.POST_DETAIL, postMap, type,new PostEvent());
-    }
 
     @Override
     protected Activity initViewData() {
-        mLvPostDetail.setPullRefreshEnable(true);
-        mLvPostDetail.setPullLoadEnable(true);
-        mLvPostDetail.setXListViewListener(this);
-        mLvPostDetail.setRefreshTime(getTime());
-
+        initXListView(mLvPostDetail,true,true);
         return this;
     }
 
@@ -77,21 +68,15 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
         return 1;
     }
 
-    @Subscribe
-    public void onEvent(PostEvent event) {
-        if (event.isSuccess()) {
-            dealData(event);
-        } else {
-            ToastUtils.showToast(event.getMessage());
-            if (event.getType() == TYPE_LOAD && event.getCode() == 0 && currentPage > 0)
-                currentPage--;
-        }
-        setIsProgress(false);
+    @Override
+    protected void onSuccess(PostEvent postEvent) {
+        dealData(postEvent);
         loadEnd(mLvPostDetail);//关闭加载或者刷新
-
     }
 
-    private void dealData(HttpEvent event) {
+
+
+    private void dealData(PostEvent event) {
 
         dealPost(event);
     }
@@ -143,21 +128,4 @@ public class PostActivity extends LoadingBarBaseActivity implements XListView.IX
         postAdapter = new PostAdapter(this, postDatas);
         mLvPostDetail.setAdapter(postAdapter);
     }
-
-    @Override
-    public void onRefresh() {
-        //刷新
-        currentPage = 0;
-        requestData(TYPE_REFRESH);
-    }
-
-    @Override
-    public void onLoadMore() {
-        currentPage++;
-        requestData(TYPE_LOAD);
-    }
-
-
-
-
 }

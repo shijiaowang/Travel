@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.PersonalProfileEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
@@ -29,7 +30,7 @@ import java.util.Map;
  * Created by Administrator on 2016/8/19 0019.
  * 个人简介
  */
-public class PersonalProfileActivity extends LoadingBarBaseActivity {
+public class PersonalProfileActivity extends LoadingBarBaseActivity<PersonalProfileEvent> {
     @ViewInject(R.id.et_profile)
     private EditText mEtProfile;
     @ViewInject(R.id.bt_save_change)
@@ -79,14 +80,13 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity {
 
     @Override
     protected Activity initViewData() {
-      setIsProgress(false);
         String content = GlobalUtils.getUserInfo().getContent();
         if (!StringUtils.isEmpty(content)){
             mLlHint.setVisibility(View.GONE);
             mEtProfile.setText(content);
             mTvNumber.setText(content.length()+"/80");
         }
-return this;
+       return this;
     }
 
     @Override
@@ -98,14 +98,13 @@ return this;
         return 1.0f;
     }
 
-    @Subscribe
-    public void onEvent(PersonalProfileEvent event){
-        if (event.isSuccess()){
-            UserInfo userInfo = GlobalUtils.getUserInfo();
-            userInfo.setContent(getString(mEtProfile));
-            UserUtils.saveUserInfo(userInfo);
-            finish();
-        }
-        ToastUtils.showToast(event.getMessage());
+    @Override
+    protected void onSuccess(PersonalProfileEvent personalProfileEvent) {
+        UserInfo userInfo = GlobalUtils.getUserInfo();
+        userInfo.setContent(getString(mEtProfile));
+        UserUtils.saveUserInfo(userInfo);
+        finish();
     }
+
+
 }
