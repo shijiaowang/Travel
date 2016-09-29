@@ -131,7 +131,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         fragments.add(new FindFragment());
         fragments.add(new MeFragment());
         mVpHome.setAdapter(new HomeFragmentAdapter(getSupportFragmentManager()));
-        mVpHome.setOffscreenPageLimit(3);//设置缓存距离为3
+        mVpHome.setOffscreenPageLimit(5);//设置缓存距离为3
         initIconFonts();
         setCheckedOfPosition(0);
     }
@@ -144,30 +144,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         for (GradientTextView font : iconFonts) {
             font.setTypeface(fromAsset);
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
     }
 
     @Override
@@ -261,11 +237,5 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         public int getCount() {
             return fragments.size();
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
     }
 }

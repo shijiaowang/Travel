@@ -81,6 +81,7 @@ public interface IVariable {
     String GET_SYSTEM_MESSAGE = API_KEY + "UserMsg/getSystemMsg/";//获取系统消息
     String REPLY_ME_MESSAGE = API_KEY + "UserMsg/getreplyMsg/";//评论我的消息
     String AITE_ME_MESSAGE = API_KEY + "UserMsg/getInformMsg/";//@我的消息
+    String ZAN_ME_MESSAGE = API_KEY + "UserMsg/getLikeMsg";//赞我的消息
 
     //请求type
     int TYPE_GET_KEY = 0;

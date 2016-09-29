@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.AttributeSet;
@@ -45,6 +46,20 @@ public class ShowAllTextView extends TextView {
         super(context, attrs, defStyleAttr);
     }
 
+    /**
+     * 普通的切换
+     * @param isShowAll
+     * @return
+     */
+    public void swithShow(boolean isShowAll){
+        this.isShowAll=isShowAll;
+        if (this.isShowAll){
+            setLines(1);
+            setEllipsize(TextUtils.TruncateAt.END);
+        }else {
+            setMaxLines(Integer.MAX_VALUE);
+        }
+    }
     public String getContent() {
         return content;
     }
@@ -76,6 +91,36 @@ public class ShowAllTextView extends TextView {
     }
 
     /**
+     * 设置开头是以设置开始的文字
+     */
+    public void setHeadIsRemarkText(String text){
+        String head="【备注】";
+        setLines(1);
+        setSingleLine(true);
+        setEllipsize(TextUtils.TruncateAt.END);
+        this.setMovementMethod(LinkMovementMethod.getInstance());
+        SpannableStringBuilder spannable = new SpannableStringBuilder(head+text);
+        spannable.setSpan(new ShowClick(), 0, head.length()
+                , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        setText(spannable);
+
+    }
+
+    /**
+     * 有备注文字开头的
+     * @param isShowAll
+     */
+    public void setShowAll(boolean isShowAll){
+        if (isShowAll){
+            setMaxLines(Integer.MAX_VALUE);
+
+        }else {
+            setLines(1);
+            setEllipsize(TextUtils.TruncateAt.END);
+        }
+        this.isShowAll = isShowAll;
+    }
+    /**
      * 初始化
      */
     private void init() {
@@ -93,7 +138,7 @@ public class ShowAllTextView extends TextView {
     private void setClick() {
         this.setMovementMethod(LinkMovementMethod.getInstance());
         SpannableStringBuilder spannable = new SpannableStringBuilder(text);
-        spannable.setSpan(new ShowClick(), text.length() - 4, text.length()
+        spannable.setSpan(new ChangeColor(), text.length() - 4, text.length()
                 , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         setText(spannable);
 
@@ -103,6 +148,20 @@ public class ShowAllTextView extends TextView {
         @Override
         public void onClick(View widget) {
             setIsShowAll(!isShowAll);
+        }
+
+        @Override
+        public void updateDrawState(TextPaint ds) {
+            super.updateDrawState(ds);
+            ds.setColor(Color.parseColor("#5cd0c2"));
+            ds.setUnderlineText(false);//是否有下划线
+        }
+    }
+    class ChangeColor extends ClickableSpan {
+
+        @Override
+        public void onClick(View widget) {
+
         }
 
         @Override

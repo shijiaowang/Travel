@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.StringUtils;
 
@@ -73,7 +74,7 @@ public class IdentityAuthenticationActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onSuccess(Object o) {
+    protected void onSuccess(HttpEvent o) {
 
     }
 }

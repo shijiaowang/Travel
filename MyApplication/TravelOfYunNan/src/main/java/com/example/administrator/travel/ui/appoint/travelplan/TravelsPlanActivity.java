@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 
@@ -110,9 +111,10 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
     }
 
     @Override
-    protected void onSuccess(Object o) {
+    protected void onSuccess(HttpEvent httpEvent) {
 
     }
+
 
 
     @Override

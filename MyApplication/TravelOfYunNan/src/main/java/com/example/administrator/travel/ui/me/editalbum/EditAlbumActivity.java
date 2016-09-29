@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.me.albumselector.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.baseui.BaseCropPhotoActivity;
+import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -32,43 +34,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.ButterKnife;
+
 /**
  * 编辑相册  powered by wangyang
  */
 
 public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> implements View.OnClickListener {
-    @ViewInject(R.id.iv_cover)
-    private ImageView mIvCover;
-    @ViewInject(R.id.tv_set_cover)
-    private TextView mTvSetCover;
-    @ViewInject(R.id.ed_set_name)
-    private EditText mEdSetName;
-    @ViewInject(R.id.ll_des)
-    private LinearLayout mLlDes;
-    @ViewInject(R.id.et_des)
-    private EditText mEtDes;
-    @ViewInject(R.id.tv_count)
-    private TextView mTvCount;
-    @ViewInject(R.id.tv_des)
-    private TextView mTvDes;
-    @ViewInject(R.id.lv_photo)
-    private ListView mLvPhoto;
+
     @ViewInject(R.id.rl_toggle)
     private RelativeLayout mRlToggle;
-    @ViewInject(R.id.rl_edit_des)
-    private RelativeLayout mRlEditDes;
+
     @ViewInject(R.id.tv_photo)
     private TextView mTvPhoto;
-    @ViewInject(R.id.tv_album_name)
-    private TextView mTvName;
+
     private TextView mTvMore;
-    private boolean isEdit=false;
+    private boolean isEdit = false;
     private String id;
     private EditAlbumAdapter editAlbumAdapter;
     private List<EditAlbumBean.DataBean.BodyBean> body;
     private String name;
     private String des;
     private String title;
+    private RelativeLayout mRlEditDes;
+    private TextView mTvName;
+    private ImageView mIvCover;
+    private TextView mTvSetCover;
+    private EditText mEdSetName;
+    private LinearLayout mLlDes;
+    private EditText mEtDes;
+    private TextView mTvCount;
+    private TextView mTvDes;
+    private ListView mLvPhoto;
 
 
     @Override
@@ -80,13 +77,30 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
     @Override
     protected void onLoad(int type) {
         id = getIntent().getStringExtra(IVariable.ID);
-        if (StringUtils.isEmpty(id))return;
-        Map<String, String> editMap = MapUtils.Build().addKey(this).addUserId().addId(id).end();
-        XEventUtils.getUseCommonBackJson(IVariable.EDIT_ALBUM,editMap,TYPE_LOAD,new EditAlbumEvent());
+        if (StringUtils.isEmpty(id)) return;
+        int count=type==TYPE_REFRESH?0:getListSize(body);
+        Map<String, String> editMap = MapUtils.Build().addKey(this).addUserId().addId(id).addPageSize().addCount(count).end();
+        XEventUtils.getUseCommonBackJson(IVariable.EDIT_ALBUM, editMap, TYPE_LOAD, new EditAlbumEvent());
     }
 
     @Override
     protected void initChildListener() {
+        initXScrollView(false, true);
+        XScrollView xScrollView = getxScrollView();
+        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_edit_album_content, null);
+        if (inflate != null) {
+            mRlEditDes = (RelativeLayout) inflate.findViewById(R.id.rl_edit_des);
+            mTvName = (TextView) inflate.findViewById(R.id.tv_album_name);
+            mIvCover = (ImageView) inflate.findViewById(R.id.iv_cover);
+            mTvSetCover = (TextView) inflate.findViewById(R.id.tv_set_cover);
+            mEdSetName = (EditText) inflate.findViewById(R.id.ed_set_name);
+            mLlDes = (LinearLayout) inflate.findViewById(R.id.ll_des);
+            mEtDes = (EditText) inflate.findViewById(R.id.et_des);
+            mTvCount = (TextView) inflate.findViewById(R.id.tv_count);
+            mTvDes = (TextView) inflate.findViewById(R.id.tv_des);
+            mLvPhoto = (ListView) inflate.findViewById(R.id.lv_photo);
+            xScrollView.setView(inflate);
+        }
         mTvMore = getmTvRightIcon();
         mTvMore.setText("编辑");
         mTvPhoto.setOnClickListener(this);
@@ -94,14 +108,14 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
         setScrollListener(new ScrollListener() {
             @Override
             public void percent(float percent) {
-                LogUtils.e(percent+"");
-                percent=percent>1?1f:percent;
-                if (percent<=0.5){
+                LogUtils.e(percent + "");
+                percent = percent > 1 ? 1f : percent;
+                if (percent <= 0.5) {
                     changeTitle("");
-                }else {
+                } else {
                     changeTitle(title);
                 }
-                mTvName.setAlpha(1f-percent);
+                mTvName.setAlpha(1f - percent);
             }
         });
         mEtDes.addTextChangedListener(new TextWatcher() {
@@ -113,17 +127,17 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 int length = getString(mEtDes).length();
-                if (length==0){
+                if (length == 0) {
                     mLlDes.setVisibility(View.VISIBLE);
-                }else {
-                    if (mLlDes.getVisibility()==View.VISIBLE) {
+                } else {
+                    if (mLlDes.getVisibility() == View.VISIBLE) {
                         mLlDes.setVisibility(View.GONE);
                     }
-                    if (length>=80){
+                    if (length >= 80) {
                         ToastUtils.showToast("输入字数最大了。");
                         return;
                     }
-                    mTvCount.setText(length+"/80");
+                    mTvCount.setText(length + "/80");
                 }
             }
 
@@ -139,29 +153,31 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
 
     /**
      * 更新相册
+     *
      * @param name
      * @param des
      */
     private void updateAlbum(String name, String des) {
         Map<String, String> updateMap = MapUtils.Build().addKey(this).addId(id).addUserId().addTitle(name).addContent(des).addPictureId(getPictureId()).end();
-        List<String> files=new ArrayList<>();
+        List<String> files = new ArrayList<>();
         files.add(filename);
-        XEventUtils.postFileCommonBackJson(IVariable.UPDATE_ALBUM,updateMap,files,TYPE_UPDATE,new EditAlbumEvent());
+        XEventUtils.postFileCommonBackJson(IVariable.UPDATE_ALBUM, updateMap, files, TYPE_UPDATE, new EditAlbumEvent());
     }
 
     /**
      * 获取图片id
+     *
      * @return
      */
     private String getPictureId() {
-        if (body==null || body.size()==0){
+        if (body == null || body.size() == 0) {
             return "";
         }
-        StringBuilder builder=new StringBuilder();
-        for (EditAlbumBean.DataBean.BodyBean bodyBean:body){
-            if (body.indexOf(bodyBean)==body.size()-1){
+        StringBuilder builder = new StringBuilder();
+        for (EditAlbumBean.DataBean.BodyBean bodyBean : body) {
+            if (body.indexOf(bodyBean) == body.size() - 1) {
                 builder.append(bodyBean.getId());
-            }else {
+            } else {
                 builder.append(bodyBean.getId() + ",");
             }
         }
@@ -169,51 +185,59 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
     }
 
     private void changeViewShow(boolean isEdit) {
-        mTvMore.setText(isEdit?"保存":"编辑");
-        mRlToggle.setVisibility(isEdit?View.GONE:View.VISIBLE);
-        mTvDes.setVisibility(isEdit?View.GONE:View.VISIBLE);
-        mTvName.setVisibility(isEdit?View.GONE:View.VISIBLE);
-        mEdSetName.setVisibility(isEdit?View.VISIBLE:View.GONE);
-        mRlEditDes.setVisibility(isEdit?View.VISIBLE:View.GONE);
-        mTvSetCover.setVisibility(isEdit?View.VISIBLE:View.GONE);
+        mTvMore.setText(isEdit ? "保存" : "编辑");
+        mRlToggle.setVisibility(isEdit ? View.GONE : View.VISIBLE);
+        mTvDes.setVisibility(isEdit ? View.GONE : View.VISIBLE);
+        mTvName.setVisibility(isEdit ? View.GONE : View.VISIBLE);
+        mEdSetName.setVisibility(isEdit ? View.VISIBLE : View.GONE);
+        mRlEditDes.setVisibility(isEdit ? View.VISIBLE : View.GONE);
+        mTvSetCover.setVisibility(isEdit ? View.VISIBLE : View.GONE);
     }
 
 
     private void dealData(EditAlbumEvent event) {
-        switch (event.getType()){
-            case TYPE_LOAD:
-                dealLoadData(event);
-                break;
-            case TYPE_UPDATE:
-                mTvName.setText(name);
-                mTvDes.setText(des);
-                changeViewShow(isEdit);
-                if (editAlbumAdapter!=null) {
-                    EditAlbumHolder.canDelete = false;
-                    editAlbumAdapter.notifyDataSetChanged();
-                }
-                ToastUtils.showToast(event.getMessage());
-                break;
-        }
+
+
+      if (event.getType()==TYPE_UPDATE){
+           mTvName.setText(name);
+           mTvDes.setText(des);
+           changeViewShow(isEdit);
+           if (editAlbumAdapter != null) {
+               EditAlbumHolder.canDelete = false;
+               editAlbumAdapter.notifyDataSetChanged();
+           }
+           ToastUtils.showToast(event.getMessage());
+       }else {
+           dealLoadData(event);
+       }
+
+
+
     }
 
     /**
      * 读取加载数据进入时
+     *
      * @param event
      */
     private void dealLoadData(EditAlbumEvent event) {
         EditAlbumBean editAlbumBean = GsonUtils.getObject(event.getResult(), EditAlbumBean.class);
         EditAlbumBean.DataBean data = editAlbumBean.getData();
-        if (data==null)return;
+        if (data == null) return;
         EditAlbumBean.DataBean.HeadBean head = data.getHead();
-        mTvDes.setText(getString(R.string.kongge)+head.getContent());
-        title = head.getTitle();
-        mTvName.setText(title);
-        x.image().bind(mIvCover,head.getBackground_img());
-        body = data.getBody();
-        if (body ==null || body.size()==0)return;
-        editAlbumAdapter = new EditAlbumAdapter(this, body);
-        mLvPhoto.setAdapter(editAlbumAdapter);
+        if (editAlbumAdapter==null) {
+            mTvDes.setText(getString(R.string.kongge) + head.getContent());
+            title = head.getTitle();
+            mTvName.setText(title);
+            x.image().bind(mIvCover, head.getBackground_img());
+            body = data.getBody();
+            if (body == null || body.size() == 0) return;
+            editAlbumAdapter = new EditAlbumAdapter(this, body);
+            mLvPhoto.setAdapter(editAlbumAdapter);
+        }else {
+            body.addAll(data.getBody());
+            editAlbumAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -244,7 +268,7 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_photo:
                 startActivity(new Intent(this, AlbumSelectorActivity.class));
                 break;
@@ -259,25 +283,30 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
     }
 
     private void changeEdit() {
-        isEdit=!isEdit;
-        if (isEdit){
+        isEdit = !isEdit;
+        if (isEdit) {
             mEdSetName.setText(mTvName.getText().toString().trim());
             mEtDes.setText(mTvDes.getText().toString().trim());
-            if (editAlbumAdapter!=null) {
+            if (editAlbumAdapter != null) {
                 EditAlbumHolder.canDelete = true;
                 editAlbumAdapter.notifyDataSetChanged();
             }
             changeViewShow(isEdit);
-        }else {
+        } else {
             name = mEdSetName.getText().toString().trim();
-            if (StringUtils.isEmpty(name)){
+            if (StringUtils.isEmpty(name)) {
                 ToastUtils.showToast("相册名不能为空");
-                isEdit=!isEdit;
+                isEdit = !isEdit;
                 return;
             }
             des = mEtDes.getText().toString().trim();
             updateAlbum(name, des);
         }
+    }
+
+    @Override
+    protected boolean isXScrollView() {
+        return true;
     }
 
     @Override

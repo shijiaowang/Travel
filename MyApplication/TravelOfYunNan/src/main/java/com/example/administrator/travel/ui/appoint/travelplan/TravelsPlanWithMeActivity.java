@@ -15,6 +15,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.db.DBManager;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
@@ -112,7 +113,7 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity implement
     }
 
     @Override
-    protected void onSuccess(Object o) {
+    protected void onSuccess(HttpEvent o) {
 
     }
 

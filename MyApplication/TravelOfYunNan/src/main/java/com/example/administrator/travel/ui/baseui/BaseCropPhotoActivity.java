@@ -19,6 +19,7 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.utils.BitmapUtils;
 import com.example.administrator.travel.utils.IOUtils;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -37,7 +38,7 @@ import java.io.IOException;
  * Created by Administrator on 2016/9/23 0023.
  * 裁剪图片的公共父类
  */
-public abstract class BaseCropPhotoActivity<T> extends LoadingBarBaseActivity<T> {
+public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends LoadingBarBaseActivity<T> {
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
     protected static final String IMAGE_NAME = "CropImage";
     protected String filename;

@@ -97,7 +97,7 @@
         <activity android:name=".ui.me.previewpicture.PreviewPicturesActivity"/>
         <activity android:name=".ui.baseui.ChangePhoneActivity"/>
         <activity android:name=".ui.baseui.MessagePrivateActivity"/>
-        <activity android:name=".ui.baseui.RelateMeDetailActivity"/>
+        <activity android:name=".ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity"/>
         <activity android:name=".ui.baseui.ChangePhoneVerActivity"/>
         <activity android:name=".ui.me.myhobby.MyHobbyActivity"/>
         <activity android:name=".ui.baseui.PersonalProfileActivity"/>
@@ -105,7 +105,7 @@
         <activity android:name=".ui.me.messagecenter.appointmessage.AppointMessageActivity"/>
         <activity android:name=".ui.baseui.IdentityAuthenticationActivity"/>
         <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
-        <activity android:name=".ui.baseui.SystemMessageActivity"/>
+        <activity android:name=".ui.me.messagecenter.systemmessage.SystemMessageActivity"/>
         <activity android:name=".ui.me.albumselector.AlbumSelectorActivity"/>
         <activity android:name=".ui.me.about.AboutActivity"/>
         <activity android:name=".ui.appoint.createsuccess.CreateAppointSuccessActivity"/>
@@ -114,7 +114,7 @@
             android:launchMode="singleTask"
             />
         <activity android:name=".ui.appoint.togetherdetail.AppointTogetherDetailActivity"/>
-        <activity android:name=".ui.baseui.RelateMeActivity"/>
+        <activity android:name=".ui.me.messagecenter.relateme.RelateMeActivity"/>
         <activity android:name=".ui.baseui.HotelActivity"/>
         <activity android:name=".ui.appoint.settingtitle.SettingTitleActivity"
             android:launchMode="singleTask"
@@ -132,6 +132,7 @@
             android:theme="@style/CreatePostTheme"
             />
         <activity android:name=".ui.me.mytheme.MyThemeActivity" />
+        <activity android:name=".ui.baseui.LoadAndRefreshBaseActivity" />
     </application>
 
 </manifest>

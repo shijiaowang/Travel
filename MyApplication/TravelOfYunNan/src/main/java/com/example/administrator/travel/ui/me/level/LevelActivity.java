@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.me.level;
 import android.app.Activity;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 
 /**
@@ -41,7 +42,7 @@ public class LevelActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onSuccess(Object o) {
+    protected void onSuccess(HttpEvent o) {
 
     }
 }

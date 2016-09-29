@@ -52,12 +52,12 @@
           android:gravity="center_horizontal"
           android:layout_height="match_parent">
 
-          <android.support.v7.widget.RecyclerView
-              android:id="@+id/rv_album"
-              android:layout_width="wrap_content"
-              android:layout_height="match_parent"
-              >
-          </android.support.v7.widget.RecyclerView>
+          <com.example.administrator.travel.ui.view.refreshview.XScrollView
+              android:id="@+id/xs_scroll"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+          </com.example.administrator.travel.ui.view.refreshview.XScrollView>
 
       </LinearLayout>
 

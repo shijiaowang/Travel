@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.baseui;
 import android.app.Activity;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 
 
 /**
@@ -37,7 +38,7 @@ public class CustomerServiceActivity extends LoadingBarBaseActivity {
     }
 
     @Override
-    protected void onSuccess(Object o) {
+    protected void onSuccess(HttpEvent o) {
 
     }
 

@@ -9,8 +9,8 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.me.messagecenter.appointmessage.AppointMessageActivity;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.baseui.MessagePrivateActivity;
-import com.example.administrator.travel.ui.baseui.RelateMeActivity;
-import com.example.administrator.travel.ui.baseui.SystemMessageActivity;
+import com.example.administrator.travel.ui.me.messagecenter.relateme.RelateMeActivity;
+import com.example.administrator.travel.ui.me.messagecenter.systemmessage.SystemMessageActivity;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
 import org.xutils.view.annotation.ViewInject;

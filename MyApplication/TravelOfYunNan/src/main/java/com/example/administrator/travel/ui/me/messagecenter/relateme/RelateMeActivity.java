@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.messagecenter.relateme;
 
 import android.content.Intent;
 import android.view.View;
@@ -6,11 +6,13 @@ import android.widget.RelativeLayout;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
+import com.example.administrator.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
 
 import org.xutils.view.annotation.ViewInject;
 
 /**
- * Created by Administrator on 2016/8/26 0026.
+ * Created by wangyang on 2016/8/26 0026.
  * 与我相关
  */
 public class RelateMeActivity extends BarBaseActivity implements View.OnClickListener {

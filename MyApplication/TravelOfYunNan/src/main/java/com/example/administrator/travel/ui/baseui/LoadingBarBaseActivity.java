@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.global.ParentBean;
 import com.example.administrator.travel.ui.me.messagecenter.MessageCommonEvent;
 import com.example.administrator.travel.ui.view.SlippingScrollView;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
@@ -33,7 +34,7 @@ import java.util.Locale;
  * Created by Administrator on 2016/7/25 0025.
  * 带有相同头布局,网络加载
  */
-public abstract class LoadingBarBaseActivity<T> extends BaseActivity implements XListView.IXListViewListener, XScrollView.IXScrollViewListener {
+public abstract class LoadingBarBaseActivity<T extends HttpEvent> extends BaseActivity implements XListView.IXListViewListener, XScrollView.IXScrollViewListener {
     private static final float CHANGE_COLOR_LIMIT = 600f;//设置变色区间
 
     @ViewInject(R.id.tv_back)
@@ -181,6 +182,9 @@ public abstract class LoadingBarBaseActivity<T> extends BaseActivity implements 
                     LogUtils.e("t=" + t + "i=" + i + "l=" + l + "oldl" + oldl);
                     if (xScrollView.isTop()) {//解决 下拉刷新引发title变色问题
                         t=0;
+                    }
+                    if (scrollListener!=null){
+                        scrollListener.percent(Math.abs(t/CHANGE_COLOR_LIMIT));
                     }
 
                     getmBg1().setAlpha(Math.abs(t / CHANGE_COLOR_LIMIT) > 1 ? 1f : Math.abs(t / CHANGE_COLOR_LIMIT));

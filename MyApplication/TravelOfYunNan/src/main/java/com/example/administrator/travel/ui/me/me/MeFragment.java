@@ -47,7 +47,6 @@ import butterknife.BindView;
  */
 public class MeFragment extends CropPhotoBaseFragment implements View.OnClickListener {
     public static final String FOLLOW_SELECT = "follow_select";//进入关注
-    private List<String> titles = new ArrayList<>();
     private LayoutInflater inflater;
     @BindView(R.id.fl_label)
     FlowLayout mFlLabel;//称号

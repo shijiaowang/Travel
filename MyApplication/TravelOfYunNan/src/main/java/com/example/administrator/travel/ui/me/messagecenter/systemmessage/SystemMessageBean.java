@@ -1,5 +1,6 @@
-package com.example.administrator.travel.ui.me.messagecenter.appointmessage;
+package com.example.administrator.travel.ui.me.messagecenter.systemmessage;
 
+import com.example.administrator.travel.global.ParentBean;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
  * Created by wangyang on 2016/9/29 0029.
  */
 
-public class AppointMessageBean {
+public class SystemMessageBean implements ParentBean{
 
 
     private int code;
@@ -54,9 +55,7 @@ public class AppointMessageBean {
         private String c_id;
         private String state;
         private String add_time;
-        private String user_img;
-        private String nick_name;
-        private String travel_img;
+        private String img;
 
         public String getId() {
             return id;
@@ -154,28 +153,12 @@ public class AppointMessageBean {
             this.add_time = add_time;
         }
 
-        public String getUser_img() {
-            return user_img;
+        public String getImg() {
+            return img;
         }
 
-        public void setUser_img(String user_img) {
-            this.user_img = user_img;
-        }
-
-        public String getNick_name() {
-            return nick_name;
-        }
-
-        public void setNick_name(String nick_name) {
-            this.nick_name = nick_name;
-        }
-
-        public String getTravel_img() {
-            return travel_img;
-        }
-
-        public void setTravel_img(String travel_img) {
-            this.travel_img = travel_img;
+        public void setImg(String img) {
+            this.img = img;
         }
     }
 }
