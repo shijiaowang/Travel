@@ -27,7 +27,7 @@ public class MapUtils {
             return this;
         }
         public Builder addPageSize(){
-            stringMap.put(IVariable.PAGE_SIZE,10+"");
+            stringMap.put(IVariable.PAGE_SIZE,3+"");
             return this;
         }
         public Builder addPictureId(String pictureId){
@@ -36,6 +36,10 @@ public class MapUtils {
         }
         public Builder addType(String type){
             stringMap.put(IVariable.TYPE,type+"");
+            return this;
+        }
+        public Builder addTel(String tel){
+            stringMap.put(IVariable.TEL,tel+"");
             return this;
         }
         public Builder addTypeId(String typeId){
@@ -56,6 +60,10 @@ public class MapUtils {
         }
         public Builder addAId(String aid){
             stringMap.put(IVariable.A_ID,aid);
+            return this;
+        }
+        public Builder addRUserId(String rUserId){
+            stringMap.put(IVariable.R_USER_ID,rUserId);
             return this;
         }
         public Builder addId(String id){

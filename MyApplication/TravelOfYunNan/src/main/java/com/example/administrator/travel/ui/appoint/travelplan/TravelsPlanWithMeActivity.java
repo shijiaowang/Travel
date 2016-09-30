@@ -45,7 +45,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by android on 2016/9/17.
+ * Created by wangyang on 2016/9/17.
  * 找人带-旅行计划
  */
 public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity implements View.OnClickListener {
@@ -236,4 +236,3 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity implement
         }
     }
 }
-

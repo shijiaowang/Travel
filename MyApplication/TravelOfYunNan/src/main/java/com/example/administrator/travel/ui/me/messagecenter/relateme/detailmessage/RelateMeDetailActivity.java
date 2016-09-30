@@ -4,10 +4,9 @@ import android.app.Activity;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.global.ParentBean;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.baseui.LoadAndRefreshBaseActivity;
-import com.example.administrator.travel.ui.me.messagecenter.MessageCommonEvent;
+import com.example.administrator.travel.ui.me.messagecenter.MeCommonEvent;
 import com.example.administrator.travel.ui.me.messagecenter.appointmessage.AppointMessageAdapter;
 import com.example.administrator.travel.ui.me.messagecenter.relateme.RelateMeActivity;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
@@ -20,7 +19,7 @@ import java.util.List;
  * Created by wangyang on 2016/8/26 0026.
  *  与我相关消息
  */
-public class RelateMeDetailActivity extends LoadAndRefreshBaseActivity<MessageCommonEvent,CommonMessageBean,CommonMessageBean.DataBean> {
+public class RelateMeDetailActivity extends LoadAndRefreshBaseActivity<MeCommonEvent,CommonMessageBean,CommonMessageBean.DataBean> {
     @ViewInject(R.id.lv_relate_me)
     private XListView mLvRelateMe;
     private int type;

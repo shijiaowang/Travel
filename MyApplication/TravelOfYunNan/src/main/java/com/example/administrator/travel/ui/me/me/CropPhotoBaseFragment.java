@@ -18,6 +18,7 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.utils.BitmapUtils;
 import com.example.administrator.travel.utils.IOUtils;
@@ -37,7 +38,7 @@ import java.io.IOException;
  * Created by wangyang on 2016/9/27 0027.
  */
 
-public abstract class CropPhotoBaseFragment extends LoadBaseFragment {
+public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBaseFragment<T> {
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
     protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
     protected static final int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;

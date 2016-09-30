@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.appoint.together;
 
 
 import android.content.Context;
@@ -8,14 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.AppointTogether;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
 import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.List;
@@ -26,7 +25,7 @@ import butterknife.BindView;
 /**
  * Created by Administrator on 2016/7/20 0020.
  */
-public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> {
+public class AppointTogetherHolder extends BaseHolder<AppointTogetherBean.DataBean> {
     @BindView(R.id.fl_title) FlowLayout mFlTitle;
     @BindView(R.id.iv_icon) ImageView mIvIcon;
     @BindView(R.id.tv_time)TextView mTvTime;
@@ -47,10 +46,11 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
     }
 
     @Override
-    protected void initItemDatas(AppointTogether.DataBean datas, Context mContext, int position) {
+    protected void initItemDatas(AppointTogetherBean.DataBean datas, Context mContext, int position) {
         mTvMoney.setText(datas.getTotal_price());
         mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
         mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
+        mTvIconLove.setText((datas.getIs_like().equals("1")) ? R.string.activity_circle_love_full:R.string.activity_circle_love_empty);
         mTvLoveNumber.setText(datas.getCount_like());
         mTvWatchNumber.setText(datas.getBrowse());
         if (mFlTitle != null && mFlTitle.getChildCount() > 0) {
@@ -63,10 +63,10 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogether.DataBean> 
             textView.setText(split[i]);
             mFlTitle.addView(textView);
         }
-        List<AppointTogether.DataBean.RoutesBean> routes = datas.getRoutes();
+        List<AppointTogetherBean.DataBean.RoutesBean> routes = datas.getRoutes();
         StringBuffer stringBuffer = new StringBuffer();
          if (routes!=null && routes.size()!=0) {
-             for (AppointTogether.DataBean.RoutesBean bean : routes) {
+             for (AppointTogetherBean.DataBean.RoutesBean bean : routes) {
                  stringBuffer.append(bean.getTitle() + "-");
              }
              String add = stringBuffer.toString().substring(0, stringBuffer.toString().length() - 1);

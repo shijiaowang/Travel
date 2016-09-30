@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.appoint.togetherdetail;
+package com.example.administrator.travel.ui.appoint.together.togetherdetail;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -26,11 +26,9 @@ import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.ImageOptionsUtil;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.XEventUtils;
 
-import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;

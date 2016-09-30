@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.aite.AiteBean;
 import com.example.administrator.travel.ui.appoint.aite.Follow;
@@ -26,7 +27,7 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/7/18 0018.
  */
-public class FanAndFollowFragment extends LoadBaseFragment {
+public class FanAndFollowFragment extends LoadBaseFragment<FanAndFollowEvent> {
     private String type="0";
     private int REQ_CODE=-1;
    @BindView(R.id.lv_follow_fan) ListView mLvFollowFan;
@@ -51,6 +52,12 @@ public class FanAndFollowFragment extends LoadBaseFragment {
     protected Fragment registerEvent() {
         return this;
     }
+
+    @Override
+    public Class<? extends HttpEvent> registerEventType() {
+        return FanAndFollowEvent.class;
+    }
+
     @Override
     protected void initListener() {
 

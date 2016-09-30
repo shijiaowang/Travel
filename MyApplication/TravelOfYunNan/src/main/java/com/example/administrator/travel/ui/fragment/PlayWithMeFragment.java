@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.AppointWithMe;
 import com.example.administrator.travel.event.AppointWithMeEvent;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.AppointWithMeDetailActivity;
 import com.example.administrator.travel.ui.adapter.AppointWithMeAdapter;
@@ -35,7 +36,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2016/7/21 0021.
  * 带我玩
  */
-public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IXListViewListener {
+public class PlayWithMeFragment extends LoadBaseFragment<AppointWithMeEvent> implements XListView.IXListViewListener {
 
     @BindView(R.id.lv_play_with_me) XListView mPlayWithMe;
     private List<AppointWithMe.DataBean> mDatas = new ArrayList<>();
@@ -53,8 +54,10 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
         return this;
     }
 
-
-
+    @Override
+    public Class<? extends HttpEvent> registerEventType() {
+        return AppointWithMeEvent.class;
+    }
 
 
     @Override
@@ -74,7 +77,7 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
 
     @Override
     protected void onLoad(int type) {
-        int count = type == LOAD_MORE ? getListSize(mDatas) : 0;
+        int count = type == TYPE_LOAD ? getListSize(mDatas) : 0;
         Map<String, String> appointMap = MapUtils.Build().addKey(getContext()).addUserId().addPageSize(10).addCount(count).end();
         XEventUtils.getUseCommonBackJson(IVariable.PLAY_WITHE_ME, appointMap, type, new AppointWithMeEvent());
     }
@@ -101,7 +104,7 @@ public class PlayWithMeFragment extends LoadBaseFragment implements XListView.IX
             mDatas=data;
             appointWithMeAdapter = new AppointWithMeAdapter(getContext(),data);
             mPlayWithMe.setAdapter(appointWithMeAdapter);
-        }else if (event.getType()==LOAD_MORE){
+        }else if (event.getType()==TYPE_LOAD){
             mDatas.addAll(data);
             appointWithMeAdapter.notifyData(mDatas);
         }else {

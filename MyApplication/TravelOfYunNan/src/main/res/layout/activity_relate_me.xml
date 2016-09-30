@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -63,23 +64,20 @@
             android:textSize="11sp" />
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_below="@id/tv_time_discuss"
 
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="15dp">
-            <TextView
-                android:text="1"
+            android:layout_height="wrap_content">
+            <su.levenetc.android.badgeview.BadgeView
                 android:layout_marginBottom="15dp"
-                android:id="@+id/tv_number_discuss"
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
+                app:badgePadding="5dp"
+
+                android:id="@+id/bv_number_discuss"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/fragment_message_number_bg"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:textSize="9sp" />
+                style="@style/activityMessageCenterDot"
+                />
             <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/tv_cursor_discuss"
@@ -95,6 +93,7 @@
     <View
         android:layout_marginLeft="0dp"
         style="@style/fragmentMeLine"/>
+
     <RelativeLayout
         android:id="@+id/rl_aite"
         android:background="@color/colorFAFAFA"
@@ -155,23 +154,18 @@
             android:textSize="11sp" />
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_below="@id/tv_time_aite"
-
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="15dp">
-            <TextView
-                android:text="1"
+            android:layout_height="wrap_content">
+            <su.levenetc.android.badgeview.BadgeView
                 android:layout_marginBottom="15dp"
-                android:id="@+id/tv_number_aite"
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
+                android:id="@+id/bv_number_aite"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/fragment_message_number_bg"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:textSize="9sp" />
+                app:badgePadding="5dp"
+                style="@style/activityMessageCenterDot"
+                />
             <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/tv_cursor_aite"
@@ -184,9 +178,11 @@
                 android:textSize="11sp" />
         </LinearLayout>
     </RelativeLayout>
+
     <View
         android:layout_marginLeft="0dp"
         style="@style/fragmentMeLine"/>
+
     <RelativeLayout
         android:id="@+id/rl_zambia"
         android:background="@color/colorFAFAFA"
@@ -247,23 +243,20 @@
             android:textSize="11sp" />
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_below="@id/tv_time_zan"
-
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="15dp">
-            <TextView
-                android:text="1"
+            android:layout_height="wrap_content">
+
+            <su.levenetc.android.badgeview.BadgeView
                 android:layout_marginBottom="15dp"
-                android:id="@+id/tv_number_zan"
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
+                android:id="@+id/bv_number_zan"
+                app:badgePadding="5dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/fragment_message_number_bg"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:textSize="9sp" />
+                style="@style/activityMessageCenterDot"
+                />
+
             <com.example.administrator.travel.ui.view.FontsIconTextView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/tv_cursor"
@@ -276,7 +269,6 @@
                 android:textSize="11sp" />
         </LinearLayout>
     </RelativeLayout>
-
 
 
 </LinearLayout>

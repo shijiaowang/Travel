@@ -21,13 +21,12 @@ import com.example.administrator.travel.bean.SelectCommonBean;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointOrderPop;
+import com.example.administrator.travel.ui.appoint.together.PlayTogetherFragment;
 import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointCommonPop;
-import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanBaseActivity;
 import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
 import com.example.administrator.travel.utils.FastBlur;
-import com.example.administrator.travel.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;

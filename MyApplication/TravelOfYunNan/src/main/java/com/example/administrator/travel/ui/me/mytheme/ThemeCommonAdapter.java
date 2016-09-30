@@ -10,15 +10,12 @@ import java.util.List;
 /**
  * Created by wangyang on 2016/8/3 0003.
  */
-public class MyCollectionAdapter extends TravelBaseAdapter {
-    public MyCollectionAdapter(Context mContext, List mDatas) {
+public class ThemeCommonAdapter extends TravelBaseAdapter {
+
+    public ThemeCommonAdapter(Context mContext, List mDatas) {
         super(mContext, mDatas);
     }
 
-    @Override
-    protected int testDataSize() {
-        return 8;
-    }
 
     @Override
     protected void initListener(BaseHolder baseHolder, Object item, int position) {
@@ -27,6 +24,6 @@ public class MyCollectionAdapter extends TravelBaseAdapter {
 
     @Override
     protected BaseHolder initHolder(int position) {
-        return new MyCollectionHolder(mContext);
+        return new ThemeCommonHolder(mContext);
     }
 }

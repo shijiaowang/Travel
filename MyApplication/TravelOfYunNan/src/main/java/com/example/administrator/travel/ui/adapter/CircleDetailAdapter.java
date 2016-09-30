@@ -38,7 +38,7 @@ public class CircleDetailAdapter extends TravelBaseAdapter<CircleDetail.DataBean
                         circleDetailHolder.mTvIconLove.setTextColor(mContext.getResources().getColor(R.color.otherFf7f6c));
                         GlobalValue.CIRCLE_FOLLOW_LIKE_POSITION=position;
                         //点赞
-                        Map<String, String> likeMap = MapUtils.Build().addKey(mContext).add(IVariable.FORUM_ID, item.getId()).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).end();
+                        Map<String, String> likeMap = MapUtils.Build().addKey(mContext).addFroumId(item.getId()).addUserId().addRUserId(item.getUser_id()).end();
                         XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_LIKE_POST, likeMap, CircleDetailActivity.TYPE_LIKE_POST, new CircleDetailEvent());
                     }else {
                         ToastUtils.showToast("你已经点过赞了");

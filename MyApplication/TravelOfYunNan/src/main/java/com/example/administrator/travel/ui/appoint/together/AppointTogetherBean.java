@@ -1,11 +1,13 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.appoint.together;
+
+import com.example.administrator.travel.global.ParentBean;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/20 0020.
+ * Created by wangyang on 2016/7/20 0020.
  */
-public class AppointTogether {
+public class AppointTogetherBean implements ParentBean{
 
 
     private int code;
@@ -44,6 +46,16 @@ public class AppointTogether {
         private String end_time;
         private String meet_address;
         private String max_people;
+        private String user_id;
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
+
         private String label;
         private String total_price;
         private String browse;

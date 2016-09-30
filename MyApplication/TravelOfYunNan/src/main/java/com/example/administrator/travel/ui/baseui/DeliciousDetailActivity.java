@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.ClickLike;
+import com.example.administrator.travel.bean.CommonClickLikeBean;
 import com.example.administrator.travel.bean.DeliciousDetail;
 import com.example.administrator.travel.bean.FindLastReply;
 import com.example.administrator.travel.bean.TravelReplyBean;
@@ -23,10 +23,8 @@ import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.ImageOptionsUtil;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
-import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.x;
 
@@ -156,11 +154,11 @@ public class DeliciousDetailActivity extends LoadingBarBaseActivity<DetailCommon
     }
 
     private void dealClickData(DetailCommonEvent event) {
-        ClickLike clickLike = GsonUtils.getObject(event.getResult(), ClickLike.class);
-        if (clickLike == null) return;
+        CommonClickLikeBean commonClickLikeBean = GsonUtils.getObject(event.getResult(), CommonClickLikeBean.class);
+        if (commonClickLikeBean == null) return;
         TravelReplyBean travelReplyBean = travelReply.get(event.getClickPosition());
         travelReplyBean.setIs_like("1");
-        travelReplyBean.setLike_count(clickLike.getData().getCount_like());
+        travelReplyBean.setLike_count(commonClickLikeBean.getData().getCount_like());
         //// TODO: 2016/8/25 0025 将来设置单独更新一条item
         discussCommonAdapter.notifyData(travelReply);
     }

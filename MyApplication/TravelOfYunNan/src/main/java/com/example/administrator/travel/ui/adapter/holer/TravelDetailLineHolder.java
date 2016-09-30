@@ -8,13 +8,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.appoint.togetherdetail.AppointTogetherDetail;
-import com.example.administrator.travel.ui.appoint.togetherdetail.AppointDetailLineDetailAdapter;
-import com.example.administrator.travel.ui.appoint.togetherdetail.AppointDetailLineItemAdapter;
+import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointTogetherDetail;
+import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointDetailLineDetailAdapter;
+import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointDetailLineItemAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 
 import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
 

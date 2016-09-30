@@ -96,7 +96,7 @@ public class DiscussCommonAdapter extends TravelBaseAdapter<TravelReplyBean> {
         if (!item.getIs_like().equals("1")) {
             mTvLove.setTextColor(mContext.getResources().getColor(R.color.otherFf7f6c));
             Map<String, String> likeMap = MapUtils.Build().addKey(mContext).addFId(item.getF_id()).addUserId().
-                   addRId(item.getId()).add(IVariable.TYPE,typeDestination).
+                   addRId(item.getId()).addType(typeDestination).addRUserId(item.getUser_id()).
                     end();
             DetailCommonEvent detailCommonEvent = new DetailCommonEvent();
             detailCommonEvent.setClickPosition(position);

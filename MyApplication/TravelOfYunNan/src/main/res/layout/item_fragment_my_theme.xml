@@ -10,12 +10,12 @@
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/iv_user_icon"
             android:layout_width="41dp"
             android:layout_height="41dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/user_icon" />
+           />
 
         <LinearLayout
             android:layout_marginLeft="11dp"
@@ -27,8 +27,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="大艺术家"
-                android:id="@+id/tv_action"
+                android:id="@+id/tv_name"
                 style="@style/commonSingleLineTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,7 +36,6 @@
 
             <TextView
                 style="@style/commonSingleLineTextStyle"
-                android:text="你就说暗道hi奥迪哈偶的后阿斯顿和哦啊啥都奥厚度哈偶的还哦啊是多厚啊"
                 android:layout_marginTop="10dp"
                 android:id="@+id/tv_content"
                 android:layout_width="wrap_content"
@@ -72,18 +70,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="2015-6-7 12:12:20"
-            android:textColor="#a5a5a5"
-            android:textSize="10sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:id="@+id/tv_time"
+            style="@style/themeCommonText" />
         <TextView
-            android:layout_alignParentRight="true"
-            android:text="#二货艺术区#"
+            android:id="@+id/tv_circle"
+            android:layout_marginLeft="14dp"
+            android:layout_toRightOf="@id/tv_time"
             android:textColor="@color/otherTitleBg"
-            android:textSize="10sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/themeCommonText" />
+       <LinearLayout
+           android:layout_alignParentRight="true"
+           android:layout_width="wrap_content"
+           android:gravity="center_vertical"
+           android:layout_centerVertical="true"
+           android:orientation="horizontal"
+           android:layout_height="wrap_content">
+           <com.example.administrator.travel.ui.view.FontsIconTextView
+               android:layout_marginRight="6dp"
+               android:text="@string/activity_circle_love_empty"
+               style="@style/themeCommonText" />
+           <TextView
+               android:id="@+id/tv_love_number"
+               android:layout_marginRight="12dp"
+               style="@style/themeCommonText" />
+           <com.example.administrator.travel.ui.view.FontsIconTextView
+               android:id="@+id/diss"
+               android:layout_marginRight="6dp"
+               android:text="@string/activity_circle_discuss"
+               style="@style/themeCommonText" />
+           <TextView
+               android:id="@+id/tv_discuss_number"
+               style="@style/themeCommonText" />
+       </LinearLayout>
 
     </RelativeLayout>
 

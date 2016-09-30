@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.appoint.togetherdetail;
+package com.example.administrator.travel.ui.appoint.together.togetherdetail;
 
 import android.content.Context;
 import android.view.View;
@@ -7,10 +7,8 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.appoint.togetherdetail.AppointTogetherDetail;
 
 import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import butterknife.BindView;

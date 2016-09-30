@@ -27,16 +27,13 @@ public interface IVariable {
     String CREATE_APPOINT_TOGETHER = API_KEY + "Travel/addTravel/";//发布约伴-一起玩
     String CREATE_WITH_ME = API_KEY + "Travel/addTravelplan/";//发布约伴-找人带
     String BULLETIN_BOARD = API_KEY + "UserTravel/getBulletinlists/";//我的约伴-公告栏
+    String APPOINT_CLICK_ZAN = API_KEY + "Travel/isLikeTravel/";//约伴点赞
     /**
-     * User
+     * 登录
      */
-    String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注列表
+
     String REGISTER_USER = API_KEY + "User/register/";//注册
-    String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
-    String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
-    String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
-    String CHANGE_USER_INFO = API_KEY + "User/updateUser/";//更改用户信息
-    String LOGIN_URL = API_KEY + "User/Login/";
+    String LOGIN_URL = API_KEY + "User/Login/";//登录
     /**
      * 圈子
      */
@@ -48,6 +45,7 @@ public interface IVariable {
     String GET_CIRCLE_POST = API_KEY + "Circle/getCircleforumlists/";//获取圈子内帖子列表
     String POST_DETAIL = API_KEY + "Circle/getForum/";//获取帖子数据
     String HOT_POST = API_KEY + "Circle/getForumishot/";//热帖
+    String CIRCLE_RELPLY_LIKE = API_KEY + "Circle/setReplaylike/";//圈子回复点赞
 
     /**
      * 发现
@@ -66,6 +64,11 @@ public interface IVariable {
     /**
      * 我
      */
+    String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
+    String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
+    String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
+    String CHANGE_USER_INFO = API_KEY + "User/updateUser/";//更改用户信息
+    String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注列表
     String CREATE_ALBUM = API_KEY + "User/creatUserImg/";//创建相册
     String ALBUM_LIST = API_KEY + "User/getUserImglists/";//相册列表
     String TITLE_LIST = API_KEY + "User/setlabellists/";//称号管理，获取标签列表
@@ -82,6 +85,10 @@ public interface IVariable {
     String REPLY_ME_MESSAGE = API_KEY + "UserMsg/getreplyMsg/";//评论我的消息
     String AITE_ME_MESSAGE = API_KEY + "UserMsg/getInformMsg/";//@我的消息
     String ZAN_ME_MESSAGE = API_KEY + "UserMsg/getLikeMsg";//赞我的消息
+    String THEME_MY_POST = API_KEY + "UserMsg/getMyForum/";//主题-我的帖子
+    String THEME_MY_PUBLISH = API_KEY + "UserMsg/getMyReplay/";//主题-我的评论
+    String USER_SERVICE_CENTER = API_KEY + "User/setReport/";//客服中心
+    String MESSAGE_CENTER_COUNT = API_KEY + "UserMsg/getMyCount/";//消息中心数量 type 1 最外层（全部消息） 2 中间层（消息中心） 3最里层（每个子项目）
 
     //请求type
     int TYPE_GET_KEY = 0;
@@ -193,6 +200,7 @@ public interface IVariable {
  String NEXT_PAGE = "nextpage";//发现评论，是否有下一页
  String COUNT = "count";//发现评论，当前拥有数据数量
     String A_ID = "a_id";//活动id
+    String R_USER_ID = "r_user_id";//活动id
     String ID = "id";//活动id
     int NO_MORE = 2;//没有跟多数据了
 
@@ -215,4 +223,7 @@ public interface IVariable {
     String TRUE = "1";//正确
     String FAILE = "0";//错误
     String PICTURE_ID ="picture_id";//更新相册
+    String URL="url";
+    String PLAY_TOGETHER_CLICK_TYPE = "1";
+    String WITH_ME_CLICK_TYPE = "2";
 }

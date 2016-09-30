@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
-import com.example.administrator.travel.global.ParentBean;
-import com.example.administrator.travel.ui.me.messagecenter.MessageCommonEvent;
 import com.example.administrator.travel.ui.view.SlippingScrollView;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
@@ -340,23 +338,23 @@ public abstract class LoadingBarBaseActivity<T extends HttpEvent> extends BaseAc
         void percent(float percent);
     }
     @Subscribe
-    public void onEvent(HttpEvent event){
+    public void onEvent(T t){
         setIsProgress(false);
         if (getxScrollView()!=null){
             loadEnd(getxScrollView());
         }
-       if (event.isSuccess()){
+       if (t.isSuccess()){
            try {
                isSuccessed = true;
-               T t = (T) event;
                onSuccess(t);
+               LogUtils.e("baseActivity成功啦");
            }catch (Exception e){
                e.printStackTrace();
                LogUtils.e("出现异常了");
            }
        }else {
-           ToastUtils.showToast(event.getMessage());
-           onFail(event);
+           ToastUtils.showToast(t.getMessage());
+           onFail(t);
        }
 
     }

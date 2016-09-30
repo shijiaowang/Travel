@@ -22,7 +22,7 @@ import com.example.administrator.travel.ui.appoint.costsetting.CostSettingActivi
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointSpinnerPop;
 import com.example.administrator.travel.ui.appoint.popwindow.SpinnerBean;
-import com.example.administrator.travel.ui.appoint.togetherdetail.ProviderAdapter;
+import com.example.administrator.travel.ui.appoint.together.togetherdetail.ProviderAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.ActivityUtils;
 import com.example.administrator.travel.utils.GsonUtils;

@@ -33,7 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by android on 2016/9/22.
+ * Created by wangyang on 2016/9/22.
  */
 public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity implements View.OnClickListener {
     private TextView mTvRightNext;
@@ -135,7 +135,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
 
     @Override
     protected void onLoad(int typeRefresh) {
-          setIsProgress(false);
+        setIsProgress(false);
     }
 
     protected abstract int initChildLayoutRes();

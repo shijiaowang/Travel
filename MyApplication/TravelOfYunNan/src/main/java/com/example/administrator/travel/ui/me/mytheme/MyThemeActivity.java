@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * Created by wangyang on 2016/9/28 0028.
+ * 我的主题
  */
 
 public class MyThemeActivity extends BarBaseActivity {
@@ -32,17 +33,18 @@ public class MyThemeActivity extends BarBaseActivity {
     @Override
     protected void initEvent() {
         fragments = new ArrayList<>();
-        fragments.add(new MyPublicationFragment());
-        fragments.add(new MyPublicationFragment());
-
+        fragments.add(new MyPostFragment());
+        fragments.add(new MyPublishFragment());
         mVpTheme.setAdapter(new TitlePagerAdapter(getSupportFragmentManager(),fragments,mTitles));
         mTbCursor.setupWithViewPager(mVpTheme);
+
     }
 
     @Override
     protected void initViewData() {
 
     }
+
 
     @Override
     protected String setTitleName() {

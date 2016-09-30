@@ -1,7 +1,5 @@
 package com.example.administrator.travel.ui.fragment;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,13 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.baseui.BaseActivity;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,15 +33,17 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2016/8/3 0003.
  */
-public abstract class LoadBaseFragment extends Fragment implements XListView.IXListViewListener{
-    public static final int FIRST_REFRESH = 0;
-    public static final int LOAD_MORE = 1;
-    public static final int REFRESH = 2;
+public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment implements XListView.IXListViewListener{
+    public static final int TYPE_FIRST = 0;
+    public static final int TYPE_REFRESH = 1;
+    public static final int TYPE_LOAD = 2;
+    public static final int TYPE_CLICK_ZAN = 3;
 
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
     private Fragment fragment;
     protected View inflate;
+    private boolean isSuccessed=false;
 
 
     @Override
@@ -93,11 +95,51 @@ public abstract class LoadBaseFragment extends Fragment implements XListView.IXL
 
     }
 
-
     private void load() {
-        onLoad(REFRESH);//第一次加载,使用刷新
+        onLoad(TYPE_REFRESH);//第一次加载,使用刷新
     }
-   protected int getListSize(List list){
+
+
+    public abstract Class<? extends HttpEvent> registerEventType();
+
+    @Subscribe
+    public void onEvent(HttpEvent event){
+        Class<? extends HttpEvent> aClass = registerEventType();
+        if (event.getClass().getSimpleName().equals(aClass.getSimpleName())) {
+            LogUtils.e(getClass().getSimpleName());
+                if (event.isSuccess()) {
+                    try {
+                        T t = (T) event;
+                        isSuccessed = true;
+                        setState(LoadingPage.ResultState.STATE_SUCCESS);
+
+                        onSuccess(t);
+                        LogUtils.e("baseFragment加载成功");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        LogUtils.e("出现异常了");
+                    }
+                } else {
+                    T t = (T) event;
+                    ToastUtils.showToast(t.getMessage());
+                    onFail(t);
+                }
+            }
+    }
+
+    public void onSuccess(T t) {
+
+    }
+
+    protected  void onFail(T event){
+        if (!isSuccessed){
+           setState(LoadingPage.ResultState.STATE_ERROR);
+        }
+    }
+
+
+
+    protected int getListSize(List list){
        if (list==null)return 0;
        return list.size();
    }
@@ -204,12 +246,13 @@ public abstract class LoadBaseFragment extends Fragment implements XListView.IXL
     }
     @Override
     public void onRefresh() {
-        onLoad(REFRESH);
+        onLoad(TYPE_REFRESH);
+
     }
 
     @Override
     public void onLoadMore() {
-        onLoad(LOAD_MORE);
+        onLoad(TYPE_LOAD);
     }
 
     /**

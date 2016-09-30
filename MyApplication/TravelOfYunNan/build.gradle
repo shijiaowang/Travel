@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.yunspeak.travel"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -25,6 +25,7 @@ android {
 buildscript {
     repositories {
         jcenter()
+
     }
 }
 dependencies {
@@ -47,4 +48,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.google.android:flexbox:0.2.3'
+    compile 'com.github.elevenetc:badgeview:v1.0.0'
 }

@@ -10,8 +10,9 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.CustomerServiceActivity;
+import com.example.administrator.travel.ui.me.userservice.CustomerServiceActivity;
 import com.example.administrator.travel.ui.me.fansandfollow.FollowAndFanActivity;
 import com.example.administrator.travel.ui.baseui.HomeActivity;
 import com.example.administrator.travel.ui.baseui.IdentityAuthenticationActivity;
@@ -45,7 +46,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/12 0012.
  * 个人
  */
-public class MeFragment extends CropPhotoBaseFragment implements View.OnClickListener {
+public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.OnClickListener {
     public static final String FOLLOW_SELECT = "follow_select";//进入关注
     private LayoutInflater inflater;
     @BindView(R.id.fl_label)
@@ -101,6 +102,11 @@ public class MeFragment extends CropPhotoBaseFragment implements View.OnClickLis
     @Override
     protected Fragment registerEvent() {
         return this;
+    }
+
+    @Override
+    public Class<? extends HttpEvent> registerEventType() {
+        return MeEvent.class;
     }
 
     @Override

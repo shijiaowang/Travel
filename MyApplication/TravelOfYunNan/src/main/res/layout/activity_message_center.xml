@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
     <LinearLayout
         android:id="@+id/ll_appoint_message"
         style="@style/activityMessageCenterLl">
@@ -17,6 +17,9 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="约伴消息" />
+        <su.levenetc.android.badgeview.BadgeView
+            android:id="@+id/bv_appoint_dot"
+            style="@style/activityMessageCenterDot"/>
 
         <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_appoint"
@@ -40,7 +43,9 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="系统消息" />
-
+        <su.levenetc.android.badgeview.BadgeView
+            android:id="@+id/bv_system_dot"
+            style="@style/activityMessageCenterDot" />
         <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_system"
             style="@style/activityMessageCenterCursor"
@@ -62,7 +67,9 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="私信" />
-
+        <su.levenetc.android.badgeview.BadgeView
+            android:id="@+id/bv_private_dot"
+            style="@style/activityMessageCenterDot"/>
         <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_private"
             style="@style/activityMessageCenterCursor"
@@ -84,7 +91,9 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="与我相关" />
-
+        <su.levenetc.android.badgeview.BadgeView
+            android:id="@+id/bv_relate_me"
+            style="@style/activityMessageCenterDot" />
         <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_relate"
             style="@style/activityMessageCenterCursor"

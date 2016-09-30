@@ -41,7 +41,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2016/7/7 0007.
  */
-public class NavLeftFragment extends LoadBaseFragment {
+public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
     @BindView(R.id.lv_left_nav)  ListView mLvLeftNav;
     @BindView(R.id.lv_right_nav) ListView mLvRightNav;
     private RelativeLayout mRlPost;
@@ -65,6 +65,11 @@ public class NavLeftFragment extends LoadBaseFragment {
     @Override
     protected Fragment registerEvent() {
         return this;
+    }
+
+    @Override
+    public Class<? extends HttpEvent> registerEventType() {
+        return NavLeftEvent.class;
     }
 
     private void firstReq() {
@@ -97,7 +102,7 @@ public class NavLeftFragment extends LoadBaseFragment {
                 if (leftList != null) {
                     cid = leftList.get(position).getCid();
                     selectNavLeft(position);
-                    onLoad(REFRESH);
+                    onLoad(TYPE_REFRESH);
                 }
             }
         });

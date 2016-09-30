@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.appoint.togetherdetail;
+package com.example.administrator.travel.ui.appoint.together.togetherdetail;
 
 import android.content.Context;
 

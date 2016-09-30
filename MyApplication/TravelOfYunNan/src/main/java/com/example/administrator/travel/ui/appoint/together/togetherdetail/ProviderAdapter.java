@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.appoint.togetherdetail;
+package com.example.administrator.travel.ui.appoint.together.togetherdetail;
 
 import android.content.Context;
 
@@ -6,7 +6,6 @@ import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Administrator on 2016/9/5 0005.

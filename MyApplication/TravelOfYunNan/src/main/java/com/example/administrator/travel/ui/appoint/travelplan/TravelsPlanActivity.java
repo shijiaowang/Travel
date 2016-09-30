@@ -40,7 +40,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/30 0030.
+ * Created by wangyang on 2016/8/30 0030.
  * 旅游计划
  */
 public class TravelsPlanActivity extends TravelsPlanBaseActivity {
@@ -81,7 +81,7 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
 
     @Override
     protected int initChildLayoutRes() {
-     return R.layout.activity_travels_plan;
+        return R.layout.activity_travels_plan;
     }
 
     @Override
@@ -124,8 +124,8 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
 
     @Override
     protected void addChildJson(JSONObject basecJsonObject) throws Exception {
-          JsonUtils.putString(IVariable.TRAFFIC,trafficType,basecJsonObject);
-          JsonUtils.putString(IVariable.TRAFFIC_TEXT,getString(mEtRemark),basecJsonObject);
+        JsonUtils.putString(IVariable.TRAFFIC,trafficType,basecJsonObject);
+        JsonUtils.putString(IVariable.TRAFFIC_TEXT,getString(mEtRemark),basecJsonObject);
     }
 
 

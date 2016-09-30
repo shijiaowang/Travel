@@ -28,13 +28,16 @@
         android:layout_marginTop="0.5dp"
         android:id="@+id/tv_icon_love"
         style="@style/fragmentAppointBottomText"
-        android:layout_marginLeft="16dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_width="30dp"
+        android:layout_marginLeft="5dp"
         android:text="@string/activity_circle_love_empty" />
 
     <TextView
         android:id="@+id/tv_love_number"
         style="@style/fragmentAppointBottomText"
-        android:layout_marginLeft="6dp"
+        android:layout_marginLeft="3dp"
      />
 
     <View

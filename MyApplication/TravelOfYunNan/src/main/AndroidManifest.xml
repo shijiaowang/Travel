@@ -93,7 +93,7 @@
         <activity android:name=".ui.baseui.OrdersCenterActivity"/>
         <activity android:name=".ui.baseui.ConfirmOrdersActivity"/>
         <activity android:name=".ui.me.collectiondetail.CollectionDetailActivity"/>
-        <activity android:name=".ui.baseui.CustomerServiceActivity"/>
+        <activity android:name=".ui.me.userservice.CustomerServiceActivity"/>
         <activity android:name=".ui.me.previewpicture.PreviewPicturesActivity"/>
         <activity android:name=".ui.baseui.ChangePhoneActivity"/>
         <activity android:name=".ui.baseui.MessagePrivateActivity"/>
@@ -113,7 +113,7 @@
             android:windowSoftInputMode="adjustPan"
             android:launchMode="singleTask"
             />
-        <activity android:name=".ui.appoint.togetherdetail.AppointTogetherDetailActivity"/>
+        <activity android:name=".ui.appoint.together.togetherdetail.AppointTogetherDetailActivity"/>
         <activity android:name=".ui.me.messagecenter.relateme.RelateMeActivity"/>
         <activity android:name=".ui.baseui.HotelActivity"/>
         <activity android:name=".ui.appoint.settingtitle.SettingTitleActivity"

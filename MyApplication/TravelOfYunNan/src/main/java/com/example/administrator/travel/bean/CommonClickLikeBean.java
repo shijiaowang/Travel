@@ -4,22 +4,11 @@ package com.example.administrator.travel.bean;
  * Created by Administrator on 2016/8/17 0017.
  * 点赞
  */
-public class ClickLike {
-
-    /**
-     * code : 1
-     * message : 点赞成功
-     * data : {"count_like":"1"}
-     */
+public class CommonClickLikeBean {
 
     private int code;
     private String message;
-    /**
-     * count_like : 1
-     */
-
     private DataBean data;
-
     public int getCode() {
         return code;
     }

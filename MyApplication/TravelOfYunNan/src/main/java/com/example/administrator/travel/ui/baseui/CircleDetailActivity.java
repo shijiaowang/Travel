@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.CircleDetail;
 import com.example.administrator.travel.bean.CircleFollow;
-import com.example.administrator.travel.bean.ClickLike;
+import com.example.administrator.travel.bean.CommonClickLikeBean;
 import com.example.administrator.travel.event.CircleDetailEvent;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
@@ -26,22 +26,16 @@ import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.XEventUtils;
 
-import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.image.ImageOptions;
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 /**
@@ -185,7 +179,7 @@ public class CircleDetailActivity extends LoadingBarBaseActivity<CircleDetailEve
      * @param result
      */
     private void dealLikeData(String result) {
-        ClickLike circleLike = GsonUtils.getObject(result, ClickLike.class);
+        CommonClickLikeBean circleLike = GsonUtils.getObject(result, CommonClickLikeBean.class);
         String count_like = circleLike.getData().getCount_like();
         if (GlobalValue.CIRCLE_FOLLOW_LIKE_POSITION<postList.size()) {
             CircleDetail.DataBean.BodyBean bodyBean = postList.get(GlobalValue.CIRCLE_FOLLOW_LIKE_POSITION);
