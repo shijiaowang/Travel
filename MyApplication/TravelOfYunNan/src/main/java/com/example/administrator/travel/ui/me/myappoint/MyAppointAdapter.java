@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.example.administrator.travel.bean.MyAppoint;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.me.bulltetinboard.BulletinBoardActivity;
 import com.example.administrator.travel.ui.appoint.memberdetail.MemberDetailActivity;
@@ -16,23 +15,20 @@ import java.util.List;
 /**
  * Created by wangyang on 2016/8/2 0002.
  */
-public class MyAppointAdapter extends TravelBaseAdapter<MyAppoint> {
-    public MyAppointAdapter(Context mContext, List mDatas) {
+public class MyAppointAdapter extends TravelBaseAdapter<MyAppointBean.DataBean.TravelPlanBean> {
+    public MyAppointAdapter(Context mContext, List<MyAppointBean.DataBean.TravelPlanBean> mDatas) {
         super(mContext, mDatas);
     }
 
-    @Override
-    protected int testDataSize() {
-        return 5;
-    }
+
 
     @Override
-    protected void initListener(BaseHolder baseHolder, MyAppoint item, int position) {
+    protected void initListener(BaseHolder baseHolder, MyAppointBean.DataBean.TravelPlanBean item, int position) {
         if (item == null) {
             return;
         }
         //启动公告板页面
-        if (item.isSuccess() && baseHolder instanceof MyAppointSuccessHolder) {
+        if (baseHolder instanceof MyAppointSuccessHolder) {
             MyAppointSuccessHolder myAppointSuccessHolder = (MyAppointSuccessHolder) baseHolder;
             myAppointSuccessHolder.mRlBulletinBoard.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -53,9 +49,6 @@ public class MyAppointAdapter extends TravelBaseAdapter<MyAppoint> {
     @Override
     protected BaseHolder initHolder(int position) {
 
-        if (mDatas.get(position).isSuccess()) {
-            return new MyAppointSuccessHolder(mContext);
-        }
         return new MyAppointingHolder(mContext);
     }
 }

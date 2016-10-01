@@ -49,6 +49,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogUtils.e("当前Fragment为:"+getClass().getSimpleName());
         inflate = View.inflate(getContext(),initResLayout(), null);
         ButterKnife.bind(fragment = registerEvent(), inflate);
         if (fragment != null) {

@@ -104,7 +104,6 @@
 
         app:tabSelectedTextColor="@color/Ffbf75"
         app:tabTextColor="@color/color3f3f3f"
-        app:tabTextAppearance="@style/tabStyle"
         app:tabMode="scrollable"
     />
 

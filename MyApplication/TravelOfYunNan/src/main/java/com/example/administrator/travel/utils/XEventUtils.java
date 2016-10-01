@@ -87,6 +87,7 @@ public class XEventUtils {
                 }
                 File file=new File(fileDir);
                 if (!file.exists()){
+                    LogUtils.e("上传的第"+i+"个文件的大小为"+file.length());
                     continue;
                 }
                 requestParams.addBodyParameter("file["+i+"]", file);

@@ -42,8 +42,6 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
     public abstract XListView setXListView();
 
 
-
-
     /**
      * 获取E的类型
      *
@@ -78,6 +76,19 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
         }
         return null;
     }
+    @Override
+    protected void initEvent() {
+        mXListView= setXListView();
+        initXListView(mXListView,canPull(),canLoad());
+    }
+
+    private boolean canPull() {
+        return true;
+    }
+
+    private boolean canLoad() {
+        return true;
+    }
 
 
     /**
@@ -108,7 +119,7 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
     @Override
     protected void onSuccess(T t) {
         if (mXListView == null) {
-           mXListView=setXListView();
+            mXListView = setXListView();
         }
         loadEnd(mXListView);
         ParentBean e;
@@ -122,7 +133,7 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
             httpData = (List<F>) e.getData();
             adapter = initAdapter(httpData);
             if (mXListView == null) {
-                mXListView=setXListView();
+                mXListView = setXListView();
             }
             mXListView.setAdapter(adapter);
         } else if (t.getType() == TYPE_LOAD) {
@@ -131,11 +142,17 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
         } else if (t.getType() == TYPE_REFRESH) {
             httpData = (List<F>) e.getData();
             adapter.notifyDataSetChanged();
+        } else {
+            doOtherSuccessData(t);
         }
 
     }
 
-    protected Class<ParentBean> useChildedBean() {
+    protected void doOtherSuccessData(T t) {
+
+    }
+
+    protected Class<? extends ParentBean> useChildedBean() {
         return getEType();
     }
 
@@ -152,20 +169,12 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
      */
     protected abstract TravelBaseAdapter initAdapter(List<F> httpData);
 
-    /**
-     * 子类 可选继承次方法去处理其他类型的数据
-     *
-     * @param t
-     */
-    private void dealOtherSuccessData(T t) {
-
-    }
 
     @Override
     protected void onFail(HttpEvent event) {
         super.onFail(event);
         if (mXListView == null) {
-            mXListView=setXListView();
+            mXListView = setXListView();
         }
         loadEnd(mXListView);
     }

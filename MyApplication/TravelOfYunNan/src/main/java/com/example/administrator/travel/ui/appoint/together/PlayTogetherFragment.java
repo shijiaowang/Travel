@@ -22,8 +22,7 @@ import butterknife.BindView;
  * 一起玩
  */
 public class PlayTogetherFragment extends LoadAndPullBaseFragment<AppointTogetherEvent, AppointTogetherBean, AppointTogetherBean.DataBean> implements XListView.IXListViewListener {
-    @BindView(R.id.lv_appoint)
-    XListView mLvAppoint;
+    @BindView(R.id.lv_appoint) XListView mLvAppoint;
     private AppointTogetherAdapter appointTogetherAdapter;
 
     @Override

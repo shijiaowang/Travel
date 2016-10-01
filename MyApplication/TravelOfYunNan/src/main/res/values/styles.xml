@@ -27,11 +27,12 @@
         <item name="android:windowEnterAnimation">@anim/enter_anima</item>
         <item name="android:windowExitAnimation">@anim/exit_anima</item>
     </style>
-<!--从下向上-->
+    <!--从下向上-->
     <style name="popDownToUp">
         <item name="android:windowEnterAnimation">@anim/down_to_up_enter</item>
         <item name="android:windowExitAnimation">@anim/down_to_up_exit</item>
     </style>
+
     <style name="noTitleDialog" parent="@android:style/Theme.Dialog">
 
         <!-- 去除标题 -->
@@ -39,6 +40,7 @@
         <!-- 将背景透明化 -->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
     <style name="CreatePostTheme" parent="AppTheme">
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
@@ -509,11 +511,23 @@
         <item name="android:textSize">14sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-     </style>
-   <!--tab-->
-    <style name="tabStyle">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/color646464</item>
     </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 </resources>

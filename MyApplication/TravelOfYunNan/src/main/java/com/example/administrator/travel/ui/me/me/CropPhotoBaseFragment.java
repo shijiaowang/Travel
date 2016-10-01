@@ -40,13 +40,13 @@ import java.io.IOException;
 
 public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBaseFragment<T> {
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
+    private static final int TAKE_PHOTO = 0x02;
     protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
     protected static final int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
     protected static final String IMAGE_NAME = "CropImage";
     protected String fileName;
     private Intent intent;//存放图片的uri
-
-
+    private int currentCode;
 
 
     /**
@@ -61,7 +61,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
         viewPopup.findViewById(R.id.tv_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                 takePhoto();
             }
         });
         viewPopup.findViewById(R.id.tv_album).setOnClickListener(new View.OnClickListener() {
@@ -110,10 +110,24 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
-            startActivityForResult(Intent.createChooser(intent, getString(R.string.label_select_picture)), REQUEST_SELECT_PICTURE);
+            currentCode = REQUEST_SELECT_PICTURE;
+            startActivityForResult(Intent.createChooser(intent, getString(R.string.label_select_picture)), currentCode);
         }
     }
 
+    /**
+     * 拍照
+     */
+    private void takePhoto() {
+        String state = Environment.getExternalStorageState(); //拿到sdcard是否可用的状态码
+        if (state.equals(Environment.MEDIA_MOUNTED)) {   //如果可用
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            currentCode=TAKE_PHOTO;
+            startActivityForResult(intent, currentCode);
+        }else {
+            ToastUtils.showToast("SD卡不可用");
+        }
+    }
     /**
      * 请求相关权限
      */
@@ -137,8 +151,8 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == getActivity().RESULT_OK) {
-            if (requestCode == REQUEST_SELECT_PICTURE) {
+        if (resultCode == -1) {//成功result_ok
+            if (requestCode == REQUEST_SELECT_PICTURE || requestCode==TAKE_PHOTO) {
                 final Uri selectedUri = data.getData();
                 if (selectedUri != null) {
                     startCropActivity(data.getData());
@@ -148,9 +162,14 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
             } else if (requestCode == UCrop.REQUEST_CROP) {
                 handleCropResult(data);
             }
-        }
-        if (resultCode == UCrop.RESULT_ERROR) {
+        }else if (resultCode == UCrop.RESULT_ERROR) {
             handleCropError(data);
+        }else if (resultCode==UCrop.RESULT_CHANGE){
+            if (currentCode==TAKE_PHOTO){
+                takePhoto();
+            }else {
+                pickFromGallery();
+            }
         }
     }
 
@@ -201,6 +220,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
         options.setCompressionQuality(50);
         //options.setMaxBitmapSize(800);//图片压缩
         options.setImageToCropBoundsAnimDuration(100);
+        setOptions(options);
 
         /*
         If you want to configure how gestures work for all UCropActivity tabs
@@ -248,6 +268,13 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
 
         return uCrop.withOptions(options);
     }
+
+    /**
+     * 子类设置一些需要的属性
+     * @param options
+     */
+    protected abstract void setOptions(UCrop.Options options);
+
     /**
      * 将截图存在本地
      *

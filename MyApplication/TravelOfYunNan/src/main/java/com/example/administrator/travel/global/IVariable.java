@@ -6,8 +6,8 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
-    String DOMAIN_NAME = "http://192.168.1.38/";
+    String DOMAIN_NAME="http://yuns.yunspeak.com/";
+    /*String DOMAIN_NAME = "http://192.168.1.38/";*/
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -65,6 +65,7 @@ public interface IVariable {
      * 我
      */
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
+    String UPDATE_ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
     String CHANGE_USER_INFO = API_KEY + "User/updateUser/";//更改用户信息
@@ -88,6 +89,7 @@ public interface IVariable {
     String THEME_MY_POST = API_KEY + "UserMsg/getMyForum/";//主题-我的帖子
     String THEME_MY_PUBLISH = API_KEY + "UserMsg/getMyReplay/";//主题-我的评论
     String USER_SERVICE_CENTER = API_KEY + "User/setReport/";//客服中心
+    String MY_APPOINT = API_KEY + "UserTravel/getTravellists/";//我的约伴
     String MESSAGE_CENTER_COUNT = API_KEY + "UserMsg/getMyCount/";//消息中心数量 type 1 最外层（全部消息） 2 中间层（消息中心） 3最里层（每个子项目）
 
     //请求type

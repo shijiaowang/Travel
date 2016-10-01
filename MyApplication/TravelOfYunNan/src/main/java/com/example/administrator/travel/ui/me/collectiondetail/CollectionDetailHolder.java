@@ -19,7 +19,7 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/8/14.
  */
-public class CollectionDetailHolder extends BaseHolder {
+public class CollectionDetailHolder extends BaseHolder<Object> {
     @BindView(R.id.tv_delete)
     TextView mTvDelete;
     @BindView(R.id.tv_name)

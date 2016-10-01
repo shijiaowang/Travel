@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">@color/otherTitleBg</item>
         <item name="android:windowNoTitle">true</item>
         <item name="colorAccent">@color/otherTitleBg</item>
     </style>
+
     <style name="CreatePostTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <item name="android:statusBarColor">@color/otherTitleBg</item>
     </style>
+
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/otherTitleBg</item>
     </style>
+
     <style name="mySwitchStyle">
         <item name="android:textColor">@color/colorFAFAFA</item>
         <item name="android:textSize">9sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 

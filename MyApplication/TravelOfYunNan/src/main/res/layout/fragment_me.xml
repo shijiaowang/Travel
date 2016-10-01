@@ -1,414 +1,418 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container"
     android:layout_width="match_parent"
-    android:scrollbars="none"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fafafa"
-        android:orientation="vertical">
+        android:scrollbars="none">
 
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:background="#fafafa"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_bg"
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/fragment_me_bg" />
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_icon"
-                android:layout_width="73dp"
-                android:layout_height="73dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="163dp"
-                android:src="@drawable/fragment_me_icon" />
+                <ImageView
+                    android:id="@+id/iv_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/fragment_me_bg" />
 
-            <ImageView
-                android:focusableInTouchMode="true"
-                android:focusable="true"
-                android:clickable="true"
-                android:id="@+id/iv_setting"
-                android:padding="10dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="25dp"
-                android:src="@drawable/fragment_me_setting_small" />
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="73dp"
+                    android:layout_height="73dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="163dp"
+                    android:src="@drawable/fragment_me_icon" />
+
+                <ImageView
+                    android:id="@+id/iv_setting"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="25dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:padding="10dp"
+                    android:src="@drawable/fragment_me_setting_small" />
+
+                <TextView
+                    android:id="@+id/tv_level"
+                    android:layout_width="52dp"
+                    android:layout_height="29dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="85dp"
+                    android:background="@drawable/fragment_me_lv_bg"
+                    android:gravity="center"
+                    android:text="Lv.1"
+                    android:textColor="#fcae04"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_nick_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="129dp"
+                    android:textColor="#fafafa"
+                    android:textSize="19sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_icon"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_follow_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:text="关注"
+                        android:textColor="@color/homeButtonUnCheckedColor"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_follow_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="8dp"
+                        android:text="12"
+                        android:textColor="@color/homeButtonUnCheckedColor"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/fragment_me_dot" />
+
+                    <TextView
+                        android:id="@+id/tv_fan_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:text="粉丝"
+                        android:textColor="@color/homeButtonUnCheckedColor"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_fan_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="8dp"
+                        android:text="35"
+                        android:textColor="@color/homeButtonUnCheckedColor"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_level"
-                android:layout_width="52dp"
-                android:layout_height="29dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="85dp"
-                android:background="@drawable/fragment_me_lv_bg"
+                android:id="@+id/tv_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Lv.1"
-                android:textColor="#fcae04"
+                android:textColor="#323232"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_nick_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="129dp"
-                android:text="岳阳"
-                android:textColor="#fafafa"
-                android:textSize="19sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/meLine" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/iv_icon"
-                android:gravity="center_horizontal"
+                android:layout_height="59dp"
+                android:layout_marginLeft="33dp"
+                android:layout_marginRight="33dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:id="@+id/tv_follow_name"
+                    android:id="@+id/tv_appoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="关注"
-                    android:textColor="@color/homeButtonUnCheckedColor"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:id="@+id/tv_follow_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="12"
-                    android:textColor="@color/homeButtonUnCheckedColor"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="6dp"
+                    android:drawablePadding="8dp"
+                    android:drawableTop="@drawable/fragment_me_togther_button"
+                    android:gravity="center"
+                    android:text="我的约伴"
+                    android:textColor="#323232"
+                    android:textSize="10sp" />
 
                 <View
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="3dp"
-                    android:layout_height="3dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@drawable/fragment_me_dot" />
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="11dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@color/meLine" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
 
                 <TextView
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:id="@+id/tv_fan_name"
+                    android:id="@+id/tv_my_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="粉丝"
-                    android:textColor="@color/homeButtonUnCheckedColor"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="6dp"
+                    android:drawablePadding="9dp"
+                    android:drawableTop="@drawable/fragment_me_order"
+                    android:gravity="center"
+                    android:text="我的订单"
+                    android:textColor="#323232"
+                    android:textSize="10sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="11dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@color/meLine" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
 
                 <TextView
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:id="@+id/tv_fan_number"
+                    android:id="@+id/tv_my_collection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="35"
-                    android:textColor="@color/homeButtonUnCheckedColor"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="6dp"
+                    android:drawablePadding="8dp"
+                    android:drawableTop="@drawable/fragment_me_collection"
+                    android:gravity="center"
+                    android:text="我的收藏"
+                    android:textColor="#323232"
+                    android:textSize="10sp" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="11dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@color/meLine" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_message_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:drawablePadding="12dp"
+                    android:drawableTop="@drawable/fragment_me_message"
+                    android:gravity="center"
+                    android:text="消息中心"
+                    android:textColor="#323232"
+                    android:textSize="10sp" />
             </LinearLayout>
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="45dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:textColor="#323232"
-            android:textSize="14sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/meLine" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:layout_marginLeft="33dp"
-            android:layout_marginRight="33dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_appoint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:drawablePadding="8dp"
-                android:drawableTop="@drawable/fragment_me_togther_button"
-                android:gravity="center"
-                android:text="我的约伴"
-                android:textColor="#323232"
-                android:textSize="10sp" />
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="11dp"
-                android:layout_marginTop="11dp"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
                 android:background="@color/meLine" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_my_order"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="9dp"
+                    android:drawableLeft="@drawable/fragment_me_title"
+                    android:drawablePadding="10dp"
+                    android:text="我的称号"
+                    android:textColor="#646464"
+                    android:textSize="13sp" />
+
+                <com.example.administrator.travel.ui.view.FontsIconTextView
+                    android:id="@+id/tv_title_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="9dp"
+                    android:padding="10dp"
+                    android:text="@string/activity_activate_detail_pen"
+
+                    />
+
+
+            </RelativeLayout>
+            <!--Item的marginRight为15dp-->
+            <com.example.administrator.travel.ui.view.FlowLayout
+                android:id="@+id/fl_label"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:drawablePadding="9dp"
-                android:drawableTop="@drawable/fragment_me_order"
-                android:gravity="center"
-                android:text="我的订单"
-                android:textColor="#323232"
-                android:textSize="10sp" />
+                android:layout_below="@id/tv_title"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="27dp"
+                android:layout_marginTop="8dp">
+
+
+            </com.example.administrator.travel.ui.view.FlowLayout>
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="11dp"
-                android:layout_marginTop="11dp"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
                 android:background="@color/meLine" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
+            <LinearLayout
+                android:id="@+id/ll_album"
+                style="@style/lLFragmentMeAlbum">
 
-            <TextView
-                android:id="@+id/tv_my_collection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:drawablePadding="8dp"
-                android:drawableTop="@drawable/fragment_me_collection"
-                android:gravity="center"
-                android:text="我的收藏"
-                android:textColor="#323232"
-                android:textSize="10sp" />
+                <TextView
+                    style="@style/fragmentMeAlbum"
+                    android:drawableLeft="@drawable/fragment_me_album"
+                    android:text="我的相册" />
+
+                <View style="@style/AVGLine" />
+
+                <ImageView style="@style/ivFragmentMeAlbumButton" />
+            </LinearLayout>
+
+            <View style="@style/fragmentMeLine" />
+
+            <LinearLayout
+                android:id="@+id/ll_theme"
+                style="@style/lLFragmentMeAlbum">
+
+                <TextView
+                    style="@style/fragmentMeAlbum"
+                    android:drawableLeft="@drawable/fragment_me_theme"
+                    android:text="我的主题" />
+
+                <View style="@style/AVGLine" />
+
+                <ImageView style="@style/ivFragmentMeAlbumButton" />
+            </LinearLayout>
+
+            <View style="@style/fragmentMeLine" />
+
+            <LinearLayout
+                android:id="@+id/ll_hobby"
+                style="@style/lLFragmentMeAlbum">
+
+                <TextView
+                    style="@style/fragmentMeAlbum"
+                    android:drawableLeft="@drawable/fragment_me_hobby"
+                    android:text="我的兴趣" />
+
+                <View style="@style/AVGLine" />
+
+                <ImageView style="@style/ivFragmentMeAlbumButton" />
+            </LinearLayout>
+
+            <View style="@style/fragmentMeLine" />
+
+            <LinearLayout
+                android:id="@+id/ll_identity"
+                style="@style/lLFragmentMeAlbum">
+
+                <TextView
+                    style="@style/fragmentMeAlbum"
+                    android:drawableLeft="@drawable/fragment_me_id_card"
+                    android:text="身份认证" />
+
+                <View style="@style/AVGLine" />
+
+                <ImageView style="@style/ivFragmentMeAlbumButton" />
+            </LinearLayout>
+
+            <View style="@style/fragmentMeLine" />
+
+            <LinearLayout
+                android:id="@+id/ll_customer_center"
+                style="@style/lLFragmentMeAlbum">
+
+                <TextView
+                    style="@style/fragmentMeAlbum"
+                    android:drawableLeft="@drawable/fragment_me_service_center"
+                    android:text="客服中心" />
+
+                <View style="@style/AVGLine" />
+
+                <ImageView style="@style/ivFragmentMeAlbumButton" />
+            </LinearLayout>
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="11dp"
-                android:layout_marginTop="11dp"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
                 android:background="@color/meLine" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
+            <LinearLayout
+                android:id="@+id/ll_setting"
+                style="@style/lLFragmentMeAlbum">
 
-            <TextView
-                android:id="@+id/tv_message_center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:drawablePadding="12dp"
-                android:drawableTop="@drawable/fragment_me_message"
-                android:gravity="center"
-                android:text="消息中心"
-                android:textColor="#323232"
-                android:textSize="10sp" />
-        </LinearLayout>
+                <TextView
+                    style="@style/fragmentMeAlbum"
+                    android:drawableLeft="@drawable/fragment_me_setting"
+                    android:text="设置" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:background="@color/meLine" />
+                <View style="@style/AVGLine" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <ImageView style="@style/ivFragmentMeAlbumButton" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="9dp"
-                android:drawableLeft="@drawable/fragment_me_title"
-                android:drawablePadding="10dp"
-                android:text="我的称号"
-                android:textColor="#646464"
-                android:textSize="13sp" />
-
-            <com.example.administrator.travel.ui.view.FontsIconTextView
-                android:text="@string/activity_activate_detail_pen"
-                android:id="@+id/tv_title_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:padding="10dp"
-                android:layout_marginRight="9dp"
-
-                />
-
-
-        </RelativeLayout>
-        <!--Item的marginRight为15dp-->
-        <com.example.administrator.travel.ui.view.FlowLayout
-            android:id="@+id/fl_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_title"
-            android:layout_marginBottom="2dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="27dp"
-            android:layout_marginTop="8dp">
-
-
-        </com.example.administrator.travel.ui.view.FlowLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:background="@color/meLine" />
-
-        <LinearLayout
-            android:id="@+id/ll_album"
-            style="@style/lLFragmentMeAlbum">
-            <TextView
-                android:text="我的相册"
-                style="@style/fragmentMeAlbum"
-                android:drawableLeft="@drawable/fragment_me_album"
-                />
-            <View
-                style="@style/AVGLine"/>
-            <ImageView
-                style="@style/ivFragmentMeAlbumButton" />
-        </LinearLayout>
-
-        <View
-           style="@style/fragmentMeLine" />
-        <LinearLayout
-            android:id="@+id/ll_theme"
-            style="@style/lLFragmentMeAlbum">
-            <TextView
-                android:text="我的主题"
-                style="@style/fragmentMeAlbum"
-                android:drawableLeft="@drawable/fragment_me_theme"
-                />
-            <View
-                style="@style/AVGLine"/>
-            <ImageView
-                style="@style/ivFragmentMeAlbumButton" />
-        </LinearLayout>
-
-        <View
-            style="@style/fragmentMeLine" />
-        <LinearLayout
-            android:id="@+id/ll_hobby"
-            style="@style/lLFragmentMeAlbum">
-
-            <TextView
-                android:text="我的兴趣"
-                style="@style/fragmentMeAlbum"
-                android:drawableLeft="@drawable/fragment_me_hobby"
-                />
+            <View style="@style/fragmentMeLine" />
 
             <View
-                style="@style/AVGLine"/>
-            <ImageView
-                style="@style/ivFragmentMeAlbumButton" />
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/meLine" />
         </LinearLayout>
 
-        <View
-            style="@style/fragmentMeLine" />
-        <LinearLayout
-            android:id="@+id/ll_identity"
-            style="@style/lLFragmentMeAlbum">
-
-            <TextView
-                android:text="身份认证"
-                style="@style/fragmentMeAlbum"
-                android:drawableLeft="@drawable/fragment_me_id_card"
-                />
-            <View
-                style="@style/AVGLine"/>
-            <ImageView
-                style="@style/ivFragmentMeAlbumButton" />
-        </LinearLayout>
-
-        <View
-            style="@style/fragmentMeLine" />
-        <LinearLayout
-            android:id="@+id/ll_customer_center"
-            style="@style/lLFragmentMeAlbum">
-            <TextView
-                android:text="客服中心"
-                style="@style/fragmentMeAlbum"
-                android:drawableLeft="@drawable/fragment_me_service_center"
-                />
-            <View
-                style="@style/AVGLine"/>
-            <ImageView
-                style="@style/ivFragmentMeAlbumButton" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:background="@color/meLine" />
-        <LinearLayout
-            android:id="@+id/ll_setting"
-            style="@style/lLFragmentMeAlbum">
-            <TextView
-                android:text="设置"
-                style="@style/fragmentMeAlbum"
-                android:drawableLeft="@drawable/fragment_me_setting"
-                />
-            <View
-                style="@style/AVGLine"/>
-            <ImageView
-                style="@style/ivFragmentMeAlbumButton" />
-        </LinearLayout>
-
-        <View
-            style="@style/fragmentMeLine" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="@color/meLine" />
-    </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

@@ -16,11 +16,11 @@ import java.util.Map;
 /**
  * Created by wangyang on 2016/8/14.
  */
-public class CollectionDetailAdapter extends TravelBaseAdapter {
+public class CollectionDetailAdapter extends TravelBaseAdapter<Object> {
 
     private  String tid;
 
-    public CollectionDetailAdapter(Context mContext, List mDatas, String tid) {
+    public CollectionDetailAdapter(Context mContext, List<Object> mDatas, String tid) {
         super(mContext, mDatas);
         this.tid = tid;
     }

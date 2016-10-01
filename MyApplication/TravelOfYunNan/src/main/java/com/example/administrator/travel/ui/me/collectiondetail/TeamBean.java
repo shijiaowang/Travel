@@ -1,5 +1,7 @@
 package com.example.administrator.travel.ui.me.collectiondetail;
 
+import com.example.administrator.travel.global.ParentBean;
+
 import java.util.List;
 
 /**
@@ -7,7 +9,7 @@ import java.util.List;
  * 目的地
  */
 
-public class TeamBean {
+public class TeamBean implements ParentBean {
 
 
     private int code;

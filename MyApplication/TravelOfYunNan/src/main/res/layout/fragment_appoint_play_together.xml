@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.administrator.travel.ui.view.refreshview.XListView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lv_appoint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <com.example.administrator.travel.ui.view.refreshview.XListView
-        android:id="@+id/lv_appoint"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="10dp"
-        android:paddingTop="10dp"
-        android:scrollbars="none">
+    style="@style/commonListViewStyle"
+    android:dividerHeight="10dp"
+    android:paddingTop="10dp"
+    >
 
-    </com.example.administrator.travel.ui.view.refreshview.XListView>
+</com.example.administrator.travel.ui.view.refreshview.XListView>
 
-</LinearLayout>

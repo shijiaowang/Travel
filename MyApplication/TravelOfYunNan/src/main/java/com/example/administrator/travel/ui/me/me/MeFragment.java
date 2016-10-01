@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.me.me;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,12 +30,17 @@ import com.example.administrator.travel.ui.me.level.LevelActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.GlobalUtils;
+import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
+import com.yalantis.ucrop.UCrop;
+import com.yalantis.ucrop.model.AspectRatio;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +52,8 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/12 0012.
  * 个人
  */
-public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.OnClickListener {
+public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener
+{
     public static final String FOLLOW_SELECT = "follow_select";//进入关注
     private LayoutInflater inflater;
     @BindView(R.id.fl_label)
@@ -79,6 +86,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     TextView mTvProfile;
     @BindView(R.id.ll_identity)
     LinearLayout mLlIdentity;
+    @BindView(R.id.swipe_container)
+    SwipeRefreshLayout mSwifeLayout;
     @BindView(R.id.tv_nick_name)
     TextView mTvNickName;
     @BindView(R.id.tv_title_edit)
@@ -90,8 +99,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     @BindView(R.id.ll_hobby) LinearLayout mLlHobby;
     @BindView(R.id.ll_theme) LinearLayout mLlTheme;
     private int upType=-1;
-    private static final int UP_BG=1;
-    private static final int UP_ICON=2;
+    private static final int UP_BG=99;//上传背景
+    private static final int UP_ICON=100;//上传头像
 
 
     @Override
@@ -130,6 +139,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mIvBg.setOnClickListener(this);//设置背景
         mLlHobby.setOnClickListener(this);//我的兴趣
         mLlTheme.setOnClickListener(this);//我的主题
+        mSwifeLayout.setOnRefreshListener(new MyRefreshListener());//刷新数据
+        mIvIcon.setOnClickListener(this);
     }
 
     private void init() {
@@ -146,7 +157,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
     @Override
     protected void onLoad(int type) {
-         setState(LoadingPage.ResultState.STATE_SUCCESS);
+        setState(LoadingPage.ResultState.STATE_SUCCESS);
     }
 
     @Override
@@ -201,6 +212,11 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
                 upType = UP_BG;
                 showPictureCutPop(homeBottom);
                 break;
+            case R.id.iv_icon:
+                LinearLayout bottom = ((HomeActivity) getActivity()).getmLlBottom();
+                upType = UP_ICON;
+                showPictureCutPop(bottom);
+                break;
             case R.id.ll_hobby:
                 startActivity(new Intent(getContext(), MyHobbyActivity.class));
                 break;
@@ -219,6 +235,14 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     }
 
     @Override
+    protected void setOptions(UCrop.Options options) {
+        if (upType==UP_ICON){
+            options.setCircleDimmedLayer(true);
+            options.setAspectRatioOptions(0,new AspectRatio("0",1,1));
+        }
+    }
+
+    @Override
     protected void childUpImage() {
         Map<String, String> bgImageMap = MapUtils.Build().addKey(getContext()).addUserId().end();
         if (StringUtils.isEmpty(fileName)) {
@@ -226,34 +250,62 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         }
         List<String> flies=new ArrayList<>();
         flies.add(fileName);
-        String url=upType==UP_BG?IVariable.CHANGE_BG:"";
+        String url=upType==UP_BG?IVariable.CHANGE_BG:IVariable.CHANGE_USER_INFO;
         XEventUtils.postFileCommonBackJson(url,bgImageMap,flies,upType,new MeEvent());
     }
 
-    @Subscribe
-     public void onEvent(MeEvent event){
-        if (event.isSuccess()){
-            dealData(event);
-        }else {
-            ToastUtils.showToast(event.getMessage());
-        }
-
-     }
-
-    /**
-     * 处理时间
-     * @param event
-     */
-    private void dealData(MeEvent event) {
-        switch (event.getType()){
+    @Override
+    public void onSuccess(MeEvent meEvent) {
+        switch (meEvent.getType()){
             case UP_BG:
-                ToastUtils.showToast(event.getMessage());
+            case UP_ICON:
+                ToastUtils.showToast(meEvent.getMessage());
+                break;
+            case TYPE_REFRESH:
+                mSwifeLayout.setRefreshing(false);
+                dealRefreshData(meEvent);
                 break;
         }
+
     }
+
+    /**
+     * 刷新个人数据
+     * @param meEvent
+     */
+    private void dealRefreshData(MeEvent meEvent) {
+        MeBean meBean = GsonUtils.getObject(meEvent.getResult(), MeBean.class);
+        MeBean.DataBean data = meBean.getData();
+        mTvFanNumber.setText(data.getFans());
+        mTvFollowNumber.setText(data.getFollow());
+        MeBean.DataBean.UserBean user = data.getUser();
+        x.image().bind(mIvIcon,user.getUser_img());
+        x.image().bind(mIvBg,user.getBackground_img());
+        mTvNickName.setText(user.getNick_name());
+        mTvProfile.setText(user.getContent());
+        mTvLevel.setText("LV."+user.getLevel());
+        LogUtils.e(meEvent.getMessage());
+    }
+
+    /**
+     * 下拉刷新
+     */
+   class MyRefreshListener implements SwipeRefreshLayout.OnRefreshListener {
+
+       @Override
+       public void onRefresh() {
+           Map<String, String> end = MapUtils.Build().addKey(getContext()).addUserId().end();
+           XEventUtils.getUseCommonBackJson(IVariable.UPDATE_ME_MESSAGE,end,TYPE_REFRESH,new MeEvent());
+       }
+   }
 
     @Override
     protected ImageView childViewShow() {
         return upType==UP_BG?mIvBg:mIvIcon;
+    }
+
+    @Override
+    protected void onFail(MeEvent event) {
+        mSwifeLayout.setRefreshing(false);
     }
 }

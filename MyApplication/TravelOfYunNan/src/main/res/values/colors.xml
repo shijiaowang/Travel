@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
- <!--homeFragment-->
+    <!--homeFragment-->
     <color name="homeTitleBg">#5cd1c3</color>
     <color name="homeTopicTextColor">#323233</color>
     <color name="homeContentBg">#f0eff5</color>
@@ -83,10 +83,13 @@
     <color name="color313131">#313131</color>
     <color name="color1c1c1c">#1c1c1c</color>
     <color name="colorC4c4c4">#c4c4c4</color>
-   <color name="colorDddddd">#dddddd</color>
-   <color name="colorb5b5b5">#b5b5b5</color>
-   <color name="colorffb2b2">#ffb2b2</color>
-   <color name="colorb7e8e3">#b7e8e3</color>
+    <color name="colorDddddd">#dddddd</color>
+    <color name="colorb5b5b5">#b5b5b5</color>
+    <color name="colorb7e8e3">#b7e8e3</color>
+
+
+    <color name="black_overlay">#66000000</color>
+    <color name="colorffb2b2">#ffb2b2</color>
 
 
 </resources>

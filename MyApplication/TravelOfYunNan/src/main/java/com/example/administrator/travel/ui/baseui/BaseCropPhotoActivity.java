@@ -40,10 +40,13 @@ import java.io.IOException;
  */
 public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends LoadingBarBaseActivity<T> {
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
-    protected static final String IMAGE_NAME = "CropImage";
+    protected static final int TAKE_PHOTO = 0x02;
     protected String filename;
+    protected static final String IMAGE_NAME = "CropImage";
+
     private Intent intent;//存放图片的uri
     private boolean notCrop=false;//默认需要裁剪
+    private int currentCode=-1;
 
     public boolean isNeedCrop() {
         return notCrop;
@@ -73,7 +76,7 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
         viewPopup.findViewById(R.id.tv_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                takePhoto();
             }
         });
         viewPopup.findViewById(R.id.tv_album).setOnClickListener(new View.OnClickListener() {
@@ -108,6 +111,20 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
     }
 
     /**
+     * 拍照
+     */
+    private void takePhoto() {
+        String state = Environment.getExternalStorageState(); //拿到sdcard是否可用的状态码
+        if (state.equals(Environment.MEDIA_MOUNTED)) {   //如果可用
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            currentCode=TAKE_PHOTO;
+            startActivityForResult(intent, currentCode);
+        }else {
+            ToastUtils.showToast("SD卡不可用");
+        }
+    }
+
+    /**
      * 相册选者图片
      */
     private void pickFromGallery() {
@@ -122,7 +139,8 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
-            startActivityForResult(Intent.createChooser(intent, getString(R.string.label_select_picture)), REQUEST_SELECT_PICTURE);
+            currentCode=REQUEST_SELECT_PICTURE;
+            startActivityForResult(Intent.createChooser(intent, getString(R.string.label_select_picture)), currentCode);
         }
     }
 
@@ -150,7 +168,7 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode ==RESULT_OK) {
-            if (requestCode == REQUEST_SELECT_PICTURE) {
+            if (requestCode == REQUEST_SELECT_PICTURE ||requestCode == TAKE_PHOTO) {
                 final Uri selectedUri = data.getData();
                 if (selectedUri != null) {
                     startCropActivity(data.getData());
@@ -160,9 +178,14 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
             } else if (requestCode == UCrop.REQUEST_CROP) {
                 handleCropResult(data);
             }
-        }
-        if (resultCode == UCrop.RESULT_ERROR) {
+        } else if (resultCode == UCrop.RESULT_ERROR) {
             handleCropError(data);
+        }else if (resultCode==UCrop.RESULT_CHANGE){
+            if (currentCode==TAKE_PHOTO){
+                takePhoto();
+            }else {
+                pickFromGallery();
+            }
         }
     }
 
@@ -188,6 +211,7 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
         uCrop = advancedConfig(uCrop);
         uCrop.start(this);
+
     }
     /**
      * Sometimes you want to adjust more options, it's done via {@link com.yalantis.ucrop.UCrop.Options} class.

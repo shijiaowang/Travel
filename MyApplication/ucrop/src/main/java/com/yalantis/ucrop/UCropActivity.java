@@ -315,6 +315,13 @@ public class UCropActivity extends AppCompatActivity {
                     }
                 });
                 TextView  mTvChange = (TextView) findViewById(R.id.tv_change);
+                mTvChange.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setResult(UCrop.RESULT_CHANGE);
+                        finish();
+                    }
+                });
                 TextView  mTvSure = (TextView) findViewById(R.id.tv_sure);
                 mTvSure.setOnClickListener(new View.OnClickListener() {
                     @Override

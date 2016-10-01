@@ -1,12 +1,14 @@
 package com.example.administrator.travel.ui.me.collectiondetail;
 
+import com.example.administrator.travel.global.ParentBean;
+
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/9/28 0028.
  */
 
-public class TravelsBean {
+public class TravelsBean implements ParentBean {
 
 
     private int code;
