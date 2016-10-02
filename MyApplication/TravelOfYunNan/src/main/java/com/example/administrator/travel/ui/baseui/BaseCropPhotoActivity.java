@@ -42,18 +42,19 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
     protected static final int TAKE_PHOTO = 0x02;
     protected String filename;
+    protected String filenam2;
     protected static final String IMAGE_NAME = "CropImage";
 
     private Intent intent;//存放图片的uri
-    private boolean notCrop=false;//默认需要裁剪
+    private boolean needCrop=true;//默认需要裁剪
     private int currentCode=-1;
 
     public boolean isNeedCrop() {
-        return notCrop;
+        return needCrop;
     }
 
-    public void setNeedCrop(boolean notCrop) {
-        this.notCrop = notCrop;
+    public void setNeedCrop(boolean needCrop) {
+        this.needCrop = needCrop;
     }
 
     @Override
@@ -171,7 +172,11 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
             if (requestCode == REQUEST_SELECT_PICTURE ||requestCode == TAKE_PHOTO) {
                 final Uri selectedUri = data.getData();
                 if (selectedUri != null) {
-                    startCropActivity(data.getData());
+                    if (!needCrop){
+                        showImage(data);
+                    }else {
+                        startCropActivity(data.getData());
+                    }
                 } else {
                     Toast.makeText(this, R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
                 }
@@ -187,6 +192,10 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
                 pickFromGallery();
             }
         }
+    }
+
+    protected  void showImage(Intent data)  {
+
     }
 
     /**

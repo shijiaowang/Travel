@@ -38,6 +38,10 @@ public class MapUtils {
             stringMap.put(IVariable.TYPE,type+"");
             return this;
         }
+        public Builder addClass(String clazz){
+            stringMap.put(IVariable.CLASS,clazz+"");
+            return this;
+        }
         public Builder addTel(String tel){
             stringMap.put(IVariable.TEL,tel+"");
             return this;

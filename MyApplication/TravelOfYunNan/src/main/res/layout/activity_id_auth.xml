@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorFAFAFA"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="10dp"
+                android:text="示例"
+                android:textColor="@color/color646464"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="121dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="121dp"
+                        android:layout_height="84dp"
+                        android:background="@color/color1c1c1c" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="正面"
+                        android:textColor="@color/color323232"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="121dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="65dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="121dp"
+                        android:layout_height="84dp"
+                        android:background="@color/color1c1c1c" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="反面"
+                        android:textColor="@color/color323232"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="9dp"
+                android:background="@color/meLine" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="10dp"
+                android:text="上传证件照"
+                android:textColor="@color/color646464"
+                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="121dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                        android:id="@+id/tv_icon1"
+                        android:text="@string/activity_my_album_add"
+                        android:textSize="30sp"
+                        android:gravity="center"
+                        android:background="@drawable/green_dot_line"
+                        android:textColor="@color/otherTitleBg"
+                        android:layout_width="121dp"
+                        android:layout_height="84dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_image1"
+                        android:visibility="gone"
+                        android:layout_width="121dp"
+                        android:layout_height="84dp"
+                       />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="正面"
+                        android:textColor="@color/color323232"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="121dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="65dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                        android:id="@+id/tv_icon2"
+                        android:text="@string/activity_my_album_add"
+                        android:textSize="30sp"
+                        android:gravity="center"
+                        android:background="@drawable/green_dot_line"
+                        android:textColor="@color/otherTitleBg"
+                        android:layout_width="121dp"
+                        android:layout_height="84dp" />
+                    <ImageView
+                        android:id="@+id/iv_image2"
+                        android:visibility="gone"
+                        android:layout_width="121dp"
+                        android:layout_height="84dp"
+                      />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="反面"
+                        android:textColor="@color/color323232"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        style="@style/commonButtonNext"
+        android:layout_alignParentBottom="true"
+        android:text="确认提交" />
+</RelativeLayout>

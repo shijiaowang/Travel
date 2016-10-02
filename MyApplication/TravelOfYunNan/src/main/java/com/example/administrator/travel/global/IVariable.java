@@ -90,6 +90,7 @@ public interface IVariable {
     String THEME_MY_PUBLISH = API_KEY + "UserMsg/getMyReplay/";//主题-我的评论
     String USER_SERVICE_CENTER = API_KEY + "User/setReport/";//客服中心
     String MY_APPOINT = API_KEY + "UserTravel/getTravellists/";//我的约伴
+    String IDENTITY_AUTH = API_KEY + "User/setAuthentication/";//身份认证
     String MESSAGE_CENTER_COUNT = API_KEY + "UserMsg/getMyCount/";//消息中心数量 type 1 最外层（全部消息） 2 中间层（消息中心） 3最里层（每个子项目）
 
     //请求type
@@ -228,4 +229,5 @@ public interface IVariable {
     String URL="url";
     String PLAY_TOGETHER_CLICK_TYPE = "1";
     String WITH_ME_CLICK_TYPE = "2";
+    String CLASS = "class";
 }

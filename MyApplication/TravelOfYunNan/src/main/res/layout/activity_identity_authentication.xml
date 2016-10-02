@@ -28,6 +28,7 @@
     <View
         style="@style/oneHeightMatchLine"/>
     <RelativeLayout
+        android:id="@+id/rl_id_auth"
         style="@style/activityIdentityAuthenticationRl">
         <com.example.administrator.travel.ui.view.FontsIconTextView
             android:text="@string/activity_identity_id_card"

@@ -1,13 +1,19 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.identityauth;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.me.identityauth.idauth.IdAuthActivity;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.StringUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -15,7 +21,7 @@ import org.xutils.view.annotation.ViewInject;
  * Created by Administrator on 2016/8/19 0019.
  * 身份认证
  */
-public class IdentityAuthenticationActivity extends LoadingBarBaseActivity {
+public class IdentityAuthenticationActivity extends LoadingBarBaseActivity implements View.OnClickListener {
     @ViewInject(R.id.tv_identity_car_card)
     private TextView mTvIdentityCarCard;
     @ViewInject(R.id.tv_identity_phone)
@@ -24,6 +30,8 @@ public class IdentityAuthenticationActivity extends LoadingBarBaseActivity {
     private TextView mTvIdentityIdCard;
     @ViewInject(R.id.tv_identity_device_card)
     private TextView mTvIdentityDeviceCard;
+    @ViewInject(R.id.rl_id_auth)
+    private RelativeLayout mRlIdAuth;
 
 
     @Override
@@ -33,7 +41,7 @@ public class IdentityAuthenticationActivity extends LoadingBarBaseActivity {
 
     @Override
     protected void initEvent() {
-
+mRlIdAuth.setOnClickListener(this);
     }
 
     @Override
@@ -76,5 +84,14 @@ public class IdentityAuthenticationActivity extends LoadingBarBaseActivity {
     @Override
     protected void onSuccess(HttpEvent o) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.rl_id_auth:
+                startActivity(new Intent(this, IdAuthActivity.class));
+                break;
+        }
     }
 }

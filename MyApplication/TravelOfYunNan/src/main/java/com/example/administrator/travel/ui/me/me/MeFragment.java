@@ -16,7 +16,7 @@ import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.me.userservice.CustomerServiceActivity;
 import com.example.administrator.travel.ui.me.fansandfollow.FollowAndFanActivity;
 import com.example.administrator.travel.ui.baseui.HomeActivity;
-import com.example.administrator.travel.ui.baseui.IdentityAuthenticationActivity;
+import com.example.administrator.travel.ui.me.identityauth.IdentityAuthenticationActivity;
 import com.example.administrator.travel.ui.me.messagecenter.MessageCenterActivity;
 import com.example.administrator.travel.ui.me.myalbum.MyAlbumActivity;
 import com.example.administrator.travel.ui.me.myappoint.MyAppointActivity;
@@ -39,7 +39,6 @@ import com.example.administrator.travel.utils.XEventUtils;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 
-import org.greenrobot.eventbus.Subscribe;
 import org.xutils.x;
 
 import java.util.ArrayList;

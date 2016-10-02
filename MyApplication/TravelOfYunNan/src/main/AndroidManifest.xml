@@ -102,7 +102,7 @@
         <activity android:name=".ui.baseui.PersonalProfileActivity"/>
         <activity android:name=".ui.baseui.HomeSearchActivity"/>
         <activity android:name=".ui.me.messagecenter.appointmessage.AppointMessageActivity"/>
-        <activity android:name=".ui.baseui.IdentityAuthenticationActivity"/>
+        <activity android:name=".ui.me.identityauth.IdentityAuthenticationActivity"/>
         <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
         <activity android:name=".ui.me.messagecenter.systemmessage.SystemMessageActivity"/>
         <activity android:name=".ui.me.albumselector.AlbumSelectorActivity"/>
@@ -132,6 +132,7 @@
             />
         <activity android:name=".ui.me.mytheme.MyThemeActivity" />
         <activity android:name=".ui.baseui.LoadAndRefreshBaseActivity" />
+        <activity android:name=".ui.me.identityauth.idauth.IdAuthActivity" />
     </application>
 
 </manifest>
