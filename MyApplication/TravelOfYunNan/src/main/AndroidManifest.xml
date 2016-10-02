@@ -75,7 +75,7 @@
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentWithMeActivity"/>
         <activity android:name=".ui.baseui.BaseTransActivity"
             />
-        <activity android:name=".ui.baseui.LoginActivity"
+        <activity android:name=".ui.home.login.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTop"
             />
@@ -118,7 +118,7 @@
         <activity android:name=".ui.appoint.settingtitle.SettingTitleActivity"
             android:launchMode="singleTask"
             />
-        <activity android:name=".ui.baseui.RegisterActivity"
+        <activity android:name=".ui.home.register.RegisterActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTop"
             />
@@ -133,6 +133,8 @@
         <activity android:name=".ui.me.mytheme.MyThemeActivity" />
         <activity android:name=".ui.baseui.LoadAndRefreshBaseActivity" />
         <activity android:name=".ui.me.identityauth.idauth.IdAuthActivity" />
+        <activity android:name=".ui.me.changepassword.ChangePassWordActivity" />
+        <activity android:name=".ui.home.login.forgetpassword.ForgetPasswordActivity" />
     </application>
 
 </manifest>

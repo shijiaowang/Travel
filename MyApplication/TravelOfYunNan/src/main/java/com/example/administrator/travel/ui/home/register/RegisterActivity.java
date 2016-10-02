@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.home.register;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -15,6 +15,7 @@ import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.RegisterEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseTransActivity;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.ui.view.LineEditText;
 import com.example.administrator.travel.utils.GlobalUtils;

@@ -21,6 +21,7 @@ import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -130,19 +131,18 @@ public class IdAuthActivity extends BaseCropPhotoActivity implements View.OnClic
     protected void showImage(Intent data) {
         Uri uri = data.getData();
         try {
-            Bitmap bitmapFormUri = BitmapUtils.getBitmapFormUri(this, uri, 100);
             if (upSide==POSITIVE_SIDE){
                 mIvImage1.setVisibility(View.VISIBLE);
                 mTvIcon1.setVisibility(View.GONE);
-                mIvImage1.setImageBitmap(bitmapFormUri);
                 posUrl = BitmapUtils.getImageAbsolutePath(this, uri);
+                x.image().bind(mIvImage1,posUrl);
             }else {
                 mIvImage2.setVisibility(View.VISIBLE);
                 mTvIcon2.setVisibility(View.GONE);
-                mIvImage2.setImageBitmap(bitmapFormUri);
                 otherUrl = BitmapUtils.getImageAbsolutePath(this, uri);
+                x.image().bind(mIvImage1,otherUrl);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

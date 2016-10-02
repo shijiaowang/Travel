@@ -12,6 +12,7 @@ import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.me.about.AboutActivity;
+import com.example.administrator.travel.ui.me.changepassword.ChangePassWordActivity;
 import com.example.administrator.travel.ui.view.PhoneTextView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.ShareUtil;
@@ -41,6 +42,8 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     private LinearLayout mLlLogout;
     @ViewInject(R.id.ll_about)
     private LinearLayout mLlAbout;
+    @ViewInject(R.id.ll_change_password)
+    private LinearLayout mLlChangePassword;
 
     @Override
     protected int setContentLayout() {
@@ -53,6 +56,7 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
         mLlProfile.setOnClickListener(this);
         mLlLogout.setOnClickListener(this);
         mLlAbout.setOnClickListener(this);
+        mLlChangePassword.setOnClickListener(this);
     }
 
     @Override
@@ -111,6 +115,9 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
                 break;
             case R.id.ll_about:
                 startActivity(new Intent(this, AboutActivity.class));
+                break;
+            case R.id.ll_change_password:
+                startActivity(new Intent(this, ChangePassWordActivity.class));
                 break;
         }
     }

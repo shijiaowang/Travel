@@ -21,6 +21,8 @@ import android.widget.VideoView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Splash;
+import com.example.administrator.travel.ui.home.login.LoginActivity;
+import com.example.administrator.travel.ui.home.register.RegisterActivity;
 import com.example.administrator.travel.utils.DensityUtils;
 
 

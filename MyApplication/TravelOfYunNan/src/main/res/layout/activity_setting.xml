@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical">
+
     <ScrollView
         android:scrollbars="none"
         android:layout_width="match_parent"
@@ -23,12 +24,13 @@
                 android:layout_marginBottom="12dp"
                 android:layout_marginTop="10dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <ImageView
+                    android:id="@+id/iv_icon"
                     android:layout_width="73dp"
-                    android:layout_height="73dp"
-                    android:src="@drawable/user_icon" />
+                    android:layout_height="73dp" />
 
                 <com.example.administrator.travel.ui.view.FontsIconTextView
+                    android:id="@+id/tv_change_phone"
                     android:paddingBottom="3dp"
                     android:layout_width="31dp"
                     android:layout_height="31dp"
@@ -151,7 +153,9 @@
 
             <View style="@style/activitySettingLine" />
 
-            <LinearLayout style="@style/activitySettingLl">
+            <LinearLayout
+                android:id="@+id/ll_change_password"
+                style="@style/activitySettingLl">
 
                 <TextView
                     style="@style/activitySettingTvType"

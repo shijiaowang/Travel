@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.home.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 
 
 import com.example.administrator.travel.R;
@@ -15,6 +16,10 @@ import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.LoginEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseTransActivity;
+import com.example.administrator.travel.ui.baseui.HomeActivity;
+import com.example.administrator.travel.ui.home.login.forgetpassword.ForgetPasswordActivity;
+import com.example.administrator.travel.ui.me.changepassword.ChangePassWordActivity;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.LineEditText;
@@ -53,6 +58,8 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
     private int tryGetKey=0;
     @ViewInject(R.id.tv_back)
     private FontsIconTextView mTvBack;
+    @ViewInject(R.id.tv_change_password)
+    private TextView mTvChangePassword;
     private String name;
     private String password;
     private boolean isFirstError=true;
@@ -74,6 +81,7 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         mTvBack.setOnClickListener(this);
         mEdName.addTextChangedListener(this);
         mEdPassword.addTextChangedListener(this);
+        mTvChangePassword.setOnClickListener(this);
         mBtLogin.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,6 +175,9 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.tv_back:
                 finish();
+                break;
+            case R.id.tv_change_password:
+                startActivity(new Intent(this, ForgetPasswordActivity.class));
                 break;
         }
     }

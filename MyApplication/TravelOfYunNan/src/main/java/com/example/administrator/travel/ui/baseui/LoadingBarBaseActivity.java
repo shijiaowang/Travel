@@ -364,7 +364,7 @@ public abstract class LoadingBarBaseActivity<T extends HttpEvent> extends BaseAc
      * @param event
      */
     private boolean isSuccessed=false;
-    protected  void onFail(HttpEvent event){
+    protected  void onFail(T t){
         if (!isSuccessed){
             setIsError(true);
         }
