@@ -189,7 +189,7 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity<CustomDest
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(CustomDestinationEvent event) {
         super.onFail(event);
         loadEnd(mLvDestination);
     }

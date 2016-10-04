@@ -15,7 +15,6 @@ import org.xutils.x;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Administrator on 2016/7/25 0025.

@@ -138,7 +138,7 @@ public class ActiveActivity extends LoadingBarBaseActivity<ActiveEvent> implemen
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(ActiveEvent event) {
         super.onFail(event);
         loadEnd(mSsvScroll);
     }

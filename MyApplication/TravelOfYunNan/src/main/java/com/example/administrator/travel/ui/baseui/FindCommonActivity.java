@@ -151,7 +151,7 @@ public class FindCommonActivity extends LoadingBarBaseActivity<DestinationEvent>
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(DestinationEvent event) {
         super.onFail(event);
         loadEnd(mLvDestination);
     }

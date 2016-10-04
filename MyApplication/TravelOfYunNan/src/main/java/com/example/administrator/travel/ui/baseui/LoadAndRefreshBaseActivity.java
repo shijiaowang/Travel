@@ -171,7 +171,7 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
 
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(T event) {
         super.onFail(event);
         if (mXListView == null) {
             mXListView = setXListView();

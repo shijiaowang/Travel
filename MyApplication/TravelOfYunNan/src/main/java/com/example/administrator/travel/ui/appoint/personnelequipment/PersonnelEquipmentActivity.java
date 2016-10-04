@@ -146,7 +146,7 @@ public class PersonnelEquipmentActivity extends LoadingBarBaseActivity<Personnel
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(PersonnelEquipmentEvent event) {
     }
 
     @Override

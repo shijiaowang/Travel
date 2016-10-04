@@ -13,6 +13,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.me.userservice.CustomerServiceActivity;
 import com.example.administrator.travel.ui.me.fansandfollow.FollowAndFanActivity;
 import com.example.administrator.travel.ui.baseui.HomeActivity;
@@ -26,7 +27,6 @@ import com.example.administrator.travel.ui.baseui.SettingActivity;
 import com.example.administrator.travel.ui.me.myhobby.MyHobbyActivity;
 import com.example.administrator.travel.ui.me.mytheme.MyThemeActivity;
 import com.example.administrator.travel.ui.me.titlemanage.TitleManagementActivity;
-import com.example.administrator.travel.ui.me.level.LevelActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -204,7 +204,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
                 startActivity(new Intent(getContext(), TitleManagementActivity.class));
                 break;
             case R.id.tv_level:
-                startActivity(new Intent(getContext(), LevelActivity.class));
+                //startActivity(new Intent(getContext(), LevelActivity.class));
+                startActivity(new Intent(getContext(), OtherUserCenterActivity.class));
                 break;
             case R.id.iv_bg:
                 LinearLayout homeBottom = ((HomeActivity) getActivity()).getmLlBottom();

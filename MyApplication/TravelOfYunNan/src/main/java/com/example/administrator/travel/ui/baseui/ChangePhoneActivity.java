@@ -119,7 +119,7 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity<ChangePhoneEvent
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(ChangePhoneEvent event) {
 
         isClick=false;
     }

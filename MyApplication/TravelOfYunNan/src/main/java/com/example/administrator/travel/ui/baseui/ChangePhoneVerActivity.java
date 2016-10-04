@@ -124,6 +124,6 @@ public class ChangePhoneVerActivity extends LoadingBarBaseActivity<ChangePhoneVe
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(ChangePhoneVerEvent event) {
     }
 }

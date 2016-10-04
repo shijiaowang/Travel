@@ -74,7 +74,6 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
 
     private void firstReq() {
         if (GlobalUtils.getUserInfo() == null) {
-            //// TODO: 2016/8/19 0019 让用户去重新登录
             return;
         }
         Map<String, String> map = MapUtils.Build().addKey(getContext()).add("user_id", GlobalUtils.getUserInfo().getId()).end();

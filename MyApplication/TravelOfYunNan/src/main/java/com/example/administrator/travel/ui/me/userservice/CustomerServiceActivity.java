@@ -79,7 +79,7 @@ public class CustomerServiceActivity extends LoadingBarBaseActivity<CustomerServ
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(CustomerServiceEvent event) {
 
     }
 

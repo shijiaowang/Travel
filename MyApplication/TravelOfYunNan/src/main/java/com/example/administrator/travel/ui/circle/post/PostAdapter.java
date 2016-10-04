@@ -8,7 +8,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
-import com.example.administrator.travel.ui.baseui.OtherUserCenterActivity;
+import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 import java.util.List;

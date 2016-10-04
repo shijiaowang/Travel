@@ -121,7 +121,7 @@ public class MessageCenterActivity extends LoadingBarBaseActivity<MessageCenterE
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(MessageCenterEvent event) {
 
     }
 }

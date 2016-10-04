@@ -44,6 +44,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     private Fragment fragment;
     protected View inflate;
     private boolean isSuccessed=false;
+    private boolean isVisible=false;
 
 
     @Override
@@ -97,7 +98,25 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     }
 
     private void load() {
-        onLoad(TYPE_REFRESH);//第一次加载,使用刷新
+        if (isVisible) {
+            onLoad(TYPE_REFRESH);
+        }//第一次加载,使用刷新
+    }
+    /**
+     * Fragment数据的懒加载
+     *
+     * @param isVisibleToUser
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser)
+    {
+
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint() || !isVisible)
+        {
+            isVisible = true;
+            load();
+        }
     }
 
 

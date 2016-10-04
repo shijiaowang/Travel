@@ -128,7 +128,7 @@ public class TravelsActivity extends LoadingBarBaseActivity<TravelsEvent> implem
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(TravelsEvent event) {
         super.onFail(event);
         loadEnd(mLvTravels);
     }

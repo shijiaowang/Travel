@@ -10,11 +10,10 @@ import com.example.administrator.travel.bean.Fan;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.appoint.aite.Follow;
 
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import butterknife.BindView;
-import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * Created by wangyang on 2016/7/18 0018.

@@ -197,7 +197,7 @@ public class SelectDestinationActivity extends LoadingBarBaseActivity<Destinatio
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(DestinationEvent event) {
         super.onFail(event);
         loadEnd(mLvDestination);
     }

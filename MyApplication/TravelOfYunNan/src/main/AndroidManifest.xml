@@ -37,7 +37,7 @@
         <activity android:name=".ui.baseui.BaseActivity" />
         <activity android:name=".ui.baseui.FullTransparencyActivity" />
         <activity android:name=".ui.circle.post.PostActivity" />
-        <activity android:name=".ui.baseui.OtherUserCenterActivity" />
+        <activity android:name=".ui.me.othercenter.OtherUserCenterActivity" />
         <activity android:name=".ui.me.messagecenter.MessageCenterActivity" />
         <activity android:name=".ui.appoint.selectdestination.SelectDestinationActivity"
             android:windowSoftInputMode="stateHidden"

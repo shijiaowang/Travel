@@ -154,7 +154,7 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity<AddCust
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(AddCustomSpotEvent event) {
         ToastUtils.showToast(event.getMessage());
     }
 

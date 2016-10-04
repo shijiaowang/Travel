@@ -84,7 +84,7 @@ public class RelateMeActivity extends LoadingBarBaseActivity<RelateMeEvent> impl
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(RelateMeEvent event) {
 
     }
 

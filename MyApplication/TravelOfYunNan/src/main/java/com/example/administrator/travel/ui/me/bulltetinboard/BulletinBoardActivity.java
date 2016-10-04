@@ -87,7 +87,7 @@ public class BulletinBoardActivity extends LoadingBarBaseActivity<BulletinBoardE
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(BulletinBoardEvent event) {
         super.onFail(event);
         loadEnd(mLvBulletinBoard);
     }

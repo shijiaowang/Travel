@@ -154,7 +154,7 @@ public class CreateAlbumActivity extends BaseCropPhotoActivity<CreateAlbumEvent>
     }
 
     @Override
-    protected void onFail(HttpEvent event) {
+    protected void onFail(CreateAlbumEvent event) {
 
     }
 

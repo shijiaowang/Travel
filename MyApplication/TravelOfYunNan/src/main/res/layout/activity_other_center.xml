@@ -1,90 +1,90 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_root"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <github.chenupt.dragtoplayout.DragTopLayout
-        android:id="@+id/drag_layout"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fafafa">
+        android:fitsSystemWindows="true">
 
-        <!--top view-->
-
-        <include layout="@layout/activity_other_top"/>
-
-        <!--content view-->
-        <RelativeLayout
-            android:id="@+id/drag_content_view"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <View
-                android:id="@+id/v_sup"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/commonTotalHeight"
-                android:background="@android:color/transparent" />
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle.About"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <LinearLayout
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:gravity="center">
+                    <include layout="@layout/activity_other_top"/>
+                </FrameLayout>
+
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:minHeight="?attr/actionBarSize"
+                    app:contentInsetStart="150dp"
+                    app:layout_collapseMode="pin"
+                    app:titleTextAppearance="@style/ToolBar.TitleText"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorFAFAFA"
+                        android:textSize="18sp"
+                        android:visibility="gone" />
+
+
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="35dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:tabTextColor="@color/color646464"
+                app:tabSelectedTextColor="@color/otherTitleBg"
+                app:tabTextAppearance="@style/textSize14"
 
-                <RelativeLayout
-                    android:id="@+id/rl_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/commonTotalHeight"
-                    android:background="@color/otherTitleBg"
-                    android:visibility="gone">
-                    <RelativeLayout
-                        android:layout_marginTop="@dimen/commonStatusHeight"
-                        android:layout_width="match_parent"
-                        android:layout_height="49dp">
-                        <TextView
-                            android:layout_centerInParent="true"
-                            android:id="@+id/tv_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="岳阳"
-                            android:textColor="@color/colorFAFAFA"
-                            android:textSize="18sp" />
-                        <com.example.administrator.travel.ui.view.FontsIconTextView
-                            android:layout_centerVertical="true"
-                            android:id="@+id/tv_title_back"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:padding="10dp"
-                            android:layout_gravity="center_vertical"
-                            android:text="@string/activity_circle_back_font_icon"
-                            android:textColor="@color/colorFAFAFA"
-                            android:textSize="25sp" />
-                    </RelativeLayout>
-                </RelativeLayout>
+                 />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/meLine" />
+        </android.support.design.widget.AppBarLayout>
 
-                <com.example.administrator.travel.ui.view.FontsIconViewPagerIndicator
-                    android:id="@+id/fivpi_indicator"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp">
 
-                </com.example.administrator.travel.ui.view.FontsIconViewPagerIndicator>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_dynamic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp_dynamic"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="0dp">
 
-                </android.support.v4.view.ViewPager>
-            </LinearLayout>
-        </RelativeLayout>
-    </github.chenupt.dragtoplayout.DragTopLayout>
-</RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</FrameLayout>
