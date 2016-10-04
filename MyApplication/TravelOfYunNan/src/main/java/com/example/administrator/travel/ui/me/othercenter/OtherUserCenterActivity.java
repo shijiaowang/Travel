@@ -1,8 +1,10 @@
 package com.example.administrator.travel.ui.me.othercenter;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -11,9 +13,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -26,6 +30,8 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 
+import com.example.administrator.travel.ui.baseui.AppBarStateChangeListener;
+import com.example.administrator.travel.ui.baseui.SystemBarHelper;
 import com.example.administrator.travel.ui.me.othercenter.useralbum.OtherCenterAlbumFragment;
 import com.example.administrator.travel.ui.me.othercenter.userinfo.UserInfoFragment;
 import com.example.administrator.travel.ui.view.FlowLayout;
@@ -34,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -87,6 +94,7 @@ public class OtherUserCenterActivity extends AppCompatActivity implements View.O
     @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.app_bar_layout) AppBarLayout mAppBarLayout;
     @BindView(R.id.tv_name) TextView mTvName;
+    @BindColor(R.color.colorFAFAFA) @ColorInt int mBarColor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,6 +110,30 @@ public class OtherUserCenterActivity extends AppCompatActivity implements View.O
 
     protected void initData() {
         initChild();
+        //设置还没收缩时状态下字体颜色
+        mCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
+        //设置收缩后Toolbar上字体的颜色
+        mCollapsingToolbarLayout.setCollapsedTitleTextColor(mBarColor);
+        mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
+
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null)
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        SystemBarHelper.setHeightAndPadding(this,mToolbar);
+        SystemBarHelper.immersiveStatusBar(this);
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset) {
+                if (state==State.EXPANDED){
+                    mTvName.setVisibility(View.GONE);
+                }else if (state==State.COLLAPSED){
+                    mTvName.setVisibility(View.VISIBLE);
+                }else {
+                    mTvName.setVisibility(View.GONE);
+                }
+            }
+        });
         PagerAdapter adapter=new PagerAdapter(getSupportFragmentManager());
         mVpDynamic.setAdapter(adapter);
         mVpDynamic.setOffscreenPageLimit(3);
@@ -117,6 +149,7 @@ public class OtherUserCenterActivity extends AppCompatActivity implements View.O
 
             mFlTitle.setVisibility(View.GONE);
         }
+
         initAnimation();
     }
 
@@ -179,7 +212,16 @@ public class OtherUserCenterActivity extends AppCompatActivity implements View.O
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
 
+        if (item.getItemId() == android.R.id.home)
+        {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onClick(View v) {

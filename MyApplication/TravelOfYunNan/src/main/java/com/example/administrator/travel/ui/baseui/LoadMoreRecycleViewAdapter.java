@@ -1,6 +1,5 @@
 package com.example.administrator.travel.ui.baseui;
 
-import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,7 +16,7 @@ import java.util.List;
 
 public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<T> list;
-
+    protected View loaderView;
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_FOOTER = 1;
     public LoadMoreRecycleViewAdapter(List<T> list) {
@@ -61,6 +60,8 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
 
         public FooterViewHolder(View view) {
             super(view);
+            LoadMoreRecycleViewAdapter.this.loaderView =view;
+
         }
 
     }
@@ -87,6 +88,24 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
         {
 
             return (E) parentView.findViewById(id);
+        }
+    }
+
+    /**
+     * 开始加载
+     */
+    public void startLoading(){
+        if (loaderView!=null){
+            loaderView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 加载结束
+     */
+    public void endLoading(){
+        if (loaderView!=null){
+            loaderView.setVisibility(View.GONE);
         }
     }
 }

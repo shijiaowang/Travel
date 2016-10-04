@@ -2,4 +2,6 @@
 <resources>
     <item name="ssv_scroll" type="id"></item>
     <item name="bt_next" type="id"></item>
+    <item name="statusbar_view" type="id"/>
+    <item name="translucent_view" type="id"/>
 </resources>

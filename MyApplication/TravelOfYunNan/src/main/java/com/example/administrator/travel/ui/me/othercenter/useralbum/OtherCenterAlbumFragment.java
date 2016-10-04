@@ -2,14 +2,11 @@ package com.example.administrator.travel.ui.me.othercenter.useralbum;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.AbsListView;
-import android.widget.GridView;
-
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.adapter.OtherUserCenterAlbumAdapter;
+import com.example.administrator.travel.ui.baseui.loadMoreListener;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 
-import org.greenrobot.eventbus.EventBus;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +31,7 @@ public class OtherCenterAlbumFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        List list=new ArrayList();
+        final List list=new ArrayList();
         list.add(1);
         list.add(1);
         list.add(1);
@@ -46,8 +43,39 @@ public class OtherCenterAlbumFragment extends BaseFragment {
         list.add(1);
         list.add(1);
         list.add(1);
-        viewById.setAdapter(new OtherAlbumAdapter(list));
-        viewById.setLayoutManager(new LinearLayoutManager(getContext()));
+        final OtherAlbumAdapter adapter = new OtherAlbumAdapter(list);
+        viewById.setAdapter(adapter);
+        LinearLayoutManager layout = new LinearLayoutManager(getContext());
+        viewById.setLayoutManager(layout);
+        viewById.addOnScrollListener(new loadMoreListener(layout) {
+            @Override
+            public void onLoadMore(int childCount) {
+                adapter.startLoading();
+                x.task().run(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                            list.add(1);
+                            list.add(1);
+                            list.add(1);
+                           x.task().post(new Runnable() {
+                               @Override
+                               public void run() {
+                                   adapter.endLoading();
+                                   adapter.notifyDataSetChanged();
+                               }
+                           });
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+
+
+            }
+        });
     }
 
     @Override
