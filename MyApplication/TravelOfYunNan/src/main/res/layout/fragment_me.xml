@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -293,18 +294,21 @@
 
             </RelativeLayout>
             <!--Item的marginRight为15dp-->
-            <com.example.administrator.travel.ui.view.FlowLayout
+            <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/fl_label"
                 android:layout_width="match_parent"
+                app:showDivider="middle"
+                app:flexWrap="wrap"
+                app:dividerDrawable="@drawable/me_label_distance"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_title"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="27dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="8dp">
 
 
-            </com.example.administrator.travel.ui.view.FlowLayout>
+            </com.google.android.flexbox.FlexboxLayout>
 
             <View
                 android:layout_width="match_parent"

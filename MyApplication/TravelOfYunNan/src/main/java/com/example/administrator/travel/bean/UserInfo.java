@@ -7,25 +7,52 @@ import java.io.Serializable;
  */
 public class UserInfo implements Serializable{
         private static final long serialVersionUID = 2L;
-        private String id;
-        private String tel;
-        private String name;
-        private String pwd;
-        private String nick_name;
-        private String sex;
-        private String birthday;
-        private String province;
-        private String city;
-        private String email;
-        private String id_card;
-        private String drive_card;
-        private String run_card;
-        private String user_img;
-        private String content;
-        private String status;
-        private String add_time;
-        private String update_time;
+    private String id;
+    private String tel;
+    private String name;
+    private String pwd;
+    private String nick_name;
 
+    public String getBackground_img() {
+        return background_img;
+    }
+
+    public void setBackground_img(String background_img) {
+        this.background_img = background_img;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    private String sex;
+    private String birthday;
+    private String province;
+    private String city;
+    private String email;
+    private String id_card;
+    private String drive_card;
+    private String run_card;
+    private String user_img;
+    private String background_img;
+    private String content;
+    private String status;
+    private String type;
+    private String level;
+    private String add_time;
+    private String update_time;
         public String getId() {
             return id;
         }

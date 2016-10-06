@@ -34,6 +34,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
+
 /**
  * Created by wangyang on 2016/9/27 0027.
  */
@@ -47,6 +49,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
     protected String fileName;
     private Intent intent;//存放图片的uri
     private int currentCode;
+    private ImageView imageView;
 
 
     /**
@@ -332,9 +335,10 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
             bmp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
             flag = true;
             fileName = url;
-            x.image().bind(childViewShow(),url);
+            ImageView imageView =  childViewShow();
+            x.image().bind(imageView, url);
             childUpImage();
-            bmp.recycle();
+           bmp.recycle();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

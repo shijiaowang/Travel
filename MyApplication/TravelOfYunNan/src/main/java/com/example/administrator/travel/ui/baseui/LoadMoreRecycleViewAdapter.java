@@ -17,8 +17,8 @@ import java.util.List;
 public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<T> list;
     protected View loaderView;
-    private static final int TYPE_ITEM = 0;
-    private static final int TYPE_FOOTER = 1;
+    public static final int TYPE_ITEM = 0;
+    public static final int TYPE_FOOTER = 1;
     public LoadMoreRecycleViewAdapter(List<T> list) {
         this.list = list;
     }
@@ -46,13 +46,12 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
             View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.load_more,null);
             return new FooterViewHolder(inflate);
         }else if (viewType==TYPE_ITEM){
-
-            return normalHolder(LayoutInflater.from(parent.getContext()));
+            return normalHolder(LayoutInflater.from(parent.getContext()),parent,viewType);
         }
         return null;
     }
 
-    protected abstract RecyclerView.ViewHolder normalHolder(LayoutInflater context);
+    protected abstract RecyclerView.ViewHolder normalHolder(LayoutInflater context, ViewGroup parent, int viewType);
 
 
 

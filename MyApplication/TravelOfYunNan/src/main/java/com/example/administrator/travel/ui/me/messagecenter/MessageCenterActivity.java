@@ -15,6 +15,7 @@ import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.baseui.MessagePrivateActivity;
 import com.example.administrator.travel.ui.me.messagecenter.relateme.RelateMeActivity;
 import com.example.administrator.travel.ui.me.messagecenter.systemmessage.SystemMessageActivity;
+import com.example.administrator.travel.ui.view.BadgeView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
@@ -24,7 +25,7 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
-import su.levenetc.android.badgeview.BadgeView;
+
 
 /**
  * Created by wangyang on 2016/7/15 0015.
@@ -114,10 +115,10 @@ public class MessageCenterActivity extends LoadingBarBaseActivity<MessageCenterE
         MessageCenterBean object = GsonUtils.getObject(messageCenterEvent.getResult(), MessageCenterBean.class);
         MessageCenterBean.DataBean data = object.getData();
         int user = data.getUser();
-        mBvRelateMe.setValue(user);
-        mBvAppointDot.setValue(data.getTravel());
-        mBvSystemDot.setValue(data.getSystem());
-        mBvPrivateDot.setValue(data.getLetter());
+        mBvRelateMe.setBadgeCount(user);
+        mBvAppointDot.setBadgeCount(data.getTravel());
+        mBvSystemDot.setBadgeCount(data.getSystem());
+        mBvPrivateDot.setBadgeCount(data.getLetter());
     }
 
     @Override

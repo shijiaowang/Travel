@@ -2,7 +2,6 @@ package com.example.administrator.travel.ui.baseui;
 
 
 
-import android.content.Intent;
 import android.graphics.Typeface;
 
 import android.support.v4.app.Fragment;
@@ -21,7 +20,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.fragment.AppointFragment;
 import com.example.administrator.travel.ui.fragment.CircleFragment;
 import com.example.administrator.travel.ui.fragment.FindFragment;
-import com.example.administrator.travel.ui.fragment.HomeFragment;
+import com.example.administrator.travel.ui.home.HomeFragment;
 import com.example.administrator.travel.ui.me.me.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.TypefaceUtis;

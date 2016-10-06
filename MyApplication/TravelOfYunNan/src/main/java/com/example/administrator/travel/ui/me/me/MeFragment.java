@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.me.me;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +15,7 @@ import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.me.level.LevelActivity;
+import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
 import com.example.administrator.travel.ui.me.userservice.CustomerServiceActivity;
 import com.example.administrator.travel.ui.me.fansandfollow.FollowAndFanActivity;
 import com.example.administrator.travel.ui.baseui.HomeActivity;
@@ -27,15 +29,18 @@ import com.example.administrator.travel.ui.me.setting.SettingActivity;
 import com.example.administrator.travel.ui.me.myhobby.MyHobbyActivity;
 import com.example.administrator.travel.ui.me.mytheme.MyThemeActivity;
 import com.example.administrator.travel.ui.me.titlemanage.TitleManagementActivity;
+
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.ImageOptionsUtil;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
+import com.google.android.flexbox.FlexboxLayout;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 
@@ -46,6 +51,8 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * Created by wangyang on 2016/7/12 0012.
@@ -56,7 +63,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     public static final String FOLLOW_SELECT = "follow_select";//进入关注
     private LayoutInflater inflater;
     @BindView(R.id.fl_label)
-    FlowLayout mFlLabel;//称号
+    FlexboxLayout mFlLabel;//称号
     @BindView(R.id.tv_message_center)
     TextView mTvMessageCenter;
     @BindView(R.id.tv_follow_name)
@@ -91,7 +98,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     TextView mTvTitleEdit;
     @BindView(R.id.tv_level)
     TextView mTvLevel;
-    @BindView(R.id.iv_icon) ImageView mIvIcon;
+    @BindView(R.id.iv_icon)
+    ImageView mIvIcon;
     @BindView(R.id.iv_bg) ImageView mIvBg;
     @BindView(R.id.ll_hobby) LinearLayout mLlHobby;
     @BindView(R.id.ll_theme) LinearLayout mLlTheme;
@@ -278,13 +286,24 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         MeBean.DataBean data = meBean.getData();
         mTvFanNumber.setText(data.getFans());
         mTvFollowNumber.setText(data.getFollow());
-        MeBean.DataBean.UserBean user = data.getUser();
-        x.image().bind(mIvIcon,user.getUser_img());
+        UserInfo user = data.getUser();
+        ImageOptionsUtil.display(mIvIcon,user.getUser_img(),true);
         x.image().bind(mIvBg,user.getBackground_img());
         mTvNickName.setText(user.getNick_name());
         mTvProfile.setText(user.getContent());
         mTvLevel.setText("LV."+user.getLevel());
-        LogUtils.e(meEvent.getMessage());
+        List<UserLabelBean> user_label = data.getUser_label();
+        mFlLabel.removeAllViews();
+        if (user_label==null || user_label.size()==0){
+            return;
+        }
+        for (UserLabelBean userLabelBean:user_label){
+
+            TextView inflate = (TextView) inflater.inflate(R.layout.item_fragment_me_title, mFlLabel, false);
+            inflate.setText(userLabelBean.getName());
+            mFlLabel.addView(inflate);
+        }
+
     }
 
     /**
@@ -301,6 +320,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
     @Override
     protected ImageView childViewShow() {
+
         return upType==UP_BG?mIvBg:mIvIcon;
     }
 

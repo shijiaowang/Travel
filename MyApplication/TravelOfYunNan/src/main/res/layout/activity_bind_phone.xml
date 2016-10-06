@@ -26,13 +26,12 @@
                 android:text="当前手机号" />
         </LinearLayout>
 
-        <com.example.administrator.travel.ui.view.PhoneTextView
-            android:id="@+id/ptv_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="13579071102"
-            android:textColor="@color/colorFAFAFA" />
+        <com.example.administrator.travel.ui.view.LineEditText
+            android:inputType="phone"
+            android:id="@+id/et_phone"
+            android:maxLength="11"
+            style="@style/activityRegisterEditText"
+            android:hint="请输入手机号" />
 
         <LinearLayout
             android:layout_width="wrap_content"

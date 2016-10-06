@@ -18,6 +18,14 @@ public class MapUtils {
             stringMap.put(IVariable.KEY,GlobalUtils.getKey(context));
             return this;
         }
+        public Builder addUserName(String userName){
+            stringMap.put(IVariable.USERNAME,userName);
+            return this;
+        }
+        public Builder addPassword(String password){
+            stringMap.put(IVariable.PASSWORD,password);
+            return this;
+        }
         public Builder addJsonTravel(String json){
             stringMap.put(IVariable.JSON_TRAVEL,json);
             return this;
@@ -28,6 +36,14 @@ public class MapUtils {
         }
         public Builder addPageSize(){
             stringMap.put(IVariable.PAGE_SIZE,3+"");
+            return this;
+        }
+        public Builder addOldPassWord(String oldPass){
+            stringMap.put(IVariable.OLD_PASSWORD,oldPass);
+            return this;
+        }
+        public Builder addNewPassWord(String newPass){
+            stringMap.put(IVariable.NEW_PASSWORD,newPass);
             return this;
         }
         public Builder addPictureId(String pictureId){
@@ -76,6 +92,10 @@ public class MapUtils {
         }
         public Builder addCId(String cid){
             stringMap.put(IVariable.C_ID,cid);
+            return this;
+        }
+        public Builder addCode(String code){
+            stringMap.put(IVariable.CODE,code);
             return this;
         }
         public Builder addUserId(){

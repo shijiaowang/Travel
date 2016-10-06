@@ -14,8 +14,6 @@ import com.example.administrator.travel.utils.LogUtils;
  */
 public abstract class BaseFragment extends Fragment {
     public View root;
-    private boolean isPrepared=false;
-    private boolean isFirst=true;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,30 +35,12 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        isPrepared=true;
-    }
-    /**
-     * Fragment数据的懒加载
-     *
-     * @param isVisibleToUser
-     */
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser)
-    {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint() && isPrepared&& isFirst) {
-            LogUtils.e(this.getClass().getSimpleName());
-            isFirst=false;
-            initView();
-            initListener();
-            initData();
-        }
+        initView();
+        initListener();
+        initData();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
+
 
     protected abstract void initView();
     protected abstract void initData();

@@ -94,10 +94,9 @@
         <activity android:name=".ui.me.collectiondetail.CollectionDetailActivity"/>
         <activity android:name=".ui.me.userservice.CustomerServiceActivity"/>
         <activity android:name=".ui.me.previewpicture.PreviewPicturesActivity"/>
-        <activity android:name=".ui.baseui.ChangePhoneActivity"/>
+        <activity android:name=".ui.me.changephone.ChangePhoneActivity"/>
         <activity android:name=".ui.baseui.MessagePrivateActivity"/>
         <activity android:name=".ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity"/>
-        <activity android:name=".ui.baseui.ChangePhoneVerActivity"/>
         <activity android:name=".ui.me.myhobby.MyHobbyActivity"/>
         <activity android:name=".ui.baseui.PersonalProfileActivity"/>
         <activity android:name=".ui.baseui.HomeSearchActivity"/>
@@ -134,6 +133,7 @@
         <activity android:name=".ui.baseui.LoadAndRefreshBaseActivity" />
         <activity android:name=".ui.me.identityauth.idauth.IdAuthActivity" />
         <activity android:name=".ui.me.changepassword.ChangePassWordActivity" />
+        <activity android:name=".ui.me.changephone.bindphone.BindPhoneActivity" />
         <activity android:name=".ui.home.login.forgetpassword.ForgetPasswordActivity" />
     </application>
 

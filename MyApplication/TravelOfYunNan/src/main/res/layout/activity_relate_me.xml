@@ -70,10 +70,8 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <su.levenetc.android.badgeview.BadgeView
+            <com.example.administrator.travel.ui.view.BadgeView
                 android:layout_marginBottom="15dp"
-                app:badgePadding="5dp"
-
                 android:id="@+id/bv_number_discuss"
                 android:layout_marginRight="20dp"
                 style="@style/activityMessageCenterDot"
@@ -159,11 +157,10 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <su.levenetc.android.badgeview.BadgeView
+            <com.example.administrator.travel.ui.view.BadgeView
                 android:layout_marginBottom="15dp"
                 android:id="@+id/bv_number_aite"
                 android:layout_marginRight="20dp"
-                app:badgePadding="5dp"
                 style="@style/activityMessageCenterDot"
                 />
             <com.example.administrator.travel.ui.view.FontsIconTextView
@@ -249,10 +246,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <su.levenetc.android.badgeview.BadgeView
+            <com.example.administrator.travel.ui.view.BadgeView
                 android:layout_marginBottom="15dp"
                 android:id="@+id/bv_number_zan"
-                app:badgePadding="5dp"
                 android:layout_marginRight="20dp"
                 style="@style/activityMessageCenterDot"
                 />

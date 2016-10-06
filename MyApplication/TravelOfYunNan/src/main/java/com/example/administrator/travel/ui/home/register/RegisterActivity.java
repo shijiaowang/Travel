@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.View;
 import android.widget.TextView;
 
@@ -76,6 +77,9 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
                 mBtVer.setText("重发验证码");
                 mBtVer.setBackgroundResource(R.drawable.fragment_find_search_bg);
                 isSending = false;
+                mEtPhone.setFocusable(true);
+                mEtPhone.setClickable(true);
+                mEtPhone.setFocusableInTouchMode(true);
                 return;
             }
             mBtVer.setText("重发验证码(" + --verTime + ")");
@@ -137,7 +141,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
             requestAndSetErrorMessage(mEtPassword, getString(R.string.password_not_consistent));
             return;
         }
-        Map<String, String> map = MapUtils.Build().addKey(RegisterActivity.this).add(IVariable.USERNAME, phone).add(IVariable.PASSWORD, password).add(IVariable.CODE, ver).end();
+        Map<String, String> map = MapUtils.Build().addKey(this).addUserName(phone).addPassword(MD5Utils.encode(MD5Utils.encode(password))).add(IVariable.CODE, ver).end();
         XEventUtils.postUseCommonBackJson(IVariable.REGISTER_USER, map, REGISTER_REQ,new RegisterEvent());
     }
 
@@ -203,6 +207,9 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
             btIsClick(mBtVer, false);
             isSending = true;
             isSendVer = true;
+            mEtPhone.setFocusable(false);
+            mEtPhone.setClickable(false);
+            mEtPhone.setFocusableInTouchMode(false);
             mHandler.sendEmptyMessage(0);
 
         } else if (event.getType() == IVariable.TYPE_GET_KEY) {

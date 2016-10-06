@@ -1,14 +1,19 @@
 package com.example.administrator.travel.ui.me.albumselector;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -75,58 +80,78 @@ public class AlbumSelectorActivity extends BarBaseActivity {
             ToastUtils.showToast("SD卡未挂载");
         }
     }
-
+    /**
+     * 请求相关权限
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_STORAGE_READ_ACCESS_PERMISSION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    searchPhotoOnSd();
+                }
+                break;
+        }
+    }
     /**
      * 扫描SD卡图片
      */
     private void searchPhotoOnSd() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
+                    getString(R.string.permission_read_storage_rationale),
+                    REQUEST_STORAGE_READ_ACCESS_PERMISSION);
+        }else {
 
-        Uri imageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        ContentResolver mContentResolver = AlbumSelectorActivity.this.getContentResolver();
-        // 只查询jpeg和png的图片
-        Cursor mCursor = mContentResolver.query(imageUri, null,
-                MediaStore.Images.Media.MIME_TYPE + "=? or "
-                        + MediaStore.Images.Media.MIME_TYPE + "=?",
-                new String[]{"image/jpeg", "image/png"},
-                MediaStore.Images.Media.DATE_MODIFIED);
-        if (mCursor==null)return;
-        while (mCursor.moveToNext()) {
-            // 获取图片的路径
-            String path = mCursor.getString(mCursor
-                    .getColumnIndex(MediaStore.Images.Media.DATA));
-            // 获取该图片的父路径名
-            File parentFile = new File(path).getParentFile();
-            if (parentFile == null) {
-                continue;
-            }
-            String dirPath = parentFile.getAbsolutePath();
-            ImageFolder imageFolder = null;
-            if (mDirPaths.contains(dirPath)) {
-                continue;//继续下次
-            } else {
-                mDirPaths.add(dirPath);
-                imageFolder = new ImageFolder();
-                imageFolder.setDir(dirPath);
-                imageFolder.setFirstImagePath(path);
-                //计算当前文件夹一共有多少张图片
-                int dirCount = parentFile.list(new FilenameFilter() {
-                    @Override
-                    public boolean accept(File dir, String filename) {
-                        if (filename.endsWith(".jpg") || filename.endsWith(".jpeg") || filename.endsWith(".png")) {
-                            return true;
+            Uri imageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            ContentResolver mContentResolver = AlbumSelectorActivity.this.getContentResolver();
+            // 只查询jpeg和png的图片
+            Cursor mCursor = mContentResolver.query(imageUri, null,
+                    MediaStore.Images.Media.MIME_TYPE + "=? or "
+                            + MediaStore.Images.Media.MIME_TYPE + "=?",
+                    new String[]{"image/jpeg", "image/png"},
+                    MediaStore.Images.Media.DATE_MODIFIED);
+            if (mCursor == null) return;
+            while (mCursor.moveToNext()) {
+                // 获取图片的路径
+                String path = mCursor.getString(mCursor
+                        .getColumnIndex(MediaStore.Images.Media.DATA));
+                // 获取该图片的父路径名
+                File parentFile = new File(path).getParentFile();
+                if (parentFile == null) {
+                    continue;
+                }
+                String dirPath = parentFile.getAbsolutePath();
+                ImageFolder imageFolder = null;
+                if (mDirPaths.contains(dirPath)) {
+                    continue;//继续下次
+                } else {
+                    mDirPaths.add(dirPath);
+                    imageFolder = new ImageFolder();
+                    imageFolder.setDir(dirPath);
+                    imageFolder.setFirstImagePath(path);
+                    //计算当前文件夹一共有多少张图片
+                    int dirCount = parentFile.list(new FilenameFilter() {
+                        @Override
+                        public boolean accept(File dir, String filename) {
+                            if (filename.endsWith(".jpg") || filename.endsWith(".jpeg") || filename.endsWith(".png")) {
+                                return true;
+                            }
+                            return false;
                         }
-                        return false;
-                    }
-                }).length;
+                    }).length;
 
-                imageFolder.setCount(dirCount);
-                imageFolders.add(imageFolder);
+                    imageFolder.setCount(dirCount);
+                    imageFolders.add(imageFolder);
+                }
             }
+            mCursor.close();
+            mDirPaths = null;
+            //发送消息遍历完毕
+            mHandler.sendEmptyMessage(0);
         }
-        mCursor.close();
-        mDirPaths=null;
-        //发送消息遍历完毕
-        mHandler.sendEmptyMessage(0);
 
     }
 

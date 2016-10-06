@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.example.administrator.travel.ui.me.editalbum.EditAlbumActivity;
 
 import org.xutils.x;
@@ -26,23 +27,26 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private Context mContext;
     private List<MyAlbumBean.DataBean> mDatas;
 
-    public MyAlbumAdapter(Context mContext, List<MyAlbumBean.DataBean> mDatas) {
-        this.mContext = mContext;
+    public MyAlbumAdapter(Context context,List<MyAlbumBean.DataBean> mDatas) {
         this.mDatas = mDatas;
+        mContext=context;
     }
 
     @Override
     public int getItemViewType(int position) {
+
         if (position % 2 == 1) {
             return LENGTH_ITEM;
+        }else {
+            return SHORT_ITEM;
         }
-        return SHORT_ITEM;
     }
+
+
 
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         if (viewType == LENGTH_ITEM) {
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_my_album_length, parent, false);
             return new MyAlbumLengthHolder(inflate);
@@ -50,7 +54,6 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_my_album_short, parent, false);
             return new MyAlbumLengthHolder(inflate);
         }
-
     }
 
     @Override

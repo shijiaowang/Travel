@@ -143,7 +143,6 @@ public class XEventUtils {
                     message = ex.getMessage();
                 }
             }
-
             httpEvent.setMessage(message);
             LogUtils.e("取到消息失败了");
             EventBus.getDefault().post(httpEvent);

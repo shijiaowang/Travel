@@ -10,10 +10,9 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BaseCropPhotoActivity;
-import com.example.administrator.travel.ui.baseui.ChangePhoneActivity;
+import com.example.administrator.travel.ui.me.changephone.ChangePhoneActivity;
 import com.example.administrator.travel.ui.baseui.HomeActivity;
 import com.example.administrator.travel.ui.baseui.PersonalProfileActivity;
 import com.example.administrator.travel.ui.baseui.SplashActivity;
@@ -113,8 +112,10 @@ public class SettingActivity extends BaseCropPhotoActivity<SettingEvent> impleme
     protected void onSuccess(SettingEvent settingEvent) {
 
     }
+    @Override
+    protected void onFail(SettingEvent settingEvent) {
 
-
+    }
 
     @Override
     public void onClick(View v) {

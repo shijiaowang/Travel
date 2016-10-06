@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.me.othercenter.useralbum;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
@@ -19,7 +20,7 @@ public class OtherAlbumAdapter extends LoadMoreRecycleViewAdapter {
     }
 
     @Override
-    protected RecyclerView.ViewHolder normalHolder(LayoutInflater inflater) {
+    protected RecyclerView.ViewHolder normalHolder(LayoutInflater inflater, ViewGroup parent, int viewType) {
         return new AlbumAdapter(inflater.inflate(R.layout.item_fragment_album_in_other,null));
     }
 

@@ -49,8 +49,10 @@ public abstract class BaseActivity extends FragmentActivity {
     public static final int TYPE_LIKE_DISCUSS = 0;//点赞请求
     public static final int TYPE_DELETE = 4;//删除
     public static final int TYPE_SAVE = 6;//保存
-    public static final  int REQ_CODE=0;
-    public static final  int RESULT_CODE=1;
+    public static final int TYPE_VER_MSG = 8;//发送短信验证
+    public static final int TYPE_OTHER = 9;//其他
+    public static final  int REQ_CODE=10;
+    public static final  int RESULT_CODE=11;
     protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
     protected static final int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
 
@@ -278,6 +280,12 @@ public abstract class BaseActivity extends FragmentActivity {
         builder.setPositiveButton(positiveText, onPositiveButtonClickListener);
         builder.setNegativeButton(negativeText, onNegativeButtonClickListener);
         mAlertDialog = builder.show();
+    }
+
+    public  void setFcouse(View view,boolean b){
+        view.setClickable(b);
+        view.setFocusableInTouchMode(b);
+        view.setFocusable(b);
     }
 
 

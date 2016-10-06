@@ -6,8 +6,8 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    String DOMAIN_NAME="http://yuns.yunspeak.com/";
-    /*String DOMAIN_NAME = "http://192.168.1.38/";*/
+   /* String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
+    String DOMAIN_NAME = "http://192.168.1.20/";
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -33,6 +33,8 @@ public interface IVariable {
      */
 
     String REGISTER_USER = API_KEY + "User/register/";//注册
+    String RESET_PASSWORD = API_KEY + "User/resetPassword/";//重置密码
+    String RESET_PASSWORD_VER = API_KEY + "User/sendUsermsg/";//重置验证码
     String LOGIN_URL = API_KEY + "User/Login/";//登录
     /**
      * 圈子
@@ -68,6 +70,9 @@ public interface IVariable {
     String UPDATE_ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
+    String CHANGE_PHONE_VER_MSG = API_KEY + "User/sendUsermsg/";//更改绑定发送验证码
+    String GET_CURRENT_BIND_PHONE = API_KEY + "User/getNOwtel/";//获取绑定的手机号
+    String CHANGE_PASSWORD = API_KEY + "User/updatePassword/";//修改密码
     String CHANGE_USER_INFO = API_KEY + "User/updateUser/";//更改用户信息
     String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注列表
     String CREATE_ALBUM = API_KEY + "User/creatUserImg/";//创建相册
@@ -146,6 +151,8 @@ public interface IVariable {
     String C_NAME = "cname";
     String NAME = "name";//通用名字
     String PAGE_SIZE = "PageSize";//每一页有多少数据
+    String OLD_PASSWORD = "old_pwd";//老密码
+    String NEW_PASSWORD = "new_pwd";//老密码
     String PAGE = "Page";//第几页
 
     String FORUM_ID = "forum_id";//帖子id

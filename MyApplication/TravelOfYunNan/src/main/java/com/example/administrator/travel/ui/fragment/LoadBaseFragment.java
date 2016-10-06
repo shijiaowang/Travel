@@ -81,7 +81,6 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
             public void onLoad() {
                 LoadBaseFragment.this.load();
             }
-
             /**
              * 子类中修改
              * @return

@@ -21,6 +21,7 @@ import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MD5Utils;
+import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.NetworkUtils;
 import com.example.administrator.travel.utils.ShareUtil;
 import com.example.administrator.travel.utils.StringUtils;
@@ -134,12 +135,8 @@ public class WelcomeActivity extends FullTransparencyActivity {
             isNetWork = false;
         } else {
             //网络可用验证登录
-            Map<String, String> stringMap = new HashMap<>();
-            stringMap.put(IVariable.KEY, GlobalUtils.getKey(this));
-            stringMap.put(IVariable.USERNAME, userName);
-            stringMap.put(IVariable.PASSWORD, userPwd);
-            String url = IVariable.LOGIN_URL;
-            XEventUtils.postUseCommonBackJson(url, stringMap, IVariable.TYPE_POST_LOGIN, new WelcomeEvent());
+            Map<String, String> stringMap = MapUtils.Build().addKey(this).addUserName(userName).addPassword(userPwd).end();
+            XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, stringMap, IVariable.TYPE_POST_LOGIN, new WelcomeEvent());
         }
     }
 

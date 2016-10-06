@@ -13,7 +13,7 @@ import android.support.v7.widget.RecyclerView;
  * <p/>
  * 自定义RecylcerView上拉加载处理
  */
-public abstract class loadMoreListener extends RecyclerView.OnScrollListener
+public abstract class LoadMoreListener extends RecyclerView.OnScrollListener
 {
 
 
@@ -28,7 +28,7 @@ public abstract class loadMoreListener extends RecyclerView.OnScrollListener
 
     private LinearLayoutManager mLinearLayoutManager;
 
-    public loadMoreListener(LinearLayoutManager linearLayoutManager)
+    public LoadMoreListener(LinearLayoutManager linearLayoutManager)
     {
 
         this.mLinearLayoutManager = linearLayoutManager;

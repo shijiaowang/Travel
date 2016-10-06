@@ -53,7 +53,7 @@ public class MyAlbumActivity extends LoadingBarBaseActivity<MyAlbumEvent> implem
         mRvAlbum = (RecyclerView) LayoutInflater.from(this).inflate(R.layout.activity_my_album_content, null);
         if (mRvAlbum != null) {
             mXScroll.setPullLoadEnable(true);
-            mXScroll.setPullRefreshEnable(false);
+            mXScroll.setPullRefreshEnable(true);
             mXScroll.setIXScrollViewListener(this);
             mXScroll.setRefreshTime(getTime());
             mXScroll.setView(mRvAlbum);
@@ -101,8 +101,11 @@ public class MyAlbumActivity extends LoadingBarBaseActivity<MyAlbumEvent> implem
             mRvAlbum.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
             mRvAlbum.setItemAnimator(new DefaultItemAnimator());
             mTvAlbumSum.setText(getString(R.string.total_album, myAlbumBeanData.size()));
-        } else {
+        } else if (event.getType()==TYPE_LOAD){
             myAlbumBeanData.addAll(myAlbumBean.getData());
+            myAlbumAdapter.notifyDataSetChanged();
+        }else {
+            myAlbumBeanData=myAlbumBean.getData();
             myAlbumAdapter.notifyDataSetChanged();
         }
 

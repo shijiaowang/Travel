@@ -213,6 +213,11 @@ public class TitleManagementActivity extends LoadingBarBaseActivity<TitleManagem
     }
 
     @Override
+    protected void onFail(TitleManagementEvent titleManagementEvent) {
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         GlobalValue.count=0;

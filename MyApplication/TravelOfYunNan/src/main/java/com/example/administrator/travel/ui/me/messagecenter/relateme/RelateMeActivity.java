@@ -13,6 +13,7 @@ import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.me.messagecenter.MessageCenterEvent;
 import com.example.administrator.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
+import com.example.administrator.travel.ui.view.BadgeView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.XEventUtils;
@@ -21,7 +22,6 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
-import su.levenetc.android.badgeview.BadgeView;
 
 /**
  * Created by wangyang on 2016/8/26 0026.
@@ -78,9 +78,9 @@ public class RelateMeActivity extends LoadingBarBaseActivity<RelateMeEvent> impl
     protected void onSuccess(RelateMeEvent relateMeEvent) {
         RelateMeBean object = GsonUtils.getObject(relateMeEvent.getResult(), RelateMeBean.class);
         RelateMeBean.DataBean data = object.getData();
-        mBvNumberAite.setValue(data.getInform());
-        mBvNumberDiscuss.setValue(data.getReply());
-        mBvNumberZan.setValue(data.getLike());
+        mBvNumberAite.setBadgeCount(data.getInform());
+        mBvNumberDiscuss.setBadgeCount(data.getReply());
+        mBvNumberZan.setBadgeCount(data.getLike());
     }
 
     @Override

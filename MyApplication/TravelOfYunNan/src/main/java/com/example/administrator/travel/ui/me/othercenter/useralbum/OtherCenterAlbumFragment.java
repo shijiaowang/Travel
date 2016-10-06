@@ -3,7 +3,7 @@ package com.example.administrator.travel.ui.me.othercenter.useralbum;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.baseui.loadMoreListener;
+import com.example.administrator.travel.ui.baseui.LoadMoreListener;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 
 import org.xutils.x;
@@ -47,7 +47,7 @@ public class OtherCenterAlbumFragment extends BaseFragment {
         viewById.setAdapter(adapter);
         LinearLayoutManager layout = new LinearLayoutManager(getContext());
         viewById.setLayoutManager(layout);
-        viewById.addOnScrollListener(new loadMoreListener(layout) {
+        viewById.addOnScrollListener(new LoadMoreListener(layout) {
             @Override
             public void onLoadMore(int childCount) {
                 adapter.startLoading();

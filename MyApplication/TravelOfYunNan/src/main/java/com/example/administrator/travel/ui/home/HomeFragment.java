@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.fragment;
+package com.example.administrator.travel.ui.home;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -11,14 +11,19 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import android.widget.TextView;
+import butterknife.BindView;
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.ui.baseui.HomeSearchActivity;
 import com.example.administrator.travel.ui.adapter.HotSpotsItemDecoration;
 import com.example.administrator.travel.ui.adapter.ChosenAdapter;
 import com.example.administrator.travel.ui.adapter.HotSpotsAdapter;
 import com.example.administrator.travel.ui.adapter.TravelsAdapter;
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
+import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.fragment.homefragment.HomeActiveFragment;
+import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
 
 import java.util.ArrayList;
@@ -28,33 +33,46 @@ import java.util.List;
  * Created by Administrator on 2016/7/6 0006.
  * 主页Fragment
  */
-public class HomeFragment extends LoadBaseFragment implements View.OnClickListener {
+public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.OnClickListener {
     private static final int RECYCLE_VIEW_ITEM_SPACE=24;//子VIEW之间的间距
-    private ToShowAllGridView mGvChosen;//精选
-    private ChosenAdapter chosenAdapter;
-    private RecyclerView mRvHotSpots;
-    private ListView mLvTravels;
-    private ViewPager mVpActive;
-    private RelativeLayout mRlSearch;
+    public boolean isFirst=true;//避免进入主页已经调用onScrolled，造成未滑动边距就已经为0
+    @BindView(R.id.gv_chosen) ToShowAllGridView mGvChosen;//精选
+     ChosenAdapter chosenAdapter;
+    @BindView(R.id.rv_hot_spots) RecyclerView mRvHotSpots;
+    @BindView(R.id.lv_travels) ListView mLvTravels;
+    @BindView(R.id.vp_active) ViewPager mVpActive;
+    @BindView(R.id.rl_search) RelativeLayout mRlSearch;
+    @BindView(R.id.tv_focus)
+    TextView mTvFocus;
+
+
+
+
+
 
 
     @Override
-    protected int initLayoutRes() {
+    protected int initResLayout() {
         return R.layout.fragment_home;
     }
 
-
-
-    protected void initView() {
-        root.findViewById(R.id.tv_focus).requestFocus();//抢夺Ed的焦点,搜索框的
-        mGvChosen = (ToShowAllGridView) root.findViewById(R.id.gv_chosen);
-        mRvHotSpots = (RecyclerView) root.findViewById(R.id.rv_hot_spots);
-        mLvTravels = (ListView) root.findViewById(R.id.lv_travels);
-        mVpActive = (ViewPager) root.findViewById(R.id.vp_active);
-        mRlSearch = (RelativeLayout) root.findViewById(R.id.rl_search);
+    @Override
+    protected Fragment registerEvent() {
+        return this;
     }
-     public boolean isFirst=true;//避免进入主页已经调用onScrolled，造成未滑动边距就已经为0
+
+    @Override
+    public Class<? extends HttpEvent> registerEventType() {
+        return HomeEvent.class;
+    }
+
+    @Override
+    public void onSuccess(HomeEvent event) {
+
+    }
+
     protected void initListener() {
+        mTvFocus.requestFocus();
         mRlSearch.setOnClickListener(this);
         mRvHotSpots.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -76,7 +94,13 @@ public class HomeFragment extends LoadBaseFragment implements View.OnClickListen
         });
     }
 
-    protected void initData() {
+    @Override
+    protected void onLoad(int type) {
+        setState(LoadingPage.ResultState.STATE_SUCCESS);
+        iniData();
+    }
+
+    protected void iniData() {
         chosenAdapter = new ChosenAdapter(getActivity(), null);
         mGvChosen.setAdapter(chosenAdapter);
 
