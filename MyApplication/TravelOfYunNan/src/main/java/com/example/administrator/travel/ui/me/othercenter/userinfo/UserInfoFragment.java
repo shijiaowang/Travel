@@ -31,6 +31,11 @@ public class UserInfoFragment extends LoadBaseFragment<UserInfoEvent> {
     }
 
     @Override
+    public void onSuccess(UserInfoEvent userInfoEvent) {
+
+    }
+
+    @Override
     protected void initListener() {
             setState(LoadingPage.ResultState.STATE_SUCCESS);
     }

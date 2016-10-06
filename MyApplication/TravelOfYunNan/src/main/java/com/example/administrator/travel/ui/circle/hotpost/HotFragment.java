@@ -46,6 +46,18 @@ public class HotFragment extends LoadBaseFragment<HotEvent> {
     }
 
     @Override
+    public void onSuccess(HotEvent event) {
+                loadEnd(mLvCircleHot);
+                dealData(event);
+    }
+
+    @Override
+    protected void onFail(HotEvent event) {
+        super.onFail(event);
+        loadEnd(mLvCircleHot);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLvCircleHot = (XListView) inflate;
@@ -80,23 +92,7 @@ public class HotFragment extends LoadBaseFragment<HotEvent> {
         Map<String, String> hotMap = MapUtils.Build().addKey(getContext()).addUserId().addPageSize(10).addCount(count).end();
         XEventUtils.getUseCommonBackJson(IVariable.HOT_POST,hotMap,type,new HotEvent());
     }
-    @Subscribe
-   public void onEvent(HotEvent event){
-        loadEnd(mLvCircleHot);
-        if (event.isSuccess()){
-            try {
-                dealData(event);
-                setState(LoadingPage.ResultState.STATE_SUCCESS);
-            } catch (Exception e) {
-                e.printStackTrace();
-                setState(LoadingPage.ResultState.STATE_ERROR);
-            }
-        }else {
-            ToastUtils.showToast(event.getMessage());
-            setState(LoadingPage.ResultState.STATE_ERROR);
-        }
 
-   }
 
     private void dealData(HotEvent event) {
         HotPostBean hotPostBean = GsonUtils.getObject(event.getResult(), HotPostBean.class);

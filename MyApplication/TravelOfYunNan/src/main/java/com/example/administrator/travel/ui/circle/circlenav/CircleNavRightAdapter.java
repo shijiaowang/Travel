@@ -16,19 +16,11 @@ public class CircleNavRightAdapter extends TravelBaseAdapter<CircleNavRight.Righ
         super(mContext, mDatas);
     }
 
-    @Override
-    protected int testDataSize() {
-        return 10;
-    }
 
     @Override
     protected void initListener(BaseHolder baseHolder, CircleNavRight.RightCircle item, int position) {
 
     }
-
-
-
-
 
     @Override
     protected BaseHolder initHolder(int position) {

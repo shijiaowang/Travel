@@ -30,7 +30,7 @@
                     android:layout_height="73dp" />
 
                 <com.example.administrator.travel.ui.view.FontsIconTextView
-                    android:id="@+id/tv_change_phone"
+                    android:id="@+id/tv_change_icon"
                     android:paddingBottom="3dp"
                     android:layout_width="31dp"
                     android:layout_height="31dp"

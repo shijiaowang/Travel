@@ -1,5 +1,7 @@
 package com.example.administrator.travel.ui.appoint.aite;
 
+import com.example.administrator.travel.global.ParentBean;
+
 import java.util.List;
 
 /**

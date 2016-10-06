@@ -7,11 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.administrator.travel.utils.LogUtils;
+
 /**
  * Created by Administrator on 2016/7/7 0007.
  */
 public abstract class BaseFragment extends Fragment {
     public View root;
+    private boolean isPrepared=false;
+    private boolean isFirst=true;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,10 +37,24 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView();
-        initListener();
-        initData();
-
+        isPrepared=true;
+    }
+    /**
+     * Fragment数据的懒加载
+     *
+     * @param isVisibleToUser
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser)
+    {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint() && isPrepared&& isFirst) {
+            LogUtils.e(this.getClass().getSimpleName());
+            isFirst=false;
+            initView();
+            initListener();
+            initData();
+        }
     }
 
     @Override

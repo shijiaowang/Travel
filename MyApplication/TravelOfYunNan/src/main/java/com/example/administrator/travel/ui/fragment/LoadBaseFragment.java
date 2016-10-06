@@ -45,6 +45,8 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     protected View inflate;
     private boolean isSuccessed=false;
     private boolean isVisible=false;
+    private boolean isPrepared=false;
+    private boolean isFirst=true;
 
 
     @Override
@@ -72,8 +74,6 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
         loadingPage = new LoadingPage(getContext()) {
             @Override
             public View onCreateSuccessView() {
-
-
                 return  inflate;
             }
 
@@ -98,10 +98,12 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     }
 
     private void load() {
-        if (isVisible) {
+        if (isVisible && isPrepared && isFirst) {
+            isFirst=false;
             onLoad(TYPE_REFRESH);
-        }//第一次加载,使用刷新
+        }
     }
+
     /**
      * Fragment数据的懒加载
      *
@@ -110,12 +112,13 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser)
     {
-
         super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint() || !isVisible)
-        {
+        if (getUserVisibleHint()) {
+            LogUtils.e(this.getClass().getSimpleName());
             isVisible = true;
             load();
+        }else {
+            isVisible=false;
         }
     }
 
@@ -132,7 +135,6 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
                         T t = (T) event;
                         isSuccessed = true;
                         setState(LoadingPage.ResultState.STATE_SUCCESS);
-
                         onSuccess(t);
                         LogUtils.e("baseFragment加载成功");
                     } catch (Exception e) {
@@ -147,9 +149,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
             }
     }
 
-    public void onSuccess(T t) {
-
-    }
+    public abstract void onSuccess(T t);
 
     protected  void onFail(T event){
         if (!isSuccessed){
@@ -195,6 +195,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        isPrepared = true;
         initListener();
         loadData();
     }

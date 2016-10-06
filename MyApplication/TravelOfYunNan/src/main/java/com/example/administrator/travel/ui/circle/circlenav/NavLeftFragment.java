@@ -73,10 +73,7 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
     }
 
     private void firstReq() {
-        if (GlobalUtils.getUserInfo() == null) {
-            return;
-        }
-        Map<String, String> map = MapUtils.Build().addKey(getContext()).add("user_id", GlobalUtils.getUserInfo().getId()).end();
+        Map<String, String> map = MapUtils.Build().addKey(getContext()).addUserId().end();
         useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ,new NavLeftEvent());
     }
 
@@ -87,7 +84,6 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
         mLvLeftNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                LogUtils.e("正在点击导航" + position);
                 // TODO: 2016/8/23 0023 需要做取消请求
                 if (prePosition == position) {//重复点击或者加载中不让继续
                     return;
@@ -95,7 +91,6 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
                 if (useCommonBackJson != null) {
                     useCommonBackJson.cancel();
                     useCommonBackJson = null;
-                    LogUtils.e("取消啦");//如果点击过快就取消之前的
                 }
                 prePosition = position;
                 if (leftList != null) {
@@ -130,11 +125,9 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
 
     @Override
     protected void onLoad(int type) {
-        LogUtils.e("圈子加载数据页面开始加载了");
         if (isFirst) {
             isFirst = false;
             firstReq();
-            LogUtils.e("发送了第一次请求");
         } else {
             normalReq(cid);
         }
@@ -158,11 +151,9 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
         preCircleNavLeftPosition = position;
     }
 
-    @Subscribe
-    public void onEvent(NavLeftEvent event) {
-        LogUtils.e("圈子数据加载结束了");
+    @Override
+    public void onSuccess(NavLeftEvent event) {
         useCommonBackJson = null;
-        if (event.isSuccess()) {
             if (event.getType() == IVariable.FIRST_REQ) {
                 firstReq(event);//第一次请求
             } else {
@@ -170,19 +161,13 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
                     firstReq();//第一次就没有进行加载，所以为空，在这里重新加载
                     return;
                 }
-                LogUtils.e(event.getResult());
                 CircleNavRight circleNavRight = GsonUtils.getObject(event.getResult(), CircleNavRight.class);
                 rightList = circleNavRight.getData();
                 circleNavRightAdapter.notifyData(rightList);
             }
-            setState(LoadingPage.ResultState.STATE_SUCCESS);
-        } else {
-            ToastUtils.showToast(event.getMessage());
-            setState(LoadingPage.ResultState.STATE_ERROR);
-        }
     }
 
-    private void firstReq(HttpEvent event) {
+    private void firstReq(NavLeftEvent event) {
         Circle circle = GsonUtils.getObject(event.getResult(), Circle.class);
         leftList = circle.getData().getCircle_left();
         rightList = CircleUtils.circleRightBean2RightCircleList(circle.getData().getCircle_right());

@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.appoint.withme;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,14 +7,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.AppointWithMe;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
 import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import butterknife.BindView;
@@ -22,7 +21,7 @@ import butterknife.BindView;
 /**
  * Created by Administrator on 2016/7/21 0021.
  */
-public class AppointWithMeHolder extends BaseHolder<AppointWithMe.DataBean> {
+public class AppointWithMeHolder extends BaseHolder<AppointWithMeBean.DataBean> {
     @BindView(R.id.fl_title) FlowLayout mFlTitle;
     @BindView(R.id.tv_icon_love) FontsIconTextView mTvIconLove;
     @BindView(R.id.iv_bg) ImageView mIvBg;
@@ -39,7 +38,7 @@ public class AppointWithMeHolder extends BaseHolder<AppointWithMe.DataBean> {
     }
 
     @Override
-    protected void initItemDatas(AppointWithMe.DataBean datas, Context mContext, int position) {
+    protected void initItemDatas(AppointWithMeBean.DataBean datas, Context mContext, int position) {
         mTvDream.setText("理想地:"+datas.getRoutes());
         mTvHaveNumber.setText("已有:"+datas.getNow_people()+"人");
         mTvMoney.setText("预算：¥"+datas.getTotal_price());

@@ -28,10 +28,8 @@ import java.util.List;
  * Created by Administrator on 2016/7/6 0006.
  * 主页Fragment
  */
-public class HomeFragment extends BaseFragment implements View.OnClickListener {
+public class HomeFragment extends LoadBaseFragment implements View.OnClickListener {
     private static final int RECYCLE_VIEW_ITEM_SPACE=24;//子VIEW之间的间距
-
-
     private ToShowAllGridView mGvChosen;//精选
     private ChosenAdapter chosenAdapter;
     private RecyclerView mRvHotSpots;

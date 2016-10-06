@@ -35,8 +35,10 @@
                     android:layout_marginTop="163dp"
                     android:src="@drawable/fragment_me_icon" />
 
-                <ImageView
-                    android:id="@+id/iv_setting"
+                <com.example.administrator.travel.ui.view.FontsIconTextView
+                    android:id="@+id/tv_setting"
+                    android:text="@string/activity_message_center_setting"
+                    android:textColor="@color/colorFAFAFA"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_alignParentRight="true"
@@ -45,7 +47,7 @@
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:padding="10dp"
-                    android:src="@drawable/fragment_me_setting_small" />
+                   />
 
                 <TextView
                     android:id="@+id/tv_level"

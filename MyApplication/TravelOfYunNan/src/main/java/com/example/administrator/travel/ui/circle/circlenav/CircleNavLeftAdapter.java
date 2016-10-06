@@ -18,15 +18,9 @@ public class CircleNavLeftAdapter extends TravelBaseAdapter<Circle.DataBean.Circ
     }
 
     @Override
-    protected int testDataSize() {
-        return 20;
-    }
-
-    @Override
     protected void initListener(BaseHolder baseHolder, Circle.DataBean.CircleLeftBean item, int position) {
 
     }
-
 
     @Override
     protected BaseHolder initHolder(int position) {

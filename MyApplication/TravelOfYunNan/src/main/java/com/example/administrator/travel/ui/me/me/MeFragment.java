@@ -13,7 +13,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.example.administrator.travel.ui.me.level.LevelActivity;
 import com.example.administrator.travel.ui.me.userservice.CustomerServiceActivity;
 import com.example.administrator.travel.ui.me.fansandfollow.FollowAndFanActivity;
 import com.example.administrator.travel.ui.baseui.HomeActivity;
@@ -23,7 +23,7 @@ import com.example.administrator.travel.ui.me.myalbum.MyAlbumActivity;
 import com.example.administrator.travel.ui.me.myappoint.MyAppointActivity;
 import com.example.administrator.travel.ui.me.mycollection.MyCollectionActivity;
 import com.example.administrator.travel.ui.baseui.OrdersCenterActivity;
-import com.example.administrator.travel.ui.baseui.SettingActivity;
+import com.example.administrator.travel.ui.me.setting.SettingActivity;
 import com.example.administrator.travel.ui.me.myhobby.MyHobbyActivity;
 import com.example.administrator.travel.ui.me.mytheme.MyThemeActivity;
 import com.example.administrator.travel.ui.me.titlemanage.TitleManagementActivity;
@@ -71,8 +71,6 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     LinearLayout mLlAlbum;
     @BindView(R.id.ll_setting)
     LinearLayout mLlSetting;
-    @BindView(R.id.iv_setting)
-    ImageView mIvSetting;
     @BindView(R.id.tv_appoint)
     TextView mTvAppoint;
     @BindView(R.id.tv_my_collection)
@@ -97,6 +95,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     @BindView(R.id.iv_bg) ImageView mIvBg;
     @BindView(R.id.ll_hobby) LinearLayout mLlHobby;
     @BindView(R.id.ll_theme) LinearLayout mLlTheme;
+    @BindView(R.id.tv_setting) TextView mTvSetting;
     private int upType=-1;
     private static final int UP_BG=99;//上传背景
     private static final int UP_ICON=100;//上传头像
@@ -125,7 +124,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mTvFollowName.setOnClickListener(this);//关注
         mTvFollowNumber.setOnClickListener(this);
         mTvFanName.setOnClickListener(this);//粉丝
-        mTvFollowNumber.setOnClickListener(this);
+        mTvFollowNumber.setOnClickListener(this);//关注
+        mTvSetting.setOnClickListener(this);
         mLlSetting.setOnClickListener(this);//设置
         mLlAlbum.setOnClickListener(this);//相册
         mTvMyCollection.setOnClickListener(this);//我的收藏
@@ -139,7 +139,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mLlHobby.setOnClickListener(this);//我的兴趣
         mLlTheme.setOnClickListener(this);//我的主题
         mSwifeLayout.setOnRefreshListener(new MyRefreshListener());//刷新数据
-        mIvIcon.setOnClickListener(this);
+        mIvIcon.setOnClickListener(this);//更改头像
+
     }
 
     private void init() {
@@ -180,7 +181,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
             case R.id.ll_album:
                 startActivity(new Intent(getContext(), MyAlbumActivity.class));
                 break;
-            case R.id.iv_setting:
+            case R.id.tv_setting:
             case R.id.ll_setting:
                 Intent intent = new Intent(getContext(), SettingActivity.class);
                 startActivityForResult(intent, HomeActivity.REQ);
@@ -204,8 +205,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
                 startActivity(new Intent(getContext(), TitleManagementActivity.class));
                 break;
             case R.id.tv_level:
-                //startActivity(new Intent(getContext(), LevelActivity.class));
-                startActivity(new Intent(getContext(), OtherUserCenterActivity.class));
+                 startActivity(new Intent(getContext(), LevelActivity.class));
                 break;
             case R.id.iv_bg:
                 LinearLayout homeBottom = ((HomeActivity) getActivity()).getmLlBottom();

@@ -26,6 +26,7 @@ import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanActivit
 import com.example.administrator.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointCommonPop;
 import com.example.administrator.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
+import com.example.administrator.travel.ui.appoint.withme.PlayWithMeFragment;
 import com.example.administrator.travel.utils.FastBlur;
 
 import java.util.ArrayList;

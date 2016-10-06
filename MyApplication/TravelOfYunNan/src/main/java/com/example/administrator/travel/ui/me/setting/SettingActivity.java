@@ -1,9 +1,10 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.setting;
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,11 +12,17 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseCropPhotoActivity;
+import com.example.administrator.travel.ui.baseui.ChangePhoneActivity;
+import com.example.administrator.travel.ui.baseui.HomeActivity;
+import com.example.administrator.travel.ui.baseui.PersonalProfileActivity;
+import com.example.administrator.travel.ui.baseui.SplashActivity;
 import com.example.administrator.travel.ui.me.about.AboutActivity;
 import com.example.administrator.travel.ui.me.changepassword.ChangePassWordActivity;
 import com.example.administrator.travel.ui.view.PhoneTextView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.ShareUtil;
+import com.yalantis.ucrop.UCrop;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -23,11 +30,15 @@ import org.xutils.view.annotation.ViewInject;
  * Created by Administrator on 2016/7/22 0022.
  * 设置界面
  */
-public class SettingActivity extends LoadingBarBaseActivity implements View.OnClickListener {
+public class SettingActivity extends BaseCropPhotoActivity<SettingEvent> implements View.OnClickListener {
     @ViewInject(R.id.tv_user_id)
     private TextView mTvUserId;
     @ViewInject(R.id.tv_user_nick_name)
     private TextView mTvUserNickName;
+    @ViewInject(R.id.iv_icon)
+    private ImageView mIvIcon;
+    @ViewInject(R.id.tv_change_icon)
+    private TextView mTvChangeIcon;
     @ViewInject(R.id.tv_user_live_place)
     private TextView mTvUserLivePlace;
     @ViewInject(R.id.tv_user_sex)
@@ -51,17 +62,23 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     }
 
     @Override
-    protected void initEvent() {
+    protected void initChildListener() {
         mLlPhone.setOnClickListener(this);
         mLlProfile.setOnClickListener(this);
         mLlLogout.setOnClickListener(this);
         mLlAbout.setOnClickListener(this);
         mLlChangePassword.setOnClickListener(this);
+        mTvChangeIcon.setOnClickListener(this);
+    }
+
+    @Override
+    protected ImageView childViewShow() {
+        return mIvIcon;
     }
 
     @Override
     protected void onLoad(int typeRefresh) {
-
+         setIsProgress(false);
     }
 
 
@@ -79,7 +96,7 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
             e.printStackTrace();
         }
         setIsProgress(false);
-        return null;
+        return this;
     }
 
     @Override
@@ -93,9 +110,11 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
     }
 
     @Override
-    protected void onSuccess(HttpEvent o) {
+    protected void onSuccess(SettingEvent settingEvent) {
 
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -119,7 +138,15 @@ public class SettingActivity extends LoadingBarBaseActivity implements View.OnCl
             case R.id.ll_change_password:
                 startActivity(new Intent(this, ChangePassWordActivity.class));
                 break;
+            case R.id.tv_change_icon:
+                showPictureCutPop(mLlLogout);
+                break;
         }
+    }
+
+    @Override
+    protected void setOptions(UCrop.Options options) {
+        options.setCircleDimmedLayer(true);
     }
 
     @Override

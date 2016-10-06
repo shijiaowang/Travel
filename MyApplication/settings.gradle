@@ -1,2 +1,2 @@
-include 'TravelOfYunNan', 'pickerview', 'app', 'sample', ':ucrop', ':sampleUcrop', ':TravelOfYunNan'
+include 'pickerview', 'app', 'sample', ':ucrop', ':sampleUcrop', ':TravelOfYunNan'
 

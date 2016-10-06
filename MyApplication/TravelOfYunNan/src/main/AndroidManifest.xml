@@ -53,7 +53,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".ui.me.level.LevelActivity" />
-        <activity android:name=".ui.baseui.SettingActivity" />
+        <activity android:name=".ui.me.setting.SettingActivity" />
         <activity android:name=".ui.baseui.ActiveActivity" />
         <activity android:name=".ui.appoint.travelplan.TravelsPlanWithMeActivity" />
         <activity android:name=".ui.baseui.BarBaseActivity" />

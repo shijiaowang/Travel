@@ -1,11 +1,13 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.appoint.withme;
+
+import com.example.administrator.travel.global.ParentBean;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/7/21 0021.
  */
-public class AppointWithMe {
+public class AppointWithMeBean implements ParentBean{
 
     private int code;
     private String message;
