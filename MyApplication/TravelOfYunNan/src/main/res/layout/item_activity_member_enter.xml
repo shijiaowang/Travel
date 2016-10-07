@@ -17,6 +17,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/iv_icon"
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:src="@drawable/appoint_icon_test" />
@@ -41,7 +42,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="憨豆先生"
+                        android:id="@+id/tv_name"
                         android:textColor="#444444"
                         android:textSize="12sp" />
 
@@ -55,7 +56,6 @@
                         android:textSize="12sp" />
 
                     <com.example.administrator.travel.ui.view.FontsIconTextView
-                        android:id="@+id/tv_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
@@ -67,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
-                        android:text="125岁"
+                        android:id="@+id/tv_age"
                         android:textColor="@color/color767676"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -128,7 +128,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="我还有一位小伙伴我还有一位小伙伴我还有一位小伙伴我还有一位小伙伴，"
                     android:textSize="11sp" />
 
                 <TextView
@@ -146,6 +145,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -157,6 +157,7 @@
             android:layout_height="1dp"
             android:layout_weight="1"/>
         <TextView
+            android:id="@+id/tv_time"
             android:textSize="10sp"
             android:text="5分钟前"
             android:textColor="#c3c3c3"

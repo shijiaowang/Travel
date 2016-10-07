@@ -14,6 +14,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.me.level.LevelActivity;
 import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
 import com.example.administrator.travel.ui.me.userservice.CustomerServiceActivity;
@@ -213,7 +214,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
                 startActivity(new Intent(getContext(), TitleManagementActivity.class));
                 break;
             case R.id.tv_level:
-                 startActivity(new Intent(getContext(), LevelActivity.class));
+                 //startActivity(new Intent(getContext(), LevelActivity.class));
+                 startActivity(new Intent(getContext(), BaseToolBarActivity.class));
                 break;
             case R.id.iv_bg:
                 LinearLayout homeBottom = ((HomeActivity) getActivity()).getmLlBottom();

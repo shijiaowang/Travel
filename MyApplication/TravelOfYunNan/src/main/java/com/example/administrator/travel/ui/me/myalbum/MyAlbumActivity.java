@@ -31,15 +31,13 @@ import java.util.Map;
 public class MyAlbumActivity extends LoadingBarBaseActivity<MyAlbumEvent> implements View.OnClickListener {
     @ViewInject(R.id.tv_add)
     private FontsIconTextView mTvAdd;
-    @ViewInject(R.id.xs_scroll)
-    private XScrollView mXScroll;
     @ViewInject(R.id.tv_create_album)
     private TextView mTvCreateAlbum;
     @ViewInject(R.id.tv_sum)
     private TextView mTvAlbumSum;
     private List<MyAlbumBean.DataBean> myAlbumBeanData;
     private MyAlbumAdapter myAlbumAdapter;
-    private RecyclerView mRvAlbum;
+    RecyclerView mRvAlbum;
 
 
     @Override
@@ -50,14 +48,7 @@ public class MyAlbumActivity extends LoadingBarBaseActivity<MyAlbumEvent> implem
 
     @Override
     protected void initEvent() {
-        mRvAlbum = (RecyclerView) LayoutInflater.from(this).inflate(R.layout.activity_my_album_content, null);
-        if (mRvAlbum != null) {
-            mXScroll.setPullLoadEnable(true);
-            mXScroll.setPullRefreshEnable(true);
-            mXScroll.setIXScrollViewListener(this);
-            mXScroll.setRefreshTime(getTime());
-            mXScroll.setView(mRvAlbum);
-        }
+         mRvAlbum = (RecyclerView) findViewById(R.id.swipe_target);
         mTvCreateAlbum.setOnClickListener(this);
         mTvAdd.setOnClickListener(this);
     }

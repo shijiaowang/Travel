@@ -141,7 +141,7 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
             adapter.notifyDataSetChanged();
         } else if (t.getType() == TYPE_REFRESH) {
             httpData = (List<F>) e.getData();
-            adapter.notifyDataSetChanged();
+            adapter.notifyData(httpData);
         } else {
             doOtherSuccessData(t);
         }

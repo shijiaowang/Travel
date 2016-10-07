@@ -14,11 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/appoint_icon_test"
+            android:id="@+id/iv_icon"
             android:layout_width="42dp"
             android:layout_height="42dp" />
         <TextView
-            android:text="憨豆先生"
+            android:id="@+id/tv_name"
             android:textSize="12sp"
             android:textColor="#444444"
             android:layout_marginLeft="15dp"
@@ -26,7 +26,6 @@
             android:layout_height="wrap_content" />
         <com.example.administrator.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_sex"
-            android:text="@string/activity_member_detail_boy"
             android:layout_marginLeft="7dp"
             android:textColor="@color/color97bcf0"
             android:textSize="12sp"
@@ -41,7 +40,7 @@
             android:layout_height="wrap_content" />
         <TextView
             android:layout_marginLeft="4dp"
-            android:text="125岁"
+            android:id="@+id/tv_age"
             android:textColor="@color/color767676"
             android:textSize="11sp"
             android:layout_width="wrap_content"

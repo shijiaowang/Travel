@@ -116,7 +116,6 @@ public class OtherUserCenterActivity extends AppCompatActivity implements View.O
         mCollapsingToolbarLayout.setCollapsedTitleTextColor(mBarColor);
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
-
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null)
             supportActionBar.setDisplayHomeAsUpEnabled(true);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.administrator.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,31 +10,28 @@
         android:background="@color/colorFAFAFA"
         android:orientation="vertical">
 
-        <TextView
+        <Button
             android:id="@+id/tv_joined"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:gravity="center"
             android:text="已加入(4) ∨ "
+            android:background="@color/colorFAFAFA"
             android:textColor="@color/otherTitleBg"
             android:textSize="12sp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@drawable/gradient_line" />
 
-        <com.example.administrator.travel.ui.view.ToShowAllListView
-            android:id="@+id/lv_joined"
-            style="@style/commonListViewStyle"
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_joined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:dividerHeight="0dp">
+            android:overScrollMode="never"
+           />
 
-        </com.example.administrator.travel.ui.view.ToShowAllListView>
-
-        <TextView
+        <Button
             android:id="@+id/tv_enter"
+            android:background="@color/colorFAFAFA"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:gravity="center"
@@ -42,17 +39,12 @@
             android:textColor="@color/otherTitleBg"
             android:textSize="12sp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@drawable/gradient_line" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_enter"
+            android:overScrollMode="never"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
-</com.example.administrator.travel.ui.view.SlippingScrollView>
+</android.support.v4.widget.NestedScrollView>

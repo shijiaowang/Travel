@@ -1,0 +1,157 @@
+package com.example.administrator.travel.ui.me.memberdetail;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
+import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.StringUtils;
+import com.example.administrator.travel.utils.XEventUtils;
+
+import org.xutils.x;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by wangyang on 2016/7/6 0006.
+ * 申请加入
+ */
+public class MemberEnterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+    public static final  int TYPE_AGREE=100;
+    public static final  int TYPE_RESUSE=101;
+    private Context mContext;
+    private List<MemberDetailBean.DataBean.JoinBean> mDatas;
+    int okColor1=Color.parseColor("#5cd0c2");
+    int okColor2=Color.parseColor("#Ffbf75");
+
+    public MemberEnterAdapter(Context mContext, List<MemberDetailBean.DataBean.JoinBean> mDatas) {
+        this.mContext = mContext;
+        this.mDatas = mDatas;
+    }
+
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_member_enter, parent, false);
+        return new MemberDetailHolder(inflate);
+
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        final MemberDetailHolder memberDetailHolder = (MemberDetailHolder) holder;
+        MemberDetailBean.DataBean.JoinBean joinBean = mDatas.get(position);
+        x.image().bind(memberDetailHolder.mIvIcon,joinBean.getUser_img());
+        memberDetailHolder.mTvAge.setText(joinBean.getAge());
+        memberDetailHolder.mTvSex.setText(joinBean.getSex().equals("1")?R.string.activity_member_detail_boy:R.string.activity_member_detail_girl);
+        memberDetailHolder.mTvName.setText(joinBean.getNick_name());
+        if (StringUtils.isEmpty(joinBean.getContent())){
+            memberDetailHolder.mLlDiscuss.setVisibility(View.GONE);
+        }else {
+            memberDetailHolder.mLlDiscuss.setVisibility(View.VISIBLE);
+            memberDetailHolder.mTvCatAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeShowWay(memberDetailHolder.mTvDiscuss,memberDetailHolder.mTvCatAll);
+                }
+            });
+        }
+        if (joinBean.getState().equals("1")) {
+            memberDetailHolder.mTvDelete.setVisibility(View.VISIBLE);
+            memberDetailHolder.mTvOk.setTextColor(okColor1);
+            memberDetailHolder.mTvOkText.setVisibility(View.GONE);
+            memberDetailHolder.mTvOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                     /*   memberDetailHolder.mTvOk.setTextColor(okColor2);
+                        memberDetailHolder.mTvOkText.setVisibility(View.VISIBLE);
+                        memberDetailHolder.mTvDelete.setVisibility(View.GONE);*/
+                    event(position,"1",TYPE_AGREE);
+                }
+            });
+        }else {
+            memberDetailHolder.mTvOk.setClickable(false);
+            memberDetailHolder.mTvOk.setTextColor(okColor2);
+            memberDetailHolder.mTvOkText.setVisibility(View.VISIBLE);
+            memberDetailHolder.mTvDelete.setVisibility(View.GONE);
+        }
+        memberDetailHolder.mTvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                event(position,"2", TYPE_RESUSE);
+            }
+        });
+
+    }
+
+    private void event(int position, String type, int typeAgree) {
+        MemBerDetailEvent memBerDetailEvent=new MemBerDetailEvent();
+        memBerDetailEvent.setPosition(position);
+        Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addId(mDatas.get(position).getId()).addType(type).end();
+        XEventUtils.postUseCommonBackJson(IVariable.MY_APPOINT_AGREE_OR_REFUSE,end, typeAgree,memBerDetailEvent);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mDatas.size();
+    }
+
+
+    public class MemberDetailHolder extends RecyclerView.ViewHolder {
+
+         FontsIconTextView mTvOk;
+         TextView mTvDelete;
+         TextView mTvCatAll;
+         TextView mTvDiscuss;
+        TextView mTvOkText;
+        ImageView mIvIcon;
+        TextView mTvName;
+        TextView mTvSex;
+        TextView mTvAge;
+       LinearLayout mLlDiscuss;
+
+        public MemberDetailHolder(View itemView) {
+            super(itemView);
+            mTvOk = ((FontsIconTextView) itemView.findViewById(R.id.tv_ok));
+            mTvDelete = ((TextView) itemView.findViewById(R.id.tv_delete));
+            mTvCatAll = (TextView) itemView.findViewById(R.id.tv_cat_all);
+            mTvDiscuss = (TextView) itemView.findViewById(R.id.tv_discuss);
+            mTvOkText = (TextView) itemView.findViewById(R.id.tv_ok_text);
+            mIvIcon= (ImageView) itemView.findViewById(R.id.iv_icon);
+            mTvName = (TextView) itemView.findViewById(R.id.tv_name);
+            mTvSex = (TextView) itemView.findViewById(R.id.tv_sex);
+            mTvAge = (TextView) itemView.findViewById(R.id.tv_age);
+            mLlDiscuss = (LinearLayout) itemView.findViewById(R.id.ll_discuss);
+
+        }
+    }
+    /**
+     * 查看全部设置
+     */
+    private boolean isShowAllFlag=false;
+    private void changeShowWay(TextView show,TextView upOrDown) {
+        if (isShowAllFlag){
+            show.setEllipsize(TextUtils.TruncateAt.END);
+            show.setMaxLines(1);
+            upOrDown.setText(mContext.getResources().getString(R.string.down));
+        }else {
+            show.setEllipsize(null);
+            show.setMaxLines(Integer.MAX_VALUE);
+            upOrDown.setText(mContext.getResources().getString(R.string.up));
+        }
+        isShowAllFlag=!isShowAllFlag;
+    }
+
+
+}

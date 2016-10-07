@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fafafa"
     android:gravity="center_horizontal"
     android:orientation="vertical">
-
     <com.example.administrator.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_add"
         android:layout_width="55dp"
@@ -44,25 +44,28 @@
         android:text="@string/total_album"
         android:textColor="#fcae04"
         android:textSize="10sp" />
-      <LinearLayout
-          android:background="@color/meLine"
-          android:paddingTop="8dp"
-          android:layout_marginTop="13dp"
-          android:layout_width="match_parent"
-          android:gravity="center_horizontal"
-          android:layout_height="match_parent">
 
-          <com.example.administrator.travel.ui.view.refreshview.XScrollView
-              android:id="@+id/xs_scroll"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="13dp"
+        android:background="@color/meLine"
+        android:gravity="center_horizontal"
+        android:paddingTop="8dp"
+        app:swipe_style="classic">
 
-          </com.example.administrator.travel.ui.view.refreshview.XScrollView>
+        <include
+            android:id="@id/swipe_refresh_header"
+            layout="@layout/layout_twitter_header" />
 
-      </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@id/swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false" />
 
-
-
-
-
+        <include
+            android:id="@id/swipe_load_more_footer"
+            layout="@layout/layout_classic_footer" />
+    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
 </LinearLayout>

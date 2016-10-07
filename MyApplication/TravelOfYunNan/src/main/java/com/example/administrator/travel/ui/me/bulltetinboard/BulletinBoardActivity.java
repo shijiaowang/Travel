@@ -28,6 +28,7 @@ public class BulletinBoardActivity extends LoadingBarBaseActivity<BulletinBoardE
     private int count=0;
     private BulletinBoardAdapter bulletinBoardAdapter;
     private List<BulletinBoardBean.DataBean> mBeanData;
+    private String tId;
 
     @Override
     protected int setContentLayout() {
@@ -36,13 +37,14 @@ public class BulletinBoardActivity extends LoadingBarBaseActivity<BulletinBoardE
 
     @Override
     protected void initEvent() {
+        tId = getIntent().getStringExtra(IVariable.DATA);
         initXListView(mLvBulletinBoard,true,true);
     }
 
     @Override
     protected void onLoad(int type) {
         count = type==TYPE_LOAD?getListSize(mBeanData):0;
-        Map<String, String> bulletinMap = MapUtils.Build().addKey(this).addtId("3").addPageSize(10).addCount(count).end();
+        Map<String, String> bulletinMap = MapUtils.Build().addKey(this).addtId(tId).addPageSize(10).addCount(count).end();
         XEventUtils.getUseCommonBackJson(IVariable.BULLETIN_BOARD,bulletinMap,type,new BulletinBoardEvent());
     }
 

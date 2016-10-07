@@ -6,9 +6,8 @@
         <item name="android:windowNoTitle">true</item>
         <item name="colorAccent">@color/otherTitleBg</item>
     </style>
-
+    <style name="ToolBarTheme" parent="AppTheme.Base"></style>
     <style name="CreatePostTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
         <item name="android:statusBarColor">@color/otherTitleBg</item>
     </style>
 

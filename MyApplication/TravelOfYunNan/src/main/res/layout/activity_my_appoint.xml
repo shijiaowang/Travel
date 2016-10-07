@@ -1,15 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+   <LinearLayout
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="50dp">
+       <TextView
+           android:id="@+id/tv_entering"
+           android:text="报名中"
+           android:gravity="center"
+           android:textColor="@color/colorFAFAFA"
+           android:background="@color/otherTitleBg"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+       <TextView
+           android:text="以通过"
+           android:gravity="center"
+           android:id="@+id/tv_passed"
+           android:textColor="@color/colorFAFAFA"
+           android:background="@color/otherTitleBg"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+       <TextView
+           android:text="历史订单"
+           android:id="@+id/tv_history"
+           android:gravity="center"
+           android:textColor="@color/colorFAFAFA"
+           android:background="@color/otherTitleBg"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+       <TextView
+           android:text="找人带"
+           android:id="@+id/tv_with_me"
+           android:gravity="center"
+           android:textColor="@color/colorFAFAFA"
+           android:background="@color/otherTitleBg"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+
+   </LinearLayout>
     <com.example.administrator.travel.ui.view.refreshview.XListView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_marginTop="10dp"
-        android:scrollbars="none"
+
         android:id="@+id/lv_my_appoint"
         style="@style/commonListViewStyle"
-        android:dividerHeight="10dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="10dp"
+        android:dividerHeight="10dp"
+        android:scrollbars="none">
 
     </com.example.administrator.travel.ui.view.refreshview.XListView>
-
+</LinearLayout>

@@ -88,7 +88,7 @@
         <activity android:name=".ui.me.bulltetinboard.BulletinBoardActivity"/>
         <activity android:name=".ui.me.mycollection.MyCollectionActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanBaseActivity"/>
-        <activity android:name=".ui.appoint.memberdetail.MemberDetailActivity"/>
+        <activity android:name=".ui.me.memberdetail.MemberDetailActivity"/>
         <activity android:name=".ui.baseui.OrdersCenterActivity"/>
         <activity android:name=".ui.baseui.ConfirmOrdersActivity"/>
         <activity android:name=".ui.me.collectiondetail.CollectionDetailActivity"/>
@@ -135,6 +135,9 @@
         <activity android:name=".ui.me.changepassword.ChangePassWordActivity" />
         <activity android:name=".ui.me.changephone.bindphone.BindPhoneActivity" />
         <activity android:name=".ui.home.login.forgetpassword.ForgetPasswordActivity" />
+        <activity android:name=".ui.baseui.BaseToolBarActivity"
+            android:theme="@style/ToolBarTheme"
+            />
     </application>
 
 </manifest>

@@ -70,6 +70,8 @@ public interface IVariable {
     String UPDATE_ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
+    String MY_APPOINT_AGREE_OR_REFUSE = API_KEY + "Travel/agreeUsertoTravel/";//处理约伴同意还是拒绝
+    String MEMBER_DETAIL = API_KEY + "Travel/getTraveluserlists/";//成员详情
     String CHANGE_PHONE_VER_MSG = API_KEY + "User/sendUsermsg/";//更改绑定发送验证码
     String GET_CURRENT_BIND_PHONE = API_KEY + "User/getNOwtel/";//获取绑定的手机号
     String CHANGE_PASSWORD = API_KEY + "User/updatePassword/";//修改密码
