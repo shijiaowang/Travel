@@ -1,12 +1,11 @@
 package com.example.administrator.travel.ui.me.me;
 
-import android.app.DownloadManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,7 +14,6 @@ import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
-import com.example.administrator.travel.ui.me.level.LevelActivity;
 import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
 import com.example.administrator.travel.ui.me.userservice.CustomerServiceActivity;
 import com.example.administrator.travel.ui.me.fansandfollow.FollowAndFanActivity;
@@ -31,28 +29,29 @@ import com.example.administrator.travel.ui.me.myhobby.MyHobbyActivity;
 import com.example.administrator.travel.ui.me.mytheme.MyThemeActivity;
 import com.example.administrator.travel.ui.me.titlemanage.TitleManagementActivity;
 
-import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.LoadingPage;
+import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
-import com.example.administrator.travel.utils.ImageOptionsUtil;
-import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.UIUtils;
 import com.example.administrator.travel.utils.XEventUtils;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.generic.GenericDraweeHierarchy;
+import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
+import com.facebook.drawee.generic.RoundingParams;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.flexbox.FlexboxLayout;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
-
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -99,9 +98,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     TextView mTvTitleEdit;
     @BindView(R.id.tv_level)
     TextView mTvLevel;
-    @BindView(R.id.iv_icon)
-    ImageView mIvIcon;
-    @BindView(R.id.iv_bg) ImageView mIvBg;
+    @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
+    @BindView(R.id.iv_bg) SimpleDraweeView mIvBg;
     @BindView(R.id.ll_hobby) LinearLayout mLlHobby;
     @BindView(R.id.ll_theme) LinearLayout mLlTheme;
     @BindView(R.id.tv_setting) TextView mTvSetting;
@@ -289,8 +287,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mTvFanNumber.setText(data.getFans());
         mTvFollowNumber.setText(data.getFollow());
         UserInfo user = data.getUser();
-        ImageOptionsUtil.display(mIvIcon,user.getUser_img(),true);
-        x.image().bind(mIvBg,user.getBackground_img());
+        FrescoUtils.displayIcon(mIvIcon, Uri.parse(user.getBackground_img()));
+        //FrescoUtils.displayNormal(mIvBg, Uri.parse(user.getBackground_img()));
         mTvNickName.setText(user.getNick_name());
         mTvProfile.setText(user.getContent());
         mTvLevel.setText("LV."+user.getLevel());
@@ -321,7 +319,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
    }
 
     @Override
-    protected ImageView childViewShow() {
+    protected SimpleDraweeView childViewShow() {
 
         return upType==UP_BG?mIvBg:mIvIcon;
     }

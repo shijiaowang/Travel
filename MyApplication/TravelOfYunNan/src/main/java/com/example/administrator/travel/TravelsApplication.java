@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import org.xutils.x;
 
 import java.io.BufferedReader;
@@ -23,6 +25,7 @@ public class TravelsApplication extends Application {
     public void onCreate() {
         super.onCreate();
         x.Ext.init(this);
+        Fresco.initialize(this);
        /* x.Ext.setDebug(BuildConfig.DEBUG); // 开启debug会影响性能*/
         mContext = getApplicationContext();
         mHandler = new Handler();
