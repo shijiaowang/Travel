@@ -1,8 +1,7 @@
-package com.example.administrator.travel.ui.me.createalbum;
+package com.example.administrator.travel.ui.me.myalbum.createalbum;
 
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -13,12 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.baseui.BaseCropPhotoActivity;
-import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
-import com.example.administrator.travel.ui.me.me.CropPhotoBaseFragment;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -27,7 +22,6 @@ import com.example.administrator.travel.utils.XEventUtils;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 
-import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;

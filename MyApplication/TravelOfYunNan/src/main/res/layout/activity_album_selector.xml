@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.me.albumselector.AlbumSelectorActivity">
+    tools:context=".ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity">
     <ListView
         android:id="@+id/lv_photo"
         android:dividerHeight="3dp"

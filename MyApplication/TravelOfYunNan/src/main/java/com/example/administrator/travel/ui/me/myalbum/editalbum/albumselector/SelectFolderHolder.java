@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.albumselector;
+package com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector;
 
 import android.content.Context;
 import android.view.View;
@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.me.albumselector.ImageFolder;
 
 
 import org.xutils.x;

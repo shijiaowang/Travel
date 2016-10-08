@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:background="#efeff4"
         android:orientation="vertical"
-        tools:context="com.example.administrator.travel.ui.me.createalbum.CreateAlbumActivity">
+        tools:context=".ui.me.myalbum.createalbum.CreateAlbumActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"

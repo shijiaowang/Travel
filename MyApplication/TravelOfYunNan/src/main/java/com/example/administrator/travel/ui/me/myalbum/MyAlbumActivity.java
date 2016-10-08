@@ -3,74 +3,76 @@ package com.example.administrator.travel.ui.me.myalbum;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
-import com.example.administrator.travel.ui.me.createalbum.CreateAlbumActivity;
+import com.example.administrator.travel.ui.baseui.BaseLoadAndRefreshActivity;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
+import com.example.administrator.travel.ui.me.myalbum.createalbum.CreateAlbumActivity;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
-import com.example.administrator.travel.ui.view.refreshview.XScrollView;
+import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.List;
 import java.util.Map;
+
+import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/7/18 0018.
  * 我的相册
  */
-public class MyAlbumActivity extends LoadingBarBaseActivity<MyAlbumEvent> implements View.OnClickListener {
-    @ViewInject(R.id.tv_add)
+public class MyAlbumActivity extends BaseLoadAndRefreshActivity<MyAlbumEvent,MyAlbumBean,MyAlbumBean.DataBean> implements View.OnClickListener {
     private FontsIconTextView mTvAdd;
-    @ViewInject(R.id.tv_create_album)
     private TextView mTvCreateAlbum;
-    @ViewInject(R.id.tv_sum)
     private TextView mTvAlbumSum;
-    private List<MyAlbumBean.DataBean> myAlbumBeanData;
-    private MyAlbumAdapter myAlbumAdapter;
-    RecyclerView mRvAlbum;
-
-
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_my_album;
-    }
-
+    private boolean initAlbumSize=false;
 
     @Override
     protected void initEvent() {
-         mRvAlbum = (RecyclerView) findViewById(R.id.swipe_target);
-        mTvCreateAlbum.setOnClickListener(this);
+        super.initEvent();
+       // mVsContent.setLayoutResource(R.layout.activity_my_album_header);
+       // mVsContent.inflate();
+        View inflate = View.inflate(this, R.layout.activity_my_album_header, null);
+        mTvAdd = (FontsIconTextView) inflate.findViewById(R.id.tv_add);
+        mTvCreateAlbum = (TextView)inflate. findViewById(R.id.tv_create_album);
+        mTvAlbumSum = (TextView)inflate. findViewById(R.id.tv_sum);
         mTvAdd.setOnClickListener(this);
+        mTvCreateAlbum.setOnClickListener(this);
     }
 
     @Override
-    protected void onLoad(int type) {
-        int count = type == TYPE_REFRESH ? 0 : getListSize(myAlbumBeanData);
-        Map<String, String> albumMap = MapUtils.Build().addKey(this).addUserId().addPageSize().addCount(count).end();
-        XEventUtils.getUseCommonBackJson(IVariable.ALBUM_LIST, albumMap, type, new MyAlbumEvent());
+    protected void onSuccess(MyAlbumEvent event) {
+        super.onSuccess(event);
+        if (!initAlbumSize){
+            initAlbumSize=true;
+            MyAlbumBean myAlbumBean = GsonUtils.getObject(event.getResult(), MyAlbumBean.class);
+            int count = myAlbumBean.getData().get(0).getCount();
+            mTvAlbumSum.setText(getString(R.string.total_album,count));
+        }
+
     }
 
-
     @Override
-    protected Activity initViewData() {
+    protected Activity initDataAndRegisterEventBus() {
         return this;
     }
-
     @Override
-    protected String setTitleName() {
+    protected String initTitle() {
         return "我的相册";
     }
-
+    @Override
+    protected String initUrl() {
+        return IVariable.ALBUM_LIST;
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -81,35 +83,12 @@ public class MyAlbumActivity extends LoadingBarBaseActivity<MyAlbumEvent> implem
         }
 
     }
-
-
-    private void dealData(MyAlbumEvent event) {
-        MyAlbumBean myAlbumBean = GsonUtils.getObject(event.getResult(), MyAlbumBean.class);
-        if (myAlbumAdapter == null) {
-            myAlbumBeanData = myAlbumBean.getData();
-            myAlbumAdapter = new MyAlbumAdapter(this, myAlbumBeanData);
-            mRvAlbum.setAdapter(myAlbumAdapter);
-            mRvAlbum.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-            mRvAlbum.setItemAnimator(new DefaultItemAnimator());
-            mTvAlbumSum.setText(getString(R.string.total_album, myAlbumBeanData.size()));
-        } else if (event.getType()==TYPE_LOAD){
-            myAlbumBeanData.addAll(myAlbumBean.getData());
-            myAlbumAdapter.notifyDataSetChanged();
-        }else {
-            myAlbumBeanData=myAlbumBean.getData();
-            myAlbumAdapter.notifyDataSetChanged();
-        }
-
-
-    }
-
     @Override
-    public float getAlpha() {
-        return 1.0f;
+    protected boolean isGridLayoutManager() {
+        return true;
     }
-
     @Override
-    protected void onSuccess(MyAlbumEvent event) {
-        dealData(event);
+    protected BaseRecycleViewAdapter<MyAlbumBean.DataBean> initAdapter(List<MyAlbumBean.DataBean> mDatas) {
+        return new MyAlbumAdapter(mDatas,this);
     }
 }

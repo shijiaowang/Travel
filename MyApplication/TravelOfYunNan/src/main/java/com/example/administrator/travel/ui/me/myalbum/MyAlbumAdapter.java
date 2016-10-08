@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
-import com.example.administrator.travel.ui.me.editalbum.EditAlbumActivity;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.EditAlbumActivity;
 
 import org.xutils.x;
 
@@ -21,16 +21,15 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/6 0006.
  */
-public class MyAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean> {
     private static final int SHORT_ITEM = 1;
     private static final int LENGTH_ITEM = 2;
-    private Context mContext;
-    private List<MyAlbumBean.DataBean> mDatas;
 
-    public MyAlbumAdapter(Context context,List<MyAlbumBean.DataBean> mDatas) {
-        this.mDatas = mDatas;
-        mContext=context;
+
+    public MyAlbumAdapter(List<MyAlbumBean.DataBean> mDatas, Context mContext) {
+        super(mDatas, mContext);
     }
+
 
     @Override
     public int getItemViewType(int position) {

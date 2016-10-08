@@ -45,6 +45,7 @@ public abstract class BaseActivity extends FragmentActivity {
     public static final int TYPE_REFRESH = 3;//刷新
     public static final int TYPE_SEARCH = 5;//搜索
     public static final int TYPE_UPDATE = 7;//更新
+    public static final int TYPE_UP_FILE = 12;//上传文件
     public static final int TYPE_DISCUSS = 2;//留言
     public static final int TYPE_LIKE_DISCUSS = 0;//点赞请求
     public static final int TYPE_DELETE = 4;//删除

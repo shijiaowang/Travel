@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.pictureselector;
+package com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector;
 
 import android.content.Context;
 import android.graphics.Color;

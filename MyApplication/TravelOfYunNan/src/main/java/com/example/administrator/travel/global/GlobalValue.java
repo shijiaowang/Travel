@@ -22,6 +22,7 @@ public class GlobalValue {
     public static  int selectTitleNumber;//选中的标签个数
     public static  int mAppointType;//发布约伴类型
 
+
     public static int clickPosition=-1;//点击的目的地
 
     public static int choicePropType=0;//租用道具选项

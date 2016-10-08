@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.pictureselector;
+package com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,13 +7,14 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.me.albumselector.ImageFolder;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.ImageFolder;
 import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.me.albumselector.AlbumSelectorActivity;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
-import com.example.administrator.travel.ui.me.previewpicture.PreviewPicturesActivity;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity;
 import com.example.administrator.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -168,20 +169,18 @@ public class PictureSelectorActivity extends BarBaseActivity implements View.OnC
    public void onEvent(PictureSelectorEvent event){
         if (adapter!=null){
             adapter.notifyDataSetChanged();
-            mTvSend.setText("发送("+GlobalValue.mSelectImages+")");
+            mTvSend.setText("发送("+GlobalValue.mSelectImages.size()+")");
         }
    }
     private void sendPicture() {
         if (GlobalValue.mSelectImages == null || GlobalValue.mSelectImages.size() == 0) {
             ToastUtils.showToast("对不起，你尚未选中任何图片");
         } else {
-            CreatePostEvent createPostEvent = new CreatePostEvent();
-            createPostEvent.setType(IVariable.SEND_PICTURE);
-            createPostEvent.setIsSuccess(true);
-            createPostEvent.setmImages(GlobalValue.mSelectImages);
-            GlobalValue.mSelectImages = null;
-            EventBus.getDefault().post(createPostEvent);
+            UpPhotoEvent upPhotoEvent=new UpPhotoEvent();
+            upPhotoEvent.setList(GlobalValue.mSelectImages);
+            EventBus.getDefault().post(upPhotoEvent);
             setResult(AlbumSelectorActivity.SEND_PICTURE);
+            GlobalValue.mSelectImages = null;
             finish();
         }
     }

@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.pictureselector;
+package com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,7 +10,6 @@ import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.File;

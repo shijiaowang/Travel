@@ -1,12 +1,14 @@
 package com.example.administrator.travel.ui.me.myalbum;
 
+import com.example.administrator.travel.global.ParentBean;
+
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/9/26 0026.
  */
 
-public class MyAlbumBean {
+public class MyAlbumBean implements ParentBean{
 
 
 
@@ -48,9 +50,16 @@ public class MyAlbumBean {
         private String add_time;
         private String status;
         private String cover_img;
+        private int count;
         private String browse;
         private String like;
+        public int getCount() {
+            return count;
+        }
 
+        public void setCount(int count) {
+            this.count = count;
+        }
         public String getId() {
             return id;
         }

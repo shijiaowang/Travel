@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.albumselector;
+package com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -23,7 +23,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
-import com.example.administrator.travel.ui.me.pictureselector.PictureSelectorActivity;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity;
 import com.example.administrator.travel.utils.ToastUtils;
 
 import org.xutils.view.annotation.ViewInject;

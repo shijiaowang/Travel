@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.editalbum;
+package com.example.administrator.travel.ui.me.myalbum.editalbum;
 
 import java.util.List;
 

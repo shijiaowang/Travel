@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.pictureselector;
+package com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector;
 
 /**
  * Created by wangyang on 2016/9/28 0028.

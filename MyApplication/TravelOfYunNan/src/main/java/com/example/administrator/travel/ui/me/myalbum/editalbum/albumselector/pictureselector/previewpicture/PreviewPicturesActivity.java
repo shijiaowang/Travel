@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.previewpicture;
+package com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,8 +13,9 @@ import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.pageranim.ZoomOutPageTransformer;
 import com.example.administrator.travel.ui.baseui.BaseActivity;
-import com.example.administrator.travel.ui.me.albumselector.AlbumSelectorActivity;
-import com.example.administrator.travel.ui.me.pictureselector.PictureSelectorEvent;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorEvent;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.ToastUtils;
 
@@ -155,13 +156,11 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
             ToastUtils.showToast("对不起，你尚未选中任何图片");
         }else {
             sendFlag = true;
-            CreatePostEvent createPostEvent = new CreatePostEvent();
-            createPostEvent.setmImages(mTempImage);
-            createPostEvent.setType(IVariable.SEND_PICTURE);
-            createPostEvent.setIsSuccess(true);
-            GlobalValue.mSelectImages=null;
-            EventBus.getDefault().post(createPostEvent);
+            UpPhotoEvent upPhotoEvent=new UpPhotoEvent();
+            upPhotoEvent.setList(GlobalValue.mSelectImages);
+            EventBus.getDefault().post(upPhotoEvent);
             setResult(AlbumSelectorActivity.SEND_PICTURE);
+            GlobalValue.mSelectImages = null;
             finish();
         }
     }

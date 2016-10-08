@@ -1,11 +1,10 @@
-package com.example.administrator.travel.ui.me.editalbum;
+package com.example.administrator.travel.ui.me.myalbum.editalbum;
 
 
 
 import android.content.Context;
 import android.view.View;
 
-import com.example.administrator.travel.bean.EditAlbum;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 

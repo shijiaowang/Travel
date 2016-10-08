@@ -29,6 +29,11 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
         return list.size() + 1;
     }
 
+    public void setList(List<T> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemViewType(int position) {
         // 最后一个item设置为footerView

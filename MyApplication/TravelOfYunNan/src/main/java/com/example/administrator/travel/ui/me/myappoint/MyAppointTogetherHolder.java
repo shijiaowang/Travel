@@ -91,7 +91,7 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
       String desText="约伴订单";
       try {
           String[] stringArray = mContext.getResources().getStringArray(R.array.together_appoint);
-          int i = Integer.parseInt(state);
+          int i = Integer.parseInt(state)-1;
           desText=stringArray[i];
       } catch (Exception e) {
           e.printStackTrace();

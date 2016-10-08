@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.createalbum;
+package com.example.administrator.travel.ui.me.myalbum.createalbum;
 
 import com.example.administrator.travel.event.HttpEvent;
 

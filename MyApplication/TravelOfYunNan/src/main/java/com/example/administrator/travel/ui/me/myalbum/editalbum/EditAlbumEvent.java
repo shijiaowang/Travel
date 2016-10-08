@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.editalbum;
+package com.example.administrator.travel.ui.me.myalbum.editalbum;
 
 import com.example.administrator.travel.event.HttpEvent;
 
@@ -7,4 +7,5 @@ import com.example.administrator.travel.event.HttpEvent;
  */
 
 public class EditAlbumEvent extends HttpEvent {
+
 }

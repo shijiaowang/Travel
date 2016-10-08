@@ -27,7 +27,8 @@ import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.CreatePostPhotoAdapter;
 import com.example.administrator.travel.ui.appoint.aite.AiteActivity;
-import com.example.administrator.travel.ui.me.albumselector.AlbumSelectorActivity;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.fragment.EmojiFragment;
 import com.example.administrator.travel.utils.DensityUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -366,19 +367,20 @@ public class CreatePostActivity extends FragmentActivity implements View.OnClick
             ToastUtils.showToast(event.getMessage());
         }
     }
+    @Subscribe
+    public void onEvent(UpPhotoEvent event) {
+        pictures.clear();
+        pictures.addAll(event.getList());
+        if (pictures.size() != 12 && !pictures.contains("add")) {
+            pictures.add(addFlag);
+        }
+        createPostPhotoAdapter.notifyData(pictures);
+
+    }
 
     private void dealData(CreatePostEvent event) {
-        if (event.getType() == IVariable.SEND_PICTURE) {
-            pictures.clear();
-            pictures.addAll(event.getmImages());
-            if (pictures.size() != 12 && !pictures.contains("add")) {
-                pictures.add(addFlag);
-            }
-            createPostPhotoAdapter.notifyData(pictures);
-        } else {
             ToastUtils.showToast("创建成功");
             finish();
-        }
     }
 
     @Override

@@ -45,8 +45,8 @@
         <activity android:name=".ui.appoint.adddestination.AddCustomDestinationActivity" />
         <activity android:name=".ui.me.fansandfollow.FollowAndFanActivity" />
         <activity android:name=".ui.me.myalbum.MyAlbumActivity" />
-        <activity android:name=".ui.me.createalbum.CreateAlbumActivity" />
-        <activity android:name=".ui.me.editalbum.EditAlbumActivity" />
+        <activity android:name=".ui.me.myalbum.createalbum.CreateAlbumActivity" />
+        <activity android:name=".ui.me.myalbum.editalbum.EditAlbumActivity" />
         <activity android:name=".ui.baseui.CatOtherUserAlbumActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
@@ -63,7 +63,7 @@
         <activity android:name=".ui.baseui.ActivateDetailActivity"/>
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentActivity"/>
         <activity android:name=".ui.baseui.DeliciousDetailActivity"/>
-        <activity android:name=".ui.me.pictureselector.PictureSelectorActivity"/>
+        <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity"/>
         <activity android:name=".ui.baseui.OrdersDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"
             android:windowSoftInputMode="adjustPan"
@@ -93,7 +93,7 @@
         <activity android:name=".ui.baseui.ConfirmOrdersActivity"/>
         <activity android:name=".ui.me.collectiondetail.CollectionDetailActivity"/>
         <activity android:name=".ui.me.userservice.CustomerServiceActivity"/>
-        <activity android:name=".ui.me.previewpicture.PreviewPicturesActivity"/>
+        <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity"/>
         <activity android:name=".ui.me.changephone.ChangePhoneActivity"/>
         <activity android:name=".ui.baseui.MessagePrivateActivity"/>
         <activity android:name=".ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity"/>
@@ -104,7 +104,7 @@
         <activity android:name=".ui.me.identityauth.IdentityAuthenticationActivity"/>
         <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
         <activity android:name=".ui.me.messagecenter.systemmessage.SystemMessageActivity"/>
-        <activity android:name=".ui.me.albumselector.AlbumSelectorActivity"/>
+        <activity android:name=".ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity"/>
         <activity android:name=".ui.me.about.AboutActivity"/>
         <activity android:name=".ui.appoint.createsuccess.CreateAppointSuccessActivity"/>
         <activity android:name=".ui.appoint.desremark.DesRemarkActivity"

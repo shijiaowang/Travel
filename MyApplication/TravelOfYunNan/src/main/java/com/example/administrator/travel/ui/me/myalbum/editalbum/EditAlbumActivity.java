@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.editalbum;
+package com.example.administrator.travel.ui.me.myalbum.editalbum;
 
 
 import android.app.Activity;
@@ -15,9 +15,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.me.albumselector.AlbumSelectorActivity;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.baseui.BaseCropPhotoActivity;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
@@ -27,6 +29,7 @@ import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.Callback;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -34,14 +37,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.ButterKnife;
-
 /**
  * 编辑相册  powered by wangyang
  */
 
 public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> implements View.OnClickListener {
 
+    private static final boolean TYPE_EDIT_ALBUM =true;
     @ViewInject(R.id.rl_toggle)
     private RelativeLayout mRlToggle;
 
@@ -66,6 +68,8 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
     private TextView mTvCount;
     private TextView mTvDes;
     private ListView mLvPhoto;
+    private int index;
+    private List<String> pictureList;
 
 
     @Override
@@ -207,9 +211,15 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
                editAlbumAdapter.notifyDataSetChanged();
            }
            ToastUtils.showToast(event.getMessage());
+       }else if (event.getType()==TYPE_UP_FILE){
+          ToastUtils.showToast("第"+index+"张上传成功。");
+          index++;
+          if (pictureList!=null && pictureList.size()-1>=index) {
+              upPicture(pictureList.get(index));
+          }
        }else {
-           dealLoadData(event);
-       }
+          dealLoadData(event);
+      }
 
 
 
@@ -262,15 +272,45 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
     }
 
     @Override
+    protected void onFail(EditAlbumEvent editAlbumEvent) {
+        if (editAlbumEvent.getType()==TYPE_UP_FILE){
+            ToastUtils.showToast("第"+index+"张上传失败。");
+            index++;
+            if (pictureList!=null && pictureList.size()-1>=index) {
+                upPicture(pictureList.get(index));
+            }
+        }else {
+            super.onFail(editAlbumEvent);
+        }
+    }
+
+    @Override
     protected boolean rootIsLinearLayout() {
         return false;
+    }
+    @Subscribe
+   public void onEvent(UpPhotoEvent event){
+        pictureList = event.getList();
+        if (pictureList==null || pictureList.size()==0)return;
+        index = 0;
+        upPicture(pictureList.get(index));
+
+    }
+
+    private void upPicture(String s) {
+        Map<String, String> upAlbum = MapUtils.Build().addKey(this).addUserId().addId(id).end();
+        List<String> files=new ArrayList<>();
+        files.add(s);
+        XEventUtils.postFileCommonBackJson(IVariable.ADD_ALBUM_PHOTO,upAlbum,files,TYPE_UP_FILE,new EditAlbumEvent());
+        ToastUtils.showToast("正在上传第"+index+"张图片");
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_photo:
-                startActivity(new Intent(this, AlbumSelectorActivity.class));
+                Intent intent = new Intent(this, AlbumSelectorActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_set_cover:
                 hideSoftWore(mEtDes);
@@ -313,4 +353,8 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
     protected boolean canScrollToChangeTitleBgColor() {
         return true;
     }
+
+
+
 }
+
