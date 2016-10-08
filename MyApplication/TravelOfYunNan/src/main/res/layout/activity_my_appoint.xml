@@ -3,48 +3,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-   <LinearLayout
+   <RadioGroup
+       android:background="@color/colorFAFAFA"
        android:orientation="horizontal"
        android:layout_width="match_parent"
-       android:layout_height="50dp">
-       <TextView
+       android:layout_height="40dp">
+       <RadioButton
+           style="@style/myAppointRadioButton"
            android:id="@+id/tv_entering"
            android:text="报名中"
-           android:gravity="center"
-           android:textColor="@color/colorFAFAFA"
-           android:background="@color/otherTitleBg"
-           android:layout_weight="1"
-           android:layout_width="0dp"
-           android:layout_height="match_parent" />
-       <TextView
-           android:text="以通过"
-           android:gravity="center"
+           />
+       <View
+           android:layout_gravity="center_vertical"
+           android:layout_width="1dp"
+           android:background="@color/color969696"
+           android:layout_height="20dp"/>
+       <RadioButton
+           android:text="已通过"
            android:id="@+id/tv_passed"
-           android:textColor="@color/colorFAFAFA"
-           android:background="@color/otherTitleBg"
-           android:layout_weight="1"
-           android:layout_width="0dp"
-           android:layout_height="match_parent" />
-       <TextView
-           android:text="历史订单"
-           android:id="@+id/tv_history"
-           android:gravity="center"
-           android:textColor="@color/colorFAFAFA"
-           android:background="@color/otherTitleBg"
-           android:layout_weight="1"
-           android:layout_width="0dp"
-           android:layout_height="match_parent" />
-       <TextView
+           style="@style/myAppointRadioButton"/>
+       <View
+           android:layout_gravity="center_vertical"
+           android:background="@color/color969696"
+           android:layout_width="1dp"
+           android:layout_height="20dp"/>
+       <RadioButton
            android:text="找人带"
            android:id="@+id/tv_with_me"
-           android:gravity="center"
-           android:textColor="@color/colorFAFAFA"
-           android:background="@color/otherTitleBg"
-           android:layout_weight="1"
-           android:layout_width="0dp"
-           android:layout_height="match_parent" />
+           style="@style/myAppointRadioButton" />
 
-   </LinearLayout>
+   </RadioGroup>
     <com.example.administrator.travel.ui.view.refreshview.XListView
 
         android:id="@+id/lv_my_appoint"

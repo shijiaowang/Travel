@@ -236,4 +236,14 @@
         <item name="android:textSize">10sp</item>
         <item name="android:textColor">#a5a5a5</item>
     </style>
+    <!--我的约伴 文字-->
+    <style name="myAppointRadioButton" >
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/select_text_selector</item>
+    </style>
+
 </resources>

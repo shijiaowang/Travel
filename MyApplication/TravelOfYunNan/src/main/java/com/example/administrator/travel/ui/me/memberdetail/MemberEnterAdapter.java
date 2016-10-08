@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.me.memberdetail;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.xutils.x;
 
 import java.util.List;
@@ -40,6 +42,9 @@ public class MemberEnterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mDatas = mDatas;
     }
 
+    public void setmDatas(List<MemberDetailBean.DataBean.JoinBean> mDatas) {
+        this.mDatas = mDatas;
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -74,10 +79,8 @@ public class MemberEnterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             memberDetailHolder.mTvOk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                     /*   memberDetailHolder.mTvOk.setTextColor(okColor2);
-                        memberDetailHolder.mTvOkText.setVisibility(View.VISIBLE);
-                        memberDetailHolder.mTvDelete.setVisibility(View.GONE);*/
-                    event(position,"1",TYPE_AGREE);
+
+                    event(memberDetailHolder.getAdapterPosition(),"1",TYPE_AGREE);
                 }
             });
         }else {
@@ -89,10 +92,48 @@ public class MemberEnterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         memberDetailHolder.mTvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                event(position,"2", TYPE_RESUSE);
+               // event(position,"2", TYPE_RESUSE);
+                MemBerDetailEvent memBerDetailEvent=new MemBerDetailEvent();
+                memBerDetailEvent.setPosition(position);
+                memBerDetailEvent.setType(TYPE_RESUSE);
+                memBerDetailEvent.setIsSuccess(true);
+                EventBus.getDefault().post(memBerDetailEvent);
             }
         });
 
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position, List<Object> payloads) {
+        super.onBindViewHolder(holder, position, payloads);
+        //判断数据更改是否为空，说明是新增的，直接去绑定数据
+        if (payloads == null || payloads.isEmpty()) {
+            onBindViewHolder(holder,position);
+            return;
+        }
+        if (!(holder instanceof MemberDetailHolder)) {
+            return;
+        }
+        //如果不为空，说明有部分数据发生了更改，那么只要根据数据去更新变更的UI即可
+        final MemberDetailHolder memberDetailHolder = (MemberDetailHolder) holder;
+        Bundle bundle = (Bundle) payloads.get(0);
+        String content = bundle.getString(IVariable.DATA);
+        if (content.equals("2")) {
+            memberDetailHolder.mTvOk.setClickable(false);
+            memberDetailHolder.mTvOk.setTextColor(okColor2);
+            memberDetailHolder.mTvOkText.setVisibility(View.VISIBLE);
+            memberDetailHolder.mTvDelete.setVisibility(View.GONE);
+        }else {
+            memberDetailHolder.mTvDelete.setVisibility(View.VISIBLE);
+            memberDetailHolder.mTvOk.setTextColor(okColor1);
+            memberDetailHolder.mTvOkText.setVisibility(View.GONE);
+            memberDetailHolder.mTvOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   event(memberDetailHolder.getAdapterPosition(),"1",TYPE_AGREE);
+                }
+            });
+        }
     }
 
     private void event(int position, String type, int typeAgree) {

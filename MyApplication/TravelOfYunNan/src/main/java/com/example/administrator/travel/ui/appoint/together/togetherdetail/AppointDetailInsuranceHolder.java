@@ -5,10 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.PricebasecBean;
+import com.example.administrator.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-
-import org.xutils.view.annotation.ViewInject;
 
 import butterknife.BindView;
 

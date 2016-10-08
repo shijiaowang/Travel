@@ -27,7 +27,6 @@ import butterknife.BindView;
  */
 public class MyAppointingWithMeHolder extends BaseHolder<Object> {
     @BindView(R.id.iv_icon) ImageView mIvIcon;
-    @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.tv_price) TextView mTvPrice;
     @BindView(R.id.tv_delete) TextView mTvDelete;
     @BindView(R.id.tv_icon_love) FontsIconTextView mTvIconLove;

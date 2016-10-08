@@ -9,18 +9,11 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
-import com.example.administrator.travel.ui.appoint.together.AppointTogetherBean;
-import com.example.administrator.travel.ui.baseui.AppointWithMeDetailActivity;
+import com.example.administrator.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
 import com.example.administrator.travel.ui.baseui.LoadAndPullBaseFragment;
-import com.example.administrator.travel.ui.me.messagecenter.appointmessage.AppointMessageAdapter;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
-import com.example.administrator.travel.utils.GsonUtils;
-import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.XEventUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 

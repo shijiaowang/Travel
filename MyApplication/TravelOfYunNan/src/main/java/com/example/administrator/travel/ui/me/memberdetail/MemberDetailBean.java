@@ -1,5 +1,7 @@
 package com.example.administrator.travel.ui.me.memberdetail;
 
+import com.example.administrator.travel.global.DataParentBean;
+
 import java.util.List;
 
 /**
@@ -71,7 +73,7 @@ public class MemberDetailBean {
             this.join_ing = join_ing;
         }
 
-        public static class JoinBean {
+        public static class JoinBean implements DataParentBean{
             private String status;
             private String state;
             private String content;

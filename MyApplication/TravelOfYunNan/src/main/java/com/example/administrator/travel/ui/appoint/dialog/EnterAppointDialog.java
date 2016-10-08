@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
@@ -22,6 +23,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.lineplan.LinePlanEvent;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointDetailMorePop;
+import com.example.administrator.travel.ui.me.myappoint.MyAppointActivity;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
@@ -39,7 +41,7 @@ import org.xutils.common.util.DensityUtil;
 public class EnterAppointDialog {
 
 
-    public static void showDialogSuccess(Context context) {
+    public static void showDialogSuccess(final Context context) {
         //创建视图
         View dialogView = View.inflate(context, R.layout.dialog_appoint_enlist_success, null);
        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
@@ -48,6 +50,12 @@ public class EnterAppointDialog {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+            }
+        });
+        dialogView.findViewById(R.id.tv_my_appoint).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, MyAppointActivity.class));
             }
         });
         Window window = dialog.getWindow(); //得到对话框

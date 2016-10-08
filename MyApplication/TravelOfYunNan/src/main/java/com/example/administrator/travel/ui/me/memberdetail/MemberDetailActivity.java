@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.me.memberdetail;
 
 
 import android.app.Activity;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,12 +15,14 @@ import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 
 import org.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +46,7 @@ public class MemberDetailActivity extends LoadingBarBaseActivity<MemBerDetailEve
     private List<MemberDetailBean.DataBean.JoinBean> joined;
     private List<MemberDetailBean.DataBean.JoinBean> joing;
     private MemberEnterAdapter memberEnterAdapter;
+    private List<MemberDetailBean.DataBean.JoinBean> newDatas;
 
 
     @Override
@@ -99,20 +103,40 @@ public class MemberDetailActivity extends LoadingBarBaseActivity<MemBerDetailEve
                 break;
             case MemberEnterAdapter.TYPE_AGREE:
                 int position = memBerDetailEvent.getPosition();
-                joing.get(position).setState("2");
                 memberEnterAdapter.notifyDataSetChanged();
+                newDatas = new ArrayList<>(joing);
+                newDatas.get(position).setState("2");
+                changeData(newDatas);
                 break;
             case MemberEnterAdapter.TYPE_RESUSE:
                 int position1 = memBerDetailEvent.getPosition();
-                joing.remove(position1);
                 mTvEnter.setText(getString(R.string.text_downing, getListSize(joing)));
+                //利用DiffUtil.calculateDiff()方法，传入一个规则DiffUtil.Callback对象，和是否检测移动item的 boolean变量，得到DiffUtil.DiffResult 的对象
+                newDatas = new ArrayList<>(joing);
+                MemberDetailBean.DataBean.JoinBean remove = newDatas.remove(position1);
+                LogUtils.e(remove.getNick_name()+"是第"+position1+"个孩子");
+                //changeData(newDatas);
                 memberEnterAdapter.notifyItemRemoved(position1);
-                memberEnterAdapter.notifyItemRangeChanged(0,joing.size());
-
-
+                memberEnterAdapter.notifyItemRangeChanged(position1,joing.size()-position1);
+                joing=newDatas;
+                memberEnterAdapter.setmDatas(joing);
                 break;
         }
 
+
+    }
+
+    /**
+     * 更新数据
+     * @param newDatas
+     */
+    private void changeData(List<MemberDetailBean.DataBean.JoinBean> newDatas) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MemberDiffCallback(joing, newDatas), true);
+        //利用DiffUtil.DiffResult对象的dispatchUpdatesTo（）方法，传入RecyclerView的Adapter，轻松成为文艺青年
+        //别忘了将新数据给Adapter
+        diffResult.dispatchUpdatesTo(memberEnterAdapter);
+        joing = newDatas;
+        memberEnterAdapter.setmDatas(joing);
 
     }
 

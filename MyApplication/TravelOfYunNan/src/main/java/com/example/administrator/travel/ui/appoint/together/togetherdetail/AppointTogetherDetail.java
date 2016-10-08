@@ -2,7 +2,7 @@ package com.example.administrator.travel.ui.appoint.together.togetherdetail;
 
 
 import com.example.administrator.travel.bean.PeopleBean;
-import com.example.administrator.travel.bean.PricebasecBean;
+import com.example.administrator.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 
 import java.util.List;
 

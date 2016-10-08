@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.me.myappoint;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -29,13 +30,11 @@ public class MyAppointActivity extends LoadAndRefreshBaseActivity<MyAppointEvent
     @ViewInject(R.id.lv_my_appoint)
     private XListView mLvMyAppoint;
     @ViewInject(R.id.tv_entering)
-    private TextView mTvEntering;
+    private RadioButton mTvEntering;
     @ViewInject(R.id.tv_passed)
-    private TextView mTvPassed;
-    @ViewInject(R.id.tv_history)
-    private TextView mTvHistory;
+    private RadioButton mTvPassed;
     @ViewInject(R.id.tv_with_me)
-    private TextView mTvWithMe;
+    private RadioButton mTvWithMe;
 
     @Override
     protected int setContentLayout() {
@@ -45,7 +44,10 @@ public class MyAppointActivity extends LoadAndRefreshBaseActivity<MyAppointEvent
 
     @Override
     protected Activity initViewData() {
+        TextView mTvHistory = getmTvRightIcon();
+        mTvHistory.setText("历史订单");
         mTvEntering.setOnClickListener(this);
+        mTvEntering.setChecked(true);
         mTvPassed.setOnClickListener(this);
         mTvHistory.setOnClickListener(this);
         mTvWithMe.setOnClickListener(this);
@@ -110,7 +112,7 @@ public class MyAppointActivity extends LoadAndRefreshBaseActivity<MyAppointEvent
                 type=WITH_ME;
                 toRefresh();
                 break;
-            case R.id.tv_history:
+            case R.id.tv_right_icon:
                 type=HISTORY;
                 toRefresh();
                 break;

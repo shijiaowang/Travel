@@ -71,7 +71,7 @@
         <activity android:name=".ui.appoint.costsetting.CostSettingActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
-        <activity android:name=".ui.baseui.AppointWithMeDetailActivity"/>
+        <activity android:name=".ui.appoint.withme.withmedetail.AppointWithMeDetailActivity"/>
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentWithMeActivity"/>
         <activity android:name=".ui.baseui.BaseTransActivity"
             />

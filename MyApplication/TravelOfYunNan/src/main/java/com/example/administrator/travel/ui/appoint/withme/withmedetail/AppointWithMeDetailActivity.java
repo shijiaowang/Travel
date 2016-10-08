@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.appoint.withme.withmedetail;
 
 import android.app.Activity;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,14 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.AppointWithMeDetail;
 import com.example.administrator.travel.bean.PeopleBean;
-import com.example.administrator.travel.bean.PricebasecBean;
-import com.example.administrator.travel.event.AppointDetailEvent;
+import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointDetailEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointDetailHaveEnterAdapter;
 import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointDetailInsuranceAdapter;
-import com.example.administrator.travel.ui.adapter.AppointWithMeDetailDestinationAdapter;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
@@ -134,9 +132,9 @@ public class AppointWithMeDetailActivity extends LoadingBarBaseActivity<AppointD
 
 
     private void dealData(AppointDetailEvent event) {
-        AppointWithMeDetail appointWithMeDetail = GsonUtils.getObject(event.getResult(), AppointWithMeDetail.class);
+        AppointWithMeDetailBean appointWithMeDetail = GsonUtils.getObject(event.getResult(), AppointWithMeDetailBean.class);
         try {
-            AppointWithMeDetail.DataBean data = appointWithMeDetail.getData();
+            AppointWithMeDetailBean.DataBean data = appointWithMeDetail.getData();
            mTvDay.setText(FormatDateUtils.FormatLongTime("MM-dd",data.getAdd_time()));
            mTvTime.setText(FormatDateUtils.FormatLongTime("HH:mm",data.getAdd_time()));
             x.image().bind(mIvUserIcon, data.getUser_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(30), DensityUtil.dip2px(30)));
@@ -181,7 +179,7 @@ public class AppointWithMeDetailActivity extends LoadingBarBaseActivity<AppointD
             pricebasec.add(pricebasecBean);
             mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
             measureHeight(mLvInsurance);
-            List<AppointWithMeDetail.DataBean.RoutesBean> routes = data.getRoutes();
+            List<AppointWithMeDetailBean.DataBean.RoutesBean> routes = data.getRoutes();
             if (routes!=null && routes.size()!=0){
                 mLvRouteLine.setAdapter(new AppointWithMeDetailDestinationAdapter(this,routes));
             }

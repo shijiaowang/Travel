@@ -28,10 +28,10 @@ public interface IVariable {
     String CREATE_WITH_ME = API_KEY + "Travel/addTravelplan/";//发布约伴-找人带
     String BULLETIN_BOARD = API_KEY + "UserTravel/getBulletinlists/";//我的约伴-公告栏
     String APPOINT_CLICK_ZAN = API_KEY + "Travel/isLikeTravel/";//约伴点赞
+    String ENTER_APPOINT = API_KEY + "UserTravel/setIntoTravel/";//约伴报名
     /**
      * 登录
      */
-
     String REGISTER_USER = API_KEY + "User/register/";//注册
     String RESET_PASSWORD = API_KEY + "User/resetPassword/";//重置密码
     String RESET_PASSWORD_VER = API_KEY + "User/sendUsermsg/";//重置验证码

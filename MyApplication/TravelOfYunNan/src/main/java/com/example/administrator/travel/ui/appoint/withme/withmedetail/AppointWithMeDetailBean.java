@@ -1,11 +1,13 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.appoint.withme.withmedetail;
+
+import com.example.administrator.travel.bean.PeopleBean;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/8 0008.
+ * Created by wangyang on 2016/9/8 0008.
  */
-public class AppointWithMeDetail {
+public class AppointWithMeDetailBean {
 
 
 

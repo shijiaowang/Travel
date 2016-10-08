@@ -11,8 +11,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.PeopleBean;
-import com.example.administrator.travel.bean.PricebasecBean;
-import com.example.administrator.travel.event.AppointDetailEvent;
+import com.example.administrator.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.adapter.TravelDetailLineAdapter;
@@ -26,6 +25,8 @@ import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.ImageOptionsUtil;
 import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.StringUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.XEventUtils;
 
@@ -42,6 +43,7 @@ import java.util.Map;
  * 一起玩约伴详情
  */
 public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<AppointDetailEvent> implements View.OnClickListener {
+    private static final int TYPE_ENTER_APPOINT=95;
     @ViewInject(R.id.tv_start_add)
     private TextView mTvStartAdd;
     @ViewInject(R.id.tv_end_add)
@@ -114,6 +116,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
 
     private List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists=new ArrayList<>();
     private TextView mTvRight;
+    private String id;
 
 
     @Override
@@ -133,9 +136,9 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
     }
 
     @Override
-    protected void onLoad(int typeRefresh) {
+    protected void onLoad(int type) {
         Map<String, String> travelDetailMap = MapUtils.Build().addKey(this).addUserId().add(IVariable.TID,tId).end();
-        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER_DETAIL, travelDetailMap, 0, new AppointDetailEvent());
+        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER_DETAIL, travelDetailMap,TYPE_REFRESH, new AppointDetailEvent());
     }
 
     @Override
@@ -155,9 +158,24 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
 
     @Override
     protected void onSuccess(AppointDetailEvent appointDetailEvent) {
-        dealData(appointDetailEvent);
+        switch (appointDetailEvent.getType()){
+            case TYPE_REFRESH:
+                dealData(appointDetailEvent);
+                break;
+            case TYPE_ENTER_APPOINT:
+                EnterAppointDialog.showDialogSuccess(this);
+                break;
+        }
+
     }
 
+    @Override
+    protected void onFail(AppointDetailEvent appointDetailEvent) {
+        super.onFail(appointDetailEvent);
+        if (appointDetailEvent.getType()==TYPE_ENTER_APPOINT){
+           // ToastUtils.showToast(appointDetailEvent.getMessage());
+        }
+    }
 
     /**
      * 填充数据
@@ -203,6 +221,7 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
      * @param data
      */
     private void initSomeData(AppointTogetherDetail.DataBean data) {
+        id = data.getId();
         mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
         x.image().bind(mIvAppointBg, data.getTravel_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(116), DensityUtil.dip2px(116)));
         x.image().bind(mIvUserIcon, data.getUser_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(30), DensityUtil.dip2px(30)));
@@ -220,8 +239,8 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
         mTvContent.setText(data.getContent());
         mTvDay.setText(FormatDateUtils.FormatLongTime("MM-dd", data.getAdd_time()));
         mTvTime.setText(FormatDateUtils.FormatLongTime("hh:mm", data.getAdd_time()));
-        mTvDayAndNight.setText(data.getMeet_address()+"出发  "+ CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
-        mTvStartAndLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStart_time())+"至"+FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
+        mTvStartAndLong.setText(data.getMeet_address()+"出发  "+ CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
+        mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStart_time())+"至"+FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
         mTvHaveNumber.setText("已有："+data.getNow_people()+"人");
         mTvPlanNumber.setText("计划："+data.getMax_people()+"人");
         mTvLine.setText(data.getRoutes_title());
@@ -301,7 +320,13 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
                 mTvSitch.setText(isDetail?"详情图":"缩略图");
                 break;
             case R.id.tv_enter:
-                    EnterAppointDialog.showDialogSuccess(this);
+                if (StringUtils.isEmpty(id)){
+                    ToastUtils.showToast("数据加载错误，请重新进入！");
+                    return;
+                }
+                Map<String, String> enterMap = MapUtils.Build().addKey(this).addtId(id).addUserId().end();
+                XEventUtils.postUseCommonBackJson(IVariable.ENTER_APPOINT,enterMap,TYPE_ENTER_APPOINT,new AppointDetailEvent());
+
                 break;
             case R.id.tv_right_icon:
                 AppointDetailMorePop.showMorePop(this,mTvRight);

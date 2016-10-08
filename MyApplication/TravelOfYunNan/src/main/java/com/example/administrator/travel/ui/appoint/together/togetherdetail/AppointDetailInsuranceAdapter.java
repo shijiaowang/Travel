@@ -2,7 +2,7 @@ package com.example.administrator.travel.ui.appoint.together.togetherdetail;
 
 import android.content.Context;
 
-import com.example.administrator.travel.bean.PricebasecBean;
+import com.example.administrator.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
