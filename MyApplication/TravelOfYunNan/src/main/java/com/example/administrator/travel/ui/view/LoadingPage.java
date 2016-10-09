@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -22,7 +23,7 @@ public abstract class LoadingPage extends FrameLayout {
     private static final int STATE_LOAD_SUCCESS = 3;//加载成功
     private int mCurrentState = STATE_LOAD_UNLOAD;//当前
     private int mPreState = STATE_LOAD_UNLOAD;//上一次
-    private TextView loadingView;
+    private View loadingView;
     private ImageView errorView;
     private View successView;
 
@@ -45,8 +46,7 @@ public abstract class LoadingPage extends FrameLayout {
     private void initView() {
         //加载读取页面
         if (loadingView == null) {
-            loadingView = new TextView(getContext());
-            loadingView.setText("加载中");
+             loadingView =  UIUtils.inflate(R.layout.loading_view);
             addView(loadingView);//添加加载页面
         }
         //加载错误页面

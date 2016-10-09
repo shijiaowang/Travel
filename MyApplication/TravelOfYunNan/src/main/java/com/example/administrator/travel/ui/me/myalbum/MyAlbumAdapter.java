@@ -18,6 +18,8 @@ import org.xutils.x;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by Administrator on 2016/7/6 0006.
  */
@@ -42,8 +44,6 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
     }
 
 
-
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == LENGTH_ITEM) {
@@ -56,7 +56,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    protected void childBindView(RecyclerView.ViewHolder holder, final int position) {
         MyAlbumBean.DataBean dataBean = mDatas.get(position);
         if (holder instanceof MyAlbumShortHolder) {
             MyAlbumShortHolder shortHolder = (MyAlbumShortHolder) holder;
@@ -96,34 +96,25 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
         return mDatas.size();
     }
 
-    public class MyAlbumShortHolder extends RecyclerView.ViewHolder {
-        ImageView mIvCover;
-        TextView mTvDiscussNumber;
-        TextView mTvLoveNumber;
-        TextView mTvTitle;
+    public class MyAlbumShortHolder extends BaseRecycleViewHolder {
+        @BindView(R.id.iv_cover) ImageView mIvCover;
+        @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
+        @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+        @BindView(R.id.tv_time) TextView mTvTitle;
 
         public MyAlbumShortHolder(View itemView) {
             super(itemView);
-            mIvCover = (ImageView) itemView.findViewById(R.id.iv_cover);
-            mTvDiscussNumber = (TextView) itemView.findViewById(R.id.tv_discuss_number);
-            mTvLoveNumber = (TextView) itemView.findViewById(R.id.tv_love_number);
-            mTvTitle = (TextView) itemView.findViewById(R.id.tv_title);
-
         }
     }
 
-    public class MyAlbumLengthHolder extends RecyclerView.ViewHolder {
-        ImageView mIvCover;
-        TextView mTvDiscussNumber;
-        TextView mTvLoveNumber;
-        TextView mTvTitle;
+    public class MyAlbumLengthHolder extends BaseRecycleViewHolder {
+        @BindView(R.id.iv_cover) ImageView mIvCover;
+        @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
+        @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+        @BindView(R.id.tv_time) TextView mTvTitle;
 
         public MyAlbumLengthHolder(View itemView) {
             super(itemView);
-            mIvCover = (ImageView) itemView.findViewById(R.id.iv_cover);
-            mTvDiscussNumber = (TextView) itemView.findViewById(R.id.tv_discuss_number);
-            mTvLoveNumber = (TextView) itemView.findViewById(R.id.tv_love_number);
-            mTvTitle = (TextView) itemView.findViewById(R.id.tv_title);
         }
     }
 }

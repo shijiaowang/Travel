@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.me.ordercenter;
 
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
@@ -11,8 +11,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.fragment.CouponFragment;
-import com.example.administrator.travel.ui.fragment.MyOrdersFragment;
+import com.example.administrator.travel.ui.baseui.BarBaseActivity;
+import com.example.administrator.travel.ui.me.ordercenter.coupon.CouponFragment;
+import com.example.administrator.travel.ui.me.ordercenter.orders.MyOrdersFragment;
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 
 import org.xutils.view.annotation.ViewInject;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/11 0011.
+ * Created by wangyang on 2016/8/11 0011.
  * 我的订单
  */
 public class OrdersCenterActivity extends BarBaseActivity {
@@ -116,19 +117,12 @@ public class OrdersCenterActivity extends BarBaseActivity {
             }
         });
 
-        // window.showAsDropDown(button2);//指定 控件为参考点; 下方 左对齐
-        // window.showAtLocation(参考控件, 对齐方式, x,
-        // y);//showAtLocation指定控件为参考点 坐标与对齐方式
-        // 响应 视图外的地方 点击关闭当前
         window.setOutsideTouchable(true);
-        // 响应返回键的关闭
         window.setFocusable(true);
         window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-        // 获取控件的坐标 x y
         int[] location = new int[2];
         tv.getLocationInWindow(location);
         window.showAtLocation(tv, Gravity.LEFT + Gravity.TOP, location[0] + 1, location[1] + tv.getHeight());// showAtLocation指定控件为参考点
-        // 坐标与对齐方式
     }
 
     private List<String> getPopOrdersType() {
@@ -146,8 +140,10 @@ public class OrdersCenterActivity extends BarBaseActivity {
     protected void initViewData() {
 
         fragments = new ArrayList<>();
+        fragments.add(new CouponFragment());
         fragments.add(new MyOrdersFragment());
-        fragments.add(new MyOrdersFragment());
+        //fragments.add(new MyOrdersFragment());
+
         fragments.add(new CouponFragment());
         mVpOrders.setAdapter(new OrdersPagerAdapter(getSupportFragmentManager()));
 

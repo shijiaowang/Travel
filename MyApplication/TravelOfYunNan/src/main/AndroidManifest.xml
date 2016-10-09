@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <application
         android:name=".TravelsApplication"
         android:allowBackup="true"
@@ -14,11 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.baseui.SplashActivity"
+            android:name=".ui.home.welcome.splash.SplashActivity"
             android:theme="@style/SplashTheme">
         </activity>
         <activity
-            android:name=".ui.baseui.WelcomeActivity"
+            android:name=".ui.home.welcome.WelcomeActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,7 +66,7 @@
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentActivity"/>
         <activity android:name=".ui.baseui.DeliciousDetailActivity"/>
         <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity"/>
-        <activity android:name=".ui.baseui.OrdersDetailActivity"/>
+        <activity android:name=".ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"
             android:windowSoftInputMode="adjustPan"
             />
@@ -75,7 +77,7 @@
         <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentWithMeActivity"/>
         <activity android:name=".ui.baseui.BaseTransActivity"
             />
-        <activity android:name=".ui.home.login.LoginActivity"
+        <activity android:name=".ui.home.welcome.splash.login.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTop"
             />
@@ -89,8 +91,8 @@
         <activity android:name=".ui.me.mycollection.MyCollectionActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanBaseActivity"/>
         <activity android:name=".ui.me.memberdetail.MemberDetailActivity"/>
-        <activity android:name=".ui.baseui.OrdersCenterActivity"/>
-        <activity android:name=".ui.baseui.ConfirmOrdersActivity"/>
+        <activity android:name=".ui.me.ordercenter.OrdersCenterActivity"/>
+        <activity android:name=".ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity"/>
         <activity android:name=".ui.me.collectiondetail.CollectionDetailActivity"/>
         <activity android:name=".ui.me.userservice.CustomerServiceActivity"/>
         <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity"/>
@@ -117,7 +119,7 @@
         <activity android:name=".ui.appoint.settingtitle.SettingTitleActivity"
             android:launchMode="singleTask"
             />
-        <activity android:name=".ui.home.register.RegisterActivity"
+        <activity android:name=".ui.home.welcome.splash.register.RegisterActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTop"
             />
@@ -134,10 +136,29 @@
         <activity android:name=".ui.me.identityauth.idauth.IdAuthActivity" />
         <activity android:name=".ui.me.changepassword.ChangePassWordActivity" />
         <activity android:name=".ui.me.changephone.bindphone.BindPhoneActivity" />
-        <activity android:name=".ui.home.login.forgetpassword.ForgetPasswordActivity" />
+        <activity android:name=".ui.home.welcome.splash.login.forgetpassword.ForgetPasswordActivity" />
+        <activity android:name=".ui.me.myappoint.wimeselect.MyWithMeSelectActivity" />
         <activity android:name=".ui.baseui.BaseToolBarActivity"
             android:theme="@style/ToolBarTheme"
             />
+        <!-- alipay sdk begin -->
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
+        <!-- alipay sdk end -->
     </application>
 
 </manifest>

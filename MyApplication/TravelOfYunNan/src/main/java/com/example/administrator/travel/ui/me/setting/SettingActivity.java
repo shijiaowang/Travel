@@ -15,7 +15,7 @@ import com.example.administrator.travel.ui.baseui.BaseCropPhotoActivity;
 import com.example.administrator.travel.ui.me.changephone.ChangePhoneActivity;
 import com.example.administrator.travel.ui.baseui.HomeActivity;
 import com.example.administrator.travel.ui.baseui.PersonalProfileActivity;
-import com.example.administrator.travel.ui.baseui.SplashActivity;
+import com.example.administrator.travel.ui.home.welcome.splash.SplashActivity;
 import com.example.administrator.travel.ui.me.about.AboutActivity;
 import com.example.administrator.travel.ui.me.changepassword.ChangePassWordActivity;
 import com.example.administrator.travel.ui.view.PhoneTextView;

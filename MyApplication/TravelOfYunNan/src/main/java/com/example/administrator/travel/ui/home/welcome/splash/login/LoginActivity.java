@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.home.login;
+package com.example.administrator.travel.ui.home.welcome.splash.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,8 +18,7 @@ import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BaseTransActivity;
 import com.example.administrator.travel.ui.baseui.HomeActivity;
-import com.example.administrator.travel.ui.home.login.forgetpassword.ForgetPasswordActivity;
-import com.example.administrator.travel.ui.me.changepassword.ChangePassWordActivity;
+import com.example.administrator.travel.ui.home.welcome.splash.login.forgetpassword.ForgetPasswordActivity;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.LineEditText;

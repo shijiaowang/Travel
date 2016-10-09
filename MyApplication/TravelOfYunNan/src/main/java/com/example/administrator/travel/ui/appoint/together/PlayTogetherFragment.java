@@ -9,7 +9,6 @@ import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.baseui.LoadAndPullBaseFragment;
-import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.GsonUtils;
 
@@ -56,8 +55,8 @@ public class PlayTogetherFragment extends LoadAndPullBaseFragment<AppointTogethe
     protected void doOtherSuccessData(AppointTogetherEvent appointTogetherEvent) {
         CommonClickLikeBean object = GsonUtils.getObject(appointTogetherEvent.getResult(), CommonClickLikeBean.class);
         int clickPosition = appointTogetherEvent.getClickPosition();
-        getHttpData().get(clickPosition).setCount_like(object.getData().getCount_like());
-        getHttpData().get(clickPosition).setIs_like("1");
+        getmDatas().get(clickPosition).setCount_like(object.getData().getCount_like());
+        getmDatas().get(clickPosition).setIs_like("1");
         appointTogetherAdapter.notifyDataSetChanged();
     }
 }

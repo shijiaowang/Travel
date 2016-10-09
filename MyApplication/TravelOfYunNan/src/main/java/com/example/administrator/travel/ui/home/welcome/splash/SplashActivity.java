@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.home.welcome.splash;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -21,8 +21,10 @@ import android.widget.VideoView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Splash;
-import com.example.administrator.travel.ui.home.login.LoginActivity;
-import com.example.administrator.travel.ui.home.register.RegisterActivity;
+import com.example.administrator.travel.ui.baseui.FullTransparencyActivity;
+import com.example.administrator.travel.ui.baseui.RegisterSuccessActivity;
+import com.example.administrator.travel.ui.home.welcome.splash.login.LoginActivity;
+import com.example.administrator.travel.ui.home.welcome.splash.register.RegisterActivity;
 import com.example.administrator.travel.utils.DensityUtils;
 
 

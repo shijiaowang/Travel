@@ -30,7 +30,7 @@ public class FrescoUtils {
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
                 .setRoundingParams(roundingParams)
                 //设置淡入淡出动画持续时间(单位：毫秒ms)
-                .setFadeDuration(3000)
+                .setFadeDuration(1000)
                 //构建
                 .build();
 
@@ -42,8 +42,33 @@ public class FrescoUtils {
                 .build();
         simpleDraweeView.setHierarchy(hierarchy);
         simpleDraweeView.setController(controller);
+    }
+    /**
+     * 加载圆角icon
+     * @param simpleDraweeView 显示
+     * @param uri 地址
+     */
+    public static void displayRoundIcon(SimpleDraweeView simpleDraweeView, Uri uri){
+        if (simpleDraweeView==null || uri==null)return;
+        RoundingParams roundingParams=new RoundingParams();
+        roundingParams.setCornersRadius(10f);
+        //获取GenericDraweeHierarchy对象
+        GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
+                //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
+                .setRoundingParams(roundingParams)
+                //设置淡入淡出动画持续时间(单位：毫秒ms)
+                .setFadeDuration(1000)
+                //构建
+                .build();
 
-
+        //构建Controller
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                //设置需要下载的图片地址
+                .setUri(uri)
+                //构建
+                .build();
+        simpleDraweeView.setHierarchy(hierarchy);
+        simpleDraweeView.setController(controller);
     }
     /**
      * 加载一般图片

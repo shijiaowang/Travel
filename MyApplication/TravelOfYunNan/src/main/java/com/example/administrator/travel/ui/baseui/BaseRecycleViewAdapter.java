@@ -6,6 +6,8 @@ import android.view.View;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by wangyang on 2016/10/8 0008.
  */
@@ -22,5 +24,27 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
         if (list==null)return;
         mDatas=list;
         this.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        try {
+            childBindView(holder,position);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected abstract void childBindView(RecyclerView.ViewHolder holder, int position);
+ protected   class BaseRecycleViewHolder  extends RecyclerView.ViewHolder{
+
+       public BaseRecycleViewHolder(View itemView) {
+           super(itemView);
+           ButterKnife.bind(this,itemView);
+       }
+   }
+    @Override
+    public int getItemCount() {
+        return mDatas.size();
     }
 }

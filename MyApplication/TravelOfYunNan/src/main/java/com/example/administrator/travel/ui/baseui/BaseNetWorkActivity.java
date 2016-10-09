@@ -130,7 +130,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
      */
     protected void onFail(T t) {
         if (isFirstInflate){
-            setIsProgress(true);//如果初次加载显示错误页
+            setErrorPage(true);//如果初次加载显示错误页
         }
     }
 

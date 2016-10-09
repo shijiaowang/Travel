@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.home.login;
+package com.example.administrator.travel.ui.home.welcome.splash.login;
 
 import com.example.administrator.travel.event.HttpEvent;
 

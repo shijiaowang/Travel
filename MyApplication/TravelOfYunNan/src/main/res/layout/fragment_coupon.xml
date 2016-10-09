@@ -8,7 +8,8 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="45dp">
-        <TextView
+        <Button
+            android:id="@+id/bt_add"
             android:gravity="center"
             android:background="@drawable/fragment_find_search_bg"
             android:text="激活/添加优惠券"
@@ -35,7 +36,7 @@
         android:background="@color/meLine"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
-    <ListView
+    <com.example.administrator.travel.ui.view.refreshview.XListView
         android:id="@+id/lv_coupon"
         style="@style/commonListViewStyle"
         android:layout_marginLeft="13dp"
@@ -44,6 +45,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </ListView>
+    </com.example.administrator.travel.ui.view.refreshview.XListView>
 
 </LinearLayout>

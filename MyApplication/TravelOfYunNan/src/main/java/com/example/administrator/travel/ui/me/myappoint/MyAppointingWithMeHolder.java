@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.support.annotation.ColorInt;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -42,6 +43,7 @@ public class MyAppointingWithMeHolder extends BaseHolder<Object> {
     @BindView(R.id.tv_enter_people)TextView mTvEnterPeolple;
     @BindView(R.id.tv_line)TextView mTvLine;
     @BindView(R.id.tv_appointing)TextView mTvAppoint;
+    @BindView(R.id.ll_enter)LinearLayout mLlEnter;
     @BindColor(R.color.colorff806d) @ColorInt int likeColor;
     @BindColor(R.color.colorb5b5b5) @ColorInt int normalColor;
     @BindString(R.string.activity_circle_love_full) String fullLove;
@@ -58,6 +60,7 @@ public class MyAppointingWithMeHolder extends BaseHolder<Object> {
             mTvPrice.setText(datas.getTotal_price());
             mTvLoveNumber.setText(datas.getCount_like());
             mTvWatchNumber.setText(datas.getBrowse());
+            mTvPlanNumber.setVisibility(View.GONE);
             mTvHaveNumber.setText("已有: " + datas.getUser_count() + "人");
             mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
             mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
@@ -79,7 +82,6 @@ public class MyAppointingWithMeHolder extends BaseHolder<Object> {
             mTvIconLove.setTextColor(equals ? likeColor : normalColor);
             mTvIconLove.setText(equals ? fullLove : emptyLove);
         }
-
     }
 
     private String getDesTextByState(String state) {

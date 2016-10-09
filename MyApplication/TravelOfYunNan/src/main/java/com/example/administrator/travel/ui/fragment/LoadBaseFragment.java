@@ -91,7 +91,9 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
                 return LoadBaseFragment.this.getCurrentState();
             }
         };
-
+        isPrepared = true;
+        initListener();
+        loadData();
         return loadingPage;
 
     }
@@ -191,13 +193,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
 
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        isPrepared = true;
-        initListener();
-        loadData();
-    }
+
 
 
     public void loadData() {
@@ -282,6 +278,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
      * @param canLoadMore 是否可以LoadMore
      */
     protected void initXListView(XListView listView, boolean canPull, boolean canLoadMore){
+        if (listView==null)return;
         listView.setPullLoadEnable(canLoadMore);
         listView.setPullRefreshEnable(canPull);
         listView.setXListViewListener(this);

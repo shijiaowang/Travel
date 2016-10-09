@@ -1,2 +1,3 @@
 include 'pickerview', 'app', 'sample', ':ucrop', ':sampleUcrop', ':TravelOfYunNan'
 
+include ':payDemoActivity_20'

@@ -1,11 +1,10 @@
-package com.example.administrator.travel.ui.home.register;
+package com.example.administrator.travel.ui.home.welcome.splash.register;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Base64;
 import android.view.View;
 import android.widget.TextView;
 

@@ -9,6 +9,8 @@ import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.me.bulltetinboard.BulletinBoardActivity;
 import com.example.administrator.travel.ui.me.memberdetail.MemberDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.me.myappoint.wimeselect.MyWithMeAdapter;
+import com.example.administrator.travel.ui.me.myappoint.wimeselect.MyWithMeSelectActivity;
 
 
 import java.util.List;
@@ -23,8 +25,8 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
     }
 
     @Override
-    public int getViewTypeCount() {
-        return 2;
+    public int getViewTypeCount() {//需要加上加载更多和刷新
+        return 4;
     }
 
     @Override
@@ -40,6 +42,18 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
     protected void initListener(BaseHolder baseHolder, final Object item, int position) {
         if (item == null) {
             return;
+        }
+        if (baseHolder instanceof MyAppointingWithMeHolder){
+            final MyAppointWithMeBean.DataBean dataBean = (MyAppointWithMeBean.DataBean) item;
+            MyAppointingWithMeHolder myAppointingWithMeHolder = (MyAppointingWithMeHolder) baseHolder;
+            myAppointingWithMeHolder.mLlEnter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, MyWithMeSelectActivity.class);
+                    intent.putExtra(IVariable.ID,dataBean.getId());
+                    mContext.startActivity(intent);
+                }
+            });
         }
         //启动公告板页面
         if (baseHolder instanceof MyAppointTogetherHolder) {
@@ -68,7 +82,7 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
 
     @Override
     protected BaseHolder initHolder(int position) {
-        int itemViewType = getItemViewType(position);
+        int itemViewType = getItemViewType(0);
         if (itemViewType==TYPE_POST_NORMAL) {
             return new MyAppointTogetherHolder(mContext);
         }else {

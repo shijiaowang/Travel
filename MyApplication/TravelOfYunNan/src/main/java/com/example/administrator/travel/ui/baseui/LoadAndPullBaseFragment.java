@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.baseui;
 
-import android.support.v4.app.Fragment;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.ParentBean;
@@ -27,16 +28,16 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
     private XListView mXListView;
     public int count = 0;
 
-    public List<F> getHttpData() {
-        return httpData;
+    public List<F> getmDatas() {
+        return mDatas;
     }
 
-    public void setHttpData(List<F> httpData) {
-        this.httpData = httpData;
+    public void setmDatas(List<F> mDatas) {
+        this.mDatas = mDatas;
     }
 
-    private List<F> httpData;//从网络获取的数据
-    private TravelBaseAdapter adapter;
+    protected List<F> mDatas;//从网络获取的数据
+    protected TravelBaseAdapter adapter;
 
 
     public abstract XListView setXListView();
@@ -45,6 +46,20 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
     protected void initListener() {
         mXListView= setXListView();
         initXListView(mXListView,canPull(),canLoad());
+        if (mXListView!=null){
+            mXListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    try {
+                        childOnItemClick(parent,view,position-1,id);//除去头布局
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    }
+    public void childOnItemClick(AdapterView<?> parent, View view, int position, long id) {
     }
 
     private boolean canPull() {
@@ -97,7 +112,7 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
      */
     @Override
     protected void onLoad(int type) {
-        count = type == TYPE_REFRESH ? 0 : getListSize(httpData);
+        count = type == TYPE_REFRESH ? 0 : getListSize(mDatas);
         MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).addUserId().addPageSize().addCount(count);
         childAdd(builder);
         Map<String, String> end = builder.end();
@@ -131,19 +146,19 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
         }
 
         if (adapter == null) {
-            httpData = (List<F>) e.getData();
-            adapter = initAdapter(httpData);
+            mDatas = (List<F>) e.getData();
+            adapter = initAdapter(mDatas);
             if (mXListView == null) {
                 mXListView=setXListView();
             }
             mXListView.setAdapter(adapter);
         } else if (t.getType() == TYPE_LOAD) {
-            httpData.addAll((List<F>) e.getData());
+            mDatas.addAll((List<F>) e.getData());
             adapter.notifyDataSetChanged();
         } else if (t.getType() == TYPE_REFRESH) {
-            httpData.clear();
-            httpData = (List<F>) e.getData();
-            adapter.notifyData(httpData);
+            mDatas.clear();
+            mDatas = (List<F>) e.getData();
+            adapter.notifyData(mDatas);
         }else {
             doOtherSuccessData(t);
         }

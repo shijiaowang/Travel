@@ -20,35 +20,19 @@
             android:text="先筹路费" />
 
         <TextView
+            android:id="@+id/tv_route_price"
             style="@style/activityConfirmOrdersTextMoney"
             android:layout_marginTop="41dp"
-            android:text="¥3.00" />
+             />
     </RelativeLayout>
 
     <View style="@style/activityConfirmOrdersTextLine" />
+    <com.example.administrator.travel.ui.view.ToShowAllListView
+        android:id="@+id/lv_price"
+        style="@style/commonListViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <RelativeLayout style="@style/activityConfirmOrdersRl">
-
-        <TextView
-            style="@style/activityConfirmOrdersText"
-            android:text="个人旅游保险" />
-
-        <TextView
-            style="@style/activityConfirmOrdersTextMoney"
-            android:text="¥1.00" />
-    </RelativeLayout>
-
-    <View style="@style/activityConfirmOrdersTextLine" />
-
-    <RelativeLayout style="@style/activityConfirmOrdersRl">
-
-        <TextView
-            style="@style/activityConfirmOrdersText"
-            android:text="平台服务费" />
-
-        <TextView
-            style="@style/activityConfirmOrdersTextMoney"
-            android:text="¥1.00" />
-    </RelativeLayout>
+    </com.example.administrator.travel.ui.view.ToShowAllListView>
 
 </LinearLayout>

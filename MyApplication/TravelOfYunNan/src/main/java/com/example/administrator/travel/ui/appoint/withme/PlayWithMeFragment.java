@@ -64,7 +64,7 @@ public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEve
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), AppointWithMeDetailActivity.class);
-                intent.putExtra(IVariable.TID, getHttpData().get(position - 1).getId());
+                intent.putExtra(IVariable.TID, getmDatas().get(position - 1).getId());
                 startActivity(intent);
             }
         });

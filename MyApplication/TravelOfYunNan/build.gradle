@@ -46,5 +46,5 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.Aspsine:SwipeToLoadLayout:1.0.3'
     compile 'com.facebook.fresco:fresco:0.14.1'
-
+    compile files('libs/alipaySdk-20160825.jar')
 }

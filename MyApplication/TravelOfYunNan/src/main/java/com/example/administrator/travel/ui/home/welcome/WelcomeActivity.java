@@ -1,7 +1,9 @@
-package com.example.administrator.travel.ui.baseui;
+package com.example.administrator.travel.ui.home.welcome;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
@@ -17,7 +19,9 @@ import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.WelcomeEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.utils.GlobalUtils;
+import com.example.administrator.travel.ui.baseui.FullTransparencyActivity;
+import com.example.administrator.travel.ui.baseui.HomeActivity;
+import com.example.administrator.travel.ui.home.welcome.splash.SplashActivity;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MD5Utils;
@@ -33,7 +37,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -50,6 +53,11 @@ public class WelcomeActivity extends FullTransparencyActivity {
     @ViewInject(R.id.pb_load)
     private View mPbLoad;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        EventBus.getDefault().register(this);
+    }
 
     @Override
     protected int initContentRes() {
@@ -104,7 +112,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
     protected void onResume() {
 
         super.onResume();
-        EventBus.getDefault().register(this);
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -140,11 +148,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        EventBus.getDefault().unregister(this);
-    }
+
 
     @Subscribe
     public void onEvent(WelcomeEvent event) {
@@ -199,5 +203,6 @@ public class WelcomeActivity extends FullTransparencyActivity {
     protected void onDestroy() {
         super.onDestroy();
         mPbLoad.clearAnimation();
+        EventBus.getDefault().unregister(this);
     }
 }

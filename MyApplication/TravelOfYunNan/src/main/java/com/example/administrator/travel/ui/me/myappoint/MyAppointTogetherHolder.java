@@ -29,17 +29,20 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
     @BindView(R.id.rl_member_detail)  RelativeLayout mRlMemberDetail;
     @BindView(R.id.iv_icon) ImageView mIvIcon;
     @BindView(R.id.tv_price) TextView mTvPrice;
+    //common start
+    @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
+    @BindView(R.id.tv_plan_number) TextView mTvPlanNumber;
+    @BindView(R.id.tv_start_and_long)TextView mTvStartAndLong;
+    @BindView(R.id.tv_day_and_night) TextView mTvDayAndNight;
     @BindView(R.id.tv_line) TextView mTvLine;
+    //Common end
     @BindView(R.id.tv_delete) TextView mTvDelete;
     @BindView(R.id.tv_icon_love) FontsIconTextView mTvIconLove;
     @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
-    @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
-    @BindView(R.id.tv_plan_number) TextView mTvPlanNumber;
-    @BindView(R.id.tv_day_and_night) TextView mTvDayAndNight;
     @BindView(R.id.tv_how_long) TextView mTvHowLong;
     @BindView(R.id.code) TextView mTvCode;
-    @BindView(R.id.tv_start_and_long)TextView mTvStartAndLong;
+
     @BindView(R.id.bv_enter_people)BadgeView mBvEnterPeople;
     @BindView(R.id.bv_bulletin_number)BadgeView mBvBulletinNumber;
     @BindView(R.id.tv_appointing)TextView mTvAppointing;
@@ -64,11 +67,12 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
             mTvPlanNumber.setText("计划: " + datas.getMax_people() + "人");
             mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
             mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
+            mTvLine.setText(datas.getRoutes());
             mBvEnterPeople.setBadgeCount(datas.getNow_people());
             mBvBulletinNumber.setBadgeCount(datas.getBulletin());
             mTvCode.setText(datas.getId_code());
             mTvHowLong.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd", datas.getAdd_time()));
-            mTvLine.setText(datas.getRoutes());
+
             mTvAppointing.setText(getDesTextByState(datas.getState()));
             String isLike = datas.getIs_like();
             boolean equals;

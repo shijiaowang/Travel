@@ -64,6 +64,7 @@
             <include layout="@layout/activity_my_appoint_common"/>
 
             <LinearLayout
+                android:id="@+id/ll_enter"
                 android:layout_marginRight="15dp"
                 android:gravity="center"
                 android:orientation="vertical"

@@ -6,8 +6,8 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    String DOMAIN_NAME="http://yuns.yunspeak.com/";
-    /*String DOMAIN_NAME = "http://192.168.1.20/";*/
+    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
+    String DOMAIN_NAME = "http://192.168.1.20/";
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -69,7 +69,13 @@ public interface IVariable {
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
     String UPDATE_ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
+    String SUBMIT_ORDERS = API_KEY + "Order/setOrder/";//提交订单
+    String WITH_ME_SELECT = API_KEY + "UserTravel/getTravelplanlists/";//找人带团长送来的推送
+    String SUBMIT_ORDERS_USED = API_KEY + "Order/setOrdertype/";//提交订单-之前已经确认过的
+    String MY_COUPON = API_KEY + "Order/getConpoulists/";//优惠券
     String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
+    String ORDERS_DETAIL = API_KEY + "Order/getOrderSuccess/";//订单详情
+    String CANCEL_ORDERS = API_KEY + "Order/removeOrder/";//取消订单
     String MY_APPOINT_AGREE_OR_REFUSE = API_KEY + "Travel/agreeUsertoTravel/";//处理约伴同意还是拒绝
     String MEMBER_DETAIL = API_KEY + "Travel/getTraveluserlists/";//成员详情
     String CHANGE_PHONE_VER_MSG = API_KEY + "User/sendUsermsg/";//更改绑定发送验证码
@@ -98,6 +104,8 @@ public interface IVariable {
     String USER_SERVICE_CENTER = API_KEY + "User/setReport/";//客服中心
     String MY_APPOINT = API_KEY + "UserTravel/getTravellists/";//我的约伴
     String IDENTITY_AUTH = API_KEY + "User/setAuthentication/";//身份认证
+    String MY_ORDERS_CENTER = API_KEY + "Order/getOrderlists/";//订单中心
+    String PAY_ORDERS = API_KEY + "Order/getOrderDesc/";//订单付款
     String MESSAGE_CENTER_COUNT = API_KEY + "UserMsg/getMyCount/";//消息中心数量 type 1 最外层（全部消息） 2 中间层（消息中心） 3最里层（每个子项目）
 
     //请求type
@@ -178,7 +186,6 @@ public interface IVariable {
     String PROP = "prop";//租借道具
     String TD_ID = "td_id";//
     String TIME = "time";
-    String TP_ID = "tp_id";
     String NUMBER = "number";
 
 
@@ -194,6 +201,9 @@ public interface IVariable {
     String STAR = "star";//星级
     String SCORE = "score";//评分
     String CODE = "code";//验证码
+    String MONEY = "money";//钱
+    String COUPON = "coupon";//优惠券
+    String TP_ID = "tp_id";//id
     String CONTENT = "content";//个人简介
     String IMAGE_FOLDER = "image_folder";//图片选择器用到
 
@@ -239,4 +249,12 @@ public interface IVariable {
     String PLAY_TOGETHER_CLICK_TYPE = "1";
     String WITH_ME_CLICK_TYPE = "2";
     String CLASS = "class";
+
+
+    ///年月日格式
+    String Y_M_D="yyyy-MM-dd";
+    String Y_M_DHms="yyyy-MM-dd HH:mm:ss";
+    String YMD="yyyy.MM.dd";
+    String YMDHms="yyyy.MM.dd HH:mm:ss";
+    String RMB ="¥" ;
 }

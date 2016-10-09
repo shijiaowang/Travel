@@ -23,25 +23,19 @@ import com.example.administrator.travel.ui.me.messagecenter.MessageCenterActivit
 import com.example.administrator.travel.ui.me.myalbum.MyAlbumActivity;
 import com.example.administrator.travel.ui.me.myappoint.MyAppointActivity;
 import com.example.administrator.travel.ui.me.mycollection.MyCollectionActivity;
-import com.example.administrator.travel.ui.baseui.OrdersCenterActivity;
+import com.example.administrator.travel.ui.me.ordercenter.OrdersCenterActivity;
 import com.example.administrator.travel.ui.me.setting.SettingActivity;
 import com.example.administrator.travel.ui.me.myhobby.MyHobbyActivity;
 import com.example.administrator.travel.ui.me.mytheme.MyThemeActivity;
 import com.example.administrator.travel.ui.me.titlemanage.TitleManagementActivity;
 
-import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
-import com.example.administrator.travel.utils.UIUtils;
 import com.example.administrator.travel.utils.XEventUtils;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.generic.GenericDraweeHierarchy;
-import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
-import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.flexbox.FlexboxLayout;
 import com.yalantis.ucrop.UCrop;
@@ -164,7 +158,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
     @Override
     protected void onLoad(int type) {
-        setState(LoadingPage.ResultState.STATE_SUCCESS);
+        refreshUserInfo();
     }
 
     @Override
@@ -287,8 +281,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mTvFanNumber.setText(data.getFans());
         mTvFollowNumber.setText(data.getFollow());
         UserInfo user = data.getUser();
-        FrescoUtils.displayIcon(mIvIcon, Uri.parse(user.getBackground_img()));
-        //FrescoUtils.displayNormal(mIvBg, Uri.parse(user.getBackground_img()));
+        FrescoUtils.displayIcon(mIvIcon, Uri.parse(user.getUser_img()));
+        FrescoUtils.displayNormal(mIvBg, Uri.parse(user.getBackground_img()));
         mTvNickName.setText(user.getNick_name());
         mTvProfile.setText(user.getContent());
         mTvLevel.setText("LV."+user.getLevel());
@@ -313,10 +307,14 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
        @Override
        public void onRefresh() {
-           Map<String, String> end = MapUtils.Build().addKey(getContext()).addUserId().end();
-           XEventUtils.getUseCommonBackJson(IVariable.UPDATE_ME_MESSAGE,end,TYPE_REFRESH,new MeEvent());
+           refreshUserInfo();
        }
    }
+
+    private void refreshUserInfo() {
+        Map<String, String> end = MapUtils.Build().addKey(getContext()).addUserId().end();
+        XEventUtils.getUseCommonBackJson(IVariable.UPDATE_ME_MESSAGE,end,TYPE_REFRESH,new MeEvent());
+    }
 
     @Override
     protected SimpleDraweeView childViewShow() {

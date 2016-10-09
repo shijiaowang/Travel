@@ -16,11 +16,11 @@
         android:paddingRight="4dp">
 
         <TextView
+            android:id="@+id/tv_valuee"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:background="@drawable/activity_confirm_orders_coupon"
             android:gravity="center"
-            android:text="¥3.00"
             android:textColor="@color/colorFAFAFA"
             android:textSize="9sp" />
 
@@ -44,9 +44,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_how"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2元优惠券"
                         android:textColor="@color/color8c8c8c"
                         android:textSize="12sp" />
 
@@ -54,16 +54,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="有效期至2016-8-5"
+                       android:id="@+id/tv_time"
                         android:textColor="@color/colorB1b1b1"
                         android:textSize="10sp" />
 
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="可使用"
                     android:textColor="@color/color90c75c"
                     android:textSize="12sp" />
             </LinearLayout>

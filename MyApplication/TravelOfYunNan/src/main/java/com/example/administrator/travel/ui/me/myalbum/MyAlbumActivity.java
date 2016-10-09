@@ -2,10 +2,6 @@ package com.example.administrator.travel.ui.me.myalbum;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,18 +9,12 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BaseLoadAndRefreshActivity;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.example.administrator.travel.ui.me.myalbum.createalbum.CreateAlbumActivity;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
-import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
-import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.XEventUtils;
+
 
 import java.util.List;
-import java.util.Map;
-
-import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/7/18 0018.
@@ -39,12 +29,11 @@ public class MyAlbumActivity extends BaseLoadAndRefreshActivity<MyAlbumEvent,MyA
     @Override
     protected void initEvent() {
         super.initEvent();
-       // mVsContent.setLayoutResource(R.layout.activity_my_album_header);
-       // mVsContent.inflate();
-        View inflate = View.inflate(this, R.layout.activity_my_album_header, null);
-        mTvAdd = (FontsIconTextView) inflate.findViewById(R.id.tv_add);
-        mTvCreateAlbum = (TextView)inflate. findViewById(R.id.tv_create_album);
-        mTvAlbumSum = (TextView)inflate. findViewById(R.id.tv_sum);
+        mVsContent.setLayoutResource(R.layout.activity_my_album_header);
+        mVsContent.inflate();
+        mTvAdd = (FontsIconTextView)findViewById(R.id.tv_add);
+        mTvCreateAlbum = (TextView)findViewById(R.id.tv_create_album);
+        mTvAlbumSum = (TextView)findViewById(R.id.tv_sum);
         mTvAdd.setOnClickListener(this);
         mTvCreateAlbum.setOnClickListener(this);
     }

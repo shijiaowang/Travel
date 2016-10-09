@@ -72,9 +72,10 @@
             style="@style/fragmentAppointWithMeText"
             android:id="@+id/tv_plan_number"
             android:textColor="@color/color646464"
+            android:layout_marginRight="11dp"
             android:textSize="12sp" />
         <TextView
-            android:layout_marginLeft="19dp"
+            android:layout_marginLeft="8dp"
             style="@style/fragmentAppointWithMeText"
             android:id="@+id/tv_have_number"
             android:textColor="@color/color646464"

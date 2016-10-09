@@ -35,7 +35,7 @@ public class MapUtils {
             return this;
         }
         public Builder addPageSize(){
-            stringMap.put(IVariable.PAGE_SIZE,3+"");
+            stringMap.put(IVariable.PAGE_SIZE,5+"");
             return this;
         }
         public Builder addOldPassWord(String oldPass){
@@ -96,6 +96,18 @@ public class MapUtils {
         }
         public Builder addCode(String code){
             stringMap.put(IVariable.CODE,code);
+            return this;
+        }
+        public Builder addMoney(float money){
+            stringMap.put(IVariable.MONEY,money+"");
+            return this;
+        }
+        public Builder addCoupon(String coupon){
+            stringMap.put(IVariable.COUPON,coupon);
+            return this;
+        }
+        public Builder addTpId(String tpId){
+            stringMap.put(IVariable.TP_ID,tpId);
             return this;
         }
         public Builder addUserId(){

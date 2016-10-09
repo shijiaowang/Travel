@@ -1,7 +1,6 @@
-package com.example.administrator.travel.ui.home.login.forgetpassword;
+package com.example.administrator.travel.ui.home.welcome.splash.login.forgetpassword;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
@@ -11,13 +10,11 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Key;
-import com.example.administrator.travel.bean.Register;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.RegisterEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
-import com.example.administrator.travel.ui.home.login.LoginNextCommonEvent;
+import com.example.administrator.travel.ui.home.welcome.splash.login.LoginNextCommonEvent;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.ui.view.LineEditText;
 import com.example.administrator.travel.utils.GlobalUtils;
