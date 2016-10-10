@@ -33,10 +33,10 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
         this.httpData = httpData;
     }
 
-    private List<F> httpData;//从网络获取的数据
+    protected List<F> httpData;//从网络获取的数据
 
 
-    private TravelBaseAdapter adapter;
+    protected TravelBaseAdapter adapter;
 
 
     public abstract XListView setXListView();
@@ -52,34 +52,12 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
         return (Class<E>) pt.getActualTypeArguments()[1];
     }
 
-    /**
-     * 实例化 T
-     *
-     * @return
-     */
-    public T getTInstance() {
 
-        try {
-            ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
-            Class c = (Class<T>) pt.getActualTypeArguments()[0];
-            Constructor constructor = c.getConstructor();
-            T e = (T) constructor.newInstance();
-            return e;
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
     @Override
     protected void initEvent() {
         mXListView= setXListView();
         initXListView(mXListView,canPull(),canLoad());
+
     }
 
     private boolean canPull() {

@@ -1,22 +1,18 @@
 package com.example.administrator.travel.ui.adapter.holer;
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
+
 import com.example.administrator.travel.R;
-import org.xutils.common.util.DensityUtil;
-import org.xutils.image.ImageOptions;
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
+
 /**
- * Created by Administrator on 2016/8/17 0017.
+ * Created by wangyang on 2016/8/17 0017.
  * 圈子图片
  */
 public class CircleDetailPhotoHolder extends BaseHolder<String> {
-    ImageOptions imageOptions = new ImageOptions.Builder()
-            .setCrop(true)//不使用参数可能造成图片越界
-            .setUseMemCache(true)
-            .setImageScaleType(ImageView.ScaleType.FIT_XY)
-            .setSize(DensityUtil.dip2px(105), DensityUtil.dip2px(93)).build();
-    private ImageView mImage;
+
+    private SimpleDraweeView mImage;
 
     public CircleDetailPhotoHolder(Context context) {
         super(context);
@@ -24,12 +20,12 @@ public class CircleDetailPhotoHolder extends BaseHolder<String> {
 
     @Override
     protected void initItemDatas(String datas, Context mContext, int position) {
-        x.image().bind(mImage, datas, imageOptions);
+        FrescoUtils.displayNormal(mImage,datas);
     }
 
     @Override
     public View initRootView(Context mContext) {
-        mImage = (ImageView) inflateView(R.layout.item_activity_circle_detail_photo);
+        mImage = (SimpleDraweeView) inflateView(R.layout.item_activity_circle_detail_photo);
         return mImage;
     }
 }

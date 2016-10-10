@@ -2,14 +2,12 @@ package com.example.administrator.travel.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Choreographer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Active;
 
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import butterknife.BindView;

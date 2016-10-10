@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bigkoo.pickerview.TimePickerView;
@@ -24,6 +23,7 @@ import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
@@ -72,7 +72,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
     @ViewInject(R.id.rl_icon)
     private RelativeLayout mRlIcon;
     @ViewInject(R.id.iv_icon)
-    private ImageView mIvIcon;
+    private SimpleDraweeView mIvIcon;
     @ViewInject(R.id.tv_delete)
     private TextView mTvDelete;
     private TimePickerView pvTime;
@@ -191,7 +191,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
 
     protected abstract void childClick(View v);
     @Override
-    protected ImageView childViewShow() {
+    protected SimpleDraweeView childViewShow() {
         mRlIcon.setVisibility(View.VISIBLE);
         mTvIcon.setVisibility(View.GONE);
         mTvDelete.setOnClickListener(new View.OnClickListener() {

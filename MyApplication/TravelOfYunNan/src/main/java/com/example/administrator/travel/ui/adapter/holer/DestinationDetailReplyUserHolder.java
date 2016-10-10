@@ -5,26 +5,25 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.TravelReplyBean;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FormatDateUtils;
+import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.StringUtils;
-
-import org.xutils.view.annotation.ViewInject;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/7/11 0011.
+ * Created by wangyang on 2016/7/11 0011.
  * 回复其他楼层
  */
 public class DestinationDetailReplyUserHolder extends BaseHolder<TravelReplyBean> {
     @BindView(R.id.v_line)public View line;
-    @BindView(R.id.iv_reply_icon)public ImageView mIvReplyIcon;
+    @BindView(R.id.iv_reply_icon) public SimpleDraweeView mIvReplyIcon;
     @BindView(R.id.tv_reply_nick_name) TextView mTvReplyNickName;
     @BindView(R.id.tv_reply_message) TextView mTvReplyMessage;
     @BindView(R.id.tv_floor_number) TextView mTvFloorNumber;
@@ -43,6 +42,7 @@ public class DestinationDetailReplyUserHolder extends BaseHolder<TravelReplyBean
     protected void initItemDatas(TravelReplyBean datas, Context mContext, int position) {
         mTvReplyNickName.setText(datas.getNick_name());
         mTvReplyMessage.setText(datas.getContent());
+        FrescoUtils.displayIcon(mIvReplyIcon,datas.getUser_img());
         mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", datas.getReply_time()));
         mTvFloorNumber.setText(datas.getFloor() + "楼");
         mTvLoveNumber.setText(datas.getLike_count());
@@ -64,7 +64,6 @@ public class DestinationDetailReplyUserHolder extends BaseHolder<TravelReplyBean
     }
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_activity_post_reply_user);
-        return inflate;
+        return inflateView(R.layout.item_activity_post_reply_user);
     }
 }

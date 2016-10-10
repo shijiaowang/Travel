@@ -8,12 +8,10 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Chosen;
 
-import org.xutils.view.annotation.ViewInject;
-
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/7/8 0008.
+ * Created by wangyang on 2016/7/8 0008.
  */
 public class ChosenHolder extends BaseHolder<Chosen> {
     @BindView(R.id.tv_chosen_text) TextView mTvChosenText;
@@ -30,9 +28,6 @@ public class ChosenHolder extends BaseHolder<Chosen> {
 
     @Override
     public View initRootView(Context mContext) {
-        View root = inflateView(R.layout.item_fragment_home_chosen);
-      /*  mIvChosenPicture = (ImageView) root.findViewById(R.id.iv_chosen_picture);
-        mTvChosenText = (TextView) root.findViewById(R.id.tv_chosen_text);*/
-        return root;
+        return inflateView(R.layout.item_fragment_home_chosen);
     }
 }

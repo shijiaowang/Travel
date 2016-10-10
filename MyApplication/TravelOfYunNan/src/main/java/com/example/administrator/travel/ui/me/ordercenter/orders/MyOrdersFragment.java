@@ -10,7 +10,6 @@ import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.baseui.LoadAndPullBaseFragment;
-import com.example.administrator.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
 import com.example.administrator.travel.ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.ToastUtils;

@@ -11,7 +11,6 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.ShowAllTextView;
 
 import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import butterknife.BindView;

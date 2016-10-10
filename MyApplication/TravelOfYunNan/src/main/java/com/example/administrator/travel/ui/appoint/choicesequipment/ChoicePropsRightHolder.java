@@ -3,30 +3,29 @@ package com.example.administrator.travel.ui.appoint.choicesequipment;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.ToastUtils;
-
-import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/8/31 0031.
+ * Created by wangyang on 2016/8/31 0031.
+ *
+ * 道具选择
  */
 public class ChoicePropsRightHolder extends BaseHolder<ChoicePropBean.DataBean.ProplistsBean> {
-    @BindView(R.id.tv_number)public TextView mTvNumber;
-    @BindView(R.id.tv_select_number)public TextView mTvSelectNumber;
+    @BindView(R.id.tv_number) TextView mTvNumber;
+    @BindView(R.id.tv_select_number) TextView mTvSelectNumber;
     @BindView(R.id.tv_name) TextView mTvName;
-    @BindView(R.id.iv_picture)  ImageView mIvPicture;
-    @BindView(R.id.bt_reduce)public Button mBtReduce;
-    @BindView(R.id.bt_add) public Button mBtAdd;
+    @BindView(R.id.iv_picture) SimpleDraweeView mIvPicture;
+    @BindView(R.id.bt_reduce) Button mBtReduce;
+    @BindView(R.id.bt_add)  Button mBtAdd;
 
     public ChoicePropsRightHolder(Context context) {
         super(context);
@@ -34,7 +33,7 @@ public class ChoicePropsRightHolder extends BaseHolder<ChoicePropBean.DataBean.P
 
     @Override
     protected void initItemDatas(ChoicePropBean.DataBean.ProplistsBean datas, Context mContext, int position) {
-        x.image().bind(mIvPicture,datas.getLogo_img(),getImageOptions(DensityUtil.dip2px(70),DensityUtil.dip2px(70)));
+        FrescoUtils.displayNormal(mIvPicture,datas.getLogo_img());
         mTvName.setText(datas.getName());
         mTvNumber.setText("库存："+datas.getNumber());
         if (GlobalValue.mPropSelects!=null && GlobalValue.mPropSelects.containsKey(datas.getId())){//如果已经选中过

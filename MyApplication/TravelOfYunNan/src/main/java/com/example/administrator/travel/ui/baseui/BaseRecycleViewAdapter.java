@@ -2,7 +2,9 @@ package com.example.administrator.travel.ui.baseui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -35,8 +37,10 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
         }
     }
 
+
+
     protected abstract void childBindView(RecyclerView.ViewHolder holder, int position);
- protected   class BaseRecycleViewHolder  extends RecyclerView.ViewHolder{
+   protected   class BaseRecycleViewHolder  extends RecyclerView.ViewHolder{
 
        public BaseRecycleViewHolder(View itemView) {
            super(itemView);

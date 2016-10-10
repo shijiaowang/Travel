@@ -13,7 +13,6 @@ import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.me.identityauth.idauth.IdAuthActivity;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.StringUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 
 import org.xutils.view.annotation.ViewInject;
 

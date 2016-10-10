@@ -2,24 +2,14 @@ package com.example.administrator.travel.ui.appoint.lineplan;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.view.DottedLineView;
-import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.JsonUtils;
 
 import org.json.JSONObject;
-import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
-
-import java.util.List;
 
 import butterknife.BindView;
 

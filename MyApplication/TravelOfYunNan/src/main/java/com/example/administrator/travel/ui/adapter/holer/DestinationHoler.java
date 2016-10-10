@@ -2,23 +2,21 @@ package com.example.administrator.travel.ui.adapter.holer;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Destination;
-
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 
 /**
- * Created by android on 2016/7/30.
+ * Created by wangyang on 2016/7/30.
  */
 public class DestinationHoler extends BaseHolder<Destination.DataBean.BodyBean> {
-    @BindView(R.id.iv_spot) ImageView mIvSpot;
+    @BindView(R.id.iv_spot) SimpleDraweeView mIvSpot;
     @BindView(R.id.tv_name) TextView mTvName;
     @BindView(R.id.rb_star) RatingBar mRbStart;
     @BindView(R.id.tv_add)TextView mTvAdd;
@@ -30,7 +28,7 @@ public class DestinationHoler extends BaseHolder<Destination.DataBean.BodyBean> 
 
     @Override
     protected void initItemDatas(Destination.DataBean.BodyBean datas, Context mContext, int position) {
-        x.image().bind(mIvSpot, datas.getLogo_img(), getImageOptions(115, 80));
+        FrescoUtils.displayNormal(mIvSpot,datas.getLogo_img());
         mTvName.setText(datas.getTitle());
         mTvAdd.setText(datas.getAddress());
         float star=5.0f;

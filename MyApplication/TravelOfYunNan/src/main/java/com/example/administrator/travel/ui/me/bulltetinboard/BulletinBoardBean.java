@@ -1,12 +1,14 @@
 package com.example.administrator.travel.ui.me.bulltetinboard;
 
+import com.example.administrator.travel.global.ParentBean;
+
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/9/26 0026.
  */
 
-public class BulletinBoardBean  {
+public class BulletinBoardBean implements ParentBean {
 
 
     private int code;

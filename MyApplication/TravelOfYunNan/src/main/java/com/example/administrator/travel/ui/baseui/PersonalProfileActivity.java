@@ -10,18 +10,15 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.PersonalProfileEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.UserUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
-import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;

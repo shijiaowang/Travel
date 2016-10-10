@@ -29,7 +29,6 @@ import android.widget.TextView;
 
 
 import com.example.administrator.travel.R;
-
 import com.example.administrator.travel.ui.baseui.AppBarStateChangeListener;
 import com.example.administrator.travel.ui.baseui.SystemBarHelper;
 import com.example.administrator.travel.ui.me.othercenter.useralbum.OtherCenterAlbumFragment;

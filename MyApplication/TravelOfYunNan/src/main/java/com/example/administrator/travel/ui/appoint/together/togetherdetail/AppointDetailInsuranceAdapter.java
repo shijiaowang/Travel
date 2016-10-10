@@ -10,7 +10,7 @@ import java.util.List;
 
 
 /**
- * Created by Administrator on 2016/9/5 0005.
+ * Created by wangyang on 2016/9/5 0005.
  */
 public class AppointDetailInsuranceAdapter extends TravelBaseAdapter<PricebasecBean> {
     public AppointDetailInsuranceAdapter(Context mContext, List<PricebasecBean> mDatas) {

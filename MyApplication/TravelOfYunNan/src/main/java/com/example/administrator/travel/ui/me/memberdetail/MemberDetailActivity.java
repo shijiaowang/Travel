@@ -12,34 +12,27 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.BarBaseActivity;
-import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.XEventUtils;
 
-
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+import butterknife.BindView;
 
 
 /**
- * Created by Administrator on 2016/8/4 0004.
+ * Created by wangyang on 2016/8/4 0004.
  * 成员详情
  */
-public class MemberDetailActivity extends LoadingBarBaseActivity<MemBerDetailEvent> implements View.OnClickListener {
-    @ViewInject(R.id.rv_joined)
-    private RecyclerView mRvJoined;
-    @ViewInject(R.id.tv_joined)
-    private TextView mTvJoined;
-    @ViewInject(R.id.rv_enter)
-    private RecyclerView mRvEnter;
-    @ViewInject(R.id.tv_enter)
-    private TextView mTvEnter;
+public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent> implements View.OnClickListener {
+    @BindView(R.id.rv_joined) RecyclerView mRvJoined;
+    @BindView(R.id.tv_joined) TextView mTvJoined;
+    @BindView(R.id.rv_enter) RecyclerView mRvEnter;
+    @BindView(R.id.tv_enter) TextView mTvEnter;
     private String tId;
     private int enterSize = 0;
     private int joinedSize = 0;
@@ -47,11 +40,12 @@ public class MemberDetailActivity extends LoadingBarBaseActivity<MemBerDetailEve
     private List<MemberDetailBean.DataBean.JoinBean> joing;
     private MemberEnterAdapter memberEnterAdapter;
     private List<MemberDetailBean.DataBean.JoinBean> newDatas;
+    private MemberJoinedAdapter memberJoinedAdapter;
 
 
     @Override
-    protected int setContentLayout() {
-        return R.layout.activity_member_detail;
+    protected Activity initDataAndRegisterEventBus() {
+        return this;
     }
 
     @Override
@@ -61,10 +55,15 @@ public class MemberDetailActivity extends LoadingBarBaseActivity<MemBerDetailEve
         mTvJoined.setOnClickListener(this);
     }
 
+
     @Override
-    protected void onLoad(int type) {
-        Map<String, String> end = MapUtils.Build().addKey(this).addUserId().addtId(tId).end();
-        XEventUtils.getUseCommonBackJson(IVariable.MEMBER_DETAIL, end, type, new MemBerDetailEvent());
+    protected void childAdd(MapUtils.Builder builder, int type) {
+            builder.addtId(tId);
+    }
+
+    @Override
+    protected String initUrl() {
+        return IVariable.MEMBER_DETAIL;
     }
 
     private void hideOrShowMember(View show, TextView toggle) {
@@ -79,21 +78,9 @@ public class MemberDetailActivity extends LoadingBarBaseActivity<MemBerDetailEve
         }
     }
 
-    @Override
-    protected Activity initViewData() {
 
-        return this;
-    }
 
-    @Override
-    protected String setTitleName() {
-        return "成员详情";
-    }
 
-    @Override
-    public float getAlpha() {
-        return 1f;
-    }
 
     @Override
     protected void onSuccess(MemBerDetailEvent memBerDetailEvent) {
@@ -163,7 +150,8 @@ public class MemberDetailActivity extends LoadingBarBaseActivity<MemBerDetailEve
             mRvEnter.setVisibility(View.GONE);
         }
         mTvJoined.setText(getString(R.string.text_down, getListSize(joined)));
-        mRvJoined.setAdapter(new MemberJoinedAdapter(this, joined));
+        memberJoinedAdapter = new MemberJoinedAdapter(this, joined);
+        mRvJoined.setAdapter(memberJoinedAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //解决 嵌套滑动不流畅问题
         linearLayoutManager.setSmoothScrollbarEnabled(true);
@@ -181,6 +169,9 @@ public class MemberDetailActivity extends LoadingBarBaseActivity<MemBerDetailEve
                 hideOrShowMember(mRvEnter, mTvEnter);
                 break;
             case R.id.tv_joined:
+                if (memberJoinedAdapter!=null){
+                    memberJoinedAdapter.notifyDataSetChanged();
+                }
                 hideOrShowMember(mRvJoined, mTvJoined);
                 break;
 
@@ -188,4 +179,13 @@ public class MemberDetailActivity extends LoadingBarBaseActivity<MemBerDetailEve
     }
 
 
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_member_detail;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "成员详情";
+    }
 }

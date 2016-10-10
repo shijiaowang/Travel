@@ -13,20 +13,18 @@
         android:layout_gravity="center_horizontal"
         android:background="#ffffff">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_picture"
             android:layout_width="220dp"
-            android:layout_height="64dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/fragment_circle_nav_right_picture" />
+            android:layout_height="64dp" />
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/civ_circle_icon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="49dp"
-            android:src="@drawable/user_icon" />
+            />
 
         <TextView
             android:id="@+id/tv_circle_name"

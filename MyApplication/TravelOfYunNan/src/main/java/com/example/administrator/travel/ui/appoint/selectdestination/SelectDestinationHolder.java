@@ -2,7 +2,6 @@ package com.example.administrator.travel.ui.appoint.selectdestination;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -10,9 +9,8 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Destination;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 
@@ -21,7 +19,7 @@ import butterknife.BindView;
  * 选择景点
  */
 public class SelectDestinationHolder extends BaseHolder<Destination.DataBean.BodyBean> {
-    @BindView(R.id.iv_spot) ImageView mIvSpot;
+    @BindView(R.id.iv_spot) SimpleDraweeView mIvSpot;
     @BindView(R.id.tv_name) TextView mTvName;
     @BindView(R.id.rb_star) RatingBar mRbStart;
     @BindView(R.id.tv_add) TextView mTvAdd;
@@ -35,7 +33,7 @@ public class SelectDestinationHolder extends BaseHolder<Destination.DataBean.Bod
 
     @Override
     public void initItemDatas(Destination.DataBean.BodyBean datas, Context mContext, int position) {
-        x.image().bind(mIvSpot, datas.getLogo_img(), getImageOptions(115, 80));
+        FrescoUtils.displayNormal(mIvSpot,datas.getLogo_img());
         mTvName.setText(datas.getTitle());
         mTvAdd.setText(datas.getAddress());
         float star=5.0f;
@@ -60,7 +58,6 @@ public class SelectDestinationHolder extends BaseHolder<Destination.DataBean.Bod
     }
     @Override
     public View initRootView(Context mContext) {
-
         return  inflateView(R.layout.item_activity_select_destination);
     }
 }

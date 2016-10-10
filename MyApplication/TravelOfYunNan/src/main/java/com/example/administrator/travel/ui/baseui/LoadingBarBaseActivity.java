@@ -23,6 +23,9 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -337,8 +340,39 @@ public abstract class LoadingBarBaseActivity<T extends HttpEvent> extends BaseAc
     public interface ScrollListener{
         void percent(float percent);
     }
+    /**
+     * 实例化 T
+     *
+     * @return
+     */
+    public T getTInstance() {
+
+        try {
+            ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+            Class c = (Class<T>) pt.getActualTypeArguments()[0];
+            Constructor constructor = c.getConstructor();
+            T e = (T) constructor.newInstance();
+            return e;
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     @Subscribe
     public void onEvent(T t){
+        if (!t.getClass().getSimpleName().equals(getTInstance().getClass().getSimpleName())){
+            LogUtils.e("这是其他类传来的消息");
+            LogUtils.e(t.getClass().getSimpleName()+"另外一个"+this.getClass().getSimpleName());
+            return;
+        }
         setIsProgress(false);
         if (getxScrollView()!=null){
             loadEnd(getxScrollView());

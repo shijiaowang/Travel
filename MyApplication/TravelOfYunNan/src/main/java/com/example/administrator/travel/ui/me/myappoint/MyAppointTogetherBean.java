@@ -51,6 +51,24 @@ public class MyAppointTogetherBean implements ParentBean {
         private String state;
         private String add_time;
         private String user_id;
+        private String order_type;
+        private String order_id;
+
+        public String getOrder_id() {
+            return order_id;
+        }
+
+        public void setOrder_id(String order_id) {
+            this.order_id = order_id;
+        }
+
+        public String getOrder_type() {
+            return order_type;
+        }
+
+        public void setOrder_type(String order_type) {
+            this.order_type = order_type;
+        }
 
         public String getBulletin() {
             return bulletin;

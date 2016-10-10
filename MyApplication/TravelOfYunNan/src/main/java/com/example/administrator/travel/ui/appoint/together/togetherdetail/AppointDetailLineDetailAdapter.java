@@ -10,13 +10,13 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/9/5 0005.
  */
-public class AppointDetailLineDetailAdapter extends TravelBaseAdapter<AppointTogetherDetail.DataBean.RoutesBean> {
-    public AppointDetailLineDetailAdapter(Context mContext, List<AppointTogetherDetail.DataBean.RoutesBean> mDatas) {
+public class AppointDetailLineDetailAdapter extends TravelBaseAdapter<AppointTogetherDetailBean.DataBean.RoutesBean> {
+    public AppointDetailLineDetailAdapter(Context mContext, List<AppointTogetherDetailBean.DataBean.RoutesBean> mDatas) {
         super(mContext, mDatas);
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, AppointTogetherDetail.DataBean.RoutesBean item, int position) {
+    protected void initListener(BaseHolder baseHolder, AppointTogetherDetailBean.DataBean.RoutesBean item, int position) {
 
     }
 

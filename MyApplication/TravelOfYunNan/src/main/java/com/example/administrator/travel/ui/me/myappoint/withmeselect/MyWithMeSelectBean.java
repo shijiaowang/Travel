@@ -1,6 +1,7 @@
-package com.example.administrator.travel.ui.me.myappoint.wimeselect;
+package com.example.administrator.travel.ui.me.myappoint.withmeselect;
 
 import com.example.administrator.travel.global.ParentBean;
+import com.example.administrator.travel.ui.me.myappoint.MyAppointTogetherBean;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class MyWithMeSelectBean implements ParentBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean{
         private String id;
         private String travel_id;
         private String travel_img;
@@ -53,9 +54,27 @@ public class MyWithMeSelectBean implements ParentBean {
         private String add_time;
         private String user_id;
         private String browse;
+        private String bulletin;
         private String status;
         private String now_people;
-        private boolean routes;
+        private String routes;
+        private String is_boss;
+
+        public String getIs_boss() {
+            return is_boss;
+        }
+
+        public void setIs_boss(String is_boss) {
+            this.is_boss = is_boss;
+        }
+
+        public String getBulletin() {
+            return bulletin;
+        }
+
+        public void setBulletin(String bulletin) {
+            this.bulletin = bulletin;
+        }
 
         public String getId() {
             return id;
@@ -177,11 +196,11 @@ public class MyWithMeSelectBean implements ParentBean {
             this.now_people = now_people;
         }
 
-        public boolean isRoutes() {
+        public String getRoutes() {
             return routes;
         }
 
-        public void setRoutes(boolean routes) {
+        public void setRoutes(String routes) {
             this.routes = routes;
         }
     }

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.ImageFolder;
-import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;

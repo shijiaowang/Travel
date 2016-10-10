@@ -38,6 +38,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     public static final int TYPE_REFRESH = 1;
     public static final int TYPE_LOAD = 2;
     public static final int TYPE_CLICK_ZAN = 3;
+    public static final int TYPE_REFRESH_BY_USER = 4;
 
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
@@ -154,7 +155,8 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
 
     protected  void onFail(T event){
         if (!isSuccessed){
-           setState(LoadingPage.ResultState.STATE_ERROR);
+            isFirst=true;
+            setState(LoadingPage.ResultState.STATE_ERROR);
         }
     }
 

@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointTogetherDetail;
+import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailBean;
 import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointDetailLineDetailAdapter;
 import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointDetailLineItemAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
@@ -22,7 +22,7 @@ import butterknife.BindView;
 /**
  * Created by android on 2016/9/4.
  */
-public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetail.DataBean.RoutesBean>>{
+public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetailBean.DataBean.RoutesBean>>{
     @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.dlv_line) View mDlvLine;
     @BindView(R.id.tv_number) TextView mTvNumber;
@@ -37,7 +37,7 @@ public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetai
 
 
     @Override
-    protected void initItemDatas(List<AppointTogetherDetail.DataBean.RoutesBean> datas, final Context mContext, int position) {
+    protected void initItemDatas(List<AppointTogetherDetailBean.DataBean.RoutesBean> datas, final Context mContext, int position) {
         mTvTime.setText(datas.get(0).getTime());
         mTvNumber.setText((position + 1) + "");
         if (!isDetail) {

@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.me.othercenter.useralbum;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.baseui.LoadMoreListener;
 import com.example.administrator.travel.ui.fragment.BaseFragment;

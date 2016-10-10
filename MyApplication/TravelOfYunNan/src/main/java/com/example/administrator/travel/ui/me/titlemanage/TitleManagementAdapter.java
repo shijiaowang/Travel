@@ -2,8 +2,6 @@ package com.example.administrator.travel.ui.me.titlemanage;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
@@ -15,8 +13,6 @@ import com.example.administrator.travel.utils.ToastUtils;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/9/7 0007.

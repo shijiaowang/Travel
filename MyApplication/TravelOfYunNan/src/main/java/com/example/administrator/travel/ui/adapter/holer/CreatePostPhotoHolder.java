@@ -2,33 +2,30 @@ package com.example.administrator.travel.ui.adapter.holer;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.example.administrator.travel.R;
-
-import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 
 /**
- * Created by android on 2016/7/31.
+ * Created by wangyang on 2016/7/31.
  */
 public class CreatePostPhotoHolder extends BaseHolder<String> {
-    @BindView(R.id.iv_picture) ImageView mIvPicture;
+    @BindView(R.id.iv_picture) SimpleDraweeView mIvPicture;
     public CreatePostPhotoHolder(Context context) {
         super(context);
     }
 
     @Override
     protected void initItemDatas(String datas, Context mContext, int position) {
-        x.image().bind(mIvPicture,datas,getImageOptions(DensityUtil.dip2px(80),DensityUtil.dip2px(80)));
+        FrescoUtils.displayNormal(mIvPicture,"file//"+datas);
+
     }
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_activity_create_post_photo_normal);
-        return inflate;
+        return inflateView(R.layout.item_activity_create_post_photo_normal);
     }
 }

@@ -12,7 +12,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="9dp">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_user_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"

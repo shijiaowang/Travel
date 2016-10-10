@@ -15,7 +15,6 @@ import com.example.administrator.travel.bean.UserInfo;
 
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
-import com.example.administrator.travel.ui.me.changepassword.ChangePassWordEvent;
 import com.example.administrator.travel.ui.me.changephone.bindphone.BindPhoneActivity;
 import com.example.administrator.travel.ui.view.AvoidFastButton;
 import com.example.administrator.travel.ui.view.PhoneTextView;

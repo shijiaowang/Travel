@@ -2,11 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="162dp"
     android:layout_height="142dp">
-    <ImageView
-        android:scaleType="fitXY"
-        android:src="@drawable/fragment_album_pic1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_cover"
+        android:layout_width="162dp"
+        android:layout_height="142dp" />
 
     <LinearLayout
         android:layout_alignParentBottom="true"

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.appoint.settingtitle.AddTitleEvent;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 
 import org.greenrobot.eventbus.EventBus;

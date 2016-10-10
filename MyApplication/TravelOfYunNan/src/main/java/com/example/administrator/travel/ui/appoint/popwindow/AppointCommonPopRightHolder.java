@@ -8,12 +8,10 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.SelectCommonBean;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
-import org.xutils.view.annotation.ViewInject;
-
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/9/9 0009.
+ * Created by wangyang on 2016/9/9 0009.
  */
 public class AppointCommonPopRightHolder extends BaseHolder<SelectCommonBean> {
     @BindView(R.id.tv_type) TextView mTvType;

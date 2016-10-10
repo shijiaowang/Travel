@@ -3,14 +3,13 @@ package com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.p
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
-
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.File;
 
@@ -20,9 +19,9 @@ import butterknife.BindView;
  * Created by wangyang on 2016/8/23.
  */
 public class PictureSelectorHolder extends BaseHolder<String> {
-    @BindView(R.id.iv_picture) public ImageView mIvPicture;
-    @BindView(R.id.tv_select)public FontsIconTextView mTvSelect;
-    @BindView(R.id.iv_picture_1) public View mImage;
+    @BindView(R.id.iv_picture) SimpleDraweeView mIvPicture;
+    @BindView(R.id.tv_select) FontsIconTextView mTvSelect;
+    @BindView(R.id.iv_picture_1)  View mImage;
 
 
     private String dir;
@@ -34,7 +33,7 @@ public class PictureSelectorHolder extends BaseHolder<String> {
 
     @Override
     protected void initItemDatas(String datas, Context mContext, int position) {
-        x.image().bind(mIvPicture, dir + File.separator + datas, getImageOptions(100,100));
+        FrescoUtils.displayNormal(mIvPicture,dir + File.separator + datas);
         if (GlobalValue.mSelectImages!=null && GlobalValue.mSelectImages.contains(dir+File.separator+datas)){
             mImage.setBackgroundColor(Color.parseColor("#77000000"));
             mTvSelect.setTextColor(mContext.getResources().getColor(R.color.otherTitleBg));

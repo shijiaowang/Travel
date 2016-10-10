@@ -188,7 +188,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_submit:
-                sumbitOrders();
+                submitOrders();
                 break;
             case R.id.rl_zfb:
                 checkRightWay(mTvPayZfb);
@@ -199,7 +199,11 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         }
     }
 
-    private void sumbitOrders() {
+    /**
+     *
+     * 提交订单
+     */
+    private void submitOrders() {
         if (!mCbAgree.isChecked()) {
             ToastUtils.showToast("请阅读并勾选协议");
             return;

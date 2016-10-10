@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.utils.FormatDateUtils;
+import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.StringUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.xutils.x;
 
@@ -22,7 +24,7 @@ import butterknife.BindView;
 public class CircleHotHolder extends BaseHolder<HotPostBean.DataBean> {
     @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.tv_user_nick_name) TextView mTvNickName;
-    @BindView(R.id.iv_user_icon) ImageView mIvUserIcon;
+    @BindView(R.id.iv_user_icon) SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_type) TextView mTvType;
     @BindView(R.id.tv_title) TextView mTvTitle;
     @BindView(R.id.tv_content) TextView mTvContent;
@@ -42,7 +44,7 @@ public class CircleHotHolder extends BaseHolder<HotPostBean.DataBean> {
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-mm-dd",circleHot.getTime()));
         mTvTitle.setText(circleHot.getTitle());
         mTvContent.setText(circleHot.getContent());
-        x.image().bind(mIvUserIcon,circleHot.getUser_img(),getImageOptions(31,31));
+        FrescoUtils.displayIcon(mIvUserIcon,circleHot.getUser_img());
         mTvNickName.setText(circleHot.getNick_name());
         mTvDiscussNumber.setText(circleHot.getCount_reply());
         mTvZhanNumber.setText(circleHot.getCount_like());

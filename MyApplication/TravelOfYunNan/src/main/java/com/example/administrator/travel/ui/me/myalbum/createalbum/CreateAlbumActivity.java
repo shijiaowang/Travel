@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +18,7 @@ import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.XEventUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 
@@ -34,7 +34,7 @@ import java.util.Map;
 public class CreateAlbumActivity extends BaseCropPhotoActivity<CreateAlbumEvent> {
     private TextView mTvMore;//更多
     @ViewInject(R.id.iv_bg)
-    private ImageView mIvBg;
+    private SimpleDraweeView mIvBg;
     @ViewInject(R.id.tv_set_cover)
     private TextView mTvSetCover;
     @ViewInject(R.id.ed_set_name)
@@ -158,7 +158,7 @@ public class CreateAlbumActivity extends BaseCropPhotoActivity<CreateAlbumEvent>
     }
 
     @Override
-    protected ImageView childViewShow() {
+    protected SimpleDraweeView childViewShow() {
         return mIvBg;
     }
 

@@ -9,7 +9,6 @@ import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.utils.JsonUtils;
-import com.example.administrator.travel.utils.LogUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;

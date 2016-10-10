@@ -1,17 +1,14 @@
 package com.example.administrator.travel.ui.appoint.popwindow;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.common.util.DensityUtil;

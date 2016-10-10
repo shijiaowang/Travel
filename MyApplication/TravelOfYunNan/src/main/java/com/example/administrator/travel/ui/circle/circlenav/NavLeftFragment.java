@@ -1,8 +1,6 @@
 package com.example.administrator.travel.ui.circle.circlenav;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -19,23 +17,18 @@ import com.example.administrator.travel.event.NavLeftEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.CircleDetailActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
-import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.CircleUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
-import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
-import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.Callback;
 
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 /**

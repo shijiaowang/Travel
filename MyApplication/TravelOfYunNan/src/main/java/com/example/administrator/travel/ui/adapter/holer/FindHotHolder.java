@@ -7,7 +7,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.FindHot;
 
 /**
- * Created by Administrator on 2016/7/19 0019.
+ * Created by wangyang on 2016/7/19 0019.
  */
 public class FindHotHolder extends BaseHolder<FindHot>{
 

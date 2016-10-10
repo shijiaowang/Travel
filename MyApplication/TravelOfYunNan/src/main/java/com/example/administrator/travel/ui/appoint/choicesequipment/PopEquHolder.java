@@ -7,12 +7,10 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
-import org.xutils.view.annotation.ViewInject;
-
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/8/31 0031.
+ * Created by wangyang on 2016/8/31 0031.
  */
 public class PopEquHolder extends BaseHolder<ChoicePropSelectBean> {
     @BindView(R.id.tv_name) TextView mTvNmae;

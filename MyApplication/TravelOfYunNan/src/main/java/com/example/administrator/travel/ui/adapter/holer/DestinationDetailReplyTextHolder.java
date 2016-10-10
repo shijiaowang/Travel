@@ -10,8 +10,6 @@ import com.example.administrator.travel.bean.TravelReplyBean;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
-import org.xutils.view.annotation.ViewInject;
-
 import butterknife.BindView;
 
 /**

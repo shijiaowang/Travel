@@ -11,7 +11,7 @@ import com.example.administrator.travel.ui.appoint.choicesequipment.ChoicePropSe
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/9/5 0005.
+ * Created by wangyang on 2016/9/5 0005.
  */
 public class ProviderHolder extends BaseHolder {
     @BindView(R.id.tv_name) TextView mTvName;
@@ -22,8 +22,8 @@ public class ProviderHolder extends BaseHolder {
 
     @Override
     protected void initItemDatas(Object datas, Context mContext, int position) {
-        if (datas instanceof AppointTogetherDetail.DataBean.PropBean){
-            AppointTogetherDetail.DataBean.PropBean datas1 = (AppointTogetherDetail.DataBean.PropBean) datas;
+        if (datas instanceof AppointTogetherDetailBean.DataBean.PropBean){
+            AppointTogetherDetailBean.DataBean.PropBean datas1 = (AppointTogetherDetailBean.DataBean.PropBean) datas;
             mTvName.setText(datas1.getName()+"x"+datas1.getNumber());
             mTvDes.setText(datas1.getContent());
         }else if (datas instanceof ChoicePropSelectBean){

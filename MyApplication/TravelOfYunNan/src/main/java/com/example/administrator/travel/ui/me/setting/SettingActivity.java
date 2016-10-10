@@ -4,7 +4,6 @@ package com.example.administrator.travel.ui.me.setting;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,12 +20,13 @@ import com.example.administrator.travel.ui.me.changepassword.ChangePassWordActiv
 import com.example.administrator.travel.ui.view.PhoneTextView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.ShareUtil;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yalantis.ucrop.UCrop;
 
 import org.xutils.view.annotation.ViewInject;
 
 /**
- * Created by Administrator on 2016/7/22 0022.
+ * Created by wangyang on 2016/7/22 0022.
  * 设置界面
  */
 public class SettingActivity extends BaseCropPhotoActivity<SettingEvent> implements View.OnClickListener {
@@ -35,7 +35,7 @@ public class SettingActivity extends BaseCropPhotoActivity<SettingEvent> impleme
     @ViewInject(R.id.tv_user_nick_name)
     private TextView mTvUserNickName;
     @ViewInject(R.id.iv_icon)
-    private ImageView mIvIcon;
+    private SimpleDraweeView mIvIcon;
     @ViewInject(R.id.tv_change_icon)
     private TextView mTvChangeIcon;
     @ViewInject(R.id.tv_user_live_place)
@@ -71,7 +71,7 @@ public class SettingActivity extends BaseCropPhotoActivity<SettingEvent> impleme
     }
 
     @Override
-    protected ImageView childViewShow() {
+    protected SimpleDraweeView childViewShow() {
         return mIvIcon;
     }
 

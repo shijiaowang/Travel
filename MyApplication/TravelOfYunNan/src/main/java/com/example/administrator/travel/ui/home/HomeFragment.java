@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import android.widget.TextView;
 import butterknife.BindView;
+
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.ui.baseui.HomeSearchActivity;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/6 0006.
+ * Created by wangyang on 2016/7/6 0006.
  * 主页Fragment
  */
 public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.OnClickListener {

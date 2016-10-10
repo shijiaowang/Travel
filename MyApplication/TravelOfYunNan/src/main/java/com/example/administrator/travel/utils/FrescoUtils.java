@@ -18,10 +18,10 @@ public class FrescoUtils {
     /**
      * 加载圆形头像
      * @param simpleDraweeView 显示
-     * @param uri 地址
      */
-    public static void displayIcon(SimpleDraweeView simpleDraweeView, Uri uri){
-        if (simpleDraweeView==null || uri==null)return;
+    public static void displayIcon(SimpleDraweeView simpleDraweeView, String url){
+        if (simpleDraweeView==null || url==null)return;
+        Uri uri = Uri.parse(url);
         RoundingParams roundingParams=new RoundingParams();
         roundingParams.setBorder(UIUtils.getColor(R.color.colorFAFAFA),2);
         roundingParams.setRoundAsCircle(true);
@@ -46,9 +46,10 @@ public class FrescoUtils {
     /**
      * 加载圆角icon
      * @param simpleDraweeView 显示
-     * @param uri 地址
      */
-    public static void displayRoundIcon(SimpleDraweeView simpleDraweeView, Uri uri){
+    public static void displayRoundIcon(SimpleDraweeView simpleDraweeView, String url){
+        if (simpleDraweeView==null || url==null)return;
+        Uri uri=Uri.parse(url);
         if (simpleDraweeView==null || uri==null)return;
         RoundingParams roundingParams=new RoundingParams();
         roundingParams.setCornersRadius(10f);
@@ -73,10 +74,10 @@ public class FrescoUtils {
     /**
      * 加载一般图片
      * @param simpleDraweeView 显示
-     * @param uri 地址
      */
-    public static void displayNormal(SimpleDraweeView simpleDraweeView, Uri uri){
-        if (simpleDraweeView==null || uri==null)return;
+    public static void displayNormal(SimpleDraweeView simpleDraweeView, String url){
+        if (simpleDraweeView==null || url==null)return;
+        Uri uri=Uri.parse(url);
         //获取GenericDraweeHierarchy对象
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形

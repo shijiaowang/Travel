@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.baseui;
 import android.app.Activity;
 import android.view.View;
 
+import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -16,8 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
-import butterknife.ButterKnife;
-import okhttp3.internal.framed.Variant;
+import butterknife.OnClick;
 
 /**
  * Created by wangyang on 2016/10/7 0007.
@@ -31,6 +31,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
     @Override
     protected void initOptions() {
         initEvent();
+        mIvPageError.setOnClickListener(new ErrorPageClickListener());
         activity = initDataAndRegisterEventBus();
         if (activity !=null){
             registerEventBus(activity);
@@ -65,7 +66,10 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
     }
 
 
-
+    /**
+     * 初始化数据
+     */
+    protected abstract Activity initDataAndRegisterEventBus();
     /**
      * 初始化监听
      */
@@ -98,7 +102,6 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
      *
      * @param type
      */
-    @Override
     protected void onLoad(int type) {
         MapUtils.Builder builder = MapUtils.Build().addKey(this).addUserId();
         childAdd(builder,type);
@@ -143,5 +146,24 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         }
     }
 
+    /**
+     * 重新读取网络
+     */
+    @OnClick(R.id.page_error)
+    protected void onReLoad() {
+        onLoad(TYPE_REFRESH);
+    }
+
+    /**
+     * 错误页面点击处理
+     */
+    class ErrorPageClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            setIsProgress(true,true);
+            onLoad(TYPE_REFRESH);
+        }
+    }
 
 }

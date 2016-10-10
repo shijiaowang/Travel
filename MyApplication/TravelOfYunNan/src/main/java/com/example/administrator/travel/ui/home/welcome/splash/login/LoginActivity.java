@@ -108,7 +108,6 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
     }
     @Subscribe
     public void onEvent(LoginEvent event) {
-        ToastUtils.showToast(event.getMessage()+"---这是登录结果解析前的信息");
         if (event.isSuccess()) {
             if (event.getType()==IVariable.TYPE_GET_KEY ){
                 if (tryGetKey==0){//只重复尝试一次请求key

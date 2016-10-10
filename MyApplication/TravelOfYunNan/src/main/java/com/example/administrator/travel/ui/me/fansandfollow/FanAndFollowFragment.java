@@ -14,10 +14,7 @@ import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
-
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 import java.util.Map;

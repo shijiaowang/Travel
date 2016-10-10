@@ -1,43 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:paddingTop="2dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="5dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="137dp"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/activity_my_appoint_key_bg"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp">
-        <TextView
-            android:textSize="12sp"
-            android:textColor="@color/colorFAFAFA"
-            android:text="口令："
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/code"
-            android:textSize="12sp"
-            android:textColor="@color/colorFAFAFA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
     <LinearLayout
         android:background="@color/colorFAFAFA"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
+        <View
+            android:background="@color/meLine"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"/>
         <RelativeLayout
             android:orientation="horizontal"
             android:gravity="center_vertical"
@@ -54,20 +36,11 @@
                 android:id="@+id/tv_price"
                 android:textColor="@color/otherFf7f6c"
                 android:layout_marginLeft="14dp"
-                android:layout_toRightOf="@id/tv_appointing"
+                android:layout_marginRight="9dp"
+                android:layout_alignParentRight="true"
                 android:textSize="13sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <com.example.administrator.travel.ui.view.FontsIconTextView
-                android:id="@+id/tv_delete"
-                android:text="@string/activity_my_appoint_delete"
-                android:layout_marginRight="9dp"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/colorb5b5b5"
-                android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
         </RelativeLayout>
         <View
             android:background="@color/meLine"
@@ -81,37 +54,58 @@
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="80dp">
-           <ImageView
+           <com.facebook.drawee.view.SimpleDraweeView
                android:id="@+id/iv_icon"
                android:layout_width="80dp"
                android:layout_height="80dp" />
              <include layout="@layout/activity_my_appoint_common"/>
-            <TextView
-                android:gravity="center"
-                android:text="队伍聊天"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="12sp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/activity_my_appoint_chat_bg"
-                android:layout_width="74dp"
-                android:layout_height="24dp" />
+            <LinearLayout
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/bt_chat"
+                    android:gravity="center"
+                    android:text="队伍聊天"
+                    android:textColor="@color/colorFAFAFA"
+                    android:textSize="12sp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/activity_my_appoint_chat_bg"
+                    android:layout_width="74dp"
+                    android:layout_height="24dp" />
+
+                <Button
+                    android:layout_marginTop="6dp"
+                    android:gravity="center"
+                    android:text="确认出发"
+                    android:textColor="@color/colorFAFAFA"
+                    android:textSize="12sp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/activity_my_appoint_chat_bg"
+                    android:layout_width="74dp"
+                    android:layout_height="24dp"
+                    android:id="@+id/bt_start" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="29dp"
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="29dp">
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp">
             <RelativeLayout
                 android:id="@+id/rl_member_detail"
                 android:layout_width="74dp"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:text="成员详情"
-                    android:layout_alignParentBottom="true"
                     android:textColor="@color/otherTitleBg"
                     android:textSize="12sp"
                     android:background="@drawable/activity_my_appoint_rl_bg"
@@ -129,12 +123,12 @@
                 android:id="@+id/rl_bulletin_board"
                 android:layout_marginLeft="20dp"
                 android:layout_width="66dp"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:gravity="center"
                     android:text="公告板"
-                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"
                     android:textColor="@color/otherTitleBg"
                     android:textSize="12sp"
                     android:background="@drawable/activity_my_appoint_rl_bg"
@@ -148,13 +142,92 @@
                     android:layout_height="wrap_content"/>
 
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="20dp"
+                android:layout_width="66dp"
+                android:layout_height="wrap_content">
+                <Button
+                    android:gravity="center"
+                     android:elevation="3dp"
+                     android:text="付款"
+                    android:layout_marginTop="5dp"
+                     android:textColor="@color/Ffbf75"
+                     android:textSize="12sp"
+                     android:background="@drawable/activity_pb_background_bg"
+                     android:layout_width="50dp"
+                     android:layout_height="24dp"
+
+                    android:id="@+id/bt_pay" />
+            </RelativeLayout>
 
         </LinearLayout>
 
+
         <View
+            android:id="@+id/line"
             android:background="@color/meLine"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
         <include layout="@layout/appoint_bottom_common"/>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_code1"
+        android:paddingTop="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="7dp"
+        android:background="@drawable/activity_my_appoint_key_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp">
+        <TextView
+            android:textSize="12sp"
+            android:textColor="@color/colorFAFAFA"
+            android:text="口令："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/code"
+            android:textSize="12sp"
+            android:textColor="@color/colorFAFAFA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginRight="7dp"
+        android:id="@+id/ll_code2"
+        android:paddingTop="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="180dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/activity_my_appoint_key_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp">
+        <TextView
+            android:textSize="12sp"
+            android:textColor="@color/colorFAFAFA"
+            android:text="口令："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/code2"
+            android:textSize="12sp"
+            android:textColor="@color/colorFAFAFA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:layout_marginRight="3dp"
+        android:id="@+id/iv_delete"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/delete_icon"
+        android:layout_width="14dp"
+        android:layout_height="14dp" />
+
 </RelativeLayout>

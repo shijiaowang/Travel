@@ -7,7 +7,7 @@ package com.example.administrator.travel.global;
 public interface IVariable {
     //前两个为通用
     /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
-    String DOMAIN_NAME = "http://192.168.1.20/";
+    String DOMAIN_NAME = "http://192.168.1.35/";
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -70,6 +70,7 @@ public interface IVariable {
     String UPDATE_ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String SUBMIT_ORDERS = API_KEY + "Order/setOrder/";//提交订单
+    String DELETE_APPOINT = API_KEY + "UserTravel/disbandTravel/";//删除约伴
     String WITH_ME_SELECT = API_KEY + "UserTravel/getTravelplanlists/";//找人带团长送来的推送
     String SUBMIT_ORDERS_USED = API_KEY + "Order/setOrdertype/";//提交订单-之前已经确认过的
     String MY_COUPON = API_KEY + "Order/getConpoulists/";//优惠券
@@ -78,6 +79,7 @@ public interface IVariable {
     String CANCEL_ORDERS = API_KEY + "Order/removeOrder/";//取消订单
     String MY_APPOINT_AGREE_OR_REFUSE = API_KEY + "Travel/agreeUsertoTravel/";//处理约伴同意还是拒绝
     String MEMBER_DETAIL = API_KEY + "Travel/getTraveluserlists/";//成员详情
+    String AGREE_WITH_ME_SELECT = API_KEY + "UserTravel/agreeTravelplan/";//选择找人带推送
     String CHANGE_PHONE_VER_MSG = API_KEY + "User/sendUsermsg/";//更改绑定发送验证码
     String GET_CURRENT_BIND_PHONE = API_KEY + "User/getNOwtel/";//获取绑定的手机号
     String CHANGE_PASSWORD = API_KEY + "User/updatePassword/";//修改密码

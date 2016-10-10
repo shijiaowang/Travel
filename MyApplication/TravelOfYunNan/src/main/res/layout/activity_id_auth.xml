@@ -108,7 +108,7 @@
                         android:layout_width="121dp"
                         android:layout_height="84dp" />
 
-                    <ImageView
+                    <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/iv_image1"
                         android:visibility="gone"
                         android:layout_width="121dp"
@@ -139,7 +139,7 @@
                         android:textColor="@color/otherTitleBg"
                         android:layout_width="121dp"
                         android:layout_height="84dp" />
-                    <ImageView
+                    <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/iv_image2"
                         android:visibility="gone"
                         android:layout_width="121dp"

@@ -252,6 +252,7 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
         <string-array name="together_appoint">
+            <item>约伴订单</item>
             <item>已报名待通过</item>
             <item>已通过待支付</item>
             <item>报名成功待出发</item>
@@ -263,11 +264,26 @@
             <item>约伴结束待评价</item>
             <item>已评价</item>
             <item>已退款</item>
+            <item>取消报名</item>
+            <item>申请退出</item>
+            <item>取消支付</item>
         </string-array>
     <string-array name="with_me_appoint">
+        <item>招募中</item>
         <item>招募中</item>
         <item>招募成功</item>
         <item>招募失败</item>
     </string-array>
+    <string-array name="together_appoint_detail">
+        <item>报名</item>
+        <item>报名</item>
+        <item>支付</item>
+        <item>退出</item>
+        <item>评价</item>
+        <item>出行中</item>
+        <item>退款中</item>
+        <item>审核中</item>
+    </string-array>
+
 
 </resources>

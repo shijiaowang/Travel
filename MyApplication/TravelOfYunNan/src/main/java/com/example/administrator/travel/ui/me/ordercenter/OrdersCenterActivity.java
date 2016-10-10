@@ -11,65 +11,32 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.baseui.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.me.ordercenter.coupon.CouponFragment;
 import com.example.administrator.travel.ui.me.ordercenter.orders.MyOrdersFragment;
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
 
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/8/11 0011.
  * 我的订单
  */
-public class OrdersCenterActivity extends BarBaseActivity {
+public class OrdersCenterActivity extends BaseToolBarActivity {
     private String[] mTitles = {"最近订单", "全部订单", "优惠券"};
     private String[] ordersType = {"全部订单", "约伴订单", "活动订单"};
     private int currentOrders = 0;//当前为全部订单
 
-    @ViewInject(R.id.svpi_indicator)
-    private SimpleViewPagerIndicator mIndicator;
-    @ViewInject(R.id.vp_orders)
-    private ViewPager mVpOrders;
+    @BindView(R.id.svpi_indicator) SimpleViewPagerIndicator mIndicator;
+    @BindView(R.id.vp_orders) ViewPager mVpOrders;
     private List<Fragment> fragments;
 
 
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_orders_center;
-    }
 
-    @Override
-    protected void initEvent() {
-        init();
-        mIndicator.setOnPopShowListener(new SimpleViewPagerIndicator.OnPopShowListener() {
-            @Override
-            public void onShow(TextView tv) {
-                //弹出popwindow
-                showPop(tv);
-            }
-        });
-        mVpOrders.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mIndicator.scroll(position, positionOffset);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-    }
 
     private void init() {
         mIndicator.setChildMargin(10);
@@ -136,9 +103,43 @@ public class OrdersCenterActivity extends BarBaseActivity {
         return title;
     }
 
-    @Override
-    protected void initViewData() {
 
+
+
+
+
+
+    @Override
+    protected int initLayoutRes() {
+        return  R.layout.activity_orders_center;
+    }
+
+    @Override
+    protected void initOptions() {
+        init();
+        mIndicator.setOnPopShowListener(new SimpleViewPagerIndicator.OnPopShowListener() {
+            @Override
+            public void onShow(TextView tv) {
+                //弹出popwindow
+                showPop(tv);
+            }
+        });
+        mVpOrders.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                mIndicator.scroll(position, positionOffset);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         fragments = new ArrayList<>();
         fragments.add(new CouponFragment());
         fragments.add(new MyOrdersFragment());
@@ -146,18 +147,11 @@ public class OrdersCenterActivity extends BarBaseActivity {
 
         fragments.add(new CouponFragment());
         mVpOrders.setAdapter(new OrdersPagerAdapter(getSupportFragmentManager()));
-
-
     }
 
     @Override
-    protected String setTitleName() {
+    protected String initTitle() {
         return "订单中心";
-    }
-
-    @Override
-    public float getAlpha() {
-        return 1.0f;
     }
 
     class OrdersPagerAdapter extends FragmentPagerAdapter {

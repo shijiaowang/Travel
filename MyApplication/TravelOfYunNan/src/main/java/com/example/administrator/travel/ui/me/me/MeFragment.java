@@ -1,7 +1,6 @@
 package com.example.administrator.travel.ui.me.me;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -158,7 +157,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
     @Override
     protected void onLoad(int type) {
-        refreshUserInfo();
+        refreshUserInfo(type);
     }
 
     @Override
@@ -263,6 +262,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
             case UP_ICON:
                 ToastUtils.showToast(meEvent.getMessage());
                 break;
+            case TYPE_REFRESH_BY_USER:
             case TYPE_REFRESH:
                 mSwifeLayout.setRefreshing(false);
                 dealRefreshData(meEvent);
@@ -281,8 +281,8 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mTvFanNumber.setText(data.getFans());
         mTvFollowNumber.setText(data.getFollow());
         UserInfo user = data.getUser();
-        FrescoUtils.displayIcon(mIvIcon, Uri.parse(user.getUser_img()));
-        FrescoUtils.displayNormal(mIvBg, Uri.parse(user.getBackground_img()));
+        FrescoUtils.displayIcon(mIvIcon, user.getUser_img());
+        FrescoUtils.displayNormal(mIvBg, user.getBackground_img());
         mTvNickName.setText(user.getNick_name());
         mTvProfile.setText(user.getContent());
         mTvLevel.setText("LV."+user.getLevel());
@@ -307,23 +307,32 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
        @Override
        public void onRefresh() {
-           refreshUserInfo();
+           refreshUserInfo(TYPE_REFRESH_BY_USER);
        }
    }
 
-    private void refreshUserInfo() {
+    private void refreshUserInfo(int type) {
         Map<String, String> end = MapUtils.Build().addKey(getContext()).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.UPDATE_ME_MESSAGE,end,TYPE_REFRESH,new MeEvent());
+        XEventUtils.getUseCommonBackJson(IVariable.UPDATE_ME_MESSAGE,end,type,new MeEvent());
     }
 
     @Override
-    protected SimpleDraweeView childViewShow() {
+    protected void childViewShow(String s) {
 
-        return upType==UP_BG?mIvBg:mIvIcon;
+         if (upType==UP_BG){
+             FrescoUtils.displayNormal(mIvBg,s);
+         }else {
+             FrescoUtils.displayIcon(mIvIcon,s);
+         }
     }
 
     @Override
     protected void onFail(MeEvent event) {
-        mSwifeLayout.setRefreshing(false);
+        if (event.getType()==TYPE_REFRESH_BY_USER) {
+            mSwifeLayout.setRefreshing(false);
+        }else {
+            super.onFail(event);
+        }
+
     }
 }

@@ -6,7 +6,7 @@ import android.view.View;
 import com.example.administrator.travel.R;
 
 /**
- * Created by android on 2016/7/31.
+ * Created by wangyang on 2016/7/31.
  */
 public class CreatePostPhotoLastHolder extends BaseHolder {
     public View mTvAdd;

@@ -6,15 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.EditAlbumActivity;
-
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
         MyAlbumBean.DataBean dataBean = mDatas.get(position);
         if (holder instanceof MyAlbumShortHolder) {
             MyAlbumShortHolder shortHolder = (MyAlbumShortHolder) holder;
-            x.image().bind(shortHolder.mIvCover, dataBean.getCover_img());
+            FrescoUtils.displayNormal(shortHolder.mIvCover, dataBean.getCover_img());
             shortHolder.mTvDiscussNumber.setText(dataBean.getBrowse());
             shortHolder.mTvTitle.setText(dataBean.getTitle());
             shortHolder.mTvLoveNumber.setText(dataBean.getLike());
@@ -72,7 +71,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
             });
         } else {
             MyAlbumLengthHolder lengthHolder = (MyAlbumLengthHolder) holder;
-            x.image().bind(lengthHolder.mIvCover, dataBean.getCover_img());
+            FrescoUtils.displayNormal(lengthHolder.mIvCover, dataBean.getCover_img());
             lengthHolder.mTvDiscussNumber.setText(dataBean.getBrowse());
             lengthHolder.mTvTitle.setText(dataBean.getTitle());
             lengthHolder.mTvLoveNumber.setText(dataBean.getLike());
@@ -97,7 +96,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
     }
 
     public class MyAlbumShortHolder extends BaseRecycleViewHolder {
-        @BindView(R.id.iv_cover) ImageView mIvCover;
+        @BindView(R.id.iv_cover) SimpleDraweeView mIvCover;
         @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
         @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
         @BindView(R.id.tv_time) TextView mTvTitle;
@@ -108,7 +107,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
     }
 
     public class MyAlbumLengthHolder extends BaseRecycleViewHolder {
-        @BindView(R.id.iv_cover) ImageView mIvCover;
+        @BindView(R.id.iv_cover) SimpleDraweeView mIvCover;
         @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
         @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
         @BindView(R.id.tv_time) TextView mTvTitle;

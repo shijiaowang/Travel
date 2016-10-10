@@ -9,7 +9,6 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Travels;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import butterknife.BindView;

@@ -2,7 +2,6 @@ package com.example.administrator.travel.ui.adapter.holer;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,11 +11,11 @@ import com.example.administrator.travel.ui.adapter.CircleDetailPhotoAdapter;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
 import com.example.administrator.travel.utils.FormatDateUtils;
+import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.StringUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +23,11 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/7/11 0011.
+ * Created by wangyang on 2016/7/11 0011.
+ * 圈子详情
  */
 public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBean> {
-    @BindView(R.id.iv_user_icon) ImageView mIvUserIcon;
+    @BindView(R.id.iv_user_icon) SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
     @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
@@ -48,7 +48,7 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
         if (datas == null) {
             return;
         }
-        x.image().bind(mIvUserIcon, datas.getUser_img());
+        FrescoUtils.displayIcon(mIvUserIcon,datas.getUser_img());
         mTvDiscussNumber.setText(datas.getCount_reply());
         mTvLoveNumber.setText(datas.getCount_like());
         if (StringUtils.isEmpty(datas.getTitle())) {

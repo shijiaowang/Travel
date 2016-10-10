@@ -21,15 +21,8 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.utils.BitmapUtils;
-import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.IOUtils;
 import com.example.administrator.travel.utils.ToastUtils;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.generic.GenericDraweeHierarchy;
-import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
-import com.facebook.drawee.generic.RoundingParams;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 
@@ -345,9 +338,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
            x.task().post(new Runnable() {
                @Override
                public void run() {
-                   SimpleDraweeView imageView =  childViewShow();
-                   Uri uri=Uri.parse("file://"+fileName);
-                   FrescoUtils.displayIcon(imageView,uri);
+                   childViewShow("file://"+fileName);
                }
            });
             childUpImage();
@@ -371,8 +362,9 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
     /**
      * 孩子显示图片控件图片，并且可以做一些处理
      * @return
+     * @param s
      */
-    protected  abstract SimpleDraweeView childViewShow();
+    protected  abstract void childViewShow(String s);
     /**
      * 处理裁剪图片  保存压缩
      *

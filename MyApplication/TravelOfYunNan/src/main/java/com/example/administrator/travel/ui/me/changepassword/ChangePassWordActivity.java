@@ -2,11 +2,9 @@ package com.example.administrator.travel.ui.me.changepassword;
 
 import android.app.Activity;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.UserInfo;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.view.AvoidFastButton;

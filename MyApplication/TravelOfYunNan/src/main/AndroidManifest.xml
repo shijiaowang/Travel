@@ -137,7 +137,7 @@
         <activity android:name=".ui.me.changepassword.ChangePassWordActivity" />
         <activity android:name=".ui.me.changephone.bindphone.BindPhoneActivity" />
         <activity android:name=".ui.home.welcome.splash.login.forgetpassword.ForgetPasswordActivity" />
-        <activity android:name=".ui.me.myappoint.wimeselect.MyWithMeSelectActivity" />
+        <activity android:name=".ui.me.myappoint.withmeselect.MyWithMeSelectActivity" />
         <activity android:name=".ui.baseui.BaseToolBarActivity"
             android:theme="@style/ToolBarTheme"
             />

@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.utils.MapUtils;

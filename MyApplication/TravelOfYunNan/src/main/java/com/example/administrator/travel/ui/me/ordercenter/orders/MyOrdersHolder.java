@@ -1,14 +1,13 @@
 package com.example.administrator.travel.ui.me.ordercenter.orders;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.me.ordercenter.orders.MyOrdersBean;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.FrescoUtils;
@@ -40,16 +39,16 @@ public class MyOrdersHolder extends BaseHolder<MyOrdersBean.DataBean> {
 
     @Override
     protected void initItemDatas(MyOrdersBean.DataBean datas, Context mContext, int position) {
-        FrescoUtils.displayRoundIcon(mIvIcon, Uri.parse(datas.getTravel_img()));
+        FrescoUtils.displayRoundIcon(mIvIcon, datas.getTravel_img());
         mTvPlanNumber.setVisibility(View.GONE );
         mTvHaveNumber.setText("已有: " + datas.getPeople() + "人");
         mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
-        mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
+        mTvDayAndNight.setText(FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getEnd_time()));
         mTvLine.setText(datas.getRoutes());
         mTvIdNumber.setText("订单号:"+datas.getOrder_sn());
         mTvTotalPrice.setText("合计:"+datas.getTotal_price());
         mTvPrice.setText("¥"+datas.getTotal_price());
-        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm:ss", datas.getAdd_time()));
+        mTvTime.setText(FormatDateUtils.FormatLongTime(IVariable.Y_M_DHms, datas.getAdd_time()));
         String status = datas.getStatus();
         if (status.equals("1")){
             status="已支付";

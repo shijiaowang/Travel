@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/20 0020.
  */
-public class AppointTogetherDetail {
+public class AppointTogetherDetailBean {
 
 
 
@@ -44,6 +44,10 @@ public class AppointTogetherDetail {
     public static class DataBean {
         private String id;
         private String user_id;
+        private String action;
+
+
+
         private String title;
         private String content;
         private String travel_img;
@@ -75,6 +79,14 @@ public class AppointTogetherDetail {
         private String count_like;
         private String is_like;
         private String routes_title;
+
+        public String getAction() {
+            return action;
+        }
+
+        public void setAction(String action) {
+            this.action = action;
+        }
 
         private List<PeopleBean> into_people;
 

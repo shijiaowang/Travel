@@ -11,7 +11,6 @@ import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.CircleDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.CircleDetailHolder;
-import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;

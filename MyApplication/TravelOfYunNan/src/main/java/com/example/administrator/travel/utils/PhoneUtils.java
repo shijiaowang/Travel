@@ -1,7 +1,5 @@
 package com.example.administrator.travel.utils;
 
-import com.example.administrator.travel.R;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

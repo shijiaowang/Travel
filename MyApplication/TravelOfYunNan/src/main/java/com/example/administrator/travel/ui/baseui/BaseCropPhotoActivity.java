@@ -14,15 +14,16 @@ import android.support.v4.app.ActivityCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.utils.BitmapUtils;
+import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.IOUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 
@@ -35,7 +36,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Created by Administrator on 2016/9/23 0023.
+ * Created by wangyang on 2016/9/23 0023.
  * 裁剪图片的公共父类
  */
 public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends LoadingBarBaseActivity<T> {
@@ -357,13 +358,19 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
         FileOutputStream fOut = null;
         try {
             fOut = new FileOutputStream(file);
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+            bmp.compress(Bitmap.CompressFormat.PNG, 60, fOut);
             flag = true;
             filename = url;
-            ImageView imageView = childViewShow();
-            if (imageView!=null) {
-                x.image().bind(imageView, filename);
-            }
+                x.task().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        final SimpleDraweeView simpleDraweeView = childViewShow();
+                        if (simpleDraweeView!=null)
+                        FrescoUtils.displayRoundIcon(simpleDraweeView,"file://"+filename);
+                    }
+                });
+
+
             bmp.recycle();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -383,7 +390,7 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
      * 孩子显示图片控件图片，并且可以做一些处理
      * @return
      */
-   protected  abstract ImageView childViewShow();
+   protected  abstract SimpleDraweeView childViewShow();
     /**
      * 处理裁剪图片  保存压缩
      *
@@ -402,7 +409,6 @@ public abstract class BaseCropPhotoActivity<T extends HttpEvent> extends Loading
 
                 try {
                     Bitmap bitmap = null;
-
                         bitmap = BitmapUtils.getBitmapFormUri(this, resultUri,100);
                         if (bitmap == null) return;
                         saveCroppedImage(bitmap);//保存图片到本地

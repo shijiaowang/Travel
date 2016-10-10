@@ -8,8 +8,6 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
-import org.xutils.view.annotation.ViewInject;
-
 import butterknife.BindView;
 
 /**

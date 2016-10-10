@@ -2,11 +2,9 @@ package com.example.administrator.travel.ui.me.identityauth.idauth;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -19,11 +17,11 @@ import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +32,8 @@ import java.util.Map;
  */
 
 public class IdAuthActivity extends BaseCropPhotoActivity implements View.OnClickListener {
-    @ViewInject(R.id.iv_image1) ImageView mIvImage1;
-    @ViewInject(R.id.iv_image2) ImageView mIvImage2;
+    @ViewInject(R.id.iv_image1) SimpleDraweeView mIvImage1;
+    @ViewInject(R.id.iv_image2) SimpleDraweeView mIvImage2;
     @ViewInject(R.id.tv_icon1)
     TextView mTvIcon1;
     @ViewInject(R.id.tv_icon2) TextView mTvIcon2;
@@ -59,7 +57,7 @@ public class IdAuthActivity extends BaseCropPhotoActivity implements View.OnClic
     }
 
     @Override
-    protected ImageView childViewShow() {
+    protected SimpleDraweeView childViewShow() {
         return upSide==POSITIVE_SIDE?mIvImage1:mIvImage2;
     }
 

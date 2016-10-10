@@ -1,10 +1,8 @@
 package com.example.administrator.travel.ui.me.myappoint;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.support.annotation.ColorInt;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,8 +11,8 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.FormatDateUtils;
-
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.Date;
 
@@ -27,9 +25,8 @@ import butterknife.BindView;
  * 约伴中
  */
 public class MyAppointingWithMeHolder extends BaseHolder<Object> {
-    @BindView(R.id.iv_icon) ImageView mIvIcon;
+    @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_price) TextView mTvPrice;
-    @BindView(R.id.tv_delete) TextView mTvDelete;
     @BindView(R.id.tv_icon_love) FontsIconTextView mTvIconLove;
     @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
@@ -56,7 +53,7 @@ public class MyAppointingWithMeHolder extends BaseHolder<Object> {
     protected void initItemDatas(Object datas1, Context mContext, int position) {
         if (datas1 instanceof MyAppointWithMeBean.DataBean) {
             MyAppointWithMeBean.DataBean datas = (MyAppointWithMeBean.DataBean) datas1;
-            x.image().bind(mIvIcon, datas.getTravel_img());
+            FrescoUtils.displayNormal(mIvIcon,datas.getTravel_img());
             mTvPrice.setText(datas.getTotal_price());
             mTvLoveNumber.setText(datas.getCount_like());
             mTvWatchNumber.setText(datas.getBrowse());

@@ -2,14 +2,12 @@ package com.example.administrator.travel.ui.appoint.popwindow;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.utils.ToastUtils;
 
 import org.xutils.common.util.DensityUtil;
 

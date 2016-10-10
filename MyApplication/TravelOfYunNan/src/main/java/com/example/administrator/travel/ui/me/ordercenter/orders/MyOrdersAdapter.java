@@ -8,6 +8,7 @@ import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
+import com.example.administrator.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
 import com.example.administrator.travel.ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.XEventUtils;
@@ -41,7 +42,7 @@ public class MyOrdersAdapter extends TravelBaseAdapter<MyOrdersBean.DataBean> {
             public void onClick(View v) {
                 String type = item.getType();
                 String orderId = item.getId();
-                Intent intent=new Intent(mContext, OrdersDetailActivity.class);
+                Intent intent=new Intent(mContext, ConfirmOrdersActivity.class);
                 intent.putExtra(IVariable.TYPE,type);
                 intent.putExtra(IVariable.ID,orderId);
                 mContext.startActivity(intent);

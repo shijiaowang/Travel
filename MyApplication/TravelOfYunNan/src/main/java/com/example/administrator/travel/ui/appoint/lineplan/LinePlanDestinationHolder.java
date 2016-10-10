@@ -5,12 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-
-import org.xutils.view.annotation.ViewInject;
-
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -19,7 +14,7 @@ import butterknife.BindView;
  */
 public class LinePlanDestinationHolder extends BaseHolder<LineBean.Destination> {
     @BindView(R.id.tv_add)TextView mTvAdd;
-    @BindView(R.id.tv_delete)public TextView mTvDelete;
+    @BindView(R.id.tv_delete) TextView mTvDelete;
 
     public LinePlanDestinationHolder(Context context) {
         super(context);

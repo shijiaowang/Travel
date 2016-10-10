@@ -9,9 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.HotSpots;
 import com.example.administrator.travel.bean.TravelsDetail;
-import com.example.administrator.travel.utils.FontsIconUtil;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.ImageOptionsUtil;
 

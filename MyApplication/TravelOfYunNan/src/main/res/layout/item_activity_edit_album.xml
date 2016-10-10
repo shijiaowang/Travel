@@ -6,8 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="170dp">
-        <ImageView
-            android:src="@drawable/activity_edit_test"
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_image"
             android:layout_width="316dp"
             android:layout_height="170dp" />

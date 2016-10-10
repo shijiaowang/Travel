@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Active;
 import com.example.administrator.travel.event.ActiveEvent;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.ActiveAdapter;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
@@ -20,10 +19,7 @@ import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
-
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;

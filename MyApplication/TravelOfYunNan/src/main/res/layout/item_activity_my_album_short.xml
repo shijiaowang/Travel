@@ -6,12 +6,11 @@
     android:background="#fafafa"
     android:orientation="vertical">
 
-    <ImageView
+    <SimpleDraweeView
         android:id="@+id/iv_cover"
         android:layout_width="165dp"
         android:layout_height="112dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/activity_my_album_test" />
+    />
 
     <TextView
         android:id="@+id/tv_title"

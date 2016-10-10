@@ -2,13 +2,12 @@ package com.example.administrator.travel.ui.me.myalbum.editalbum;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 
@@ -21,8 +20,7 @@ public class EditAlbumHolder extends BaseHolder<EditAlbumBean.DataBean.BodyBean>
 
 
 
-    @BindView(R.id.iv_image)
-    ImageView mIvImage;
+    @BindView(R.id.iv_image) SimpleDraweeView mIvImage;
     @BindView(R.id.tv_number) TextView mTvNumber;
     @BindView(R.id.tv_delete) TextView mTvDelete;
     public EditAlbumHolder(Context context, int size) {
@@ -35,7 +33,7 @@ public class EditAlbumHolder extends BaseHolder<EditAlbumBean.DataBean.BodyBean>
 
     @Override
     protected void initItemDatas(EditAlbumBean.DataBean.BodyBean datas, Context mContext, int position) {
-        x.image().bind(mIvImage,datas.getPath());
+        FrescoUtils.displayNormal(mIvImage,datas.getPath());
         mTvNumber.setText((position+1)+"/"+size);
         mTvDelete.setVisibility(canDelete?View.VISIBLE:View.GONE);
 

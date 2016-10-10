@@ -1,6 +1,5 @@
 package com.example.administrator.travel.ui.fragment;
 
-import android.view.View;
 import android.widget.ListView;
 
 import com.example.administrator.travel.R;

@@ -5,32 +5,24 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.appoint.lineplan.LinePlanEvent;
-import com.example.administrator.travel.ui.appoint.popwindow.AppointDetailMorePop;
+import com.example.administrator.travel.global.ParentPopClick;
 import com.example.administrator.travel.ui.me.myappoint.MyAppointActivity;
-import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 
-import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 
@@ -215,5 +207,48 @@ public class EnterAppointDialog {
         dialog.show();
 
     }
+    public static void showCommonDialog(final Context context, String title, String okText, String content, final ParentPopClick parentPopClick) {
+        //创建视图
+        View dialogView = View.inflate(context, R.layout.dialog_appoint_enlist_fail, null);
+        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
+        ((TextView) dialogView.findViewById(R.id.tv_title)).setText(title);
+        ((TextView) dialogView.findViewById(R.id.tv_content)).setText(context.getString(R.string.kongge)+content);
+        dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        TextView tvSure = (TextView) dialogView.findViewById(R.id.tv_sure);
+        tvSure.setText(okText);
+        tvSure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentPopClick.onClick();
+            }
+        });
+        Window window = dialog.getWindow(); //得到对话框
+        window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
+        window.setGravity(Gravity.CENTER);
+
+        //创建 Dialog
+//		Dialog dialog=new Dialog(上下文,风格style);
+
+        //layout_width layout_height
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(285),DensityUtil.dip2px(179));
+        dialog.setContentView(dialogView, params);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK)
+                    dialog.dismiss();
+                return true;
+            }
+        });
+        dialog.show();
+    }
+
 
 }

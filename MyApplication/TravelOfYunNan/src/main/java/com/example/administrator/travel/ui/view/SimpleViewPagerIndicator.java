@@ -10,18 +10,14 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.utils.UIUtils;
 
 import org.xutils.common.util.DensityUtil;
-
-import java.lang.reflect.Type;
 
 public class SimpleViewPagerIndicator extends LinearLayout {
 

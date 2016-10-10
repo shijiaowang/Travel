@@ -12,14 +12,14 @@ import butterknife.BindView;
 /**
  * Created by Administrator on 2016/9/5 0005.
  */
-public class AppointDetailLineItemHolder extends BaseHolder<AppointTogetherDetail.DataBean.RoutesBean> {
+public class AppointDetailLineItemHolder extends BaseHolder<AppointTogetherDetailBean.DataBean.RoutesBean> {
     @BindView(R.id.tv_spot_name) TextView mTvSpotName;
     public AppointDetailLineItemHolder(Context context) {
         super(context);
     }
 
     @Override
-    protected void initItemDatas(AppointTogetherDetail.DataBean.RoutesBean datas, Context mContext, int position) {
+    protected void initItemDatas(AppointTogetherDetailBean.DataBean.RoutesBean datas, Context mContext, int position) {
         mTvSpotName.setText(datas.getCity()+" · "+datas.getTitle());
     }
 

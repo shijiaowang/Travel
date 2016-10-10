@@ -2,95 +2,47 @@ package com.example.administrator.travel.ui.me.bulltetinboard;
 
 import android.app.Activity;
 
-import com.example.administrator.travel.R;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
-import com.example.administrator.travel.ui.view.refreshview.XListView;
-import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.ui.baseui.BaseLoadAndRefreshActivity;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.ToastUtils;
-import com.example.administrator.travel.utils.XEventUtils;
-
-import org.greenrobot.eventbus.Subscribe;
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wangyang on 2016/8/2 0002.
  * 公告栏
  */
-public class BulletinBoardActivity extends LoadingBarBaseActivity<BulletinBoardEvent> {
-   @ViewInject(R.id.lv_bulletin_board)
-    private XListView mLvBulletinBoard;
-    private int count=0;
-    private BulletinBoardAdapter bulletinBoardAdapter;
-    private List<BulletinBoardBean.DataBean> mBeanData;
+public class BulletinBoardActivity extends BaseLoadAndRefreshActivity<BulletinBoardEvent,BulletinBoardBean,BulletinBoardBean.DataBean> {;
     private String tId;
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_bulletin_board;
-    }
+
 
     @Override
-    protected void initEvent() {
-        tId = getIntent().getStringExtra(IVariable.DATA);
-        initXListView(mLvBulletinBoard,true,true);
-    }
-
-    @Override
-    protected void onLoad(int type) {
-        count = type==TYPE_LOAD?getListSize(mBeanData):0;
-        Map<String, String> bulletinMap = MapUtils.Build().addKey(this).addtId(tId).addPageSize(10).addCount(count).end();
-        XEventUtils.getUseCommonBackJson(IVariable.BULLETIN_BOARD,bulletinMap,type,new BulletinBoardEvent());
-    }
-
-    @Override
-    protected Activity initViewData() {
-
+    protected Activity initDataAndRegisterEventBus() {
         return this;
     }
-
-    private void dealData(BulletinBoardEvent event) {
-        BulletinBoardBean bulletinBoardBean = GsonUtils.getObject(event.getResult(), BulletinBoardBean.class);
-        List<BulletinBoardBean.DataBean> data = bulletinBoardBean.getData();
-        if (data==null)return;
-        if (bulletinBoardAdapter==null) {
-            mBeanData =  data;
-            bulletinBoardAdapter = new BulletinBoardAdapter(this, mBeanData);
-            mLvBulletinBoard.setAdapter(bulletinBoardAdapter);
-        }else {
-            if (event.getType()==TYPE_REFRESH){
-                mBeanData = data;
-                bulletinBoardAdapter.notifyDataSetChanged();
-            }else if (event.getType()==TYPE_LOAD){
-                mBeanData.addAll(data);
-                bulletinBoardAdapter.notifyDataSetChanged();
-            }
-        }
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+        tId = getIntent().getStringExtra(IVariable.DATA);
+         builder.addtId(tId);
     }
     @Override
-    protected String setTitleName() {
+    protected String initUrl() {
+        return IVariable.BULLETIN_BOARD;
+    }
+
+
+
+    @Override
+    protected BaseRecycleViewAdapter initAdapter(List<BulletinBoardBean.DataBean> mDatas) {
+        return new BulletinBoardAdapter(mDatas,this);
+    }
+
+
+
+    @Override
+    protected String initTitle() {
         return "公告板";
-    }
-
-    @Override
-    public float getAlpha() {
-        return 1f;
-    }
-
-    @Override
-    protected void onSuccess(BulletinBoardEvent bulletinBoardEvent) {
-        dealData(bulletinBoardEvent);
-        loadEnd(mLvBulletinBoard);
-    }
-
-    @Override
-    protected void onFail(BulletinBoardEvent event) {
-        super.onFail(event);
-        loadEnd(mLvBulletinBoard);
     }
 }

@@ -12,7 +12,6 @@ import android.widget.EditText;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Travels;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.TravelsEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.ActivityTravelsAdapter;
@@ -20,10 +19,8 @@ import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
-import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;

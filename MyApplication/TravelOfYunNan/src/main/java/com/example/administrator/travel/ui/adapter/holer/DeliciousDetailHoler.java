@@ -7,8 +7,6 @@ import android.widget.RatingBar;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.DeliciousDetail;
 
-import org.xutils.view.annotation.ViewInject;
-
 import butterknife.BindView;
 
 /**

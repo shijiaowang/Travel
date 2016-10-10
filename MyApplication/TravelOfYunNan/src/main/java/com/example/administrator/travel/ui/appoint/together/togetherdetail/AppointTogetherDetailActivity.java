@@ -1,11 +1,13 @@
 package com.example.administrator.travel.ui.appoint.together.togetherdetail;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,10 +15,9 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.PeopleBean;
 import com.example.administrator.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.adapter.TravelDetailLineAdapter;
 import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
-import com.example.administrator.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
@@ -27,134 +28,89 @@ import com.example.administrator.travel.utils.ImageOptionsUtil;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
-import com.example.administrator.travel.utils.TypefaceUtis;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
- * Created by Administrator on 2016/9/2 0002.
+ * Created by wangyang on 2016/9/2 0002.
  * 一起玩约伴详情
  */
-public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<AppointDetailEvent> implements View.OnClickListener {
+public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDetailEvent> implements View.OnClickListener {
     private static final int TYPE_ENTER_APPOINT=95;
-    @ViewInject(R.id.tv_start_add)
-    private TextView mTvStartAdd;
-    @ViewInject(R.id.tv_end_add)
-    private TextView mTvEndAdd;
-    @ViewInject(R.id.lv_route_line)
-    private ToShowAllListView mLvRouteLine;
-    @ViewInject(R.id.iv_user_icon)
-    private ImageView mIvUserIcon;
-    @ViewInject(R.id.tv_user_nick_name)
-    private TextView mTvUserNickName;
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.tv_day)
-    private TextView mTvDay;
-    @ViewInject(R.id.tv_watch_number)
-    private TextView mTvWatchNumber;
-    @ViewInject(R.id.tv_love)
-    private FontsIconTextView mTvLove;
-    @ViewInject(R.id.tv_love_number)
-    private TextView mTvLoveNumber;
-    @ViewInject(R.id.tv_sex)
-    private TextView mTvSex;
-    @ViewInject(R.id.iv_appoint_bg)
-    private ImageView mIvAppointBg;
-    @ViewInject(R.id.tv_title)
-    private TextView mTvTitle;
-    @ViewInject(R.id.tv_content)
-    private TextView mTvContent;
-    @ViewInject(R.id.tv_line)
-    private TextView mTvLine;
-    @ViewInject(R.id.tv_start_and_long)
-    private TextView mTvStartAndLong;
-    @ViewInject(R.id.tv_day_and_night)
-    private TextView mTvDayAndNight;
-    @ViewInject(R.id.tv_plan_number)
-    private TextView mTvPlanNumber;
-    @ViewInject(R.id.tv_have_number)
-    private TextView mTvHaveNumber;
-    @ViewInject(R.id.tv_have_enter)
-    private TextView mTvHaveEnter;//已报名
-    @ViewInject(R.id.tv_entering)
-    private TextView mTvEntering;//报名中
-    @ViewInject(R.id.tv_key)
-    private TextView mTvKey;
-    @ViewInject(R.id.tv_remark)
-    private TextView mTvRemark;
-    @ViewInject(R.id.tv_traffic)
-    private TextView mTvTraffic;
-    @ViewInject(R.id.tv_plan_people)
-    private TextView mTvPlanPeople;
-    @ViewInject(R.id.tv_switch)
-    private TextView mTvSitch;
-    @ViewInject(R.id.rv_have_enter)
-    private RecyclerView mRvHaveEnter;
-    @ViewInject(R.id.rv_entering)
-    private RecyclerView mRvEnter;
-    @ViewInject(R.id.lv_equ_provider)
-    private ToShowAllListView mLvEquProvider;
-    @ViewInject(R.id.lv_insurance)
-    private ToShowAllListView mLvInsurance;//保险
-    @ViewInject(R.id.fl_title)
-    private FlowLayout mFlTitle;
-    @ViewInject(R.id.tv_price)
-    private TextView mTvPrice;
-    @ViewInject(R.id.tv_enter)
-    private TextView mTvEnter;
+    @BindView(R.id.tv_start_add) TextView mTvStartAdd;
+    @BindView(R.id.tv_end_add) TextView mTvEndAdd;
+    @BindView(R.id.lv_route_line) ToShowAllListView mLvRouteLine;
+    @BindView(R.id.iv_user_icon) ImageView mIvUserIcon;
+    @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
+    @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.tv_day) TextView mTvDay;
+    @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
+    @BindView(R.id.tv_love) FontsIconTextView mTvLove;
+    @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+    @BindView(R.id.tv_sex) TextView mTvSex;
+    @BindView(R.id.iv_appoint_bg) ImageView mIvAppointBg;
+    @BindView(R.id.tv_title) TextView mTvTitle;
+    @BindView(R.id.tv_content) TextView mTvContent;
+    @BindView(R.id.tv_line) TextView mTvLine;
+    @BindView(R.id.tv_start_and_long) TextView mTvStartAndLong;
+    @BindView(R.id.tv_day_and_night) TextView mTvDayAndNight;
+    @BindView(R.id.tv_plan_number) TextView mTvPlanNumber;
+    @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
+    @BindView(R.id.tv_have_enter) TextView mTvHaveEnter;//已报名
+    @BindView(R.id.tv_entering) TextView mTvEntering;//报名中
+    @BindView(R.id.tv_key) TextView mTvKey;
+    @BindView(R.id.tv_remark) TextView mTvRemark;
+    @BindView(R.id.tv_traffic) TextView mTvTraffic;
+    @BindView(R.id.tv_plan_people) TextView mTvPlanPeople;
+    @BindView(R.id.tv_switch) TextView mTvSitch;
+    @BindView(R.id.rv_have_enter) RecyclerView mRvHaveEnter;
+    @BindView(R.id.rv_entering) RecyclerView mRvEnter;
+    @BindView(R.id.lv_equ_provider) ToShowAllListView mLvEquProvider;
+    @BindView(R.id.lv_insurance) ToShowAllListView mLvInsurance;//保险
+    @BindView(R.id.fl_title) FlowLayout mFlTitle;
+    @BindView(R.id.tv_price) TextView mTvPrice;
+    @BindView(R.id.bt_enter) Button mBvEnter;
 
-   private boolean isDetail=false;//默认缩略图
+    private boolean isDetail=false;//默认缩略图
     private String tId;
-
-    private List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists=new ArrayList<>();
-    private TextView mTvRight;
+    private List<List<AppointTogetherDetailBean.DataBean.RoutesBean>> lists=new ArrayList<>();
     private String id;
+    private String payType;
 
 
     @Override
-    protected int setContentLayout() {
-        return R.layout.activity_appoint_together_detail;
-    }
-
-    @Override
-    protected void initEvent() {
-        mTvRight = getmTvRightIcon();
-        mTvRight.setTypeface(TypefaceUtis.getTypeface(this));
-        mTvRight.setText("掸");
-        mTvRight.setOnClickListener(this);
-        tId = getIntent().getStringExtra(IVariable.T_ID);
-        mTvSitch.setOnClickListener(this);
-        mTvEnter.setOnClickListener(this);
-    }
-
-    @Override
-    protected void onLoad(int type) {
-        Map<String, String> travelDetailMap = MapUtils.Build().addKey(this).addUserId().add(IVariable.TID,tId).end();
-        XEventUtils.getUseCommonBackJson(IVariable.PLAY_TOGETHER_DETAIL, travelDetailMap,TYPE_REFRESH, new AppointDetailEvent());
-    }
-
-    @Override
-    protected Activity initViewData() {
+    protected Activity initDataAndRegisterEventBus() {
         return this;
     }
 
     @Override
-    protected String setTitleName() {
-        return "约伴详情";
+    protected void initEvent() {
+        tId = getIntent().getStringExtra(IVariable.T_ID);
+        mTvSitch.setOnClickListener(this);
+        mBvEnter.setOnClickListener(this);
     }
 
     @Override
-    public float getAlpha() {
-        return 1.0f;
+    protected void childAdd(MapUtils.Builder builder, int type) {
+      builder.addtId(tId);
     }
+
+    @Override
+    protected String initUrl() {
+        return IVariable.PLAY_TOGETHER_DETAIL;
+    }
+
+
+
+
 
     @Override
     protected void onSuccess(AppointDetailEvent appointDetailEvent) {
@@ -182,10 +138,12 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
      * @param event
      */
     private void dealData (AppointDetailEvent event) {
-        AppointTogetherDetail appointTogetherDetail = GsonUtils.getObject(event.getResult(), AppointTogetherDetail.class);
+        AppointTogetherDetailBean appointTogetherDetail = GsonUtils.getObject(event.getResult(), AppointTogetherDetailBean.class);
         if (appointTogetherDetail==null)return;
-        AppointTogetherDetail.DataBean data = appointTogetherDetail.getData();
-        List<AppointTogetherDetail.DataBean.RoutesBean> routes = dealDate(data);
+        AppointTogetherDetailBean.DataBean data = appointTogetherDetail.getData();
+        String action = data.getAction();
+        initAction(action);
+        List<AppointTogetherDetailBean.DataBean.RoutesBean> routes = dealDate(data);
         initSomeData(data);
         classificationDay(lists, routes);
         mLvRouteLine.setAdapter(new TravelDetailLineAdapter(this, lists, isDetail));
@@ -199,10 +157,10 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
             mRvHaveEnter.setAdapter(new AppointDetailHaveEnterAdapter(this, intoPeople));
             mRvHaveEnter.setLayoutManager(new GridLayoutManager(this, intoPeople.size()));
         }
-        List<AppointTogetherDetail.DataBean.PropBean> prop = data.getProp();
+        List<AppointTogetherDetailBean.DataBean.PropBean> prop = data.getProp();
         if (prop!=null && prop.size()!=0){
            mLvEquProvider.setAdapter(new ProviderAdapter(this,prop));
-            measureHeight(mLvEquProvider);
+            //measureHeight(mLvEquProvider);
         }
         List<PricebasecBean> pricebasec = data.getPricebasec();
         if (pricebasec==null){
@@ -213,14 +171,30 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
         pricebasecBean.setValue(data.getPrice());
         pricebasec.add(pricebasecBean);
         mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
-        measureHeight(mLvInsurance);
+        //measureHeight(mLvInsurance);
+    }
+
+    /**
+     * 判断状态
+     * @param action
+     */
+    private void initAction(String action) {
+        try {
+            String[] stringArray = getResources().getStringArray(R.array.together_appoint_detail);
+            int i = Integer.parseInt(action);
+            payType = stringArray[i];
+            mBvEnter.setText(payType);
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
      * 填充一些数据
      * @param data
      */
-    private void initSomeData(AppointTogetherDetail.DataBean data) {
+    private void initSomeData(AppointTogetherDetailBean.DataBean data) {
         id = data.getId();
         mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
         x.image().bind(mIvAppointBg, data.getTravel_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(116), DensityUtil.dip2px(116)));
@@ -263,9 +237,9 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
      * @return
      */
     @NonNull
-    private List<AppointTogetherDetail.DataBean.RoutesBean> dealDate( AppointTogetherDetail.DataBean dataBean) {
-        List<AppointTogetherDetail.DataBean.RoutesBean> routes = dataBean.getRoutes();
-        for (AppointTogetherDetail.DataBean.RoutesBean routesBean: routes){
+    private List<AppointTogetherDetailBean.DataBean.RoutesBean> dealDate(AppointTogetherDetailBean.DataBean dataBean) {
+        List<AppointTogetherDetailBean.DataBean.RoutesBean> routes = dataBean.getRoutes();
+        for (AppointTogetherDetailBean.DataBean.RoutesBean routesBean: routes){
             String month = FormatDateUtils.FormatLongTime("MM", routesBean.getTime());
             String day = FormatDateUtils.FormatLongTime("dd",routesBean.getTime());
             month=dealZero(month);
@@ -281,12 +255,12 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
      * @param lists
      * @param routes
      */
-    private void classificationDay(List<List<AppointTogetherDetail.DataBean.RoutesBean>> lists, List<AppointTogetherDetail.DataBean.RoutesBean> routes) {
+    private void classificationDay(List<List<AppointTogetherDetailBean.DataBean.RoutesBean>> lists, List<AppointTogetherDetailBean.DataBean.RoutesBean> routes) {
 
         try {
-            List<AppointTogetherDetail.DataBean.RoutesBean> dayList=new ArrayList<>();
+            List<AppointTogetherDetailBean.DataBean.RoutesBean> dayList=new ArrayList<>();
             String preTime=routes.get(0).getTime();
-            for (AppointTogetherDetail.DataBean.RoutesBean routesBean: routes){
+            for (AppointTogetherDetailBean.DataBean.RoutesBean routesBean: routes){
                 if (!routesBean.getTime().equals(preTime)){
                     lists.add(dayList);
                     dayList=new ArrayList<>();
@@ -329,8 +303,18 @@ public class AppointTogetherDetailActivity extends LoadingBarBaseActivity<Appoin
 
                 break;
             case R.id.tv_right_icon:
-                AppointDetailMorePop.showMorePop(this,mTvRight);
+                //AppointDetailMorePop.showMorePop(this,mTvRight);
                 break;
         }
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_appoint_together_detail;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "约伴详情";
     }
 }

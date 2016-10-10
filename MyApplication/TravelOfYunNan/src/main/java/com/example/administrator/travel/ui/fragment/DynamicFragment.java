@@ -4,8 +4,6 @@ import android.widget.ListView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.DynamicAdapter;
-import com.example.administrator.travel.utils.LogUtils;
-import com.example.administrator.travel.utils.ViewUtil;
 
 /**
  * Created by Administrator on 2016/7/15 0015.

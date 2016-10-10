@@ -20,7 +20,6 @@ public class EmojiHolder extends BaseHolder {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_activity_create_post_emoji);
-        return inflate;
+        return inflateView(R.layout.item_activity_create_post_emoji);
     }
 }

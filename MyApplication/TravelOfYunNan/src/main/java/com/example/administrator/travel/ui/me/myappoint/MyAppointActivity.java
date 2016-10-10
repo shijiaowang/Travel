@@ -1,7 +1,9 @@
 package com.example.administrator.travel.ui.me.myappoint;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -9,7 +11,11 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.global.ParentBean;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
+import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
+import com.example.administrator.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.baseui.LoadAndRefreshBaseActivity;
+import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWithMeSelectBean;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.MapUtils;
 
@@ -51,7 +57,34 @@ public class MyAppointActivity extends LoadAndRefreshBaseActivity<MyAppointEvent
         mTvPassed.setOnClickListener(this);
         mTvHistory.setOnClickListener(this);
         mTvWithMe.setOnClickListener(this);
+        mLvMyAppoint.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (type==WITH_ME) {
+                    MyAppointWithMeBean.DataBean dataBean = (MyAppointWithMeBean.DataBean) httpData.get(position - 1);
+                    Intent intent=new Intent(MyAppointActivity.this,AppointWithMeDetailActivity.class);
+                    intent.putExtra(IVariable.TID,dataBean.getId());
+                    startActivity(intent);
+                }else {
+                    MyAppointTogetherBean.DataBean dataBean = (MyAppointTogetherBean.DataBean) httpData.get(position - 1);
+                    Intent intent=new Intent(MyAppointActivity.this,AppointTogetherDetailActivity.class);
+                    intent.putExtra(IVariable.T_ID,dataBean.getId());
+                    startActivity(intent);
+                }
+            }
+        });
         return this;
+    }
+
+    @Override
+    protected void doOtherSuccessData(MyAppointEvent myAppointEvent) {
+        super.doOtherSuccessData(myAppointEvent);
+        switch (myAppointEvent.getType()){
+            case BaseToolBarActivity.TYPE_DELETE:
+                httpData.remove(myAppointEvent.getPosition());
+                adapter.notifyDataSetChanged();
+                break;
+        }
     }
 
     @Override

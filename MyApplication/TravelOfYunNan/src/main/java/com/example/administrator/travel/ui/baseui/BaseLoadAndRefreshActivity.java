@@ -2,11 +2,11 @@ package com.example.administrator.travel.ui.baseui;
 
 
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
@@ -15,11 +15,12 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.ParentBean;
+import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 
-import org.xutils.x;
+import org.xutils.common.util.DensityUtil;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -31,7 +32,7 @@ import java.util.List;
 
 public  abstract class BaseLoadAndRefreshActivity<T extends HttpEvent,E extends ParentBean, F> extends BaseNetWorkActivity<T> implements OnLoadMoreListener, OnRefreshListener {
     protected List<F> mDatas;//从网络获取的数据
-    BaseRecycleViewAdapter<F> mAdapter;//通用adapter
+    protected BaseRecycleViewAdapter<F> mAdapter;//通用adapter
     protected RecyclerView mRvCommon;
     protected SwipeToLoadLayout mSwipe;
     protected ViewStub mVsContent;
@@ -52,9 +53,10 @@ public  abstract class BaseLoadAndRefreshActivity<T extends HttpEvent,E extends 
 
     @Override
     protected void initEvent() {
-
         mRvCommon = (RecyclerView) findViewById(R.id.swipe_target);
         mVsContent= (ViewStub) findViewById(R.id.vs_content);
+        changeMargin(10);
+        mRvCommon.addItemDecoration(new MyWitheMeDecoration(childDistance()));
         mSwipe = (SwipeToLoadLayout) findViewById(R.id.swipe_container);
         View headerView = inflater.inflate(R.layout.layout_google_header, mSwipe, false);
         View footView = inflater.inflate(R.layout.layout_google_footer, mSwipe, false);
@@ -65,6 +67,15 @@ public  abstract class BaseLoadAndRefreshActivity<T extends HttpEvent,E extends 
         mSwipe.setOnLoadMoreListener(this);
     }
 
+    private int childDistance() {
+        return 6;
+    }
+
+    protected void changeMargin(int top){
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mRvCommon.getLayoutParams();
+        layoutParams.topMargin= DensityUtil.dip2px(top);
+        mRvCommon.setLayoutParams(layoutParams);
+    }
 
 
 

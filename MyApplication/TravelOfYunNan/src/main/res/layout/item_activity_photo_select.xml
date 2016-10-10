@@ -5,9 +5,8 @@
     android:gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_picture"
-        android:scaleType="fitXY"
         android:layout_width="76dp"
         android:layout_height="78dp" />
     <TextView

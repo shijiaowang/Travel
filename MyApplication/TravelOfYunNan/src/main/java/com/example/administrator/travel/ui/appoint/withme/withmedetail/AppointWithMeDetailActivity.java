@@ -13,6 +13,7 @@ import com.example.administrator.travel.ui.appoint.together.togetherdetail.Appoi
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointDetailHaveEnterAdapter;
 import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointDetailInsuranceAdapter;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
@@ -35,63 +36,44 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
- * Created by Administrator on 2016/9/6 0006.
+ * Created by wangyang on 2016/9/6 0006.
  * 带我玩约伴详情
  */
-public class AppointWithMeDetailActivity extends LoadingBarBaseActivity<AppointDetailEvent> {
+public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDetailEvent> {
 
-    @ViewInject(R.id.lv_route_line)
-    private ToShowAllListView mLvRouteLine;
-    @ViewInject(R.id.iv_user_icon)
-    private ImageView mIvUserIcon;
-    @ViewInject(R.id.tv_user_nick_name)
-    private TextView mTvUserNickName;
-    @ViewInject(R.id.tv_time)
-    private TextView mTvTime;
-    @ViewInject(R.id.tv_day)
-    private TextView mTvDay;
-    @ViewInject(R.id.tv_watch_number)
-    private TextView mTvWatchNumber;
-    @ViewInject(R.id.tv_love)
-    private FontsIconTextView mTvLove;
-    @ViewInject(R.id.tv_love_number)
-    private TextView mTvLoveNumber;
-    @ViewInject(R.id.tv_sex)
-    private TextView mTvSex;
-    @ViewInject(R.id.iv_appoint_bg)
-    private ImageView mIvAppointBg;
-    @ViewInject(R.id.tv_title)
-    private TextView mTvTitle;
-    @ViewInject(R.id.tv_content)
-    private TextView mTvContent;
-    @ViewInject(R.id.tv_line)
-    private TextView mTvLine;
-    @ViewInject(R.id.tv_start_and_long)
-    private TextView mTvStartAndLong;
-    @ViewInject(R.id.tv_day_and_night)
-    private TextView mTvDayAndNight;
-    @ViewInject(R.id.tv_have_number)
-    private TextView mTvHaveNumber;
-    @ViewInject(R.id.tv_have_enter)
-    private TextView mTvHaveEnter;//已报名
-    @ViewInject(R.id.rv_have_enter)
-    private RecyclerView mRvHaveEnter;
-    @ViewInject(R.id.lv_insurance)
-    private ToShowAllListView mLvInsurance;//保险
-    @ViewInject(R.id.fl_title)
-    private FlowLayout mFlTitle;
-    @ViewInject(R.id.tv_price)
-    private TextView mTvPrice;
-    @ViewInject(R.id.tv_enter_end_time)
-    private TextView mTvEnterEndTime;
-    @ViewInject(R.id.tv_surplus_day)
-    private TextView mTvSurplusDay;//剩余日期
+    @BindView(R.id.lv_route_line) ToShowAllListView mLvRouteLine;
+    @BindView(R.id.iv_user_icon) ImageView mIvUserIcon;
+    @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
+    @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.tv_day) TextView mTvDay;
+    @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
+    @BindView(R.id.tv_love) FontsIconTextView mTvLove;
+    @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+    @BindView(R.id.tv_sex) TextView mTvSex;
+    @BindView(R.id.iv_appoint_bg) ImageView mIvAppointBg;
+    @BindView(R.id.tv_title) TextView mTvTitle;
+    @BindView(R.id.tv_content) TextView mTvContent;
+    @BindView(R.id.tv_line) TextView mTvLine;
+    @BindView(R.id.tv_start_and_long) TextView mTvStartAndLong;
+    @BindView(R.id.tv_day_and_night) TextView mTvDayAndNight;
+    @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
+    @BindView(R.id.tv_have_enter) TextView mTvHaveEnter;//已报名
+    @BindView(R.id.rv_have_enter) RecyclerView mRvHaveEnter;
+    @BindView(R.id.lv_insurance) ToShowAllListView mLvInsurance;//保险
+    @BindView(R.id.fl_title) FlowLayout mFlTitle;
+    @BindView(R.id.tv_price) TextView mTvPrice;
+    @BindView(R.id.tv_enter_end_time) TextView mTvEnterEndTime;
+    @BindView(R.id.tv_surplus_day) TextView mTvSurplusDay;//剩余日期
     private String tId;
 
+
+
     @Override
-    protected int setContentLayout() {
-        return R.layout.activity_appoint_with_me_detail;
+    protected Activity initDataAndRegisterEventBus() {
+        return this;
     }
 
     @Override
@@ -103,27 +85,18 @@ public class AppointWithMeDetailActivity extends LoadingBarBaseActivity<AppointD
         tId = getIntent().getStringExtra(IVariable.TID);
     }
 
+
     @Override
-    protected void onLoad(int typeRefresh) {
-        if(StringUtils.isEmpty(tId))return;
-        Map<String, String> withMeDetailMap = MapUtils.Build().addKey(this).addUserId().addtId(tId).end();
-        XEventUtils.getUseCommonBackJson(IVariable.WITHE_ME_DETAIL,withMeDetailMap,0,new AppointDetailEvent());
+    protected void childAdd(MapUtils.Builder builder, int type) {
+       builder.addtId(tId);
     }
 
     @Override
-    protected Activity initViewData() {
-        return this;
+    protected String initUrl() {
+        return IVariable.WITHE_ME_DETAIL;
     }
 
-    @Override
-    protected String setTitleName() {
-        return "约伴详情";
-    }
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
     @Override
     protected void onSuccess(AppointDetailEvent appointDetailEvent) {
@@ -178,7 +151,7 @@ public class AppointWithMeDetailActivity extends LoadingBarBaseActivity<AppointD
             pricebasecBean.setValue(data.getPrice());
             pricebasec.add(pricebasecBean);
             mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
-            measureHeight(mLvInsurance);
+            //measureHeight(mLvInsurance);
             List<AppointWithMeDetailBean.DataBean.RoutesBean> routes = data.getRoutes();
             if (routes!=null && routes.size()!=0){
                 mLvRouteLine.setAdapter(new AppointWithMeDetailDestinationAdapter(this,routes));
@@ -187,5 +160,15 @@ public class AppointWithMeDetailActivity extends LoadingBarBaseActivity<AppointD
             LogUtils.e("找人带详情页发生异常了");
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_appoint_with_me_detail;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "约伴详情";
     }
 }

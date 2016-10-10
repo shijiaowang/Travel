@@ -4,7 +4,6 @@ package com.example.administrator.travel.ui.appoint.together;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
@@ -13,9 +12,8 @@ import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.FormatDateUtils;
-
-import org.xutils.common.util.DensityUtil;
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -27,7 +25,7 @@ import butterknife.BindView;
  */
 public class AppointTogetherHolder extends BaseHolder<AppointTogetherBean.DataBean> {
     @BindView(R.id.fl_title) FlowLayout mFlTitle;
-    @BindView(R.id.iv_icon) ImageView mIvIcon;
+    @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_time)TextView mTvTime;
     @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
     @BindView(R.id.tv_add) TextView mTvAdd;
@@ -39,7 +37,7 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogetherBean.DataBe
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_how_long) TextView mTvHowLong;
     private LayoutInflater inflater;
-    public View root;
+
 
     public AppointTogetherHolder(Context context) {
         super(context);
@@ -56,7 +54,7 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogetherBean.DataBe
         if (mFlTitle != null && mFlTitle.getChildCount() > 0) {
             mFlTitle.removeAllViews();
         }
-        x.image().bind(mIvIcon, datas.getTravel_img(), getImageOptions(DensityUtil.dip2px(112), DensityUtil.dip2px(112)));
+        FrescoUtils.displayRoundIcon(mIvIcon,datas.getTravel_img());
         String[] split = datas.getLabel().split(",");
         for (int i = 0; i < split.length; i++) {
             TextView textView = (TextView) inflater.inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
@@ -82,7 +80,6 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogetherBean.DataBe
     @Override
     public View initRootView(Context mContext) {
         inflater = LayoutInflater.from(mContext);
-        root = inflateView(R.layout.item_fragment_appoint_play_together);
-        return root;
+        return inflateView(R.layout.item_fragment_appoint_play_together);
     }
 }

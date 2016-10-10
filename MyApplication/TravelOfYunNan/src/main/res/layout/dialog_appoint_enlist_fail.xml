@@ -7,6 +7,7 @@
     android:layout_height="179dp">
     <TextView
         android:text="报名失败"
+        android:id="@+id/tv_title"
         android:gravity="center"
         android:background="@color/otherTitleBg"
         android:textColor="@color/colorFAFAFA"
@@ -15,6 +16,7 @@
         android:layout_height="39dp" />
     <TextView
         android:text="您还没有创建任何约伴[一起玩]路线，请先创建自己的队伍。"
+        android:id="@+id/tv_content"
         android:lineSpacingExtra="5dp"
         android:textColor="@color/color747474"
         android:textSize="13sp"
@@ -50,6 +52,7 @@
             android:layout_width="1dp"
             android:layout_height="27dp"/>
         <TextView
+            android:id="@+id/tv_sure"
             android:gravity="center"
             android:textColor="@color/otherTitleBg"
             android:textSize="14sp"

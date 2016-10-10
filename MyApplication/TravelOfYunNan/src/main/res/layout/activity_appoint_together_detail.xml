@@ -616,8 +616,8 @@
             android:textColor="@color/otherFf7f6c"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_enter"
+        <Button
+            android:id="@+id/bt_enter"
             android:layout_width="74dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -630,7 +630,7 @@
         <TextView
             android:layout_width="105dp"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@id/tv_enter"
+            android:layout_toLeftOf="@id/bt_enter"
             android:background="#305cd0c2"
             android:gravity="center"
             android:text="联系发布人"

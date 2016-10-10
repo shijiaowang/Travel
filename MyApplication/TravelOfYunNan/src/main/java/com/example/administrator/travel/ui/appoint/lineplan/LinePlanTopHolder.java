@@ -10,7 +10,6 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.utils.JsonUtils;
 
 import org.json.JSONObject;
-import org.xutils.view.annotation.ViewInject;
 
 import butterknife.BindView;
 

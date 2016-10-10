@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.me.othercenter.userinfo;
 
 
 import android.support.v4.app.Fragment;
+
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;

@@ -27,16 +27,12 @@ import android.widget.ListView;
 
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.x;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 
 public abstract class BaseActivity extends FragmentActivity {

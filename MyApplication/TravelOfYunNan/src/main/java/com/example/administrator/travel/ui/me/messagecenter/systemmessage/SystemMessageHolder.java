@@ -2,15 +2,14 @@ package com.example.administrator.travel.ui.me.messagecenter.systemmessage;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.ShowAllTextView;
 import com.example.administrator.travel.utils.FormatDateUtils;
-
-import org.xutils.x;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 
@@ -23,7 +22,7 @@ public class SystemMessageHolder extends BaseHolder<SystemMessageBean.DataBean> 
     @BindView(R.id.tv_message)
     ShowAllTextView mTvMessage;
     @BindView(R.id.iv_icon)
-    ImageView mIvIcon;
+    SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_type)
     TextView mTvType;
     @BindView(R.id.tv_time)
@@ -35,7 +34,7 @@ public class SystemMessageHolder extends BaseHolder<SystemMessageBean.DataBean> 
 
     @Override
     protected void initItemDatas(SystemMessageBean.DataBean datas, Context mContext, int position) {
-        x.image().bind(mIvIcon,datas.getImg());
+        FrescoUtils.displayNormal(mIvIcon,datas.getImg());
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm",datas.getAdd_time()));
         mTvType.setText(datas.getTitle());
         mTvMessage.setText(datas.getContent());

@@ -3,7 +3,7 @@ package com.example.administrator.travel.ui.fragment;
 import com.example.administrator.travel.R;
 
 /**
- * Created by Administrator on 2016/7/15 0015.
+ * Created by wangyang on 2016/7/15 0015.
  */
 public class AblumFragment extends BaseFragment {
     @Override

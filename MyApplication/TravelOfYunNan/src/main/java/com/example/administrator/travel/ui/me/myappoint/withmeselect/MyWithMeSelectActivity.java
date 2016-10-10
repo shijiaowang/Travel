@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.myappoint.wimeselect;
+package com.example.administrator.travel.ui.me.myappoint.withmeselect;
 
 import android.app.Activity;
 
@@ -27,6 +27,7 @@ public class MyWithMeSelectActivity extends BaseLoadAndRefreshActivity<MyWithMeS
 
     @Override
     protected Activity initDataAndRegisterEventBus() {
+
         return this;
     }
 
@@ -40,5 +41,31 @@ public class MyWithMeSelectActivity extends BaseLoadAndRefreshActivity<MyWithMeS
         super.childAdd(builder, type);
         String id = getIntent().getStringExtra(IVariable.ID);
         builder.addTpId(id);
+    }
+
+    @Override
+    protected void doOtherSuccessData(MyWithMeSelectEvent myWithMeSelectEvent) {
+        super.doOtherSuccessData(myWithMeSelectEvent);
+        switch (myWithMeSelectEvent.getType()){
+            case TYPE_UPDATE:
+                upSelect(myWithMeSelectEvent);
+                break;
+        }
+    }
+
+    /**
+     * 更新用户选择后的界面
+     * @param myWithMeSelectEvent
+     */
+    private void upSelect(MyWithMeSelectEvent myWithMeSelectEvent) {
+        for (int i=0;i<mDatas.size();i++) {
+            int position = myWithMeSelectEvent.getPosition();
+            if (position==i) {
+                mDatas.get(position).setStatus("1");
+            }else {
+                mDatas.get(position).setStatus("2");
+            }
+        }
+        mAdapter.notifyDataSetChanged();
     }
 }

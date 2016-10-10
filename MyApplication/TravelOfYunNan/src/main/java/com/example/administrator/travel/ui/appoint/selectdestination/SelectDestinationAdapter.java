@@ -1,9 +1,7 @@
 package com.example.administrator.travel.ui.appoint.selectdestination;
 
 import android.content.Context;
-import android.view.View;
 
-import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Destination;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;

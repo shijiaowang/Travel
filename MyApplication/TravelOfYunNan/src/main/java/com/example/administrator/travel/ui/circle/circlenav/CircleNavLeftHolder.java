@@ -10,8 +10,6 @@ import com.example.administrator.travel.bean.Circle;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 
-import org.xutils.view.annotation.ViewInject;
-
 import butterknife.BindView;
 
 /**

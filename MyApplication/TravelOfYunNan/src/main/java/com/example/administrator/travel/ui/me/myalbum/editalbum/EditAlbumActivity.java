@@ -8,14 +8,12 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.baseui.BaseCropPhotoActivity;
@@ -27,9 +25,9 @@ import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.common.Callback;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -60,7 +58,7 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
     private String title;
     private RelativeLayout mRlEditDes;
     private TextView mTvName;
-    private ImageView mIvCover;
+    private SimpleDraweeView mIvCover;
     private TextView mTvSetCover;
     private EditText mEdSetName;
     private LinearLayout mLlDes;
@@ -95,7 +93,7 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
         if (inflate != null) {
             mRlEditDes = (RelativeLayout) inflate.findViewById(R.id.rl_edit_des);
             mTvName = (TextView) inflate.findViewById(R.id.tv_album_name);
-            mIvCover = (ImageView) inflate.findViewById(R.id.iv_cover);
+            mIvCover = (SimpleDraweeView) inflate.findViewById(R.id.iv_cover);
             mTvSetCover = (TextView) inflate.findViewById(R.id.tv_set_cover);
             mEdSetName = (EditText) inflate.findViewById(R.id.ed_set_name);
             mLlDes = (LinearLayout) inflate.findViewById(R.id.ll_des);
@@ -251,7 +249,7 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
     }
 
     @Override
-    protected ImageView childViewShow() {
+    protected SimpleDraweeView childViewShow() {
         return mIvCover;
     }
 

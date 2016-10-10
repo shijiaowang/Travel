@@ -3,34 +3,26 @@ package com.example.administrator.travel.ui.appoint.travelplan;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
-import com.bigkoo.pickerview.TimePickerView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.db.DBManager;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.appoint.adddestination.ProvinceBean;
 import com.example.administrator.travel.ui.appoint.lineplan.LineBean;
 import com.example.administrator.travel.ui.appoint.lineplan.LinePlanEvent;
-import com.example.administrator.travel.ui.appoint.personnelequipment.PersonnelEquipmentWithMeActivity;
 import com.example.administrator.travel.ui.appoint.selectdestination.SelectDestinationActivity;
 import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconButton;
 import com.example.administrator.travel.utils.ActivityUtils;
-import com.example.administrator.travel.utils.CalendarUtils;
-import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.JsonUtils;
-import com.example.administrator.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
@@ -38,10 +30,7 @@ import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**

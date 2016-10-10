@@ -13,7 +13,7 @@
             android:layout_marginLeft="17dp"
             android:layout_marginTop="36dp">
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_icon"
                 android:layout_width="33dp"
                 android:layout_height="33dp"

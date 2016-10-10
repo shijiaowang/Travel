@@ -21,9 +21,6 @@ import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.utils.LogUtils;
-
-import java.util.TreeMap;
 
 
 public class XScrollView extends ScrollView implements OnScrollListener {

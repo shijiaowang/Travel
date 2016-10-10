@@ -6,12 +6,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.Active;
-import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
-import com.example.administrator.travel.ui.me.messagecenter.MessageCenterEvent;
 import com.example.administrator.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
 import com.example.administrator.travel.ui.view.BadgeView;
 import com.example.administrator.travel.utils.GsonUtils;

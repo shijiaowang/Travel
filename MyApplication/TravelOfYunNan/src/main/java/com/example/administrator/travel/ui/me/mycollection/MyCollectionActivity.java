@@ -5,16 +5,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.baseui.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.me.collectiondetail.CollectionDetailActivity;
 
-import org.xutils.view.annotation.ViewInject;
+import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/8/3 0003.
  * 我的收藏
  */
-public class MyCollectionActivity extends BarBaseActivity implements View.OnClickListener {
+public class MyCollectionActivity extends BaseToolBarActivity implements View.OnClickListener {
     public static final String COLLECTION_TYPE="collection_type";
     public static final  int COLLECTION_TEAM=1;
     public static final  int COLLECTION_TRAVELS=4;
@@ -23,51 +23,22 @@ public class MyCollectionActivity extends BarBaseActivity implements View.OnClic
     public static final  int COLLECTION_ACTIVE=3;
     public static final  int COLLECTION_POST=5;
     public static final int COLLECTION_CANCEL=7;
-    @ViewInject(R.id.ll_active)
-    private LinearLayout mLlActive;
-    @ViewInject(R.id.ll_travels)
-    private LinearLayout mLlTravels;
-    @ViewInject(R.id.ll_destination)
-    private LinearLayout mLlDestination;
-    @ViewInject(R.id.ll_team)
-    private LinearLayout mLlTeam;
-    @ViewInject(R.id.ll_post)
-    private LinearLayout mLlPost;
-    @ViewInject(R.id.ll_other)
-    private LinearLayout mLlOther;
-
-
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_my_collection;
-    }
-
-    @Override
-    protected void initEvent() {
-        mLlActive.setOnClickListener(this);
-        mLlDestination.setOnClickListener(this);
-        mLlOther.setOnClickListener(this);
-        mLlPost.setOnClickListener(this);
-        mLlTravels.setOnClickListener(this);
-        mLlTeam.setOnClickListener(this);
-    }
+    @BindView(R.id.ll_active) LinearLayout mLlActive;
+    @BindView(R.id.ll_travels) LinearLayout mLlTravels;
+    @BindView(R.id.ll_destination) LinearLayout mLlDestination;
+    @BindView(R.id.ll_team) LinearLayout mLlTeam;
+    @BindView(R.id.ll_post) LinearLayout mLlPost;
+    @BindView(R.id.ll_other) LinearLayout mLlOther;
 
 
 
-    @Override
-    protected void initViewData() {
 
-    }
 
-    @Override
-    protected String setTitleName() {
-        return "我的收藏";
-    }
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
+
+
+
+
     @Override
     public void onClick(View v) {
         Intent intent=new Intent(this, CollectionDetailActivity.class);
@@ -97,5 +68,25 @@ public class MyCollectionActivity extends BarBaseActivity implements View.OnClic
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return  R.layout.activity_my_collection;
+    }
+
+    @Override
+    protected void initOptions() {
+        mLlActive.setOnClickListener(this);
+        mLlDestination.setOnClickListener(this);
+        mLlOther.setOnClickListener(this);
+        mLlPost.setOnClickListener(this);
+        mLlTravels.setOnClickListener(this);
+        mLlTeam.setOnClickListener(this);
+    }
+
+    @Override
+    protected String initTitle() {
+        return "我的收藏";
     }
 }

@@ -21,7 +21,6 @@ public class CatOtherAlbumHolder extends BaseHolder<CatOtherAlbum> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_activity_cat_other_album);
-        return inflate;
+        return inflateView(R.layout.item_activity_cat_other_album);
     }
 }

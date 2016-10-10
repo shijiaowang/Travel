@@ -2,7 +2,6 @@ package com.example.administrator.travel.ui.me.myhobby;
 
 import android.os.Bundle;
 import android.widget.GridView;
-import android.widget.ListView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.fragment.BaseFragment;

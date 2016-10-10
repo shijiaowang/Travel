@@ -1,21 +1,14 @@
 package com.example.administrator.travel.ui.me.mytheme;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.global.ParentBean;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.baseui.LoadAndPullBaseFragment;
-import com.example.administrator.travel.ui.me.messagecenter.MeCommonEvent;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
-import com.example.administrator.travel.utils.LogUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

@@ -2,7 +2,6 @@ package com.example.administrator.travel.ui.baseui;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.CallSuper;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,16 +13,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.administrator.travel.R;
 
+import com.example.administrator.travel.R;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by wangyang on 2016/10/7 0007.
@@ -60,9 +57,9 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_base_toolbar);
         inflater = LayoutInflater.from(this);
         mIvPageError = (ImageView) findViewById(R.id.page_error);
-        mIvPageError.setOnClickListener(new ErrorPageClickListener());
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
-        mTvTitle = (TextView) findViewById(R.id.tv_title);
+        mPbLoading.setVisibility(View.GONE);
+        mTvTitle = (TextView) findViewById(R.id.tv_appbar_title);
         mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         mFlContent = (FrameLayout) findViewById(R.id.fl_content);
         mToolbar.setTitle("");
@@ -90,10 +87,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
      */
     protected abstract void initOptions();
 
-    /**
-     * 初始化数据
-     */
-    protected abstract Activity initDataAndRegisterEventBus();
+
 
     /**
      * 初始化标题
@@ -124,18 +118,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * 重新读取网络
-     */
-    @OnClick(R.id.page_error)
-    protected void onReLoad() {
-        onLoad(TYPE_REFRESH);
-    }
 
-    /**
-     * 加载网络
-     */
-    protected abstract void onLoad(int type);
 
     /**
      * 网络加载错误
@@ -202,18 +185,6 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
     protected int getListSize(List list) {
         if (list == null) return 0;
         return list.size();
-    }
-
-    /**
-     * 错误页面点击处理
-     */
-    class ErrorPageClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            setIsProgress(true,true);
-            onLoad(TYPE_REFRESH);
-        }
     }
 
 }

@@ -9,7 +9,6 @@ import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.baseui.LoadAndRefreshBaseActivity;
 import com.example.administrator.travel.ui.me.mycollection.MyCollectionActivity;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
-import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 
