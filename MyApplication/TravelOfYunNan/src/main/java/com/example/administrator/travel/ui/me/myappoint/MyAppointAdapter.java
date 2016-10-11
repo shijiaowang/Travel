@@ -10,7 +10,7 @@ import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.me.bulltetinboard.BulletinBoardActivity;
-import com.example.administrator.travel.ui.me.memberdetail.MemberDetailActivity;
+import com.example.administrator.travel.ui.me.myappoint.memberdetail.MemberDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWithMeSelectActivity;
 import com.example.administrator.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
@@ -81,17 +81,26 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
             myAppointTogetherHolder.mBtStart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String type = initType(myAppointTogetherHolder.payStates);
+                    final String type = initType(myAppointTogetherHolder.payStates);
                     if (StringUtils.isEmpty(type))return;
-                    EnterAppointDialog.showCommonDialog(mContext, title, "确定", content, new ParentPopClick() {
-                        @Override
-                        public void onClick() {
-                            changeAppoint(item1, position, myAppointTogetherHolder);
-                        }
-                    });
+                    if (myAppointTogetherHolder.payStates==9){
+                          String content="这真是一次不错的旅行啊";
+                        Map<String, String> discussMap = MapUtils.Build().addKey(mContext).addUserId().addtId(item1.getId()).addContent(content).end();
+                        MyAppointEvent myAppointEvent=new MyAppointEvent();
+                        myAppointEvent.setPosition(position);
+                        XEventUtils.postUseCommonBackJson(IVariable.DISCUSS_APPOINT,discussMap,BaseToolBarActivity.TYPE_DISCUSS,myAppointEvent);
+                    }else {
+                        EnterAppointDialog.showCommonDialog(mContext, title, "确定", content, new ParentPopClick() {
+                            @Override
+                            public void onClick() {
+                                changeAppoint(item1, position, myAppointTogetherHolder,type);
+                            }
+                        });
+                    }
 
                 }
             });
+
             myAppointTogetherHolder.mBtPay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -128,8 +137,8 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
         }
     }
 
-    private void changeAppoint(MyAppointTogetherBean.DataBean item1, int position, MyAppointTogetherHolder myAppointTogetherHolder) {
-        Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addtId(item1.getId()).end();
+    private void changeAppoint(MyAppointTogetherBean.DataBean item1, int position, MyAppointTogetherHolder myAppointTogetherHolder, String type) {
+        Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addtId(item1.getId()).addType(type).end();
         MyAppointEvent myAppointEvent=new MyAppointEvent();
         myAppointEvent.setPosition(position);
         myAppointEvent.setPayStatus(myAppointTogetherHolder.payStates);
@@ -150,6 +159,8 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
                 title="完成约伴";
                 content="结束约伴行程。";
                 return "3";
+            case 9:
+                return "9";
         }
         return "";
     }

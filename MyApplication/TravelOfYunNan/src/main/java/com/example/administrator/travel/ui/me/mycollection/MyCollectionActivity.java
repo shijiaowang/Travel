@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
-import com.example.administrator.travel.ui.me.collectiondetail.CollectionDetailActivity;
+import com.example.administrator.travel.ui.me.mycollection.collectiondetail.CollectionDetailActivity;
 
 import butterknife.BindView;
 

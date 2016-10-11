@@ -8,10 +8,13 @@ import android.widget.ListView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.appoint.aite.AiteBean;
 import com.example.administrator.travel.ui.appoint.aite.Follow;
+import com.example.administrator.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.view.LoadingPage;
+import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.XEventUtils;
@@ -24,12 +27,11 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/7/18 0018.
  */
-public class FanAndFollowFragment extends LoadBaseFragment<FanAndFollowEvent> {
+public class FanAndFollowFragment extends LoadAndPullBaseFragment<FanAndFollowEvent,AiteBean,Follow> {
     private String type = "0";
     private int REQ_CODE = -1;
     @BindView(R.id.lv_follow_fan)
-    ListView mLvFollowFan;
-    private FanAdapter fanAdapter;
+    XListView mLvFollowFan;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,15 +60,20 @@ public class FanAndFollowFragment extends LoadBaseFragment<FanAndFollowEvent> {
 
     @Override
     public void onSuccess(FanAndFollowEvent fanAndFollowEvent) {
-        if (fanAndFollowEvent.getType() != REQ_CODE) {
+        if (fanAndFollowEvent.getChildType() != REQ_CODE) {
             return;
         }
-        dealData(fanAndFollowEvent);
+        super.onSuccess(fanAndFollowEvent);
     }
 
     @Override
-    protected void initListener() {
+    protected TravelBaseAdapter initAdapter(List<Follow> httpData) {
+        return new FanAdapter(getContext(),httpData);
+    }
 
+    @Override
+    public XListView setXListView() {
+        return mLvFollowFan;
     }
 
     /**
@@ -80,20 +87,19 @@ public class FanAndFollowFragment extends LoadBaseFragment<FanAndFollowEvent> {
         fanAndFollowFragment.setArguments(bundle);
         return fanAndFollowFragment;
     }
-
     @Override
     protected void onLoad(int type) {
         if (this.type.equals("0")) return;
-        Map<String, String> fanMap = MapUtils.Build().addKey(getContext()).addUserId().addType(this.type).end();
-        XEventUtils.getUseCommonBackJson(IVariable.GET_FOLLOW_USER, fanMap, REQ_CODE, new FanAndFollowEvent());
+        int count=type==TYPE_REFRESH?0:getListSize(mDatas);
+        Map<String, String> fanMap = MapUtils.Build().addKey(getContext()).addUserId().addPageSize().addCount(count).addType(this.type).end();
+        FanAndFollowEvent fanAndFollowEvent = new FanAndFollowEvent();
+        fanAndFollowEvent.setChildType(REQ_CODE);
+        XEventUtils.getUseCommonBackJson(IVariable.GET_FOLLOW_USER, fanMap, type,fanAndFollowEvent );
     }
 
-
-    private void dealData(FanAndFollowEvent event) {
-        AiteBean fan = GsonUtils.getObject(event.getResult(), AiteBean.class);
-        List<Follow> data = fan.getData();
-        fanAdapter = new FanAdapter(getContext(), data);
-        mLvFollowFan.setAdapter(fanAdapter);
-        setState(LoadingPage.ResultState.STATE_SUCCESS);
+    @Override
+    protected String initUrl() {
+        return IVariable.GET_FOLLOW_USER;
     }
+
 }

@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.utils.UIUtils;
 
 /**
@@ -55,7 +56,7 @@ public abstract class LoadingPage extends FrameLayout {
                 public void onClick(View v) {
                     //重新加载数据
                     mCurrentState=STATE_LOAD_UNLOAD;
-                    loadData();
+                    loadData(LoadBaseFragment.TYPE_REFRESH);
                 }
             });
             addView(errorView);
@@ -87,10 +88,12 @@ public abstract class LoadingPage extends FrameLayout {
     /**
      * 发送网络请求
      */
-    public void loadData() {
+    public void loadData(int type) {
         if (mCurrentState != STATE_LOAD_LOADING) {
             mCurrentState = STATE_LOAD_LOADING;
-            onLoad();
+            loadingView.setVisibility(VISIBLE);
+            errorView.setVisibility(GONE);
+            onLoad(type);
         }
     }
 
@@ -124,8 +127,9 @@ public abstract class LoadingPage extends FrameLayout {
 
     /**
      * 加载网络数据的方法，交给调用者去实现
+     * @param type
      */
-    public abstract void onLoad();
+    public abstract void onLoad(int type);
 
     /***
      * 由于使用了evenBus 所以分两步使用，onload单纯的发布网络请求

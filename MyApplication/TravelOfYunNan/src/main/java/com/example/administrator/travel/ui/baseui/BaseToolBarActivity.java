@@ -94,7 +94,13 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
 
     }
 
+    public TextView getmTvTitle() {
+        return mTvTitle;
+    }
+
+
     /**
+
      * 初始化布局文件
      *
      * @return
@@ -170,6 +176,11 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
             childView.setVisibility(View.GONE);
         }
         mPbLoading.setVisibility(isShow ? View.VISIBLE : View.GONE);
+    }
+    protected void  setSuccess(){
+        childView.setVisibility(View.VISIBLE);
+        mIvPageError.setVisibility(View.GONE);
+        mPbLoading.setVisibility(View.GONE);
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.collectiondetail;
+package com.example.administrator.travel.ui.me.mycollection.collectiondetail;
 
 import android.content.Context;
 import android.graphics.Color;

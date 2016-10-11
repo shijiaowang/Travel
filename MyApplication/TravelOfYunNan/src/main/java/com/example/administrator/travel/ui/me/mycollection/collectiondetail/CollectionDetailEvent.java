@@ -1,12 +1,12 @@
-package com.example.administrator.travel.ui.me.memberdetail;
+package com.example.administrator.travel.ui.me.mycollection.collectiondetail;
 
 import com.example.administrator.travel.event.HttpEvent;
 
 /**
- * Created by wangyang on 2016/10/7 0007.
+ * Created by wangyang on 2016/9/28 0028.
  */
 
-public class MemBerDetailEvent extends HttpEvent {
+public class CollectionDetailEvent extends HttpEvent {
     private int position;
 
     public int getPosition() {

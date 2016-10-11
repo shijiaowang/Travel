@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by Administrator on 2016/7/25 0025.
+ * Created by wangyang on 2016/7/25 0025.
  * 带有相同头布局,网络加载
  */
 public abstract class LoadingBarBaseActivity<T extends HttpEvent> extends BaseActivity implements XListView.IXListViewListener, XScrollView.IXScrollViewListener {

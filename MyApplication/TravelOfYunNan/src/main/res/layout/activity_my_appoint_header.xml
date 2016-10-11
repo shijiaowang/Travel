@@ -21,17 +21,19 @@
            android:text="已通过"
            android:id="@+id/tv_passed"
            style="@style/myAppointRadioButton"/>
-
+    <View
+        android:layout_gravity="center_vertical"
+        android:layout_width="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/color969696"
+        android:layout_height="20dp"/>
     <RadioButton
         android:text="找人带"
         android:id="@+id/tv_with_me"
         style="@style/myAppointRadioButton" />
 
-    <View
-           android:layout_gravity="center_vertical"
-           android:background="@color/color969696"
-           android:layout_width="1dp"
-           android:layout_height="20dp"/>
+
 
 </RadioGroup>
 

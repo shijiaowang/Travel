@@ -90,10 +90,10 @@
         <activity android:name=".ui.me.bulltetinboard.BulletinBoardActivity"/>
         <activity android:name=".ui.me.mycollection.MyCollectionActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanBaseActivity"/>
-        <activity android:name=".ui.me.memberdetail.MemberDetailActivity"/>
+        <activity android:name=".ui.me.myappoint.memberdetail.MemberDetailActivity"/>
         <activity android:name=".ui.me.ordercenter.OrdersCenterActivity"/>
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity"/>
-        <activity android:name=".ui.me.collectiondetail.CollectionDetailActivity"/>
+        <activity android:name=".ui.me.mycollection.collectiondetail.CollectionDetailActivity"/>
         <activity android:name=".ui.me.userservice.CustomerServiceActivity"/>
         <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity"/>
         <activity android:name=".ui.me.changephone.ChangePhoneActivity"/>

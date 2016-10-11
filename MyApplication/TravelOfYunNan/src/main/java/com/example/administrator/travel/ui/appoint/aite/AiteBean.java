@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/9/19 0019.
  */
-public class AiteBean {
+public class AiteBean implements ParentBean{
 
 
     private int code;

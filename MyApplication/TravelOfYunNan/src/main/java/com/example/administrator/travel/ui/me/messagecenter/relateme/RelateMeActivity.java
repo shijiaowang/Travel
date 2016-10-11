@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
 import com.example.administrator.travel.ui.view.BadgeView;
@@ -18,28 +19,28 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+
 
 /**
  * Created by wangyang on 2016/8/26 0026.
  * 与我相关
  */
-public class RelateMeActivity extends LoadingBarBaseActivity<RelateMeEvent> implements View.OnClickListener {
+public class RelateMeActivity extends BaseNetWorkActivity<RelateMeEvent> implements View.OnClickListener {
     public static final int TYPE_AITE = 0;
     public static final int TYPE_DISCUSS = 1;
     public static final int TYPE_ZAMBIA = 2;//赞
-    @ViewInject(R.id.rl_zambia)
-    private RelativeLayout mRlZambia;
-    @ViewInject(R.id.rl_discuss)
-    private RelativeLayout mRlDiscuss;
-    @ViewInject(R.id.rl_aite)
-    private RelativeLayout mRlAite;
-    @ViewInject(R.id.bv_number_aite) BadgeView mBvNumberAite;
-    @ViewInject(R.id.bv_number_discuss) BadgeView mBvNumberDiscuss;
-    @ViewInject(R.id.bv_number_zan) BadgeView mBvNumberZan;
+    @BindView(R.id.rl_zambia) RelativeLayout mRlZambia;
+    @BindView(R.id.rl_discuss) RelativeLayout mRlDiscuss;
+    @BindView(R.id.rl_aite) RelativeLayout mRlAite;
+    @BindView(R.id.bv_number_aite) BadgeView mBvNumberAite;
+    @BindView(R.id.bv_number_discuss) BadgeView mBvNumberDiscuss;
+    @BindView(R.id.bv_number_zan) BadgeView mBvNumberZan;
+
 
     @Override
-    protected int setContentLayout() {
-        return R.layout.activity_relate_me;
+    protected Activity initDataAndRegisterEventBus() {
+        return this;
     }
 
     @Override
@@ -50,25 +51,15 @@ public class RelateMeActivity extends LoadingBarBaseActivity<RelateMeEvent> impl
     }
 
     @Override
-    protected void onLoad(int type) {
-        Map<String, String> end = MapUtils.Build().addKey(this).addUserId().addType("3").end();
-        XEventUtils.getUseCommonBackJson(IVariable.MESSAGE_CENTER_COUNT,end,0,new RelateMeEvent());
+    protected void childAdd(MapUtils.Builder builder, int type) {
+     builder.addType("3");
     }
 
     @Override
-    protected Activity initViewData() {
-      return this;
+    protected String initUrl() {
+        return IVariable.MESSAGE_CENTER_COUNT;
     }
 
-    @Override
-    protected String setTitleName() {
-        return "与我相关";
-    }
-
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
     @Override
     protected void onSuccess(RelateMeEvent relateMeEvent) {
@@ -101,5 +92,15 @@ public class RelateMeActivity extends LoadingBarBaseActivity<RelateMeEvent> impl
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return  R.layout.activity_relate_me;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "与我相关";
     }
 }

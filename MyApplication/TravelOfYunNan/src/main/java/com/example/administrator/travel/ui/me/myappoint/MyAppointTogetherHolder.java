@@ -133,6 +133,8 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
                 mBtStart.setText("出发");
             }else if (payStates==8){
                 mBtStart.setText("结束行程");
+            }else if (payStates==9){
+                mBtStart.setText("评价");
             }else {
                 mBtStart.setVisibility(View.GONE);
             }
@@ -158,6 +160,10 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
             mBtChat.setVisibility(View.VISIBLE);
         }else {
             mBtChat.setVisibility(View.GONE);
+        }
+        if (payStates==9){
+            mBtStart.setVisibility(View.VISIBLE);
+            mBtStart.setText("评价");
         }
     }
 

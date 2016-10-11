@@ -45,7 +45,8 @@ import butterknife.ButterKnife;
 
 
 /**
- * Created by Administrator on 2016/7/13 0013.
+ * Created by wangyang on 2016/7/13 0013.
+ * 他人中心
  */
 public class OtherUserCenterActivity extends AppCompatActivity implements View.OnClickListener {
 

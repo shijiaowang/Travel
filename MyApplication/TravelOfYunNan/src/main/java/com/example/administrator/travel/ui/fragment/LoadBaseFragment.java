@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 
 
 /**
- * Created by Administrator on 2016/8/3 0003.
+ * Created by wangyang on 2016/8/3 0003.
  */
 public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment implements XListView.IXListViewListener{
     public static final int TYPE_FIRST = 0;
@@ -79,8 +79,8 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
             }
 
             @Override
-            public void onLoad() {
-                LoadBaseFragment.this.load();
+            public void onLoad(int type) {
+                LoadBaseFragment.this.load(type);
             }
             /**
              * 子类中修改
@@ -94,15 +94,15 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
         };
         isPrepared = true;
         initListener();
-        loadData();
+        loadData(TYPE_REFRESH);
         return loadingPage;
 
     }
 
-    private void load() {
+    private void load(int type) {
         if (isVisible && isPrepared && isFirst) {
             isFirst=false;
-            onLoad(TYPE_REFRESH);
+            onLoad(type);
         }
     }
 
@@ -118,7 +118,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
         if (getUserVisibleHint()) {
             LogUtils.e(this.getClass().getSimpleName());
             isVisible = true;
-            load();
+            load(TYPE_REFRESH);
         }else {
             isVisible=false;
         }
@@ -198,9 +198,9 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
 
 
 
-    public void loadData() {
+    public void loadData(int type) {
         if (loadingPage != null) {
-            loadingPage.loadData();
+            loadingPage.loadData(type);
         }
     }
 

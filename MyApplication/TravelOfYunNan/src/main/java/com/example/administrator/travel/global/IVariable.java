@@ -72,6 +72,7 @@ public interface IVariable {
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String SUBMIT_ORDERS = API_KEY + "Order/setOrder/";//提交订单
     String DELETE_APPOINT = API_KEY + "UserTravel/disbandTravel/";//删除约伴
+    String DISCUSS_APPOINT = API_KEY + "UserTravel/commentTravel/";//评价
     String CHANGE_APPOINT = API_KEY + "UserTravel/setTravelState/";//修改出行状态
     String WITH_ME_SELECT = API_KEY + "UserTravel/getTravelplanlists/";//找人带团长送来的推送
     String SUBMIT_ORDERS_USED = API_KEY + "Order/setOrdertype/";//提交订单-之前已经确认过的

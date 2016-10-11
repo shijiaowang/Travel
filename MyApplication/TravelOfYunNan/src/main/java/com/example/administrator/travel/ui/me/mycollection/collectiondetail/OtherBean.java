@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.collectiondetail;
+package com.example.administrator.travel.ui.me.mycollection.collectiondetail;
 
 import com.example.administrator.travel.global.ParentBean;
 
@@ -8,10 +8,13 @@ import java.util.List;
  * Created by wangyang on 2016/9/28 0028.
  */
 
-public class PostBean implements ParentBean {
+public class OtherBean implements ParentBean{
+
+
 
     private int code;
     private String message;
+
 
     private List<DataBean> data;
 
@@ -41,10 +44,9 @@ public class PostBean implements ParentBean {
 
     public static class DataBean {
         private String id;
-        private String cid;
         private String title;
         private String content;
-        private String forum_img;
+        private String logo_img;
         private String cname;
         private String add_time;
 
@@ -54,14 +56,6 @@ public class PostBean implements ParentBean {
 
         public void setId(String id) {
             this.id = id;
-        }
-
-        public String getCid() {
-            return cid;
-        }
-
-        public void setCid(String cid) {
-            this.cid = cid;
         }
 
         public String getTitle() {
@@ -80,12 +74,12 @@ public class PostBean implements ParentBean {
             this.content = content;
         }
 
-        public String getForum_img() {
-            return forum_img;
+        public String getLogo_img() {
+            return logo_img;
         }
 
-        public void setForum_img(String forum_img) {
-            this.forum_img = forum_img;
+        public void setLogo_img(String logo_img) {
+            this.logo_img = logo_img;
         }
 
         public String getCname() {

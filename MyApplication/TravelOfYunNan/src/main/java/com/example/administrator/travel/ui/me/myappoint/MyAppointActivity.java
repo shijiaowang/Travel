@@ -18,6 +18,7 @@ import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.baseui.BaseXListViewActivity;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 
 import org.xutils.view.annotation.ViewInject;
 import java.util.List;
@@ -90,6 +91,12 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
                 break;
             case BaseToolBarActivity.TYPE_CHANGE:
                 changeState(myAppointEvent);
+                break;
+            case BaseToolBarActivity.TYPE_DISCUSS:
+                MyAppointTogetherBean.DataBean dataBean = (MyAppointTogetherBean.DataBean)mDatas.get(myAppointEvent.getPosition());
+                dataBean.setState("10");
+                adapter.notifyDataSetChanged();
+                ToastUtils.showToast(myAppointEvent.getMessage());
                 break;
         }
     }

@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.memberdetail;
+package com.example.administrator.travel.ui.me.myappoint.memberdetail;
 
 import com.example.administrator.travel.global.DataParentBean;
 

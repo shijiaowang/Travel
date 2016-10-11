@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.collectiondetail;
+package com.example.administrator.travel.ui.me.mycollection.collectiondetail;
 
 import android.app.Activity;
 
@@ -6,6 +6,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.global.ParentBean;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
+import com.example.administrator.travel.ui.baseui.BaseXListViewActivity;
 import com.example.administrator.travel.ui.baseui.LoadAndRefreshBaseActivity;
 import com.example.administrator.travel.ui.me.mycollection.MyCollectionActivity;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
@@ -23,12 +24,10 @@ import java.util.List;
  * Created by wangyang on 2016/8/14.
  *收藏详情
  */
-public class CollectionDetailActivity extends LoadAndRefreshBaseActivity<CollectionDetailEvent,OtherBean,Object> {
-   @ViewInject(R.id.lv_collection_detail)
-    private XListView mLvCollectionDetail;
+public class CollectionDetailActivity extends BaseXListViewActivity<CollectionDetailEvent,OtherBean,Object> {
     private String name;
     private int collectionType;
-    private CollectionDetailAdapter collectionDetailAdapter;
+
 
     private void setName(int collectionType) {
         name = "收藏详情";
@@ -52,23 +51,19 @@ public class CollectionDetailActivity extends LoadAndRefreshBaseActivity<Collect
                 name ="收藏的帖子";
                 break;
         }
+       getmTvTitle().setText(name);
     }
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_collection_deatil;
-    }
+
 
     @Override
     protected void initEvent() {
+        super.initEvent();
         collectionType = getIntent().getIntExtra(MyCollectionActivity.COLLECTION_TYPE, -1);
-        initXListView(mLvCollectionDetail,true,true);
+        setMarginTop(10);
+        setChildSpace(5);
         init();
     }
 
-    @Override
-    public XListView setXListView() {
-        return mLvCollectionDetail;
-    }
 
 
     @Override
@@ -80,35 +75,20 @@ public class CollectionDetailActivity extends LoadAndRefreshBaseActivity<Collect
         setName(collectionType);
     }
 
-    @Override
-    protected Activity initViewData() {
-
-        changeTitle(name);
-        return this;
-    }
 
 
 
-    @Override
-    protected String setTitleName() {
-        return "我的收藏";
-    }
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
     @Override
     protected TravelBaseAdapter initAdapter(List<Object> httpData) {
-        collectionDetailAdapter = new CollectionDetailAdapter(this, httpData, collectionType + "");
-        return collectionDetailAdapter;
+        return new CollectionDetailAdapter(this, httpData, collectionType + "");
     }
 
     @Override
     protected void doOtherSuccessData(CollectionDetailEvent collectionDetailEvent) {
-        getHttpData().remove(collectionDetailEvent.getPosition());
-        collectionDetailAdapter.notifyDataSetChanged();
+        mDatas.remove(collectionDetailEvent.getPosition());
+        adapter.notifyDataSetChanged();
         ToastUtils.showToast(collectionDetailEvent.getMessage());
     }
 
@@ -142,5 +122,10 @@ public class CollectionDetailActivity extends LoadAndRefreshBaseActivity<Collect
     @Override
     protected void childAdd(MapUtils.Builder builder) {
        builder.addTypeId(collectionType+"");
+    }
+
+    @Override
+    protected String initTitle() {
+        return "我的收藏";
     }
 }

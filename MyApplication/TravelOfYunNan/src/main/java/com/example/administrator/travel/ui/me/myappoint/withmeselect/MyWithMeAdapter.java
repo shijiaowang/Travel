@@ -17,7 +17,7 @@ import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.me.bulltetinboard.BulletinBoardActivity;
-import com.example.administrator.travel.ui.me.memberdetail.MemberDetailActivity;
+import com.example.administrator.travel.ui.me.myappoint.memberdetail.MemberDetailActivity;
 import com.example.administrator.travel.ui.view.BadgeView;
 import com.example.administrator.travel.utils.CalendarUtils;
 import com.example.administrator.travel.utils.FormatDateUtils;

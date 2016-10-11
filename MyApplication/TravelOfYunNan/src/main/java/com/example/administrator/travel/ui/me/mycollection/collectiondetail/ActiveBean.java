@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.collectiondetail;
+package com.example.administrator.travel.ui.me.mycollection.collectiondetail;
 
 import com.example.administrator.travel.global.ParentBean;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * Created by wangyang on 2016/9/28 0028.
  */
 
-public class TravelsBean implements ParentBean {
+public class ActiveBean implements ParentBean{
 
 
     private int code;
@@ -44,8 +44,9 @@ public class TravelsBean implements ParentBean {
     public static class DataBean {
         private String id;
         private String title;
-        private String author;
-        private String logo_img;
+        private String activity_img;
+        private String start_time;
+        private String end_time;
         private String add_time;
 
         public String getId() {
@@ -64,20 +65,28 @@ public class TravelsBean implements ParentBean {
             this.title = title;
         }
 
-        public String getAuthor() {
-            return author;
+        public String getActivity_img() {
+            return activity_img;
         }
 
-        public void setAuthor(String author) {
-            this.author = author;
+        public void setActivity_img(String activity_img) {
+            this.activity_img = activity_img;
         }
 
-        public String getLogo_img() {
-            return logo_img;
+        public String getStart_time() {
+            return start_time;
         }
 
-        public void setLogo_img(String logo_img) {
-            this.logo_img = logo_img;
+        public void setStart_time(String start_time) {
+            this.start_time = start_time;
+        }
+
+        public String getEnd_time() {
+            return end_time;
+        }
+
+        public void setEnd_time(String end_time) {
+            this.end_time = end_time;
         }
 
         public String getAdd_time() {

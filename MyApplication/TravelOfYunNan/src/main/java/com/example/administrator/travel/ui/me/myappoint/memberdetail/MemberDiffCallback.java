@@ -1,10 +1,8 @@
-package com.example.administrator.travel.ui.me.memberdetail;
+package com.example.administrator.travel.ui.me.myappoint.memberdetail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.util.DiffUtil;
 
-import com.example.administrator.travel.global.DataParentBean;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BaseDiffUtilCallback;
 

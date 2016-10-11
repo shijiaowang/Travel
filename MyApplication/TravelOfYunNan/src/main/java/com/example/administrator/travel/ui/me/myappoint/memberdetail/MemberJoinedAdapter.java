@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.me.memberdetail;
+package com.example.administrator.travel.ui.me.myappoint.memberdetail;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
