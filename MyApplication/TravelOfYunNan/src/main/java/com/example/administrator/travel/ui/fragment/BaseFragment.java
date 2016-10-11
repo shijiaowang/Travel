@@ -9,14 +9,21 @@ import android.view.ViewGroup;
 
 import com.example.administrator.travel.utils.LogUtils;
 
+import butterknife.ButterKnife;
+
 /**
- * Created by Administrator on 2016/7/7 0007.
+ * Created by wangyang on 2016/7/7 0007.
  */
 public abstract class BaseFragment extends Fragment {
     public View root;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        try {
+            ButterKnife.bind(this,root);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return root;
     }
 

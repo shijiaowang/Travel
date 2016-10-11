@@ -63,7 +63,7 @@ public class AppointDetailMorePop {
         window.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(android.R.color.transparent)));
 
         // 获取控件的坐标 x y
-        window.showAsDropDown(view,-DensityUtil.dip2px(18),0);
+        window.showAsDropDown(view,DensityUtil.getScreenWidth()-DensityUtil.dip2px(125),0);
     }
 
 

@@ -84,6 +84,35 @@ public class MyAppointActivity extends LoadAndRefreshBaseActivity<MyAppointEvent
                 httpData.remove(myAppointEvent.getPosition());
                 adapter.notifyDataSetChanged();
                 break;
+            case BaseToolBarActivity.TYPE_CHANGE:
+                changeState(myAppointEvent);
+                break;
+        }
+    }
+
+    /**
+     * 修改boos点击后出发按钮的状态
+     * @param myAppointEvent
+     */
+    private void changeState(MyAppointEvent myAppointEvent) {
+        try {
+            MyAppointTogetherBean.DataBean dataBean = (MyAppointTogetherBean.DataBean)httpData.get(myAppointEvent.getPosition());
+            int payStatus = myAppointEvent.getPayStatus();
+            switch (payStatus){
+                case 3:
+                    dataBean.setState("7");
+                    break;
+                case 7:
+                    dataBean.setState("8");
+                    break;
+                case 8:
+                    dataBean.setState("9");
+                    break;
+            }
+            adapter.notifyDataSetChanged();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

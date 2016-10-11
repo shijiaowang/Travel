@@ -16,19 +16,19 @@ import com.example.administrator.travel.ui.circle.circlenav.NavLeftFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 
 
 /**
- * Created by Administrator on 2016/7/7 0007.
+ * Created by wangyang on 2016/7/7 0007.
  * 圈子Fragment
  */
 public class CircleFragment extends BaseFragment implements View.OnClickListener {
-
-    private ViewPager mVpCircle;
-    private RelativeLayout mRlTitleBg;
     private List<Fragment> fragments = new ArrayList<>(2);
-    private TextView mTvLeftTitle;
-    private TextView mTvRightTitle;
+    @BindView(R.id.vp_circle) ViewPager mVpCircle;
+    @BindView(R.id.rl_title_bg) RelativeLayout mRlTitleBg;
+    @BindView(R.id.tv_left_title) TextView mTvLeftTitle;
+    @BindView(R.id.tv_right_title) TextView mTvRightTitle;
 
     @Override
     protected int initLayoutRes() {
@@ -37,10 +37,7 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
 
 
     protected void initView() {
-        mRlTitleBg = (RelativeLayout) root.findViewById(R.id.rl_title_bg);
-        mVpCircle = (ViewPager) root.findViewById(R.id.vp_circle);
-        mTvLeftTitle = (TextView) root.findViewById(R.id.tv_left_title);
-        mTvRightTitle = (TextView) root.findViewById(R.id.tv_right_title);
+
     }
 
     @Override

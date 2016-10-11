@@ -65,7 +65,8 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
     @BindColor(R.color.color7fbdff) @ColorInt int stateNotDiscuss;//待评价
     @BindString(R.string.activity_circle_love_full) String fullLove;
     @BindString(R.string.activity_circle_love_empty) String emptyLove;
-   private int desColor=stateAppointing;
+    private int desColor=stateAppointing;
+    protected int payStates=-1;
 
 
 
@@ -75,7 +76,7 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
     @Override
     protected void initItemDatas(Object datas1, Context mContext, int position) {
         if (datas1 instanceof MyAppointTogetherBean.DataBean) {
-            int payStates=-1;
+            payStates=-1;
             MyAppointTogetherBean .DataBean datas = (MyAppointTogetherBean.DataBean) datas1;
             String isBoss = datas.getIs_boss();
             FrescoUtils.displayNormal(mIvIcon, datas.getTravel_img());
@@ -90,7 +91,7 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
             mBvEnterPeople.setBadgeCount(datas.getNow_people());
             mBvBulletinNumber.setBadgeCount(datas.getBulletin());
             mTvHowLong.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd", datas.getAdd_time()));
-            mTvAppointing.setText(getDesTextByState(datas.getState(),payStates));
+            mTvAppointing.setText(getDesTextByState(datas.getState()));
             mTvAppointing.setTextColor(desColor);
             String isLike = datas.getIs_like();
             boolean equals;
@@ -101,11 +102,11 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
             }
             mTvIconLove.setTextColor(equals ? likeColor : normalColor);
             mTvIconLove.setText(equals ? fullLove : emptyLove);
-            hideOrShow(datas, isBoss,payStates);
+            hideOrShow(datas, isBoss);
         }
     }
 
-    private void hideOrShow(MyAppointTogetherBean.DataBean datas, String isBoss,int payStates) {
+    private void hideOrShow(MyAppointTogetherBean.DataBean datas, String isBoss) {
         if (payStates==1){//如果为1就显示支付
             mBtPay.setVisibility(View.VISIBLE);
             mLlCode1.setVisibility(View.GONE);
@@ -125,13 +126,22 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
             }else {
                 mIvDelete.setVisibility(View.GONE);
             }
+            mBtStart.setVisibility(View.VISIBLE);
+            if (payStates==3){
+                mBtStart.setText("确认出发");
+            }else if (payStates==7){
+                mBtStart.setText("出发");
+            }else if (payStates==8){
+                mBtStart.setText("结束行程");
+            }else {
+                mBtStart.setVisibility(View.GONE);
+            }
             mBtPay.setVisibility(View.GONE);
             mLlCode2.setVisibility(View.GONE);
             mLlCode1.setVisibility(View.VISIBLE);
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mLine.getLayoutParams();
             layoutParams.topMargin=0;
             mLine.setLayoutParams(layoutParams);
-
             mTvCode.setText(datas.getId_code());
         }else {
             mIvDelete.setVisibility(View.GONE);
@@ -156,11 +166,11 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
      * @param state
      * @return
      */
-  private String getDesTextByState(String state,int payStates){
+  private String getDesTextByState(String state){
       String desText="约伴订单";
       try {
           String[] stringArray = mContext.getResources().getStringArray(R.array.together_appoint);
-          int i = Integer.parseInt(state)-1;
+          int i = Integer.parseInt(state);
           payStates=i;
           switch (i){
               case 9:

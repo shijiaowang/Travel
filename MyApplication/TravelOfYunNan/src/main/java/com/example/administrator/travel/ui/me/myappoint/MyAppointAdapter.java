@@ -66,8 +66,8 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
         if (baseHolder instanceof MyAppointTogetherHolder) {
             final MyAppointTogetherBean.DataBean item1 = (MyAppointTogetherBean.DataBean) item;
             final String id = item1.getId();
-            MyAppointTogetherHolder myAppointSuccessHolder = (MyAppointTogetherHolder) baseHolder;
-            myAppointSuccessHolder.mRlBulletinBoard.setOnClickListener(new View.OnClickListener() {
+            final MyAppointTogetherHolder myAppointTogetherHolder = (MyAppointTogetherHolder) baseHolder;
+            myAppointTogetherHolder.mRlBulletinBoard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, BulletinBoardActivity.class);
@@ -75,19 +75,30 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
                     mContext.startActivity(intent);
                 }
             });
-
-            myAppointSuccessHolder.mBtPay.setOnClickListener(new View.OnClickListener() {
+            myAppointTogetherHolder.mBtStart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String type = initType(myAppointTogetherHolder.payStates);
+                    if (StringUtils.isEmpty(type))return;
+                    Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addtId(item1.getId()).end();
+                    MyAppointEvent myAppointEvent=new MyAppointEvent();
+                    myAppointEvent.setPosition(position);
+                    myAppointEvent.setPayStatus(myAppointTogetherHolder.payStates);
+                    XEventUtils.postUseCommonBackJson(IVariable.CHANGE_APPOINT,end,BaseToolBarActivity.TYPE_CHANGE,myAppointEvent);
+                }
+            });
+            myAppointTogetherHolder.mBtPay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String orderType = item1.getOrder_type();
-                    if (StringUtils.isEmpty(orderType))return;
-                    Intent intent=new Intent(mContext, ConfirmOrdersActivity.class);
-                    intent.putExtra(IVariable.TYPE,orderType);
-                    intent.putExtra(IVariable.ID,item1.getOrder_id());
+                    if (StringUtils.isEmpty(orderType)) return;
+                    Intent intent = new Intent(mContext, ConfirmOrdersActivity.class);
+                    intent.putExtra(IVariable.TYPE, orderType);
+                    intent.putExtra(IVariable.ID, item1.getOrder_id());
                     mContext.startActivity(intent);
                 }
             });
-            myAppointSuccessHolder.mIvDelete.setOnClickListener(new View.OnClickListener() {
+            myAppointTogetherHolder.mIvDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     EnterAppointDialog.showCommonDialog(mContext, "删除约伴", "确认", "注意！此操作将删除您的约伴！请慎重选择！", new ParentPopClick() {
@@ -101,7 +112,7 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
                     });
                 }
             });
-            myAppointSuccessHolder.mRlMemberDetail.setOnClickListener(new View.OnClickListener() {
+            myAppointTogetherHolder.mRlMemberDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, MemberDetailActivity.class);
@@ -110,6 +121,18 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
                 }
             });
         }
+    }
+
+    private String initType(int payStates) {
+        switch (payStates) {
+            case 3:
+               return "1";
+            case 7:
+                return "2";
+            case 8:
+                return "3";
+        }
+        return "";
     }
 
 

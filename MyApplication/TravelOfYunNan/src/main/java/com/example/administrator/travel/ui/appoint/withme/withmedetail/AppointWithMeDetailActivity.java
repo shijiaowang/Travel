@@ -114,12 +114,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
             mTvUserNickName.setText(data.getUser_name());
             x.image().bind(mIvAppointBg, data.getTravel_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(116), DensityUtil.dip2px(116)));
             if (mFlTitle.getChildCount()>0)mFlTitle.removeAllViews();
-            String[] split = data.getLabel().split(",");
-            for (int i=0;i<split.length;i++){
-                TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
-                textView.setText(split[i]);
-                mFlTitle.addView(textView);
-            }
+            dealLabel(data);
             mTvLoveNumber.setText(data.getCount_like());
             mTvWatchNumber.setText(data.getBrowse());
             mTvTitle.setText(data.getTitle());
@@ -159,6 +154,17 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
         }catch (Exception e){
             LogUtils.e("找人带详情页发生异常了");
             e.printStackTrace();
+        }
+    }
+
+    private void dealLabel(AppointWithMeDetailBean.DataBean data) {
+        String label = data.getLabel();
+        if (StringUtils.isEmpty(label))return;
+        String[] split = label.split(",");
+        for (int i=0;i<split.length;i++){
+            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
+            textView.setText(split[i]);
+            mFlTitle.addView(textView);
         }
     }
 

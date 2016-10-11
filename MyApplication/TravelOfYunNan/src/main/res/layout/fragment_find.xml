@@ -7,18 +7,24 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/commonTotalHeight"
         android:background="@color/otherTitleBg"
-       >
-
-    </RelativeLayout>
+        android:paddingTop="@dimen/commonStatusHeight"
+        android:theme="@style/toolbar_theme">
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@color/otherTitleBg">
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
     <ScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,10 +33,10 @@
 
 
             <ImageView
-                android:src="@drawable/fragment_find_bg_test"
                 android:id="@+id/vp_find"
                 android:layout_width="match_parent"
-                android:layout_height="160dp">
+                android:layout_height="160dp"
+                android:src="@drawable/fragment_find_bg_test">
 
             </ImageView>
 
@@ -71,8 +77,8 @@
                         android:textSize="28sp" />
 
                     <TextView
-                        android:layout_marginTop="6dp"
                         style="@style/fragmentFindIconText"
+                        android:layout_marginTop="6dp"
                         android:text="酒店" />
 
                 </LinearLayout>
@@ -112,71 +118,72 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/fragmentFindIconLl"
+                <LinearLayout
                     android:id="@+id/ll_active"
-                    >
+                    style="@style/fragmentFindIconLl">
 
                     <com.example.administrator.travel.ui.view.FontsIconTextView
-                        android:paddingBottom="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
                         android:text="@string/fragment_find_active"
                         android:textColor="#fcae04"
                         android:textSize="30sp" />
 
                     <TextView
-                        android:paddingBottom="4dp"
                         style="@style/fragmentFindIconText"
-                        android:text="活动"
                         android:layout_marginTop="4dp"
-                        />
+                        android:paddingBottom="4dp"
+                        android:text="活动" />
 
                 </LinearLayout>
 
             </LinearLayout>
+
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:drawableRight="@drawable/fragment_find_line"
-                android:drawablePadding="5dp"
                 android:drawableLeft="@drawable/fragment_find_line"
+                android:drawablePadding="5dp"
+                android:drawableRight="@drawable/fragment_find_line"
                 android:gravity="center"
                 android:text="推荐"
                 android:textColor="#323232"
-                android:textSize="13sp"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp" />
+                android:textSize="13sp" />
 
-                <com.example.administrator.travel.ui.view.ToShowAllGridView
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/gv_recommend"
-                    android:numColumns="2"
-                    android:verticalSpacing="5dp"
-                    android:horizontalSpacing="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <com.example.administrator.travel.ui.view.ToShowAllGridView
+                android:id="@+id/gv_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_horizontal"
+                android:horizontalSpacing="5dp"
+                android:numColumns="2"
+                android:verticalSpacing="5dp">
 
-                </com.example.administrator.travel.ui.view.ToShowAllGridView>
+            </com.example.administrator.travel.ui.view.ToShowAllGridView>
 
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:drawableRight="@drawable/fragment_find_line"
-                android:drawablePadding="5dp"
                 android:drawableLeft="@drawable/fragment_find_line"
+                android:drawablePadding="5dp"
+                android:drawableRight="@drawable/fragment_find_line"
                 android:gravity="center"
                 android:text="热门"
                 android:textColor="#323232"
-                android:textSize="13sp"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp" />
+                android:textSize="13sp" />
+
             <com.example.administrator.travel.ui.view.ToShowAllListView
                 android:id="@+id/lv_hot"
-                android:divider="@null"
-                android:dividerHeight="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:dividerHeight="10dp">
 
             </com.example.administrator.travel.ui.view.ToShowAllListView>
         </LinearLayout>

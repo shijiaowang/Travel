@@ -85,7 +85,7 @@ public class MyAppointingWithMeHolder extends BaseHolder<Object> {
         String des="约伴订单";
         try {
             String[] stringArray = mContext.getResources().getStringArray(R.array.with_me_appoint);
-            int i = Integer.parseInt(state)-1;
+            int i = Integer.parseInt(state);
             des=stringArray[i];
         } catch (Exception e) {
               e.printStackTrace();

@@ -29,6 +29,7 @@ public interface IVariable {
     String BULLETIN_BOARD = API_KEY + "UserTravel/getBulletinlists/";//我的约伴-公告栏
     String APPOINT_CLICK_ZAN = API_KEY + "Travel/isLikeTravel/";//约伴点赞
     String ENTER_APPOINT = API_KEY + "UserTravel/setIntoTravel/";//约伴报名
+    String CANCEL_APPOINT = API_KEY + "UserTravel/revokeIntoTravel/";//取消报名
     /**
      * 登录
      */
@@ -71,6 +72,7 @@ public interface IVariable {
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String SUBMIT_ORDERS = API_KEY + "Order/setOrder/";//提交订单
     String DELETE_APPOINT = API_KEY + "UserTravel/disbandTravel/";//删除约伴
+    String CHANGE_APPOINT = API_KEY + "UserTravel/setTravelState/";//修改出行状态
     String WITH_ME_SELECT = API_KEY + "UserTravel/getTravelplanlists/";//找人带团长送来的推送
     String SUBMIT_ORDERS_USED = API_KEY + "Order/setOrdertype/";//提交订单-之前已经确认过的
     String MY_COUPON = API_KEY + "Order/getConpoulists/";//优惠券

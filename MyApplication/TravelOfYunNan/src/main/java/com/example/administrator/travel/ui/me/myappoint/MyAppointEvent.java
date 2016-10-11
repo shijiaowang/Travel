@@ -8,6 +8,9 @@ import com.example.administrator.travel.event.HttpEvent;
 
 public class MyAppointEvent extends HttpEvent {
     private int position;
+    private int payStatus;
+
+
 
     public int getPosition() {
         return position;
@@ -15,5 +18,12 @@ public class MyAppointEvent extends HttpEvent {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+    public int getPayStatus() {
+        return payStatus;
+    }
+
+    public void setPayStatus(int payStatus) {
+        this.payStatus = payStatus;
     }
 }

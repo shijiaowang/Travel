@@ -41,11 +41,12 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
     public static final int REQ_CODE = 10;
     public static final int RESULT_CODE = 11;
     public static final int TYPE_UP_FILE = 12;//上传文件
+    public static final int TYPE_CHANGE = 13;//上传文件
 
 
     FrameLayout mFlContent;
     TextView mTvTitle;
-    Toolbar mToolbar;
+    protected Toolbar mToolbar;
     ImageView mIvPageError;//展示错误页面
     ProgressBar mPbLoading;//加载中
     protected LayoutInflater inflater;

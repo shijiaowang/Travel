@@ -17,9 +17,9 @@ import android.widget.TextView;
 
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.fragment.AppointFragment;
+import com.example.administrator.travel.ui.appoint.AppointFragment;
 import com.example.administrator.travel.ui.fragment.CircleFragment;
-import com.example.administrator.travel.ui.fragment.FindFragment;
+import com.example.administrator.travel.ui.find.FindFragment;
 import com.example.administrator.travel.ui.home.HomeFragment;
 import com.example.administrator.travel.ui.me.me.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
