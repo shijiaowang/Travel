@@ -1,12 +1,14 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.find.travels;
+
+import com.example.administrator.travel.global.ParentBean;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/7 0007.
+ * Created by wangyang on 2016/7/7 0007.
  * 游记列表
  */
-public class Travels {
+public class TravelsBean implements ParentBean{
 
 
     private int code;

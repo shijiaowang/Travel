@@ -30,7 +30,7 @@ import java.util.List;
  * 刷新以及加载更多通用baseactivity
  */
 
-public  abstract class BaseLoadAndRefreshActivity<T extends HttpEvent,E extends ParentBean, F> extends BaseNetWorkActivity<T> implements OnLoadMoreListener, OnRefreshListener {
+public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends ParentBean, F> extends BaseNetWorkActivity<T> implements OnLoadMoreListener, OnRefreshListener {
     protected List<F> mDatas;//从网络获取的数据
     protected BaseRecycleViewAdapter<F> mAdapter;//通用adapter
     protected RecyclerView mRvCommon;

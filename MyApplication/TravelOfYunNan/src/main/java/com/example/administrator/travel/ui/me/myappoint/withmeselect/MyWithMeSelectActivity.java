@@ -3,7 +3,7 @@ package com.example.administrator.travel.ui.me.myappoint.withmeselect;
 import android.app.Activity;
 
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.BaseLoadAndRefreshActivity;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewActivity;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.utils.MapUtils;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * 我的约伴 找人带推送选择页面
  */
 
-public class MyWithMeSelectActivity extends BaseLoadAndRefreshActivity<MyWithMeSelectEvent,MyWithMeSelectBean,MyWithMeSelectBean.DataBean> {
+public class MyWithMeSelectActivity extends BaseRecycleViewActivity<MyWithMeSelectEvent,MyWithMeSelectBean,MyWithMeSelectBean.DataBean> {
     @Override
     protected BaseRecycleViewAdapter initAdapter(List<MyWithMeSelectBean.DataBean> mDatas) {
         return new  MyWithMeAdapter(mDatas,this);

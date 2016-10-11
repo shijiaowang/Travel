@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
    <RadioGroup
+       xmlns:android="http://schemas.android.com/apk/res/android"
        android:background="@color/colorFAFAFA"
        android:orientation="horizontal"
        android:layout_width="match_parent"
@@ -16,32 +13,25 @@
        <View
            android:layout_gravity="center_vertical"
            android:layout_width="1dp"
+           android:layout_marginTop="10dp"
+           android:layout_marginBottom="10dp"
            android:background="@color/color969696"
            android:layout_height="20dp"/>
        <RadioButton
            android:text="已通过"
            android:id="@+id/tv_passed"
            style="@style/myAppointRadioButton"/>
-       <View
+
+    <RadioButton
+        android:text="找人带"
+        android:id="@+id/tv_with_me"
+        style="@style/myAppointRadioButton" />
+
+    <View
            android:layout_gravity="center_vertical"
            android:background="@color/color969696"
            android:layout_width="1dp"
            android:layout_height="20dp"/>
-       <RadioButton
-           android:text="找人带"
-           android:id="@+id/tv_with_me"
-           style="@style/myAppointRadioButton" />
 
-   </RadioGroup>
-    <com.example.administrator.travel.ui.view.refreshview.XListView
+</RadioGroup>
 
-        android:id="@+id/lv_my_appoint"
-        style="@style/commonListViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:dividerHeight="10dp"
-        android:scrollbars="none">
-
-    </com.example.administrator.travel.ui.view.refreshview.XListView>
-</LinearLayout>

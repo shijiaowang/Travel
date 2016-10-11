@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.BaseLoadAndRefreshActivity;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewActivity;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.ui.me.myalbum.createalbum.CreateAlbumActivity;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
@@ -20,7 +20,7 @@ import java.util.List;
  * Created by wangyang on 2016/7/18 0018.
  * 我的相册
  */
-public class MyAlbumActivity extends BaseLoadAndRefreshActivity<MyAlbumEvent,MyAlbumBean,MyAlbumBean.DataBean> implements View.OnClickListener {
+public class MyAlbumActivity extends BaseRecycleViewActivity<MyAlbumEvent,MyAlbumBean,MyAlbumBean.DataBean> implements View.OnClickListener {
     private FontsIconTextView mTvAdd;
     private TextView mTvCreateAlbum;
     private TextView mTvAlbumSum;

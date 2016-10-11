@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.PeopleBean;
+import com.example.administrator.travel.global.ParentPopClick;
 import com.example.administrator.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.example.administrator.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 import com.example.administrator.travel.global.IVariable;
@@ -48,6 +49,7 @@ import butterknife.BindView;
  */
 public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDetailEvent> implements View.OnClickListener {
     private static final int TYPE_ENTER_APPOINT = 95;
+    private static final  int TYPE_OUT_APPOINT=59;
     @BindView(R.id.tv_start_add)
     TextView mTvStartAdd;
     @BindView(R.id.tv_end_add)
@@ -154,12 +156,16 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
                 break;
             case TYPE_ENTER_APPOINT:
                 EnterAppointDialog.showDialogSuccess(this);
+                initAction(7+"");
+
                 break;
             case TYPE_DELETE:
                ToastUtils.showToast("取消成功");
-                payStatus=1;
-                payType="报名";
-                mBvEnter.setText(payType);
+                initAction(1+"");
+                break;
+            case TYPE_OUT_APPOINT:
+                ToastUtils.showToast("申请成功");
+                initAction(6+"");
                 break;
         }
 
@@ -278,7 +284,9 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
      */
     private void dealLabel(AppointTogetherDetailBean.DataBean data) {
         try {
-            String[] split = data.getLabel().split(",");
+            String label = data.getLabel();
+            if (StringUtils.isEmpty(label))return;
+            String[] split = label.split(",");
             for (int i = 0; i < split.length; i++) {
                 TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
                 textView.setText(split[i]);
@@ -369,14 +377,27 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     }
 
     private void clickType() {
+        final Map<String, String> map = MapUtils.Build().addKey(this).addtId(id).addUserId().end();
         switch (payStatus) {
             case 1:
-                Map<String, String> enterMap = MapUtils.Build().addKey(this).addtId(id).addUserId().end();
-                XEventUtils.postUseCommonBackJson(IVariable.ENTER_APPOINT, enterMap, TYPE_ENTER_APPOINT, new AppointDetailEvent());
+                XEventUtils.postUseCommonBackJson(IVariable.ENTER_APPOINT, map, TYPE_ENTER_APPOINT, new AppointDetailEvent());
                 break;
+            case 3:
+                EnterAppointDialog.showCommonDialog(this, "退出约伴", "确定", "退出约伴团队", new ParentPopClick() {
+                    @Override
+                    public void onClick() {
+                        XEventUtils.postUseCommonBackJson(IVariable.OUT_APPOINT,map,TYPE_OUT_APPOINT,new AppointDetailEvent());
+                    }
+                });
+
             case 7:
-                Map<String, String> deleteMap = MapUtils.Build().addKey(this).addtId(id).addUserId().end();
-                XEventUtils.postUseCommonBackJson(IVariable.DELETE_APPOINT,deleteMap,TYPE_DELETE,new AppointDetailEvent());
+                EnterAppointDialog.showCommonDialog(this, "取消申请", "确定", "取消发起的约伴请求！", new ParentPopClick() {
+                    @Override
+                    public void onClick() {
+                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_APPOINT,map,TYPE_DELETE,new AppointDetailEvent());
+                    }
+                });
+
                 break;
             default:
                 ToastUtils.showToast(payType);

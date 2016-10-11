@@ -3,7 +3,7 @@ package com.example.administrator.travel.ui.me.bulltetinboard;
 import android.app.Activity;
 
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.BaseLoadAndRefreshActivity;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewActivity;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.utils.MapUtils;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by wangyang on 2016/8/2 0002.
  * 公告栏
  */
-public class BulletinBoardActivity extends BaseLoadAndRefreshActivity<BulletinBoardEvent,BulletinBoardBean,BulletinBoardBean.DataBean> {;
+public class BulletinBoardActivity extends BaseRecycleViewActivity<BulletinBoardEvent,BulletinBoardBean,BulletinBoardBean.DataBean> {;
     private String tId;
 
 

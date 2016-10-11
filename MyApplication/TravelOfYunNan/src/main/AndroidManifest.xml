@@ -59,7 +59,7 @@
         <activity android:name=".ui.baseui.ActiveActivity" />
         <activity android:name=".ui.appoint.travelplan.TravelsPlanWithMeActivity" />
         <activity android:name=".ui.baseui.BarBaseActivity" />
-        <activity android:name=".ui.baseui.TravelsActivity"/>
+        <activity android:name=".ui.find.travels.TravelsActivity"/>
         <activity android:name=".ui.me.titlemanage.TitleManagementActivity"/>
         <activity android:name=".ui.appoint.customdestination.CustomDestinationActivity"/>
         <activity android:name=".ui.baseui.ActivateDetailActivity"/>

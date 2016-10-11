@@ -79,6 +79,7 @@ public interface IVariable {
     String CHANGE_PHONE = API_KEY + "User/setTel/";//更换绑定的手机号
     String ORDERS_DETAIL = API_KEY + "Order/getOrderSuccess/";//订单详情
     String CANCEL_ORDERS = API_KEY + "Order/removeOrder/";//取消订单
+    String OUT_APPOINT = API_KEY + "UserTravel/putOutTravel/";//退出约伴
     String MY_APPOINT_AGREE_OR_REFUSE = API_KEY + "Travel/agreeUsertoTravel/";//处理约伴同意还是拒绝
     String MEMBER_DETAIL = API_KEY + "Travel/getTraveluserlists/";//成员详情
     String AGREE_WITH_ME_SELECT = API_KEY + "UserTravel/agreeTravelplan/";//选择找人带推送

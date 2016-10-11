@@ -225,6 +225,7 @@ public class EnterAppointDialog {
             @Override
             public void onClick(View v) {
                 parentPopClick.onClick();
+                dialog.dismiss();
             }
         });
         Window window = dialog.getWindow(); //得到对话框

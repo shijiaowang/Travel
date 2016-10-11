@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.Travels;
+import com.example.administrator.travel.ui.find.travels.TravelsBean;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class TravelsAdapter extends BaseAdapter {
     private Context mContex;
-    private List<Travels> mDatas;
+    private List<TravelsBean> mDatas;
 
-    public TravelsAdapter(Context mContex, List<Travels> mDatas) {
+    public TravelsAdapter(Context mContex, List<TravelsBean> mDatas) {
         this.mContex = mContex;
         this.mDatas = mDatas;
     }
@@ -32,7 +32,7 @@ public class TravelsAdapter extends BaseAdapter {
     }
 
     @Override
-    public Travels getItem(int position) {
+    public TravelsBean getItem(int position) {
         return mDatas.get(position);
     }
 

@@ -1,10 +1,7 @@
 package com.example.administrator.travel.ui.find;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,13 +13,12 @@ import com.example.administrator.travel.ui.adapter.FindRecommendAdapter;
 import com.example.administrator.travel.ui.baseui.ActiveActivity;
 import com.example.administrator.travel.ui.baseui.FindCommonActivity;
 import com.example.administrator.travel.ui.baseui.HotelActivity;
-import com.example.administrator.travel.ui.baseui.TravelsActivity;
+import com.example.administrator.travel.ui.find.travels.TravelsActivity;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2016/7/19 0019.

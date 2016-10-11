@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.administrator.travel.ui.baseui.TravelsActivity">
 
     <RelativeLayout
-
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:focusableInTouchMode="true"
         android:focusable="true"
         android:layout_width="match_parent"
@@ -47,16 +41,4 @@
         </RelativeLayout>
 
     </RelativeLayout>
-    <com.example.administrator.travel.ui.view.refreshview.XListView
-        android:dividerHeight="10dp"
-        android:divider="@null"
-        android:id="@+id/lv_travels"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </com.example.administrator.travel.ui.view.refreshview.XListView>
-
-</LinearLayout>

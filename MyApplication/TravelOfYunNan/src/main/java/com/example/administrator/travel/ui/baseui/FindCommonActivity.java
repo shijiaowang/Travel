@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by android on 2016/7/30.
+ * Created by wangyang on 2016/7/30.
  * 目的地  美食共用
  */
 public class FindCommonActivity extends LoadingBarBaseActivity<DestinationEvent> implements XListView.IXListViewListener, View.OnKeyListener {

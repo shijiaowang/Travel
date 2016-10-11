@@ -26,6 +26,9 @@ import java.util.Map;
  * Created by wangyang on 2016/8/2 0002.
  */
 public class MyAppointAdapter extends TravelBaseAdapter<Object> {
+    private String title;
+    private String content;
+
 
     public MyAppointAdapter(Context mContext, List<Object> mDatas) {
         super(mContext, mDatas);
@@ -80,11 +83,13 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
                 public void onClick(View v) {
                     String type = initType(myAppointTogetherHolder.payStates);
                     if (StringUtils.isEmpty(type))return;
-                    Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addtId(item1.getId()).end();
-                    MyAppointEvent myAppointEvent=new MyAppointEvent();
-                    myAppointEvent.setPosition(position);
-                    myAppointEvent.setPayStatus(myAppointTogetherHolder.payStates);
-                    XEventUtils.postUseCommonBackJson(IVariable.CHANGE_APPOINT,end,BaseToolBarActivity.TYPE_CHANGE,myAppointEvent);
+                    EnterAppointDialog.showCommonDialog(mContext, title, "确定", content, new ParentPopClick() {
+                        @Override
+                        public void onClick() {
+                            changeAppoint(item1, position, myAppointTogetherHolder);
+                        }
+                    });
+
                 }
             });
             myAppointTogetherHolder.mBtPay.setOnClickListener(new View.OnClickListener() {
@@ -123,13 +128,27 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
         }
     }
 
+    private void changeAppoint(MyAppointTogetherBean.DataBean item1, int position, MyAppointTogetherHolder myAppointTogetherHolder) {
+        Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addtId(item1.getId()).end();
+        MyAppointEvent myAppointEvent=new MyAppointEvent();
+        myAppointEvent.setPosition(position);
+        myAppointEvent.setPayStatus(myAppointTogetherHolder.payStates);
+        XEventUtils.postUseCommonBackJson(IVariable.CHANGE_APPOINT,end, BaseToolBarActivity.TYPE_CHANGE,myAppointEvent);
+    }
+
     private String initType(int payStates) {
         switch (payStates) {
             case 3:
+                title="确认出发";
+                content="确认出发后将停止招募小伙伴。";
                return "1";
             case 7:
+                title="即刻启程";
+                content="开始您的约伴行程。";
                 return "2";
             case 8:
+                title="完成约伴";
+                content="结束约伴行程。";
                 return "3";
         }
         return "";
