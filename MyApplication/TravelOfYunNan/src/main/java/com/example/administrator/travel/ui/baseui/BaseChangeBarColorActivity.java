@@ -67,6 +67,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
     protected  ProgressBar mPbLoading;
     protected  ViewStub mVsContent;
     protected  View childView;
+    protected ViewStub mVsHeader;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
         mTvTitle = (TextView) findViewById(R.id.tv_bar_name);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mVsContent = (ViewStub) findViewById(R.id.vs_content);
+        mVsHeader = (ViewStub) findViewById(R.id.vs_header);
         //设置还没收缩时状态下字体颜色
         mCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         //设置收缩后Toolbar上字体的颜色
@@ -105,9 +107,11 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
             public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset) {
                 if (state==State.EXPANDED){
                     mSwipeContainer.setEnabled(true);
+                    mTvTitle.setVisibility(View.GONE);
                 }else{
                     if (mSwipeContainer.isRefreshing()){
                         mSwipeContainer.setRefreshing(false);
+                        mTvTitle.setVisibility(View.VISIBLE);
                     }
                    mSwipeContainer.setEnabled(false);
                 }
@@ -115,7 +119,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
         });
         mSwipeContainer.setOnRefreshListener(this);
         initListener();
-
+        onLoad(TYPE_REFRESH);
 
 
     }
@@ -163,7 +167,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
         return super.onOptionsItemSelected(item);
     }
 
-    private void otherOptionsItemSelected(MenuItem item) {
+    protected void otherOptionsItemSelected(MenuItem item) {
 
     }
 
@@ -195,6 +199,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
                 onSuccess(t);
             }catch (Exception e){
                 e.printStackTrace();
+                onFail(t);
             }
         }else {
             ToastUtils.showToast(t.getMessage());

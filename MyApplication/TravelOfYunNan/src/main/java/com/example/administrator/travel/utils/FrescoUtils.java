@@ -82,7 +82,6 @@ public class FrescoUtils {
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
                 //设置淡入淡出动画持续时间(单位：毫秒ms)
-                .setFadeDuration(3000)
                 //构建
                 .build();
         simpleDraweeView.setHierarchy(hierarchy);

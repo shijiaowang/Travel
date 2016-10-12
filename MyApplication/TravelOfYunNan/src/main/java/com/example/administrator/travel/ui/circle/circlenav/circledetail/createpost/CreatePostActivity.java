@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.circle.createpost;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.createpost;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +25,6 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.CreatePostEvent;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.adapter.CreatePostPhotoAdapter;
 import com.example.administrator.travel.ui.appoint.aite.AiteActivity;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;

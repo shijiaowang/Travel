@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#fafafa"
     android:orientation="vertical"
-    tools:context="com.example.administrator.travel.ui.circle.post.PostActivity">
+    tools:context=".ui.circle.circlenav.circledetail.post.PostActivity">
     <com.example.administrator.travel.ui.view.refreshview.XListView
         android:id="@+id/lv_post_detail"
         android:layout_width="match_parent"

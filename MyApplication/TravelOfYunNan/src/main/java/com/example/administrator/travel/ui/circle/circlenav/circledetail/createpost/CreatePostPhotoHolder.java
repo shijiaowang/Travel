@@ -1,9 +1,10 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.createpost;
 
 import android.content.Context;
 import android.view.View;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -20,7 +21,7 @@ public class CreatePostPhotoHolder extends BaseHolder<String> {
 
     @Override
     protected void initItemDatas(String datas, Context mContext, int position) {
-        FrescoUtils.displayNormal(mIvPicture,"file//"+datas);
+        FrescoUtils.displayNormal(mIvPicture,"file://"+datas);
 
     }
 

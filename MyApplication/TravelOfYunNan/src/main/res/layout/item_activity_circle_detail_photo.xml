@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.facebook.drawee.view.SimpleDraweeView xmlns:android="http://schemas.android.com/apk/res/android"
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="105dp"
     android:layout_height="93dp">
 
-</com.facebook.drawee.view.SimpleDraweeView>
+</ImageView>

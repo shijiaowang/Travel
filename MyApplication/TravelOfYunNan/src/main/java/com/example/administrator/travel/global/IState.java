@@ -14,11 +14,14 @@ public interface IState {
      int TYPE_SAVE = 6;//保存
      int TYPE_UPDATE = 7;//更新
      int TYPE_VER_MSG = 8;//发送短信验证
-     int TYPE_OTHER = 9;//其他
-     int REQ_CODE = 10;
+     int TYPE_LIKE_POST = 9;//点赞
+     int TYPE_FOLLOW_CIRCLE = 10;//关注圈子
      int RESULT_CODE = 11;
      int TYPE_UP_FILE = 12;//上传文件
      int TYPE_CHANGE = 13;//上传文件
+
     int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
     int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
+     int TYPE_OTHER = 103;//其他
+     int REQ_CODE = 104;
 }

@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.baseui;
 
+import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,22 +19,29 @@ import butterknife.ButterKnife;
  */
 
 public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private List<T> list;
+    protected List<T> mDatas;
+    protected Context mContext;
+    protected boolean isScrolling=false;
     protected View loaderView;
     public static final int TYPE_ITEM = 0;
     public static final int TYPE_FOOTER = 1;
-    public LoadMoreRecycleViewAdapter(List<T> list) {
-        this.list = list;
+    public LoadMoreRecycleViewAdapter(List<T> mDatas, Context mContext) {
+        this.mDatas = mDatas;
+        this.mContext = mContext;
+    }
+
+    public void setScrolling(boolean scrolling) {
+        isScrolling = scrolling;
     }
 
     // RecyclerView的count设置为数据总条数+ 1（footerView）
     @Override
     public int getItemCount() {
-        return list.size() + 1;
+        return mDatas.size() + 1;
     }
 
     public void setList(List<T> list) {
-        this.list = list;
+        this.mDatas = list;
         notifyDataSetChanged();
     }
 
@@ -51,7 +59,7 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType==TYPE_FOOTER){
-            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.load_more,null);
+            final View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.load_more,null);
             return new FooterViewHolder(inflate);
         }else if (viewType==TYPE_ITEM){
             return normalHolder(LayoutInflater.from(parent.getContext()),parent,viewType);
@@ -61,7 +69,27 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
 
     protected abstract RecyclerView.ViewHolder normalHolder(LayoutInflater context, ViewGroup parent, int viewType);
 
+    @Override
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+       if (position<getItemCount()-1){
+           holder.itemView.setTag(position);
+           if (itemClickListener!=null) {
+               holder.itemView.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       int tag = (int) holder.itemView.getTag();
+                       itemClickListener.onItemClick(tag);
+                   }
+               });
+           }
+           bindNormal(holder,position);
 
+       }else {
+
+       }
+    }
+
+    protected abstract void bindNormal(RecyclerView.ViewHolder holder, int position);
 
     class FooterViewHolder extends RecyclerView.ViewHolder {
 
@@ -75,7 +103,6 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
 
     public class ItemViewHolder extends RecyclerView.ViewHolder
     {
-        private View parentView;
         public ItemViewHolder(View itemView)
         {
             super(itemView);
@@ -99,5 +126,18 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
         if (loaderView!=null){
             loaderView.setVisibility(View.GONE);
         }
+    }
+    private  OnItemClickListener itemClickListener;
+
+    public OnItemClickListener getItemClickListener() {
+        return itemClickListener;
+    }
+
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
     }
 }

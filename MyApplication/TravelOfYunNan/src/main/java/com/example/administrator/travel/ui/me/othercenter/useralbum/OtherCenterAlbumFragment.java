@@ -14,7 +14,8 @@ import java.util.List;
 
 
 /**
- * Created by Administrator on 2016/8/23 0023.
+ * Created by wangyang on 2016/8/23 0023.
+ * 相册
  */
 public class OtherCenterAlbumFragment extends BaseFragment {
 
@@ -44,11 +45,16 @@ public class OtherCenterAlbumFragment extends BaseFragment {
         list.add(1);
         list.add(1);
         list.add(1);
-        final OtherAlbumAdapter adapter = new OtherAlbumAdapter(list);
+        final OtherAlbumAdapter adapter = new OtherAlbumAdapter(list,getContext());
         viewById.setAdapter(adapter);
         LinearLayoutManager layout = new LinearLayoutManager(getContext());
         viewById.setLayoutManager(layout);
         viewById.addOnScrollListener(new LoadMoreListener(layout) {
+            @Override
+            protected void onScrolling(RecyclerView recyclerView, int dx, int dy) {
+
+            }
+
             @Override
             public void onLoadMore(int childCount) {
                 adapter.startLoading();

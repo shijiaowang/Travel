@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.circle.post;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.post;
 
 import android.app.Activity;
 
@@ -80,9 +80,9 @@ public class PostActivity extends LoadingBarBaseActivity<PostEvent> {
     }
 
     private void dealPost(HttpEvent event) {
-        PostDetail object = GsonUtils.getObject(event.getResult(), PostDetail.class);
-        PostDetail.DataBean.ForumBean forum = object.getData().getForum();
-        List<PostDetail.DataBean.ForumReplyBean> forumReply = object.getData().getForum_reply();
+        PostDetailBean object = GsonUtils.getObject(event.getResult(), PostDetailBean.class);
+        PostDetailBean.DataBean.ForumBean forum = object.getData().getForum();
+        List<PostDetailBean.DataBean.ForumReplyBean> forumReply = object.getData().getForum_reply();
         if (postAdapter == null) {
             firstLoad(forum, forumReply);
         } else if (event.getType() == TYPE_REFRESH) {
@@ -104,7 +104,7 @@ public class PostActivity extends LoadingBarBaseActivity<PostEvent> {
      * @param forum
      * @param forumReply
      */
-    private void afterLoad(PostDetail.DataBean.ForumBean forum, List<PostDetail.DataBean.ForumReplyBean> forumReply) {
+    private void afterLoad(PostDetailBean.DataBean.ForumBean forum, List<PostDetailBean.DataBean.ForumReplyBean> forumReply) {
         //第一个更换，可能增加点赞等
         if (postDatas.size() > 0) postDatas.remove(0);
         postDatas.add(0, forum);
@@ -118,7 +118,7 @@ public class PostActivity extends LoadingBarBaseActivity<PostEvent> {
      * @param forum
      * @param forumReply
      */
-    private void firstLoad(PostDetail.DataBean.ForumBean forum, List<PostDetail.DataBean.ForumReplyBean> forumReply) {
+    private void firstLoad(PostDetailBean.DataBean.ForumBean forum, List<PostDetailBean.DataBean.ForumReplyBean> forumReply) {
         postDatas.add(forum);
         if (forumReply!=null) {//有时候没有评论
             postDatas.addAll(forumReply);

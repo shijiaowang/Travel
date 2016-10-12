@@ -10,13 +10,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_post_bg"
                 android:layout_width="match_parent"
                 android:layout_height="202dp"
-                android:scaleType="fitXY" />
+              />
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_post_icon"
                 android:layout_width="63dp"
                 android:layout_height="63dp"
@@ -96,12 +96,4 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#f6f6f6" />
-
-        <com.example.administrator.travel.ui.view.ToShowAllListView
-            android:id="@+id/lv_post"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="17dp"
-            style="@style/commonListViewStyle">
-        </com.example.administrator.travel.ui.view.ToShowAllListView>
     </LinearLayout>

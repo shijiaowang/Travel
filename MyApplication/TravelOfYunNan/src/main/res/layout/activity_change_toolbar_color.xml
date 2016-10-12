@@ -44,35 +44,29 @@
                         app:layout_collapseMode="pin"
                         app:layout_scrollFlags="scroll|enterAlways"
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                        app:titleTextAppearance="@style/ToolBar.TitleText" />
+                        app:titleTextAppearance="@style/ToolBar.TitleText" >
+                        <TextView
+                            android:id="@+id/tv_bar_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/colorFAFAFA"
+                            android:textSize="18sp" />
+                    </android.support.v7.widget.Toolbar>
 
-                    <TextView
-                        android:id="@+id/tv_bar_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:paddingTop="@dimen/commonStatusHeight"
-                        android:textColor="@color/colorFAFAFA"
-                        android:textSize="18sp" />
+
                 </android.support.design.widget.CollapsingToolbarLayout>
             </android.support.design.widget.AppBarLayout>
 
-
-            <android.support.v4.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
                 <ViewStub
                     android:id="@+id/vs_content"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:layout_height="match_parent"
                     android:overScrollMode="never">
-
                 </ViewStub>
-            </android.support.v4.widget.NestedScrollView>
-
         </android.support.design.widget.CoordinatorLayout>
         <!--进度条-->
         <ProgressBar

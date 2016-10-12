@@ -1,11 +1,11 @@
-package com.example.administrator.travel.ui.circle.post;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.post;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/23 0023.
+ * Created by wangyang on 2016/8/23 0023.
  */
-public class PostDetail {
+public class PostDetailBean {
 
     private int code;
     private String message;

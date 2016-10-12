@@ -1,12 +1,15 @@
-package com.example.administrator.travel.ui.circle.post;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.post;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.SpaceItemDecoration;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.PostImageAdapter;
+import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FormatDateUtils;
@@ -30,13 +33,13 @@ public class PostOpHolder extends BaseHolder<Object> {
     @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.tv_type)TextView mTvType;
     @BindView(R.id.tv_content) TextView mTvContent;
-    @BindView(R.id.lv_post_image) ToShowAllListView mLvPostImage;
+    @BindView(R.id.rv_post_image) RecyclerView mRvPostImage;
     @BindView(R.id.fitv_like) FontsIconTextView mFitvLike;
     @BindView(R.id.tv_like_user) TextView mTvLikeUser;
     @BindView(R.id.tv_discuss_count) TextView mTvDiscussCount;
 
     private boolean isFirst = true;
-    private PostDetail.DataBean.ForumBean forum;
+    private PostDetailBean.DataBean.ForumBean forum;
 
     public PostOpHolder(Context context) {
         super(context);
@@ -44,8 +47,8 @@ public class PostOpHolder extends BaseHolder<Object> {
 
     @Override
     protected void initItemDatas(Object datas, Context mContext, int position) {
-        if (datas instanceof PostDetail.DataBean.ForumBean) {
-            forum = (PostDetail.DataBean.ForumBean) datas;
+        if (datas instanceof PostDetailBean.DataBean.ForumBean) {
+            forum = (PostDetailBean.DataBean.ForumBean) datas;
         } else {
             return;
         }
@@ -55,13 +58,22 @@ public class PostOpHolder extends BaseHolder<Object> {
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forum.getTime()));
             mTvContent.setText(forum.getContent());
             FrescoUtils.displayIcon(mIvUserIcon,forum.getUser_img());
+            if (!StringUtils.isEmpty(forum.getForum_img())) {
+                String[] split = forum.getForum_img().split(",");
+                List<String> list = Arrays.asList(split);
+                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext);
+                mRvPostImage.setAdapter(new PostImageAdapter(list));
+                mRvPostImage.setLayoutManager(linearLayoutManager);
+                mRvPostImage.addItemDecoration(new MyWitheMeDecoration(6));
+
+            }
         }
-        List<PostDetail.DataBean.ForumBean.LikeBean> like = forum.getLike();
+        List<PostDetailBean.DataBean.ForumBean.LikeBean> like = forum.getLike();
 
         boolean isLike = false;
         StringBuffer likeName = new StringBuffer();
         if (like != null && like.size() != 0) {
-            for (PostDetail.DataBean.ForumBean.LikeBean bean : like) {
+            for (PostDetailBean.DataBean.ForumBean.LikeBean bean : like) {
                 if (!StringUtils.isEmpty(bean.getNick_name())) {
                     likeName.append(bean.getNick_name() + "、");
                 }
@@ -76,11 +88,7 @@ public class PostOpHolder extends BaseHolder<Object> {
         }
         mTvDiscussCount.setText("评论("+forum.getReplay_count()+")");
         mFitvLike.setTextColor(isLike ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
-        if (!StringUtils.isEmpty(forum.getForum_img())) {
-            String[] split = forum.getForum_img().split(",");
-            List<String> list = Arrays.asList(split);
-            mLvPostImage.setAdapter(new PostImageAdapter(mContext, list));
-        }
+
     }
 
 

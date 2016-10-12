@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.circle.post.PostActivity;
+import com.example.administrator.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.GsonUtils;

@@ -26,7 +26,7 @@ public class SelectFolderHolder extends BaseHolder<ImageFolder> {
     @Override
     protected void initItemDatas(ImageFolder datas, Context mContext, int position) {
         String firstImagePath = datas.getFirstImagePath();
-        FrescoUtils.displayNormal(mIvPicture,"file//"+firstImagePath);
+        FrescoUtils.displayNormal(mIvPicture,"file://"+firstImagePath);
         mTvCount.setText(datas.getName() + "(" + datas.getCount() + ")");
     }
 

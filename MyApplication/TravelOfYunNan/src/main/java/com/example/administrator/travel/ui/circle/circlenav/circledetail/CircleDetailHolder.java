@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail;
 
 import android.content.Context;
 import android.view.View;
@@ -6,8 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.CircleDetail;
-import com.example.administrator.travel.ui.adapter.CircleDetailPhotoAdapter;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
 import com.example.administrator.travel.utils.FormatDateUtils;
@@ -26,7 +25,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/11 0011.
  * 圈子详情
  */
-public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBean> {
+public class CircleDetailHolder extends BaseHolder<CircleDetailBean.DataBean.BodyBean> {
     @BindView(R.id.iv_user_icon) SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
     @BindView(R.id.tv_time) TextView mTvTime;
@@ -37,14 +36,14 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
     @BindView(R.id.gv_photo) ToShowAllGridView mGvPhoto;
     private CircleDetailPhotoAdapter circleDetailPhotoAdapter;
     private List<String> list;
-    @BindView(R.id.tv_icon_love) public FontsIconTextView mTvIconLove;
+    @BindView(R.id.tv_icon_love)  FontsIconTextView mTvIconLove;
 
     public CircleDetailHolder(Context context) {
         super(context);
     }
 
     @Override
-    protected void initItemDatas(CircleDetail.DataBean.BodyBean datas, Context mContext, int position) {
+    protected void initItemDatas(CircleDetailBean.DataBean.BodyBean datas, Context mContext, int position) {
         if (datas == null) {
             return;
         }
@@ -74,7 +73,7 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
             for (int i = 0; i < size; i++) {
                 list.add(split[i]);
             }
-            setData(mContext, list);
+          //  setData(mContext, list);
         } else {
             mGvPhoto.setVisibility(View.GONE);
         }
@@ -101,6 +100,7 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
         mGvPhoto.setLayoutParams(layoutParams);
     }
 
+/*
     private void setData(Context mContext, List<String> list) {
         if (circleDetailPhotoAdapter == null) {
             circleDetailPhotoAdapter = new CircleDetailPhotoAdapter(mContext, list);
@@ -108,6 +108,7 @@ public class CircleDetailHolder extends BaseHolder<CircleDetail.DataBean.BodyBea
         }
         circleDetailPhotoAdapter.notifyData(list);
     }
+*/
 
 
     @Override

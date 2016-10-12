@@ -1,11 +1,14 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail;
+
+import com.example.administrator.travel.global.IChildParent;
+import com.example.administrator.travel.global.ParentBean;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/16 0016.
+ * Created by wangyang on 2016/8/16 0016.
  */
-public class CircleDetail {
+public class CircleDetailBean implements ParentBean{
 
 
 
@@ -39,7 +42,7 @@ public class CircleDetail {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements IChildParent<DataBean.BodyBean>{
 
 
         private HeadBean head;
@@ -62,6 +65,8 @@ public class CircleDetail {
         public void setBody(List<BodyBean> body) {
             this.body = body;
         }
+
+
 
         public static class HeadBean {
             private String cid;

@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.me.othercenter.useralbum;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,8 @@ import java.util.List;
  */
 
 public class OtherAlbumAdapter extends LoadMoreRecycleViewAdapter {
-    public OtherAlbumAdapter(List list) {
-        super(list);
+    public OtherAlbumAdapter(List list, Context mContext) {
+        super(list,mContext);
     }
 
     @Override
@@ -24,10 +25,12 @@ public class OtherAlbumAdapter extends LoadMoreRecycleViewAdapter {
         return new AlbumAdapter(inflater.inflate(R.layout.item_fragment_album_in_other,null));
     }
 
+
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    protected void bindNormal(RecyclerView.ViewHolder holder, int position) {
 
     }
+
     class AlbumAdapter extends ItemViewHolder{
 
         public AlbumAdapter(View itemView) {

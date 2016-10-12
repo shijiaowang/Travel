@@ -3,7 +3,7 @@
     android:descendantFocusability="blocksDescendants"
     android:background="@color/colorFAFAFA"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -64,22 +64,20 @@
         android:lineSpacingExtra="7dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-   <com.example.administrator.travel.ui.view.ToShowAllGridView
+   <android.support.v7.widget.RecyclerView
        android:clickable="false"
        android:focusableInTouchMode="false"
        android:focusable="false"
-       android:id="@+id/gv_photo"
+       android:id="@+id/rv_photo"
        android:scrollbars="none"
-       android:numColumns="3"
+       android:overScrollMode="never"
        android:layout_marginTop="3dp"
-       android:verticalSpacing="8dp"
-       android:horizontalSpacing="8dp"
        android:layout_marginLeft="13dp"
        android:layout_marginRight="13dp"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
 
-   </com.example.administrator.travel.ui.view.ToShowAllGridView>
+   </android.support.v7.widget.RecyclerView>
     <LinearLayout
         android:gravity="center_vertical"
         android:layout_marginTop="20dp"

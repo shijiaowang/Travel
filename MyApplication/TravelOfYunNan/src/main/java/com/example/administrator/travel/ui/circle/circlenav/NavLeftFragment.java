@@ -15,7 +15,7 @@ import com.example.administrator.travel.bean.CircleNavRight;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.event.NavLeftEvent;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.CircleDetailActivity;
+import com.example.administrator.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.utils.CircleUtils;
 import com.example.administrator.travel.utils.GlobalUtils;

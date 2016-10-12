@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.circle.post;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.post;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,7 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/11 0011.
+ * Created by wangyang on 2016/7/11 0011.
  */
 public class PostAdapter extends TravelBaseAdapter<Object> {
     public PostAdapter(Context mContext, List<Object> mDatas) {
@@ -28,9 +28,9 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
 
     @Override
     public int getItemViewType(int position) {
-        PostDetail.DataBean.ForumReplyBean forumReplyBean=null;
-        if (mDatas.get(position) instanceof PostDetail.DataBean.ForumReplyBean){
-            forumReplyBean= (PostDetail.DataBean.ForumReplyBean) mDatas.get(position);
+        PostDetailBean.DataBean.ForumReplyBean forumReplyBean=null;
+        if (mDatas.get(position) instanceof PostDetailBean.DataBean.ForumReplyBean){
+            forumReplyBean= (PostDetailBean.DataBean.ForumReplyBean) mDatas.get(position);
         }
         if (position == 0) {
             return TYPE_POST_OP;

@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.circle.post;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.post;
 
 import android.content.Context;
 import android.text.Spannable;
@@ -40,8 +40,8 @@ public class PostReplyUserHolder extends BaseHolder<Object> {
 
     @Override
     protected void initItemDatas(Object datas, Context mContext, int position) {
-        if (datas instanceof PostDetail.DataBean.ForumReplyBean){
-            PostDetail.DataBean.ForumReplyBean forumReplyBean = (PostDetail.DataBean.ForumReplyBean) datas;
+        if (datas instanceof PostDetailBean.DataBean.ForumReplyBean){
+            PostDetailBean.DataBean.ForumReplyBean forumReplyBean = (PostDetailBean.DataBean.ForumReplyBean) datas;
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             mTvReplyMessage.setText(forumReplyBean.getContent());
@@ -49,7 +49,7 @@ public class PostReplyUserHolder extends BaseHolder<Object> {
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
             mTvLoveNumber.setText(forumReplyBean.getLike_count());
             mTvLove.setTextColor(forumReplyBean.getIs_like().equals("1") ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
-            PostDetail.DataBean.ForumReplyBean.ReplyBean reply = forumReplyBean.getReply();
+            PostDetailBean.DataBean.ForumReplyBean.ReplyBean reply = forumReplyBean.getReply();
 
             if (!StringUtils.isEmpty(reply.getReply_img())){
                 String content=reply.getContent()+"【图片】";

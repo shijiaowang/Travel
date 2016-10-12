@@ -1,15 +1,14 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.createpost;
 
 import android.content.Context;
 
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.holer.CreatePostPhotoHolder;
-import com.example.administrator.travel.ui.adapter.holer.CreatePostPhotoLastHolder;
 
 import java.util.List;
 
 /**
- * Created by android on 2016/7/31.
+ * Created by wangyang on 2016/7/31.
  */
 public class CreatePostPhotoAdapter extends TravelBaseAdapter<String> {
     private static  final  int TYPE_NORMAL =0;

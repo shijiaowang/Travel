@@ -99,7 +99,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
         @BindView(R.id.iv_cover) SimpleDraweeView mIvCover;
         @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
         @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
-        @BindView(R.id.tv_time) TextView mTvTitle;
+        @BindView(R.id.tv_title) TextView mTvTitle;
 
         public MyAlbumShortHolder(View itemView) {
             super(itemView);
@@ -110,7 +110,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
         @BindView(R.id.iv_cover) SimpleDraweeView mIvCover;
         @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
         @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
-        @BindView(R.id.tv_time) TextView mTvTitle;
+        @BindView(R.id.tv_title) TextView mTvTitle;
 
         public MyAlbumLengthHolder(View itemView) {
             super(itemView);

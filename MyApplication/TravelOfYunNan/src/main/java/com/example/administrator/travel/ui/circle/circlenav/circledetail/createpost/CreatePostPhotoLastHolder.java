@@ -1,9 +1,10 @@
-package com.example.administrator.travel.ui.adapter.holer;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.createpost;
 
 import android.content.Context;
 import android.view.View;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 
 /**
  * Created by wangyang on 2016/7/31.

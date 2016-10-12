@@ -12,7 +12,7 @@ import com.example.administrator.travel.R;
 import org.xutils.common.util.DensityUtil;
 
 /**
- * Created by Administrator on 2016/9/14 0014.
+ * Created by wangyang on 2016/9/14 0014.
  * 排序
  */
 public class AppointOrderPop {

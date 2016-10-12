@@ -39,7 +39,7 @@ public abstract class LoadMoreListener extends RecyclerView.OnScrollListener
     {
 
         super.onScrolled(recyclerView, dx, dy);
-
+        onScrolling(recyclerView,dx,dy);
         visibleItemCount = recyclerView.getChildCount();
         totalItemCount = mLinearLayoutManager.getItemCount();
         lastCompletelyVisiableItemPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
@@ -62,8 +62,17 @@ public abstract class LoadMoreListener extends RecyclerView.OnScrollListener
     }
 
     /**
+     * 正在下滑
+     * @param recyclerView
+     * @param dx
+     * @param dy
+     */
+    protected abstract void onScrolling(RecyclerView recyclerView, int dx, int dy);
+
+    /**
      * 传入孩子个数
      * @param childCount
      */
     public abstract void onLoadMore(int childCount);
+
 }

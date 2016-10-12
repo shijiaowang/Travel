@@ -15,6 +15,7 @@ import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.Al
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorEvent;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
+import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 
 
@@ -155,7 +156,7 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
         }else {
             sendFlag = true;
             UpPhotoEvent upPhotoEvent=new UpPhotoEvent();
-            upPhotoEvent.setList(GlobalValue.mSelectImages);
+            upPhotoEvent.setList(mTempImage);
             EventBus.getDefault().post(upPhotoEvent);
             setResult(AlbumSelectorActivity.SEND_PICTURE);
             GlobalValue.mSelectImages = null;

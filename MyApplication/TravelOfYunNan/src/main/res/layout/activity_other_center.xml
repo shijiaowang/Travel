@@ -21,10 +21,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentScrim="@color/otherTitleBg"
                 app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle.About"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+              >
 
 
                 <FrameLayout
@@ -41,7 +42,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:minHeight="?attr/actionBarSize"
-                    app:contentInsetStart="150dp"
                     app:layout_collapseMode="pin"
                     app:titleTextAppearance="@style/ToolBar.TitleText"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -49,7 +49,7 @@
 
                     <TextView
                         android:id="@+id/tv_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="岳阳"

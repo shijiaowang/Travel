@@ -3,11 +3,11 @@ package com.example.administrator.travel.ui.baseui;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.ViewGroup;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
+import com.example.administrator.travel.global.IChildParent;
 import com.example.administrator.travel.global.ParentBean;
 import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.example.administrator.travel.utils.GsonUtils;
@@ -24,10 +24,11 @@ import butterknife.BindView;
  * Created by wangyang on 2016/10/12 0012.
  */
 
-public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E extends ParentBean,F> extends BaseChangeBarColorActivity<T> {
-   @BindView(R.id.rv_recycle) RecyclerView mRvCommon;
-    protected List<F> mDatas;//从网络获取的数据
-    protected LoadMoreRecycleViewAdapter<F> mAdapter;//通用adapter
+public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E extends ParentBean,F extends IChildParent,G> extends BaseChangeBarColorActivity<T> {
+   @BindView(R.id.rv_recycle)protected RecyclerView mRvCommon;
+    protected List<G> mDatas;//从网络获取的数据
+    protected LoadMoreRecycleViewAdapter<G> mAdapter;//通用adapter
+    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected int initContent() {
@@ -39,7 +40,11 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
         changeMargin(10);
         mRvCommon.addItemDecoration(new MyWitheMeDecoration(childDistance()));
 
+        initChildListener();
+
     }
+
+    protected abstract void initChildListener();
 
     /**
      * 默认子view距离
@@ -63,17 +68,31 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
         } else {
             parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
         }
-        List<F> loadDatas = (List<F>) parentBean.getData();
-        if (parentBean==null || loadDatas==null || loadDatas.size()==0)return;
+        final F data = (F) parentBean.getData();
+        List<G> boy = (List<G>) data.getBody();
+        if (boy==null || boy.size()==0){
+            if (t.getType()==TYPE_REFRESH){
+                mSwipeContainer.setRefreshing(false);
+            }
+            return;}
         if (mAdapter == null) {
-            mDatas = loadDatas;
+            mDatas = boy;
             mAdapter = initAdapter(mDatas);
             mRvCommon.setHasFixedSize(true);
             mRvCommon.setAdapter(mAdapter);
-            LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setAutoMeasureEnabled(true);
             mRvCommon.setLayoutManager(linearLayoutManager);
             mRvCommon.addOnScrollListener(new LoadMoreListener(linearLayoutManager) {
+                @Override
+                protected void onScrolling(RecyclerView recyclerView, int dx, int dy) {
+                    if (Math.abs(dx)>8){
+                        mAdapter.setScrolling(true);
+                    }else {
+                        mAdapter.setScrolling(false);
+                    }
+                }
+
                 @Override
                 public void onLoadMore(int childCount) {
                     mAdapter.startLoading();
@@ -81,21 +100,35 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
                 }
             });
             mRvCommon.setItemAnimator(new DefaultItemAnimator());
+            mAdapter.setItemClickListener(new LoadMoreRecycleViewAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                        onChildItemClick(mDatas.get(position));
+                }
+            });
         } else if (t.getType() == TYPE_LOAD) {
-            mDatas.addAll(loadDatas);
+            mDatas.addAll(boy);
             LogUtils.e("开始添加了，现在一共有"+mDatas.size());
             mAdapter.endLoading();
             mAdapter.setList(mDatas);
         } else if (t.getType() == TYPE_REFRESH) {
-            mDatas = loadDatas;
-            mAdapter.setList(mDatas);
             mSwipeContainer.setRefreshing(false);
+            mDatas = boy;
+            mAdapter.setList(mDatas);
         } else {
             doOtherSuccessData(t);
         }
     }
 
-    private void doOtherSuccessData(T t) {
+    /**
+     * 孩子item点击
+     * @param g
+     */
+    protected void onChildItemClick(G g) {
+
+    }
+
+    protected void doOtherSuccessData(T t) {
 
     }
 
@@ -140,7 +173,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
      * @param mDatas
      * @return
      */
-    protected abstract LoadMoreRecycleViewAdapter initAdapter(List<F> mDatas);
+    protected abstract LoadMoreRecycleViewAdapter initAdapter(List<G> mDatas);
 
     /**
      * 是否使用孩子另外设置设置的bean对象

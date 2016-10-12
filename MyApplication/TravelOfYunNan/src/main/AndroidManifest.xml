@@ -38,7 +38,7 @@
         </activity>
         <activity android:name=".ui.baseui.BaseActivity" />
         <activity android:name=".ui.baseui.FullTransparencyActivity" />
-        <activity android:name=".ui.circle.post.PostActivity" />
+        <activity android:name=".ui.circle.circlenav.circledetail.post.PostActivity" />
         <activity android:name=".ui.me.othercenter.OtherUserCenterActivity" />
         <activity android:name=".ui.me.messagecenter.MessageCenterActivity" />
         <activity android:name=".ui.appoint.selectdestination.SelectDestinationActivity"
@@ -126,8 +126,8 @@
         <activity android:name=".ui.baseui.RegisterSuccessActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />
-        <activity android:name=".ui.baseui.CircleDetailActivity"/>
-        <activity android:name=".ui.circle.createpost.CreatePostActivity"
+        <activity android:name=".ui.circle.circlenav.circledetail.CircleDetailActivity"/>
+        <activity android:name=".ui.circle.circlenav.circledetail.createpost.CreatePostActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/CreatePostTheme"
             />

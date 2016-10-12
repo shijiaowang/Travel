@@ -1,4 +1,4 @@
-package com.example.administrator.travel.ui.circle.post;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail.post;
 
 import android.content.Context;
 import android.view.View;
@@ -32,8 +32,8 @@ public class PostReplyTextHolder extends BaseHolder<Object> {
 
     @Override
     protected void initItemDatas(Object datas, Context mContext, int position) {
-        if (datas instanceof PostDetail.DataBean.ForumReplyBean) {
-            PostDetail.DataBean.ForumReplyBean forumReplyBean = (PostDetail.DataBean.ForumReplyBean) datas;
+        if (datas instanceof PostDetailBean.DataBean.ForumReplyBean) {
+            PostDetailBean.DataBean.ForumReplyBean forumReplyBean = (PostDetailBean.DataBean.ForumReplyBean) datas;
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
             mTvReplyMessage.setText(forumReplyBean.getContent());
