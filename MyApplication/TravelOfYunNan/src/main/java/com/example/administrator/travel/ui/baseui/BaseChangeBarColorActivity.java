@@ -3,109 +3,153 @@ package com.example.administrator.travel.ui.baseui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IState;
 import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.Map;
 
+import butterknife.BindColor;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
- * Created by wangyang on 2016/10/7 0007.
- * Toolbar基类
+ * Created by wangyang on 2016/10/12 0012.
  */
 
-public abstract class BaseToolBarActivity extends AppCompatActivity implements IState {
-    public static final int TRAFFIC_TYPE =0;//交通方式
-    public static final int SEX_TYPE=1;//性别赛选
-    public static final int AUTH_TYPE=2;//认证筛选
-
-    FrameLayout mFlContent;
-    TextView mTvTitle;
-    protected Toolbar mToolbar;
-    ImageView mIvPageError;//展示错误页面
-    ProgressBar mPbLoading;//加载中
-    protected LayoutInflater inflater;
-    protected View childView;
+public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends AppCompatActivity implements IState, SwipeRefreshLayout.OnRefreshListener {
+    protected  boolean isFirstInflate =true;
+    protected  SwipeRefreshLayout mSwipeContainer;
+    protected  AppBarLayout mAppBarLayout;
+    protected  CollapsingToolbarLayout mCollapsingToolbarLayout;
+    protected  TextView mTvTitle;
+    protected  Toolbar mToolbar;
+    protected  ImageView mIvPageError;
+    protected  ProgressBar mPbLoading;
+    protected  ViewStub mVsContent;
+    protected  View childView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_toolbar);
-        inflater = LayoutInflater.from(this);
+        setContentView(R.layout.activity_change_toolbar_color);
+        mSwipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         mIvPageError = (ImageView) findViewById(R.id.page_error);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
-        mPbLoading.setVisibility(View.GONE);
-        mTvTitle = (TextView) findViewById(R.id.tv_appbar_title);
-        mToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        mFlContent = (FrameLayout) findViewById(R.id.fl_content);
+        mTvTitle = (TextView) findViewById(R.id.tv_bar_name);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mVsContent = (ViewStub) findViewById(R.id.vs_content);
+        //设置还没收缩时状态下字体颜色
+        mCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
+        //设置收缩后Toolbar上字体的颜色
+        mCollapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.otherTitleBg));
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null)
             supportActionBar.setDisplayHomeAsUpEnabled(true);
-        childView = inflater.inflate(initLayoutRes(), mFlContent, false);
-        mFlContent.addView(childView);
-        ButterKnife.bind(this);
-        initOptions();
+        SystemBarHelper.setHeightAndPadding(this, mToolbar);
+        SystemBarHelper.immersiveStatusBar(this);
+        initHeader();
+        mVsContent.setLayoutResource(initContent());
+        childView = mVsContent.inflate();
         mTvTitle.setText(initTitle());
+        ButterKnife.bind(this);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
+
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset) {
+                if (state==State.EXPANDED){
+                    mSwipeContainer.setEnabled(true);
+                }else{
+                    if (mSwipeContainer.isRefreshing()){
+                        mSwipeContainer.setRefreshing(false);
+                    }
+                   mSwipeContainer.setEnabled(false);
+                }
+            }
+        });
+        mSwipeContainer.setOnRefreshListener(this);
+        initListener();
+
+
 
     }
 
-    public TextView getmTvTitle() {
-        return mTvTitle;
-    }
+
 
 
     /**
+     * 加载头布局
+     */
+    protected abstract void initHeader();
 
-     * 初始化布局文件
-     *
+    /**
+     * 初始化内容
      * @return
      */
-    protected abstract int initLayoutRes();
-
-    /**
-     * 初始化监听等操作
-     */
-    protected abstract void initOptions();
-
-
-
+    protected abstract int initContent();
     /**
      * 初始化标题
-     *
-     * @return
      */
     protected abstract String initTitle();
 
+    /**
+     * 监听
+     */
+    protected abstract void initListener();
+    protected abstract String initUrl();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+       if (EventBus.getDefault().isRegistered(this)){
+           EventBus.getDefault().unregister(this);
+       }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -119,17 +163,71 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * 其他按钮
-     *
-     * @param item
-     */
-    protected void otherOptionsItemSelected(MenuItem item) {
+    private void otherOptionsItemSelected(MenuItem item) {
 
     }
 
 
+    /**
+     * 处理公共的网络参数请求
+     *
+     * @param type
+     */
+    protected void onLoad(int type) {
+        MapUtils.Builder builder = MapUtils.Build().addKey(this).addUserId();
+        childAdd(builder,type);
+        Map<String, String> baseMap = builder.end();
+        XEventUtils.getUseCommonBackJson(initUrl(),baseMap,type,getTInstance());
+    }
 
+    @Subscribe
+    public void onEvent(T t){
+        if (!t.getClass().getSimpleName().equals(getTInstance().getClass().getSimpleName())){
+            LogUtils.e("这是其他类传来的消息");
+            LogUtils.e(t.getClass().getSimpleName()+"另外一个"+this.getClass().getSimpleName());
+            return;
+        }
+        setIsProgress(false);
+        if (t.isSuccess()){
+            try {
+                isFirstInflate =false;
+                childView.setVisibility(View.VISIBLE);//读取完毕，展示主页
+                onSuccess(t);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else {
+            ToastUtils.showToast(t.getMessage());
+            onFail(t);
+        }
+
+    }
+
+    /**
+     * 处理成功数据
+     * @param t
+     */
+    protected abstract void onSuccess(T t);
+
+    /**
+     * 错误处理
+     * @param t
+     */
+    protected void onFail(T t) {
+        if (isFirstInflate){
+            setErrorPage(true);//如果初次加载显示错误页
+        }
+    }
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
+    }
+    /**
+     * 重新读取网络
+     */
+    @OnClick(R.id.page_error)
+    protected void onReLoad() {
+        onLoad(TYPE_REFRESH);
+    }
     /**
      * 网络加载错误
      * @param isShow
@@ -161,33 +259,11 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         }
         mPbLoading.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
+
     protected void  setSuccess(){
         childView.setVisibility(View.VISIBLE);
         mIvPageError.setVisibility(View.GONE);
         mPbLoading.setVisibility(View.GONE);
-    }
-
-
-    /**
-     * 注册EventBus
-     *
-     * @param activity
-     */
-    protected void registerEventBus(Activity activity) {
-        if (!EventBus.getDefault().isRegistered(activity)) {
-            EventBus.getDefault().register(activity);
-        }
-    }
-
-    /**
-     * 解除EventBus
-     *
-     * @param activity
-     */
-    protected void unregisterEventBus(Activity activity) {
-        if (EventBus.getDefault().isRegistered(activity)) {
-            EventBus.getDefault().unregister(activity);
-        }
     }
 
     /**
@@ -311,7 +387,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(BaseToolBarActivity.this,
+                            ActivityCompat.requestPermissions(BaseChangeBarColorActivity.this,
                                     new String[]{permission}, requestCode);
                         }
                     }, getString(R.string.label_ok), null, getString(R.string.label_cancel));
@@ -349,5 +425,34 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         view.setFocusableInTouchMode(b);
         view.setFocusable(b);
     }
+    /**
+     * 实例化 T
+     *
+     * @return
+     */
+    public T getTInstance() {
 
+        try {
+            ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+            Class c = (Class<T>) pt.getActualTypeArguments()[0];
+            Constructor constructor = c.getConstructor();
+            T e = (T) constructor.newInstance();
+            return e;
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @Override
+    public void onRefresh() {
+        onLoad(TYPE_REFRESH);
+    }
 }

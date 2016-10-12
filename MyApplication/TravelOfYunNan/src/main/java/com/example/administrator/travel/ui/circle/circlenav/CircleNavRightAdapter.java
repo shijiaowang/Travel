@@ -9,7 +9,7 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/8 0008.
+ * Created by wangyang on 2016/7/8 0008.
  */
 public class CircleNavRightAdapter extends TravelBaseAdapter<CircleNavRight.RightCircle> {
     public CircleNavRightAdapter(Context mContext, List<CircleNavRight.RightCircle> mDatas) {

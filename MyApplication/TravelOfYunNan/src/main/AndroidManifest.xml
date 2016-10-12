@@ -157,6 +157,7 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
+        <activity android:name=".ui.baseui.BaseChangeBarColorActivity" />
 
         <!-- alipay sdk end -->
     </application>

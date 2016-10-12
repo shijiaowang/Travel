@@ -39,7 +39,7 @@ import java.util.Map;
 
 
 /**
- * Created by Administrator on 2016/7/8 0008.
+ * Created by wangyang on 2016/7/8 0008.
  * 圈子
  */
 public class CircleDetailActivity extends LoadingBarBaseActivity<CircleDetailEvent> implements View.OnClickListener {

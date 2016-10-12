@@ -10,6 +10,9 @@ import com.example.administrator.travel.R;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by wangyang on 2016/10/4.
  */
@@ -72,26 +75,11 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
 
     public class ItemViewHolder extends RecyclerView.ViewHolder
     {
-
         private View parentView;
-
         public ItemViewHolder(View itemView)
         {
-
             super(itemView);
-            this.parentView = itemView;
-        }
-
-        public View getParentView()
-        {
-
-            return parentView;
-        }
-
-        public <E extends View> E $(@IdRes int id)
-        {
-
-            return (E) parentView.findViewById(id);
+            ButterKnife.bind(this,itemView);
         }
     }
 

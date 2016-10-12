@@ -37,8 +37,8 @@ public class CircleNavRightHolder extends BaseHolder<CircleNavRight.RightCircle>
             mTvFollowNumber.setText(datas.getCount_follow());
             mTvPostNumber.setText(datas.getCount_forum());
             mTvCircleName.setText(datas.getCname());
-            FrescoUtils.displayNormal(mIvCircleBg,datas.getCircle_ico());
-            FrescoUtils.displayNormal(mCivCircleIcon,datas.getCircle_ico());
+            FrescoUtils.displayNormal(mIvCircleBg,datas.getCircle_img());
+            FrescoUtils.displayIcon(mCivCircleIcon,datas.getCircle_ico());
 
 
 
@@ -48,7 +48,6 @@ public class CircleNavRightHolder extends BaseHolder<CircleNavRight.RightCircle>
 
     @Override
     public View initRootView(Context mContext) {
-
         return  inflateView(R.layout.item_fragment_circle_nav_right);
     }
 }

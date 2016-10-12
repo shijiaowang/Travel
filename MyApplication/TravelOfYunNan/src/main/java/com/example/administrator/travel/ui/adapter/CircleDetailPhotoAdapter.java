@@ -8,7 +8,7 @@ import com.example.administrator.travel.ui.adapter.holer.CircleDetailPhotoHolder
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/17 0017.
+ * Created by wangyang on 2016/8/17 0017.
  * 圈子页面的照片
  */
 public class CircleDetailPhotoAdapter extends TravelBaseAdapter<String>{
