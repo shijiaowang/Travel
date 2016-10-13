@@ -1,12 +1,8 @@
 package com.example.administrator.travel.ui.adapter;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.view.View;
 
+import android.content.Context;
+import android.view.View;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.TravelReplyBean;
 import com.example.administrator.travel.event.DetailCommonEvent;
@@ -20,8 +16,6 @@ import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
-
-
 import java.util.List;
 import java.util.Map;
 
@@ -70,7 +64,7 @@ public class DiscussCommonAdapter extends TravelBaseAdapter<TravelReplyBean> {
             detailReplyUserHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startCatOther(v);
+                    OtherUserCenterActivity.start(mContext,v,item.getUser_id());
                 }
             });
         }
@@ -85,7 +79,7 @@ public class DiscussCommonAdapter extends TravelBaseAdapter<TravelReplyBean> {
             destinationDetailReplyTextHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startCatOther(v);
+                    OtherUserCenterActivity.start(mContext,v,item.getUser_id());
                 }
             });
         }
@@ -106,11 +100,7 @@ public class DiscussCommonAdapter extends TravelBaseAdapter<TravelReplyBean> {
         }
     }
 
-    private void startCatOther(View v) {
-        ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(v, v.getWidth() / 2, v.getHeight() / 2, 0, 0);
-        Intent intent = new Intent(mContext, OtherUserCenterActivity.class);
-        ActivityCompat.startActivity(((Activity) mContext), intent, compat.toBundle());
-    }
+
 
     @Override
     protected BaseHolder initHolder(int position) {

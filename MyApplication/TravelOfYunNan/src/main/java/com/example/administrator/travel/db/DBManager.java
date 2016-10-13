@@ -3,7 +3,9 @@ package com.example.administrator.travel.db;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 
 import com.example.administrator.travel.ui.appoint.adddestination.ProvinceBean;
@@ -130,7 +132,7 @@ public class DBManager {
             dbHelper.close();
             e.printStackTrace();
         } finally {
-            IOUtils.close(query);
+            closeQuery(query);
         }
 
         LogUtils.e("表不存在");
@@ -164,34 +166,62 @@ public class DBManager {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            IOUtils.close(query);
+            closeQuery(query);
         }
         return null;
     }
 
     /**
      * 查询id
-     * @param cityName
      * @param id
      * @return
      */
+
+    public static String getStringById(String type,String id) {
+        DBHelperInstance();
+        SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
+        Cursor query = null;
+        try {
+            query = writableDatabase.query("yuns_district", new String[]{type}, "_id=?", new String[]{id}, null, null, null);
+            if (query.moveToNext()) {
+                String name = query.getString(0);
+                writableDatabase.close();
+                return name;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            closeQuery(query);
+        }
+        return "未知";
+    }
     public static String getCityId(String cityName, String id) {
         DBHelperInstance();
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
         Cursor query = null;
         try {
             query = writableDatabase.query("yuns_district", new String[]{"_id"}, "name=? and upid=?", new String[]{cityName,id}, null, null, null);
-            ArrayList<String> arrayList = new ArrayList<>();
             if (query.moveToNext()) {
-               String cityId = query.getString(query.getColumnIndex("_id"));
+                String cityId = query.getString(query.getColumnIndex("_id"));
                 writableDatabase.close();
-               return cityId;
+                return cityId;
             }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            IOUtils.close(query);
+            closeQuery(query);
         }
         return null;
+    }
+
+
+    public static void closeQuery(Cursor cursor){
+        if (cursor!=null){
+            try {
+                cursor.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

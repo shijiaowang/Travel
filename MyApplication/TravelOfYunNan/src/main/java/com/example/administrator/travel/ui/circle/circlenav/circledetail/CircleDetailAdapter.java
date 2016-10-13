@@ -18,6 +18,7 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
 import com.example.administrator.travel.utils.FormatDateUtils;
@@ -59,6 +60,12 @@ public class CircleDetailAdapter extends LoadMoreRecycleViewAdapter<CircleDetail
         final CircleDetailBean.DataBean.BodyBean datas = mDatas.get(position);
         final CircleDetailHolder circleDetailHolder = (CircleDetailHolder) holder;
         FrescoUtils.displayIcon(circleDetailHolder.mIvUserIcon,datas.getUser_img());
+        circleDetailHolder.mIvUserIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OtherUserCenterActivity.start(mContext,circleDetailHolder.mIvUserIcon,datas.getUser_id());
+            }
+        });
         circleDetailHolder.mTvDiscussNumber.setText(datas.getCount_reply());
         circleDetailHolder.mTvLoveNumber.setText(datas.getCount_like());
         if (StringUtils.isEmpty(datas.getTitle())) {

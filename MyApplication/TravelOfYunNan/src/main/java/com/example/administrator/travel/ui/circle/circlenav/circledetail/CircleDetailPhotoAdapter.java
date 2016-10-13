@@ -41,9 +41,9 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final CircleDetailPhotoHolder circleDetailPhotoHolder = (CircleDetailPhotoHolder) holder;
-     // circleDetailPhotoHolder.mIvImage.setTag(mDatas.get(position));
-     // FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag());
-        x.image().bind( circleDetailPhotoHolder.mIvImage,mDatas.get(position));
+      circleDetailPhotoHolder.mIvImage.setTag(mDatas.get(position));
+      FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag());
+        //x.image().bind( circleDetailPhotoHolder.mIvImage,mDatas.get(position));
     }
 
     @Override
@@ -51,11 +51,11 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
         return mDatas.size();
     }
    class CircleDetailPhotoHolder extends RecyclerView.ViewHolder{
-       ImageView mIvImage;
+       SimpleDraweeView mIvImage;
 
        public CircleDetailPhotoHolder(View itemView) {
            super(itemView);
-           mIvImage= (ImageView) itemView;
+           mIvImage= (SimpleDraweeView) itemView;
        }
    }
 }

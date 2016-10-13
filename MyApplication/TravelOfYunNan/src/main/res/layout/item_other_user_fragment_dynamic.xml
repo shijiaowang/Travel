@@ -12,11 +12,11 @@
         android:layout_marginTop="7dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_user_icon"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/fragment_dynamic_icon" />
+            />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -26,9 +26,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Magic"
                 android:textColor="#9f9f9f"
                 android:textSize="12sp" />
             <LinearLayout
@@ -36,10 +36,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="2016-6-7"
+
                     android:textColor="#9f9f9f"
                     android:textSize="10sp" />
                 <View
@@ -52,10 +53,10 @@
                     android:background="#9f9f9f"
                   />
                 <TextView
+                    android:id="@+id/tv_reply_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="回复贴吧"
                     android:textColor="#9f9f9f"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -73,7 +74,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="25dp"
         android:layout_marginTop="12dp"
-        android:text="#攝影#"
         android:textColor="#909090"
         android:textSize="14sp" />
 
@@ -84,7 +84,6 @@
         android:layout_below="@id/ll_icon"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
-        android:text="哈哈哈"
         android:textColor="#909090"
         android:textSize="12sp" />
 
@@ -102,9 +101,9 @@
             android:layout_marginRight="10dp"
             android:background="#e9e9e9" />
     <TextView
+        android:id="@+id/tv_other_user"
         android:textColor="#909090"
         android:textSize="12sp"
-        android:text="\@本來的那個: 这是啥，着是啥这是啥啊实打实大师打得阿萨德啊。"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f9f9f9"
@@ -139,9 +138,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/tv_number"
+                android:id="@+id/tv_icon_number"
                 android:textColor="#ff7f6c"
-                android:text="36"
                 android:layout_marginRight="27dp"
                 android:textSize="10sp"
                 android:layout_width="wrap_content"

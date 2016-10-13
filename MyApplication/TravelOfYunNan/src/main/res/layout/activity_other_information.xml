@@ -2,57 +2,62 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/meLine"
     android:overScrollMode="never">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_title_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/activity_other_title"
-                android:textColor="#5f5f5f"
-                android:textSize="13sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.example.administrator.travel.ui.view.FontsIconTextView
+                    android:id="@+id/tv_title_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_other_title"
+                    android:textColor="#5f5f5f"
+                    android:textSize="13sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="8dp"
-                android:layout_toRightOf="@id/tv_title_icon"
-                android:text="兴趣标签"
-                android:textColor="#5f5f5f"
-                android:textSize="13sp" />
-
-            <com.example.administrator.travel.ui.view.FlowLayout
-                android:id="@+id/fl_title_in_vs"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_title_icon"
+                    android:text="兴趣标签"
+                    android:textColor="#5f5f5f"
+                    android:textSize="13sp" />
+            </LinearLayout>
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/fl_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="20dp"
-                android:paddingLeft="26dp"
-                android:paddingTop="30dp">
-
-            </com.example.administrator.travel.ui.view.FlowLayout>
-        </RelativeLayout>
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:dividerDrawable="@drawable/flexbox_space"
+                app:flexWrap="wrap"
+                app:showDivider="middle"
+                >
+            </com.google.android.flexbox.FlexboxLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <com.example.administrator.travel.ui.view.FontsIconTextView
                 style="@style/activityOtherInformationType"
                 android:layout_marginLeft="12dp"
                 android:text="@string/activity_other_detail_message" />
@@ -77,7 +82,8 @@
 
             <TextView
                 style="@style/activityOtherInformationDetail"
-                android:text="Magic" />
+                android:id="@+id/tv_name"
+                 />
         </RelativeLayout>
 
         <View style="@style/activityOtherInformationLine" />
@@ -95,7 +101,7 @@
 
             <TextView
                 style="@style/activityOtherInformationDetail"
-                android:text="你猜" />
+                android:id="@+id/tv_sex" />
         </RelativeLayout>
 
         <View style="@style/activityOtherInformationLine" />
@@ -113,7 +119,7 @@
 
             <TextView
                 style="@style/activityOtherInformationDetail"
-                android:text="四川-哪？" />
+                android:id="@+id/tv_address" />
         </RelativeLayout>
 
         <View style="@style/activityOtherInformationLine" />
@@ -131,7 +137,7 @@
 
             <TextView
                 style="@style/activityOtherInformationDetail"
-                android:text="这个人很懒。。。" />
+                android:id="@+id/tv_des"/>
         </RelativeLayout>
 
         <View style="@style/activityOtherInformationLine" />
@@ -149,7 +155,7 @@
 
             <TextView
                 style="@style/activityOtherInformationDetail"
-                android:text="学生" />
+                android:id="@+id/tv_work" />
         </RelativeLayout>
 
         <View style="@style/activityOtherInformationLine" />
@@ -163,11 +169,11 @@
 
             <TextView
                 style="@style/activityOtherInformationType"
-                android:text="登记" />
+                android:text="等级" />
 
             <TextView
                 style="@style/activityOtherInformationDetail"
-                android:text="LV.MAX" />
+                android:id="@+id/tv_level" />
         </RelativeLayout>
 
         <View style="@style/activityOtherInformationLine" />
@@ -185,7 +191,7 @@
 
             <TextView
                 style="@style/activityOtherInformationDetail"
-                android:text="2222 2-22" />
+                android:id="@+id/tv_add_time" />
         </RelativeLayout>
 
         <View style="@style/activityOtherInformationLine" />

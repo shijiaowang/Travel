@@ -1,23 +1,19 @@
 package com.example.administrator.travel.ui.me.othercenter;
 
-import android.graphics.Color;
-import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -27,32 +23,43 @@ import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.baseui.AppBarStateChangeListener;
-import com.example.administrator.travel.ui.baseui.SystemBarHelper;
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseChangeBarColorActivity;
+import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
 import com.example.administrator.travel.ui.me.othercenter.useralbum.OtherCenterAlbumFragment;
+import com.example.administrator.travel.ui.me.othercenter.userdynamic.UserDynamicFragment;
+import com.example.administrator.travel.ui.me.othercenter.userinfo.UserInfoBean;
 import com.example.administrator.travel.ui.me.othercenter.userinfo.UserInfoFragment;
-import com.example.administrator.travel.ui.view.FlowLayout;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.example.administrator.travel.utils.GsonUtils;
+import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.XEventUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.flexbox.FlexboxLayout;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.Map;
 
 import butterknife.BindColor;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 /**
  * Created by wangyang on 2016/7/13 0013.
  * 他人中心
  */
-public class OtherUserCenterActivity extends AppCompatActivity implements View.OnClickListener {
+public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUserCenterEvent> implements View.OnClickListener {
+
 
     private String[] mTitles = new String[]{"动态", "相册", "个人"};
-    private String[] titles = {"老司机", "新司机", "旧司机", "486", "我是老司机", "新手", "小清新", "我勒个去去", "速度"};
     private boolean isInflate = false;
+    private boolean viewPageIsInflate = false;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -60,16 +67,14 @@ public class OtherUserCenterActivity extends AppCompatActivity implements View.O
                 return;
             }
             mHandler.removeCallbacksAndMessages(null);//移除所有的参数和消息
+            mPbLoad.clearAnimation();
+            mPbLoad.setVisibility(View.GONE);
             switch (msg.what) {
                 case 0:
-                    mPbLoad.clearAnimation();
-                    mPbLoad.setVisibility(View.GONE);
                     mFlTitle.setVisibility(View.VISIBLE);
                     isInflate = true;
                     break;
                 case 1:
-                    mPbLoad.clearAnimation();
-                    mPbLoad.setVisibility(View.GONE);
                     mLlNewUser.setVisibility(View.VISIBLE);
                     isInflate = true;
                     break;
@@ -80,90 +85,243 @@ public class OtherUserCenterActivity extends AppCompatActivity implements View.O
     private int i = -1;
     private LayoutInflater inflater;
     private AnimationSet animationSet;
-    @BindView(R.id.pb_load) View mPbLoad;
-    @BindView(R.id.tv_private_icon) FontsIconTextView mTvPrivateIcon;
-    @BindView(R.id.tv_follow_icon) FontsIconTextView mTvFollowIcon;
-    @BindView(R.id.tv_follow) TextView mTvFollow;
-    @BindView(R.id.ll_private) LinearLayout mLlPrivate;
-    @BindView(R.id.ll_follow) LinearLayout mLlFollow;
-    @BindView(R.id.tab_layout) TabLayout mTabLayout;
-    @BindView(R.id.vp_dynamic) ViewPager mVpDynamic;
-    @BindView(R.id.fl_title) FlowLayout mFlTitle;
-    @BindView(R.id.ll_new_user) LinearLayout mLlNewUser;
-    @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout mCollapsingToolbarLayout;
-    @BindView(R.id.app_bar_layout) AppBarLayout mAppBarLayout;
-    @BindView(R.id.tv_name) TextView mTvName;
-    @BindColor(R.color.colorFAFAFA) @ColorInt int mBarColor;
+    @BindView(R.id.pb_load)
+    View mPbLoad;
+    @BindView(R.id.tv_private_icon)
+    FontsIconTextView mTvPrivateIcon;
+    @BindView(R.id.tv_follow_icon)
+    FontsIconTextView mTvFollowIcon;
+    @BindView(R.id.tv_follow)
+    TextView mTvFollow;
+    @BindView(R.id.ll_private)
+    LinearLayout mLlPrivate;
+    @BindView(R.id.tv_user_nick_name)
+    TextView tvUserNickNmae;
+    @BindView(R.id.ll_follow)
+    LinearLayout mLlFollow;
+    @BindView(R.id.tab_layout)
+    TabLayout mTabLayout;
+    @BindView(R.id.vp_dynamic)
+    ViewPager mVpDynamic;
+    @BindView(R.id.fl_title)
+    FlexboxLayout mFlTitle;
+    @BindView(R.id.ll_new_user)
+    LinearLayout mLlNewUser;
+    @BindView(R.id.iv_bg)
+    SimpleDraweeView ivBg;
+    @BindView(R.id.iv_icon)
+    SimpleDraweeView ivIcon;
+    @BindView(R.id.tv_level)
+    TextView tvLevel;
+    @BindView(R.id.tv_fan_sum)
+    TextView tvFanSum;
+    @BindView(R.id.tv_signature)
+    TextView tvSignature;
+    @BindColor(R.color.colorFAFAFA)
+    @ColorInt
+    int mBarColor;
+    private List<INotify> fragments;
+    private String userId;
+    private int isFans = -1;
+    private int mCurrentPage = 0;
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_other_center);
+    protected void initHeader() {
+        mVsHeader.setLayoutResource(R.layout.activity_other_top);
+        mVsHeader.inflate();
+        mVsTab.setLayoutResource(R.layout.tab_layout);
+        mVsTab.inflate();
         inflater = LayoutInflater.from(this);
-        ButterKnife.bind(this);
-        initData();
+        userId = getIntent().getStringExtra(IVariable.USER_ID);
+    }
+
+    @Override
+    protected int initContent() {
+        return R.layout.view_pager;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "他人中下";
+    }
+
+    @Override
+    protected void initListener() {
+        mLlFollow.setOnClickListener(this);
+        mVpDynamic.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mCurrentPage = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+        builder.addMyId().add(IVariable.USER_ID, userId).addType((mCurrentPage + 1) + "").addPageSize().addCount(0);
+    }
+
+    @Override
+    protected String initUrl() {
+        return IVariable.OTHER_USER_INFO;
+    }
+
+    @Override
+    protected void onSuccess(OtherUserCenterEvent otherUserCenterEvent) {
+        switch (otherUserCenterEvent.getType()) {
+            case TYPE_REFRESH:
+                dealInfoData(otherUserCenterEvent);
+                break;
+            case TYPE_UPDATE:
+                isFans = isFans == 0 ? 1 : 0;
+                ToastUtils.showToast(otherUserCenterEvent.getMessage());
+                dealFanOrNotFan(isFans);
+                break;
+        }
 
     }
 
+    /**
+     * 处理基础信息
+     *
+     * @param otherUserCenterEvent
+     */
+    private void dealInfoData(OtherUserCenterEvent otherUserCenterEvent) {
+        switch (mCurrentPage) {
+            case 0:
+                dynamicRefresh(otherUserCenterEvent);
+                break;
+            case 1:
+                break;
+            case 2:
+                userInfoRefresh(otherUserCenterEvent);
+                break;
+        }
+    }
 
+    /**
+     * 个人信息刷新
+     * @param otherUserCenterEvent
+     */
+    private void userInfoRefresh(OtherUserCenterEvent otherUserCenterEvent) {
+        UserInfoBean userInfoBean = GsonUtils.getObject(otherUserCenterEvent.getResult(), UserInfoBean.class);
+        UserBean user = userInfoBean.getData().getUser();
+        initUserInfo(user);
+        List<UserLabelBean> userLabel = userInfoBean.getData().getUser_label();
+        initTitle(userLabel);
+        fragments.get(2).notify(user);
 
-    protected void initData() {
-        initChild();
-        //设置还没收缩时状态下字体颜色
-        mCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
-        //设置收缩后Toolbar上字体的颜色
-        mCollapsingToolbarLayout.setCollapsedTitleTextColor(mBarColor);
-        mToolbar.setTitle("");
-        setSupportActionBar(mToolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null)
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-        SystemBarHelper.setHeightAndPadding(this,mToolbar);
-        SystemBarHelper.immersiveStatusBar(this);
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
-            @Override
-            public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset) {
-                if (state==State.EXPANDED){
-                    mTvName.setVisibility(View.GONE);
-                }else if (state==State.COLLAPSED){
-                    mTvName.setVisibility(View.VISIBLE);
-                }else {
-                    mTvName.setVisibility(View.GONE);
-                }
+    }
+
+    /**
+     * 刷新动态
+     *
+     * @param otherUserCenterEvent
+     */
+    private void dynamicRefresh(OtherUserCenterEvent otherUserCenterEvent) {
+        if (!viewPageIsInflate || mCurrentPage == 0) {
+            OtherUserCenterBean otherUserCenterBean = GsonUtils.getObject(otherUserCenterEvent.getResult(), OtherUserCenterBean.class);
+            List<UserLabelBean> userLabel = otherUserCenterBean.getData().getUser_label();
+            initTitle(userLabel);
+            UserBean user = otherUserCenterBean.getData().getUser();
+            initUserInfo(user);
+            if (!viewPageIsInflate) {
+                viewPageIsInflate = true;
+                fragments = new ArrayList<>();
+                UserDynamicFragment dynamicFragment = UserDynamicFragment.newInstance(userId, otherUserCenterBean.getData().getMore());
+                UserInfoFragment userInfoFragment = UserInfoFragment.newInstance(userId);
+                OtherCenterAlbumFragment listFragment1 = new OtherCenterAlbumFragment();
+                fragments.add(dynamicFragment);
+                fragments.add(listFragment1);
+                fragments.add(userInfoFragment);
+                PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+                mVpDynamic.setAdapter(adapter);
+                mVpDynamic.setOffscreenPageLimit(3);
+                mTabLayout.setupWithViewPager(mVpDynamic);
+            } else {
+                fragments.get(mCurrentPage).notifys(otherUserCenterBean.getData().getMore());
             }
-        });
-        PagerAdapter adapter=new PagerAdapter(getSupportFragmentManager());
-        mVpDynamic.setAdapter(adapter);
-        mVpDynamic.setOffscreenPageLimit(3);
-        mTabLayout.setupWithViewPager(mVpDynamic);
-        //获取数据
-        Random random = new Random();
-        i = random.nextInt(2);
-        if (i == 0) {
+        }
+    }
+
+    /**
+     * 填充用户信息
+     *
+     * @param user
+     */
+    private void initUserInfo(UserBean user) {
+        isFans = user.getIs_fans();
+        dealFanOrNotFan(isFans);
+        String nickName = user.getNick_name();
+        mTvTitle.setText(nickName);
+        tvSignature.setText(user.getContent());
+        FrescoUtils.displayIcon(ivIcon, user.getUser_img());
+        FrescoUtils.displayNormal(ivBg, user.getBackground_img());
+        tvFanSum.setText("粉丝:" + user.getFans());
+        tvLevel.setText("Lv." + user.getLevel());
+        tvUserNickNmae.setText(user.getNick_name());
+
+    }
+
+    /**
+     * 处理是否是粉丝按钮逻辑
+     *
+     * @param isFans
+     */
+    private void dealFanOrNotFan(int isFans) {
+        if (isFans == 1) {
+            mTvFollowIcon.setText(R.string.activity_other_followed);
+            mTvFollow.setText("已关注");
+        } else {
+            mTvFollowIcon.setText(R.string.activity_my_album_add);
+            mTvFollow.setText("关注");
+        }
+
+    }
+
+    /**
+     * 設置用戶標籤
+     *
+     * @param userLabel
+     */
+    private void initTitle(List<UserLabelBean> userLabel) {
+        isInflate = false;
+        if (userLabel != null && userLabel.size() > 0) {
+            mFlTitle.removeAllViews();
+            mFlTitle.setVisibility(View.GONE);
+            for (UserLabelBean userLabelBean : userLabel) {
+                TextView textView = (TextView) inflater.inflate(R.layout.item_activity_other_title_item, mFlTitle, false);
+                textView.setText(userLabelBean.getName());
+                mFlTitle.addView(textView);
+            }
+            i = 0;
             mFlTitle.setVisibility(View.INVISIBLE);
             mLlNewUser.setVisibility(View.GONE);
         } else {
             mLlNewUser.setVisibility(View.INVISIBLE);
-
             mFlTitle.setVisibility(View.GONE);
+            i = 1;
         }
-
         initAnimation();
+        mPbLoad.setVisibility(View.VISIBLE);
+        mPbLoad.startAnimation(animationSet);
+        mHandler.sendEmptyMessageDelayed(i, 1500);
     }
 
-    private void initChild() {
-        if (mFlTitle.getChildCount() > 0) {
-            mFlTitle.removeAllViews();
-        }
-        for (int i = 0; i < titles.length; i++) {
-            TextView textView = (TextView) inflater.inflate(R.layout.item_activity_other_title_item, mFlTitle, false);
-            textView.setText(titles[i]);
-            mFlTitle.addView(textView);
-        }
-    }
-
-
+    /**
+     * 動畫
+     */
     private void initAnimation() {
         animationSet = new AnimationSet(true);
         AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
@@ -185,46 +343,30 @@ public class OtherUserCenterActivity extends AppCompatActivity implements View.O
     }
 
 
-
-    private List<Fragment> getFragments() {
-        List<Fragment> list = new ArrayList<>();
-        Fragment listFragment = new OtherCenterAlbumFragment();
-        Fragment listFragment2 = new UserInfoFragment();
-        Fragment listFragment1 = new OtherCenterAlbumFragment();
-       // Fragment gridViewFragment = new RecyclerFragmentDynamic();
-        //Fragment scrollViewFragment = new ScrollViewFragment();
-        list.add(listFragment);
-        list.add(listFragment1);
-        list.add(listFragment2);
-        //.add(gridViewFragment);
-        //list.add(scrollViewFragment);
-        return list;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (!isInflate) {
-            mPbLoad.startAnimation(animationSet);
-            mHandler.sendEmptyMessageDelayed(i, 1500);
-        }
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-
-        if (item.getItemId() == android.R.id.home)
-        {
-            onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ll_follow:
+                followOrCancel();
+                break;
+        }
+    }
 
+    private void followOrCancel() {
+        String type = "";
+        switch (isFans) {
+            case -1:
+                ToastUtils.showToast("出现了不明错误");
+                return;
+            case 0://取消关注
+                type = "2";
+                break;
+            case 1:
+                type = "1";
+                break;
+        }
+        Map<String, String> followMap = MapUtils.Build().addKey(this).addUserId().add("u_id", userId).addType(type).end();
+        XEventUtils.postUseCommonBackJson(IVariable.FOLLOW_OR_CANCEL_FOLLOW, followMap, TYPE_UPDATE, new OtherUserCenterEvent());
     }
 
 
@@ -236,17 +378,24 @@ public class OtherUserCenterActivity extends AppCompatActivity implements View.O
 
         @Override
         public Fragment getItem(int position) {
-            return OtherUserCenterActivity.this.getFragments().get(position);
+            return (Fragment) fragments.get(position);
         }
 
         @Override
         public int getCount() {
-            return OtherUserCenterActivity.this.getFragments().size();
+            return fragments.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             return mTitles[position];
         }
+    }
+
+    public static void start(Context context, View v, String id) {
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(v, v.getWidth() / 2, v.getHeight() / 2, 0, 0);
+        Intent intent = new Intent(context, OtherUserCenterActivity.class);
+        intent.putExtra(IVariable.USER_ID, id);
+        ActivityCompat.startActivity(((Activity) context), intent, compat.toBundle());
     }
 }

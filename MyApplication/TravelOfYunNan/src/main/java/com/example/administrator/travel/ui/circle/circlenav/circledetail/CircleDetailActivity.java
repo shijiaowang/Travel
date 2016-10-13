@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.circle.circlenav.circledetail;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import com.example.administrator.travel.ui.baseui.BaseChangeColorRecycleActivity
 import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.example.administrator.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.example.administrator.travel.ui.circle.circlenav.circledetail.post.PostActivity;
+import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
@@ -49,6 +51,11 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
         cId = getIntent().getStringExtra(IVariable.C_ID);
         mVsHeader.setLayoutResource(R.layout.activity_circle_detail_header);
         mVsHeader.inflate();
+    }
+    public static void start(Context context,String cid){
+        Intent intent=new Intent(context,CircleDetailActivity.class);
+        intent.putExtra(IVariable.C_ID,cid);
+        context.startActivity(intent);
     }
 
     @Override

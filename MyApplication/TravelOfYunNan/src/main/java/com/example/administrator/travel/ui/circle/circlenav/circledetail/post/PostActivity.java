@@ -1,6 +1,8 @@
 package com.example.administrator.travel.ui.circle.circlenav.circledetail.post;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
@@ -38,6 +40,11 @@ public class PostActivity extends LoadingBarBaseActivity<PostEvent> {
     @Override
     protected void initEvent() {
         forum_id = getIntent().getStringExtra(IVariable.FORUM_ID);
+    }
+    public static void start(Context context,String forum_id){
+        Intent intent=new Intent(context,PostActivity.class);
+        intent.putExtra(IVariable.FORUM_ID,forum_id);
+        context.startActivity(intent);
     }
 
     @Override

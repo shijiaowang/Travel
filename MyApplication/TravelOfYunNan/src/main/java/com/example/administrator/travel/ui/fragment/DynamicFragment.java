@@ -6,7 +6,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.DynamicAdapter;
 
 /**
- * Created by Administrator on 2016/7/15 0015.
+ * Created by wangyang on 2016/7/15 0015.
  */
 public class DynamicFragment extends BaseFragment {
 

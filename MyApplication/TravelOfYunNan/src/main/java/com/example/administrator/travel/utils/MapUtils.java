@@ -18,6 +18,10 @@ public class MapUtils {
             stringMap.put(IVariable.KEY,GlobalUtils.getKey(context));
             return this;
         }
+        public Builder addMyId(){
+            stringMap.put(IVariable.MY_ID,GlobalUtils.getUserInfo().getId());
+            return this;
+        }
         public Builder addUserName(String userName){
             stringMap.put(IVariable.USERNAME,userName);
             return this;

@@ -9,6 +9,9 @@ import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 /**
  * Created by wangyang on 2016/10/8.
@@ -85,11 +88,17 @@ public class FrescoUtils {
                 //构建
                 .build();
         simpleDraweeView.setHierarchy(hierarchy);
-
+        ImageRequest imageRequest =
+                ImageRequestBuilder.newBuilderWithSource(uri)
+                        .setResizeOptions(
+                                new ResizeOptions(300,200))
+                        .setProgressiveRenderingEnabled(true)
+                        .build();
         //构建Controller
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 //设置需要下载的图片地址
                 .setUri(uri)
+                .setImageRequest(imageRequest)
                 //构建
                 .build();
         simpleDraweeView.setController(controller);

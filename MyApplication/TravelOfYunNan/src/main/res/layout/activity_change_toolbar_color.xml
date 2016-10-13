@@ -10,6 +10,7 @@
         android:layout_height="match_parent">
 
         <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/coor_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">
@@ -19,6 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
+                app:paddingStart="0dp"
                 android:theme="@style/toolbar_theme">
 
                 <android.support.design.widget.CollapsingToolbarLayout
@@ -41,22 +43,31 @@
                         android:layout_width="match_parent"
                         android:layout_height="49dp"
                         android:navigationIcon="@drawable/back"
+                        app:navigationIcon="@drawable/back"
                         app:layout_collapseMode="pin"
                         app:layout_scrollFlags="scroll|enterAlways"
+                        android:gravity="center"
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                        app:titleTextAppearance="@style/ToolBar.TitleText" >
+                        >
                         <TextView
+
                             android:id="@+id/tv_bar_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:gravity="center"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:text="232222331"
                             android:textColor="@color/colorFAFAFA"
                             android:textSize="18sp" />
                     </android.support.v7.widget.Toolbar>
 
 
                 </android.support.design.widget.CollapsingToolbarLayout>
+                <ViewStub
+                    android:id="@+id/vs_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </android.support.design.widget.AppBarLayout>
 
                 <ViewStub

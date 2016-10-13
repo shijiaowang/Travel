@@ -52,12 +52,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="150dp"
-            app:alignContent="flex_start"
-            app:alignItems="flex_start"
+
             android:layout_marginBottom="25dp"
             android:layout_marginLeft="22dp"
             android:layout_marginRight="22dp"
             android:layout_marginTop="20dp"
+            app:alignContent="flex_start"
+            app:alignItems="flex_start"
             app:dividerDrawable="@drawable/flexbox_space"
             app:flexWrap="wrap"
             app:showDivider="middle" />

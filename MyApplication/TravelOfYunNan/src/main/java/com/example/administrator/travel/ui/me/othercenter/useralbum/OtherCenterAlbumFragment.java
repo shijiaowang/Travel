@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.baseui.LoadMoreListener;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
+import com.example.administrator.travel.ui.me.othercenter.INotify;
 
 import org.xutils.x;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by wangyang on 2016/8/23 0023.
  * 相册
  */
-public class OtherCenterAlbumFragment extends BaseFragment {
+public class OtherCenterAlbumFragment extends BaseFragment implements INotify{
 
     private RecyclerView viewById;
 
@@ -87,6 +88,17 @@ public class OtherCenterAlbumFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+
+    }
+
+
+    @Override
+    public void notifys(List t) {
+
+    }
+
+    @Override
+    public void notify(Object da) {
 
     }
 }

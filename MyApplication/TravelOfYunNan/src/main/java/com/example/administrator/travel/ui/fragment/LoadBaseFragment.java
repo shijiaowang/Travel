@@ -128,13 +128,12 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     public abstract Class<? extends HttpEvent> registerEventType();
 
     @Subscribe
-    public void onEvent(HttpEvent event){
+    public void onEvent(T t){
         Class<? extends HttpEvent> aClass = registerEventType();
-        if (event.getClass().getSimpleName().equals(aClass.getSimpleName())) {
+        if (t.getClass().getSimpleName().equals(aClass.getSimpleName())) {
             LogUtils.e(getClass().getSimpleName());
-                if (event.isSuccess()) {
+                if (t.isSuccess()) {
                     try {
-                        T t = (T) event;
                         isSuccessed = true;
                         setState(LoadingPage.ResultState.STATE_SUCCESS);
                         onSuccess(t);
@@ -142,9 +141,9 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
                     } catch (Exception e) {
                         e.printStackTrace();
                         LogUtils.e("出现异常了");
+                        onFail(t);
                     }
                 } else {
-                    T t = (T) event;
                     ToastUtils.showToast(t.getMessage());
                     onFail(t);
                 }

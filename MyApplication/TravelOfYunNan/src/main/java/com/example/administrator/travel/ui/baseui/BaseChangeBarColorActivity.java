@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -68,6 +69,8 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
     protected  ViewStub mVsContent;
     protected  View childView;
     protected ViewStub mVsHeader;
+    protected ViewStub mVsTab;
+    private CoordinatorLayout mCoorLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,7 +80,9 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
         mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         mIvPageError = (ImageView) findViewById(R.id.page_error);
+        mCoorLayout = (CoordinatorLayout) findViewById(R.id.coor_layout);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
+        mVsTab = (ViewStub) findViewById(R.id.vs_tab);
         mTvTitle = (TextView) findViewById(R.id.tv_bar_name);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mVsContent = (ViewStub) findViewById(R.id.vs_content);
@@ -89,10 +94,14 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null)
+        if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
+            supportActionBar.setDisplayShowTitleEnabled(false);
+            supportActionBar.setDisplayShowCustomEnabled(true);
+        }
         SystemBarHelper.setHeightAndPadding(this, mToolbar);
         SystemBarHelper.immersiveStatusBar(this);
+
         initHeader();
         mVsContent.setLayoutResource(initContent());
         childView = mVsContent.inflate();
@@ -101,7 +110,6 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
         if (!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }
-
         mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset) {
@@ -111,8 +119,8 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
                 }else{
                     if (mSwipeContainer.isRefreshing()){
                         mSwipeContainer.setRefreshing(false);
-                        mTvTitle.setVisibility(View.VISIBLE);
                     }
+                    mTvTitle.setVisibility(View.VISIBLE);
                    mSwipeContainer.setEnabled(false);
                 }
             }
@@ -187,15 +195,14 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
     @Subscribe
     public void onEvent(T t){
         if (!t.getClass().getSimpleName().equals(getTInstance().getClass().getSimpleName())){
-            LogUtils.e("这是其他类传来的消息");
-            LogUtils.e(t.getClass().getSimpleName()+"另外一个"+this.getClass().getSimpleName());
             return;
         }
         setIsProgress(false);
+        mSwipeContainer.setRefreshing(false);
         if (t.isSuccess()){
             try {
                 isFirstInflate =false;
-                childView.setVisibility(View.VISIBLE);//读取完毕，展示主页
+                mCoorLayout.setVisibility(View.VISIBLE);//读取完毕，展示主页
                 onSuccess(t);
             }catch (Exception e){
                 e.printStackTrace();
@@ -231,6 +238,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
      */
     @OnClick(R.id.page_error)
     protected void onReLoad() {
+        setIsProgress(true,true);
         onLoad(TYPE_REFRESH);
     }
     /**
@@ -239,7 +247,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
      */
     protected void setErrorPage(boolean isShow) {
         mIvPageError.setVisibility(isShow ? View.VISIBLE : View.GONE);
-        childView.setVisibility(View.GONE);//隐藏主布局
+        mCoorLayout.setVisibility(View.GONE);//隐藏主布局
     }
 
     /**
@@ -260,13 +268,13 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
     protected void setIsProgress(boolean isShow, boolean needHideOther) {
         if (needHideOther) {
             mIvPageError.setVisibility(View.GONE);
-            childView.setVisibility(View.GONE);
+            mCoorLayout.setVisibility(View.GONE);
         }
         mPbLoading.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 
     protected void  setSuccess(){
-        childView.setVisibility(View.VISIBLE);
+        mCoorLayout.setVisibility(View.VISIBLE);
         mIvPageError.setVisibility(View.GONE);
         mPbLoading.setVisibility(View.GONE);
     }

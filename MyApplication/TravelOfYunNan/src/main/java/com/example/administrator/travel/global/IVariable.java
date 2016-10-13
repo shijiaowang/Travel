@@ -71,6 +71,8 @@ public interface IVariable {
     String UPDATE_ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String SUBMIT_ORDERS = API_KEY + "Order/setOrder/";//提交订单
+    String OTHER_USER_INFO = API_KEY + "User/otherUserIndex/";//他人主页
+    String FOLLOW_OR_CANCEL_FOLLOW = API_KEY + "User/setInformforUser/";//取消关注
     String DELETE_APPOINT = API_KEY + "UserTravel/disbandTravel/";//删除约伴
     String DISCUSS_APPOINT = API_KEY + "UserTravel/commentTravel/";//评价
     String CHANGE_APPOINT = API_KEY + "UserTravel/setTravelState/";//修改出行状态
@@ -131,6 +133,7 @@ public interface IVariable {
     //登录
     String USERNAME = "name";
     String KEY = "key";
+    String MY_ID = "my_id";
     String JSON_TRAVEL = "json_travel";
     String PASSWORD = "pwd";
 

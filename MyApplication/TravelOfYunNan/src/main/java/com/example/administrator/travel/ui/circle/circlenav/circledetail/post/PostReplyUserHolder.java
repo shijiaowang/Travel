@@ -18,7 +18,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/7/11 0011.
+ * Created by wangyang on 2016/7/11 0011.
  * 回复其他楼层
  */
 public class PostReplyUserHolder extends BaseHolder<Object> {
@@ -76,8 +76,7 @@ public class PostReplyUserHolder extends BaseHolder<Object> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_activity_post_reply_user);
-        return inflate;
+        return  inflateView(R.layout.item_activity_post_reply_user);
     }
 
 

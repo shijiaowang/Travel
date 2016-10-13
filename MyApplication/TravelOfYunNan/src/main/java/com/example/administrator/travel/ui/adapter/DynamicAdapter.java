@@ -9,7 +9,7 @@ import com.example.administrator.travel.ui.adapter.holer.DynamicHoler;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/14 0014.
+ * Created by wangyang on 2016/7/14 0014.
  */
 public class DynamicAdapter extends TravelBaseAdapter<Dynamic> {
     public DynamicAdapter(Context mContext, List<Dynamic> mDatas) {

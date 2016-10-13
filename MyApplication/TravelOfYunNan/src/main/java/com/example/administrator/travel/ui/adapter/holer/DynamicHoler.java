@@ -21,7 +21,7 @@ public class DynamicHoler extends BaseHolder<Dynamic> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate = inflateView(R.layout.item_fragment_dynamic);
+        View inflate = inflateView(R.layout.item_other_user_fragment_dynamic);
         return inflate;
     }
 }

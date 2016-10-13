@@ -1,10 +1,6 @@
 package com.example.administrator.travel.ui.circle.circlenav.circledetail.post;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
@@ -44,16 +40,16 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Object item, int position) {
+    protected void initListener(BaseHolder baseHolder, final Object item, int position) {
         if (baseHolder instanceof PostReplyUserHolder) {
             PostReplyUserHolder postReplyImageHolder = (PostReplyUserHolder) baseHolder;
             if (position==1)postReplyImageHolder.line.setVisibility(View.GONE);
             postReplyImageHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(v, v.getWidth() / 2, v.getHeight() / 2, 0, 0);
-                    Intent intent = new Intent(mContext, OtherUserCenterActivity.class);
-                    ActivityCompat.startActivity(((Activity) mContext), intent, compat.toBundle());
+                    PostDetailBean.DataBean.ForumReplyBean item1 = (PostDetailBean.DataBean.ForumReplyBean) item;
+                    OtherUserCenterActivity.start(mContext,v,item1.getUser_id());
+
                 }
             });
         }
@@ -63,9 +59,8 @@ public class PostAdapter extends TravelBaseAdapter<Object> {
             postReplyTextHolder.mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(v, v.getWidth() / 2, v.getHeight() / 2, 0, 0);
-                    Intent intent = new Intent(mContext, OtherUserCenterActivity.class);
-                    ActivityCompat.startActivity(((Activity) mContext), intent, compat.toBundle());
+                    PostDetailBean.DataBean.ForumReplyBean item1 = (PostDetailBean.DataBean.ForumReplyBean) item;
+                    OtherUserCenterActivity.start(mContext,v,item1.getUser_id());
                 }
             });
         }

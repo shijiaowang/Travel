@@ -91,6 +91,13 @@ public abstract class LoadMoreRecycleViewAdapter<T> extends RecyclerView.Adapter
 
     protected abstract void bindNormal(RecyclerView.ViewHolder holder, int position);
 
+
+
+    public void setmDatas(List<T> mDatas) {
+        this.mDatas = mDatas;
+        notifyDataSetChanged();
+    }
+
     class FooterViewHolder extends RecyclerView.ViewHolder {
 
         public FooterViewHolder(View view) {

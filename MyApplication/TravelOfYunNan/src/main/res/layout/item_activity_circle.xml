@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:descendantFocusability="blocksDescendants"
     android:background="@color/colorFAFAFA"
     android:layout_width="match_parent"
@@ -65,11 +66,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
    <android.support.v7.widget.RecyclerView
-       android:clickable="false"
-       android:focusableInTouchMode="false"
-       android:focusable="false"
        android:id="@+id/rv_photo"
        android:scrollbars="none"
+       app:layout_behavior="@string/appbar_scrolling_view_behavior"
        android:overScrollMode="never"
        android:layout_marginTop="3dp"
        android:layout_marginLeft="13dp"

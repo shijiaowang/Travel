@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/9/8 0008.
+ * Created by wangyang on 2016/9/8 0008.
  * 自定义景点列表
  */
 public class CustomDestinationActivity extends LoadingBarBaseActivity<CustomDestinationEvent> implements XListView.IXListViewListener {
