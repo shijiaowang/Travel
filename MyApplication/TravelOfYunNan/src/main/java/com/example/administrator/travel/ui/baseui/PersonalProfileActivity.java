@@ -24,7 +24,7 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/8/19 0019.
+ * Created by wangyang on 2016/8/19 0019.
  * 个人简介
  */
 public class PersonalProfileActivity extends LoadingBarBaseActivity<PersonalProfileEvent> {

@@ -29,17 +29,40 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         try {
-            childBindView(holder,position);
+            holder.itemView.setTag(position);
+            if (itemClickListener!=null) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int tag = (int) holder.itemView.getTag();
+                        itemClickListener.onItemClick(tag);
+                    }
+                });
+            }
+            childBindView(holder,position,mDatas.get(position));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    private LoadMoreRecycleViewAdapter.OnItemClickListener itemClickListener;
+
+    public LoadMoreRecycleViewAdapter.OnItemClickListener getItemClickListener() {
+        return itemClickListener;
+    }
+
+    public void setItemClickListener(LoadMoreRecycleViewAdapter.OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
 
 
 
-    protected abstract void childBindView(RecyclerView.ViewHolder holder, int position);
+    protected abstract void childBindView(RecyclerView.ViewHolder holder, int position, T t);
    protected   class BaseRecycleViewHolder  extends RecyclerView.ViewHolder{
 
        public BaseRecycleViewHolder(View itemView) {

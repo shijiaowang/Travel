@@ -25,8 +25,12 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.AppBarStateChangeListener;
 import com.example.administrator.travel.ui.baseui.BaseChangeBarColorActivity;
 import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
+import com.example.administrator.travel.ui.me.othercenter.useralbum.AppBarStateEvent;
+import com.example.administrator.travel.ui.me.othercenter.useralbum.OtherAlbumBean;
+import com.example.administrator.travel.ui.me.othercenter.useralbum.OtherAlbumEvent;
 import com.example.administrator.travel.ui.me.othercenter.useralbum.OtherCenterAlbumFragment;
 import com.example.administrator.travel.ui.me.othercenter.userdynamic.UserDynamicFragment;
 import com.example.administrator.travel.ui.me.othercenter.userinfo.UserInfoBean;
@@ -203,11 +207,25 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
                 dynamicRefresh(otherUserCenterEvent);
                 break;
             case 1:
+                otherAlbumRefresh(otherUserCenterEvent);
                 break;
             case 2:
                 userInfoRefresh(otherUserCenterEvent);
                 break;
         }
+    }
+
+    /**
+     * 刷新相册
+     * @param otherUserCenterEvent
+     */
+    private void otherAlbumRefresh(OtherUserCenterEvent otherUserCenterEvent) {
+        OtherAlbumBean otherAlbumBean=GsonUtils.getObject(otherUserCenterEvent.getResult(),OtherAlbumBean.class);
+        UserBean user = otherAlbumBean.getData().getUser();
+        initUserInfo(user);
+        List<UserLabelBean> userLabel = otherAlbumBean.getData().getUser_label();
+        initTitle(userLabel);
+        fragments.get(mCurrentPage).notifys(otherAlbumBean.getData().getMore());
     }
 
     /**
@@ -220,7 +238,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         initUserInfo(user);
         List<UserLabelBean> userLabel = userInfoBean.getData().getUser_label();
         initTitle(userLabel);
-        fragments.get(2).notify(user);
+        fragments.get(mCurrentPage).notify(user);
 
     }
 
@@ -241,9 +259,9 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
                 fragments = new ArrayList<>();
                 UserDynamicFragment dynamicFragment = UserDynamicFragment.newInstance(userId, otherUserCenterBean.getData().getMore());
                 UserInfoFragment userInfoFragment = UserInfoFragment.newInstance(userId);
-                OtherCenterAlbumFragment listFragment1 = new OtherCenterAlbumFragment();
+                OtherCenterAlbumFragment otherCenterAlbumFragment = OtherCenterAlbumFragment.newInstance(userId);
                 fragments.add(dynamicFragment);
-                fragments.add(listFragment1);
+                fragments.add(otherCenterAlbumFragment);
                 fragments.add(userInfoFragment);
                 PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
                 mVpDynamic.setAdapter(adapter);
@@ -397,5 +415,18 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         Intent intent = new Intent(context, OtherUserCenterActivity.class);
         intent.putExtra(IVariable.USER_ID, id);
         ActivityCompat.startActivity(((Activity) context), intent, compat.toBundle());
+    }
+
+    @Override
+    protected void appBarStateChange(AppBarStateChangeListener.State state) {
+        if (mCurrentPage==1){
+            AppBarStateEvent appBarStateEvent=new AppBarStateEvent();
+            if(state== AppBarStateChangeListener.State.COLLAPSED){
+                appBarStateEvent.setClose(true);
+            }else {
+                appBarStateEvent.setClose(false);
+            }
+           EventBus.getDefault().post(appBarStateEvent);
+        }
     }
 }

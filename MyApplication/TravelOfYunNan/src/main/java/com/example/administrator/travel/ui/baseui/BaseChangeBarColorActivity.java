@@ -113,6 +113,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
         mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset) {
+                appBarStateChange(state);
                 if (state==State.EXPANDED){
                     mSwipeContainer.setEnabled(true);
                     mTvTitle.setVisibility(View.GONE);
@@ -132,7 +133,9 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
 
     }
 
+    protected void appBarStateChange(AppBarStateChangeListener.State state) {
 
+    }
 
 
     /**

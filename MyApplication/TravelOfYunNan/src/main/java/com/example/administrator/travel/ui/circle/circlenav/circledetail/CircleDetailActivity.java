@@ -13,6 +13,7 @@ import com.example.administrator.travel.bean.CommonClickLikeBean;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BaseChangeColorRecycleActivity;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.example.administrator.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.example.administrator.travel.ui.circle.circlenav.circledetail.post.PostActivity;
@@ -94,7 +95,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
     }
 
     @Override
-    protected LoadMoreRecycleViewAdapter initAdapter(List<CircleDetailBean.DataBean.BodyBean> mDatas) {
+    protected BaseRecycleViewAdapter initAdapter(List<CircleDetailBean.DataBean.BodyBean> mDatas) {
         return new CircleDetailAdapter(mDatas,this);
     }
 

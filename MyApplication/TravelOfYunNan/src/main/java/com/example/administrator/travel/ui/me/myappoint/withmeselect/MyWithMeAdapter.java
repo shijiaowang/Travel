@@ -45,7 +45,7 @@ public class MyWithMeAdapter extends BaseRecycleViewAdapter<MyWithMeSelectBean.D
         return new MyWithMeSelectHolder(inflate);
     }
     @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, final int position) {
+    protected void childBindView(RecyclerView.ViewHolder holder, final int position, MyWithMeSelectBean.DataBean t) {
         MyWithMeSelectHolder myWithMeSelectHolder = (MyWithMeSelectHolder) holder;
         final MyWithMeSelectBean.DataBean datas = mDatas.get(position);
         FrescoUtils.displayNormal(myWithMeSelectHolder.mIvIcon, datas.getTravel_img());

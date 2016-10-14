@@ -3,8 +3,12 @@ package com.example.administrator.travel.ui.baseui;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
+import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IChildParent;
@@ -24,10 +28,11 @@ import butterknife.BindView;
  * Created by wangyang on 2016/10/12 0012.
  */
 
-public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E extends ParentBean,F extends IChildParent,G> extends BaseChangeBarColorActivity<T> {
-   @BindView(R.id.rv_recycle)protected RecyclerView mRvCommon;
+public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E extends ParentBean,F extends IChildParent,G> extends BaseChangeBarColorActivity<T> implements OnLoadMoreListener {
+   @BindView(R.id.swipe_target)protected RecyclerView mRvCommon;
+   @BindView(R.id.stll_layout)protected SwipeToLoadLayout mSwipe;
     protected List<G> mDatas;//从网络获取的数据
-    protected LoadMoreRecycleViewAdapter<G> mAdapter;//通用adapter
+    protected BaseRecycleViewAdapter<G> mAdapter;//通用adapter
     private LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -39,8 +44,11 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
     protected void initListener() {
         changeMargin(10);
         mRvCommon.addItemDecoration(new MyWitheMeDecoration(childDistance()));
-
         initChildListener();
+        View footView = LayoutInflater.from(this).inflate(R.layout.layout_google_footer, mSwipe, false);
+        mSwipe.setSwipeStyle(SwipeToLoadLayout.STYLE.BLEW);
+        mSwipe.setLoadMoreFooterView(footView);
+        mSwipe.setOnLoadMoreListener(this);
 
     }
 
@@ -83,22 +91,6 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
             linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setAutoMeasureEnabled(true);
             mRvCommon.setLayoutManager(linearLayoutManager);
-            mRvCommon.addOnScrollListener(new LoadMoreListener(linearLayoutManager) {
-                @Override
-                protected void onScrolling(RecyclerView recyclerView, int dx, int dy) {
-                    if (Math.abs(dx)>8){
-                        mAdapter.setScrolling(true);
-                    }else {
-                        mAdapter.setScrolling(false);
-                    }
-                }
-
-                @Override
-                public void onLoadMore(int childCount) {
-                    mAdapter.startLoading();
-                    onLoad(TYPE_LOAD);
-                }
-            });
             mRvCommon.setItemAnimator(new DefaultItemAnimator());
             mAdapter.setItemClickListener(new LoadMoreRecycleViewAdapter.OnItemClickListener() {
                 @Override
@@ -108,17 +100,18 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
             });
         } else if (t.getType() == TYPE_LOAD) {
             mDatas.addAll(boy);
-            LogUtils.e("开始添加了，现在一共有"+mDatas.size());
-            mAdapter.endLoading();
-            mAdapter.setList(mDatas);
+             mSwipe.setLoadingMore(false);
+            mAdapter.notifiyData(mDatas);
         } else if (t.getType() == TYPE_REFRESH) {
             mSwipeContainer.setRefreshing(false);
             mDatas = boy;
-            mAdapter.setList(mDatas);
+            mAdapter.notifiyData(mDatas);
         } else {
             doOtherSuccessData(t);
         }
     }
+
+
 
     /**
      * 孩子item点击
@@ -162,7 +155,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
                     mSwipeContainer.setRefreshing(false);
                     break;
                 case TYPE_LOAD:
-                    mAdapter.endLoading();
+
                     break;
 
         }
@@ -173,7 +166,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
      * @param mDatas
      * @return
      */
-    protected abstract LoadMoreRecycleViewAdapter initAdapter(List<G> mDatas);
+    protected abstract BaseRecycleViewAdapter initAdapter(List<G> mDatas);
 
     /**
      * 是否使用孩子另外设置设置的bean对象
@@ -184,4 +177,8 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
         return false;
     }
 
+    @Override
+    public void onLoadMore() {
+        onLoad(TYPE_LOAD);
+    }
 }

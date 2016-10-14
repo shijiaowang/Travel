@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
-import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
@@ -30,7 +28,7 @@ public class BulletinBoardAdapter extends BaseRecycleViewAdapter<BulletinBoardBe
 
 
     @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, int position) {
+    protected void childBindView(RecyclerView.ViewHolder holder, int position, BulletinBoardBean.DataBean t) {
         BulletinBoardHolder bulletinBoardHolder = (BulletinBoardHolder) holder;
         BulletinBoardBean.DataBean datas = mDatas.get(position);
         bulletinBoardHolder.mTvTop.setVisibility(datas.getIs_top().equals(IVariable.TRUE)?View.VISIBLE:View.GONE);

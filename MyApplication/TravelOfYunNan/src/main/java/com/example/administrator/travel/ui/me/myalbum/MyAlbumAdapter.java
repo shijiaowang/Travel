@@ -55,7 +55,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
     }
 
     @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, final int position) {
+    protected void childBindView(RecyclerView.ViewHolder holder, final int position, MyAlbumBean.DataBean t) {
         MyAlbumBean.DataBean dataBean = mDatas.get(position);
         if (holder instanceof MyAlbumShortHolder) {
             MyAlbumShortHolder shortHolder = (MyAlbumShortHolder) holder;

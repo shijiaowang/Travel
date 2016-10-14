@@ -41,23 +41,14 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/7/11 0011.
  */
-public class CircleDetailAdapter extends LoadMoreRecycleViewAdapter<CircleDetailBean.DataBean.BodyBean> {
+public class CircleDetailAdapter extends BaseRecycleViewAdapter<CircleDetailBean.DataBean.BodyBean> {
 
     public CircleDetailAdapter(List<CircleDetailBean.DataBean.BodyBean> list, Context mContext) {
         super(list, mContext);
     }
 
     @Override
-    protected RecyclerView.ViewHolder normalHolder(LayoutInflater layoutInflater, ViewGroup parent, int viewType) {
-        View inflate = layoutInflater.inflate(R.layout.item_activity_circle, parent, false);
-        return new CircleDetailHolder(inflate);
-    }
-
-
-
-    @Override
-    protected void bindNormal(RecyclerView.ViewHolder holder, final int position) {
-        final CircleDetailBean.DataBean.BodyBean datas = mDatas.get(position);
+    protected void childBindView(RecyclerView.ViewHolder holder, final int position, final CircleDetailBean.DataBean.BodyBean datas) {
         final CircleDetailHolder circleDetailHolder = (CircleDetailHolder) holder;
         FrescoUtils.displayIcon(circleDetailHolder.mIvUserIcon,datas.getUser_img());
         circleDetailHolder.mIvUserIcon.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +90,6 @@ public class CircleDetailAdapter extends LoadMoreRecycleViewAdapter<CircleDetail
         String imageUrl = datas.getForum_img();
         if (!StringUtils.isEmpty(imageUrl)) {
             circleDetailHolder.mRvPhoto.setVisibility(View.VISIBLE);
-            if (isScrolling)return;
             String[] split = imageUrl.split(",");
             List<String> list = Arrays.asList(split);
             if (circleDetailHolder.circleDetailPhotoAdapter==null){
@@ -119,7 +109,17 @@ public class CircleDetailAdapter extends LoadMoreRecycleViewAdapter<CircleDetail
 
 
 
-    class CircleDetailHolder extends ItemViewHolder{
+
+
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_circle, parent, false);
+        return new CircleDetailHolder(inflate);
+    }
+
+
+    class CircleDetailHolder extends BaseRecycleViewHolder{
         @BindView(R.id.iv_user_icon) SimpleDraweeView mIvUserIcon;
         @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
         @BindView(R.id.tv_time) TextView mTvTime;

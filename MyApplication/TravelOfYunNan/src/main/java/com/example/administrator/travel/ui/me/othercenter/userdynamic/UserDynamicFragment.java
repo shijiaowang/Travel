@@ -37,7 +37,7 @@ import butterknife.BindView;
 public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> implements INotify<OtherUserCenterBean.DataBean.MoreBean>{
     private boolean isFirst = true;
     private String userId;
-    @BindView(R.id.rv_recycle)
+    @BindView(R.id.rv_dynamic)
     RecyclerView mRvRecycle;
     private List<OtherUserCenterBean.DataBean.MoreBean> mDataBean = new ArrayList<>();
     private UserDynamicAdapter userDynamicAdapter;
@@ -51,7 +51,7 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
 
     @Override
     protected int initResLayout() {
-        return R.layout.activity_common_recycleview;
+        return R.layout.activity_other_dynamic;
     }
 
     @Override

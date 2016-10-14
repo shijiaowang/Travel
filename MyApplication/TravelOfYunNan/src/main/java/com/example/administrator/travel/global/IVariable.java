@@ -71,6 +71,8 @@ public interface IVariable {
     String UPDATE_ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String SUBMIT_ORDERS = API_KEY + "Order/setOrder/";//提交订单
+    String USER_LEVEL = API_KEY + "User/getLevel/";//用户等级
+    String CAT_USER_ALBUM_DETAIL = API_KEY + "User/getUserImgpicture/";//查看他人相册详情
     String OTHER_USER_INFO = API_KEY + "User/otherUserIndex/";//他人主页
     String FOLLOW_OR_CANCEL_FOLLOW = API_KEY + "User/setInformforUser/";//取消关注
     String DELETE_APPOINT = API_KEY + "UserTravel/disbandTravel/";//删除约伴
