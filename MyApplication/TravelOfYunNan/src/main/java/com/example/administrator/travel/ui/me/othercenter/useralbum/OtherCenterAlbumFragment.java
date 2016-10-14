@@ -15,6 +15,7 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.ui.baseui.LoadMoreListener;
 import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.example.administrator.travel.ui.fragment.BaseFragment;
@@ -82,7 +83,7 @@ public class OtherCenterAlbumFragment extends LoadBaseFragment<OtherAlbumEvent> 
             LinearLayoutManager layout = new GridLayoutManager(getContext(),2);
             mSwipeContainer.setLayoutManager(layout);
             mSwipeContainer.addItemDecoration(new AlbumSpace(6));
-            albumAdapter.setItemClickListener(new LoadMoreRecycleViewAdapter.OnItemClickListener() {
+            albumAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
                     CatOtherUserAlbumActivity.start(getContext(),mDatas.get(position).getId());

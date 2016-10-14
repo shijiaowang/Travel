@@ -25,11 +25,6 @@ public class MyWithMeSelectActivity extends BaseRecycleViewActivity<MyWithMeSele
         return IVariable.WITH_ME_SELECT;
     }
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-
-        return this;
-    }
 
     @Override
     protected String initTitle() {

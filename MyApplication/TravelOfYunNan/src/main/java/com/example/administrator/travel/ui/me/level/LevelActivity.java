@@ -39,10 +39,7 @@ public class LevelActivity extends BaseNetWorkActivity<LevelEvent> {
     @BindView(R.id.rv_express)
     RecyclerView rvExpress;
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
+
 
     @Override
     protected void initEvent() {

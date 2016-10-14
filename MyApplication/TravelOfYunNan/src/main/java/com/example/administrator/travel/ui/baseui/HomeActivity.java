@@ -4,6 +4,7 @@ package com.example.administrator.travel.ui.baseui;
 
 import android.graphics.Typeface;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.app.FragmentManager;
@@ -23,6 +24,7 @@ import com.example.administrator.travel.ui.find.FindFragment;
 import com.example.administrator.travel.ui.home.HomeFragment;
 import com.example.administrator.travel.ui.me.me.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
+import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 
 import org.xutils.view.annotation.ViewInject;
@@ -74,6 +76,65 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout mLlMainClick;
     @ViewInject(R.id.ll_bottom)
     private LinearLayout mLlBottom;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initHXListener();
+    }
+
+    /**
+     * 户厕环信监听
+     */
+    private void initHXListener() {
+        EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(),GlobalUtils.getUserInfo().getPwd(),new EMCallBack() {//回调
+            @Override
+            public void onSuccess() {
+                EMClient.getInstance().groupManager().loadAllGroups();
+                EMClient.getInstance().chatManager().loadAllConversations();
+                Log.d("main", "登录聊天服务器成功！");
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                Log.d("main", "登录聊天服务器失败！");
+            }
+        });
+        //注册一个监听连接状态的listener
+        EMClient.getInstance().addConnectionListener(new MyConnectionListener());
+
+          //实现ConnectionListener接口
+        private class MyConnectionListener implements EMConnectionListener {
+            @Override
+            public void onConnected() {
+            }
+            @Override
+            public void onDisconnected(final int error) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(error == EMError.USER_REMOVED){
+                            // 显示帐号已经被移除
+                        }else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
+                            // 显示帐号在其他设备登录
+                        } else {
+                            if (NetUtils.hasNetwork(MainActivity.this)){
+
+                            }
+                            //连接不到聊天服务器
+                            else
+                            //当前网络不可用，请检查网络设置
+                        }
+                    }
+                });
+            }
+        }
+    }
 
     public LinearLayout getmLlBottom() {
         return mLlBottom;

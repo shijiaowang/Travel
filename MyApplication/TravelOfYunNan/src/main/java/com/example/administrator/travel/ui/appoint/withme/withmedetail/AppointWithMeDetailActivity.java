@@ -71,10 +71,6 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
 
 
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
 
     @Override
     protected void initEvent() {

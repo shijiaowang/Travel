@@ -28,6 +28,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
         this.notifyDataSetChanged();
     }
 
+
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         try {
@@ -46,13 +47,13 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
             e.printStackTrace();
         }
     }
-    private LoadMoreRecycleViewAdapter.OnItemClickListener itemClickListener;
+    private OnItemClickListener itemClickListener;
 
-    public LoadMoreRecycleViewAdapter.OnItemClickListener getItemClickListener() {
+    public OnItemClickListener getItemClickListener() {
         return itemClickListener;
     }
 
-    public void setItemClickListener(LoadMoreRecycleViewAdapter.OnItemClickListener itemClickListener) {
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 

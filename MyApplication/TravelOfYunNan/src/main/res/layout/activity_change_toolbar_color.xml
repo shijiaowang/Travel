@@ -50,7 +50,7 @@
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                         >
                         <TextView
-
+                            android:layout_marginTop="2dp"
                             android:id="@+id/tv_bar_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

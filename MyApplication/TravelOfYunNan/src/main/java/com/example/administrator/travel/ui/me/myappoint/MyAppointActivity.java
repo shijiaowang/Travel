@@ -38,19 +38,6 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
     private String preType=ENTERING;
 
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        mVsHeader.setLayoutResource(R.layout.activity_my_appoint_header);
-        mVsHeader.inflate();
-        RadioButton mTvEntering= (RadioButton) findViewById(R.id.tv_entering);
-        RadioButton mTvPassed= (RadioButton) findViewById(R.id.tv_passed);
-        RadioButton mTvWithMe = (RadioButton) findViewById(R.id.tv_with_me);
-        mTvEntering.setOnClickListener(this);
-        mTvEntering.setChecked(true);
-        mTvPassed.setOnClickListener(this);
-        mTvWithMe.setOnClickListener(this);
-        return this;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,6 +86,20 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
                 ToastUtils.showToast(myAppointEvent.getMessage());
                 break;
         }
+    }
+
+    @Override
+    protected void initEvent() {
+        super.initEvent();
+        mVsHeader.setLayoutResource(R.layout.activity_my_appoint_header);
+        mVsHeader.inflate();
+        RadioButton mTvEntering= (RadioButton) findViewById(R.id.tv_entering);
+        RadioButton mTvPassed= (RadioButton) findViewById(R.id.tv_passed);
+        RadioButton mTvWithMe = (RadioButton) findViewById(R.id.tv_with_me);
+        mTvEntering.setOnClickListener(this);
+        mTvEntering.setChecked(true);
+        mTvPassed.setOnClickListener(this);
+        mTvWithMe.setOnClickListener(this);
     }
 
     /**

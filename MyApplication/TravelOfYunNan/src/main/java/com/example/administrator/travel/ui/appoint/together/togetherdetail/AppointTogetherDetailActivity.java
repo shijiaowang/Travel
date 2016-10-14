@@ -125,10 +125,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     private int payStatus=-1;
 
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
+
 
     @Override
     protected void initEvent() {

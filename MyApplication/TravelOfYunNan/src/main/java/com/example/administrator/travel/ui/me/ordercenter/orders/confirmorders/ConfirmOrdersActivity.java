@@ -253,10 +253,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     }
 
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
+
     @Override
     protected String initTitle() {
         return "确认订单";

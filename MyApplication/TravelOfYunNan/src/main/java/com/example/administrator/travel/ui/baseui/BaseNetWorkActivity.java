@@ -26,16 +26,11 @@ import butterknife.OnClick;
 
 public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolBarActivity {
     private boolean isFirstInflate =true;
-    private Activity activity;
-
     @Override
     protected void initOptions() {
         initEvent();
         mIvPageError.setOnClickListener(new ErrorPageClickListener());
-        activity = initDataAndRegisterEventBus();
-        if (activity !=null){
-            registerEventBus(activity);
-        }
+        registerEventBus(this);
         setIsProgress(true,true);//初次加载隐藏其他布局
         onLoad(TYPE_REFRESH);
 
@@ -66,10 +61,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
     }
 
 
-    /**
-     * 初始化数据
-     */
-    protected abstract Activity initDataAndRegisterEventBus();
+
     /**
      * 初始化监听
      */
@@ -141,9 +133,8 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (activity!=null){
-            unregisterEventBus(activity);
-        }
+        unregisterEventBus(this);
+
     }
 
     /**

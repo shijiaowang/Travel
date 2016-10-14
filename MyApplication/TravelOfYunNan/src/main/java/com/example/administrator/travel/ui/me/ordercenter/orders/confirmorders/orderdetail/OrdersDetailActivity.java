@@ -38,10 +38,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
         return R.layout.activity_orders_detail;
     }
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
+
 
     @Override
     protected String initTitle() {

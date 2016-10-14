@@ -65,10 +65,6 @@ public abstract class BaseXListViewActivity<T extends HttpEvent, E extends Paren
         return R.layout.activity_xlistview_common;
     }
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
 
     @Override
     protected void initEvent() {

@@ -71,7 +71,7 @@ public class CatOtherUserAlbumActivity extends BaseChangeColorRecycleActivity<Ca
             case TYPE_REFRESH:
                 CatOtherUserBean catOtherUserBean = GsonUtils.getObject(catOtherUserEvent.getResult(), CatOtherUserBean.class);
                 CatOtherUserBean.DataBean.HeadBean head = catOtherUserBean.getData().getHead();
-                FrescoUtils.displayNormal(ivCover,head.getCover_img());
+                FrescoUtils.displayNormal(ivCover,head.getBackground_img());
                 tvUser.setText(head.getTitle());
                 tvTitle.setText(head.getContent());
                 break;

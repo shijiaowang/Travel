@@ -38,10 +38,7 @@ public class RelateMeActivity extends BaseNetWorkActivity<RelateMeEvent> impleme
     @BindView(R.id.bv_number_zan) BadgeView mBvNumberZan;
 
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
+
 
     @Override
     protected void initEvent() {

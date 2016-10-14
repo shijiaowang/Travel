@@ -43,10 +43,7 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
     private MemberJoinedAdapter memberJoinedAdapter;
 
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
+
 
     @Override
     protected void initEvent() {

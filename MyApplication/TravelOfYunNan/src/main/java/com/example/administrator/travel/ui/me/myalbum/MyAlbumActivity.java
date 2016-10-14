@@ -50,10 +50,7 @@ public class MyAlbumActivity extends BaseRecycleViewActivity<MyAlbumEvent,MyAlbu
 
     }
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
+
     @Override
     protected String initTitle() {
         return "我的相册";

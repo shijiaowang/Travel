@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by Administrator on 2016/7/7 0007.
+ * Created by wangyang on 2016/7/7 0007.
  * 修改recycleview孩子之间的间距
  */
 public class SpaceItemDecoration extends RecyclerView.ItemDecoration {

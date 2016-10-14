@@ -40,10 +40,7 @@ public class MessageCenterActivity extends BaseNetWorkActivity<MessageCenterEven
 
 
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
+
 
     @Override
     protected void initEvent() {

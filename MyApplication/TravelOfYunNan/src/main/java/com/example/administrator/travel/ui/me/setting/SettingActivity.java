@@ -127,6 +127,7 @@ public class SettingActivity extends BaseCropPhotoActivity<SettingEvent> impleme
                 startActivity(new Intent(this, PersonalProfileActivity.class));
                 break;
             case R.id.ll_logout:
+                EMClient.getInstance().logout(true);
                 ShareUtil.putString(this, IVariable.SAVE_NAME, "");
                 ShareUtil.putString(this, IVariable.SAVE_PWD, "");
                 startActivity(new Intent(this, SplashActivity.class));

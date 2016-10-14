@@ -8,12 +8,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/EaseUI" />
             <option value="$PROJECT_DIR$/TravelOfYunNan" />
             <option value="$PROJECT_DIR$/fresco" />
             <option value="$PROJECT_DIR$/payDemoActivity_20" />
             <option value="$PROJECT_DIR$/pickerview" />
-            <option value="$PROJECT_DIR$/sample" />
-            <option value="$PROJECT_DIR$/sampleUcrop" />
+            <option value="$PROJECT_DIR$/redpacketlibrary" />
             <option value="$PROJECT_DIR$/ucrop" />
           </set>
         </option>

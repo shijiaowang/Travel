@@ -58,10 +58,6 @@ public class IdAuthActivity extends BaseCropPictureActivity<AuthCommonEvent> imp
 
 
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
 
     @Override
     protected void initEvent() {

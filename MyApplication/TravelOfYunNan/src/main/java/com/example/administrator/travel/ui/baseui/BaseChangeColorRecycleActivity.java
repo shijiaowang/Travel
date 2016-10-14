@@ -92,7 +92,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
             linearLayoutManager.setAutoMeasureEnabled(true);
             mRvCommon.setLayoutManager(linearLayoutManager);
             mRvCommon.setItemAnimator(new DefaultItemAnimator());
-            mAdapter.setItemClickListener(new LoadMoreRecycleViewAdapter.OnItemClickListener() {
+            mAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
                         onChildItemClick(mDatas.get(position));

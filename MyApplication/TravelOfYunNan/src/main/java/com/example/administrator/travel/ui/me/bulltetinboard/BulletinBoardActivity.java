@@ -18,10 +18,7 @@ public class BulletinBoardActivity extends BaseRecycleViewActivity<BulletinBoard
 
 
 
-    @Override
-    protected Activity initDataAndRegisterEventBus() {
-        return this;
-    }
+
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         tId = getIntent().getStringExtra(IVariable.DATA);

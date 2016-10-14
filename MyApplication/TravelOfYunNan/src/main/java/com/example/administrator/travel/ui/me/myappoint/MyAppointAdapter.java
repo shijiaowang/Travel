@@ -10,6 +10,7 @@ import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.me.bulltetinboard.BulletinBoardActivity;
+import com.example.administrator.travel.ui.me.myappoint.chat.chatsetting.ChatSettingActivity;
 import com.example.administrator.travel.ui.me.myappoint.memberdetail.MemberDetailActivity;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWithMeSelectActivity;
@@ -76,6 +77,12 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
                     Intent intent = new Intent(mContext, BulletinBoardActivity.class);
                     intent.putExtra(IVariable.DATA, id);
                     mContext.startActivity(intent);
+                }
+            });
+            myAppointTogetherHolder.mBtChat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ChatSettingActivity.start(mContext,item1.getId());
                 }
             });
             myAppointTogetherHolder.mBtStart.setOnClickListener(new View.OnClickListener() {
