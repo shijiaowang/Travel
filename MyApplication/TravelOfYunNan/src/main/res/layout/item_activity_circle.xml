@@ -77,6 +77,7 @@
        android:layout_height="wrap_content">
 
    </android.support.v7.widget.RecyclerView>
+
     <LinearLayout
         android:gravity="center_vertical"
         android:layout_marginTop="20dp"
@@ -119,6 +120,7 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
     <View
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"

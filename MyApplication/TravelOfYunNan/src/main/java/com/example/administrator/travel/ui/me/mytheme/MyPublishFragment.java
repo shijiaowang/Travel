@@ -19,30 +19,12 @@ import butterknife.BindView;
  */
 public class MyPublishFragment extends LoadAndPullBaseFragment<MyPublishEvent,MyPublishBean,MyPublishBean.DataBean> {
 
-    @BindView(R.id.lv_theme) XListView mLvTheme;
-    @Override
-    protected int initResLayout() {
-        return R.layout.fragment_my_theme;
-    }
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
-
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return MyPublishEvent.class;
-    }
 
     @Override
     protected TravelBaseAdapter initAdapter(List<MyPublishBean.DataBean> httpData) {
         return new ThemeCommonAdapter(getContext(),httpData);
     }
 
-    @Override
-    public XListView setXListView() {
-        return mLvTheme;
-    }
     @Override
     protected String initUrl() {
         return IVariable.THEME_MY_PUBLISH;

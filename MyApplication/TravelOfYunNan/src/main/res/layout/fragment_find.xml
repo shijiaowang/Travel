@@ -21,7 +21,7 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -32,13 +32,13 @@
             android:orientation="vertical">
 
 
-            <ImageView
+            <android.support.v4.view.ViewPager
                 android:id="@+id/vp_find"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/fragment_find_bg_test">
+                >
 
-            </ImageView>
+            </android.support.v4.view.ViewPager>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -152,18 +152,16 @@
                 android:textColor="#323232"
                 android:textSize="13sp" />
 
-            <com.example.administrator.travel.ui.view.ToShowAllGridView
-                android:id="@+id/gv_recommend"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center_horizontal"
-                android:horizontalSpacing="5dp"
-                android:numColumns="2"
-                android:verticalSpacing="5dp">
+              >
 
-            </com.example.administrator.travel.ui.view.ToShowAllGridView>
+            </android.support.v7.widget.RecyclerView>
 
 
             <TextView
@@ -178,15 +176,15 @@
                 android:textColor="#323232"
                 android:textSize="13sp" />
 
-            <com.example.administrator.travel.ui.view.ToShowAllListView
-                android:id="@+id/lv_hot"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_hot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:divider="@null"
-                android:dividerHeight="10dp">
+                android:overScrollMode="never"
+                >
 
-            </com.example.administrator.travel.ui.view.ToShowAllListView>
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

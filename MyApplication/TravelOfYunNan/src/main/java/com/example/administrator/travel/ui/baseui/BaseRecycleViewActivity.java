@@ -23,6 +23,7 @@ import com.example.administrator.travel.utils.MapUtils;
 import org.xutils.common.util.DensityUtil;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     protected RecyclerView mRvCommon;
     protected SwipeToLoadLayout mSwipe;
     protected ViewStub mVsContent;
+    protected ViewStub mVsFooter;
 
     public List<F> getmDatas() {
         return mDatas;
@@ -55,6 +57,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     protected void initEvent() {
         mRvCommon = (RecyclerView) findViewById(R.id.swipe_target);
         mVsContent= (ViewStub) findViewById(R.id.vs_content);
+        mVsFooter = (ViewStub) findViewById(R.id.vs_footer);
         changeMargin(10);
         mRvCommon.addItemDecoration(new MyWitheMeDecoration(childDistance()));
         mSwipe = (SwipeToLoadLayout) findViewById(R.id.swipe_container);
@@ -102,7 +105,12 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         } else {
             parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
         }
-        List<F> loadDatas = (List<F>) parentBean.getData();
+        List<F> loadDatas=new ArrayList<>();
+        if (isChangeData()){
+            childChangeData(loadDatas,(E)parentBean,t);
+        }else {
+            loadDatas  = (List<F>) parentBean.getData();
+        }
         if (parentBean==null || loadDatas==null || loadDatas.size()==0)return;
         if (mAdapter == null) {
             mDatas = loadDatas;
@@ -131,6 +139,18 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         } else {
             doOtherSuccessData(t);
         }
+
+    }
+
+    /**
+     * 是否修改获得的数据
+     * @return
+     */
+    protected boolean isChangeData() {
+        return false;
+    }
+
+    protected  void childChangeData(List<F> loadDatas, E parentBean, T t){
 
     }
 

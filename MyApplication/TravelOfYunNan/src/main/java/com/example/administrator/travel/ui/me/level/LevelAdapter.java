@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 
 import java.util.List;
@@ -25,20 +26,15 @@ public class LevelAdapter extends BaseRecycleViewAdapter<LevelUserBean.DataBean.
         super(mDatas, mContext);
     }
 
-    @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, int position, LevelUserBean.DataBean.LevelBean t) {
-        LevelHolder levelHolder = (LevelHolder) holder;
-        levelHolder.tvLevel.setText("Lv."+t.getId());
-        levelHolder.tvExpress.setText(t.getContent());
-    }
+
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_level, parent, false);
         return new LevelHolder(inflate);
     }
 
-     class LevelHolder extends BaseRecycleViewHolder {
+     class LevelHolder extends BaseRecycleViewHolder<LevelUserBean.DataBean.LevelBean> {
         @BindView(R.id.tv_level)
         TextView tvLevel;
         @BindView(R.id.tv_express)
@@ -47,6 +43,12 @@ public class LevelAdapter extends BaseRecycleViewAdapter<LevelUserBean.DataBean.
 
          public LevelHolder(View itemView) {
              super(itemView);
+         }
+
+         @Override
+         public void childBindView(int position, LevelUserBean.DataBean.LevelBean t, Context mContext) {
+             tvLevel.setText("Lv."+t.getId());
+             tvExpress.setText(t.getContent());
          }
      }
 }

@@ -24,6 +24,7 @@ import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -120,11 +121,15 @@ public class SettingTitleActivity extends LoadingBarBaseActivity<AddTitleEvent> 
             public void onClick(View v) {
                 StringBuffer sb=new StringBuffer("");
                 for (SettingTitle settingTitle:settingTitles){
-                    sb.append(settingTitle.getTitle());
+                    sb.append(settingTitle.getTitle()+",");
                 }
                 JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
                 try {
-                    basecJsonObject.put(IVariable.LABEL,sb.toString());
+                    String label = sb.toString();
+                    if (!StringUtils.isEmpty(label)){
+                         label.substring(label.length()-1,label.length());
+                    }
+                    basecJsonObject.put(IVariable.LABEL,label);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

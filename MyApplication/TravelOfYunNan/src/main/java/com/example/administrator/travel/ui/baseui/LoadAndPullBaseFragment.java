@@ -1,8 +1,11 @@
 package com.example.administrator.travel.ui.baseui;
 
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 
+import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.ParentBean;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
@@ -11,13 +14,15 @@ import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
-import com.example.administrator.travel.utils.XEventUtils;
+
+import org.xutils.common.util.DensityUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-import java.util.Map;
+
+import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/9/30 0030.
@@ -25,7 +30,8 @@ import java.util.Map;
 
 public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends ParentBean, F> extends LoadBaseFragment<T> {
 
-    private XListView mXListView;
+    @BindView(R.id.lv_circle_hot)public XListView mXListView;
+    @BindView(R.id.vs_content)public ViewStub mVsContent;
     public int count = 0;
 
     public List<F> getmDatas() {
@@ -38,14 +44,16 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
 
     protected List<F> mDatas;//从网络获取的数据
     protected TravelBaseAdapter adapter;
-
-
-    public abstract XListView setXListView();
+    @Override
+    protected int initResLayout() {
+        return R.layout.fragment_common_xlist;
+    }
 
     @Override
     protected void initListener() {
-        mXListView= setXListView();
         initXListView(mXListView,canPull(),canLoad());
+        changeMarginTop(0);
+        setXListViewChildSpace(0);
         if (mXListView!=null){
             mXListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -59,6 +67,17 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
             });
         }
     }
+
+    protected void setXListViewChildSpace(int i) {
+        mXListView.setDividerHeight(DensityUtil.dip2px(i));
+    }
+
+    protected void changeMarginTop(int top) {
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mXListView.getLayoutParams();
+        layoutParams.topMargin= DensityUtil.dip2px(top);
+        mXListView.setLayoutParams(layoutParams);
+    }
+
     public void childOnItemClick(AdapterView<?> parent, View view, int position, long id) {
     }
 
@@ -105,38 +124,15 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
     }
 
 
-    /**
-     * 处理公共的网络参数请求
-     *
-     * @param type
-     */
     @Override
-    protected void onLoad(int type) {
+    protected void childAdd(MapUtils.Builder builder, int type) {
         count = type == TYPE_REFRESH ? 0 : getListSize(mDatas);
-        MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).addUserId().addPageSize().addCount(count);
-        childAdd(builder);
-        Map<String, String> end = builder.end();
-        XEventUtils.getUseCommonBackJson(initUrl(), end, type, getTInstance());
-        LogUtils.e("发起了一次请求"+count);
+        builder.addPageSize().addCount(count);
     }
-
-    /**
-     * 孩子需要添加的参数
-     *
-     * @param builder
-     */
-    protected void childAdd(MapUtils.Builder builder) {
-
-    }
-
-    protected abstract String initUrl();
 
     @Override
     public void onSuccess(T t) {
         LogUtils.e("loadFragment获取数据啦");
-        if (mXListView == null) {
-            mXListView=setXListView();
-        }
         loadEnd(mXListView);
         ParentBean e;
         if (isUserChild()) {//使用孩子的
@@ -148,9 +144,6 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
         if (adapter == null) {
             mDatas = (List<F>) e.getData();
             adapter = initAdapter(mDatas);
-            if (mXListView == null) {
-                mXListView=setXListView();
-            }
             mXListView.setAdapter(adapter);
         } else if (t.getType() == TYPE_LOAD) {
             mDatas.addAll((List<F>) e.getData());
@@ -196,9 +189,6 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
     @Override
     protected void onFail(T event) {
         super.onFail(event);
-        if (mXListView == null) {
-            mXListView=setXListView();
-        }
         loadEnd(mXListView);
     }
 }

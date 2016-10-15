@@ -22,6 +22,7 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class PictureSelectorActivity extends BarBaseActivity implements View.OnC
     private ImageFolder mFolder;
     private List<String> mImages;
     private PictureSelectorAdapter adapter;
+    private List<String> mSelectImages=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,11 +177,12 @@ public class PictureSelectorActivity extends BarBaseActivity implements View.OnC
         if (GlobalValue.mSelectImages == null || GlobalValue.mSelectImages.size() == 0) {
             ToastUtils.showToast("对不起，你尚未选中任何图片");
         } else {
+            mSelectImages.clear();
+            mSelectImages.addAll(GlobalValue.mSelectImages);
             UpPhotoEvent upPhotoEvent=new UpPhotoEvent();
-            upPhotoEvent.setList(GlobalValue.mSelectImages);
+            upPhotoEvent.setList(mSelectImages);
             EventBus.getDefault().post(upPhotoEvent);
             setResult(AlbumSelectorActivity.SEND_PICTURE);
-            GlobalValue.mSelectImages = null;
             finish();
         }
     }

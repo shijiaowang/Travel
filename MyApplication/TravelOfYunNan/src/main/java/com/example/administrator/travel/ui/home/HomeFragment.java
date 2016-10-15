@@ -26,6 +26,7 @@ import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.fragment.homefragment.HomeActiveFragment;
 import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
+import com.example.administrator.travel.utils.MapUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,15 +58,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         return R.layout.fragment_home;
     }
 
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
 
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return HomeEvent.class;
-    }
 
     @Override
     public void onSuccess(HomeEvent event) {
@@ -99,6 +92,16 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     protected void onLoad(int type) {
         setState(LoadingPage.ResultState.STATE_SUCCESS);
         iniData();
+    }
+
+    @Override
+    protected String initUrl() {
+        return null;
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
     }
 
     protected void iniData() {

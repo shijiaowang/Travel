@@ -5,12 +5,15 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.me.myhobby.LabelTitleBean;
 import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
@@ -28,42 +31,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/9/7 0007.
  * 称号管理
  */
-public class TitleManagementActivity extends LoadingBarBaseActivity<TitleManagementEvent> {
+public class TitleManagementActivity extends BaseNetWorkActivity<TitleManagementEvent> {
     public static final int ADD_TITLE=0;
     public static final int REMOVE_TITLE=1;
     private List<Fragment> fragments=new ArrayList<>();
     private String[] mTitles;
-    @ViewInject(R.id.vp_pager)
-    private ViewPager mVpPager;
-    @ViewInject(R.id.tl_title)
-    private TabLayout mTlTitle;
-    @ViewInject(R.id.fl_title)
-    private FlowLayout mFlTitle;
+    @BindView(R.id.vp_pager) ViewPager mVpPager;
+    @BindView(R.id.tl_title) TabLayout mTlTitle;
+    @BindView(R.id.fl_title) FlowLayout mFlTitle;
     private List<UserLabelBean> userLabel=new ArrayList<>(5);
     private LayoutInflater inflater;
-    private TextView mTvRight;
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_title_management;
-    }
 
     @Override
     protected void initEvent() {
-        mTvRight = getmTvRightIcon();
-        mTvRight.setText("保存");
-        mTvRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveLabel();
-            }
-        });
         inflater = LayoutInflater.from(this);
+    }
 
+
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        saveLabel();
     }
 
     /**
@@ -92,22 +86,23 @@ public class TitleManagementActivity extends LoadingBarBaseActivity<TitleManagem
         return stringBuffer.toString();
     }
 
-
     @Override
-    protected void onLoad(int type) {
-        Map<String, String> titleMap = MapUtils.Build().addKey(this).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.TITLE_LIST,titleMap,TYPE_LOAD,new TitleManagementEvent());
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
     }
 
     @Override
-    protected Activity initViewData() {
-        return this;
+    protected String initRightText() {
+        return "保存";
     }
 
+
+
     @Override
-    protected String setTitleName() {
-        return "称号管理";
+    protected String initUrl() {
+        return IVariable.TITLE_LIST;
     }
+
     @Subscribe
     public void onEvent(TitleChangeEvent event){
         if (event.getType()==ADD_TITLE){
@@ -196,15 +191,12 @@ public class TitleManagementActivity extends LoadingBarBaseActivity<TitleManagem
         mFlTitle.addView(inflate);
     }
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
     @Override
     protected void onSuccess(TitleManagementEvent titleManagementEvent) {
         if (titleManagementEvent.getType()==TYPE_SAVE){
             ToastUtils.showToast(titleManagementEvent.getMessage());
+            finish();
         }else {
             dealData(titleManagementEvent);
         }
@@ -219,5 +211,15 @@ public class TitleManagementActivity extends LoadingBarBaseActivity<TitleManagem
     protected void onDestroy() {
         super.onDestroy();
         GlobalValue.count=0;
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_title_management;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "称号管理";
     }
 }

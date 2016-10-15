@@ -106,15 +106,6 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         return R.layout.fragment_me;
     }
 
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
-
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return MeEvent.class;
-    }
 
     @Override
     protected void initListener() {
@@ -155,9 +146,15 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         }
     }
 
+
     @Override
-    protected void onLoad(int type) {
-        refreshUserInfo(type);
+    protected String initUrl() {
+        return IVariable.UPDATE_ME_MESSAGE;
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
     }
 
     @Override
@@ -307,14 +304,11 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
        @Override
        public void onRefresh() {
-           refreshUserInfo(TYPE_REFRESH_BY_USER);
+         onLoad(TYPE_REFRESH);
        }
    }
 
-    private void refreshUserInfo(int type) {
-        Map<String, String> end = MapUtils.Build().addKey(getContext()).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.UPDATE_ME_MESSAGE,end,type,new MeEvent());
-    }
+
 
     @Override
     protected void childViewShow(String s) {

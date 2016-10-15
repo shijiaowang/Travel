@@ -7,11 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.adapter.SpaceItemDecoration;
-import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
-import com.example.administrator.travel.ui.view.ToShowAllListView;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
@@ -27,28 +25,36 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/11 0011.
  * 帖子头部
  */
-public class PostOpHolder extends BaseHolder<Object> {
-    @BindView(R.id.iv_icon) SimpleDraweeView mIvUserIcon;
-    @BindView(R.id.tv_nick_name) TextView mTvNickName;
-    @BindView(R.id.tv_time) TextView mTvTime;
-    @BindView(R.id.tv_type)TextView mTvType;
-    @BindView(R.id.tv_content) TextView mTvContent;
-    @BindView(R.id.rv_post_image) RecyclerView mRvPostImage;
-    @BindView(R.id.fitv_like) FontsIconTextView mFitvLike;
-    @BindView(R.id.tv_like_user) TextView mTvLikeUser;
-    @BindView(R.id.tv_discuss_count) TextView mTvDiscussCount;
+ class PostOpHolder extends BaseRecycleViewHolder {
 
-    private boolean isFirst = true;
-    private PostDetailBean.DataBean.ForumBean forum;
-
-    public PostOpHolder(Context context) {
-        super(context);
+    @BindView(R.id.iv_icon)
+    SimpleDraweeView mIvUserIcon;
+    @BindView(R.id.tv_nick_name)
+    TextView mTvNickName;
+    @BindView(R.id.tv_time)
+    TextView mTvTime;
+    @BindView(R.id.tv_type)
+    TextView mTvType;
+    @BindView(R.id.tv_content)
+    TextView mTvContent;
+    @BindView(R.id.rv_post_image)
+    RecyclerView mRvPostImage;
+    @BindView(R.id.fitv_like)
+    FontsIconTextView mFitvLike;
+    @BindView(R.id.tv_like_user)
+    TextView mTvLikeUser;
+    @BindView(R.id.tv_discuss_count)
+    TextView mTvDiscussCount;
+    private boolean isFirst=true;
+    public PostOpHolder(View itemView) {
+        super(itemView);
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext, int position) {
-        if (datas instanceof PostDetailBean.DataBean.ForumBean) {
-            forum = (PostDetailBean.DataBean.ForumBean) datas;
+    public void childBindView(int position, Object data, Context mContext) {
+        PostDetailBean.DataBean.ForumBean  forum;
+        if (data instanceof PostDetailBean.DataBean.ForumBean) {
+            forum = (PostDetailBean.DataBean.ForumBean) data;
         } else {
             return;
         }
@@ -89,11 +95,5 @@ public class PostOpHolder extends BaseHolder<Object> {
         mTvDiscussCount.setText("评论("+forum.getReplay_count()+")");
         mFitvLike.setTextColor(isLike ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
 
-    }
-
-
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_activity_post_op);
     }
 }

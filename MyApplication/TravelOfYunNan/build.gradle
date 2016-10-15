@@ -9,9 +9,10 @@ android {
     defaultConfig {
         applicationId "com.yunspeak.travel"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+
     }
     buildTypes {
         release {
@@ -19,13 +20,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            // 设置Jni so文件路径 如果有jniLibs目录就不需要设置，好像手动创建的 jniLibs目录无效
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
 }
+
 buildscript {
     repositories {
         jcenter()
 
     }
 }
+
+
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':pickerview')
@@ -43,9 +55,9 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.google.android:flexbox:0.2.3'
     compile 'com.xwray:passwordview:1.0'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.Aspsine:SwipeToLoadLayout:1.0.3'
     compile 'com.facebook.fresco:fresco:0.14.1'
     compile files('libs/alipaySdk-20160825.jar')
     compile files('libs/hyphenatechat_3.1.5.jar')
+
 }

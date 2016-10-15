@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -29,32 +30,13 @@ public class OtherAlbumAdapter extends BaseRecycleViewAdapter<OtherAlbumBean.Dat
         inflater = LayoutInflater.from(mContext);
     }
 
-    @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, int position, OtherAlbumBean.DataBean.MoreBean t) {
-        AlbumHolder albumHolder = (AlbumHolder) holder;
-        OtherAlbumBean.DataBean.MoreBean moreBean = mDatas.get(position);
-        FrescoUtils.displayNormal(albumHolder.ivCover,moreBean.getCover_img());
-        albumHolder.tvName.setText(moreBean.getTitle());
-        albumHolder.tvWatchNumber.setText(moreBean.getBrowse());
-    }
 
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = inflater.inflate(R.layout.item_fragment_album_in_other, null);
         return new AlbumHolder(inflate);
     }
 
-    class AlbumHolder extends BaseRecycleViewHolder {
-        @BindView(R.id.iv_cover)
-        SimpleDraweeView ivCover;
-        @BindView(R.id.tv_name)
-        TextView tvName;
-        @BindView(R.id.tv_watch_number)
-        TextView tvWatchNumber;
 
-        public AlbumHolder(View itemView) {
-            super(itemView);
-        }
-    }
 }

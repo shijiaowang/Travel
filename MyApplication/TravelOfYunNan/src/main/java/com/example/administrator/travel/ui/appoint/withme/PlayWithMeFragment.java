@@ -24,43 +24,19 @@ import butterknife.BindView;
  */
 public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEvent,AppointWithMeBean,AppointWithMeBean.DataBean> implements XListView.IXListViewListener {
 
-    @BindView(R.id.lv_play_with_me)
-    XListView mPlayWithMe;
 
-    @Override
-    protected int initResLayout() {
-        return R.layout.fragment_appoint_play_with_me;
-    }
-
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
-
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return AppointWithMeEvent.class;
-    }
     @Override
     protected TravelBaseAdapter initAdapter(List<AppointWithMeBean.DataBean> httpData) {
         return new AppointWithMeAdapter(getContext(), httpData);
     }
 
-    @Override
-    protected void onFail(AppointWithMeEvent event) {
-        super.onFail(event);
-        loadEnd(mPlayWithMe);
-    }
 
-    @Override
-    public XListView setXListView() {
-        return mPlayWithMe;
-    }
 
     @Override
     protected void initListener() {
-        initXListView(mPlayWithMe, true, true);
-        mPlayWithMe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       super.initListener();
+        setXListViewChildSpace(5);
+        mXListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), AppointWithMeDetailActivity.class);

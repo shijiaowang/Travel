@@ -52,10 +52,16 @@ public class MyOrdersHolder extends BaseHolder<MyOrdersBean.DataBean> {
         String status = datas.getStatus();
         if (status.equals("1")){
             status="已支付";
+            mBPay.setVisibility(View.GONE);
+            mTvCancel.setVisibility(View.VISIBLE);
         }else if (status.equals("2")){
             status="已取消";
+            mBPay.setVisibility(View.GONE);
+            mTvCancel.setVisibility(View.GONE);
         }else {
             status="未支付";
+            mBPay.setVisibility(View.VISIBLE);
+            mTvCancel.setVisibility(View.VISIBLE);
         }
         mTvStatus.setText(status);
     }

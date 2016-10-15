@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.utils.FormatDateUtils;
 
@@ -27,23 +28,13 @@ public class BulletinBoardAdapter extends BaseRecycleViewAdapter<BulletinBoardBe
     }
 
 
-    @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, int position, BulletinBoardBean.DataBean t) {
-        BulletinBoardHolder bulletinBoardHolder = (BulletinBoardHolder) holder;
-        BulletinBoardBean.DataBean datas = mDatas.get(position);
-        bulletinBoardHolder.mTvTop.setVisibility(datas.getIs_top().equals(IVariable.TRUE)?View.VISIBLE:View.GONE);
-        bulletinBoardHolder.mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm:ss",datas.getAdd_time()));
-        bulletinBoardHolder.mTvContent.setText(datas.getContent());
-        bulletinBoardHolder.mTvTitle.setText(datas.getTitle());
-        bulletinBoardHolder.mVDot.setVisibility(datas.getIs_top().equals(IVariable.TRUE)?View.GONE:View.VISIBLE);
-    }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_bulletin_board, parent, false);
         return new BulletinBoardHolder(inflate);
     }
-    class BulletinBoardHolder extends BaseRecycleViewHolder{
+    class BulletinBoardHolder extends BaseRecycleViewHolder<BulletinBoardBean.DataBean> {
         @BindView(R.id.tv_top) TextView mTvTop;
         @BindView(R.id.tv_title) TextView mTvTitle;
         @BindView(R.id.tv_content) TextView mTvContent;
@@ -51,6 +42,16 @@ public class BulletinBoardAdapter extends BaseRecycleViewAdapter<BulletinBoardBe
         @BindView(R.id.v_dot) View mVDot;
         public BulletinBoardHolder(View itemView) {
             super(itemView);
+        }
+
+        @Override
+        public void childBindView(int position, BulletinBoardBean.DataBean datas, Context mContext) {
+
+            mTvTop.setVisibility(datas.getIs_top().equals(IVariable.TRUE)?View.VISIBLE:View.GONE);
+            mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm:ss",datas.getAdd_time()));
+            mTvContent.setText(datas.getContent());
+            mTvTitle.setText(datas.getTitle());
+            mVDot.setVisibility(datas.getIs_top().equals(IVariable.TRUE)?View.GONE:View.VISIBLE);
         }
     }
 }

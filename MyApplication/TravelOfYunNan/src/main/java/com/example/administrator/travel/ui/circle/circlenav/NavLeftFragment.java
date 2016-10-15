@@ -32,7 +32,7 @@ import butterknife.BindView;
 
 
 /**
- * Created by Administrator on 2016/7/7 0007.
+ * Created by wangyang on 2016/7/7 0007.
  */
 public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
     @BindView(R.id.lv_left_nav)  ListView mLvLeftNav;
@@ -55,21 +55,11 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
     }
 
 
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
-
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return NavLeftEvent.class;
-    }
 
     private void firstReq() {
         Map<String, String> map = MapUtils.Build().addKey(getContext()).addUserId().end();
         useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ,new NavLeftEvent());
     }
-
 
 
     @Override
@@ -124,6 +114,16 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
         } else {
             normalReq(cid);
         }
+    }
+
+    @Override
+    protected String initUrl() {
+        return null;
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
     }
 
 

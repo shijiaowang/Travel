@@ -10,6 +10,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -349,5 +351,10 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         view.setFocusableInTouchMode(b);
         view.setFocusable(b);
     }
-
+   public void canSommthInNetScroll(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager){
+       linearLayoutManager.setSmoothScrollbarEnabled(true);
+       linearLayoutManager.setAutoMeasureEnabled(true);
+       recyclerView.setHasFixedSize(true);
+       recyclerView.setNestedScrollingEnabled(false);
+   }
 }

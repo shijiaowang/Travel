@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import android.util.Log;
 import android.view.View;
 
 import android.widget.LinearLayout;
@@ -25,7 +26,9 @@ import com.example.administrator.travel.ui.home.HomeFragment;
 import com.example.administrator.travel.ui.me.me.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.GlobalUtils;
+import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
+
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -36,8 +39,8 @@ import java.util.List;
  * 主页面
  */
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
-   public static final  int REQ=0;
-    public static final  int RESULT=1;
+    public static final int REQ = 0;
+    public static final int RESULT = 1;
     private List<GradientTextView> iconFonts = new ArrayList<>(5);
     private List<TextView> iconNames = new ArrayList<>(5);
     @ViewInject(R.id.vp_home)
@@ -80,19 +83,19 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initHXListener();
+        //initHXListener();
     }
 
     /**
      * 户厕环信监听
      */
     private void initHXListener() {
-        EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(),GlobalUtils.getUserInfo().getPwd(),new EMCallBack() {//回调
+       /* EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {//回调
             @Override
             public void onSuccess() {
                 EMClient.getInstance().groupManager().loadAllGroups();
                 EMClient.getInstance().chatManager().loadAllConversations();
-                Log.d("main", "登录聊天服务器成功！");
+                LogUtils.e("登录聊天服务器成功！");
             }
 
             @Override
@@ -102,38 +105,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onError(int code, String message) {
-                Log.d("main", "登录聊天服务器失败！");
+                LogUtils.e(message);
             }
         });
         //注册一个监听连接状态的listener
-        EMClient.getInstance().addConnectionListener(new MyConnectionListener());
-
-          //实现ConnectionListener接口
-        private class MyConnectionListener implements EMConnectionListener {
-            @Override
-            public void onConnected() {
-            }
-            @Override
-            public void onDisconnected(final int error) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(error == EMError.USER_REMOVED){
-                            // 显示帐号已经被移除
-                        }else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
-                            // 显示帐号在其他设备登录
-                        } else {
-                            if (NetUtils.hasNetwork(MainActivity.this)){
-
-                            }
-                            //连接不到聊天服务器
-                            else
-                            //当前网络不可用，请检查网络设置
-                        }
-                    }
-                });
-            }
-        }
+        EMClient.getInstance().addConnectionListener(new MyConnectionListener());*/
     }
 
     public LinearLayout getmLlBottom() {
@@ -144,6 +120,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected int initLayoutRes() {
         return R.layout.activity_home;
     }
+
     @Override
     protected void initView() {
         iconFonts.add(mTvHomeIconFonts);
@@ -158,6 +135,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         iconNames.add(mTvMeName);
 
     }
+
     @Override
     protected void initListener() {
         mLlAppointClick.setOnClickListener(this);
@@ -182,8 +160,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             }
         });
     }
+
     @Override
-     protected void initData() {
+    protected void initData() {
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
         fragments.add(new AppointFragment());
@@ -256,6 +235,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     /**
      * 根据viewpager切换的位置设置选中button
+     *
      * @param position
      */
     private void setCheckedOfPosition(int position) {
@@ -298,4 +278,35 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             return fragments.size();
         }
     }
+
+   /* //实现ConnectionListener接口
+    class MyConnectionListener implements EMConnectionListener {
+        @Override
+        public void onConnected() {
+        }
+
+        @Override
+        public void onDisconnected(final int error) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (error == EMError.USER_REMOVED) {
+                        // 显示帐号已经被移除
+                    } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
+                        // 显示帐号在其他设备登录
+                    } else {
+                        if (NetUtils.hasNetwork(HomeActivity.this)) {
+
+                        }
+                        //连接不到聊天服务器
+                        else {
+                        }
+                    }
+                    //当前网络不可用，请检查网络设置
+                }
+            });
+        }}*/
+
 }
+
+

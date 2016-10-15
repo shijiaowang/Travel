@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.example.administrator.travel.utils.LogUtils;
+
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -14,7 +18,7 @@ import butterknife.ButterKnife;
  * Created by wangyang on 2016/10/8 0008.
  */
 
-public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<BaseRecycleViewHolder<T>> {
     public List<T> mDatas;
     public Context mContext;
 
@@ -30,21 +34,22 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
 
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final BaseRecycleViewHolder holder, int position) {
         try {
-            holder.itemView.setTag(position);
+            holder.itemView.setTag(mDatas.get(position));
             if (itemClickListener!=null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int tag = (int) holder.itemView.getTag();
+                        int tag = mDatas.indexOf(holder.itemView.getTag());
                         itemClickListener.onItemClick(tag);
                     }
                 });
             }
-            childBindView(holder,position,mDatas.get(position));
+            holder.childBindView(position,mDatas.get(position),mContext);
         } catch (Exception e) {
             e.printStackTrace();
+            LogUtils.e("抛异常啦");
         }
     }
     private OnItemClickListener itemClickListener;
@@ -61,16 +66,6 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
         void onItemClick(int position);
     }
 
-
-
-    protected abstract void childBindView(RecyclerView.ViewHolder holder, int position, T t);
-   protected   class BaseRecycleViewHolder  extends RecyclerView.ViewHolder{
-
-       public BaseRecycleViewHolder(View itemView) {
-           super(itemView);
-           ButterKnife.bind(this,itemView);
-       }
-   }
     @Override
     public int getItemCount() {
         return mDatas.size();

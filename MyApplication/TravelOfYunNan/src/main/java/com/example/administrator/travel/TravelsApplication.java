@@ -5,10 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Handler;
-
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMOptions;
+
 
 import org.xutils.x;
 
@@ -19,7 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/8 0008.
+ * Created by wangyang on 2016/7/8 0008.
  */
 public class TravelsApplication extends Application {
     private static Context mContext;
@@ -37,7 +35,7 @@ public class TravelsApplication extends Application {
         mContext = getApplicationContext();
         mHandler = new Handler();
         mainThreadId = android.os.Process.myTid();//获取主线程的id
-        EMOptions options = new EMOptions();
+       /* EMOptions options = new EMOptions();
         // 默认添加好友时，是不需要验证的，改成需要验证
         options.setAcceptInvitationAlways(false);
         //初始化
@@ -55,8 +53,11 @@ public class TravelsApplication extends Application {
             // 则此application::onCreate 是被service 调用的，直接返回
             return;
         }
-        EMClient.getInstance().init(this, options);
+        EMClient.getInstance().init(this, options);*/
+
     }
+
+
 
     private String getAppName(int pID) {
         String processName = null;

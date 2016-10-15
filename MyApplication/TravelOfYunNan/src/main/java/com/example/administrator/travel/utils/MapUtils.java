@@ -137,7 +137,7 @@ public class MapUtils {
             return this;
         }
         public Builder addLabel(String label){
-            stringMap.put(IVariable.TITLE,label);
+            stringMap.put(IVariable.LABEL,label);
             return this;
         }
         public Builder addFId(String fId){

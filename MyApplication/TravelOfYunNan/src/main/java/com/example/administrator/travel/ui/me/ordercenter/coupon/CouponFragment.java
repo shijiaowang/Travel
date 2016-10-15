@@ -20,29 +20,17 @@ import butterknife.BindView;
  * Created by wangyang on 2016/8/14.
  */
 public class CouponFragment extends LoadAndPullBaseFragment<CouponEvent, CouponDataBean, CouponBean> {
-    @BindView(R.id.bt_add) Button mBtAdd;
-    @BindView(R.id.lv_coupon) XListView mLvCoupon;
+
+
+    private Button mBtAdd;
 
     @Override
-    public XListView setXListView() {
-        return mLvCoupon;
+    protected void initListener() {
+        super.initListener();
+        mVsContent.setLayoutResource(R.layout.fragment_coupon);
+        mVsContent.inflate();
+        mBtAdd = (Button) inflate.findViewById(R.id.bt_add);
     }
-
-    @Override
-    protected int initResLayout() {
-        return R.layout.fragment_coupon;
-    }
-
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
-
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return CouponEvent.class;
-    }
-
 
     @Override
     protected String initUrl() {

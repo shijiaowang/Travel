@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
+import com.example.administrator.travel.ui.me.mytheme.MyPublishFragment;
 import com.example.administrator.travel.ui.me.ordercenter.coupon.CouponFragment;
 import com.example.administrator.travel.ui.me.ordercenter.orders.MyOrdersFragment;
 import com.example.administrator.travel.ui.view.SimpleViewPagerIndicator;
@@ -141,10 +142,9 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
             }
         });
         fragments = new ArrayList<>();
-        fragments.add(new CouponFragment());
-        fragments.add(new MyOrdersFragment());
-        //fragments.add(new MyOrdersFragment());
-
+        mVpOrders.setOffscreenPageLimit(3);
+        fragments.add(MyOrdersFragment.newInstance(MyOrdersFragment.RECENT_ORDERS));
+        fragments.add(MyOrdersFragment.newInstance(MyOrdersFragment.ALL_ORDERS));
         fragments.add(new CouponFragment());
         mVpOrders.setAdapter(new OrdersPagerAdapter(getSupportFragmentManager()));
     }

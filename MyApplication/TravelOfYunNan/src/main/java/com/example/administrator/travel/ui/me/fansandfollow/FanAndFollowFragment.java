@@ -30,8 +30,6 @@ import butterknife.BindView;
 public class FanAndFollowFragment extends LoadAndPullBaseFragment<FanAndFollowEvent,AiteBean,Follow> {
     private String type = "0";
     private int REQ_CODE = -1;
-    @BindView(R.id.lv_follow_fan)
-    XListView mLvFollowFan;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,15 +46,7 @@ public class FanAndFollowFragment extends LoadAndPullBaseFragment<FanAndFollowEv
         return R.layout.fragment_follow_and_fan;
     }
 
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
 
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return FanAndFollowEvent.class;
-    }
 
     @Override
     public void onSuccess(FanAndFollowEvent fanAndFollowEvent) {
@@ -69,11 +59,6 @@ public class FanAndFollowFragment extends LoadAndPullBaseFragment<FanAndFollowEv
     @Override
     protected TravelBaseAdapter initAdapter(List<Follow> httpData) {
         return new FanAdapter(getContext(),httpData);
-    }
-
-    @Override
-    public XListView setXListView() {
-        return mLvFollowFan;
     }
 
     /**

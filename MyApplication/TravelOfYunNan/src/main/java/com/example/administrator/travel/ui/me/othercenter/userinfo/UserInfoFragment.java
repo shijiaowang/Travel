@@ -64,15 +64,6 @@ public class UserInfoFragment extends LoadBaseFragment<UserInfoEvent> implements
         return R.layout.activity_other_information;
     }
 
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
-
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return UserInfoEvent.class;
-    }
 
     @Override
     public void onSuccess(UserInfoEvent userInfoEvent) {
@@ -111,12 +102,17 @@ public class UserInfoFragment extends LoadBaseFragment<UserInfoEvent> implements
 
     }
 
+
+
     @Override
-    protected void onLoad(int type) {
-        Map<String, String> userInfoMap = MapUtils.Build().addKey(getContext()).addMyId().add(IVariable.USER_ID, userId).addType("3").end();
-        XEventUtils.postUseCommonBackJson(IVariable.OTHER_USER_INFO, userInfoMap, 0, new UserInfoEvent());
+    protected String initUrl() {
+        return IVariable.OTHER_USER_INFO;
     }
 
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+          builder.add(IVariable.USER_ID,userId).addType("3");
+    }
 
 
     @Override

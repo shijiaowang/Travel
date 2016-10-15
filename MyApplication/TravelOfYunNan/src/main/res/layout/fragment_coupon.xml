@@ -36,15 +36,4 @@
         android:background="@color/meLine"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
-    <com.example.administrator.travel.ui.view.refreshview.XListView
-        android:id="@+id/lv_coupon"
-        style="@style/commonListViewStyle"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
-        android:dividerHeight="0dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.example.administrator.travel.ui.view.refreshview.XListView>
-
 </LinearLayout>

@@ -17,15 +17,21 @@ import com.example.administrator.travel.ui.view.LoadingPage;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.ui.view.refreshview.XScrollView;
 import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 
@@ -42,7 +48,6 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
 
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
-    private Fragment fragment;
     protected View inflate;
     private boolean isSuccessed=false;
     private boolean isVisible=false;
@@ -55,19 +60,39 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
         super.onCreate(savedInstanceState);
         LogUtils.e("当前Fragment为:"+getClass().getSimpleName());
         inflate = View.inflate(getContext(),initResLayout(), null);
-        ButterKnife.bind(fragment = registerEvent(), inflate);
-        if (fragment != null) {
-            registerEventBus(fragment);
-            LogUtils.e("fragment的Event注册了");
-        }
-
+        ButterKnife.bind(this, inflate);
+        registerEventBus(this);
     }
 
     protected abstract int initResLayout();
 
+    /**
+     * 实例化 T
+     *
+     * @return
+     */
+    public T getTInstance() {
+
+        try {
+            ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+            Class c = (Class<T>) pt.getActualTypeArguments()[0];
+            Constructor constructor = c.getConstructor();
+            T e = (T) constructor.newInstance();
+            return e;
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (java.lang.InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
-    protected abstract Fragment registerEvent();
+
 
     @Nullable
     @Override
@@ -125,12 +150,15 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     }
 
 
-    public abstract Class<? extends HttpEvent> registerEventType();
 
     @Subscribe
     public void onEvent(T t){
-        Class<? extends HttpEvent> aClass = registerEventType();
-        if (t.getClass().getSimpleName().equals(aClass.getSimpleName())) {
+        if (!t.getClass().getSimpleName().equals(getTInstance().getClass().getSimpleName())){
+            LogUtils.e("这是其他类传来的消息");
+            LogUtils.e(t.getClass().getSimpleName()+"另外一个"+this.getClass().getSimpleName());
+            return;
+        }
+
             LogUtils.e(getClass().getSimpleName());
                 if (t.isSuccess()) {
                     try {
@@ -148,7 +176,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
                     onFail(t);
                 }
             }
-    }
+
 
     public abstract void onSuccess(T t);
 
@@ -169,10 +197,9 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (fragment != null) {
-            unregisterEventBus(fragment);
-            LogUtils.e("fragment的Event注销了");
-        }
+        unregisterEventBus(this);
+
+
     }
 
     public void registerEventBus(Fragment f) {
@@ -211,11 +238,18 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
      */
     protected abstract void initListener();
 
-    /**
-     * 发起网络请求，
-     */
-    protected abstract void onLoad(int type);
 
+
+    protected void onLoad(int type) {
+        MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).addUserId();
+        childAdd(builder,type);
+        Map<String, String> baseMap = builder.end();
+        XEventUtils.getUseCommonBackJson(initUrl(),baseMap,type,getTInstance());
+    }
+
+    protected abstract String initUrl();
+
+    protected abstract void childAdd(MapUtils.Builder builder, int type);
 
     /**
      * 设置读取状态

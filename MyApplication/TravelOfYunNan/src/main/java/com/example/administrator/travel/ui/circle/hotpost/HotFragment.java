@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
+import com.example.administrator.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.example.administrator.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
@@ -21,61 +23,28 @@ import com.example.administrator.travel.utils.XEventUtils;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
- * Created by Administrator on 2016/7/7 0007.
+ * Created by wangyang on 2016/7/7 0007.
+ * 热帖
  */
-public class HotFragment extends LoadBaseFragment<HotEvent> {
-     private XListView mLvCircleHot;
-    private CircleHotAdapter circleHotAdapter;
-    private int count=0;
-    private List<HotPostBean.DataBean> hotPostBeanData;
-
+public class HotFragment extends LoadAndPullBaseFragment<HotEvent,HotPostBean,HotPostBean.DataBean> {
 
     @Override
-    protected Fragment registerEvent() {
-        return this;
+    protected TravelBaseAdapter initAdapter(List<HotPostBean.DataBean> httpData) {
+        return new CircleHotAdapter(getContext(),httpData);
     }
-
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return HotEvent.class;
-    }
-
-    @Override
-    public void onSuccess(HotEvent event) {
-                loadEnd(mLvCircleHot);
-                dealData(event);
-    }
-
-    @Override
-    protected void onFail(HotEvent event) {
-        super.onFail(event);
-        loadEnd(mLvCircleHot);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mLvCircleHot = (XListView) inflate;
-    }
-
-    @Override
-    protected int initResLayout() {
-        return R.layout.fragment_circle_hot;
-    }
-
-
-
 
 
     @Override
     protected void initListener() {
-         initXListView(mLvCircleHot,true,true);
-       mLvCircleHot.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      super.initListener();
+       mXListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), PostActivity.class);
-                intent.putExtra(IVariable.FORUM_ID,hotPostBeanData.get(position-1).getId());
+                intent.putExtra(IVariable.FORUM_ID,mDatas.get(position-1).getId());
                 startActivity(intent);
             }
         });
@@ -83,31 +52,12 @@ public class HotFragment extends LoadBaseFragment<HotEvent> {
 
 
     @Override
-    protected void onLoad(int type) {
-        count=type==TYPE_REFRESH?0:getListSize(hotPostBeanData);
-        Map<String, String> hotMap = MapUtils.Build().addKey(getContext()).addUserId().addPageSize(10).addCount(count).end();
-        XEventUtils.getUseCommonBackJson(IVariable.HOT_POST,hotMap,type,new HotEvent());
+    protected String initUrl() {
+        return IVariable.HOT_POST;
     }
 
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
 
-    private void dealData(HotEvent event) {
-        HotPostBean hotPostBean = GsonUtils.getObject(event.getResult(), HotPostBean.class);
-        List<HotPostBean.DataBean> hotPostBeanData = hotPostBean.getData();
-        if (hotPostBeanData==null)return;
-        if (this.hotPostBeanData ==null) {
-            this.hotPostBeanData = hotPostBeanData;
-            circleHotAdapter = new CircleHotAdapter(getContext(), this.hotPostBeanData);
-            mLvCircleHot.setAdapter(circleHotAdapter);
-        }else {
-            if (event.getType() == TYPE_LOAD) {
-                this.hotPostBeanData.addAll(hotPostBeanData);
-                circleHotAdapter.notifyDataSetChanged();
-            }else if (event.getType()==TYPE_REFRESH){
-                this.hotPostBeanData = hotPostBeanData;
-                circleHotAdapter.notifyDataSetChanged();
-            }
-        }
     }
-
-
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.EditAlbumActivity;
 import com.example.administrator.travel.utils.FrescoUtils;
@@ -44,7 +45,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
 
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == LENGTH_ITEM) {
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_my_album_length, parent, false);
             return new MyAlbumLengthHolder(inflate);
@@ -54,35 +55,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
         }
     }
 
-    @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, final int position, MyAlbumBean.DataBean t) {
-        MyAlbumBean.DataBean dataBean = mDatas.get(position);
-        if (holder instanceof MyAlbumShortHolder) {
-            MyAlbumShortHolder shortHolder = (MyAlbumShortHolder) holder;
-            FrescoUtils.displayNormal(shortHolder.mIvCover, dataBean.getCover_img());
-            shortHolder.mTvDiscussNumber.setText(dataBean.getBrowse());
-            shortHolder.mTvTitle.setText(dataBean.getTitle());
-            shortHolder.mTvLoveNumber.setText(dataBean.getLike());
-            shortHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startEditAlbum(position);
-                }
-            });
-        } else {
-            MyAlbumLengthHolder lengthHolder = (MyAlbumLengthHolder) holder;
-            FrescoUtils.displayNormal(lengthHolder.mIvCover, dataBean.getCover_img());
-            lengthHolder.mTvDiscussNumber.setText(dataBean.getBrowse());
-            lengthHolder.mTvTitle.setText(dataBean.getTitle());
-            lengthHolder.mTvLoveNumber.setText(dataBean.getLike());
-            lengthHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startEditAlbum(position);
-                }
-            });
-        }
-    }
+
 
     private void startEditAlbum(int position) {
         Intent intent = new Intent(mContext, EditAlbumActivity.class);
@@ -95,7 +68,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
         return mDatas.size();
     }
 
-    public class MyAlbumShortHolder extends BaseRecycleViewHolder {
+    public class MyAlbumShortHolder extends BaseRecycleViewHolder<MyAlbumBean.DataBean> {
         @BindView(R.id.iv_cover) SimpleDraweeView mIvCover;
         @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
         @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
@@ -104,9 +77,23 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
         public MyAlbumShortHolder(View itemView) {
             super(itemView);
         }
+
+        @Override
+        public void childBindView(final int position, MyAlbumBean.DataBean dataBean, Context mContext) {
+            FrescoUtils.displayNormal(mIvCover, dataBean.getCover_img());
+            mTvDiscussNumber.setText(dataBean.getBrowse());
+            mTvTitle.setText(dataBean.getTitle());
+            mTvLoveNumber.setText(dataBean.getLike());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startEditAlbum(position);
+                }
+            });
+        }
     }
 
-    public class MyAlbumLengthHolder extends BaseRecycleViewHolder {
+    public class MyAlbumLengthHolder extends BaseRecycleViewHolder<MyAlbumBean.DataBean> {
         @BindView(R.id.iv_cover) SimpleDraweeView mIvCover;
         @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
         @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
@@ -114,6 +101,20 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
 
         public MyAlbumLengthHolder(View itemView) {
             super(itemView);
+        }
+
+        @Override
+        public void childBindView(final int position, MyAlbumBean.DataBean dataBean, Context mContext) {
+            FrescoUtils.displayNormal(mIvCover, dataBean.getCover_img());
+            mTvDiscussNumber.setText(dataBean.getBrowse());
+            mTvTitle.setText(dataBean.getTitle());
+            mTvLoveNumber.setText(dataBean.getLike());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startEditAlbum(position);
+                }
+            });
         }
     }
 }

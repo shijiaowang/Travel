@@ -11,10 +11,8 @@ import java.util.List;
 public class CircleDetailBean implements ParentBean{
 
 
-
     private int code;
     private String message;
-
 
     private DataBean data;
 
@@ -42,11 +40,11 @@ public class CircleDetailBean implements ParentBean{
         this.data = data;
     }
 
-    public static class DataBean implements IChildParent<DataBean.BodyBean>{
-
+    public static class DataBean implements IChildParent{
 
         private HeadBean head;
 
+        private ActivityBean activity;
 
         private List<BodyBean> body;
 
@@ -58,6 +56,14 @@ public class CircleDetailBean implements ParentBean{
             this.head = head;
         }
 
+        public ActivityBean getActivity() {
+            return activity;
+        }
+
+        public void setActivity(ActivityBean activity) {
+            this.activity = activity;
+        }
+
         public List<BodyBean> getBody() {
             return body;
         }
@@ -65,8 +71,6 @@ public class CircleDetailBean implements ParentBean{
         public void setBody(List<BodyBean> body) {
             this.body = body;
         }
-
-
 
         public static class HeadBean {
             private String cid;
@@ -149,6 +153,18 @@ public class CircleDetailBean implements ParentBean{
 
             public void setIs_follow(String is_follow) {
                 this.is_follow = is_follow;
+            }
+        }
+
+        public static class ActivityBean {
+            private String activity_img;
+
+            public String getActivity_img() {
+                return activity_img;
+            }
+
+            public void setActivity_img(String activity_img) {
+                this.activity_img = activity_img;
             }
         }
 

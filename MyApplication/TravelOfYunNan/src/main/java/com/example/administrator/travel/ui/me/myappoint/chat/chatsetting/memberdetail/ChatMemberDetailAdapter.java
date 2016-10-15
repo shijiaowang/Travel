@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.ui.me.myappoint.chat.chatsetting.ChatSettingBean;
 import com.example.administrator.travel.ui.me.myappoint.chat.chatsetting.ChatSettingUserBean;
@@ -33,45 +34,47 @@ public class ChatMemberDetailAdapter extends BaseRecycleViewAdapter<ChatSettingU
 
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_chat_member_detail, parent, false);
         return new ChatMemberDetailHolder(inflate);
     }
 
-    @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, int position, final ChatSettingUserBean dataBean) {
-        final ChatMemberDetailHolder chatMemberDetailHolder= (ChatMemberDetailHolder) holder;
-        chatMemberDetailHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OtherUserCenterActivity.start(mContext,chatMemberDetailHolder.ivIcon,dataBean.getId());
-            }
-        });
-        FrescoUtils.displayIcon(chatMemberDetailHolder.ivIcon,dataBean.getUser_img());
-        chatMemberDetailHolder.tvDes.setText(dataBean.getContent());
-        chatMemberDetailHolder.tvUserName.setText(dataBean.getNick_name());
-        if (dataBean.getIs_boss()==1){
-            chatMemberDetailHolder.tvType.setVisibility(View.VISIBLE);
-            chatMemberDetailHolder.tvType.setText("发布人");
-            chatMemberDetailHolder.tvType.setBackgroundResource(R.drawable.r_green);
-        }else if (dataBean.getIs_management()==1){
-            chatMemberDetailHolder.tvType.setVisibility(View.VISIBLE);
-            chatMemberDetailHolder.tvType.setText("专管员");
-            chatMemberDetailHolder.tvType.setBackgroundResource(R.drawable.r_red);
-        }else {
-            chatMemberDetailHolder.tvType.setVisibility(View.GONE);
-        }
-
-    }
 
 
-    class ChatMemberDetailHolder extends BaseRecycleViewHolder {
+
+    class ChatMemberDetailHolder extends BaseRecycleViewHolder<ChatSettingUserBean> {
         @BindView(R.id.iv_icon) SimpleDraweeView ivIcon;
         @BindView(R.id.tv_user_name) TextView tvUserName;
         @BindView(R.id.tv_des) TextView tvDes;
         @BindView(R.id.tv_type) TextView tvType;
         public ChatMemberDetailHolder(View itemView) {
             super(itemView);
+        }
+
+
+        @Override
+        public void childBindView(int position, final ChatSettingUserBean dataBean, final Context mContext) {
+          itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    OtherUserCenterActivity.start(mContext,ivIcon,dataBean.getId());
+                }
+            });
+            FrescoUtils.displayIcon(ivIcon,dataBean.getUser_img());
+           tvDes.setText(dataBean.getContent());
+           tvUserName.setText(dataBean.getNick_name());
+            if (dataBean.getIs_boss()==1){
+                tvType.setVisibility(View.VISIBLE);
+                tvType.setText("发布人");
+                tvType.setBackgroundResource(R.drawable.r_green);
+            }else if (dataBean.getIs_management()==1){
+                tvType.setVisibility(View.VISIBLE);
+                tvType.setText("专管员");
+                tvType.setBackgroundResource(R.drawable.r_red);
+            }else {
+                tvType.setVisibility(View.GONE);
+            }
+
         }
     }
 }

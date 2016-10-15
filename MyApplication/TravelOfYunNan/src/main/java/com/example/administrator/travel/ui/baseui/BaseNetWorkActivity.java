@@ -1,6 +1,7 @@
 package com.example.administrator.travel.ui.baseui;
 
 import android.app.Activity;
+import android.view.Menu;
 import android.view.View;
 
 import com.example.administrator.travel.R;
@@ -82,6 +83,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
                 onSuccess(t);
             }catch (Exception e){
                 e.printStackTrace();
+                onFail(t);
             }
         }else {
             ToastUtils.showToast(t.getMessage());
@@ -111,7 +113,16 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
     protected abstract String initUrl();
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my_appoint_menu,menu);
+        menu.findItem(R.id.action_history).setTitle(initRightText());
+        return true;
+    }
 
+    protected String initRightText() {
+        return "";
+    }
 
     /**
      * 读取成功

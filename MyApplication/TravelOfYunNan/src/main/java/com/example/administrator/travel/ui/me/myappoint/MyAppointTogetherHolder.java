@@ -107,17 +107,7 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
     }
 
     private void hideOrShow(MyAppointTogetherBean.DataBean datas, String isBoss) {
-        if (payStates==1){//如果为1就显示支付
-            mBtPay.setVisibility(View.VISIBLE);
-            mLlCode1.setVisibility(View.GONE);
-            mLlCode2.setVisibility(View.VISIBLE);
-            mTvCode2.setText(datas.getId_code());
-        }else {
-            mBtPay.setVisibility(View.GONE);
-            mLlCode2.setVisibility(View.GONE);
-            mLlCode1.setVisibility(View.VISIBLE);
-            mTvCode.setText(datas.getId_code());
-        }
+
 
         if (isBoss.equals("1")){
             mBtStart.setVisibility(View.VISIBLE);
@@ -164,6 +154,17 @@ public class MyAppointTogetherHolder extends BaseHolder<Object> {
         if (payStates==9){
             mBtStart.setVisibility(View.VISIBLE);
             mBtStart.setText("评价");
+        }
+        if (payStates==2){
+            mLlCode1.setVisibility(View.GONE);
+            mLlCode2.setVisibility(View.VISIBLE);
+            mTvCode2.setText(datas.getId_code());
+            mBtPay.setVisibility(View.VISIBLE);
+        }else {
+            mBtPay.setVisibility(View.GONE);
+            mLlCode2.setVisibility(View.GONE);
+            mLlCode1.setVisibility(View.VISIBLE);
+            mTvCode.setText(datas.getId_code());
         }
     }
 

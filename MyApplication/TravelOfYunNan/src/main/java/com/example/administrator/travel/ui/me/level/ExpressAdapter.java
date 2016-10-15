@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 
 import java.util.List;
@@ -26,20 +27,14 @@ public class ExpressAdapter extends BaseRecycleViewAdapter<LevelUserBean.DataBea
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_level_express, parent, false);
         return new ExpressHolder(inflate);
     }
 
-    @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, int position, LevelUserBean.DataBean.LevelDescBean levelDescBean) {
-        ExpressHolder expressHolder = (ExpressHolder) holder;
-        expressHolder.tvType.setText(levelDescBean.getTitle());
-        expressHolder.tvExpress.setText(levelDescBean.getScore()+"/"+levelDescBean.getMax_score());
-        expressHolder.tvMax.setText(levelDescBean.getMax_score());
-    }
 
-    class ExpressHolder extends BaseRecycleViewHolder {
+
+    class ExpressHolder extends BaseRecycleViewHolder<LevelUserBean.DataBean.LevelDescBean> {
 
         @BindView(R.id.tv_type)
         TextView tvType;
@@ -52,5 +47,14 @@ public class ExpressAdapter extends BaseRecycleViewAdapter<LevelUserBean.DataBea
         public ExpressHolder(View itemView) {
             super(itemView);
         }
+
+        @Override
+        public void childBindView(int position, LevelUserBean.DataBean.LevelDescBean levelDescBean, Context mContext) {
+            tvType.setText(levelDescBean.getTitle());
+            tvExpress.setText(levelDescBean.getScore()+"/"+levelDescBean.getMax_score());
+            tvMax.setText(levelDescBean.getMax_score());
+        }
+
+
     }
 }

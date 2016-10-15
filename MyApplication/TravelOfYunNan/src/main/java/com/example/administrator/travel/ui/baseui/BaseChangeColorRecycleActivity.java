@@ -86,7 +86,6 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
         if (mAdapter == null) {
             mDatas = boy;
             mAdapter = initAdapter(mDatas);
-            mRvCommon.setHasFixedSize(true);
             mRvCommon.setAdapter(mAdapter);
             linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setAutoMeasureEnabled(true);

@@ -89,10 +89,6 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
         }
     }
 
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
 
     public static UserDynamicFragment newInstance(String userId, List<OtherUserCenterBean.DataBean.MoreBean> mDataBean) {
         UserDynamicFragment userDynamicFragment = new UserDynamicFragment();
@@ -103,10 +99,6 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
         return userDynamicFragment;
     }
 
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return UserDynamicEvent.class;
-    }
 
     @Override
     public void onSuccess(UserDynamicEvent userDynamicEvent) {
@@ -135,11 +127,21 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
         if (isFirst) {
             isFirst = false;
         } else {
-            Map<String, String> followMap = MapUtils.Build().addKey(getContext()).addMyId().add(IVariable.USER_ID, userId).addType("1").addPageSize().addCount(mDataBean.size()).end();
-            XEventUtils.postUseCommonBackJson(IVariable.OTHER_USER_INFO, followMap, TYPE_LOAD, new UserDynamicEvent());
+            super.onLoad(type);
+
         }
     }
 
+    @Override
+    protected String initUrl() {
+        return IVariable.OTHER_USER_INFO;
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+        builder.addMyId().add(IVariable.USER_ID, userId).addType("1").addPageSize().addCount(mDataBean.size());
+
+    }
 
 
     @Override

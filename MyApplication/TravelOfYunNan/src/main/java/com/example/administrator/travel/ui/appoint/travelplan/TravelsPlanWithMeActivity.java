@@ -37,7 +37,7 @@ import java.util.List;
  * Created by wangyang on 2016/9/17.
  * 找人带-旅行计划
  */
-public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity implements View.OnClickListener {
+public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
     @ViewInject(R.id.bt_destination)
     private FontsIconButton mBtDestination;
     @ViewInject(R.id.tv_start_city)
@@ -115,8 +115,8 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity implement
             //设置选择的三级单位
 //          pwOptions.setLabels("省", "市", "区");
             pvOptions.setTitle("选择城市");
-            pvOptions.setSelectOptions(24, 1, 1);//默认选中云南 25-1
-            pvOptions.setCyclic(false, true, true);
+            //pvOptions.setSelectOptions(24, 1, 1);//默认选中云南 25-1
+           pvOptions.setCyclic(false, true, true);
             pvOptions.setCancelable(true);
             //设置默认选中的三级项目
             pvOptions.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {

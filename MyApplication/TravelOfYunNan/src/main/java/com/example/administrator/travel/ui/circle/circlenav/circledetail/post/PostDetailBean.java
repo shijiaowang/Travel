@@ -1,11 +1,13 @@
 package com.example.administrator.travel.ui.circle.circlenav.circledetail.post;
 
+import com.example.administrator.travel.global.ParentBean;
+
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/8/23 0023.
  */
-public class PostDetailBean {
+public class PostDetailBean implements ParentBean{
 
     private int code;
     private String message;
@@ -83,10 +85,7 @@ public class PostDetailBean {
                 this.replay_count = replay_count;
             }
 
-            /**
-             * nick_name : 我叫王小
-             * id : 10009
-             */
+
 
             private List<LikeBean> like;
 

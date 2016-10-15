@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 /**
- * Created by Administrator on 2016/7/8 0008.
+ * Created by wangyang on 2016/7/8 0008.
  * BaseAdapter封装
  */
 public abstract class TravelBaseAdapter<T> extends BaseAdapter{

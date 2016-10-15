@@ -78,12 +78,8 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
         switch (circleDetailEvent.getType()) {
             case TYPE_REFRESH:
                 dealHeader(circleDetailEvent);
-            case TYPE_LIKE_POST:
-                dealLikeData(circleDetailEvent);
                 break;
-            case TYPE_FOLLOW_CIRCLE:
-                dealFollowData(circleDetailEvent.getResult());
-                break;
+
         }
     }
 
@@ -111,6 +107,19 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
         Intent intent = new Intent(CircleDetailActivity.this, PostActivity.class);
         intent.putExtra(IVariable.FORUM_ID, bodyBean.getId());
         startActivity(intent);
+    }
+
+    @Override
+    protected void doOtherSuccessData(CircleDetailEvent circleDetailEvent) {
+        super.doOtherSuccessData(circleDetailEvent);
+        switch (circleDetailEvent.getType()){
+            case TYPE_LIKE_POST:
+                dealLikeData(circleDetailEvent);
+                break;
+            case TYPE_FOLLOW_CIRCLE:
+                dealFollowData(circleDetailEvent.getResult());
+                break;
+        }
     }
 
     @Override

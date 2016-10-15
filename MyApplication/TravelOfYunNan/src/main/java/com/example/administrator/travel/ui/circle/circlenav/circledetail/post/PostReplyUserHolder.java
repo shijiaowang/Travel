@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.adapter.holer.SomeTextClick;
+import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.StringUtils;
@@ -21,7 +23,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/11 0011.
  * 回复其他楼层
  */
-public class PostReplyUserHolder extends BaseHolder<Object> {
+public class PostReplyUserHolder extends BaseRecycleViewHolder {
     @BindView(R.id.v_line)  View line;
     @BindView(R.id.iv_reply_icon) SimpleDraweeView mIvReplyIcon;
     @BindView(R.id.tv_reply_nick_name) TextView mTvReplyNickName;
@@ -34,21 +36,30 @@ public class PostReplyUserHolder extends BaseHolder<Object> {
     @BindView(R.id.tv_reply_name) TextView mTvReplyName;
     @BindView(R.id.tv_reply_floor_number) TextView mTvReplyFloorNumber;
 
-    public PostReplyUserHolder(Context context) {
-        super(context);
+    public PostReplyUserHolder(View itemView) {
+        super(itemView);
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext, int position) {
-        if (datas instanceof PostDetailBean.DataBean.ForumReplyBean){
-            PostDetailBean.DataBean.ForumReplyBean forumReplyBean = (PostDetailBean.DataBean.ForumReplyBean) datas;
+    public void childBindView(int position, final Object data, final Context t) {
+        if (data instanceof PostDetailBean.DataBean.ForumReplyBean){
+            PostDetailBean.DataBean.ForumReplyBean forumReplyBean = (PostDetailBean.DataBean.ForumReplyBean) data;
+            line.setVisibility(position==1?View.GONE:View.VISIBLE);
+              mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PostDetailBean.DataBean.ForumReplyBean item1 = (PostDetailBean.DataBean.ForumReplyBean) data;
+                    OtherUserCenterActivity.start(t, v, item1.getUser_id());
+
+                }
+            });
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             mTvReplyMessage.setText(forumReplyBean.getContent());
             mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forumReplyBean.getReply_time()));
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
             mTvLoveNumber.setText(forumReplyBean.getLike_count());
-            mTvLove.setTextColor(forumReplyBean.getIs_like().equals("1") ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
+            mTvLove.setTextColor(forumReplyBean.getIs_like().equals("1") ? t.getResources().getColor(R.color.otherFf7f6c) : t.getResources().getColor(R.color.color969696));
             PostDetailBean.DataBean.ForumReplyBean.ReplyBean reply = forumReplyBean.getReply();
 
             if (!StringUtils.isEmpty(reply.getReply_img())){
@@ -56,11 +67,11 @@ public class PostReplyUserHolder extends BaseHolder<Object> {
                 mTvReplyContent.setText(content);
                 mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
                 SpannableStringBuilder spannable = new SpannableStringBuilder(content);
-                spannable.setSpan(new SomeTextClick(mContext, ""), content.length() - 4, content.length()
+                spannable.setSpan(new SomeTextClick(t, ""), content.length() - 4, content.length()
                         , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 mTvReplyContent.setText(spannable);
             }else {
-               mTvReplyContent.setText(reply.getContent());
+                mTvReplyContent.setText(reply.getContent());
             }
             mTvReplyName.setText(reply.getNick_name());
             mTvReplyFloorNumber.setText(reply.getFloor()+"楼");
@@ -69,15 +80,5 @@ public class PostReplyUserHolder extends BaseHolder<Object> {
 
 
         }
-
-
-
     }
-
-    @Override
-    public View initRootView(Context mContext) {
-        return  inflateView(R.layout.item_activity_post_reply_user);
-    }
-
-
 }

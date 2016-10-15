@@ -28,7 +28,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="EASEMOB_APPKEY"  android:value="yuns#yuns" />
+       <!-- <meta-data android:name="EASEMOB_APPKEY"  android:value="yuns#yuns" />-->
         <activity
             android:name=".ui.home.welcome.splash.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -171,20 +171,20 @@
 
 
         <!-- alipay sdk end -->
-        <!-- 声明SDK所需的service SDK核心功能-->
+     <!--   &lt;!&ndash; 声明SDK所需的service SDK核心功能&ndash;&gt;
         <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
-        <!-- 声明SDK所需的receiver -->
+        &lt;!&ndash; 声明SDK所需的receiver &ndash;&gt;
         <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED"/>
                 <data android:scheme="package"/>
             </intent-filter>
-            <!-- 可选filter -->
+            &lt;!&ndash; 可选filter &ndash;&gt;
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
     </application>
 
 </manifest>

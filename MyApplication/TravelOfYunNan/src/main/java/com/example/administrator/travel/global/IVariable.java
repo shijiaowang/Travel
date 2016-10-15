@@ -6,8 +6,8 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
-    String DOMAIN_NAME = "http://192.168.1.35/";
+    String DOMAIN_NAME="http://yuns.yunspeak.com/";
+   /* String DOMAIN_NAME = "http://192.168.1.35/";*/
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -63,6 +63,7 @@ public interface IVariable {
     String FIND_ACTIVITY_DETAIL = API_KEY + "Find/getFindActivitydetail/";//活动列表详情
     String FIND_FOOD = API_KEY + "Find/getFindfood/";//美食
     String FIND_FOOD_DETAIL = API_KEY + "Find/getFindfoodDetail/";//美食详情
+    String FIND_HOME = API_KEY + "Find/getFindIndex/";//发现主页
 
     /**
      * 我
@@ -71,6 +72,7 @@ public interface IVariable {
     String UPDATE_ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String SUBMIT_ORDERS = API_KEY + "Order/setOrder/";//提交订单
+    String RECENT_ORDERS = API_KEY + "Order/getOrderlistsRecent/";//最近订单
     String CHAT_SETTING_USER_INFO = API_KEY + "UserMsg/getTravelByuser/";//聊天关于用户的相关设置
     String GET_ENTER_APPOINT = API_KEY + "UserMsg/getTraveluserList/";//获取已加入约伴成员信息
     String USER_LEVEL = API_KEY + "User/getLevel/";//用户等级
@@ -249,7 +251,7 @@ public interface IVariable {
 
     String POSITION = "position";
     String TITLE = "title";//name
-    String LABEL = "label";//name
+    String LABEL = "label";//
 
     String ADDRESS = "address";//地址
     String USER="user";

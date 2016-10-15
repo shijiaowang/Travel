@@ -34,6 +34,7 @@ public class MyAlbumActivity extends BaseRecycleViewActivity<MyAlbumEvent,MyAlbu
         mTvAdd = (FontsIconTextView)findViewById(R.id.tv_add);
         mTvCreateAlbum = (TextView)findViewById(R.id.tv_create_album);
         mTvAlbumSum = (TextView)findViewById(R.id.tv_sum);
+        mTvAlbumSum.setText(getString(R.string.total_album,0));
         mTvAdd.setOnClickListener(this);
         mTvCreateAlbum.setOnClickListener(this);
     }

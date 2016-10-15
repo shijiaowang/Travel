@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:layout_width="wrap_content"
+    android:layout_width="166dp"
     android:orientation="vertical"
     android:layout_height="wrap_content">
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:scaleType="fitXY"
-        android:src="@drawable/fragment_circle_recommend_test"
         android:id="@+id/iv_photo"
         android:layout_width="166dp"
         android:layout_height="90dp" />
     <TextView
         android:background="#fafafa"
-        android:text="丽江黑夜游"
+        android:id="@+id/tv_text"
         android:paddingLeft="10dp"
-       android:gravity="center_vertical"
+        style="@style/commonSingleLineTextStyle"
+        android:gravity="center_vertical"
         android:layout_width="166dp"
         android:layout_height="35dp" />
 

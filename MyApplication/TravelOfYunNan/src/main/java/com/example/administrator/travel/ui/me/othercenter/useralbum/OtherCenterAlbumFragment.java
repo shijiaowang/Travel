@@ -53,15 +53,6 @@ public class OtherCenterAlbumFragment extends LoadBaseFragment<OtherAlbumEvent> 
         return R.layout.activity_other_album;
     }
 
-    @Override
-    protected Fragment registerEvent() {
-        return this;
-    }
-
-    @Override
-    public Class<? extends HttpEvent> registerEventType() {
-        return OtherAlbumEvent.class;
-    }
 
     @Override
     public void onSuccess(OtherAlbumEvent otherAlbumEvent) {
@@ -131,9 +122,15 @@ public class OtherCenterAlbumFragment extends LoadBaseFragment<OtherAlbumEvent> 
         XEventUtils.getUseCommonBackJson(IVariable.OTHER_USER_INFO,albumMap,0,new OtherAlbumEvent());
     }
 
+    @Override
+    protected String initUrl() {
+        return IVariable.OTHER_USER_INFO;
+    }
 
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
 
-
+    }
 
 
     @Override

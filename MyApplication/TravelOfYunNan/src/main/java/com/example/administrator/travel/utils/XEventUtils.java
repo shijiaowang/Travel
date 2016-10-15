@@ -118,7 +118,7 @@ public class XEventUtils {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (code == 1) {
+            if (code == 1 || code==2) {
                 httpEvent.setIsSuccess(true);
             } else {
                 httpEvent.setIsSuccess(false);

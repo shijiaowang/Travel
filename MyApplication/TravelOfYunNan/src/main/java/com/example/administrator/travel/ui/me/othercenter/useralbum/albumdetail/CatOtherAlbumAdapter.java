@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.FrescoUtils;
@@ -25,31 +26,15 @@ public class CatOtherAlbumAdapter extends BaseRecycleViewAdapter<CatOtherUserBea
 
 
 
-
     public CatOtherAlbumAdapter(List<CatOtherUserBean.DataBean.BodyBean> mDatas, Context mContext) {
         super(mDatas, mContext);
     }
 
     @Override
-    protected void childBindView(RecyclerView.ViewHolder holder, int position, CatOtherUserBean.DataBean.BodyBean bodyBean) {
-        CatOtherAlbumHolder catOtherAlbumHolder = (CatOtherAlbumHolder) holder;
-        FrescoUtils.displayNormal(catOtherAlbumHolder.ivBg,bodyBean.getPath());
-        catOtherAlbumHolder.tvTime.setText(FormatDateUtils.FormatLongTime(IVariable.Y_M_D,bodyBean.getAdd_time()));
-    }
-
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_cat_other_album, parent, false);
         return new CatOtherAlbumHolder(inflate);
     }
 
-    class CatOtherAlbumHolder extends BaseRecycleViewHolder {
-        @BindView(R.id.tv_time)
-        TextView tvTime;
-        @BindView(R.id.iv_bg)
-        SimpleDraweeView ivBg;
-        public CatOtherAlbumHolder(View itemView) {
-            super(itemView);
-        }
-    }
+
 }

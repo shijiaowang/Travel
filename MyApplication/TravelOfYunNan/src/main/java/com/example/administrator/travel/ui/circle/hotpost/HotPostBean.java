@@ -1,12 +1,14 @@
 package com.example.administrator.travel.ui.circle.hotpost;
 
+import com.example.administrator.travel.global.ParentBean;
+
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/23 0023.
+ * Created by wangyang on 2016/9/23 0023.
  */
 
-public class HotPostBean {
+public class HotPostBean implements ParentBean{
 
     private int code;
     private String message;
