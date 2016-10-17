@@ -1,6 +1,8 @@
 package com.example.administrator.travel.ui.baseui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by android on 2016/7/30.
+ * Created by wangyang on 2016/7/30.
  * 目的地详情
  */
 public class DestinationDetailActivity extends LoadingBarBaseActivity<DetailCommonEvent> implements View.OnClickListener {
@@ -67,7 +69,12 @@ public class DestinationDetailActivity extends LoadingBarBaseActivity<DetailComm
         return R.layout.activity_add_detail;
     }
 
-
+   public static void start(Context context,String tid, String name){
+       Intent intent=new Intent(context,DestinationDetailActivity.class);
+       intent.putExtra(IVariable.T_ID,tid);
+       intent.putExtra(IVariable.NAME,name);
+       context.startActivity(intent);
+  }
     private void initScrollView() {
         tId = getIntent().getStringExtra(IVariable.T_ID);
         tName = getIntent().getStringExtra(IVariable.NAME);

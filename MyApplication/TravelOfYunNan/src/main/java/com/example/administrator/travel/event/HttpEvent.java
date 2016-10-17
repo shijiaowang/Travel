@@ -2,7 +2,7 @@ package com.example.administrator.travel.event;
 
 
 /**
- * Created by Administrator on 2016/7/27 0027.
+ * Created by wangyang on 2016/7/27 0027.
  */
 public class HttpEvent {
     protected boolean isSuccess;

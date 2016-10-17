@@ -1,18 +1,18 @@
-package com.example.administrator.travel.ui.adapter;
+package com.example.administrator.travel.ui.home;
 
 import android.content.Context;
 
 import com.example.administrator.travel.bean.Chosen;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
-import com.example.administrator.travel.ui.adapter.holer.ChosenHolder;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/6 0006.
+ * Created by wangyang on 2016/7/6 0006.
  * 主页精选
  */
-public class ChosenAdapter extends TravelBaseAdapter<Chosen> {
+public class ChosenAdapter extends BaseRecycleViewHolder<Chosen> {
 
     public ChosenAdapter(Context mContext, List<Chosen> mDatas) {
         super(mContext, mDatas);

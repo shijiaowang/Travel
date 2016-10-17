@@ -22,15 +22,18 @@ import org.xutils.common.util.DensityUtil;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+
 import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/10/12 0012.
  */
 
-public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E extends ParentBean,F extends IChildParent,G> extends BaseChangeBarColorActivity<T> implements OnLoadMoreListener {
-   @BindView(R.id.swipe_target)protected RecyclerView mRvCommon;
-   @BindView(R.id.stll_layout)protected SwipeToLoadLayout mSwipe;
+public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E extends ParentBean, F extends IChildParent, G> extends BaseChangeBarColorActivity<T> implements OnLoadMoreListener {
+    @BindView(R.id.swipe_target)
+    protected RecyclerView mRvCommon;
+    @BindView(R.id.stll_layout)
+    protected SwipeToLoadLayout mSwipe;
     protected List<G> mDatas;//从网络获取的数据
     protected BaseRecycleViewAdapter<G> mAdapter;//通用adapter
     private LinearLayoutManager linearLayoutManager;
@@ -56,6 +59,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
 
     /**
      * 默认子view距离
+     *
      * @return
      */
     private int childDistance() {
@@ -64,7 +68,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        int count=type==TYPE_REFRESH?0:getListSize(mDatas);
+        int count = type == TYPE_REFRESH ? 0 : getListSize(mDatas);
         builder.addPageSize();
         builder.addCount(count);
     }
@@ -78,11 +82,15 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
         }
         final F data = (F) parentBean.getData();
         List<G> boy = (List<G>) data.getBody();
-        if (boy==null || boy.size()==0){
-            if (t.getType()==TYPE_REFRESH){
+        if (boy == null || boy.size() == 0) {
+            if (t.getType() == TYPE_REFRESH) {
                 mSwipeContainer.setRefreshing(false);
             }
-            return;}
+            if (t.getType()==TYPE_LOAD){
+                mSwipe.setLoadingMore(false);
+            }
+            return;
+        }
         if (mAdapter == null) {
             mDatas = boy;
             mAdapter = initAdapter(mDatas);
@@ -94,12 +102,12 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
             mAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-                        onChildItemClick(mDatas.get(position));
+                    onChildItemClick(mDatas.get(position));
                 }
             });
         } else if (t.getType() == TYPE_LOAD) {
             mDatas.addAll(boy);
-             mSwipe.setLoadingMore(false);
+            mSwipe.setLoadingMore(false);
             mAdapter.notifiyData(mDatas);
         } else if (t.getType() == TYPE_REFRESH) {
             mSwipeContainer.setRefreshing(false);
@@ -111,9 +119,9 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
     }
 
 
-
     /**
      * 孩子item点击
+     *
      * @param g
      */
     protected void onChildItemClick(G g) {
@@ -124,11 +132,12 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
 
     }
 
-    protected void changeMargin(int top){
+    protected void changeMargin(int top) {
         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mRvCommon.getLayoutParams();
-        layoutParams.topMargin= DensityUtil.dip2px(top);
+        layoutParams.topMargin = DensityUtil.dip2px(top);
         mRvCommon.setLayoutParams(layoutParams);
     }
+
     /**
      * 获取泛型E的具体类型
      *
@@ -138,8 +147,10 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         return (Class<E>) pt.getActualTypeArguments()[1];
     }
+
     /**
      * 是否是 瀑布流
+     *
      * @return
      */
     protected boolean isGridLayoutManager() {
@@ -149,19 +160,20 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
     @Override
     protected void onFail(T t) {
         super.onFail(t);
-            switch (t.getType()) {
-                case TYPE_REFRESH:
-                    mSwipeContainer.setRefreshing(false);
-                    break;
-                case TYPE_LOAD:
+        switch (t.getType()) {
+            case TYPE_REFRESH:
+                mSwipeContainer.setRefreshing(false);
+                break;
+            case TYPE_LOAD:
 
-                    break;
+                break;
 
         }
     }
 
     /**
      * 初始化adapter
+     *
      * @param mDatas
      * @return
      */
@@ -169,8 +181,9 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent,E exten
 
     /**
      * 是否使用孩子另外设置设置的bean对象
-     * @return
+     *
      * @param e
+     * @return
      */
     protected boolean isUserChild(ParentBean e) {
         return false;

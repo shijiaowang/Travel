@@ -6,6 +6,10 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.example.administrator.travel.ui.baseui.ActivateDetailActivity;
+import com.example.administrator.travel.ui.baseui.DeliciousDetailActivity;
+import com.example.administrator.travel.ui.baseui.DestinationDetailActivity;
+import com.example.administrator.travel.ui.baseui.TravelsDetailActivity;
 import com.example.administrator.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -31,8 +35,9 @@ public class FindHotHolder extends BaseRecycleViewHolder<FindBean.DataBean.Recom
 
     @Override
     public void childBindView(int position, FindBean.DataBean.RecommendBean data, Context mContext) {
+        itemView.setOnClickListener(new MyOnClickListener(mContext,data));
         FrescoUtils.displayNormal(ivPhoto,data.getLogo_img());
-       tvContent.setText(data.getTitle());
+        tvContent.setText(data.getTitle());
         tvAddress.setText(data.getProvince()+data.getCity()+data.getAddress());
         int type = data.getType();
         if (type==1){
@@ -45,4 +50,5 @@ public class FindHotHolder extends BaseRecycleViewHolder<FindBean.DataBean.Recom
           tvType.setText("线上活动");
         }
     }
+
 }

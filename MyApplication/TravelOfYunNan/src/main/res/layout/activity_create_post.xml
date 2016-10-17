@@ -1,156 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv_top"
     android:layout_width="match_parent"
-    android:background="@color/colorFAFAFA"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:background="@color/colorFAFAFA"
+    android:fillViewport="true">
 
-    <ScrollView
-        android:id="@+id/sv_top"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
-            <LinearLayout
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@color/meLine"
+            android:clickable="true"
+            android:ellipsize="end"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:hint="标题(选填，最多输入18个字符。)"
+            android:maxLength="18"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColorHint="@color/color646464"
+            android:textCursorDrawable="@null"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dcdcdc" />
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/et_title"
+            android:layout_weight="1"
+            android:background="@color/meLine"
+            android:clickable="true"
+            android:gravity="left"
+            android:hint="没病走两步"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/color969696"
+            android:textSize="13sp" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_bar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorFAFAFA"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
+
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_emoji"
+                style="@style/activityCreatePostTvIcon"
+                android:layout_marginLeft="0dp"
+                android:text="@string/activity_create_post_smell" />
+
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_picture"
+                style="@style/activityCreatePostTvIcon"
+                android:text="@string/activity_create_post_picture" />
+
+            <com.example.administrator.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_aite"
+                style="@style/activityCreatePostTvIcon"
+                android:text="@string/activity_create_post_aite" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/meLine" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ViewStub
+                android:id="@+id/vs_photo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="258dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="2dp"
+                android:layout="@layout/activity_create_post_photo" />
 
-                <RelativeLayout
-                    android:background="@color/otherTitleBg"
-                    android:layout_width="match_parent"
-                    android:layout_height="49dp"
-                  >
+            <ViewStub
+                android:id="@+id/vs_emoji"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="18dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout="@layout/activity_create_post_emoji" />
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
 
-                    <TextView
-                        android:text="取消"
-                        android:id="@+id/tv_back"
-                        style="@style/backFontsIcon"
-                        android:layout_height="match_parent"
-                        android:layout_centerVertical="true"
-                        android:gravity="center"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:id="@+id/tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="发表帖子"
-                        android:textColor="#fafafa"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:text="发表"
-                        android:textSize="13sp"
-                        android:textColor="@color/colorFAFAFA"
-                        android:id="@+id/tv_push"
-                        android:gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:paddingRight="20dp"
-                        android:paddingLeft="20dp"
-                         />
-                </RelativeLayout>
-
-                <EditText
-                    android:focusableInTouchMode="true"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:id="@+id/et_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:background="@color/meLine"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:maxLength="18"
-                    android:paddingLeft="10dp"
-                    android:singleLine="true"
-                    android:hint="标题(选填，最多输入18个字符。)"
-                    android:textColorHint="@color/color646464"
-                    android:textCursorDrawable="@null"
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#dcdcdc" />
-
-                <EditText
-                    android:clickable="true"
-                    android:id="@+id/et_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_below="@id/et_title"
-                    android:layout_weight="1"
-                    android:background="@color/meLine"
-                    android:gravity="left"
-                    android:hint="没病走两步"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:textColor="@color/color969696"
-                    android:textSize="13sp" />
-
-
-                <LinearLayout
-                    android:id="@+id/ll_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/colorFAFAFA"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="20dp">
-
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
-                        android:id="@+id/tv_emoji"
-                        style="@style/activityCreatePostTvIcon"
-                        android:layout_marginLeft="0dp"
-                        android:text="@string/activity_create_post_smell" />
-
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
-                        android:id="@+id/tv_picture"
-                        style="@style/activityCreatePostTvIcon"
-                        android:text="@string/activity_create_post_picture" />
-
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
-                        android:id="@+id/tv_aite"
-                        style="@style/activityCreatePostTvIcon"
-                        android:text="@string/activity_create_post_aite" />
-
-                </LinearLayout>
-                <View
-                    android:background="@color/meLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                   >
-                    <ViewStub
-                        android:layout="@layout/activity_create_post_photo"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:id="@+id/vs_photo"
-                        android:layout_width="match_parent"
-                        android:layout_height="258dp" />
-
-                    <ViewStub
-                        android:id="@+id/vs_emoji"
-                        android:layout="@layout/activity_create_post_emoji"
-                        android:layout_marginLeft="13dp"
-                        android:layout_marginRight="13dp"
-                        android:layout_marginBottom="18dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp" />
-                </RelativeLayout>
-            </LinearLayout>
-    </ScrollView>
-
-
-</RelativeLayout>

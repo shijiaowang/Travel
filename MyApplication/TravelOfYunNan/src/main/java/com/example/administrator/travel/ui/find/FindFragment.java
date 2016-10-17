@@ -1,24 +1,33 @@
 package com.example.administrator.travel.ui.find;
 
 import android.content.Intent;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.bean.Line;
+import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.ActiveActivity;
 import com.example.administrator.travel.ui.baseui.FindCommonActivity;
 import com.example.administrator.travel.ui.baseui.HotelActivity;
 import com.example.administrator.travel.ui.find.travels.TravelsActivity;
 import com.example.administrator.travel.ui.fragment.LoadBaseFragment;
+import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity;
 import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.xutils.x;
 
 import java.util.List;
 
@@ -65,6 +74,9 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         mRvHot.setHasFixedSize(true);
         mRvHot.setNestedScrollingEnabled(false);
         mRvHot.addItemDecoration(new MyWitheMeDecoration(10));
+        List<FindBean.DataBean.RecommendBean> banner = findBean.getData().getBanner();
+        vpFind.setAdapter(new HomePagerAdapter(banner));
+        vpFind.setOffscreenPageLimit(banner.size());
 
     }
 
@@ -109,6 +121,38 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
                 break;
         }
     }
+    class HomePagerAdapter extends PagerAdapter {
+        private List<FindBean.DataBean.RecommendBean> data;
 
+        public HomePagerAdapter(List<FindBean.DataBean.RecommendBean> data) {
+            this.data = data;
+        }
 
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            SimpleDraweeView imageView = new SimpleDraweeView(getContext());
+            imageView.setTag(data.get(position));
+            imageView.setOnClickListener(new MyOnClickListener(getContext(), (FindBean.DataBean.RecommendBean) imageView.getTag()));
+            FrescoUtils.displayNormal(imageView,data.get(position).getLogo_img());
+            container.addView(imageView);
+            return imageView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position,
+                                Object object) {
+
+            container.removeView(((SimpleDraweeView) object));
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public int getCount() {
+            return data.size();
+        }
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.administrator.travel.ui.baseui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/7/26 0026.
+ * Created by wangyang on 2016/7/26 0026.
  * 美食详情
  */
 public class DeliciousDetailActivity extends LoadingBarBaseActivity<DetailCommonEvent> implements XScrollView.IXScrollViewListener {
@@ -75,7 +77,12 @@ public class DeliciousDetailActivity extends LoadingBarBaseActivity<DetailCommon
         XEventUtils.getUseCommonBackJson(IVariable.FIND_FOOD_DETAIL, deliciousDetail, TYPE_LOAD, new DetailCommonEvent());
 
     }
-
+    public static void start(Context context, String tid, String name){
+        Intent intent=new Intent(context,DeliciousDetailActivity.class);
+        intent.putExtra(IVariable.T_ID,tid);
+        intent.putExtra(IVariable.NAME,name);
+        context.startActivity(intent);
+    }
     private void init() {
         id = getIntent().getStringExtra(IVariable.T_ID);
         String tName = getIntent().getStringExtra(IVariable.NAME);

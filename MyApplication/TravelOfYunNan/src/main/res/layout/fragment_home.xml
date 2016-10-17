@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -79,7 +78,7 @@
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -114,18 +113,16 @@
                     android:text="@string/home_topic_chosen" />
             </LinearLayout>
 
-            <com.example.administrator.travel.ui.view.ToShowAllGridView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/gv_chosen"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="22dp"
                 android:layout_marginTop="14dp"
                 android:horizontalSpacing="18dp"
                 android:numColumns="2"
-                android:verticalSpacing="10dp">
-
-            </com.example.administrator.travel.ui.view.ToShowAllGridView>
+                android:verticalSpacing="10dp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -180,19 +177,18 @@
                     android:text="@string/home_topic_travels" />
             </LinearLayout>
 
-            <com.example.administrator.travel.ui.view.ToShowAllListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/lv_travels"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="14dp"
                 android:divider="@color/homeContentBg"
-                android:dividerHeight="10dp">
-
-            </com.example.administrator.travel.ui.view.ToShowAllListView>
+               >
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

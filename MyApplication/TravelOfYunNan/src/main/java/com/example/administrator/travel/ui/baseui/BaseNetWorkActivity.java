@@ -32,10 +32,17 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         initEvent();
         mIvPageError.setOnClickListener(new ErrorPageClickListener());
         registerEventBus(this);
-        setIsProgress(true,true);//初次加载隐藏其他布局
-        onLoad(TYPE_REFRESH);
+        if (isAutoLoad()) {
+            setIsProgress(true, true);//初次加载隐藏其他布局
+            onLoad(TYPE_REFRESH);
+        }
 
     }
+
+    protected boolean isAutoLoad() {
+        return true;
+    }
+
     /**
      * 实例化 T
      *

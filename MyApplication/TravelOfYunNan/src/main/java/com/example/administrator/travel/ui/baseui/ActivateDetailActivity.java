@@ -1,6 +1,8 @@
 package com.example.administrator.travel.ui.baseui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -23,7 +25,7 @@ import org.xutils.x;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/7/26 0026.
+ * Created by wangyang on 2016/7/26 0026.
  * 活动详情
  */
 public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailEvent> {
@@ -52,7 +54,11 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailE
     protected int setContentLayout() {
         return R.layout.activity_activate_detail;
     }
-
+    public static void start(Context context, String aid){
+        Intent intent=new Intent(context,ActivateDetailActivity.class);
+        intent.putExtra(IVariable.A_ID,aid);
+        context.startActivity(intent);
+    }
     @Override
     protected void initEvent() {
         aId = getIntent().getStringExtra(IVariable.A_ID);

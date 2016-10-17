@@ -1,6 +1,8 @@
 package com.example.administrator.travel.ui.baseui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,7 +43,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by android on 2016/7/30.
+ * Created by wangyang on 2016/7/30.
  * 游记详情
  */
 public class TravelsDetailActivity extends LoadingBarBaseActivity<DetailCommonEvent>{
@@ -103,7 +105,11 @@ public class TravelsDetailActivity extends LoadingBarBaseActivity<DetailCommonEv
             }
         });
     }
-
+    public static void start(Context context, String tid){
+        Intent intent=new Intent(context,TravelsDetailActivity.class);
+        intent.putExtra(IVariable.T_ID,tid);
+        context.startActivity(intent);
+    }
     private void init() {
         tId = getIntent().getStringExtra(IVariable.T_ID);
         mSsvScroll = getxScrollView();

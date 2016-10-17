@@ -6,8 +6,8 @@ package com.example.administrator.travel.global;
  */
 public interface IVariable {
     //前两个为通用
-    String DOMAIN_NAME="http://yuns.yunspeak.com/";
-   /* String DOMAIN_NAME = "http://192.168.1.35/";*/
+    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
+    String DOMAIN_NAME = "http://192.168.1.35/";
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -31,18 +31,20 @@ public interface IVariable {
     String ENTER_APPOINT = API_KEY + "UserTravel/setIntoTravel/";//约伴报名
     String CANCEL_APPOINT = API_KEY + "UserTravel/revokeIntoTravel/";//取消报名
     /**
-     * 登录
+     * 首页等等
      */
     String REGISTER_USER = API_KEY + "User/register/";//注册
     String RESET_PASSWORD = API_KEY + "User/resetPassword/";//重置密码
     String RESET_PASSWORD_VER = API_KEY + "User/sendUsermsg/";//重置验证码
     String LOGIN_URL = API_KEY + "User/Login/";//登录
+    String HOME_PAGE = API_KEY + "Index/loadIndex/";//首页数据加载
     /**
      * 圈子
      */
     String FIRST_CIRCLE_URL = API_KEY + "Circle/getCirclelists/";
     String NORMAL_CIRCLE_URL = API_KEY + "Circle/getCirclechildlists/";
     String CIRCLE_CREATE_POST = API_KEY + "Circle/setCircleforum/";//圈子发帖
+    String DISCUSS_POST = API_KEY + "Circle/replayForum/";//评论帖子
     String CIRCLE_LIKE_POST = API_KEY + "Circle/setForumlike/";//帖子点赞
     String CIRCLE_FOLLOW = API_KEY + "Circle/setCirclefollow/";//关注圈子
     String GET_CIRCLE_POST = API_KEY + "Circle/getCircleforumlists/";//获取圈子内帖子列表

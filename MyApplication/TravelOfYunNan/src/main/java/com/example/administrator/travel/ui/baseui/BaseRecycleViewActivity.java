@@ -19,6 +19,7 @@ import com.example.administrator.travel.ui.me.myappoint.withmeselect.MyWitheMeDe
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 
 import org.xutils.common.util.DensityUtil;
 
@@ -111,7 +112,11 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         }else {
             loadDatas  = (List<F>) parentBean.getData();
         }
-        if (parentBean==null || loadDatas==null || loadDatas.size()==0)return;
+        if (parentBean==null || loadDatas==null || loadDatas.size()==0){
+            mSwipe.setLoadingMore(false);
+            mSwipe.setRefreshing(false);
+            return;
+        }
         if (mAdapter == null) {
             mDatas = loadDatas;
             mAdapter = initAdapter(mDatas);
@@ -129,7 +134,9 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
             mRvCommon.setItemAnimator(new DefaultItemAnimator());
         } else if (t.getType() == TYPE_LOAD) {
             mDatas.addAll(loadDatas);
-            LogUtils.e("开始添加了，现在一共有"+mDatas.size());
+            if (t.getCode()==2){
+                ToastUtils.showToast("没有更多消息了");
+            }
             mSwipe.setLoadingMore(false);
             mAdapter.notifiyData(mDatas);
         } else if (t.getType() == TYPE_REFRESH) {
