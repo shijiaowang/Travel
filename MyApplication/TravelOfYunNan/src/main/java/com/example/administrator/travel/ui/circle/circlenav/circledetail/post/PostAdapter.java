@@ -53,7 +53,6 @@ public class PostAdapter extends BaseRecycleViewAdapter<Object> {
         }
 
     }
-
     @Override
     public int getItemViewType(int position) {
         PostDetailBean.DataBean.ForumReplyBean forumReplyBean = null;

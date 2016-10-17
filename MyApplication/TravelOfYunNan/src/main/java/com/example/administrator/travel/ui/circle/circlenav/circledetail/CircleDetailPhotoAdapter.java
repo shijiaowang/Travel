@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.example.administrator.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -22,10 +23,14 @@ import java.util.List;
 public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
       private List<String> mDatas;
       private Context mContext;
+    private String cId;
+    private String id;
 
-    public CircleDetailPhotoAdapter(List<String> mDatas, Context mContext) {
+    public CircleDetailPhotoAdapter(List<String> mDatas, Context mContext, String cId, String id) {
         this.mDatas = mDatas;
         this.mContext = mContext;
+        this.cId = cId;
+        this.id = id;
     }
     public void setList(List<String> mDatas){
         this.mDatas=mDatas;
@@ -41,7 +46,13 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final CircleDetailPhotoHolder circleDetailPhotoHolder = (CircleDetailPhotoHolder) holder;
-      circleDetailPhotoHolder.mIvImage.setTag(mDatas.get(position));
+       circleDetailPhotoHolder.mIvImage.setTag(mDatas.get(position));
+        circleDetailPhotoHolder.mIvImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PostActivity.start(mContext,id,cId);
+            }
+        });
       //FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag());
         x.image().bind( circleDetailPhotoHolder.mIvImage,mDatas.get(position));
     }

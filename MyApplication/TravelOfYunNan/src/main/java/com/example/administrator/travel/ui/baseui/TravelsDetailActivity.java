@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.CommonClickLikeBean;
+import com.example.administrator.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
 import com.example.administrator.travel.bean.FindLastReply;
 import com.example.administrator.travel.bean.TravelReplyBean;
 import com.example.administrator.travel.bean.TravelsDetail;

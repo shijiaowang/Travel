@@ -58,7 +58,7 @@ public class SplashActivity extends FullTransparencyActivity {
     private int mFirstDotLeft;
     private List<Splash> splashs=new ArrayList<>();
     private List<View> mViews=new ArrayList<>();
-  private Handler mHandler=new Handler(){
+    private Handler mHandler=new Handler(){
       @Override
       public void handleMessage(Message msg) {
           int position=mVpSplash.getCurrentItem()+1;

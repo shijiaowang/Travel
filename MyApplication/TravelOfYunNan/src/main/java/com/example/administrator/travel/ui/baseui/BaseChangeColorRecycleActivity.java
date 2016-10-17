@@ -75,58 +75,40 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
 
     @Override
     protected void onSuccess(T t) {
-        ParentBean parentBean = null;
-        if (isUserChild(parentBean)) {//使用孩子的
-        } else {
-            parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
-        }
-        final F data = (F) parentBean.getData();
-        List<G> boy = (List<G>) data.getBody();
-        if (boy == null || boy.size() == 0) {
-            if (t.getType() == TYPE_REFRESH) {
-                mSwipeContainer.setRefreshing(false);
+        try {
+            ParentBean parentBean = null;
+            if (isUserChild(parentBean)) {//使用孩子的
+            } else {
+                parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
             }
-            if (t.getType()==TYPE_LOAD){
+             F data = (F) parentBean.getData();
+            List<G> boy = (List<G>) data.getBody();
+            if (mAdapter == null) {
+                mDatas = boy;
+                mAdapter = initAdapter(mDatas);
+                mRvCommon.setAdapter(mAdapter);
+                linearLayoutManager = new LinearLayoutManager(this);
+                linearLayoutManager.setAutoMeasureEnabled(true);
+                mRvCommon.setLayoutManager(linearLayoutManager);
+                mRvCommon.setItemAnimator(new DefaultItemAnimator());
+            } else if (t.getType() == TYPE_LOAD) {
+                mDatas.addAll(boy);
                 mSwipe.setLoadingMore(false);
+                mAdapter.notifiyData(mDatas);
+            } else if (t.getType() == TYPE_REFRESH) {
+                mSwipeContainer.setRefreshing(false);
+                mDatas = boy;
+                mAdapter.notifiyData(mDatas);
+            } else {
+                doOtherSuccessData(t);
             }
-            return;
-        }
-        if (mAdapter == null) {
-            mDatas = boy;
-            mAdapter = initAdapter(mDatas);
-            mRvCommon.setAdapter(mAdapter);
-            linearLayoutManager = new LinearLayoutManager(this);
-            linearLayoutManager.setAutoMeasureEnabled(true);
-            mRvCommon.setLayoutManager(linearLayoutManager);
-            mRvCommon.setItemAnimator(new DefaultItemAnimator());
-            mAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    onChildItemClick(mDatas.get(position));
-                }
-            });
-        } else if (t.getType() == TYPE_LOAD) {
-            mDatas.addAll(boy);
-            mSwipe.setLoadingMore(false);
-            mAdapter.notifiyData(mDatas);
-        } else if (t.getType() == TYPE_REFRESH) {
-            mSwipeContainer.setRefreshing(false);
-            mDatas = boy;
-            mAdapter.notifiyData(mDatas);
-        } else {
-            doOtherSuccessData(t);
+        } catch (Exception e) {
+            e.printStackTrace();
+            onFail(t);
         }
     }
 
 
-    /**
-     * 孩子item点击
-     *
-     * @param g
-     */
-    protected void onChildItemClick(G g) {
-
-    }
 
     protected void doOtherSuccessData(T t) {
 
@@ -165,7 +147,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
                 mSwipeContainer.setRefreshing(false);
                 break;
             case TYPE_LOAD:
-
+                mSwipeContainer.setRefreshing(false);
                 break;
 
         }

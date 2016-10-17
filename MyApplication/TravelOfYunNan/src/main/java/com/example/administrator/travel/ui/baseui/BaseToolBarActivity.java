@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     public static final int AUTH_TYPE=2;//认证筛选
 
     FrameLayout mFlContent;
-    TextView mTvTitle;
+    protected  TextView mTvTitle;
     protected Toolbar mToolbar;
     ImageView mIvPageError;//展示错误页面
     ProgressBar mPbLoading;//加载中
@@ -351,7 +352,17 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         view.setFocusableInTouchMode(b);
         view.setFocusable(b);
     }
-   public void canSommthInNetScroll(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager){
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my_appoint_menu,menu);
+        menu.findItem(R.id.action_history).setTitle(initRightText());
+        return true;
+    }
+
+    protected String initRightText() {
+        return "";
+    }
+   public void canSmoothInNetScroll(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager){
        linearLayoutManager.setSmoothScrollbarEnabled(true);
        linearLayoutManager.setAutoMeasureEnabled(true);
        recyclerView.setHasFixedSize(true);

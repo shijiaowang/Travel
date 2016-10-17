@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorFAFAFA"
+    android:layout_width="340dp"
+    android:layout_height="226dp">
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_travels"
+        android:layout_width="match_parent"
+        android:layout_height="165dp" />
+    <TextView
+        android:layout_below="@id/iv_travels"
+        android:id="@+id/tv_content"
+        android:textColor="@color/color323232"
+        android:paddingRight="80dp"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:lines="2"
+        android:ellipsize="end"
+        android:layout_width="match_parent"
+        android:layout_height="61dp" />
+    <LinearLayout
+        android:layout_marginTop="140dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:id="@+id/tv_user"
+            style="@style/commonSingleLineTextStyle"
+            android:textColor="@color/color646464"
+            android:textSize="8sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</RelativeLayout>

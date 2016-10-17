@@ -8,22 +8,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.bean.CircleFollow;
-import com.example.administrator.travel.bean.CommonClickLikeBean;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BaseChangeColorRecycleActivity;
 import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.example.administrator.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.example.administrator.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
-import com.example.administrator.travel.ui.circle.circlenav.circledetail.post.PostActivity;
-import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.example.administrator.travel.utils.FrescoUtils;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +43,8 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
     @BindView(R.id.tv_follow_number) TextView mTvFollowNumber;
     @BindView(R.id.tv_des) TextView mTvDes;
     @BindView(R.id.tv_circle_name) TextView mTvCircleName;
+    private boolean isFirst;
+
     @Override
     protected void initHeader() {
         cId = getIntent().getStringExtra(IVariable.C_ID);
@@ -74,10 +72,22 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
 
     @Override
     protected void onSuccess(CircleDetailEvent circleDetailEvent) {
-        super.onSuccess(circleDetailEvent);
+
         switch (circleDetailEvent.getType()) {
+            case TYPE_LOAD:
             case TYPE_REFRESH:
-                dealHeader(circleDetailEvent);
+                super.onSuccess(circleDetailEvent);
+                isFirst = true;
+                if (isFirst) {
+                    isFirst=false;
+                    dealHeader(circleDetailEvent);
+                }
+                break;
+            case TYPE_LIKE_POST:
+                dealLikeData(circleDetailEvent);
+                break;
+            case TYPE_FOLLOW_CIRCLE:
+                dealFollowData(circleDetailEvent.getResult());
                 break;
 
         }
@@ -85,9 +95,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(CircleDetailActivity.this, CreatePostActivity.class);
-        intent.putExtra(IVariable.C_ID,cId);
-        startActivity(intent);
+        CreatePostActivity.start(this,cId,12,CreatePostActivity.REPLY_POST,"","","");
     }
 
     @Override
@@ -101,26 +109,9 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
 
     }
 
-    @Override
-    protected void onChildItemClick(CircleDetailBean.DataBean.BodyBean bodyBean) {
-        if (bodyBean==null)return;
-        Intent intent = new Intent(CircleDetailActivity.this, PostActivity.class);
-        intent.putExtra(IVariable.FORUM_ID, bodyBean.getId());
-        startActivity(intent);
-    }
 
-    @Override
-    protected void doOtherSuccessData(CircleDetailEvent circleDetailEvent) {
-        super.doOtherSuccessData(circleDetailEvent);
-        switch (circleDetailEvent.getType()){
-            case TYPE_LIKE_POST:
-                dealLikeData(circleDetailEvent);
-                break;
-            case TYPE_FOLLOW_CIRCLE:
-                dealFollowData(circleDetailEvent.getResult());
-                break;
-        }
-    }
+
+
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
@@ -136,6 +127,9 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
                 break;
         }
     }
+
+
+
 
     /**
      * 判断是否需要取消还是关注
@@ -181,7 +175,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
      * @param result
      */
     private void dealFollowData(String result) {
-        CircleFollow circleFollow = GsonUtils.getObject(result, CircleFollow.class);
+        CircleFollowBean circleFollow = GsonUtils.getObject(result, CircleFollowBean.class);
         String follow_count = circleFollow.getData().getFollow_count();
         mTvFollowNumber.setText(follow_count);
         if (mTvFollow.getText().toString().trim().equals(getString(R.string.activity_circle_detail_followed))){

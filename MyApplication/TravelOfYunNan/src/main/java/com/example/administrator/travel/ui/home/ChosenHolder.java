@@ -28,15 +28,14 @@ public class ChosenHolder extends BaseRecycleViewHolder<HomeBean.DataBean.ForumB
     }
 
     @Override
-    public void childBindView(int position, HomeBean.DataBean.ForumBean data, final Context mContext) {
+    public void childBindView(int position, final HomeBean.DataBean.ForumBean data, final Context mContext) {
         FrescoUtils.displayNormal(mIvChosenPicture,data.getCircle_img());
         mTvType.setText(data.getCname());
         mTvChosenText.setText(data.getTitle());
-        itemView.setTag(data.getId());
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PostActivity.start(mContext, (String) itemView.getTag());
+                PostActivity.start(mContext, data.getId(),data.getCid());
             }
         });
     }

@@ -120,16 +120,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
     protected abstract String initUrl();
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.my_appoint_menu,menu);
-        menu.findItem(R.id.action_history).setTitle(initRightText());
-        return true;
-    }
 
-    protected String initRightText() {
-        return "";
-    }
 
     /**
      * 读取成功

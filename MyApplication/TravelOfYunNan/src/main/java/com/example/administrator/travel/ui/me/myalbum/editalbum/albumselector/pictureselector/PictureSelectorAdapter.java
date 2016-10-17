@@ -43,7 +43,7 @@ public class PictureSelectorAdapter extends TravelBaseAdapter<String> {
                         pictureSelectorHolder.mImage.setBackgroundColor(Color.TRANSPARENT);
                     }else {
 
-                        if (GlobalValue.mSelectImages.size()>=12){
+                        if (GlobalValue.mSelectImages.size()>=GlobalValue.size){
                             ToastUtils.showToast("对不起，最多添加12张");
                             return;
                         }

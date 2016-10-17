@@ -1,5 +1,5 @@
 package com.example.administrator.travel.ui.appoint.together;
-import com.example.administrator.travel.bean.CommonClickLikeBean;
+import com.example.administrator.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.baseui.LoadAndPullBaseFragment;

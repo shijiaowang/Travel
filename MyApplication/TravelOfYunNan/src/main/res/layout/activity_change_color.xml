@@ -11,6 +11,7 @@
 
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/nsv_content"
+            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
@@ -25,7 +26,7 @@
                 <ViewStub
                     android:id="@+id/vs_content"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
                     android:overScrollMode="never"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
@@ -37,8 +38,7 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:paddingTop="@dimen/commonStatusHeight"
-                android:layout_height="@dimen/commonTotalHeight"
+                android:layout_height="49dp"
                 android:background="@color/otherTitleBg"
                 android:gravity="center"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">

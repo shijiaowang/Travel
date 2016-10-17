@@ -14,6 +14,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +24,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity;
 import com.example.administrator.travel.utils.ToastUtils;
 
@@ -37,7 +39,7 @@ import java.util.List;
 /**
  * 相册选择 powered by wangyang
  */
-public class AlbumSelectorActivity extends BarBaseActivity {
+public class AlbumSelectorActivity extends BaseToolBarActivity {
     public static final int GET_PICTURE=0;
     public static final int SEND_PICTURE=1;
     public static final int CANCEL_PER=2;//取消预览
@@ -156,20 +158,16 @@ public class AlbumSelectorActivity extends BarBaseActivity {
     }
 
     @Override
-    protected int setContentLayout() {
-        return R.layout.activity_album_selector;
+    protected String initRightText() {
+        return "取消";
     }
 
     @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        initSelect();
+    }
+
     protected void initEvent() {
-        mTvCancel = getmTvRightIcon();
-        mTvCancel.setText("取消");
-        mTvCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initSelect();
-            }
-        });
         mLvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -191,20 +189,9 @@ public class AlbumSelectorActivity extends BarBaseActivity {
         }
     }
 
-    @Override
-    protected void initViewData() {
-        initImages();
-    }
 
-    @Override
-    protected String setTitleName() {
-        return "相册目录";
-    }
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -212,5 +199,21 @@ public class AlbumSelectorActivity extends BarBaseActivity {
         if (requestCode==GET_PICTURE && resultCode==SEND_PICTURE){
             finish();
         }
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_album_selector;
+    }
+
+    @Override
+    protected void initOptions() {
+        initImages();
+        initEvent();
+    }
+
+    @Override
+    protected String initTitle() {
+        return "相册详情";
     }
 }

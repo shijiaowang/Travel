@@ -63,7 +63,6 @@ public class UserDynamicAdapter extends LoadMoreRecycleViewAdapter<OtherUserCent
         userDynamicHolder.tvType.setText("#"+moreBean.getCname()+"#");
         userDynamicHolder.tvDiscuss.setText(moreBean.getTitle());
         userDynamicHolder.tvType.setTag(moreBean.getCid());
-        userDynamicHolder.tvOtherUser.setTag(moreBean.getFid());
         userDynamicHolder.tvIconNumber.setText(moreBean.getCount_like());
         if (moreBean.getIs_like().equals("1")){
             userDynamicHolder.tvIconNumber.setTextColor(userDynamicHolder.loveColor);
@@ -77,7 +76,7 @@ public class UserDynamicAdapter extends LoadMoreRecycleViewAdapter<OtherUserCent
         userDynamicHolder.tvOtherUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PostActivity.start(mContext, (String) userDynamicHolder.tvOtherUser.getTag());
+                PostActivity.start(mContext,moreBean.getId(),moreBean.getCid());
             }
         });
         userDynamicHolder.tvType.setOnClickListener(new View.OnClickListener() {

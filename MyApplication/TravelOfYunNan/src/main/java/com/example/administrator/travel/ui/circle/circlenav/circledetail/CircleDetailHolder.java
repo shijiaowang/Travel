@@ -1,10 +1,12 @@
 package com.example.administrator.travel.ui.circle.circlenav.circledetail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.ColorInt;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.example.administrator.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.ui.view.ToShowAllGridView;
@@ -34,6 +37,7 @@ import java.util.Map;
 
 import butterknife.BindColor;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by wangyang on 2016/7/11 0011.
@@ -80,7 +84,6 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         String countLike = datas.getCount_like();
         if (StringUtils.isEmpty(countLike)){
             countLike="0";
-            LogUtils.e("count 为0了");
         }
         mTvLoveNumber.setText(countLike);
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-M-dd HH:mm", datas.getTime()));
@@ -102,16 +105,20 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
             }
         });
 
-        String imageUrl = datas.getForum_img();
+        final String imageUrl = datas.getForum_img();
         if (!StringUtils.isEmpty(imageUrl)) {
             mRvPhoto.setVisibility(View.VISIBLE);
             String[] split = imageUrl.split(",");
             List<String> list = Arrays.asList(split);
             if (circleDetailPhotoAdapter==null){
-                circleDetailPhotoAdapter = new CircleDetailPhotoAdapter(list,mContext);
+                circleDetailPhotoAdapter = new CircleDetailPhotoAdapter(list,mContext,datas.getId(),datas.getCid());
                 mRvPhoto.addItemDecoration(new CircleDetailDecoration(6));
                 mRvPhoto.setAdapter(circleDetailPhotoAdapter);
                 LinearLayoutManager linearLayoutManager=new GridLayoutManager(mContext,3);
+                //响应toolebar收缩
+                mRvPhoto.setHasFixedSize(true);
+                mRvPhoto.setNestedScrollingEnabled(false);
+                linearLayoutManager.setSmoothScrollbarEnabled(false);
                 mRvPhoto.setLayoutManager(linearLayoutManager);
             }else {
                 circleDetailPhotoAdapter.setList(list);
@@ -119,5 +126,12 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         } else {
             mRvPhoto.setVisibility(View.GONE);
         }
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               PostActivity.start(mContext,datas.getId(),datas.getCid());
+            }
+        });
     }
 }

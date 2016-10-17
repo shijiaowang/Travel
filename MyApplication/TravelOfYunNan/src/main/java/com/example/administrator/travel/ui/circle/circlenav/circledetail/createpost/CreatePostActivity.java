@@ -26,6 +26,7 @@ import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.aite.AiteActivity;
 import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
+import com.example.administrator.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.example.administrator.travel.ui.fragment.EmojiFragment;
@@ -53,6 +54,9 @@ import butterknife.BindView;
 public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> implements View.OnClickListener, View.OnFocusChangeListener {
     private static final int SHOW_PHOTO = 0;
     private static final int SHOW_EMOJI = 1;
+    public  static final int CREATE_POST=3;
+    public  static final int REPLY_POST=4;
+    private int currentType=0;
    @BindView(R.id.tv_aite) TextView mTvAite;
    @BindView(R.id.tv_picture) TextView mTvPicture;
    @BindView(R.id.tv_emoji) TextView mTvEmoji;
@@ -85,13 +89,15 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
             }
         }
     };
-    private TextView mTvBack;
-    private List<String> mImages;
     private List<String> pictures;
     private CreatePostPhotoAdapter createPostPhotoAdapter;
     private String addFlag="add";
     private String cId;
     private boolean isCreateing=false;
+    private int size;
+    private String rUserId;
+    private String pId;
+    private String forumId;
 
     @Override
     protected int initLayoutRes() {
@@ -319,7 +325,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
      * 创建帖子
      */
     private void createPost() {
-        String title = mEtTitle.getText().toString().trim();
+
         String content = mEtContent.getText().toString().trim();
         if (StringUtils.isEmpty(content)) {
             ToastUtils.showToast("请输入内容");
@@ -328,26 +334,46 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
         if (isCreateing)return;
         isCreateing = true;
+        Map<String, String> createPostMap;
 
-        Map<String, String> createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content,cId);
-        XEventUtils.postFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,IVariable.CREATE_POST,new CreatePostEvent());
+        if (currentType==CREATE_POST) {
+            String title = mEtTitle.getText().toString().trim();
+            createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content,cId);
+        }else {
+            createPostMap=MapUtils.Build().addKey(this).addFroumId(forumId).addContent(content).addCId(cId).addPId(pId).addUserId().addRUserId(rUserId).end();
+        }
+        XEventUtils.postFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,currentType,new CreatePostEvent());
     }
 
     @Override
     protected void initEvent() {
         cId = getIntent().getStringExtra(IVariable.C_ID);
+        GlobalValue.size = getIntent().getIntExtra(IVariable.PAGE_SIZE,12);
+        currentType = getIntent().getIntExtra(IVariable.TYPE,0);
+        if (currentType==REPLY_POST){
+            mTvTitle.setText("回复帖子");
+        }
+        rUserId = getIntent().getStringExtra(IVariable.R_USER_ID);
+        pId = getIntent().getStringExtra(IVariable.PID);
+        forumId = getIntent().getStringExtra(IVariable.FORUM_ID);
+
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mTvPicture.setOnClickListener(this);
         mTvEmoji.setOnClickListener(this);
         mTvAite.setOnClickListener(this);
         mEtTitle.setOnClickListener(this);
         mEtContent.setOnClickListener(this);
-        mEtTitle.setOnFocusChangeListener(this);
+        if (currentType==REPLY_POST){
+            mEtTitle.setVisibility(View.GONE);
+        }else {
+            mEtTitle.setOnFocusChangeListener(this);
+        }
         mEtContent.setOnFocusChangeListener(this);
     }
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
+        setIsProgress(true,false);
         createPost();
     }
     @Override
@@ -363,7 +389,15 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     @Override
     protected void onSuccess(CreatePostEvent createPostEvent) {
         isCreateing=false;
-        dealData(createPostEvent);
+        switch (createPostEvent.getType()){
+            case CREATE_POST:
+                dealData(createPostEvent);
+                break;
+            case REPLY_POST:
+                finish();
+                break;
+        }
+
     }
 
     @Subscribe
@@ -384,9 +418,18 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
     @Override
     protected void onFail(CreatePostEvent createPostEvent) {
-
+        setIsProgress(false);
     }
-
+    public static void start(Context context,String cid,int pictureSize,int type,String forumId,String rid,String pid){
+        Intent intent = new Intent(context, CreatePostActivity.class);
+        intent.putExtra(IVariable.C_ID,cid);
+        intent.putExtra(IVariable.PAGE_SIZE,pictureSize);
+        intent.putExtra(IVariable.TYPE,type);
+        intent.putExtra(IVariable.FORUM_ID,forumId);
+        intent.putExtra(IVariable.R_USER_ID,rid);
+        intent.putExtra(IVariable.PID,pid);
+        context.startActivity(intent);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

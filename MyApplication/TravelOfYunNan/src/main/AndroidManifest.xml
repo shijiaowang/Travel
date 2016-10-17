@@ -50,7 +50,9 @@
                  <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>-->
         </activity>
-        <activity android:name=".ui.circle.circlenav.circledetail.post.PostActivity" />
+        <activity android:name=".ui.circle.circlenav.circledetail.post.PostActivity"
+            android:launchMode="singleTop"
+            />
         <activity android:name=".ui.me.othercenter.OtherUserCenterActivity" />
         <activity android:name=".ui.me.messagecenter.MessageCenterActivity" />
         <activity android:name=".ui.appoint.selectdestination.SelectDestinationActivity"

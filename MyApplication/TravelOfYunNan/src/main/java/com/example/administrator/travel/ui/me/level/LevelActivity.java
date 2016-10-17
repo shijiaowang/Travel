@@ -1,6 +1,5 @@
 package com.example.administrator.travel.ui.me.level;
 
-import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ProgressBar;
@@ -66,12 +65,12 @@ public class LevelActivity extends BaseNetWorkActivity<LevelEvent> {
         rvLevel.setAdapter(new LevelAdapter(level,this));
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         rvLevel.setLayoutManager(linearLayoutManager);
-        canSommthInNetScroll(rvLevel,linearLayoutManager);
+        canSmoothInNetScroll(rvLevel,linearLayoutManager);
         List<LevelUserBean.DataBean.LevelDescBean> levelDesc = levelBean.getData().getLevel_desc();
         rvExpress.setAdapter(new ExpressAdapter(levelDesc,this));
         LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(this);
         rvExpress.setLayoutManager(linearLayoutManager1);
-        canSommthInNetScroll(rvExpress,linearLayoutManager1);
+        canSmoothInNetScroll(rvExpress,linearLayoutManager1);
     }
 
     /**

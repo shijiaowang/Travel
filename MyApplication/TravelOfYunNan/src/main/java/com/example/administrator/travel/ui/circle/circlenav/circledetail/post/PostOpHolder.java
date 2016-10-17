@@ -68,10 +68,14 @@ import butterknife.BindView;
                 String[] split = forum.getForum_img().split(",");
                 List<String> list = Arrays.asList(split);
                 LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext);
+                mRvPostImage.setVisibility(View.VISIBLE);
                 mRvPostImage.setAdapter(new PostImageAdapter(list));
                 mRvPostImage.setLayoutManager(linearLayoutManager);
+                linearLayoutManager.setAutoMeasureEnabled(true);
+                mRvPostImage.setHasFixedSize(true);
                 mRvPostImage.addItemDecoration(new MyWitheMeDecoration(6));
-
+            }else {
+                mRvPostImage.setVisibility(View.GONE);
             }
         }
         List<PostDetailBean.DataBean.ForumBean.LikeBean> like = forum.getLike();
@@ -94,6 +98,6 @@ import butterknife.BindView;
         }
         mTvDiscussCount.setText("评论("+forum.getReplay_count()+")");
         mFitvLike.setTextColor(isLike ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
-
+        mFitvLike.setText(isLike?mContext.getString(R.string.activity_circle_love_full):mContext.getString(R.string.activity_circle_love_empty));
     }
 }

@@ -1,10 +1,13 @@
 package com.example.administrator.travel.ui.home;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.example.administrator.travel.bean.Chosen;
-import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 
 import java.util.List;
 
@@ -12,28 +15,16 @@ import java.util.List;
  * Created by wangyang on 2016/7/6 0006.
  * 主页精选
  */
-public class ChosenAdapter extends BaseRecycleViewHolder<Chosen> {
-
-    public ChosenAdapter(Context mContext, List<Chosen> mDatas) {
-        super(mContext, mDatas);
+public class ChosenAdapter extends BaseRecycleViewAdapter<HomeBean.DataBean.ForumBean> {
 
 
-    }
-   //测试数据
-    @Override
-    protected int testDataSize() {
-        return 4;
+    public ChosenAdapter(List<HomeBean.DataBean.ForumBean> mDatas, Context mContext) {
+        super(mDatas, mContext);
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, Chosen item, int position) {
-
-    }
-
-
-    @Override
-    protected BaseHolder initHolder(int position) {
-
-        return new ChosenHolder(super.mContext);
+    public BaseRecycleViewHolder<HomeBean.DataBean.ForumBean> onCreateViewHolder(ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_home_chosen, parent, false);
+        return new ChosenHolder(inflate);
     }
 }

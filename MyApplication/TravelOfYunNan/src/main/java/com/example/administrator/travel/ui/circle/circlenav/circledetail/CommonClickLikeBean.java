@@ -1,25 +1,14 @@
-package com.example.administrator.travel.bean;
+package com.example.administrator.travel.ui.circle.circlenav.circledetail;
 
 /**
- * Created by Administrator on 2016/8/17 0017.
- * 圈子关注
+ * Created by wangyang on 2016/8/17 0017.
+ * 点赞
  */
-public class CircleFollow {
-
-    /**
-     * code : 1
-     * message : 关注成功
-     * data : {"follow_count":"2"}
-     */
+public class CommonClickLikeBean {
 
     private int code;
     private String message;
-    /**
-     * follow_count : 2
-     */
-
     private DataBean data;
-
     public int getCode() {
         return code;
     }
@@ -45,14 +34,14 @@ public class CircleFollow {
     }
 
     public static class DataBean {
-        private String follow_count;
+        private String count_like;
 
-        public String getFollow_count() {
-            return follow_count;
+        public String getCount_like() {
+            return count_like;
         }
 
-        public void setFollow_count(String follow_count) {
-            this.follow_count = follow_count;
+        public void setCount_like(String count_like) {
+            this.count_like = count_like;
         }
     }
 }

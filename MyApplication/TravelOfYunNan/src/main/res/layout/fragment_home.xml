@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     tools:context=".ui.baseui.HomeActivity">
 
@@ -13,10 +15,12 @@
         android:background="@color/otherTitleBg"
         android:paddingTop="@dimen/commonStatusHeight"
         android:theme="@style/toolbar_theme">
+
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:background="@color/otherTitleBg">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
@@ -49,146 +53,188 @@
                     android:background="@drawable/home_search_bg">
 
                     <EditText
-                        android:focusable="false"
-                        android:clickable="false"
-                        android:focusableInTouchMode="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
                         android:background="@null"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:hint="输入您的关键词"
                         android:textColorHint="@android:color/white"
                         android:textCursorDrawable="@null"
                         android:textSize="15sp" />
 
                     <com.example.administrator.travel.ui.view.FontsIconTextView
-                        android:textColor="@color/colorFAFAFA"
-                        android:textSize="15sp"
-                        android:text="@string/fragment_circle_search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
-                        />
+                        android:text="@string/fragment_circle_search"
+                        android:textColor="@color/colorFAFAFA"
+                        android:textSize="15sp" />
                 </RelativeLayout>
 
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-    <android.support.v4.widget.NestedScrollView
-        android:scrollbars="none"
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/homeContentBg">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/homeContentBg"
+            android:scrollbars="none">
 
-           <android.support.v4.view.ViewPager
-               android:id="@+id/vp_active"
-               android:layout_width="match_parent"
-               android:layout_height="203dp">
-
-           </android.support.v4.view.ViewPager>
-
-            <LinearLayout style="@style/HomeTopicParent">
-
-                <com.example.administrator.travel.ui.view.FontsIconTextView
-                    android:layout_marginTop="1dp"
-                    android:text="@string/fragment_home_chosen"
-                    android:textColor="@color/homeTopicTextColor"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                   />
-
-                <TextView
-                    style="@style/HomeTopicText"
-                    android:text="@string/home_topic_chosen" />
-            </LinearLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/gv_chosen"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginRight="22dp"
-                android:layout_marginTop="14dp"
-                android:horizontalSpacing="18dp"
-                android:numColumns="2"
-                android:verticalSpacing="10dp"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="134dp"
-                android:layout_marginTop="18dp">
-
-                <ImageView
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_active"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/activity_home_pic2" />
-            </RelativeLayout>
+                    android:layout_height="203dp">
 
-            <LinearLayout style="@style/HomeTopicParent">
+                </android.support.v4.view.ViewPager>
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
-                    android:layout_marginTop="1dp"
-                    android:text="@string/fragment_home_spot"
-                    android:textColor="@color/homeTopicTextColor"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
+                <LinearLayout style="@style/HomeTopicParent">
+
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/fragment_home_chosen"
+                        android:textColor="@color/homeTopicTextColor"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        style="@style/HomeTopicText"
+                        android:text="@string/home_topic_chosen" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/gv_chosen"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="14dp"
+                    android:horizontalSpacing="18dp"
+                    android:numColumns="2"
+                    android:verticalSpacing="10dp" />
 
-                <TextView
-                    style="@style/HomeTopicText"
-                    android:text="@string/home_topic_hot_spots" />
-            </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_active"
+                    android:layout_width="match_parent"
+                    android:layout_height="134dp"
+                    android:layout_marginTop="18dp">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_hot_spots"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="14dp">
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/iv_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="134dp" />
 
-            </android.support.v7.widget.RecyclerView>
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                        android:id="@+id/tv_air"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="@string/activity_active_item_air"
+                        android:textColor="@color/colorffda60"
+                        android:textSize="40sp" />
 
-            <LinearLayout style="@style/HomeTopicParent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
-                    android:layout_marginTop="1dp"
-                    android:textColor="@color/homeTopicTextColor"
-                    android:text="@string/fragment_find_travels"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/tv_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:textColor="@color/colorffda60"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/colorFAFAFA"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tv_people"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="11dp"
+                            android:textColor="@color/colorFAFAFA"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <LinearLayout style="@style/HomeTopicParent">
+
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/fragment_home_spot"
+                        android:textColor="@color/homeTopicTextColor"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        style="@style/HomeTopicText"
+                        android:text="@string/home_topic_hot_spots" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_hot_spots"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                   />
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="14dp">
 
-                <TextView
-                    style="@style/HomeTopicText"
-                    android:text="@string/home_topic_travels" />
+                </android.support.v7.widget.RecyclerView>
+
+                <LinearLayout style="@style/HomeTopicParent">
+
+                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/fragment_find_travels"
+                        android:textColor="@color/homeTopicTextColor"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        style="@style/HomeTopicText"
+                        android:text="@string/home_topic_travels" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/lv_travels"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="14dp"
+                    android:divider="@color/homeContentBg"></android.support.v7.widget.RecyclerView>
+
             </LinearLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/lv_travels"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="14dp"
-                android:divider="@color/homeContentBg"
-               >
-            </android.support.v7.widget.RecyclerView>
-
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

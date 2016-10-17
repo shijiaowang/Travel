@@ -2,11 +2,13 @@ package com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.p
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.ImageFolder;
 import com.example.administrator.travel.global.GlobalValue;
@@ -30,7 +32,7 @@ import java.util.List;
  * Created by wangyang on 2016/8/23.
  * 相册中图片选择
  */
-public class PictureSelectorActivity extends BarBaseActivity implements View.OnClickListener {
+public class PictureSelectorActivity extends BaseToolBarActivity implements View.OnClickListener {
     @ViewInject(R.id.gv_photo)
     private GridView mGvPhoto;
     @ViewInject(R.id.tv_send)
@@ -43,35 +45,50 @@ public class PictureSelectorActivity extends BarBaseActivity implements View.OnC
     private List<String> mSelectImages=new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         registerEventBus(this);
     }
 
     @Override
-    protected int setContentLayout() {
+    protected int initLayoutRes() {
         return R.layout.activity_picture_selector;
     }
 
     @Override
+    protected void initOptions() {
+       initViewData();
+        initEvent();
+    }
+
+    @Override
+    protected String initTitle() {
+        return "图片选择";
+    }
+
+
+
+
     protected void initEvent() {
         mTvSend.setText("发送");
         if (GlobalValue.mSelectImages != null) {
             mTvSend.setText("发送(" + GlobalValue.mSelectImages.size() + ")");
         }
-
-        TextView mTvCancel = getmTvRightIcon();
-        mTvCancel.setText("取消");
         mTvSend.setOnClickListener(this);
-        mTvCancel.setOnClickListener(this);
         mTvWatch.setOnClickListener(this);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
+    protected String initRightText() {
+        return "取消";
     }
+
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        cancelOrSelect();
+    }
+
+
 
     private void cancelOrSelect() {
         if (GlobalValue.mSelectImages == null || GlobalValue.mSelectImages.size() == 0) {
@@ -100,7 +117,6 @@ public class PictureSelectorActivity extends BarBaseActivity implements View.OnC
         }
     }
 
-    @Override
     protected void initViewData() {
         //获取图片
         mFolder = (ImageFolder) getIntent().getSerializableExtra(IVariable.IMAGE_FOLDER);
@@ -132,15 +148,6 @@ public class PictureSelectorActivity extends BarBaseActivity implements View.OnC
         });
     }
 
-    @Override
-    protected String setTitleName() {
-        return "选择图片";
-    }
-
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -155,9 +162,6 @@ public class PictureSelectorActivity extends BarBaseActivity implements View.OnC
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_right_icon:
-                cancelOrSelect();
-                break;
             case R.id.tv_send:
                 sendPicture();
                 break;

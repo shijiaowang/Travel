@@ -156,6 +156,15 @@ public class HomeBean {
             private String title;
             private String circle_img;
             private String cname;
+            private String cid;
+
+            public String getCid() {
+                return cid;
+            }
+
+            public void setCid(String cid) {
+                this.cid = cid;
+            }
 
             public String getId() {
                 return id;
