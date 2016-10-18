@@ -109,7 +109,7 @@ class MyWithMeHolder extends BaseRecycleViewHolder<MyWithMeSelectBean.DataBean> 
                 if (!status.equals("3"))return;
                 EnterAppointDialog.showCommonDialog(mContext, "选择约伴", "确定", "当您选择当前推送约伴的同时也就意味着您将拒绝其他团长推送来的约伴！", new ParentPopClick() {
                     @Override
-                    public void onClick() {
+                    public void onClick(int type) {
                         selectAppoint(datas,position,mContext);
                     }
                 });

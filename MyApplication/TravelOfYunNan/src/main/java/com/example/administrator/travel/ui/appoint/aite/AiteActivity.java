@@ -1,79 +1,58 @@
 package com.example.administrator.travel.ui.appoint.aite;
 
 
-import android.app.Activity;
 import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.view.FastQueryIndex;
-import com.example.administrator.travel.utils.FontsIconUtil;
+import com.example.administrator.travel.ui.view.FontsIconTextView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
-import com.example.administrator.travel.utils.XEventUtils;
-
-import org.xutils.view.annotation.ViewInject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
+import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/8/1 0001.
+ * Created by wangyang on 2016/8/1 0001.
  *
  * @联系人列表
  */
-public class AiteActivity extends LoadingBarBaseActivity<AiteEvent> {
+public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
+    @BindView(R.id.tv_search) FontsIconTextView tvSearch;
+    @BindView(R.id.rl_search) RelativeLayout rlSearch;
+    @BindView(R.id.lv_follow_people) ListView lvFollowPeople;
+    @BindView(R.id.fqi_index) FastQueryIndex fqiIndex;
     private List<AiteFollow> followAndFans;
     private List<AiteFollow> mSelectPeople;
-    private TextView mTvOk;
-    @ViewInject(R.id.lv_follow_people)
-    private ListView mLvFollowPeople;
     private AiteAdapter adapter;
-    @ViewInject(R.id.fqi_index)
-    private FastQueryIndex mFqiIndex;
     private List<String> indexList;
-    private TextView mTvSearch;
 
-
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_aite;
-    }
 
     @Override
     protected void initEvent() {
         init();
-        mFqiIndex.setOnItemClickListener(new FastQueryIndex.OnItemClickListener() {
+        fqiIndex.setOnItemClickListener(new FastQueryIndex.OnItemClickListener() {
             @Override
             public void onClickWord(char c) {
                 queryAndSmooth(c);
             }
         });
-        mTvOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent();
-                if (mSelectPeople!=null) {
-                    intent.putExtra(IVariable.DATA, (Serializable) mSelectPeople);
-                }
-                setResult(RESULT_CODE,intent);
-                finish();
-            }
-        });
-        mLvFollowPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvFollowPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (mSelectPeople==null)mSelectPeople=new ArrayList<>();
+                if (mSelectPeople == null) mSelectPeople = new ArrayList<>();
                 AiteFollow followAndFan = followAndFans.get(position);
                 if (followAndFan.isChecked()) {
                     mSelectPeople.remove(followAndFan);
@@ -81,7 +60,7 @@ public class AiteActivity extends LoadingBarBaseActivity<AiteEvent> {
                     mSelectPeople.add(followAndFan);
                 }
                 followAndFan.setIsChecked(!followAndFan.isChecked());
-                mTvOk.setText(getString(R.string.sure_number,mSelectPeople.size()));
+                item.setTitle(getString(R.string.sure_number, mSelectPeople.size()));
                 adapter.notifyData(followAndFans);
             }
 
@@ -89,9 +68,25 @@ public class AiteActivity extends LoadingBarBaseActivity<AiteEvent> {
     }
 
     @Override
-    protected void onLoad(int type) {
-        Map<String, String> aiteMap = MapUtils.Build().addKey(this).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.GET_FOLLOW_USER,aiteMap,0,new AiteEvent());
+    protected void otherOptionsItemSelected(MenuItem item) {
+        super.otherOptionsItemSelected(item);
+        Intent intent = new Intent();
+        if (mSelectPeople != null) {
+            intent.putExtra(IVariable.DATA, (Serializable) mSelectPeople);
+        }
+        setResult(RESULT_CODE, intent);
+        finish();
+
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
+    }
+
+    @Override
+    protected String initUrl() {
+        return IVariable.GET_FOLLOW_USER;
     }
 
     private void init() {
@@ -100,9 +95,11 @@ public class AiteActivity extends LoadingBarBaseActivity<AiteEvent> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mTvOk = getmTvRightIcon();
-        mTvOk.setText("确定");
-        mTvSearch = FontsIconUtil.findIconFontsById(R.id.tv_search, this);
+    }
+
+    @Override
+    protected String initRightText() {
+        return "确定";
     }
 
     /**
@@ -112,40 +109,35 @@ public class AiteActivity extends LoadingBarBaseActivity<AiteEvent> {
      */
     private void queryAndSmooth(char c) {
         if (c == '*') {
-            mLvFollowPeople.setSelection(0);
+            lvFollowPeople.setSelection(0);
             return;
         }
         for (int i = 0; i < followAndFans.size(); i++) {
             AiteFollow aiteFollow = followAndFans.get(i);
             if (c == '#') {
                 if (aiteFollow.getIndexChar() >= '{') {//与之前的bean对象有关
-                    mLvFollowPeople.setSelection(i);
+                    lvFollowPeople.setSelection(i);
                     break;
                 }
             }
             if (aiteFollow.getIndexChar() == c) {
-                mLvFollowPeople.setSelection(i);
+                lvFollowPeople.setSelection(i);
                 break;
             }
         }
 
     }
 
-    @Override
-    protected Activity initViewData() {
-
-        return this;
-    }
 
     private void initDataAndSort(List<Follow> data) {
         followAndFans = new ArrayList<>();
 
-        for (Follow follow:data) {
-            AiteFollow aiteFollow=null;
-            if (mSelectPeople!=null){
+        for (Follow follow : data) {
+            AiteFollow aiteFollow = null;
+            if (mSelectPeople != null) {
                 aiteFollow = changeOldData(follow);
             }
-            if (aiteFollow==null){
+            if (aiteFollow == null) {
                 aiteFollow = new AiteFollow();
                 aiteFollow.setFollow(follow);
             }
@@ -163,32 +155,32 @@ public class AiteActivity extends LoadingBarBaseActivity<AiteEvent> {
 
     /**
      * 如果再次进入邀请好友，就将之前的旧数据替换为最新获取的数据，并且将选中状态赋值给新数据
+     *
      * @param follow
      * @return
      */
     private AiteFollow changeOldData(Follow follow) {
-        AiteFollow aiteFollow=null;
-        for (AiteFollow aiteFollow1:mSelectPeople){
-            if (aiteFollow1.equalsFollow(follow)){
+        AiteFollow aiteFollow = null;
+        for (AiteFollow aiteFollow1 : mSelectPeople) {
+            if (aiteFollow1.equalsFollow(follow)) {
                 aiteFollow1.setFollow(follow);
-                aiteFollow=aiteFollow1;
+                aiteFollow = aiteFollow1;
             }
         }
         return aiteFollow;
     }
 
 
-
     private void dealData(AiteEvent event) {
         AiteBean aiteBean = GsonUtils.getObject(event.getResult(), AiteBean.class);
         List<Follow> data = aiteBean.getData();
-        if (data==null || data.size()==0){
+        if (data == null || data.size() == 0) {
             ToastUtils.showToast("您尚未关注任何人！");
-        }else {
+        } else {
             initDataAndSort(data);
             initIndexQuery();
             adapter = new AiteAdapter(this, followAndFans);
-            mLvFollowPeople.setAdapter(adapter);
+            lvFollowPeople.setAdapter(adapter);
         }
 
     }
@@ -211,23 +203,22 @@ public class AiteActivity extends LoadingBarBaseActivity<AiteEvent> {
             }
         }
         //完毕后，初始化所以列表
-        mFqiIndex.initWordIndex(indexList);
+        fqiIndex.initWordIndex(indexList);
     }
 
-    @Override
-    protected String setTitleName() {
-        return "关注的人";
-    }
-
-
-
-    @Override
-    public float getAlpha() {
-        return 1f;
-    }
 
     @Override
     protected void onSuccess(AiteEvent aiteEvent) {
         dealData(aiteEvent);
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_aite;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "关注的人";
     }
 }

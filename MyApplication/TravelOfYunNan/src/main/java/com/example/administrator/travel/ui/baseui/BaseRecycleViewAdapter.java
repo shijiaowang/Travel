@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.utils.LogUtils;
@@ -30,6 +31,9 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
         if (list==null)return;
         mDatas=list;
         this.notifyDataSetChanged();
+    }
+    public View inflateView(int res,ViewGroup parent){
+       return LayoutInflater.from(mContext).inflate(R.layout.item_activity_custom_destination, parent, false);
     }
 
 

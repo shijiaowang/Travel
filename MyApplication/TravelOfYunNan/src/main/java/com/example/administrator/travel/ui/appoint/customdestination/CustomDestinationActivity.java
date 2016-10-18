@@ -2,6 +2,7 @@ package com.example.administrator.travel.ui.appoint.customdestination;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -12,9 +13,10 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.adddestination.AddCustomDestinationActivity;
-import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewActivity;
 import com.example.administrator.travel.ui.appoint.lineplan.LineBean;
 import com.example.administrator.travel.ui.appoint.lineplan.LinePlanEvent;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.example.administrator.travel.ui.view.refreshview.XListView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -33,63 +35,33 @@ import java.util.Map;
  * Created by wangyang on 2016/9/8 0008.
  * 自定义景点列表
  */
-public class CustomDestinationActivity extends LoadingBarBaseActivity<CustomDestinationEvent> implements XListView.IXListViewListener {
-    @ViewInject(R.id.lv_destination)
-    private XListView mLvDestination;
-    @ViewInject(R.id.bt_diy)
-    private Button mBtDiy;
-    @ViewInject(R.id.et_search)
-    private EditText mEtSearch;
-    @ViewInject(R.id.tv_search)
-    private TextView mTvSearch;
-    private List<CustomDestinationBean.DataBean> mCustomData=new ArrayList<>(0);
+public class CustomDestinationActivity extends BaseRecycleViewActivity<CustomDestinationEvent,CustomDestinationBean,CustomDestinationBean.DataBean>  {
+
+    @ViewInject(R.id.bt_diy) Button mBtDiy;
+    @ViewInject(R.id.et_search) EditText mEtSearch;
+    @ViewInject(R.id.tv_search) TextView mTvSearch;
     private String content = "";
-    private CustomDestinationAdapter customDestinationAdapter;
-    private TextView mTvRight;
     private int position;
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_custom_destination;
-    }
 
     @Override
     protected void initEvent() {
+        mVsContent.setLayoutResource( R.layout.activity_custom_destination_header);
+        mVsContent.inflate();
         GlobalValue.clickPosition=-1;//初始化，避免之前选中的对这边造成影响
-        init();
-        mTvRight.setOnClickListener(new View.OnClickListener() {
+        position = getIntent().getIntExtra(IVariable.POSITION, -1);
+        mAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                if (GlobalValue.clickPosition < 0 || GlobalValue.clickPosition > mCustomData.size()) {
-                    ToastUtils.showToast("您尚未选择任何景点。");
-                    return;
-                }
-                if (GlobalValue.mSelectSpot != null) {
-                    GlobalValue.mSelectSpot.add(mCustomData.get(GlobalValue.clickPosition).getId());
-                }
-                CustomDestinationBean.DataBean bodyBean = mCustomData.get(GlobalValue.clickPosition);
-                String add = bodyBean.getCity() + "·" + bodyBean.getTitle();
-                String id = bodyBean.getId();
-                LinePlanEvent linePlanEvent = new LinePlanEvent();
-                linePlanEvent.setPosition(position);
-                linePlanEvent.setDestination(new LineBean.Destination(id,add));
-                EventBus.getDefault().post(linePlanEvent);
-                setResult(RESULT_CODE);
-                finish();
-            }
-        });
-        mLvDestination.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(int position) {
                 if (GlobalValue.mSelectSpot == null) {
                     GlobalValue.mSelectSpot = new ArrayList<String>();
                 }
-                if (GlobalValue.mSelectSpot.contains(mCustomData.get(position-1).getId())) {
+                if (GlobalValue.mSelectSpot.contains(mDatas.get(position).getId())) {
                     ToastUtils.showToast("已在行程中！");
                     return;
                 }
                 GlobalValue.clickPosition=position-1;
-                customDestinationAdapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();
             }
         });
         mTvSearch.setOnClickListener(new View.OnClickListener() {
@@ -111,90 +83,75 @@ public class CustomDestinationActivity extends LoadingBarBaseActivity<CustomDest
         if (StringUtils.isEmpty(content)){
             return;
         }
-        requestData(TYPE_REFRESH);
-    }
-
-    private void init() {
-        mTvRight = getmTvRightIcon();
-        mTvRight.setText("确定");
-        mLvDestination.setPullRefreshEnable(true);
-        mLvDestination.setPullLoadEnable(true);
-        mLvDestination.setXListViewListener(this);
-        mLvDestination.setRefreshTime(getTime());
-        position = getIntent().getIntExtra(IVariable.POSITION, -1);
-    }
-
-
-    @Override
-    protected void onLoad(int typeRefresh) {
-        requestData(TYPE_LOAD);
-    }
-    private void requestData(int type) {
-        int count = mCustomData == null || type == TYPE_REFRESH ? 0 : mCustomData.size();
-        Map<String, String> destinationMap = MapUtils.Build().addKey(this).addPageSize(10).addCount(count).addContent(content).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.GET_CUSTOM_SPOT, destinationMap, type, new CustomDestinationEvent());
+        onLoad(TYPE_REFRESH);
     }
 
     @Override
-    protected Activity initViewData() {
-        return this;
+    protected String initRightText() {
+        return "确定";
     }
 
     @Override
-    protected String setTitleName() {
-        return "自定义景点";
-    }
-
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
-
-
-
-    private void dealData(CustomDestinationEvent event) {
-        if (event.getType()==TYPE_DELETE){//删除逻辑
-            mCustomData.remove(event.getDeletePosition());
-            customDestinationAdapter.notifyData(mCustomData);
-        }else {
-            CustomDestinationBean data = GsonUtils.getObject(event.getResult(), CustomDestinationBean.class);
-            List<CustomDestinationBean.DataBean> customData = data.getData();
-            if (event.getType() == TYPE_REFRESH) {
-                mCustomData = customData;
-                customDestinationAdapter.notifyData(mCustomData);
-            } else {
-                mCustomData.addAll(customData);
-                customDestinationAdapter = new CustomDestinationAdapter(this, mCustomData);
-                mLvDestination.setAdapter(customDestinationAdapter);
-            }
+    protected void otherOptionsItemSelected(MenuItem item) {
+        if (GlobalValue.clickPosition < 0 || GlobalValue.clickPosition > mDatas.size()) {
+            ToastUtils.showToast("您尚未选择任何景点。");
+            return;
         }
+        if (GlobalValue.mSelectSpot != null) {
+            GlobalValue.mSelectSpot.add(mDatas.get(GlobalValue.clickPosition).getId());
+        }
+        CustomDestinationBean.DataBean bodyBean = mDatas.get(GlobalValue.clickPosition);
+        String add = bodyBean.getCity() + "·" + bodyBean.getTitle();
+        String id = bodyBean.getId();
+        LinePlanEvent linePlanEvent = new LinePlanEvent();
+        linePlanEvent.setPosition(position);
+        linePlanEvent.setDestination(new LineBean.Destination(id,add));
+        EventBus.getDefault().post(linePlanEvent);
+        setResult(RESULT_CODE);
+        finish();
     }
 
     @Override
-    public void onRefresh() {
-        requestData(TYPE_REFRESH);
+    protected String initUrl() {
+        return IVariable.GET_CUSTOM_SPOT;
     }
 
     @Override
-    public void onLoadMore() {
-        requestData(TYPE_LOAD);
+    protected void childAdd(MapUtils.Builder builder, int type) {
+        builder.addContent(content);
     }
 
     @Override
     protected void onSuccess(CustomDestinationEvent customDestinationEvent) {
-        loadEnd(mLvDestination);
-        dealData(customDestinationEvent);
+       switch (customDestinationEvent.getType()){
+           case TYPE_DELETE:
+               mDatas .remove(customDestinationEvent.getDeletePosition());
+               mAdapter.notifiyData(mDatas);
+               break;
+           default:
+               super.onSuccess(customDestinationEvent);
+               break;
+       }
     }
 
     @Override
     protected void onFail(CustomDestinationEvent event) {
         super.onFail(event);
-        loadEnd(mLvDestination);
+    }
+
+    @Override
+    protected BaseRecycleViewAdapter initAdapter(List<CustomDestinationBean.DataBean> mDatas) {
+        return new CustomDestinationAdapter(mDatas,this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         GlobalValue.clickPosition=-1;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "自定义景点";
     }
 }

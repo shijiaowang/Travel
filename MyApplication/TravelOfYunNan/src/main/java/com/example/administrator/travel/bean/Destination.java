@@ -3,17 +3,11 @@ package com.example.administrator.travel.bean;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/24 0024.
+ * Created by wangyang on 2016/8/24 0024.
  * 目的地
  */
 public class Destination {
 
-
-    /**
-     * code : 1
-     * message : 加载成功
-     * data : {"province":[{"id":"12","name":"安徽省"},{"id":"15","name":"山东省"},{"id":"23","name":"四川省"},{"id":"24","name":"贵州省"},{"id":"25","name":"云南省"},{"id":"26","name":"西藏自治区"}],"city":[{"id":"385","name":"成都市","upid":"23"},{"id":"386","name":"自贡市","upid":"23"},{"id":"417","name":"曲靖","upid":"25"},{"id":"418","name":"玉溪","upid":"25"},{"id":"419","name":"保山","upid":"25"},{"id":"420","name":"昭通","upid":"25"},{"id":"530","name":"沙田区","upid":"33"}],"body":[{"id":"1","title":"牛逼山","province":"25","city":"385","star":"3","logo_img":"http://192.168.1.3810","address":"云南省成都市昆明周边路由大家上帝阿迪"},{"id":"2","title":"测试1","province":"24","city":"417","star":"3","logo_img":"http://192.168.1.3812","address":"贵州省曲靖21312阿斯大声大气"},{"id":"7","title":"测试2","province":"12","city":"418","star":"3","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859dec9a96.png","address":"安徽省玉溪实打实电话卡上的卡号"},{"id":"8","title":"测试","province":"15","city":"419","star":"2","logo_img":"http://192.168.1.38","address":"山东省保山qweqwe"},{"id":"9","title":"231","province":"15","city":"420","star":"3","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/57981bd2cc976.jpg","address":"山东省昭通31231231"},{"id":"11","title":"测试景区1","province":"23","city":"530","star":"4","logo_img":"http://192.168.1.38/Uploads/Picture/2016-07-27/579859dec9a96.png","address":"四川省沙田区你猜猜"}]}
-     */
 
     private int code;
     private String message;
@@ -44,28 +38,10 @@ public class Destination {
     }
 
     public static class DataBean {
-        /**
-         * id : 12
-         * name : 安徽省
-         */
 
         private List<ProvinceBean> province;
-        /**
-         * id : 385
-         * name : 成都市
-         * upid : 23
-         */
 
         private List<CityBean> city;
-        /**
-         * id : 1
-         * title : 牛逼山
-         * province : 25
-         * city : 385
-         * star : 3
-         * logo_img : http://192.168.1.3810
-         * address : 云南省成都市昆明周边路由大家上帝阿迪
-         */
 
         private List<BodyBean> body;
 

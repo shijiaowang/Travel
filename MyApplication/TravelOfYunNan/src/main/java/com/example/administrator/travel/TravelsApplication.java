@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMOptions;
 
 
 import org.xutils.x;
@@ -30,12 +33,12 @@ public class TravelsApplication extends Application {
         super.onCreate();
 
         x.Ext.init(this);
-        Fresco.initialize(this);
+        Fresco.initialize(this,ImagePipelineConfigFactory.getImagePipelineConfig(this));
        /* x.Ext.setDebug(BuildConfig.DEBUG); // 开启debug会影响性能*/
         mContext = getApplicationContext();
         mHandler = new Handler();
         mainThreadId = android.os.Process.myTid();//获取主线程的id
-       /* EMOptions options = new EMOptions();
+        EMOptions options = new EMOptions();
         // 默认添加好友时，是不需要验证的，改成需要验证
         options.setAcceptInvitationAlways(false);
         //初始化
@@ -53,7 +56,7 @@ public class TravelsApplication extends Application {
             // 则此application::onCreate 是被service 调用的，直接返回
             return;
         }
-        EMClient.getInstance().init(this, options);*/
+        EMClient.getInstance().init(this, options);
 
     }
 

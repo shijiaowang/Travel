@@ -99,7 +99,7 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
                     }else {
                         EnterAppointDialog.showCommonDialog(mContext, title, "确定", content, new ParentPopClick() {
                             @Override
-                            public void onClick() {
+                            public void onClick(int t) {
                                 changeAppoint(item1, position, myAppointTogetherHolder,type);
                             }
                         });
@@ -124,7 +124,7 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
                 public void onClick(View v) {
                     EnterAppointDialog.showCommonDialog(mContext, "删除约伴", "确认", "注意！此操作将删除您的约伴！请慎重选择！", new ParentPopClick() {
                         @Override
-                        public void onClick() {
+                        public void onClick(int t) {
                             Map<String, String> deleteMap = MapUtils.Build().addKey(mContext).addUserId().addtId(item1.getId()).end();
                             MyAppointEvent myAppointEvent = new MyAppointEvent();
                             myAppointEvent.setPosition(position);

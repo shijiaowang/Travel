@@ -13,15 +13,13 @@ import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/5 0005.
+ * Created by wangyang on 2016/8/5 0005.
  */
 public class LinePlanAdapter extends TravelBaseAdapter<LineBean> {
 
     public LinePlanAdapter(Context mContext, List<LineBean> mDatas) {
         super(mContext, mDatas);
     }
-
-
 
     @Override
     protected void initListener(BaseHolder baseHolder,  LineBean item, final int position) {

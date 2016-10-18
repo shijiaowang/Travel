@@ -71,6 +71,8 @@ public interface IVariable {
      * 我
      */
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
+    String COLLECTION = API_KEY + "User/setUserCollect/";//统一收藏
+    String CNCEL_COLLECTION = API_KEY + "User/delUsercollectlists/";//取消收藏，统一
     String UPDATE_ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String PERFECT_INFORMATION = API_KEY + "User/up_User/";//完善信息
     String SUBMIT_ORDERS = API_KEY + "Order/setOrder/";//提交订单
@@ -221,6 +223,7 @@ public interface IVariable {
     String MONEY = "money";//钱
     String COUPON = "coupon";//优惠券
     String TP_ID = "tp_id";//id
+    String INFORM = "inform";//aite
     String CONTENT = "content";//个人简介
     String IMAGE_FOLDER = "image_folder";//图片选择器用到
 

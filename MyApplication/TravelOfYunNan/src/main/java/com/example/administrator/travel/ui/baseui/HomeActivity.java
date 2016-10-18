@@ -28,6 +28,11 @@ import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.EMConnectionListener;
+import com.hyphenate.EMError;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.util.NetUtils;
 
 
 import org.xutils.view.annotation.ViewInject;
@@ -83,14 +88,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //initHXListener();
+        initHXListener();
     }
 
     /**
      * 户厕环信监听
      */
     private void initHXListener() {
-       /* EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {//回调
+        EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {//回调
             @Override
             public void onSuccess() {
                 EMClient.getInstance().groupManager().loadAllGroups();
@@ -109,7 +114,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             }
         });
         //注册一个监听连接状态的listener
-        EMClient.getInstance().addConnectionListener(new MyConnectionListener());*/
+        EMClient.getInstance().addConnectionListener(new MyConnectionListener());
     }
 
     public LinearLayout getmLlBottom() {
@@ -279,7 +284,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-   /* //实现ConnectionListener接口
+    //实现ConnectionListener接口
     class MyConnectionListener implements EMConnectionListener {
         @Override
         public void onConnected() {
@@ -305,7 +310,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     //当前网络不可用，请检查网络设置
                 }
             });
-        }}*/
+        }}
 
 }
 

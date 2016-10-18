@@ -18,6 +18,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.db.DBManager;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.utils.BitmapUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -32,27 +33,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
- * Created by Administrator on 2016/9/8 0008.
+ * Created by wangyang on 2016/9/8 0008.
  * 添加自定义景点
  */
-public class AddCustomDestinationActivity extends LoadingBarBaseActivity<AddCustomSpotEvent> implements View.OnClickListener {
-    @ViewInject(R.id.tv_address)
-    private TextView mTvAddress;
-    @ViewInject(R.id.et_add)
-    private EditText mEtAdd;
-    @ViewInject(R.id.bt_next)
-    private Button mBtNext;//保存修改
-    @ViewInject(R.id.et_des)
-    private EditText mEtDes;
-    @ViewInject(R.id.et_name)
-    private EditText mEtName;
-    @ViewInject(R.id.iv_image)
-    private ImageView mIvImage;
-    @ViewInject(R.id.tv_delete)
-    private TextView mTvDelete;
-    @ViewInject(R.id.tv_picture)
-    private TextView mTvPicture;
+public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomSpotEvent> implements View.OnClickListener {
+    @BindView(R.id.tv_address) TextView mTvAddress;
+    @BindView(R.id.et_add) EditText mEtAdd;
+    @BindView(R.id.bt_next) Button mBtNext;//保存修改
+    @BindView(R.id.et_des) EditText mEtDes;
+    @BindView(R.id.et_name) EditText mEtName;
+    @BindView(R.id.iv_image) ImageView mIvImage;
+    @BindView(R.id.tv_delete) TextView mTvDelete;
+    @BindView(R.id.tv_picture) TextView mTvPicture;
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private OptionsPickerView pvOptions;
@@ -63,12 +58,6 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity<AddCust
     private String cityName;
     private static final int OPEN_ALBUM=5;//打开相册
     private String imageAbsolutePath;
-
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_add_custom_destination;
-    }
-
     @Override
     protected void initEvent() {
         initCity();
@@ -80,6 +69,21 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity<AddCust
     @Override
     protected void onLoad(int typeRefresh) {
         setIsProgress(false);
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
+    }
+
+    @Override
+    protected boolean isAutoLoad() {
+        return false;
+    }
+
+    @Override
+    protected String initUrl() {
+        return null;
     }
 
     private void showCitySelect() {
@@ -130,20 +134,7 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity<AddCust
         });
     }
 
-    @Override
-    protected Activity initViewData() {
-        return this;
-    }
 
-    @Override
-    protected String setTitleName() {
-        return "添加自定义景点";
-    }
-
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
     @Override
     protected void onSuccess(AddCustomSpotEvent addCustomSpotEvent) {
@@ -263,5 +254,15 @@ public class AddCustomDestinationActivity extends LoadingBarBaseActivity<AddCust
         List<String> fileList=new ArrayList<>();
         fileList.add(imageAbsolutePath);
         XEventUtils.postFileCommonBackJson(IVariable.ADD_CUSTOM_SPOT, createSpotMap,fileList,0, new AddCustomSpotEvent());
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_add_custom_destination;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "添加自定义景点";
     }
 }

@@ -6,11 +6,11 @@
     android:background="@color/colorFAFAFA"
     android:paddingTop="15dp">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_spot"
         android:layout_width="115dp"
         android:layout_height="80dp"
-        android:scaleType="fitXY" />
+         />
 
     <LinearLayout
         android:id="@+id/ll_des"

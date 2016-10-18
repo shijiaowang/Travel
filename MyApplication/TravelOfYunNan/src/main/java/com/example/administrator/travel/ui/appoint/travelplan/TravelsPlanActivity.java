@@ -149,9 +149,8 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
                     int month = calendar.get(Calendar.MONTH) + 1;
                     int day = calendar.get(Calendar.DAY_OF_MONTH);
                     LineBean lineBean = new LineBean(month + "月" + day + "日");
-                    lineBean.setDate(calendar.getTime().getTime() + "");
+                    lineBean.setDate((calendar.getTime().getTime()/1000) + "");
                     lineBeans.add(lineBean);
-
                     calendar.add(Calendar.DATE, 1);
                 }
                 if (GlobalValue.mLineBeans == null) {

@@ -7,49 +7,78 @@ import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
+import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.view.ShowAllTextView;
+import com.example.administrator.travel.utils.FrescoUtils;
+import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.XEventUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.xutils.common.util.DensityUtil;
 import org.xutils.x;
 
+import java.util.Map;
+
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/9/8 0008.
+ * Created by wangyang on 2016/9/8 0008.
  */
-public class CustomDestinationHolder extends BaseHolder<CustomDestinationBean.DataBean> {
-    @BindView(R.id.iv_spot)ImageView mIvSpot;
-    @BindView(R.id.tv_name)TextView mTvName;
-    @BindView(R.id.tv_user) TextView mTvUser;
-    @BindView(R.id.tv_show) ShowAllTextView mTvShow;
-    @BindView(R.id.tv_add) TextView mTvAdd;
-    @BindView(R.id.tv_select) TextView mTvSelect;
-    @BindView(R.id.tv_delete) TextView mTvDelete;
-    public CustomDestinationHolder(Context context) {
-        super(context);
+public class CustomDestinationHolder extends BaseRecycleViewHolder<CustomDestinationBean.DataBean> {
+    @BindView(R.id.iv_spot)
+    SimpleDraweeView mIvSpot;
+    @BindView(R.id.tv_name)
+    TextView mTvName;
+    @BindView(R.id.tv_user)
+    TextView mTvUser;
+    @BindView(R.id.tv_show)
+    ShowAllTextView mTvShow;
+    @BindView(R.id.tv_add)
+    TextView mTvAdd;
+    @BindView(R.id.tv_select)
+    TextView mTvSelect;
+    @BindView(R.id.tv_delete)
+    TextView mTvDelete;
+    private String deleteDataId = "";
+
+    public CustomDestinationHolder(View itemView) {
+        super(itemView);
     }
 
+
     @Override
-    protected void initItemDatas(CustomDestinationBean.DataBean datas, Context mContext, int position) {
-        x.image().bind(mIvSpot, datas.getLogo_img(), getImageOptions(DensityUtil.dip2px(115), DensityUtil.dip2px(80)));
+    public void childBindView(final int position, final CustomDestinationBean.DataBean datas, final Context mContext) {
+        FrescoUtils.displayNormal(mIvSpot, datas.getLogo_img());
         mTvDelete.setVisibility(datas.getIs_del().equals("1") ? View.VISIBLE : View.GONE);
         mTvName.setText(datas.getTitle());
         mTvAdd.setText(datas.getProvince() + datas.getCity() + datas.getAddress());
         mTvShow.setContent(datas.getContent());
         mTvUser.setText(datas.getUser_name());
         mTvSelect.setTextColor(GlobalValue.clickPosition == position ? mContext.getResources().getColor(R.color.Ffbf75) : mContext.getResources().getColor(R.color.colorb5b5b5));
-        if (GlobalValue.mSelectSpot!=null && GlobalValue.mSelectSpot.contains(datas.getId())){
-            getRootView().setAlpha(0.3f);
+        if (GlobalValue.mSelectSpot != null && GlobalValue.mSelectSpot.contains(datas.getId())) {
+            itemView.setAlpha(0.3f);
             mTvSelect.setVisibility(View.GONE);
-        }else {
-            getRootView().setAlpha(1.0f);
+        } else {
+            itemView.setAlpha(1.0f);
             mTvSelect.setVisibility(View.VISIBLE);
         }
-    }
+        mTvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (deleteDataId.equals(datas.getId())) {
+                    return;
+                }
+                //记录删除的数据，避免重复删除
+                deleteDataId = datas.getId();
+                Map<String, String> deleteMap = MapUtils.Build().addKey(mContext).addUserId().addtId(deleteDataId).end();
+                CustomDestinationEvent customDestinationEvent = new CustomDestinationEvent();
+                customDestinationEvent.setDeletePosition(position);
+                XEventUtils.postUseCommonBackJson(IVariable.DELETE_CUSTOM_SPOT, deleteMap, LoadingBarBaseActivity.TYPE_DELETE, customDestinationEvent);
 
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_activity_custom_destination);
+            }
+        });
     }
 }

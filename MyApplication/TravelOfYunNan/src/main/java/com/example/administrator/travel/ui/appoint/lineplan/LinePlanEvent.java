@@ -1,12 +1,10 @@
 package com.example.administrator.travel.ui.appoint.lineplan;
 
 /**
- * Created by Administrator on 2016/9/12 0012.
+ * Created by wangyang on 2016/9/12 0012.
  */
 public class LinePlanEvent {
     private int position;
-
-
     public int getPosition() {
         return position;
     }

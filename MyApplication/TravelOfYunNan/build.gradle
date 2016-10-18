@@ -22,7 +22,6 @@ android {
     }
     sourceSets {
         main {
-            // 设置Jni so文件路径 如果有jniLibs目录就不需要设置，好像手动创建的 jniLibs目录无效
             jniLibs.srcDirs = ['libs']
         }
     }
@@ -59,5 +58,5 @@ dependencies {
     compile 'com.facebook.fresco:fresco:0.14.1'
     compile files('libs/alipaySdk-20160825.jar')
     compile files('libs/hyphenatechat_3.1.5.jar')
-
+    compile files('libs/hyphenatechat_3.2.0.jar')
 }

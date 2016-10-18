@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/9/8 0008.
+ * Created by wangyang on 2016/9/8 0008.
  * 选择目的地
  */
 public class SelectDestinationActivity extends LoadingBarBaseActivity<DestinationEvent> implements XListView.IXListViewListener {

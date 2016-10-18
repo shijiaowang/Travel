@@ -1,43 +1,33 @@
 package com.example.administrator.travel.ui.circle.circlenav.circledetail;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.ColorInt;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
 import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.example.administrator.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.example.administrator.travel.ui.view.FontsIconTextView;
-import com.example.administrator.travel.ui.view.ToShowAllGridView;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.FrescoUtils;
-import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import org.xutils.common.util.DensityUtil;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindColor;
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by wangyang on 2016/7/11 0011.
@@ -97,7 +87,7 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
                     CircleDetailEvent circleDetailEvent = new CircleDetailEvent();
                     circleDetailEvent.setPosition(position);
                     Map<String, String> likeMap = MapUtils.Build().addKey(mContext).addFroumId(datas.getId()).addUserId().addRUserId(datas.getUser_id()).end();
-                    XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_LIKE_POST, likeMap, CircleDetailActivity.TYPE_LIKE_POST,circleDetailEvent);
+                    XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_LIKE_POST, likeMap, CircleDetailActivity.TYPE_LIKE,circleDetailEvent);
                 }else {
                     ToastUtils.showToast("你已经点过赞了");
                 }
@@ -130,7 +120,7 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               PostActivity.start(mContext,datas.getId(),datas.getCid());
+               PostActivity.start(mContext,datas.getId());
             }
         });
     }

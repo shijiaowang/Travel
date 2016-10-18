@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,8 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.createsuccess.CreateAppointSuccessActivity;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.appoint.settingtitle.SettingTitle;
 import com.example.administrator.travel.ui.appoint.settingtitle.SettingTitleActivity;
@@ -26,6 +29,7 @@ import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,47 +40,54 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
- * Created by Administrator on 2016/9/2 0002.
+ * Created by wangyang on 2016/9/2 0002.
  * 说明备注
  */
-public class DesRemarkActivity extends LoadingBarBaseActivity<DesRemarkEvent> implements View.OnClickListener {
-    @ViewInject(R.id.bt_select_equ)
-    private Button mBtSelect;
-    @ViewInject(R.id.bt_next)
-    private Button mBtNext;
-    @ViewInject(R.id.et_title)
-    private EditText mEtTitle;
-    @ViewInject(R.id.et_content)
-    private EditText mEtContent;
-    @ViewInject(R.id.tv_number)
-    private TextView mTvNumber;
-    @ViewInject(R.id.fl_title)
-    private FlowLayout mFlTitle;
-    private Object json;
+public class DesRemarkActivity extends BaseToolBarActivity implements View.OnClickListener {
+    @BindView(R.id.bt_select_equ) Button mBtSelect;
+    @BindView(R.id.bt_next) Button mBtNext;
+    @BindView(R.id.et_title) EditText mEtTitle;
+    @BindView(R.id.et_content) EditText mEtContent;
+    @BindView(R.id.tv_number) TextView mTvNumber;
+    @BindView(R.id.fl_title) FlowLayout mFlTitle;
     private List<SettingTitle> settingTitles;
     private LayoutInflater inflater;
 
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int initLayoutRes() {
+        return  R.layout.activity_des_remark;
+    }
+
+    @Override
+    protected void initOptions() {
+        registerEventBus(this);
         ActivityUtils.getInstance().addActivity(this);
         inflater=LayoutInflater.from(this);
-
+        initEvent();
     }
 
     @Override
-    protected int setContentLayout() {
-        return R.layout.activity_des_remark;
+    protected String initTitle() {
+        return "说明备注";
     }
 
     @Override
+    protected String initRightText() {
+        return "发布";
+    }
+
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        saveJsonData();
+    }
+
     protected void initEvent() {
-        TextView mTvRightNext = getmTvRightIcon();
-        mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
-        mTvRightNext.setText("发布");
-        mTvRightNext.setOnClickListener(this);
+
         mBtNext.setOnClickListener(this);
         mBtSelect.setOnClickListener(this);
         mEtContent.addTextChangedListener(new TextWatcher() {
@@ -98,35 +109,25 @@ public class DesRemarkActivity extends LoadingBarBaseActivity<DesRemarkEvent> im
         });
     }
 
-    @Override
-    protected void onLoad(int typeRefresh) {
-        setIsProgress(false);
-    }
 
-    @Override
-    protected Activity initViewData() {
-        return this;
-    }
 
-    @Override
-    protected String setTitleName() {
-        return "说明备注";
-    }
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
-    @Override
-    protected void onSuccess(DesRemarkEvent desRemarkEvent) {
-        startActivity(new Intent(this, CreateAppointSuccessActivity.class));
+
+
+
+    @Subscribe
+    protected void onEvent(DesRemarkEvent desRemarkEvent) {
+        ToastUtils.showToast(desRemarkEvent.getMessage());
+        if (desRemarkEvent.isSuccess()) {
+            startActivity(new Intent(this, CreateAppointSuccessActivity.class));
+        }
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_right_icon:
             case R.id.bt_next:
                 saveJsonData();
                 break;
@@ -189,6 +190,8 @@ public class DesRemarkActivity extends LoadingBarBaseActivity<DesRemarkEvent> im
         }
     }
 
+
+
     /**
      * 提交时所用的json
      */
@@ -212,5 +215,11 @@ public class DesRemarkActivity extends LoadingBarBaseActivity<DesRemarkEvent> im
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterEventBus(this);
     }
 }

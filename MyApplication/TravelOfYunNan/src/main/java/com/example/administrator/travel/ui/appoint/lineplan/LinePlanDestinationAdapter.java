@@ -13,15 +13,12 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/12 0012.
+ * Created by wangyang on 2016/9/12 0012.
  */
 public class LinePlanDestinationAdapter extends TravelBaseAdapter<LineBean.Destination> {
     public LinePlanDestinationAdapter(Context mContext, List<LineBean.Destination> mDatas) {
         super(mContext, mDatas);
     }
-
-
-
     @Override
     protected void initListener(BaseHolder baseHolder, final LineBean.Destination item,  int position) {
         LinePlanDestinationHolder holder = (LinePlanDestinationHolder) baseHolder;

@@ -3,6 +3,7 @@ package com.example.administrator.travel.ui.appoint.costsetting;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
 import com.example.administrator.travel.ui.appoint.desremark.DesRemarkActivity;
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.utils.ActivityUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.ToastUtils;
@@ -21,59 +23,55 @@ import com.example.administrator.travel.utils.ToastUtils;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
- * Created by Administrator on 2016/9/1 0001.
+ * Created by wangyang on 2016/9/1 0001.
  * 费用设置
  */
-public class CostSettingActivity extends BarBaseActivity implements View.OnClickListener {
-    @ViewInject(R.id.ll_with_me)
-    private LinearLayout mLlWithMe;//一起玩页面不显示
-    @ViewInject(R.id.bt_next)
-    private Button mBtNext;
-    @ViewInject(R.id.et_price)
-    private EditText mEtPrice;//价格
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ActivityUtils.getInstance().addActivity(this);
-    }
+public class CostSettingActivity extends BaseToolBarActivity implements View.OnClickListener {
+    @BindView(R.id.ll_with_me) LinearLayout mLlWithMe;//一起玩页面不显示
+    @BindView(R.id.bt_next) Button mBtNext;
+    @BindView(R.id.et_price) EditText mEtPrice;//价格
 
     @Override
-    protected int setContentLayout() {
+    protected int initLayoutRes() {
         return R.layout.activity_cost_setting;
     }
 
     @Override
+    protected void initOptions() {
+        ActivityUtils.getInstance().addActivity(this);
+        initEvent();
+    }
+
+    @Override
+    protected String initTitle() {
+        return "费用设置";
+    }
+
     protected void initEvent() {
-        TextView mTvRightNext = getmTvRightIcon();
-        mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        mTvRightNext.setText(R.string.next);
-        mTvRightNext.setOnClickListener(this);
+
         mBtNext.setOnClickListener(this);
       if (GlobalValue.mAppointType== IVariable.TYPE_TOGETHER){
           mLlWithMe.setVisibility(View.GONE);
       }
     }
 
-    @Override
-    protected void initViewData() {
 
+    @Override
+    protected String initRightText() {
+        return "下一步";
     }
 
     @Override
-    protected String setTitleName() {
-        return "费用设置";
-    }
-
-    @Override
-    public float getAlpha() {
-        return 1.0f;
+    protected void otherOptionsItemSelected(MenuItem item) {
+        saveData();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_right_icon:
             case R.id.bt_next:
                 saveData();
                 break;

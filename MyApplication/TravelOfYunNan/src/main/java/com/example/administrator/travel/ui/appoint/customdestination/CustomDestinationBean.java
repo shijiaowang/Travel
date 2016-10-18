@@ -1,11 +1,13 @@
 package com.example.administrator.travel.ui.appoint.customdestination;
 
+import com.example.administrator.travel.global.ParentBean;
+
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/9/9 0009.
  */
-public class CustomDestinationBean {
+public class CustomDestinationBean  implements ParentBean{
 
     private int code;
     private String message;

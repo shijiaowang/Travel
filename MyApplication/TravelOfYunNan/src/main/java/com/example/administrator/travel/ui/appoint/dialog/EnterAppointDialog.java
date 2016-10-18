@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 
 /**
- * Created by Administrator on 2016/9/14 0014.
+ * Created by wangyang on 2016/9/14 0014.
  * 报名dialog
  */
 public class EnterAppointDialog {
@@ -224,7 +224,7 @@ public class EnterAppointDialog {
         tvSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parentPopClick.onClick();
+                parentPopClick.onClick(0);
                 dialog.dismiss();
             }
         });

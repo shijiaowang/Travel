@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.utils.MapUtils;
 import com.example.administrator.travel.utils.StringUtils;
@@ -17,19 +18,18 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+
 
 /**
- * Created by Administrator on 2016/8/18 0018.
+ * Created by wangyang on 2016/8/18 0018.
  * 客服中心
  */
-public class CustomerServiceActivity extends LoadingBarBaseActivity<CustomerServiceEvent> {
-    @ViewInject(R.id.et_phone) private EditText mEtPhone;
-    @ViewInject(R.id.et_content) private EditText mEtContent;
-    @ViewInject(R.id.bt_submit) private Button mBtSubmit;
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_customer_service;
-    }
+public class CustomerServiceActivity extends BaseNetWorkActivity<CustomerServiceEvent> {
+    @BindView(R.id.et_phone)  EditText mEtPhone;
+    @BindView(R.id.et_content)EditText mEtContent;
+    @BindView(R.id.bt_submit) Button mBtSubmit;
+
 
     @Override
     protected void initEvent() {
@@ -44,7 +44,7 @@ public class CustomerServiceActivity extends LoadingBarBaseActivity<CustomerServ
                   ToastUtils.showToast("请输入你需要反馈的内容！");
                   return;
               }
-              sumbitMessage();
+              onLoad(TYPE_UPDATE);
 
           }
 
@@ -52,25 +52,24 @@ public class CustomerServiceActivity extends LoadingBarBaseActivity<CustomerServ
       });
     }
 
-    private void sumbitMessage() {
-        Map<String, String> end = MapUtils.Build().addKey(this).addUserId().addContent(getString(mEtContent)).addTel(getString(mEtPhone)).addType("2").end();
-        XEventUtils.postUseCommonBackJson(IVariable.USER_SERVICE_CENTER,end,0,new CustomerServiceEvent());
+
+
+    @Override
+    protected boolean isAutoLoad() {
+        return false;
     }
 
     @Override
-    protected void onLoad(int typeRefresh) {
-        setIsProgress(false);
+    protected void childAdd(MapUtils.Builder builder, int type) {
+        builder.addContent(getString(mEtContent)).addTel(getString(mEtPhone)).addType("2");
     }
 
     @Override
-    protected Activity initViewData() {
-        return this;
+    protected String initUrl() {
+        return IVariable.USER_SERVICE_CENTER;
     }
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
+
 
     @Override
     protected void onSuccess(CustomerServiceEvent customerService) {
@@ -82,8 +81,14 @@ public class CustomerServiceActivity extends LoadingBarBaseActivity<CustomerServ
 
     }
 
+
     @Override
-    protected String setTitleName() {
+    protected int initLayoutRes() {
+        return  R.layout.activity_customer_service;
+    }
+
+    @Override
+    protected String initTitle() {
         return "客服中心";
     }
 }

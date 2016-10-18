@@ -28,17 +28,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/8/23.
  * 相册中图片选择
  */
 public class PictureSelectorActivity extends BaseToolBarActivity implements View.OnClickListener {
-    @ViewInject(R.id.gv_photo)
-    private GridView mGvPhoto;
-    @ViewInject(R.id.tv_send)
-    private TextView mTvSend;
-    @ViewInject(R.id.tv_watch)
-    private TextView mTvWatch;
+    @BindView(R.id.gv_photo) GridView mGvPhoto;
+    @BindView(R.id.tv_send) TextView mTvSend;
+    @BindView(R.id.tv_watch) TextView mTvWatch;
     private ImageFolder mFolder;
     private List<String> mImages;
     private PictureSelectorAdapter adapter;

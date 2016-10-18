@@ -1,12 +1,9 @@
 package com.example.administrator.travel.ui.appoint.together.togetherdetail;
-
-import android.app.Activity;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -50,32 +47,19 @@ import butterknife.BindView;
 public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDetailEvent> implements View.OnClickListener {
     private static final int TYPE_ENTER_APPOINT = 95;
     private static final  int TYPE_OUT_APPOINT=59;
-    @BindView(R.id.tv_start_add)
-    TextView mTvStartAdd;
-    @BindView(R.id.tv_end_add)
-    TextView mTvEndAdd;
-    @BindView(R.id.lv_route_line)
-    ToShowAllListView mLvRouteLine;
-    @BindView(R.id.iv_user_icon)
-    ImageView mIvUserIcon;
-    @BindView(R.id.tv_user_nick_name)
-    TextView mTvUserNickName;
-    @BindView(R.id.tv_time)
-    TextView mTvTime;
-    @BindView(R.id.tv_day)
-    TextView mTvDay;
-    @BindView(R.id.tv_watch_number)
-    TextView mTvWatchNumber;
-    @BindView(R.id.tv_love)
-    FontsIconTextView mTvLove;
-    @BindView(R.id.tv_love_number)
-    TextView mTvLoveNumber;
-    @BindView(R.id.tv_sex)
-    TextView mTvSex;
-    @BindView(R.id.iv_appoint_bg)
-    ImageView mIvAppointBg;
-    @BindView(R.id.tv_title)
-    TextView mTvTitle;
+    @BindView(R.id.tv_start_add) TextView mTvStartAdd;
+    @BindView(R.id.tv_end_add) TextView mTvEndAdd;
+    @BindView(R.id.lv_route_line) ToShowAllListView mLvRouteLine;
+    @BindView(R.id.iv_user_icon) ImageView mIvUserIcon;
+    @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
+    @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.tv_day) TextView mTvDay;
+    @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
+    @BindView(R.id.tv_love) FontsIconTextView mTvLove;
+    @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+    @BindView(R.id.tv_sex) TextView mTvSex;
+    @BindView(R.id.iv_appoint_bg) ImageView mIvAppointBg;
+    @BindView(R.id.tv_title) TextView mTvTitle;
     @BindView(R.id.tv_content)
     TextView mTvContent;
     @BindView(R.id.tv_line)
@@ -123,8 +107,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     private String id;
     private String payType = "-1";
     private int payStatus=-1;
-
-
+    private String isCollect;
 
 
     @Override
@@ -154,7 +137,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
             case TYPE_ENTER_APPOINT:
                 EnterAppointDialog.showDialogSuccess(this);
                 initAction(7+"");
-
                 break;
             case TYPE_DELETE:
                ToastUtils.showToast("取消成功");
@@ -163,6 +145,15 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
             case TYPE_OUT_APPOINT:
                 ToastUtils.showToast("申请成功");
                 initAction(6+"");
+                break;
+            case TYPE_COLLECTION:
+                ToastUtils.showToast("收藏成功");
+                isCollect=isTrue;
+
+                break;
+            case TYPE_CANCEL_COLLECTION:
+                ToastUtils.showToast("取消收藏成功");
+                isCollect=isFalse;
                 break;
         }
 
@@ -186,6 +177,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
         if (appointTogetherDetail == null) return;
         AppointTogetherDetailBean.DataBean data = appointTogetherDetail.getData();
         String action = data.getAction();
+        isCollect = data.getIs_collect();
         initAction(action);
         List<AppointTogetherDetailBean.DataBean.RoutesBean> routes = dealDate(data);
         initSomeData(data);
@@ -382,7 +374,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
             case 3:
                 EnterAppointDialog.showCommonDialog(this, "退出约伴", "确定", "退出约伴团队", new ParentPopClick() {
                     @Override
-                    public void onClick() {
+                    public void onClick(int type) {
                         XEventUtils.postUseCommonBackJson(IVariable.OUT_APPOINT,map,TYPE_OUT_APPOINT,new AppointDetailEvent());
                     }
                 });
@@ -390,7 +382,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
             case 7:
                 EnterAppointDialog.showCommonDialog(this, "取消申请", "确定", "取消发起的约伴请求！", new ParentPopClick() {
                     @Override
-                    public void onClick() {
+                    public void onClick(int type) {
                         XEventUtils.postUseCommonBackJson(IVariable.CANCEL_APPOINT,map,TYPE_DELETE,new AppointDetailEvent());
                     }
                 });
@@ -403,14 +395,22 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.together_detail_menu, menu);
-        return true;
+    protected String initRightText() {
+        return "更多";
     }
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
-        AppointDetailMorePop.showMorePop(this, mToolbar);
+        String collection=isCollect.equals(isTrue)?"已收藏":"收藏";
+        AppointDetailMorePop.showMorePop(this, mToolbar,collection, new ParentPopClick() {
+            @Override
+            public void onClick(int type) {
+                  String url=isCollect.equals(isTrue)?IVariable.CANCEL_COLLECTION:IVariable.COLLECTION;
+                   Map<String, String> collectionMap = MapUtils.Build().addKey(AppointTogetherDetailActivity.this).addUserId().addType("1").addId(id).end();
+                   XEventUtils.postUseCommonBackJson(url, collectionMap, TYPE_COLLECTION, new AppointDetailEvent());
+
+            }
+        });
     }
 
     @Override

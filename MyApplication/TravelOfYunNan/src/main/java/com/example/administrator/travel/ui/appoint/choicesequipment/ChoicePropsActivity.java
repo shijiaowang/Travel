@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.JsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
@@ -30,29 +30,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import butterknife.BindView;
+
 /**
- * Created by Administrator on 2016/8/31 0031.
+ * Created by wangyang on 2016/8/31 0031.
  * 选择道具界面
  */
-public class ChoicePropsActivity extends LoadingBarBaseActivity<ChoicePropEvent> implements View.OnClickListener {
-    @ViewInject(R.id.lv_type)
-    private ListView mLvType;
-    @ViewInject(R.id.lv_equ)
-    private ListView mLvEqu;
-    @ViewInject(R.id.bt_sure)
-    private Button mBtSure;
-    @ViewInject(R.id.tv_number)
-    private TextView mTvNumber;
-    @ViewInject(R.id.tv_equ_number)
-    private TextView mTvEquNumber;
-    @ViewInject(R.id.rl_equ)
-    private RelativeLayout mRlEqu;
-    @ViewInject(R.id.rl_bottom)
-    private RelativeLayout mRlBottom;
-    @ViewInject(R.id.rl_select)
-    private RelativeLayout mRlSelect;
-    @ViewInject(R.id.lv_select_equ)
-    private ListView mLvSelect;
+public class ChoicePropsActivity extends BaseNetWorkActivity<ChoicePropEvent> implements View.OnClickListener {
+    @BindView(R.id.lv_type) ListView mLvType;
+    @BindView(R.id.lv_equ) ListView mLvEqu;
+    @BindView(R.id.bt_sure) Button mBtSure;
+    @BindView(R.id.tv_number) TextView mTvNumber;
+    @BindView(R.id.tv_equ_number) TextView mTvEquNumber;
+    @BindView(R.id.rl_equ) RelativeLayout mRlEqu;
+    @BindView(R.id.rl_bottom) RelativeLayout mRlBottom;
+    @BindView(R.id.rl_select) RelativeLayout mRlSelect;
+    @BindView(R.id.lv_select_equ) ListView mLvSelect;
     private PopEquAdapter popEquAdapter;
     private String type = "1";//默认先读取第一个
     private String preType = "1";
@@ -60,13 +53,9 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity<ChoicePropEvent>
     private ChoicePropsLeftAdapter choicePropsLeftAdapter;
 
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_choice_props;
-    }
 
-    @Override
     protected void initEvent() {
+        changeNumber();//初始化
         mRlEqu.setOnClickListener(this);
         mBtSure.setOnClickListener(this);
         mRlSelect.setOnClickListener(this);
@@ -79,27 +68,25 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity<ChoicePropEvent>
                 }
                 GlobalValue.choicePropType = position;
                 choicePropsLeftAdapter.notifyDataSetChanged();
-                reqData();
+                onLoad(0);
             }
         });
     }
 
-    @Override
-    protected void onLoad(int typeRefresh) {
-        reqData();
-    }
 
-    private void reqData() {
-        Map<String, String> propMap = MapUtils.Build().addKey(this).addType(type).end();
-        XEventUtils.getUseCommonBackJson(IVariable.GET_PROP_LIST, propMap, 0, new ChoicePropEvent());
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int t) {
+        builder.addType(type);
         preType = type;
     }
 
     @Override
-    protected Activity initViewData() {
-        changeNumber();//初始化
-        return this;
+    protected String initUrl() {
+        return IVariable.GET_PROP_LIST;
     }
+
+
+
 
 
     private void dealData(ChoicePropEvent event) {
@@ -129,15 +116,7 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity<ChoicePropEvent>
         mTvEquNumber.setText(selectTotal + "");
     }
 
-    @Override
-    protected String setTitleName() {
-        return "选择道具";
-    }
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
     @Override
     protected void onSuccess(ChoicePropEvent choicePropEvent) {
@@ -240,5 +219,20 @@ public class ChoicePropsActivity extends LoadingBarBaseActivity<ChoicePropEvent>
     protected void onDestroy() {
         super.onDestroy();
         GlobalValue.choicePropType = 0;
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_choice_props;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "选择道具";
+    }
+
+    @Override
+    protected void onFail(ChoicePropEvent choicePropEvent) {
+        preType="-1";//失败 重置preType
     }
 }

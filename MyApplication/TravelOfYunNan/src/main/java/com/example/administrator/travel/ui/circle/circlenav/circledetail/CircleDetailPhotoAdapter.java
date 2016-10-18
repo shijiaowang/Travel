@@ -50,7 +50,7 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
         circleDetailPhotoHolder.mIvImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PostActivity.start(mContext,id,cId);
+                PostActivity.start(mContext,id);
             }
         });
       //FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag());

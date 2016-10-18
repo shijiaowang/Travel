@@ -5,11 +5,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.ui.adapter.holer.BaseHolder;
+import com.example.administrator.travel.global.ParentPopClick;
 import com.example.administrator.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.example.administrator.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.example.administrator.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.example.administrator.travel.utils.FormatDateUtils;
 import com.example.administrator.travel.utils.FrescoUtils;
+import com.example.administrator.travel.utils.StringUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
@@ -20,7 +22,8 @@ import butterknife.BindView;
  * 文字回复  帖子楼层
  */
 public class PostReplyTextHolder extends BaseRecycleViewHolder {
-   @BindView(R.id.v_line) public View line;
+    private final String cId;
+    @BindView(R.id.v_line) public View line;
     @BindView(R.id.iv_reply_icon)  SimpleDraweeView mIvReplyIcon;
     @BindView(R.id.tv_reply_nick_name) TextView mTvReplyNickName;
     @BindView(R.id.tv_reply_message) TextView mTvReplyMessage;
@@ -28,14 +31,16 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_reply_time) TextView mTvReplyTime;
     @BindView(R.id.tv_love) TextView mTvLove;
+    @BindView(R.id.iv_image) SimpleDraweeView mIvImage;
 
-    public PostReplyTextHolder(View itemView) {
+    public PostReplyTextHolder(View itemView,String cId) {
         super(itemView);
+        this.cId = cId;
     }
 
 
     @Override
-    public void childBindView(int position, Object data, final Context t) {
+    public void childBindView(int position, final Object data, final Context t) {
         if (data instanceof PostDetailBean.DataBean.ForumReplyBean) {
             final PostDetailBean.DataBean.ForumReplyBean forumReplyBean = (PostDetailBean.DataBean.ForumReplyBean) data;
             line.setVisibility(position==1?View.GONE:View.VISIBLE);
@@ -45,6 +50,12 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
                     OtherUserCenterActivity.start(t, v, forumReplyBean.getUser_id());
                 }
             });
+            if (StringUtils.isEmpty(forumReplyBean.getReply_img())){
+                mIvImage.setVisibility(View.GONE);
+            }else {
+                mIvImage.setVisibility(View.VISIBLE);
+                FrescoUtils.displayNormal(mIvImage,forumReplyBean.getReply_img());
+            }
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
             mTvReplyMessage.setText(forumReplyBean.getContent());
@@ -52,6 +63,33 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
             mTvLoveNumber.setText(forumReplyBean.getLike_count());
             mTvLove.setTextColor(forumReplyBean.getIs_like().equals("1") ? t.getResources().getColor(R.color.otherFf7f6c) : t.getResources().getColor(R.color.color969696));
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDialog(t,forumReplyBean);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    showDialog(t, forumReplyBean);
+                    return true;
+                }
+            });
+
         }
+    }
+
+    private void showDialog(final Context t, final PostDetailBean.DataBean.ForumReplyBean forumReplyBean) {
+        PostOptionsDialog.showCommonDialog(t, new ParentPopClick() {
+            @Override
+            public void onClick(int type) {
+                switch (type){
+                    case PostOptionsDialog.TYPE_REPLY:
+                        CreatePostActivity.start(t,cId,1,CreatePostActivity.REPLY_POST,forumReplyBean.getForum_id(),forumReplyBean.getUser_id(),forumReplyBean.getId());
+                        break;
+                }
+            }
+        });
     }
 }

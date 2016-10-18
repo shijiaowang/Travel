@@ -76,7 +76,7 @@ public class UserDynamicAdapter extends LoadMoreRecycleViewAdapter<OtherUserCent
         userDynamicHolder.tvOtherUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PostActivity.start(mContext,moreBean.getId(),moreBean.getCid());
+                PostActivity.start(mContext,moreBean.getId());
             }
         });
         userDynamicHolder.tvType.setOnClickListener(new View.OnClickListener() {

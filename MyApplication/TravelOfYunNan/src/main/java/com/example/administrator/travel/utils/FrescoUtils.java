@@ -13,6 +13,8 @@ import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
+import org.xutils.common.util.DensityUtil;
+
 /**
  * Created by wangyang on 2016/10/8.
  */
@@ -81,25 +83,13 @@ public class FrescoUtils {
     public static void displayNormal(SimpleDraweeView simpleDraweeView, String url){
         if (simpleDraweeView==null || url==null)return;
         Uri uri=Uri.parse(url);
-        //获取GenericDraweeHierarchy对象
-        GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
-                //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
-                //设置淡入淡出动画持续时间(单位：毫秒ms)
-                //构建
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setResizeOptions(new ResizeOptions(DensityUtil.dip2px(120), DensityUtil.dip2px(120)))
                 .build();
-        simpleDraweeView.setHierarchy(hierarchy);
-        ImageRequest imageRequest =
-                ImageRequestBuilder.newBuilderWithSource(uri)
-                        .setResizeOptions(
-                                new ResizeOptions(300,200))
-                        .setProgressiveRenderingEnabled(true)
-                        .build();
-        //构建Controller
+
         DraweeController controller = Fresco.newDraweeControllerBuilder()
-                //设置需要下载的图片地址
-                .setUri(uri)
-                .setImageRequest(imageRequest)
-                //构建
+                .setImageRequest(request)
+                .setOldController(simpleDraweeView.getController())
                 .build();
         simpleDraweeView.setController(controller);
 

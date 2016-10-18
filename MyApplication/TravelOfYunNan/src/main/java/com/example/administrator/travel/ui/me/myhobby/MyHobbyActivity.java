@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.baseui.LoadingBarBaseActivity;
 import com.example.administrator.travel.ui.me.titlemanage.TitleChangeEvent;
 import com.example.administrator.travel.ui.me.titlemanage.TitlePagerAdapter;
@@ -29,38 +30,39 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/9/28 0028.
  * 我的兴趣
  */
 
-public class MyHobbyActivity extends LoadingBarBaseActivity<MyHobbyEvent>{
-    @ViewInject(R.id.fl_title)
-    private FlexboxLayout mFlTitle;
-    @ViewInject(R.id.vp_pager)
-    private ViewPager mVpPager;
-    @ViewInject(R.id.tl_title)
-    private TabLayout mTlTitle;
+public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
+    @BindView(R.id.fl_title) FlexboxLayout mFlTitle;
+    @BindView(R.id.vp_pager) ViewPager mVpPager;
+    @BindView(R.id.tl_title) TabLayout mTlTitle;
     private List<Fragment> fragments=new ArrayList<>();
     private LayoutInflater inflater;
     private List<UserLabelBean> userLabel=new ArrayList<>();
     private String[] mTitles;
 
     @Override
-    protected int setContentLayout() {
-        return R.layout.activity_my_hobby;
-    }
-
-    @Override
     protected void initEvent() {
          inflater=LayoutInflater.from(this);
     }
 
+
+
     @Override
-    protected void onLoad(int type) {
-        Map<String, String> hobbyMap = MapUtils.Build().addKey(this).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.GET_HOBBY_LIST,hobbyMap,TYPE_LOAD,new MyHobbyEvent());
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
     }
+
+    @Override
+    protected String initUrl() {
+        return IVariable.GET_HOBBY_LIST;
+    }
+
     @Subscribe
     public void onEvent(UserLabelBean userLabelBean){
         if (userLabelBean!=null){
@@ -154,23 +156,21 @@ public class MyHobbyActivity extends LoadingBarBaseActivity<MyHobbyEvent>{
     }
 
 
-    @Override
-    protected Activity initViewData() {
-        return this;
-    }
 
-    @Override
-    protected String setTitleName() {
-        return "我的兴趣";
-    }
 
-    @Override
-    public float getAlpha() {
-        return 1f;
-    }
 
     @Override
     protected void onSuccess(MyHobbyEvent event) {
         dealData(event);
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return  R.layout.activity_my_hobby;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "我的兴趣";
     }
 }

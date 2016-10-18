@@ -25,6 +25,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.appoint.aite.AiteActivity;
+import com.example.administrator.travel.ui.appoint.aite.AiteFollow;
 import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
 import com.example.administrator.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
@@ -41,6 +42,7 @@ import com.example.administrator.travel.utils.Xutils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +64,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
    @BindView(R.id.tv_emoji) TextView mTvEmoji;
    @BindView(R.id.et_title) EditText mEtTitle;
    @BindView(R.id.et_content) EditText mEtContent;
+    private List<AiteFollow> mSelectPeople;
     private GridView mGvPhoto;
     private ViewStub mVsPhoto;
     private ViewStub mVsEmoji;
@@ -98,6 +101,8 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     private String rUserId;
     private String pId;
     private String forumId;
+    private String title;
+    private String rigtText="";
 
     @Override
     protected int initLayoutRes() {
@@ -111,7 +116,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
     @Override
     protected String initTitle() {
-        return "创建帖子";
+        return title;
     }
 
     /**
@@ -170,7 +175,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
     @Override
     protected String initRightText() {
-        return "创建";
+        return rigtText;
     }
 
     @Override
@@ -181,7 +186,9 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
                 hideEmojiOrPhoto();
                 break;
             case R.id.tv_aite:
-                startActivity(new Intent(this, AiteActivity.class));
+                Intent intent = new Intent(this, AiteActivity.class);
+                intent.putExtra(IVariable.DATA, (Serializable) mSelectPeople);
+                startActivityForResult(intent,REQ_CODE);
                 break;
             default:
                 hideSoftClick(v);
@@ -245,7 +252,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     if (pictures == null) return;
-                    if (pictures.size() != 12 && position == pictures.size() - 1) {
+                    if (pictures.size() != GlobalValue.size && position == pictures.size() - 1) {
                         startActivity(new Intent(CreatePostActivity.this, AlbumSelectorActivity.class));
                         GlobalValue.mSelectImages = pictures;
                         GlobalValue.mSelectImages.remove(addFlag);
@@ -321,6 +328,17 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+       if (requestCode==REQ_CODE &&resultCode==RESULT_CODE){
+           try {
+               mSelectPeople= (List<AiteFollow>) data.getSerializableExtra(IVariable.DATA);
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+       }
+    }
+
     /**
      * 创建帖子
      */
@@ -335,14 +353,27 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         if (isCreateing)return;
         isCreateing = true;
         Map<String, String> createPostMap;
-
+        String url=IVariable.DISCUSS_POST;
         if (currentType==CREATE_POST) {
+            url=IVariable.CIRCLE_CREATE_POST;
+            String inform="";
             String title = mEtTitle.getText().toString().trim();
-            createPostMap = Xutils.getCreatePostMap(GlobalUtils.getKey(this), title, content,cId);
+            if (mSelectPeople!=null){
+                StringBuilder stringBuilder=new StringBuilder();
+                for (AiteFollow aiteFollow:mSelectPeople){
+                    stringBuilder.append(aiteFollow.getFollow().getId()+",");
+                }
+                String string = stringBuilder.toString();
+                if (!StringUtils.isEmpty(string)){
+                    string.substring(string.length()-1,string.length());
+                    inform=string;
+                }
+            }
+            createPostMap = MapUtils.Build().addKey(this).addCId(cId).addContent(content).addTitle(title).addUserId().addInform(inform).end();
         }else {
             createPostMap=MapUtils.Build().addKey(this).addFroumId(forumId).addContent(content).addCId(cId).addPId(pId).addUserId().addRUserId(rUserId).end();
         }
-        XEventUtils.postFileCommonBackJson(IVariable.CIRCLE_CREATE_POST,createPostMap,pictures,currentType,new CreatePostEvent());
+        XEventUtils.postFileCommonBackJson(url,createPostMap,pictures,currentType,new CreatePostEvent());
     }
 
     @Override
@@ -350,13 +381,11 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         cId = getIntent().getStringExtra(IVariable.C_ID);
         GlobalValue.size = getIntent().getIntExtra(IVariable.PAGE_SIZE,12);
         currentType = getIntent().getIntExtra(IVariable.TYPE,0);
-        if (currentType==REPLY_POST){
-            mTvTitle.setText("回复帖子");
-        }
+        title = currentType==REPLY_POST?"回复帖子":"创建帖子";
+        rigtText = currentType==REPLY_POST?"回复":"创建";
         rUserId = getIntent().getStringExtra(IVariable.R_USER_ID);
         pId = getIntent().getStringExtra(IVariable.PID);
         forumId = getIntent().getStringExtra(IVariable.FORUM_ID);
-
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mTvPicture.setOnClickListener(this);
         mTvEmoji.setOnClickListener(this);
@@ -404,7 +433,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     public void onEvent(UpPhotoEvent event) {
         pictures.clear();
         pictures.addAll(event.getList());
-        if (pictures.size() != 12 && !pictures.contains("add")) {
+        if (pictures.size() != GlobalValue.size && !pictures.contains("add")) {
             pictures.add(addFlag);
         }
         createPostPhotoAdapter.notifyData(pictures);

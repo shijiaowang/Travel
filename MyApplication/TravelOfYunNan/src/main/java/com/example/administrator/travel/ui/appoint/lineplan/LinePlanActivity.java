@@ -1,5 +1,6 @@
 package com.example.administrator.travel.ui.appoint.lineplan;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -8,6 +9,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.GlobalValue;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BarBaseActivity;
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.utils.JsonUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -16,22 +18,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
+import butterknife.BindView;
+
 /**
- * Created by Administrator on 2016/8/4 0004.
+ * Created by wangyang on 2016/8/4 0004.
  * 路线计划
  */
-public class LinePlanActivity extends BarBaseActivity {
-    @ViewInject(R.id.lv_line)
-    private ListView mLvLine;
-    @ViewInject(R.id.bt_next)
-    private Button mBtNext;
+public class LinePlanActivity extends BaseToolBarActivity {
+    @BindView(R.id.lv_line) ListView mLvLine;
+    @BindView(R.id.bt_next) Button mBtNext;
     private LinePlanAdapter linePlanAdapter;
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_line_plan;
-    }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        registerEventBus(this);
+    }
+
     protected void initEvent() {
         mBtNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +47,6 @@ public class LinePlanActivity extends BarBaseActivity {
                 checkData();
             }
         });
-        registerEventBus(this);
     }
 
 
@@ -82,7 +84,7 @@ public class LinePlanActivity extends BarBaseActivity {
         }
     }
 
-    @Override
+
     protected void initViewData() {
         //再次进入加载目的地
         linePlanAdapter = new LinePlanAdapter(this, GlobalValue.mLineBeans);
@@ -90,15 +92,6 @@ public class LinePlanActivity extends BarBaseActivity {
     }
 
 
-    @Override
-    protected String setTitleName() {
-        return "路线计划";
-    }
-
-    @Override
-    public float getAlpha() {
-        return 1f;
-    }
 
     @Subscribe
     public void onEvent(LinePlanEvent linePlanEvent) {
@@ -125,4 +118,21 @@ public class LinePlanActivity extends BarBaseActivity {
         super.onDestroy();
         unregisterEventBus(this);
     }
+
+    @Override
+    protected int initLayoutRes() {
+        return  R.layout.activity_line_plan;
+    }
+
+    @Override
+    protected void initOptions() {
+       initEvent();
+        initViewData();
+    }
+
+    @Override
+    protected String initTitle() {
+        return "路线计划";
+    }
+
 }

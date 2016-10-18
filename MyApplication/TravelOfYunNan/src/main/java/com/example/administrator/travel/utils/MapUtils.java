@@ -114,6 +114,10 @@ public class MapUtils {
             stringMap.put(IVariable.TP_ID,tpId);
             return this;
         }
+        public Builder addInform(String inform){
+            stringMap.put(IVariable.INFORM,inform);
+            return this;
+        }
         public Builder addUserId(){
             try {
                 stringMap.put(IVariable.USER_ID,GlobalUtils.getUserInfo().getId());

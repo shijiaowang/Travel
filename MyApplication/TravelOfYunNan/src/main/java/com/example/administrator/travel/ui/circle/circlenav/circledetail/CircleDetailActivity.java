@@ -43,7 +43,6 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
     @BindView(R.id.tv_follow_number) TextView mTvFollowNumber;
     @BindView(R.id.tv_des) TextView mTvDes;
     @BindView(R.id.tv_circle_name) TextView mTvCircleName;
-    private boolean isFirst;
 
     @Override
     protected void initHeader() {
@@ -74,16 +73,13 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
     protected void onSuccess(CircleDetailEvent circleDetailEvent) {
 
         switch (circleDetailEvent.getType()) {
-            case TYPE_LOAD:
+
             case TYPE_REFRESH:
+                dealHeader(circleDetailEvent);
+            case TYPE_LOAD:
                 super.onSuccess(circleDetailEvent);
-                isFirst = true;
-                if (isFirst) {
-                    isFirst=false;
-                    dealHeader(circleDetailEvent);
-                }
                 break;
-            case TYPE_LIKE_POST:
+            case TYPE_LIKE:
                 dealLikeData(circleDetailEvent);
                 break;
             case TYPE_FOLLOW_CIRCLE:
@@ -95,7 +91,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
-        CreatePostActivity.start(this,cId,12,CreatePostActivity.REPLY_POST,"","","");
+        CreatePostActivity.start(this,cId,12,CreatePostActivity.CREATE_POST,"","","");
     }
 
     @Override

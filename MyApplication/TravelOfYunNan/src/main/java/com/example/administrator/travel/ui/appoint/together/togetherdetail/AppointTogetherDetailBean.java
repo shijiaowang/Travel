@@ -45,9 +45,6 @@ public class AppointTogetherDetailBean {
         private String id;
         private String user_id;
         private String action;
-
-
-
         private String title;
         private String content;
         private String travel_img;
@@ -78,6 +75,7 @@ public class AppointTogetherDetailBean {
         private int now_people;
         private String count_like;
         private String is_like;
+        private String is_collect;
         private String routes_title;
 
         public String getAction() {
@@ -147,6 +145,14 @@ public class AppointTogetherDetailBean {
 
         public void setStart_time(String start_time) {
             this.start_time = start_time;
+        }
+
+        public String getIs_collect() {
+            return is_collect;
+        }
+
+        public void setIs_collect(String is_collect) {
+            this.is_collect = is_collect;
         }
 
         public String getEnd_time() {

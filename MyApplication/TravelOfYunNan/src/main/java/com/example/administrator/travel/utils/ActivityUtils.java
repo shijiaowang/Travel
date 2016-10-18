@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/21 0021.
+ * Created by wangyang on 2016/9/21 0021.
  */
 public class ActivityUtils {
     private List<Activity> mList = new LinkedList<>();

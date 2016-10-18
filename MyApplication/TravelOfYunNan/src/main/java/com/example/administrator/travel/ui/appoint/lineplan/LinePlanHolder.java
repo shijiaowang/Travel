@@ -19,22 +19,16 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/8/5 0005.
+ * Created by wangyang on 2016/8/5 0005.
  */
 public class LinePlanHolder extends BaseHolder<LineBean> {
-
     @BindView(R.id.tv_add) FontsIconTextView mTvAdd;
     @BindView(R.id.dlv_line) DottedLineView mDlvLine;
     @BindView(R.id.tv_number) TextView mTvNumber;
     @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.lv_add)  ListView mLvAdd;
-
-
-
-
     public LinePlanHolder(Context context) {
         super(context);
-
     }
 
 
@@ -78,11 +72,8 @@ public class LinePlanHolder extends BaseHolder<LineBean> {
             }
         });
     }
-
-
     @Override
     public View initRootView(Context mContext) {
-
         return  inflateView(R.layout.item_activity_line_plan);
     }
 }

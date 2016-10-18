@@ -34,19 +34,21 @@ public class PostAdapter extends BaseRecycleViewAdapter<Object> {
     public static final int TYPE_POST_OP = 0;
     public static final int TYPE_POST_USER = 1;
     public static final int TYPE_POST_NORMAL = 2;
+    private final String cId;
 
-    public PostAdapter(List<Object> mDatas, Context mContext) {
+    public PostAdapter(List<Object> mDatas, Context mContext,String cId) {
         super(mDatas, mContext);
+        this.cId = cId;
     }
 
     @Override
     public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TravelBaseAdapter.TYPE_POST_USER) {
+        if (viewType == TYPE_POST_USER) {
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_post_reply_user, parent, false);
-            return new PostReplyUserHolder(inflate);
+            return new PostReplyUserHolder(inflate,cId);
         } else if (viewType == TYPE_POST_NORMAL) {
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_post_reply, parent, false);
-            return new PostReplyTextHolder(inflate);
+            return new PostReplyTextHolder(inflate,cId);
         } else {
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_post_op, parent, false);
             return new PostOpHolder(inflate);
@@ -61,12 +63,10 @@ public class PostAdapter extends BaseRecycleViewAdapter<Object> {
         }
         if (position == 0) {
             return TYPE_POST_OP;
-        } else if (forumReplyBean != null && !(forumReplyBean.getPid().equals("0"))) {
-            return TYPE_POST_USER;
-        } else if (forumReplyBean != null) {
+        } else if (forumReplyBean.getPid().equals("0")) {
             return TYPE_POST_NORMAL;
-        } else {
-            return -1;
+        } else{
+            return TYPE_POST_USER;
         }
     }
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:orientation="vertical"
+    android:background="@color/colorFAFAFA"
+    android:layout_height="119dp">
+    <TextView
+        android:id="@+id/tv_reply"
+        android:text="回复评论"
+        android:paddingLeft="15dp"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:textColor="@color/otherTitleBg"
+        android:textSize="15sp"
+        android:layout_height="39dp" />
+    <View
+        android:background="@color/meLine"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/tv_zan"
+        android:text="点赞评论"
+        android:paddingLeft="15dp"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:textColor="@color/otherTitleBg"
+        android:textSize="15sp"
+        android:layout_height="39dp" />
+
+    <View
+        android:background="@color/meLine"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/tv_report"
+        android:text="举报评论"
+        android:paddingLeft="15dp"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:textColor="@color/otherTitleBg"
+        android:textSize="15sp"
+        android:layout_height="39dp" />
+
+</LinearLayout>

@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/8/5 0005.
+ * Created by wangyang on 2016/8/5 0005.
  */
 public class LinePlanTopHolder extends BaseHolder<LineBean> {
     @BindView(R.id.tv_start_add) public TextView mTvStartAdd;

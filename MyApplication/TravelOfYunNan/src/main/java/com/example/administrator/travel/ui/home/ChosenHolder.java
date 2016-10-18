@@ -35,7 +35,7 @@ public class ChosenHolder extends BaseRecycleViewHolder<HomeBean.DataBean.ForumB
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PostActivity.start(mContext, data.getId(),data.getCid());
+                PostActivity.start(mContext, data.getId());
             }
         });
     }

@@ -57,6 +57,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     ProgressBar mPbLoading;//加载中
     protected LayoutInflater inflater;
     protected View childView;
+    protected MenuItem item;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -355,7 +356,8 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.my_appoint_menu,menu);
-        menu.findItem(R.id.action_history).setTitle(initRightText());
+        item = menu.findItem(R.id.action_history);
+        item.setTitle(initRightText());
         return true;
     }
 

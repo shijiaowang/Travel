@@ -76,6 +76,15 @@ public class PostDetailBean implements ParentBean{
             private String user_img;
             private String cname;
             private String replay_count;
+            private String is_collect;
+
+            public String getIs_collect() {
+                return is_collect;
+            }
+
+            public void setIs_collect(String is_collect) {
+                this.is_collect = is_collect;
+            }
 
             public String getReplay_count() {
                 return replay_count;

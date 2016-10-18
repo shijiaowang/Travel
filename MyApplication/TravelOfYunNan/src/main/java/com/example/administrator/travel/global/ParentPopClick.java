@@ -5,5 +5,5 @@ package com.example.administrator.travel.global;
  */
 
 public interface ParentPopClick {
-    void onClick();
+    void onClick(int type);
 }

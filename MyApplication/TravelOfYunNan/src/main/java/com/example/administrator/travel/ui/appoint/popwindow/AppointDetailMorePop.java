@@ -6,9 +6,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.ParentPopClick;
 import com.example.administrator.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.example.administrator.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 
 
 import org.xutils.common.util.DensityUtil;
@@ -19,7 +22,7 @@ import org.xutils.common.util.DensityUtil;
  */
 public class AppointDetailMorePop {
     public static final float ALPHA=0.7f;
-    public static void showMorePop(final Context context, View view) {
+    public static void showMorePop(final Context context, View view, String collection, final ParentPopClick parentPopClick) {
         // 获取弹出视图对象
         final View viewPopup = View.inflate(context, R.layout.pop_appoint_detail_more, null);
 
@@ -29,6 +32,7 @@ public class AppointDetailMorePop {
                 EnterAppointDialog.showDialogAddComplaint(context);
             }
         });
+        ((TextView) viewPopup.findViewById(R.id.tv_collection)).setText(collection);
 
         // 创建 弹出窗口
         final PopupWindow window = new PopupWindow(viewPopup, DensityUtil.dip2px(110), DensityUtil.dip2px(114));
@@ -38,7 +42,13 @@ public class AppointDetailMorePop {
             public void onClick(View v) {
                 EnterAppointDialog.showShareDialog(context);
 
-
+            }
+        });
+        viewPopup.findViewById(R.id.ll_collection).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentPopClick.onClick(0);
+                window.dismiss();
             }
         });
         WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
