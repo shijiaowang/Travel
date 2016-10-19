@@ -19,6 +19,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
@@ -87,8 +88,9 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
         chatAdapter = new ChatAdapter(mMessage, this);
         recyclerView.setAdapter(chatAdapter);
         linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);//软键盘弹出，RecycleView内容上移
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.addItemDecoration(new ChatDecoration(15));
+        recyclerView.addItemDecoration(new ChatDecoration(7));
         linearLayoutManager.scrollToPosition(mMessage.size() - 1);
         EMClient.getInstance().chatManager().addMessageListener(msgListener);
     }
@@ -142,7 +144,10 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
         //创建一条文本消息，content为消息文字内容，toChatUsername为对方用户或者群聊的id，后文皆是如此
         EMMessage message = EMMessage.createTxtSendMessage(etInput.getText().toString(), "254699598117863848");
         //如果是群聊，设置chattype，默认是单聊
+        mMessage.add(message);
+        chatAdapter.notifyItemInserted(mMessage.size()-1);
         message.setChatType(EMMessage.ChatType.GroupChat);
+        message.setMessageStatusCallback(new MyCallBack());
         EMClient.getInstance().chatManager().sendMessage(message);
     }
 
@@ -218,6 +223,7 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
         });
     }
 
+
     /**
      * 文字改变监听
      */
@@ -225,7 +231,6 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
         }
 
         @Override
@@ -242,7 +247,6 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
 
         @Override
         public void afterTextChanged(Editable s) {
-
         }
     }
 
@@ -290,6 +294,23 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
     protected void onDestroy() {
         super.onDestroy();
         EMClient.getInstance().chatManager().removeMessageListener(msgListener);
+    }
+    class MyCallBack implements EMCallBack{
+
+        @Override
+        public void onSuccess() {
+
+        }
+
+        @Override
+        public void onError(int i, String s) {
+            LogUtils.e("消息发送失败"+i+"---"+s);
+        }
+
+        @Override
+        public void onProgress(int i, String s) {
+
+        }
     }
 
 }

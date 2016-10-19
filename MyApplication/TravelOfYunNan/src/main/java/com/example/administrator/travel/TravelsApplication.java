@@ -31,7 +31,6 @@ public class TravelsApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         x.Ext.init(this);
         Fresco.initialize(this,ImagePipelineConfigFactory.getImagePipelineConfig(this));
        /* x.Ext.setDebug(BuildConfig.DEBUG); // 开启debug会影响性能*/
@@ -41,6 +40,7 @@ public class TravelsApplication extends Application {
         EMOptions options = new EMOptions();
         // 默认添加好友时，是不需要验证的，改成需要验证
         options.setAcceptInvitationAlways(false);
+        options.setDeleteMessagesAsExitGroup(true);
         //初始化
         EMClient.getInstance().init(this, options);
         //在做打包混淆时，关闭debug模式，避免消耗不必要的资源

@@ -21,6 +21,7 @@ public class ChatDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         outRect.top = DensityUtil.dip2px(space);
+        outRect.bottom = DensityUtil.dip2px(space);
 
     }
 }
