@@ -1,2 +1,2 @@
-include 'pickerview', ':ucrop', ':TravelOfYunNan', ':fresco', ':redpacketlibrary', ':EaseUI'
-include ':payDemoActivity_20'
+include 'pickerview', ':ucrop', ':TravelOfYunNan'
+

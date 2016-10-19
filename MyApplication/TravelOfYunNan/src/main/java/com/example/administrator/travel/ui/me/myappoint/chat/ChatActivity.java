@@ -1,42 +1,37 @@
 package com.example.administrator.travel.ui.me.myappoint.chat;
 
-import android.app.Activity;
+import android.view.MenuItem;
 
 import com.example.administrator.travel.R;
-import com.example.administrator.travel.event.HttpEvent;
-import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
-import com.example.administrator.travel.utils.MapUtils;
+
+import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 
 /**
  * Created by wangyang on 2016/10/14 0014.
  */
 
-public class ChatActivity extends BaseNetWorkActivity {
+public class ChatActivity extends BaseToolBarActivity{
 
 
-    @Override
-    protected void initEvent() {
-
-    }
-
-    @Override
-    protected void childAdd(MapUtils.Builder builder, int type) {
-
-    }
-
-    @Override
-    protected String initUrl() {
-        return null;
-    }
-
-    @Override
-    protected void onSuccess(HttpEvent event) {
-
-    }
 
     @Override
     protected int initLayoutRes() {
         return R.layout.activity_chat;
+    }
+
+    @Override
+    protected void initOptions() {
+
+    }
+
+    @Override
+    protected String initRightText() {
+        return "设置";
+    }
+
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+
     }
 
     @Override

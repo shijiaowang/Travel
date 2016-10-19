@@ -6,7 +6,7 @@ import com.example.administrator.travel.R;
 import com.example.administrator.travel.ui.adapter.SearchUserAdapter;
 
 /**
- * Created by Administrator on 2016/8/22 0022.
+ * Created by  on 2016/8/22 0022.
  */
 public class SearchUserFragment extends BaseFragment {
 

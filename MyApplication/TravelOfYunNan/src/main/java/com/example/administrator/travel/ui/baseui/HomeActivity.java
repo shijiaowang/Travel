@@ -27,6 +27,7 @@ import com.example.administrator.travel.ui.me.me.MeFragment;
 import com.example.administrator.travel.ui.view.GradientTextView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.ToastUtils;
 import com.example.administrator.travel.utils.TypefaceUtis;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMConnectionListener;
@@ -296,18 +297,21 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 @Override
                 public void run() {
                     if (error == EMError.USER_REMOVED) {
-                        // 显示帐号已经被移除
+                        ToastUtils.showToast("账号已被移除");
                     } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                         // 显示帐号在其他设备登录
+                        ToastUtils.showToast("账号在其他地方登录");
                     } else {
                         if (NetUtils.hasNetwork(HomeActivity.this)) {
-
+                            ToastUtils.showToast("无法连接聊天服务器");
                         }
                         //连接不到聊天服务器
                         else {
+                            //当前网络不可用，请检查网络设置
+                            ToastUtils.showToast("当前网络不可用，请检查网络。");
                         }
                     }
-                    //当前网络不可用，请检查网络设置
+
                 }
             });
         }}
