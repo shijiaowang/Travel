@@ -32,8 +32,12 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
         mDatas=list;
         this.notifyDataSetChanged();
     }
+    public void setDatas(List list){
+        if (list==null)return;
+        mDatas=list;
+    }
     public View inflateView(int res,ViewGroup parent){
-       return LayoutInflater.from(mContext).inflate(R.layout.item_activity_custom_destination, parent, false);
+       return LayoutInflater.from(mContext).inflate(res, parent, false);
     }
 
 

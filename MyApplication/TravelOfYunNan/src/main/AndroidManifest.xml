@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:name=".TravelsApplication"
         android:allowBackup="true"
@@ -170,6 +171,9 @@
         <activity android:name=".ui.me.myappoint.chat.chatsetting.memberdetail.ChatMemberDetailActivity" />
         <activity android:name=".ui.me.myappoint.chat.chatsetting.ChatSettingActivity" />
         <activity android:name=".ui.me.myappoint.chat.chatsetting.privatesetting.PrivateChatSettingActivity" />
+        <activity android:name=".ui.me.myappoint.chat.ChatActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
 
 
         <!-- alipay sdk end -->

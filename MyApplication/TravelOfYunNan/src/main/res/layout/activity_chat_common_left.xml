@@ -9,11 +9,11 @@
         android:layout_marginLeft="13dp"
         android:layout_height="39dp">
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/iv_icon"
+            android:id="@+id/iv_icon_left"
             android:layout_width="39dp"
             android:layout_height="39dp" />
         <TextView
-            android:id="@+id/tv_user_name"
+            android:id="@+id/tv_user_name_left"
             android:textColor="@color/color646464"
             android:textSize="13sp"
             android:layout_marginLeft="10dp"

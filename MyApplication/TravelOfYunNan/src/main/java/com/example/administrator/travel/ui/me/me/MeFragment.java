@@ -13,6 +13,7 @@ import com.example.administrator.travel.bean.UserInfo;
 import com.example.administrator.travel.event.HttpEvent;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.me.level.LevelActivity;
+import com.example.administrator.travel.ui.me.myappoint.chat.ChatActivity;
 import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
 import com.example.administrator.travel.ui.me.userservice.CustomerServiceActivity;
 import com.example.administrator.travel.ui.me.fansandfollow.FollowAndFanActivity;
@@ -203,7 +204,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
                 break;
             case R.id.tv_level:
                  //startActivity(new Intent(getContext(), LevelActivity.class));
-                 startActivity(new Intent(getContext(), LevelActivity.class));
+                 startActivity(new Intent(getContext(), ChatActivity.class));
                 break;
             case R.id.iv_bg:
                 LinearLayout homeBottom = ((HomeActivity) getActivity()).getmLlBottom();

@@ -289,6 +289,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     class MyConnectionListener implements EMConnectionListener {
         @Override
         public void onConnected() {
+            LogUtils.e("成功连接聊天服务器");
         }
 
         @Override
@@ -297,7 +298,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 @Override
                 public void run() {
                     if (error == EMError.USER_REMOVED) {
-                        ToastUtils.showToast("账号已被移除");
+                        ToastUtils.showToast("聊天账号已被移除");
                     } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                         // 显示帐号在其他设备登录
                         ToastUtils.showToast("账号在其他地方登录");

@@ -46,6 +46,7 @@ public class CustomDestinationActivity extends BaseRecycleViewActivity<CustomDes
 
     @Override
     protected void initEvent() {
+        super.initEvent();
         mVsContent.setLayoutResource( R.layout.activity_custom_destination_header);
         mVsContent.inflate();
         GlobalValue.clickPosition=-1;//初始化，避免之前选中的对这边造成影响
