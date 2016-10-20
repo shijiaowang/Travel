@@ -21,7 +21,9 @@ import butterknife.BindView;
  */
 
 public class ChatAdapter extends BaseRecycleViewAdapter<EMMessage> {
+    private static final int TYPE_EMPTY = 0;
     private static final int TYPE_TEXT = 1;
+
 
 
     public ChatAdapter(List mDatas, Context mContext) {
@@ -34,7 +36,9 @@ public class ChatAdapter extends BaseRecycleViewAdapter<EMMessage> {
             View view = inflateView(R.layout.activity_chat_text, parent);
             return new ChatLeftTextMessageHolder(view);
         }else {
-            return null;
+            View  view=new View(mContext);
+            view.setVisibility(View.GONE);
+            return new EmptyHolder(view);
         }
 
 
@@ -48,6 +52,6 @@ public class ChatAdapter extends BaseRecycleViewAdapter<EMMessage> {
         }
 
 
-        return super.getItemViewType(position);
+        return TYPE_EMPTY;
     }
 }

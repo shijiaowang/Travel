@@ -96,6 +96,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      * 户厕环信监听
      */
     private void initHXListener() {
+        //注册一个监听连接状态的listener
+        EMClient.getInstance().addConnectionListener(new MyConnectionListener());
         EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {//回调
             @Override
             public void onSuccess() {
@@ -114,8 +116,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 LogUtils.e(message);
             }
         });
-        //注册一个监听连接状态的listener
-        EMClient.getInstance().addConnectionListener(new MyConnectionListener());
+
     }
 
     public LinearLayout getmLlBottom() {

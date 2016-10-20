@@ -16,7 +16,7 @@
             android:layout_marginBottom="11dp"
             android:id="@id/swipe_target"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:overScrollMode="never"
             />
@@ -25,7 +25,6 @@
         android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:background="@color/colorFAFAFA"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -48,6 +47,8 @@
             <EditText
                 android:id="@+id/et_input"
                 android:layout_width="0dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/chat_input_bg"

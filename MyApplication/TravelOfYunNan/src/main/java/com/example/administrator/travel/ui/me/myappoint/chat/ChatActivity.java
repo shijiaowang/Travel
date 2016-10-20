@@ -1,5 +1,7 @@
 package com.example.administrator.travel.ui.me.myappoint.chat;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +18,15 @@ import android.widget.TextView;
 
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.example.administrator.travel.R;
+import com.example.administrator.travel.global.IVariable;
+import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
+import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
+import com.example.administrator.travel.utils.MapUtils;
+import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.ToastUtils;
+import com.example.administrator.travel.utils.XEventUtils;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
@@ -27,10 +35,14 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessageBody;
 import com.hyphenate.chat.EMTextMessageBody;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 
@@ -69,6 +81,11 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
     private ChatAdapter chatAdapter;
     private LinearLayoutManager linearLayoutManager;
     private EMConversation conversation;
+    private String tId;
+    private String chatId;
+    public static List<ChatBean.DataBean> chatInfo;//聊天信息
+    public static Map<String,ChatBean.DataBean> userMap=new HashMap<>();
+    private boolean needMoveToLast=false;
 
     @Override
     protected int initLayoutRes() {
@@ -77,7 +94,9 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
 
     @Override
     protected void initOptions() {
-        initEvent();
+        getUserInfo();
+        initMessage();
+        registerEventBus(this);
         hideSoftWore(etInput);
         conversation = EMClient.getInstance().chatManager().getConversation("254699598117863848");
         //获取此会话的所有消息
@@ -93,19 +112,53 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
         recyclerView.addItemDecoration(new ChatDecoration(7));
         linearLayoutManager.scrollToPosition(mMessage.size() - 1);
         EMClient.getInstance().chatManager().addMessageListener(msgListener);
-    }
-
-    /**
-     * 初始化监听事件
-     */
-    private void initEvent() {
         etInput.addTextChangedListener(new ChatTextChangeListener());
         btSend.setOnClickListener(this);
         ivPicture.setOnClickListener(this);
         btVoice.setOnClickListener(this);
         swipeRefreshLayout.setOnRefreshListener(this);
-
     }
+
+
+    private void initMessage() {
+        tId = getIntent().getStringExtra(IVariable.TID);
+        chatId = getIntent().getStringExtra(IVariable.CHAT_ID);
+        if (StringUtils.isEmpty(tId) || StringUtils.isEmpty(chatId)){
+            ToastUtils.showToast("聊天id为空");
+        }
+    }
+
+
+
+
+
+    @Subscribe
+    public void onEvent(ChatEvent chatEvent) {
+       if (chatEvent.isSuccess()){
+           ChatBean chatBean = GsonUtils.getObject(chatEvent.getResult(), ChatBean.class);
+           chatInfo = chatBean.getData();
+           if (mMessage.size()!=0) {
+               chatAdapter.notifyItemRangeChanged(0, mMessage.size()-1);
+           }
+       }else {
+           LogUtils.e("读取用户头像信息失败");
+       }
+    }
+  public void getUserInfo(){
+      Map<String, String> end = MapUtils.Build().addKey(this).addtId("33").end();
+      XEventUtils.getUseCommonBackJson(IVariable.GET_CHAT_MESSAGE,end,0,new ChatEvent());
+  }
+
+
+    public static void start(Context context, String tId, String chatId) {
+        Intent intent=new Intent(context,ChatActivity.class);
+        intent.putExtra(IVariable.TID,tId);
+        intent.putExtra(IVariable.CHAT_ID,chatId);
+        context.startActivity(intent);
+    }
+
+
+
 
     @Override
     protected String initRightText() {
@@ -141,14 +194,48 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
      * 发送文本消息
      */
     private void sendTextMsg() {
+        etInput.setText("");
         //创建一条文本消息，content为消息文字内容，toChatUsername为对方用户或者群聊的id，后文皆是如此
         EMMessage message = EMMessage.createTxtSendMessage(etInput.getText().toString(), "254699598117863848");
-        //如果是群聊，设置chattype，默认是单聊
-        mMessage.add(message);
-        chatAdapter.notifyItemInserted(mMessage.size()-1);
+        notifiyInsert(message);
         message.setChatType(EMMessage.ChatType.GroupChat);
         message.setMessageStatusCallback(new MyCallBack());
         EMClient.getInstance().chatManager().sendMessage(message);
+
+    }
+
+    /**
+     * 更新插入一条信息
+     * @param message
+     */
+    private synchronized void notifiyInsert(EMMessage message) {
+        //如果是群聊，设置chattype，默认是单聊
+        if (mMessage.size()==0 || linearLayoutManager.findLastVisibleItemPosition()>=mMessage.size()-1){
+            needMoveToLast=true;
+        }
+        mMessage.add(message);
+        chatAdapter.notifyItemInserted(mMessage.size() - 1);
+        moveToLast();
+    }
+    /**
+     * 更新插入信息集合
+     * @param message
+     */
+    private synchronized void notifiyInsertMessages(final List<EMMessage> message) {
+
+        //如果是群聊，设置chattype，默认是单聊
+        if (mMessage.size()==0 || linearLayoutManager.findLastVisibleItemPosition()>=mMessage.size()-1){
+            needMoveToLast=true;
+        }
+        mMessage.addAll(message);
+        x.task().post(new Runnable() {
+            @Override
+            public void run() {
+                chatAdapter.notifyItemRangeInserted(mMessage.size() - message.size(),message.size());
+                moveToLast();
+            }
+        });
+
     }
 
     /**
@@ -255,14 +342,7 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
         @Override
         public void onMessageReceived(List<EMMessage> messages) {
             //收到消息
-            LogUtils.e("收到消息");
-            mMessage.addAll(messages);
-            x.task().post(new Runnable() {
-                @Override
-                public void run() {
-                    chatAdapter.notifiyData(mMessage);
-                }
-            });
+           notifiyInsertMessages(messages);
         }
 
         @Override
@@ -289,13 +369,20 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
             LogUtils.e("消息状态变动");
         }
     };
-
+    public void moveToLast(){
+        if (needMoveToLast) {
+            linearLayoutManager.scrollToPosition(mMessage.size() - 1);
+            needMoveToLast=false;
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
         EMClient.getInstance().chatManager().removeMessageListener(msgListener);
+        unregisterEventBus(this);
     }
-    class MyCallBack implements EMCallBack{
+
+    class MyCallBack implements EMCallBack {
 
         @Override
         public void onSuccess() {
@@ -304,7 +391,7 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
 
         @Override
         public void onError(int i, String s) {
-            LogUtils.e("消息发送失败"+i+"---"+s);
+            LogUtils.e("消息发送失败" + i + "---" + s);
         }
 
         @Override

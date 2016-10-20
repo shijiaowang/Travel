@@ -405,7 +405,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
         AppointDetailMorePop.showMorePop(this, mToolbar,collection, new ParentPopClick() {
             @Override
             public void onClick(int type) {
-                  String url=isCollect.equals(isTrue)?IVariable.CANCEL_COLLECTION:IVariable.COLLECTION;
+                  String url=isCollect.equals(isTrue)?IVariable.CANCEL_COMMON_COLLECTION:IVariable.COLLECTION;
                    Map<String, String> collectionMap = MapUtils.Build().addKey(AppointTogetherDetailActivity.this).addUserId().addType("1").addId(id).end();
                    XEventUtils.postUseCommonBackJson(url, collectionMap, TYPE_COLLECTION, new AppointDetailEvent());
 
