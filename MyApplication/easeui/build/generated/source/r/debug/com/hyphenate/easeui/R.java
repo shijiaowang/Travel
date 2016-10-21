@@ -26,6 +26,36 @@ public final class R {
         public static int slide_out_to_right=0x7f04000e;
     }
     public static final class attr {
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+         */
+        public static int actualImageScaleType=0x7f01002a;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int actualImageUri=0x7f010038;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static int backgroundImage=0x7f01002b;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -199,6 +229,36 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static int emojiconColumns=0x7f010011;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int fadeDuration=0x7f01001f;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static int failureImage=0x7f010025;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+         */
+        public static int failureImageScaleType=0x7f010026;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -231,6 +291,176 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static int numColumns=0x7f010000;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static int overlayImage=0x7f01002c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static int placeholderImage=0x7f010021;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+         */
+        public static int placeholderImageScaleType=0x7f010022;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static int pressedStateOverlayImage=0x7f01002d;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int progressBarAutoRotateInterval=0x7f010029;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static int progressBarImage=0x7f010027;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+         */
+        public static int progressBarImageScaleType=0x7f010028;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static int retryImage=0x7f010023;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+         */
+        public static int retryImageScaleType=0x7f010024;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundAsCircle=0x7f01002e;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundBottomLeft=0x7f010033;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundBottomRight=0x7f010032;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundTopLeft=0x7f010030;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundTopRight=0x7f010031;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundWithOverlayColor=0x7f010034;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundedCornerRadius=0x7f01002f;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundingBorderColor=0x7f010036;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundingBorderPadding=0x7f010037;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int roundingBorderWidth=0x7f010035;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -272,6 +502,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static int titleBarTitle=0x7f01001b;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int viewAspectRatio=0x7f010020;
     }
     public static final class color {
         public static int black_deep=0x7f080000;
@@ -338,282 +576,294 @@ containing a value of this type.
         public static int size_avatar=0x7f050010;
     }
     public static final class drawable {
-        public static int ease_app_panel_video_icon=0x7f020000;
-        public static int ease_appitem_del_btn_normal=0x7f020001;
-        public static int ease_appitem_del_btn_pressed=0x7f020002;
-        public static int ease_blue_add=0x7f020003;
-        public static int ease_btn_blue_normal_shape=0x7f020004;
-        public static int ease_btn_blue_pressed_shape=0x7f020005;
-        public static int ease_btn_blue_selector=0x7f020006;
-        public static int ease_btn_cancel_bj=0x7f020007;
-        public static int ease_btn_cancel_normal_shape=0x7f020008;
-        public static int ease_btn_cancel_pressed_shape=0x7f020009;
-        public static int ease_chat_edit_normal=0x7f02000a;
-        public static int ease_chat_face_normal=0x7f02000b;
-        public static int ease_chat_face_pressed=0x7f02000c;
-        public static int ease_chat_image_normal=0x7f02000d;
-        public static int ease_chat_image_pressed=0x7f02000e;
-        public static int ease_chat_image_selector=0x7f02000f;
-        public static int ease_chat_item_file=0x7f020010;
-        public static int ease_chat_location_normal=0x7f020011;
-        public static int ease_chat_location_pressed=0x7f020012;
-        public static int ease_chat_location_selector=0x7f020013;
-        public static int ease_chat_press_speak_btn=0x7f020014;
-        public static int ease_chat_press_speak_btn_normal=0x7f020015;
-        public static int ease_chat_press_speak_btn_pressed=0x7f020016;
-        public static int ease_chat_send_btn_normal=0x7f020017;
-        public static int ease_chat_send_btn_pressed=0x7f020018;
-        public static int ease_chat_send_btn_selector=0x7f020019;
-        public static int ease_chat_takepic_normal=0x7f02001a;
-        public static int ease_chat_takepic_pressed=0x7f02001b;
-        public static int ease_chat_takepic_selector=0x7f02001c;
-        public static int ease_chat_video_call_receive=0x7f02001d;
-        public static int ease_chat_video_call_self=0x7f02001e;
-        public static int ease_chat_video_mask_to=0x7f02001f;
-        public static int ease_chat_voice_call_receive=0x7f020020;
-        public static int ease_chat_voice_call_self=0x7f020021;
-        public static int ease_chatfrom_bg=0x7f020022;
-        public static int ease_chatfrom_bg_focused=0x7f020023;
-        public static int ease_chatfrom_bg_normal=0x7f020024;
-        public static int ease_chatfrom_voice_playing=0x7f020025;
-        public static int ease_chatfrom_voice_playing_f1=0x7f020026;
-        public static int ease_chatfrom_voice_playing_f2=0x7f020027;
-        public static int ease_chatfrom_voice_playing_f3=0x7f020028;
-        public static int ease_chatting_biaoqing_btn_enable=0x7f020029;
-        public static int ease_chatting_biaoqing_btn_normal=0x7f02002a;
-        public static int ease_chatting_setmode_keyboard_btn=0x7f02002b;
-        public static int ease_chatting_setmode_keyboard_btn_normal=0x7f02002c;
-        public static int ease_chatting_setmode_keyboard_btn_pressed=0x7f02002d;
-        public static int ease_chatting_setmode_voice_btn=0x7f02002e;
-        public static int ease_chatting_setmode_voice_btn_normal=0x7f02002f;
-        public static int ease_chatting_setmode_voice_btn_pressed=0x7f020030;
-        public static int ease_chatto_bg=0x7f020031;
-        public static int ease_chatto_bg_focused=0x7f020032;
-        public static int ease_chatto_bg_normal=0x7f020033;
-        public static int ease_chatto_voice_playing=0x7f020034;
-        public static int ease_chatto_voice_playing_f1=0x7f020035;
-        public static int ease_chatto_voice_playing_f2=0x7f020036;
-        public static int ease_chatto_voice_playing_f3=0x7f020037;
-        public static int ease_close_icon=0x7f020038;
-        public static int ease_common_tab_bg=0x7f020039;
-        public static int ease_contact_list_normal=0x7f02003a;
-        public static int ease_contact_list_selected=0x7f02003b;
-        public static int ease_conversation_normal=0x7f02003c;
-        public static int ease_conversation_selected=0x7f02003d;
-        public static int ease_default_avatar=0x7f02003e;
-        public static int ease_default_expression=0x7f02003f;
-        public static int ease_default_image=0x7f020040;
-        public static int ease_delete_expression=0x7f020041;
-        public static int ease_dot_emojicon_selected=0x7f020042;
-        public static int ease_dot_emojicon_unselected=0x7f020043;
-        public static int ease_dx_checkbox_gray_on=0x7f020044;
-        public static int ease_dx_checkbox_off=0x7f020045;
-        public static int ease_dx_checkbox_on=0x7f020046;
-        public static int ease_edit_text_bg=0x7f020047;
-        public static int ease_group_icon=0x7f020048;
-        public static int ease_groups_icon=0x7f020049;
-        public static int ease_ic_launcher=0x7f02004a;
-        public static int ease_icon_marka=0x7f02004b;
-        public static int ease_input_bar_bg_active=0x7f02004c;
-        public static int ease_input_bar_bg_normal=0x7f02004d;
-        public static int ease_location_msg=0x7f02004e;
-        public static int ease_login_error_icon=0x7f02004f;
-        public static int ease_mm_listitem=0x7f020050;
-        public static int ease_mm_listitem_disable=0x7f020051;
-        public static int ease_mm_listitem_grey=0x7f020052;
-        public static int ease_mm_listitem_grey_normal=0x7f020053;
-        public static int ease_mm_listitem_pressed=0x7f020054;
-        public static int ease_mm_listitem_simple=0x7f020055;
-        public static int ease_mm_title_back=0x7f020056;
-        public static int ease_mm_title_remove=0x7f020057;
-        public static int ease_msg_state_fail_resend=0x7f020058;
-        public static int ease_msg_state_fail_resend_pressed=0x7f020059;
-        public static int ease_msg_state_failed_resend=0x7f02005a;
-        public static int ease_new_friends_icon=0x7f02005b;
-        public static int ease_open_icon=0x7f02005c;
-        public static int ease_record_animate_01=0x7f02005d;
-        public static int ease_record_animate_02=0x7f02005e;
-        public static int ease_record_animate_03=0x7f02005f;
-        public static int ease_record_animate_04=0x7f020060;
-        public static int ease_record_animate_05=0x7f020061;
-        public static int ease_record_animate_06=0x7f020062;
-        public static int ease_record_animate_07=0x7f020063;
-        public static int ease_record_animate_08=0x7f020064;
-        public static int ease_record_animate_09=0x7f020065;
-        public static int ease_record_animate_10=0x7f020066;
-        public static int ease_record_animate_11=0x7f020067;
-        public static int ease_record_animate_12=0x7f020068;
-        public static int ease_record_animate_13=0x7f020069;
-        public static int ease_record_animate_14=0x7f02006a;
-        public static int ease_recording_hint_bg=0x7f02006b;
-        public static int ease_recording_text_hint_bg=0x7f02006c;
-        public static int ease_seabar_input=0x7f02006d;
-        public static int ease_search_bar_icon_normal=0x7f02006e;
-        public static int ease_search_clear=0x7f02006f;
-        public static int ease_search_clear_normal=0x7f020070;
-        public static int ease_search_clear_pressed=0x7f020071;
-        public static int ease_settings_normal=0x7f020072;
-        public static int ease_settings_selected=0x7f020073;
-        public static int ease_show_head_toast_bg=0x7f020074;
-        public static int ease_sidebar_background_pressed=0x7f020075;
-        public static int ease_slidetab_bg_press=0x7f020076;
-        public static int ease_timestampe_bg=0x7f020077;
-        public static int ease_to_group_details_normal=0x7f020078;
-        public static int ease_type_select_btn=0x7f020079;
-        public static int ease_type_select_btn_nor=0x7f02007a;
-        public static int ease_type_select_btn_pressed=0x7f02007b;
-        public static int ease_unread_count_bg=0x7f02007c;
-        public static int ease_unread_dot=0x7f02007d;
-        public static int ease_video_download_btn_nor=0x7f02007e;
-        public static int ease_video_play_btn_small_nor=0x7f02007f;
-        public static int ease_video_recorder_start_btn=0x7f020080;
-        public static int ease_video_recorder_stop_btn=0x7f020081;
-        public static int ease_voice_unread=0x7f020082;
-        public static int ee_1=0x7f020083;
-        public static int ee_10=0x7f020084;
-        public static int ee_11=0x7f020085;
-        public static int ee_12=0x7f020086;
-        public static int ee_13=0x7f020087;
-        public static int ee_14=0x7f020088;
-        public static int ee_15=0x7f020089;
-        public static int ee_16=0x7f02008a;
-        public static int ee_17=0x7f02008b;
-        public static int ee_18=0x7f02008c;
-        public static int ee_19=0x7f02008d;
-        public static int ee_2=0x7f02008e;
-        public static int ee_20=0x7f02008f;
-        public static int ee_21=0x7f020090;
-        public static int ee_22=0x7f020091;
-        public static int ee_23=0x7f020092;
-        public static int ee_24=0x7f020093;
-        public static int ee_25=0x7f020094;
-        public static int ee_26=0x7f020095;
-        public static int ee_27=0x7f020096;
-        public static int ee_28=0x7f020097;
-        public static int ee_29=0x7f020098;
-        public static int ee_3=0x7f020099;
-        public static int ee_30=0x7f02009a;
-        public static int ee_31=0x7f02009b;
-        public static int ee_32=0x7f02009c;
-        public static int ee_33=0x7f02009d;
-        public static int ee_34=0x7f02009e;
-        public static int ee_35=0x7f02009f;
-        public static int ee_4=0x7f0200a0;
-        public static int ee_5=0x7f0200a1;
-        public static int ee_6=0x7f0200a2;
-        public static int ee_7=0x7f0200a3;
-        public static int ee_8=0x7f0200a4;
-        public static int ee_9=0x7f0200a5;
-        public static int ic_launcher=0x7f0200a6;
-        public static int voice_from_icon=0x7f0200a7;
-        public static int voice_to_icon=0x7f0200a8;
+        public static int chat_emoj=0x7f020000;
+        public static int chat_input_bg=0x7f020001;
+        public static int chat_open_picture=0x7f020002;
+        public static int chat_soft_wore=0x7f020003;
+        public static int chat_voice=0x7f020004;
+        public static int chat_voice1=0x7f020005;
+        public static int chat_voice10=0x7f020006;
+        public static int chat_voice11=0x7f020007;
+        public static int chat_voice12=0x7f020008;
+        public static int chat_voice13=0x7f020009;
+        public static int chat_voice14=0x7f02000a;
+        public static int chat_voice15=0x7f02000b;
+        public static int chat_voice16=0x7f02000c;
+        public static int chat_voice2=0x7f02000d;
+        public static int chat_voice3=0x7f02000e;
+        public static int chat_voice4=0x7f02000f;
+        public static int chat_voice5=0x7f020010;
+        public static int chat_voice6=0x7f020011;
+        public static int chat_voice7=0x7f020012;
+        public static int chat_voice8=0x7f020013;
+        public static int chat_voice9=0x7f020014;
+        public static int ease_app_panel_video_icon=0x7f020015;
+        public static int ease_appitem_del_btn_normal=0x7f020016;
+        public static int ease_appitem_del_btn_pressed=0x7f020017;
+        public static int ease_blue_add=0x7f020018;
+        public static int ease_btn_blue_normal_shape=0x7f020019;
+        public static int ease_btn_blue_pressed_shape=0x7f02001a;
+        public static int ease_btn_blue_selector=0x7f02001b;
+        public static int ease_btn_cancel_bj=0x7f02001c;
+        public static int ease_btn_cancel_normal_shape=0x7f02001d;
+        public static int ease_btn_cancel_pressed_shape=0x7f02001e;
+        public static int ease_chat_edit_normal=0x7f02001f;
+        public static int ease_chat_face_normal=0x7f020020;
+        public static int ease_chat_face_pressed=0x7f020021;
+        public static int ease_chat_image_normal=0x7f020022;
+        public static int ease_chat_image_pressed=0x7f020023;
+        public static int ease_chat_image_selector=0x7f020024;
+        public static int ease_chat_item_file=0x7f020025;
+        public static int ease_chat_location_normal=0x7f020026;
+        public static int ease_chat_location_pressed=0x7f020027;
+        public static int ease_chat_location_selector=0x7f020028;
+        public static int ease_chat_press_speak_btn=0x7f020029;
+        public static int ease_chat_press_speak_btn_normal=0x7f02002a;
+        public static int ease_chat_press_speak_btn_pressed=0x7f02002b;
+        public static int ease_chat_send_btn_normal=0x7f02002c;
+        public static int ease_chat_send_btn_pressed=0x7f02002d;
+        public static int ease_chat_send_btn_selector=0x7f02002e;
+        public static int ease_chat_takepic_normal=0x7f02002f;
+        public static int ease_chat_takepic_pressed=0x7f020030;
+        public static int ease_chat_takepic_selector=0x7f020031;
+        public static int ease_chat_video_call_receive=0x7f020032;
+        public static int ease_chat_video_call_self=0x7f020033;
+        public static int ease_chat_video_mask_to=0x7f020034;
+        public static int ease_chat_voice_call_receive=0x7f020035;
+        public static int ease_chat_voice_call_self=0x7f020036;
+        public static int ease_chatfrom_bg=0x7f020037;
+        public static int ease_chatfrom_bg_focused=0x7f020038;
+        public static int ease_chatfrom_bg_normal=0x7f020039;
+        public static int ease_chatfrom_voice_playing=0x7f02003a;
+        public static int ease_chatfrom_voice_playing_f1=0x7f02003b;
+        public static int ease_chatfrom_voice_playing_f2=0x7f02003c;
+        public static int ease_chatfrom_voice_playing_f3=0x7f02003d;
+        public static int ease_chatting_biaoqing_btn_enable=0x7f02003e;
+        public static int ease_chatting_biaoqing_btn_normal=0x7f02003f;
+        public static int ease_chatting_setmode_keyboard_btn=0x7f020040;
+        public static int ease_chatting_setmode_keyboard_btn_normal=0x7f020041;
+        public static int ease_chatting_setmode_keyboard_btn_pressed=0x7f020042;
+        public static int ease_chatting_setmode_voice_btn=0x7f020043;
+        public static int ease_chatting_setmode_voice_btn_normal=0x7f020044;
+        public static int ease_chatting_setmode_voice_btn_pressed=0x7f020045;
+        public static int ease_chatto_bg=0x7f020046;
+        public static int ease_chatto_bg_focused=0x7f020047;
+        public static int ease_chatto_bg_normal=0x7f020048;
+        public static int ease_chatto_voice_playing=0x7f020049;
+        public static int ease_chatto_voice_playing_f1=0x7f02004a;
+        public static int ease_chatto_voice_playing_f2=0x7f02004b;
+        public static int ease_chatto_voice_playing_f3=0x7f02004c;
+        public static int ease_close_icon=0x7f02004d;
+        public static int ease_common_tab_bg=0x7f02004e;
+        public static int ease_contact_list_normal=0x7f02004f;
+        public static int ease_contact_list_selected=0x7f020050;
+        public static int ease_conversation_normal=0x7f020051;
+        public static int ease_conversation_selected=0x7f020052;
+        public static int ease_default_avatar=0x7f020053;
+        public static int ease_default_expression=0x7f020054;
+        public static int ease_default_image=0x7f020055;
+        public static int ease_delete_expression=0x7f020056;
+        public static int ease_dot_emojicon_selected=0x7f020057;
+        public static int ease_dot_emojicon_unselected=0x7f020058;
+        public static int ease_dx_checkbox_gray_on=0x7f020059;
+        public static int ease_dx_checkbox_off=0x7f02005a;
+        public static int ease_dx_checkbox_on=0x7f02005b;
+        public static int ease_edit_text_bg=0x7f02005c;
+        public static int ease_group_icon=0x7f02005d;
+        public static int ease_groups_icon=0x7f02005e;
+        public static int ease_ic_launcher=0x7f02005f;
+        public static int ease_icon_marka=0x7f020060;
+        public static int ease_input_bar_bg_active=0x7f020061;
+        public static int ease_input_bar_bg_normal=0x7f020062;
+        public static int ease_location_msg=0x7f020063;
+        public static int ease_login_error_icon=0x7f020064;
+        public static int ease_mm_listitem=0x7f020065;
+        public static int ease_mm_listitem_disable=0x7f020066;
+        public static int ease_mm_listitem_grey=0x7f020067;
+        public static int ease_mm_listitem_grey_normal=0x7f020068;
+        public static int ease_mm_listitem_pressed=0x7f020069;
+        public static int ease_mm_listitem_simple=0x7f02006a;
+        public static int ease_mm_title_back=0x7f02006b;
+        public static int ease_mm_title_remove=0x7f02006c;
+        public static int ease_msg_state_fail_resend=0x7f02006d;
+        public static int ease_msg_state_fail_resend_pressed=0x7f02006e;
+        public static int ease_msg_state_failed_resend=0x7f02006f;
+        public static int ease_new_friends_icon=0x7f020070;
+        public static int ease_open_icon=0x7f020071;
+        public static int ease_recording_hint_bg=0x7f020072;
+        public static int ease_recording_text_hint_bg=0x7f020073;
+        public static int ease_seabar_input=0x7f020074;
+        public static int ease_search_bar_icon_normal=0x7f020075;
+        public static int ease_search_clear=0x7f020076;
+        public static int ease_search_clear_normal=0x7f020077;
+        public static int ease_search_clear_pressed=0x7f020078;
+        public static int ease_settings_normal=0x7f020079;
+        public static int ease_settings_selected=0x7f02007a;
+        public static int ease_show_head_toast_bg=0x7f02007b;
+        public static int ease_sidebar_background_pressed=0x7f02007c;
+        public static int ease_slidetab_bg_press=0x7f02007d;
+        public static int ease_timestampe_bg=0x7f02007e;
+        public static int ease_to_group_details_normal=0x7f02007f;
+        public static int ease_type_select_btn=0x7f020080;
+        public static int ease_type_select_btn_nor=0x7f020081;
+        public static int ease_type_select_btn_pressed=0x7f020082;
+        public static int ease_unread_count_bg=0x7f020083;
+        public static int ease_unread_dot=0x7f020084;
+        public static int ease_video_download_btn_nor=0x7f020085;
+        public static int ease_video_play_btn_small_nor=0x7f020086;
+        public static int ease_video_recorder_start_btn=0x7f020087;
+        public static int ease_video_recorder_stop_btn=0x7f020088;
+        public static int ease_voice_unread=0x7f020089;
+        public static int ee_1=0x7f02008a;
+        public static int ee_10=0x7f02008b;
+        public static int ee_11=0x7f02008c;
+        public static int ee_12=0x7f02008d;
+        public static int ee_13=0x7f02008e;
+        public static int ee_14=0x7f02008f;
+        public static int ee_15=0x7f020090;
+        public static int ee_16=0x7f020091;
+        public static int ee_17=0x7f020092;
+        public static int ee_18=0x7f020093;
+        public static int ee_19=0x7f020094;
+        public static int ee_2=0x7f020095;
+        public static int ee_20=0x7f020096;
+        public static int ee_21=0x7f020097;
+        public static int ee_22=0x7f020098;
+        public static int ee_23=0x7f020099;
+        public static int ee_24=0x7f02009a;
+        public static int ee_25=0x7f02009b;
+        public static int ee_26=0x7f02009c;
+        public static int ee_27=0x7f02009d;
+        public static int ee_28=0x7f02009e;
+        public static int ee_29=0x7f02009f;
+        public static int ee_3=0x7f0200a0;
+        public static int ee_30=0x7f0200a1;
+        public static int ee_31=0x7f0200a2;
+        public static int ee_32=0x7f0200a3;
+        public static int ee_33=0x7f0200a4;
+        public static int ee_34=0x7f0200a5;
+        public static int ee_35=0x7f0200a6;
+        public static int ee_4=0x7f0200a7;
+        public static int ee_5=0x7f0200a8;
+        public static int ee_6=0x7f0200a9;
+        public static int ee_7=0x7f0200aa;
+        public static int ee_8=0x7f0200ab;
+        public static int ee_9=0x7f0200ac;
+        public static int ic_launcher=0x7f0200ad;
+        public static int voice_from_icon=0x7f0200ae;
+        public static int voice_to_icon=0x7f0200af;
     }
     public static final class id {
-        public static int alert_message=0x7f09000d;
-        public static int avatar=0x7f090024;
-        public static int avatar_container=0x7f090023;
-        public static int bmapView=0x7f090007;
-        public static int btn_cancel=0x7f09000e;
-        public static int btn_location_send=0x7f090006;
-        public static int btn_more=0x7f090057;
-        public static int btn_ok=0x7f09000f;
-        public static int btn_press_to_speak=0x7f090051;
-        public static int btn_send=0x7f090058;
-        public static int btn_set_mode_keyboard=0x7f090050;
-        public static int btn_set_mode_voice=0x7f09004f;
-        public static int bubble=0x7f09002f;
-        public static int chat_menu_container=0x7f090049;
-        public static int chat_swipe_layout=0x7f090011;
-        public static int chatting_content_iv=0x7f090039;
-        public static int chatting_length_iv=0x7f09003c;
-        public static int chatting_size_iv=0x7f09003b;
-        public static int chatting_status_btn=0x7f09003d;
-        public static int chatting_video_data_area=0x7f09003a;
+        public static int alert_message=0x7f090015;
+        public static int avatar=0x7f09002c;
+        public static int avatar_container=0x7f09002b;
+        public static int bmapView=0x7f09000f;
+        public static int btn_cancel=0x7f090016;
+        public static int btn_location_send=0x7f09000e;
+        public static int btn_more=0x7f09005c;
+        public static int btn_ok=0x7f090017;
+        public static int btn_press_to_speak=0x7f090059;
+        public static int btn_send=0x7f09005d;
+        public static int btn_set_mode_keyboard=0x7f090058;
+        public static int btn_set_mode_voice=0x7f090057;
+        public static int bubble=0x7f090037;
+        public static int center=0x7f090005;
+        public static int centerCrop=0x7f090006;
+        public static int centerInside=0x7f090007;
+        public static int chat_menu_container=0x7f090051;
+        public static int chat_swipe_layout=0x7f090019;
+        public static int chatting_content_iv=0x7f090041;
+        public static int chatting_length_iv=0x7f090044;
+        public static int chatting_size_iv=0x7f090043;
+        public static int chatting_status_btn=0x7f090045;
+        public static int chatting_video_data_area=0x7f090042;
         public static int close=0x7f090003;
-        public static int contact_list=0x7f09001c;
-        public static int content_container=0x7f09001b;
-        public static int edittext_layout=0x7f090052;
-        public static int emojicon=0x7f09001f;
-        public static int emojicon_menu_container=0x7f09004d;
-        public static int et_sendmessage=0x7f090053;
-        public static int extend_menu=0x7f09004c;
-        public static int extend_menu_container=0x7f09004b;
-        public static int fl_error_item=0x7f09001d;
-        public static int floating_header=0x7f09005a;
-        public static int gridview=0x7f090015;
-        public static int header=0x7f09002b;
-        public static int image=0x7f090008;
-        public static int indicator_view=0x7f09005c;
-        public static int input_menu=0x7f090017;
-        public static int iv_call_icon=0x7f09003e;
-        public static int iv_expression=0x7f090020;
-        public static int iv_face_checked=0x7f090056;
-        public static int iv_face_normal=0x7f090055;
-        public static int iv_icon=0x7f090046;
-        public static int iv_switch_close=0x7f090061;
-        public static int iv_switch_open=0x7f090060;
-        public static int iv_unread_voice=0x7f090041;
-        public static int iv_userhead=0x7f09002e;
-        public static int iv_voice=0x7f09003f;
-        public static int left_image=0x7f090064;
-        public static int left_layout=0x7f090063;
-        public static int list=0x7f090012;
-        public static int list_itease_layout=0x7f090022;
-        public static int ll_face_container=0x7f090013;
-        public static int ll_loading=0x7f090037;
-        public static int loading_layout=0x7f09000a;
-        public static int mentioned=0x7f090029;
-        public static int message=0x7f09002a;
-        public static int message_list=0x7f090018;
-        public static int mic_image=0x7f090067;
-        public static int msg_state=0x7f090028;
-        public static int msg_status=0x7f090042;
-        public static int name=0x7f090026;
+        public static int contact_list=0x7f090024;
+        public static int content_container=0x7f090023;
+        public static int emojicon=0x7f090027;
+        public static int emojicon_menu_container=0x7f090055;
+        public static int et_sendmessage=0x7f09005a;
+        public static int extend_menu=0x7f090054;
+        public static int extend_menu_container=0x7f090053;
+        public static int fitCenter=0x7f090008;
+        public static int fitEnd=0x7f090009;
+        public static int fitStart=0x7f09000a;
+        public static int fitXY=0x7f09000b;
+        public static int fl_error_item=0x7f090025;
+        public static int floating_header=0x7f09005f;
+        public static int focusCrop=0x7f09000c;
+        public static int gridview=0x7f09001d;
+        public static int header=0x7f090033;
+        public static int image=0x7f090010;
+        public static int indicator_view=0x7f090061;
+        public static int input_menu=0x7f09001e;
+        public static int iv_call_icon=0x7f090046;
+        public static int iv_expression=0x7f090028;
+        public static int iv_face_checked=0x7f09005b;
+        public static int iv_icon=0x7f09004e;
+        public static int iv_switch_close=0x7f090066;
+        public static int iv_switch_open=0x7f090065;
+        public static int iv_unread_voice=0x7f090049;
+        public static int iv_userhead=0x7f090036;
+        public static int iv_voice=0x7f090047;
+        public static int left_image=0x7f090069;
+        public static int left_layout=0x7f090068;
+        public static int list=0x7f09001a;
+        public static int list_itease_layout=0x7f09002a;
+        public static int ll_face_container=0x7f09001b;
+        public static int ll_loading=0x7f09003f;
+        public static int loading_layout=0x7f090012;
+        public static int mentioned=0x7f090031;
+        public static int message=0x7f090032;
+        public static int message_list=0x7f09001f;
+        public static int mic_image=0x7f09006c;
+        public static int msg_state=0x7f090030;
+        public static int msg_status=0x7f09004a;
+        public static int name=0x7f09002e;
         public static int none=0x7f090000;
         public static int open=0x7f090004;
-        public static int pager_view=0x7f09005b;
-        public static int pb_load_local=0x7f090009;
-        public static int percentage=0x7f090038;
-        public static int primary_menu=0x7f09001e;
-        public static int primary_menu_container=0x7f09004a;
-        public static int progressBar=0x7f09000b;
-        public static int progress_bar=0x7f090031;
-        public static int query=0x7f090047;
-        public static int recording_hint=0x7f090068;
+        public static int pager_view=0x7f090060;
+        public static int pb_load_local=0x7f090011;
+        public static int percentage=0x7f090040;
+        public static int primary_menu=0x7f090026;
+        public static int primary_menu_container=0x7f090052;
+        public static int progressBar=0x7f090013;
+        public static int progress_bar=0x7f090039;
+        public static int query=0x7f09004f;
+        public static int recording_hint=0x7f09006d;
         public static int rectangle=0x7f090001;
-        public static int right_image=0x7f090066;
-        public static int right_layout=0x7f090065;
-        public static int rl_bottom=0x7f09004e;
-        public static int rl_face=0x7f090054;
-        public static int rl_picture=0x7f090045;
-        public static int root=0x7f090062;
+        public static int right_image=0x7f09006b;
+        public static int right_layout=0x7f09006a;
+        public static int rl_bottom=0x7f090056;
+        public static int rl_picture=0x7f09004d;
+        public static int root=0x7f090067;
         public static int round=0x7f090002;
-        public static int scroll_view=0x7f09005e;
-        public static int search_bar_view=0x7f09001a;
-        public static int search_clear=0x7f090048;
-        public static int sidebar=0x7f090059;
-        public static int signature=0x7f09002c;
-        public static int tab_bar=0x7f09005d;
-        public static int tab_container=0x7f09005f;
-        public static int text=0x7f090010;
-        public static int textView=0x7f09000c;
-        public static int time=0x7f090027;
-        public static int timestamp=0x7f09002d;
-        public static int title=0x7f090005;
-        public static int title_bar=0x7f090016;
-        public static int tv_ack=0x7f090043;
-        public static int tv_chatcontent=0x7f090036;
-        public static int tv_delivered=0x7f090044;
-        public static int tv_file_name=0x7f090032;
-        public static int tv_file_size=0x7f090033;
-        public static int tv_file_state=0x7f090034;
-        public static int tv_length=0x7f090040;
-        public static int tv_location=0x7f090035;
-        public static int tv_name=0x7f090021;
-        public static int tv_userid=0x7f090030;
-        public static int unread_msg_number=0x7f090025;
-        public static int vPager=0x7f090014;
-        public static int voice_recorder=0x7f090019;
+        public static int scroll_view=0x7f090063;
+        public static int search_bar_view=0x7f090022;
+        public static int search_clear=0x7f090050;
+        public static int sidebar=0x7f09005e;
+        public static int signature=0x7f090034;
+        public static int tab_bar=0x7f090062;
+        public static int tab_container=0x7f090064;
+        public static int text=0x7f090018;
+        public static int textView=0x7f090014;
+        public static int time=0x7f09002f;
+        public static int timestamp=0x7f090035;
+        public static int title=0x7f09000d;
+        public static int title_bar=0x7f090021;
+        public static int tv_ack=0x7f09004b;
+        public static int tv_chatcontent=0x7f09003e;
+        public static int tv_delivered=0x7f09004c;
+        public static int tv_file_name=0x7f09003a;
+        public static int tv_file_size=0x7f09003b;
+        public static int tv_file_state=0x7f09003c;
+        public static int tv_length=0x7f090048;
+        public static int tv_location=0x7f09003d;
+        public static int tv_name=0x7f090029;
+        public static int tv_userid=0x7f090038;
+        public static int unread_msg_number=0x7f09002d;
+        public static int vPager=0x7f09001c;
+        public static int voice_recorder=0x7f090020;
     }
     public static final class layout {
         public static int ease_activity_baidumap=0x7f030000;
@@ -1584,5 +1834,479 @@ containing a value of this type.
           @attr name com.hyphenate.easeui:titleBarTitle
         */
         public static int EaseTitleBar_titleBarTitle = 0;
+        /** Attributes that can be used with a GenericDraweeHierarchy.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_actualImageScaleType com.hyphenate.easeui:actualImageScaleType}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_backgroundImage com.hyphenate.easeui:backgroundImage}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_fadeDuration com.hyphenate.easeui:fadeDuration}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_failureImage com.hyphenate.easeui:failureImage}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_failureImageScaleType com.hyphenate.easeui:failureImageScaleType}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_overlayImage com.hyphenate.easeui:overlayImage}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_placeholderImage com.hyphenate.easeui:placeholderImage}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_placeholderImageScaleType com.hyphenate.easeui:placeholderImageScaleType}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_pressedStateOverlayImage com.hyphenate.easeui:pressedStateOverlayImage}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_progressBarAutoRotateInterval com.hyphenate.easeui:progressBarAutoRotateInterval}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_progressBarImage com.hyphenate.easeui:progressBarImage}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_progressBarImageScaleType com.hyphenate.easeui:progressBarImageScaleType}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_retryImage com.hyphenate.easeui:retryImage}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_retryImageScaleType com.hyphenate.easeui:retryImageScaleType}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundAsCircle com.hyphenate.easeui:roundAsCircle}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundBottomLeft com.hyphenate.easeui:roundBottomLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundBottomRight com.hyphenate.easeui:roundBottomRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundTopLeft com.hyphenate.easeui:roundTopLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundTopRight com.hyphenate.easeui:roundTopRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundWithOverlayColor com.hyphenate.easeui:roundWithOverlayColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundedCornerRadius com.hyphenate.easeui:roundedCornerRadius}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundingBorderColor com.hyphenate.easeui:roundingBorderColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundingBorderPadding com.hyphenate.easeui:roundingBorderPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_roundingBorderWidth com.hyphenate.easeui:roundingBorderWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #GenericDraweeHierarchy_viewAspectRatio com.hyphenate.easeui:viewAspectRatio}</code></td><td></td></tr>
+           </table>
+           @see #GenericDraweeHierarchy_actualImageScaleType
+           @see #GenericDraweeHierarchy_backgroundImage
+           @see #GenericDraweeHierarchy_fadeDuration
+           @see #GenericDraweeHierarchy_failureImage
+           @see #GenericDraweeHierarchy_failureImageScaleType
+           @see #GenericDraweeHierarchy_overlayImage
+           @see #GenericDraweeHierarchy_placeholderImage
+           @see #GenericDraweeHierarchy_placeholderImageScaleType
+           @see #GenericDraweeHierarchy_pressedStateOverlayImage
+           @see #GenericDraweeHierarchy_progressBarAutoRotateInterval
+           @see #GenericDraweeHierarchy_progressBarImage
+           @see #GenericDraweeHierarchy_progressBarImageScaleType
+           @see #GenericDraweeHierarchy_retryImage
+           @see #GenericDraweeHierarchy_retryImageScaleType
+           @see #GenericDraweeHierarchy_roundAsCircle
+           @see #GenericDraweeHierarchy_roundBottomLeft
+           @see #GenericDraweeHierarchy_roundBottomRight
+           @see #GenericDraweeHierarchy_roundTopLeft
+           @see #GenericDraweeHierarchy_roundTopRight
+           @see #GenericDraweeHierarchy_roundWithOverlayColor
+           @see #GenericDraweeHierarchy_roundedCornerRadius
+           @see #GenericDraweeHierarchy_roundingBorderColor
+           @see #GenericDraweeHierarchy_roundingBorderPadding
+           @see #GenericDraweeHierarchy_roundingBorderWidth
+           @see #GenericDraweeHierarchy_viewAspectRatio
+         */
+        public static final int[] GenericDraweeHierarchy = {
+            0x7f01001f, 0x7f010020, 0x7f010021, 0x7f010022,
+            0x7f010023, 0x7f010024, 0x7f010025, 0x7f010026,
+            0x7f010027, 0x7f010028, 0x7f010029, 0x7f01002a,
+            0x7f01002b, 0x7f01002c, 0x7f01002d, 0x7f01002e,
+            0x7f01002f, 0x7f010030, 0x7f010031, 0x7f010032,
+            0x7f010033, 0x7f010034, 0x7f010035, 0x7f010036,
+            0x7f010037
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#actualImageScaleType}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+          @attr name com.hyphenate.easeui:actualImageScaleType
+        */
+        public static int GenericDraweeHierarchy_actualImageScaleType = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#backgroundImage}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.hyphenate.easeui:backgroundImage
+        */
+        public static int GenericDraweeHierarchy_backgroundImage = 12;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#fadeDuration}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:fadeDuration
+        */
+        public static int GenericDraweeHierarchy_fadeDuration = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#failureImage}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.hyphenate.easeui:failureImage
+        */
+        public static int GenericDraweeHierarchy_failureImage = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#failureImageScaleType}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+          @attr name com.hyphenate.easeui:failureImageScaleType
+        */
+        public static int GenericDraweeHierarchy_failureImageScaleType = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#overlayImage}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.hyphenate.easeui:overlayImage
+        */
+        public static int GenericDraweeHierarchy_overlayImage = 13;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#placeholderImage}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.hyphenate.easeui:placeholderImage
+        */
+        public static int GenericDraweeHierarchy_placeholderImage = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#placeholderImageScaleType}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+          @attr name com.hyphenate.easeui:placeholderImageScaleType
+        */
+        public static int GenericDraweeHierarchy_placeholderImageScaleType = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#pressedStateOverlayImage}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.hyphenate.easeui:pressedStateOverlayImage
+        */
+        public static int GenericDraweeHierarchy_pressedStateOverlayImage = 14;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#progressBarAutoRotateInterval}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:progressBarAutoRotateInterval
+        */
+        public static int GenericDraweeHierarchy_progressBarAutoRotateInterval = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#progressBarImage}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.hyphenate.easeui:progressBarImage
+        */
+        public static int GenericDraweeHierarchy_progressBarImage = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#progressBarImageScaleType}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+          @attr name com.hyphenate.easeui:progressBarImageScaleType
+        */
+        public static int GenericDraweeHierarchy_progressBarImageScaleType = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#retryImage}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.hyphenate.easeui:retryImage
+        */
+        public static int GenericDraweeHierarchy_retryImage = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#retryImageScaleType}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fitXY</code></td><td>0</td><td></td></tr>
+<tr><td><code>fitStart</code></td><td>1</td><td></td></tr>
+<tr><td><code>fitCenter</code></td><td>2</td><td></td></tr>
+<tr><td><code>fitEnd</code></td><td>3</td><td></td></tr>
+<tr><td><code>center</code></td><td>4</td><td></td></tr>
+<tr><td><code>centerInside</code></td><td>5</td><td></td></tr>
+<tr><td><code>centerCrop</code></td><td>6</td><td></td></tr>
+<tr><td><code>focusCrop</code></td><td>7</td><td></td></tr>
+</table>
+          @attr name com.hyphenate.easeui:retryImageScaleType
+        */
+        public static int GenericDraweeHierarchy_retryImageScaleType = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundAsCircle}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundAsCircle
+        */
+        public static int GenericDraweeHierarchy_roundAsCircle = 15;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundBottomLeft}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundBottomLeft
+        */
+        public static int GenericDraweeHierarchy_roundBottomLeft = 20;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundBottomRight}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundBottomRight
+        */
+        public static int GenericDraweeHierarchy_roundBottomRight = 19;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundTopLeft}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundTopLeft
+        */
+        public static int GenericDraweeHierarchy_roundTopLeft = 17;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundTopRight}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundTopRight
+        */
+        public static int GenericDraweeHierarchy_roundTopRight = 18;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundWithOverlayColor}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundWithOverlayColor
+        */
+        public static int GenericDraweeHierarchy_roundWithOverlayColor = 21;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundedCornerRadius}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundedCornerRadius
+        */
+        public static int GenericDraweeHierarchy_roundedCornerRadius = 16;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundingBorderColor}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundingBorderColor
+        */
+        public static int GenericDraweeHierarchy_roundingBorderColor = 23;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundingBorderPadding}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundingBorderPadding
+        */
+        public static int GenericDraweeHierarchy_roundingBorderPadding = 24;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#roundingBorderWidth}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:roundingBorderWidth
+        */
+        public static int GenericDraweeHierarchy_roundingBorderWidth = 22;
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#viewAspectRatio}
+          attribute's value can be found in the {@link #GenericDraweeHierarchy} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:viewAspectRatio
+        */
+        public static int GenericDraweeHierarchy_viewAspectRatio = 1;
+        /** Attributes that can be used with a SimpleDraweeView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SimpleDraweeView_actualImageUri com.hyphenate.easeui:actualImageUri}</code></td><td></td></tr>
+           </table>
+           @see #SimpleDraweeView_actualImageUri
+         */
+        public static final int[] SimpleDraweeView = {
+            0x7f010038
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.hyphenate.easeui.R.attr#actualImageUri}
+          attribute's value can be found in the {@link #SimpleDraweeView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.hyphenate.easeui:actualImageUri
+        */
+        public static int SimpleDraweeView_actualImageUri = 0;
     };
 }

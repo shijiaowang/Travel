@@ -88,6 +88,10 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable\\voice_from_icon.xml"
     },
     {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable\\chat_input_bg.xml",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable\\chat_input_bg.xml"
+    },
+    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable\\ease_common_tab_bg.xml",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable\\ease_common_tab_bg.xml"
     },

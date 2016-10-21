@@ -4,51 +4,42 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="2dip"
-    android:paddingTop="2dip" >
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/gray_normal" />
-
+    android:background="#fafafa"
+   >
     <LinearLayout
         android:id="@+id/rl_bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#aaffffff"
+        android:layout_height="45dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="4dp" >
+       >
 
-        <Button
+        <ImageView
             android:id="@+id/btn_set_mode_voice"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginLeft="6dp"
-            android:background="@drawable/ease_chatting_setmode_voice_btn"
-            android:visibility="visible" />
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/chat_voice"
+             />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_set_mode_keyboard"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginLeft="6dp"
-            android:background="@drawable/ease_chatting_setmode_keyboard_btn"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/chat_soft_wore"
             android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/btn_press_to_speak"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="6dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
-            android:background="@drawable/ease_chat_press_speak_btn"
+            android:background="@drawable/chat_input_bg"
             android:gravity="center"
             android:visibility="gone" >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,74 +49,45 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/edittext_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_weight="1"
-            android:gravity="bottom" >
-
             <EditText
                 android:id="@+id/et_sendmessage"
-                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="35dip"
-                android:background="@null"
+                android:background="@drawable/chat_input_bg"
                 android:maxLines="3"
-                android:minHeight="40dp"
+                android:minHeight="30dp"
                 android:paddingBottom="3dp"
-                android:paddingLeft="1dp"
-                android:paddingRight="1dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:paddingTop="3dp"
-                android:textSize="18sp" />
-
-            <RelativeLayout 
-                android:id="@+id/rl_face"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                >
-            <ImageView
-                android:id="@+id/iv_face_normal"
-                android:layout_width="24dip"
-                android:layout_height="24dip"
-                android:layout_margin="1dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ease_chatting_biaoqing_btn_normal"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/iv_face_checked"
-                android:layout_width="24dip"
-                android:layout_height="24dip"
-                android:layout_margin="1dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ease_chatting_biaoqing_btn_enable"
-                android:visibility="invisible" />
-            
-            </RelativeLayout>
-        </RelativeLayout>
+                android:textCursorDrawable="@null"
+                android:textSize="12sp" />
+        <ImageView
+            android:id="@+id/iv_face_checked"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/chat_emoj"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
 
         <Button
             android:id="@+id/btn_more"
-            android:layout_width="32dip"
-            android:layout_height="32dip"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="10dp"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_marginRight="18dp"
             android:background="@drawable/ease_type_select_btn" />
 
         <Button
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="25dp"
             android:layout_marginRight="4dp"
-            android:background="@drawable/ease_chat_send_btn_selector"
+            android:background="@color/top_bar_normal_bg"
             android:text="@string/button_send"
-            android:textColor="#666666"
+            android:textColor="#fafafa"
             android:textSize="16sp"
             android:visibility="gone" />
     </LinearLayout>

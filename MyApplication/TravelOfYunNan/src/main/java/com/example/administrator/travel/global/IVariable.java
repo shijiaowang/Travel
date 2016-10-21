@@ -1,7 +1,7 @@
 package com.example.administrator.travel.global;
 
 /**
- * Created by Administrator on 2016/7/26 0026.
+ * Created by wangyang on 2016/7/26 0026.
  * 全局变量
  */
 public interface IVariable {
@@ -280,4 +280,5 @@ public interface IVariable {
     String RMB ="¥" ;
     String CHAT_ID = "chat_id";
 
+    String ICON = "icon";
 }

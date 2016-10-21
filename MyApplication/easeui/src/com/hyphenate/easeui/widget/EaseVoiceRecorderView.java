@@ -67,20 +67,24 @@ public class EaseVoiceRecorderView extends RelativeLayout {
         voiceRecorder = new EaseVoiceRecorder(micImageHandler);
 
         // animation resources, used for recording
-        micImages = new Drawable[] { getResources().getDrawable(R.drawable.ease_record_animate_01),
-                getResources().getDrawable(R.drawable.ease_record_animate_02),
-                getResources().getDrawable(R.drawable.ease_record_animate_03),
-                getResources().getDrawable(R.drawable.ease_record_animate_04),
-                getResources().getDrawable(R.drawable.ease_record_animate_05),
-                getResources().getDrawable(R.drawable.ease_record_animate_06),
-                getResources().getDrawable(R.drawable.ease_record_animate_07),
-                getResources().getDrawable(R.drawable.ease_record_animate_08),
-                getResources().getDrawable(R.drawable.ease_record_animate_09),
-                getResources().getDrawable(R.drawable.ease_record_animate_10),
-                getResources().getDrawable(R.drawable.ease_record_animate_11),
-                getResources().getDrawable(R.drawable.ease_record_animate_12),
-                getResources().getDrawable(R.drawable.ease_record_animate_13),
-                getResources().getDrawable(R.drawable.ease_record_animate_14), };
+        micImages = new Drawable[] { getResources().getDrawable(R.drawable.chat_voice1),
+                getResources().getDrawable(R.drawable.chat_voice1),
+                getResources().getDrawable(R.drawable.chat_voice2),
+                getResources().getDrawable(R.drawable.chat_voice3),
+                getResources().getDrawable(R.drawable.chat_voice4),
+                getResources().getDrawable(R.drawable.chat_voice5),
+                getResources().getDrawable(R.drawable.chat_voice6),
+                getResources().getDrawable(R.drawable.chat_voice7),
+                getResources().getDrawable(R.drawable.chat_voice8),
+                getResources().getDrawable(R.drawable.chat_voice9),
+                getResources().getDrawable(R.drawable.chat_voice10),
+                getResources().getDrawable(R.drawable.chat_voice11),
+                getResources().getDrawable(R.drawable.chat_voice12),
+                getResources().getDrawable(R.drawable.chat_voice13),
+                getResources().getDrawable(R.drawable.chat_voice14),
+                getResources().getDrawable(R.drawable.chat_voice15),
+                getResources().getDrawable(R.drawable.chat_voice16),
+        };
 
         wakeLock = ((PowerManager) context.getSystemService(Context.POWER_SERVICE)).newWakeLock(
                 PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");

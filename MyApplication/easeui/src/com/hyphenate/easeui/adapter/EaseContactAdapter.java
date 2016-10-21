@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
@@ -45,7 +46,7 @@ public class EaseContactAdapter extends ArrayAdapter<EaseUser> implements Sectio
     }
     
     private static class ViewHolder {
-        ImageView avatar;
+        SimpleDraweeView avatar;
         TextView nameView;
         TextView headerView;
     }
@@ -58,7 +59,7 @@ public class EaseContactAdapter extends ArrayAdapter<EaseUser> implements Sectio
                 convertView = layoutInflater.inflate(R.layout.ease_row_contact, parent, false);
             else
                 convertView = layoutInflater.inflate(res, null);
-            holder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
+            holder.avatar = (SimpleDraweeView) convertView.findViewById(R.id.avatar);
             holder.nameView = (TextView) convertView.findViewById(R.id.name);
             holder.headerView = (TextView) convertView.findViewById(R.id.header);
             convertView.setTag(holder);

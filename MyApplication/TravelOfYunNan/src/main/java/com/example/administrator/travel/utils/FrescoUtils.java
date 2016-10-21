@@ -30,7 +30,9 @@ public class FrescoUtils {
         RoundingParams roundingParams=new RoundingParams();
         roundingParams.setBorder(UIUtils.getColor(R.color.colorFAFAFA),2);
         roundingParams.setRoundAsCircle(true);
-        //获取GenericDraweeHierarchy对象
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setResizeOptions(new ResizeOptions(50,50))
+                .build();
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
                 .setRoundingParams(roundingParams)
@@ -38,14 +40,12 @@ public class FrescoUtils {
                 .setFadeDuration(1000)
                 //构建
                 .build();
-
-        //构建Controller
         DraweeController controller = Fresco.newDraweeControllerBuilder()
-                //设置需要下载的图片地址
-                .setUri(uri)
-                //构建
+                .setImageRequest(request)
+                .setOldController(simpleDraweeView.getController())
                 .build();
-        simpleDraweeView.setHierarchy(hierarchy);
+        simpleDraweeView.setController(controller);
+        //获取GenericDraweeHierarchy对象
         simpleDraweeView.setController(controller);
     }
     /**
@@ -67,11 +67,13 @@ public class FrescoUtils {
                 //构建
                 .build();
 
-        //构建Controller
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setResizeOptions(new ResizeOptions(100,100))
+                .build();
+
         DraweeController controller = Fresco.newDraweeControllerBuilder()
-                //设置需要下载的图片地址
-                .setUri(uri)
-                //构建
+                .setImageRequest(request)
+                .setOldController(simpleDraweeView.getController())
                 .build();
         simpleDraweeView.setHierarchy(hierarchy);
         simpleDraweeView.setController(controller);
@@ -84,7 +86,7 @@ public class FrescoUtils {
         if (simpleDraweeView==null || url==null)return;
         Uri uri=Uri.parse(url);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setResizeOptions(new ResizeOptions(DensityUtil.dip2px(120), DensityUtil.dip2px(120)))
+                .setResizeOptions(new ResizeOptions(200,200))
                 .build();
 
         DraweeController controller = Fresco.newDraweeControllerBuilder()
@@ -92,6 +94,5 @@ public class FrescoUtils {
                 .setOldController(simpleDraweeView.getController())
                 .build();
         simpleDraweeView.setController(controller);
-
     }
 }

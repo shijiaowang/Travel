@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
@@ -21,6 +22,7 @@ import com.hyphenate.easeui.adapter.EaseMessageAdapter;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseChatMessageList;
 import com.hyphenate.easeui.widget.EaseChatMessageList.MessageListItemClickListener;
+import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.DateUtils;
 
 import java.util.Date;
@@ -35,7 +37,7 @@ public abstract class EaseChatRow extends LinearLayout {
     protected int position;
 
     protected TextView timeStampView;
-    protected ImageView userAvatarView;
+    protected SimpleDraweeView userAvatarView;
     protected View bubbleLayout;
     protected TextView usernickView;
 
@@ -67,7 +69,7 @@ public abstract class EaseChatRow extends LinearLayout {
     private void initView() {
         onInflateView();
         timeStampView = (TextView) findViewById(R.id.timestamp);
-        userAvatarView = (ImageView) findViewById(R.id.iv_userhead);
+        userAvatarView = (SimpleDraweeView) findViewById(R.id.iv_userhead);
         bubbleLayout = findViewById(R.id.bubble);
         usernickView = (TextView) findViewById(R.id.tv_userid);
 
@@ -114,13 +116,20 @@ public abstract class EaseChatRow extends LinearLayout {
                 }
             }
         }
-        //set nickname and avatar
-        if(message.direct() == Direct.SEND){
-            EaseUserUtils.setUserAvatar(context, EMClient.getInstance().getCurrentUser(), userAvatarView);
-        }else{
-            EaseUserUtils.setUserAvatar(context, message.getFrom(), userAvatarView);
-            EaseUserUtils.setUserNick(message.getFrom(), usernickView);
+        try {
+            //set nickname and avatar
+            String name = message.getStringAttribute("name");
+            String icon = message.getStringAttribute("icon");
+            if(message.direct() == Direct.SEND){
+                EaseUserUtils.setUserAvatar(context, icon, userAvatarView);
+            }else{
+                EaseUserUtils.setUserAvatar(context, icon, userAvatarView);
+                EaseUserUtils.setUserNick(name, usernickView);
+            }
+        } catch (HyphenateException e) {
+            e.printStackTrace();
         }
+
         
         if(deliveredView != null){
             if (message.isDelivered()) {

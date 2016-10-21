@@ -3,13 +3,14 @@ package com.example.administrator.travel;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.administrator.travel.ui.me.myappoint.chat.ChatFragment;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 
 public class ChatActivity extends EaseBaseActivity{
     public static ChatActivity activityInstance;
-    private EaseChatFragment chatFragment;
+    private ChatFragment chatFragment;
     String toChatUsername;
 
     @Override
@@ -20,7 +21,7 @@ public class ChatActivity extends EaseBaseActivity{
         //user or group id
       //  toChatUsername = getIntent().getExtras().getString(EaseConstant.EXTRA_USER_ID);
         toChatUsername="254699598117863848";
-        chatFragment = new EaseChatFragment();
+        chatFragment = new ChatFragment();
         Bundle bundle=new Bundle();
         bundle.putInt(EaseConstant.EXTRA_CHAT_TYPE,EaseConstant.CHATTYPE_GROUP);
         bundle.putString(EaseConstant.EXTRA_USER_ID,toChatUsername);

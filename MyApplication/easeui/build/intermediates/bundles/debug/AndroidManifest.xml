@@ -8,4 +8,8 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="20" />
 
+    <application>
+        <activity android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity" />
+    </application>
+
 </manifest>

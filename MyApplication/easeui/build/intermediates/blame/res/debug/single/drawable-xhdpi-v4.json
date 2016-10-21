@@ -44,12 +44,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-xhdpi\\ease_chat_press_speak_btn_normal.9.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ease_chat_send_btn_normal.9.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-xhdpi\\ease_chat_send_btn_normal.9.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ease_unread_dot.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-xhdpi\\ease_unread_dot.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ease_chat_send_btn_normal.9.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-xhdpi\\ease_chat_send_btn_normal.9.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ease_default_avatar.png",
