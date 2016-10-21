@@ -15,12 +15,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
-import com.example.administrator.travel.ui.baseui.BaseNetWorkActivity;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
+import com.example.administrator.travel.ui.view.VoiceRecorderView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.MapUtils;
@@ -32,18 +30,12 @@ import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
-import com.hyphenate.chat.EMMessageBody;
-import com.hyphenate.chat.EMTextMessageBody;
-
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.x;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import butterknife.BindView;
 
 
@@ -74,8 +66,9 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
     LinearLayout llPicture;
     @BindView(R.id.bt_send)
     Button btSend;
-    @BindView(R.id.bt_voice)
-    Button btVoice;
+    @BindView(R.id.bt_voice) Button btVoice;
+    @BindView(R.id.vrv_voice)
+    VoiceRecorderView vrvVoice;
     private boolean isVoice = true;
     private List<EMMessage> mMessage = new ArrayList<>();
     private ChatAdapter chatAdapter;
@@ -115,6 +108,7 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
         etInput.addTextChangedListener(new ChatTextChangeListener());
         btSend.setOnClickListener(this);
         ivPicture.setOnClickListener(this);
+        ivVoice.setOnClickListener(this);
         btVoice.setOnClickListener(this);
         swipeRefreshLayout.setOnRefreshListener(this);
     }
@@ -184,8 +178,12 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
             case R.id.bt_send:
                 sendTextMsg();
                 break;
-            case R.id.bt_voice:
+            case R.id.iv_voice:
                 hideOrShowVoice();
+                break;
+            case R.id.bt_voice:
+                vrvVoice.setVisibility(View.VISIBLE);
+                vrvVoice.startRecording();
                 break;
         }
     }

@@ -156,12 +156,8 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
     @Subscribe
     public void onEvent(T t){
         if (!t.getClass().getSimpleName().equals(getTInstance().getClass().getSimpleName())){
-            LogUtils.e("这是其他类传来的消息");
-            LogUtils.e(t.getClass().getSimpleName()+"另外一个"+this.getClass().getSimpleName());
             return;
         }
-
-            LogUtils.e(getClass().getSimpleName());
                 if (t.isSuccess()) {
                     try {
                         isSuccessed = true;

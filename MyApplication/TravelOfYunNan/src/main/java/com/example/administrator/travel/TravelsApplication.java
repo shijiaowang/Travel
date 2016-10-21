@@ -5,10 +5,13 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
+
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
+import com.hyphenate.easeui.controller.EaseUI;
 
 
 import org.xutils.x;
@@ -22,7 +25,7 @@ import java.util.List;
 /**
  * Created by wangyang on 2016/7/8 0008.
  */
-public class TravelsApplication extends Application {
+public class TravelsApplication extends MultiDexApplication {
     private static Context mContext;
     protected static Handler mHandler;
     private static int mainThreadId;
@@ -31,6 +34,7 @@ public class TravelsApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(this);
         x.Ext.init(this);
         Fresco.initialize(this,ImagePipelineConfigFactory.getImagePipelineConfig(this));
        /* x.Ext.setDebug(BuildConfig.DEBUG); // 开启debug会影响性能*/
@@ -43,6 +47,7 @@ public class TravelsApplication extends Application {
         options.setDeleteMessagesAsExitGroup(true);
         //初始化
         EMClient.getInstance().init(this, options);
+        EaseUI.getInstance().init(this,options);
         //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
         EMClient.getInstance().setDebugMode(true);
         int pid = android.os.Process.myPid();
@@ -60,7 +65,11 @@ public class TravelsApplication extends Application {
 
     }
 
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     private String getAppName(int pID) {
         String processName = null;
