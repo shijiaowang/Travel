@@ -56,12 +56,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\layout\\ease_showvideo_activity.xml"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_video.xml",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\layout\\ease_row_sent_video.xml"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_chat_input_menu.xml",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\layout\\ease_widget_chat_input_menu.xml"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_video.xml",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\layout\\ease_row_sent_video.xml"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_voice.xml",

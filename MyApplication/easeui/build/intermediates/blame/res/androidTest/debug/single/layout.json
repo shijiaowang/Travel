@@ -76,12 +76,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_commom_back_btn.xml"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_video.xml",
-        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_video.xml"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_show_big_image.xml",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_show_big_image.xml"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_video.xml",
+        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_video.xml"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_alert_dialog.xml",
