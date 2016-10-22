@@ -14,6 +14,7 @@ import com.example.administrator.travel.global.ParentBean;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
 import com.example.administrator.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
 import com.example.administrator.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
+import com.example.administrator.travel.ui.baseui.BaseRecycleViewActivity;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
 import com.example.administrator.travel.ui.baseui.BaseXListViewActivity;
 import com.example.administrator.travel.ui.view.refreshview.XListView;

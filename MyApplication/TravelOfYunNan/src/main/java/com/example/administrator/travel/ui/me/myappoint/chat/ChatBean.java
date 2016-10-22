@@ -1,5 +1,7 @@
 package com.example.administrator.travel.ui.me.myappoint.chat;
 
+import com.hyphenate.easeui.domain.UserInfo;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,7 @@ public class ChatBean {
     private int code;
     private String message;
 
-    private List<DataBean> data;
+    private List<UserInfo> data;
 
     public int getCode() {
         return code;
@@ -29,41 +31,13 @@ public class ChatBean {
         this.message = message;
     }
 
-    public List<DataBean> getData() {
+    public List<UserInfo> getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(List<UserInfo> data) {
         this.data = data;
     }
 
-    public static class DataBean {
-        private String id;
-        private String nick_name;
-        private String user_img;
 
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getNick_name() {
-            return nick_name;
-        }
-
-        public void setNick_name(String nick_name) {
-            this.nick_name = nick_name;
-        }
-
-        public String getUser_img() {
-            return user_img;
-        }
-
-        public void setUser_img(String user_img) {
-            this.user_img = user_img;
-        }
-    }
 }

@@ -2,6 +2,7 @@ package com.hyphenate.easeui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
@@ -51,6 +52,7 @@ public class EaseChatMessageList extends RelativeLayout{
         this.context = context;
         LayoutInflater.from(context).inflate(R.layout.ease_chat_message_list, this);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.chat_swipe_layout);
+        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#5cd0c2"));
         listView = (ListView) findViewById(R.id.list);
     }
     

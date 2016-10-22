@@ -2,16 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:id="@+id/container"
-    >
+    android:id="@+id/container">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
-        android:elevation="3dp"
-        android:background="@color/otherTitleBg"
         android:layout_width="match_parent"
-        android:layout_height="49dp">
+        android:layout_height="49dp"
+        android:background="@color/otherTitleBg"
+        android:titleTextColor="@color/colorFAFAFA"
+        android:navigationIcon="@drawable/back"
+        android:elevation="3dp"
+        app:titleTextAppearance="@style/ToolBar.TitleText">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_back"
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="18sp" />
+            <TextView
+                android:text="设置"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="15sp"
+                android:id="@+id/tv_setting"
+                android:layout_marginRight="22dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
 
     </android.support.v7.widget.Toolbar>
 

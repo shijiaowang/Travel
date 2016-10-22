@@ -204,7 +204,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
                 break;
             case R.id.tv_level:
                  //startActivity(new Intent(getContext(), LevelActivity.class));
-                 startActivity(new Intent(getContext(), com.example.administrator.travel.ChatActivity.class));
+                com.example.administrator.travel.ChatActivity.start(getContext(),"33","254699598117863848");
                 break;
             case R.id.iv_bg:
                 LinearLayout homeBottom = ((HomeActivity) getActivity()).getmLlBottom();

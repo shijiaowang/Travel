@@ -22,7 +22,6 @@ import com.hyphenate.easeui.adapter.EaseMessageAdapter;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseChatMessageList;
 import com.hyphenate.easeui.widget.EaseChatMessageList.MessageListItemClickListener;
-import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.DateUtils;
 
 import java.util.Date;
@@ -36,7 +35,7 @@ public abstract class EaseChatRow extends LinearLayout {
     protected EMMessage message;
     protected int position;
 
-    protected TextView timeStampView;
+
     protected SimpleDraweeView userAvatarView;
     protected View bubbleLayout;
     protected TextView usernickView;
@@ -68,7 +67,6 @@ public abstract class EaseChatRow extends LinearLayout {
 
     private void initView() {
         onInflateView();
-        timeStampView = (TextView) findViewById(R.id.timestamp);
         userAvatarView = (SimpleDraweeView) findViewById(R.id.iv_userhead);
         bubbleLayout = findViewById(R.id.bubble);
         usernickView = (TextView) findViewById(R.id.tv_userid);
@@ -100,34 +98,29 @@ public abstract class EaseChatRow extends LinearLayout {
 
     private void setUpBaseView() {
     	// set nickname, avatar and background of bubble
+        View rootTime = findViewById(R.id.ll_time);
         TextView timestamp = (TextView) findViewById(R.id.timestamp);
         if (timestamp != null) {
             if (position == 0) {
                 timestamp.setText(DateUtils.getTimestampString(new Date(message.getMsgTime())));
-                timestamp.setVisibility(View.VISIBLE);
+                rootTime.setVisibility(View.VISIBLE);
             } else {
             	// show time stamp if interval with last message is > 30 seconds
                 EMMessage prevMessage = (EMMessage) adapter.getItem(position - 1);
                 if (prevMessage != null && DateUtils.isCloseEnough(message.getMsgTime(), prevMessage.getMsgTime())) {
-                    timestamp.setVisibility(View.GONE);
+                    rootTime.setVisibility(View.GONE);
                 } else {
                     timestamp.setText(DateUtils.getTimestampString(new Date(message.getMsgTime())));
-                    timestamp.setVisibility(View.VISIBLE);
+                    rootTime.setVisibility(View.VISIBLE);
                 }
             }
         }
-        try {
-            //set nickname and avatar
-            String name = message.getStringAttribute("name");
-            String icon = message.getStringAttribute("icon");
-            if(message.direct() == Direct.SEND){
-                EaseUserUtils.setUserAvatar(context, icon, userAvatarView);
-            }else{
-                EaseUserUtils.setUserAvatar(context, icon, userAvatarView);
-                EaseUserUtils.setUserNick(name, usernickView);
-            }
-        } catch (HyphenateException e) {
-            e.printStackTrace();
+        //set nickname and avatar
+        if(message.direct() == Direct.SEND){
+            EaseUserUtils.setUserAvatar(context, EMClient.getInstance().getCurrentUser(), userAvatarView);
+        }else{
+            EaseUserUtils.setUserAvatar(context, message.getFrom(), userAvatarView);
+            EaseUserUtils.setUserNick(message.getFrom(), usernickView);
         }
 
         

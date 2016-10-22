@@ -175,8 +175,19 @@
             android:windowSoftInputMode="stateHidden"
             />
         <activity android:name=".ChatActivity" />
-
-
+        <!-- 地图 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <!-- 百度地图所需的service -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="3ecea51f560650b1ed8a4b99808f52e8" />
         <!-- alipay sdk end -->
      <!--   &lt;!&ndash; 声明SDK所需的service SDK核心功能&ndash;&gt;
         <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>

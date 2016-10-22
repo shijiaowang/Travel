@@ -16,6 +16,7 @@
     <dimen name="viewpager_height">240dp</dimen>
     <dimen name="indicator_size">6dp</dimen>
     <dimen name="indicator_margin">6dp</dimen>
+    <dimen name="text_margin_icon">-10dp</dimen>
 
     <dimen name="load_more_footer_height_classic">60dp</dimen>
 

@@ -21,6 +21,7 @@ import com.example.administrator.travel.ui.view.PhoneTextView;
 import com.example.administrator.travel.utils.GlobalUtils;
 import com.example.administrator.travel.utils.ShareUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.hyphenate.chat.EMClient;
 import com.yalantis.ucrop.UCrop;
 
 import org.xutils.view.annotation.ViewInject;
@@ -127,7 +128,7 @@ public class SettingActivity extends BaseCropPhotoActivity<SettingEvent> impleme
                 startActivity(new Intent(this, PersonalProfileActivity.class));
                 break;
             case R.id.ll_logout:
-                //EMClient.getInstance().logout(true);
+                EMClient.getInstance().logout(true);
                 ShareUtil.putString(this, IVariable.SAVE_NAME, "");
                 ShareUtil.putString(this, IVariable.SAVE_PWD, "");
                 startActivity(new Intent(this, SplashActivity.class));

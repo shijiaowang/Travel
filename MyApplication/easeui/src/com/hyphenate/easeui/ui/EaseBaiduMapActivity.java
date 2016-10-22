@@ -20,12 +20,18 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -48,7 +54,7 @@ import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.CoordinateConverter;
 import com.hyphenate.easeui.R;
 
-public class EaseBaiduMapActivity extends EaseBaseActivity {
+public class EaseBaiduMapActivity extends FragmentActivity {
 
 	private final static String TAG = "map";
 	static MapView mMapView = null;
@@ -56,7 +62,7 @@ public class EaseBaiduMapActivity extends EaseBaseActivity {
 	LocationClient mLocClient;
 	public MyLocationListenner myListener = new MyLocationListenner();
 
-	Button sendButton = null;
+	TextView sendButton = null;
 
 	EditText indexText = null;
 	int index = 0;
@@ -87,11 +93,24 @@ public class EaseBaiduMapActivity extends EaseBaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		instance = this;
+
 		//initialize SDK with context, should call this before setContentView
         SDKInitializer.initialize(getApplicationContext());  
 		setContentView(R.layout.ease_activity_baidumap);
 		mMapView = (MapView) findViewById(R.id.bmapView);
-		sendButton = (Button) findViewById(R.id.btn_location_send);
+		sendButton = (TextView) findViewById(R.id.btn_location_send);
+		sendButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				sendLocation();
+			}
+		});
+		findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 		Intent intent = getIntent();
 		double latitude = intent.getDoubleExtra("latitude", 0);
 		LocationMode mCurrentMode = LocationMode.NORMAL;
@@ -249,7 +268,7 @@ public class EaseBaiduMapActivity extends EaseBaseActivity {
 		finish();
 	}
 
-	public void sendLocation(View view) {
+	public void sendLocation() {
 		Intent intent = this.getIntent();
 		intent.putExtra("latitude", lastLocation.getLatitude());
 		intent.putExtra("longitude", lastLocation.getLongitude());

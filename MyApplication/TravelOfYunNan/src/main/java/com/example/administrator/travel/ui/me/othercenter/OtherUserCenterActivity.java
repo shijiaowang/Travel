@@ -417,6 +417,13 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         ActivityCompat.startActivity(((Activity) context), intent, compat.toBundle());
     }
 
+    public static void start(Context context, String id) {
+
+        Intent intent = new Intent(context, OtherUserCenterActivity.class);
+        intent.putExtra(IVariable.USER_ID, id);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void appBarStateChange(AppBarStateChangeListener.State state) {
         if (mCurrentPage==1){

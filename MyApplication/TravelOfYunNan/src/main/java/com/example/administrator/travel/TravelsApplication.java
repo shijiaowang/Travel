@@ -41,6 +41,7 @@ public class TravelsApplication extends MultiDexApplication {
         mContext = getApplicationContext();
         mHandler = new Handler();
         mainThreadId = android.os.Process.myTid();//获取主线程的id
+        YunSpeakHelper.setUserProfilePrivider();
         EMOptions options = new EMOptions();
         // 默认添加好友时，是不需要验证的，改成需要验证
         options.setAcceptInvitationAlways(false);

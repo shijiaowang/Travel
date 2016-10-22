@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
+import com.example.administrator.travel.ChatActivity;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.global.ParentPopClick;
 import com.example.administrator.travel.ui.adapter.TravelBaseAdapter;
@@ -82,7 +83,7 @@ public class MyAppointAdapter extends TravelBaseAdapter<Object> {
             myAppointTogetherHolder.mBtChat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ChatSettingActivity.start(mContext,item1.getId());
+                    ChatActivity.start(mContext,id,item1.getGroupid());
                 }
             });
             myAppointTogetherHolder.mBtStart.setOnClickListener(new View.OnClickListener() {

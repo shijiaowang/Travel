@@ -9,6 +9,6 @@
         android:targetSdkVersion="20" />
 
     <application>
-        <activity android:name=".ui.EaseBaiduMapActivity" />
+
     </application>
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.administrator.travel.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,8 @@ import com.example.administrator.travel.utils.IOUtils;
 import com.example.administrator.travel.utils.LogUtils;
 import com.example.administrator.travel.utils.StringUtils;
 import com.example.administrator.travel.utils.UIUtils;
+import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.UserInfo;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -22,18 +25,13 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * Created by Administrator on 2016/9/13 0013.
+ * Created by wangyang on 2016/9/13 0013.
  */
 public class DBManager {
     public static final String SQL_NAME = "yun.sql";
-    private static DBHelper dbHelper;
+    static private DBHelper   dbHelper = new DBHelper(UIUtils.getContext());
 
 
-    private static void DBHelperInstance() {
-        if (dbHelper == null) {
-            dbHelper = new DBHelper(UIUtils.getContext());
-        }
-    }
 
     /**
      * 按行读取txt
@@ -64,7 +62,6 @@ public class DBManager {
             initCityDB(UIUtils.getContext());
         }
         ArrayList<ProvinceBean> provinceBeanList = new ArrayList<>();
-        DBHelperInstance();
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         Cursor query = writableDatabase.query("yuns_district", null, "level=?", new String[]{"1"}, null, null, null);
         while (query.moveToNext()) {
@@ -83,7 +80,6 @@ public class DBManager {
      * @return
      */
     public static void initCityDB(Context context) {
-        DBHelperInstance();
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         InputStream in = null;
         try {
@@ -117,7 +113,6 @@ public class DBManager {
      * @return
      */
     public static boolean cityDBIsExits() {
-        DBHelperInstance();
         Cursor query = null;
         try {
 
@@ -147,7 +142,6 @@ public class DBManager {
      */
     public static ArrayList<ArrayList<String>> getCity(ArrayList<ProvinceBean> options1Items) {
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
-        DBHelperInstance();
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
         Cursor query = null;
         try {
@@ -178,7 +172,6 @@ public class DBManager {
      */
 
     public static String getStringById(String type,String id) {
-        DBHelperInstance();
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
         Cursor query = null;
         try {
@@ -196,7 +189,6 @@ public class DBManager {
         return "未知";
     }
     public static String getCityId(String cityName, String id) {
-        DBHelperInstance();
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
         Cursor query = null;
         try {
@@ -223,5 +215,52 @@ public class DBManager {
                 e.printStackTrace();
             }
         }
+    }
+    //userinfo操作
+    public static void insertChatUserInfo(List<UserInfo> userInfos){
+        SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
+        Cursor chatuser=null;
+        for (UserInfo userInfo:userInfos){
+            try {
+                if (userInfo == null) continue;
+                chatuser = writableDatabase.query("chatuser", null, "userid=?", new String[]{userInfo.getId()}, null, null, null);
+               if (chatuser.moveToLast()){
+                   String username = chatuser.getString(chatuser.getColumnIndex("username"));
+                   String userimg = chatuser.getString(chatuser.getColumnIndex("userimg"));
+                   if (userimg.equals(userInfo.getUser_img()) && username.equals(userInfo.getNick_name())){
+                       continue;
+                   }else {
+                       ContentValues contentValues=new ContentValues();
+                       contentValues.put("username",userInfo.getNick_name());
+                       contentValues.put("userimg",userInfo.getUser_img());
+                       writableDatabase.update("chatuser",contentValues,"id=?",new String[]{userInfo.getId()});
+                   }
+               }else {
+                   ContentValues contentValues=new ContentValues();
+                   contentValues.put("userid",userInfo.getId());
+                   contentValues.put("username",userInfo.getNick_name());
+                   contentValues.put("userimg",userInfo.getUser_img());
+                   writableDatabase.insert("chatuser",null,contentValues);
+               }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        writableDatabase.close();
+        closeQuery(chatuser);
+    }
+    public static EaseUser getChatUserByChatId(String chatId){
+        SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
+        Cursor  chatuser = writableDatabase.query("chatuser", null, "userid=?", new String[]{chatId}, null, null, null);
+        if (chatuser.moveToLast()) {
+            String username = chatuser.getString(chatuser.getColumnIndex("username"));
+            String userimg = chatuser.getString(chatuser.getColumnIndex("userimg"));
+            EaseUser easeUser=new EaseUser(chatId);
+            easeUser.setNickname(username);
+            easeUser.setAvatar(userimg);
+            return easeUser;
+        }
+
+        return null;
     }
 }

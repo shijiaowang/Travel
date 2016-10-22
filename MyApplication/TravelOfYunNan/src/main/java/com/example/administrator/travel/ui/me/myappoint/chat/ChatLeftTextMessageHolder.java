@@ -13,6 +13,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessageBody;
 import com.hyphenate.chat.EMTextMessageBody;
+import com.hyphenate.easeui.domain.UserInfo;
 
 import butterknife.BindView;
 
@@ -58,10 +59,10 @@ public class ChatLeftTextMessageHolder extends BaseRecycleViewHolder<EMMessage> 
     private void initUserMessage(SimpleDraweeView icon, TextView name,String key) {
         if (isGetUserInfo){
             if (ChatActivity.userMap.containsKey(key)){
-                ChatBean.DataBean dataBean = ChatActivity.userMap.get(key);
+                UserInfo dataBean = ChatActivity.userMap.get(key);
                 inflateUserInfo(icon,name,dataBean);
             }else {
-                for (ChatBean.DataBean dataBean : ChatActivity.chatInfo) {
+                for (UserInfo dataBean : ChatActivity.chatInfo) {
                     if (dataBean.getId().equals(key)) {
                             ChatActivity.userMap.put(key, dataBean);
                            inflateUserInfo(icon,name,dataBean);
@@ -73,7 +74,7 @@ public class ChatLeftTextMessageHolder extends BaseRecycleViewHolder<EMMessage> 
         }
     }
 
-    private void inflateUserInfo(SimpleDraweeView icon, TextView name, ChatBean.DataBean dataBean) {
+    private void inflateUserInfo(SimpleDraweeView icon, TextView name, UserInfo dataBean) {
         FrescoUtils.displayIcon(icon,dataBean.getUser_img());
         name.setText(dataBean.getNick_name());
     }

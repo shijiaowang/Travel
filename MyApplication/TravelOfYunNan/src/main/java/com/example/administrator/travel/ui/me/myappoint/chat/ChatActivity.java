@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.administrator.travel.R;
 import com.example.administrator.travel.global.IVariable;
 import com.example.administrator.travel.ui.baseui.BaseToolBarActivity;
+import com.example.administrator.travel.ui.me.myhobby.UserLabelBean;
 import com.example.administrator.travel.ui.view.VoiceRecorderView;
 import com.example.administrator.travel.utils.GsonUtils;
 import com.example.administrator.travel.utils.LogUtils;
@@ -30,6 +31,8 @@ import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
+import com.hyphenate.easeui.domain.UserInfo;
+
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.x;
 import java.util.ArrayList;
@@ -76,8 +79,8 @@ public class ChatActivity extends BaseToolBarActivity implements View.OnClickLis
     private EMConversation conversation;
     private String tId;
     private String chatId;
-    public static List<ChatBean.DataBean> chatInfo;//聊天信息
-    public static Map<String,ChatBean.DataBean> userMap=new HashMap<>();
+    public static List<UserInfo> chatInfo;//聊天信息
+    public static Map<String,UserInfo> userMap=new HashMap<>();
     private boolean needMoveToLast=false;
 
     @Override

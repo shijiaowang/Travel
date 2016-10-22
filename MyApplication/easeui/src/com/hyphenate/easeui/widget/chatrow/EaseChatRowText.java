@@ -36,12 +36,6 @@ public class EaseChatRowText extends EaseChatRow{
 
     @Override
     public void onSetUpView() {
-        try {
-            String data = message.getStringAttribute("data");
-            System.out.println("我之前说的是什么来着？----"+data);
-        } catch (HyphenateException e) {
-            e.printStackTrace();
-        }
         EMTextMessageBody txtBody = (EMTextMessageBody) message.getBody();
         Spannable span = EaseSmileUtils.getSmiledText(context, txtBody.getMessage());
         // 设置内容

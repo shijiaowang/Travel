@@ -16,7 +16,9 @@ public class DBHelper extends SQLiteOpenHelper {
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //省市级联表
             String sql = "create table yuns_district(_id integer primary key autoincrement,name text,level text,upid text)";
-           sqLiteDatabase.execSQL(sql);
+            String userNick = "create table chatuser(_id integer primary key autoincrement,userid text,username text,userimg text)";
+            sqLiteDatabase.execSQL(sql);
+            sqLiteDatabase.execSQL(userNick);
         }
 
         @Override

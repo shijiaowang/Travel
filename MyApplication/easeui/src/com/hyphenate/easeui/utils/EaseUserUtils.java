@@ -49,9 +49,14 @@ public class EaseUserUtils {
      * @param username
      */
     public static void setUserAvatar(Context context, String username, SimpleDraweeView imageView) {
-        if (imageView == null) return;
+        EaseUser userInfo = getUserInfo(username);
+        if (userInfo==null){
+            //这里加载默认图标
+        }else {
+            displayIcon(imageView, userInfo.getAvatar(), context);
+        }
         //Glide.with(context).load(R.drawable.ease_default_avatar).into(imageView);
-        displayIcon(imageView, username, context);
+
 
         // Glide.with(context).load(username).into(imageView);
         //displayIcon(imageView,username,context);
@@ -74,15 +79,14 @@ public class EaseUserUtils {
      * set user's nickname
      */
     public static void setUserNick(String username, TextView textView) {
-        textView.setText(username);
-       /* if(textView != null){
+        if(textView != null){
         	EaseUser user = getUserInfo(username);
         	if(user != null && user.getNick() != null){
         		textView.setText(user.getNick());
         	}else{
         		textView.setText(username);
         	}
-        }*/
+        }
     }
 
     /**

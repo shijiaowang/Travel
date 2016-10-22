@@ -130,6 +130,7 @@
                     android:layout_marginLeft="65dp"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
+
                     <com.example.administrator.travel.ui.view.FontsIconTextView
                         android:id="@+id/tv_icon2"
                         android:text="@string/activity_my_album_add"
@@ -139,6 +140,7 @@
                         android:textColor="@color/otherTitleBg"
                         android:layout_width="121dp"
                         android:layout_height="84dp" />
+
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/iv_image2"
                         android:visibility="gone"

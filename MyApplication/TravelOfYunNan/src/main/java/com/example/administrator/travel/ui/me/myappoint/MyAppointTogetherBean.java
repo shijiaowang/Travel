@@ -53,6 +53,15 @@ public class MyAppointTogetherBean implements ParentBean {
         private String user_id;
         private String order_type;
         private String order_id;
+        private String groupid;
+
+        public String getGroupid() {
+            return groupid;
+        }
+
+        public void setGroupid(String groupid) {
+            this.groupid = groupid;
+        }
 
         public String getOrder_id() {
             return order_id;
