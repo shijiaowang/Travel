@@ -1,2 +1,2 @@
-include 'pickerview', ':ucrop', ':easeui',":TravelOfYunNan"
+include 'pickerview', ':ucrop', ':easeui', ":TravelOfYunNan", ':PushSDK'
 

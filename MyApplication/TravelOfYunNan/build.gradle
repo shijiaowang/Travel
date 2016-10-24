@@ -21,6 +21,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dexOptions {
+        javaMaxHeapSize "4g"    }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
@@ -55,4 +57,6 @@ dependencies {
     compile 'com.github.Aspsine:SwipeToLoadLayout:1.0.3'
     compile 'com.android.support:multidex:1.0.1'
     compile project(':easeui')
+    compile files('libs/MobTools-2016.1020.1028.jar')
+    compile project(':PushSDK')
 }

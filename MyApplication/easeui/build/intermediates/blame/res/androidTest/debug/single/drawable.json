@@ -76,12 +76,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable\\abc_spinner_textfield_background_material.xml"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_btn_cancel_bj.xml",
-        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_btn_cancel_bj.xml"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chatfrom_bg.xml",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_chatfrom_bg.xml"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_btn_cancel_bj.xml",
+        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_btn_cancel_bj.xml"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\design_fab_background.xml",

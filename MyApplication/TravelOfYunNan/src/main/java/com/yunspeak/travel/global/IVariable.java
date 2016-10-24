@@ -6,8 +6,8 @@ package com.yunspeak.travel.global;
  */
 public interface IVariable {
 
-    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
-    String DOMAIN_NAME = "http://192.168.1.158/";
+    String DOMAIN_NAME="http://yuns.yunspeak.com/";
+    /*String DOMAIN_NAME = "http://192.168.1.158/";*/
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";

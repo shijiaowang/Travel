@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import cn.sharesdk.framework.ShareSDK;
 
 /**
  * Created by wangyang on 2016/9/2 0002.
@@ -112,6 +113,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
 
     @Override
     protected void initEvent() {
+        ShareSDK.initSDK(this,"18450bb6d1b67");
         tId = getIntent().getStringExtra(IVariable.T_ID);
         mTvSitch.setOnClickListener(this);
         mBvEnter.setOnClickListener(this);

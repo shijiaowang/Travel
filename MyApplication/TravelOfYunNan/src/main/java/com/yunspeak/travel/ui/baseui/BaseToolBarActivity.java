@@ -30,6 +30,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
+import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
 
@@ -79,7 +80,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         ButterKnife.bind(this);
         initOptions();
         mTvTitle.setText(initTitle());
-
+        PushAgent.getInstance(this).onAppStart();
     }
 
     public TextView getmTvTitle() {

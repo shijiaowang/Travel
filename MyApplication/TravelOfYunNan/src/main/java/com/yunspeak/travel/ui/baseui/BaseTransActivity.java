@@ -6,6 +6,7 @@ import android.text.Html;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 
 import org.xutils.x;
@@ -23,7 +24,7 @@ public abstract class BaseTransActivity extends Activity {
         initView();
         initListener();
         initData();
-
+        PushAgent.getInstance(this).onAppStart();
     }
 
     protected abstract void initView();

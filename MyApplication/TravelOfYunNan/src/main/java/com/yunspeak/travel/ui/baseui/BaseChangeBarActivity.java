@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IState;
@@ -106,6 +107,7 @@ public abstract class BaseChangeBarActivity<T extends HttpEvent> extends BaseSta
         onLoad(TYPE_REFRESH);
 
       mTvTitle.setText(initTitle());
+        PushAgent.getInstance(this).onAppStart();
 
     }
 

@@ -26,6 +26,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 
+import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.utils.LogUtils;
 
@@ -81,6 +82,7 @@ public abstract class BaseActivity extends FragmentActivity {
             //  window.setNavigationBarColor(Color.TRANSPARENT);
         }
         setContentView(initLayoutRes());
+        PushAgent.getInstance(this).onAppStart();
         x.view().inject(this);
         initView();
         initListener();

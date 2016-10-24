@@ -26,6 +26,9 @@ import com.yunspeak.travel.utils.ToastUtils;
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
 /**
  * Created by wangyang on 2016/9/14 0014.
  * 报名dialog
@@ -183,7 +186,13 @@ public class EnterAppointDialog {
         Window window = dialog.getWindow(); //得到对话框
         window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
         window.setGravity(Gravity.CENTER);
+         dialogView.findViewById(R.id.tv_qq_zone).setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
 
+
+             }
+         });
         WindowManager.LayoutParams wl = window.getAttributes();
         int[] location = new int[2];
         rlBottom.getLocationInWindow(location);

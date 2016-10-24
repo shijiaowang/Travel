@@ -32,6 +32,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IState;
@@ -130,7 +131,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
         mSwipeContainer.setOnRefreshListener(this);
         initListener();
         onLoad(TYPE_REFRESH);
-
+        PushAgent.getInstance(this).onAppStart();
 
     }
 

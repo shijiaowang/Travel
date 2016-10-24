@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.appoint.AppointFragment;
 import com.yunspeak.travel.ui.fragment.CircleFragment;
@@ -90,6 +91,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initHXListener();
+        String registrationId = PushAgent.getInstance(this).getRegistrationId();
+        LogUtils.e("注册ID为"+registrationId);
     }
 
     /**
