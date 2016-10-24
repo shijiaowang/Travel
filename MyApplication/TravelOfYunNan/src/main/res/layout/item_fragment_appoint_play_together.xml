@@ -133,7 +133,7 @@
 
         </RelativeLayout>
     </LinearLayout>
-    <com.example.administrator.travel.ui.view.FlowLayout
+    <com.yunspeak.travel.ui.view.FlowLayout
         android:paddingLeft="15dp"
         android:id="@+id/fl_title"
         android:background="@color/colorFAFAFA"
@@ -143,7 +143,7 @@
         android:layout_marginRight="2dp"
         android:layout_height="wrap_content">
 
-    </com.example.administrator.travel.ui.view.FlowLayout>
+    </com.yunspeak.travel.ui.view.FlowLayout>
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"

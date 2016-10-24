@@ -136,14 +136,14 @@
             android:overScrollMode="never"
             />
     </android.support.v4.widget.SwipeRefreshLayout>
-    <com.example.administrator.travel.ui.view.VoiceRecorderView
+    <com.yunspeak.travel.ui.view.VoiceRecorderView
         android:id="@+id/vrv_voice"
         android:layout_centerInParent="true"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    </com.example.administrator.travel.ui.view.VoiceRecorderView>
+    </com.yunspeak.travel.ui.view.VoiceRecorderView>
 
 
 </RelativeLayout>

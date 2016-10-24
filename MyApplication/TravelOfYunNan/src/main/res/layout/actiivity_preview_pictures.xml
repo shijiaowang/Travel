@@ -25,7 +25,7 @@
             android:layout_height="49dp"
             android:layout_marginTop="@dimen/commonStatusHeight">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_back"
                 style="@style/backFontsIcon"
                 android:layout_height="match_parent"
@@ -44,7 +44,7 @@
                 android:text="预览"
                 android:textColor="#fafafa"
                 android:textSize="18sp" />
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_alignParentRight="true"
                 android:id="@+id/tv_cancel"
                 android:text="@string/activity_aite_ok"

@@ -1,0 +1,29 @@
+package com.yunspeak.travel.ui.appoint.together.togetherdetail;
+
+
+import android.content.Context;
+
+import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
+import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+
+import java.util.List;
+
+/**
+ * Created by Administrator on 2016/9/5 0005.
+ */
+public class AppointDetailLineItemAdapter extends TravelBaseAdapter<AppointTogetherDetailBean.DataBean.RoutesBean> {
+
+    public AppointDetailLineItemAdapter(Context mContext, List<AppointTogetherDetailBean.DataBean.RoutesBean> mDatas) {
+        super(mContext, mDatas);
+    }
+
+    @Override
+    protected void initListener(BaseHolder baseHolder, AppointTogetherDetailBean.DataBean.RoutesBean item, int position) {
+
+    }
+
+    @Override
+    protected BaseHolder initHolder(int position) {
+        return new AppointDetailLineItemHolder(mContext);
+    }
+}

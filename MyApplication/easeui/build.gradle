@@ -43,11 +43,12 @@ android {
 }
 
 dependencies {
-	//release时需要把hyphenatechatsdk的依赖注释掉，sdk已经被打成jar包放在libs底下
-	//compile project(':hyphenatechatsdk')
-    compile fileTree(dir: 'libs', include: '*.jar')
+    //release时需要把hyphenatechatsdk的依赖注释掉，sdk已经被打成jar包放在libs底下
+    //compile project(':hyphenatechatsdk')
+    compile fileTree(include: '*.jar', dir: 'libs')
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.facebook.fresco:fresco:0.14.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
+    compile files('libs/MiPush_SDK_Client_2_2_19.jar')
 }

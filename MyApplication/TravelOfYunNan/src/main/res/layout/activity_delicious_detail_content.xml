@@ -15,7 +15,7 @@
 
     <LinearLayout style="@style/activityDeliciousDetailLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityDeliciousDetailTvIcon"
             android:text="@string/activity_delicious_detail_wan" />
 
@@ -43,7 +43,7 @@
 
     <LinearLayout style="@style/activityDeliciousDetailLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_food"
             style="@style/activityDeliciousDetailTvIcon"
             android:text="@string/activity_delicious_detail_store" />
@@ -55,7 +55,7 @@
 
     <View style="@style/activityDeliciousDetailLine" />-->
 
-    <com.example.administrator.travel.ui.view.ToShowAllListView
+    <com.yunspeak.travel.ui.view.ToShowAllListView
         android:id="@+id/lv_delicious_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
         style="@style/XScrollViewListViewCommon"
         android:dividerHeight="0dp">
 
-    </com.example.administrator.travel.ui.view.ToShowAllListView>
+    </com.yunspeak.travel.ui.view.ToShowAllListView>
 
     <View
         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
 
     <LinearLayout style="@style/activityDeliciousDetailLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_say"
             style="@style/activityDeliciousDetailTvIcon"
             android:text="@string/activity_circle_discuss" />
@@ -86,7 +86,7 @@
 
     <View style="@style/activityDeliciousDetailLine" />
 
-    <com.example.administrator.travel.ui.view.ToShowAllListView
+    <com.yunspeak.travel.ui.view.ToShowAllListView
         android:id="@+id/lv_delicious_discuss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,6 +94,6 @@
         style="@style/XScrollViewListViewCommon"
         android:dividerHeight="0dp">
 
-    </com.example.administrator.travel.ui.view.ToShowAllListView>
+    </com.yunspeak.travel.ui.view.ToShowAllListView>
 
 </LinearLayout>

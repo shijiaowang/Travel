@@ -116,7 +116,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_zhan"
             android:text="@string/activity_circle_love_empty"
             android:textColor="@color/colorb5b5b5"
@@ -132,7 +132,7 @@
             android:textColor="#b5b5b5"
             android:textSize="9sp" />
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"

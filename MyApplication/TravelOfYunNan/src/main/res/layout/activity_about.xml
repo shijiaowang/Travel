@@ -49,7 +49,7 @@
             android:layout_marginLeft="100dp"
             android:orientation="horizontal">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_confirm_orders_we_chat" />
@@ -79,7 +79,7 @@
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_confirm_orders_we_chat" />
@@ -109,7 +109,7 @@
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_confirm_orders_we_chat" />

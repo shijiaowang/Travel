@@ -28,7 +28,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:text="@string/activity_activate_detail_pen"
                 android:textColor="@color/colorC1c1c1"
                 android:textSize="12sp"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content" />
 
     </RelativeLayout>
-    <com.example.administrator.travel.ui.view.AvoidFastButton
+    <com.yunspeak.travel.ui.view.AvoidFastButton
         android:id="@+id/bt_save_change"
         android:text="@string/save_change"
         android:layout_gravity="center_horizontal"

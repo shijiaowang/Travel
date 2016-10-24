@@ -13,7 +13,7 @@
         android:background="@color/otherTitleBg"
         android:layout_width="match_parent"
         android:layout_height="49dp">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_circle_back_font_icon"
             android:id="@+id/tv_back"
             android:layout_centerVertical="true"
@@ -23,7 +23,7 @@
             android:paddingRight="13dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        </com.example.administrator.travel.ui.view.FontsIconTextView>
+        </com.yunspeak.travel.ui.view.FontsIconTextView>
         <EditText
             android:paddingLeft="20dp"
             android:hint="请输入关键字"
@@ -37,7 +37,7 @@
 
 
     </RelativeLayout>
-    <com.example.administrator.travel.ui.view.FontsIconCursorView
+    <com.yunspeak.travel.ui.view.FontsIconCursorView
         android:id="@+id/ficv_cursor"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         <LinearLayout
             android:id="@+id/ll_user"
             style="@style/activityHomeSearchLl">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_user_icon"
               android:text="@string/activity_register_nick_name"
               style="@style/activityHomeSearchText" />
@@ -58,7 +58,7 @@
         <LinearLayout
             android:id="@+id/ll_destination"
             style="@style/activityHomeSearchLl">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_destination_icon"
                 android:text="@string/fragment_find_add"
                 style="@style/activityHomeSearchText" />
@@ -71,7 +71,7 @@
         <LinearLayout
             android:id="@+id/ll_circle"
             style="@style/activityHomeSearchLl">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_circle_icon"
                 android:text="@string/home_activity_button_circle"
                 style="@style/activityHomeSearchText" />
@@ -84,7 +84,7 @@
         <LinearLayout
             android:id="@+id/ll_content"
             style="@style/activityHomeSearchLl">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_content_icon"
                 android:text="@string/activity_register_nick_name"
                 style="@style/activityHomeSearchText" />
@@ -95,7 +95,7 @@
                 style="@style/activityHomeSearchText"/>
         </LinearLayout>
 
-    </com.example.administrator.travel.ui.view.FontsIconCursorView>
+    </com.yunspeak.travel.ui.view.FontsIconCursorView>
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"

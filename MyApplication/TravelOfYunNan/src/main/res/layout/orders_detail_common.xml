@@ -27,12 +27,12 @@
     </RelativeLayout>
 
     <View style="@style/activityConfirmOrdersTextLine" />
-    <com.example.administrator.travel.ui.view.ToShowAllListView
+    <com.yunspeak.travel.ui.view.ToShowAllListView
         android:id="@+id/lv_price"
         style="@style/commonListViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.example.administrator.travel.ui.view.ToShowAllListView>
+    </com.yunspeak.travel.ui.view.ToShowAllListView>
 
 </LinearLayout>

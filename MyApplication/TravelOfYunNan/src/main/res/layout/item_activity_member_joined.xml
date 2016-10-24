@@ -24,14 +24,14 @@
             android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_sex"
             android:layout_marginLeft="7dp"
             android:textColor="@color/color97bcf0"
             android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_member_detail_age"
             android:layout_marginLeft="12dp"
             android:textColor="@color/Ffbf75"

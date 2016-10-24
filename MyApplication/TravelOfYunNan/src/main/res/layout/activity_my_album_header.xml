@@ -7,7 +7,7 @@
     android:background="#fafafa"
     android:gravity="center_horizontal"
     android:orientation="vertical">
-    <com.example.administrator.travel.ui.view.FontsIconTextView
+    <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_add"
         android:layout_width="55dp"
         android:layout_height="55dp"

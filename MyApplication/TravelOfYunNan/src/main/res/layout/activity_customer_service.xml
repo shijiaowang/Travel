@@ -24,7 +24,7 @@
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:textSize="14sp"
             android:text="@string/activity_customer_center_tel"
             android:textColor="@color/color4a4a4a"

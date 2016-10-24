@@ -47,7 +47,7 @@
                 android:textSize="9sp" />
         </LinearLayout>
 
-        <com.example.administrator.travel.ui.view.ToShowAllListView
+        <com.yunspeak.travel.ui.view.ToShowAllListView
             android:paddingBottom="25dp"
             android:id="@+id/lv_line"
             android:layout_marginTop="22dp"
@@ -64,7 +64,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="73dp"
         android:orientation="vertical">
-        <com.example.administrator.travel.ui.view.DottedLineView
+        <com.yunspeak.travel.ui.view.DottedLineView
             android:id="@+id/iv_top_line"
             android:layout_width="2dp"
             android:layout_height="13dp"

@@ -9,7 +9,7 @@
     android:paddingBottom="9dp"
     android:paddingTop="9dp">
 
-    <com.example.administrator.travel.ui.view.FontsIconTextView
+    <com.yunspeak.travel.ui.view.FontsIconTextView
         android:layout_marginBottom="1.5dp"
         android:id="@+id/tv_icon_eye"
         style="@style/fragmentAppointBottomText"
@@ -24,7 +24,7 @@
         android:layout_marginLeft="6dp"
        />
 
-    <com.example.administrator.travel.ui.view.FontsIconTextView
+    <com.yunspeak.travel.ui.view.FontsIconTextView
         android:layout_marginTop="0.5dp"
         android:id="@+id/tv_icon_love"
         style="@style/fragmentAppointBottomText"

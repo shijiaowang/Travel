@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
-    <com.example.administrator.travel.ui.view.FontsIconTextView
+    <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_delete"
         android:textColor="@color/otherFf7f6c"
         android:layout_marginLeft="6dp"

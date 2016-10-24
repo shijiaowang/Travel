@@ -18,7 +18,7 @@
         android:layout_marginRight="22dp"
         android:layout_width="match_parent"
         android:layout_height="46dp">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_alignParentBottom="true"
             android:text="@string/activity_activate_detail_pen"
             android:layout_marginLeft="2dp"

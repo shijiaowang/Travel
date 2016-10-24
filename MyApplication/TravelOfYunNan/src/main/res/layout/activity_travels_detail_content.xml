@@ -24,7 +24,7 @@
 
     <LinearLayout style="@style/activityDeliciousDetailLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityDeliciousDetailTvIcon"
             android:text="@string/activity_add_detail_line" />
 
@@ -48,7 +48,7 @@
 
     <LinearLayout style="@style/activityDeliciousDetailLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityDeliciousDetailTvIcon"
             android:text="@string/activity_add_detail_team_profile" />
 
@@ -125,7 +125,7 @@
 
     <LinearLayout style="@style/activityDeliciousDetailLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityDeliciousDetailTvIcon"
             android:text="@string/activity_circle_discuss" />
 
@@ -134,12 +134,12 @@
             android:text="实话实说" />
     </LinearLayout>
 
-    <com.example.administrator.travel.ui.view.ToShowAllListView
+    <com.yunspeak.travel.ui.view.ToShowAllListView
         android:id="@+id/lv_discuss"
         style="@style/XScrollViewListViewCommon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.example.administrator.travel.ui.view.ToShowAllListView>
+    </com.yunspeak.travel.ui.view.ToShowAllListView>
 </LinearLayout>
 

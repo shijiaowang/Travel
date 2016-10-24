@@ -29,7 +29,7 @@
                     android:layout_width="73dp"
                     android:layout_height="73dp" />
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_change_icon"
                     android:paddingBottom="3dp"
                     android:layout_width="31dp"
@@ -112,7 +112,7 @@
                     android:layout_height="1dp"
                     android:layout_weight="1" />
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     style="@style/activitySettingTvType"
                     android:layout_width="wrap_content"
                     android:text="@string/activity_message_center_cursor"
@@ -137,13 +137,13 @@
                     android:layout_height="1dp"
                     android:layout_weight="1" />
 
-                <com.example.administrator.travel.ui.view.PhoneTextView
+                <com.yunspeak.travel.ui.view.PhoneTextView
                     android:id="@+id/ptv_phone"
                     style="@style/activitySettingTvValue"
                     android:layout_marginRight="17dp"
                    />
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
 
                     style="@style/activitySettingTvType"
                     android:layout_width="wrap_content"
@@ -204,7 +204,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:text="@string/activity_setting_log_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -6,13 +6,13 @@
     android:background="#efeff4"
     android:layout_height="match_parent">
 
-    <com.example.administrator.travel.ui.view.refreshview.XScrollView
+    <com.yunspeak.travel.ui.view.refreshview.XScrollView
         android:id="@id/ssv_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
      >
 
-    </com.example.administrator.travel.ui.view.refreshview.XScrollView>
+    </com.yunspeak.travel.ui.view.refreshview.XScrollView>
 
     <RelativeLayout
         android:id="@+id/rl_toggle"
@@ -28,7 +28,7 @@
             android:layout_marginBottom="35dp"
             android:background="@color/otherTitleBg" />
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_photo"
             android:layout_width="50dp"
             android:layout_height="50dp"

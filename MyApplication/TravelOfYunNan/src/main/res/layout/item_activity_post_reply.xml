@@ -78,7 +78,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_love"
                 android:text="@string/activity_circle_love_full"
                 android:textColor="@color/color969696"

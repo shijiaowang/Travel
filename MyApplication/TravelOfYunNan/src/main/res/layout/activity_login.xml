@@ -23,7 +23,7 @@
             android:layout_height="49dp"
             android:layout_marginTop="@dimen/commonStatusHeight">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -68,7 +68,7 @@
             android:textColor="@color/colorFAFAFA"
             android:textSize="15sp" />
 
-        <com.example.administrator.travel.ui.view.LineEditText
+        <com.yunspeak.travel.ui.view.LineEditText
             android:id="@+id/et_password"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.example.administrator.travel.ui.view.AvoidFastButton
+        <com.yunspeak.travel.ui.view.AvoidFastButton
             android:id="@+id/bt_login"
             android:layout_width="match_parent"
             android:layout_height="41dp"

@@ -9,7 +9,7 @@
         android:background="@color/colorFAFAFA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:id="@+id/tv_icon_discuss"
@@ -70,13 +70,13 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <com.example.administrator.travel.ui.view.BadgeView
+            <com.yunspeak.travel.ui.view.BadgeView
                 android:layout_marginBottom="15dp"
                 android:id="@+id/bv_number_discuss"
                 android:layout_marginRight="20dp"
                 style="@style/activityMessageCenterDot"
                 />
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/tv_cursor_discuss"
                 android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
         android:background="@color/colorFAFAFA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:id="@+id/tv_icon_aite"
@@ -157,13 +157,13 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <com.example.administrator.travel.ui.view.BadgeView
+            <com.yunspeak.travel.ui.view.BadgeView
                 android:layout_marginBottom="15dp"
                 android:id="@+id/bv_number_aite"
                 android:layout_marginRight="20dp"
                 style="@style/activityMessageCenterDot"
                 />
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/tv_cursor_aite"
                 android:layout_width="wrap_content"
@@ -185,7 +185,7 @@
         android:background="@color/colorFAFAFA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:id="@+id/tv_icon_zan"
@@ -246,14 +246,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <com.example.administrator.travel.ui.view.BadgeView
+            <com.yunspeak.travel.ui.view.BadgeView
                 android:layout_marginBottom="15dp"
                 android:id="@+id/bv_number_zan"
                 android:layout_marginRight="20dp"
                 style="@style/activityMessageCenterDot"
                 />
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/tv_cursor"
                 android:layout_width="wrap_content"

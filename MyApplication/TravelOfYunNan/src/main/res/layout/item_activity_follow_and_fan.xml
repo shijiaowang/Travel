@@ -43,7 +43,7 @@
 
 
     </LinearLayout>
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_message_center_cursor"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

@@ -117,7 +117,7 @@
             android:textColor="@color/colorFAFAFA"
             android:textSize="11sp" />
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

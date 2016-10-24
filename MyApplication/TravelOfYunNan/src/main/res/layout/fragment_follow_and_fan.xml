@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.administrator.travel.ui.view.refreshview.XListView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yunspeak.travel.ui.view.refreshview.XListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/lv_follow_fan"
     android:divider="@null"
     android:cacheColorHint="@android:color/transparent"

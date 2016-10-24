@@ -20,13 +20,13 @@
             android:layout_height="112dp" />
         
     </LinearLayout>
-    <com.example.administrator.travel.ui.view.FlowLayout
+    <com.yunspeak.travel.ui.view.FlowLayout
         android:layout_marginLeft="15dp"
         android:id="@+id/fl_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.example.administrator.travel.ui.view.FlowLayout>
+    </com.yunspeak.travel.ui.view.FlowLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

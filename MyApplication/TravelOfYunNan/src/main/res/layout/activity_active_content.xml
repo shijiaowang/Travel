@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:background="@color/meLine">
     <include layout="@layout/activity_active_top"/>
-    <com.example.administrator.travel.ui.view.ToShowAllListView
+    <com.yunspeak.travel.ui.view.ToShowAllListView
         android:id="@+id/lv_active"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

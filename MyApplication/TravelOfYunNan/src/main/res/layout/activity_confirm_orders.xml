@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.administrator.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yunspeak.travel.ui.view.SlippingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:scrollbars="none"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -79,7 +79,7 @@
             android:layout_marginBottom="10dp"
             />
 
-        <com.example.administrator.travel.ui.view.ToShowAllListView
+        <com.yunspeak.travel.ui.view.ToShowAllListView
             android:id="@+id/lv_coupon"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
           >
-        </com.example.administrator.travel.ui.view.ToShowAllListView>
+        </com.yunspeak.travel.ui.view.ToShowAllListView>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -124,7 +124,7 @@
                 android:paddingBottom="8dp"
                 style="@style/activityConfirmOrdersRl"
                 android:layout_height="wrap_content">
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:layout_marginTop="17dp"
                     android:textColor="#11B1F0"
                     android:layout_centerVertical="true"
@@ -145,7 +145,7 @@
                     android:text="支付宝"
                     android:textColor="@android:color/black"
                     android:textSize="11sp" />
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:visibility="gone"
                     android:id="@+id/tv_pay_zfb"
                     android:text="@string/activity_aite_ok"
@@ -165,7 +165,7 @@
                 android:paddingBottom="8dp"
                 style="@style/activityConfirmOrdersRl"
                 android:layout_height="wrap_content">
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:layout_marginTop="17dp"
                     android:textColor="#39B337"
                     android:layout_centerVertical="true"
@@ -186,7 +186,7 @@
                     android:text="微信支付"
                     android:textColor="@android:color/black"
                     android:textSize="11sp" />
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:layout_marginTop="10dp"
                     android:visibility="gone"
                     android:id="@+id/tv_pay_wx"
@@ -233,4 +233,4 @@
 
         </LinearLayout>
     </LinearLayout>
-</com.example.administrator.travel.ui.view.SlippingScrollView>
+</com.yunspeak.travel.ui.view.SlippingScrollView>

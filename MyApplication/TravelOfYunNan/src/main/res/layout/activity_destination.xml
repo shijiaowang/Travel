@@ -35,7 +35,7 @@
                 android:textCursorDrawable="@null"
                 android:textSize="12sp" />
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
         </LinearLayout>
 
     </RelativeLayout>
-    <com.example.administrator.travel.ui.view.refreshview.XListView
+    <com.yunspeak.travel.ui.view.refreshview.XListView
         android:id="@+id/lv_destination"
         android:dividerHeight="0dp"
         android:divider="@null"
@@ -83,6 +83,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.example.administrator.travel.ui.view.refreshview.XListView>
+    </com.yunspeak.travel.ui.view.refreshview.XListView>
 
 </LinearLayout>

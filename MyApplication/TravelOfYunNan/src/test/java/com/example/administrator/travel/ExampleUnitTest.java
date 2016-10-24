@@ -1,4 +1,4 @@
-package com.example.administrator.travel;
+package com.yunspeak.travel;
 
 import org.junit.Test;
 

@@ -20,7 +20,7 @@
             android:textColor="@color/circleNavLeftChecked"
             android:textSize="15sp" />
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:visibility="gone"
             android:id="@+id/tv_cursor"
             android:textColor="@color/circleNavLeftChecked"

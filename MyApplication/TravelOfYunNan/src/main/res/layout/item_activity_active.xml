@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="150dp">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_air"
             android:text="@string/activity_active_item_air"
             android:textColor="@color/colorffda60"

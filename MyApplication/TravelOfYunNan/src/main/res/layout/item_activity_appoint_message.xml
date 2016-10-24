@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-        <com.example.administrator.travel.ui.view.ShowAllTextView
+        <com.yunspeak.travel.ui.view.ShowAllTextView
             android:id="@+id/tv_message"
             android:layout_below="@id/ll_type"
             android:layout_marginTop="15dp"

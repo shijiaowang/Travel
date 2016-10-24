@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_icon"
                     android:text="@string/fragment_find_add"
                     android:textColor="@color/otherTitleBg"
@@ -56,7 +56,7 @@
 
 
         </LinearLayout>
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_delete"
             android:text="@string/activity_my_appoint_delete"
             android:textSize="15sp"

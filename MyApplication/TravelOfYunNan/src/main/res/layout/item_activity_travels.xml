@@ -51,7 +51,7 @@
         android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:paddingTop="1dp"
             android:text="@string/fragment_play_with_me_time"
             android:textColor="@color/color989898"
@@ -65,7 +65,7 @@
             android:textSize="9sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:paddingBottom="1dp"
             android:gravity="center"
             android:text="@string/activity_other_album_eye"

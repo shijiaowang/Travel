@@ -6,7 +6,7 @@
     android:gravity="center"
     android:background="@drawable/activity_create_post_photo_item_bg"
     >
-    <com.example.administrator.travel.ui.view.FontsIconTextView
+    <com.yunspeak.travel.ui.view.FontsIconTextView
         android:text="@string/activity_my_album_add"
         android:textColor="@color/color969696"
         android:textSize="25sp"

@@ -63,18 +63,18 @@
             android:orientation="horizontal"
             android:paddingLeft="20dp">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_emoji"
                 style="@style/activityCreatePostTvIcon"
                 android:layout_marginLeft="0dp"
                 android:text="@string/activity_create_post_smell" />
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_picture"
                 style="@style/activityCreatePostTvIcon"
                 android:text="@string/activity_create_post_picture" />
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_aite"
                 style="@style/activityCreatePostTvIcon"
                 android:text="@string/activity_create_post_aite" />

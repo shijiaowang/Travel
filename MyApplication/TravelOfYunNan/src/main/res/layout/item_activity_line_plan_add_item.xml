@@ -14,7 +14,7 @@
         android:text="大理 · 洱海"
         android:textColor="@color/color323232"
         android:textSize="16sp" />
-    <com.example.administrator.travel.ui.view.FontsIconTextView
+    <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

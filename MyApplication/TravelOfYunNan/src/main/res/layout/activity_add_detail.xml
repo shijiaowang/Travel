@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.administrator.travel.ui.view.refreshview.XScrollView
+    <com.yunspeak.travel.ui.view.refreshview.XScrollView
         android:id="@+id/ssv_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

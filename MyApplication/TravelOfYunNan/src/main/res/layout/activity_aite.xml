@@ -15,7 +15,7 @@
         android:layout_height="32dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/activity_aite_search_bg">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_search"
             android:layout_marginLeft="19dp"
             android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
 
         </ListView>
 
-        <com.example.administrator.travel.ui.view.FastQueryIndex
+        <com.yunspeak.travel.ui.view.FastQueryIndex
             android:id="@+id/fqi_index"
             android:layout_width="14dp"
             android:layout_height="match_parent"

@@ -15,7 +15,7 @@
 
     <RelativeLayout style="@style/activityTravelsPlanRl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityTravelsPlanTv"
             android:text="@string/fragment_find_add" />
 
@@ -47,7 +47,7 @@
 
     <RelativeLayout style="@style/activityTravelsPlanRl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityTravelsPlanTv"
             android:text="@string/activity_add_detail_spot_add" />
 
@@ -57,7 +57,7 @@
 
     </RelativeLayout>
 
-    <com.example.administrator.travel.ui.view.FlowLayout
+    <com.yunspeak.travel.ui.view.FlowLayout
         android:id="@+id/fl_destination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,9 +66,9 @@
         android:layout_marginTop="23dp"
         android:visibility="gone">
 
-    </com.example.administrator.travel.ui.view.FlowLayout>
+    </com.yunspeak.travel.ui.view.FlowLayout>
 
-    <com.example.administrator.travel.ui.view.FontsIconButton
+    <com.yunspeak.travel.ui.view.FontsIconButton
         android:id="@+id/bt_destination"
         android:layout_width="130dp"
         android:layout_height="28dp"

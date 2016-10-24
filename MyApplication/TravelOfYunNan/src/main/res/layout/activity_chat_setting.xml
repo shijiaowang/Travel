@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor"
             android:layout_alignParentRight="true"
             android:text="@string/activity_message_center_cursor"

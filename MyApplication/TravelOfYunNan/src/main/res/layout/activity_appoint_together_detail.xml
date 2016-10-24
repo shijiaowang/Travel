@@ -57,7 +57,7 @@
                                 android:textColor="@color/color646464"
                                 android:textSize="12sp" />
 
-                            <com.example.administrator.travel.ui.view.FontsIconTextView
+                            <com.yunspeak.travel.ui.view.FontsIconTextView
                                 android:id="@+id/tv_sex"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
 
                         </RelativeLayout>
 
-                        <com.example.administrator.travel.ui.view.FontsIconTextView
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
                             style="@style/activityTogetherDetail"
                             android:layout_marginRight="6dp"
                             android:text="@string/activity_other_album_eye" />
@@ -99,7 +99,7 @@
                             style="@style/activityTogetherDetail"
                             android:layout_marginRight="15dp" />
 
-                        <com.example.administrator.travel.ui.view.FontsIconTextView
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
                             android:id="@+id/tv_love"
                             style="@style/activityTogetherDetail"
                             android:layout_marginRight="6dp"
@@ -177,7 +177,7 @@
                             style="@style/fragmentAppointWithMeLl"
                             android:layout_marginTop="0dp">
 
-                            <com.example.administrator.travel.ui.view.FontsIconTextView
+                            <com.yunspeak.travel.ui.view.FontsIconTextView
                                 style="@style/fragmentAppointWithMeIconFont"
                                 android:layout_marginLeft="0.5dp"
                                 android:text="@string/fragment_play_with_me_air" />
@@ -192,7 +192,7 @@
                             style="@style/fragmentAppointWithMeLl"
                             android:layout_marginTop="3dp">
 
-                            <com.example.administrator.travel.ui.view.FontsIconTextView
+                            <com.yunspeak.travel.ui.view.FontsIconTextView
                                 style="@style/fragmentAppointWithMeIconFont"
                                 android:layout_marginLeft="1dp"
                                 android:text="@string/fragment_play_with_me_time"
@@ -211,7 +211,7 @@
                             style="@style/fragmentAppointWithMeLl"
                             android:layout_marginTop="3dp">
 
-                            <com.example.administrator.travel.ui.view.FontsIconTextView
+                            <com.yunspeak.travel.ui.view.FontsIconTextView
                                 style="@style/fragmentAppointWithMeIconFont"
                                 android:paddingLeft="0dp"
                                 android:text="@string/fragment_play_with_me_add"
@@ -229,7 +229,7 @@
                             style="@style/fragmentAppointWithMeLl"
                             android:layout_marginTop="3dp">
 
-                            <com.example.administrator.travel.ui.view.FontsIconTextView
+                            <com.yunspeak.travel.ui.view.FontsIconTextView
                                 style="@style/fragmentAppointWithMeIconFont"
                                 android:text="@string/fragment_play_with_me_people"
                                 android:textSize="16sp"
@@ -284,7 +284,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@color/meLine" />
 
-                <com.example.administrator.travel.ui.view.FlowLayout
+                <com.yunspeak.travel.ui.view.FlowLayout
                     android:id="@+id/fl_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -500,7 +500,7 @@
 
                         <include layout="@layout/appoint_detail_line_header" />
 
-                        <com.example.administrator.travel.ui.view.ToShowAllListView
+                        <com.yunspeak.travel.ui.view.ToShowAllListView
                             android:id="@+id/lv_route_line"
                             style="@style/commonListViewStyle"
                             android:layout_width="match_parent"
@@ -524,7 +524,7 @@
                     android:textColor="@color/color323232"
                     android:textSize="16sp" />
 
-                <com.example.administrator.travel.ui.view.ToShowAllListView
+                <com.yunspeak.travel.ui.view.ToShowAllListView
                     android:id="@+id/lv_equ_provider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -557,7 +557,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <com.example.administrator.travel.ui.view.ToShowAllListView
+                <com.yunspeak.travel.ui.view.ToShowAllListView
                     android:id="@+id/lv_insurance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

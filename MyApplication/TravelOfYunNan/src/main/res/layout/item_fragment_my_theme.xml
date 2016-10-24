@@ -45,7 +45,7 @@
 
 
         </LinearLayout>
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_delete"
             android:text="@string/activity_my_appoint_delete"
             android:textColor="@color/Ffbf75"
@@ -85,7 +85,7 @@
            android:layout_centerVertical="true"
            android:orientation="horizontal"
            android:layout_height="wrap_content">
-           <com.example.administrator.travel.ui.view.FontsIconTextView
+           <com.yunspeak.travel.ui.view.FontsIconTextView
                android:layout_marginRight="6dp"
                android:text="@string/activity_circle_love_empty"
                style="@style/themeCommonText" />
@@ -93,7 +93,7 @@
                android:id="@+id/tv_love_number"
                android:layout_marginRight="12dp"
                style="@style/themeCommonText" />
-           <com.example.administrator.travel.ui.view.FontsIconTextView
+           <com.yunspeak.travel.ui.view.FontsIconTextView
                android:id="@+id/diss"
                android:layout_marginRight="6dp"
                android:text="@string/activity_circle_discuss"

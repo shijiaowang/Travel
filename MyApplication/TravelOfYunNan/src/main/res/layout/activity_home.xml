@@ -30,7 +30,7 @@
                 android:id="@+id/ll_main_click"
                 style="@style/HomeButtonParentLL">
 
-                <com.example.administrator.travel.ui.view.GradientTextView
+                <com.yunspeak.travel.ui.view.GradientTextView
                     android:id="@+id/tv_home_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_main"
@@ -50,7 +50,7 @@
                 android:id="@+id/ll_appoint_click"
                 style="@style/HomeButtonParentLL">
 
-                <com.example.administrator.travel.ui.view.GradientTextView
+                <com.yunspeak.travel.ui.view.GradientTextView
                     android:id="@+id/tv_appoint_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_appoint"
@@ -70,7 +70,7 @@
                 android:id="@+id/ll_circle_click"
                 style="@style/HomeButtonParentLL">
 
-                <com.example.administrator.travel.ui.view.GradientTextView
+                <com.yunspeak.travel.ui.view.GradientTextView
                     android:id="@+id/tv_circle_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_circle"
@@ -89,7 +89,7 @@
                 android:id="@+id/ll_find_click"
                 style="@style/HomeButtonParentLL">
 
-                <com.example.administrator.travel.ui.view.GradientTextView
+                <com.yunspeak.travel.ui.view.GradientTextView
                     android:id="@+id/tv_find_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_find"
@@ -107,7 +107,7 @@
                 android:id="@+id/ll_me_click"
                 style="@style/HomeButtonParentLL">
 
-                <com.example.administrator.travel.ui.view.GradientTextView
+                <com.yunspeak.travel.ui.view.GradientTextView
                     android:id="@+id/tv_me_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_me"

@@ -45,7 +45,7 @@
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:text="@string/activity_member_detail_delete"
                 style="@style/appointPopText" />
             <TextView

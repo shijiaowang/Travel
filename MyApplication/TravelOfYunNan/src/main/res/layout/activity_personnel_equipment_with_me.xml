@@ -13,7 +13,7 @@
             style="@style/activityTravelsPlanRl"
             android:layout_marginTop="36dp">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 style="@style/activityTravelsPlanTv"
                 android:text="@string/activity_personnel_equipment_people" />
 
@@ -41,14 +41,14 @@
             android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.example.administrator.travel.ui.view.FlowLayout
+        <com.yunspeak.travel.ui.view.FlowLayout
             android:layout_marginLeft="53dp"
             android:id="@+id/fl_people"
             android:layout_marginBottom="26dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </com.example.administrator.travel.ui.view.FlowLayout>
+        </com.yunspeak.travel.ui.view.FlowLayout>
 
 
         <LinearLayout

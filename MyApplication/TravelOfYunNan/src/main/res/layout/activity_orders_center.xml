@@ -8,14 +8,14 @@
         android:background="@color/colorFAFAFA"
         android:layout_width="match_parent"
         android:layout_height="45dp">
-        <com.example.administrator.travel.ui.view.SimpleViewPagerIndicator
+        <com.yunspeak.travel.ui.view.SimpleViewPagerIndicator
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:id="@+id/svpi_indicator"
             android:layout_width="match_parent"
             android:layout_height="45dp">
 
-        </com.example.administrator.travel.ui.view.SimpleViewPagerIndicator>
+        </com.yunspeak.travel.ui.view.SimpleViewPagerIndicator>
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager

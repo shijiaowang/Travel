@@ -14610,7 +14610,7 @@
                     "startOffset": 142764,
                     "endLine": 1993,
                     "endColumn": 12,
-                    "endOffset": 143314
+                    "endOffset": 143384
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
@@ -14620,7 +14620,7 @@
                         "startOffset": 27625,
                         "endLine": 419,
                         "endColumn": 12,
-                        "endOffset": 28175
+                        "endOffset": 28245
                     }
                 }
             },
@@ -14628,20 +14628,20 @@
                 "to": {
                     "startLine": 1994,
                     "startColumn": 4,
-                    "startOffset": 143319,
+                    "startOffset": 143389,
                     "endLine": 1999,
                     "endColumn": 12,
-                    "endOffset": 143649
+                    "endOffset": 143719
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 420,
                         "startColumn": 4,
-                        "startOffset": 28180,
+                        "startOffset": 28250,
                         "endLine": 425,
                         "endColumn": 12,
-                        "endOffset": 28510
+                        "endOffset": 28580
                     }
                 }
             },
@@ -14649,20 +14649,20 @@
                 "to": {
                     "startLine": 2000,
                     "startColumn": 4,
-                    "startOffset": 143654,
+                    "startOffset": 143724,
                     "endLine": 2009,
                     "endColumn": 12,
-                    "endOffset": 144217
+                    "endOffset": 144287
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 426,
                         "startColumn": 4,
-                        "startOffset": 28515,
+                        "startOffset": 28585,
                         "endLine": 435,
                         "endColumn": 12,
-                        "endOffset": 29078
+                        "endOffset": 29148
                     }
                 }
             },
@@ -14670,20 +14670,20 @@
                 "to": {
                     "startLine": 2010,
                     "startColumn": 4,
-                    "startOffset": 144222,
+                    "startOffset": 144292,
                     "endLine": 2024,
                     "endColumn": 12,
-                    "endOffset": 144798
+                    "endOffset": 144951
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 436,
                         "startColumn": 4,
-                        "startOffset": 29083,
+                        "startOffset": 29153,
                         "endLine": 450,
                         "endColumn": 12,
-                        "endOffset": 29659
+                        "endOffset": 29812
                     }
                 }
             },
@@ -14691,20 +14691,20 @@
                 "to": {
                     "startLine": 2025,
                     "startColumn": 4,
-                    "startOffset": 144803,
+                    "startOffset": 144956,
                     "endLine": 2039,
                     "endColumn": 12,
-                    "endOffset": 145375
+                    "endOffset": 145611
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 451,
                         "startColumn": 4,
-                        "startOffset": 29664,
+                        "startOffset": 29817,
                         "endLine": 465,
                         "endColumn": 12,
-                        "endOffset": 30236
+                        "endOffset": 30472
                     }
                 }
             },
@@ -14712,10 +14712,10 @@
                 "to": {
                     "startLine": 2040,
                     "startColumn": 4,
-                    "startOffset": 145380,
+                    "startOffset": 145616,
                     "endLine": 2081,
                     "endColumn": 12,
-                    "endOffset": 148553
+                    "endOffset": 148789
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14733,10 +14733,10 @@
                 "to": {
                     "startLine": 2082,
                     "startColumn": 4,
-                    "startOffset": 148558,
+                    "startOffset": 148794,
                     "endLine": 2124,
                     "endColumn": 12,
-                    "endOffset": 151874
+                    "endOffset": 152110
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14754,9 +14754,9 @@
                 "to": {
                     "startLine": 2125,
                     "startColumn": 4,
-                    "startOffset": 151879,
+                    "startOffset": 152115,
                     "endColumn": 61,
-                    "endOffset": 151936
+                    "endOffset": 152172
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14773,10 +14773,10 @@
                 "to": {
                     "startLine": 2126,
                     "startColumn": 4,
-                    "startOffset": 151941,
+                    "startOffset": 152177,
                     "endLine": 2135,
                     "endColumn": 12,
-                    "endOffset": 152566
+                    "endOffset": 152802
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14794,10 +14794,10 @@
                 "to": {
                     "startLine": 2136,
                     "startColumn": 4,
-                    "startOffset": 152571,
+                    "startOffset": 152807,
                     "endLine": 2144,
                     "endColumn": 12,
-                    "endOffset": 153180
+                    "endOffset": 153416
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14815,9 +14815,9 @@
                 "to": {
                     "startLine": 2145,
                     "startColumn": 4,
-                    "startOffset": 153185,
+                    "startOffset": 153421,
                     "endColumn": 85,
-                    "endOffset": 153266
+                    "endOffset": 153502
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14834,10 +14834,10 @@
                 "to": {
                     "startLine": 2146,
                     "startColumn": 4,
-                    "startOffset": 153271,
+                    "startOffset": 153507,
                     "endLine": 2147,
                     "endColumn": 12,
-                    "endOffset": 153379
+                    "endOffset": 153615
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14855,10 +14855,10 @@
                 "to": {
                     "startLine": 2148,
                     "startColumn": 4,
-                    "startOffset": 153384,
+                    "startOffset": 153620,
                     "endLine": 2151,
                     "endColumn": 12,
-                    "endOffset": 153608
+                    "endOffset": 153844
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14876,10 +14876,10 @@
                 "to": {
                     "startLine": 2152,
                     "startColumn": 4,
-                    "startOffset": 153613,
+                    "startOffset": 153849,
                     "endLine": 2154,
                     "endColumn": 12,
-                    "endOffset": 153768
+                    "endOffset": 154004
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14897,10 +14897,10 @@
                 "to": {
                     "startLine": 2155,
                     "startColumn": 4,
-                    "startOffset": 153773,
+                    "startOffset": 154009,
                     "endLine": 2157,
                     "endColumn": 12,
-                    "endOffset": 153920
+                    "endOffset": 154156
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14918,10 +14918,10 @@
                 "to": {
                     "startLine": 2158,
                     "startColumn": 4,
-                    "startOffset": 153925,
+                    "startOffset": 154161,
                     "endLine": 2160,
                     "endColumn": 12,
-                    "endOffset": 154091
+                    "endOffset": 154327
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14939,10 +14939,10 @@
                 "to": {
                     "startLine": 2161,
                     "startColumn": 4,
-                    "startOffset": 154096,
+                    "startOffset": 154332,
                     "endLine": 2163,
                     "endColumn": 12,
-                    "endOffset": 154258
+                    "endOffset": 154494
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14960,10 +14960,10 @@
                 "to": {
                     "startLine": 2164,
                     "startColumn": 4,
-                    "startOffset": 154263,
+                    "startOffset": 154499,
                     "endLine": 2167,
                     "endColumn": 12,
-                    "endOffset": 154501
+                    "endOffset": 154737
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -14981,10 +14981,10 @@
                 "to": {
                     "startLine": 2168,
                     "startColumn": 4,
-                    "startOffset": 154506,
+                    "startOffset": 154742,
                     "endLine": 2170,
                     "endColumn": 12,
-                    "endOffset": 154671
+                    "endOffset": 154907
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15002,10 +15002,10 @@
                 "to": {
                     "startLine": 2171,
                     "startColumn": 4,
-                    "startOffset": 154676,
+                    "startOffset": 154912,
                     "endLine": 2173,
                     "endColumn": 12,
-                    "endOffset": 154844
+                    "endOffset": 155080
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15023,10 +15023,10 @@
                 "to": {
                     "startLine": 2174,
                     "startColumn": 4,
-                    "startOffset": 154849,
+                    "startOffset": 155085,
                     "endLine": 2176,
                     "endColumn": 12,
-                    "endOffset": 155015
+                    "endOffset": 155251
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15044,10 +15044,10 @@
                 "to": {
                     "startLine": 2177,
                     "startColumn": 4,
-                    "startOffset": 155020,
+                    "startOffset": 155256,
                     "endLine": 2180,
                     "endColumn": 12,
-                    "endOffset": 155289
+                    "endOffset": 155525
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15065,10 +15065,10 @@
                 "to": {
                     "startLine": 2181,
                     "startColumn": 4,
-                    "startOffset": 155294,
+                    "startOffset": 155530,
                     "endLine": 2183,
                     "endColumn": 12,
-                    "endOffset": 155488
+                    "endOffset": 155724
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15086,10 +15086,10 @@
                 "to": {
                     "startLine": 2184,
                     "startColumn": 4,
-                    "startOffset": 155493,
+                    "startOffset": 155729,
                     "endLine": 2187,
                     "endColumn": 12,
-                    "endOffset": 155693
+                    "endOffset": 155929
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15107,10 +15107,10 @@
                 "to": {
                     "startLine": 2188,
                     "startColumn": 4,
-                    "startOffset": 155698,
+                    "startOffset": 155934,
                     "endLine": 2191,
                     "endColumn": 12,
-                    "endOffset": 156023
+                    "endOffset": 156259
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15128,9 +15128,9 @@
                 "to": {
                     "startLine": 2192,
                     "startColumn": 4,
-                    "startOffset": 156028,
+                    "startOffset": 156264,
                     "endColumn": 83,
-                    "endOffset": 156107
+                    "endOffset": 156343
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15147,9 +15147,9 @@
                 "to": {
                     "startLine": 2193,
                     "startColumn": 4,
-                    "startOffset": 156112,
+                    "startOffset": 156348,
                     "endColumn": 95,
-                    "endOffset": 156203
+                    "endOffset": 156439
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15166,9 +15166,9 @@
                 "to": {
                     "startLine": 2194,
                     "startColumn": 4,
-                    "startOffset": 156208,
+                    "startOffset": 156444,
                     "endColumn": 95,
-                    "endOffset": 156299
+                    "endOffset": 156535
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15185,9 +15185,9 @@
                 "to": {
                     "startLine": 2195,
                     "startColumn": 4,
-                    "startOffset": 156304,
+                    "startOffset": 156540,
                     "endColumn": 97,
-                    "endOffset": 156397
+                    "endOffset": 156633
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15204,9 +15204,9 @@
                 "to": {
                     "startLine": 2196,
                     "startColumn": 4,
-                    "startOffset": 156402,
+                    "startOffset": 156638,
                     "endColumn": 99,
-                    "endOffset": 156497
+                    "endOffset": 156733
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15223,9 +15223,9 @@
                 "to": {
                     "startLine": 2197,
                     "startColumn": 4,
-                    "startOffset": 156502,
+                    "startOffset": 156738,
                     "endColumn": 101,
-                    "endOffset": 156599
+                    "endOffset": 156835
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15242,9 +15242,9 @@
                 "to": {
                     "startLine": 2198,
                     "startColumn": 4,
-                    "startOffset": 156604,
+                    "startOffset": 156840,
                     "endColumn": 101,
-                    "endOffset": 156701
+                    "endOffset": 156937
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15261,9 +15261,9 @@
                 "to": {
                     "startLine": 2199,
                     "startColumn": 4,
-                    "startOffset": 156706,
+                    "startOffset": 156942,
                     "endColumn": 101,
-                    "endOffset": 156803
+                    "endOffset": 157039
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15280,9 +15280,9 @@
                 "to": {
                     "startLine": 2200,
                     "startColumn": 4,
-                    "startOffset": 156808,
+                    "startOffset": 157044,
                     "endColumn": 101,
-                    "endOffset": 156905
+                    "endOffset": 157141
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15299,9 +15299,9 @@
                 "to": {
                     "startLine": 2201,
                     "startColumn": 4,
-                    "startOffset": 156910,
+                    "startOffset": 157146,
                     "endColumn": 101,
-                    "endOffset": 157007
+                    "endOffset": 157243
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15318,9 +15318,9 @@
                 "to": {
                     "startLine": 2202,
                     "startColumn": 4,
-                    "startOffset": 157012,
+                    "startOffset": 157248,
                     "endColumn": 99,
-                    "endOffset": 157107
+                    "endOffset": 157343
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15337,9 +15337,9 @@
                 "to": {
                     "startLine": 2203,
                     "startColumn": 4,
-                    "startOffset": 157112,
+                    "startOffset": 157348,
                     "endColumn": 95,
-                    "endOffset": 157203
+                    "endOffset": 157439
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15356,9 +15356,9 @@
                 "to": {
                     "startLine": 2204,
                     "startColumn": 4,
-                    "startOffset": 157208,
+                    "startOffset": 157444,
                     "endColumn": 111,
-                    "endOffset": 157315
+                    "endOffset": 157551
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15375,9 +15375,9 @@
                 "to": {
                     "startLine": 2205,
                     "startColumn": 4,
-                    "startOffset": 157320,
+                    "startOffset": 157556,
                     "endColumn": 128,
-                    "endOffset": 157444
+                    "endOffset": 157680
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15394,9 +15394,9 @@
                 "to": {
                     "startLine": 2206,
                     "startColumn": 4,
-                    "startOffset": 157449,
+                    "startOffset": 157685,
                     "endColumn": 122,
-                    "endOffset": 157567
+                    "endOffset": 157803
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15413,9 +15413,9 @@
                 "to": {
                     "startLine": 2207,
                     "startColumn": 4,
-                    "startOffset": 157572,
+                    "startOffset": 157808,
                     "endColumn": 130,
-                    "endOffset": 157698
+                    "endOffset": 157934
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15432,9 +15432,9 @@
                 "to": {
                     "startLine": 2208,
                     "startColumn": 4,
-                    "startOffset": 157703,
+                    "startOffset": 157939,
                     "endColumn": 130,
-                    "endOffset": 157829
+                    "endOffset": 158065
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15451,9 +15451,9 @@
                 "to": {
                     "startLine": 2209,
                     "startColumn": 4,
-                    "startOffset": 157834,
+                    "startOffset": 158070,
                     "endColumn": 97,
-                    "endOffset": 157927
+                    "endOffset": 158163
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15470,9 +15470,9 @@
                 "to": {
                     "startLine": 2210,
                     "startColumn": 4,
-                    "startOffset": 157932,
+                    "startOffset": 158168,
                     "endColumn": 113,
-                    "endOffset": 158041
+                    "endOffset": 158277
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15489,9 +15489,9 @@
                 "to": {
                     "startLine": 2211,
                     "startColumn": 4,
-                    "startOffset": 158046,
+                    "startOffset": 158282,
                     "endColumn": 93,
-                    "endOffset": 158135
+                    "endOffset": 158371
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15508,10 +15508,10 @@
                 "to": {
                     "startLine": 2212,
                     "startColumn": 4,
-                    "startOffset": 158140,
+                    "startOffset": 158376,
                     "endLine": 2213,
                     "endColumn": 12,
-                    "endOffset": 158275
+                    "endOffset": 158511
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15529,10 +15529,10 @@
                 "to": {
                     "startLine": 2214,
                     "startColumn": 4,
-                    "startOffset": 158280,
+                    "startOffset": 158516,
                     "endLine": 2215,
                     "endColumn": 12,
-                    "endOffset": 158409
+                    "endOffset": 158645
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15550,9 +15550,9 @@
                 "to": {
                     "startLine": 2216,
                     "startColumn": 4,
-                    "startOffset": 158414,
+                    "startOffset": 158650,
                     "endColumn": 95,
-                    "endOffset": 158505
+                    "endOffset": 158741
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15569,9 +15569,9 @@
                 "to": {
                     "startLine": 2217,
                     "startColumn": 4,
-                    "startOffset": 158510,
+                    "startOffset": 158746,
                     "endColumn": 111,
-                    "endOffset": 158617
+                    "endOffset": 158853
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15588,9 +15588,9 @@
                 "to": {
                     "startLine": 2218,
                     "startColumn": 4,
-                    "startOffset": 158622,
+                    "startOffset": 158858,
                     "endColumn": 99,
-                    "endOffset": 158717
+                    "endOffset": 158953
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15607,9 +15607,9 @@
                 "to": {
                     "startLine": 2219,
                     "startColumn": 4,
-                    "startOffset": 158722,
+                    "startOffset": 158958,
                     "endColumn": 115,
-                    "endOffset": 158833
+                    "endOffset": 159069
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15626,9 +15626,9 @@
                 "to": {
                     "startLine": 2220,
                     "startColumn": 4,
-                    "startOffset": 158838,
+                    "startOffset": 159074,
                     "endColumn": 95,
-                    "endOffset": 158929
+                    "endOffset": 159165
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15645,9 +15645,9 @@
                 "to": {
                     "startLine": 2221,
                     "startColumn": 4,
-                    "startOffset": 158934,
+                    "startOffset": 159170,
                     "endColumn": 111,
-                    "endOffset": 159041
+                    "endOffset": 159277
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15664,10 +15664,10 @@
                 "to": {
                     "startLine": 2222,
                     "startColumn": 4,
-                    "startOffset": 159046,
+                    "startOffset": 159282,
                     "endLine": 2223,
                     "endColumn": 12,
-                    "endOffset": 159181
+                    "endOffset": 159417
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15685,9 +15685,9 @@
                 "to": {
                     "startLine": 2224,
                     "startColumn": 4,
-                    "startOffset": 159186,
+                    "startOffset": 159422,
                     "endColumn": 135,
-                    "endOffset": 159317
+                    "endOffset": 159553
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15704,10 +15704,10 @@
                 "to": {
                     "startLine": 2225,
                     "startColumn": 4,
-                    "startOffset": 159322,
+                    "startOffset": 159558,
                     "endLine": 2226,
                     "endColumn": 12,
-                    "endOffset": 159481
+                    "endOffset": 159717
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15725,9 +15725,9 @@
                 "to": {
                     "startLine": 2227,
                     "startColumn": 4,
-                    "startOffset": 159486,
+                    "startOffset": 159722,
                     "endColumn": 129,
-                    "endOffset": 159611
+                    "endOffset": 159847
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15744,10 +15744,10 @@
                 "to": {
                     "startLine": 2228,
                     "startColumn": 4,
-                    "startOffset": 159616,
+                    "startOffset": 159852,
                     "endLine": 2229,
                     "endColumn": 12,
-                    "endOffset": 159769
+                    "endOffset": 160005
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15765,10 +15765,10 @@
                 "to": {
                     "startLine": 2230,
                     "startColumn": 4,
-                    "startOffset": 159774,
+                    "startOffset": 160010,
                     "endLine": 2231,
                     "endColumn": 12,
-                    "endOffset": 159919
+                    "endOffset": 160155
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15786,9 +15786,9 @@
                 "to": {
                     "startLine": 2232,
                     "startColumn": 4,
-                    "startOffset": 159924,
+                    "startOffset": 160160,
                     "endColumn": 140,
-                    "endOffset": 160060
+                    "endOffset": 160296
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15805,10 +15805,10 @@
                 "to": {
                     "startLine": 2233,
                     "startColumn": 4,
-                    "startOffset": 160065,
+                    "startOffset": 160301,
                     "endLine": 2234,
                     "endColumn": 12,
-                    "endOffset": 160204
+                    "endOffset": 160440
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15826,9 +15826,9 @@
                 "to": {
                     "startLine": 2235,
                     "startColumn": 4,
-                    "startOffset": 160209,
+                    "startOffset": 160445,
                     "endColumn": 134,
-                    "endOffset": 160339
+                    "endOffset": 160575
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15845,9 +15845,9 @@
                 "to": {
                     "startLine": 2236,
                     "startColumn": 4,
-                    "startOffset": 160344,
+                    "startOffset": 160580,
                     "endColumn": 111,
-                    "endOffset": 160451
+                    "endOffset": 160687
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15864,9 +15864,9 @@
                 "to": {
                     "startLine": 2237,
                     "startColumn": 4,
-                    "startOffset": 160456,
+                    "startOffset": 160692,
                     "endColumn": 127,
-                    "endOffset": 160579
+                    "endOffset": 160815
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15883,10 +15883,10 @@
                 "to": {
                     "startLine": 2238,
                     "startColumn": 4,
-                    "startOffset": 160584,
+                    "startOffset": 160820,
                     "endLine": 2239,
                     "endColumn": 12,
-                    "endOffset": 160715
+                    "endOffset": 160951
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15904,9 +15904,9 @@
                 "to": {
                     "startLine": 2240,
                     "startColumn": 4,
-                    "startOffset": 160720,
+                    "startOffset": 160956,
                     "endColumn": 131,
-                    "endOffset": 160847
+                    "endOffset": 161083
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15923,9 +15923,9 @@
                 "to": {
                     "startLine": 2241,
                     "startColumn": 4,
-                    "startOffset": 160852,
+                    "startOffset": 161088,
                     "endColumn": 129,
-                    "endOffset": 160977
+                    "endOffset": 161213
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15942,9 +15942,9 @@
                 "to": {
                     "startLine": 2242,
                     "startColumn": 4,
-                    "startOffset": 160982,
+                    "startOffset": 161218,
                     "endColumn": 129,
-                    "endOffset": 161107
+                    "endOffset": 161343
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15961,9 +15961,9 @@
                 "to": {
                     "startLine": 2243,
                     "startColumn": 4,
-                    "startOffset": 161112,
+                    "startOffset": 161348,
                     "endColumn": 111,
-                    "endOffset": 161219
+                    "endOffset": 161455
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15980,9 +15980,9 @@
                 "to": {
                     "startLine": 2244,
                     "startColumn": 4,
-                    "startOffset": 161224,
+                    "startOffset": 161460,
                     "endColumn": 139,
-                    "endOffset": 161359
+                    "endOffset": 161595
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -15999,10 +15999,10 @@
                 "to": {
                     "startLine": 2245,
                     "startColumn": 4,
-                    "startOffset": 161364,
+                    "startOffset": 161600,
                     "endLine": 2247,
                     "endColumn": 12,
-                    "endOffset": 161560
+                    "endOffset": 161796
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16020,9 +16020,9 @@
                 "to": {
                     "startLine": 2248,
                     "startColumn": 4,
-                    "startOffset": 161565,
+                    "startOffset": 161801,
                     "endColumn": 91,
-                    "endOffset": 161652
+                    "endOffset": 161888
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16039,10 +16039,10 @@
                 "to": {
                     "startLine": 2249,
                     "startColumn": 4,
-                    "startOffset": 161657,
+                    "startOffset": 161893,
                     "endLine": 2251,
                     "endColumn": 12,
-                    "endOffset": 161831
+                    "endOffset": 162067
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16060,10 +16060,10 @@
                 "to": {
                     "startLine": 2252,
                     "startColumn": 4,
-                    "startOffset": 161836,
+                    "startOffset": 162072,
                     "endLine": 2254,
                     "endColumn": 12,
-                    "endOffset": 161999
+                    "endOffset": 162235
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16081,10 +16081,10 @@
                 "to": {
                     "startLine": 2255,
                     "startColumn": 4,
-                    "startOffset": 162004,
+                    "startOffset": 162240,
                     "endLine": 2257,
                     "endColumn": 12,
-                    "endOffset": 162174
+                    "endOffset": 162410
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16102,10 +16102,10 @@
                 "to": {
                     "startLine": 2258,
                     "startColumn": 4,
-                    "startOffset": 162179,
+                    "startOffset": 162415,
                     "endLine": 2261,
                     "endColumn": 12,
-                    "endOffset": 162427
+                    "endOffset": 162663
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16123,10 +16123,10 @@
                 "to": {
                     "startLine": 2262,
                     "startColumn": 4,
-                    "startOffset": 162432,
+                    "startOffset": 162668,
                     "endLine": 2266,
                     "endColumn": 12,
-                    "endOffset": 162718
+                    "endOffset": 162954
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16144,9 +16144,9 @@
                 "to": {
                     "startLine": 2267,
                     "startColumn": 4,
-                    "startOffset": 162723,
+                    "startOffset": 162959,
                     "endColumn": 67,
-                    "endOffset": 162786
+                    "endOffset": 163022
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16163,9 +16163,9 @@
                 "to": {
                     "startLine": 2268,
                     "startColumn": 4,
-                    "startOffset": 162791,
+                    "startOffset": 163027,
                     "endColumn": 72,
-                    "endOffset": 162859
+                    "endOffset": 163095
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16182,9 +16182,9 @@
                 "to": {
                     "startLine": 2269,
                     "startColumn": 4,
-                    "startOffset": 162864,
+                    "startOffset": 163100,
                     "endColumn": 73,
-                    "endOffset": 162933
+                    "endOffset": 163169
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16201,9 +16201,9 @@
                 "to": {
                     "startLine": 2270,
                     "startColumn": 4,
-                    "startOffset": 162938,
+                    "startOffset": 163174,
                     "endColumn": 72,
-                    "endOffset": 163006
+                    "endOffset": 163242
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16220,9 +16220,9 @@
                 "to": {
                     "startLine": 2271,
                     "startColumn": 4,
-                    "startOffset": 163011,
+                    "startOffset": 163247,
                     "endColumn": 73,
-                    "endOffset": 163080
+                    "endOffset": 163316
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16239,10 +16239,10 @@
                 "to": {
                     "startLine": 2272,
                     "startColumn": 4,
-                    "startOffset": 163085,
+                    "startOffset": 163321,
                     "endLine": 2273,
                     "endColumn": 12,
-                    "endOffset": 163226
+                    "endOffset": 163462
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16260,10 +16260,10 @@
                 "to": {
                     "startLine": 2274,
                     "startColumn": 4,
-                    "startOffset": 163231,
+                    "startOffset": 163467,
                     "endLine": 2275,
                     "endColumn": 12,
-                    "endOffset": 163370
+                    "endOffset": 163606
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16281,10 +16281,10 @@
                 "to": {
                     "startLine": 2276,
                     "startColumn": 4,
-                    "startOffset": 163375,
+                    "startOffset": 163611,
                     "endLine": 2277,
                     "endColumn": 12,
-                    "endOffset": 163508
+                    "endOffset": 163744
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16302,9 +16302,9 @@
                 "to": {
                     "startLine": 2278,
                     "startColumn": 4,
-                    "startOffset": 163513,
+                    "startOffset": 163749,
                     "endColumn": 65,
-                    "endOffset": 163574
+                    "endOffset": 163810
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16321,9 +16321,9 @@
                 "to": {
                     "startLine": 2279,
                     "startColumn": 4,
-                    "startOffset": 163579,
+                    "startOffset": 163815,
                     "endColumn": 89,
-                    "endOffset": 163664
+                    "endOffset": 163900
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16340,9 +16340,9 @@
                 "to": {
                     "startLine": 2280,
                     "startColumn": 4,
-                    "startOffset": 163669,
+                    "startOffset": 163905,
                     "endColumn": 75,
-                    "endOffset": 163740
+                    "endOffset": 163976
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16359,9 +16359,9 @@
                 "to": {
                     "startLine": 2281,
                     "startColumn": 4,
-                    "startOffset": 163745,
+                    "startOffset": 163981,
                     "endColumn": 103,
-                    "endOffset": 163844
+                    "endOffset": 164080
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16378,9 +16378,9 @@
                 "to": {
                     "startLine": 2282,
                     "startColumn": 4,
-                    "startOffset": 163849,
+                    "startOffset": 164085,
                     "endColumn": 89,
-                    "endOffset": 163934
+                    "endOffset": 164170
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16397,9 +16397,9 @@
                 "to": {
                     "startLine": 2283,
                     "startColumn": 4,
-                    "startOffset": 163939,
+                    "startOffset": 164175,
                     "endColumn": 101,
-                    "endOffset": 164036
+                    "endOffset": 164272
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16416,9 +16416,9 @@
                 "to": {
                     "startLine": 2284,
                     "startColumn": 4,
-                    "startOffset": 164041,
+                    "startOffset": 164277,
                     "endColumn": 107,
-                    "endOffset": 164144
+                    "endOffset": 164380
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16435,9 +16435,9 @@
                 "to": {
                     "startLine": 2285,
                     "startColumn": 4,
-                    "startOffset": 164149,
+                    "startOffset": 164385,
                     "endColumn": 107,
-                    "endOffset": 164252
+                    "endOffset": 164488
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16454,9 +16454,9 @@
                 "to": {
                     "startLine": 2286,
                     "startColumn": 4,
-                    "startOffset": 164257,
+                    "startOffset": 164493,
                     "endColumn": 99,
-                    "endOffset": 164352
+                    "endOffset": 164588
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16473,9 +16473,9 @@
                 "to": {
                     "startLine": 2287,
                     "startColumn": 4,
-                    "startOffset": 164357,
+                    "startOffset": 164593,
                     "endColumn": 79,
-                    "endOffset": 164432
+                    "endOffset": 164668
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16492,9 +16492,9 @@
                 "to": {
                     "startLine": 2288,
                     "startColumn": 4,
-                    "startOffset": 164437,
+                    "startOffset": 164673,
                     "endColumn": 91,
-                    "endOffset": 164524
+                    "endOffset": 164760
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16511,9 +16511,9 @@
                 "to": {
                     "startLine": 2289,
                     "startColumn": 4,
-                    "startOffset": 164529,
+                    "startOffset": 164765,
                     "endColumn": 97,
-                    "endOffset": 164622
+                    "endOffset": 164858
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16530,10 +16530,10 @@
                 "to": {
                     "startLine": 2290,
                     "startColumn": 4,
-                    "startOffset": 164627,
+                    "startOffset": 164863,
                     "endLine": 2291,
                     "endColumn": 12,
-                    "endOffset": 164732
+                    "endOffset": 164968
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16551,9 +16551,9 @@
                 "to": {
                     "startLine": 2292,
                     "startColumn": 4,
-                    "startOffset": 164737,
+                    "startOffset": 164973,
                     "endColumn": 77,
-                    "endOffset": 164810
+                    "endOffset": 165046
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16570,9 +16570,9 @@
                 "to": {
                     "startLine": 2293,
                     "startColumn": 4,
-                    "startOffset": 164815,
+                    "startOffset": 165051,
                     "endColumn": 105,
-                    "endOffset": 164916
+                    "endOffset": 165152
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16589,9 +16589,9 @@
                 "to": {
                     "startLine": 2294,
                     "startColumn": 4,
-                    "startOffset": 164921,
+                    "startOffset": 165157,
                     "endColumn": 91,
-                    "endOffset": 165008
+                    "endOffset": 165244
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16608,9 +16608,9 @@
                 "to": {
                     "startLine": 2295,
                     "startColumn": 4,
-                    "startOffset": 165013,
+                    "startOffset": 165249,
                     "endColumn": 103,
-                    "endOffset": 165112
+                    "endOffset": 165348
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16627,9 +16627,9 @@
                 "to": {
                     "startLine": 2296,
                     "startColumn": 4,
-                    "startOffset": 165117,
+                    "startOffset": 165353,
                     "endColumn": 109,
-                    "endOffset": 165222
+                    "endOffset": 165458
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16646,10 +16646,10 @@
                 "to": {
                     "startLine": 2297,
                     "startColumn": 4,
-                    "startOffset": 165227,
+                    "startOffset": 165463,
                     "endLine": 2298,
                     "endColumn": 12,
-                    "endOffset": 165344
+                    "endOffset": 165580
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16667,10 +16667,10 @@
                 "to": {
                     "startLine": 2299,
                     "startColumn": 4,
-                    "startOffset": 165349,
+                    "startOffset": 165585,
                     "endLine": 2302,
                     "endColumn": 12,
-                    "endOffset": 165507
+                    "endOffset": 165743
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16688,10 +16688,10 @@
                 "to": {
                     "startLine": 2303,
                     "startColumn": 4,
-                    "startOffset": 165512,
+                    "startOffset": 165748,
                     "endLine": 2306,
                     "endColumn": 12,
-                    "endOffset": 165664
+                    "endOffset": 165900
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16709,10 +16709,10 @@
                 "to": {
                     "startLine": 2307,
                     "startColumn": 4,
-                    "startOffset": 165669,
+                    "startOffset": 165905,
                     "endLine": 2309,
                     "endColumn": 12,
-                    "endOffset": 165818
+                    "endOffset": 166054
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16730,10 +16730,10 @@
                 "to": {
                     "startLine": 2310,
                     "startColumn": 4,
-                    "startOffset": 165823,
+                    "startOffset": 166059,
                     "endLine": 2314,
                     "endColumn": 12,
-                    "endOffset": 166176
+                    "endOffset": 166412
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16751,10 +16751,10 @@
                 "to": {
                     "startLine": 2315,
                     "startColumn": 4,
-                    "startOffset": 166181,
+                    "startOffset": 166417,
                     "endLine": 2317,
                     "endColumn": 12,
-                    "endOffset": 166343
+                    "endOffset": 166579
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16772,10 +16772,10 @@
                 "to": {
                     "startLine": 2318,
                     "startColumn": 4,
-                    "startOffset": 166348,
+                    "startOffset": 166584,
                     "endLine": 2322,
                     "endColumn": 12,
-                    "endOffset": 166713
+                    "endOffset": 166949
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16793,10 +16793,10 @@
                 "to": {
                     "startLine": 2323,
                     "startColumn": 4,
-                    "startOffset": 166718,
+                    "startOffset": 166954,
                     "endLine": 2326,
                     "endColumn": 12,
-                    "endOffset": 166873
+                    "endOffset": 167109
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16814,10 +16814,10 @@
                 "to": {
                     "startLine": 2327,
                     "startColumn": 4,
-                    "startOffset": 166878,
+                    "startOffset": 167114,
                     "endLine": 2330,
                     "endColumn": 12,
-                    "endOffset": 167027
+                    "endOffset": 167263
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -16835,9 +16835,9 @@
                 "to": {
                     "startLine": 2331,
                     "startColumn": 4,
-                    "startOffset": 167032,
+                    "startOffset": 167268,
                     "endColumn": 79,
-                    "endOffset": 167107
+                    "endOffset": 167343
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16854,9 +16854,9 @@
                 "to": {
                     "startLine": 2332,
                     "startColumn": 4,
-                    "startOffset": 167112,
+                    "startOffset": 167348,
                     "endColumn": 99,
-                    "endOffset": 167207
+                    "endOffset": 167443
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16873,9 +16873,9 @@
                 "to": {
                     "startLine": 2333,
                     "startColumn": 4,
-                    "startOffset": 167212,
+                    "startOffset": 167448,
                     "endColumn": 89,
-                    "endOffset": 167297
+                    "endOffset": 167533
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16892,9 +16892,9 @@
                 "to": {
                     "startLine": 2334,
                     "startColumn": 4,
-                    "startOffset": 167302,
+                    "startOffset": 167538,
                     "endColumn": 109,
-                    "endOffset": 167407
+                    "endOffset": 167643
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16911,9 +16911,9 @@
                 "to": {
                     "startLine": 2335,
                     "startColumn": 4,
-                    "startOffset": 167412,
+                    "startOffset": 167648,
                     "endColumn": 93,
-                    "endOffset": 167501
+                    "endOffset": 167737
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16930,9 +16930,9 @@
                 "to": {
                     "startLine": 2336,
                     "startColumn": 4,
-                    "startOffset": 167506,
+                    "startOffset": 167742,
                     "endColumn": 105,
-                    "endOffset": 167607
+                    "endOffset": 167843
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16949,9 +16949,9 @@
                 "to": {
                     "startLine": 2337,
                     "startColumn": 4,
-                    "startOffset": 167612,
+                    "startOffset": 167848,
                     "endColumn": 91,
-                    "endOffset": 167699
+                    "endOffset": 167935
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16968,10 +16968,10 @@
                 "to": {
                     "startLine": 2338,
                     "startColumn": 4,
-                    "startOffset": 167704,
+                    "startOffset": 167940,
                     "endLine": 2339,
                     "endColumn": 12,
-                    "endOffset": 167799
+                    "endOffset": 168035
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -16989,10 +16989,10 @@
                 "to": {
                     "startLine": 2340,
                     "startColumn": 4,
-                    "startOffset": 167804,
+                    "startOffset": 168040,
                     "endLine": 2341,
                     "endColumn": 12,
-                    "endOffset": 167911
+                    "endOffset": 168147
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17010,10 +17010,10 @@
                 "to": {
                     "startLine": 2342,
                     "startColumn": 4,
-                    "startOffset": 167916,
+                    "startOffset": 168152,
                     "endLine": 2343,
                     "endColumn": 12,
-                    "endOffset": 168025
+                    "endOffset": 168261
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17031,10 +17031,10 @@
                 "to": {
                     "startLine": 2344,
                     "startColumn": 4,
-                    "startOffset": 168030,
+                    "startOffset": 168266,
                     "endLine": 2345,
                     "endColumn": 12,
-                    "endOffset": 168141
+                    "endOffset": 168377
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17052,10 +17052,10 @@
                 "to": {
                     "startLine": 2346,
                     "startColumn": 4,
-                    "startOffset": 168146,
+                    "startOffset": 168382,
                     "endLine": 2347,
                     "endColumn": 12,
-                    "endOffset": 168257
+                    "endOffset": 168493
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17073,9 +17073,9 @@
                 "to": {
                     "startLine": 2348,
                     "startColumn": 4,
-                    "startOffset": 168262,
+                    "startOffset": 168498,
                     "endColumn": 93,
-                    "endOffset": 168351
+                    "endOffset": 168587
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17092,9 +17092,9 @@
                 "to": {
                     "startLine": 2349,
                     "startColumn": 4,
-                    "startOffset": 168356,
+                    "startOffset": 168592,
                     "endColumn": 113,
-                    "endOffset": 168465
+                    "endOffset": 168701
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17111,9 +17111,9 @@
                 "to": {
                     "startLine": 2350,
                     "startColumn": 4,
-                    "startOffset": 168470,
+                    "startOffset": 168706,
                     "endColumn": 111,
-                    "endOffset": 168577
+                    "endOffset": 168813
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17130,10 +17130,10 @@
                 "to": {
                     "startLine": 2351,
                     "startColumn": 4,
-                    "startOffset": 168582,
+                    "startOffset": 168818,
                     "endLine": 2352,
                     "endColumn": 12,
-                    "endOffset": 168679
+                    "endOffset": 168915
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17151,10 +17151,10 @@
                 "to": {
                     "startLine": 2353,
                     "startColumn": 4,
-                    "startOffset": 168684,
+                    "startOffset": 168920,
                     "endLine": 2354,
                     "endColumn": 12,
-                    "endOffset": 168799
+                    "endOffset": 169035
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17172,10 +17172,10 @@
                 "to": {
                     "startLine": 2355,
                     "startColumn": 4,
-                    "startOffset": 168804,
+                    "startOffset": 169040,
                     "endLine": 2356,
                     "endColumn": 12,
-                    "endOffset": 168921
+                    "endOffset": 169157
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17193,9 +17193,9 @@
                 "to": {
                     "startLine": 2357,
                     "startColumn": 4,
-                    "startOffset": 168926,
+                    "startOffset": 169162,
                     "endColumn": 81,
-                    "endOffset": 169003
+                    "endOffset": 169239
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17212,9 +17212,9 @@
                 "to": {
                     "startLine": 2358,
                     "startColumn": 4,
-                    "startOffset": 169008,
+                    "startOffset": 169244,
                     "endColumn": 103,
-                    "endOffset": 169107
+                    "endOffset": 169343
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17231,9 +17231,9 @@
                 "to": {
                     "startLine": 2359,
                     "startColumn": 4,
-                    "startOffset": 169112,
+                    "startOffset": 169348,
                     "endColumn": 119,
-                    "endOffset": 169227
+                    "endOffset": 169463
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17250,9 +17250,9 @@
                 "to": {
                     "startLine": 2360,
                     "startColumn": 4,
-                    "startOffset": 169232,
+                    "startOffset": 169468,
                     "endColumn": 125,
-                    "endOffset": 169353
+                    "endOffset": 169589
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17269,9 +17269,9 @@
                 "to": {
                     "startLine": 2361,
                     "startColumn": 4,
-                    "startOffset": 169358,
+                    "startOffset": 169594,
                     "endColumn": 97,
-                    "endOffset": 169451
+                    "endOffset": 169687
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17288,9 +17288,9 @@
                 "to": {
                     "startLine": 2362,
                     "startColumn": 4,
-                    "startOffset": 169456,
+                    "startOffset": 169692,
                     "endColumn": 93,
-                    "endOffset": 169545
+                    "endOffset": 169781
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17307,9 +17307,9 @@
                 "to": {
                     "startLine": 2363,
                     "startColumn": 4,
-                    "startOffset": 169550,
+                    "startOffset": 169786,
                     "endColumn": 87,
-                    "endOffset": 169633
+                    "endOffset": 169869
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17326,9 +17326,9 @@
                 "to": {
                     "startLine": 2364,
                     "startColumn": 4,
-                    "startOffset": 169638,
+                    "startOffset": 169874,
                     "endColumn": 111,
-                    "endOffset": 169745
+                    "endOffset": 169981
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17345,9 +17345,9 @@
                 "to": {
                     "startLine": 2365,
                     "startColumn": 4,
-                    "startOffset": 169750,
+                    "startOffset": 169986,
                     "endColumn": 115,
-                    "endOffset": 169861
+                    "endOffset": 170097
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17364,9 +17364,9 @@
                 "to": {
                     "startLine": 2366,
                     "startColumn": 4,
-                    "startOffset": 169866,
+                    "startOffset": 170102,
                     "endColumn": 121,
-                    "endOffset": 169983
+                    "endOffset": 170219
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17383,9 +17383,9 @@
                 "to": {
                     "startLine": 2367,
                     "startColumn": 4,
-                    "startOffset": 169988,
+                    "startOffset": 170224,
                     "endColumn": 111,
-                    "endOffset": 170095
+                    "endOffset": 170331
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17402,10 +17402,10 @@
                 "to": {
                     "startLine": 2368,
                     "startColumn": 4,
-                    "startOffset": 170100,
+                    "startOffset": 170336,
                     "endLine": 2370,
                     "endColumn": 12,
-                    "endOffset": 170270
+                    "endOffset": 170506
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17423,9 +17423,9 @@
                 "to": {
                     "startLine": 2371,
                     "startColumn": 4,
-                    "startOffset": 170275,
+                    "startOffset": 170511,
                     "endColumn": 115,
-                    "endOffset": 170386
+                    "endOffset": 170622
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17442,9 +17442,9 @@
                 "to": {
                     "startLine": 2372,
                     "startColumn": 4,
-                    "startOffset": 170391,
+                    "startOffset": 170627,
                     "endColumn": 85,
-                    "endOffset": 170472
+                    "endOffset": 170708
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17461,9 +17461,9 @@
                 "to": {
                     "startLine": 2373,
                     "startColumn": 4,
-                    "startOffset": 170477,
+                    "startOffset": 170713,
                     "endColumn": 91,
-                    "endOffset": 170564
+                    "endOffset": 170800
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17480,10 +17480,10 @@
                 "to": {
                     "startLine": 2374,
                     "startColumn": 4,
-                    "startOffset": 170569,
+                    "startOffset": 170805,
                     "endLine": 2375,
                     "endColumn": 12,
-                    "endOffset": 170676
+                    "endOffset": 170912
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17501,10 +17501,10 @@
                 "to": {
                     "startLine": 2376,
                     "startColumn": 4,
-                    "startOffset": 170681,
+                    "startOffset": 170917,
                     "endLine": 2377,
                     "endColumn": 12,
-                    "endOffset": 170800
+                    "endOffset": 171036
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17522,9 +17522,9 @@
                 "to": {
                     "startLine": 2378,
                     "startColumn": 4,
-                    "startOffset": 170805,
+                    "startOffset": 171041,
                     "endColumn": 66,
-                    "endOffset": 170867
+                    "endOffset": 171103
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17541,10 +17541,10 @@
                 "to": {
                     "startLine": 2379,
                     "startColumn": 4,
-                    "startOffset": 170872,
+                    "startOffset": 171108,
                     "endLine": 2380,
                     "endColumn": 12,
-                    "endOffset": 170993
+                    "endOffset": 171229
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17562,9 +17562,9 @@
                 "to": {
                     "startLine": 2381,
                     "startColumn": 4,
-                    "startOffset": 170998,
+                    "startOffset": 171234,
                     "endColumn": 67,
-                    "endOffset": 171061
+                    "endOffset": 171297
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17581,10 +17581,10 @@
                 "to": {
                     "startLine": 2382,
                     "startColumn": 4,
-                    "startOffset": 171066,
+                    "startOffset": 171302,
                     "endLine": 2383,
                     "endColumn": 12,
-                    "endOffset": 171189
+                    "endOffset": 171425
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17602,10 +17602,10 @@
                 "to": {
                     "startLine": 2384,
                     "startColumn": 4,
-                    "startOffset": 171194,
+                    "startOffset": 171430,
                     "endLine": 2385,
                     "endColumn": 12,
-                    "endOffset": 171333
+                    "endOffset": 171569
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17623,10 +17623,10 @@
                 "to": {
                     "startLine": 2386,
                     "startColumn": 4,
-                    "startOffset": 171338,
+                    "startOffset": 171574,
                     "endLine": 2387,
                     "endColumn": 12,
-                    "endOffset": 171461
+                    "endOffset": 171697
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17644,9 +17644,9 @@
                 "to": {
                     "startLine": 2388,
                     "startColumn": 4,
-                    "startOffset": 171466,
+                    "startOffset": 171702,
                     "endColumn": 68,
-                    "endOffset": 171530
+                    "endOffset": 171766
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17663,9 +17663,9 @@
                 "to": {
                     "startLine": 2389,
                     "startColumn": 4,
-                    "startOffset": 171535,
+                    "startOffset": 171771,
                     "endColumn": 94,
-                    "endOffset": 171625
+                    "endOffset": 171861
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17682,9 +17682,9 @@
                 "to": {
                     "startLine": 2390,
                     "startColumn": 4,
-                    "startOffset": 171630,
+                    "startOffset": 171866,
                     "endColumn": 114,
-                    "endOffset": 171740
+                    "endOffset": 171976
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17701,9 +17701,9 @@
                 "to": {
                     "startLine": 2391,
                     "startColumn": 4,
-                    "startOffset": 171745,
+                    "startOffset": 171981,
                     "endColumn": 112,
-                    "endOffset": 171853
+                    "endOffset": 172089
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17720,9 +17720,9 @@
                 "to": {
                     "startLine": 2392,
                     "startColumn": 4,
-                    "startOffset": 171858,
+                    "startOffset": 172094,
                     "endColumn": 98,
-                    "endOffset": 171952
+                    "endOffset": 172188
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17739,9 +17739,9 @@
                 "to": {
                     "startLine": 2393,
                     "startColumn": 4,
-                    "startOffset": 171957,
+                    "startOffset": 172193,
                     "endColumn": 108,
-                    "endOffset": 172061
+                    "endOffset": 172297
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17758,9 +17758,9 @@
                 "to": {
                     "startLine": 2394,
                     "startColumn": 4,
-                    "startOffset": 172066,
+                    "startOffset": 172302,
                     "endColumn": 110,
-                    "endOffset": 172172
+                    "endOffset": 172408
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17777,9 +17777,9 @@
                 "to": {
                     "startLine": 2395,
                     "startColumn": 4,
-                    "startOffset": 172177,
+                    "startOffset": 172413,
                     "endColumn": 110,
-                    "endOffset": 172283
+                    "endOffset": 172519
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17796,9 +17796,9 @@
                 "to": {
                     "startLine": 2396,
                     "startColumn": 4,
-                    "startOffset": 172288,
+                    "startOffset": 172524,
                     "endColumn": 100,
-                    "endOffset": 172384
+                    "endOffset": 172620
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17815,9 +17815,9 @@
                 "to": {
                     "startLine": 2397,
                     "startColumn": 4,
-                    "startOffset": 172389,
+                    "startOffset": 172625,
                     "endColumn": 104,
-                    "endOffset": 172489
+                    "endOffset": 172725
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17834,9 +17834,9 @@
                 "to": {
                     "startLine": 2398,
                     "startColumn": 4,
-                    "startOffset": 172494,
+                    "startOffset": 172730,
                     "endColumn": 99,
-                    "endOffset": 172589
+                    "endOffset": 172825
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17853,10 +17853,10 @@
                 "to": {
                     "startLine": 2399,
                     "startColumn": 4,
-                    "startOffset": 172594,
+                    "startOffset": 172830,
                     "endLine": 2400,
                     "endColumn": 12,
-                    "endOffset": 172719
+                    "endOffset": 172955
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17874,9 +17874,9 @@
                 "to": {
                     "startLine": 2401,
                     "startColumn": 4,
-                    "startOffset": 172724,
+                    "startOffset": 172960,
                     "endColumn": 90,
-                    "endOffset": 172810
+                    "endOffset": 173046
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17893,9 +17893,9 @@
                 "to": {
                     "startLine": 2402,
                     "startColumn": 4,
-                    "startOffset": 172815,
+                    "startOffset": 173051,
                     "endColumn": 122,
-                    "endOffset": 172933
+                    "endOffset": 173169
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17912,9 +17912,9 @@
                 "to": {
                     "startLine": 2403,
                     "startColumn": 4,
-                    "startOffset": 172938,
+                    "startOffset": 173174,
                     "endColumn": 93,
-                    "endOffset": 173027
+                    "endOffset": 173263
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17931,10 +17931,10 @@
                 "to": {
                     "startLine": 2404,
                     "startColumn": 4,
-                    "startOffset": 173032,
+                    "startOffset": 173268,
                     "endLine": 2405,
                     "endColumn": 12,
-                    "endOffset": 173139
+                    "endOffset": 173375
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17952,9 +17952,9 @@
                 "to": {
                     "startLine": 2406,
                     "startColumn": 4,
-                    "startOffset": 173144,
+                    "startOffset": 173380,
                     "endColumn": 85,
-                    "endOffset": 173225
+                    "endOffset": 173461
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17971,9 +17971,9 @@
                 "to": {
                     "startLine": 2407,
                     "startColumn": 4,
-                    "startOffset": 173230,
+                    "startOffset": 173466,
                     "endColumn": 103,
-                    "endOffset": 173329
+                    "endOffset": 173565
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -17990,9 +17990,9 @@
                 "to": {
                     "startLine": 2408,
                     "startColumn": 4,
-                    "startOffset": 173334,
+                    "startOffset": 173570,
                     "endColumn": 95,
-                    "endOffset": 173425
+                    "endOffset": 173661
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18009,9 +18009,9 @@
                 "to": {
                     "startLine": 2409,
                     "startColumn": 4,
-                    "startOffset": 173430,
+                    "startOffset": 173666,
                     "endColumn": 87,
-                    "endOffset": 173513
+                    "endOffset": 173749
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18028,10 +18028,10 @@
                 "to": {
                     "startLine": 2410,
                     "startColumn": 4,
-                    "startOffset": 173518,
+                    "startOffset": 173754,
                     "endLine": 2411,
                     "endColumn": 12,
-                    "endOffset": 173631
+                    "endOffset": 173867
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18049,10 +18049,10 @@
                 "to": {
                     "startLine": 2412,
                     "startColumn": 4,
-                    "startOffset": 173636,
+                    "startOffset": 173872,
                     "endLine": 2413,
                     "endColumn": 12,
-                    "endOffset": 173735
+                    "endOffset": 173971
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18070,10 +18070,10 @@
                 "to": {
                     "startLine": 2414,
                     "startColumn": 4,
-                    "startOffset": 173740,
+                    "startOffset": 173976,
                     "endLine": 2415,
                     "endColumn": 12,
-                    "endOffset": 173839
+                    "endOffset": 174075
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18091,10 +18091,10 @@
                 "to": {
                     "startLine": 2416,
                     "startColumn": 4,
-                    "startOffset": 173844,
+                    "startOffset": 174080,
                     "endLine": 2417,
                     "endColumn": 12,
-                    "endOffset": 173965
+                    "endOffset": 174201
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18112,9 +18112,9 @@
                 "to": {
                     "startLine": 2418,
                     "startColumn": 4,
-                    "startOffset": 173970,
+                    "startOffset": 174206,
                     "endColumn": 87,
-                    "endOffset": 174053
+                    "endOffset": 174289
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18131,9 +18131,9 @@
                 "to": {
                     "startLine": 2419,
                     "startColumn": 4,
-                    "startOffset": 174058,
+                    "startOffset": 174294,
                     "endColumn": 107,
-                    "endOffset": 174161
+                    "endOffset": 174397
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18150,9 +18150,9 @@
                 "to": {
                     "startLine": 2420,
                     "startColumn": 4,
-                    "startOffset": 174166,
+                    "startOffset": 174402,
                     "endColumn": 99,
-                    "endOffset": 174261
+                    "endOffset": 174497
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18169,9 +18169,9 @@
                 "to": {
                     "startLine": 2421,
                     "startColumn": 4,
-                    "startOffset": 174266,
+                    "startOffset": 174502,
                     "endColumn": 89,
-                    "endOffset": 174351
+                    "endOffset": 174587
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18188,9 +18188,9 @@
                 "to": {
                     "startLine": 2422,
                     "startColumn": 4,
-                    "startOffset": 174356,
+                    "startOffset": 174592,
                     "endColumn": 109,
-                    "endOffset": 174461
+                    "endOffset": 174697
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18207,9 +18207,9 @@
                 "to": {
                     "startLine": 2423,
                     "startColumn": 4,
-                    "startOffset": 174466,
+                    "startOffset": 174702,
                     "endColumn": 83,
-                    "endOffset": 174545
+                    "endOffset": 174781
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18226,9 +18226,9 @@
                 "to": {
                     "startLine": 2424,
                     "startColumn": 4,
-                    "startOffset": 174550,
+                    "startOffset": 174786,
                     "endColumn": 101,
-                    "endOffset": 174647
+                    "endOffset": 174883
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18245,9 +18245,9 @@
                 "to": {
                     "startLine": 2425,
                     "startColumn": 4,
-                    "startOffset": 174652,
+                    "startOffset": 174888,
                     "endColumn": 83,
-                    "endOffset": 174731
+                    "endOffset": 174967
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18264,9 +18264,9 @@
                 "to": {
                     "startLine": 2426,
                     "startColumn": 4,
-                    "startOffset": 174736,
+                    "startOffset": 174972,
                     "endColumn": 53,
-                    "endOffset": 174785
+                    "endOffset": 175021
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18283,9 +18283,9 @@
                 "to": {
                     "startLine": 2427,
                     "startColumn": 4,
-                    "startOffset": 174790,
+                    "startOffset": 175026,
                     "endColumn": 63,
-                    "endOffset": 174849
+                    "endOffset": 175085
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18302,9 +18302,9 @@
                 "to": {
                     "startLine": 2428,
                     "startColumn": 4,
-                    "startOffset": 174854,
+                    "startOffset": 175090,
                     "endColumn": 105,
-                    "endOffset": 174955
+                    "endOffset": 175191
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18321,9 +18321,9 @@
                 "to": {
                     "startLine": 2429,
                     "startColumn": 4,
-                    "startOffset": 174960,
+                    "startOffset": 175196,
                     "endColumn": 109,
-                    "endOffset": 175065
+                    "endOffset": 175301
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18340,9 +18340,9 @@
                 "to": {
                     "startLine": 2430,
                     "startColumn": 4,
-                    "startOffset": 175070,
+                    "startOffset": 175306,
                     "endColumn": 83,
-                    "endOffset": 175149
+                    "endOffset": 175385
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18359,9 +18359,9 @@
                 "to": {
                     "startLine": 2431,
                     "startColumn": 4,
-                    "startOffset": 175154,
+                    "startOffset": 175390,
                     "endColumn": 119,
-                    "endOffset": 175269
+                    "endOffset": 175505
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values\\values.xml",
@@ -18378,10 +18378,10 @@
                 "to": {
                     "startLine": 2432,
                     "startColumn": 4,
-                    "startOffset": 175274,
+                    "startOffset": 175510,
                     "endLine": 2433,
                     "endColumn": 12,
-                    "endOffset": 175369
+                    "endOffset": 175605
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18399,10 +18399,10 @@
                 "to": {
                     "startLine": 2434,
                     "startColumn": 4,
-                    "startOffset": 175374,
+                    "startOffset": 175610,
                     "endLine": 2440,
                     "endColumn": 12,
-                    "endOffset": 175784
+                    "endOffset": 176020
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18420,10 +18420,10 @@
                 "to": {
                     "startLine": 2441,
                     "startColumn": 4,
-                    "startOffset": 175789,
+                    "startOffset": 176025,
                     "endLine": 2444,
                     "endColumn": 12,
-                    "endOffset": 175991
+                    "endOffset": 176227
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18441,10 +18441,10 @@
                 "to": {
                     "startLine": 2445,
                     "startColumn": 4,
-                    "startOffset": 175996,
+                    "startOffset": 176232,
                     "endLine": 2447,
                     "endColumn": 12,
-                    "endOffset": 176150
+                    "endOffset": 176386
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18462,10 +18462,10 @@
                 "to": {
                     "startLine": 2448,
                     "startColumn": 4,
-                    "startOffset": 176155,
+                    "startOffset": 176391,
                     "endLine": 2456,
                     "endColumn": 12,
-                    "endOffset": 176715
+                    "endOffset": 176951
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18483,10 +18483,10 @@
                 "to": {
                     "startLine": 2457,
                     "startColumn": 4,
-                    "startOffset": 176720,
+                    "startOffset": 176956,
                     "endLine": 2462,
                     "endColumn": 12,
-                    "endOffset": 177076
+                    "endOffset": 177312
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18504,10 +18504,10 @@
                 "to": {
                     "startLine": 2463,
                     "startColumn": 4,
-                    "startOffset": 177081,
+                    "startOffset": 177317,
                     "endLine": 2465,
                     "endColumn": 12,
-                    "endOffset": 177205
+                    "endOffset": 177441
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18525,10 +18525,10 @@
                 "to": {
                     "startLine": 2466,
                     "startColumn": 4,
-                    "startOffset": 177210,
+                    "startOffset": 177446,
                     "endLine": 2474,
                     "endColumn": 12,
-                    "endOffset": 177872
+                    "endOffset": 178108
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18546,10 +18546,10 @@
                 "to": {
                     "startLine": 2475,
                     "startColumn": 4,
-                    "startOffset": 177877,
+                    "startOffset": 178113,
                     "endLine": 2478,
                     "endColumn": 12,
-                    "endOffset": 178052
+                    "endOffset": 178288
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18567,10 +18567,10 @@
                 "to": {
                     "startLine": 2479,
                     "startColumn": 4,
-                    "startOffset": 178057,
+                    "startOffset": 178293,
                     "endLine": 2486,
                     "endColumn": 12,
-                    "endOffset": 178657
+                    "endOffset": 178893
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values\\values.xml",
@@ -18588,20 +18588,20 @@
                 "to": {
                     "startLine": 2487,
                     "startColumn": 4,
-                    "startOffset": 178662,
+                    "startOffset": 178898,
                     "endLine": 2495,
                     "endColumn": 12,
-                    "endOffset": 179175
+                    "endOffset": 179411
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 466,
                         "startColumn": 4,
-                        "startOffset": 30241,
+                        "startOffset": 30477,
                         "endLine": 474,
                         "endColumn": 12,
-                        "endOffset": 30754
+                        "endOffset": 30990
                     }
                 }
             },
@@ -18609,20 +18609,20 @@
                 "to": {
                     "startLine": 2496,
                     "startColumn": 4,
-                    "startOffset": 179180,
+                    "startOffset": 179416,
                     "endLine": 2503,
                     "endColumn": 12,
-                    "endOffset": 179549
+                    "endOffset": 179785
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 475,
                         "startColumn": 4,
-                        "startOffset": 30759,
+                        "startOffset": 30995,
                         "endLine": 482,
                         "endColumn": 12,
-                        "endOffset": 31128
+                        "endOffset": 31364
                     }
                 }
             },
@@ -18630,20 +18630,20 @@
                 "to": {
                     "startLine": 2504,
                     "startColumn": 4,
-                    "startOffset": 179554,
+                    "startOffset": 179790,
                     "endLine": 2513,
                     "endColumn": 12,
-                    "endOffset": 180061
+                    "endOffset": 180297
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 483,
                         "startColumn": 4,
-                        "startOffset": 31133,
+                        "startOffset": 31369,
                         "endLine": 492,
                         "endColumn": 12,
-                        "endOffset": 31640
+                        "endOffset": 31876
                     }
                 }
             },
@@ -18651,20 +18651,20 @@
                 "to": {
                     "startLine": 2514,
                     "startColumn": 4,
-                    "startOffset": 180066,
+                    "startOffset": 180302,
                     "endLine": 2518,
                     "endColumn": 12,
-                    "endOffset": 180269
+                    "endOffset": 180505
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 493,
                         "startColumn": 4,
-                        "startOffset": 31645,
+                        "startOffset": 31881,
                         "endLine": 497,
                         "endColumn": 12,
-                        "endOffset": 31848
+                        "endOffset": 32084
                     }
                 }
             },
@@ -18672,20 +18672,20 @@
                 "to": {
                     "startLine": 2519,
                     "startColumn": 4,
-                    "startOffset": 180274,
+                    "startOffset": 180510,
                     "endLine": 2523,
                     "endColumn": 12,
-                    "endOffset": 180487
+                    "endOffset": 180723
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 498,
                         "startColumn": 4,
-                        "startOffset": 31853,
+                        "startOffset": 32089,
                         "endLine": 502,
                         "endColumn": 12,
-                        "endOffset": 32066
+                        "endOffset": 32302
                     }
                 }
             },
@@ -18693,20 +18693,20 @@
                 "to": {
                     "startLine": 2524,
                     "startColumn": 4,
-                    "startOffset": 180492,
+                    "startOffset": 180728,
                     "endLine": 2526,
                     "endColumn": 12,
-                    "endOffset": 180644
+                    "endOffset": 180880
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 503,
                         "startColumn": 4,
-                        "startOffset": 32071,
+                        "startOffset": 32307,
                         "endLine": 505,
                         "endColumn": 12,
-                        "endOffset": 32223
+                        "endOffset": 32459
                     }
                 }
             },
@@ -18714,18 +18714,18 @@
                 "to": {
                     "startLine": 2527,
                     "startColumn": 4,
-                    "startOffset": 180649,
+                    "startOffset": 180885,
                     "endColumn": 66,
-                    "endOffset": 180711
+                    "endOffset": 180947
                 },
                 "from": {
                     "file": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 506,
                         "startColumn": 4,
-                        "startOffset": 32228,
+                        "startOffset": 32464,
                         "endColumn": 66,
-                        "endOffset": 32290
+                        "endOffset": 32526
                     }
                 }
             }

@@ -28,7 +28,7 @@
         android:layout_marginTop="11dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/time"
             android:text="@string/fragment_play_with_me_time"
             android:textColor="@color/otherTitleBg"

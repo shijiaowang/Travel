@@ -27,7 +27,7 @@
                 android:textSize="14sp" />
         </RelativeLayout>
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_toRightOf="@id/rl_right"
             android:id="@+id/tv_delete"
             android:layout_width="wrap_content"

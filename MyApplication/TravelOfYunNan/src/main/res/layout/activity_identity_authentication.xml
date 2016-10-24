@@ -7,14 +7,14 @@
     android:layout_height="match_parent">
     <RelativeLayout
         style="@style/activityIdentityAuthenticationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_identity_phone"
             style="@style/activityIdentityAuthenticationIcon" />
         <TextView
             style="@style/activityIdentityAuthenticationText"
             android:text="绑定手机"
             />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor1"
             style="@style/activityIdentityAuthenticationCursor"
 
@@ -30,14 +30,14 @@
     <RelativeLayout
         android:id="@+id/rl_id_auth"
         style="@style/activityIdentityAuthenticationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_identity_id_card"
             style="@style/activityIdentityAuthenticationIcon" />
         <TextView
             style="@style/activityIdentityAuthenticationText"
             android:text="身份证"
             />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor2"
             style="@style/activityIdentityAuthenticationCursor"
 
@@ -52,14 +52,14 @@
         style="@style/oneHeightMatchLine"/>
     <RelativeLayout
         style="@style/activityIdentityAuthenticationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_identity_run_card"
             style="@style/activityIdentityAuthenticationIcon" />
         <TextView
             style="@style/activityIdentityAuthenticationText"
             android:text="驾驶证"
             />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor3"
             style="@style/activityIdentityAuthenticationCursor"
 
@@ -74,14 +74,14 @@
         style="@style/oneHeightMatchLine"/>
     <RelativeLayout
         style="@style/activityIdentityAuthenticationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_identity_car_card"
             style="@style/activityIdentityAuthenticationIcon" />
         <TextView
             style="@style/activityIdentityAuthenticationText"
             android:text="车辆认证/行驶证"
             />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor4"
             style="@style/activityIdentityAuthenticationCursor"
 

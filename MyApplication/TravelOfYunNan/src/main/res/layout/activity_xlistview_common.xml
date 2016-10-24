@@ -7,13 +7,13 @@
         android:id="@+id/vs_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <com.example.administrator.travel.ui.view.refreshview.XListView
+    <com.yunspeak.travel.ui.view.refreshview.XListView
         android:id="@+id/lv_common"
         style="@style/commonListViewStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.example.administrator.travel.ui.view.refreshview.XListView>
+    </com.yunspeak.travel.ui.view.refreshview.XListView>
 
 
 </LinearLayout>

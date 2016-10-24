@@ -86,7 +86,7 @@
                     android:background="@drawable/activity_my_appoint_rl_bg"
                     android:layout_width="match_parent"
                     android:layout_height="24dp" />
-                <com.example.administrator.travel.ui.view.BadgeView
+                <com.yunspeak.travel.ui.view.BadgeView
                     android:id="@+id/bv_enter_people"
                     android:layout_marginRight="5dp"
                     android:layout_alignParentRight="true"
@@ -109,7 +109,7 @@
                     android:background="@drawable/activity_my_appoint_rl_bg"
                     android:layout_width="match_parent"
                     android:layout_height="24dp" />
-                <com.example.administrator.travel.ui.view.BadgeView
+                <com.yunspeak.travel.ui.view.BadgeView
                     android:id="@+id/bv_bulletin_number"
                     android:layout_marginRight="5dp"
                     android:layout_alignParentRight="true"

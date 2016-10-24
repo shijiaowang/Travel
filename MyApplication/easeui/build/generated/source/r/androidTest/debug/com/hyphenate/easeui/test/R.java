@@ -4177,10 +4177,16 @@ containing a value of this type.
         public static final int Base_Widget_AppCompat_Toolbar_Button_Navigation=0x7f070081;
         public static final int Base_Widget_Design_AppBarLayout=0x7f0700cc;
         public static final int Base_Widget_Design_TabLayout=0x7f0700cd;
+        /**  模糊 
+         */
         public static final int HeadScale=0x7f0700ce;
         public static final int MyAlertDialog=0x7f0700cf;
         public static final int MyDialogStyle=0x7f0700d0;
+        /**  模糊 
+         */
         public static final int MyDialogStyleBottom=0x7f0700d1;
+        /**  模糊 
+         */
         public static final int MyDialogStyleTop=0x7f0700d2;
         public static final int Platform_AppCompat=0x7f07001b;
         public static final int Platform_AppCompat_Light=0x7f07001c;

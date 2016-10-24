@@ -45,7 +45,7 @@
                     android:layout_width="95dp"
                     android:layout_height="95dp" />
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
 
             <RelativeLayout style="@style/activityTravelsPlanRl">
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     style="@style/activityTravelsPlanTv"
                     android:text="@string/activity_travels_plan_time" />
 
@@ -103,7 +103,7 @@
                         style="@style/activityTravelsPlanTvTimeSelect"
                         android:text="01/03/2016" />
 
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:id="@+id/tv_start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                         android:id="@+id/rl_start_morning"
                         style="@style/activityTravelsPlanIconRl">
 
-                        <com.example.administrator.travel.ui.view.GradientTextView
+                        <com.yunspeak.travel.ui.view.GradientTextView
                             android:id="@+id/tv_start_morning"
                             style="@style/activityTravelsPlanIcon"
                             app:gradient_checked_down_color="#5ad7fb"
@@ -135,7 +135,7 @@
                         style="@style/activityTravelsPlanIconRl"
                         android:layout_marginLeft="15dp">
 
-                        <com.example.administrator.travel.ui.view.GradientTextView
+                        <com.yunspeak.travel.ui.view.GradientTextView
                             android:id="@+id/tv_start_night"
                             style="@style/activityTravelsPlanIcon"
                             app:gradient_checked_down_color="#5ad7fb"
@@ -168,7 +168,7 @@
                         style="@style/activityTravelsPlanTvTimeSelect"
                         android:text="01/03/2016" />
 
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:id="@+id/tv_end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                         android:id="@+id/rl_end_morning"
                         style="@style/activityTravelsPlanIconRl">
 
-                        <com.example.administrator.travel.ui.view.GradientTextView
+                        <com.yunspeak.travel.ui.view.GradientTextView
                             android:id="@+id/tv_end_morning"
                             style="@style/activityTravelsPlanIcon"
                             app:gradient_checked_down_color="#5ad7fb"
@@ -201,7 +201,7 @@
                         android:layout_marginLeft="15dp">
 
 
-                        <com.example.administrator.travel.ui.view.GradientTextView
+                        <com.yunspeak.travel.ui.view.GradientTextView
                             android:id="@+id/tv_end_night"
                             style="@style/activityTravelsPlanIcon"
                             app:gradient_checked_down_color="#5ad7fb"

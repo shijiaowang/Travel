@@ -109,7 +109,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_activate_detail_pen"
@@ -151,14 +151,14 @@
         android:textSize="13sp" />
 
 
-    <com.example.administrator.travel.ui.view.ToShowAllListView
+    <com.yunspeak.travel.ui.view.ToShowAllListView
         android:id="@+id/lv_photo"
         style="@style/commonListViewStyle"
         android:layout_width="316dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
-    </com.example.administrator.travel.ui.view.ToShowAllListView>
+    </com.yunspeak.travel.ui.view.ToShowAllListView>
 
     <View
         android:layout_width="match_parent"

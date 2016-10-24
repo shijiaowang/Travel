@@ -12,7 +12,7 @@
         android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_title_management_title"
             android:textColor="@color/colorff8270"
             android:textSize="16sp"
@@ -77,7 +77,7 @@
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_toggle"
             android:layout_marginLeft="11dp"
             android:text="@string/activity_select_cursor"

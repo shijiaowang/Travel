@@ -16,7 +16,7 @@
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="50dp" />
-    <com.example.administrator.travel.ui.view.FontsIconTextView
+    <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_cursor"
         android:textColor="@color/otherTitleBg"
         android:text="@string/activity_cursor_left"

@@ -40,7 +40,7 @@
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:text="@string/item_fragment_find_add"
                 android:textColor="@color/colorC1c1c1"
                 android:textSize="12sp"
@@ -57,7 +57,7 @@
         </LinearLayout>
 
     </LinearLayout>
-    <com.example.administrator.travel.ui.view.FontsIconTextView
+    <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_select"
         android:textColor="@color/colorb5b5b5"
         android:layout_alignParentRight="true"

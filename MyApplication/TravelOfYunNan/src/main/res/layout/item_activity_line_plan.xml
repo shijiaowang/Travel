@@ -47,14 +47,14 @@
                 android:textSize="9sp" />
         </LinearLayout>
 
-       <com.example.administrator.travel.ui.view.ToShowAllListView
+       <com.yunspeak.travel.ui.view.ToShowAllListView
            android:id="@+id/lv_add"
            android:layout_marginLeft="37dp"
            style="@style/commonListViewStyle"
            android:listSelector="@android:color/transparent"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"/>
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_add"
             android:layout_width="70dp"
             android:layout_height="30dp"
@@ -75,7 +75,7 @@
         android:layout_marginLeft="70dp"
         android:orientation="vertical">
 
-        <com.example.administrator.travel.ui.view.DottedLineView
+        <com.yunspeak.travel.ui.view.DottedLineView
             android:layout_width="2dp"
             android:layout_height="51dp"
             android:layout_marginLeft="9dp" />
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/activity_line_add1" />
 
-        <com.example.administrator.travel.ui.view.DottedLineView
+        <com.yunspeak.travel.ui.view.DottedLineView
             android:id="@+id/dlv_line"
             android:layout_width="1dp"
             android:layout_height="57dp"

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.example.administrator.travel.ui.view.SlippingScrollView
+    <com.yunspeak.travel.ui.view.SlippingScrollView
         android:id="@id/ssv_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -138,7 +138,7 @@
             </WebView>
 
         </RelativeLayout>
-    </com.example.administrator.travel.ui.view.SlippingScrollView>
+    </com.yunspeak.travel.ui.view.SlippingScrollView>
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:alpha="0.69"
@@ -162,7 +162,7 @@
             android:orientation="horizontal"
             android:layout_width="65dp"
             android:layout_height="20dp">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_pen"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"

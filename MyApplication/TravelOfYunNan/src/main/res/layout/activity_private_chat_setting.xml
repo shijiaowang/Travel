@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor"
             android:layout_marginRight="22dp"
             android:textSize="15sp"

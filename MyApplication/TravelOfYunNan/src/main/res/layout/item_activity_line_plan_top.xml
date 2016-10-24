@@ -22,7 +22,7 @@
             android:textSize="13sp" />
 
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_start_add"
             android:layout_width="55dp"
             android:layout_height="27dp"
@@ -36,7 +36,7 @@
 
     </LinearLayout>
 
-    <com.example.administrator.travel.ui.view.DottedLineView
+    <com.yunspeak.travel.ui.view.DottedLineView
         android:id="@+id/end_line"
         android:layout_marginTop="-2dp"
         android:layout_width="2dp"

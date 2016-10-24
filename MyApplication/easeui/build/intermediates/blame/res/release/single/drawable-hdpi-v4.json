@@ -28,12 +28,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_16.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_16.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_list_pressed_holo_dark.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_16.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_16.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatto_bg_normal.9.png",
@@ -52,24 +52,24 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice11.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice11.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice11.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice11.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatto_voice_playing_f1.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatto_voice_playing_f1.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_msg_state_fail_resend_pressed.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_msg_state_fail_resend_pressed.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_dark.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_msg_state_fail_resend_pressed.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_msg_state_fail_resend_pressed.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_input_bar_bg_active.9.png",
@@ -108,16 +108,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_video_recorder_stop_btn.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice7.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice7.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_ic_star_half_black_48dp.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_48dp.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatfrom_voice_playing.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatfrom_voice_playing.png"
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice7.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice7.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_msg_state_fail_resend.png",
@@ -128,16 +124,20 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatfrom_voice_playing.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatfrom_voice_playing.png"
+    },
+    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_mm_title_back.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_mm_title_back.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_appitem_del_btn_normal.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_appitem_del_btn_normal.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_2.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_2.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_appitem_del_btn_normal.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_appitem_del_btn_normal.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice12.png",
@@ -200,12 +200,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_14.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_4.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_4.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_mm_title_remove.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_mm_title_remove.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_4.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_4.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice14.png",
@@ -216,40 +216,40 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice5.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice5.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_seabar_input.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_seabar_input.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice5.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice5.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_list_focused_holo.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_list_focused_holo.9.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice8.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice8.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_dx_checkbox_off.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_dx_checkbox_off.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_mm_listitem_simple.9.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_mm_listitem_simple.9.png"
-    },
-    {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_location_msg.9.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_location_msg.9.png"
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice8.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice8.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatting_biaoqing_btn_enable.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatting_biaoqing_btn_enable.png"
     },
     {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_mm_listitem_simple.9.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_mm_listitem_simple.9.png"
+    },
+    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_ic_star_black_48dp.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ic_star_black_48dp.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_location_msg.9.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_location_msg.9.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_dx_checkbox_gray_on.png",
@@ -300,12 +300,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_24.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chat_face_pressed.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chat_face_pressed.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chat_face_pressed.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chat_face_pressed.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_search_clear_normal.png",
@@ -352,12 +352,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_7.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_7.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice2.png",
@@ -504,12 +504,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_22.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatto_voice_playing_f2.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatto_voice_playing_f2.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_text_select_handle_middle_mtrl_light.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_text_select_handle_middle_mtrl_light.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatto_voice_playing_f2.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatto_voice_playing_f2.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_btn_check_to_on_mtrl_015.png",
@@ -524,12 +524,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_search_clear_pressed.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_video_play_btn_small_nor.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_video_play_btn_small_nor.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_ic_star_black_16dp.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_video_play_btn_small_nor.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_video_play_btn_small_nor.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_search_bar_icon_normal.png",
@@ -588,12 +588,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_voice_unread.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatfrom_voice_playing_f3.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatfrom_voice_playing_f3.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_text_select_handle_right_mtrl_dark.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_text_select_handle_right_mtrl_dark.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatfrom_voice_playing_f3.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatfrom_voice_playing_f3.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatting_setmode_voice_btn_pressed.png",
@@ -612,20 +612,20 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_18.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_15.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_15.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_conversation_normal.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_conversation_normal.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chat_face_normal.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chat_face_normal.png"
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_15.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_15.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_6.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_6.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chat_face_normal.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chat_face_normal.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\chat_voice3.png",
@@ -644,16 +644,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_unread_count_bg.9.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_settings_selected.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_settings_selected.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_appitem_del_btn_pressed.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_appitem_del_btn_pressed.png"
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_settings_selected.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_settings_selected.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_text_select_handle_left_mtrl_dark.png",
@@ -662,6 +658,10 @@
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_list_pressed_holo_light.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_appitem_del_btn_pressed.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_appitem_del_btn_pressed.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_list_longpressed_holo.9.png",

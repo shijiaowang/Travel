@@ -10,7 +10,7 @@
         <LinearLayout
             android:layout_marginTop="0dp"
             style="@style/fragmentAppointWithMeLl">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:text="@string/fragment_play_with_me_air"
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
@@ -21,7 +21,7 @@
         <LinearLayout
 
             style="@style/fragmentAppointWithMeLl">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:textColor="@color/otherTitleBg"
                 android:text="@string/fragment_play_with_me_time"
                 style="@style/fragmentAppointWithMeIconFont"/>
@@ -35,7 +35,7 @@
         <LinearLayout
 
             style="@style/fragmentAppointWithMeLl">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:paddingLeft="0dp"
                 android:textSize="18sp"
                 android:text="@string/fragment_play_with_me_add"
@@ -50,7 +50,7 @@
         <LinearLayout
 
             style="@style/fragmentAppointWithMeLl">
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:textStyle="italic"
                 android:textSize="16sp"
                 android:text="@string/fragment_play_with_me_people"

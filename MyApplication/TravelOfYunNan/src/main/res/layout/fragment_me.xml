@@ -39,7 +39,7 @@
                     android:layout_marginTop="163dp"
                     />
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_setting"
                     android:text="@string/activity_message_center_setting"
                     android:textColor="@color/colorFAFAFA"
@@ -283,7 +283,7 @@
                     android:textColor="#646464"
                     android:textSize="13sp" />
 
-                <com.example.administrator.travel.ui.view.FontsIconTextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_title_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

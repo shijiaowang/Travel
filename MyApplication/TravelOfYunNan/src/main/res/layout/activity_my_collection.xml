@@ -6,7 +6,7 @@
     <LinearLayout
         android:id="@+id/ll_team"
         style="@style/fragmentMyPublicationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:textColor="@color/Ffbf75"
             android:text="@string/activity_my_publication_team"
             android:id="@+id/tv_team"
@@ -27,7 +27,7 @@
     <LinearLayout
         android:id="@+id/ll_destination"
         style="@style/fragmentMyPublicationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:textColor="@color/otherTitleBg"
             android:text="@string/fragment_find_add"
             android:id="@+id/tv_add"
@@ -49,7 +49,7 @@
     <LinearLayout
         android:id="@+id/ll_active"
         style="@style/fragmentMyPublicationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:textColor="#ff8c7b"
             android:text="@string/fragment_find_active"
             android:id="@+id/tv_active"
@@ -71,7 +71,7 @@
     <LinearLayout
         android:id="@+id/ll_travels"
         style="@style/fragmentMyPublicationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:textColor="#90c75c"
             android:text="@string/fragment_find_travels"
             android:id="@+id/tv_travels"
@@ -93,7 +93,7 @@
     <LinearLayout
         android:id="@+id/ll_post"
         style="@style/fragmentMyPublicationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:textColor="#9c8ec0"
             android:text="@string/activity_my_publication_post"
             android:id="@+id/tv_post"
@@ -115,7 +115,7 @@
     <LinearLayout
         android:id="@+id/ll_other"
         style="@style/fragmentMyPublicationRl">
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:textColor="#5bb4da"
             android:text="@string/activity_my_publication_other"
             android:id="@+id/tv_other"

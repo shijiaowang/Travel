@@ -52,7 +52,7 @@
                     android:id="@+id/ll_add"
                     style="@style/fragmentFindIconLl">
 
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_find_add"
@@ -69,7 +69,7 @@
                     android:id="@+id/ll_hotel"
                     style="@style/fragmentFindIconLl">
 
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_find_hotel"
@@ -87,7 +87,7 @@
                     android:id="@+id/ll_travels"
                     style="@style/fragmentFindIconLl">
 
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
                     android:id="@+id/ll_delicious_food"
                     style="@style/fragmentFindIconLl">
 
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_find_food"
@@ -122,7 +122,7 @@
                     android:id="@+id/ll_active"
                     style="@style/fragmentFindIconLl">
 
-                    <com.example.administrator.travel.ui.view.FontsIconTextView
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="5dp"

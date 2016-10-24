@@ -15,7 +15,7 @@
 
     <RelativeLayout style="@style/activityTravelsPlanRl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityTravelsPlanTv"
             android:text="@string/activity_add_detail_line" />
 
@@ -46,7 +46,7 @@
 
     <RelativeLayout style="@style/activityTravelsPlanRl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityTravelsPlanTv"
             android:text="@string/activity_travels_plan_car" />
 
@@ -84,7 +84,7 @@
                 android:textColor="@color/color323232"
                 android:textSize="15sp" />
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_width="22dp"
                 android:layout_height="23dp"
                 android:layout_alignParentRight="true"

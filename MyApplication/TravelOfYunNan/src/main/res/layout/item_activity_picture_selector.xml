@@ -11,7 +11,7 @@
         android:id="@+id/iv_picture_1"
         android:layout_width="110dp"
         android:layout_height="110dp" />
-    <com.example.administrator.travel.ui.view.FontsIconTextView
+    <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_select"
         android:text="@string/activity_aite_ok"
         android:layout_marginTop="5dp"

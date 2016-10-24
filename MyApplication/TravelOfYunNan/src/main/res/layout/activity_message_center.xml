@@ -8,7 +8,7 @@
         android:id="@+id/ll_appoint_message"
         style="@style/activityMessageCenterLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
 
             style="@style/activityMessageCenterIconText"
             android:text="@string/activity_my_publication_team"
@@ -17,11 +17,11 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="约伴消息" />
-        <com.example.administrator.travel.ui.view.BadgeView
+        <com.yunspeak.travel.ui.view.BadgeView
             android:id="@+id/bv_appoint_dot"
             style="@style/activityMessageCenterDot"/>
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_appoint"
             style="@style/activityMessageCenterCursor"
             android:text="@string/activity_message_center_cursor" />
@@ -34,7 +34,7 @@
         android:id="@+id/ll_system_message"
         style="@style/activityMessageCenterLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
 
             style="@style/activityMessageCenterIconText"
             android:text="@string/activity_message_center_setting"
@@ -43,10 +43,10 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="系统消息" />
-        <com.example.administrator.travel.ui.view.BadgeView
+        <com.yunspeak.travel.ui.view.BadgeView
             android:id="@+id/bv_system_dot"
             style="@style/activityMessageCenterDot" />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_system"
             style="@style/activityMessageCenterCursor"
             android:text="@string/activity_message_center_cursor" />
@@ -59,7 +59,7 @@
         android:id="@+id/ll_private"
         style="@style/activityMessageCenterLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityMessageCenterIconText"
             android:text="@string/activity_other_private_message"
             android:textColor="@color/color97cb66" />
@@ -67,10 +67,10 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="私信" />
-        <com.example.administrator.travel.ui.view.BadgeView
+        <com.yunspeak.travel.ui.view.BadgeView
             android:id="@+id/bv_private_dot"
             style="@style/activityMessageCenterDot"/>
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_private"
             style="@style/activityMessageCenterCursor"
             android:text="@string/activity_message_center_cursor" />
@@ -83,7 +83,7 @@
         android:id="@+id/ll_relate_me"
         style="@style/activityMessageCenterLl">
 
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/activityMessageCenterIconText"
             android:text="@string/home_activity_button_me"
             android:textColor="@color/colorff806d" />
@@ -91,10 +91,10 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="与我相关" />
-        <com.example.administrator.travel.ui.view.BadgeView
+        <com.yunspeak.travel.ui.view.BadgeView
             android:id="@+id/bv_relate_me"
             style="@style/activityMessageCenterDot" />
-        <com.example.administrator.travel.ui.view.FontsIconTextView
+        <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_relate"
             style="@style/activityMessageCenterCursor"
             android:text="@string/activity_message_center_cursor" />

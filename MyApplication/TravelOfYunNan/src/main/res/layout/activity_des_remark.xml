@@ -17,7 +17,7 @@
             style="@style/activityTravelsPlanRl"
             android:layout_marginTop="35dp">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 style="@style/activityTravelsPlanTv"
                 android:text="@string/activity_des_remark_title" />
 
@@ -37,7 +37,7 @@
                 android:textSize="12sp" />
 
         </RelativeLayout>
-        <com.example.administrator.travel.ui.view.FlowLayout
+        <com.yunspeak.travel.ui.view.FlowLayout
             android:id="@+id/fl_title"
             android:visibility="gone"
             android:layout_marginTop="27dp"
@@ -70,7 +70,7 @@
             style="@style/activityTravelsPlanRl"
             android:layout_marginTop="35dp">
 
-            <com.example.administrator.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
                 style="@style/activityTravelsPlanTv"
                 android:text="@string/activity_des_remark_des" />
 

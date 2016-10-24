@@ -38,7 +38,7 @@
                 android:textColor="@color/color575555"
                 android:textSize="13sp" />
 
-            <com.example.administrator.travel.ui.view.ShowAllTextView
+            <com.yunspeak.travel.ui.view.ShowAllTextView
                 android:id="@+id/tv_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
