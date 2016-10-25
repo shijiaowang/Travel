@@ -56,6 +56,7 @@ public class EasePhotoView extends ImageView implements IPhotoView {
 	public EasePhotoView(Context context, AttributeSet attr, int defStyle) {
 		super(context, attr, defStyle);
 		super.setScaleType(ScaleType.MATRIX);
+
 		mAttacher = new PhotoViewAttacher(this);
 
 		if (null != mPendingScaleType) {

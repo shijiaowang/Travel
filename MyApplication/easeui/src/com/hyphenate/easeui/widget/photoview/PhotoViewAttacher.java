@@ -47,7 +47,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
-class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, VersionedGestureDetector.OnGestureListener,
+public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, VersionedGestureDetector.OnGestureListener,
 		GestureDetector.OnDoubleTapListener, ViewTreeObserver.OnGlobalLayoutListener {
 
 	static final String LOG_TAG = "PhotoViewAttacher";
@@ -460,12 +460,10 @@ class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, VersionedGe
 				}
 				break;
 			}
-
 			// Check to see if the user double tapped
 			if (null != mGestureDetector && mGestureDetector.onTouchEvent(ev)) {
 				handled = true;
 			}
-
 			// Finally, try the Scale/Drag detector
 			if (null != mScaleDragDetector && mScaleDragDetector.onTouchEvent(ev)) {
 				handled = true;

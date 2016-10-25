@@ -25,20 +25,26 @@ import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.model.EaseImageCache;
 import com.hyphenate.easeui.utils.EaseLoadLocalBigImgTask;
 import com.hyphenate.easeui.widget.photoview.EasePhotoView;
+import com.hyphenate.easeui.widget.photoview.PhotoViewAttacher;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.ImageUtils;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 /**
  * download and show original image
@@ -56,9 +62,21 @@ public class EaseShowBigImageActivity extends EaseBaseActivity {
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			Window window = getWindow();
+			window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+					| WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+			window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+					| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+					| View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+			window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+			window.setStatusBarColor(Color.TRANSPARENT);
+			window.setNavigationBarColor(Color.TRANSPARENT);
+		}
+
 		setContentView(R.layout.ease_activity_show_big_image);
 		super.onCreate(savedInstanceState);
-
 		image = (EasePhotoView) findViewById(R.id.image);
 		ProgressBar loadLocalPb = (ProgressBar) findViewById(R.id.pb_load_local);
 		default_res = getIntent().getIntExtra("default_image", R.drawable.ease_default_avatar);
@@ -66,7 +84,6 @@ public class EaseShowBigImageActivity extends EaseBaseActivity {
 		localFilePath = getIntent().getExtras().getString("localUrl");
 		String msgId = getIntent().getExtras().getString("messageId");
 		EMLog.d(TAG, "show big msgId:" + msgId );
-
 		//show the image if it exist in local path
 		if (uri != null && new File(uri.getPath()).exists()) {
 			EMLog.d(TAG, "showbigimage file exists. directly show it");
@@ -91,19 +108,32 @@ public class EaseShowBigImageActivity extends EaseBaseActivity {
 		}else {
 			image.setImageResource(default_res);
 		}
-
-		image.setOnClickListener(new OnClickListener() {
+      image.setOnLongClickListener(new View.OnLongClickListener() {
+	  @Override
+	  public boolean onLongClick(View v) {
+		  Toast.makeText(EaseShowBigImageActivity.this, "长按啦", Toast.LENGTH_SHORT).show();
+		  return true;
+	  }
+     });
+		image.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
 			@Override
-			public void onClick(View v) {
+			public void onPhotoTap(View view, float x, float y) {
 				finish();
 			}
 		});
+		image.setOnViewTapListener(new PhotoViewAttacher.OnViewTapListener() {
+			@Override
+			public void onViewTap(View view, float x, float y) {
+				finish();
+			}
+		});
+
 	}
 	
 	/**
 	 * download image
 	 * 
-	 * @param remoteFilePath
+	 * @para
 	 */
 	@SuppressLint("NewApi")
 	private void downloadImage(final String msgId) {

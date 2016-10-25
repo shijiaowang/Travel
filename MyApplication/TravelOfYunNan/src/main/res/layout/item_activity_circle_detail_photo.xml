@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SimpleDraweeView
+<com.facebook.drawee.view.SimpleDraweeView
     android:descendantFocusability="blocksDescendants"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,4 +10,4 @@
     android:layout_height="93dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</SimpleDraweeView>
+</com.facebook.drawee.view.SimpleDraweeView>

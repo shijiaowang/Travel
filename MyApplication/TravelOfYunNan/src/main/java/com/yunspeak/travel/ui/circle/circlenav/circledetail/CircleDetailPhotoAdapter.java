@@ -26,7 +26,7 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
     private String cId;
     private String id;
 
-    public CircleDetailPhotoAdapter(List<String> mDatas, Context mContext, String cId, String id) {
+    public CircleDetailPhotoAdapter(List<String> mDatas, Context mContext, String id,String cId) {
         this.mDatas = mDatas;
         this.mContext = mContext;
         this.cId = cId;
