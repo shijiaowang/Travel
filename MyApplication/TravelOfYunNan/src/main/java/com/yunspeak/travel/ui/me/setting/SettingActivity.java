@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
@@ -20,7 +21,6 @@ import com.yunspeak.travel.ui.me.changepassword.ChangePassWordActivity;
 import com.yunspeak.travel.ui.view.PhoneTextView;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.ShareUtil;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.chat.EMClient;
 import com.yalantis.ucrop.UCrop;
 

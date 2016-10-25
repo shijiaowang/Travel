@@ -18,7 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.umeng.message.ALIAS_TYPE;
+import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
+import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.appoint.AppointFragment;
 import com.yunspeak.travel.ui.fragment.CircleFragment;
@@ -37,6 +40,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.util.NetUtils;
 
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -93,6 +97,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         initHXListener();
         String registrationId = PushAgent.getInstance(this).getRegistrationId();
         LogUtils.e("注册ID为"+registrationId);
+
+      
     }
 
     /**

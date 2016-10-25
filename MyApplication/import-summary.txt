@@ -8,7 +8,7 @@ Eclipse projects. Here's how the projects were restructured:
 
 * AndroidManifest.xml => payDemoActivity_20\src\main\AndroidManifest.xml
 * assets\ => payDemoActivity_20\src\main\assets
-* libs\alipaySdk-20160825.jar => payDemoActivity_20\libs\alipaySdk-20160825.jar
+* libs\alipaySdk-20161009.jar => payDemoActivity_20\libs\alipaySdk-20161009.jar
 * libs\android-support-v13.jar => payDemoActivity_20\libs\android-support-v13.jar
 * lint.xml => payDemoActivity_20\lint.xml
 * proguard-project.txt => payDemoActivity_20\proguard-project.txt

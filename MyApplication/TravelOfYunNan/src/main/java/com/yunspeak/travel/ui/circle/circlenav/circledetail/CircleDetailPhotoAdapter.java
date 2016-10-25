@@ -53,8 +53,8 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
                 PostActivity.start(mContext,id);
             }
         });
-      //FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag());
-        x.image().bind( circleDetailPhotoHolder.mIvImage,mDatas.get(position));
+      FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag());
+       // x.image().bind( circleDetailPhotoHolder.mIvImage,mDatas.get(position));
     }
 
     @Override
@@ -62,11 +62,11 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
         return mDatas.size();
     }
    class CircleDetailPhotoHolder extends RecyclerView.ViewHolder{
-       ImageView mIvImage;
+       SimpleDraweeView mIvImage;
 
        public CircleDetailPhotoHolder(View itemView) {
            super(itemView);
-           mIvImage= (ImageView) itemView;
+           mIvImage= (SimpleDraweeView) itemView;
        }
    }
 }

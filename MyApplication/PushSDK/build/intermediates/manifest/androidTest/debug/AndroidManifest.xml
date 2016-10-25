@@ -32,6 +32,19 @@
     <application android:allowBackup="true" >
         <uses-library android:name="android.test.runner" />
 
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="580db952f43e48571d002d64" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="77161c2f44951cfc27e273398eafcbdb" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="umeng" >
+        </meta-data>
+
         <service
             android:name="com.taobao.accs.ChannelService"
             android:exported="true"

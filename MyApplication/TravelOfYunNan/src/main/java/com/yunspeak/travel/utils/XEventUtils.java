@@ -14,9 +14,11 @@ import org.xutils.x;
 
 import java.io.File;
 import java.net.ConnectException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import id.zelory.compressor.Compressor;
 
 
 /**
@@ -71,6 +73,7 @@ public class XEventUtils {
      * @return
      */
     public static Callback.Cancelable postFileCommonBackJson(String url, Map<String, String> stringMap, List<String> files, int type, HttpEvent event) {
+
         RequestParams requestParams = new RequestParams(url);
         requestParams.setMethod(HttpMethod.POST);
         if (stringMap != null) {
@@ -80,21 +83,24 @@ public class XEventUtils {
         }
         if (files != null) {
             requestParams.setMultipart(true);
-            for (int i=0;i<files.size();i++) {
+            for (int i=0,j=0;i<files.size();i++,j++) {
                 String fileDir = files.get(i);
                 if (StringUtils.isEmpty(fileDir)){
                     continue;
                 }
                 File file=new File(fileDir);
                 if (!file.exists()){
-                    LogUtils.e("上传的第"+i+"个文件的大小为"+file.length());
+                    j--;
                     continue;
                 }
-                requestParams.addBodyParameter("file["+i+"]", file);
+                File compressedImageFile = Compressor.getDefault(UIUtils.getContext()).compressToFile(file);
+                LogUtils.e("上传的第"+j+"个文件的大小为"+compressedImageFile.length());
+                requestParams.addBodyParameter("file["+j+"]", compressedImageFile);
             }
         }
         return x.http().post(requestParams, new MyCommonCallback(type,event));
     }
+
 
 
     static class MyCommonCallback implements Callback.CommonCallback<String> {

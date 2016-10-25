@@ -59,4 +59,6 @@ dependencies {
     compile project(':easeui')
     compile files('libs/MobTools-2016.1020.1028.jar')
     compile project(':PushSDK')
+    compile files('libs/alipaySdk-20161009.jar')
+    compile 'id.zelory:compressor:1.0.3'
 }

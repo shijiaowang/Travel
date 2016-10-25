@@ -86,7 +86,7 @@ public class FrescoUtils {
         if (simpleDraweeView==null || url==null)return;
         Uri uri=Uri.parse(url);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setResizeOptions(new ResizeOptions(200,200))
+               .setResizeOptions(new ResizeOptions(200,200))
                 .build();
 
         DraweeController controller = Fresco.newDraweeControllerBuilder()

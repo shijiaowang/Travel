@@ -99,7 +99,14 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         if (!StringUtils.isEmpty(imageUrl)) {
             mRvPhoto.setVisibility(View.VISIBLE);
             String[] split = imageUrl.split(",");
-            List<String> list = Arrays.asList(split);
+            String[] newImage;
+            if (split.length>6){
+                newImage=new String[6];
+                System.arraycopy(split,0,newImage,0,6);
+            }else {
+             newImage=split;
+            }
+            List<String> list = Arrays.asList(newImage);
             if (circleDetailPhotoAdapter==null){
                 circleDetailPhotoAdapter = new CircleDetailPhotoAdapter(list,mContext,datas.getId(),datas.getCid());
                 mRvPhoto.addItemDecoration(new CircleDetailDecoration(6));

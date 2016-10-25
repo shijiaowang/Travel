@@ -8,6 +8,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 
+import com.umeng.message.PushAgent;
+import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.bean.Register;
@@ -20,6 +22,7 @@ import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LineEditText;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
+import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MD5Utils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.PhoneUtils;
@@ -37,7 +40,7 @@ import java.util.Map;
 
 
 /**
- * Created by Administrator on 2016/8/15 0015.
+ * Created by wangyang on 2016/8/15 0015.
  * 注册界面
  */
 public class RegisterActivity extends BaseTransActivity implements View.OnClickListener, TextWatcher, AvoidFastButton.AvoidFastOnClickListener {
@@ -198,6 +201,13 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     private void dealResult(HttpEvent event) {
         if (event.getType() == REGISTER_REQ) {
             Register register = GsonUtils.getObject(event.getResult(), Register.class);
+            String userId = register.getData().getUser_id();
+            PushAgent.getInstance(this).addAlias(userId, "YUNS_ID", new UTrack.ICallBack() {
+                @Override
+                public void onMessage(boolean b, String s) {
+                    LogUtils.e("是否成功"+b+"信息"+s);
+                }
+            });
             Intent intent = new Intent();
             intent.putExtra(IVariable.USER_ID, register.getData().getUser_id());
             setResult(REGISTER_SUCCESS, intent);

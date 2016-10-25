@@ -73,6 +73,8 @@ public class CustomerServiceActivity extends BaseNetWorkActivity<CustomerService
 
     @Override
     protected void onSuccess(CustomerServiceEvent customerService) {
+        mEtContent.setText("");
+        mEtPhone.setText("");
         ToastUtils.showToast(customerService.getMessage());
     }
 

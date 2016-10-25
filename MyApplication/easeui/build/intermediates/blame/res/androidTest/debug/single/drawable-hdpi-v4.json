@@ -368,12 +368,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_to_group_details_normal.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_video_recorder_start_btn.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_video_recorder_start_btn.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_25.png",
