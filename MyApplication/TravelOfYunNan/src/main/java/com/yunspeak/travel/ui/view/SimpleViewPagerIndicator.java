@@ -199,12 +199,13 @@ public class SimpleViewPagerIndicator extends LinearLayout {
             tv.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    viewPager.setCurrentItem(clickPosition, false);
-                    if (clickPosition == 1 && isShowPop) {//我的订单中的一个页面需要展示pop
+
+                    if (clickPosition == 1 && isShowPop && viewPager.getCurrentItem()==1) {//我的订单中的一个页面需要展示pop
                         if (onPopShowListener != null) {
                             onPopShowListener.onShow(tv);
                         }
                     }
+                    viewPager.setCurrentItem(clickPosition, false);
 
 
                 }

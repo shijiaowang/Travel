@@ -3,9 +3,8 @@
     android:layout_width="match_parent"
     android:background="@color/colorFAFAFA"
     android:paddingLeft="13dp"
-
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <LinearLayout
         android:paddingRight="13dp"
         android:layout_marginTop="9dp"
@@ -14,7 +13,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_icon"
             android:layout_width="45dp"
             android:layout_height="45dp" />
@@ -27,6 +26,7 @@
             android:layout_height="45dp">
             <TextView
                 android:id="@+id/tv_name"
+                style="@style/commonSingleLineTextStyle"
                 android:textColor="@color/color323232"
                 android:textSize="13sp"
                 android:layout_width="wrap_content"

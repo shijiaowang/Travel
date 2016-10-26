@@ -1,13 +1,17 @@
 package com.yunspeak.travel.ui.me.myappoint;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.ColorInt;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
+import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWithMeSelectActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
@@ -24,7 +28,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/8/2 0002.
  * 约伴中
  */
-public class MyAppointingWithMeHolder extends BaseHolder<Object> {
+public class MyAppointingWithMeHolder extends BaseRecycleViewHolder<Object> {
     @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_price) TextView mTvPrice;
     @BindView(R.id.tv_icon_love) FontsIconTextView mTvIconLove;
@@ -45,14 +49,30 @@ public class MyAppointingWithMeHolder extends BaseHolder<Object> {
     @BindColor(R.color.colorb5b5b5) @ColorInt int normalColor;
     @BindString(R.string.activity_circle_love_full) String fullLove;
     @BindString(R.string.activity_circle_love_empty) String emptyLove;
-    public MyAppointingWithMeHolder(Context context) {
-        super(context);
+
+    public MyAppointingWithMeHolder(View itemView) {
+        super(itemView);
     }
 
+
+    private String getDesTextByState(String state,Context mContext) {
+        String des="约伴订单";
+        try {
+            String[] stringArray = mContext.getResources().getStringArray(R.array.with_me_appoint);
+            int i = Integer.parseInt(state);
+            des=stringArray[i];
+        } catch (Exception e) {
+              e.printStackTrace();
+        }
+        return des;
+    }
+
+
+
     @Override
-    protected void initItemDatas(Object datas1, Context mContext, int position) {
+    public void childBindView(int position, Object datas1, final Context mContext) {
         if (datas1 instanceof MyAppointWithMeBean.DataBean) {
-            MyAppointWithMeBean.DataBean datas = (MyAppointWithMeBean.DataBean) datas1;
+            final MyAppointWithMeBean.DataBean datas = (MyAppointWithMeBean.DataBean) datas1;
             FrescoUtils.displayNormal(mIvIcon,datas.getTravel_img());
             mTvPrice.setText(datas.getTotal_price());
             mTvLoveNumber.setText(datas.getCount_like());
@@ -68,7 +88,7 @@ public class MyAppointingWithMeHolder extends BaseHolder<Object> {
             mTvEndDay.setText("招募截止日期：" + FormatDateUtils.FormatLongTime("yyyy-MM-dd", datas.getEnd_time()));
             mTvHowLong.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd", datas.getAdd_time()));
             mTvLine.setText(datas.getRoutes());
-            mTvAppoint.setText(getDesTextByState(datas.getState()));
+            mTvAppoint.setText(getDesTextByState(datas.getState(),mContext));
             String isLike = datas.getIs_like();
             boolean equals;
             if (isLike == null) {
@@ -78,24 +98,23 @@ public class MyAppointingWithMeHolder extends BaseHolder<Object> {
             }
             mTvIconLove.setTextColor(equals ? likeColor : normalColor);
             mTvIconLove.setText(equals ? fullLove : emptyLove);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(mContext,AppointWithMeDetailActivity.class);
+                    intent.putExtra(IVariable.TID,datas.getId());
+                    mContext.startActivity(intent);
+                }
+            });
+            mLlEnter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext,MyWithMeSelectActivity.class);
+                        intent.putExtra(IVariable.ID, datas.getId());
+                        mContext.startActivity(intent);
+                    }
+                });
+            }
         }
     }
 
-    private String getDesTextByState(String state) {
-        String des="约伴订单";
-        try {
-            String[] stringArray = mContext.getResources().getStringArray(R.array.with_me_appoint);
-            int i = Integer.parseInt(state);
-            des=stringArray[i];
-        } catch (Exception e) {
-              e.printStackTrace();
-        }
-        return des;
-    }
-
-
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_activity_my_appoint_with_me);
-    }
-}

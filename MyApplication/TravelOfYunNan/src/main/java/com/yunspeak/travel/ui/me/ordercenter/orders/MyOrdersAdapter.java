@@ -33,7 +33,7 @@ public class MyOrdersAdapter extends TravelBaseAdapter<MyOrdersBean.DataBean> {
         myOrdersHolder.mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EnterAppointDialog.showCommonDialog(mContext, "取消订单", "您是否要取消当前订单？", "确定", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog(mContext, "取消订单", "确定","您是否要取消当前订单？" , new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         Map<String, String> deleteMap = MapUtils.Build().addKey(mContext).addUserId().addId(item.getId()).end();

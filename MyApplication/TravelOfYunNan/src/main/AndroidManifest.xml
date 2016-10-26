@@ -251,6 +251,8 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity" />
+        <activity android:name=".ui.find.travels.TravelsActivity" />
+        <activity android:name=".ui.me.myappoint.historyorders.HistoryOrdersActivity" />
 
         <!-- alipay sdk end -->
      <!--   &lt;!&ndash; 声明SDK所需的service SDK核心功能&ndash;&gt;

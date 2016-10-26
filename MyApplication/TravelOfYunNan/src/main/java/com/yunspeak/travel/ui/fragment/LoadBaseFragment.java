@@ -41,7 +41,7 @@ import butterknife.ButterKnife;
 /**
  * Created by wangyang on 2016/8/3 0003.
  */
-public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment implements XListView.IXListViewListener{
+public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
     public static final int TYPE_FIRST = 0;
     public static final int TYPE_REFRESH = 1;
     public static final int TYPE_LOAD = 2;
@@ -293,30 +293,7 @@ public abstract class LoadBaseFragment<T extends HttpEvent> extends Fragment imp
         xListView.setRefreshTime(getTime());
 
     }
-    @Override
-    public void onRefresh() {
-        onLoad(TYPE_REFRESH);
 
-    }
-
-    @Override
-    public void onLoadMore() {
-        onLoad(TYPE_LOAD);
-    }
-
-    /**
-     * 初始化XlistView
-     * @param listView
-     * @param canPull 是否能下拉刷新
-     * @param canLoadMore 是否可以LoadMore
-     */
-    protected void initXListView(XListView listView, boolean canPull, boolean canLoadMore){
-        if (listView==null)return;
-        listView.setPullLoadEnable(canLoadMore);
-        listView.setPullRefreshEnable(canPull);
-        listView.setXListViewListener(this);
-        listView.setRefreshTime(getTime());
-    }
 
     /**
      * Requests given permission.

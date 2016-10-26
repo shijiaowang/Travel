@@ -3,7 +3,6 @@ package com.yunspeak.travel.ui.circle.circlenav.circledetail.post;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,19 +13,18 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.PostEvent;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailEvent;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +50,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     private String cId;
     private String userId;
     private String isCollect=isFalse;
+    public  String imgLists;
 
     @Override
     protected void initEvent() {
@@ -99,6 +98,14 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
                 isCollect=isFalse;
                 item.setTitle("收藏");
                 break;
+            case TYPE_OTHER:
+                if (StringUtils.isEmpty(imgLists))return;
+                String[] split = imgLists.split(",");
+                List<String> images = Arrays.asList(split);
+                int position = images.indexOf(postEvent.getUrl());
+                if (position==-1)position=0;
+                CirclePreviewActivity.start(this,images,position);
+                break;
             default:
                 dealLoad(postEvent);
                 break;
@@ -121,9 +128,11 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
                 userId = forum.getUser_id();
                 cId = forum.getCid();
                 loadDatas.add(forum);
+                imgLists = parentBean.getData().getImg_lists();
             case TYPE_LOAD:
                 List<PostDetailBean.DataBean.ForumReplyBean> forum_reply = parentBean.getData().getForum_reply();
                 loadDatas.addAll(forum_reply);
+                imgLists = parentBean.getData().getImg_lists();
                 break;
         }
         if (mAdapter == null) {

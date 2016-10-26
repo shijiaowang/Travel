@@ -6,18 +6,30 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.yunspeak.travel.ui.me.mycollection.MyCollectionActivity;
 import com.yunspeak.travel.utils.FormatDateUtils;
+import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.XEventUtils;
 
 import org.xutils.x;
+
+import java.util.Map;
 
 import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/8/14.
  */
-public class CollectionDetailHolder extends BaseHolder<Object> {
+public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
+    private final String tid;
     @BindView(R.id.tv_delete)
     TextView mTvDelete;
     @BindView(R.id.tv_name)
@@ -27,21 +39,29 @@ public class CollectionDetailHolder extends BaseHolder<Object> {
     @BindView(R.id.tv_price)
     TextView mTvPrice;
     @BindView(R.id.iv_icon)
-    ImageView mIvIcon;
+    SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_time)
     TextView mTvTime;
     @BindView(R.id.tv_icon)
     TextView mTvIcon;
 
-    public CollectionDetailHolder(Context context) {
-        super(context);
+    public CollectionDetailHolder(View itemView, String tid) {
+        super(itemView);
+        this.tid = tid;
+    }
+
+
+    private String formatData(String start, String end) {
+        return FormatDateUtils.FormatLongTime("yyyy.MM.dd", start) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", end);
     }
 
     @Override
-    protected void initItemDatas(Object datas, Context mContext, int position) {
+    public void childBindView(final int position, Object datas, final Context mContext) {
+        String id="";
         if (datas instanceof TeamBean.DataBean) {
             TeamBean.DataBean dataBean = (TeamBean.DataBean) datas;
-            x.image().bind(mIvIcon, dataBean.getTravel_img());
+            id=dataBean.getId();
+            FrescoUtils.displayNormal(mIvIcon,dataBean.getTravel_img());
             mTvContent.setText("行程日期:" + formatData(dataBean.getStart_time(), dataBean.getEnd_time()));
             mTvName.setText(dataBean.getRoutes_title());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm", dataBean.getAdd_time()));
@@ -49,7 +69,8 @@ public class CollectionDetailHolder extends BaseHolder<Object> {
             mTvPrice.setText("¥" + dataBean.getTotal_price());
         } else if (datas instanceof DestinationBean.DataBean) {
             DestinationBean.DataBean dataBean = (DestinationBean.DataBean) datas;
-            x.image().bind(mIvIcon, dataBean.getLogo_img());
+            FrescoUtils.displayNormal(mIvIcon,dataBean.getLogo_img());
+            id=dataBean.getId();
             mTvContent.setText(dataBean.getAdd_ress());
             mTvContent.setTextColor(mContext.getResources().getColor(R.color.color969696));
             mTvIcon.setVisibility(View.VISIBLE);
@@ -58,16 +79,17 @@ public class CollectionDetailHolder extends BaseHolder<Object> {
             mTvPrice.setVisibility(View.GONE);
         } else if (datas instanceof ActiveBean.DataBean) {
             ActiveBean.DataBean dataBean = (ActiveBean.DataBean) datas;
-            x.image().bind(mIvIcon, dataBean.getActivity_img());
+            FrescoUtils.displayNormal(mIvIcon,dataBean.getActivity_img());
+            id=dataBean.getId();
             mTvContent.setText("活的期限:" + formatData(dataBean.getStart_time(), dataBean.getEnd_time()));
             mTvName.setText(dataBean.getTitle());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm", dataBean.getAdd_time()));
             mTvPrice.setTextColor(Color.parseColor("#ff8888"));
-
         } else if (datas instanceof PostBean.DataBean) {
             PostBean.DataBean dataBean = (PostBean.DataBean) datas;
-            x.image().bind(mIvIcon, dataBean.getForum_img());
+            FrescoUtils.displayNormal(mIvIcon,dataBean.getForum_img());
             mTvContent.setText(dataBean.getContent());
+            id=dataBean.getId();
             mTvContent.setTextColor(mContext.getResources().getColor(R.color.color969696));
             mTvName.setText(dataBean.getTitle());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm", dataBean.getAdd_time()));
@@ -75,7 +97,8 @@ public class CollectionDetailHolder extends BaseHolder<Object> {
             mTvPrice.setText("#" + dataBean.getCname() + "#");
         } else if (datas instanceof TravelsBean.DataBean) {
             TravelsBean.DataBean dataBean = (TravelsBean.DataBean) datas;
-            x.image().bind(mIvIcon, dataBean.getLogo_img());
+            FrescoUtils.displayNormal(mIvIcon,dataBean.getLogo_img());
+            id=dataBean.getId();
             mTvContent.setText(dataBean.getAuthor());
             mTvContent.setTextColor(mContext.getResources().getColor(R.color.color969696));
             mTvName.setText(dataBean.getTitle());
@@ -83,21 +106,29 @@ public class CollectionDetailHolder extends BaseHolder<Object> {
             mTvPrice.setVisibility(View.GONE);
         } else if (datas instanceof OtherBean.DataBean) {
             OtherBean.DataBean dataBean = (OtherBean.DataBean) datas;
-            x.image().bind(mIvIcon, dataBean.getLogo_img());
+            FrescoUtils.displayNormal(mIvIcon,dataBean.getLogo_img());
             mTvContent.setText(dataBean.getContent());
+            id=dataBean.getId();
             mTvContent.setTextColor(mContext.getResources().getColor(R.color.color969696));
             mTvName.setText(dataBean.getTitle());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm", dataBean.getAdd_time()));
             mTvPrice.setTextColor(Color.parseColor("#ff8888"));
             mTvPrice.setText("#" + dataBean.getCname() + "#");
         }
-    }
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_activity_collection_detail);
-    }
-
-    private String formatData(String start, String end) {
-        return FormatDateUtils.FormatLongTime("yyyy.MM.dd", start) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", end);
+        mTvDelete.setTag(id);
+        mTvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EnterAppointDialog.showCommonDialog(mContext, "取消收藏", "确定", "是否删除当前收藏？", new ParentPopClick() {
+                    @Override
+                    public void onClick(int type) {
+                        Map<String, String> deleteMap = MapUtils.Build().addKey(mContext).addUserId().addTypeId(tid).addId((String) mTvDelete.getTag()).end();
+                        CollectionDetailEvent event = new CollectionDetailEvent();
+                        event.setPosition(position);
+                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_COLLECTION,deleteMap, MyCollectionActivity.COLLECTION_CANCEL, event);
+                    }
+                });
+            }
+        });
     }
 }

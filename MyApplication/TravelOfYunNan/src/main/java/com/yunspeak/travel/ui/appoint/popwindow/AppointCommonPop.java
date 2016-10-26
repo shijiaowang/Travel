@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.appoint.popwindow;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/8 0008.
+ * Created by wangyang on 2016/9/8 0008.
  */
 public class AppointCommonPop implements View.OnClickListener {
 
@@ -50,9 +52,8 @@ public class AppointCommonPop implements View.OnClickListener {
      * @param context 上下文
      * @param view  参考的view
      */
-    public void showDown(Context context,View view){
+    public void showDown(final Context context, View view){
         View viewPopup = LayoutInflater.from(context).inflate(R.layout.item_appoint_pop_select_play_way, null);
-        View vOut = viewPopup.findViewById(R.id.v_out);
         LinearLayout mLlClear = ((LinearLayout) viewPopup.findViewById(R.id.ll_clear));
         TextView mTvCancel = ((TextView) viewPopup.findViewById(R.id.tv_cancel));
         TextView mTvSure = ((TextView) viewPopup.findViewById(R.id.tv_sure));
@@ -86,11 +87,24 @@ public class AppointCommonPop implements View.OnClickListener {
                 rightAdapter.notifyDataSetChanged();
             }
         });
-        vOut.setOnClickListener(this);
         mLlClear.setOnClickListener(this);
         mTvCancel.setOnClickListener(this);
         mTvSure.setOnClickListener(this);
+
         window = new PopupWindow(viewPopup, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+        lp.alpha=0.7f;
+        ((Activity) context).getWindow().setAttributes(lp);
+
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                ((Activity) context).getWindow().setAttributes(lp);
+            }
+        });
         window.setOutsideTouchable(true);
         window.setFocusable(true);
         window.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(android.R.color.transparent)));
@@ -115,8 +129,7 @@ public class AppointCommonPop implements View.OnClickListener {
                 clearSelect();
                 break;
             case R.id.tv_cancel:
-            case R.id.v_out:
-                dismiss();
+                window.dismiss();
                 break;
         }
     }

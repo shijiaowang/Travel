@@ -238,7 +238,6 @@ public class EnterAppointDialog {
             }
         });
         Window window = dialog.getWindow(); //得到对话框
-        window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
         window.setGravity(Gravity.CENTER);
 
         //创建 Dialog

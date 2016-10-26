@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -51,13 +52,19 @@ import butterknife.BindView;
     }
 
     @Override
-    public void childBindView(int position, Object data, Context mContext) {
-        PostDetailBean.DataBean.ForumBean  forum;
+    public void childBindView(int position, Object data, final Context mContext) {
+        final PostDetailBean.DataBean.ForumBean  forum;
         if (data instanceof PostDetailBean.DataBean.ForumBean) {
             forum = (PostDetailBean.DataBean.ForumBean) data;
         } else {
             return;
         }
+        mIvUserIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OtherUserCenterActivity.start(mContext,mIvUserIcon,forum.getUser_id());
+            }
+        });
         if (isFirst) {
             isFirst = false;
             mTvNickName.setText(forum.getNick_name());

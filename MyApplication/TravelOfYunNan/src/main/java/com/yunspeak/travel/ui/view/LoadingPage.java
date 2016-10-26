@@ -25,6 +25,7 @@ public abstract class LoadingPage extends FrameLayout {
     private View loadingView;
     private ImageView errorView;
     private View successView;
+    private View emptyView;
 
     public LoadingPage(Context context) {
         this(context, null);
@@ -47,6 +48,11 @@ public abstract class LoadingPage extends FrameLayout {
         if (loadingView == null) {
              loadingView =  UIUtils.inflate(R.layout.loading_view);
             addView(loadingView);//添加加载页面
+        }
+        //加载读取页面
+        if (emptyView == null) {
+            emptyView = UIUtils.inflate(R.layout.loading_view);
+            addView(emptyView);//添加加载页面
         }
         //加载错误页面
         if (errorView == null) {

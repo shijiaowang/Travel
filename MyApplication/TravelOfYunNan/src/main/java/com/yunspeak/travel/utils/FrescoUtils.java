@@ -44,7 +44,7 @@ public class FrescoUtils {
                 .setImageRequest(request)
                 .setOldController(simpleDraweeView.getController())
                 .build();
-        simpleDraweeView.setController(controller);
+        simpleDraweeView.setHierarchy(hierarchy);
         //获取GenericDraweeHierarchy对象
         simpleDraweeView.setController(controller);
     }
@@ -59,16 +59,15 @@ public class FrescoUtils {
         RoundingParams roundingParams=new RoundingParams();
         roundingParams.setCornersRadius(10f);
         //获取GenericDraweeHierarchy对象
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setResizeOptions(new ResizeOptions(50,50))
+                .build();
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
                 .setRoundingParams(roundingParams)
                 //设置淡入淡出动画持续时间(单位：毫秒ms)
                 .setFadeDuration(1000)
                 //构建
-                .build();
-
-        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setResizeOptions(new ResizeOptions(100,100))
                 .build();
 
         DraweeController controller = Fresco.newDraweeControllerBuilder()

@@ -66,6 +66,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     SwipeRefreshLayout mSwipe;
 
 
+
     @Override
     protected int initResLayout() {
         return R.layout.fragment_home;
@@ -74,6 +75,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
 
     @Override
     public void onSuccess(HomeEvent event) {
+
         HomeBean homeBean = GsonUtils.getObject(event.getResult(), HomeBean.class);
         HomeBean.DataBean data = homeBean.getData();
         List<HomeBean.DataBean.ForumBean> forum = data.getForum();
@@ -81,7 +83,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRvChosen.setAdapter(chosenAdapter);
         mRvChosen.setLayoutManager(gridLayoutManager);
-        mRvChosen.addItemDecoration(new AlbumSpace(6));
+
         canSmoothInNetScroll(mRvChosen, gridLayoutManager);
 
         List<HomeBean.DataBean.DestinationBean> destination = data.getDestination();
@@ -89,7 +91,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRvHotSpots.setLayoutManager(manager);
         mRvHotSpots.setItemAnimator(new DefaultItemAnimator());
-        mRvHotSpots.addItemDecoration(new HotSpotsItemDecoration(RECYCLE_VIEW_ITEM_SPACE));//设置孩子间距为24px;
+
         canSmoothInNetScroll(mRvHotSpots, manager);
 
         List<HomeBean.DataBean.FindTravelBean> findTravel = data.getFind_travel();
@@ -97,7 +99,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         mRvTravels.setAdapter(travelsAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mRvTravels.setLayoutManager(linearLayoutManager);
-        mRvTravels.addItemDecoration(new MyWitheMeDecoration(6));
+
         canSmoothInNetScroll(mRvTravels, linearLayoutManager);
 
         final HomeBean.DataBean.ActivitBean activit = data.getActivit();
@@ -124,6 +126,9 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
 
     @Override
     protected void initListener() {
+        mRvChosen.addItemDecoration(new AlbumSpace(6));
+        mRvHotSpots.addItemDecoration(new HotSpotsItemDecoration(RECYCLE_VIEW_ITEM_SPACE));//设置孩子间距为24px;
+        mRvTravels.addItemDecoration(new MyWitheMeDecoration(6));
         mSwipe.setOnRefreshListener(this);
         mRlSearch.setOnClickListener(this);
         mRvHotSpots.addOnScrollListener(new RecyclerView.OnScrollListener() {

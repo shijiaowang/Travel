@@ -1,8 +1,10 @@
 package com.yunspeak.travel.ui.appoint.popwindow;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,7 +21,7 @@ public class AppointOrderPop {
 
     private PopupWindow window;
 
-    public  void showOrderPop(Context context,View view,String[] title,int clickPosition){
+    public  void showOrderPop(final Context context, View view, String[] title, int clickPosition){
            // 获取弹出视图对象
            View viewPopup = View.inflate(context, R.layout.pop_window_order, null);
 
@@ -52,6 +54,21 @@ public class AppointOrderPop {
            });
            // 响应 视图外的地方 点击关闭当前
            window.setOutsideTouchable(true);
+        WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+        lp.alpha=0.7f;
+        ((Activity) context).getWindow().setAttributes(lp);
+
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                ((Activity) context).getWindow().setAttributes(lp);
+
+
+            }
+        });
            // 响应返回键的关闭
            window.setFocusable(true);
            window.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(android.R.color.transparent)));

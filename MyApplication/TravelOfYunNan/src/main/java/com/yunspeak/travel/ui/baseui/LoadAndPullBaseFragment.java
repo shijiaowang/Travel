@@ -1,38 +1,39 @@
 package com.yunspeak.travel.ui.baseui;
 
+import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
-
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
+import com.aspsine.swipetoloadlayout.OnRefreshListener;
+import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.ParentBean;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
-import com.yunspeak.travel.ui.view.refreshview.XListView;
+import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
-
-import org.xutils.common.util.DensityUtil;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import com.yunspeak.travel.utils.ToastUtils;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/9/30 0030.
  */
 
-public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends ParentBean, F> extends LoadBaseFragment<T> {
-
-    @BindView(R.id.lv_circle_hot)public XListView mXListView;
-    @BindView(R.id.vs_content)public ViewStub mVsContent;
-    public int count = 0;
+public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends ParentBean, F> extends LoadBaseFragment<T> implements OnRefreshListener, OnLoadMoreListener {
+    protected List<F> mDatas;//从网络获取的数据
+    protected BaseRecycleViewAdapter<F> mAdapter;//通用adapter
+    protected RecyclerView mRvCommon;
+    protected SwipeToLoadLayout mSwipe;
+    protected ViewStub mVsContent;
+    protected ViewStub mVsFooter;
 
     public List<F> getmDatas() {
         return mDatas;
@@ -42,55 +43,35 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
         this.mDatas = mDatas;
     }
 
-    protected List<F> mDatas;//从网络获取的数据
-    protected TravelBaseAdapter adapter;
     @Override
     protected int initResLayout() {
-        return R.layout.fragment_common_xlist;
+        return R.layout.acitivity_common_load;
     }
 
     @Override
     protected void initListener() {
-        initXListView(mXListView,canPull(),canLoad());
-        changeMarginTop(0);
-        setXListViewChildSpace(0);
-        if (mXListView!=null){
-            mXListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    try {
-                        childOnItemClick(parent,view,position-1,id);//除去头布局
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
+        mRvCommon = (RecyclerView) inflate.findViewById(R.id.swipe_target);
+        mVsContent= (ViewStub) inflate.findViewById(R.id.vs_content);
+        mVsFooter = (ViewStub) inflate.findViewById(R.id.vs_footer);
+        mSwipe = (SwipeToLoadLayout) inflate.findViewById(R.id.swipe_container);
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View headerView = inflater.inflate(R.layout.layout_google_header, mSwipe, false);
+        View footView = inflater.inflate(R.layout.layout_google_footer, mSwipe, false);
+        mSwipe.setSwipeStyle(SwipeToLoadLayout.STYLE.BLEW);
+        mSwipe.setRefreshHeaderView(headerView);
+        mSwipe.setLoadMoreFooterView(footView);
+        mSwipe.setOnRefreshListener(this);
+        mSwipe.setOnLoadMoreListener(this);
     }
 
-    protected void setXListViewChildSpace(int i) {
-        mXListView.setDividerHeight(DensityUtil.dip2px(i));
+    protected void changeMargin(int space,int top){
+        mRvCommon.addItemDecoration(new MyCollectionDecoration(space,top));
     }
 
-    protected void changeMarginTop(int top) {
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mXListView.getLayoutParams();
-        layoutParams.topMargin= DensityUtil.dip2px(top);
-        mXListView.setLayoutParams(layoutParams);
-    }
 
-    public void childOnItemClick(AdapterView<?> parent, View view, int position, long id) {
-    }
-
-    private boolean canPull() {
-        return true;
-    }
-
-    private boolean canLoad() {
-        return true;
-    }
 
     /**
-     * 获取E的类型
+     * 获取泛型E的具体类型
      *
      * @return
      */
@@ -99,96 +80,132 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
         return (Class<E>) pt.getActualTypeArguments()[1];
     }
 
-    /**
-     * 实例化 T
-     *
-     * @return
-     */
-    public T getTInstance() {
-        try {
-            ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
-            Class c = (Class<T>) pt.getActualTypeArguments()[0];
-            Constructor constructor = c.getConstructor();
-            T e = (T) constructor.newInstance();
-            return e;
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (java.lang.InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        count = type == TYPE_REFRESH ? 0 : getListSize(mDatas);
-        builder.addPageSize().addCount(count);
+        int count=type==TYPE_REFRESH?0:getListSize(mDatas);
+        builder.addPageSize().addCount(count).end();
     }
 
     @Override
     public void onSuccess(T t) {
-        LogUtils.e("loadFragment获取数据啦");
-        loadEnd(mXListView);
-        ParentBean e;
+        ParentBean parentBean = null;
         if (isUserChild()) {//使用孩子的
-            e = GsonUtils.getObject(t.getResult(), useChildedBean());
+            parentBean=GsonUtils.getObject(t.getResult(),useChildedBean());
         } else {
-            e = (E) GsonUtils.getObject(t.getResult(), getEType());
+            parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
         }
-
-        if (adapter == null) {
-            mDatas = (List<F>) e.getData();
-            adapter = initAdapter(mDatas);
-            mXListView.setAdapter(adapter);
-        } else if (t.getType() == TYPE_LOAD) {
-            mDatas.addAll((List<F>) e.getData());
-            adapter.notifyDataSetChanged();
-        } else if (t.getType() == TYPE_REFRESH) {
-            mDatas.clear();
-            mDatas = (List<F>) e.getData();
-            adapter.notifyData(mDatas);
+        List<F> loadDatas=new ArrayList<>();
+        if (isChangeData()){
+            childChangeData(loadDatas,(E)parentBean,t);
         }else {
+            loadDatas  = (List<F>) parentBean.getData();
+        }
+        if (parentBean==null || loadDatas==null || loadDatas.size()==0){
+            mSwipe.setLoadingMore(false);
+            mSwipe.setRefreshing(false);
+            return;
+        }
+        if (mAdapter == null) {
+            mDatas = loadDatas;
+            mAdapter = initAdapter(mDatas);
+            mRvCommon.setHasFixedSize(true);
+            mRvCommon.setAdapter(mAdapter);
+            if (isGridLayoutManager()){
+                StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
+                staggeredGridLayoutManager.setAutoMeasureEnabled(true);
+                mRvCommon.setLayoutManager(staggeredGridLayoutManager);
+            }else {
+                LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(getContext());
+                linearLayoutManager.setAutoMeasureEnabled(true);
+                mRvCommon.setLayoutManager(linearLayoutManager);
+            }
+            mRvCommon.setItemAnimator(new DefaultItemAnimator());
+        } else if (t.getType() == TYPE_LOAD) {
+            mDatas.addAll(loadDatas);
+            if (t.getCode()==2){
+                ToastUtils.showToast("没有更多消息了");
+            }
+            mSwipe.setLoadingMore(false);
+            mAdapter.notifiyData(mDatas);
+        } else if (t.getType() == TYPE_REFRESH) {
+            mDatas = loadDatas;
+            mAdapter.notifiyData(mDatas);
+            mSwipe.setRefreshing(false);
+        } else {
             doOtherSuccessData(t);
         }
 
     }
-
-    /**
-     * 处理其他成功的消息
-     * @param t
-     */
-    protected void doOtherSuccessData(T t) {
-
-    }
-
-
     protected Class<? extends ParentBean> useChildedBean() {
         return getEType();
     }
+    /**
+     * 是否修改获得的数据
+     * @return
+     */
+    protected boolean isChangeData() {
+        return false;
+    }
 
+    protected  void childChangeData(List<F> loadDatas, E parentBean, T t){
+
+    }
+
+    /**
+     * 是否是 瀑布流
+     * @return
+     */
+    protected boolean isGridLayoutManager() {
+        return false;
+    }
+
+    @Override
+    protected void onFail(T t) {
+        super.onFail(t);
+        if (mSwipe!=null) {
+            switch (t.getType()) {
+                case TYPE_REFRESH:
+                    mSwipe.setRefreshing(false);
+                    break;
+                case TYPE_LOAD:
+                    mSwipe.setLoadingMore(false);
+                    break;
+            }
+        }
+    }
+
+    /**
+     * 处理其他逻辑
+     * @param t
+     */
+    protected  void doOtherSuccessData(T t){
+
+    }
+
+    /**
+     * 初始化adapter
+     * @param mDatas
+     * @return
+     */
+    protected abstract BaseRecycleViewAdapter initAdapter(List<F> mDatas);
+
+    /**
+     * 是否使用孩子另外设置设置的bean对象
+     * @return
+
+     */
     protected boolean isUserChild() {
         return false;
     }
 
 
-    /**
-     * 子类去初始化adapter
-     *
-     * @param httpData
-     * @return
-     */
-    protected abstract TravelBaseAdapter initAdapter(List<F> httpData);
-
-
+    @Override
+    public void onLoadMore() {
+        onLoad(TYPE_LOAD);
+    }
 
     @Override
-    protected void onFail(T event) {
-        super.onFail(event);
-        loadEnd(mXListView);
+    public void onRefresh() {
+        onLoad(TYPE_REFRESH);
     }
 }

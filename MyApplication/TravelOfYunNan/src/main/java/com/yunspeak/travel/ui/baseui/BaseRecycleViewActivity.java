@@ -16,6 +16,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -59,7 +60,6 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         mRvCommon = (RecyclerView) findViewById(R.id.swipe_target);
         mVsContent= (ViewStub) findViewById(R.id.vs_content);
         mVsFooter = (ViewStub) findViewById(R.id.vs_footer);
-        changeMargin(10);
         mRvCommon.addItemDecoration(new MyWitheMeDecoration(childDistance()));
         mSwipe = (SwipeToLoadLayout) findViewById(R.id.swipe_container);
         View headerView = inflater.inflate(R.layout.layout_google_header, mSwipe, false);
@@ -75,10 +75,8 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         return 6;
     }
 
-    protected void changeMargin(int top){
-        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mRvCommon.getLayoutParams();
-        layoutParams.topMargin= DensityUtil.dip2px(top);
-        mRvCommon.setLayoutParams(layoutParams);
+    protected void changeMargin(int space,int top){
+        mRvCommon.addItemDecoration(new MyCollectionDecoration(space,top));
     }
 
 
@@ -102,7 +100,8 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     @Override
     protected void onSuccess(T t) {
         ParentBean parentBean = null;
-        if (isUserChild(parentBean)) {//使用孩子的
+        if (isUserChild()) {//使用孩子的
+            parentBean=GsonUtils.getObject(t.getResult(),useChildedBean());
         } else {
             parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
         }
@@ -148,7 +147,9 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         }
 
     }
-
+    protected Class<? extends ParentBean> useChildedBean() {
+        return getEType();
+    }
     /**
      * 是否修改获得的数据
      * @return
@@ -202,9 +203,9 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     /**
      * 是否使用孩子另外设置设置的bean对象
      * @return
-     * @param e
+
      */
-    protected boolean isUserChild(ParentBean e) {
+    protected boolean isUserChild() {
         return false;
     }
 

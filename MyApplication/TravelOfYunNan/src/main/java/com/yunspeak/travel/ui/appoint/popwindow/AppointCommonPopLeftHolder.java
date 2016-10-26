@@ -11,7 +11,7 @@ import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/9/9 0009.
+ * Created by wangyang on 2016/9/9 0009.
  */
 public class AppointCommonPopLeftHolder extends BaseHolder<SelectCommonBean> {
     @BindView(R.id.tv_name) TextView mTvName;

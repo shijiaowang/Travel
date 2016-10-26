@@ -5,8 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 /**
@@ -27,7 +31,19 @@ public class PostImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = mDatas.get(position);
+                PostEvent postEvent=new PostEvent();
+                postEvent.setIsSuccess(true);
+                postEvent.setUrl(url);
+                postEvent.setType(IState.TYPE_OTHER);
+                EventBus.getDefault().post(postEvent);
+            }
+        });
         PostImageHolder postImageHolder = (PostImageHolder) holder;
         FrescoUtils.displayNormal(postImageHolder.mIvImage,mDatas.get(position));
     }

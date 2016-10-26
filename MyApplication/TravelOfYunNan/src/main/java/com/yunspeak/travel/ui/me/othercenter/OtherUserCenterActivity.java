@@ -37,8 +37,10 @@ import com.yunspeak.travel.ui.me.othercenter.userinfo.UserInfoBean;
 import com.yunspeak.travel.ui.me.othercenter.userinfo.UserInfoFragment;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -411,6 +413,13 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
     }
 
     public static void start(Context context, View v, String id) {
+        if (StringUtils.isEmpty(id))return;
+        try {
+            if (id.equals(GlobalUtils.getUserInfo().getId()))return;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(v, v.getWidth() / 2, v.getHeight() / 2, 0, 0);
         Intent intent = new Intent(context, OtherUserCenterActivity.class);
         intent.putExtra(IVariable.USER_ID, id);
@@ -418,7 +427,12 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
     }
 
     public static void start(Context context, String id) {
-
+        if (StringUtils.isEmpty(id))return;
+        try {
+            if (id.equals(GlobalUtils.getUserInfo().getId()))return;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Intent intent = new Intent(context, OtherUserCenterActivity.class);
         intent.putExtra(IVariable.USER_ID, id);
         context.startActivity(intent);

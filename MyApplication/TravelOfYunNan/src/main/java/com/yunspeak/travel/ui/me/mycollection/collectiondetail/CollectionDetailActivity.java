@@ -1,21 +1,13 @@
 package com.yunspeak.travel.ui.me.mycollection.collectiondetail;
 
-import android.app.Activity;
-
-import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentBean;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
-import com.yunspeak.travel.ui.baseui.BaseXListViewActivity;
-import com.yunspeak.travel.ui.baseui.LoadAndRefreshBaseActivity;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.mycollection.MyCollectionActivity;
-import com.yunspeak.travel.ui.view.refreshview.XListView;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
-
-
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
 
@@ -24,7 +16,7 @@ import java.util.List;
  * Created by wangyang on 2016/8/14.
  *收藏详情
  */
-public class CollectionDetailActivity extends BaseXListViewActivity<CollectionDetailEvent,OtherBean,Object> {
+public class CollectionDetailActivity extends BaseRecycleViewActivity<CollectionDetailEvent,OtherBean,Object> {
     private String name;
     private int collectionType;
 
@@ -59,8 +51,7 @@ public class CollectionDetailActivity extends BaseXListViewActivity<CollectionDe
     protected void initEvent() {
         super.initEvent();
         collectionType = getIntent().getIntExtra(MyCollectionActivity.COLLECTION_TYPE, -1);
-        setMarginTop(10);
-        setChildSpace(5);
+         changeMargin(5,10);
         init();
     }
 
@@ -81,14 +72,14 @@ public class CollectionDetailActivity extends BaseXListViewActivity<CollectionDe
 
 
     @Override
-    protected TravelBaseAdapter initAdapter(List<Object> httpData) {
+    protected BaseRecycleViewAdapter<Object> initAdapter(List<Object> httpData) {
         return new CollectionDetailAdapter(this, httpData, collectionType + "");
     }
 
     @Override
     protected void doOtherSuccessData(CollectionDetailEvent collectionDetailEvent) {
+        mAdapter.notifyItemRemoved(collectionDetailEvent.getPosition());
         mDatas.remove(collectionDetailEvent.getPosition());
-        adapter.notifyDataSetChanged();
         ToastUtils.showToast(collectionDetailEvent.getMessage());
     }
 
@@ -106,7 +97,6 @@ public class CollectionDetailActivity extends BaseXListViewActivity<CollectionDe
                 return TravelsBean.class;
             case MyCollectionActivity.COLLECTION_DESTINATION:
                 return DestinationBean.class;
-
             case MyCollectionActivity.COLLECTION_OTHER:
                 return OtherBean.class;
             case MyCollectionActivity.COLLECTION_TEAM:
@@ -116,12 +106,14 @@ public class CollectionDetailActivity extends BaseXListViewActivity<CollectionDe
             default:
                 return PostBean.class;
         }
-
     }
 
+
+
     @Override
-    protected void childAdd(MapUtils.Builder builder) {
-       builder.addTypeId(collectionType+"");
+    protected void childAdd(MapUtils.Builder builder, int type) {
+        super.childAdd(builder, type);
+        builder.addTypeId(collectionType+"");
     }
 
     @Override

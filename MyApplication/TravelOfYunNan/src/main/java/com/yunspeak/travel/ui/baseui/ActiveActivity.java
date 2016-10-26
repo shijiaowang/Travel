@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/7/25 0025.
+ * Created by wangyang on 2016/7/25 0025.
  * 活动界面
  */
 public class ActiveActivity extends LoadingBarBaseActivity<ActiveEvent> implements XScrollView.IXScrollViewListener {

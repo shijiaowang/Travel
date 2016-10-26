@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.appoint.popwindow;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -16,7 +18,7 @@ import org.xutils.common.util.DensityUtil;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/20 0020.
+ * Created by wangyang on 2016/9/20 0020.
  */
 public class AppointSpinnerPop {
     public static void showSpinnerPop(final Context context, View view, final List<SpinnerBean> text) {
@@ -27,6 +29,21 @@ public class AppointSpinnerPop {
 
         // 创建 弹出窗口
         final PopupWindow window = new PopupWindow(viewPopup, DensityUtil.dip2px(105), ViewGroup.LayoutParams.WRAP_CONTENT);
+        WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+        lp.alpha=0.7f;
+        ((Activity) context).getWindow().setAttributes(lp);
+
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                ((Activity) context).getWindow().setAttributes(lp);
+
+
+            }
+        });
         viewPopup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -35,7 +52,6 @@ public class AppointSpinnerPop {
             }
         });
         window.setOutsideTouchable(true);
-
         // 响应返回键的关闭
         window.setFocusable(true);
         window.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(android.R.color.transparent)));

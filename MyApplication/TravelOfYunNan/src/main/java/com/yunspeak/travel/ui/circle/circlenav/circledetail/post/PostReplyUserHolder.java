@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
@@ -18,6 +19,8 @@ import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 
@@ -99,6 +102,23 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
                 }
             });
 
+            mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    OtherUserCenterActivity.start(t,mIvReplyIcon,forumReplyBean.getUser_id());
+                }
+            });
+            mIvImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = forumReplyBean.getReply_img();
+                    PostEvent postEvent=new PostEvent();
+                    postEvent.setIsSuccess(true);
+                    postEvent.setUrl(url);
+                    postEvent.setType(IState.TYPE_OTHER);
+                    EventBus.getDefault().post(postEvent);
+                }
+            });
 
 
         }

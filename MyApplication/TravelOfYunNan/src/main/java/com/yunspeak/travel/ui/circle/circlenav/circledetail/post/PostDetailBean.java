@@ -40,7 +40,9 @@ public class PostDetailBean implements ParentBean{
 
     public static class DataBean {
 
+
         private ForumBean forum;
+        private String img_lists;
 
         private List<ForumReplyBean> forum_reply;
 
@@ -50,6 +52,14 @@ public class PostDetailBean implements ParentBean{
 
         public void setForum(ForumBean forum) {
             this.forum = forum;
+        }
+
+        public String getImg_lists() {
+            return img_lists;
+        }
+
+        public void setImg_lists(String img_lists) {
+            this.img_lists = img_lists;
         }
 
         public List<ForumReplyBean> getForum_reply() {
@@ -72,29 +82,17 @@ public class PostDetailBean implements ParentBean{
             private String status;
             private String is_hot;
             private String update_time;
+            private String is_index;
+            private String click;
+            private String collect;
+            private String reply;
+            private String reprinted;
+            private String count_like;
             private String nick_name;
             private String user_img;
             private String cname;
-            private String replay_count;
             private String is_collect;
-
-            public String getIs_collect() {
-                return is_collect;
-            }
-
-            public void setIs_collect(String is_collect) {
-                this.is_collect = is_collect;
-            }
-
-            public String getReplay_count() {
-                return replay_count;
-            }
-
-            public void setReplay_count(String replay_count) {
-                this.replay_count = replay_count;
-            }
-
-
+            private String replay_count;
 
             private List<LikeBean> like;
 
@@ -186,6 +184,54 @@ public class PostDetailBean implements ParentBean{
                 this.update_time = update_time;
             }
 
+            public String getIs_index() {
+                return is_index;
+            }
+
+            public void setIs_index(String is_index) {
+                this.is_index = is_index;
+            }
+
+            public String getClick() {
+                return click;
+            }
+
+            public void setClick(String click) {
+                this.click = click;
+            }
+
+            public String getCollect() {
+                return collect;
+            }
+
+            public void setCollect(String collect) {
+                this.collect = collect;
+            }
+
+            public String getReply() {
+                return reply;
+            }
+
+            public void setReply(String reply) {
+                this.reply = reply;
+            }
+
+            public String getReprinted() {
+                return reprinted;
+            }
+
+            public void setReprinted(String reprinted) {
+                this.reprinted = reprinted;
+            }
+
+            public String getCount_like() {
+                return count_like;
+            }
+
+            public void setCount_like(String count_like) {
+                this.count_like = count_like;
+            }
+
             public String getNick_name() {
                 return nick_name;
             }
@@ -208,6 +254,22 @@ public class PostDetailBean implements ParentBean{
 
             public void setCname(String cname) {
                 this.cname = cname;
+            }
+
+            public String getIs_collect() {
+                return is_collect;
+            }
+
+            public void setIs_collect(String is_collect) {
+                this.is_collect = is_collect;
+            }
+
+            public String getReplay_count() {
+                return replay_count;
+            }
+
+            public void setReplay_count(String replay_count) {
+                this.replay_count = replay_count;
             }
 
             public List<LikeBean> getLike() {
@@ -253,12 +315,19 @@ public class PostDetailBean implements ParentBean{
             private String status;
             private String is_read;
             private String update_time;
+            private String cid;
             private String like_count;
             private String is_like;
             private String nick_name;
             private String user_img;
             private String r_nick_name;
             private String r_user_img;
+            /**
+             * floor :
+             * nick_name :
+             * content :
+             * reply_img :
+             */
 
             private ReplyBean reply;
 
@@ -356,6 +425,14 @@ public class PostDetailBean implements ParentBean{
 
             public void setUpdate_time(String update_time) {
                 this.update_time = update_time;
+            }
+
+            public String getCid() {
+                return cid;
+            }
+
+            public void setCid(String cid) {
+                this.cid = cid;
             }
 
             public String getLike_count() {

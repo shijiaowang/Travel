@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -50,14 +51,16 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     public static final int SEX_TYPE=1;//性别赛选
     public static final int AUTH_TYPE=2;//认证筛选
 
-    FrameLayout mFlContent;
+   protected FrameLayout mFlContent;
     protected  TextView mTvTitle;
     protected Toolbar mToolbar;
     ImageView mIvPageError;//展示错误页面
     ProgressBar mPbLoading;//加载中
     protected LayoutInflater inflater;
     protected View childView;
+    protected View needHideChildView;
     protected MenuItem item;
+    protected RelativeLayout mRlEmpty;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
         mPbLoading.setVisibility(View.GONE);
         mTvTitle = (TextView) findViewById(R.id.tv_appbar_title);
+        mRlEmpty = (RelativeLayout) findViewById(R.id.rl_empty);
         mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         mFlContent = (FrameLayout) findViewById(R.id.fl_content);
         mToolbar.setTitle("");
@@ -76,6 +80,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         if (supportActionBar != null)
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         childView = inflater.inflate(initLayoutRes(), mFlContent, false);
+        needHideChildView=childView;//默认隐藏孩子的所有内容，
         mFlContent.addView(childView);
         ButterKnife.bind(this);
         initOptions();
@@ -102,7 +107,9 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     protected abstract void initOptions();
 
 
-
+    protected void changeNeedHideView(View view){
+        needHideChildView=view;
+    }
     /**
      * 初始化标题
      *
@@ -140,7 +147,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
      */
     protected void setErrorPage(boolean isShow) {
         mIvPageError.setVisibility(isShow ? View.VISIBLE : View.GONE);
-        childView.setVisibility(View.GONE);//隐藏主布局
+        needHideChildView.setVisibility(View.GONE);//隐藏主布局
     }
 
     /**
@@ -150,8 +157,18 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
      */
     protected void setIsProgress(boolean isShow) {
         setIsProgress(isShow, false);
+        mRlEmpty.setVisibility(View.GONE);
     }
 
+    /**
+     * 显示数据为空
+     * @param isShow
+     */
+    protected void setIsEmpty(boolean isShow){
+        setIsProgress(false,false);
+        mRlEmpty.setVisibility(View.VISIBLE);
+
+    }
     /**
      * 展示加载进度条
      *
@@ -161,12 +178,13 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     protected void setIsProgress(boolean isShow, boolean needHideOther) {
         if (needHideOther) {
             mIvPageError.setVisibility(View.GONE);
-            childView.setVisibility(View.GONE);
+            needHideChildView.setVisibility(View.GONE);
+            mRlEmpty.setVisibility(View.GONE);
         }
         mPbLoading.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
-    protected void  setSuccess(){
-        childView.setVisibility(View.VISIBLE);
+    protected void setSuccess(){
+        needHideChildView.setVisibility(View.VISIBLE);
         mIvPageError.setVisibility(View.GONE);
         mPbLoading.setVisibility(View.GONE);
     }

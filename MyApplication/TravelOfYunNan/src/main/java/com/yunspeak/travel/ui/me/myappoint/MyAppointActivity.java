@@ -1,43 +1,38 @@
 package com.yunspeak.travel.ui.me.myappoint;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.ViewParent;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentBean;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
-import com.yunspeak.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
-import com.yunspeak.travel.ui.baseui.BaseXListViewActivity;
-import com.yunspeak.travel.ui.view.refreshview.XListView;
+import com.yunspeak.travel.ui.me.myappoint.historyorders.HistoryOrdersActivity;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
-import org.xutils.view.annotation.ViewInject;
 import java.util.List;
 
 import butterknife.BindView;
+
 
 /**
  * Created by wangyang on 2016/8/1 0001.
  * 我的约伴
  */
-public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAppointTogetherBean,Object> implements View.OnClickListener {
+public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,MyAppointTogetherBean,Object> implements View.OnClickListener {
     private static final String ENTERING="1";
     private static final String PASSED="2";
-    private static final String HISTORY="3";
     private static final String WITH_ME="4";
     private String type=ENTERING;
     private String preType=ENTERING;
-
+   @BindView(R.id.ll_root)
+    LinearLayout llRoot;
 
 
     @Override
@@ -46,26 +41,12 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    protected void childItemClick(int position) {
-        if (type==WITH_ME) {
-            MyAppointWithMeBean.DataBean dataBean = (MyAppointWithMeBean.DataBean) mDatas.get(position);
-            Intent intent=new Intent(MyAppointActivity.this,AppointWithMeDetailActivity.class);
-            intent.putExtra(IVariable.TID,dataBean.getId());
-            startActivity(intent);
-        }else {
-            MyAppointTogetherBean.DataBean dataBean = (MyAppointTogetherBean.DataBean) mDatas.get(position);
-            Intent intent=new Intent(MyAppointActivity.this,AppointTogetherDetailActivity.class);
-            intent.putExtra(IVariable.T_ID,dataBean.getId());
-            startActivity(intent);
-        }
-    }
+
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         super.otherOptionsItemSelected(item);
-        type=HISTORY;
-        toRefresh();
+        startActivity(new Intent(this, HistoryOrdersActivity.class));
 
     }
 
@@ -74,8 +55,8 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
         super.doOtherSuccessData(myAppointEvent);
         switch (myAppointEvent.getType()){
             case BaseToolBarActivity.TYPE_DELETE:
+                mAdapter.notifyItemChanged(myAppointEvent.getPosition());
                 mDatas.remove(myAppointEvent.getPosition());
-                adapter.notifyDataSetChanged();
                 break;
             case BaseToolBarActivity.TYPE_CHANGE:
                 changeState(myAppointEvent);
@@ -83,7 +64,7 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
             case BaseToolBarActivity.TYPE_DISCUSS:
                 MyAppointTogetherBean.DataBean dataBean = (MyAppointTogetherBean.DataBean)mDatas.get(myAppointEvent.getPosition());
                 dataBean.setState("10");
-                adapter.notifyDataSetChanged();
+                mAdapter.notifyItemChanged(myAppointEvent.getPosition());
                 ToastUtils.showToast(myAppointEvent.getMessage());
                 break;
         }
@@ -92,8 +73,17 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
     @Override
     protected void initEvent() {
         super.initEvent();
-        mVsHeader.setLayoutResource(R.layout.activity_my_appoint_header);
-        mVsHeader.inflate();
+        needHideChildView=mRvCommon;//此页面不隐藏头布局
+        try {
+            mFlContent.removeView(mRlEmpty);
+            mRlEmpty.setVisibility(View.GONE);
+            llRoot.addView(mRlEmpty);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mVsContent.setLayoutResource(R.layout.activity_my_appoint_header);
+        mVsContent.inflate();
+        changeMargin(5,10);
         RadioButton mTvEntering= (RadioButton) findViewById(R.id.tv_entering);
         RadioButton mTvPassed= (RadioButton) findViewById(R.id.tv_passed);
         RadioButton mTvWithMe = (RadioButton) findViewById(R.id.tv_with_me);
@@ -122,7 +112,7 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
                     dataBean.setState("9");
                     break;
             }
-            adapter.notifyDataSetChanged();
+            mAdapter.notifyItemChanged(myAppointEvent.getPosition());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,13 +121,12 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
 
 
 
+
     @Override
-    protected void childAdd(MapUtils.Builder builder) {
+    protected void childAdd(MapUtils.Builder builder, int t) {
+        super.childAdd(builder, t);
         builder.addType(type);
     }
-
-
-
 
     @Override
     protected String initUrl() {
@@ -145,8 +134,8 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
     }
 
     @Override
-    protected TravelBaseAdapter initAdapter(List<Object> httpData) {
-        return new MyAppointAdapter(this,httpData);
+    protected BaseRecycleViewAdapter<Object> initAdapter(List<Object> httpData) {
+        return new MyAppointAdapter(httpData,this);
     }
 
     @Override
@@ -183,7 +172,9 @@ public class MyAppointActivity extends BaseXListViewActivity<MyAppointEvent,MyAp
 
     private void toRefresh() {
         if (type.equals(preType))return;
+        setIsProgress(true);
         preType=type;
+        resetIsFirstInflate();
         onLoad(TYPE_REFRESH);
     }
 

@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.me.ordercenter;
 
+import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -36,9 +38,6 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
     private List<Fragment> fragments;
 
 
-
-
-
     private void init() {
         mIndicator.setChildMargin(10);
         mIndicator.changeToShowPop();
@@ -47,12 +46,22 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
     }
 
     private void showPop(final TextView tv) {
-
         // 获取弹出视图对象
         View viewPopup = View.inflate(OrdersCenterActivity.this, R.layout.activity_my_orders_pop, null);
         // 创建 弹出窗口
         // PopupWindow window=new PopupWindow(视图对象, 宽度, 高度);
         final PopupWindow window = new PopupWindow(viewPopup, tv.getWidth(), (int) getResources().getDimension(R.dimen.activityMyOrdersPopHeight));
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha=0.7f;
+        getWindow().setAttributes(lp);
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                getWindow().setAttributes(lp);
+            }
+        });
          TextView mTvCurSor1 = (TextView) viewPopup.findViewById(R.id.tv_cursor1);
         TextView mTvCurSor2 = (TextView) viewPopup.findViewById(R.id.tv_cursor2);
         List<String> popOrdersType = getPopOrdersType();
@@ -125,10 +134,11 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
                 showPop(tv);
             }
         });
-        mVpOrders.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mVpOrders.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 mIndicator.scroll(position, positionOffset);
+
             }
 
             @Override

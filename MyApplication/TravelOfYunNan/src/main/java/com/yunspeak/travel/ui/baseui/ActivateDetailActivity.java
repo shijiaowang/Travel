@@ -8,11 +8,13 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.ActiveDetail;
+import com.yunspeak.travel.bean.ActiveDetailBean;
 import com.yunspeak.travel.event.ActiveDetailEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.utils.FormatDateUtils;
+import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -32,9 +34,9 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailE
     @ViewInject(R.id.wv_html)
     private WebView mWvHtml;
     @ViewInject(R.id.iv_bg)
-    private ImageView mIvBg;
+    private SimpleDraweeView mIvBg;
     @ViewInject(R.id.iv_icon)
-    private ImageView mIvIcon;
+    private SimpleDraweeView mIvIcon;
     @ViewInject(R.id.tv_name)
     private TextView mTvName;
     @ViewInject(R.id.tv_content)
@@ -107,17 +109,16 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailE
 
 
     private void dealData(ActiveDetailEvent event) {
-        ActiveDetail activeDetail = GsonUtils.getObject(event.getResult(), ActiveDetail.class);
-        ActiveDetail.DataBean data = activeDetail.getData();
+        ActiveDetailBean activeDetail = GsonUtils.getObject(event.getResult(), ActiveDetailBean.class);
+        ActiveDetailBean.DataBean data = activeDetail.getData();
         mWvHtml.loadUrl(data.getUrl());
-        ImageOptions imageOptions=new ImageOptions.Builder().setSize(DensityUtil.getScreenWidth(),DensityUtil.dip2px(228)).setCrop(true).build();
-        x.image().bind(mIvBg,data.getTitle_img(),imageOptions);
-        x.image().bind(mIvIcon,data.getActivity_img());
+        FrescoUtils.displayNormal(mIvBg,data.getTitle_img());
+        FrescoUtils.displayIcon(mIvBg,data.getActivity_img());
         mTvName.setText(data.getTitle());
         mTvContnet.setText(data.getContent());
         mTvMoney.setText("¥" + data.getPrice());
         mTvMoney2.setText("¥"+data.getPrice());
         mTvNumber.setText(data.getMax_people()+"人");
-        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getStar_time())+"-"+FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getEnd_time()));
+        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getStart_time())+"-"+FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getEnd_time()));
     }
 }

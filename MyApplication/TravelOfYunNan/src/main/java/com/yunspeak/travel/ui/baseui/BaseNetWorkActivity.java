@@ -82,9 +82,14 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         }
         setIsProgress(false);
         if (t.isSuccess()){
+            if (isFirstInflate && t.getCode()==2){
+                setIsEmpty(true);
+                onSuccess(t);
+                return;
+            }
             try {
                 isFirstInflate =false;
-                childView.setVisibility(View.VISIBLE);//读取完毕，展示主页
+                needHideChildView.setVisibility(View.VISIBLE);//读取完毕，展示主页
                 onSuccess(t);
             }catch (Exception e){
                 e.printStackTrace();
@@ -136,6 +141,12 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         }
     }
 
+    /**
+     * 重置为初次加载
+     */
+   public void resetIsFirstInflate(){
+       isFirstInflate=true;
+   }
 
     @Override
     protected void onDestroy() {

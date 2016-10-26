@@ -9,7 +9,7 @@ import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/9 0009.
+ * Created by wangyang on 2016/9/9 0009.
  * 公用Adapter
  */
 public class AppointCommonPopAdapter extends TravelBaseAdapter<SelectCommonBean> {

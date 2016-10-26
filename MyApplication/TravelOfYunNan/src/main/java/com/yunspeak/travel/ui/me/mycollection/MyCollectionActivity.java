@@ -29,16 +29,6 @@ public class MyCollectionActivity extends BaseToolBarActivity implements View.On
     @BindView(R.id.ll_team) LinearLayout mLlTeam;
     @BindView(R.id.ll_post) LinearLayout mLlPost;
     @BindView(R.id.ll_other) LinearLayout mLlOther;
-
-
-
-
-
-
-
-
-
-
     @Override
     public void onClick(View v) {
         Intent intent=new Intent(this, CollectionDetailActivity.class);
