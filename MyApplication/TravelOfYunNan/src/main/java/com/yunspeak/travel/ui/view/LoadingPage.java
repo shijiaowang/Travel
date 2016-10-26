@@ -20,6 +20,7 @@ public abstract class LoadingPage extends FrameLayout {
     private static final int STATE_LOAD_LOADING = 1;//加载中
     private static final int STATE_LOAD_ERROR = 2;//加载错误
     private static final int STATE_LOAD_SUCCESS = 3;//加载成功
+    private static final int STATE_LOAD_EMPTY = 4;//数据为空
     private int mCurrentState = STATE_LOAD_UNLOAD;//当前
     private int mPreState = STATE_LOAD_UNLOAD;//上一次
     private View loadingView;
@@ -77,6 +78,7 @@ public abstract class LoadingPage extends FrameLayout {
         loadingView.setVisibility((mCurrentState == STATE_LOAD_UNLOAD || mCurrentState == STATE_LOAD_LOADING) ? View.VISIBLE : View.GONE);
         //是否展示错误页面
         errorView.setVisibility(mCurrentState == STATE_LOAD_ERROR ? View.VISIBLE : View.GONE);
+        emptyView.setVisibility(mCurrentState == STATE_LOAD_EMPTY ? View.VISIBLE : View.GONE);
         //这是加载成功的界面
         if (mCurrentState == STATE_LOAD_SUCCESS && successView == null) {
             successView = onCreateSuccessView();
@@ -99,6 +101,7 @@ public abstract class LoadingPage extends FrameLayout {
             mCurrentState = STATE_LOAD_LOADING;
             loadingView.setVisibility(VISIBLE);
             errorView.setVisibility(GONE);
+            emptyView.setVisibility(GONE);
             onLoad(type);
         }
     }
@@ -151,7 +154,8 @@ public abstract class LoadingPage extends FrameLayout {
     public enum ResultState {
         //成功 失败 与数据为�?
         STATE_SUCCESS(STATE_LOAD_SUCCESS),
-        STATE_ERROR(STATE_LOAD_ERROR);
+        STATE_ERROR(STATE_LOAD_ERROR),
+        STATE_EMPTY(STATE_LOAD_EMPTY);
         private int state;
 
         /**

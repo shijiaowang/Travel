@@ -1,21 +1,10 @@
 package com.yunspeak.travel.ui.appoint.withme;
-
-import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.view.View;
-import android.widget.AdapterView;
-
-import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
-import com.yunspeak.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.yunspeak.travel.ui.view.refreshview.XListView;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 
 /**
@@ -26,24 +15,13 @@ public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEve
 
 
     @Override
-    protected TravelBaseAdapter initAdapter(List<AppointWithMeBean.DataBean> httpData) {
-        return new AppointWithMeAdapter(getContext(), httpData);
+    protected BaseRecycleViewAdapter<AppointWithMeBean.DataBean> initAdapter(List<AppointWithMeBean.DataBean> httpData) {
+        return new AppointWithMeAdapter(httpData,getContext());
     }
-
-
-
     @Override
     protected void initListener() {
        super.initListener();
-        setXListViewChildSpace(5);
-        mXListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), AppointWithMeDetailActivity.class);
-                intent.putExtra(IVariable.TID, getmDatas().get(position - 1).getId());
-                startActivity(intent);
-            }
-        });
+        changeMargin(5,10);
     }
     @Override
     protected String initUrl() {

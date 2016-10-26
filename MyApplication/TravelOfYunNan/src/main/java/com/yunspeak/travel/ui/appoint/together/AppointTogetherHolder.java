@@ -2,20 +2,29 @@ package com.yunspeak.travel.ui.appoint.together;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
+import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
+import com.yunspeak.travel.utils.XEventUtils;
 
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -23,7 +32,7 @@ import butterknife.BindView;
 /**
  * Created by Administrator on 2016/7/20 0020.
  */
-public class AppointTogetherHolder extends BaseHolder<AppointTogetherBean.DataBean> {
+public class AppointTogetherHolder extends BaseRecycleViewHolder<AppointTogetherBean.DataBean> {
     @BindView(R.id.fl_title) FlowLayout mFlTitle;
     @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_time)TextView mTvTime;
@@ -36,15 +45,14 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogetherBean.DataBe
     @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_how_long) TextView mTvHowLong;
-    private LayoutInflater inflater;
 
-
-    public AppointTogetherHolder(Context context) {
-        super(context);
+    public AppointTogetherHolder(View itemView) {
+        super(itemView);
     }
 
+
     @Override
-    protected void initItemDatas(AppointTogetherBean.DataBean datas, Context mContext, int position) {
+    public void childBindView(final int position, final AppointTogetherBean.DataBean datas, final Context mContext) {
         mTvMoney.setText(datas.getTotal_price());
         mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
         mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
@@ -55,31 +63,46 @@ public class AppointTogetherHolder extends BaseHolder<AppointTogetherBean.DataBe
             mFlTitle.removeAllViews();
         }
         FrescoUtils.displayRoundIcon(mIvIcon,datas.getTravel_img());
-        String[] split = datas.getLabel().split(",");
+        String label = datas.getLabel();
+        if (StringUtils.isEmpty(label))return;
+        String[] split = label.split(",");
         for (int i = 0; i < split.length; i++) {
-            TextView textView = (TextView) inflater.inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
+            View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_appoint_title, mFlTitle,false);
+            TextView textView = (TextView) inflate.findViewById(R.id.tv_text);
             textView.setText(split[i]);
-            mFlTitle.addView(textView);
+            mFlTitle.addView(inflate);
         }
         List<AppointTogetherBean.DataBean.RoutesBean> routes = datas.getRoutes();
         StringBuffer stringBuffer = new StringBuffer();
-         if (routes!=null && routes.size()!=0) {
-             for (AppointTogetherBean.DataBean.RoutesBean bean : routes) {
-                 stringBuffer.append(bean.getTitle() + "-");
-             }
-             String add = stringBuffer.toString().substring(0, stringBuffer.toString().length() - 1);
-             mTvAdd.setText(add);
-         }
+        if (routes!=null && routes.size()!=0) {
+            for (AppointTogetherBean.DataBean.RoutesBean bean : routes) {
+                stringBuffer.append(bean.getTitle() + "-");
+            }
+            String add = stringBuffer.toString().substring(0, stringBuffer.toString().length() - 1);
+            mTvAdd.setText(add);
+        }
         mTvHaveNumber.setText("已有: "+datas.getNow_people()+"人");
         mTvPlanNumber.setText("计划: "+datas.getMax_people()+"人");
         mTvStartAndTime.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time()+"000",datas.getEnd_time()+"000"));
 
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, AppointTogetherDetailActivity.class);
+                intent.putExtra(IVariable.T_ID,datas.getId());
+                mContext.startActivity(intent);
+            }
+        });
+          mTvIconLove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addType(IVariable.PLAY_TOGETHER_CLICK_TYPE).addtId(datas.getId()).addRUserId(datas.getUser_id()).end();
+                AppointTogetherEvent event=new AppointTogetherEvent();
+                event.setClickPosition(position);
+                XEventUtils.postUseCommonBackJson(IVariable.APPOINT_CLICK_ZAN,end, LoadBaseFragment.TYPE_CLICK_ZAN,event);
 
-    }
+            }
+        });
 
-    @Override
-    public View initRootView(Context mContext) {
-        inflater = LayoutInflater.from(mContext);
-        return inflateView(R.layout.item_fragment_appoint_play_together);
     }
 }

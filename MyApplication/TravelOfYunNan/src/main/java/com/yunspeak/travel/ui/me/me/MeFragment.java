@@ -301,6 +301,11 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
     }
 
+    @Override
+    public void onRefresh() {
+        onLoad(TYPE_REFRESH);
+    }
+
     /**
      * 下拉刷新
      */

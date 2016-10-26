@@ -11,6 +11,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.appoint.aite.AiteBean;
 import com.yunspeak.travel.ui.appoint.aite.Follow;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.view.LoadingPage;
@@ -57,8 +58,8 @@ public class FanAndFollowFragment extends LoadAndPullBaseFragment<FanAndFollowEv
     }
 
     @Override
-    protected TravelBaseAdapter initAdapter(List<Follow> httpData) {
-        return new FanAdapter(getContext(),httpData);
+    protected BaseRecycleViewAdapter<Follow> initAdapter(List<Follow> httpData) {
+        return new FanAdapter(httpData,getContext());
     }
 
     /**

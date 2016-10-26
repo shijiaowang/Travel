@@ -51,7 +51,7 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
     protected View inflate;
-    private boolean isSuccessed=false;
+    protected boolean isSuccessed=false;
     private boolean isVisible=false;
     private boolean isPrepared=false;
     private boolean isFirst=true;
@@ -159,6 +159,10 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
             return;
         }
                 if (t.isSuccess()) {
+                    if (!isSuccessed && t.getCode()==2&& !isUseChildEmpty()){
+                        setState(LoadingPage.ResultState.STATE_EMPTY);
+                        return;
+                    }
                     try {
                         isSuccessed = true;
                         setState(LoadingPage.ResultState.STATE_SUCCESS);
@@ -174,6 +178,14 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
                     onFail(t);
                 }
             }
+
+    /**
+     * 是否使用孩子的空页面
+     * @return
+     */
+    protected boolean isUseChildEmpty() {
+        return false;
+    }
 
 
     public abstract void onSuccess(T t);

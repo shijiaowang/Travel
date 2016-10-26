@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.me.ordercenter.CouponBean;
 import com.yunspeak.travel.utils.FormatDateUtils;
 
@@ -17,7 +18,7 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/8/12 0012.
  */
-public class CouponHolder extends BaseHolder<CouponBean> {
+public class CouponHolder extends BaseRecycleViewHolder<CouponBean> {
 
     @BindView(R.id.v_line) View line1;
     @BindView(R.id.v_line2) View line2;
@@ -29,14 +30,14 @@ public class CouponHolder extends BaseHolder<CouponBean> {
     @BindColor(R.color.colorff806d) @ColorInt int usedColor;
     @BindColor(R.color.colorb5b5b5) @ColorInt int runOut;//已过期
     private boolean isCouponFragment;
-    public CouponHolder(Context context, boolean isCouponFragment) {
-        super(context);
-        this.isCouponFragment=isCouponFragment;
 
+    public CouponHolder(View itemView, boolean isCouponFragment) {
+        super(itemView);
+        this.isCouponFragment= isCouponFragment;
     }
 
     @Override
-    protected void initItemDatas(CouponBean datas, Context mContext, int position) {
+    public void childBindView(int position, CouponBean datas, Context mContext) {
         mTvValue.setText("¥"+datas.getNumber());
         mTvHow.setText(datas.getNumber()+"元优惠券");
         mTvTime.setText("有效期至"+FormatDateUtils.FormatLongTime(IVariable.Y_M_D,datas.getEnd_time()));
@@ -54,17 +55,12 @@ public class CouponHolder extends BaseHolder<CouponBean> {
         /**
          * 优惠券页面没有line2，确认订单页面没有line1
          */
-          if (isCouponFragment){
-              line2.setVisibility(View.GONE);
-              line1.setVisibility(View.VISIBLE);
-          }else {
-              line2.setVisibility(View.VISIBLE);
-              line1.setVisibility(View.GONE);
-          }
-    }
-
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_activity_confirm_orders);
+        if (isCouponFragment){
+            line2.setVisibility(View.GONE);
+            line1.setVisibility(View.VISIBLE);
+        }else {
+            line2.setVisibility(View.VISIBLE);
+            line1.setVisibility(View.GONE);
+        }
     }
 }

@@ -1,18 +1,23 @@
 package com.yunspeak.travel.ui.appoint.withme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.yunspeak.travel.utils.StringUtils;
 
 import butterknife.BindView;
 
@@ -20,7 +25,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/21 0021.
  * 找人带约伴
  */
-public class AppointWithMeHolder extends BaseHolder<AppointWithMeBean.DataBean> {
+public class AppointWithMeHolder extends BaseRecycleViewHolder<AppointWithMeBean.DataBean> {
     @BindView(R.id.fl_title) FlowLayout mFlTitle;
     @BindView(R.id.tv_icon_love) FontsIconTextView mTvIconLove;
     @BindView(R.id.iv_bg) SimpleDraweeView mIvBg;
@@ -32,12 +37,15 @@ public class AppointWithMeHolder extends BaseHolder<AppointWithMeBean.DataBean> 
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_how_long) TextView mTvHowLong;
     @BindView(R.id.tv_start_and_long)TextView mTvStartAndLong;
-    public AppointWithMeHolder(Context context) {
-        super(context);
+
+    public AppointWithMeHolder(View itemView) {
+        super(itemView);
     }
 
+
+
     @Override
-    protected void initItemDatas(AppointWithMeBean.DataBean datas, Context mContext, int position) {
+    public void childBindView(int position, final AppointWithMeBean.DataBean datas, final Context mContext) {
         mTvDream.setText("理想地:"+datas.getRoutes());
         mTvHaveNumber.setText("已有:"+datas.getNow_people()+"人");
         mTvMoney.setText("预算：¥"+datas.getTotal_price());
@@ -50,17 +58,23 @@ public class AppointWithMeHolder extends BaseHolder<AppointWithMeBean.DataBean> 
         if (mFlTitle!=null && mFlTitle.getChildCount()>0){
             mFlTitle.removeAllViews();
         }
-        String[] split = datas.getLabel().split(",");
-        if (split==null || split.length==0)return;
+        String label = datas.getLabel();
+        if (StringUtils.isEmpty(label))return;
+        String[] split = label.split(",");
         for (int i =  0; i < split.length; i++) {
-            TextView textView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
+            View view =View.inflate(mContext,R.layout.item_fragment_appoint_title, mFlTitle);
+            TextView textView = (TextView) view.findViewById(R.id.tv_text);
             textView.setText(split[i]);
-            mFlTitle.addView(textView);
+            mFlTitle.addView(view);
         }
-    }
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, AppointWithMeDetailActivity.class);
+                intent.putExtra(IVariable.TID,datas.getId());
+                mContext.startActivity(intent);
+            }
+        });
 
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_fragment_appoint_play_with_me);
     }
 }

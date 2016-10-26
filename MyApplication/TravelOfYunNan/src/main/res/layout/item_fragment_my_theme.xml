@@ -3,14 +3,14 @@
     android:background="@color/colorFAFAFA"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_marginLeft="13dp"
         android:layout_marginTop="7dp"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_user_icon"
             android:layout_width="41dp"
             android:layout_height="41dp"

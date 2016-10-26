@@ -1,24 +1,35 @@
 package com.yunspeak.travel.ui.me.ordercenter.orders;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
+import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
+import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.XEventUtils;
+
+import java.util.Map;
 
 import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/8/11 0011.
  */
-public class MyOrdersHolder extends BaseHolder<MyOrdersBean.DataBean> {
+public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean> {
     @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
     @BindView(R.id.tv_start_and_long)TextView mTvStartAndLong;
     @BindView(R.id.tv_day_and_night) TextView mTvDayAndNight;
@@ -33,12 +44,17 @@ public class MyOrdersHolder extends BaseHolder<MyOrdersBean.DataBean> {
     @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_total_price) TextView mTvTotalPrice;
     @BindView(R.id.tv_price) TextView mTvPrice;
-    public MyOrdersHolder(Context context) {
-        super(context);
+
+    public MyOrdersHolder(View itemView) {
+        super(itemView);
     }
 
+
+
+
+
     @Override
-    protected void initItemDatas(MyOrdersBean.DataBean datas, Context mContext, int position) {
+    public void childBindView(final int position, final MyOrdersBean.DataBean datas, final Context mContext) {
         FrescoUtils.displayRoundIcon(mIvIcon, datas.getTravel_img());
         mTvPlanNumber.setVisibility(View.GONE );
         mTvHaveNumber.setText("已有: " + datas.getPeople() + "人");
@@ -64,10 +80,44 @@ public class MyOrdersHolder extends BaseHolder<MyOrdersBean.DataBean> {
             mTvCancel.setVisibility(View.VISIBLE);
         }
         mTvStatus.setText(status);
-    }
+        mTvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EnterAppointDialog.showCommonDialog(mContext, "取消订单", "确定","您是否要取消当前订单？" , new ParentPopClick() {
+                    @Override
+                    public void onClick(int type) {
+                        Map<String, String> deleteMap = MapUtils.Build().addKey(mContext).addUserId().addId(datas.getId()).end();
+                        MyOrdersEvent event = new MyOrdersEvent();
+                        event.setPosition(position);
+                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_ORDERS,deleteMap, BaseToolBarActivity.TYPE_DELETE, event);
+                    }
+                });
 
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_fragment_orders);
+            }
+        });
+       mBPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String type = datas.getType();
+                String orderId = datas.getId();
+                Intent intent=new Intent(mContext, ConfirmOrdersActivity.class);
+                intent.putExtra(IVariable.TYPE,type);
+                intent.putExtra(IVariable.ID,orderId);
+                mContext.startActivity(intent);
+
+            }
+        });
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = datas.getType();
+                String orderId = datas.getId();
+                Intent intent=new Intent(mContext, OrdersDetailActivity.class);
+                intent.putExtra(IVariable.TYPE,type);
+                intent.putExtra(IVariable.ID,orderId);
+                mContext.startActivity(intent);
+            }
+        });
     }
 }

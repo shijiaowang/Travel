@@ -6,7 +6,7 @@ import android.widget.ListView;
 
 
 /**
- * Created by Administrator on 2016/7/6 0006.
+ * Created by wangyang on 2016/7/6 0006.
  * 解决嵌套ScrollView只显示一行问题
  */
 public class ToShowAllListView extends ListView {

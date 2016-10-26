@@ -1,28 +1,27 @@
 package com.yunspeak.travel.ui.appoint.withme;
 
 import android.content.Context;
+import android.view.ViewGroup;
 
+import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/21 0021.
+ * Created by wangyang on 2016/7/21 0021.
  */
-public class AppointWithMeAdapter extends TravelBaseAdapter<AppointWithMeBean.DataBean> {
-    public AppointWithMeAdapter(Context mContext, List<AppointWithMeBean.DataBean> mDatas) {
-        super(mContext, mDatas);
-    }
+public class AppointWithMeAdapter extends BaseRecycleViewAdapter<AppointWithMeBean.DataBean> {
 
-
-    @Override
-    protected void initListener(BaseHolder baseHolder, AppointWithMeBean.DataBean item, int position) {
-
+    public AppointWithMeAdapter(List<AppointWithMeBean.DataBean> mDatas, Context mContext) {
+        super(mDatas, mContext);
     }
 
     @Override
-    protected BaseHolder initHolder(int position) {
-        return new AppointWithMeHolder(mContext);
+    public BaseRecycleViewHolder<AppointWithMeBean.DataBean> onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new AppointWithMeHolder(inflateView(R.layout.item_fragment_appoint_play_with_me,parent));
     }
 }

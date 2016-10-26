@@ -1,32 +1,28 @@
 package com.yunspeak.travel.ui.circle.hotpost;
 
 import android.content.Context;
+import android.view.ViewGroup;
 
+import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/8 0008.
+ * Created by wangyang on 2016/7/8 0008.
  */
-public class CircleHotAdapter extends TravelBaseAdapter<HotPostBean.DataBean> {
+public class CircleHotAdapter extends BaseRecycleViewAdapter<HotPostBean.DataBean> {
 
 
-    public CircleHotAdapter(Context mContext, List<HotPostBean.DataBean> mDatas) {
-        super(mContext, mDatas);
+    public CircleHotAdapter(List<HotPostBean.DataBean> mDatas, Context mContext) {
+        super(mDatas, mContext);
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, HotPostBean.DataBean item, int position) {
-
+    public BaseRecycleViewHolder<HotPostBean.DataBean> onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new CircleHotHolder(inflateView(R.layout.item_fragment_circle_hot,parent));
     }
-
-
-    @Override
-    protected BaseHolder initHolder(int position) {
-        return new CircleHotHolder(super.mContext);
-    }
-
-
 }

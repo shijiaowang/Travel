@@ -173,6 +173,11 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         }
     }
 
+    @Override
+    public void onRefresh() {
+        onLoad(TYPE_REFRESH);
+    }
+
     class HomePagerAdapter extends PagerAdapter {
         private List<HomeBean.DataBean.BannerBean> data;
 

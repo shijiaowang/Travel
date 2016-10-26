@@ -2,10 +2,14 @@ package com.yunspeak.travel.ui.me.fansandfollow;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.appoint.aite.Follow;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 
 
 import java.util.List;
@@ -13,28 +17,15 @@ import java.util.List;
 /**
  * Created by wangyang on 2016/7/18 0018.
  */
-public class FanAdapter extends TravelBaseAdapter<Follow> {
-    public FanAdapter(Context mContext, List<Follow> mDatas) {
-        super(mContext, mDatas);
+public class FanAdapter extends BaseRecycleViewAdapter<Follow> {
+
+
+    public FanAdapter(List<Follow> mDatas, Context mContext) {
+        super(mDatas, mContext);
     }
 
-
     @Override
-    protected void initListener(BaseHolder baseHolder, Follow item, int position) {
-        FanHolder fanHolder = (FanHolder) baseHolder;
-        if (position==mDatas.size()-1){
-            fanHolder.mVLine.setVisibility(View.GONE);
-        }else {
-            fanHolder.mVLine.setVisibility(View.VISIBLE);
-        }
-    }
-
-
-
-
-
-    @Override
-    protected BaseHolder initHolder(int position) {
-        return new FanHolder(super.mContext);
+    public BaseRecycleViewHolder<Follow> onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new FanHolder(inflateView(R.layout.item_activity_follow_and_fan,parent),mDatas);
     }
 }

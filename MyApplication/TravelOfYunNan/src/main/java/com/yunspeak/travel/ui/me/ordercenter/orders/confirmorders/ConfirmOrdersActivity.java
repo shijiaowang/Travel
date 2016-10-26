@@ -1,6 +1,8 @@
 package com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders;
 
 import android.app.Activity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 import com.yunspeak.travel.ui.me.ordercenter.CouponBean;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
@@ -38,7 +41,8 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     public static final int SUBMIT_USED=54;
     @BindView(R.id.tv_pay_zfb) TextView mTvPayZfb;
     @BindView(R.id.tv_pay_wx) TextView mTvPayWx;
-    @BindView(R.id.lv_coupon) ToShowAllListView mLvCoupon;
+    @BindView(R.id.rv_coupon)
+    RecyclerView mRvConpun;
     @BindView(R.id.rl_zfb) RelativeLayout mRlZfb;
     @BindView(R.id.rl_wx) RelativeLayout mRlWx;
     @BindView(R.id.cb_agree) CheckBox mCbAgree;
@@ -78,28 +82,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         mAcpSubmit.setOnClickListener(this);
         mRlZfb.setOnClickListener(this);
         mRlWx.setOnClickListener(this);
-        mLvCoupon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (type.equals(ORDER_IS_NEW)  && orderConpou!=null){//新订单才可以进行选择
-                    CouponBean conpouBean = orderConpou.get(position);
-                    removeOrAdd(conpouBean);
-                    if (conpouBean.getStatus().equals("1")){
-                        totalReduces +=Float.parseFloat(conpouBean.getNumber());
-                        totalPay-=Float.parseFloat(conpouBean.getNumber());
-                        conpouBean.setStatus("2");
-                    }else if (conpouBean.getStatus().equals("2")){
-                        totalReduces -=Float.parseFloat(conpouBean.getNumber());
-                        totalReduces = totalReduces <0?0: totalReduces;
-                        totalPay+=Float.parseFloat(conpouBean.getNumber());
-                        conpouBean.setStatus("1");
-                    }
-                    ordersCouponAdapter.notifyDataSetChanged();
-                    mTvReducePrice.setText("¥-" + totalReduces);
-                    mTvPay.setText("总计:"+totalPay+"元");
-                }
-            }
-        });
+
     }
 
     /**
@@ -167,8 +150,38 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             mTvPay.setText("总计:"+totalPay+"元");
         }
         ordersCouponAdapter = new CouponAdapter(this, orderConpou, false);
-        mLvCoupon.setAdapter(ordersCouponAdapter);
+        mRvConpun.setAdapter(ordersCouponAdapter);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        mRvConpun.setHasFixedSize(true);
+        mRvConpun.setNestedScrollingEnabled(false);
+        linearLayoutManager.setSmoothScrollbarEnabled(false);
+        mRvConpun.setLayoutManager(linearLayoutManager);
+        ordersCouponAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                if (type.equals(ORDER_IS_NEW)  && orderConpou!=null){//新订单才可以进行选择
+                    CouponBean conpouBean = orderConpou.get(position);
+                    removeOrAdd(conpouBean);
+                    if (conpouBean.getStatus().equals("1")){
+                        totalReduces +=Float.parseFloat(conpouBean.getNumber());
+                        totalPay-=Float.parseFloat(conpouBean.getNumber());
+                        conpouBean.setStatus("2");
+                    }else if (conpouBean.getStatus().equals("2")){
+                        totalReduces -=Float.parseFloat(conpouBean.getNumber());
+                        totalReduces = totalReduces <0?0: totalReduces;
+                        totalPay+=Float.parseFloat(conpouBean.getNumber());
+                        conpouBean.setStatus("1");
+                    }
+                    ordersCouponAdapter.notifyDataSetChanged();
+                    mTvReducePrice.setText("¥-" + totalReduces);
+                    mTvPay.setText("总计:"+totalPay+"元");
+                }
+            }
+        });
     }
+
+
+
 
     /**
      * 计算一共优惠了多少钱

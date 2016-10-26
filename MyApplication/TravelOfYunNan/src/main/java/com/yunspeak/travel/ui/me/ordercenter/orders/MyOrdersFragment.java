@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity;
@@ -36,14 +37,14 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
         if (myOrdersEvent.getType()== BaseToolBarActivity.TYPE_DELETE){
             ToastUtils.showToast("订单取消成功");
             mDatas.get(myOrdersEvent.getPosition()).setStatus("2");//订单改为取消
-            adapter.notifyDataSetChanged();
+            mAdapter.notifyItemRemoved(myOrdersEvent.getPosition());
         }
     }
 
     @Override
     protected void initListener() {
         super.initListener();
-        setXListViewChildSpace(4);
+        changeMargin(4,0);
     }
     public static MyOrdersFragment newInstance(int type) {
         MyOrdersFragment myOrdersFragment = new MyOrdersFragment();
@@ -51,17 +52,6 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
         bundle.putInt(IVariable.TYPE, type);
         myOrdersFragment.setArguments(bundle);
         return myOrdersFragment;
-    }
-
-    @Override
-    public void childOnItemClick(AdapterView<?> parent, View view, int position, long id) {
-        MyOrdersBean.DataBean dataBean = mDatas.get(position);
-        String type = dataBean.getType();
-        String orderId = dataBean.getId();
-        Intent intent=new Intent(getContext(), OrdersDetailActivity.class);
-        intent.putExtra(IVariable.TYPE,type);
-        intent.putExtra(IVariable.ID,orderId);
-        startActivity(intent);
     }
 
     @Override
@@ -80,7 +70,7 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
     }
 
     @Override
-    protected TravelBaseAdapter initAdapter(List<MyOrdersBean.DataBean> httpData) {
-        return new MyOrdersAdapter(getContext(),httpData);
+    protected BaseRecycleViewAdapter<MyOrdersBean.DataBean> initAdapter(List<MyOrdersBean.DataBean> httpData) {
+        return new MyOrdersAdapter(httpData,getContext());
     }
 }

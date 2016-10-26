@@ -1,4 +1,5 @@
 package com.yunspeak.travel.ui.appoint.together;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
@@ -20,13 +21,12 @@ public class PlayTogetherFragment extends LoadAndPullBaseFragment<AppointTogethe
     @Override
     protected void initListener() {
         super.initListener();
-        setXListViewChildSpace(10);
-        changeMarginTop(10);
+        changeMargin(10,10);
     }
 
     @Override
-    protected TravelBaseAdapter initAdapter(List<AppointTogetherBean.DataBean> httpData) {
-        return  appointTogetherAdapter = new AppointTogetherAdapter(getContext(), httpData);
+    protected BaseRecycleViewAdapter initAdapter(List<AppointTogetherBean.DataBean> httpData) {
+        return  appointTogetherAdapter = new AppointTogetherAdapter(httpData,getContext());
     }
     @Override
     protected String initUrl() {

@@ -79,15 +79,14 @@
             android:layout_marginBottom="10dp"
             />
 
-        <com.yunspeak.travel.ui.view.ToShowAllListView
-            android:id="@+id/lv_coupon"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_coupon"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            style="@style/commonListViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
           >
-        </com.yunspeak.travel.ui.view.ToShowAllListView>
+        </android.support.v7.widget.RecyclerView>
 
         <RelativeLayout
             android:layout_width="match_parent"
