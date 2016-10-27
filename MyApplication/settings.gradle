@@ -1,3 +1,2 @@
 include 'pickerview',  ':easeui', ":TravelOfYunNan", ':PushSDK',':ucrop'
 
-include ':payDemoActivity_20'
