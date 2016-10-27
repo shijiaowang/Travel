@@ -17,7 +17,7 @@ public class GlobalValue {
     public static UserInfo userInfo;
     public static int CIRCLE_FOLLOW_LIKE_POSITION = 0;//圈子用于设置当前点击的位置
     public static List<String> mSelectImages;//选中的图
-    public static int size;//选中的图
+    public static int size=12;//选中的图,默认十二张
     public static List<String> mSelectSpot;//选中景点
     public static List<LineBean> mLineBeans;//景点集合
     public static  int selectTitleNumber;//选中的标签个数

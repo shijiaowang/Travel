@@ -19,6 +19,7 @@
 
     </GridView>
     <RelativeLayout
+        android:elevation="2dp"
         android:background="@color/otherTitleBg"
         android:gravity="center_vertical"
         android:layout_width="match_parent"

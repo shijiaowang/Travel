@@ -14,6 +14,7 @@ import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IChildParent;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -45,8 +46,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
 
     @Override
     protected void initListener() {
-        changeMargin(10);
-        mRvCommon.addItemDecoration(new MyWitheMeDecoration(childDistance()));
+
         initChildListener();
         View footView = LayoutInflater.from(this).inflate(R.layout.layout_google_footer, mSwipe, false);
         mSwipe.setSwipeStyle(SwipeToLoadLayout.STYLE.BLEW);
@@ -114,10 +114,8 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
 
     }
 
-    protected void changeMargin(int top) {
-        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mRvCommon.getLayoutParams();
-        layoutParams.topMargin = DensityUtil.dip2px(top);
-        mRvCommon.setLayoutParams(layoutParams);
+    protected void changeMargin(int space,int top) {
+        mRvCommon.addItemDecoration(new MyCollectionDecoration(space,top));
     }
 
     /**

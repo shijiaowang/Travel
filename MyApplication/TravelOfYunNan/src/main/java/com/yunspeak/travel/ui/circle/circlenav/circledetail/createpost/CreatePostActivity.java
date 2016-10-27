@@ -246,16 +246,13 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
             mGvPhoto = (GridView) findViewById(R.id.gv_photo);
             pictures = new ArrayList<>();
             pictures.add(addFlag);
-            createPostPhotoAdapter = new CreatePostPhotoAdapter(CreatePostActivity.this, pictures);
+            createPostPhotoAdapter = new CreatePostPhotoAdapter(CreatePostActivity.this, pictures,GlobalValue.size);
             mGvPhoto.setAdapter(createPostPhotoAdapter);
             mGvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (pictures == null) return;
-                    if (pictures.size() != GlobalValue.size && position == pictures.size() - 1) {
-                        startActivity(new Intent(CreatePostActivity.this, AlbumSelectorActivity.class));
-                        GlobalValue.mSelectImages = pictures;
-                        GlobalValue.mSelectImages.remove(addFlag);
+                    if (pictures==null ||pictures.size()==1 ||(pictures.size() != GlobalValue.size && position == pictures.size() - 1)) {
+                        startSelectAlbum();
                     }
                 }
             });
@@ -265,6 +262,15 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         if (mRlEmoji != null && mRlEmoji.getVisibility() == View.VISIBLE) {
             mRlEmoji.setVisibility(View.GONE);
         }
+    }
+
+    /**
+     * 打开相册
+     */
+    private void startSelectAlbum() {
+        startActivity(new Intent(CreatePostActivity.this, AlbumSelectorActivity.class));
+        GlobalValue.mSelectImages = pictures;
+        GlobalValue.mSelectImages.remove(addFlag);
     }
 
 

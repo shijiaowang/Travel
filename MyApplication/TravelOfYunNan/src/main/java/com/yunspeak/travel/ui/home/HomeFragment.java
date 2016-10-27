@@ -72,10 +72,15 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         return R.layout.fragment_home;
     }
 
+    @Override
+    protected void onFail(HomeEvent event) {
+        super.onFail(event);
+        mSwipe.setRefreshing(false);
+    }
 
     @Override
     public void onSuccess(HomeEvent event) {
-
+       mSwipe.setRefreshing(false);
         HomeBean homeBean = GsonUtils.getObject(event.getResult(), HomeBean.class);
         HomeBean.DataBean data = homeBean.getData();
         List<HomeBean.DataBean.ForumBean> forum = data.getForum();

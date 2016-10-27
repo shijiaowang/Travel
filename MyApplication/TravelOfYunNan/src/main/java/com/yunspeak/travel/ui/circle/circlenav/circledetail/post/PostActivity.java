@@ -184,7 +184,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_discuss:
-                CreatePostActivity.start(this, cId, 12, CreatePostActivity.REPLY_POST, forum_id, userId, "0");
+                CreatePostActivity.start(this, cId, 1, CreatePostActivity.REPLY_POST, forum_id, userId, "0");
                 break;
         }
     }

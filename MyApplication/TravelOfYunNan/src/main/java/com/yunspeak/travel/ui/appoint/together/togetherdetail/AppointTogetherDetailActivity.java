@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.PeopleBean;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -24,6 +25,7 @@ import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
+import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.ImageOptionsUtil;
 import com.yunspeak.travel.utils.MapUtils;
@@ -51,7 +53,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     @BindView(R.id.tv_start_add) TextView mTvStartAdd;
     @BindView(R.id.tv_end_add) TextView mTvEndAdd;
     @BindView(R.id.lv_route_line) ToShowAllListView mLvRouteLine;
-    @BindView(R.id.iv_user_icon) ImageView mIvUserIcon;
+    @BindView(R.id.iv_user_icon) SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
     @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.tv_day) TextView mTvDay;
@@ -59,7 +61,8 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     @BindView(R.id.tv_love) FontsIconTextView mTvLove;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_sex) TextView mTvSex;
-    @BindView(R.id.iv_appoint_bg) ImageView mIvAppointBg;
+    @BindView(R.id.iv_appoint_bg)
+    SimpleDraweeView mIvAppointBg;
     @BindView(R.id.tv_title) TextView mTvTitle;
     @BindView(R.id.tv_content)
     TextView mTvContent;
@@ -239,8 +242,8 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
         id = data.getId();
         mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
         mTvLove.setText(data.getIs_like().equals("1") ? getString(R.string.activity_circle_love_full) : getString(R.string.activity_circle_love_empty));
-        x.image().bind(mIvAppointBg, data.getTravel_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(116), DensityUtil.dip2px(116)));
-        x.image().bind(mIvUserIcon, data.getUser_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(30), DensityUtil.dip2px(30)));
+        FrescoUtils.displayIcon(mIvUserIcon,data.getUser_img());
+        FrescoUtils.displayNormal(mIvAppointBg,data.getTravel_img());
         if (mFlTitle.getChildCount() > 0) mFlTitle.removeAllViews();
         dealLabel(data);
         mTvUserNickName.setText(data.getUser_name());

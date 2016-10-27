@@ -30,7 +30,7 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
     private static final String PASSED="2";
     private static final String WITH_ME="4";
     private String type=ENTERING;
-    private String preType=ENTERING;
+    private String preType="0";
    @BindView(R.id.ll_root)
     LinearLayout llRoot;
 
@@ -73,8 +73,8 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
     @Override
     protected void initEvent() {
         super.initEvent();
-        needHideChildView=mRvCommon;//此页面不隐藏头布局
         try {
+            changeNeedHideView(mSwipe);
             mFlContent.removeView(mRlEmpty);
             mRlEmpty.setVisibility(View.GONE);
             llRoot.addView(mRlEmpty);
@@ -170,10 +170,15 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
         }
     }
 
+    @Override
+    protected void onSuccess(MyAppointEvent myAppointEvent) {
+        super.onSuccess(myAppointEvent);
+        preType=type;
+    }
+
     private void toRefresh() {
         if (type.equals(preType))return;
         setIsProgress(true);
-        preType=type;
         resetIsFirstInflate();
         onLoad(TYPE_REFRESH);
     }

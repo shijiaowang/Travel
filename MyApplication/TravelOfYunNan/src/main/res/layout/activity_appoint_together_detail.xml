@@ -39,7 +39,7 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
-                        <ImageView
+                        <com.facebook.drawee.view.SimpleDraweeView
                             android:id="@+id/iv_user_icon"
                             android:layout_width="30dp"
                             android:layout_height="30dp" />
@@ -145,10 +145,10 @@
                     android:layout_marginLeft="17dp"
                     android:background="@color/colorFAFAFA">
 
-                    <ImageView
+                    <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/iv_appoint_bg"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="116dp"
+                        android:layout_height="116dp"
                         android:padding="3dp" />
 
                     <ImageView

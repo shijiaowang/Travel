@@ -162,10 +162,11 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
 
     /**
      * 显示数据为空
-     * @param isShow
      */
-    protected void setIsEmpty(boolean isShow){
-        setIsProgress(false,false);
+    protected void setIsEmpty(){
+        needHideChildView.setVisibility(View.GONE);
+        mIvPageError.setVisibility(View.GONE);
+        mPbLoading.setVisibility(View.GONE);
         mRlEmpty.setVisibility(View.VISIBLE);
 
     }

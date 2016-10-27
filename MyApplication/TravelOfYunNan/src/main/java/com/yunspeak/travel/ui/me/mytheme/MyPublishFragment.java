@@ -27,6 +27,12 @@ public class MyPublishFragment extends LoadAndPullBaseFragment<MyPublishEvent,My
     }
 
     @Override
+    protected void initListener() {
+        super.initListener();
+        changeMargin(3,6);
+    }
+
+    @Override
     protected String initUrl() {
         return IVariable.THEME_MY_PUBLISH;
     }

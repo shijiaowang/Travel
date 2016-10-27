@@ -58,6 +58,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     @Override
     protected void initEvent() {
         mRvCommon = (RecyclerView) findViewById(R.id.swipe_target);
+
         mVsContent= (ViewStub) findViewById(R.id.vs_content);
         mVsFooter = (ViewStub) findViewById(R.id.vs_footer);
         mRvCommon.addItemDecoration(new MyWitheMeDecoration(childDistance()));
@@ -114,6 +115,10 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         if (parentBean==null || loadDatas==null || loadDatas.size()==0){
             mSwipe.setLoadingMore(false);
             mSwipe.setRefreshing(false);
+            if (t.getType()==TYPE_REFRESH){
+                mDatas.clear();
+                mAdapter.notifiyData(mDatas);
+            }
             return;
         }
         if (mAdapter == null) {

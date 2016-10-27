@@ -81,11 +81,11 @@ public class FrescoUtils {
      * 加载一般图片
      * @param simpleDraweeView 显示
      */
-    public static void displayNormal(SimpleDraweeView simpleDraweeView, String url){
+    public static void displayNormal(SimpleDraweeView simpleDraweeView, String url,int width,int height){
         if (simpleDraweeView==null || url==null)return;
         Uri uri=Uri.parse(url);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-               .setResizeOptions(new ResizeOptions(200,200))
+               .setResizeOptions(new ResizeOptions(width,height))
                 .build();
 
         DraweeController controller = Fresco.newDraweeControllerBuilder()
@@ -94,4 +94,12 @@ public class FrescoUtils {
                 .build();
         simpleDraweeView.setController(controller);
     }
+    /**
+     * 加载一般图片
+     * @param simpleDraweeView 显示
+     */
+    public static void displayNormal(SimpleDraweeView simpleDraweeView, String url){
+       displayNormal(simpleDraweeView,url,200,200);
+    }
+
 }

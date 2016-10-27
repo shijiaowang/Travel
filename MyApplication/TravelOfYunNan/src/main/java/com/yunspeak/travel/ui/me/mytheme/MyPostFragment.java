@@ -26,6 +26,12 @@ public class MyPostFragment extends LoadAndPullBaseFragment<MyPostEvent,MyPostBe
     }
 
     @Override
+    protected void initListener() {
+        super.initListener();
+        changeMargin(3,6);
+    }
+
+    @Override
     protected String initUrl() {
         return IVariable.THEME_MY_POST;
     }

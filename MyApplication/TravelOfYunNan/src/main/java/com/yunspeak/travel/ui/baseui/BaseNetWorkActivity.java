@@ -83,7 +83,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         setIsProgress(false);
         if (t.isSuccess()){
             if (isFirstInflate && t.getCode()==2){
-                setIsEmpty(true);
+                setIsEmpty();
                 onSuccess(t);
                 return;
             }

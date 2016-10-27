@@ -35,9 +35,11 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
+import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.core.ImagePipelineFactory;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.utils.LogUtils;
@@ -141,7 +143,10 @@ public class CirclePreviewActivity extends AppCompatActivity implements View.OnC
 
     public void zoomPhoto(String url, final PhotoDraweeView mPhotoDraweeView) {
         PipelineDraweeControllerBuilder controller = Fresco.newDraweeControllerBuilder();
-        controller.setUri(Uri.parse(url));
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(url))
+                .setResizeOptions(new ResizeOptions(300,600))
+                .build();
+        controller.setImageRequest(request);
         controller.setOldController(mPhotoDraweeView.getController());
         controller.setControllerListener(new BaseControllerListener<ImageInfo>() {
             @Override

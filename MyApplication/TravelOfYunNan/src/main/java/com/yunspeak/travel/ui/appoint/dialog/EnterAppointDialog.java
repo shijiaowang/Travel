@@ -26,8 +26,16 @@ import com.yunspeak.travel.utils.ToastUtils;
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 
+import java.util.HashMap;
+
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.tencent.qzone.QZone;
+import cn.sharesdk.wechat.friends.Wechat;
+import cn.sharesdk.wechat.moments.WechatMoments;
 
 /**
  * Created by wangyang on 2016/9/14 0014.
@@ -184,13 +192,102 @@ public class EnterAppointDialog {
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         View rlBottom = ((Activity) context).findViewById(R.id.rl_bottom);
         Window window = dialog.getWindow(); //得到对话框
-        window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
         window.setGravity(Gravity.CENTER);
+        dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialogView.findViewById(R.id.tv_sina).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                        ShareSDK.initSDK(context);
+                        OnekeyShare oks = new OnekeyShare();
+//关闭sso授权
+                        //oks.disableSSOWhenAuthorize();
+                        oks.setPlatform(SinaWeibo.NAME);
+// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+                        oks.setTitle("云说约伴分享");
+// text是分享文本，所有平台都需要这个字段
+                        oks.setText("这是一个不得了的约伴分享");
+// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+//oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+                        oks.setComment("哇，不得了啦，有美女哟");
+// 启动分享GUI
+                        oks.show(context);
+
+
+            }
+        });
+        dialogView.findViewById(R.id.tv_we_friend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareSDK.initSDK(context);
+                OnekeyShare oks = new OnekeyShare();
+//关闭sso授权
+                //oks.disableSSOWhenAuthorize();
+                oks.setPlatform(Wechat.NAME);
+// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+                oks.setTitle("云说约伴分享");
+// text是分享文本，所有平台都需要这个字段
+                oks.setText("这是一个不得了的约伴分享");
+// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+//oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+// url仅在微信（包括好友和朋友圈）中使用
+                oks.setUrl("http://yunspeak.cn");
+// comment是我对这条分享的评论，仅在人人网和QQ空间使用
+                oks.setComment("哇，不得了啦，有美女哟");
+                oks.show(context);
+            }
+        });
+        dialogView.findViewById(R.id.tv_we_moment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareSDK.initSDK(context);
+                OnekeyShare oks = new OnekeyShare();
+//关闭sso授权
+                //oks.disableSSOWhenAuthorize();
+                oks.setPlatform(WechatMoments.NAME);
+// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+                oks.setTitle("云说约伴分享");
+// text是分享文本，所有平台都需要这个字段
+                oks.setText("这是一个不得了的约伴分享");
+// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+//oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+// url仅在微信（包括好友和朋友圈）中使用
+                oks.setUrl("http://yunspeak.cn");
+// comment是我对这条分享的评论，仅在人人网和QQ空间使用
+                oks.setComment("哇，不得了啦，有美女哟");
+                oks.show(context);
+            }
+        });
          dialogView.findViewById(R.id.tv_qq_zone).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-
-
+                 ShareSDK.initSDK(context);
+                 OnekeyShare oks = new OnekeyShare();
+//关闭sso授权
+                 //oks.disableSSOWhenAuthorize();
+                 oks.setPlatform(QZone.NAME);
+// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+                 oks.setTitle("云说约伴分享");
+// titleUrl是标题的网络链接，QQ和QQ空间等使用
+                 oks.setTitleUrl("http://yunspeak.cn");
+// text是分享文本，所有平台都需要这个字段
+                 oks.setText("这是一个不得了的约伴分享");
+// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+//oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+// url仅在微信（包括好友和朋友圈）中使用
+               //  oks.setUrl("http://sharesdk.cn");
+// comment是我对这条分享的评论，仅在人人网和QQ空间使用
+                 oks.setComment("哇，不得了啦，有美女哟");
+// site是分享此内容的网站名称，仅在QQ空间使用
+                 oks.setSite(context.getString(R.string.app_name));
+// siteUrl是分享此内容的网站地址，仅在QQ空间使用
+                 oks.setSiteUrl("http://yunspeak.cn");
+// 启动分享GUI
+                 oks.show(context);
              }
          });
         WindowManager.LayoutParams wl = window.getAttributes();

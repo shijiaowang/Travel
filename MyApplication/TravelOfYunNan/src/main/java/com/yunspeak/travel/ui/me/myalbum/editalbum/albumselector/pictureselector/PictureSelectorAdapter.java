@@ -36,15 +36,14 @@ public class PictureSelectorAdapter extends TravelBaseAdapter<String> {
                     if (GlobalValue.mSelectImages==null){
                         GlobalValue.mSelectImages=new ArrayList<String>();
                     }
-                    String url=dir+ File.separator+item;
+                    String url="file://"+dir+ File.separator+item;
                     if (GlobalValue.mSelectImages.contains(url)){
                         GlobalValue.mSelectImages.remove(url);
                         pictureSelectorHolder.mTvSelect.setTextColor(mContext.getResources().getColor(R.color.colorb5b5b5));
                         pictureSelectorHolder.mImage.setBackgroundColor(Color.TRANSPARENT);
                     }else {
-
                         if (GlobalValue.mSelectImages.size()>=GlobalValue.size){
-                            ToastUtils.showToast("对不起，最多添加12张");
+                            ToastUtils.showToast("对不起，最多添加"+GlobalValue.size+"张");
                             return;
                         }
                         GlobalValue.mSelectImages.add(url);

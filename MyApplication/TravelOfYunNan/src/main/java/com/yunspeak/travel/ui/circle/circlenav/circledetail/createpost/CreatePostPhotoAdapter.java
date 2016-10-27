@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost;
 
 import android.content.Context;
+import android.view.View;
 
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
@@ -13,9 +14,11 @@ import java.util.List;
 public class CreatePostPhotoAdapter extends TravelBaseAdapter<String> {
     private static  final  int TYPE_NORMAL =0;
     private static final  int TYPE_ADD =1;
+    private final int count;
 
-    public CreatePostPhotoAdapter(Context mContext, List<String> mDatas) {
+    public CreatePostPhotoAdapter(Context mContext, List<String> mDatas,int count) {
         super(mContext, mDatas);
+        this.count = count;
     }
 
     @Override
@@ -34,12 +37,13 @@ public class CreatePostPhotoAdapter extends TravelBaseAdapter<String> {
 
     @Override
     protected void initListener(BaseHolder baseHolder, String item, int position) {
+
     }
 
     @Override
     protected BaseHolder initHolder(int position) {
         if (getItemViewType(position)==TYPE_ADD){
-            return new CreatePostPhotoLastHolder(mContext);
+            return new CreatePostPhotoLastHolder(mContext,count);
         }
         return new CreatePostPhotoHolder(mContext);
     }

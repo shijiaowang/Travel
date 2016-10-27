@@ -57,6 +57,12 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
     }
 
     @Override
+    protected void initListener() {
+        super.initListener();
+        changeMargin(10,10);
+    }
+
+    @Override
     protected String initTitle() {
         return "圈子详情";
     }

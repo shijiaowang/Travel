@@ -1,5 +1,7 @@
 package com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture;
 
+import android.graphics.drawable.Animatable;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -7,6 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.image.ImageInfo;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.pageranim.ZoomOutPageTransformer;
@@ -25,6 +34,8 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.relex.photodraweeview.PhotoDraweeView;
 
 /**
  * Created by wangyang on 2016/8/24.
@@ -120,11 +131,31 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    public void zoomPhoto(String url, final PhotoDraweeView mPhotoDraweeView) {
+        PipelineDraweeControllerBuilder controller = Fresco.newDraweeControllerBuilder();
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(url))
+                .setResizeOptions(new ResizeOptions(300,600))
+                .build();
+        controller.setImageRequest(request);
+
+        controller.setOldController(mPhotoDraweeView.getController());
+        controller.setControllerListener(new BaseControllerListener<ImageInfo>() {
+            @Override
+            public void onFinalImageSet(String id, ImageInfo imageInfo, Animatable animatable) {
+                super.onFinalImageSet(id, imageInfo, animatable);
+                if (imageInfo == null || mPhotoDraweeView == null) {
+                    return;
+                }
+                mPhotoDraweeView.update(imageInfo.getWidth(), imageInfo.getHeight());
+            }
+        });
+        mPhotoDraweeView.setController(controller.build());
+    }
     class PictureAdapter extends PagerAdapter {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            ImageView imageView=new ImageView(PreviewPicturesActivity.this);
-            x.image().bind(imageView,GlobalValue.mSelectImages.get(position));
+            PhotoDraweeView imageView=new PhotoDraweeView(PreviewPicturesActivity.this);
+            zoomPhoto(GlobalValue.mSelectImages.get(position),imageView);
             container.addView(imageView);
             return imageView;
         }

@@ -23,7 +23,7 @@ import butterknife.BindView;
  * 使用xutils
  */
 public class PictureSelectorHolder extends BaseHolder<String> {
-    @BindView(R.id.iv_picture) ImageView mIvPicture;
+    @BindView(R.id.iv_picture) SimpleDraweeView mIvPicture;
     @BindView(R.id.tv_select) FontsIconTextView mTvSelect;
     @BindView(R.id.iv_picture_1)  View mImage;
 
@@ -37,8 +37,9 @@ public class PictureSelectorHolder extends BaseHolder<String> {
 
     @Override
     protected void initItemDatas(String datas, Context mContext, int position) {
-        x.image().bind(mIvPicture,dir + File.separator + datas);
-        if (GlobalValue.mSelectImages!=null && GlobalValue.mSelectImages.contains(dir+File.separator+datas)){
+        String url="file://"+dir + File.separator + datas;
+        FrescoUtils.displayNormal(mIvPicture,url);
+        if (GlobalValue.mSelectImages!=null && GlobalValue.mSelectImages.contains(url)){
             mImage.setBackgroundColor(Color.parseColor("#77000000"));
             mTvSelect.setTextColor(mContext.getResources().getColor(R.color.otherTitleBg));
         }else {
