@@ -5,7 +5,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.R;
@@ -18,7 +19,7 @@ import com.hyphenate.easeui.domain.EaseEmojicon;
  */
 public class EaseChatRowBigExpression extends EaseChatRowText{
 
-    private ImageView imageView;
+    private SimpleDraweeView imageView;
 
 
     public EaseChatRowBigExpression(Context context, EMMessage message, int position, BaseAdapter adapter) {
@@ -34,7 +35,7 @@ public class EaseChatRowBigExpression extends EaseChatRowText{
     @Override
     protected void onFindViewById() {
         percentageView = (TextView) findViewById(R.id.percentage);
-        imageView = (ImageView) findViewById(R.id.image);
+        imageView = (SimpleDraweeView) findViewById(R.id.image);
     }
 
 
@@ -47,9 +48,11 @@ public class EaseChatRowBigExpression extends EaseChatRowText{
         }
         if(emojicon != null){
             if(emojicon.getBigIcon() != 0){
-                Glide.with(activity).load(emojicon.getBigIcon()).placeholder(R.drawable.ease_default_expression).into(imageView);
+                //Glide.with(activity).load(emojicon.getBigIcon()).placeholder(R.drawable.ease_default_expression).into(imageView);
+                //displayIcon(imageView,"android.resource://"+activity.getPackageName()+"/"+emojicon.getIconPath(),activity);
             }else if(emojicon.getBigIconPath() != null){
-                Glide.with(activity).load(emojicon.getBigIconPath()).placeholder(R.drawable.ease_default_expression).into(imageView);
+                //displayIcon(imageView,"android.resource://"+activity.getPackageName()+"/"+emojicon.getIconPath(),activity);
+
             }else{
                 imageView.setImageResource(R.drawable.ease_default_expression);
             }

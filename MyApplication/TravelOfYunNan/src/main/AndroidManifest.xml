@@ -12,16 +12,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
     <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
@@ -32,12 +25,12 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <!-- 蓝牙分享所需的权限 -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 
     <application
@@ -207,20 +200,8 @@
         <activity android:name=".ui.me.myappoint.chat.ChatActivity"
             android:windowSoftInputMode="stateHidden"
             />
-        <!-- 地图 -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
         <activity android:name=".travel.ChatActivity" />
-        <!-- 百度地图所需的service -->
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote" />
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="3ecea51f560650b1ed8a4b99808f52e8" />
+
 
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -252,7 +233,23 @@
         <activity android:name=".ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity" />
         <activity android:name=".ui.find.travels.TravelsActivity" />
         <activity android:name=".ui.me.myappoint.historyorders.HistoryOrdersActivity" />
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="xySfDvCQc3chqPTFYpA9ywhG" />
+        <!-- 地图 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            >
 
+        </activity>
+
+        <!-- 百度地图所需的service -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
         <!-- alipay sdk end -->
      <!--   &lt;!&ndash; 声明SDK所需的service SDK核心功能&ndash;&gt;
         <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>

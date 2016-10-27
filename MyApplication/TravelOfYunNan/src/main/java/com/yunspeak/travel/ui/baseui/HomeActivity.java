@@ -107,25 +107,30 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private void initHXListener() {
         //注册一个监听连接状态的listener
         EMClient.getInstance().addConnectionListener(new MyConnectionListener());
-        EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {//回调
-            @Override
-            public void onSuccess() {
-                EMClient.getInstance().groupManager().loadAllGroups();
-                EMClient.getInstance().chatManager().loadAllConversations();
-                LogUtils.e("登录聊天服务器成功！");
-            }
+        login();
+    }
 
-            @Override
-            public void onProgress(int progress, String status) {
+    private void login() {
+        if (!EMClient.getInstance().isConnected()) {
+            EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {//回调
+                @Override
+                public void onSuccess() {
+                    EMClient.getInstance().groupManager().loadAllGroups();
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                    LogUtils.e("登录聊天服务器成功！");
+                }
 
-            }
+                @Override
+                public void onProgress(int progress, String status) {
 
-            @Override
-            public void onError(int code, String message) {
-                LogUtils.e(message);
-            }
-        });
+                }
 
+                @Override
+                public void onError(int code, String message) {
+                    LogUtils.e(message);
+                }
+            });
+        }
     }
 
     public LinearLayout getmLlBottom() {
@@ -312,6 +317,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                         // 显示帐号在其他设备登录
                         ToastUtils.showToast("账号在其他地方登录");
+                        login();
                     } else {
                         if (NetUtils.hasNetwork(HomeActivity.this)) {
                             ToastUtils.showToast("无法连接聊天服务器");

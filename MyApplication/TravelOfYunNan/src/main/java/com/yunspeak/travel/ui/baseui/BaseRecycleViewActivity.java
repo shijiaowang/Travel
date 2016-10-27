@@ -115,7 +115,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         if (parentBean==null || loadDatas==null || loadDatas.size()==0){
             mSwipe.setLoadingMore(false);
             mSwipe.setRefreshing(false);
-            if (t.getType()==TYPE_REFRESH){
+            if (t.getType()==TYPE_REFRESH && mDatas!=null){
                 mDatas.clear();
                 mAdapter.notifiyData(mDatas);
             }
