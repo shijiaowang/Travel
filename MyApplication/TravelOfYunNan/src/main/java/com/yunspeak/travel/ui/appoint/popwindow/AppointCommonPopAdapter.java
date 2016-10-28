@@ -5,6 +5,7 @@ import android.content.Context;
 import com.yunspeak.travel.bean.SelectCommonBean;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.find.findcommon.CityBean;
 
 import java.util.List;
 
@@ -12,13 +13,13 @@ import java.util.List;
  * Created by wangyang on 2016/9/9 0009.
  * 公用Adapter
  */
-public class AppointCommonPopAdapter extends TravelBaseAdapter<SelectCommonBean> {
+public class AppointCommonPopAdapter extends TravelBaseAdapter<CityBean> {
 
    public static final int LEFT=0;//左边
     public static final int RIGHT=1;//右边
     private int type=-1;
 
-    public AppointCommonPopAdapter(Context mContext, List<SelectCommonBean> mDatas, int type) {
+    public AppointCommonPopAdapter(Context mContext, List<CityBean> mDatas, int type) {
         super(mContext, mDatas);
         this.type = type;
     }
@@ -34,7 +35,7 @@ public class AppointCommonPopAdapter extends TravelBaseAdapter<SelectCommonBean>
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, SelectCommonBean item, int position) {
+    protected void initListener(BaseHolder baseHolder, CityBean item, int position) {
 
     }
 

@@ -8,26 +8,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.Line;
-import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.ActiveActivity;
-import com.yunspeak.travel.ui.baseui.FindCommonActivity;
+import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 import com.yunspeak.travel.ui.baseui.HotelActivity;
 import com.yunspeak.travel.ui.find.travels.TravelsActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
-import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.xutils.x;
 
 import java.util.List;
 

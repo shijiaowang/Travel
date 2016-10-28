@@ -15,7 +15,7 @@ import org.xutils.x;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/9/5 0005.
+ * Created by wangyang on 2016/9/5 0005.
  */
 public class AppointDetailLineDetailHolder extends BaseHolder<AppointTogetherDetailBean.DataBean.RoutesBean> {
     @BindView(R.id.iv_bg) SimpleDraweeView mIvBg;
@@ -29,7 +29,6 @@ public class AppointDetailLineDetailHolder extends BaseHolder<AppointTogetherDet
 
     @Override
     protected void initItemDatas(AppointTogetherDetailBean.DataBean.RoutesBean datas, Context mContext, int position) {
-        x.image().bind(mIvBg,datas.getLogo_img(),getImageOptions(DensityUtil.dip2px(168),DensityUtil.dip2px(87)));
         FrescoUtils.displayNormal(mIvBg,datas.getLogo_img());
         mTvAddress.setText(datas.getAddress());
         mTvDes.setText(datas.getProvince()+datas.getContent());

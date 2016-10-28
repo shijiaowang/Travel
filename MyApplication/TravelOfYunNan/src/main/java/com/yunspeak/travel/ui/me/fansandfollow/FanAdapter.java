@@ -1,14 +1,11 @@
 package com.yunspeak.travel.ui.me.fansandfollow;
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.appoint.aite.Follow;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.Follow;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 
 

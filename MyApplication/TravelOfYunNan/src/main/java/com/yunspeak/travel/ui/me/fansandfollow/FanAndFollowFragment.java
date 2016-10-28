@@ -2,28 +2,18 @@ package com.yunspeak.travel.ui.me.fansandfollow;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.widget.ListView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
-import com.yunspeak.travel.ui.appoint.aite.AiteBean;
-import com.yunspeak.travel.ui.appoint.aite.Follow;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteBean;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.Follow;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
-import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
-import com.yunspeak.travel.ui.view.LoadingPage;
-import com.yunspeak.travel.ui.view.refreshview.XListView;
-import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import java.util.List;
 import java.util.Map;
-
-import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/7/18 0018.

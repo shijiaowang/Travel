@@ -83,10 +83,10 @@
             />
         <activity android:name="com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity" />
         <activity android:name=".ui.me.messagecenter.MessageCenterActivity" />
-        <activity android:name="com.yunspeak.travel.ui.appoint.selectdestination.SelectDestinationActivity"
+        <activity android:name=".ui.appoint.travelplan.lineplan.selectdestination.SelectDestinationActivity"
             android:windowSoftInputMode="stateHidden"
             />
-        <activity android:name="com.yunspeak.travel.ui.appoint.adddestination.AddCustomDestinationActivity" />
+        <activity android:name=".ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.AddCustomDestinationActivity" />
         <activity android:name="com.yunspeak.travel.ui.me.fansandfollow.FollowAndFanActivity" />
         <activity android:name="com.yunspeak.travel.ui.me.myalbum.MyAlbumActivity" />
         <activity android:name="com.yunspeak.travel.ui.me.myalbum.createalbum.CreateAlbumActivity" />
@@ -101,29 +101,29 @@
         <activity android:name="com.yunspeak.travel.ui.baseui.ActiveActivity" />
         <activity android:name="com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity" />
         <activity android:name=".ui.me.titlemanage.TitleManagementActivity"/>
-        <activity android:name=".ui.appoint.customdestination.CustomDestinationActivity"/>
+        <activity android:name=".ui.appoint.travelplan.lineplan.selectdestination.customdestination.CustomDestinationActivity"/>
         <activity android:name=".ui.baseui.ActivateDetailActivity"/>
-        <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentActivity"/>
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity"/>
         <activity android:name=".ui.baseui.DeliciousDetailActivity"/>
         <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity"/>
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"
             android:windowSoftInputMode="adjustPan"
             />
-        <activity android:name=".ui.appoint.costsetting.CostSettingActivity"
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
         <activity android:name=".ui.appoint.withme.withmedetail.AppointWithMeDetailActivity"/>
-        <activity android:name=".ui.appoint.personnelequipment.PersonnelEquipmentWithMeActivity"/>
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentWithMeActivity"/>
         <activity android:name=".ui.home.welcome.splash.login.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTop"
             />
-        <activity android:name=".ui.baseui.FindCommonActivity"/>
+        <activity android:name=".ui.find.findcommon.FindCommonActivity"/>
         <activity android:name=".ui.baseui.TravelsDetailActivity"/>
         <activity android:name=".ui.baseui.DestinationDetailActivity"/>
-        <activity android:name=".ui.appoint.choicesequipment.ChoicePropsActivity"/>
-        <activity android:name=".ui.appoint.aite.AiteActivity"/>
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.ChoicePropsActivity"/>
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.aite.AiteActivity"/>
         <activity android:name=".ui.me.myappoint.MyAppointActivity"/>
         <activity android:name=".ui.me.bulltetinboard.BulletinBoardActivity"/>
         <activity android:name=".ui.me.mycollection.MyCollectionActivity"/>
@@ -141,19 +141,19 @@
         <activity android:name=".ui.baseui.HomeSearchActivity"/>
         <activity android:name=".ui.me.messagecenter.appointmessage.AppointMessageActivity"/>
         <activity android:name=".ui.me.identityauth.IdentityAuthenticationActivity"/>
-        <activity android:name=".ui.appoint.lineplan.LinePlanActivity"/>
+        <activity android:name=".ui.appoint.travelplan.lineplan.LinePlanActivity"/>
         <activity android:name=".ui.me.messagecenter.systemmessage.SystemMessageActivity"/>
         <activity android:name=".ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity"/>
         <activity android:name=".ui.me.about.AboutActivity"/>
-        <activity android:name=".ui.appoint.createsuccess.CreateAppointSuccessActivity"/>
-        <activity android:name=".ui.appoint.desremark.DesRemarkActivity"
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.createsuccess.CreateAppointSuccessActivity"/>
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.DesRemarkActivity"
             android:windowSoftInputMode="adjustPan"
             android:launchMode="singleTask"
             />
         <activity android:name=".ui.appoint.together.togetherdetail.AppointTogetherDetailActivity"/>
         <activity android:name=".ui.me.messagecenter.relateme.RelateMeActivity"/>
         <activity android:name=".ui.baseui.HotelActivity"/>
-        <activity android:name=".ui.appoint.settingtitle.SettingTitleActivity"
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.settingtitle.SettingTitleActivity"
             android:launchMode="singleTask"
             />
         <activity android:name=".ui.home.welcome.splash.register.RegisterActivity"
@@ -200,7 +200,7 @@
         <activity android:name=".ui.me.myappoint.chat.ChatActivity"
             android:windowSoftInputMode="stateHidden"
             />
-        <activity android:name=".travel.ChatActivity" />
+
 
 
         <activity

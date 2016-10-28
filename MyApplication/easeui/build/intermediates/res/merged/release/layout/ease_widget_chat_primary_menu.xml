@@ -6,6 +6,7 @@
     android:paddingBottom="2dip"
     android:background="#fafafa"
    >
+
     <LinearLayout
         android:id="@+id/rl_bottom"
         android:layout_width="match_parent"
@@ -70,10 +71,10 @@
             android:scaleType="fitCenter"
             android:src="@drawable/chat_emoj"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             />
 
         <Button
+            android:layout_marginLeft="15dp"
             android:id="@+id/btn_more"
             android:layout_width="25dip"
             android:layout_height="25dip"
@@ -81,8 +82,9 @@
             android:background="@drawable/ease_type_select_btn" />
 
         <Button
+            android:layout_marginLeft="15dp"
             android:id="@+id/btn_send"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="25dp"
             android:layout_marginRight="4dp"
             android:background="@color/top_bar_normal_bg"

@@ -48,7 +48,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-
+                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_add"
                     style="@style/fragmentFindIconLl">
 
@@ -66,6 +66,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_hotel"
                     style="@style/fragmentFindIconLl">
 
@@ -84,6 +85,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_travels"
                     style="@style/fragmentFindIconLl">
 
@@ -102,6 +104,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_delicious_food"
                     style="@style/fragmentFindIconLl">
 
@@ -119,6 +122,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_active"
                     style="@style/fragmentFindIconLl">
 
@@ -128,12 +132,12 @@
                         android:paddingBottom="5dp"
                         android:text="@string/fragment_find_active"
                         android:textColor="#fcae04"
-                        android:textSize="30sp" />
+                        android:textSize="26sp" />
 
                     <TextView
                         style="@style/fragmentFindIconText"
                         android:layout_marginTop="4dp"
-                        android:paddingBottom="4dp"
+
                         android:text="活动" />
 
                 </LinearLayout>

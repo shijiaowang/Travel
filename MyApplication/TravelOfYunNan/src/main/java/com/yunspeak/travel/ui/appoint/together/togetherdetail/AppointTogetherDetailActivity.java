@@ -1,4 +1,5 @@
 package com.yunspeak.travel.ui.appoint.together.togetherdetail;
+
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,34 +8,32 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.PeopleBean;
+import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.adapter.TravelDetailLineAdapter;
-import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.ImageOptionsUtil;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.common.util.DensityUtil;
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,21 +48,35 @@ import cn.sharesdk.framework.ShareSDK;
  */
 public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDetailEvent> implements View.OnClickListener {
     private static final int TYPE_ENTER_APPOINT = 95;
-    private static final  int TYPE_OUT_APPOINT=59;
-    @BindView(R.id.tv_start_add) TextView mTvStartAdd;
-    @BindView(R.id.tv_end_add) TextView mTvEndAdd;
-    @BindView(R.id.lv_route_line) ToShowAllListView mLvRouteLine;
-    @BindView(R.id.iv_user_icon) SimpleDraweeView mIvUserIcon;
-    @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
-    @BindView(R.id.tv_time) TextView mTvTime;
-    @BindView(R.id.tv_day) TextView mTvDay;
-    @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
-    @BindView(R.id.tv_love) FontsIconTextView mTvLove;
-    @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
-    @BindView(R.id.tv_sex) TextView mTvSex;
+    private static final int TYPE_OUT_APPOINT = 59;
+    @BindView(R.id.tv_start_add)
+    TextView mTvStartAdd;
+    @BindView(R.id.tv_end_add)
+    TextView mTvEndAdd;
+    @BindView(R.id.lv_route_line)
+    ToShowAllListView mLvRouteLine;
+    @BindView(R.id.lv_route_detail_line)
+    ToShowAllListView mLvRouteDetailLine;
+    @BindView(R.id.iv_user_icon)
+    SimpleDraweeView mIvUserIcon;
+    @BindView(R.id.tv_user_nick_name)
+    TextView mTvUserNickName;
+    @BindView(R.id.tv_time)
+    TextView mTvTime;
+    @BindView(R.id.tv_day)
+    TextView mTvDay;
+    @BindView(R.id.tv_watch_number)
+    TextView mTvWatchNumber;
+    @BindView(R.id.tv_love)
+    FontsIconTextView mTvLove;
+    @BindView(R.id.tv_love_number)
+    TextView mTvLoveNumber;
+    @BindView(R.id.tv_sex)
+    TextView mTvSex;
     @BindView(R.id.iv_appoint_bg)
     SimpleDraweeView mIvAppointBg;
-    @BindView(R.id.tv_title) TextView mTvTitle;
+    @BindView(R.id.tv_title)
+    TextView mTvTitle;
     @BindView(R.id.tv_content)
     TextView mTvContent;
     @BindView(R.id.tv_line)
@@ -104,19 +117,20 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     TextView mTvPrice;
     @BindView(R.id.bt_enter)
     Button mBvEnter;
-
     private boolean isDetail = false;//默认缩略图
     private String tId;
     private List<List<AppointTogetherDetailBean.DataBean.RoutesBean>> lists = new ArrayList<>();
     private String id;
     private String payType = "-1";
-    private int payStatus=-1;
+    private int payStatus = -1;
     private String isCollect;
+    private TravelDetailLineAdapter travelDetailLineAdapter;
+    private TravelDetailLineAdapter normalDetailLineAdapter;
 
 
     @Override
     protected void initEvent() {
-        ShareSDK.initSDK(this,"18450bb6d1b67");
+        ShareSDK.initSDK(this, "18450bb6d1b67");
         tId = getIntent().getStringExtra(IVariable.T_ID);
         mTvSitch.setOnClickListener(this);
         mBvEnter.setOnClickListener(this);
@@ -137,28 +151,33 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     protected void onSuccess(AppointDetailEvent appointDetailEvent) {
         switch (appointDetailEvent.getType()) {
             case TYPE_REFRESH:
-                dealData(appointDetailEvent);
+                try {
+                    dealData(appointDetailEvent);
+                } catch (Exception e) {
+                    setIsProgress(false);
+                    e.printStackTrace();
+                }
                 break;
             case TYPE_ENTER_APPOINT:
                 EnterAppointDialog.showDialogSuccess(this);
-                initAction(7+"");
+                initAction(7 + "");
                 break;
             case TYPE_DELETE:
-               ToastUtils.showToast("取消成功");
-                initAction(1+"");
+                ToastUtils.showToast("取消成功");
+                initAction(1 + "");
                 break;
             case TYPE_OUT_APPOINT:
                 ToastUtils.showToast("申请成功");
-                initAction(6+"");
+                initAction(6 + "");
                 break;
             case TYPE_COLLECTION:
                 ToastUtils.showToast("收藏成功");
-                isCollect=isTrue;
+                isCollect = isTrue;
 
                 break;
             case TYPE_CANCEL_COLLECTION:
                 ToastUtils.showToast("取消收藏成功");
-                isCollect=isFalse;
+                isCollect = isFalse;
                 break;
         }
 
@@ -178,6 +197,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
      * @param event
      */
     private void dealData(AppointDetailEvent event) {
+        setIsProgress(true);
         AppointTogetherDetailBean appointTogetherDetail = GsonUtils.getObject(event.getResult(), AppointTogetherDetailBean.class);
         if (appointTogetherDetail == null) return;
         AppointTogetherDetailBean.DataBean data = appointTogetherDetail.getData();
@@ -187,7 +207,10 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
         List<AppointTogetherDetailBean.DataBean.RoutesBean> routes = dealDate(data);
         initSomeData(data);
         classificationDay(lists, routes);
-        mLvRouteLine.setAdapter(new TravelDetailLineAdapter(this, lists, isDetail));
+        travelDetailLineAdapter = new TravelDetailLineAdapter(this, lists,true);
+        normalDetailLineAdapter = new TravelDetailLineAdapter(this, lists,false);
+        mLvRouteLine.setAdapter(normalDetailLineAdapter);
+        mLvRouteDetailLine.setAdapter(travelDetailLineAdapter);
         List<PeopleBean> ingPeople = data.getIng_people();
         if (ingPeople != null && ingPeople.size() != 0) {
             mRvEnter.setAdapter(new AppointDetailHaveEnterAdapter(this, ingPeople));
@@ -213,6 +236,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
         pricebasec.add(pricebasecBean);
         mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
         //measureHeight(mLvInsurance);
+        setIsProgress(false);
     }
 
     /**
@@ -238,12 +262,18 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
      *
      * @param data
      */
-    private void initSomeData(AppointTogetherDetailBean.DataBean data) {
+    private void initSomeData(final AppointTogetherDetailBean.DataBean data) {
         id = data.getId();
         mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
         mTvLove.setText(data.getIs_like().equals("1") ? getString(R.string.activity_circle_love_full) : getString(R.string.activity_circle_love_empty));
-        FrescoUtils.displayIcon(mIvUserIcon,data.getUser_img());
-        FrescoUtils.displayNormal(mIvAppointBg,data.getTravel_img());
+        FrescoUtils.displayIcon(mIvUserIcon, data.getUser_img());
+        mIvUserIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OtherUserCenterActivity.start(AppointTogetherDetailActivity.this,mIvUserIcon,data.getUser_id());
+            }
+        });
+        FrescoUtils.displayNormal(mIvAppointBg, data.getTravel_img());
         if (mFlTitle.getChildCount() > 0) mFlTitle.removeAllViews();
         dealLabel(data);
         mTvUserNickName.setText(data.getUser_name());
@@ -274,12 +304,13 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
 
     /**
      * 处理标签
+     *
      * @param data
      */
     private void dealLabel(AppointTogetherDetailBean.DataBean data) {
         try {
             String label = data.getLabel();
-            if (StringUtils.isEmpty(label))return;
+            if (StringUtils.isEmpty(label)) return;
             String[] split = label.split(",");
             for (int i = 0; i < split.length; i++) {
                 TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
@@ -356,11 +387,13 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
             case R.id.tv_switch:
                 isDetail = !isDetail;
                 if (lists == null || lists.size() == 0) return;
-                mLvRouteLine.setAdapter(new TravelDetailLineAdapter(this, lists, isDetail));
-                mTvSitch.setText(isDetail ? "详情图" : "缩略图");
+                mLvRouteDetailLine.setVisibility(isDetail?View.VISIBLE:View.GONE);
+                mLvRouteLine.setVisibility(isDetail?View.GONE:View.VISIBLE);
+                mTvSitch.setText(isDetail ? "缩略图" : "详情图");
+
                 break;
             case R.id.bt_enter:
-                if (StringUtils.isEmpty(id) || payStatus==-1) {
+                if (StringUtils.isEmpty(id) || payStatus == -1) {
                     ToastUtils.showToast("数据加载错误，请重新进入！");
                     return;
                 }
@@ -380,7 +413,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
                 EnterAppointDialog.showCommonDialog(this, "退出约伴", "确定", "退出约伴团队", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
-                        XEventUtils.postUseCommonBackJson(IVariable.OUT_APPOINT,map,TYPE_OUT_APPOINT,new AppointDetailEvent());
+                        XEventUtils.postUseCommonBackJson(IVariable.OUT_APPOINT, map, TYPE_OUT_APPOINT, new AppointDetailEvent());
                     }
                 });
 
@@ -388,7 +421,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
                 EnterAppointDialog.showCommonDialog(this, "取消申请", "确定", "取消发起的约伴请求！", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
-                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_APPOINT,map,TYPE_DELETE,new AppointDetailEvent());
+                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_APPOINT, map, TYPE_DELETE, new AppointDetailEvent());
                     }
                 });
 
@@ -406,13 +439,13 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
-        String collection=isCollect.equals(isTrue)?"已收藏":"收藏";
-        AppointDetailMorePop.showMorePop(this, mToolbar,collection, new ParentPopClick() {
+        String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
+        AppointDetailMorePop.showMorePop(this, mToolbar, collection, new ParentPopClick() {
             @Override
             public void onClick(int type) {
-                  String url=isCollect.equals(isTrue)?IVariable.CANCEL_COMMON_COLLECTION:IVariable.COLLECTION;
-                   Map<String, String> collectionMap = MapUtils.Build().addKey(AppointTogetherDetailActivity.this).addUserId().addType("1").addId(id).end();
-                   XEventUtils.postUseCommonBackJson(url, collectionMap, TYPE_COLLECTION, new AppointDetailEvent());
+                String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
+                Map<String, String> collectionMap = MapUtils.Build().addKey(AppointTogetherDetailActivity.this).addUserId().addType("1").addId(id).end();
+                XEventUtils.postUseCommonBackJson(url, collectionMap, TYPE_COLLECTION, new AppointDetailEvent());
 
             }
         });
@@ -427,4 +460,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     protected String initTitle() {
         return "约伴详情";
     }
+
+
 }

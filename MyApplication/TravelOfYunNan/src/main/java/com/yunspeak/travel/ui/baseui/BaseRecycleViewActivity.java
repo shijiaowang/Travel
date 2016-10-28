@@ -58,10 +58,8 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     @Override
     protected void initEvent() {
         mRvCommon = (RecyclerView) findViewById(R.id.swipe_target);
-
         mVsContent= (ViewStub) findViewById(R.id.vs_content);
         mVsFooter = (ViewStub) findViewById(R.id.vs_footer);
-        mRvCommon.addItemDecoration(new MyWitheMeDecoration(childDistance()));
         mSwipe = (SwipeToLoadLayout) findViewById(R.id.swipe_container);
         View headerView = inflater.inflate(R.layout.layout_google_header, mSwipe, false);
         View footView = inflater.inflate(R.layout.layout_google_footer, mSwipe, false);
@@ -71,11 +69,6 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         mSwipe.setOnRefreshListener(this);
         mSwipe.setOnLoadMoreListener(this);
     }
-
-    private int childDistance() {
-        return 6;
-    }
-
     protected void changeMargin(int space,int top){
         mRvCommon.addItemDecoration(new MyCollectionDecoration(space,top));
     }
@@ -95,7 +88,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         int count=type==TYPE_REFRESH?0:getListSize(mDatas);
-        builder.addPageSize().addCount(count).end();
+        builder.addPageSize().addCount(count);
     }
 
     @Override
@@ -108,7 +101,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         }
         List<F> loadDatas=new ArrayList<>();
         if (isChangeData()){
-            childChangeData(loadDatas,(E)parentBean,t);
+            loadDatas=childChangeData((E)parentBean,t);
         }else {
             loadDatas  = (List<F>) parentBean.getData();
         }
@@ -163,8 +156,8 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         return false;
     }
 
-    protected  void childChangeData(List<F> loadDatas, E parentBean, T t){
-
+    protected List<F> childChangeData(E parentBean, T t){
+        return null;
     }
 
     /**

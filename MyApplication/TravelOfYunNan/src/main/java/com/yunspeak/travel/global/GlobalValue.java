@@ -1,10 +1,9 @@
 package com.yunspeak.travel.global;
 
-import android.app.Activity;
-
 import com.yunspeak.travel.bean.UserInfo;
-import com.yunspeak.travel.ui.appoint.choicesequipment.ChoicePropSelectBean;
-import com.yunspeak.travel.ui.appoint.lineplan.LineBean;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.ChoicePropSelectBean;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
+
 
 import java.util.List;
 import java.util.Map;

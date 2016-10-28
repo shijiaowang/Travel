@@ -19,7 +19,7 @@ import org.xutils.x;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/6 0006.
+ * Created by wangyang on 2016/7/6 0006.
  * 游记详情行走路线
  */
 public class TravelsAddAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

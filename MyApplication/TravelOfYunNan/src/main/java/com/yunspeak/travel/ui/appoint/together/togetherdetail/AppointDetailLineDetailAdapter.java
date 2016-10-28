@@ -1,9 +1,12 @@
 package com.yunspeak.travel.ui.appoint.together.togetherdetail;
 
 import android.content.Context;
+import android.view.View;
 
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.baseui.DeliciousDetailActivity;
+import com.yunspeak.travel.ui.baseui.DestinationDetailActivity;
 
 import java.util.List;
 
@@ -16,8 +19,14 @@ public class AppointDetailLineDetailAdapter extends TravelBaseAdapter<AppointTog
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, AppointTogetherDetailBean.DataBean.RoutesBean item, int position) {
-
+    protected void initListener(BaseHolder baseHolder, final AppointTogetherDetailBean.DataBean.RoutesBean item, int position) {
+        AppointDetailLineDetailHolder appointDetailLineItemHolder = (AppointDetailLineDetailHolder) baseHolder;
+        appointDetailLineItemHolder.root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DestinationDetailActivity.start(mContext,item.getId(),item.getTitle());
+            }
+        });
     }
 
     @Override

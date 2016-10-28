@@ -6,6 +6,7 @@ import android.view.View;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.utils.MD5Utils;
@@ -21,25 +22,19 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/10/2.
  */
 
-public class ChangePassWordActivity extends LoadingBarBaseActivity<ChangePassWordEvent> {
-    @ViewInject(R.id.pv_old_password)
-    PasswordView mPvOldPassword;
-    @ViewInject(R.id.pv_new_password)
-    PasswordView mPvNewPassword;
-    @ViewInject(R.id.pv_re_new_password)
-    PasswordView mPvReNewPassword;
-    @ViewInject(R.id.bt_next)
-    AvoidFastButton mBtNext;
+public class ChangePassWordActivity extends BaseNetWorkActivity<ChangePassWordEvent> {
+    @BindView(R.id.pv_old_password) PasswordView mPvOldPassword;
+    @BindView(R.id.pv_new_password) PasswordView mPvNewPassword;
+    @BindView(R.id.pv_re_new_password) PasswordView mPvReNewPassword;
+    @BindView(R.id.bt_next) AvoidFastButton mBtNext;
     private String newPassword;
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_change_password;
-    }
 
     @Override
     protected void initEvent() {
@@ -88,19 +83,23 @@ public class ChangePassWordActivity extends LoadingBarBaseActivity<ChangePassWor
     }
 
     @Override
-    protected void onLoad(int type) {
-        setIsProgress(false);
+    protected boolean isAutoLoad() {
+        return false;
     }
 
     @Override
-    protected Activity initViewData() {
-        return this;
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
     }
 
     @Override
-    protected String setTitleName() {
-        return "修改密码";
+    protected String initUrl() {
+        return null;
     }
+
+
+
+
 
     @Override
     protected void onSuccess(ChangePassWordEvent httpEvent) {
@@ -122,8 +121,15 @@ public class ChangePassWordActivity extends LoadingBarBaseActivity<ChangePassWor
 
     }
 
+
+
     @Override
-    public float getAlpha() {
-        return 1.0f;
+    protected int initLayoutRes() {
+        return R.layout.activity_change_password;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "修改密码";
     }
 }

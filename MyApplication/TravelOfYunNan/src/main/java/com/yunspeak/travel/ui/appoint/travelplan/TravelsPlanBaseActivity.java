@@ -2,8 +2,8 @@ package com.yunspeak.travel.ui.appoint.travelplan;
 
 
 import android.content.Intent;
-import android.util.TypedValue;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
@@ -12,69 +12,52 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.personnelequipment.PersonnelEquipmentActivity;
-import com.yunspeak.travel.ui.appoint.personnelequipment.PersonnelEquipmentWithMeActivity;
-import com.yunspeak.travel.ui.baseui.BaseCropPhotoActivity;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.PersonnelEquipmentWithMeActivity;
+import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.view.GradientTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.JsonUtils;
+import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.json.JSONObject;
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/9/22.
  */
-public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity implements View.OnClickListener {
-    private TextView mTvRightNext;
-    @ViewInject(R.id.vs_content)
-    private ViewStub mVsContent;
-    @ViewInject(R.id.bt_next)
-    private Button mBtNext;
-    @ViewInject(R.id.tv_start)
-    private TextView mTvStart;
-    @ViewInject(R.id.tv_end)
-    private TextView mTvEnd;
-    @ViewInject(R.id.tv_end_time)
-    private TextView mTvEndTime;
-    @ViewInject(R.id.tv_start_time)
-    private TextView mTvStartTime;
-    @ViewInject(R.id.tv_how_day)
-    private TextView mTvHowDay;
-    @ViewInject(R.id.tv_start_morning)
-    private GradientTextView mTvStartMorning;
-    @ViewInject(R.id.tv_start_night)
-    private GradientTextView mTvStartNight;
-    @ViewInject(R.id.tv_end_morning)
-    private GradientTextView mTvEndMorning;
-    @ViewInject(R.id.tv_end_night)
-    private GradientTextView mTvEndNight;
-    @ViewInject(R.id.rl_start_morning)
-    private RelativeLayout mRlStartMorning;
-    @ViewInject(R.id.rl_start_night)
-    private RelativeLayout mRlStartNight;
-    @ViewInject(R.id.rl_end_morning)
-    private RelativeLayout mRlEndMorning;
-    @ViewInject(R.id.rl_end_night)
-    private RelativeLayout mRlEndNight;
-    @ViewInject(R.id.tv_icon)
-    private TextView mTvIcon;
-    @ViewInject(R.id.rl_icon)
-    private RelativeLayout mRlIcon;
-    @ViewInject(R.id.iv_icon)
-    private SimpleDraweeView mIvIcon;
-    @ViewInject(R.id.tv_delete)
-    private TextView mTvDelete;
+public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity implements View.OnClickListener {
+    @BindView(R.id.vs_content) ViewStub mVsContent;
+    @BindView(R.id.bt_next) Button mBtNext;
+    @BindView(R.id.tv_start) TextView mTvStart;
+    @BindView(R.id.tv_end) TextView mTvEnd;
+    @BindView(R.id.tv_end_time) TextView mTvEndTime;
+    @BindView(R.id.tv_start_time) TextView mTvStartTime;
+    @BindView(R.id.tv_how_day) TextView mTvHowDay;
+    @BindView(R.id.tv_start_morning) GradientTextView mTvStartMorning;
+    @BindView(R.id.tv_start_night) GradientTextView mTvStartNight;
+    @BindView(R.id.tv_end_morning) GradientTextView mTvEndMorning;
+    @BindView(R.id.tv_end_night) GradientTextView mTvEndNight;
+    @BindView(R.id.rl_start_morning) RelativeLayout mRlStartMorning;
+    @BindView(R.id.rl_start_night) RelativeLayout mRlStartNight;
+    @BindView(R.id.rl_end_morning) RelativeLayout mRlEndMorning;
+    @BindView(R.id.rl_end_night) RelativeLayout mRlEndNight;
+    @BindView(R.id.tv_icon) TextView mTvIcon;
+    @BindView(R.id.rl_icon) RelativeLayout mRlIcon;
+    @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
+    @BindView(R.id.tv_delete) TextView mTvDelete;
     private TimePickerView pvTime;
     protected Date startDate = new Date();
     protected Date endDate = new Date();
@@ -84,11 +67,6 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
     protected Date startLine;
 
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_travels_plan_base;
-    }
-
     /**
      * 是否隐藏右边
      * @return
@@ -96,13 +74,27 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
     protected abstract boolean isHideRight();
 
     @Override
-    protected void initChildListener() {
+    protected int initLayoutRes() {
+        return R.layout.activity_travels_plan_base;
+    }
+
+    @Override
+    protected void onSuccess(HttpEvent o) {
+
+    }
+
+    @Override
+    protected String initTitle() {
+        return "旅行计划";
+    }
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
+    }
+    @Override
+    protected void initEvent() {
         init();
         mTvIcon.setOnClickListener(this);
-        mTvRightNext = getmTvRightIcon();
-        mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        mTvRightNext.setText(R.string.next);
-        mTvRightNext.setOnClickListener(this);
         mBtNext.setOnClickListener(this);
         if(isHideRight()){
             mRlStartMorning.setVisibility(View.GONE);
@@ -119,10 +111,9 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
         mTvEnd.setOnClickListener(this);
         mVsContent.setLayoutResource(initChildLayoutRes());
         mVsContent.inflate();
-        x.view().inject(this);
         initChildEvent();
-
     }
+
 
     private void init() {
         Calendar currentDay = Calendar.getInstance();
@@ -134,19 +125,30 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
     }
 
     @Override
-    protected void onLoad(int typeRefresh) {
-        setIsProgress(false);
+    protected boolean isAutoLoad() {
+        return false;
     }
+
+    @Override
+    protected String initUrl() {
+        return null;
+    }
+
 
     protected abstract int initChildLayoutRes();
 
     protected abstract void initChildEvent();
 
 
+    @Override
+    protected String initRightText() {
+        return "下一步";
+    }
 
     @Override
-    protected String setTitleName() {
-        return "旅行计划";
+    protected void otherOptionsItemSelected(MenuItem item) {
+        super.otherOptionsItemSelected(item);
+        onClick(mBtNext);
     }
 
     @Override
@@ -161,7 +163,6 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
             case R.id.tv_end:
                 showTime(mTvEndTime);
                 break;
-            case R.id.tv_right_icon:
             case R.id.bt_next:
                 if (checkTimeAgain()) {
                     addJson();
@@ -204,10 +205,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCropPhotoActivity impl
         return mIvIcon;
     }
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
+
 
 
     protected void showTime(final TextView currentText) {

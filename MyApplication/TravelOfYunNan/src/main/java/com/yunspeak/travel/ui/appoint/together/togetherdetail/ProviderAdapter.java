@@ -8,7 +8,7 @@ import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/5 0005.
+ * Created by wangyang on 2016/9/5 0005.
  * 约伴详情道具提供
  */
 public class ProviderAdapter extends TravelBaseAdapter {

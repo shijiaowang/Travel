@@ -1,6 +1,5 @@
 package com.yunspeak.travel.ui.appoint.travelplan;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -12,13 +11,12 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.db.DBManager;
-import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.adddestination.ProvinceBean;
-import com.yunspeak.travel.ui.appoint.lineplan.LineBean;
-import com.yunspeak.travel.ui.appoint.lineplan.LinePlanEvent;
-import com.yunspeak.travel.ui.appoint.selectdestination.SelectDestinationActivity;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.ProvinceBean;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LinePlanEvent;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.SelectDestinationActivity;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconButton;
 import com.yunspeak.travel.utils.ActivityUtils;
@@ -27,7 +25,6 @@ import com.yunspeak.travel.utils.JsonUtils;
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
@@ -38,12 +35,7 @@ import java.util.List;
  * 找人带-旅行计划
  */
 public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
-    @ViewInject(R.id.bt_destination)
-    private FontsIconButton mBtDestination;
-    @ViewInject(R.id.tv_start_city)
-    private TextView mTvStartCity;
-    @ViewInject(R.id.fl_destination)
-    private FlowLayout mFlDestination;
+
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
 
@@ -55,14 +47,16 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
     private String cityName;
     private LayoutInflater inflater;
     private List<LineBean.Destination> destinations = new ArrayList<>();
+    private FlowLayout mFlDestination;
+    private TextView mTvStartCity;
+    private FontsIconButton mBtDestination;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityUtils.getInstance().addActivity(this);
         inflater = LayoutInflater.from(this);
     }
-
 
     @Override
     protected boolean isHideRight() {
@@ -76,6 +70,9 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
 
     @Override
     protected void initChildEvent() {
+        mBtDestination = (FontsIconButton) findViewById(R.id.bt_destination);
+        mTvStartCity = (TextView) findViewById(R.id.tv_start_city);
+        mFlDestination = (FlowLayout) findViewById(R.id.fl_destination);
         initCity();
         mBtDestination.setOnClickListener(this);
         mTvStartCity.setOnClickListener(this);
@@ -96,15 +93,8 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
         });
     }
 
-    @Override
-    protected Activity initViewData() {
-        return this;
-    }
 
-    @Override
-    protected void onSuccess(HttpEvent o) {
 
-    }
 
     private void showCitySelect() {
         //选项选择器

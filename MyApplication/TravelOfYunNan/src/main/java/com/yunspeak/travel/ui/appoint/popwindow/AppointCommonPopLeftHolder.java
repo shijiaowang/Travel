@@ -7,13 +7,14 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.SelectCommonBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.find.findcommon.CityBean;
 
 import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/9/9 0009.
  */
-public class AppointCommonPopLeftHolder extends BaseHolder<SelectCommonBean> {
+public class AppointCommonPopLeftHolder extends BaseHolder<CityBean> {
     @BindView(R.id.tv_name) TextView mTvName;
     @BindView(R.id.tv_cursor) TextView mTvCursor;
     public AppointCommonPopLeftHolder(Context context) {
@@ -21,7 +22,7 @@ public class AppointCommonPopLeftHolder extends BaseHolder<SelectCommonBean> {
     }
 
     @Override
-    protected void initItemDatas(SelectCommonBean datas, Context mContext, int position) {
+    protected void initItemDatas(CityBean datas, Context mContext, int position) {
         mTvName.setText(datas.getName());
            if (datas.isChecked()){
                mTvName.setTextColor(mContext.getResources().getColor(R.color.otherTitleBg));

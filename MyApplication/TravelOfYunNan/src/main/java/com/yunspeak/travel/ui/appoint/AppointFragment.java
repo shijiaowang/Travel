@@ -30,6 +30,9 @@ import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
 import com.yunspeak.travel.ui.appoint.withme.PlayWithMeFragment;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 import com.yunspeak.travel.utils.FastBlur;
+import com.yunspeak.travel.utils.ToastUtils;
+
+import org.xutils.common.util.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,7 +164,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
 //		Dialog dialog=new Dialog(上下文,风格style);
         final Dialog dialog = new Dialog(getContext(), R.style.myDialog);
         //layout_width layout_height
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+       LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.getScreenWidth(),DensityUtil.getScreenHeight());
         dialog.setContentView(dialogView, params);
         dialogView.findViewById(R.id.rl_together).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,25 +257,15 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void showType() {
-        List<SelectCommonBean> left = new ArrayList<>();
-        List<SelectCommonBean> right = new ArrayList<>();
-        SelectCommonBean playWay = new SelectCommonBean("玩法");
-        playWay.setIsChecked(true);
-        left.add(playWay);
-        left.add(new SelectCommonBean("路线"));
-        left.add(new SelectCommonBean("路线1"));
-        left.add(new SelectCommonBean("路线2"));
-        for (int i = 0; i < 20; i++) {
-            right.add(new SelectCommonBean("游戏" + i));
-        }
-        if (appointCommonPop == null) {
-            appointCommonPop = AppointCommonPop.newInstance(left, right);
+        ToastUtils.showToast("等待真是数据");
+        /*if (appointCommonPop == null) {
+            appointCommonPop = AppointCommonPop.newInstance(null, null);
         }
         if (appointCommonPop.isShowing()) {
             appointCommonPop.dismiss();
         } else {
             appointCommonPop.showDown(getContext(), mTvType);
-        }
+        }*/
     }
 
 

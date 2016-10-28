@@ -481,8 +481,8 @@
 
                     <TextView
                         android:id="@+id/tv_switch"
-                        android:layout_width="54dp"
-                        android:layout_height="20dp"
+                        android:layout_width="60dp"
+                        android:layout_height="25dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="20dp"
@@ -492,22 +492,33 @@
                         android:textColor="@color/otherTitleBg"
                         android:textSize="16sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <RelativeLayout
                         android:layout_below="@id/tv"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                        <include layout="@layout/appoint_detail_line_header" />
-
-                        <com.yunspeak.travel.ui.view.ToShowAllListView
-                            android:id="@+id/lv_route_line"
-                            style="@style/commonListViewStyle"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                             />
-                        <include layout="@layout/appoint_detail_line_footer" />
-                    </LinearLayout>
+                            android:orientation="vertical">
+
+                            <include layout="@layout/appoint_detail_line_header" />
+
+                            <com.yunspeak.travel.ui.view.ToShowAllListView
+                                android:visibility="gone"
+                                android:id="@+id/lv_route_line"
+                                style="@style/commonListViewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <com.yunspeak.travel.ui.view.ToShowAllListView
+                                android:id="@+id/lv_route_detail_line"
+                                style="@style/commonListViewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <include layout="@layout/appoint_detail_line_footer" />
+                        </LinearLayout>
+                    </RelativeLayout>
                 </RelativeLayout>
 
                 <View
@@ -526,18 +537,18 @@
 
                 <com.yunspeak.travel.ui.view.ToShowAllListView
                     android:id="@+id/lv_equ_provider"
+                    style="@style/commonListViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/commonListViewStyle"
 
                     android:layout_marginTop="13dp" />
 
                 <View
-                    android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
                     android:background="@color/meLine" />
 
                 <TextView
@@ -548,20 +559,21 @@
                     android:text="费用详情"
                     android:textColor="@color/color323232"
                     android:textSize="16sp" />
+
                 <TextView
-                    android:text="\u3000\u3000 备注："
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/color969696"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="22dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="10dp"
+                    android:text="\u3000\u3000 备注："
+                    android:textColor="@color/color969696"
+                    android:textSize="14sp" />
 
                 <com.yunspeak.travel.ui.view.ToShowAllListView
                     android:id="@+id/lv_insurance"
+                    style="@style/commonListViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/commonListViewStyle"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="20dp" />
 

@@ -64,11 +64,11 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="73dp"
         android:orientation="vertical">
-        <com.yunspeak.travel.ui.view.DottedLineView
+        <View
             android:id="@+id/iv_top_line"
-            android:layout_width="2dp"
+            android:layout_width="1dp"
             android:layout_height="13dp"
-
+            android:background="@color/otherTitleBg"
             android:layout_marginLeft="9dp" />
 
         <ImageView

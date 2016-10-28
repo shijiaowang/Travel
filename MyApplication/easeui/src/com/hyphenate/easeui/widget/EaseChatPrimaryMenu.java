@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,7 +30,6 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
     private View buttonPressToSpeak;
     private ImageView faceChecked;
     private Button buttonMore;
-
     public EaseChatPrimaryMenu(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs);
@@ -45,7 +45,6 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
     }
 
     private void init(final Context context, AttributeSet attrs) {
-        Context context1 = context;
         LayoutInflater.from(context).inflate(R.layout.ease_widget_chat_primary_menu, this);
         editText = (EditText) findViewById(R.id.et_sendmessage);
         buttonSetModeKeyboard = findViewById(R.id.btn_set_mode_keyboard);
@@ -160,6 +159,8 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
             if(listener != null)
                 listener.onEditTextClicked();
         } else if (id == R.id.iv_face_checked) {
+
+
             if(listener != null){
                 listener.onToggleEmojiconClicked();
             }
@@ -179,6 +180,7 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
         buttonSetModeKeyboard.setVisibility(View.VISIBLE);
         buttonSend.setVisibility(View.GONE);
         buttonMore.setVisibility(View.VISIBLE);
+        faceChecked.setVisibility(GONE);
         buttonPressToSpeak.setVisibility(View.VISIBLE);
     }
 
@@ -190,6 +192,7 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
         buttonSetModeKeyboard.setVisibility(View.GONE);
         buttonSetModeVoice.setVisibility(View.VISIBLE);
         // mEditTextContent.setVisibility(View.VISIBLE);
+        faceChecked.setVisibility(VISIBLE);
         editText.requestFocus();
         // buttonSend.setVisibility(View.VISIBLE);
         buttonPressToSpeak.setVisibility(View.GONE);

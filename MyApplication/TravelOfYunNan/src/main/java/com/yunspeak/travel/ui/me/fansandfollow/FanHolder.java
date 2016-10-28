@@ -2,18 +2,13 @@ package com.yunspeak.travel.ui.me.fansandfollow;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.appoint.aite.Follow;
-import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.Follow;
 import com.yunspeak.travel.utils.FrescoUtils;
-
-import org.xutils.x;
 
 import java.util.List;
 

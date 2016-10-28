@@ -1,31 +1,15 @@
 package com.yunspeak.travel.ui.me.myappoint;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.global.ParentPopClick;
-import com.yunspeak.travel.travel.ChatActivity;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
-import com.yunspeak.travel.ui.me.bulltetinboard.BulletinBoardActivity;
-import com.yunspeak.travel.ui.me.myappoint.memberdetail.MemberDetailActivity;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
-import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWithMeSelectActivity;
-import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
-import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.StringUtils;
-import com.yunspeak.travel.utils.XEventUtils;
 
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wangyang on 2016/8/2 0002.

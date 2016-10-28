@@ -7,7 +7,7 @@ import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/20 0020.
+ * Created by wangyang on 2016/7/20 0020.
  */
 public class AppointTogetherDetailBean {
 

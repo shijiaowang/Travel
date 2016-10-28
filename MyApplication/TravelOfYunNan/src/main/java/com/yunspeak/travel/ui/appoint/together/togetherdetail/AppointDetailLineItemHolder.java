@@ -10,7 +10,7 @@ import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/9/5 0005.
+ * Created by wangyang on 2016/9/5 0005.
  */
 public class AppointDetailLineItemHolder extends BaseHolder<AppointTogetherDetailBean.DataBean.RoutesBean> {
     @BindView(R.id.tv_spot_name) TextView mTvSpotName;

@@ -36,6 +36,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -201,7 +202,6 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
             EventBus.getDefault().register(activity);
         }
     }
-
     /**
      * 解除EventBus
      *

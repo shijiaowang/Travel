@@ -6,13 +6,13 @@ import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.event.RegisterEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginNextCommonEvent;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
@@ -32,11 +32,13 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/10/2.
  * 忘记密码
  */
-public class ForgetPasswordActivity extends LoadingBarBaseActivity<LoginNextCommonEvent> implements AvoidFastButton.AvoidFastOnClickListener, TextWatcher {
+public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonEvent> implements AvoidFastButton.AvoidFastOnClickListener, TextWatcher {
     //请求
     private static final int RESET_PASSWORD = 0;//重置
     private static final int VERIFICATION_REQ = 1;//验证码
@@ -46,20 +48,12 @@ public class ForgetPasswordActivity extends LoadingBarBaseActivity<LoginNextComm
     public static final int REGISTER_SUCCESS = 4;//注册成功
 
     private boolean isSending = false;//是否发送过验证码
-    @ViewInject(R.id.et_phone)
-    private LineEditText mEtPhone;
-    @ViewInject(R.id.et_password)
-    private LineEditText mEtPassword;
-    @ViewInject(R.id.et_re_password)
-    private LineEditText mEtRePassword;
-    @ViewInject(R.id.et_ver)
-    private LineEditText mEtVer;
-    @ViewInject(R.id.bt_next)
-    private AvoidFastButton mBtNext;
-    @ViewInject(R.id.bt_ver)
-    private AvoidFastButton mBtVer;
-    @ViewInject(R.id.tv_back)
-    private TextView mTvBack;
+    @BindView(R.id.et_phone) LineEditText mEtPhone;
+    @BindView(R.id.et_password) LineEditText mEtPassword;
+    @BindView(R.id.et_re_password) LineEditText mEtRePassword;
+    @BindView(R.id.et_ver) LineEditText mEtVer;
+    @BindView(R.id.bt_next) AvoidFastButton mBtNext;
+    @BindView(R.id.bt_ver) AvoidFastButton mBtVer;
     private int verTime = 60;//验证码时间
     private boolean isSendVer = false;
     private Handler mHandler = new Handler() {
@@ -82,30 +76,28 @@ public class ForgetPasswordActivity extends LoadingBarBaseActivity<LoginNextComm
     private String phone;
 
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_forget_password;
-    }
+
+
+
 
 
 
     @Override
-    protected void onLoad(int type) {
-        setIsProgress(false);
+    protected boolean isAutoLoad() {
+        return false;
     }
 
     @Override
-    protected Activity initViewData() {
-        mEtPhone.requestFocus();
-        btIsClick(mBtNext, false);
-        btIsClick(mBtVer, false);
-        return this;
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
     }
 
     @Override
-    protected String setTitleName() {
-        return "忘记密码";
+    protected String initUrl() {
+        return null;
     }
+
+
 
     @Override
     protected void onSuccess(LoginNextCommonEvent loginNextCommonEvent) {
@@ -118,14 +110,20 @@ public class ForgetPasswordActivity extends LoadingBarBaseActivity<LoginNextComm
 
     }
 
+
+
     @Override
     protected void initEvent() {
+        mEtPhone.requestFocus();
+        btIsClick(mBtNext, false);
+        btIsClick(mBtVer, false);
         mBtVer.setOnAvoidFastOnClickListener(this);
         mBtNext.setOnAvoidFastOnClickListener(this);
         mEtPhone.addTextChangedListener(this);
         mEtVer.addTextChangedListener(this);
         mEtPassword.addTextChangedListener(this);
         mEtRePassword.addTextChangedListener(this);
+
     }
 
     private void changePassword() {
@@ -252,7 +250,12 @@ public class ForgetPasswordActivity extends LoadingBarBaseActivity<LoginNextComm
     }
 
     @Override
-    public float getAlpha() {
-        return 1.0f;
+    protected int initLayoutRes() {
+        return R.layout.activity_forget_password;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "忘记密码";
     }
 }

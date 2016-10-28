@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.yunspeak.travel.ui.view.DottedLineView
+    <View
+        android:background="@color/otherTitleBg"
         android:layout_width="1dp"
         android:layout_marginLeft="82dp"
         android:layout_height="6dp" />

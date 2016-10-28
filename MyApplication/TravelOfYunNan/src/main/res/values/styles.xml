@@ -15,10 +15,7 @@
     <style name="ToolBarTheme" parent="AppTheme.Base"></style>
     <!-- 自定义对话框 系统默认 :1.白边 2.标题 -->
 
-    <style name="commonDialog" parent="@android:style/Theme.Holo.DialogWhenLarge">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    <style name="commonDialog" >
         <item name="android:windowEnterAnimation">@anim/enter_anima</item>
         <item name="android:windowExitAnimation">@anim/exit_anima</item>
         <!-- 去除标题 -->

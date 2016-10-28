@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.appoint.travelplan;
 
 
-import android.app.Activity;
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -12,29 +11,18 @@ import android.widget.EditText;
 
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-
-import com.yunspeak.travel.ui.appoint.lineplan.LineBean;
-import com.yunspeak.travel.ui.appoint.lineplan.LinePlanActivity;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LinePlanActivity;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointSpinnerPop;
 import com.yunspeak.travel.ui.appoint.popwindow.SpinnerBean;
-
 import com.yunspeak.travel.utils.ActivityUtils;
-
 import com.yunspeak.travel.utils.CalendarUtils;
-
 import com.yunspeak.travel.utils.JsonUtils;
-
-
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONObject;
-
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -44,20 +32,17 @@ import java.util.List;
  * 旅游计划
  */
 public class TravelsPlanActivity extends TravelsPlanBaseActivity {
-    @ViewInject(R.id.bt_select_line)
-    private TextView mBtSelectLine;
-    @ViewInject(R.id.et_remark)
-    private EditText mEtRemark;
-    @ViewInject(R.id.tv_traffic)
-    private TextView mTvTraffic;
-    @ViewInject(R.id.rl_traffic)
-    private RelativeLayout mRlTraffic;
+
     private String trafficType = "1";//交通工具
     private List<SpinnerBean> traffics;
+    private RelativeLayout mRlTraffic;
+    private TextView mTvTraffic;
+    private EditText mEtRemark;
+    private TextView mBtSelectLine;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityUtils.getInstance().addActivity(this);
     }
@@ -86,6 +71,11 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
 
     @Override
     protected void initChildEvent() {
+
+        mBtSelectLine = (TextView) findViewById(R.id.bt_select_line);
+        mEtRemark = (EditText) findViewById(R.id.et_remark);
+        mTvTraffic = (TextView) findViewById(R.id.tv_traffic);
+        mRlTraffic = (RelativeLayout) findViewById(R.id.rl_traffic);
         initTrafficeData();
         mBtSelectLine.setOnClickListener(this);
     }
@@ -104,16 +94,6 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
         }
     }
 
-
-    @Override
-    protected Activity initViewData() {
-        return this;
-    }
-
-    @Override
-    protected void onSuccess(HttpEvent httpEvent) {
-
-    }
 
 
 

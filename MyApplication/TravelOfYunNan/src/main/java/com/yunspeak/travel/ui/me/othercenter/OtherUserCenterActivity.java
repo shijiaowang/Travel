@@ -414,12 +414,6 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
 
     public static void start(Context context, View v, String id) {
         if (StringUtils.isEmpty(id))return;
-        try {
-            if (id.equals(GlobalUtils.getUserInfo().getId()))return;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(v, v.getWidth() / 2, v.getHeight() / 2, 0, 0);
         Intent intent = new Intent(context, OtherUserCenterActivity.class);
         intent.putExtra(IVariable.USER_ID, id);
