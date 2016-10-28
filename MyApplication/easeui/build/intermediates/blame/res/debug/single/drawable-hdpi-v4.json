@@ -272,12 +272,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_3.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_6.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_6.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\chat_open_picture.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_open_picture.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_6.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_6.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_default_image.png",
@@ -420,12 +420,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_11.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chatting_setmode_keyboard_btn_pressed.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatting_setmode_keyboard_btn_pressed.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_mm_listitem_disable.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_mm_listitem_disable.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chatting_setmode_keyboard_btn_pressed.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatting_setmode_keyboard_btn_pressed.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_contact_list_selected.png",
@@ -548,12 +548,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_19.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_19.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_20.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_20.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_19.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_19.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chatfrom_voice_playing_f3.png",
