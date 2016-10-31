@@ -26,14 +26,10 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
     private int currentPosition = 0;
     private List<Fragment> fragments = new ArrayList<>(2);
 
-   @ViewInject(R.id.vp_follow_fan)
-    private ViewPager mVpFollowFan;//pager
-    @ViewInject(R.id.tv_back)
-    private TextView mTvBack;//返回
-    @ViewInject(R.id.tv_fan)
-    private TextView mTvFan;//粉丝
-    @ViewInject(R.id.tv_follow)
-    private TextView mTvFollow;//关注
+    @ViewInject(R.id.vp_follow_fan)ViewPager mVpFollowFan;//pager
+    @ViewInject(R.id.tv_back) TextView mTvBack;//返回
+    @ViewInject(R.id.tv_fan) TextView mTvFan;//粉丝
+    @ViewInject(R.id.tv_follow)TextView mTvFollow;//关注
 
     @Override
     protected int initLayoutRes() {

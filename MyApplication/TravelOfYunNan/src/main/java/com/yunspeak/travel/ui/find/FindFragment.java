@@ -14,7 +14,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.ActiveActivity;
 import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
-import com.yunspeak.travel.ui.baseui.HotelActivity;
+import com.yunspeak.travel.ui.find.hotel.HotelActivity;
 import com.yunspeak.travel.ui.find.travels.TravelsActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;

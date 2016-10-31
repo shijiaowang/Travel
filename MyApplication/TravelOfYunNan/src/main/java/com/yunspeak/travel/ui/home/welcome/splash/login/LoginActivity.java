@@ -17,7 +17,7 @@ import com.yunspeak.travel.event.LoginEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseTransActivity;
-import com.yunspeak.travel.ui.baseui.HomeActivity;
+import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.forgetpassword.ForgetPasswordActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FontsIconTextView;

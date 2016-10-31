@@ -535,8 +535,9 @@
         <item name="android:textColor">@android:color/transparent</item>
     </style>
     <style name="toolbar_theme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-    <item name="colorControlNormal">@color/colorFAFAFA</item><!--返回按钮颜色-->
-        <item name="android:homeAsUpIndicator">@drawable/back</item><!--修改返回按钮图片-->
+      <item name="colorControlNormal">@color/colorFAFAFA</item>
+        <item name="android:background">@android:color/transparent</item>
+      <!--  <item name="android:homeAsUpIndicator">@drawable/back</item>-->
     </style>
     <!--ToolBar TextSize style-->
     <style name="ToolBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">

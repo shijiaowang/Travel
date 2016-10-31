@@ -70,7 +70,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity" />
-        <activity android:name="com.yunspeak.travel.ui.baseui.HomeActivity"
+        <activity android:name="com.yunspeak.travel.ui.home.HomeActivity"
             android:launchMode="singleTop"
             >
             <!-- <intent-filter>
@@ -138,7 +138,7 @@
         <activity android:name=".ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity"/>
         <activity android:name=".ui.me.myhobby.MyHobbyActivity"/>
         <activity android:name=".ui.baseui.PersonalProfileActivity"/>
-        <activity android:name=".ui.baseui.HomeSearchActivity"/>
+        <activity android:name=".ui.home.homesearch.HomeSearchActivity"/>
         <activity android:name=".ui.me.messagecenter.appointmessage.AppointMessageActivity"/>
         <activity android:name=".ui.me.identityauth.IdentityAuthenticationActivity"/>
         <activity android:name=".ui.appoint.travelplan.lineplan.LinePlanActivity"/>
@@ -152,7 +152,7 @@
             />
         <activity android:name=".ui.appoint.together.togetherdetail.AppointTogetherDetailActivity"/>
         <activity android:name=".ui.me.messagecenter.relateme.RelateMeActivity"/>
-        <activity android:name=".ui.baseui.HotelActivity"/>
+        <activity android:name=".ui.find.hotel.HotelActivity"/>
         <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.settingtitle.SettingTitleActivity"
             android:launchMode="singleTask"
             />

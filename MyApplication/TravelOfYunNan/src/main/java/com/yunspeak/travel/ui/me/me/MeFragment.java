@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.me.me;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +12,11 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.me.level.LevelActivity;
-import com.yunspeak.travel.ui.me.me.CropPhotoBaseFragment;
-import com.yunspeak.travel.ui.me.me.MeBean;
-import com.yunspeak.travel.ui.me.me.MeEvent;
-import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 import com.yunspeak.travel.ui.me.setting.SettingActivity;
 import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
 import com.yunspeak.travel.ui.me.fansandfollow.FollowAndFanActivity;
-import com.yunspeak.travel.ui.baseui.HomeActivity;
+import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.me.identityauth.IdentityAuthenticationActivity;
 import com.yunspeak.travel.ui.me.messagecenter.MessageCenterActivity;
 import com.yunspeak.travel.ui.me.myalbum.MyAlbumActivity;

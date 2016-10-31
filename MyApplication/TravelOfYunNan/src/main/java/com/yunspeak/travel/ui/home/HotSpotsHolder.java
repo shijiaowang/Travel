@@ -8,6 +8,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.DeliciousDetailActivity;
+import com.yunspeak.travel.ui.baseui.DestinationDetailActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -38,7 +39,7 @@ public class HotSpotsHolder extends BaseRecycleViewHolder<HomeBean.DataBean.Dest
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeliciousDetailActivity.start(mContext,data.getId(),data.getTitle());
+                DestinationDetailActivity.start(mContext,data.getId(),data.getTitle());
             }
         });
     }

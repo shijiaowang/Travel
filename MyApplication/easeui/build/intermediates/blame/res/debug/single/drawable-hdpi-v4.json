@@ -420,12 +420,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ee_11.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chatting_setmode_keyboard_btn_pressed.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatting_setmode_keyboard_btn_pressed.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_mm_listitem_disable.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_mm_listitem_disable.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chatting_setmode_keyboard_btn_pressed.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatting_setmode_keyboard_btn_pressed.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_contact_list_selected.png",

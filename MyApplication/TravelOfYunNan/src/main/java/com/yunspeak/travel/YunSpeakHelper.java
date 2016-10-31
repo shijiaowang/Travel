@@ -5,7 +5,7 @@ import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.domain.EaseUser;
 
 public class YunSpeakHelper {
-    public static void  setUserProfilePrivider(){
+    public static void  setUserProfileProvider(){
         EaseUI easeUI=EaseUI.getInstance();
         easeUI.setUserProfileProvider(new EaseUI.EaseUserProfileProvider() {
             @Override

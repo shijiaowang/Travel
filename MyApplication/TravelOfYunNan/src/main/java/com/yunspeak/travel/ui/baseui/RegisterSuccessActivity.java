@@ -14,6 +14,7 @@ import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.RegisterSuccessEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LineEditText;
 import com.yunspeak.travel.utils.GsonUtils;

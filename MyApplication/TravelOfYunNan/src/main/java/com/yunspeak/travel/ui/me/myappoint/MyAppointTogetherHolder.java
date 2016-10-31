@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -258,7 +259,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
                 @Override
                 public void onClick(View v) {
                     if (StringUtils.isEmpty(datas.getGroupid())) return;
-                    ChatActivity.start(mContext, id, datas.getGroupid());
+                    ChatActivity.start(mContext, id, datas.getGroupid(), EaseConstant.CHATTYPE_GROUP,null);
                 }
             });
             mBtStart.setOnClickListener(new View.OnClickListener() {

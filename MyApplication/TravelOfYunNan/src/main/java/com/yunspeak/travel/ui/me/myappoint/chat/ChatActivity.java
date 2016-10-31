@@ -24,6 +24,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.x;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +42,7 @@ public class ChatActivity extends EaseBaseActivity {
     public static boolean isGetMessage = false;
     private int tryCount;
     private String tId;
+    private int chatType;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -53,10 +56,18 @@ public class ChatActivity extends EaseBaseActivity {
         //user or group id
         toChatUsername = getIntent().getStringExtra(IVariable.CHAT_ID);
         tId = getIntent().getStringExtra(IVariable.TID);
-        getChatInfo();
+        chatType = getIntent().getIntExtra(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
+        if (chatType==EaseConstant.CHATTYPE_GROUP) {
+            getChatInfo();
+        }else {
+            UserInfo userInfo = (UserInfo) getIntent().getSerializableExtra(IVariable.DATA);
+            List<UserInfo> userInfos=new ArrayList<>();
+            userInfos.add(userInfo);
+            DBManager.insertChatUserInfo(userInfos);
+        }
         chatFragment = new ChatFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_GROUP);
+        bundle.putInt(EaseConstant.EXTRA_CHAT_TYPE,chatType);
         bundle.putString(EaseConstant.EXTRA_USER_ID, toChatUsername);
         //set arguments
         chatFragment.setArguments(bundle);
@@ -88,10 +99,12 @@ public class ChatActivity extends EaseBaseActivity {
         XEventUtils.getUseCommonBackJson(IVariable.GET_CHAT_MESSAGE, end, 0, new ChatEvent());
     }
 
-    public static void start(Context context, String tId, String chatId) {
+    public static void start(Context context, String tId, String chatId,int chatType,UserInfo userInfo) {
         Intent intent = new Intent(context, ChatActivity.class);
         intent.putExtra(IVariable.TID, tId);
         intent.putExtra(IVariable.CHAT_ID, chatId);
+        intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, chatType);
+        intent.putExtra(IVariable.DATA,userInfo);
         context.startActivity(intent);
     }
 

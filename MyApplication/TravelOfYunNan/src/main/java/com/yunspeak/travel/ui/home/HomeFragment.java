@@ -1,8 +1,6 @@
 package com.yunspeak.travel.ui.home;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,9 +8,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,11 +19,10 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.HotSpotsItemDecoration;
 import com.yunspeak.travel.ui.baseui.ActivateDetailActivity;
-import com.yunspeak.travel.ui.baseui.HomeSearchActivity;
+import com.yunspeak.travel.ui.home.homesearch.HomeSearchActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.AlbumSpace;
-import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -34,7 +31,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2016/7/6 0006.
@@ -61,6 +57,8 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     TextView tvName;
     @BindView(R.id.tv_people)
     TextView tvPeople;
+    @BindView(R.id.et_search)
+    EditText mEtSearch;
     @BindView(R.id.rl_active) RelativeLayout rlActive;
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout mSwipe;
@@ -134,6 +132,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         mRvTravels.addItemDecoration(new MyWitheMeDecoration(6));
         mSwipe.setOnRefreshListener(this);
         mRlSearch.setOnClickListener(this);
+        mEtSearch.setOnClickListener(this);
         mRvHotSpots.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -169,6 +168,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.et_search:
             case R.id.rl_search:
                 startActivity(new Intent(getContext(), HomeSearchActivity.class));
                 break;

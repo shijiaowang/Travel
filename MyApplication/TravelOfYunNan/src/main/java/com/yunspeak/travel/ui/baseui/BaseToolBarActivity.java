@@ -66,7 +66,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_toolbar);
+        setContentView(isChangeBarColor()?R.layout.activity_base_toolbar_rl:R.layout.activity_base_toolbar);
         inflater = LayoutInflater.from(this);
         mIvPageError = (ImageView) findViewById(R.id.page_error);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
@@ -80,6 +80,9 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null)
             supportActionBar.setDisplayHomeAsUpEnabled(true);
+        //设置StatusBar透明
+        SystemBarHelper.immersiveStatusBar(this);
+        //SystemBarHelper.setPadding(this, mToolbar);
         childView = inflater.inflate(initLayoutRes(), mFlContent, false);
         needHideChildView=childView;//默认隐藏孩子的所有内容，
         mFlContent.addView(childView);
@@ -87,6 +90,10 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         initOptions();
         mTvTitle.setText(initTitle());
         PushAgent.getInstance(this).onAppStart();
+    }
+
+    protected boolean isChangeBarColor() {
+        return false;
     }
 
     public TextView getmTvTitle() {

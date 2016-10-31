@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.baseui;
 
 
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

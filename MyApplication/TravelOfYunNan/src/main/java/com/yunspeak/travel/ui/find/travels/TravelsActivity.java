@@ -92,7 +92,6 @@ public class TravelsActivity extends BaseRecycleViewActivity<TravelsEvent,Travel
             content=mEtSearch.getText().toString().trim();
             resetIsFirstInflate();
            setIsProgress(true);
-            mEtSearch.setText("");
             onLoad(TYPE_SEARCH);
     }
 

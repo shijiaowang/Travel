@@ -56,7 +56,7 @@ public class TravelsApplication extends MultiDexApplication {
         mHandler = new Handler();
         mainThreadId = android.os.Process.myTid();//获取主线程的id
         initUmeng();
-        YunSpeakHelper.setUserProfilePrivider();
+        YunSpeakHelper.setUserProfileProvider();
 
 
 //注册推送服务，每次调用register方法都会回调该接口

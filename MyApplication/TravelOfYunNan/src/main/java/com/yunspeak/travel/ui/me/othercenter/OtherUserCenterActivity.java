@@ -23,10 +23,13 @@ import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.domain.UserInfo;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.AppBarStateChangeListener;
 import com.yunspeak.travel.ui.baseui.BaseChangeBarColorActivity;
+import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.AppBarStateEvent;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.OtherAlbumBean;
@@ -130,6 +133,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
     private String userId;
     private int isFans = -1;
     private int mCurrentPage = 0;
+    private UserInfo userInfo;
 
 
     @Override
@@ -154,7 +158,13 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
 
     @Override
     protected void initListener() {
-        mLlFollow.setOnClickListener(this);
+        if (userId.equals(GlobalUtils.getUserInfo().getId())){
+            mLlPrivate.setVisibility(View.GONE);
+            mLlFollow.setVisibility(View.GONE);
+        }else {
+            mLlFollow.setOnClickListener(this);
+            mLlPrivate.setOnClickListener(this);
+        }
         mVpDynamic.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -281,6 +291,10 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
      * @param user
      */
     private void initUserInfo(UserBean user) {
+        userInfo = new UserInfo();
+        userInfo.setId(userId);
+        userInfo.setNick_name(user.getNick_name());
+        userInfo.setUser_img(user.getUser_img());
         isFans = user.getIs_fans();
         dealFanOrNotFan(isFans);
         String nickName = user.getNick_name();
@@ -368,6 +382,9 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         switch (v.getId()) {
             case R.id.ll_follow:
                 followOrCancel();
+                break;
+            case R.id.ll_private:
+                ChatActivity.start(this,userId,userId, EaseConstant.CHATTYPE_SINGLE,userInfo);
                 break;
         }
     }

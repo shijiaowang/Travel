@@ -34,7 +34,8 @@ import java.util.regex.Pattern;
 public class SystemBarHelper
 {
 
-    private static float DEFAULT_ALPHA = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? 0.2f : 0.3f;
+    //private static float DEFAULT_ALPHA = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? 0.2f : 0.3f;
+    private static float DEFAULT_ALPHA = 0f;
 
     /**
      * Android4.4以上的状态栏着色

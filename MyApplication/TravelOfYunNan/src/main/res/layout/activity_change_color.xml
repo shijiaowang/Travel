@@ -38,8 +38,8 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="49dp"
-                android:background="@color/otherTitleBg"
+                android:layout_height="@dimen/commonTotalHeight"
+                android:background="@android:color/transparent"
                 android:gravity="center"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 

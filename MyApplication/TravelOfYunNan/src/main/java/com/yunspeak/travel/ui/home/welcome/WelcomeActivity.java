@@ -20,7 +20,7 @@ import com.yunspeak.travel.event.WelcomeEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.FullTransparencyActivity;
-import com.yunspeak.travel.ui.baseui.HomeActivity;
+import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.SplashActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;

@@ -8,25 +8,32 @@
         android:background="@color/otherTitleBg"
         android:layout_width="match_parent"
         android:layout_height="@dimen/commonStatusHeight"/>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp">
     <RelativeLayout
         android:gravity="center_vertical"
         android:background="@color/otherTitleBg"
         android:layout_width="match_parent"
+        android:elevation="3dp"
         android:layout_height="49dp">
-        <com.yunspeak.travel.ui.view.FontsIconTextView
+        <ImageView
             android:text="@string/activity_circle_back_font_icon"
             android:id="@+id/tv_back"
             android:layout_centerVertical="true"
             android:paddingLeft="13dp"
+            android:src="@drawable/back"
             android:textColor="@color/colorFAFAFA"
             android:textSize="25sp"
             android:paddingRight="13dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        </com.yunspeak.travel.ui.view.FontsIconTextView>
+        </ImageView>
         <EditText
             android:paddingLeft="20dp"
             android:hint="请输入关键字"
+            style="@style/commonSingleLineTextStyle"
+            android:imeOptions="actionSearch"
             android:textColor="@color/colorFAFAFA"
             android:textColorHint="@color/colorFAFAFA"
             android:textSize="13sp"
@@ -34,11 +41,11 @@
             android:background="@drawable/home_search_bg"
             android:layout_width="280dp"
             android:layout_height="28dp" />
-
-
     </RelativeLayout>
+    </android.support.design.widget.AppBarLayout>
     <com.yunspeak.travel.ui.view.FontsIconCursorView
         android:id="@+id/ficv_cursor"
+        android:elevation="2dp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="38dp">

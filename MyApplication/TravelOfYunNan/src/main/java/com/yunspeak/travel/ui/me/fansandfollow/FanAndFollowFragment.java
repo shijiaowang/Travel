@@ -32,12 +32,6 @@ public class FanAndFollowFragment extends LoadAndPullBaseFragment<FanAndFollowEv
         }
     }
 
-    @Override
-    protected int initResLayout() {
-        return R.layout.fragment_follow_and_fan;
-    }
-
-
 
     @Override
     public void onSuccess(FanAndFollowEvent fanAndFollowEvent) {

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -107,11 +108,15 @@ public class EnterAppointDialog {
                     JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
                     String key=isStart?IVariable.MEET_ADDRESS:IVariable.OVER_ADDRESS;
                     JsonUtils.putString(key,trim, basecJsonObject);
-                    LogUtils.e(basecJsonObject.toString());
+                    textView.setText(trim);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                textView.setText(trim);
+                 if (StringUtils.isEmpty(trim)){
+                     textView.setBackgroundResource(R.drawable.activity_line_plan_add_bg);
+                 }else {
+                     textView.setBackgroundColor(Color.TRANSPARENT);
+                 }
                 dialog.dismiss();
 
             }

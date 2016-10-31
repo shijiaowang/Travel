@@ -42,14 +42,10 @@ import me.relex.photodraweeview.PhotoDraweeView;
  * 预览图片
  */
 public class PreviewPicturesActivity extends BaseActivity implements View.OnClickListener {
-    @ViewInject(R.id.vp_picture)
-    private ViewPager mVpPicture;
-    @ViewInject(R.id.tv_back)
-    private FontsIconTextView mTvBack;
-    @ViewInject(R.id.tv_cancel)
-    private FontsIconTextView mTvCancel;
-    @ViewInject(R.id.tv_send)
-    private TextView mTvSend;
+    @ViewInject(R.id.vp_picture) ViewPager mVpPicture;
+    @ViewInject(R.id.tv_back) FontsIconTextView mTvBack;
+    @ViewInject(R.id.tv_cancel)FontsIconTextView mTvCancel;
+    @ViewInject(R.id.tv_send) TextView mTvSend;
     private int currentPosition = 0;
     private List<String> mTempImage = new ArrayList<>();
     private boolean sendFlag=false;
