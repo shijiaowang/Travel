@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.baseui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,16 +13,22 @@ import android.view.ViewStub;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
+import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
 import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
 import com.yunspeak.travel.utils.GsonUtils;
+import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
+import com.yunspeak.travel.utils.XEventUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,11 +37,12 @@ import butterknife.ButterKnife;
  * Created by wangyang on 2016/10/31 0031.
  */
 
-public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends ParentBean, F> extends BaseNetWorkActivity<T> implements OnLoadMoreListener {
-    @BindView(R.id.vs_content) ViewStub vsContent;
-    @BindView(R.id.rc_common) RecyclerView mRvCommon;
-    @BindView(R.id.swipe_target) NestedScrollView swipeTarget;
-    @BindView(R.id.swipe_container) SwipeToLoadLayout mSwipe;
+public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends ParentBean, F> extends BaseNetWorkActivity<T> implements OnLoadMoreListener, BaseRecycleViewAdapter.OnItemClickListener {
+    @BindView(R.id.vs_content) protected ViewStub vsContent;
+    @BindView(R.id.vs_footer) protected ViewStub vsFooter;
+    @BindView(R.id.rc_common) protected RecyclerView mRvCommon;
+    @BindView(R.id.swipe_target) protected NestedScrollView swipeTarget;
+    @BindView(R.id.swipe_container) protected SwipeToLoadLayout mSwipe;
     protected List<F> mDatas;//从网络获取的数据
     protected BaseRecycleViewAdapter<F> mAdapter;//通用adapter
 
@@ -47,15 +55,23 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
     }
     @Override
     protected void initEvent() {
+        mToolbar.setBackgroundColor(Color.argb(0, 92 , 208 , 194));
         View footView = inflater.inflate(R.layout.layout_google_footer, mSwipe, false);
         mSwipe.setSwipeStyle(SwipeToLoadLayout.STYLE.BLEW);
         mSwipe.setLoadMoreFooterView(footView);
         mSwipe.setOnLoadMoreListener(this);
+        swipeTarget.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                float absOffset=scrollY/300f;
+                absOffset=absOffset>1?1:absOffset;
+                mToolbar.setBackgroundColor(Color.argb((int) (absOffset * 255), 92 , 208, 194));
+            }
+        });
     }
     protected void changeMargin(int space,int top){
         mRvCommon.addItemDecoration(new MyCollectionDecoration(space,top));
     }
-
 
 
     @Override
@@ -71,11 +87,26 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         return (Class<E>) pt.getActualTypeArguments()[1];
     }
-
+    /**
+     * 处理公共的网络参数请求
+     *
+     * @param type
+     */
+    protected void onLoad(int type) {
+        MapUtils.Builder builder = MapUtils.Build().addKey(this).addUserId();
+        childAdd(builder,type);
+        Map<String, String> baseMap = builder.end();
+        XEventUtils.getUseCommonBackJson(initUrl(),baseMap,type,new DetailCommonEvent());
+    }
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         int count=type==TYPE_REFRESH?0:getListSize(mDatas);
         builder.addPageSize().addCount(count);
+    }
+
+    @Override
+    protected boolean isChangeBarColor() {
+        return true;
     }
 
     @Override
@@ -86,12 +117,21 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
         } else {
             parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
         }
-        List<F> loadDatas=new ArrayList<>();
+        List<F> loadDatas;
         if (isChangeData()){
             loadDatas=childChangeData((E)parentBean,t);
         }else {
             loadDatas  = (List<F>) parentBean.getData();
         }
+
+        dealRecycle(t, parentBean, loadDatas);
+
+
+
+
+    }
+
+    private void dealRecycle(T t, ParentBean parentBean, List<F> loadDatas) {
         if (parentBean==null || loadDatas==null || loadDatas.size()==0){
             mSwipe.setLoadingMore(false);
             mSwipe.setRefreshing(false);
@@ -106,6 +146,7 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
             mAdapter = initAdapter(mDatas);
             mRvCommon.setHasFixedSize(true);
             mRvCommon.setAdapter(mAdapter);
+            mAdapter.setItemClickListener(this);
             if (isGridLayoutManager()){
                 StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
                 staggeredGridLayoutManager.setAutoMeasureEnabled(true);
@@ -113,25 +154,27 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
             }else {
                 LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(this);
                 linearLayoutManager.setAutoMeasureEnabled(true);
+
                 mRvCommon.setLayoutManager(linearLayoutManager);
             }
+            mRvCommon.setNestedScrollingEnabled(false);
             mRvCommon.setItemAnimator(new DefaultItemAnimator());
         } else if (t.getType() == TYPE_LOAD) {
             mDatas.addAll(loadDatas);
             if (t.getCode()==2){
-                ToastUtils.showToast("没有更多消息了");
+                ToastUtils.showToast("没有更多数据了");
             }
+
+           // mAdapter.notifyItemRangeInserted(size,loadDatas.size());
+            mAdapter.notifyDataSetChanged();
             mSwipe.setLoadingMore(false);
-            mAdapter.notifiyData(mDatas);
         } else if (t.getType() == TYPE_REFRESH) {
             mDatas = loadDatas;
             mAdapter.notifiyData(mDatas);
             mSwipe.setRefreshing(false);
-        } else {
-            doOtherSuccessData(t);
         }
-
     }
+
     protected Class<? extends ParentBean> useChildedBean() {
         return getEType();
     }
@@ -170,13 +213,7 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
         }
     }
 
-    /**
-     * 处理其他逻辑
-     * @param t
-     */
-    protected  void doOtherSuccessData(T t){
 
-    }
 
     /**
      * 初始化adapter
@@ -201,4 +238,8 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+
+    }
 }

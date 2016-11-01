@@ -39,6 +39,7 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
     private TextView mTvTraffic;
     private EditText mEtRemark;
     private TextView mBtSelectLine;
+    private boolean isSelectLine;
 
 
     @Override
@@ -49,9 +50,9 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
 
     private void initTrafficeData() {
         traffics = new ArrayList<>();
-        traffics.add(new SpinnerBean("自驾游", "1", TRAFFIC_TYPE));
+        traffics.add(new SpinnerBean("汽车", "1", TRAFFIC_TYPE));
         traffics.add(new SpinnerBean("火车", "2", TRAFFIC_TYPE));
-        traffics.add(new SpinnerBean("汽车", "3", TRAFFIC_TYPE));
+        traffics.add(new SpinnerBean("其他", "3", TRAFFIC_TYPE));
         mRlTraffic.setOnClickListener(this);
     }
 
@@ -106,6 +107,9 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
     protected void addChildJson(JSONObject basecJsonObject) throws Exception {
         JsonUtils.putString(IVariable.TRAFFIC,trafficType,basecJsonObject);
         JsonUtils.putString(IVariable.TRAFFIC_TEXT,getString(mEtRemark),basecJsonObject);
+        if (!isSelectLine){
+            throw new Exception();
+        }
     }
 
 
@@ -152,15 +156,20 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
                 startLine = startDate;
             }
             Intent intent = new Intent(this, LinePlanActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,REQ_CODE);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==REQ_CODE && resultCode==RESULT_CODE && data!=null){
+            isSelectLine = data.getBooleanExtra(IVariable.DATA,false);
+        }
+    }
 
     @Subscribe
     public void onEvent(SpinnerBean spinnerBean) {

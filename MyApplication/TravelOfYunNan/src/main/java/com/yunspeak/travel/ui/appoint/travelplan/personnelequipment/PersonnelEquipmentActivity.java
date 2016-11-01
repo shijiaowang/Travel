@@ -57,7 +57,7 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
     private List<SpinnerBean> auths;
     private String sexType="3";
     private String authType="5";
-    private String autoPass="2";//自动通过
+    private String autoPass="1";//自动通过
 
     @Override
     protected int initLayoutRes() {
@@ -78,6 +78,7 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
         initSpinnerData();
         mRlAuthSelect.setOnClickListener(this);
         mRlSexSelect.setOnClickListener(this);
+        mSToggle.setChecked(true);
         mSToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -100,7 +101,6 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
         sexs.add(new SpinnerBean("女", "2",SEX_TYPE));
         sexs.add(new SpinnerBean("不限", "3",SEX_TYPE));
         auths = new ArrayList<>();
-        auths.add(new SpinnerBean("电话", "1",AUTH_TYPE));
         auths.add(new SpinnerBean("身份证", "2",AUTH_TYPE));
         auths.add(new SpinnerBean("驾驶证", "3",AUTH_TYPE));
         auths.add(new SpinnerBean("行驶证", "4",AUTH_TYPE));

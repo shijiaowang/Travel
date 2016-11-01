@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.appoint.travelplan.lineplan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.utils.JsonUtils;
+import com.yunspeak.travel.utils.StringUtils;
+import com.yunspeak.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
@@ -39,10 +42,11 @@ public class LinePlanActivity extends BaseToolBarActivity {
             public void onClick(View v) {
                 try {
                     saveRoutes();//保存路程信息
+                    checkData();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                checkData();
+
             }
         });
     }
@@ -71,12 +75,18 @@ public class LinePlanActivity extends BaseToolBarActivity {
      * 检查目的地等数据是否有
      */
     private void checkData() {
-        // TODO: 2016/9/18 0018 之后再做数据合法性校验
         try {
             JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
             String meet = basecJsonObject.getString(IVariable.MEET_ADDRESS);
             String over = basecJsonObject.getString(IVariable.OVER_ADDRESS);
-            finish();//验证数据成功就finsh
+            if (StringUtils.isEmpty(meet) || StringUtils.isEmpty(over)){
+                ToastUtils.showToast("集合地或解散地不能为空");
+                return;
+            }
+            Intent data = new Intent();
+            data.putExtra(IVariable.DATA,true);
+            setResult(RESULT_CODE, data);
+            finish();
         } catch (Exception e) {
             e.printStackTrace();
         }

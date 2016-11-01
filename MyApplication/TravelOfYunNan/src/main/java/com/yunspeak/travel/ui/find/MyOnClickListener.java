@@ -4,9 +4,9 @@ import android.content.Context;
 import android.view.View;
 
 import com.yunspeak.travel.ui.baseui.ActivateDetailActivity;
-import com.yunspeak.travel.ui.baseui.DeliciousDetailActivity;
-import com.yunspeak.travel.ui.baseui.DestinationDetailActivity;
-import com.yunspeak.travel.ui.baseui.TravelsDetailActivity;
+import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
+import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
 
 /**
  * Created by wangyang on 2016/10/17 0017.
@@ -32,7 +32,7 @@ class MyOnClickListener implements View.OnClickListener {
                 DeliciousDetailActivity.start(mContext,data.getId(),data.getTitle());
                 break;
             case 3:
-                TravelsDetailActivity.start(mContext,data.getId());
+                TravelsDetailActivity.start(mContext,data.getId(),data.getTitle());
                 break;
             case 4:
                 ActivateDetailActivity.start(mContext,data.getId());

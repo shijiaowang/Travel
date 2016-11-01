@@ -111,6 +111,13 @@ public class EaseChatInputMenu extends LinearLayout {
     public void init(){
         init(null);
     }
+
+    /**
+     * 发现使用,影藏地址等功能
+     */
+    public void setFindUse(){
+        chatPrimaryMenu.setFindUse();
+    }
     
     /**
      * set custom emojicon menu
@@ -160,8 +167,7 @@ public class EaseChatInputMenu extends LinearLayout {
 
     /**
      * register menu item
-     * 
-     * @param name
+     *
      *            resource id of item name
      * @param drawableRes
      *            background of item
@@ -285,14 +291,16 @@ public class EaseChatInputMenu extends LinearLayout {
                     chatExtendMenu.setVisibility(View.GONE);
                     emojiconMenu.setVisibility(View.VISIBLE);
                 }
-            }, 50);
+            }, 200);
         } else {
             if (emojiconMenu.getVisibility() == View.VISIBLE) {
                 chatExtendMenuContainer.setVisibility(View.GONE);
                 emojiconMenu.setVisibility(View.GONE);
+                chatPrimaryMenu.showSoftWore();
             } else {
                 chatExtendMenu.setVisibility(View.GONE);
                 emojiconMenu.setVisibility(View.VISIBLE);
+                chatPrimaryMenu.hideKeyboard();
             }
 
         }

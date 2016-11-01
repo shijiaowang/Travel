@@ -1,5 +1,7 @@
 package com.yunspeak.travel.bean;
 
+import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
+
 import java.util.List;
 
 /**

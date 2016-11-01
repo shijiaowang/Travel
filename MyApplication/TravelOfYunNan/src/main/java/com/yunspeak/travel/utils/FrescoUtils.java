@@ -2,6 +2,7 @@ package com.yunspeak.travel.utils;
 
 import android.net.Uri;
 
+import com.facebook.drawee.drawable.ScalingUtils;
 import com.yunspeak.travel.R;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
@@ -81,17 +82,23 @@ public class FrescoUtils {
      * 加载一般图片
      * @param simpleDraweeView 显示
      */
-    public static void displayNormal(SimpleDraweeView simpleDraweeView, String url,int width,int height){
+    public static void displayNormal(SimpleDraweeView simpleDraweeView, String url,int width,int height,int failimge){
         if (simpleDraweeView==null || url==null)return;
         Uri uri=Uri.parse(url);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
                .setResizeOptions(new ResizeOptions(width,height))
                 .build();
-
+        GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
+                //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
+                .setFailureImage(failimge, ScalingUtils.ScaleType.CENTER_INSIDE)
+                .setPlaceholderImage(failimge, ScalingUtils.ScaleType.CENTER_INSIDE)
+                //构建
+                .build();
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setImageRequest(request)
                 .setOldController(simpleDraweeView.getController())
                 .build();
+        simpleDraweeView.setHierarchy(hierarchy);
         simpleDraweeView.setController(controller);
     }
     /**
@@ -99,7 +106,22 @@ public class FrescoUtils {
      * @param simpleDraweeView 显示
      */
     public static void displayNormal(SimpleDraweeView simpleDraweeView, String url){
-       displayNormal(simpleDraweeView,url,200,200);
+       displayNormal(simpleDraweeView,url,200,200,R.drawable.activity_circle_bg);
     }
+    /**
+     * 加载一般图片
+     * @param simpleDraweeView 显示
+     */
+    public static void displayNormal(SimpleDraweeView simpleDraweeView, String url,int width,int height){
+        displayNormal(simpleDraweeView,url,width,height,R.drawable.activity_circle_bg);
+    }
+    /**
+     * 加载一般图片
+     * @param simpleDraweeView 显示
+     */
+    public static void displayNormal(SimpleDraweeView simpleDraweeView, String url,int res){
+        displayNormal(simpleDraweeView,url,200,200,res);
+    }
+
 
 }

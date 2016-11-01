@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical">
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_bg"
         android:layout_width="match_parent"
         android:layout_height="225dp"
-        android:src="@drawable/activity_travels_bg_test" />
+      />
 
     <WebView
         android:id="@+id/wv_html"
@@ -64,8 +64,8 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/iv_icon"
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_travel"
             android:layout_width="53dp"
             android:layout_height="53dp"
             android:layout_centerVertical="true"
@@ -134,12 +134,5 @@
             android:text="实话实说" />
     </LinearLayout>
 
-    <com.yunspeak.travel.ui.view.ToShowAllListView
-        android:id="@+id/lv_discuss"
-        style="@style/XScrollViewListViewCommon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.yunspeak.travel.ui.view.ToShowAllListView>
 </LinearLayout>
 

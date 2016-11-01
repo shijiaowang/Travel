@@ -5,14 +5,14 @@ import android.view.View;
 import android.widget.RatingBar;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.DeliciousDetail;
+import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailBean;
 
 import butterknife.BindView;
 
 /**
  * Created by Administrator on 2016/7/26 0026.
  */
-public class DeliciousDetailHoler extends BaseHolder<DeliciousDetail> {
+public class DeliciousDetailHoler extends BaseHolder<DeliciousDetailBean> {
     @BindView(R.id.rb_star) RatingBar mRbStar;
 
     public DeliciousDetailHoler(Context context) {
@@ -20,7 +20,7 @@ public class DeliciousDetailHoler extends BaseHolder<DeliciousDetail> {
     }
 
     @Override
-    protected void initItemDatas(DeliciousDetail datas, Context mContext, int position) {
+    protected void initItemDatas(DeliciousDetailBean datas, Context mContext, int position) {
 
     }
 

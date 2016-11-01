@@ -2,7 +2,7 @@ package com.yunspeak.travel.ui.adapter;
 
 import android.content.Context;
 
-import com.yunspeak.travel.bean.DeliciousDetail;
+import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.DeliciousDetailHoler;
 
@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/26 0026.
  */
-public class DeliciousDetailAdapter extends TravelBaseAdapter<DeliciousDetail> {
-    public DeliciousDetailAdapter(Context mContext, List<DeliciousDetail> mDatas) {
+public class DeliciousDetailAdapter extends TravelBaseAdapter<DeliciousDetailBean> {
+    public DeliciousDetailAdapter(Context mContext, List<DeliciousDetailBean> mDatas) {
         super(mContext, mDatas);
     }
 
@@ -22,7 +22,7 @@ public class DeliciousDetailAdapter extends TravelBaseAdapter<DeliciousDetail> {
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, DeliciousDetail item, int position) {
+    protected void initListener(BaseHolder baseHolder, DeliciousDetailBean item, int position) {
 
     }
 

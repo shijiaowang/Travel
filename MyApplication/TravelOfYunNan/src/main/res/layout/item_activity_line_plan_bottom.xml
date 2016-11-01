@@ -31,6 +31,7 @@
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_end_add"
             android:minWidth="55dp"
+            style="@style/commonSingleLineTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="27dp"
             android:layout_marginLeft="25dp"

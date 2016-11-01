@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.baseui.TravelsDetailActivity;
+import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;

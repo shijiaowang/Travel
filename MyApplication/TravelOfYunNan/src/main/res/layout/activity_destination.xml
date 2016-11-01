@@ -3,8 +3,9 @@
 <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:elevation="2dp"
-    android:layout_height="80dp">
+    android:elevation="1dp"
+    android:layout_height="80dp"
+   >
     <RelativeLayout
         android:focusableInTouchMode="true"
         android:focusable="true"
@@ -61,7 +62,9 @@
         <TextView
             android:id="@+id/tv_location"
             style="@style/fragmentAppointTitleText"
-            android:text="地区" />
+            android:text="地区"
+
+            android:layout_height="wrap_content" />
 
         <View style="@style/fragmentAppointTitleLine" />
 

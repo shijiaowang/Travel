@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.TravelsDetail;
+import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailBean;
 
 import org.xutils.x;
 
@@ -21,9 +21,9 @@ import java.util.List;
  */
 public class TravelMemberAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
-    private List<TravelsDetail.DataBean.TravelRoutesBean.UserBean> mDatas;
+    private List<TravelsDetailBean.DataBean.TravelRoutesBean.UserBean> mDatas;
 
-    public TravelMemberAdapter(Context mContext, List<TravelsDetail.DataBean.TravelRoutesBean.UserBean> mDatas) {
+    public TravelMemberAdapter(Context mContext, List<TravelsDetailBean.DataBean.TravelRoutesBean.UserBean> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
     }

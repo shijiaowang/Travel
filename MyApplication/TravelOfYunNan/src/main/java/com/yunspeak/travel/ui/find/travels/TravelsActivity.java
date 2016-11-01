@@ -2,7 +2,6 @@ package com.yunspeak.travel.ui.find.travels;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -13,15 +12,10 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.baseui.BaseXListViewActivity;
-import com.yunspeak.travel.ui.baseui.TravelsDetailActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.MapUtils;
-
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
 

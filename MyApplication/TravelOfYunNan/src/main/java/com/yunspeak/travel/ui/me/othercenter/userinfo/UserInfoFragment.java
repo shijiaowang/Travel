@@ -18,11 +18,9 @@ import com.yunspeak.travel.ui.me.othercenter.UserBean;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.XEventUtils;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 

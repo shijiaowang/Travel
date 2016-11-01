@@ -33,7 +33,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
         this.notifyDataSetChanged();
     }
     public void setDatas(List list){
-        if (list==null)return;
+        if (list==null || list==mDatas)return;
         mDatas=list;
     }
     public View inflateView(int res,ViewGroup parent){

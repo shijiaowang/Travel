@@ -20,7 +20,7 @@
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_marginLeft="17dp"
-            android:layout_marginRight="15dp"
+
             android:src="@drawable/chat_voice"
              />
 
@@ -51,6 +51,7 @@
         </LinearLayout>
 
             <EditText
+                android:layout_marginLeft="15dp"
                 android:id="@+id/et_sendmessage"
                 android:layout_weight="1"
                 android:layout_width="0dp"

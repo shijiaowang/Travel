@@ -6,28 +6,6 @@
     android:id="@+id/rl_root"
     android:background="@color/meLine"
     android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tool_bar"
-            android:layout_width="match_parent"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:paddingTop="@dimen/commonStatusHeight"
-            android:elevation="0dp"
-            android:layout_height="@dimen/commonTotalHeight"
-            android:background="@android:color/transparent"
-            app:titleTextAppearance="@style/ToolBar.TitleText">
-
-            <TextView
-                android:id="@+id/tv_appbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="18sp" />
-        </android.support.v7.widget.Toolbar>
-
-
     <FrameLayout
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
@@ -68,5 +46,22 @@
         android:id="@+id/pb_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:paddingTop="@dimen/commonStatusHeight"
+        android:elevation="0dp"
+        android:layout_height="@dimen/commonTotalHeight"
+        app:titleTextAppearance="@style/ToolBar.TitleText">
+        <TextView
+            android:id="@+id/tv_appbar_title"
+            style="@style/commonSingleLineTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="18sp" />
+    </android.support.v7.widget.Toolbar>
 </RelativeLayout>

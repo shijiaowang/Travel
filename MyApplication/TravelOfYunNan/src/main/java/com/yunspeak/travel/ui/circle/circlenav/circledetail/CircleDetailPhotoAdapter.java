@@ -55,7 +55,7 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
             }
         });
          FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag(), DensityUtil.dip2px(105),DensityUtil.dip2px(93));
-       // x.image().bind( circleDetailPhotoHolder.mIvImage,mDatas.get(position));
+
     }
 
     @Override

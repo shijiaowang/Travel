@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
+import com.yunspeak.travel.utils.TypefaceUtis;
 
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
@@ -90,7 +93,7 @@ public class EnterAppointDialog {
      * @param isStart
      * @param context
      */
-    public static void showDialogAddDestination(Context context, final TextView textView, final boolean isStart) {
+    public static void showDialogAddDestination(final Context context, final TextView textView, final boolean isStart) {
         //创建视图
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
@@ -114,8 +117,12 @@ public class EnterAppointDialog {
                 }
                  if (StringUtils.isEmpty(trim)){
                      textView.setBackgroundResource(R.drawable.activity_line_plan_add_bg);
+                     textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+                     textView.setTypeface(TypefaceUtis.getTypeface(context));
                  }else {
                      textView.setBackgroundColor(Color.TRANSPARENT);
+                     textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+                     textView.setTypeface(Typeface.DEFAULT);
                  }
                 dialog.dismiss();
 

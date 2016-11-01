@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.TravelsDetail;
+import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailBean;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.ImageOptionsUtil;
 
@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class TravelsAddAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
-    private List<TravelsDetail.DataBean.TravelRoutesBean.RoutesBean> mDatas;
+    private List<TravelsDetailBean.DataBean.TravelRoutesBean.RoutesBean> mDatas;
 
-    public TravelsAddAdapter(Context mContext, List<TravelsDetail.DataBean.TravelRoutesBean.RoutesBean> mDatas) {
+    public TravelsAddAdapter(Context mContext, List<TravelsDetailBean.DataBean.TravelRoutesBean.RoutesBean> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
     }

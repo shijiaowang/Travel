@@ -26,6 +26,7 @@
             android:id="@+id/tv_start_add"
             android:minWidth="55dp"
             android:layout_width="wrap_content"
+            style="@style/commonSingleLineTextStyle"
             android:layout_height="27dp"
             android:layout_marginLeft="25dp"
             android:layout_toRightOf="@id/tv_add"

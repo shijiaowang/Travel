@@ -34,7 +34,7 @@ public abstract class EaseChatPrimaryMenuBase extends RelativeLayout{
         this.activity = (Activity) context;
         inputManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
     }
-    
+
     /**
      * set primary menu listener
      * @param listener
@@ -42,7 +42,9 @@ public abstract class EaseChatPrimaryMenuBase extends RelativeLayout{
     public void setChatPrimaryMenuListener(EaseChatPrimaryMenuListener listener){
         this.listener = listener;
     }
-    
+    protected void showSoftWore(){
+
+    }
     /**
      * emoji icon input event
      * @param emojiContent
@@ -76,8 +78,9 @@ public abstract class EaseChatPrimaryMenuBase extends RelativeLayout{
             if (activity.getCurrentFocus() != null)
                 inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
+
     }
-    
+
     
     public interface EaseChatPrimaryMenuListener{
         /**
@@ -113,5 +116,7 @@ public abstract class EaseChatPrimaryMenuBase extends RelativeLayout{
         void onEditTextClicked();
         
     }
+   public void setFindUse(){
 
+   }
 }

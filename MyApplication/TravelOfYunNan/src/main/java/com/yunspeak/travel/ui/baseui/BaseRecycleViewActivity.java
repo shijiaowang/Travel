@@ -34,7 +34,7 @@ import java.util.List;
  * 刷新以及加载更多通用baseactivity
  */
 
-public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends ParentBean, F> extends BaseNetWorkActivity<T> implements OnLoadMoreListener, OnRefreshListener {
+public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends ParentBean, F> extends BaseNetWorkActivity<T> implements OnLoadMoreListener, OnRefreshListener, BaseRecycleViewAdapter.OnItemClickListener {
     protected List<F> mDatas;//从网络获取的数据
     protected BaseRecycleViewAdapter<F> mAdapter;//通用adapter
     protected RecyclerView mRvCommon;
@@ -118,6 +118,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         if (mAdapter == null) {
             mDatas = loadDatas;
             mAdapter = initAdapter(mDatas);
+            mAdapter.setItemClickListener(this);
             mRvCommon.setHasFixedSize(true);
             mRvCommon.setAdapter(mAdapter);
             if (isGridLayoutManager()){
@@ -217,5 +218,10 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     @Override
     public void onRefresh() {
         onLoad(TYPE_REFRESH);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }

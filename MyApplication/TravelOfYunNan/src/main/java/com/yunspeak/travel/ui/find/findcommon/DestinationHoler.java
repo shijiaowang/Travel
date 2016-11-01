@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.baseui.DeliciousDetailActivity;
-import com.yunspeak.travel.ui.baseui.DestinationDetailActivity;
+import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 

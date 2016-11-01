@@ -2,20 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorFAFAFA"
-        android:orientation="vertical">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_bg"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="fitXY" />
+             />
 
         <LinearLayout style="@style/activityDeliciousDetailLl">
 
@@ -29,15 +25,18 @@
                 android:text="特色玩法" />
         </LinearLayout>
 
-        <com.yunspeak.travel.ui.view.FlowLayout
-            android:id="@+id/fl_play_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            >
-
-        </com.yunspeak.travel.ui.view.FlowLayout>
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/fl_label"
+        android:layout_width="match_parent"
+        app:showDivider="middle"
+        app:flexWrap="wrap"
+        app:dividerDrawable="@drawable/me_label_distance"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="8dp"/>
 
         <LinearLayout
             android:id="@+id/ll_search_appoint"
@@ -163,11 +162,5 @@
                 style="@style/activityDeliciousDetailTvName"
                 android:text="实话实说" />
         </LinearLayout>
-    </LinearLayout>
 
-    <com.yunspeak.travel.ui.view.ToShowAllListView
-        android:id="@+id/content_list"
-        style="@style/commonListViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 </LinearLayout>

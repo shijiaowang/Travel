@@ -308,7 +308,7 @@
                 android:layout_marginRight="53dp"
                 android:layout_marginTop="6dp"
                 android:lineSpacingExtra="6dp"
-                android:text="我一个衣服收到后佛奥骨化喀什分哈佛路哈利好伐啦是伐啦放假哈利就恢复垃是伐啦放假哈利就恢复垃是伐啦放假哈利就恢复垃圾"
+                android:text="平台的高级认证用户选择道具才有效，其他用户请跳过此步"
                 android:textColor="@color/color969696"
                 android:textSize="14sp" />
         </LinearLayout>

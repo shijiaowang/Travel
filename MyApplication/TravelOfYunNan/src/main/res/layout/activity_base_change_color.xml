@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.aspsine.swipetoloadlayout.SwipeToLoadLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_container"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.v4.widget.NestedScrollView
-        android:id="@id/swipe_target"
+    <FrameLayout
+        android:id="@+id/fl_footer"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ViewStub
+            android:id="@+id/vs_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container"
+        android:layout_above="@id/fl_footer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
+        <android.support.v4.widget.NestedScrollView
+            android:id="@id/swipe_target"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ViewStub
-                android:id="@+id/vs_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rc_common"
-                android:layout_below="@id/vs_content"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <FrameLayout
+                    android:id="@+id/fl_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <ViewStub
+                        android:id="@id/vs_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
 
-            </android.support.v7.widget.RecyclerView>
-        </RelativeLayout>
-    </android.support.v4.widget.NestedScrollView>
-</com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rc_common"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/fl_content"/>
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+
+
+</RelativeLayout>

@@ -30,6 +30,10 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
     private View buttonPressToSpeak;
     private ImageView faceChecked;
     private Button buttonMore;
+    private boolean isDontShowOther;
+    private InputMethodManager imm;
+    private boolean isFace;
+
     public EaseChatPrimaryMenu(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs);
@@ -45,6 +49,8 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
     }
 
     private void init(final Context context, AttributeSet attrs) {
+
+        imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         LayoutInflater.from(context).inflate(R.layout.ease_widget_chat_primary_menu, this);
         editText = (EditText) findViewById(R.id.et_sendmessage);
         buttonSetModeKeyboard = findViewById(R.id.btn_set_mode_keyboard);
@@ -69,7 +75,7 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
                 if (!TextUtils.isEmpty(s)) {
                     buttonMore.setVisibility(View.GONE);
                     buttonSend.setVisibility(View.VISIBLE);
-                } else {
+                } else if (!isDontShowOther){
                     buttonMore.setVisibility(View.VISIBLE);
                     buttonSend.setVisibility(View.GONE);
                 }
@@ -97,13 +103,31 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
             }
         });
     }
-    
+    //发现页使用，去掉语音和更多
+    @Override
+    public void setFindUse(){
+        isDontShowOther = true;
+        buttonMore.setVisibility(GONE);
+        buttonSend.setVisibility(VISIBLE);
+        buttonPressToSpeak.setVisibility(GONE);
+        buttonSetModeKeyboard.setVisibility(GONE);
+        buttonSetModeVoice.setVisibility(GONE);
+    }
     /**
      * set recorder view when speak icon is touched
      * @param voiceRecorderView
      */
     public void setPressToSpeakRecorderView(EaseVoiceRecorderView voiceRecorderView){
         EaseVoiceRecorderView voiceRecorderView1 = voiceRecorderView;
+    }
+    @Override
+   protected void showSoftWore(){
+       imm.showSoftInput(editText,InputMethodManager.SHOW_FORCED);
+   }
+
+    @Override
+    public void hideKeyboard() {
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0); //强制隐藏键盘
     }
 
     /**
@@ -159,8 +183,8 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
             if(listener != null)
                 listener.onEditTextClicked();
         } else if (id == R.id.iv_face_checked) {
-
-
+            faceChecked.setImageResource(isFace?R.drawable.chat_emoj:R.drawable.chat_soft_wore);
+            isFace = !isFace;
             if(listener != null){
                 listener.onToggleEmojiconClicked();
             }

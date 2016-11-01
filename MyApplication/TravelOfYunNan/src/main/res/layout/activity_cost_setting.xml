@@ -65,7 +65,7 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="53dp"
                 android:layout_marginTop="14dp"
-                android:text="(此为领队佣金或先筹费用，不含用餐及其他个人消费)"
+                android:text="(约伴发起人需预交约伴最大人数*每人收费*20%的押金)"
                 android:textColor="@color/colorb5b5b5"
                 android:textSize="11dp" />
 
@@ -264,9 +264,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="31dp"
-                android:text="取消条例"
+                android:text="注意事项"
                 android:textColor="@color/color969696"
                 android:textSize="15sp" />
+            <TextView
+                android:text="·游玩结束后，城外旅游将收取总费用5%的服务佣金\n·用户在行程开始前3日申请取消，可全额退款\n·用户在行程开始前2日申请取消，将扣除订单费用的30%作为手续费用\n·用户在行程开始前1日申请取消，将不能申请退款\n·于活动中自愿终止参与活动，将不予退款款项\n·如因天灾等不可抗拒因素，【城外旅游】将主动通知延期或退款"
+                android:lineSpacingExtra="8dp"
+                android:textColor="@color/color969696"
+                android:textSize="13sp"
+                android:layout_marginRight="38dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 

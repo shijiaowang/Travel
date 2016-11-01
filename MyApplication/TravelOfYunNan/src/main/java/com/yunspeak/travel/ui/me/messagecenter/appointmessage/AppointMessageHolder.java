@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.CommonMessageBean;
 import com.yunspeak.travel.ui.view.ShowAllTextView;
 import com.yunspeak.travel.utils.FormatDateUtils;
@@ -20,7 +21,7 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/8/26 0026.
  */
-public class AppointMessageHolder extends BaseHolder<CommonMessageBean.DataBean> {
+public class AppointMessageHolder extends BaseRecycleViewHolder<CommonMessageBean.DataBean> {
     @BindView(R.id.iv_user_icon)
     ImageView mIvUserIcon;
     @BindView(R.id.tv_name)
@@ -50,12 +51,15 @@ public class AppointMessageHolder extends BaseHolder<CommonMessageBean.DataBean>
     @ColorInt
     int green2;
 
-    public AppointMessageHolder(Context context) {
-        super(context);
+    public AppointMessageHolder(View itemView) {
+        super(itemView);
     }
 
+
+
+
     @Override
-    protected void initItemDatas(CommonMessageBean.DataBean datas, Context mContext, int position) {
+    public void childBindView(int position, CommonMessageBean.DataBean datas, Context mContext) {
         mTvDes.setText(datas.getTitle_desc());
         mTvName.setText(datas.getNick_name());
         int color = green2;
@@ -70,7 +74,7 @@ public class AppointMessageHolder extends BaseHolder<CommonMessageBean.DataBean>
         } else if (datas.getTitle().equals("评论了")) {
             color=green2;
         } else if (datas.getTitle().equals("回复了")) {
-          color=green;
+            color=green;
         }
         mTvStatus.setTextColor(color);
         mTvStatus.setText(datas.getTitle());
@@ -78,10 +82,18 @@ public class AppointMessageHolder extends BaseHolder<CommonMessageBean.DataBean>
         x.image().bind(mIvUserIcon, datas.getUser_img());
         x.image().bind(mIvImage, datas.getImg());
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:ss", datas.getReply_time()));
-    }
+        mTvCatMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mTvMessage.isShowAll()){
+                    mTvMessage.setShowAll(false);
+                    mTvCatMore.setText(R.string.close_more);
 
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_activity_appoint_message);
+                }else {
+                    mTvMessage.setShowAll(true);
+                    mTvCatMore.setText(R.string.cat_more);
+                }
+            }
+        });
     }
 }

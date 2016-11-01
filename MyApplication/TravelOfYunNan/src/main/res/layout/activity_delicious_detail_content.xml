@@ -7,7 +7,7 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_bg"
         android:layout_width="match_parent"
         android:layout_height="228dp"
@@ -83,17 +83,5 @@
             style="@style/activityDeliciousDetailTvName"
             android:text="实话实话" />
     </LinearLayout>
-
     <View style="@style/activityDeliciousDetailLine" />
-
-    <com.yunspeak.travel.ui.view.ToShowAllListView
-        android:id="@+id/lv_delicious_discuss"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        style="@style/XScrollViewListViewCommon"
-        android:dividerHeight="0dp">
-
-    </com.yunspeak.travel.ui.view.ToShowAllListView>
-
 </LinearLayout>

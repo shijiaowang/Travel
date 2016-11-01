@@ -9,11 +9,6 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.TravelDetailLineAdapter;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailBean;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailLineDetailAdapter;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailLineItemAdapter;
-import com.yunspeak.travel.ui.baseui.DeliciousDetailActivity;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
 
 import org.xutils.common.util.DensityUtil;

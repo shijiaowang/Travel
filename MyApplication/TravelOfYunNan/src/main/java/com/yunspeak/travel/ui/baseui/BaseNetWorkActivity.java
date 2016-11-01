@@ -1,12 +1,10 @@
 package com.yunspeak.travel.ui.baseui;
 
-import android.app.Activity;
-import android.view.Menu;
+
 import android.view.View;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -77,8 +75,13 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
 
     @Subscribe
     public void onEvent(T t){
-        if (!t.getClass().getSimpleName().equals(getTInstance().getClass().getSimpleName())){
-            return;
+        try {
+            if (!t.getClass().getSimpleName().equals(getTInstance().getClass().getSimpleName())){
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            onFail(t);
         }
         setIsProgress(false);
         if (t.isSuccess()){
@@ -88,6 +91,9 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
                 return;
             }
             try {
+                if ( t.getCode()==2){
+                    ToastUtils.showToast("没有更多数据了");
+                }
                 isFirstInflate =false;
                 needHideChildView.setVisibility(View.VISIBLE);//读取完毕，展示主页
                 onSuccess(t);

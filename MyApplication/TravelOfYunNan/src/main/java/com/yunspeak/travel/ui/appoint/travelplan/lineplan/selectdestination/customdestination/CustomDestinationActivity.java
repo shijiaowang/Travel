@@ -45,20 +45,6 @@ public class CustomDestinationActivity extends BaseRecycleViewActivity<CustomDes
         mVsContent.inflate();
         GlobalValue.clickPosition=-1;//初始化，避免之前选中的对这边造成影响
         position = getIntent().getIntExtra(IVariable.POSITION, -1);
-        mAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                if (GlobalValue.mSelectSpot == null) {
-                    GlobalValue.mSelectSpot = new ArrayList<String>();
-                }
-                if (GlobalValue.mSelectSpot.contains(mDatas.get(position).getId())) {
-                    ToastUtils.showToast("已在行程中！");
-                    return;
-                }
-                GlobalValue.clickPosition=position-1;
-                mAdapter.notifyDataSetChanged();
-            }
-        });
         mTvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +129,19 @@ public class CustomDestinationActivity extends BaseRecycleViewActivity<CustomDes
     protected void onDestroy() {
         super.onDestroy();
         GlobalValue.clickPosition=-1;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        if (GlobalValue.mSelectSpot == null) {
+            GlobalValue.mSelectSpot = new ArrayList<String>();
+        }
+        if (GlobalValue.mSelectSpot.contains(mDatas.get(position).getId())) {
+            ToastUtils.showToast("已在行程中！");
+            return;
+        }
+        GlobalValue.clickPosition=position;
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
