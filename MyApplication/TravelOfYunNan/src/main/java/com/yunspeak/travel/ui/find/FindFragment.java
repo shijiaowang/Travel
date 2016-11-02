@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.baseui.ActiveActivity;
+import com.yunspeak.travel.ui.find.active.ActiveActivity;
 import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 import com.yunspeak.travel.ui.find.hotel.HotelActivity;
 import com.yunspeak.travel.ui.find.travels.TravelsActivity;

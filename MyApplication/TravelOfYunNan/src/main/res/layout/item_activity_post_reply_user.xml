@@ -8,6 +8,7 @@
     <include layout="@layout/item_activity_post_reply" />
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

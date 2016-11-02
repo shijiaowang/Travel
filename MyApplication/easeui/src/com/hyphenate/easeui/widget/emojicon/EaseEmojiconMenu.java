@@ -7,6 +7,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.domain.EaseEmojicon;
@@ -62,17 +63,17 @@ public class EaseEmojiconMenu extends EaseEmojiconMenuBase{
 		
 	}
 	
-	public void init(List<EaseEmojiconGroupEntity> groupEntities){
+	public void init(List<EaseEmojiconGroupEntity> groupEntities,int emojRows){
 	    if(groupEntities == null || groupEntities.size() == 0){
 	        return;
 	    }
-	    for(EaseEmojiconGroupEntity groupEntity : groupEntities){
+        for(EaseEmojiconGroupEntity groupEntity : groupEntities){
 	        emojiconGroupList.add(groupEntity);
 	        tabBar.addTab(groupEntity.getIcon());
 	    }
 	    
 	    pagerView.setPagerViewListener(new EmojiconPagerViewListener());
-        pagerView.init(emojiconGroupList, emojiconColumns,bigEmojiconColumns);
+        pagerView.init(emojiconGroupList, emojiconColumns,bigEmojiconColumns,emojRows);
         
         tabBar.setTabBarItemClickListener(new EaseScrollTabBarItemClickListener() {
             
@@ -163,6 +164,9 @@ public class EaseEmojiconMenu extends EaseEmojiconMenuBase{
             if(listener != null){
                 listener.onDeleteImageClicked();
             }
+            if (onEmojiChangeListener!=null){
+                onEmojiChangeListener.onDeleteImageClicked();
+            }
         }
 
         @Override
@@ -170,8 +174,21 @@ public class EaseEmojiconMenu extends EaseEmojiconMenuBase{
             if(listener != null){
                 listener.onExpressionClicked(emojicon);
             }
+            if (onEmojiChangeListener!=null){
+                onEmojiChangeListener.onExpressionClicked(emojicon);
+            }
         }
 	    
 	}
+    private OnEmojiChangeListener onEmojiChangeListener;
+
+    public void setOnEmojiChangeListener(OnEmojiChangeListener onEmojiChangeListener) {
+        this.onEmojiChangeListener = onEmojiChangeListener;
+    }
+
+    public interface OnEmojiChangeListener{
+        void onDeleteImageClicked();
+        void onExpressionClicked(EaseEmojicon emojicon);
+    }
 	
 }

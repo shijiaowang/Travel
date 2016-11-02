@@ -148,7 +148,13 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
     public void onEmojiconInputEvent(CharSequence emojiContent){
         editText.append(emojiContent);
     }
-    
+    @Override
+    public void setHint(String hint){
+        editText.setText("");
+        editText.setHint(hint);
+        setModeKeyboard();
+        showSoftWore();
+    }
     /**
      * delete emojicon
      */

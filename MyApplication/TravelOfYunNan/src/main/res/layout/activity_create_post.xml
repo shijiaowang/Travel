@@ -25,9 +25,9 @@
             android:focusableInTouchMode="true"
             android:gravity="center_vertical"
             android:hint="标题(选填，最多输入18个字符。)"
-            android:maxLength="18"
+            android:lines="1"
+            android:maxLength="36"
             android:paddingLeft="10dp"
-            android:singleLine="true"
             android:textColorHint="@color/color646464"
             android:textCursorDrawable="@null"
             android:textSize="15sp" />
@@ -54,61 +54,75 @@
 
 
         <LinearLayout
-            android:id="@+id/ll_bar"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content"
             android:background="@color/colorFAFAFA"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp">
+            android:orientation="vertical">
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:id="@+id/tv_emoji"
-                style="@style/activityCreatePostTvIcon"
-                android:layout_marginLeft="0dp"
-                android:text="@string/activity_create_post_smell" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_aite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:id="@+id/tv_picture"
-                style="@style/activityCreatePostTvIcon"
-                android:text="@string/activity_create_post_picture" />
+            </android.support.v7.widget.RecyclerView>
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:id="@+id/tv_aite"
-                style="@style/activityCreatePostTvIcon"
-                android:text="@string/activity_create_post_aite" />
+            <LinearLayout
+                android:id="@+id/ll_bar"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorFAFAFA"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
 
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    android:id="@+id/tv_emoji"
+                    style="@style/activityCreatePostTvIcon"
+                    android:layout_marginLeft="0dp"
+                    android:text="@string/activity_create_post_smell" />
+
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    android:id="@+id/tv_picture"
+                    style="@style/activityCreatePostTvIcon"
+                    android:text="@string/activity_create_post_picture" />
+
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    android:id="@+id/tv_aite"
+                    style="@style/activityCreatePostTvIcon"
+                    android:text="@string/activity_create_post_aite" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/meLine" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ViewStub
+                    android:id="@+id/vs_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="258dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout="@layout/activity_create_post_photo" />
+
+                <ViewStub
+                    android:id="@+id/vs_emoji"
+                    android:layout_width="match_parent"
+                    android:layout_height="266dp"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="13dp"
+                    android:layout="@layout/activity_create_post_emoji" />
+            </RelativeLayout>
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/meLine" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ViewStub
-                android:id="@+id/vs_photo"
-                android:layout_width="match_parent"
-                android:layout_height="258dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="2dp"
-                android:layout="@layout/activity_create_post_photo" />
-
-            <ViewStub
-                android:id="@+id/vs_emoji"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="18dp"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="13dp"
-                android:layout="@layout/activity_create_post_emoji" />
-        </RelativeLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
 

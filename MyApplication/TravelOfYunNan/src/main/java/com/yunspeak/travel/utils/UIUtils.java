@@ -4,11 +4,16 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yunspeak.travel.TravelsApplication;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class UIUtils {
@@ -113,5 +118,24 @@ public class UIUtils {
 		mToast.setText(text);
 		mToast.show();
 	}
+	/**
+	 * 给edittext设置过滤器 过滤emoji
+	 *
+	 * @param et
+	 */
+	public static void setEmojiFilter(EditText et) {
+		InputFilter emojiFilter = new InputFilter() {
+			Pattern pattern = Pattern.compile("[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff]", Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
 
+			@Override
+			public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+				Matcher matcher = pattern.matcher(source);
+				if(matcher.find()){
+					return "";
+				}
+				return null;
+			}
+		};
+		et.setFilters(new InputFilter[]{emojiFilter});
+	}
 }

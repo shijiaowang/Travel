@@ -36,6 +36,8 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     protected String haveNextPage="-1";
     public String tId;
     private String tName;
+    private EaseChatInputMenu inputMenu;
+    private String pid="0";
 
     @Override
     protected BaseRecycleViewAdapter initAdapter(List<TravelReplyBean> mDatas) {
@@ -109,17 +111,21 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     @Override
     protected void initEvent() {
         super.initEvent();
+
         tId = getIntent().getStringExtra(IVariable.T_ID);
         tName = getIntent().getStringExtra(IVariable.NAME);
         vsFooter.setLayoutResource(R.layout.input);
         vsFooter.inflate();
-        EaseChatInputMenu   inputMenu = (EaseChatInputMenu)findViewById(R.id.input);
+        inputMenu = (EaseChatInputMenu)findViewById(R.id.input);
         inputMenu.init(null);
         inputMenu.setFindUse();
         inputMenu.setChatInputMenuListener(new EaseChatInputMenu.ChatInputMenuListener() {
             @Override
             public void onSendMessage(String content) {
-               sendMessage(content,"0");
+                sendMessage(content,pid);
+                pid="0";
+                inputMenu.setHint("");
+
             }
 
             @Override
@@ -142,6 +148,12 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
         XEventUtils.postUseCommonBackJson(IVariable.FIND_REPLY_DISCUSS, destinationMap, TYPE_DISCUSS, new DetailCommonEvent());
     }
 
+    @Override
+    public void onItemClick(int position) {
+        String nickName = mDatas.get(position).getNick_name();
+        inputMenu.setHint("回复:"+nickName);
+        pid = mDatas.get(position).getId();
+    }
 
     private void dealReplyData(DetailCommonEvent event) {
         if (haveNextPage.equals("0")) {

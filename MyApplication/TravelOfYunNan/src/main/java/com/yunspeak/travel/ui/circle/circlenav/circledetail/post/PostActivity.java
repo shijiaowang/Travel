@@ -16,12 +16,15 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.ReplyEvent;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -172,7 +175,12 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     protected String initRightText() {
         return isCollect.equals(isTrue)?"已收藏":"收藏";
     }
-
+    @Subscribe
+    public void onEvent(ReplyEvent replyEvent){
+        if (!(getListSize(mDatas)%IVariable.pageCount==0)){//不为0.说明已经加载到了底部，发表帖子后需要加载更多
+            onLoad(TYPE_LOAD);
+        }
+    }
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         String url=isCollect.equals(isTrue)?IVariable.CANCEL_COMMON_COLLECTION:IVariable.COLLECTION;

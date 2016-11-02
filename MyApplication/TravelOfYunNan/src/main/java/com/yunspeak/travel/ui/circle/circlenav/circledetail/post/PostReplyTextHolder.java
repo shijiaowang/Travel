@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.circle.circlenav.circledetail.post;
 
 import android.content.Context;
+import android.text.Spannable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -61,7 +63,9 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
             }
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
-            mTvReplyMessage.setText(forumReplyBean.getContent());
+            Spannable span = EaseSmileUtils.getSmiledText(t, forumReplyBean.getContent());
+            // 设置内容
+            mTvReplyMessage.setText(span, TextView.BufferType.SPANNABLE);
             mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forumReplyBean.getReply_time()));
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
             mTvLoveNumber.setText(forumReplyBean.getLike_count());

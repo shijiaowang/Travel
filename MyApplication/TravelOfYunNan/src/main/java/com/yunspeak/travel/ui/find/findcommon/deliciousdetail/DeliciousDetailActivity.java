@@ -38,7 +38,6 @@ import java.util.Map;
  * 美食详情
  */
 public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommonEvent,DeliciousDetailBean> {
-
     private SimpleDraweeView mIvBg;
     private TextView mTvDes;
 

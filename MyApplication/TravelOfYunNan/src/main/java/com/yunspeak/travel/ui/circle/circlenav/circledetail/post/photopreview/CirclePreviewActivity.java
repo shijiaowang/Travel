@@ -18,8 +18,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -34,6 +36,7 @@ import com.facebook.cache.common.SimpleCacheKey;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
 import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
 import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.core.ImagePipelineFactory;
@@ -41,7 +44,10 @@ import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity;
+import com.yunspeak.travel.ui.view.zoomable.ZoomableDraweeView;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MD5Utils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -59,9 +65,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.relex.photodraweeview.OnPhotoTapListener;
-import me.relex.photodraweeview.OnViewTapListener;
-import me.relex.photodraweeview.PhotoDraweeView;
 
 /**
  * Created by wangyang on 2016/10/25 0025.
@@ -141,25 +144,6 @@ public class CirclePreviewActivity extends AppCompatActivity implements View.OnC
 
 
 
-    public void zoomPhoto(String url, final PhotoDraweeView mPhotoDraweeView) {
-        PipelineDraweeControllerBuilder controller = Fresco.newDraweeControllerBuilder();
-        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(url))
-                .setResizeOptions(new ResizeOptions(300,600))
-                .build();
-        controller.setImageRequest(request);
-        controller.setOldController(mPhotoDraweeView.getController());
-        controller.setControllerListener(new BaseControllerListener<ImageInfo>() {
-            @Override
-            public void onFinalImageSet(String id, ImageInfo imageInfo, Animatable animatable) {
-                super.onFinalImageSet(id, imageInfo, animatable);
-                if (imageInfo == null || mPhotoDraweeView == null) {
-                    return;
-                }
-                mPhotoDraweeView.update(imageInfo.getWidth(), imageInfo.getHeight());
-            }
-        });
-        mPhotoDraweeView.setController(controller.build());
-    }
 
     @Override
     public void onClick(View v) {
@@ -187,37 +171,33 @@ public class CirclePreviewActivity extends AppCompatActivity implements View.OnC
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            final PhotoDraweeView photoDraweeView = new PhotoDraweeView(CirclePreviewActivity.this);
-            zoomPhoto(imgListsBeen.get(position), photoDraweeView);
-            photoDraweeView.setOnLongClickListener(new View.OnLongClickListener() {
+            ZoomableDraweeView zoomableDraweeView =new ZoomableDraweeView(CirclePreviewActivity.this);
+            zoomableDraweeView.setAllowTouchInterceptionWhileZoomed(false);
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setUri(imgListsBeen.get(position))
+                    .build();
+            zoomableDraweeView.setController(controller);
+            zoomableDraweeView.setTapListener(new GestureDetector.SimpleOnGestureListener(){
                 @Override
-                public boolean onLongClick(View v) {
-                     savePhoto();
+                public boolean onSingleTapUp(MotionEvent e) {
+                    onBackPressed();
                     return true;
                 }
-            });
 
-            photoDraweeView.setOnPhotoTapListener(new OnPhotoTapListener() {
                 @Override
-                public void onPhotoTap(View view, float x, float y) {
-                    onBackPressed();
+                public void onLongPress(MotionEvent e) {
+                    savePhoto();
                 }
             });
-            photoDraweeView.setOnViewTapListener(new OnViewTapListener() {
-                @Override
-                public void onViewTap(View view, float x, float y) {
-                    onBackPressed();
-                }
-            });
-            container.addView(photoDraweeView);
-            return photoDraweeView;
+            container.addView(zoomableDraweeView);
+            return zoomableDraweeView;
         }
 
 
         @Override
         public void destroyItem(ViewGroup container, int position,
                                 Object object) {
-            container.removeView((PhotoDraweeView) object);
+            container.removeView((ZoomableDraweeView) object);
         }
     }
 

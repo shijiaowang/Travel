@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_content">5dp</dimen>
+    <dimen name="normal">142dp</dimen>
+    <dimen name="chat4rows">197dp</dimen>
+    <dimen name="emojiHight">266dp</dimen>
 </resources>

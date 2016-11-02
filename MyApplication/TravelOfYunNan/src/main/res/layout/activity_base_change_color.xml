@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
-    <FrameLayout
-        android:id="@+id/fl_footer"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ViewStub
-            android:id="@+id/vs_footer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
     <com.aspsine.swipetoloadlayout.SwipeToLoadLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipe_container"
-        android:layout_above="@id/fl_footer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
         <android.support.v4.widget.NestedScrollView
             android:id="@id/swipe_target"
             android:layout_width="match_parent"
@@ -42,6 +34,15 @@
             </RelativeLayout>
         </android.support.v4.widget.NestedScrollView>
     </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+    <FrameLayout
+        android:id="@+id/fl_footer"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ViewStub
+            android:id="@+id/vs_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 
-
-</RelativeLayout>
+</LinearLayout>

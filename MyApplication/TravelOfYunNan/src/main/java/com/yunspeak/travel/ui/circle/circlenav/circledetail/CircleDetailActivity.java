@@ -12,6 +12,7 @@ import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseChangeColorRecycleActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreateEvent;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
@@ -19,6 +20,8 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 import java.util.Map;
@@ -110,8 +113,10 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
         mTvFollow.setOnClickListener(this);
 
     }
-
-
+  @Subscribe
+  public void onEvent(CreateEvent createEvent){
+      onLoad(TYPE_REFRESH);
+  }
 
 
 

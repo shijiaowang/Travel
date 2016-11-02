@@ -42,15 +42,12 @@ import java.util.Map;
  * 目的地详情
  */
 public class DestinationDetailActivity extends BaseFindDetailActivity<DetailCommonEvent,DestinationDetailBean> implements View.OnClickListener {
-
-
     private TextView mTvDestinationDes;
     private TextView mTvShow;
     private boolean isShowAllFlag = false;
     private SimpleDraweeView mIvbg;
     private TextView mTvAdd;
     private FlexboxLayout mFlowLayout;
-    private String haveNextPage = "-1";
     private ImageView mIvAddPicture;
     private LinearLayout mLlSearchAppoint;
 

@@ -26,6 +26,7 @@ import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.TypefaceUtis;
+import com.yunspeak.travel.utils.UIUtils;
 
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
@@ -98,6 +99,8 @@ public class EnterAppointDialog {
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
+        mEtDestination.requestFocus();
+        UIUtils.setEmojiFilter(mEtDestination);
         dialogView.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,14 +149,6 @@ public class EnterAppointDialog {
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK)
-                    dialog.dismiss();
-                return true;
-            }
-        });
         dialog.show();
     }
     /**

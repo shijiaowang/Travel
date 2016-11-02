@@ -270,6 +270,7 @@ public interface IVariable {
     String PLAY_TOGETHER_CLICK_TYPE = "1";
     String WITH_ME_CLICK_TYPE = "2";
     String CLASS = "class";
+    int pageCount = 20;
 
 
     ///年月日格式
@@ -279,6 +280,7 @@ public interface IVariable {
     String YMDHms="yyyy.MM.dd HH:mm:ss";
     String RMB ="¥" ;
     String CHAT_ID = "chat_id";
+
 
     String ICON = "icon";
 }

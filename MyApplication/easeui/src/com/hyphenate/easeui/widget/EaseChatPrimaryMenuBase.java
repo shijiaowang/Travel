@@ -34,7 +34,9 @@ public abstract class EaseChatPrimaryMenuBase extends RelativeLayout{
         this.activity = (Activity) context;
         inputManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
     }
+   public void setHint(String content){
 
+   }
     /**
      * set primary menu listener
      * @param listener

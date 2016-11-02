@@ -80,7 +80,7 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-
+         builder.addType("1").addPageSize(Integer.MAX_VALUE).addCount(0);
     }
 
     @Override

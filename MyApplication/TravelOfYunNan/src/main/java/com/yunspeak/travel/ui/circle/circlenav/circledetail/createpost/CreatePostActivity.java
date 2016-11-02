@@ -8,6 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
@@ -20,6 +25,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hyphenate.easeui.domain.EaseEmojicon;
+import com.hyphenate.easeui.domain.EaseEmojiconGroupEntity;
+import com.hyphenate.easeui.model.EaseDefaultEmojiconDatas;
+import com.hyphenate.easeui.utils.EaseSmileUtils;
+import com.hyphenate.easeui.widget.emojicon.EaseEmojiconMenu;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
@@ -40,10 +50,12 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import okhttp3.internal.framed.Variant;
 
 /**
  * Created by wangyang on 2016/7/29 0029.
@@ -60,13 +72,14 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
    @BindView(R.id.tv_emoji) TextView mTvEmoji;
    @BindView(R.id.et_title) EditText mEtTitle;
    @BindView(R.id.et_content) EditText mEtContent;
+   @BindView(R.id.rv_aite)
+   RecyclerView mRvAite;
     private List<AiteFollow> mSelectPeople;
     private GridView mGvPhoto;
     private ViewStub mVsPhoto;
     private ViewStub mVsEmoji;
-    private ViewPager mVpEmoji;
+    private EaseEmojiconMenu mEsEmoj;
     private List<EmojiFragment> fragments;
-    private RelativeLayout mRlEmoji;
     private LinearLayout mLlDot;
     private int mPointDistance;
     private int mFirstDotLeft;
@@ -99,6 +112,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     private String forumId;
     private String title;
     private String rigtText="";
+    private AitePeopleAdapter aitePeopleAdapter;
 
     @Override
     protected int initLayoutRes() {
@@ -115,43 +129,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         return title;
     }
 
-    /**
-     * 初始化小圆点
-     */
-    private void initDot() {
-        if (fragments == null || fragments.size() == 0) {
-            return;
-        }
-        mLlDot = (LinearLayout) findViewById(R.id.ll_indicator);
-        for (int i = 0; i < fragments.size(); i++) {
-            View view = new View(this);
-            view.setBackgroundResource(R.drawable.dot_for_viewpager_indicator);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtils.dipToPx(this, 6), DensityUtils.dipToPx(this, 6));
-            if (i > 0) {
-                params.leftMargin = DensityUtils.dipToPx(this, 11);
-            }
-            view.setLayoutParams(params);
-            mLlDot.addView(view);
-        }
-        /**
-         * 绘制完成回调
-         */
-        mLlDot.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                mPointDistance = mLlDot.getChildAt(1).getLeft() - mLlDot.getChildAt(0).getLeft();
-                //获取第一个的左边
-                mFirstDotLeft = mLlDot.getChildAt(0).getLeft();
-                //初始化小圆点
-                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mVDot.getLayoutParams();
-                layoutParams.leftMargin = mFirstDotLeft;
-                mVDot.setLayoutParams(layoutParams);
-                //移除监听事件
-                mLlDot.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-            }
-        });
 
-    }
 
     @Override
     protected void onResume() {
@@ -214,20 +192,13 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         if (mVsEmoji == null) {
             mVsEmoji = (ViewStub) findViewById(R.id.vs_emoji);
             mVsEmoji.inflate();
-            mVpEmoji = (ViewPager) findViewById(R.id.vp_emoji);
-            mRlEmoji = (RelativeLayout) findViewById(R.id.rl_emoji);
-            fragments = new ArrayList<>();
-            fragments.add(new EmojiFragment());
-            fragments.add(new EmojiFragment());
-            fragments.add(new EmojiFragment());
-            fragments.add(new EmojiFragment());
-            mVpEmoji.setAdapter(new FragmentEmojiAdapter(getSupportFragmentManager()));
-            mVDot = findViewById(R.id.v_dot);
-            initDot();
-
-            mVpEmoji.setOnPageChangeListener(new EmojiOnPagerChangeListener());
+            mEsEmoj = (EaseEmojiconMenu) findViewById(R.id.ease_emoji);
+            List<EaseEmojiconGroupEntity> emojiconGroupList = new ArrayList<EaseEmojiconGroupEntity>();
+            emojiconGroupList.add(new EaseEmojiconGroupEntity(com.hyphenate.easeui.R.drawable.ee_1,  Arrays.asList(EaseDefaultEmojiconDatas.getData())));
+            mEsEmoj.init(emojiconGroupList,4);
+            mEsEmoj.setOnEmojiChangeListener(new CreatePostEmojiListenerListener());
         } else {
-            mRlEmoji.setVisibility(mRlEmoji.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+            mEsEmoj.setVisibility(mEsEmoj.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
 
         }
         if (mGvPhoto != null && mGvPhoto.getVisibility() == View.VISIBLE) {
@@ -255,8 +226,8 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         } else {
             mGvPhoto.setVisibility(mGvPhoto.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
         }
-        if (mRlEmoji != null && mRlEmoji.getVisibility() == View.VISIBLE) {
-            mRlEmoji.setVisibility(View.GONE);
+        if (mEsEmoj != null && mEsEmoj.getVisibility() == View.VISIBLE) {
+            mEsEmoj.setVisibility(View.GONE);
         }
     }
 
@@ -271,8 +242,8 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
 
     private void hideEmojiOrPhoto() {
-        if (mRlEmoji != null && mRlEmoji.getVisibility() == View.VISIBLE) {
-            mRlEmoji.setVisibility(View.GONE);
+        if (mEsEmoj != null && mEsEmoj.getVisibility() == View.VISIBLE) {
+            mEsEmoj.setVisibility(View.GONE);
         }
         if (mGvPhoto != null && mGvPhoto.getVisibility() == View.VISIBLE) {
             mGvPhoto.setVisibility(View.GONE);
@@ -287,58 +258,34 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     }
 
 
-    class FragmentEmojiAdapter extends FragmentPagerAdapter {
 
-        public FragmentEmojiAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-    }
-
-
-    //监听事件
-    class EmojiOnPagerChangeListener implements ViewPager.OnPageChangeListener {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            //动态改变小红点的值
-            float len = mPointDistance * positionOffset + mPointDistance * position;
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mVDot.getLayoutParams();
-            layoutParams.leftMargin = (int) (len + mFirstDotLeft);
-            //Utils.ShowToast(MainActivity.this,len+"");
-            mVDot.setLayoutParams(layoutParams);
-
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
        if (requestCode==REQ_CODE &&resultCode==RESULT_CODE){
            try {
                mSelectPeople= (List<AiteFollow>) data.getSerializableExtra(IVariable.DATA);
+               if (mSelectPeople==null || mSelectPeople.size()==0){
+                   mRvAite.setVisibility(View.GONE);
+                   return;
+               }
+               aitePeopleAdapter = new AitePeopleAdapter(mSelectPeople, this);
+               LinearLayoutManager gridLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+               mRvAite.setAdapter(aitePeopleAdapter);
+               mRvAite.setLayoutManager(gridLayoutManager);
+               mRvAite.setVisibility(View.VISIBLE);
            } catch (Exception e) {
                e.printStackTrace();
            }
        }
+    }
+    @Subscribe
+    public void onEvent(DeleteAiteEvent deleteAiteEvent){
+        mSelectPeople.remove(deleteAiteEvent.getPosition());
+        aitePeopleAdapter.notifyItemRemoved(deleteAiteEvent.getPosition());
+        if (mSelectPeople.size()==0){
+            mRvAite.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -425,6 +372,8 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
                 dealData(createPostEvent);
                 break;
             case REPLY_POST:
+                ToastUtils.showToast("回复成功");
+                EventBus.getDefault().post(new ReplyEvent());
                 finish();
                 break;
         }
@@ -443,6 +392,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     }
 
     private void dealData(CreatePostEvent event) {
+            EventBus.getDefault().post(new CreateEvent());
             ToastUtils.showToast("创建成功");
             finish();
     }
@@ -468,5 +418,26 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
             EventBus.getDefault().unregister(this);
         }
         GlobalValue.mSelectImages=null;
+    }
+    class CreatePostEmojiListenerListener implements EaseEmojiconMenu.OnEmojiChangeListener{
+
+        @Override
+        public void onDeleteImageClicked() {
+            boolean conentFocus = mEtContent.hasFocus();
+            EditText focusText=conentFocus?mEtContent:mEtTitle;
+            if (!TextUtils.isEmpty(focusText.getText())) {
+                KeyEvent event = new KeyEvent(0, 0, 0, KeyEvent.KEYCODE_DEL, 0, 0, 0, 0, KeyEvent.KEYCODE_ENDCALL);
+                focusText.dispatchKeyEvent(event);
+            }
+        }
+
+        @Override
+        public void onExpressionClicked(EaseEmojicon emojicon) {
+            String emojiText = emojicon.getEmojiText();
+            if (StringUtils.isEmpty(emojiText))return;
+            boolean conentFocus = mEtContent.hasFocus();
+            EditText focusText=conentFocus?mEtContent:mEtTitle;
+            focusText.append(EaseSmileUtils.getSmiledText(CreatePostActivity.this,emojiText));
+        }
     }
 }

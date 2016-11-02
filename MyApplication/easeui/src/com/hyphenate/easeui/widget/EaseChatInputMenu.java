@@ -98,7 +98,7 @@ public class EaseChatInputMenu extends LinearLayout {
                 emojiconGroupList = new ArrayList<EaseEmojiconGroupEntity>();
                 emojiconGroupList.add(new EaseEmojiconGroupEntity(R.drawable.ee_1,  Arrays.asList(EaseDefaultEmojiconDatas.getData())));
             }
-            ((EaseEmojiconMenu)emojiconMenu).init(emojiconGroupList);
+            ((EaseEmojiconMenu)emojiconMenu).init(emojiconGroupList,3);
         }
         emojiconMenuContainer.addView(emojiconMenu);
 
@@ -112,6 +112,13 @@ public class EaseChatInputMenu extends LinearLayout {
         init(null);
     }
 
+    /**
+     * 设置@
+     * @param content
+     */
+   public void setHint(String content){
+       chatPrimaryMenu.setHint(content);
+   }
     /**
      * 发现使用,影藏地址等功能
      */

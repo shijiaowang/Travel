@@ -6,29 +6,31 @@
     android:orientation="vertical"
     >
 
-    <com.hyphenate.easeui.widget.emojicon.EaseEmojiconPagerView 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    >
+    <com.hyphenate.easeui.widget.emojicon.EaseEmojiconPagerView
         android:layout_width="match_parent"
-        android:layout_height="142dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:id="@+id/pager_view"
         />
-    
-    <com.hyphenate.easeui.widget.emojicon.EaseEmojiconIndicatorView 
+
+    <com.hyphenate.easeui.widget.emojicon.EaseEmojiconIndicatorView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/indicator_view"
         android:layout_marginBottom="2dp"
         />
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#CFCFCF"
-        />
-    
+</LinearLayout>
+
     <com.hyphenate.easeui.widget.emojicon.EaseEmojiconScrollTabBar
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:id="@+id/tab_bar"
-         />
+        />
     
 </LinearLayout>

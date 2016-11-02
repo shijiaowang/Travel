@@ -4,9 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.yunspeak.travel.bean.Active;
-import com.yunspeak.travel.ui.fragment.BaseFragment;
-
 import java.util.List;
 
 /**

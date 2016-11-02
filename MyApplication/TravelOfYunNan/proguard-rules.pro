@@ -34,3 +34,8 @@
 -keep class com.alipay.sdk.app.AuthTask{ public *;}
 #分享
 -keep class com.tencent.mm.sdk.** {   *;}
+#权限
+-dontwarn com.zhy.m.**
+-keep class com.zhy.m.** {*;}
+-keep interface com.zhy.m.** { *; }
+-keep class **$$PermissionProxy { *; }

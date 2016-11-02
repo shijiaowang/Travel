@@ -53,6 +53,7 @@
             <EditText
                 android:layout_marginLeft="15dp"
                 android:id="@+id/et_sendmessage"
+                android:textColorHint="@color/colorb5b5b5"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

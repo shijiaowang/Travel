@@ -5,9 +5,11 @@ import android.support.annotation.ColorInt;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
@@ -66,7 +68,9 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
             mTvTitle.setVisibility(View.GONE);
         } else {
             mTvTitle.setVisibility(View.VISIBLE);
-            mTvTitle.setText(datas.getTitle());
+            Spannable span = EaseSmileUtils.getSmiledText(mContext, datas.getTitle());
+            // 设置内容
+            mTvTitle.setText(span, TextView.BufferType.SPANNABLE);
         }
         boolean isLike = datas.getIs_like().equals("1");
         mTvIconLove.setTextColor(isLike?loveColor:notLoveColor);
@@ -78,7 +82,9 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         mTvLoveNumber.setText(countLike);
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-M-dd HH:mm", datas.getTime()));
        mTvUserNickName.setText(datas.getNick_name());
-        mTvContent.setText(datas.getContent());
+        Spannable span = EaseSmileUtils.getSmiledText(mContext, datas.getContent());
+        // 设置内容
+        mTvContent.setText(span, TextView.BufferType.SPANNABLE);
         mTvIconLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

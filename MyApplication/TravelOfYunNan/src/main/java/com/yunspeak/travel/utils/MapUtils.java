@@ -39,7 +39,7 @@ public class MapUtils {
             return this;
         }
         public Builder addPageSize(){
-            stringMap.put(IVariable.PAGE_SIZE,20+"");
+            stringMap.put(IVariable.PAGE_SIZE,IVariable.pageCount+"");
             return this;
         }
         public Builder addOldPassWord(String oldPass){

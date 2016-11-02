@@ -50,11 +50,13 @@ public class EaseEmojiconPagerView extends ViewPager{
     }
     
     
-    public void init(List<EaseEmojiconGroupEntity> emojiconGroupList, int emijiconColumns, int bigEmojiconColumns){
+    public void init(List<EaseEmojiconGroupEntity> emojiconGroupList, int emijiconColumns, int bigEmojiconColumns,int emijiconRows){
         if(emojiconGroupList == null){
             throw new RuntimeException("emojiconGroupList is null");
         }
-        
+        if (emijiconRows!=0){
+            this.emojiconRows=emijiconRows;
+        }
         this.groupEntities = emojiconGroupList;
         this.emojiconColumns = emijiconColumns;
         this.bigEmojiconColumns = bigEmojiconColumns;
