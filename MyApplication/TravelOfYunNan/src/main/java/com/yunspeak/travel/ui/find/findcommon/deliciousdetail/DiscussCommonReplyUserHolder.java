@@ -7,6 +7,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
@@ -59,7 +60,9 @@ public class DiscussCommonReplyUserHolder extends BaseRecycleViewHolder<TravelRe
     public void childBindView(final int position, final TravelReplyBean datas, final Context mContext) {
         mIvImage.setVisibility(View.GONE);
         mTvReplyNickName.setText(datas.getNick_name());
-        mTvReplyMessage.setText(datas.getContent());
+        Spannable span = EaseSmileUtils.getSmiledText(mContext, datas.getContent());
+        // 设置内容
+        mTvReplyMessage.setText(span, TextView.BufferType.SPANNABLE);
         FrescoUtils.displayIcon(mIvReplyIcon,datas.getUser_img());
         mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", datas.getReply_time()));
         mTvFloorNumber.setText(datas.getFloor() + "楼");
@@ -68,7 +71,9 @@ public class DiscussCommonReplyUserHolder extends BaseRecycleViewHolder<TravelRe
         TravelReplyBean.ReplyBean reply = datas.getReply();
         if (!StringUtils.isEmpty(reply.getReply_img())) {
             String content = reply.getContent() + "【图片】";
-            mTvReplyContent.setText(content);
+            Spannable replySpan = EaseSmileUtils.getSmiledText(mContext, content);
+            // 设置内容
+            mTvReplyMessage.setText(replySpan, TextView.BufferType.SPANNABLE);
             mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
             SpannableStringBuilder spannable = new SpannableStringBuilder(content);
             spannable.setSpan(new SomeTextClick(mContext, ""), content.length() - 4, content.length()

@@ -1,11 +1,13 @@
 package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 
 import android.content.Context;
+import android.text.Spannable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
@@ -16,6 +18,7 @@ import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FormatDateUtils;
+import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -30,7 +33,7 @@ import butterknife.BindView;
 public class DiscussCommonReplyTextHolder extends BaseRecycleViewHolder<TravelReplyBean> {
     private final String typeDestination;
     @BindView(R.id.v_line) View line;
-    @BindView(R.id.iv_reply_icon)public ImageView mIvReplyIcon;
+    @BindView(R.id.iv_reply_icon)public SimpleDraweeView mIvReplyIcon;
     @BindView(R.id.tv_reply_nick_name)TextView mTvReplyNickName;
     @BindView(R.id.tv_reply_message) TextView mTvReplyMessage;
     @BindView(R.id.tv_floor_number) TextView mTvFloorNumber;
@@ -52,7 +55,10 @@ public class DiscussCommonReplyTextHolder extends BaseRecycleViewHolder<TravelRe
     public void childBindView(final int position, final TravelReplyBean datas, final Context mContext) {
         mIvImage.setVisibility(View.GONE);
         mTvReplyNickName.setText(datas.getNick_name());
-        mTvReplyMessage.setText(datas.getContent());
+        Spannable span = EaseSmileUtils.getSmiledText(mContext, datas.getContent());
+        // 设置内容
+        mTvReplyMessage.setText(span, TextView.BufferType.SPANNABLE);
+        FrescoUtils.displayIcon(mIvReplyIcon,datas.getUser_img());
         mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", datas.getReply_time()));
         mTvFloorNumber.setText(datas.getFloor() + "楼");
         mTvLoveNumber.setText(datas.getLike_count());

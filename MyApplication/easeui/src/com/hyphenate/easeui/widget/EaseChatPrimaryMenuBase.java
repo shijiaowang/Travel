@@ -114,6 +114,8 @@ public abstract class EaseChatPrimaryMenuBase extends RelativeLayout{
          * on text input is clicked
          */
         void onEditTextClicked();
+
+        void hideEmoji();
         
     }
    public void setFindUse(){

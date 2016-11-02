@@ -3,6 +3,7 @@ package com.yunspeak.travel.utils;
 import android.net.Uri;
 
 import com.facebook.drawee.drawable.ScalingUtils;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.yunspeak.travel.R;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;

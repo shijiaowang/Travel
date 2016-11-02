@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.controller.EaseUI;
@@ -50,7 +51,8 @@ public class TravelsApplication extends MultiDexApplication {
 
         MultiDex.install(this);
         x.Ext.init(this);
-        Fresco.initialize(this,ImagePipelineConfigFactory.getImagePipelineConfig(this));
+        ImagePipelineConfig imagePipelineConfig = ImagePipelineConfigFactory.getImagePipelineConfig(this);
+        Fresco.initialize(this,imagePipelineConfig);
        /* x.Ext.setDebug(BuildConfig.DEBUG); // 开启debug会影响性能*/
         mContext = getApplicationContext();
         mHandler = new Handler();

@@ -76,6 +76,7 @@ public class ImagePipelineConfigFactory {
                 Integer.MAX_VALUE,                     // Max length of eviction queue
                 Integer.MAX_VALUE);                    // Max cache entry size
         configBuilder
+                .setDownsampleEnabled(true)
                 .setBitmapMemoryCacheParamsSupplier(
                         new Supplier<MemoryCacheParams>() {
                             public MemoryCacheParams get() {

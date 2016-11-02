@@ -66,6 +66,7 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
                 float absOffset=scrollY/300f;
                 absOffset=absOffset>1?1:absOffset;
                 mToolbar.setBackgroundColor(Color.argb((int) (absOffset * 255), 92 , 208, 194));
+
             }
         });
     }
@@ -112,10 +113,14 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
     @Override
     protected void onSuccess(T t) {
         ParentBean parentBean = null;
-        if (isUserChild()) {//使用孩子的
-            parentBean= GsonUtils.getObject(t.getResult(),useChildedBean());
-        } else {
-            parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
+        try {
+            if (isUserChild()) {//使用孩子的
+                parentBean= GsonUtils.getObject(t.getResult(),useChildedBean());
+            } else {
+                parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         List<F> loadDatas;
         if (isChangeData()){
@@ -154,7 +159,7 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
             }else {
                 LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(this);
                 linearLayoutManager.setAutoMeasureEnabled(true);
-
+                 linearLayoutManager.setStackFromEnd(true);//软键盘弹出上移
                 mRvCommon.setLayoutManager(linearLayoutManager);
             }
             mRvCommon.setNestedScrollingEnabled(false);

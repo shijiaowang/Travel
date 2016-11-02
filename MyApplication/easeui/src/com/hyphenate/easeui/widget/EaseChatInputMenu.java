@@ -212,6 +212,11 @@ public class EaseChatInputMenu extends LinearLayout {
                 hideExtendMenuContainer();
             }
 
+            @Override
+            public void hideEmoji() {
+                emojiconMenu.setVisibility(View.GONE);
+            }
+
 
             @Override
             public boolean onPressToSpeakBtnTouch(View v, MotionEvent event) {
@@ -291,7 +296,7 @@ public class EaseChatInputMenu extends LinearLayout {
                     chatExtendMenu.setVisibility(View.GONE);
                     emojiconMenu.setVisibility(View.VISIBLE);
                 }
-            }, 200);
+            }, 100);
         } else {
             if (emojiconMenu.getVisibility() == View.VISIBLE) {
                 chatExtendMenuContainer.setVisibility(View.GONE);

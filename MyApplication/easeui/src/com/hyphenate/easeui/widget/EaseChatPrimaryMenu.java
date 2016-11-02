@@ -66,7 +66,18 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
         buttonMore.setOnClickListener(this);
         editText.setOnClickListener(this);
         editText.requestFocus();
-
+        editText.setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    if (listener!=null){
+                        faceChecked.setImageResource(R.drawable.chat_emoj);
+                        isFace=!isFace;
+                        listener.onEditTextClicked();
+                    }
+                }
+            }
+        });
         // listen the text change
         editText.addTextChangedListener(new TextWatcher() {
 
@@ -180,8 +191,10 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
             if(listener != null)
                 listener.onToggleExtendClicked();
         } else if (id == R.id.et_sendmessage) {
-            if(listener != null)
+            if(listener != null) {
+                listener.hideEmoji();
                 listener.onEditTextClicked();
+            }
         } else if (id == R.id.iv_face_checked) {
             faceChecked.setImageResource(isFace?R.drawable.chat_emoj:R.drawable.chat_soft_wore);
             isFace = !isFace;

@@ -147,7 +147,6 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
         if (haveNextPage.equals("0")) {
             try {
                 FindLastReply findLastReply = GsonUtils.getObject(event.getResult(), FindLastReply.class);
-                int size = mDatas.size();
                 List<TravelReplyBean> data = findLastReply.getData();
                 mDatas.addAll(data);
                 mAdapter.notifyDataSetChanged();
