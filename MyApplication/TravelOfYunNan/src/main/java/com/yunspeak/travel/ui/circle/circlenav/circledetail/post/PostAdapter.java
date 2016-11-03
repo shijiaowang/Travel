@@ -58,15 +58,16 @@ public class PostAdapter extends BaseRecycleViewAdapter<Object> {
     @Override
     public int getItemViewType(int position) {
         PostDetailBean.DataBean.ForumReplyBean forumReplyBean = null;
-        if (mDatas.get(position) instanceof PostDetailBean.DataBean.ForumReplyBean) {
+        Object o = mDatas.get(position);
+        if (o instanceof PostDetailBean.DataBean.ForumReplyBean) {
             forumReplyBean = (PostDetailBean.DataBean.ForumReplyBean) mDatas.get(position);
-        }
-        if (position == 0) {
+            if (forumReplyBean.getPid().equals("0")) {
+                return TYPE_POST_NORMAL;
+            } else{
+                return TYPE_POST_USER;
+            }
+        }else {
             return TYPE_POST_OP;
-        } else if (forumReplyBean.getPid().equals("0")) {
-            return TYPE_POST_NORMAL;
-        } else{
-            return TYPE_POST_USER;
         }
     }
 }

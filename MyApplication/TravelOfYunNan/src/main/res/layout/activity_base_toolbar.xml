@@ -20,7 +20,6 @@
             android:layout_height="@dimen/commonTotalHeight"
             android:background="@color/otherTitleBg"
             app:titleTextAppearance="@style/ToolBar.TitleText">
-
             <TextView
                 android:id="@+id/tv_appbar_title"
                 style="@style/commonSingleLineTextStyle"

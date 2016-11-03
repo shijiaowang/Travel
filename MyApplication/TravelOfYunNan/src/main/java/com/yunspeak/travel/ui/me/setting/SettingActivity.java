@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
@@ -19,6 +21,7 @@ import com.yunspeak.travel.ui.me.changepassword.ChangePassWordActivity;
 import com.yunspeak.travel.ui.view.PhoneTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
+import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ShareUtil;
 import com.hyphenate.chat.EMClient;
@@ -42,6 +45,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     @BindView(R.id.ll_logout) LinearLayout mLlLogout;
     @BindView(R.id.ll_about) LinearLayout mLlAbout;
     @BindView(R.id.ll_change_password) LinearLayout mLlChangePassword;
+    private UserInfo userInfo;
 
     @Override
     protected SimpleDraweeView childViewShow() {
@@ -61,10 +65,10 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     }
 
     private void initData() {
-        UserInfo userInfo = GlobalUtils.getUserInfo();
+        userInfo = GlobalUtils.getUserInfo();
         try {
             mTvUserId.setText(userInfo.getId());
-            FrescoUtils.displayIcon(mIvIcon,userInfo.getUser_img());
+            FrescoUtils.displayIcon(mIvIcon, userInfo.getUser_img());
             mTvUserLivePlace.setText(userInfo.getProvince() + "-" + userInfo.getCity());
             mTvUserNickName.setText(userInfo.getNick_name());
             mTvUserSex.setText(userInfo.getSex().equals("1") ? "男" : "女");
@@ -115,6 +119,12 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 EMClient.getInstance().logout(true);
                 ShareUtil.putString(this, IVariable.SAVE_NAME, "");
                 ShareUtil.putString(this, IVariable.SAVE_PWD, "");
+                PushAgent.getInstance(this).removeAlias(userInfo.getId(), "YUNS_ID", new UTrack.ICallBack() {
+                    @Override
+                    public void onMessage(boolean b, String s) {
+                        LogUtils.e("是否成功"+b+"信息"+s);
+                    }
+                });
                 startActivity(new Intent(this, SplashActivity.class));
                 setResult(HomeActivity.RESULT);
                 finish();

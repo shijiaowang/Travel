@@ -34,6 +34,7 @@ public class SomeTextClick extends ClickableSpan{
             return;
         }
         List<String> list=new ArrayList<>();
+        list.add(url);
         CirclePreviewActivity.start(context,list,0);
     }
 

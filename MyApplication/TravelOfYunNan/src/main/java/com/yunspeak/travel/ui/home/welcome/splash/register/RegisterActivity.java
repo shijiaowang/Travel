@@ -201,13 +201,6 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     private void dealResult(HttpEvent event) {
         if (event.getType() == REGISTER_REQ) {
             Register register = GsonUtils.getObject(event.getResult(), Register.class);
-            String userId = register.getData().getUser_id();
-            PushAgent.getInstance(this).addAlias(userId, "YUNS_ID", new UTrack.ICallBack() {
-                @Override
-                public void onMessage(boolean b, String s) {
-                    LogUtils.e("是否成功"+b+"信息"+s);
-                }
-            });
             Intent intent = new Intent();
             intent.putExtra(IVariable.USER_ID, register.getData().getUser_id());
             setResult(REGISTER_SUCCESS, intent);

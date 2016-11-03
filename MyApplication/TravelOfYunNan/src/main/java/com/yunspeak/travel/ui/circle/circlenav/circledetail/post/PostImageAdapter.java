@@ -45,7 +45,7 @@ public class PostImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
         });
         PostImageHolder postImageHolder = (PostImageHolder) holder;
-        FrescoUtils.displayNormal(postImageHolder.mIvImage,mDatas.get(position));
+        FrescoUtils.displayNormal(postImageHolder.mIvImage,mDatas.get(position),600,450);
     }
 
     @Override

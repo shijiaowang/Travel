@@ -47,6 +47,7 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
     public static final int TYPE_LOAD = 2;
     public static final int TYPE_CLICK_ZAN = 3;
     public static final int TYPE_REFRESH_BY_USER = 4;
+    public static final int TYPE_UPDATE = 5;
 
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;

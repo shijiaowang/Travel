@@ -23,6 +23,7 @@ import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -79,6 +80,7 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         }
         boolean isLike = datas.getIs_like().equals("1");
         mTvIconLove.setTextColor(isLike?loveColor:notLoveColor);
+        mTvIconLove.setText(isLike?mContext.getString(R.string.activity_circle_love_full):mContext.getString(R.string.activity_circle_love_empty));
      mTvLoveNumber.setTextColor(isLike?loveColor:notLoveColor);
         String countLike = datas.getCount_like();
         if (StringUtils.isEmpty(countLike)){
@@ -115,6 +117,12 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         final String imageUrl = datas.getForum_img();
         if (!StringUtils.isEmpty(imageUrl)) {
             mRvPhoto.setVisibility(View.VISIBLE);
+            mRvPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LogUtils.e("被点击啦");
+                }
+            });
             String[] split = imageUrl.split(",");
             String[] newImage;
             if (split.length>6){

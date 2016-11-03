@@ -288,30 +288,28 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
      * @param content
      */
     private void createPost(String content) {
-
-
         if (isCreateing)return;
         isCreateing = true;
         Map<String, String> createPostMap;
         String url=IVariable.DISCUSS_POST;
+        String inform="";
+        if (mSelectPeople!=null){
+            StringBuilder stringBuilder=new StringBuilder();
+            for (AiteFollow aiteFollow:mSelectPeople){
+                stringBuilder.append(aiteFollow.getFollow().getId()+",");
+            }
+            String string = stringBuilder.toString();
+            if (!StringUtils.isEmptyNotNull(string)){
+                string.substring(string.length()-1,string.length());
+                inform=string;
+            }
+        }
         if (currentType==CREATE_POST) {
             url=IVariable.CIRCLE_CREATE_POST;
-            String inform="";
             String title = mEtTitle.getText().toString().trim();
-            if (mSelectPeople!=null){
-                StringBuilder stringBuilder=new StringBuilder();
-                for (AiteFollow aiteFollow:mSelectPeople){
-                    stringBuilder.append(aiteFollow.getFollow().getId()+",");
-                }
-                String string = stringBuilder.toString();
-                if (!StringUtils.isEmpty(string)){
-                    string.substring(string.length()-1,string.length());
-                    inform=string;
-                }
-            }
             createPostMap = MapUtils.Build().addKey(this).addCId(cId).addContent(content).addTitle(title).addUserId().addInform(inform).end();
         }else {
-            createPostMap=MapUtils.Build().addKey(this).addFroumId(forumId).addContent(content).addCId(cId).addPId(pId).addUserId().addRUserId(rUserId).end();
+            createPostMap=MapUtils.Build().addKey(this).addFroumId(forumId).addContent(content).addCId(cId).addPId(pId).addUserId().addRUserId(rUserId).addInform(inform).end();
         }
         XEventUtils.postFileCommonBackJson(url,createPostMap,pictures,currentType,new CreatePostEvent());
     }
@@ -343,13 +341,13 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         String content = mEtContent.getText().toString().trim();
-        if (StringUtils.isEmpty(content)&&(mSelectPeople==null || mSelectPeople.size()==0)) {
+        if (StringUtils.isEmptyNotNull(content)&&(mSelectPeople==null || mSelectPeople.size()==0)) {
             ToastUtils.showToast("请输入内容");
-            return;
+        }else {
+            setIsProgress(true,false);
+            createPost(content);
         }
 
-        setIsProgress(true,false);
-        createPost(content);
     }
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
@@ -396,6 +394,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
     @Override
     protected void onFail(CreatePostEvent createPostEvent) {
+        isCreateing=false;
         setIsProgress(false);
     }
     public static void start(Context context,String cid,int pictureSize,int type,String forumId,String rid,String pid){

@@ -38,8 +38,7 @@ public class PictureSelectorHolder extends BaseHolder<String> {
     @Override
     protected void initItemDatas(String datas, Context mContext, int position) {
         String url="file://"+dir + File.separator + datas;
-        FrescoUtils.displayNormal(mIvPicture,url,50,50);
-       // x.image().bind(mIvPicture,url,getImageOptions(50,50));
+        FrescoUtils.displayNormal(mIvPicture,url,200,200);
         if (GlobalValue.mSelectImages!=null && GlobalValue.mSelectImages.contains(url)){
             mImage.setBackgroundColor(Color.parseColor("#77000000"));
             mTvSelect.setTextColor(mContext.getResources().getColor(R.color.otherTitleBg));

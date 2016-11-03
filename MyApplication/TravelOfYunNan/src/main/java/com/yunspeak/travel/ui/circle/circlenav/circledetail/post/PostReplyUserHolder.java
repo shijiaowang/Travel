@@ -82,20 +82,18 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
                 mIvImage.setVisibility(View.GONE);
             }else {
                 mIvImage.setVisibility(View.VISIBLE);
-                FrescoUtils.displayNormal(mIvImage,forumReplyBean.getReply_img());
+                FrescoUtils.displayNormal(mIvImage,forumReplyBean.getReply_img(),600,450);
             }
             List<InformBean> inform1 = reply.getInform();
             int length1 = reply.getContent().length();
-            Spannable span1 = AiteUtils.getSmiledText(t, forumReplyBean.getContent(),length1,inform1);
-            // 设置内容
-            mTvReplyMessage.setText(span1);
+            String replyContent = reply.getContent();
+            Spannable replySpan;
             if (!StringUtils.isEmpty(reply.getReply_img())){
-                String content="【图片】";
-                SpannableStringBuilder spannable = new SpannableStringBuilder(content);
-                spannable.setSpan(new SomeTextClick(t, ""), content.length() - 4, content.length()
-                        , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                mTvReplyContent.append(spannable);
+                replySpan = AiteUtils.getSmiedTextWithAiteAndLinke(t, replyContent, length1, inform1,reply.getReply_img());
+            } else {
+                replySpan = AiteUtils.getSmiledText(t, replyContent, length1, inform1);
             }
+            mTvReplyContent.setText(replySpan);
             mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
             mTvReplyName.setText(reply.getNick_name());
             mTvReplyFloorNumber.setText(reply.getFloor()+"楼");

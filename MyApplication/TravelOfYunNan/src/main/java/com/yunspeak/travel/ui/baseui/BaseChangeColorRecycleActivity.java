@@ -57,14 +57,6 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
 
     protected abstract void initChildListener();
 
-    /**
-     * 默认子view距离
-     *
-     * @return
-     */
-    private int childDistance() {
-        return 6;
-    }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {

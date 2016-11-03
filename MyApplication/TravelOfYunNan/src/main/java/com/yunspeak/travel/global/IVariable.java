@@ -38,6 +38,7 @@ public interface IVariable {
     String RESET_PASSWORD_VER = API_KEY + "User/sendUsermsg/";//重置验证码
     String LOGIN_URL = API_KEY + "User/Login/";//登录
     String HOME_PAGE = API_KEY + "Index/loadIndex/";//首页数据加载
+    String HOME_SEARCH = API_KEY + "Index/search/";//首页搜索
     /**
      * 圈子
      */

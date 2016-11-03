@@ -4,17 +4,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.baseui.BaseActivity;
-import com.yunspeak.travel.ui.baseui.BaseFullScreenActivity;
-import com.yunspeak.travel.ui.fragment.SearchUserFragment;
+import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.view.FontsIconCursorView;
-import com.yunspeak.travel.ui.view.FontsIconTextView;
-
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +20,15 @@ import butterknife.BindView;
  * Created by wangyang on 2016/8/22 0022.
  * 首页搜索
  */
-public class HomeSearchActivity extends BaseFullScreenActivity implements View.OnClickListener {
+public class HomeSearchActivity extends BaseToolBarActivity implements View.OnClickListener {
     @BindView(R.id.ficv_cursor) FontsIconCursorView mFicvCursor;
     @BindView(R.id.vp_search) ViewPager mVpSearch;
-    @BindView(R.id.tv_back)
-    ImageView mTvBack;
+    public static final String SEARCH_USER="1";
+    public static final String SEARCH_DESTINATION="2";
+    public static final String SEARCH_CIRCLE="3";
+    public static final String SEARCH_CONTENT="4";
+    private String type=SEARCH_USER;
+    protected static String content="";
     private List<Fragment> fragments;
 
     @Override
@@ -38,26 +37,30 @@ public class HomeSearchActivity extends BaseFullScreenActivity implements View.O
     }
 
     @Override
-    protected void initView() {
-
-    }
-
-    @Override
-    protected void initListener() {
-     mTvBack.setOnClickListener(this);
-    }
-
-    @Override
-    protected void initData() {
+    protected void initOptions() {
+        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_search, mToolbar,false);
+        mToolbar.addView(inflate);
+        setIsProgress(false);
         fragments = new ArrayList<>();
-        fragments.add(new SearchUserFragment());
-        fragments.add(new SearchUserFragment());
-        fragments.add(new SearchUserFragment());
-        fragments.add(new SearchUserFragment());
+        fragments.add(new SearchCommonFragment());
+        fragments.add(new SearchCommonFragment());
+        fragments.add(new SearchCommonFragment());
+        fragments.add(new SearchCommonFragment());
         mVpSearch.setAdapter(new SearchPagerAdapter(getSupportFragmentManager()));
         mFicvCursor.setViewPager(mVpSearch);
-
     }
+
+    @Override
+    protected String initTitle() {
+        mTvTitle.setVisibility(View.GONE);
+        return "";
+    }
+
+
+
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -67,6 +70,7 @@ public class HomeSearchActivity extends BaseFullScreenActivity implements View.O
                 break;
         }
     }
+
     class SearchPagerAdapter extends FragmentPagerAdapter{
 
         public SearchPagerAdapter(FragmentManager fm) {

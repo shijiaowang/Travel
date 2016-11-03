@@ -16,23 +16,60 @@
         android:layout_height="match_parent">
 
     </ListView>
-    <View
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"/>
-    <ListView
-        android:layout_gravity="center_horizontal"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@null"
-        android:scrollbars="none"
-        android:id="@+id/lv_right_nav"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+            <ListView
+                android:layout_gravity="center_horizontal"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="@null"
+                android:scrollbars="none"
+                android:id="@+id/lv_right_nav"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content">
 
-    </ListView>
-    <View
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"/>
+            </ListView>
+            <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/pb_load"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/rl_empty"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_empty"
+                android:layout_centerInParent="true"
+                android:src="@drawable/empty_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/iv_empty"
+                android:text="暂无关注，快去关注喜欢的圈子吧~"
+                android:textColor="@color/color323232"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

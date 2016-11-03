@@ -5,9 +5,9 @@ import android.content.Intent;
 
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.ui.baseui.ActivateDetailActivity;
 import com.yunspeak.travel.ui.baseui.BaseBarChangeColorActivity;
-import com.yunspeak.travel.event.ActiveEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import java.util.List;
@@ -16,10 +16,7 @@ import java.util.List;
  * Created by wangyang on 2016/7/25 0025.
  * 活动界面
  */
-public class ActiveActivity extends BaseBarChangeColorActivity<ActiveEvent,ActiveBean,ActiveBean.DataBean> {
-
-
-
+public class ActiveActivity extends BaseBarChangeColorActivity<DetailCommonEvent,ActiveBean,ActiveBean.DataBean> {
 
     @Override
     protected void initEvent() {
@@ -38,10 +35,6 @@ public class ActiveActivity extends BaseBarChangeColorActivity<ActiveEvent,Activ
     protected String initUrl() {
         return IVariable.FIND_ACTIVITY;
     }
-
-
-
-
 
 
 

@@ -47,7 +47,7 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final CircleDetailPhotoHolder circleDetailPhotoHolder = (CircleDetailPhotoHolder) holder;
-       circleDetailPhotoHolder.mIvImage.setTag(mDatas.get(position));
+        circleDetailPhotoHolder.mIvImage.setTag(mDatas.get(position));
         circleDetailPhotoHolder.mIvImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.AppBarStateChangeListener;
 import com.yunspeak.travel.ui.baseui.BaseChangeColorRecycleActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreateEvent;
@@ -95,6 +96,15 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
                 dealFollowData(circleDetailEvent.getResult());
                 break;
 
+        }
+    }
+
+    @Override
+    protected void appBarStateChange(AppBarStateChangeListener.State state) {
+        if (state==AppBarStateChangeListener.State.COLLAPSED){
+            mSwipe.setLoadMoreEnabled(true);
+        }else{
+            mSwipe.setLoadMoreEnabled(false);
         }
     }
 

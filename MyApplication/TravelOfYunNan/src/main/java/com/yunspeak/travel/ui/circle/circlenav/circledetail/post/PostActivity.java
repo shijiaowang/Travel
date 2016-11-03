@@ -80,6 +80,9 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         int count = type == TYPE_REFRESH ? 0 : getListSize(mDatas);
+        if (count>0 && type==TYPE_LOAD){
+            count--;
+        }
         builder.addFroumId(forum_id).addPageSize().addCount(count);
     }
 
@@ -177,7 +180,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     }
     @Subscribe
     public void onEvent(ReplyEvent replyEvent){
-        if (!(getListSize(mDatas)%IVariable.pageCount==0)){//不为0.说明已经加载到了底部，发表帖子后需要加载更多
+        if (!(getListSize(mDatas)%IVariable.pageCount==0) || getListSize(mDatas)==0){//不为0.说明已经加载到了底部，发表帖子后需要加载更多
             onLoad(TYPE_LOAD);
         }
     }

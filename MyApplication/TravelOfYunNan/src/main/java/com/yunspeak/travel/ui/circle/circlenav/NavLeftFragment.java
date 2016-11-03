@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.yunspeak.travel.R;
@@ -37,7 +38,9 @@ import butterknife.BindView;
 public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
     @BindView(R.id.lv_left_nav)  ListView mLvLeftNav;
     @BindView(R.id.lv_right_nav) ListView mLvRightNav;
-    private RelativeLayout mRlPost;
+    @BindView(R.id.rl_empty) RelativeLayout rlEmpty;
+    @BindView(R.id.pb_load)
+    ProgressBar pbLoading;
     private int preCircleNavLeftPosition = -1;
     private List<Circle.DataBean.CircleLeftBean> leftList;
     private List<CircleNavRight.RightCircle> rightList;
@@ -67,7 +70,6 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
         mLvLeftNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: 2016/8/23 0023 需要做取消请求
                 if (prePosition == position) {//重复点击或者加载中不让继续
                     return;
                 }
@@ -112,6 +114,7 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
             isFirst = false;
             firstReq();
         } else {
+            pbLoading.setVisibility(View.VISIBLE);
             normalReq(cid);
         }
     }
@@ -146,18 +149,36 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
 
     @Override
     public void onSuccess(NavLeftEvent event) {
+        pbLoading.setVisibility(View.GONE);
         useCommonBackJson = null;
             if (event.getType() == IVariable.FIRST_REQ) {
                 firstReq(event);//第一次请求
             } else {
-                if (circleNavRightAdapter == null) {
-                    firstReq();//第一次就没有进行加载，所以为空，在这里重新加载
-                    return;
-                }
                 CircleNavRight circleNavRight = GsonUtils.getObject(event.getResult(), CircleNavRight.class);
                 rightList = circleNavRight.getData();
-                circleNavRightAdapter.notifyData(rightList);
+                if (rightList==null || rightList.size()==0) {
+                    rlEmpty.setVisibility(View.VISIBLE);
+                    if (circleNavRightAdapter!=null){
+                        rightList.clear();
+                        circleNavRightAdapter.notifyData(rightList);
+                    }
+                    return;
+                }
+                rlEmpty.setVisibility(View.GONE);
+
+                if (circleNavRightAdapter==null){
+                    circleNavRightAdapter = new CircleNavRightAdapter(getContext(), rightList);
+                    mLvRightNav.setAdapter(circleNavRightAdapter);
+                }else {
+                    circleNavRightAdapter.notifyData(rightList);
+                }
             }
+    }
+
+    @Override
+    protected void onFail(NavLeftEvent event) {
+        super.onFail(event);
+        pbLoading.setVisibility(View.GONE);
     }
 
     private void firstReq(NavLeftEvent event) {
@@ -178,8 +199,15 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
             mLvLeftNav.setAdapter(circleNavLeftAdapter);
         }
         if (rightList != null) {
-            circleNavRightAdapter = new CircleNavRightAdapter(getContext(), rightList);
-            mLvRightNav.setAdapter(circleNavRightAdapter);
+            if (rightList.size()==0){
+                rlEmpty.setVisibility(View.VISIBLE);
+            }else {
+                circleNavRightAdapter = new CircleNavRightAdapter(getContext(), rightList);
+                mLvRightNav.setAdapter(circleNavRightAdapter);
+                rlEmpty.setVisibility(View.GONE);
+            }
+        }else {
+            rlEmpty.setVisibility(View.VISIBLE);
         }
 
     }

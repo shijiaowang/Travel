@@ -55,6 +55,9 @@ public class FrescoUtils {
      * @param simpleDraweeView 显示
      */
     public static void displayRoundIcon(SimpleDraweeView simpleDraweeView, String url){
+       displayRoundIcon(simpleDraweeView,url,200,200);
+    }
+    public static void displayRoundIcon(SimpleDraweeView simpleDraweeView, String url,int width,int height){
         if (simpleDraweeView==null || url==null)return;
         Uri uri=Uri.parse(url);
         if (simpleDraweeView==null || uri==null)return;
@@ -62,7 +65,7 @@ public class FrescoUtils {
         roundingParams.setCornersRadius(10f);
         //获取GenericDraweeHierarchy对象
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setResizeOptions(new ResizeOptions(50,50))
+                .setResizeOptions(new ResizeOptions(width,height))
                 .build();
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形

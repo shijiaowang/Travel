@@ -1,12 +1,20 @@
 package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.AppCompatAutoCompleteTextView;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
@@ -33,15 +41,40 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
     @BindView(R.id.rl_search) RelativeLayout rlSearch;
     @BindView(R.id.lv_follow_people) ListView lvFollowPeople;
     @BindView(R.id.fqi_index) FastQueryIndex fqiIndex;
+    @BindView(R.id.et_content)EditText mEtContent;
     private List<AiteFollow> followAndFans;
     private List<AiteFollow> mSelectPeople;
     private AiteAdapter adapter;
     private List<String> indexList;
+    private String content="";
 
 
     @Override
     protected void initEvent() {
         init();
+        tvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 content = mEtContent.getText().toString().trim();
+                onLoad(TYPE_REFRESH);
+            }
+        });
+        mEtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                //一般输入法或搜狗输入法点击搜索按键
+                if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
+                    //这里调用搜索方法
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mEtContent.getWindowToken(), 0); //强制隐藏键盘
+                    content = mEtContent.getText().toString().trim();
+                    onLoad(TYPE_REFRESH);
+                    return true;
+                }
+                return false;
+            }
+        });
         fqiIndex.setOnItemClickListener(new FastQueryIndex.OnItemClickListener() {
             @Override
             public void onClickWord(char c) {
@@ -66,6 +99,8 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
         });
     }
 
+
+
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         super.otherOptionsItemSelected(item);
@@ -80,7 +115,7 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-         builder.addType("1").addPageSize(Integer.MAX_VALUE).addCount(0);
+         builder.addType("1").addPageSize(Integer.MAX_VALUE).addCount(0).addContent(content);
     }
 
     @Override
@@ -174,7 +209,7 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
         AiteBean aiteBean = GsonUtils.getObject(event.getResult(), AiteBean.class);
         List<Follow> data = aiteBean.getData();
         if (data == null || data.size() == 0) {
-            ToastUtils.showToast("您尚未关注任何人！");
+            ToastUtils.showToast("暂无数据！");
         } else {
             initDataAndSort(data);
             initIndexQuery();

@@ -9,6 +9,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 
+import com.umeng.message.PushAgent;
+import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.bean.Login;
@@ -24,6 +26,7 @@ import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.LineEditText;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
+import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MD5Utils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ShareUtil;
@@ -125,6 +128,12 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
                 UserInfo userInfo = object.getData();
                 GlobalValue.userInfo=userInfo;//赋值
                 UserUtils.saveUserInfo(userInfo);//序列化
+                PushAgent.getInstance(this).addAlias(userInfo.getId(), "YUNS_ID", new UTrack.ICallBack() {
+                    @Override
+                    public void onMessage(boolean b, String s) {
+                        LogUtils.e("是否成功"+b+"信息"+s);
+                    }
+                });
                 goToHomeActivity(event);
             }
         } else {
