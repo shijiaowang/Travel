@@ -6,6 +6,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,9 +15,12 @@ import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.InformBean;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -82,9 +87,15 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         mTvLoveNumber.setText(countLike);
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-M-dd HH:mm", datas.getTime()));
        mTvUserNickName.setText(datas.getNick_name());
-        Spannable span = EaseSmileUtils.getSmiledText(mContext, datas.getContent());
+
+
+
+        List<InformBean> inform = datas.getInform();
+        int length = datas.getContent().length();
+        Spannable span = AiteUtils.getSmiledText(mContext, datas.getContent(),length,inform);
         // 设置内容
-        mTvContent.setText(span, TextView.BufferType.SPANNABLE);
+        mTvContent.setText(span);
+        mTvContent.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
         mTvIconLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

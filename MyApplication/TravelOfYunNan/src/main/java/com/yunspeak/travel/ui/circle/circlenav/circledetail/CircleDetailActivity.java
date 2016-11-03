@@ -62,7 +62,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
     @Override
     protected void initListener() {
         super.initListener();
-        changeMargin(10,10);
+        changeMargin(5,10);
     }
 
     @Override

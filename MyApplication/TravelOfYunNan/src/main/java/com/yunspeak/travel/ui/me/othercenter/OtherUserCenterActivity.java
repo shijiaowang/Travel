@@ -144,6 +144,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         mVsTab.inflate();
         inflater = LayoutInflater.from(this);
         userId = getIntent().getStringExtra(IVariable.USER_ID);
+
     }
 
     @Override
@@ -153,7 +154,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
 
     @Override
     protected String initTitle() {
-        return "他人中下";
+        return "个人中心";
     }
 
     @Override

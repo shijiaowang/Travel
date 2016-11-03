@@ -9,9 +9,9 @@ import java.util.List;
  */
 public class PostDetailBean implements ParentBean{
 
+
     private int code;
     private String message;
-
     private DataBean data;
 
     public int getCode() {
@@ -39,8 +39,6 @@ public class PostDetailBean implements ParentBean{
     }
 
     public static class DataBean {
-
-
         private ForumBean forum;
         private String img_lists;
 
@@ -76,7 +74,6 @@ public class PostDetailBean implements ParentBean{
             private String user_id;
             private String title;
             private String content;
-            private String inform;
             private String forum_img;
             private String time;
             private String status;
@@ -93,6 +90,7 @@ public class PostDetailBean implements ParentBean{
             private String cname;
             private String is_collect;
             private String replay_count;
+            private List<InformBean> inform;
 
             private List<LikeBean> like;
 
@@ -134,14 +132,6 @@ public class PostDetailBean implements ParentBean{
 
             public void setContent(String content) {
                 this.content = content;
-            }
-
-            public String getInform() {
-                return inform;
-            }
-
-            public void setInform(String inform) {
-                this.inform = inform;
             }
 
             public String getForum_img() {
@@ -272,6 +262,14 @@ public class PostDetailBean implements ParentBean{
                 this.replay_count = replay_count;
             }
 
+            public List<InformBean> getInform() {
+                return inform;
+            }
+
+            public void setInform(List<InformBean> inform) {
+                this.inform = inform;
+            }
+
             public List<LikeBean> getLike() {
                 return like;
             }
@@ -279,6 +277,7 @@ public class PostDetailBean implements ParentBean{
             public void setLike(List<LikeBean> like) {
                 this.like = like;
             }
+
 
             public static class LikeBean {
                 private String nick_name;
@@ -322,12 +321,15 @@ public class PostDetailBean implements ParentBean{
             private String user_img;
             private String r_nick_name;
             private String r_user_img;
-            /**
-             * floor :
-             * nick_name :
-             * content :
-             * reply_img :
-             */
+            private List<InformBean> inform;
+
+            public List<InformBean> getInform() {
+                return inform;
+            }
+
+            public void setInform(List<InformBean> inform) {
+                this.inform = inform;
+            }
 
             private ReplyBean reply;
 
@@ -496,6 +498,15 @@ public class PostDetailBean implements ParentBean{
                 private String nick_name;
                 private String content;
                 private String reply_img;
+                private List<InformBean> inform;
+
+                public List<InformBean> getInform() {
+                    return inform;
+                }
+
+                public void setInform(List<InformBean> inform) {
+                    this.inform = inform;
+                }
 
                 public String getFloor() {
                     return floor;

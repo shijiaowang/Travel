@@ -3,6 +3,8 @@ package com.yunspeak.travel.ui.circle.circlenav.circledetail.post;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +13,7 @@ import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
@@ -69,7 +72,12 @@ import butterknife.BindView;
             isFirst = false;
             mTvNickName.setText(forum.getNick_name());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forum.getTime()));
-            mTvContent.setText(forum.getContent());
+            List<InformBean> inform = forum.getInform();
+            int length = forum.getContent().length();
+            Spannable span = AiteUtils.getSmiledText(mContext, forum.getContent(),length,inform);
+            // 设置内容
+            mTvContent.setText(span);
+            mTvContent.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
             FrescoUtils.displayIcon(mIvUserIcon,forum.getUser_img());
             if (!StringUtils.isEmpty(forum.getForum_img())) {
                 String[] split = forum.getForum_img().split(",");

@@ -79,11 +79,6 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     private ViewStub mVsPhoto;
     private ViewStub mVsEmoji;
     private EaseEmojiconMenu mEsEmoj;
-    private List<EmojiFragment> fragments;
-    private LinearLayout mLlDot;
-    private int mPointDistance;
-    private int mFirstDotLeft;
-    private View mVDot;
     private InputMethodManager imm;
 
     private int sendDelayTime = 0;//延迟发送广播时间，解决软键盘弹出情况下，再弹出表情包等等闪屏状况
@@ -290,14 +285,10 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
     /**
      * 创建帖子
+     * @param content
      */
-    private void createPost() {
+    private void createPost(String content) {
 
-        String content = mEtContent.getText().toString().trim();
-        if (StringUtils.isEmpty(content)) {
-            ToastUtils.showToast("请输入内容");
-            return;
-        }
 
         if (isCreateing)return;
         isCreateing = true;
@@ -351,8 +342,14 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
+        String content = mEtContent.getText().toString().trim();
+        if (StringUtils.isEmpty(content)&&(mSelectPeople==null || mSelectPeople.size()==0)) {
+            ToastUtils.showToast("请输入内容");
+            return;
+        }
+
         setIsProgress(true,false);
-        createPost();
+        createPost(content);
     }
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {

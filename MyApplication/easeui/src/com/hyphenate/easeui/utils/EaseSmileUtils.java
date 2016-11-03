@@ -24,6 +24,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.text.Spannable;
 import android.text.Spannable.Factory;
+import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
 
 import com.hyphenate.easeui.controller.EaseUI;
@@ -149,7 +150,8 @@ public class EaseSmileUtils {
 	    addSmiles(context, spannable);
 	    return spannable;
 	}
-	
+
+
 	public static boolean containsKey(String key){
 		boolean b = false;
 		for (Entry<Pattern, Object> entry : emoticons.entrySet()) {

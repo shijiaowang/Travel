@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.circle.circlenav.circledetail.post;
 
 import android.content.Context;
 import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,12 +13,15 @@ import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -63,9 +67,12 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
             }
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
-            Spannable span = EaseSmileUtils.getSmiledText(t, forumReplyBean.getContent());
+            List<InformBean> inform = forumReplyBean.getInform();
+            int length = forumReplyBean.getContent().length();
+            Spannable span = AiteUtils.getSmiledText(t, forumReplyBean.getContent(),length,inform);
             // 设置内容
-            mTvReplyMessage.setText(span, TextView.BufferType.SPANNABLE);
+            mTvReplyMessage.setText(span);
+            mTvReplyMessage.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
             mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forumReplyBean.getReply_time()));
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
             mTvLoveNumber.setText(forumReplyBean.getLike_count());

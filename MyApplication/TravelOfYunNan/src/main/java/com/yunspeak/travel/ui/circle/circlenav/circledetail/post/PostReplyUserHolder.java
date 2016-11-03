@@ -16,12 +16,15 @@ import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -64,9 +67,12 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
             });
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
-            Spannable span = EaseSmileUtils.getSmiledText(t, forumReplyBean.getContent());
+            List<InformBean> inform = forumReplyBean.getInform();
+            int length = forumReplyBean.getContent().length();
+            Spannable span = AiteUtils.getSmiledText(t, forumReplyBean.getContent(),length,inform);
             // 设置内容
-            mTvReplyMessage.setText(span, TextView.BufferType.SPANNABLE);
+            mTvReplyMessage.setText(span);
+            mTvReplyMessage.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
             mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forumReplyBean.getReply_time()));
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
             mTvLoveNumber.setText(forumReplyBean.getLike_count());
@@ -78,20 +84,22 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
                 mIvImage.setVisibility(View.VISIBLE);
                 FrescoUtils.displayNormal(mIvImage,forumReplyBean.getReply_img());
             }
+            List<InformBean> inform1 = reply.getInform();
+            int length1 = reply.getContent().length();
+            Spannable span1 = AiteUtils.getSmiledText(t, forumReplyBean.getContent(),length1,inform1);
+            // 设置内容
+            mTvReplyMessage.setText(span1);
             if (!StringUtils.isEmpty(reply.getReply_img())){
-                String content=reply.getContent()+"【图片】";
-                mTvReplyContent.setText(content);
-                mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
+                String content="【图片】";
                 SpannableStringBuilder spannable = new SpannableStringBuilder(content);
                 spannable.setSpan(new SomeTextClick(t, ""), content.length() - 4, content.length()
                         , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                mTvReplyContent.setText(spannable);
-            }else {
-                mTvReplyContent.setText(reply.getContent());
+                mTvReplyContent.append(spannable);
             }
+            mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
             mTvReplyName.setText(reply.getNick_name());
             mTvReplyFloorNumber.setText(reply.getFloor()+"楼");
-          itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
                   showDialog(t,forumReplyBean);
