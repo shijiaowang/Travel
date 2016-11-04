@@ -10,7 +10,7 @@ import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailBea
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/7/26 0026.
+ * Created by wangyang on 2016/7/26 0026.
  */
 public class DeliciousDetailHoler extends BaseHolder<DeliciousDetailBean> {
     @BindView(R.id.rb_star) RatingBar mRbStar;
@@ -26,9 +26,6 @@ public class DeliciousDetailHoler extends BaseHolder<DeliciousDetailBean> {
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate =inflateView(R.layout.item_activity_delicious_top_store);
-
-
-        return inflate;
+        return inflateView(R.layout.item_activity_delicious_top_store);
     }
 }

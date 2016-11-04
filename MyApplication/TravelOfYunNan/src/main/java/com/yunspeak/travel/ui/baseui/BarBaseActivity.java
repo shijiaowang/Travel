@@ -16,7 +16,7 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 /**
- * Created by Administrator on 2016/7/25 0025.
+ * Created by wangyang on 2016/7/25 0025.
  * 带有相同头布局
  */
 public abstract class BarBaseActivity extends BaseActivity {

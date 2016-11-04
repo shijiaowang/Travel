@@ -14,11 +14,11 @@
         android:background="@color/otherTitleBg"
         android:paddingTop="@dimen/commonStatusHeight"
         android:theme="@style/toolbar_theme">
+
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:background="@color/otherTitleBg">
-        </android.support.v7.widget.Toolbar>
+            android:background="@color/otherTitleBg"></android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -31,14 +31,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_find"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                >
+                android:layout_height="160dp">
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_find"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp" />
 
-            </android.support.v4.view.ViewPager>
+                <com.yunspeak.travel.ui.view.PagerCursorView
+                    android:id="@+id/pager_cursor"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp" />
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,9 +56,9 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_add"
-                    style="@style/fragmentFindIconLl">
+                    style="@style/fragmentFindIconLl"
+                    android:background="@drawable/normal_press_bg">
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
@@ -66,9 +74,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_hotel"
-                    style="@style/fragmentFindIconLl">
+                    style="@style/fragmentFindIconLl"
+                    android:background="@drawable/normal_press_bg">
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
@@ -85,9 +93,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_travels"
-                    style="@style/fragmentFindIconLl">
+                    style="@style/fragmentFindIconLl"
+                    android:background="@drawable/normal_press_bg">
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
 
@@ -104,9 +112,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_delicious_food"
-                    style="@style/fragmentFindIconLl">
+                    style="@style/fragmentFindIconLl"
+                    android:background="@drawable/normal_press_bg">
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
@@ -122,9 +130,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/ll_active"
-                    style="@style/fragmentFindIconLl">
+                    style="@style/fragmentFindIconLl"
+                    android:background="@drawable/normal_press_bg">
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
@@ -162,8 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:gravity="center_horizontal"
-              >
+                android:gravity="center_horizontal">
 
             </android.support.v7.widget.RecyclerView>
 
@@ -184,8 +191,7 @@
                 android:id="@+id/rv_hot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                >
+                android:overScrollMode="never">
 
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>

@@ -23,6 +23,7 @@ import com.yunspeak.travel.ui.home.homesearch.HomeSearchActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.AlbumSpace;
+import com.yunspeak.travel.ui.view.PagerCursorView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -62,6 +63,8 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     @BindView(R.id.rl_active) RelativeLayout rlActive;
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout mSwipe;
+    @BindView(R.id.pager_cursor)
+    PagerCursorView pagerCursorView;
 
 
 
@@ -121,7 +124,9 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
 
         List<HomeBean.DataBean.BannerBean> banner = data.getBanner();
         mVpActive.setOffscreenPageLimit(banner.size());
+        pagerCursorView.setViewPager(mVpActive,banner.size(),true);
         mVpActive.setAdapter(new HomePagerAdapter(banner));
+
 
     }
 
@@ -181,36 +186,24 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         onLoad(TYPE_REFRESH);
     }
 
-    class HomePagerAdapter extends PagerAdapter {
-        private List<HomeBean.DataBean.BannerBean> data;
-
+    class HomePagerAdapter extends PagerCursorView.CursorPagerAdapter<HomeBean.DataBean.BannerBean> {
         public HomePagerAdapter(List<HomeBean.DataBean.BannerBean> data) {
-            this.data = data;
+            super(data);
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object inflateView(ViewGroup container, int position) {
             SimpleDraweeView imageView = new SimpleDraweeView(getContext());
-            FrescoUtils.displayNormal(imageView, data.get(position).getPath());
+            FrescoUtils.displayNormal(imageView, data.get(position).getPath(),600,450);
             container.addView(imageView);
             return imageView;
-        }
 
+        }
         @Override
         public void destroyItem(ViewGroup container, int position,
                                 Object object) {
 
             container.removeView(((SimpleDraweeView) object));
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
-        }
-
-        @Override
-        public int getCount() {
-            return data.size();
         }
     }
 }

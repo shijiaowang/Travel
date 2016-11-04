@@ -18,6 +18,7 @@ import com.yunspeak.travel.ui.find.hotel.HotelActivity;
 import com.yunspeak.travel.ui.find.travels.TravelsActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.yunspeak.travel.ui.view.PagerCursorView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -40,6 +41,8 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
     @BindView(R.id.ll_active) LinearLayout mLlActive;
     @BindView(R.id.rv_recommend) RecyclerView mRvRecommend;
     @BindView(R.id.rv_hot) RecyclerView mRvHot;
+    @BindView(R.id.pager_cursor)
+    PagerCursorView pagerCursorView;
 
     @Override
     protected int initResLayout() {
@@ -69,6 +72,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         mRvHot.setNestedScrollingEnabled(false);
         mRvHot.addItemDecoration(new MyWitheMeDecoration(10));
         List<FindBean.DataBean.RecommendBean> banner = findBean.getData().getBanner();
+        pagerCursorView.setViewPager(vpFind,banner.size(),true);
         vpFind.setAdapter(new HomePagerAdapter(banner));
         vpFind.setOffscreenPageLimit(banner.size());
 
@@ -111,19 +115,19 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
                 break;
         }
     }
-    class HomePagerAdapter extends PagerAdapter {
+    class HomePagerAdapter extends PagerCursorView.CursorPagerAdapter {
         private List<FindBean.DataBean.RecommendBean> data;
 
         public HomePagerAdapter(List<FindBean.DataBean.RecommendBean> data) {
+            super(data);
             this.data = data;
         }
-
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object inflateView(ViewGroup container, int position) {
             SimpleDraweeView imageView = new SimpleDraweeView(getContext());
             imageView.setTag(data.get(position));
             imageView.setOnClickListener(new MyOnClickListener(getContext(), (FindBean.DataBean.RecommendBean) imageView.getTag()));
-            FrescoUtils.displayNormal(imageView,data.get(position).getLogo_img());
+            FrescoUtils.displayNormal(imageView,data.get(position).getLogo_img(),600,300);
             container.addView(imageView);
             return imageView;
         }
@@ -135,14 +139,5 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
             container.removeView(((SimpleDraweeView) object));
         }
 
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
-        }
-
-        @Override
-        public int getCount() {
-            return data.size();
-        }
     }
 }

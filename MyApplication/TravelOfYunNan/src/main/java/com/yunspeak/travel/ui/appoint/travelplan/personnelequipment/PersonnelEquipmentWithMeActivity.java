@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -17,6 +18,7 @@ import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteFol
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingActivity;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointSpinnerPop;
 import com.yunspeak.travel.ui.appoint.popwindow.SpinnerBean;
+import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
@@ -32,27 +34,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
- * Created by Administrator on 2016/8/30 0030.
+ * Created by wangyang on 2016/8/30 0030.
  * 人员装备-找人带
  */
-public class PersonnelEquipmentWithMeActivity extends BarBaseActivity implements View.OnClickListener {
-    @ViewInject(R.id.bt_select_equ)
-    private Button mTvSelectEqu;
-    @ViewInject(R.id.bt_next)
-    private Button mBtNext;
-    @ViewInject(R.id.fl_people)
-    private FlowLayout mFlPeople;
-    @ViewInject(R.id.tv_user_name)
-    private TextView mTvUserName;
-    @ViewInject(R.id.rl_auth_select)
-    private RelativeLayout mRlAuthSelect;//认证赛选
-    @ViewInject(R.id.rl_sex_select)
-    private RelativeLayout mRlSexSelect;//性别赛选
-    @ViewInject(R.id.tv_sex)
-    private TextView mTvSex;
-    @ViewInject(R.id.tv_auth)
-    private TextView mTvAuth;
+public class PersonnelEquipmentWithMeActivity extends BaseToolBarActivity implements View.OnClickListener {
+    @BindView(R.id.bt_select_equ) Button mTvSelectEqu;
+    @BindView(R.id.bt_next) Button mBtNext;
+    @BindView(R.id.fl_people) FlowLayout mFlPeople;
+    @BindView(R.id.tv_user_name) TextView mTvUserName;
+    @BindView(R.id.rl_auth_select) RelativeLayout mRlAuthSelect;//认证赛选
+    @BindView(R.id.rl_sex_select) RelativeLayout mRlSexSelect;//性别赛选
+    @BindView(R.id.tv_sex) TextView mTvSex;
+    @BindView(R.id.tv_auth) TextView mTvAuth;
 
     private List<AiteFollow> aiteFollows;
     private List<SpinnerBean> sexs;
@@ -61,11 +57,26 @@ public class PersonnelEquipmentWithMeActivity extends BarBaseActivity implements
     private String authType="5";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityUtils.getInstance().addActivity(this);
         registerEventBus(this);
 
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_personnel_equipment_with_me;
+    }
+
+    @Override
+    protected void initOptions() {
+     initEvent();
+    }
+
+    @Override
+    protected String initTitle() {
+        return "人员装备";
     }
 
     /**
@@ -84,17 +95,24 @@ public class PersonnelEquipmentWithMeActivity extends BarBaseActivity implements
         auths.add(new SpinnerBean("不限", "5",AUTH_TYPE));
     }
 
+
     @Override
-    protected int setContentLayout() {
-        return R.layout.activity_personnel_equipment_with_me;
+    protected String initRightText() {
+        return "下一步";
     }
 
     @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        onClick(mBtNext);
+    }
+
     protected void initEvent() {
-        TextView mTvRightNext = getmTvRightIcon();
-        mTvRightNext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        mTvRightNext.setText(R.string.next);
-        mTvRightNext.setOnClickListener(this);
+        try {
+            String username = GlobalUtils.getUserInfo().getNick_name();
+            mTvUserName.setText(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mTvSelectEqu.setOnClickListener(this);
         mBtNext.setOnClickListener(this);
         initSpinnerData();
@@ -102,16 +120,7 @@ public class PersonnelEquipmentWithMeActivity extends BarBaseActivity implements
         mRlSexSelect.setOnClickListener(this);
     }
 
-    @Override
-    protected void initViewData() {
 
-        try {
-            String username = GlobalUtils.getUserInfo().getNick_name();
-            mTvUserName.setText(username);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private void inflatePeople(final List<AiteFollow> aiteFollows) {
         this.aiteFollows = aiteFollows;
@@ -136,15 +145,6 @@ public class PersonnelEquipmentWithMeActivity extends BarBaseActivity implements
 
     }
 
-    @Override
-    protected String setTitleName() {
-        return "人员装备";
-    }
-
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
     @Override
     public void onClick(View v) {
@@ -163,7 +163,6 @@ public class PersonnelEquipmentWithMeActivity extends BarBaseActivity implements
             case R.id.rl_sex_select:
                 AppointSpinnerPop.showSpinnerPop(this,mRlSexSelect,sexs);
                 break;
-            case R.id.tv_right_icon:
             case R.id.bt_next:
                 try {
                     checkDataAndAddJson();
@@ -172,7 +171,6 @@ public class PersonnelEquipmentWithMeActivity extends BarBaseActivity implements
                     e.printStackTrace();
                     ToastUtils.showToast("请完善约伴信息");
                 }
-
                 break;
         }
     }

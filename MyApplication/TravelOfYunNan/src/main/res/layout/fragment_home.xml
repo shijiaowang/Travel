@@ -100,13 +100,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp_active"
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="203dp">
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/vp_active"
+                        android:layout_width="match_parent"
+                        android:layout_height="203dp"/>
+                    <com.yunspeak.travel.ui.view.PagerCursorView
+                        android:layout_marginTop="170dp"
+                        android:id="@+id/pager_cursor"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"/>
 
-                </android.support.v4.view.ViewPager>
+                </FrameLayout>
+
 
                 <LinearLayout style="@style/HomeTopicParent">
 
