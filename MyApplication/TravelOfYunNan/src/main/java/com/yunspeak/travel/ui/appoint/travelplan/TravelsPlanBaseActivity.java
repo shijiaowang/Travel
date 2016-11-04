@@ -20,6 +20,7 @@ import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.PersonnelEqu
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.view.GradientTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
+import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -191,19 +192,6 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
     }
 
     protected abstract void childClick(View v);
-    @Override
-    protected SimpleDraweeView childViewShow() {
-        mRlIcon.setVisibility(View.VISIBLE);
-        mTvIcon.setVisibility(View.GONE);
-        mTvDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRlIcon.setVisibility(View.GONE);
-                mTvIcon.setVisibility(View.VISIBLE);
-            }
-        });
-        return mIvIcon;
-    }
 
 
 
@@ -317,6 +305,20 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void childDisplay(String url) {
+        mRlIcon.setVisibility(View.VISIBLE);
+        mTvIcon.setVisibility(View.GONE);
+        mTvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRlIcon.setVisibility(View.GONE);
+                mTvIcon.setVisibility(View.VISIBLE);
+            }
+        });
+        FrescoUtils.displayRoundIcon(mIvIcon,url,300,300);
     }
 
     protected abstract void addChildJson(JSONObject basecJsonObject) throws Exception;

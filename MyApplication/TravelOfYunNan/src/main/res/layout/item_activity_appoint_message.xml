@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@color/colorFAFAFA"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:gravity="center_vertical"
@@ -7,7 +14,7 @@
     android:background="@color/colorFAFAFA"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_user_icon"
         android:layout_width="45dp"
         android:layout_height="45dp" />
@@ -77,10 +84,16 @@
             android:layout_height="wrap_content" />
 
     </RelativeLayout>
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_image"
         android:layout_marginLeft="11dp"
         android:layout_width="65dp"
         android:layout_height="65dp" />
 
+</LinearLayout>
+    <View
+        android:layout_marginLeft="70dp"
+        android:background="@color/meLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 </LinearLayout>

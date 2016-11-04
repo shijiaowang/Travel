@@ -113,7 +113,7 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailE
         ActiveDetailBean.DataBean data = activeDetail.getData();
         mWvHtml.loadUrl(data.getUrl());
         FrescoUtils.displayNormal(mIvBg,data.getTitle_img());
-        FrescoUtils.displayIcon(mIvBg,data.getActivity_img());
+        FrescoUtils.displayIcon(mIvIcon,data.getActivity_img());
         mTvName.setText(data.getTitle());
         mTvContnet.setText(data.getContent());
         mTvMoney.setText("¥" + data.getPrice());

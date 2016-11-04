@@ -356,9 +356,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
             x.task().post(new Runnable() {
                 @Override
                 public void run() {
-                    final SimpleDraweeView simpleDraweeView = childViewShow();
-                    if (simpleDraweeView!=null)
-                        FrescoUtils.displayRoundIcon(simpleDraweeView,"file://"+filename);
+                    childDisplay("file://"+filename);
                 }
             });
 
@@ -378,11 +376,8 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         return flag;
     }
 
-    /**
-     * 孩子显示图片控件图片，并且可以做一些处理
-     * @return
-     */
-    protected  abstract SimpleDraweeView childViewShow();
+    protected abstract void childDisplay(String url);
+
     /**
      * 处理裁剪图片  保存压缩
      *

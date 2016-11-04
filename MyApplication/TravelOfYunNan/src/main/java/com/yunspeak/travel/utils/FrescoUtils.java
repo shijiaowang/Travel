@@ -33,7 +33,7 @@ public class FrescoUtils {
         roundingParams.setBorder(UIUtils.getColor(R.color.colorFAFAFA),2);
         roundingParams.setRoundAsCircle(true);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setResizeOptions(new ResizeOptions(50,50))
+                .setResizeOptions(new ResizeOptions(200,200))
                 .build();
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形

@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.CommonMessageBean;
 import com.yunspeak.travel.ui.view.ShowAllTextView;
 import com.yunspeak.travel.utils.FormatDateUtils;
+import com.yunspeak.travel.utils.FrescoUtils;
 
 import org.xutils.x;
 
@@ -23,7 +25,7 @@ import butterknife.BindView;
  */
 public class AppointMessageHolder extends BaseRecycleViewHolder<CommonMessageBean.DataBean> {
     @BindView(R.id.iv_user_icon)
-    ImageView mIvUserIcon;
+    SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_name)
     TextView mTvName;
     @BindView(R.id.tv_cat_more)
@@ -35,7 +37,7 @@ public class AppointMessageHolder extends BaseRecycleViewHolder<CommonMessageBea
     @BindView(R.id.tv_time)
     TextView mTvTime;
     @BindView(R.id.iv_image)
-    ImageView mIvImage;
+    SimpleDraweeView mIvImage;
     @BindView(R.id.tv_des)
     TextView mTvDes;
     @BindColor(R.color.Ffbf75)
@@ -79,8 +81,8 @@ public class AppointMessageHolder extends BaseRecycleViewHolder<CommonMessageBea
         mTvStatus.setTextColor(color);
         mTvStatus.setText(datas.getTitle());
         mTvMessage.setText(datas.getContent());
-        x.image().bind(mIvUserIcon, datas.getUser_img());
-        x.image().bind(mIvImage, datas.getImg());
+        FrescoUtils.displayIcon(mIvUserIcon,datas.getUser_img());
+        FrescoUtils.displayRoundIcon(mIvImage,datas.getImg());
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:ss", datas.getReply_time()));
         mTvCatMore.setOnClickListener(new View.OnClickListener() {
             @Override

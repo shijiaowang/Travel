@@ -291,23 +291,6 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
     protected String getTime() {
         return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
     }
-
-    protected void loadEnd(XListView xListView) {
-        if (xListView==null)return;
-        xListView.stopLoadMore();
-        xListView.stopRefresh();
-        xListView.setRefreshTime(getTime());
-    }
-
-    protected void loadEnd(XScrollView xListView) {
-        if (xListView==null)return;
-        xListView.stopLoadMore();
-        xListView.stopRefresh();
-        xListView.setRefreshTime(getTime());
-
-    }
-
-
     /**
      * Requests given permission.
      * If the permission has been denied previously, a Dialog will prompt the user to grant the

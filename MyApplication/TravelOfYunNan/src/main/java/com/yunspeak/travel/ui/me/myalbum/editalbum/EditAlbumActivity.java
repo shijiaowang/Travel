@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.me.myalbum.editalbum;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -185,7 +186,11 @@ public class EditAlbumActivity extends BaseCropPhotoActivity<EditAlbumEvent> imp
         }
         return builder.toString();
     }
-
+   public static void start(Context context,String id){
+       Intent intent=new Intent(context,EditAlbumActivity.class);
+       intent.putExtra(IVariable.ID,id);
+       context.startActivity(intent);
+   }
     private void changeViewShow(boolean isEdit) {
         mTvMore.setText(isEdit ? "保存" : "编辑");
         mRlToggle.setVisibility(isEdit ? View.GONE : View.VISIBLE);

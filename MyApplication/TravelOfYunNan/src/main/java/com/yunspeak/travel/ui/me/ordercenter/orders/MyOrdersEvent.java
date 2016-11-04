@@ -8,6 +8,15 @@ import com.yunspeak.travel.event.HttpEvent;
 
 public class MyOrdersEvent extends HttpEvent {
     private int position;
+    private int orderType;
+
+    public int getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(int orderType) {
+        this.orderType = orderType;
+    }
 
     public int getPosition() {
         return position;

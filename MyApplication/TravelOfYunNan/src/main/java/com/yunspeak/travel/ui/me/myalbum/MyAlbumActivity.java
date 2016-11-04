@@ -2,6 +2,8 @@ package com.yunspeak.travel.ui.me.myalbum;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.annotation.ColorInt;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,6 +18,8 @@ import com.yunspeak.travel.utils.GsonUtils;
 
 import java.util.List;
 
+import butterknife.BindColor;
+
 /**
  * Created by wangyang on 2016/7/18 0018.
  * 我的相册
@@ -25,6 +29,7 @@ public class MyAlbumActivity extends BaseRecycleViewActivity<MyAlbumEvent,MyAlbu
     private TextView mTvCreateAlbum;
     private TextView mTvAlbumSum;
     private boolean initAlbumSize=false;
+    @BindColor(R.color.meLine) @ColorInt int bgColor;
 
     @Override
     protected void initEvent() {
@@ -35,6 +40,7 @@ public class MyAlbumActivity extends BaseRecycleViewActivity<MyAlbumEvent,MyAlbu
         mTvCreateAlbum = (TextView)findViewById(R.id.tv_create_album);
         mTvAlbumSum = (TextView)findViewById(R.id.tv_sum);
         mTvAlbumSum.setText(getString(R.string.total_album,0));
+        mRvCommon.setBackgroundColor(bgColor);
         mTvAdd.setOnClickListener(this);
         mTvCreateAlbum.setOnClickListener(this);
     }

@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.appoint.together.togetherdetail;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,6 +22,7 @@ import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
@@ -126,6 +128,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     private String isCollect;
     private TravelDetailLineAdapter travelDetailLineAdapter;
     private TravelDetailLineAdapter normalDetailLineAdapter;
+    private boolean isBoss=true;
 
 
     @Override
@@ -173,7 +176,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
             case TYPE_COLLECTION:
                 ToastUtils.showToast("收藏成功");
                 isCollect = isTrue;
-
                 break;
             case TYPE_CANCEL_COLLECTION:
                 ToastUtils.showToast("取消收藏成功");
@@ -203,6 +205,11 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
         AppointTogetherDetailBean.DataBean data = appointTogetherDetail.getData();
         String action = data.getAction();
         isCollect = data.getIs_collect();
+        if (data.getUser_id().equals(GlobalUtils.getUserInfo().getId())){
+            isBoss = true;
+        }else {
+            isBoss=false;
+        }
         initAction(action);
         List<AppointTogetherDetailBean.DataBean.RoutesBean> routes = dealDate(data);
         initSomeData(data);
@@ -245,12 +252,17 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
      * @param action
      */
     private void initAction(String action) {
+
         try {
-            String[] stringArray = getResources().getStringArray(R.array.together_appoint_detail);
-            int i = Integer.parseInt(action);
-            payStatus = i;
-            payType = stringArray[i];
-            mBvEnter.setText(payType);
+            if (isBoss){
+                mBvEnter.setText("我的约伴");
+            }else {
+                String[] stringArray = getResources().getStringArray(R.array.together_appoint_detail);
+                int i = Integer.parseInt(action);
+                payStatus = i;
+                payType = stringArray[i];
+                mBvEnter.setText(payType);
+            }
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
@@ -393,6 +405,10 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
 
                 break;
             case R.id.bt_enter:
+                if (isBoss){
+                    startActivity(new Intent(this,MyAppointActivity.class));
+                    return;
+                }
                 if (StringUtils.isEmpty(id) || payStatus == -1) {
                     ToastUtils.showToast("数据加载错误，请重新进入！");
                     return;
@@ -416,7 +432,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
                         XEventUtils.postUseCommonBackJson(IVariable.OUT_APPOINT, map, TYPE_OUT_APPOINT, new AppointDetailEvent());
                     }
                 });
-
+              break;
             case 7:
                 EnterAppointDialog.showCommonDialog(this, "取消申请", "确定", "取消发起的约伴请求！", new ParentPopClick() {
                     @Override

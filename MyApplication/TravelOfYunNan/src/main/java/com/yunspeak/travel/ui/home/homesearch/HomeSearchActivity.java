@@ -1,11 +1,17 @@
 package com.yunspeak.travel.ui.home.homesearch;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
@@ -29,7 +35,9 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
     public static final String SEARCH_CONTENT="4";
     private String type=SEARCH_USER;
     protected static String content="";
-    private List<Fragment> fragments;
+    private List<SearchCommonFragment> fragments;
+    private TextView mTvSearch;
+    private EditText mEtSearch;
 
     @Override
     protected int initLayoutRes() {
@@ -39,14 +47,37 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
     @Override
     protected void initOptions() {
         View inflate = LayoutInflater.from(this).inflate(R.layout.activity_search, mToolbar,false);
+        mTvSearch = (TextView) inflate.findViewById(R.id.tv_search);
+        mEtSearch = (EditText) inflate.findViewById(R.id.et_search);
+        mEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                //一般输入法或搜狗输入法点击搜索按键
+                if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
+                    //这里调用搜索方法
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mEtSearch.getWindowToken(), 0); //强制隐藏键盘
+                    search();
+                    return true;
+                }
+                return false;
+            }
+        });
+        mTvSearch.setOnClickListener(this);
         mToolbar.addView(inflate);
         setIsProgress(false);
         fragments = new ArrayList<>();
-        fragments.add(new SearchCommonFragment());
-        fragments.add(new SearchCommonFragment());
-        fragments.add(new SearchCommonFragment());
-        fragments.add(new SearchCommonFragment());
+        SearchCommonFragment searchUser=SearchCommonFragment.newInstance(SEARCH_USER);
+        SearchCommonFragment searchDestination=SearchCommonFragment.newInstance(SEARCH_DESTINATION);
+        SearchCommonFragment searchCircl=SearchCommonFragment.newInstance(SEARCH_CIRCLE);
+        SearchCommonFragment searchContent=SearchCommonFragment.newInstance(SEARCH_CONTENT);
+        fragments.add(searchUser);
+        fragments.add(searchDestination);
+        fragments.add(searchCircl);
+        fragments.add(searchContent);
         mVpSearch.setAdapter(new SearchPagerAdapter(getSupportFragmentManager()));
+        mVpSearch.setOffscreenPageLimit(4);
         mFicvCursor.setViewPager(mVpSearch);
     }
 
@@ -65,10 +96,15 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_back:
-                finish();
+            case R.id.tv_search:
+                search();
                 break;
         }
+    }
+
+    private void search() {
+        content=getString(mEtSearch);
+        fragments.get(mVpSearch.getCurrentItem()).search();
     }
 
     class SearchPagerAdapter extends FragmentPagerAdapter{
@@ -86,5 +122,11 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
         public int getCount() {
             return fragments.size();
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        content="";
     }
 }

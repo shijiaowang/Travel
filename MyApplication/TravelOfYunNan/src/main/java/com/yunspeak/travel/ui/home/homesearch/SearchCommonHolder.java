@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.home.homesearch;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
@@ -48,8 +49,8 @@ public class SearchCommonHolder extends BaseRecycleViewHolder<SearchCommonBean.D
     TextView tvFollow;
     @BindString(R.string.activity_circle_detail_followed)  String followed;
     @BindString(R.string.activity_circle_detail_follow)   String unFollow;
-    @BindDrawable(R.drawable.activity_home_search_follow_bg) @DrawableRes int unFollowBg;
-    @BindDrawable(R.drawable.activity_home_search_followed_bg) @DrawableRes int followedBg;
+    @BindDrawable(R.drawable.activity_home_search_follow_bg) Drawable unFollowBg;
+    @BindDrawable(R.drawable.activity_home_search_followed_bg)  Drawable followedBg;
     @BindColor(R.color.otherFf7f6c) @ColorInt int unFollowColor;
     @BindColor(R.color.colorFAFAFA) @ColorInt int followColor;
 
@@ -59,7 +60,7 @@ public class SearchCommonHolder extends BaseRecycleViewHolder<SearchCommonBean.D
     }
     @Override
     public void childBindView(final int position, final SearchCommonBean.DataBean data, final Context mContext) {
-
+       tvFollow.setTextColor(unFollowColor);
         tvTitle.setText(data.getTitle());
         tvContent.setText(data.getContent());
         if (type.equals(HomeSearchActivity.SEARCH_USER)){
@@ -67,11 +68,11 @@ public class SearchCommonHolder extends BaseRecycleViewHolder<SearchCommonBean.D
             if (data.getCname().equals("1")){
                 tvFollow.setText(followed);
                 tvFollow.setTextColor(followColor);
-                tvFollow.setBackgroundResource(followedBg);
+                tvFollow.setBackgroundDrawable(followedBg);
             }else {
                 tvFollow.setText(unFollow);
                 tvFollow.setTextColor(unFollowColor);
-                tvFollow.setBackgroundResource(unFollowBg);
+                tvFollow.setBackgroundDrawable(unFollowBg);
             }
             tvFollow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -102,7 +103,7 @@ public class SearchCommonHolder extends BaseRecycleViewHolder<SearchCommonBean.D
 
         } else if (type.equals(HomeSearchActivity.SEARCH_CIRCLE)){
             FrescoUtils.displayIcon(ivIcon,data.getLogo_img());
-
+            tvFollow.setText("#"+data.getCname()+"#");
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -115,6 +116,7 @@ public class SearchCommonHolder extends BaseRecycleViewHolder<SearchCommonBean.D
                 });
         }else {
             FrescoUtils.displayRoundIcon(ivIcon,data.getLogo_img(),150,150);
+            tvFollow.setText("#"+data.getCname()+"#");
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

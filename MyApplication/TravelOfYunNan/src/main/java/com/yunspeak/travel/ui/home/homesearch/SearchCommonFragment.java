@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by  wangyang on 2016/8/22 0022.
  */
-public class SearchCommonFragment extends LoadAndPullBaseFragment<HomeSearchEvent,SearchCommonBean,SearchCommonBean.DataBean> {
+public class SearchCommonFragment extends LoadAndPullBaseFragment<HomeSearchEvent, SearchCommonBean, SearchCommonBean.DataBean> {
 
 
     private String type;
@@ -25,38 +25,41 @@ public class SearchCommonFragment extends LoadAndPullBaseFragment<HomeSearchEven
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        type = getArguments().getString(IVariable.TYPE,HomeSearchActivity.SEARCH_USER);
+        type = getArguments().getString(IVariable.TYPE, HomeSearchActivity.SEARCH_USER);
     }
 
-    public static SearchCommonFragment newInstance(int type) {
+    public static SearchCommonFragment newInstance(String type) {
         SearchCommonFragment searchCommonFragment = new SearchCommonFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(IVariable.TYPE, type);
+        bundle.putString(IVariable.TYPE, type);
         searchCommonFragment.setArguments(bundle);
         return searchCommonFragment;
     }
+
     @Override
     protected void initListener() {
+        super.initListener();
         mSwipe.setRefreshEnabled(false);
     }
+
     @Override
     protected void onLoad(int t) {
         MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).addUserId().addType(type).addContent(HomeSearchActivity.content);
-        childAdd(builder,t);
+        childAdd(builder, t);
         Map<String, String> baseMap = builder.end();
-        HomeSearchEvent homeSearchEvent=new HomeSearchEvent();
+        HomeSearchEvent homeSearchEvent = new HomeSearchEvent();
         homeSearchEvent.setSearchType(type);
-        XEventUtils.getUseCommonBackJson(initUrl(),baseMap,t,homeSearchEvent);
+        XEventUtils.getUseCommonBackJson(initUrl(), baseMap, t, homeSearchEvent);
     }
 
     @Override
     public void onSuccess(HomeSearchEvent homeSearchEvent) {
         if (homeSearchEvent.getSearchType().equals(type)) {
-            switch (homeSearchEvent.getType()){
+            switch (homeSearchEvent.getType()) {
                 case IState.TYPE_UPDATE:
                     ToastUtils.showToast(homeSearchEvent.getMessage());
                     SearchCommonBean.DataBean dataBean = mDatas.get(homeSearchEvent.getPosition());
-                    dataBean.setCname(dataBean.getContent().equals("1")?"0":"1");
+                    dataBean.setCname(dataBean.getCname().equals("1") ? "0" : "1");
                     mAdapter.notifyItemChanged(homeSearchEvent.getPosition());
                     break;
                 default:
@@ -68,6 +71,10 @@ public class SearchCommonFragment extends LoadAndPullBaseFragment<HomeSearchEven
     }
 
 
+    public void search() {
+        isSuccessed=false;
+        onLoad(TYPE_REFRESH);
+    }
 
     @Override
     protected String initUrl() {
@@ -76,6 +83,16 @@ public class SearchCommonFragment extends LoadAndPullBaseFragment<HomeSearchEven
 
     @Override
     protected BaseRecycleViewAdapter initAdapter(List<SearchCommonBean.DataBean> mDatas) {
-        return null;
+        return new SearchCommonAdapter(mDatas, getContext(), type);
+    }
+
+    @Override
+    protected void onFail(HomeSearchEvent homeSearchEvent) {
+        super.onFail(homeSearchEvent);
+        switch (homeSearchEvent.getType()) {
+            case IState.TYPE_UPDATE:
+                ToastUtils.showToast(homeSearchEvent.getMessage());
+                break;
+        }
     }
 }

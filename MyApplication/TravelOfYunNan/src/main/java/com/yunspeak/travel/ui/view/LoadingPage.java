@@ -52,7 +52,7 @@ public abstract class LoadingPage extends FrameLayout {
         }
         //加载读取页面
         if (emptyView == null) {
-            emptyView = UIUtils.inflate(R.layout.loading_view);
+            emptyView = UIUtils.inflate(R.layout.empty_view);
             addView(emptyView);//添加加载页面
         }
         //加载错误页面
@@ -91,8 +91,8 @@ public abstract class LoadingPage extends FrameLayout {
         if (successView != null) {
             successView.setVisibility(mCurrentState == STATE_LOAD_SUCCESS ? View.VISIBLE : View.GONE);
         }
+        mPreState = mCurrentState;
     }
-
     /**
      * 发送网络请求
      */
@@ -120,7 +120,7 @@ public abstract class LoadingPage extends FrameLayout {
         }
         if (mPreState != mCurrentState) {
             showRightView();
-            mPreState = mCurrentState;
+
         } else {
             mCurrentState = STATE_LOAD_UNLOAD;
         }

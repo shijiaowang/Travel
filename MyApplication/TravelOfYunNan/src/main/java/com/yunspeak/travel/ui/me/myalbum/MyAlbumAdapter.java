@@ -58,9 +58,7 @@ public class MyAlbumAdapter extends BaseRecycleViewAdapter<MyAlbumBean.DataBean>
 
 
     private void startEditAlbum(int position) {
-        Intent intent = new Intent(mContext, EditAlbumActivity.class);
-        intent.putExtra(IVariable.ID,mDatas.get(position).getId());
-        mContext.startActivity(intent);
+        EditAlbumActivity.start(mContext,mDatas.get(position).getId());
     }
 
     @Override

@@ -89,6 +89,9 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
     @Override
     public void onSuccess(T t) {
         ParentBean parentBean = null;
+        if (t.getCode()==2){
+            ToastUtils.showToast("没有更多数据了");
+        }
         if (isUserChild()) {//使用孩子的
             parentBean=GsonUtils.getObject(t.getResult(),useChildedBean());
         } else {
@@ -150,6 +153,8 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
     protected  void childChangeData(List<F> loadDatas, E parentBean, T t){
 
     }
+
+
 
     /**
      * 是否是 瀑布流

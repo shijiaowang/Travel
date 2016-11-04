@@ -11,6 +11,8 @@ import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.me.changephone.ChangePhoneActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
@@ -47,10 +49,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     @BindView(R.id.ll_change_password) LinearLayout mLlChangePassword;
     private UserInfo userInfo;
 
-    @Override
-    protected SimpleDraweeView childViewShow() {
-        return mIvIcon;
-    }
+
 
     @Override
     protected void initEvent() {
@@ -116,18 +115,24 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 startActivity(new Intent(this, PersonalProfileActivity.class));
                 break;
             case R.id.ll_logout:
-                EMClient.getInstance().logout(true);
-                ShareUtil.putString(this, IVariable.SAVE_NAME, "");
-                ShareUtil.putString(this, IVariable.SAVE_PWD, "");
-                PushAgent.getInstance(this).removeAlias(userInfo.getId(), "YUNS_ID", new UTrack.ICallBack() {
+                EnterAppointDialog.showCommonDialog(this, "退出登录", "确定", "是否退出当前登录账号？", new ParentPopClick() {
                     @Override
-                    public void onMessage(boolean b, String s) {
-                        LogUtils.e("是否成功"+b+"信息"+s);
+                    public void onClick(int type) {
+                        EMClient.getInstance().logout(true);
+                        ShareUtil.putString(SettingActivity.this, IVariable.SAVE_NAME, "");
+                        ShareUtil.putString(SettingActivity.this, IVariable.SAVE_PWD, "");
+                        PushAgent.getInstance(SettingActivity.this).removeAlias(userInfo.getId(), "YUNS_ID", new UTrack.ICallBack() {
+                            @Override
+                            public void onMessage(boolean b, String s) {
+                                LogUtils.e("是否成功"+b+"信息"+s);
+                            }
+                        });
+                        startActivity(new Intent(SettingActivity.this, SplashActivity.class));
+                        setResult(HomeActivity.RESULT);
+                        finish();
                     }
                 });
-                startActivity(new Intent(this, SplashActivity.class));
-                setResult(HomeActivity.RESULT);
-                finish();
+
                 break;
             case R.id.ll_about:
                 startActivity(new Intent(this, AboutActivity.class));
@@ -146,6 +151,10 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         options.setCircleDimmedLayer(true);
     }
 
+    @Override
+    protected void childDisplay(String url) {
+        FrescoUtils.displayIcon(mIvIcon,url );
+    }
 
 
     @Override

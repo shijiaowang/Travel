@@ -1,19 +1,12 @@
 package com.yunspeak.travel.ui.me.ordercenter.orders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import android.view.View;
-import android.widget.AdapterView;
-
 
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
-
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
-import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity;
 import com.yunspeak.travel.utils.ToastUtils;
 
 import java.util.List;
@@ -56,7 +49,7 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
 
     @Override
     public void onSuccess(MyOrdersEvent myOrdersEvent) {
-        if (getUserVisibleHint()) {
+        if (getUserVisibleHint() && myOrdersEvent.getOrderType()==currentType) {
             super.onSuccess(myOrdersEvent);
         }
     }
@@ -67,6 +60,13 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
             return IVariable.RECENT_ORDERS;
         }
         return IVariable.MY_ORDERS_CENTER;
+    }
+
+    @Override
+    public MyOrdersEvent getTInstance() {
+        MyOrdersEvent myOrdersEvent=new MyOrdersEvent();
+        myOrdersEvent.setOrderType(currentType);
+        return myOrdersEvent;
     }
 
     @Override
