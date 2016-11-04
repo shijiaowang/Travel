@@ -16,7 +16,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.ProvinceBean;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LinePlanEvent;
-import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.SelectDestinationActivity;
+import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconButton;
 import com.yunspeak.travel.utils.ActivityUtils;
@@ -146,7 +146,7 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
         switch (v.getId()) {
             case R.id.tv_right_icon:
             case R.id.bt_destination:
-                startActivity(new Intent(this, SelectDestinationActivity.class));
+                FindCommonActivity.start(this,FindCommonActivity.DESTINATION_SELECTION,0);
                 break;
             case R.id.tv_start_city:
                 showCitySelect();

@@ -16,11 +16,13 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseFragment extends Fragment {
     public View root;
+    private boolean isInflate=false;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         try {
-            ButterKnife.bind(this,root);
+            ButterKnife.bind(this, root);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -30,10 +32,10 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        root=View.inflate(getActivity(),initLayoutRes(),null);
+        root = View.inflate(getActivity(), initLayoutRes(), null);
     }
 
-    public View getRoot(){
+    public View getRoot() {
         return root;
     }
 
@@ -44,12 +46,26 @@ public abstract class BaseFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initView();
         initListener();
-        initData();
+
+    }
+
+    /**
+     * Fragment数据的懒加载
+     *
+     * @param isVisibleToUser
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint() && !isInflate) {
+            initData();
+            isInflate = true;
+        }
     }
 
 
-
     protected abstract void initView();
+
     protected abstract void initData();
 
     protected abstract void initListener();

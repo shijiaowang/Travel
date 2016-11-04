@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.view.ShowAllTextView;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -16,7 +17,7 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/8/26 0026.
  */
-public class SystemMessageHolder extends BaseHolder<SystemMessageBean.DataBean> {
+public class SystemMessageHolder extends BaseRecycleViewHolder<SystemMessageBean.DataBean> {
     @BindView(R.id.tv_cat_more)
     TextView mTvCatMore;
     @BindView(R.id.tv_message)
@@ -28,20 +29,27 @@ public class SystemMessageHolder extends BaseHolder<SystemMessageBean.DataBean> 
     @BindView(R.id.tv_time)
     TextView mTvTime;
 
-    public SystemMessageHolder(Context context) {
-        super(context);
+    public SystemMessageHolder(View itemView) {
+        super(itemView);
     }
 
     @Override
-    protected void initItemDatas(SystemMessageBean.DataBean datas, Context mContext, int position) {
+    public void childBindView(int position, SystemMessageBean.DataBean datas, Context mContext) {
         FrescoUtils.displayNormal(mIvIcon,datas.getImg());
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm",datas.getAdd_time()));
         mTvType.setText(datas.getTitle());
         mTvMessage.setText(datas.getContent());
-    }
-
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_activity_system_message);
+       mTvCatMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mTvMessage.isShowAll()){
+                    mTvMessage.swithShow(false);
+                    mTvCatMore.setText(R.string.close_more);
+                }else {
+                    mTvMessage.swithShow(true);
+                    mTvCatMore.setText(R.string.cat_more);
+                }
+            }
+        });
     }
 }

@@ -9,6 +9,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.LinearLayout;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
@@ -41,6 +42,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     protected SwipeToLoadLayout mSwipe;
     protected ViewStub mVsContent;
     protected ViewStub mVsFooter;
+    private LinearLayout llRoot;
 
     public List<F> getmDatas() {
         return mDatas;
@@ -69,6 +71,15 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         mSwipe.setLoadMoreFooterView(footView);
         mSwipe.setOnRefreshListener(this);
         mSwipe.setOnLoadMoreListener(this);
+        llRoot = ((LinearLayout) findViewById(R.id.ll_root));
+        try {
+            changeNeedHideView(mSwipe);
+            mFlContent.removeView(mRlEmpty);
+            mRlEmpty.setVisibility(View.GONE);
+            llRoot.addView(mRlEmpty);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     protected void changeMargin(int space,int top){
         mRvCommon.addItemDecoration(new MyCollectionDecoration(space,top));

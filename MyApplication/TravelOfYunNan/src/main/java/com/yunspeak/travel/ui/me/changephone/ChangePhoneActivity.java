@@ -14,6 +14,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.me.changephone.bindphone.BindPhoneActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
@@ -29,20 +30,18 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+
 
 /**
  * Created by wangyang on 2016/8/19 0019.
  * 更改手机号
  */
-public class ChangePhoneActivity extends LoadingBarBaseActivity<ChangePhoneEvent> {
-    @ViewInject(R.id.bt_next)
-    private AvoidFastButton mBtNext;
-    @ViewInject(R.id.ptv_phone)
-    private PhoneTextView mPtvPhone;
-    @ViewInject(R.id.bt_ver)
-    private AvoidFastButton mBtVer;
-    @ViewInject(R.id.et_ver)
-    private EditText mEtVer;
+public class ChangePhoneActivity extends BaseNetWorkActivity<ChangePhoneEvent> {
+    @BindView(R.id.bt_next) AvoidFastButton mBtNext;
+    @BindView(R.id.ptv_phone) PhoneTextView mPtvPhone;
+    @BindView(R.id.bt_ver) AvoidFastButton mBtVer;
+    @BindView(R.id.et_ver) EditText mEtVer;
     private boolean isSend=false;
     private int verTime = 60;//验证码时间
     private Handler mHandler = new Handler() {
@@ -61,10 +60,6 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity<ChangePhoneEvent
     };
     private String tel;
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_change_phone;
-    }
 
     @Override
     protected void initEvent() {
@@ -95,30 +90,28 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity<ChangePhoneEvent
         });
     }
 
+
     @Override
-    protected void onLoad(int typeRefresh) {
+    protected boolean isAutoLoad() {
         setIsProgress(false);
         btIsClick(mBtNext,false);
-        Map<String, String> end = MapUtils.Build().addKey(this).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.GET_CURRENT_BIND_PHONE, end, TYPE_REFRESH, new ChangePhoneEvent());
+        return super.isAutoLoad();
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
 
     }
 
     @Override
-    protected Activity initViewData() {
-        return this;
-    }
-
-    @Override
-    protected String setTitleName() {
-        return "解除绑定";
+    protected String initUrl() {
+        return IVariable.GET_CURRENT_BIND_PHONE;
     }
 
 
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
+
+
+
 
     @Override
     protected void onSuccess(ChangePhoneEvent changePhoneEvent) {
@@ -155,5 +148,15 @@ public class ChangePhoneActivity extends LoadingBarBaseActivity<ChangePhoneEvent
     @Override
     protected void onFail(ChangePhoneEvent event) {
 
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_change_phone;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "解除绑定";
     }
 }

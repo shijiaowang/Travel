@@ -21,9 +21,11 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.SelectCommonBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointCommonPop;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointOrderPop;
+import com.yunspeak.travel.ui.appoint.popwindow.AppointOrderPop2;
 import com.yunspeak.travel.ui.appoint.together.PlayTogetherFragment;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
@@ -42,9 +44,8 @@ import butterknife.BindView;
  * 约伴
  */
 public class AppointFragment extends BaseFragment implements View.OnClickListener {
-    String[] orderType = {"智能排序", "按星级", "按口碑"};
+    String[] orderType = {"最新发布", "价格升序", "价格降序","出行人数","行程天数"};
     String[] timeType = {"一周内", "一月内", "一个月以上"};
-    String[] clickType;
     String[] timeTypePop = {"·\u3000一周内", "·\u3000一月内", "·\u3000一个月以上"};
     @BindView(R.id.tv_play_together) TextView mTvPlayTogether;
     @BindView(R.id.tv_play_with_me) TextView mTvPlayWithMe;
@@ -61,7 +62,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     private AppointCommonPop appointCommonPop;
     private AppointOrderPop appointOrderPop;
     private int timePosition = -1;
-    private int orderPosition = -1;//选中的
+    private int orderPosition = 1;//选中的
     private boolean isShowDialog = false;
 
     @Override
@@ -226,13 +227,16 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
                 showType();
                 break;
             case R.id.tv_order:
-                clickType = orderType;
-                orderPop(mTvOrder, null, orderPosition);
+                AppointOrderPop2.showOrderPop(getContext(), mTvOrder, new ParentPopClick() {
+                    @Override
+                    public void onClick(int type) {
+                        orderPosition=type;
+                        mTvOrder.setText(orderType[type-1]);
+                    }
+                },orderPosition-1);
                 break;
             case R.id.tv_time:
-                clickType = timeType;
                 orderPop(mTvTime, timeTypePop, timePosition);
-
                 break;
         }
     }
@@ -245,15 +249,11 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
         appointOrderPop.setOnItemClickListener(new AppointOrderPop.OnItemClickListener() {
             @Override
             public void onItemClick(int type) {
-                textView.setText(clickType[type]);
-                if (textView == mTvTime) {
+                textView.setText(timeType[type]);
                     timePosition = type;
-                } else {
-                    orderPosition = type;
-                }
             }
         });
-        appointOrderPop.showOrderPop(getContext(), mTvOrder, titile, clickPosition);
+        appointOrderPop.showOrderPop(getContext(), mTvTime, titile, clickPosition);
     }
 
     private void showType() {

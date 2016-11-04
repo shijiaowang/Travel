@@ -306,7 +306,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             }
             String coupon = stringBuilder.toString();
 
-            Map<String, String> submitMap = MapUtils.Build().addKey(this).addUserId().addMoney(totalPay).addId(id).addCoupon(coupon).end();
+            Map<String, String> submitMap = MapUtils.Build().addKey(this).addUserId().addId(id).addCoupon(coupon).end();
             XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS,submitMap,SUBMIT_NEW,new ConfirmOrdersEvent());
         }
     }

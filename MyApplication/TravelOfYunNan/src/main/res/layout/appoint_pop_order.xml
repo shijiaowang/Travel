@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/pop_window_order_bg"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="30dp">
+
+        <RadioButton
+            android:button="@null"
+            android:id="@+id/rb_now"
+            android:textColor="@drawable/pop_order_text_selector"
+            android:text="@string/pop_now"
+            android:gravity="center"
+            android:background="@drawable/pop_order_selector"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp" />
+
+        <RadioButton
+            android:id="@+id/rb_up"
+            android:button="@null"
+            android:textColor="@drawable/pop_order_text_selector"
+            android:text="@string/pop_price_up"
+            android:gravity="center"
+            android:background="@drawable/pop_order_selector"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp" />
+
+        <RadioButton
+            android:button="@null"
+            android:textColor="@drawable/pop_order_text_selector"
+            android:text="@string/pop_price_down"
+            android:gravity="center"
+            android:background="@drawable/pop_order_selector"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:id="@+id/rb_down" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="30dp">
+
+        <RadioButton
+            android:button="@null"
+            android:textColor="@drawable/pop_order_text_selector"
+            android:text="@string/pop_out_number"
+            android:gravity="center"
+            android:background="@drawable/pop_order_selector"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:id="@+id/rb_out" />
+
+        <RadioButton
+            android:button="@null"
+            android:textColor="@drawable/pop_order_text_selector"
+            android:text="@string/pop_day_number"
+            android:gravity="center"
+            android:background="@drawable/pop_order_selector"
+            android:textSize="14sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:id="@+id/rb_day" />
+
+        <View
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -6,6 +6,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.find.findcommon.DestinationBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
@@ -18,36 +19,17 @@ import butterknife.BindView;
  * Created by Administrator on 2016/9/8 0008.
  * 选择景点
  */
-public class SelectDestinationHolder extends BaseHolder<DestinationBean.DataBean.BodyBean> {
+public class SelectDestinationHolder extends BaseRecycleViewHolder<DestinationBean.DataBean.BodyBean> {
     @BindView(R.id.iv_spot) SimpleDraweeView mIvSpot;
     @BindView(R.id.tv_name) TextView mTvName;
     @BindView(R.id.rb_star) RatingBar mRbStart;
     @BindView(R.id.tv_add) TextView mTvAdd;
     @BindView(R.id.tv_select) TextView mTvSelect;
 
-
-
-    public SelectDestinationHolder(Context context) {
-        super(context);
+    public SelectDestinationHolder(View itemView) {
+        super(itemView);
     }
 
-    @Override
-    public void initItemDatas(DestinationBean.DataBean.BodyBean datas, Context mContext, int position) {
-        FrescoUtils.displayNormal(mIvSpot,datas.getLogo_img());
-        mTvName.setText(datas.getTitle());
-        mTvAdd.setText(datas.getAddress());
-        float star=5.0f;
-        star = getStar(datas, star);
-        mRbStart.setRating(star);
-        mTvSelect.setTextColor(GlobalValue.clickPosition ==position?mContext.getResources().getColor(R.color.Ffbf75):mContext.getResources().getColor(R.color.colorb5b5b5));
-       if (GlobalValue.mSelectSpot!=null && GlobalValue.mSelectSpot.contains(datas.getId())){
-           getRootView().setAlpha(0.3f);
-           mTvSelect.setVisibility(View.GONE);
-       }else {
-           getRootView().setAlpha(1.0f);
-           mTvSelect.setVisibility(View.VISIBLE);
-       }
-    }
     private float getStar(DestinationBean.DataBean.BodyBean datas, float star) {
         try {
             star = Float.parseFloat(datas.getStar());
@@ -56,8 +38,22 @@ public class SelectDestinationHolder extends BaseHolder<DestinationBean.DataBean
         }
         return star;
     }
+
     @Override
-    public View initRootView(Context mContext) {
-        return  inflateView(R.layout.item_activity_select_destination);
+    public void childBindView(int position, DestinationBean.DataBean.BodyBean datas, Context mContext) {
+        FrescoUtils.displayNormal(mIvSpot,datas.getLogo_img());
+        mTvName.setText(datas.getTitle());
+        mTvAdd.setText(datas.getAddress());
+        float star=5.0f;
+        star = getStar(datas, star);
+        mRbStart.setRating(star);
+        mTvSelect.setTextColor(GlobalValue.clickPosition ==position?mContext.getResources().getColor(R.color.Ffbf75):mContext.getResources().getColor(R.color.colorb5b5b5));
+        if (GlobalValue.mSelectSpot!=null && GlobalValue.mSelectSpot.contains(datas.getId())){
+            itemView.setAlpha(0.3f);
+            mTvSelect.setVisibility(View.GONE);
+        }else {
+            itemView.setAlpha(1.0f);
+            mTvSelect.setVisibility(View.VISIBLE);
+        }
     }
 }

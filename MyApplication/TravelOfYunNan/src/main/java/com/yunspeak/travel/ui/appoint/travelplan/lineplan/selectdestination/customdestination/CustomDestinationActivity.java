@@ -1,8 +1,12 @@
 package com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination;
 
+import android.content.Context;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,17 +29,18 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/9/8 0008.
  * 自定义景点列表
  */
 public class CustomDestinationActivity extends BaseRecycleViewActivity<CustomDestinationEvent,CustomDestinationBean,CustomDestinationBean.DataBean>  {
 
-    @ViewInject(R.id.bt_diy) Button mBtDiy;
-    @ViewInject(R.id.et_search) EditText mEtSearch;
-    @ViewInject(R.id.tv_search) TextView mTvSearch;
+
     private String content = "";
     private int position;
+    private EditText mEtSearch;
 
 
     @Override
@@ -43,8 +48,26 @@ public class CustomDestinationActivity extends BaseRecycleViewActivity<CustomDes
         super.initEvent();
         mVsContent.setLayoutResource( R.layout.activity_custom_destination_header);
         mVsContent.inflate();
+        Button mBtDiy= (Button) findViewById(R.id.bt_diy);
+        mEtSearch = (EditText) findViewById(R.id.et_search);
+        TextView mTvSearch= (TextView) findViewById(R.id.tv_search);
         GlobalValue.clickPosition=-1;//初始化，避免之前选中的对这边造成影响
         position = getIntent().getIntExtra(IVariable.POSITION, -1);
+        mEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                //一般输入法或搜狗输入法点击搜索按键
+                if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
+                    //这里调用搜索方法
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mEtSearch.getWindowToken(), 0); //强制隐藏键盘
+                    search();
+                    return true;
+                }
+                return false;
+            }
+        });
         mTvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,11 +83,12 @@ public class CustomDestinationActivity extends BaseRecycleViewActivity<CustomDes
     }
 
     private void search() {
-        content = getString(mEtSearch);
-        if (StringUtils.isEmpty(content)){
-            return;
-        }
-        onLoad(TYPE_REFRESH);
+
+            content = mEtSearch.getText().toString().trim();
+            resetIsFirstInflate();
+            setIsProgress(true);
+            onLoad(TYPE_REFRESH);
+
     }
 
     @Override

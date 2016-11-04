@@ -80,7 +80,7 @@
                 android:layout_width="84dp"
                 android:layout_height="23dp"
                 android:gravity="center"
-                android:text="自驾车"
+                android:text="汽车"
                 android:textColor="@color/color323232"
                 android:textSize="15sp" />
 

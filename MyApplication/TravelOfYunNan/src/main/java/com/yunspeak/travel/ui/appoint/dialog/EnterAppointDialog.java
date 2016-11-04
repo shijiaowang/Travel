@@ -16,25 +16,17 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.utils.JsonUtils;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.TypefaceUtis;
 import com.yunspeak.travel.utils.UIUtils;
-
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
-
-import java.util.HashMap;
-
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;

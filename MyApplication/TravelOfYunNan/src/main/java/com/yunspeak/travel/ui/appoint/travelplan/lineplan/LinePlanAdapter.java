@@ -1,14 +1,11 @@
 package com.yunspeak.travel.ui.appoint.travelplan.lineplan;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
-
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
-import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.SelectDestinationActivity;
+import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 
 import java.util.List;
 
@@ -28,9 +25,7 @@ public class LinePlanAdapter extends TravelBaseAdapter<LineBean> {
             linePlanHolder.mTvAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, SelectDestinationActivity.class);
-                    intent.putExtra(IVariable.POSITION,position);
-                    mContext.startActivity(intent);
+                    FindCommonActivity.start(mContext,FindCommonActivity.DESTINATION_SELECTION,position);
                 }
             });
         }

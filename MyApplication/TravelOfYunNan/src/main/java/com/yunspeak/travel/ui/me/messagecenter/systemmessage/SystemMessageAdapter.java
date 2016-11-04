@@ -2,40 +2,28 @@ package com.yunspeak.travel.ui.me.messagecenter.systemmessage;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/26 0026.
+ * Created by wangyang on 2016/8/26 0026.
  */
-public class SystemMessageAdapter extends TravelBaseAdapter<SystemMessageBean.DataBean> {
-    public SystemMessageAdapter(Context mContext, List<SystemMessageBean.DataBean> mDatas) {
-        super(mContext, mDatas);
+public class SystemMessageAdapter extends BaseRecycleViewAdapter<SystemMessageBean.DataBean> {
+
+
+    public SystemMessageAdapter(List<SystemMessageBean.DataBean> mDatas, Context mContext) {
+        super(mDatas, mContext);
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, SystemMessageBean.DataBean item, int position) {
-        final SystemMessageHolder systemMessageHolder = (SystemMessageHolder) baseHolder;
-        systemMessageHolder.mTvCatMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (systemMessageHolder.mTvMessage.isShowAll()){
-                    systemMessageHolder.mTvMessage.swithShow(false);
-                    systemMessageHolder.mTvCatMore.setText(R.string.close_more);
-                }else {
-                    systemMessageHolder.mTvMessage.swithShow(true);
-                    systemMessageHolder.mTvCatMore.setText(R.string.cat_more);
-                }
-            }
-        });
-    }
-
-    @Override
-    protected BaseHolder initHolder(int position) {
-        return new SystemMessageHolder(mContext);
+    public BaseRecycleViewHolder<SystemMessageBean.DataBean> onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new SystemMessageHolder(inflateView(R.layout.item_activity_system_message,parent));
     }
 }

@@ -235,6 +235,11 @@
     <string name="pop_order">·\u3000智能排序</string>
     <string name="pop_star">·\u3000按星级</string>
     <string name="pop_mouth">·\u3000按口碑</string>
+    <string name="pop_now">·\u3000最新发布</string>
+    <string name="pop_price_up">·\u3000价格升序</string>
+    <string name="pop_price_down">·\u3000价格降序</string>
+    <string name="pop_out_number">·\u3000出行人数</string>
+    <string name="pop_day_number">·\u3000行程天数</string>
     <string name="kongge">\u3000\u3000</string>
     <string name="permission_title_rationale">需要相关权限</string>
     <string name="label_ok">确定</string>

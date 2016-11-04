@@ -98,17 +98,13 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
                 startActivity(new Intent(getContext(), ActiveActivity.class));
                 break;
             case R.id.ll_delicious_food:
-                Intent food = new Intent(getContext(), FindCommonActivity.class);
-                food.putExtra(IVariable.TYPE, IVariable.TYPE_DELICIOUS);
-                startActivity(food);
+                FindCommonActivity.start(getContext(),FindCommonActivity.DELICIOUS_NORMAL, 0);
                 break;
             case R.id.ll_travels:
                 startActivity(new Intent(getContext(), TravelsActivity.class));
                 break;
             case R.id.ll_add:
-                Intent intent = new Intent(getContext(), FindCommonActivity.class);
-                intent.putExtra(IVariable.TYPE, IVariable.TYPE_DESTINATION);
-                startActivity(intent);
+                FindCommonActivity.start(getContext(),FindCommonActivity.DESTINATION_NORMAL, 0);
                 break;
             case R.id.ll_hotel:
                 startActivity(new Intent(getContext(), HotelActivity.class));
