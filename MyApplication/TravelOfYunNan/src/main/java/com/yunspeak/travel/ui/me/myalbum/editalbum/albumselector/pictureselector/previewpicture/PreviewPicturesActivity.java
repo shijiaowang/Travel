@@ -1,22 +1,11 @@
 package com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture;
-
-import android.graphics.drawable.Animatable;
-import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
-import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.imagepipeline.common.ResizeOptions;
-import com.facebook.imagepipeline.image.ImageInfo;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.pageranim.ZoomOutPageTransformer;
@@ -26,14 +15,9 @@ import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorEvent;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.zoomable.ZoomableDraweeView;
-import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-
-
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.view.annotation.ViewInject;
-
-
 import java.util.ArrayList;
 import java.util.List;
 

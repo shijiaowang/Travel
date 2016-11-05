@@ -28,12 +28,15 @@ import java.util.Map;
 public class MyOrdersAdapter extends BaseRecycleViewAdapter<MyOrdersBean.DataBean> {
 
 
-    public MyOrdersAdapter(List<MyOrdersBean.DataBean> mDatas, Context mContext) {
+    private final int currentType;
+
+    public MyOrdersAdapter(List<MyOrdersBean.DataBean> mDatas, Context mContext, int currentType) {
         super(mDatas, mContext);
+        this.currentType = currentType;
     }
 
     @Override
     public BaseRecycleViewHolder<MyOrdersBean.DataBean> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyOrdersHolder(inflateView(R.layout.item_fragment_orders,parent));
+        return new MyOrdersHolder(inflateView(R.layout.item_fragment_orders,parent),currentType);
     }
 }

@@ -48,8 +48,11 @@ import butterknife.BindView;
 public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEvent> implements View.OnClickListener {
    public static final String ORDER_IS_SURE="1";//之前确认过未付款
    public static final String ORDER_IS_NEW="0";//新订单，尚未做任何操作
+    public static final int PAY_WAY_ZFB=1;
+    public static final int PAY_WAY_WX=2;
     public static final int SUBMIT_NEW=45;
     public static final int SUBMIT_USED=54;
+    private int currentPayWay=-1;
     @BindView(R.id.tv_pay_zfb) TextView mTvPayZfb;
     @BindView(R.id.tv_pay_wx) TextView mTvPayWx;
     @BindView(R.id.rv_coupon)
@@ -266,9 +269,11 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                 break;
             case R.id.rl_zfb:
                 checkRightWay(mTvPayZfb);
+                currentPayWay=PAY_WAY_ZFB;
                 break;
             case R.id.rl_wx:
                 checkRightWay(mTvPayWx);
+                currentPayWay=PAY_WAY_WX;
                 break;
         }
     }
@@ -278,6 +283,10 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
      * 提交订单
      */
     private void submitOrders() {
+        if (currentPayWay==PAY_WAY_WX){
+            ToastUtils.showToast("暂不支持微信支付。");
+            return;
+        }
         if (!mCbAgree.isChecked()) {
             ToastUtils.showToast("请阅读并勾选协议");
             return;
@@ -304,8 +313,8 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                   }
                 }
             }
-            String coupon = stringBuilder.toString();
 
+            String coupon = stringBuilder.toString();
             Map<String, String> submitMap = MapUtils.Build().addKey(this).addUserId().addId(id).addCoupon(coupon).end();
             XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS,submitMap,SUBMIT_NEW,new ConfirmOrdersEvent());
         }

@@ -59,22 +59,20 @@ public class AppointWithMeHolder extends BaseRecycleViewHolder<AppointWithMeBean
             mFlTitle.removeAllViews();
         }
         String label = datas.getLabel();
-        if (StringUtils.isEmpty(label))return;
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppointWithMeDetailActivity.start(mContext,datas.getId());
+            }
+        });
+        if (!StringUtils.isEmpty(label)){
         String[] split = label.split(",");
         for (int i =  0; i < split.length; i++) {
-            View view =View.inflate(mContext,R.layout.item_fragment_appoint_title, mFlTitle);
+            View view = View.inflate(mContext, R.layout.item_fragment_appoint_title, mFlTitle);
             TextView textView = (TextView) view.findViewById(R.id.tv_text);
             textView.setText(split[i]);
             mFlTitle.addView(view);
         }
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, AppointWithMeDetailActivity.class);
-                intent.putExtra(IVariable.TID,datas.getId());
-                mContext.startActivity(intent);
-            }
-        });
-
+        }
     }
 }

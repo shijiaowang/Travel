@@ -9,6 +9,11 @@
         <attr name="gradient_checked_down_color" />
     </declare-styleable>
 
+    <attr name="line_edittext_hint" format="string" />
+    <declare-styleable name="LoginEditText">
+        <attr name="line_edittext_hint" />
+    </declare-styleable>
+
     <!-- Declare custom theme attributes that allow changing which styles are
          used for button bars depending on the API level.
          ?android:attr/buttonBarStyle is new as of API 11 so this is

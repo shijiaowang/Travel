@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LineEditText;
@@ -27,22 +28,19 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/10/6 0006.
  * 绑定新手机
  */
 
-public class BindPhoneActivity extends LoadingBarBaseActivity<BindPhoneEvent> {
-    @ViewInject(R.id.bt_next)
-    private AvoidFastButton mBtNext;
-    @ViewInject(R.id.ptv_phone)
-    private PhoneTextView mPtvPhone;
-    @ViewInject(R.id.bt_ver)
-    private AvoidFastButton mBtVer;
-    @ViewInject(R.id.et_ver)
-    private EditText mEtVer;
-    @ViewInject(R.id.et_phone)
-    private LineEditText mEtPhone;
+public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
+    @BindView(R.id.bt_next) AvoidFastButton mBtNext;
+    @BindView(R.id.ptv_phone) PhoneTextView mPtvPhone;
+    @BindView(R.id.bt_ver) AvoidFastButton mBtVer;
+    @BindView(R.id.et_ver) EditText mEtVer;
+    @BindView(R.id.et_phone) LineEditText mEtPhone;
     private boolean isSend = false;
     private int verTime = 60;//验证码时间
     private Handler mHandler = new Handler() {
@@ -64,13 +62,11 @@ public class BindPhoneActivity extends LoadingBarBaseActivity<BindPhoneEvent> {
     };
     private String tel;
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_bind_phone;
-    }
 
     @Override
     protected void initEvent() {
+        btIsClick(mBtNext, false);
+        btIsClick(mBtVer, false);
         UserInfo userInfo = GlobalUtils.getUserInfo();
         try {
             mPtvPhone.setPhoneNumber(userInfo.getTel());
@@ -120,27 +116,20 @@ public class BindPhoneActivity extends LoadingBarBaseActivity<BindPhoneEvent> {
     }
 
     @Override
-    protected void onLoad(int typeRefresh) {
-        setIsProgress(false);
+    protected boolean isAutoLoad() {
+        return false;
     }
 
     @Override
-    protected Activity initViewData() {
-        btIsClick(mBtNext, false);
-        btIsClick(mBtVer, false);
-        return this;
+    protected void childAdd(MapUtils.Builder builder, int type) {
+
     }
 
     @Override
-    protected String setTitleName() {
-        return "绑定手机";
+    protected String initUrl() {
+        return null;
     }
 
-
-    @Override
-    public float getAlpha() {
-        return 1.0f;
-    }
 
     @Override
     protected void onSuccess(BindPhoneEvent changePhoneEvent) {
@@ -173,5 +162,15 @@ public class BindPhoneActivity extends LoadingBarBaseActivity<BindPhoneEvent> {
     @Override
     protected void onFail(BindPhoneEvent event) {
 
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_bind_phone;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "绑定手机";
     }
 }

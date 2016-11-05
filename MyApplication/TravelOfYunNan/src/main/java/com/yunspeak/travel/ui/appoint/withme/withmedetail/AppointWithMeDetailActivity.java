@@ -1,12 +1,15 @@
 package com.yunspeak.travel.ui.appoint.withme.withmedetail;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.PeopleBean;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailEvent;
@@ -15,27 +18,23 @@ import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailHaveE
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailInsuranceAdapter;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
+import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
+import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.ImageOptionsUtil;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
-import com.yunspeak.travel.utils.XEventUtils;
-
 import org.xutils.common.util.DensityUtil;
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-
 import butterknife.BindView;
 
 /**
@@ -45,7 +44,8 @@ import butterknife.BindView;
 public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDetailEvent> {
 
     @BindView(R.id.lv_route_line) ToShowAllListView mLvRouteLine;
-    @BindView(R.id.iv_user_icon) ImageView mIvUserIcon;
+    @BindView(R.id.iv_user_icon)
+    SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
     @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.tv_day) TextView mTvDay;
@@ -53,7 +53,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
     @BindView(R.id.tv_love) FontsIconTextView mTvLove;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_sex) TextView mTvSex;
-    @BindView(R.id.iv_appoint_bg) ImageView mIvAppointBg;
+    @BindView(R.id.iv_appoint_bg) SimpleDraweeView mIvAppointBg;
     @BindView(R.id.tv_title) TextView mTvTitle;
     @BindView(R.id.tv_content) TextView mTvContent;
     @BindView(R.id.tv_line) TextView mTvLine;
@@ -68,13 +68,13 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
     @BindView(R.id.tv_enter_end_time) TextView mTvEnterEndTime;
     @BindView(R.id.tv_surplus_day) TextView mTvSurplusDay;//剩余日期
     private String tId;
-
-
+    private String userId;
 
 
     @Override
     protected void initEvent() {
         init();
+        OtherUserCenterActivity.start(this,mIvUserIcon,userId);
     }
 
     private void init() {
@@ -92,7 +92,11 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
         return IVariable.WITHE_ME_DETAIL;
     }
 
-
+  public static void start(Context context,String tid){
+      Intent intent=new Intent(context,AppointWithMeDetailActivity.class);
+      intent.putExtra(IVariable.TID,tid);
+      context.startActivity(intent);
+  }
 
     @Override
     protected void onSuccess(AppointDetailEvent appointDetailEvent) {
@@ -106,9 +110,10 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
             AppointWithMeDetailBean.DataBean data = appointWithMeDetail.getData();
            mTvDay.setText(FormatDateUtils.FormatLongTime("MM-dd",data.getAdd_time()));
            mTvTime.setText(FormatDateUtils.FormatLongTime("HH:mm",data.getAdd_time()));
-            x.image().bind(mIvUserIcon, data.getUser_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(30), DensityUtil.dip2px(30)));
+            FrescoUtils.displayIcon(mIvUserIcon, data.getUser_img());
+            userId = data.getUser_id();
             mTvUserNickName.setText(data.getUser_name());
-            x.image().bind(mIvAppointBg, data.getTravel_img(), ImageOptionsUtil.getBySetSize(DensityUtil.dip2px(116), DensityUtil.dip2px(116)));
+            FrescoUtils.displayRoundIcon(mIvAppointBg, data.getTravel_img());
             if (mFlTitle.getChildCount()>0)mFlTitle.removeAllViews();
             dealLabel(data);
             mTvLoveNumber.setText(data.getCount_like());

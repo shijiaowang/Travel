@@ -134,10 +134,7 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
             mDatas = loadDatas;
             mAdapter.notifiyData(mDatas);
             mSwipe.setRefreshing(false);
-        } else {
-            doOtherSuccessData(t);
         }
-
     }
     protected Class<? extends ParentBean> useChildedBean() {
         return getEType();
@@ -179,13 +176,6 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
         }
     }
 
-    /**
-     * 处理其他逻辑
-     * @param t
-     */
-    protected  void doOtherSuccessData(T t){
-
-    }
 
     /**
      * 初始化adapter

@@ -1,6 +1,5 @@
 package com.yunspeak.travel.ui.baseui;
 
-import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -18,40 +17,38 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.Map;
+
+import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/8/19 0019.
  * 个人简介
  */
-public class PersonalProfileActivity extends LoadingBarBaseActivity<PersonalProfileEvent> {
-    @ViewInject(R.id.et_profile)
-    private EditText mEtProfile;
-    @ViewInject(R.id.bt_save_change)
-    private AvoidFastButton mBtSaveChange;
-    @ViewInject(R.id.tv_number)
-    private TextView mTvNumber;
-    @ViewInject(R.id.ll_hint)
-    private LinearLayout mLlHint;
+public class PersonalProfileActivity extends BaseNetWorkActivity<PersonalProfileEvent> {
+    @BindView(R.id.et_profile) EditText mEtProfile;
+    @BindView(R.id.bt_save_change) AvoidFastButton mBtSaveChange;
+    @BindView(R.id.tv_number) TextView mTvNumber;
+    @BindView(R.id.ll_hint) LinearLayout mLlHint;
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_personal_profile;
-    }
 
     @Override
     protected void initEvent() {
+        String content = GlobalUtils.getUserInfo().getContent();
+        if (!StringUtils.isEmpty(content)){
+            mLlHint.setVisibility(View.GONE);
+            mEtProfile.setText(content);
+            mTvNumber.setText(content.length()+"/80");
+        }
         mBtSaveChange.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
+                setIsProgress(true);
                 Map<String, String> contentMap = MapUtils.Build().addKey(PersonalProfileActivity.this).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.CONTENT, getString(mEtProfile)).end();
                 XEventUtils.postUseCommonBackJson(IVariable.CHANGE_USER_INFO, contentMap, 0,new PersonalProfileEvent());
             }
         });
-   mEtProfile.addTextChangedListener(new TextWatcher() {
+        mEtProfile.addTextChangedListener(new TextWatcher() {
        @Override
        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -71,28 +68,18 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity<PersonalProf
     }
 
     @Override
-    protected void onLoad(int typeRefresh) {
+    protected boolean isAutoLoad() {
+        return false;
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
 
     }
 
     @Override
-    protected Activity initViewData() {
-        String content = GlobalUtils.getUserInfo().getContent();
-        if (!StringUtils.isEmpty(content)){
-            mLlHint.setVisibility(View.GONE);
-            mEtProfile.setText(content);
-            mTvNumber.setText(content.length()+"/80");
-        }
-       return this;
-    }
-
-    @Override
-    protected String setTitleName() {
-        return "个人简介";
-    }
-    @Override
-    public float getAlpha() {
-        return 1.0f;
+    protected String initUrl() {
+        return null;
     }
 
     @Override
@@ -103,5 +90,18 @@ public class PersonalProfileActivity extends LoadingBarBaseActivity<PersonalProf
         finish();
     }
 
+    @Override
+    protected void onFail(PersonalProfileEvent personalProfileEvent) {
+        setIsProgress(false);
+    }
 
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_personal_profile;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "个人简介";
+    }
 }

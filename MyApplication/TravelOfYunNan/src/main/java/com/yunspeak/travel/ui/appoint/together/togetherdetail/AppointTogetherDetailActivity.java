@@ -155,6 +155,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
         switch (appointDetailEvent.getType()) {
             case TYPE_REFRESH:
                 try {
+                    setIsProgress(true);
                     dealData(appointDetailEvent);
                 } catch (Exception e) {
                     setIsProgress(false);
@@ -199,7 +200,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
      * @param event
      */
     private void dealData(AppointDetailEvent event) {
-        setIsProgress(true);
+
         AppointTogetherDetailBean appointTogetherDetail = GsonUtils.getObject(event.getResult(), AppointTogetherDetailBean.class);
         if (appointTogetherDetail == null) return;
         AppointTogetherDetailBean.DataBean data = appointTogetherDetail.getData();

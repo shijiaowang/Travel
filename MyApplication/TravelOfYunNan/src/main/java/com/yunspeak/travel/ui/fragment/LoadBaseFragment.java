@@ -108,6 +108,7 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
 
             @Override
             public void onLoad(int type) {
+                LoadBaseFragment.this.isFirst=true;
                 LoadBaseFragment.this.load(type);
             }
             /**
@@ -144,7 +145,6 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
     {
         super.setUserVisibleHint(isVisibleToUser);
         if (getUserVisibleHint()) {
-            LogUtils.e(this.getClass().getSimpleName());
             isVisible = true;
             load(TYPE_REFRESH);
         }else {
@@ -165,9 +165,8 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
                         return;
                     }
                     try {
-                        isSuccessed = true;
-                        setState(LoadingPage.ResultState.STATE_SUCCESS);
                         onSuccess(t);
+                        doSuccess(t);
                         LogUtils.e("baseFragment加载成功");
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -179,6 +178,11 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
                     onFail(t);
                 }
             }
+
+    protected void doSuccess(T t) {
+        isSuccessed = true;
+        setState(LoadingPage.ResultState.STATE_SUCCESS);
+    }
 
     /**
      * 是否使用孩子的空页面

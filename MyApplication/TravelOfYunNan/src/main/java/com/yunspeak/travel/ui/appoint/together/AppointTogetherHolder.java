@@ -64,13 +64,14 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder<AppointTogether
         }
         FrescoUtils.displayRoundIcon(mIvIcon,datas.getTravel_img());
         String label = datas.getLabel();
-        if (StringUtils.isEmpty(label))return;
-        String[] split = label.split(",");
-        for (int i = 0; i < split.length; i++) {
-            View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_appoint_title, mFlTitle,false);
-            TextView textView = (TextView) inflate.findViewById(R.id.tv_text);
-            textView.setText(split[i]);
-            mFlTitle.addView(inflate);
+        if (!StringUtils.isEmpty(label)) {
+            String[] split = label.split(",");
+            for (int i = 0; i < split.length; i++) {
+                View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
+                TextView textView = (TextView) inflate.findViewById(R.id.tv_text);
+                textView.setText(split[i]);
+                mFlTitle.addView(inflate);
+            }
         }
         List<AppointTogetherBean.DataBean.RoutesBean> routes = datas.getRoutes();
         StringBuffer stringBuffer = new StringBuffer();

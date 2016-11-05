@@ -3,10 +3,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
+import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
 import com.yunspeak.travel.utils.ToastUtils;
 
 import java.util.List;
@@ -16,8 +18,6 @@ import java.util.List;
  */
 public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOrdersBean,MyOrdersBean.DataBean> {
 
-   public static final int ALL_ORDERS=1;
-    public static final int RECENT_ORDERS=2;
     private int currentType=0;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,14 +25,6 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
         currentType = getArguments().getInt(IVariable.TYPE);
     }
 
-    @Override
-    protected void doOtherSuccessData(MyOrdersEvent myOrdersEvent) {
-        if (myOrdersEvent.getType()== BaseToolBarActivity.TYPE_DELETE){
-            ToastUtils.showToast("订单取消成功");
-            mDatas.get(myOrdersEvent.getPosition()).setStatus("2");//订单改为取消
-            mAdapter.notifyItemRemoved(myOrdersEvent.getPosition());
-        }
-    }
 
     @Override
     protected void initListener() {
@@ -50,16 +42,29 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
     @Override
     public void onSuccess(MyOrdersEvent myOrdersEvent) {
         if (getUserVisibleHint() && myOrdersEvent.getOrderType()==currentType) {
-            super.onSuccess(myOrdersEvent);
+            if (myOrdersEvent.getType()== IState.TYPE_DELETE){
+                ToastUtils.showToast("订单取消成功");
+                mDatas.get(myOrdersEvent.getPosition()).setStatus("2");//订单改为取消
+                mAdapter.notifyDataSetChanged();
+            }else {
+                super.onSuccess(myOrdersEvent);
+            }
         }
     }
 
     @Override
     protected String initUrl() {
-        if (currentType==RECENT_ORDERS){
+        if (currentType== OrdersCenterActivity.RECENT_ORDERS){
             return IVariable.RECENT_ORDERS;
         }
         return IVariable.MY_ORDERS_CENTER;
+    }
+
+    @Override
+    protected void doSuccess(MyOrdersEvent myOrdersEvent) {
+        if (myOrdersEvent.getOrderType()==currentType) {//只有等于当前状态才修改
+            super.doSuccess(myOrdersEvent);
+        }
     }
 
     @Override
@@ -71,6 +76,6 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
 
     @Override
     protected BaseRecycleViewAdapter<MyOrdersBean.DataBean> initAdapter(List<MyOrdersBean.DataBean> httpData) {
-        return new MyOrdersAdapter(httpData,getContext());
+        return new MyOrdersAdapter(httpData,getContext(),currentType);
     }
 }

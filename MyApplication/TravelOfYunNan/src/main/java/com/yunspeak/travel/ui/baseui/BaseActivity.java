@@ -35,6 +35,8 @@ import org.xutils.x;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 
 public abstract class BaseActivity extends FragmentActivity {
 

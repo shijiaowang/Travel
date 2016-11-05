@@ -22,7 +22,6 @@ public abstract class LoadingPage extends FrameLayout {
     private static final int STATE_LOAD_SUCCESS = 3;//加载成功
     private static final int STATE_LOAD_EMPTY = 4;//数据为空
     private int mCurrentState = STATE_LOAD_UNLOAD;//当前
-    private int mPreState = STATE_LOAD_UNLOAD;//上一次
     private View loadingView;
     private ImageView errorView;
     private View successView;
@@ -91,7 +90,6 @@ public abstract class LoadingPage extends FrameLayout {
         if (successView != null) {
             successView.setVisibility(mCurrentState == STATE_LOAD_SUCCESS ? View.VISIBLE : View.GONE);
         }
-        mPreState = mCurrentState;
     }
     /**
      * 发送网络请求
@@ -118,12 +116,7 @@ public abstract class LoadingPage extends FrameLayout {
         if (resultState != null) {
             mCurrentState = resultState.getState(); //获取返回的结�?,更新网络状�??
         }
-        if (mPreState != mCurrentState) {
-            showRightView();
-
-        } else {
-            mCurrentState = STATE_LOAD_UNLOAD;
-        }
+        showRightView();
     }
 
 

@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
@@ -30,6 +31,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/8/11 0011.
  */
 public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean> {
+    private final int currentType;
     @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
     @BindView(R.id.tv_start_and_long)TextView mTvStartAndLong;
     @BindView(R.id.tv_day_and_night) TextView mTvDayAndNight;
@@ -45,8 +47,9 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
     @BindView(R.id.tv_total_price) TextView mTvTotalPrice;
     @BindView(R.id.tv_price) TextView mTvPrice;
 
-    public MyOrdersHolder(View itemView) {
+    public MyOrdersHolder(View itemView, int currentType) {
         super(itemView);
+        this.currentType = currentType;
     }
 
 
@@ -89,7 +92,8 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
                         Map<String, String> deleteMap = MapUtils.Build().addKey(mContext).addUserId().addId(datas.getId()).end();
                         MyOrdersEvent event = new MyOrdersEvent();
                         event.setPosition(position);
-                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_ORDERS,deleteMap, BaseToolBarActivity.TYPE_DELETE, event);
+                        event.setOrderType(currentType);
+                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_ORDERS,deleteMap, IState.TYPE_DELETE, event);
                     }
                 });
 

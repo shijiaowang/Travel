@@ -29,8 +29,5 @@ public class HotFragment extends LoadAndPullBaseFragment<HotEvent,HotPostBean,Ho
         return IVariable.HOT_POST;
     }
 
-    @Override
-    protected void childAdd(MapUtils.Builder builder, int type) {
 
-    }
 }

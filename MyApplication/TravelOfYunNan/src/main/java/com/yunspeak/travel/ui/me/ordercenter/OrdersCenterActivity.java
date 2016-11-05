@@ -1,6 +1,5 @@
 package com.yunspeak.travel.ui.me.ordercenter;
 
-import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,14 +10,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
-import com.yunspeak.travel.ui.me.mytheme.MyPublishFragment;
 import com.yunspeak.travel.ui.me.ordercenter.coupon.CouponFragment;
 import com.yunspeak.travel.ui.me.ordercenter.orders.MyOrdersFragment;
 import com.yunspeak.travel.ui.view.SimpleViewPagerIndicator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +29,8 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
     private String[] ordersType = {"全部订单", "约伴订单", "活动订单"};
     private int currentOrders = 0;//当前为全部订单
 
+    public static final int ALL_ORDERS=1;
+    public static final int RECENT_ORDERS=2;
     @BindView(R.id.svpi_indicator) SimpleViewPagerIndicator mIndicator;
     @BindView(R.id.vp_orders) ViewPager mVpOrders;
     private List<Fragment> fragments;
@@ -152,11 +150,11 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
             }
         });
         fragments = new ArrayList<>();
-        mVpOrders.setOffscreenPageLimit(3);
-        fragments.add(MyOrdersFragment.newInstance(MyOrdersFragment.RECENT_ORDERS));
-        fragments.add(MyOrdersFragment.newInstance(MyOrdersFragment.ALL_ORDERS));
+        fragments.add(MyOrdersFragment.newInstance(RECENT_ORDERS));
+       fragments.add(MyOrdersFragment.newInstance(ALL_ORDERS));
         fragments.add(new CouponFragment());
         mVpOrders.setAdapter(new OrdersPagerAdapter(getSupportFragmentManager()));
+        mVpOrders.setOffscreenPageLimit(3);
     }
 
     @Override
