@@ -14,11 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.utils.BitmapUtils;
+import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -42,7 +44,8 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
     @BindView(R.id.bt_next) Button mBtNext;//保存修改
     @BindView(R.id.et_des) EditText mEtDes;
     @BindView(R.id.et_name) EditText mEtName;
-    @BindView(R.id.iv_image) ImageView mIvImage;
+    @BindView(R.id.iv_image)
+    SimpleDraweeView mIvImage;
     @BindView(R.id.tv_delete) TextView mTvDelete;
     @BindView(R.id.tv_picture) TextView mTvPicture;
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
@@ -63,10 +66,6 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
         mTvPicture.setOnClickListener(this);
     }
 
-    @Override
-    protected void onLoad(int typeRefresh) {
-        setIsProgress(false);
-    }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
@@ -92,7 +91,11 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
             //设置选择的三级单位
 //          pwOptions.setLabels("省", "市", "区");
             pvOptions.setTitle("选择城市");
-            pvOptions.setSelectOptions(24,1,1);//默认选中云南 25-1
+            try {
+                pvOptions.setSelectOptions(24,1,1);//默认选中云南 25-1
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             pvOptions.setCyclic(false, true, true);
             pvOptions.setCancelable(true);
             //设置默认选中的三级项目
@@ -102,7 +105,7 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
                 public void onOptionsSelect(int options1, int option2, int options3) {
                     //返回的分别是三个级别的选中位置
                     String tx = options1Items.get(options1).getPickerViewText()
-                            + options2Items.get(options1).get(option2);
+                            +"-"+options2Items.get(options1).get(option2);
                     address = tx;
                     id = options1Items.get(options1).getId();//省得id
                     cityName = options2Items.get(options1).get(option2);
@@ -209,7 +212,7 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
                 mIvImage.setVisibility(View.VISIBLE);
                 mTvPicture.setVisibility(View.GONE);
                 mTvDelete.setVisibility(View.VISIBLE);
-                x.image().bind(mIvImage, imageAbsolutePath);
+                FrescoUtils.displayNormal(mIvImage,"fill://"+imageAbsolutePath,600,300);
                 mTvDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

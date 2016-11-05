@@ -1,9 +1,6 @@
 package com.yunspeak.travel.utils;
 
-import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.bean.UserInfo;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,14 +8,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * Created by Administrator on 2016/8/15 0015.
+ * Created by wangyang on 2016/8/15 0015.
  * 序列化与反序列化对象
  */
 public class UserUtils {
 
-
-
     public static void saveUserInfo(Object obj){
+        if (obj==null)return;
         FileOutputStream fileOutputStream=null;
         ObjectOutputStream   oos=null;
         try {

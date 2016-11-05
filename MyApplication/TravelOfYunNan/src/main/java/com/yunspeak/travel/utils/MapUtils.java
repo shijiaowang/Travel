@@ -172,6 +172,10 @@ public class MapUtils {
             stringMap.put(IVariable.COUNT,count+"");
             return this;
         }
+        public Builder addNickName(String nickName){
+            stringMap.put(IVariable.NICK_NAME,nickName);
+            return this;
+        }
         public Builder add(String key,String value){
             stringMap.put(key,value);
             return this;
@@ -180,5 +184,12 @@ public class MapUtils {
         public Map<String,String> end(){
             return stringMap;
         }
+
+        public Builder addSex(String sex){
+            stringMap.put("sex",sex);
+            return this;
+        }
+
+
     }
 }

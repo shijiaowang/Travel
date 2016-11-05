@@ -34,25 +34,21 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 public class SplashActivity extends FullTransparencyActivity {
     private boolean isClicking=false;
     private static final String CURRENT_POSITION = "current_position";
     public static final int GO_LOGIN = 0;
     public static final int GO_REGISTER = 1;
     private static final int GO_REGISTER_SUCCESS = 2;
-    @ViewInject(R.id.vp_splash)
-    private ViewPager mVpSplash;
-    @ViewInject(R.id.vv_video)
-    private VideoView mVideoView;
+    @BindView(R.id.vp_splash) ViewPager mVpSplash;
+    @BindView(R.id.vv_video) VideoView mVideoView;
+    @BindView(R.id.bt_login) Button mBtLogin;
+    @BindView(R.id.v_dot) View mVDot;
+    @BindView(R.id.rl_toggle) RelativeLayout mRlToggle;
+    @BindView(R.id.bt_register) Button mBtRegister;
     private int currentPosition;
-    @ViewInject(R.id.bt_login)
-    private Button mBtLogin;
-    @ViewInject(R.id.v_dot)
-    private View mVDot;
-    @ViewInject(R.id.rl_toggle)
-    private RelativeLayout mRlToggle;
-    @ViewInject(R.id.bt_register)
-    private Button mBtRegister;
     private LinearLayout mLlDot;
     private int mPointDistance;
     private int mFirstDotLeft;

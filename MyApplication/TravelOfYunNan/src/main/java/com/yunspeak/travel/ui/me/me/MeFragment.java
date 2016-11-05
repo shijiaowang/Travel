@@ -229,6 +229,9 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         if (requestCode == HomeActivity.REQ && resultCode == HomeActivity.RESULT) {
             ((HomeActivity) getActivity()).finish();
         }
+        if (requestCode == HomeActivity.REQ && resultCode == HomeActivity.UP_RESULT){
+           onRefresh();
+        }
     }
 
     @Override
@@ -316,7 +319,6 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
     @Override
     protected void childViewShow(String s) {
-
          if (upType==UP_BG){
              FrescoUtils.displayNormal(mIvBg,s,600,450);
          }else {

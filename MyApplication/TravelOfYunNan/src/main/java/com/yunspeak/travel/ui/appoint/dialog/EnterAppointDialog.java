@@ -15,10 +15,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.global.SendTextClick;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.StringUtils;
@@ -80,7 +82,106 @@ public class EnterAppointDialog {
         });
         dialog.show();
     }
+    /**
+     * 改变性别
+     * @param context
+     * @param sex
+     */
+    public static void showChangeSex(final Context context, String sex, final SendTextClick parentPopClick) {
+        //创建视图
+        View dialogView = View.inflate(context, R.layout.pop_change_sex, null);
+        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
 
+        RadioButton rbBoy = (RadioButton) dialogView.findViewById(R.id.rb_boy);
+        rbBoy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentPopClick.onClick("1");
+                dialog.dismiss();
+            }
+        });
+        RadioButton rbGirl = (RadioButton) dialogView.findViewById(R.id.rb_girl);
+        rbGirl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentPopClick.onClick("0");
+                dialog.dismiss();
+            }
+        });
+        if (sex.equals("1")){
+            rbBoy.setChecked(true);
+            rbGirl.setChecked(false);
+        }else {
+            rbBoy.setChecked(false);
+            rbGirl.setChecked(true);
+        }
+        dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentPopClick.onClick("2");
+                dialog.dismiss();
+            }
+        });
+        Window window = dialog.getWindow(); //得到对话框
+        window.setGravity(Gravity.CENTER);
+        //创建 Dialog
+//		Dialog dialog=new Dialog(上下文,风格style);
+        //layout_width layout_height
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(200),DensityUtil.dip2px(160));
+        dialog.setContentView(dialogView, params);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+    }
+    /**
+     * 设置目的地
+     * @param context
+     * @param nick_name
+     */
+    public static void showInputTextView(final Context context, String nick_name, final SendTextClick parentPopClick) {
+        //创建视图
+        View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
+        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
+        final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
+        ((TextView) dialogView.findViewById(R.id.tv_title)).setText("昵称设置");
+        mEtDestination.requestFocus();
+        mEtDestination.setHint(nick_name);
+        UIUtils.setEmojiFilter(mEtDestination);
+        dialogView.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trim = mEtDestination.getText().toString().trim();
+                if (StringUtils.isEmptyNotNull(trim)){
+                    ToastUtils.showToast("名称不能为空!");
+                    return;
+                }
+                if (parentPopClick!=null){
+                    parentPopClick.onClick(trim);
+                }
+                dialog.dismiss();
+
+            }
+        });
+        dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        Window window = dialog.getWindow(); //得到对话框
+        window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
+        window.setGravity(Gravity.CENTER);
+
+        //创建 Dialog
+//		Dialog dialog=new Dialog(上下文,风格style);
+
+        //layout_width layout_height
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(285),DensityUtil.dip2px(159));
+        dialog.setContentView(dialogView, params);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+    }
     /**
      * 添加目的地
      * @param isStart

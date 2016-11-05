@@ -65,8 +65,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     SwipeRefreshLayout mSwipe;
     @BindView(R.id.pager_cursor)
     PagerCursorView pagerCursorView;
-
-
+    private List<HomeBean.DataBean.BannerBean> banner;
 
     @Override
     protected int initResLayout() {
@@ -121,11 +120,12 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         } else {
             rlActive.setVisibility(View.GONE);
         }
-
-        List<HomeBean.DataBean.BannerBean> banner = data.getBanner();
-        mVpActive.setOffscreenPageLimit(banner.size());
-        pagerCursorView.setViewPager(mVpActive,banner.size(),true);
-        mVpActive.setAdapter(new HomePagerAdapter(banner));
+        if (banner==null) {
+            banner = data.getBanner();
+            mVpActive.setOffscreenPageLimit(banner.size());
+            pagerCursorView.setViewPager(mVpActive, banner.size(), true);
+            mVpActive.setAdapter(new HomePagerAdapter(banner));
+        }
 
 
     }

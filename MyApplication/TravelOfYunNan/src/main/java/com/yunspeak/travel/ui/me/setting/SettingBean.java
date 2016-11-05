@@ -1,14 +1,17 @@
-package com.yunspeak.travel.bean;
+package com.yunspeak.travel.ui.me.setting;
+
+
+import com.yunspeak.travel.bean.UserInfo;
 
 /**
- * Created by wangyang on 2016/7/26 0026.
- * 登录，包含用户信息
+ * Created by wangyang on 2016/11/5 0005.
  */
-public class Login {
+
+public class SettingBean {
+
 
     private int code;
     private String message;
-
     private UserInfo data;
 
     public int getCode() {

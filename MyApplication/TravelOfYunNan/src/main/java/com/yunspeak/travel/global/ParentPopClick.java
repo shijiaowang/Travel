@@ -6,4 +6,5 @@ package com.yunspeak.travel.global;
 
 public interface ParentPopClick {
     void onClick(int type);
+
 }

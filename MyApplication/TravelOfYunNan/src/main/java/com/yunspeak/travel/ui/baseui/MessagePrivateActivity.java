@@ -8,7 +8,7 @@ import com.yunspeak.travel.ui.adapter.MessagePrivateAdapter;
 import org.xutils.view.annotation.ViewInject;
 
 /**
- * Created by Administrator on 2016/7/15 0015.
+ * Created by wangyang on 2016/7/15 0015.
  * 私信
  */
 public class MessagePrivateActivity extends BarBaseActivity {

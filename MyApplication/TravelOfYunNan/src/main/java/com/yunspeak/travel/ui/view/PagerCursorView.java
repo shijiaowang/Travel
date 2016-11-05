@@ -44,7 +44,7 @@ public class PagerCursorView extends RelativeLayout {
     private int mPointDistance;
     private int mFirstDotLeft;
     public  int childCount;
-    private ViewPager viewPager;
+    private ViewPager viewPager=null;
 
     public PagerCursorView(Context context) {
         super(context);
@@ -70,7 +70,7 @@ public class PagerCursorView extends RelativeLayout {
     }
 
     public void setViewPager(ViewPager viewPager, int count, boolean isAutoMove) {
-        if (count == 0) return;
+        if (count == 0 && this.viewPager!=null) return;
         this.viewPager = viewPager;
         childCount = count;
         for (int i = 0; i < childCount; i++) {

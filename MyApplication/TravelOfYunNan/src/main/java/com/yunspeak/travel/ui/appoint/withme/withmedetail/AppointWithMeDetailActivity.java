@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -74,7 +75,13 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
     @Override
     protected void initEvent() {
         init();
-        OtherUserCenterActivity.start(this,mIvUserIcon,userId);
+        mIvUserIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OtherUserCenterActivity.start(AppointWithMeDetailActivity.this,mIvUserIcon,userId);
+            }
+        });
+
     }
 
     private void init() {

@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.PeopleBean;
+import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.yunspeak.travel.utils.FrescoUtils;
 
 import org.xutils.x;
 
@@ -34,10 +37,15 @@ public class AppointDetailHaveEnterAdapter extends RecyclerView.Adapter<Recycler
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        EnterHolder enterHolder = (EnterHolder) holder;
-        x.image().bind(enterHolder.mIvIcon,mDatas.get(position).getUser_img());
-
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        final EnterHolder enterHolder = (EnterHolder) holder;
+        FrescoUtils.displayIcon(enterHolder.mIvIcon,mDatas.get(position).getUser_img());
+        enterHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OtherUserCenterActivity.start(mContext,enterHolder.mIvIcon,mDatas.get(position).getId());
+            }
+        });
     }
 
     @Override
@@ -45,11 +53,11 @@ public class AppointDetailHaveEnterAdapter extends RecyclerView.Adapter<Recycler
         return mDatas.size();
     }
     class EnterHolder extends RecyclerView.ViewHolder{
-        private  ImageView mIvIcon;
+        private  SimpleDraweeView mIvIcon;
 
         public EnterHolder(View itemView) {
             super(itemView);
-            mIvIcon = (ImageView) itemView.findViewById(R.id.iv_icon);
+            mIvIcon = (SimpleDraweeView) itemView.findViewById(R.id.iv_icon);
 
         }
     }

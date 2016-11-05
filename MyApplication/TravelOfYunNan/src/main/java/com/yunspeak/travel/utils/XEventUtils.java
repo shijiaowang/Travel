@@ -85,9 +85,11 @@ public class XEventUtils {
             requestParams.setMultipart(true);
             for (int i=0,j=0;i<files.size();i++,j++) {
                 String fileDir = files.get(i);
-                fileDir=fileDir.replace("file://","");
                 if (StringUtils.isEmpty(fileDir)){
                     continue;
+                }
+                if (fileDir.contains("file://")) {
+                    fileDir = fileDir.replace("file://", "");
                 }
                 File file=new File(fileDir);
                 if (!file.exists()){

@@ -43,6 +43,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
     @BindView(R.id.rv_hot) RecyclerView mRvHot;
     @BindView(R.id.pager_cursor)
     PagerCursorView pagerCursorView;
+    private List<FindBean.DataBean.RecommendBean> banner;
 
     @Override
     protected int initResLayout() {
@@ -71,10 +72,12 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         mRvHot.setHasFixedSize(true);
         mRvHot.setNestedScrollingEnabled(false);
         mRvHot.addItemDecoration(new MyWitheMeDecoration(10));
-        List<FindBean.DataBean.RecommendBean> banner = findBean.getData().getBanner();
-        pagerCursorView.setViewPager(vpFind,banner.size(),true);
-        vpFind.setAdapter(new HomePagerAdapter(banner));
-        vpFind.setOffscreenPageLimit(banner.size());
+        if (banner==null) {
+            banner = findBean.getData().getBanner();
+            pagerCursorView.setViewPager(vpFind, banner.size(), true);
+            vpFind.setAdapter(new HomePagerAdapter(banner));
+            vpFind.setOffscreenPageLimit(banner.size());
+        }
 
     }
 

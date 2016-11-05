@@ -18,6 +18,8 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/7/18 0018.
  */
@@ -26,10 +28,10 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
     private int currentPosition = 0;
     private List<Fragment> fragments = new ArrayList<>(2);
 
-    @ViewInject(R.id.vp_follow_fan)ViewPager mVpFollowFan;//pager
-    @ViewInject(R.id.tv_back) TextView mTvBack;//返回
-    @ViewInject(R.id.tv_fan) TextView mTvFan;//粉丝
-    @ViewInject(R.id.tv_follow)TextView mTvFollow;//关注
+    @BindView(R.id.vp_follow_fan) ViewPager mVpFollowFan;//pager
+    @BindView(R.id.tv_back) TextView mTvBack;//返回
+    @BindView(R.id.tv_fan) TextView mTvFan;//粉丝
+    @BindView(R.id.tv_follow) TextView mTvFollow;//关注
 
     @Override
     protected int initLayoutRes() {

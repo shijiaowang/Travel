@@ -85,7 +85,7 @@ public abstract class BaseActivity extends FragmentActivity {
         }
         setContentView(initLayoutRes());
         PushAgent.getInstance(this).onAppStart();
-        x.view().inject(this);
+        ButterKnife.bind(this);
         initView();
         initListener();
         initData();

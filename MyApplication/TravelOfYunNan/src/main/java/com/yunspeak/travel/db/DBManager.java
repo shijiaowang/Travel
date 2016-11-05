@@ -166,21 +166,22 @@ public class DBManager {
      */
 
     public static String getStringById(String type,String id) {
+        String name="未知";
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
         Cursor query = null;
         try {
             query = writableDatabase.query("yuns_district", new String[]{type}, "_id=?", new String[]{id}, null, null, null);
             if (query.moveToNext()) {
-                String name = query.getString(0);
+                name = query.getString(0);
                 writableDatabase.close();
-                return name;
+
             }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             closeQuery(query);
         }
-        return "未知";
+        return name;
     }
     public static String getCityId(String cityName, String id) {
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();

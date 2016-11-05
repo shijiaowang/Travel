@@ -32,7 +32,6 @@ public abstract class FullTransparencyActivity extends BaseActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
             window.setNavigationBarColor(Color.TRANSPARENT);
         }
-        x.view().inject(this);
         return initContentRes();
     }
 

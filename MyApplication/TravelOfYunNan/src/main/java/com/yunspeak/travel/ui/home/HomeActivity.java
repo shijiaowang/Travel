@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.home;
 
 
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 
 import android.os.Bundle;
@@ -19,6 +20,10 @@ import android.widget.TextView;
 
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.Login;
+import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.event.WelcomeEvent;
+import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.AppointFragment;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
 import com.yunspeak.travel.ui.fragment.CircleFragment;
@@ -26,7 +31,10 @@ import com.yunspeak.travel.ui.find.FindFragment;
 import com.yunspeak.travel.ui.me.me.MeFragment;
 import com.yunspeak.travel.ui.view.GradientTextView;
 import com.yunspeak.travel.utils.GlobalUtils;
+import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
+import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.TypefaceUtis;
 import com.hyphenate.EMCallBack;
@@ -34,12 +42,18 @@ import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.util.NetUtils;
+import com.yunspeak.travel.utils.UserUtils;
+import com.yunspeak.travel.utils.XEventUtils;
 
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import butterknife.BindView;
 
 /**
  * 主页面
@@ -47,44 +61,30 @@ import java.util.List;
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
     public static final int REQ = 0;
     public static final int RESULT = 1;
+    public static final int UP_RESULT = 2;
     private List<GradientTextView> iconFonts = new ArrayList<>(5);
     private List<TextView> iconNames = new ArrayList<>(5);
-    @ViewInject(R.id.vp_home)
-    private ViewPager mVpHome;
     private List<Fragment> fragments;
     //渐变图标
-    @ViewInject(R.id.tv_home_fonts_icon)
-    private GradientTextView mTvHomeIconFonts;
-    @ViewInject(R.id.tv_appoint_fonts_icon)
-    private GradientTextView mTvAppointIconFonts;
-    @ViewInject(R.id.tv_circle_fonts_icon)
-    private GradientTextView mTvCircleIconFonts;
-    @ViewInject(R.id.tv_find_fonts_icon)
-    private GradientTextView mTvFindIconFonts;
-    @ViewInject(R.id.tv_me_fonts_icon)
-    private GradientTextView mTvMeIconFonts;
-    @ViewInject(R.id.tv_circle_name)
-    private TextView mTvCircleName;
-    @ViewInject(R.id.tv_appoint_name)
-    private TextView mTvAppointName;
-    @ViewInject(R.id.tv_me_name)
-    private TextView mTvMeName;
-    @ViewInject(R.id.tv_find_name)
-    private TextView mTvFindName;
-    @ViewInject(R.id.tv_home_name)
-    private TextView mTvHomeName;
-    @ViewInject(R.id.ll_appoint_click)
-    private LinearLayout mLlAppointClick;
-    @ViewInject(R.id.ll_circle_click)
-    private LinearLayout mLlCircleClick;
-    @ViewInject(R.id.ll_me_click)
-    private LinearLayout mLlMeClick;
-    @ViewInject(R.id.ll_find_click)
-    private LinearLayout mLlFindClick;
-    @ViewInject(R.id.ll_main_click)
-    private LinearLayout mLlMainClick;
-    @ViewInject(R.id.ll_bottom)
-    private LinearLayout mLlBottom;
+    @BindView(R.id.vp_home) ViewPager mVpHome;
+    @BindView(R.id.tv_home_fonts_icon) GradientTextView mTvHomeIconFonts;
+    @BindView(R.id.tv_appoint_fonts_icon) GradientTextView mTvAppointIconFonts;
+    @BindView(R.id.tv_circle_fonts_icon) GradientTextView mTvCircleIconFonts;
+    @BindView(R.id.tv_find_fonts_icon) GradientTextView mTvFindIconFonts;
+    @BindView(R.id.tv_me_fonts_icon) GradientTextView mTvMeIconFonts;
+    @BindView(R.id.tv_circle_name) TextView mTvCircleName;
+    @BindView(R.id.tv_appoint_name) TextView mTvAppointName;
+    @BindView(R.id.tv_me_name) TextView mTvMeName;
+    @BindView(R.id.tv_find_name) TextView mTvFindName;
+    @BindView(R.id.tv_home_name) TextView mTvHomeName;
+    @BindView(R.id.ll_appoint_click) LinearLayout mLlAppointClick;
+    @BindView(R.id.ll_circle_click) LinearLayout mLlCircleClick;
+    @BindView(R.id.ll_me_click) LinearLayout mLlMeClick;
+    @BindView(R.id.ll_find_click) LinearLayout mLlFindClick;
+    @BindView(R.id.ll_main_click) LinearLayout mLlMainClick;
+    @BindView(R.id.ll_bottom) LinearLayout mLlBottom;
+    private boolean isNetwork;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +92,20 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         initHXListener();
         String registrationId = PushAgent.getInstance(this).getRegistrationId();
         LogUtils.e("注册ID为"+registrationId);
+        registerEventBus(this);
+        if (!NetworkUtils.isNetworkConnected(this)) {
+            ToastUtils.showToast("网络未连接");
+        }
+        isNetwork = getIntent().getBooleanExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, true);
+        if (!isNetwork || GlobalUtils.getUserInfo()==null){
+            sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
+            String userName = sharedPreferences.getString(IVariable.SAVE_NAME, "");
+            String userPwd = sharedPreferences.getString(IVariable.SAVE_PWD, "");
+            //网络可用验证登录
+                Map<String, String> stringMap = MapUtils.Build().addKey(this).addUserName(userName).addPassword(userPwd).end();
+                XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap, IVariable.TYPE_POST_LOGIN, new HomeLoginEvent());
 
-      
+        }
     }
 
     /**
@@ -190,7 +202,20 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         initIconFonts();
         setCheckedOfPosition(0);
     }
-
+    @Subscribe
+   public void onEvent(HomeLoginEvent event){
+       if (event.isSuccess()){
+           Login object = GsonUtils.getObject(event.getResult(), Login.class);
+           UserInfo data = object.getData();
+           UserUtils.saveUserInfo(data);
+           if (GlobalUtils.getUserInfo()==null){
+               // TODO: 2016/11/5 0005 清除app所有缓存，不再提示
+               ToastUtils.showToast("用户信息发生错误，请尝试重新登录，若多次无效，可清除缓存！");
+           }
+       }else {
+           ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
+       }
+   }
     /**
      * 初始化字体图标
      */
@@ -328,6 +353,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             });
         }}
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterEventBus(this);
+    }
 }
 
 

@@ -67,10 +67,11 @@
             <TextView
                 android:id="@+id/tv_address"
                 style="@style/activityAddDestinationEd"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:gravity="center"
                 android:text="选择地址▼"
+                android:minWidth="80dp"
                 android:textColor="@color/otherTitleBg"
                 android:textSize="13sp" />
 
@@ -115,12 +116,11 @@
                 android:textColor="@color/colorb5b5b5"
                 android:textSize="25sp" />
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:visibility="gone"
                 android:id="@+id/iv_image"
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_width="160dp"
+                android:layout_height="78dp"/>
            <com.yunspeak.travel.ui.view.FontsIconTextView
                android:visibility="gone"
                android:id="@+id/tv_delete"

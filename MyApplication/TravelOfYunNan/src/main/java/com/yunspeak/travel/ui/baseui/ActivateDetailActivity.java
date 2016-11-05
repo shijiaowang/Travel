@@ -26,29 +26,22 @@ import org.xutils.x;
 
 import java.util.Map;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/7/26 0026.
  * 活动详情
  */
 public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailEvent> {
-    @ViewInject(R.id.wv_html)
-    private WebView mWvHtml;
-    @ViewInject(R.id.iv_bg)
-    private SimpleDraweeView mIvBg;
-    @ViewInject(R.id.iv_icon)
-    private SimpleDraweeView mIvIcon;
-    @ViewInject(R.id.tv_name)
-    private TextView mTvName;
-    @ViewInject(R.id.tv_content)
-    private TextView mTvContnet;
-    @ViewInject(R.id.tv_money)
-    private TextView mTvMoney;
-    @ViewInject(R.id.tv_money2)
-    private TextView mTvMoney2;
-    @ViewInject(R.id.tv_number)//人数
-    private TextView mTvNumber;
-    @ViewInject(R.id.tv_time)//时间
-    private TextView mTvTime;
+    @BindView(R.id.wv_html) WebView mWvHtml;
+    @BindView(R.id.iv_bg) SimpleDraweeView mIvBg;
+    @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
+    @BindView(R.id.tv_name) TextView mTvName;
+    @BindView(R.id.tv_content) TextView mTvContnet;
+    @BindView(R.id.tv_money) TextView mTvMoney;
+    @BindView(R.id.tv_money2) TextView mTvMoney2;
+    @BindView(R.id.tv_number) TextView mTvNumber;
+    @BindView(R.id.tv_time) TextView mTvTime;
     private String aId;
 
 

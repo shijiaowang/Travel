@@ -39,6 +39,8 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+
 
 /**
  * Created by wangyang on 2016/7/27 0027.
@@ -50,8 +52,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
     private int GO_WHERE_PAGE = -1;
     private boolean isNetWork = false;//缓存登录时是否有网
     private SharedPreferences sharedPreferences;
-    @ViewInject(R.id.pb_load)
-    private View mPbLoad;
+    @BindView(R.id.pb_load) View mPbLoad;
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -144,7 +145,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
         } else {
             //网络可用验证登录
             Map<String, String> stringMap = MapUtils.Build().addKey(this).addUserName(userName).addPassword(userPwd).end();
-            XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, stringMap, IVariable.TYPE_POST_LOGIN, new WelcomeEvent());
+            XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap, IVariable.TYPE_POST_LOGIN, new WelcomeEvent());
         }
     }
 
@@ -165,7 +166,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
      *
      * @param event
      */
-    private void login(HttpEvent event) {
+    private void login(WelcomeEvent event) {
         LogUtils.e(event.getMessage() + event.getCode());
         if (event.isSuccess()) {
             isNetWork = true;

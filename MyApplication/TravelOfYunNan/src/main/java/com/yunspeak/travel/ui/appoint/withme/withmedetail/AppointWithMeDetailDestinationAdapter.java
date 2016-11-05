@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.appoint.withme.withmedetail;
 
 import android.content.Context;
+import android.view.View;
 
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
 
 import java.util.List;
 
@@ -19,8 +21,13 @@ public class AppointWithMeDetailDestinationAdapter extends TravelBaseAdapter<App
     }
 
     @Override
-    protected void initListener(BaseHolder baseHolder, AppointWithMeDetailBean.DataBean.RoutesBean item, int position) {
-
+    protected void initListener(BaseHolder baseHolder, final AppointWithMeDetailBean.DataBean.RoutesBean item, int position) {
+       baseHolder.root.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               DestinationDetailActivity.start(mContext,item.getId(),item.getTitle());
+           }
+       });
     }
 
     @Override

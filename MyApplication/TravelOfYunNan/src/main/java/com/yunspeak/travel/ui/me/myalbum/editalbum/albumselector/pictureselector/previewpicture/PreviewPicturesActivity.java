@@ -21,16 +21,18 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 
 /**
  * Created by wangyang on 2016/8/24.
  * 预览图片
  */
 public class PreviewPicturesActivity extends BaseActivity implements View.OnClickListener {
-    @ViewInject(R.id.vp_picture) ViewPager mVpPicture;
-    @ViewInject(R.id.tv_back) FontsIconTextView mTvBack;
-    @ViewInject(R.id.tv_cancel)FontsIconTextView mTvCancel;
-    @ViewInject(R.id.tv_send) TextView mTvSend;
+    @BindView(R.id.vp_picture) ViewPager mVpPicture;
+    @BindView(R.id.tv_back) FontsIconTextView mTvBack;
+    @BindView(R.id.tv_cancel) FontsIconTextView mTvCancel;
+    @BindView(R.id.tv_send) TextView mTvSend;
     private int currentPosition = 0;
     private List<String> mTempImage = new ArrayList<>();
     private boolean sendFlag=false;

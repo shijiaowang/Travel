@@ -7,6 +7,7 @@
     android:layout_height="wrap_content">
     <TextView
         android:text="添加地点"
+        android:id="@+id/tv_title"
         android:gravity="center"
         android:background="@color/otherTitleBg"
         android:textColor="@color/colorFAFAFA"
@@ -29,6 +30,8 @@
         <EditText
             android:id="@+id/et_destination"
             android:textColor="@color/colorb5b5b5"
+            android:maxLength="20"
+            style="@style/commonSingleLineTextStyle"
             android:textSize="13sp"
             android:hint="请输入地点"
             android:textColorHint="@color/colorb5b5b5"
