@@ -109,7 +109,7 @@ public class ThemeCommonHolder extends BaseRecycleViewHolder {
                 @Override
                 public void onClick(View v) {
                     if (type.equals("1")){//帖子
-                        CircleDetailActivity.start(mContext,datas.getCid()+"");
+                         CircleDetailActivity.start(mContext,datas.getCid()+"");
                     }else {//发现
                         switch (findType){
                             case 1://游记
