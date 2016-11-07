@@ -11,7 +11,7 @@ import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.utils.UIUtils;
 
 /**
- * Created by android on 2016/3/15.
+ * Created by wangyang on 2016/3/15.
  * 提取�?有fragment共有的状态，根据状�?�显示不同页面的自定义控�?
  * -未加载，-加载中，-加载失败�?-数据为空,-加载成功
  */
@@ -26,6 +26,7 @@ public abstract class LoadingPage extends FrameLayout {
     private ImageView errorView;
     private View successView;
     private View emptyView;
+    private View floatLoading;
 
     public LoadingPage(Context context) {
         this(context, null);
@@ -78,12 +79,18 @@ public abstract class LoadingPage extends FrameLayout {
         //是否展示错误页面
         errorView.setVisibility(mCurrentState == STATE_LOAD_ERROR ? View.VISIBLE : View.GONE);
         emptyView.setVisibility(mCurrentState == STATE_LOAD_EMPTY ? View.VISIBLE : View.GONE);
+        if (floatLoading!=null)floatLoading.setVisibility(GONE);
         //这是加载成功的界面
         if (mCurrentState == STATE_LOAD_SUCCESS && successView == null) {
             successView = onCreateSuccessView();
             //不为空加
             if (successView != null && successView.getParent()==null) {
                 addView(successView);
+                if (floatLoading == null) {
+                    floatLoading = UIUtils.inflate(R.layout.loading_view);
+                    floatLoading.setVisibility(GONE);
+                    addView(floatLoading);//添加加载页面,悬浮于成功页面之上
+                }
             }
         }
         //是否显示页面
@@ -167,5 +174,8 @@ public abstract class LoadingPage extends FrameLayout {
             return state;
         }
 
+    }
+    public void setLoading(boolean isLoading){
+        floatLoading.setVisibility(VISIBLE);
     }
 }

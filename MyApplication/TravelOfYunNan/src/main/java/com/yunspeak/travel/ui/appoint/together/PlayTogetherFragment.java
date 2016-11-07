@@ -1,6 +1,8 @@
 package com.yunspeak.travel.ui.appoint.together;
 
 import com.yunspeak.travel.global.IState;
+import com.yunspeak.travel.ui.appoint.AppointFragment;
+import com.yunspeak.travel.ui.appoint.SelectEvent;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
 import com.yunspeak.travel.global.IVariable;
@@ -8,6 +10,9 @@ import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.yunspeak.travel.ui.view.refreshview.XListView;
 import com.yunspeak.travel.utils.GsonUtils;
+import com.yunspeak.travel.utils.MapUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -19,6 +24,10 @@ import java.util.List;
 public class PlayTogetherFragment extends LoadAndPullBaseFragment<AppointTogetherEvent, AppointTogetherBean, AppointTogetherBean.DataBean> implements XListView.IXListViewListener {
 
     private AppointTogetherAdapter appointTogetherAdapter;
+
+    private String label="";
+    private String timePosition="1";
+    private String orderPosition="1";
 
     @Override
     protected void initListener() {
@@ -44,7 +53,7 @@ public class PlayTogetherFragment extends LoadAndPullBaseFragment<AppointTogethe
                 int clickPosition = appointTogetherEvent.getClickPosition();
                 getmDatas().get(clickPosition).setCount_like(object.getData().getCount_like());
                 getmDatas().get(clickPosition).setIs_like("1");
-                appointTogetherAdapter.notifyDataSetChanged();
+                appointTogetherAdapter.notifyItemChanged(appointTogetherEvent.getClickPosition());
                 break;
             default:
                 super.onSuccess(appointTogetherEvent);
@@ -52,4 +61,19 @@ public class PlayTogetherFragment extends LoadAndPullBaseFragment<AppointTogethe
         }
 
     }
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+        super.childAdd(builder, type);
+        builder.addLabel(label).add("time",timePosition).add("sort",orderPosition);
+    }
+
+    @Subscribe
+    public void onEvent(SelectEvent selectEvent){
+        label = selectEvent.getLabel();
+         timePosition=selectEvent.getTimePosition();
+         orderPosition=selectEvent.getOrderPosition();
+        onLoad(TYPE_REFRESH);
+    }
+
+
 }

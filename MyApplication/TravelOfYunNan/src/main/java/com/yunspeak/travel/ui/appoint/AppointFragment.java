@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -14,30 +16,35 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.SelectCommonBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointCommonPop;
-import com.yunspeak.travel.ui.appoint.popwindow.AppointOrderPop;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointOrderPop2;
 import com.yunspeak.travel.ui.appoint.together.PlayTogetherFragment;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
 import com.yunspeak.travel.ui.appoint.withme.PlayWithMeFragment;
+import com.yunspeak.travel.ui.find.findcommon.CityBean;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 import com.yunspeak.travel.utils.FastBlur;
-import com.yunspeak.travel.utils.ToastUtils;
+import com.yunspeak.travel.utils.GsonUtils;
+import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.util.DensityUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import butterknife.BindView;
 /**
  * Created by wangyang on 2016/7/20 0020.
@@ -45,8 +52,7 @@ import butterknife.BindView;
  */
 public class AppointFragment extends BaseFragment implements View.OnClickListener {
     String[] orderType = {"最新发布", "价格升序", "价格降序","出行人数","行程天数"};
-    String[] timeType = {"一周内", "一月内", "一个月以上"};
-    String[] timeTypePop = {"·\u3000一周内", "·\u3000一月内", "·\u3000一个月以上"};
+    String[] timeType = {"默认时序","一周内", "一个月内", "一个月以上"};
     @BindView(R.id.tv_play_together) TextView mTvPlayTogether;
     @BindView(R.id.tv_play_with_me) TextView mTvPlayWithMe;
     @BindView(R.id.ll_switch) LinearLayout mLlSwitch;
@@ -56,32 +62,78 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     @BindView(R.id.vp_appoint) ViewPager mVpAppoint;
     @BindView(R.id.fab_add) FloatingActionButton mFabAdd;
     @BindView(R.id.ll_root) LinearLayout mLlRoot;
-
+  private boolean isInitLabel=false;//是否初始化label
     private boolean isTogether = false;
     private List<Fragment> fragments;
-    private AppointCommonPop appointCommonPop;
-    private AppointOrderPop appointOrderPop;
-    private int timePosition = -1;
-    private int orderPosition = 1;//选中的
+    public  int timePosition = 1;
+    public  int orderPosition = 1;//选中的
+    public  String label="";
     private boolean isShowDialog = false;
+    private Map<String, List<CityBean>> rights;
+    private AppointCommonPop appointCommonPop;
+    private List<CityBean> lefts;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
+    }
 
     @Override
     protected int initLayoutRes() {
         return R.layout.fragment_appoint;
     }
+    @Subscribe
+    public void onEvent(AppointEvent appointEvent){
+        AppointBean appointBean = GsonUtils.getObject(appointEvent.getResult(), AppointBean.class);
+        try {
+            AppointBean.DataBean data = appointBean.getData();
+            List<CityBean> labelUser = data.getLabel_user();
+            List<CityBean> labelOffice = data.getLabel_office();
+            List<CityBean> labelPlay = data.getLabel_play();
+            rights = new HashMap<>();
+            rights.put("1",labelUser);
+            rights.put("2",labelOffice);
+            rights.put("3",labelPlay);
+            isInitLabel=true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            isInitLabel=false;
+        }
 
+    }
     @Override
     protected void initView() {
+        getLabel();
+    }
 
+    private void getLabel() {
+        Map<String, String> end = MapUtils.Build().addKey().end();
+        XEventUtils.getUseCommonBackJson(IVariable.GET_PLAY_LABEL,end,0,new AppointEvent());
     }
 
     @Override
     protected void initData() {
+        lefts = new ArrayList<>(3);
+        CityBean cityBean1=new CityBean();
+        cityBean1.setId("1");
+        cityBean1.setName("用户标签");
+        CityBean cityBean2=new CityBean();
+        cityBean2.setId("2");
+        cityBean2.setName("认证标签");
+        CityBean cityBean3=new CityBean();
+        cityBean3.setId("3");
+        cityBean3.setName("玩法");
+        lefts.add(cityBean1);
+        lefts.add(cityBean2);
+        lefts.add(cityBean3);
         fragments = new ArrayList<>(2);
         fragments.add(new PlayTogetherFragment());
         fragments.add(new PlayWithMeFragment());
         mVpAppoint.setAdapter(new CommonPagerAdapter(getChildFragmentManager(), fragments));
-
     }
 
     public Bitmap createViewBitmap(View v) {
@@ -94,13 +146,6 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected void initListener() {
-
-        mTvTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         mTvType.setOnClickListener(this);
         mTvTime.setOnClickListener(this);
         mFabAdd.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +173,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             }
         });
 
-        mVpAppoint.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mVpAppoint.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -224,48 +269,66 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_type:
-                showType();
+                if (isInitLabel){
+                    showType();
+                }else {
+                    getLabel();
+                }
+
                 break;
             case R.id.tv_order:
-                AppointOrderPop2.showOrderPop(mTvOrder, new ParentPopClick() {
+                AppointOrderPop2.showOrderPop(getContext(),mTvOrder, new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         orderPosition=type;
                         mTvOrder.setText(orderType[type-1]);
+                        refreshAppoint();
                     }
                 },orderPosition-1);
                 break;
             case R.id.tv_time:
-                orderPop(mTvTime, timeTypePop, timePosition);
+                AppointOrderPop2.showTimePop(getContext(), mTvTime, new ParentPopClick() {
+                    @Override
+                    public void onClick(int type) {
+                        timePosition=type;
+                        mTvTime.setText(timeType[type-1]);
+                      refreshAppoint();
+                    }
+                },timePosition-1);
                 break;
         }
     }
 
-    private void orderPop(final TextView textView, String[] titile, int clickPosition) {
-        if (appointOrderPop == null) {
-            appointOrderPop = new AppointOrderPop();
 
-        }
-        appointOrderPop.setOnItemClickListener(new AppointOrderPop.OnItemClickListener() {
-            @Override
-            public void onItemClick(int type) {
-                textView.setText(timeType[type]);
-                    timePosition = type;
-            }
-        });
-        appointOrderPop.showOrderPop(mTvTime, titile, clickPosition);
-    }
 
     private void showType() {
-        ToastUtils.showToast("等待真是数据");
-        /*if (appointCommonPop == null) {
-            appointCommonPop = AppointCommonPop.newInstance(null, null);
+        if (appointCommonPop == null) {
+            lefts.get(0).setChecked(true);
+            appointCommonPop = AppointCommonPop.newInstance(lefts, rights, new ParentPopClick() {
+                @Override
+                public void onClick(int type) {
+                    label = appointCommonPop.getTyepName();
+                    refreshAppoint();
+                }
+            });
         }
         if (appointCommonPop.isShowing()) {
             appointCommonPop.dismiss();
         } else {
-            appointCommonPop.showDown(getContext(), mTvType);
-        }*/
+            appointCommonPop.showDown(getContext(),mTvType);
+        }
+    }
+
+    private void refreshAppoint() {
+        EventBus.getDefault().post(new SelectEvent(label,timePosition+"",orderPosition+""));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().unregister(this);
+        }
     }
 
 

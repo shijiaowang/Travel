@@ -1,10 +1,15 @@
 package com.yunspeak.travel.ui.appoint.withme;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.appoint.AppointFragment;
+import com.yunspeak.travel.ui.appoint.SelectEvent;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
 import com.yunspeak.travel.ui.view.refreshview.XListView;
 import com.yunspeak.travel.utils.GsonUtils;
+import com.yunspeak.travel.utils.MapUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -15,6 +20,10 @@ import java.util.List;
  */
 public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEvent,AppointWithMeBean,AppointWithMeBean.DataBean> implements XListView.IXListViewListener {
 
+
+    private String label="";
+    private String timePosition="1";
+    private String orderPosition="1";
 
     @Override
     protected BaseRecycleViewAdapter<AppointWithMeBean.DataBean> initAdapter(List<AppointWithMeBean.DataBean> httpData) {
@@ -34,7 +43,7 @@ public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEve
                 int clickPosition = appointWithMeEvent.getPosition();
                 getmDatas().get(clickPosition).setCount_like(object.getData().getCount_like());
                 getmDatas().get(clickPosition).setIs_like("1");
-               mAdapter.notifyItemChanged(appointWithMeEvent.getPosition());
+                 mAdapter.notifyItemChanged(appointWithMeEvent.getPosition());
                // mAdapter.notifyDataSetChanged();
                 break;
             default:
@@ -42,6 +51,20 @@ public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEve
                 break;
         }
 
+    }
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+        super.childAdd(builder, type);
+        builder.addLabel(label).add("time",timePosition).add("sort",orderPosition);
+    }
+
+    @Subscribe
+    public void onEvent(SelectEvent selectEvent){
+        label = selectEvent.getLabel();
+        timePosition = selectEvent.getTimePosition();
+        orderPosition = selectEvent.getOrderPosition();
+        onLoad(TYPE_REFRESH);
     }
 
     @Override

@@ -22,8 +22,7 @@ import java.util.List;
  * Created by wangyang on 2016/9/20 0020.
  */
 public class AppointSpinnerPop {
-    public static void showSpinnerPop(View view, final List<SpinnerBean> text) {
-        final Context context= UIUtils.getContext();
+    public static void showSpinnerPop(final Context context, View view, final List<SpinnerBean> text) {
         if (text==null || text.size()==0)return;
         // 获取弹出视图对象
          ListView viewPopup = ((ListView) View.inflate(context, R.layout.pop_spinner, null));

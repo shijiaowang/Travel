@@ -458,7 +458,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
-        AppointDetailMorePop.showMorePop(mToolbar, collection, new ParentPopClick() {
+        AppointDetailMorePop.showMorePop(this,mToolbar, collection, new ParentPopClick() {
             @Override
             public void onClick(int type) {
                 String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;

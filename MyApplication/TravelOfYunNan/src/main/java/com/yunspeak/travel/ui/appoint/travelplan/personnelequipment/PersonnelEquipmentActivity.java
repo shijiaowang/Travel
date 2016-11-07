@@ -142,10 +142,10 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
 
                 break;
             case R.id.rl_auth_select:
-                AppointSpinnerPop.showSpinnerPop(mRlAuthSelect,auths);
+                AppointSpinnerPop.showSpinnerPop(this,mRlAuthSelect,auths);
                 break;
             case R.id.rl_sex_select:
-                AppointSpinnerPop.showSpinnerPop(mRlSexSelect,sexs);
+                AppointSpinnerPop.showSpinnerPop(this,mRlSexSelect,sexs);
                 break;
         }
     }

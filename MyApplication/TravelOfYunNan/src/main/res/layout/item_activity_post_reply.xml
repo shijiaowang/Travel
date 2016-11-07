@@ -95,6 +95,7 @@
     </LinearLayout>
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_image"
+        android:layout_marginBottom="5dp"
         android:layout_marginRight="17dp"
         android:layout_marginLeft="17dp"
         android:layout_width="match_parent"

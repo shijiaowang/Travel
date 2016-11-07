@@ -113,6 +113,9 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
      * @param type
      */
     protected void onLoad(int type) {
+        if (type==TYPE_REFRESH){
+            isFirstInflate=true;
+        }
         MapUtils.Builder builder = MapUtils.Build().addKey().addUserId();
         childAdd(builder,type);
         Map<String, String> baseMap = builder.end();

@@ -279,7 +279,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
         if (appointCommonPop.isShowing()) {
             appointCommonPop.dismiss();
         } else {
-            appointCommonPop.showDown(mTvLocation);
+            appointCommonPop.showDown(this,mTvLocation);
         }
     }
 
@@ -305,7 +305,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
                 onLoad(TYPE_REFRESH);
             }
         });
-        appointOrderPop.showOrderPop( mTvOrder, titile, clickPosition);
+        appointOrderPop.showOrderPop(this,mTvOrder, titile, clickPosition);
     }
 
     @Override

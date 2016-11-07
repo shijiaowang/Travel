@@ -22,9 +22,8 @@ public class AppointOrderPop {
 
     private PopupWindow window;
 
-    public  void showOrderPop(View view, String[] title, int clickPosition){
+    public  void showOrderPop(final Context context, View view, String[] title, int clickPosition){
            // 获取弹出视图对象
-        final Context context= UIUtils.getContext();
            View viewPopup = View.inflate(context, R.layout.pop_window_order, null);
 
 
@@ -56,6 +55,7 @@ public class AppointOrderPop {
            });
            // 响应 视图外的地方 点击关闭当前
            window.setOutsideTouchable(true);
+
         WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
         lp.alpha=0.7f;
         ((Activity) context).getWindow().setAttributes(lp);

@@ -51,7 +51,7 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
     protected boolean isSuccessed=false;
     private boolean isVisible=false;
     private boolean isPrepared=false;
-    private boolean isFirst=true;
+    protected boolean isFirst=true;
 
 
     @Override
@@ -126,8 +126,9 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
 
     private void load(int type) {
         if (isVisible && isPrepared && isFirst) {
-            isFirst=false;
+
             onLoad(type);
+            isFirst=false;
         }
     }
 
@@ -251,6 +252,12 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
 
 
     protected void onLoad(int type) {
+        if (type==TYPE_REFRESH){
+            isSuccessed=false;
+            if (!isFirst) {
+                setLoading();
+            }
+        }
         MapUtils.Builder builder = MapUtils.Build().addKey().addUserId();
         childAdd(builder,type);
         Map<String, String> baseMap = builder.end();
@@ -338,5 +345,8 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
         linearLayoutManager.setAutoMeasureEnabled(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
+    }
+    protected void setLoading(){
+        loadingPage.setLoading(true);
     }
 }

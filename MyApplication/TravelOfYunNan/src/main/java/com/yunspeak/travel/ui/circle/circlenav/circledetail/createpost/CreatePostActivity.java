@@ -300,8 +300,8 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
             }
             String string = stringBuilder.toString();
             if (!StringUtils.isEmptyNotNull(string)){
-                string.substring(string.length()-1,string.length());
-                inform=string;
+                String newString = string.substring(0, string.length()-1);
+                inform=newString;
             }
         }
         if (currentType==CREATE_POST) {
@@ -341,9 +341,11 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         String content = mEtContent.getText().toString().trim();
-        if (StringUtils.isEmptyNotNull(content)&&(mSelectPeople==null || mSelectPeople.size()==0)) {
+        if (currentType==CREATE_POST&&StringUtils.isEmptyNotNull(content)) {
             ToastUtils.showToast("请输入内容");
-        }else {
+        }else if (currentType==REPLY_POST && StringUtils.isEmptyNotNull(content) && getListSize(mSelectPeople)==0 && getListSize(pictures)==0){
+            ToastUtils.showToast("请输入其中一项内容，文字或图片或@的人");
+        } else {
             setIsProgress(true,false);
             createPost(content);
         }

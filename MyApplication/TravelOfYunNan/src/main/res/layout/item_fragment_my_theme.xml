@@ -50,8 +50,7 @@
             android:text="@string/activity_my_appoint_delete"
             android:textColor="@color/Ffbf75"
             android:textSize="15sp"
-            android:layout_marginRight="14dp"
-            android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

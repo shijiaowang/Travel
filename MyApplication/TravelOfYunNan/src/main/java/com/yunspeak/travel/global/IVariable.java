@@ -17,6 +17,7 @@ public interface IVariable {
     String PLAY_TOGETHER = API_KEY + "Travel/travelLists/";//一起玩
     String PUSH_MY_APPOINT = API_KEY + "UserTravel/setMyTravelTotravelplan";//推送约伴
     String PLAY_WITHE_ME = API_KEY + "Travel/travelplanLists/";//带我玩
+    String GET_PLAY_LABEL = API_KEY + "Travel/getAllLabel/";//获取玩法类型label
     String PLAY_TOGETHER_DETAIL = API_KEY + "Travel/getTravel/";//一起玩详情
     String WITHE_ME_DETAIL = API_KEY + "Travel/getTravelplan/";//找人带详情
     String GET_CUSTOM_SPOT = API_KEY + "Travel/getTravelbyUser/";//获取用户自定义景点列表
@@ -73,6 +74,8 @@ public interface IVariable {
      * 我
      */
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
+    String DELETE_POST = API_KEY + "Circle/deleteForum/";//删除帖子
+    String DELETE_PUBLISH = API_KEY + "Circle/deleteForumreply/";//删除发表
     String MY_CREATE_APPOINT = API_KEY + "UserTravel/getMyTravel/";//获取我创建的约伴
     String COLLECTION = API_KEY + "User/setUserCollect/";//统一收藏
     String CANCEL_COMMON_COLLECTION = API_KEY + "User/delUsercollectlists/";//取消收藏，统一

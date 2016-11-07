@@ -9,6 +9,7 @@ import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.yunspeak.travel.ui.view.refreshview.XListView;
+import com.yunspeak.travel.utils.ToastUtils;
 
 import java.util.List;
 
@@ -30,6 +31,21 @@ public class MyPublishFragment extends LoadAndPullBaseFragment<MyPublishEvent,My
     protected void initListener() {
         super.initListener();
         changeMargin(3,6);
+    }
+
+    @Override
+    public void onSuccess(MyPublishEvent myPublishEvent) {
+        switch (myPublishEvent.getType()){
+            case TYPE_DELETE:
+                ToastUtils.showToast("删除成功");
+                mDatas.remove(myPublishEvent.getPosition());
+                mAdapter.notifyItemRemoved(myPublishEvent.getPosition());
+                break;
+            default:
+                super.onSuccess(myPublishEvent);
+                break;
+        }
+
     }
 
     @Override

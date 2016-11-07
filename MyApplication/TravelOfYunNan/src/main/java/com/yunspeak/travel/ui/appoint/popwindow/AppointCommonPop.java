@@ -57,8 +57,7 @@ public class AppointCommonPop implements View.OnClickListener {
      * 显示在指定控件的下面
      * @param view  参考的view
      */
-    public void showDown( View view){
-        final Context context= UIUtils.getContext();
+    public void showDown(final Context context, View view){
         View viewPopup = LayoutInflater.from(context).inflate(R.layout.item_appoint_pop_select_play_way, null);
         LinearLayout mLlClear = ((LinearLayout) viewPopup.findViewById(R.id.ll_clear));
         TextView mTvCancel = ((TextView) viewPopup.findViewById(R.id.tv_cancel));
@@ -88,7 +87,7 @@ public class AppointCommonPop implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (rights.get(checkId).get(position).isChecked()){
                     rights.get(checkId).get(position).setChecked(false);
-                    selectCommonBeans.remove(rights.get(position));
+                    selectCommonBeans.remove(rights.get(checkId).get(position));
                 }else {
                     rights.get(checkId).get(position).setChecked(true);
                     selectCommonBeans.add(rights.get(checkId).get(position));
@@ -156,6 +155,23 @@ public class AppointCommonPop implements View.OnClickListener {
         }
         selectCommonBeans.clear();
         rightAdapter.notifyDataSetChanged();
+    }
+    public String getTyepName(){
+        if (selectCommonBeans.size()==0){
+            return "";
+        }
+        StringBuilder stringBuilder=new StringBuilder();
+
+        for (int i=0;i<selectCommonBeans.size();i++){
+            if (i==selectCommonBeans.size()-1){
+                String id = selectCommonBeans.get(i).getName();
+                stringBuilder.append(id);
+            }else {
+                String id = selectCommonBeans.get(i).getName();
+                stringBuilder.append(id+",");
+            }
+        }
+        return stringBuilder.toString();
     }
     public String getTyepString(){
         if (selectCommonBeans.size()==0){

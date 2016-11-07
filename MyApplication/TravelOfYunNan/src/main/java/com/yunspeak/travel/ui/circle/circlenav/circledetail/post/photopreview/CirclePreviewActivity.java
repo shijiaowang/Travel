@@ -171,17 +171,25 @@ public class CirclePreviewActivity extends AppCompatActivity implements View.OnC
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            ZoomableDraweeView zoomableDraweeView =new ZoomableDraweeView(CirclePreviewActivity.this);
+            final ZoomableDraweeView zoomableDraweeView =new ZoomableDraweeView(CirclePreviewActivity.this);
             zoomableDraweeView.setAllowTouchInterceptionWhileZoomed(false);
             DraweeController controller = Fresco.newDraweeControllerBuilder()
                     .setUri(imgListsBeen.get(position))
                     .build();
             zoomableDraweeView.setController(controller);
             zoomableDraweeView.setTapListener(new GestureDetector.SimpleOnGestureListener(){
+
+
                 @Override
-                public boolean onSingleTapUp(MotionEvent e) {
+                public boolean onSingleTapConfirmed(MotionEvent e) {
+                    LogUtils.e("onSingleTapConfirmed");
                     onBackPressed();
-                    return true;
+                    return super.onSingleTapConfirmed(e);
+                }
+
+                @Override
+                public boolean onDoubleTap(MotionEvent e) {
+                    return super.onDoubleTap(e);
                 }
 
                 @Override
@@ -236,7 +244,7 @@ public class CirclePreviewActivity extends AppCompatActivity implements View.OnC
         if (!fileParent.exists()){
             fileParent.mkdirs();
         }
-        String fileName=filepath+MD5Utils.encode(System.currentTimeMillis()+"")+".jpg";
+        String fileName=filepath+MD5Utils.encode(System.currentTimeMillis()+"")+".jpeg";
         Uri loadUri = Uri.parse(url);
         if (loadUri == null) {
             return ;
@@ -274,7 +282,7 @@ public class CirclePreviewActivity extends AppCompatActivity implements View.OnC
 
                 @Override
                 public void onSuccess(File result) {
-                    ToastUtils.showToast("保存成功");
+                    ToastUtils.showToast("保存成功,路径为:"+result.getAbsolutePath());
                 }
                 @Override
                 public void onError(Throwable ex, boolean isOnCallback) {

@@ -53,10 +53,11 @@
                             android:id="@+id/tv_bar_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             android:layout_gravity="center"
+                            android:gravity="center"
                             android:lines="1"
                             android:ellipsize="end"
-                            android:text="232222331"
                             android:textColor="@color/colorFAFAFA"
                             android:textSize="18sp" />
                     </android.support.v7.widget.Toolbar>

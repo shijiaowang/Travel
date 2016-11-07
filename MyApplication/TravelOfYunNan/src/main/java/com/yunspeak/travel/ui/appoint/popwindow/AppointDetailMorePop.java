@@ -26,9 +26,8 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  */
 public class AppointDetailMorePop {
     public static final float ALPHA=0.7f;
-    public static void showMorePop(View view, String collection, final ParentPopClick parentPopClick) {
+    public static void showMorePop(final Context context, View view, String collection, final ParentPopClick parentPopClick) {
         // 获取弹出视图对象
-        final Context context= UIUtils.getContext();
         final View viewPopup = View.inflate(context, R.layout.pop_appoint_detail_more, null);
 
         viewPopup.findViewById(R.id.ll_complaint).setOnClickListener(new View.OnClickListener() {

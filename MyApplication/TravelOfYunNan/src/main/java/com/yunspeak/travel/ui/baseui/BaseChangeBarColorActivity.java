@@ -77,7 +77,6 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ap
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_toolbar_color);
-
         mSwipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);

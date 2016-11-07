@@ -139,6 +139,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             }
         });
         tvSetCover.setOnClickListener(this);
+        mTvPhoto.setOnClickListener(this);
     }
 
     @Override
@@ -272,6 +273,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
 
     @Override
     protected void onSuccess(EditAlbumEvent event) {
+        swipeContainer.setLoadingMore(false);
         dealData(event);
     }
 
@@ -282,6 +284,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
 
     @Override
     protected void onFail(EditAlbumEvent editAlbumEvent) {
+        swipeContainer.setLoadingMore(false);
         if (editAlbumEvent.getType() == TYPE_UP_FILE) {
             ToastUtils.showToast("第" + index + "张上传失败。");
             index++;

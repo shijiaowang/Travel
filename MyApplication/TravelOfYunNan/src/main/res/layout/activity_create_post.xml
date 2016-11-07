@@ -28,7 +28,8 @@
             android:lines="1"
             android:maxLength="36"
             android:paddingLeft="10dp"
-            android:textColorHint="@color/color646464"
+            android:textColorHint="@color/colorb5b5b5"
+            android:textColor="@color/color646464"
             android:textCursorDrawable="@null"
             android:textSize="15sp" />
 
@@ -46,7 +47,8 @@
             android:background="@color/meLine"
             android:clickable="true"
             android:gravity="left"
-            android:hint="没病走两步"
+            android:textColorHint="@color/colorb5b5b5"
+            android:hint="输入文字"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:textColor="@color/color969696"

@@ -158,10 +158,10 @@ public class PersonnelEquipmentWithMeActivity extends BaseToolBarActivity implem
                 startActivityForResult(intent, REQ_CODE);
                 break;
             case R.id.rl_auth_select:
-                AppointSpinnerPop.showSpinnerPop(mRlAuthSelect,auths);
+                AppointSpinnerPop.showSpinnerPop(this,mRlAuthSelect,auths);
                 break;
             case R.id.rl_sex_select:
-                AppointSpinnerPop.showSpinnerPop(mRlSexSelect,sexs);
+                AppointSpinnerPop.showSpinnerPop(this,mRlSexSelect,sexs);
                 break;
             case R.id.bt_next:
                 try {

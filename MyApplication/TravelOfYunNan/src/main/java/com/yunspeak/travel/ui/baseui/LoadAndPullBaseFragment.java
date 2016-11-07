@@ -27,13 +27,14 @@ import java.util.List;
  * Created by wangyang on 2016/9/30 0030.
  */
 
-public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends ParentBean, F> extends LoadBaseFragment<T> implements OnRefreshListener, OnLoadMoreListener {
+public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends ParentBean, F> extends LoadBaseFragment<T> implements OnRefreshListener, OnLoadMoreListener, BaseRecycleViewAdapter.OnItemClickListener {
     protected List<F> mDatas;//从网络获取的数据
     protected BaseRecycleViewAdapter<F> mAdapter;//通用adapter
     protected RecyclerView mRvCommon;
     protected SwipeToLoadLayout mSwipe;
     protected ViewStub mVsContent;
     protected ViewStub mVsFooter;
+    private boolean isRecycleReresh;
 
     public List<F> getmDatas() {
         return mDatas;
@@ -80,6 +81,8 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
         return (Class<E>) pt.getActualTypeArguments()[1];
     }
 
+
+
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         int count=type==TYPE_REFRESH?0:getListSize(mDatas);
@@ -106,6 +109,10 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
         if (parentBean==null || loadDatas==null || loadDatas.size()==0){
             mSwipe.setLoadingMore(false);
             mSwipe.setRefreshing(false);
+            if (mDatas!=null && mAdapter!=null){
+                mDatas.clear();
+                mAdapter.notifyDataSetChanged();
+            }
             return;
         }
         if (mAdapter == null) {
@@ -113,6 +120,7 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
             mAdapter = initAdapter(mDatas);
             mRvCommon.setHasFixedSize(true);
             mRvCommon.setAdapter(mAdapter);
+            mAdapter.setItemClickListener(this);
             if (isGridLayoutManager()){
                 StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
                 staggeredGridLayoutManager.setAutoMeasureEnabled(true);
@@ -199,7 +207,26 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
     }
 
     @Override
+    public void onEvent(T t) {
+        isRecycleReresh=false;
+        super.onEvent(t);
+    }
+
+    @Override
     public void onRefresh() {
+        isRecycleReresh = true;//下拉刷新
         onLoad(TYPE_REFRESH);
+    }
+
+    @Override
+    protected void setLoading() {
+        if (!isRecycleReresh) {
+            super.setLoading();
+        }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }

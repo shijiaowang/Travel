@@ -50,6 +50,26 @@ public class MyPublishBean implements ParentBean{
         private String cname;
         private String count_like;
         private int find_type;
+        private int r_id;
+
+        public int getCid() {
+            return cid;
+        }
+
+        public void setCid(int cid) {
+            this.cid = cid;
+        }
+
+        private int cid;
+
+
+        public int getR_id() {
+            return r_id;
+        }
+
+        public void setR_id(int r_id) {
+            this.r_id = r_id;
+        }
 
         public String getF_id() {
             return f_id;

@@ -89,6 +89,7 @@ public class PostDetailBean implements ParentBean{
             private String user_img;
             private String cname;
             private String is_collect;
+            private String is_like;
             private String replay_count;
             private List<InformBean> inform;
 
@@ -168,6 +169,14 @@ public class PostDetailBean implements ParentBean{
 
             public String getUpdate_time() {
                 return update_time;
+            }
+
+            public String getIs_like() {
+                return is_like;
+            }
+
+            public void setIs_like(String is_like) {
+                this.is_like = is_like;
             }
 
             public void setUpdate_time(String update_time) {
