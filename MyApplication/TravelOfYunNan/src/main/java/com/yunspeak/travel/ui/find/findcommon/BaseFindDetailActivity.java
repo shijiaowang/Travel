@@ -141,7 +141,7 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     }
 
     private void sendMessage(String content,String pid) {
-        Map<String, String> destinationMap = MapUtils.Build().addKey(this).addFId(tId).addUserId().
+        Map<String, String> destinationMap = MapUtils.Build().addKey().addFId(tId).addUserId().
                 addContent(content).addPId(pid).add(IVariable.TYPE,detailType()).
                 addNextPage(haveNextPage).addCount(mDatas==null?0:mDatas.size()).
                 end();

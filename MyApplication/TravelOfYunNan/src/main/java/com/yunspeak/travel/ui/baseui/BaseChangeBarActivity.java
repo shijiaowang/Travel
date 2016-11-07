@@ -162,7 +162,7 @@ public abstract class BaseChangeBarActivity<T extends HttpEvent> extends BaseSta
      * @param type
      */
     protected void onLoad(int type) {
-        MapUtils.Builder builder = MapUtils.Build().addKey(this).addUserId();
+        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId();
         childAdd(builder,type);
         Map<String, String> baseMap = builder.end();
         XEventUtils.getUseCommonBackJson(initUrl(),baseMap,type,getTInstance());

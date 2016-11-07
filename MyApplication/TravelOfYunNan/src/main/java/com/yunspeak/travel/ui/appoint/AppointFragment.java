@@ -227,7 +227,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
                 showType();
                 break;
             case R.id.tv_order:
-                AppointOrderPop2.showOrderPop(getContext(), mTvOrder, new ParentPopClick() {
+                AppointOrderPop2.showOrderPop(mTvOrder, new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         orderPosition=type;
@@ -253,7 +253,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
                     timePosition = type;
             }
         });
-        appointOrderPop.showOrderPop(getContext(), mTvTime, titile, clickPosition);
+        appointOrderPop.showOrderPop(mTvTime, titile, clickPosition);
     }
 
     private void showType() {

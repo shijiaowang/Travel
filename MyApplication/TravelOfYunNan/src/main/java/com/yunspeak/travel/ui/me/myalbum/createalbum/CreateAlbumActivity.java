@@ -97,7 +97,7 @@ public class CreateAlbumActivity extends BaseCutPhotoActivity<CreateAlbumEvent> 
                 if (StringUtils.isEmpty(des)){
                     des="暂无简介";
                 }
-                Map<String, String> albumMap = MapUtils.Build().addKey(CreateAlbumActivity.this).addUserId().addTitle(albumName).addContent(des).end();
+                Map<String, String> albumMap = MapUtils.Build().addKey().addUserId().addTitle(albumName).addContent(des).end();
                 List<String> files=new ArrayList<String>();
                 files.add(filename);
                 XEventUtils.postFileCommonBackJson(IVariable.CREATE_ALBUM,albumMap,files,0,new CreateAlbumEvent());

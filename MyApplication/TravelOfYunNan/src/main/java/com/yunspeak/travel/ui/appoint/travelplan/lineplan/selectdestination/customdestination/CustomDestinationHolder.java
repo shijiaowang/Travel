@@ -68,7 +68,7 @@ public class CustomDestinationHolder extends BaseRecycleViewHolder<CustomDestina
                 }
                 //记录删除的数据，避免重复删除
                 deleteDataId = datas.getId();
-                Map<String, String> deleteMap = MapUtils.Build().addKey(mContext).addUserId().addtId(deleteDataId).end();
+                Map<String, String> deleteMap = MapUtils.Build().addKey().addUserId().addtId(deleteDataId).end();
                 CustomDestinationEvent customDestinationEvent = new CustomDestinationEvent();
                 customDestinationEvent.setDeletePosition(position);
                 XEventUtils.postUseCommonBackJson(IVariable.DELETE_CUSTOM_SPOT, deleteMap, LoadingBarBaseActivity.TYPE_DELETE, customDestinationEvent);

@@ -156,7 +156,7 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
             requestAndSetErrorMessage(mEtPassword, getString(R.string.password_not_consistent));
             return;
         }
-        Map<String, String> map = MapUtils.Build().addKey(this).addTel(phone).addNewPassWord(MD5Utils.encode(MD5Utils.encode(password))).add(IVariable.CODE, ver).end();
+        Map<String, String> map = MapUtils.Build().addKey().addTel(phone).addNewPassWord(MD5Utils.encode(MD5Utils.encode(password))).add(IVariable.CODE, ver).end();
         XEventUtils.postUseCommonBackJson(IVariable.RESET_PASSWORD, map, RESET_PASSWORD, new LoginNextCommonEvent());
     }
 
@@ -169,7 +169,7 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
     private void sendVerCode() {
         String phone = getString(mEtPhone);
         if (PhoneUtils.checkPhoneNumber(phone)) return;
-        Map<String, String> map = MapUtils.Build().addKey(this).addTel(phone).addType("1").end();
+        Map<String, String> map = MapUtils.Build().addKey().addTel(phone).addType("1").end();
         XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE_VER_MSG,map,VERIFICATION_REQ, new LoginNextCommonEvent());
     }
 
@@ -197,7 +197,7 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_ver:
-                if (GlobalUtils.getKey(this) == null) {
+                if (GlobalUtils.getKey() == null) {
                     XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new RegisterEvent());
                     return;
                 }

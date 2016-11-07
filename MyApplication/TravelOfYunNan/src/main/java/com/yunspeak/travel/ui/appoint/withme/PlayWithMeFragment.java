@@ -2,7 +2,9 @@ package com.yunspeak.travel.ui.appoint.withme;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
 import com.yunspeak.travel.ui.view.refreshview.XListView;
+import com.yunspeak.travel.utils.GsonUtils;
 
 import java.util.List;
 
@@ -23,6 +25,25 @@ public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEve
        super.initListener();
         changeMargin(5,10);
     }
+
+    @Override
+    public void onSuccess(AppointWithMeEvent appointWithMeEvent) {
+        switch (appointWithMeEvent.getType()){
+            case TYPE_LIKE:
+                CommonClickLikeBean object = GsonUtils.getObject(appointWithMeEvent.getResult(), CommonClickLikeBean.class);
+                int clickPosition = appointWithMeEvent.getPosition();
+                getmDatas().get(clickPosition).setCount_like(object.getData().getCount_like());
+                getmDatas().get(clickPosition).setIs_like("1");
+               mAdapter.notifyItemChanged(appointWithMeEvent.getPosition());
+               // mAdapter.notifyDataSetChanged();
+                break;
+            default:
+                super.onSuccess(appointWithMeEvent);
+                break;
+        }
+
+    }
+
     @Override
     protected String initUrl() {
         return IVariable.PLAY_WITHE_ME;

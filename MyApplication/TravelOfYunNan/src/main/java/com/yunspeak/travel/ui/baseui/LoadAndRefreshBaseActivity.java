@@ -77,7 +77,7 @@ public abstract class LoadAndRefreshBaseActivity<T extends HttpEvent, E extends 
     @Override
     protected void onLoad(int type) {
         count = type == TYPE_REFRESH ? 0 : getListSize(httpData);
-        MapUtils.Builder builder = MapUtils.Build().addKey(this).addUserId().addPageSize().addCount(count);
+        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId().addPageSize().addCount(count);
         childAdd(builder);
         Map<String, String> end = builder.end();
         XEventUtils.getUseCommonBackJson(initUrl(), end, type, getTInstance());

@@ -80,7 +80,7 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
                     ToastUtils.showToast("请输入验证码。");
                     return;
                 }
-                Map<String, String> end = MapUtils.Build().addKey(BindPhoneActivity.this).addTel(tel).addUserId().addCode(getString(mEtVer)).end();
+                Map<String, String> end = MapUtils.Build().addKey().addTel(tel).addUserId().addCode(getString(mEtVer)).end();
                 XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE, end, TYPE_OTHER, new BindPhoneEvent());
             }
 
@@ -89,7 +89,7 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
             @Override
             public void onClick(View v) {
                 if (PhoneUtils.checkPhoneNumber(getString(mEtPhone))) return;
-                Map<String, String> end = MapUtils.Build().addKey(BindPhoneActivity.this).addTel(getString(mEtPhone)).addType("2").end();
+                Map<String, String> end = MapUtils.Build().addKey().addTel(getString(mEtPhone)).addType("2").end();
                 XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE_VER_MSG, end, TYPE_VER_MSG, new BindPhoneEvent());
             }
         });

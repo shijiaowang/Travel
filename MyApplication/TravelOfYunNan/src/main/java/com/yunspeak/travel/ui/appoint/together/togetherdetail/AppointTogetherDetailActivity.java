@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -24,6 +22,7 @@ import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
@@ -48,7 +47,7 @@ import cn.sharesdk.framework.ShareSDK;
  * Created by wangyang on 2016/9/2 0002.
  * 一起玩约伴详情
  */
-public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDetailEvent> implements View.OnClickListener {
+public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTogetherDetailEvent> implements View.OnClickListener {
     private static final int TYPE_ENTER_APPOINT = 95;
     private static final int TYPE_OUT_APPOINT = 59;
     @BindView(R.id.tv_start_add)
@@ -118,7 +117,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     @BindView(R.id.tv_price)
     TextView mTvPrice;
     @BindView(R.id.bt_enter)
-    Button mBvEnter;
+    AvoidFastButton mBvEnter;
     private boolean isDetail = false;//默认缩略图
     private String tId;
     private List<List<AppointTogetherDetailBean.DataBean.RoutesBean>> lists = new ArrayList<>();
@@ -136,7 +135,20 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
         ShareSDK.initSDK(this, "18450bb6d1b67");
         tId = getIntent().getStringExtra(IVariable.T_ID);
         mTvSitch.setOnClickListener(this);
-        mBvEnter.setOnClickListener(this);
+        mBvEnter.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isBoss){
+                    startActivity(new Intent(AppointTogetherDetailActivity.this,MyAppointActivity.class));
+                    return;
+                }
+                if (StringUtils.isEmpty(id) || payStatus == -1) {
+                    ToastUtils.showToast("数据加载错误，请重新进入！");
+                    return;
+                }
+                clickType();
+            }
+        });
     }
 
     @Override
@@ -151,7 +163,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
 
 
     @Override
-    protected void onSuccess(AppointDetailEvent appointDetailEvent) {
+    protected void onSuccess(AppointTogetherDetailEvent appointDetailEvent) {
         switch (appointDetailEvent.getType()) {
             case TYPE_REFRESH:
                 try {
@@ -163,7 +175,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
                 }
                 break;
             case TYPE_ENTER_APPOINT:
-                EnterAppointDialog.showDialogSuccess(this);
+                EnterAppointDialog.showDialogSuccess();
                 initAction(7 + "");
                 break;
             case TYPE_DELETE:
@@ -187,7 +199,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     }
 
     @Override
-    protected void onFail(AppointDetailEvent appointDetailEvent) {
+    protected void onFail(AppointTogetherDetailEvent appointDetailEvent) {
         super.onFail(appointDetailEvent);
         if (appointDetailEvent.getType() == TYPE_ENTER_APPOINT) {
             // ToastUtils.showToast(appointDetailEvent.getMessage());
@@ -199,7 +211,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
      *
      * @param event
      */
-    private void dealData(AppointDetailEvent event) {
+    private void dealData(AppointTogetherDetailEvent event) {
 
         AppointTogetherDetailBean appointTogetherDetail = GsonUtils.getObject(event.getResult(), AppointTogetherDetailBean.class);
         if (appointTogetherDetail == null) return;
@@ -405,40 +417,29 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
                 mTvSitch.setText(isDetail ? "缩略图" : "详情图");
 
                 break;
-            case R.id.bt_enter:
-                if (isBoss){
-                    startActivity(new Intent(this,MyAppointActivity.class));
-                    return;
-                }
-                if (StringUtils.isEmpty(id) || payStatus == -1) {
-                    ToastUtils.showToast("数据加载错误，请重新进入！");
-                    return;
-                }
-                clickType();
-                break;
 
         }
     }
 
     private void clickType() {
-        final Map<String, String> map = MapUtils.Build().addKey(this).addtId(id).addUserId().end();
+        final Map<String, String> map = MapUtils.Build().addKey().addtId(id).addUserId().end();
         switch (payStatus) {
             case 1:
-                XEventUtils.postUseCommonBackJson(IVariable.ENTER_APPOINT, map, TYPE_ENTER_APPOINT, new AppointDetailEvent());
+                XEventUtils.postUseCommonBackJson(IVariable.ENTER_APPOINT, map, TYPE_ENTER_APPOINT, new AppointTogetherDetailEvent());
                 break;
             case 3:
-                EnterAppointDialog.showCommonDialog(this, "退出约伴", "确定", "退出约伴团队", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog("退出约伴", "确定", "退出约伴团队", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
-                        XEventUtils.postUseCommonBackJson(IVariable.OUT_APPOINT, map, TYPE_OUT_APPOINT, new AppointDetailEvent());
+                        XEventUtils.postUseCommonBackJson(IVariable.OUT_APPOINT, map, TYPE_OUT_APPOINT, new AppointTogetherDetailEvent());
                     }
                 });
               break;
             case 7:
-                EnterAppointDialog.showCommonDialog(this, "取消申请", "确定", "取消发起的约伴请求！", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog("取消申请", "确定", "取消发起的约伴请求！", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
-                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_APPOINT, map, TYPE_DELETE, new AppointDetailEvent());
+                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_APPOINT, map, TYPE_DELETE, new AppointTogetherDetailEvent());
                     }
                 });
 
@@ -457,12 +458,12 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointDe
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
-        AppointDetailMorePop.showMorePop(this, mToolbar, collection, new ParentPopClick() {
+        AppointDetailMorePop.showMorePop(mToolbar, collection, new ParentPopClick() {
             @Override
             public void onClick(int type) {
                 String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
-                Map<String, String> collectionMap = MapUtils.Build().addKey(AppointTogetherDetailActivity.this).addUserId().addType("1").addId(id).end();
-                XEventUtils.postUseCommonBackJson(url, collectionMap, TYPE_COLLECTION, new AppointDetailEvent());
+                Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("1").addId(id).end();
+                XEventUtils.postUseCommonBackJson(url, collectionMap, TYPE_COLLECTION, new AppointTogetherDetailEvent());
 
             }
         });

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.find.findcommon.CityBean;
+import com.yunspeak.travel.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +55,10 @@ public class AppointCommonPop implements View.OnClickListener {
 
     /**
      * 显示在指定控件的下面
-     * @param context 上下文
      * @param view  参考的view
      */
-    public void showDown(final Context context, View view){
+    public void showDown( View view){
+        final Context context= UIUtils.getContext();
         View viewPopup = LayoutInflater.from(context).inflate(R.layout.item_appoint_pop_select_play_way, null);
         LinearLayout mLlClear = ((LinearLayout) viewPopup.findViewById(R.id.ll_clear));
         TextView mTvCancel = ((TextView) viewPopup.findViewById(R.id.tv_cancel));

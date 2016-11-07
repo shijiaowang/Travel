@@ -139,7 +139,7 @@ public class MemberEnterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private void event(int position, String type, int typeAgree) {
         MemBerDetailEvent memBerDetailEvent=new MemBerDetailEvent();
         memBerDetailEvent.setPosition(position);
-        Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addId(mDatas.get(position).getId()).addType(type).end();
+        Map<String, String> end = MapUtils.Build().addKey().addUserId().addId(mDatas.get(position).getId()).addType(type).end();
         XEventUtils.postUseCommonBackJson(IVariable.MY_APPOINT_AGREE_OR_REFUSE,end, typeAgree,memBerDetailEvent);
     }
 

@@ -171,7 +171,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 startActivity(new Intent(this, PersonalProfileActivity.class));
                 break;
             case R.id.ll_logout:
-                EnterAppointDialog.showCommonDialog(this, "退出登录", "确定", "是否退出当前登录账号？", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog("退出登录", "确定", "是否退出当前登录账号？", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         EMClient.getInstance().logout(true);
@@ -200,7 +200,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 showPictureCutPop(mLlLogout);
                 break;
             case R.id.tv_user_nick_name:
-                EnterAppointDialog.showInputTextView(this,userInfo.getNick_name(),new SendTextClick() {
+                EnterAppointDialog.showInputTextView(userInfo.getNick_name(),new SendTextClick() {
                     @Override
                     public void onClick(String text) {
                           mTvUserNickName.setText(text);
@@ -213,7 +213,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 changeLivePlace();
                 break;
             case R.id.tv_user_sex:
-                EnterAppointDialog.showChangeSex(this,userInfo.getSex(), new SendTextClick() {
+                EnterAppointDialog.showChangeSex(userInfo.getSex(), new SendTextClick() {
                     @Override
                     public void onClick(String text) {
                         sex=text;
@@ -272,7 +272,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
             return;
         }
         setIsProgress(true);
-        MapUtils.Builder builder = MapUtils.Build().addKey(this).addUserId();
+        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId();
         if (!StringUtils.isEmptyNotNull(nickName)){
             builder.addNickName(nickName);
         }

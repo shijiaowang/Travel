@@ -60,7 +60,7 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
 
 
     private void firstReq() {
-        Map<String, String> map = MapUtils.Build().addKey(getContext()).addUserId().end();
+        Map<String, String> map = MapUtils.Build().addKey().addUserId().end();
         useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ,new NavLeftEvent());
     }
 
@@ -98,7 +98,7 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
     }
 
     private void normalReq(String cid) {
-        MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).add("cid", cid);
+        MapUtils.Builder builder = MapUtils.Build().addKey().add("cid", cid);
         if (cid != null && cid.equals("1")) {//再次获取关注
             builder.add("user_id", GlobalUtils.getUserInfo().getId());
         }

@@ -250,7 +250,7 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
             return;
         }
         String cityId = DBManager.getCityId(cityName, id);
-        Map<String, String> createSpotMap = MapUtils.Build().addKey(this).addUserId().addTitle(name).addContent(des).addProvince(id).addCity(cityId).addAddress(add).end();
+        Map<String, String> createSpotMap = MapUtils.Build().addKey().addUserId().addTitle(name).addContent(des).addProvince(id).addCity(cityId).addAddress(add).end();
         List<String> fileList=new ArrayList<>();
         fileList.add(imageAbsolutePath);
         XEventUtils.postFileCommonBackJson(IVariable.ADD_CUSTOM_SPOT, createSpotMap,fileList,0, new AddCustomSpotEvent());

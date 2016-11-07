@@ -144,7 +144,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
             isNetWork = false;
         } else {
             //网络可用验证登录
-            Map<String, String> stringMap = MapUtils.Build().addKey(this).addUserName(userName).addPassword(userPwd).end();
+            Map<String, String> stringMap = MapUtils.Build().addKey().addUserName(userName).addPassword(userPwd).end();
             XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap, IVariable.TYPE_POST_LOGIN, new WelcomeEvent());
         }
     }

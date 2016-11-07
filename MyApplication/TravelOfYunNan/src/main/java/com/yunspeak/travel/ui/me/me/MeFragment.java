@@ -244,7 +244,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
     @Override
     protected void childUpImage() {
-        Map<String, String> bgImageMap = MapUtils.Build().addKey(getContext()).addUserId().end();
+        Map<String, String> bgImageMap = MapUtils.Build().addKey().addUserId().end();
         if (StringUtils.isEmpty(fileName)) {
             ToastUtils.showToast("未找到图片");
         }

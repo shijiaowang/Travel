@@ -143,7 +143,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
             requestAndSetErrorMessage(mEtPassword, getString(R.string.password_not_consistent));
             return;
         }
-        Map<String, String> map = MapUtils.Build().addKey(this).addUserName(phone).addPassword(MD5Utils.encode(MD5Utils.encode(password))).add(IVariable.CODE, ver).end();
+        Map<String, String> map = MapUtils.Build().addKey().addUserName(phone).addPassword(MD5Utils.encode(MD5Utils.encode(password))).add(IVariable.CODE, ver).end();
         XEventUtils.postUseCommonBackJson(IVariable.REGISTER_USER, map, REGISTER_REQ,new RegisterEvent());
     }
 
@@ -172,7 +172,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     private void sendVerCode() {
         String phone = mEtPhone.getText().toString().trim();
         if (checkPhoneNumber(phone)) return;
-        Map<String, String> map = MapUtils.Build().addKey(RegisterActivity.this).add(IVariable.TEL, phone).end();
+        Map<String, String> map = MapUtils.Build().addKey().add(IVariable.TEL, phone).end();
         XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, VERIFICATION_REQ,new RegisterEvent());
     }
 
@@ -232,7 +232,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.bt_ver:
-                if (GlobalUtils.getKey(this) == null) {
+                if (GlobalUtils.getKey() == null) {
                     XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY,new RegisterEvent());
                     return;
                 }

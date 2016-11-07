@@ -201,7 +201,7 @@ public class DesRemarkActivity extends BaseToolBarActivity implements View.OnCli
             jsonArray.put(jsonObject);
             List<String> file = new ArrayList<>();
             file.add(GlobalValue.mFileName);
-            Map<String, String> createMap = MapUtils.Build().addKey(this).addJsonTravel(jsonArray.toString()).end();
+            Map<String, String> createMap = MapUtils.Build().addKey().addJsonTravel(jsonArray.toString()).end();
             XEventUtils.postFileCommonBackJson(url,createMap,file,0, new DesRemarkEvent());
 
 

@@ -21,6 +21,7 @@ public interface IState {
      int TYPE_CHANGE = 13;//上传文件
      int TYPE_COLLECTION = 14;//收藏
      int TYPE_CANCEL_COLLECTION = 15;//取消收藏
+      int TYPE_REFRESH_BY_USER = 16;//手动刷新
     String isTrue="1";
     String isFalse="0";
     int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;

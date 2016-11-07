@@ -307,9 +307,9 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         if (currentType==CREATE_POST) {
             url=IVariable.CIRCLE_CREATE_POST;
             String title = mEtTitle.getText().toString().trim();
-            createPostMap = MapUtils.Build().addKey(this).addCId(cId).addContent(content).addTitle(title).addUserId().addInform(inform).end();
+            createPostMap = MapUtils.Build().addKey().addCId(cId).addContent(content).addTitle(title).addUserId().addInform(inform).end();
         }else {
-            createPostMap=MapUtils.Build().addKey(this).addFroumId(forumId).addContent(content).addCId(cId).addPId(pId).addUserId().addRUserId(rUserId).addInform(inform).end();
+            createPostMap=MapUtils.Build().addKey().addFroumId(forumId).addContent(content).addCId(cId).addPId(pId).addUserId().addRUserId(rUserId).addInform(inform).end();
         }
         XEventUtils.postFileCommonBackJson(url,createPostMap,pictures,currentType,new CreatePostEvent());
     }

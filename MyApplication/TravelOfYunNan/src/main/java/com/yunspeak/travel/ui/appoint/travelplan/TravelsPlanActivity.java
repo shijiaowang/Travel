@@ -90,7 +90,7 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
                 }
                 break;
             case R.id.rl_traffic:
-                AppointSpinnerPop.showSpinnerPop(this, mRlTraffic, traffics);
+                AppointSpinnerPop.showSpinnerPop(mRlTraffic, traffics);
                 break;
         }
     }

@@ -61,7 +61,7 @@ public class FanAndFollowFragment extends LoadAndPullBaseFragment<FanAndFollowEv
     protected void onLoad(int type) {
         if (this.type.equals("0")) return;
         int count=type==TYPE_REFRESH?0:getListSize(mDatas);
-        Map<String, String> fanMap = MapUtils.Build().addKey(getContext()).addUserId().addPageSize().addCount(count).addType(this.type).end();
+        Map<String, String> fanMap = MapUtils.Build().addKey().addUserId().addPageSize().addCount(count).addType(this.type).end();
         FanAndFollowEvent fanAndFollowEvent = new FanAndFollowEvent();
         fanAndFollowEvent.setChildType(REQ_CODE);
         XEventUtils.getUseCommonBackJson(IVariable.GET_FOLLOW_USER, fanMap, type,fanAndFollowEvent );

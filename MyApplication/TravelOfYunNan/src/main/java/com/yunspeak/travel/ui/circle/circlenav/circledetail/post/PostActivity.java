@@ -187,7 +187,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         String url=isCollect.equals(isTrue)?IVariable.CANCEL_COMMON_COLLECTION:IVariable.COLLECTION;
-        Map<String, String> collectionMap = MapUtils.Build().addKey(this).addUserId().addType("5").addId(forum_id).end();
+        Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("5").addId(forum_id).end();
         XEventUtils.postUseCommonBackJson(url, collectionMap, TYPE_COLLECTION, new PostEvent());
     }
 

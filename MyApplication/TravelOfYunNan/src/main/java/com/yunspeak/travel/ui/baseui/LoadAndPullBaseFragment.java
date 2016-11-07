@@ -122,7 +122,6 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
                 linearLayoutManager.setAutoMeasureEnabled(true);
                 mRvCommon.setLayoutManager(linearLayoutManager);
             }
-            mRvCommon.setItemAnimator(new DefaultItemAnimator());
         } else if (t.getType() == TYPE_LOAD) {
             mDatas.addAll(loadDatas);
             if (t.getCode()==2){

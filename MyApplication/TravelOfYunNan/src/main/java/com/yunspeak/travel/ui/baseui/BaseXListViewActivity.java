@@ -124,7 +124,7 @@ public abstract class BaseXListViewActivity<T extends HttpEvent, E extends Paren
     @Override
     protected void onLoad(int type) {
         count = type == TYPE_REFRESH ? 0 : getListSize(mDatas);
-        MapUtils.Builder builder = MapUtils.Build().addKey(this).addUserId().addPageSize().addCount(count);
+        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId().addPageSize().addCount(count);
         childAdd(builder);
         Map<String, String> end = builder.end();
         XEventUtils.getUseCommonBackJson(initUrl(), end, type, getTInstance());

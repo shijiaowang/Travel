@@ -44,7 +44,7 @@ public class PersonalProfileActivity extends BaseNetWorkActivity<PersonalProfile
             @Override
             public void onClick(View v) {
                 setIsProgress(true);
-                Map<String, String> contentMap = MapUtils.Build().addKey(PersonalProfileActivity.this).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.CONTENT, getString(mEtProfile)).end();
+                Map<String, String> contentMap = MapUtils.Build().addKey().add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()).add(IVariable.CONTENT, getString(mEtProfile)).end();
                 XEventUtils.postUseCommonBackJson(IVariable.CHANGE_USER_INFO, contentMap, 0,new PersonalProfileEvent());
             }
         });

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.ui.view.LoadingPage;
 import com.yunspeak.travel.ui.view.refreshview.XListView;
 import com.yunspeak.travel.ui.view.refreshview.XScrollView;
@@ -41,13 +42,8 @@ import butterknife.ButterKnife;
 /**
  * Created by wangyang on 2016/8/3 0003.
  */
-public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
-    public static final int TYPE_FIRST = 0;
-    public static final int TYPE_REFRESH = 1;
-    public static final int TYPE_LOAD = 2;
-    public static final int TYPE_CLICK_ZAN = 3;
-    public static final int TYPE_REFRESH_BY_USER = 4;
-    public static final int TYPE_UPDATE = 5;
+public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment implements IState{
+
 
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
@@ -170,7 +166,6 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
                         LogUtils.e("baseFragment加载成功");
                     } catch (Exception e) {
                         e.printStackTrace();
-                        LogUtils.e("出现异常了");
                         onFail(t);
                     }
                 } else {
@@ -256,7 +251,7 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment {
 
 
     protected void onLoad(int type) {
-        MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).addUserId();
+        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId();
         childAdd(builder,type);
         Map<String, String> baseMap = builder.end();
         XEventUtils.getUseCommonBackJson(initUrl(),baseMap,type,getTInstance());

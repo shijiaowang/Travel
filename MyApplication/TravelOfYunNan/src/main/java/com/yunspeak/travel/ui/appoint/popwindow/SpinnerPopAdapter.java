@@ -7,11 +7,12 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.UIUtils;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/20 0020.
+ * Created by wangyang on 2016/9/20 0020.
  */
 public class SpinnerPopAdapter extends BaseAdapter {
 
@@ -43,7 +44,7 @@ public class SpinnerPopAdapter extends BaseAdapter {
         StringHolder stringHolder;
         if (convertView==null){
             stringHolder=new StringHolder();
-            convertView=View.inflate(context, R.layout.item_pop_spinner,null);
+            convertView=UIUtils.inflate(R.layout.item_pop_spinner);
             stringHolder.mTvText= ((TextView) convertView.findViewById(R.id.tv_type));
             convertView.setTag(stringHolder);
         }else {

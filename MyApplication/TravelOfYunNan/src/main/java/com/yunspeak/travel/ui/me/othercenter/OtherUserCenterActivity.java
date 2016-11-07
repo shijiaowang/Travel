@@ -403,7 +403,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
                 type = "1";
                 break;
         }
-        Map<String, String> followMap = MapUtils.Build().addKey(this).addUserId().add("u_id", userId).addType(type).end();
+        Map<String, String> followMap = MapUtils.Build().addKey().addUserId().add("u_id", userId).addType(type).end();
         XEventUtils.postUseCommonBackJson(IVariable.FOLLOW_OR_CANCEL_FOLLOW, followMap, TYPE_UPDATE, new OtherUserCenterEvent());
     }
 

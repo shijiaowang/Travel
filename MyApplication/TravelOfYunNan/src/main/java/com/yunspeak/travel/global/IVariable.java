@@ -6,8 +6,8 @@ package com.yunspeak.travel.global;
  */
 public interface IVariable {
 
-    String DOMAIN_NAME="http://yuns.yunspeak.com/";
-   /*String DOMAIN_NAME = "http://192.168.1.190/";*/
+    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
+    String DOMAIN_NAME = "http://192.168.1.190/";
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -15,6 +15,7 @@ public interface IVariable {
     * 约伴
     * */
     String PLAY_TOGETHER = API_KEY + "Travel/travelLists/";//一起玩
+    String PUSH_MY_APPOINT = API_KEY + "UserTravel/setMyTravelTotravelplan";//推送约伴
     String PLAY_WITHE_ME = API_KEY + "Travel/travelplanLists/";//带我玩
     String PLAY_TOGETHER_DETAIL = API_KEY + "Travel/getTravel/";//一起玩详情
     String WITHE_ME_DETAIL = API_KEY + "Travel/getTravelplan/";//找人带详情
@@ -72,6 +73,7 @@ public interface IVariable {
      * 我
      */
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
+    String MY_CREATE_APPOINT = API_KEY + "UserTravel/getMyTravel/";//获取我创建的约伴
     String COLLECTION = API_KEY + "User/setUserCollect/";//统一收藏
     String CANCEL_COMMON_COLLECTION = API_KEY + "User/delUsercollectlists/";//取消收藏，统一
     String GET_CHAT_MESSAGE = API_KEY + "Travel/getChatusers/";//聊天信息

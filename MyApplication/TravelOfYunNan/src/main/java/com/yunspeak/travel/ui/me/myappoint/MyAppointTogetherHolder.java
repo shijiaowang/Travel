@@ -269,12 +269,12 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
                     if (StringUtils.isEmpty(type)) return;
                     if (payStates == 9) {
                         String content = "这真是一次不错的旅行啊";
-                        Map<String, String> discussMap = MapUtils.Build().addKey(mContext).addUserId().addtId(datas.getId()).addContent(content).end();
+                        Map<String, String> discussMap = MapUtils.Build().addKey().addUserId().addtId(datas.getId()).addContent(content).end();
                         MyAppointEvent myAppointEvent = new MyAppointEvent();
                         myAppointEvent.setPosition(position);
                         XEventUtils.postUseCommonBackJson(IVariable.DISCUSS_APPOINT, discussMap, BaseToolBarActivity.TYPE_DISCUSS, myAppointEvent);
                     } else {
-                        EnterAppointDialog.showCommonDialog(mContext, title, "确定", content, new ParentPopClick() {
+                        EnterAppointDialog.showCommonDialog(title, "确定", content, new ParentPopClick() {
                             @Override
                             public void onClick(int t) {
                                 changeAppoint(datas, position, mContext, type);
@@ -299,10 +299,10 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
             mIvDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EnterAppointDialog.showCommonDialog(mContext, "删除约伴", "确认", "注意！此操作将删除您的约伴！请慎重选择！", new ParentPopClick() {
+                    EnterAppointDialog.showCommonDialog("删除约伴", "确认", "注意！此操作将删除您的约伴！请慎重选择！", new ParentPopClick() {
                         @Override
                         public void onClick(int t) {
-                            Map<String, String> deleteMap = MapUtils.Build().addKey(mContext).addUserId().addtId(datas.getId()).end();
+                            Map<String, String> deleteMap = MapUtils.Build().addKey().addUserId().addtId(datas.getId()).end();
                             MyAppointEvent myAppointEvent = new MyAppointEvent();
                             myAppointEvent.setPosition(position);
                             XEventUtils.postUseCommonBackJson(IVariable.DELETE_APPOINT, deleteMap, BaseToolBarActivity.TYPE_DELETE, myAppointEvent);
@@ -331,7 +331,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
     }
 
     private void changeAppoint(MyAppointTogetherBean.DataBean item1, int position, Context mContext, String type) {
-        Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addtId(item1.getId()).addType(type).end();
+        Map<String, String> end = MapUtils.Build().addKey().addUserId().addtId(item1.getId()).addType(type).end();
         MyAppointEvent myAppointEvent = new MyAppointEvent();
         myAppointEvent.setPosition(position);
         myAppointEvent.setPayStatus(payStates);

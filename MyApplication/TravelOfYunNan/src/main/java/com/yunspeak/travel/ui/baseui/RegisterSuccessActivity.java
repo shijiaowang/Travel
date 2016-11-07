@@ -153,7 +153,7 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
             return;
         }
 
-        Map<String, String> infoMap = MapUtils.Build().addKey(RegisterSuccessActivity.this).add(IVariable.USER_ID, user_id).add(IVariable.SEX,mRbBoy.isChecked()?"1":"0").add(IVariable.NICK_NAME, nickName).end();
+        Map<String, String> infoMap = MapUtils.Build().addKey().add(IVariable.USER_ID, user_id).add(IVariable.SEX,mRbBoy.isChecked()?"1":"0").add(IVariable.NICK_NAME, nickName).end();
         XEventUtils.postUseCommonBackJson(IVariable.PERFECT_INFORMATION, infoMap, IVariable.TYPE_REGISTER_USER,new RegisterSuccessEvent());
 
     }

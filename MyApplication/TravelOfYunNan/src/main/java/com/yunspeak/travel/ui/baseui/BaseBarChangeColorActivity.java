@@ -94,7 +94,7 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
      * @param type
      */
     protected void onLoad(int type) {
-        MapUtils.Builder builder = MapUtils.Build().addKey(this).addUserId();
+        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId();
         childAdd(builder,type);
         Map<String, String> baseMap = builder.end();
         XEventUtils.getUseCommonBackJson(initUrl(),baseMap,type,new DetailCommonEvent());

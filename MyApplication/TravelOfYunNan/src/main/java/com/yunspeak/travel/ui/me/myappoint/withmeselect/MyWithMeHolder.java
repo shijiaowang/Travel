@@ -107,7 +107,7 @@ class MyWithMeHolder extends BaseRecycleViewHolder<MyWithMeSelectBean.DataBean> 
                     return;
                 }
                 if (!status.equals("3"))return;
-                EnterAppointDialog.showCommonDialog(mContext, "选择约伴", "确定", "当您选择当前推送约伴的同时也就意味着您将拒绝其他团长推送来的约伴！", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog("选择约伴", "确定", "当您选择当前推送约伴的同时也就意味着您将拒绝其他团长推送来的约伴！", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         selectAppoint(datas,position,mContext);
@@ -126,7 +126,7 @@ class MyWithMeHolder extends BaseRecycleViewHolder<MyWithMeSelectBean.DataBean> 
      * @param position
      */
     private void selectAppoint(MyWithMeSelectBean.DataBean datas, int position,Context mContext) {
-        Map<String, String> agresMap = MapUtils.Build().addKey(mContext).addUserId().addId(datas.getId()).end();
+        Map<String, String> agresMap = MapUtils.Build().addKey().addUserId().addId(datas.getId()).end();
         MyWithMeSelectEvent event = new MyWithMeSelectEvent();
         event.setPosition(position);
         XEventUtils.postUseCommonBackJson(IVariable.AGREE_WITH_ME_SELECT,agresMap, BaseToolBarActivity.TYPE_UPDATE, event);

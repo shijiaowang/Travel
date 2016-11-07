@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.UIUtils;
 
 import org.xutils.common.util.DensityUtil;
 
@@ -21,8 +22,9 @@ public class AppointOrderPop {
 
     private PopupWindow window;
 
-    public  void showOrderPop(final Context context, View view, String[] title, int clickPosition){
+    public  void showOrderPop(View view, String[] title, int clickPosition){
            // 获取弹出视图对象
+        final Context context= UIUtils.getContext();
            View viewPopup = View.inflate(context, R.layout.pop_window_order, null);
 
 

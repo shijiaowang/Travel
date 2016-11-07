@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.UIUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.common.util.DensityUtil;
@@ -21,7 +22,8 @@ import java.util.List;
  * Created by wangyang on 2016/9/20 0020.
  */
 public class AppointSpinnerPop {
-    public static void showSpinnerPop(final Context context, View view, final List<SpinnerBean> text) {
+    public static void showSpinnerPop(View view, final List<SpinnerBean> text) {
+        final Context context= UIUtils.getContext();
         if (text==null || text.size()==0)return;
         // 获取弹出视图对象
          ListView viewPopup = ((ListView) View.inflate(context, R.layout.pop_spinner, null));

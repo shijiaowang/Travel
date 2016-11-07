@@ -1,16 +1,18 @@
-package com.yunspeak.travel.ui.appoint.withme;
-
-import com.yunspeak.travel.global.ParentBean;
+package com.yunspeak.travel.ui.appoint.withme.withmedetail;
 
 import java.util.List;
 
 /**
- * Created by wangyang on 2016/7/21 0021.
+ * Created by wangyang on 2016/11/7 0007.
  */
-public class AppointWithMeBean implements ParentBean{
+
+public class MyCreateAppointBean {
+
+
 
     private int code;
     private String message;
+
 
     private List<DataBean> data;
 
@@ -43,23 +45,18 @@ public class AppointWithMeBean implements ParentBean{
         private String travel_img;
         private String start_time;
         private String end_time;
-        private String meet_address;
-        private String label;
+        private String add_time;
         private String total_price;
-        private String browse;
-        private String now_people;
-        private String count_like;
-        private String is_like;
-        private String user_count;
         private String routes;
-        private String user_id;
+        private int is_push;
+        private boolean isSelect=false;
 
-        public String getUser_id() {
-            return user_id;
+        public boolean isSelect() {
+            return isSelect;
         }
 
-        public void setUser_id(String user_id) {
-            this.user_id = user_id;
+        public void setSelect(boolean select) {
+            isSelect = select;
         }
 
         public String getId() {
@@ -94,20 +91,12 @@ public class AppointWithMeBean implements ParentBean{
             this.end_time = end_time;
         }
 
-        public String getMeet_address() {
-            return meet_address;
+        public String getAdd_time() {
+            return add_time;
         }
 
-        public void setMeet_address(String meet_address) {
-            this.meet_address = meet_address;
-        }
-
-        public String getLabel() {
-            return label;
-        }
-
-        public void setLabel(String label) {
-            this.label = label;
+        public void setAdd_time(String add_time) {
+            this.add_time = add_time;
         }
 
         public String getTotal_price() {
@@ -118,52 +107,20 @@ public class AppointWithMeBean implements ParentBean{
             this.total_price = total_price;
         }
 
-        public String getBrowse() {
-            return browse;
-        }
-
-        public void setBrowse(String browse) {
-            this.browse = browse;
-        }
-
-        public String getNow_people() {
-            return now_people;
-        }
-
-        public void setNow_people(String now_people) {
-            this.now_people = now_people;
-        }
-
-        public String getCount_like() {
-            return count_like;
-        }
-
-        public void setCount_like(String count_like) {
-            this.count_like = count_like;
-        }
-
-        public String getIs_like() {
-            return is_like;
-        }
-
-        public void setIs_like(String is_like) {
-            this.is_like = is_like;
-        }
-
-        public String getUser_count() {
-            return user_count;
-        }
-
-        public void setUser_count(String user_count) {
-            this.user_count = user_count;
-        }
-
         public String getRoutes() {
             return routes;
         }
 
         public void setRoutes(String routes) {
             this.routes = routes;
+        }
+
+        public int getIs_push() {
+            return is_push;
+        }
+
+        public void setIs_push(int is_push) {
+            this.is_push = is_push;
         }
     }
 }

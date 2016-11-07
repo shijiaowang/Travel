@@ -123,7 +123,7 @@ public class IdAuthActivity extends BaseCropPictureActivity<AuthCommonEvent> imp
             ToastUtils.showToast("请上传身份证正反面");
             return;
         }
-        Map<String, String> idMap = MapUtils.Build().addKey(this).addUserId().addType("1").addClass("3").end();
+        Map<String, String> idMap = MapUtils.Build().addKey().addUserId().addType("1").addClass("3").end();
         List<String> files=new ArrayList<>(2);
         files.add(posUrl);
         files.add(otherUrl);

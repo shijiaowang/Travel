@@ -52,7 +52,7 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
 
     @Override
     public void onItemClick(int position) {
-        Map<String, String> destinationMap = MapUtils.Build().addKey(DeliciousDetailActivity.this).addFId(mDatas.get(position).getF_id()).addUserId().
+        Map<String, String> destinationMap = MapUtils.Build().addKey().addFId(mDatas.get(position).getF_id()).addUserId().
                 addContent("这只是一个测试评论而已，而已").addPId(mDatas.get(position).getId()).add(IVariable.TYPE, IVariable.TYPE_DELICIOUS).
                 addNextPage(haveNextPage).addCount(mDatas.size()).
                 end();

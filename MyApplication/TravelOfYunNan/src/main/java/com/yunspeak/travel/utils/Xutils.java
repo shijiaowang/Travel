@@ -69,7 +69,7 @@ public class Xutils {
      */
     public static Map<String,String> getCommonMap(Context context){
         Map<String,String> stringMap=new HashMap<>();
-        stringMap.put(IVariable.KEY,GlobalUtils.getKey(context));
+        stringMap.put(IVariable.KEY,GlobalUtils.getKey());
         return stringMap;
     }
     public static boolean checkFileAndAdd(String path,List<File> files){

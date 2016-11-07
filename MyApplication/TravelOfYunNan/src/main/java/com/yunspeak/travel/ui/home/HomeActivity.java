@@ -102,7 +102,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             String userName = sharedPreferences.getString(IVariable.SAVE_NAME, "");
             String userPwd = sharedPreferences.getString(IVariable.SAVE_PWD, "");
             //网络可用验证登录
-                Map<String, String> stringMap = MapUtils.Build().addKey(this).addUserName(userName).addPassword(userPwd).end();
+                Map<String, String> stringMap = MapUtils.Build().addKey().addUserName(userName).addPassword(userPwd).end();
                 XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap, IVariable.TYPE_POST_LOGIN, new HomeLoginEvent());
 
         }
@@ -171,7 +171,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mLlMeClick.setOnClickListener(this);
         mLlFindClick.setOnClickListener(this);
         mLlMainClick.setOnClickListener(this);
-        mVpHome.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mVpHome.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 setCheckedOfPosition(position);
@@ -213,6 +213,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                ToastUtils.showToast("用户信息发生错误，请尝试重新登录，若多次无效，可清除缓存！");
            }
        }else {
+           // TODO: 2016/11/7 0007 确定网络问题
            ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
        }
    }

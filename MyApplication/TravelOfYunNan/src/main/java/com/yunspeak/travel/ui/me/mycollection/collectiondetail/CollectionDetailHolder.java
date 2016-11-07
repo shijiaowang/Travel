@@ -119,10 +119,10 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
         mTvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EnterAppointDialog.showCommonDialog(mContext, "取消收藏", "确定", "是否删除当前收藏？", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog("取消收藏", "确定", "是否删除当前收藏？", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
-                        Map<String, String> deleteMap = MapUtils.Build().addKey(mContext).addUserId().addTypeId(tid).addId((String) mTvDelete.getTag()).end();
+                        Map<String, String> deleteMap = MapUtils.Build().addKey().addUserId().addTypeId(tid).addId((String) mTvDelete.getTag()).end();
                         CollectionDetailEvent event = new CollectionDetailEvent();
                         event.setPosition(position);
                         XEventUtils.postUseCommonBackJson(IVariable.CANCEL_COLLECTION,deleteMap, MyCollectionActivity.COLLECTION_CANCEL, event);

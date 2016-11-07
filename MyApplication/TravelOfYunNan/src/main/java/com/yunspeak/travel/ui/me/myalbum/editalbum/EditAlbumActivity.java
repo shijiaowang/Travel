@@ -164,7 +164,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
      * @param des
      */
     private void updateAlbum(String name, String des) {
-        Map<String, String> updateMap = MapUtils.Build().addKey(this).addId(id).addUserId().addTitle(name).addContent(des).addPictureId(getPictureId()).end();
+        Map<String, String> updateMap = MapUtils.Build().addKey().addId(id).addUserId().addTitle(name).addContent(des).addPictureId(getPictureId()).end();
         List<String> files = new ArrayList<>();
         files.add(filename);
         XEventUtils.postFileCommonBackJson(IVariable.UPDATE_ALBUM, updateMap, files, TYPE_UPDATE, new EditAlbumEvent());
@@ -304,7 +304,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
     }
 
     private void upPicture(String s) {
-        Map<String, String> upAlbum = MapUtils.Build().addKey(this).addUserId().addId(id).end();
+        Map<String, String> upAlbum = MapUtils.Build().addKey().addUserId().addId(id).end();
         List<String> files = new ArrayList<>();
         files.add(s);
         XEventUtils.postFileCommonBackJson(IVariable.ADD_ALBUM_PHOTO, upAlbum, files, TYPE_UP_FILE, new EditAlbumEvent());

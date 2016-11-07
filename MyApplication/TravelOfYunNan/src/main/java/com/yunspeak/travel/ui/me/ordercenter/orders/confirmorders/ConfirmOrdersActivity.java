@@ -300,7 +300,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             return;
         }
         if (type.equals(ORDER_IS_SURE)){
-            Map<String, String> end = MapUtils.Build().addKey(this).addId(id).end();
+            Map<String, String> end = MapUtils.Build().addKey().addId(id).end();
             XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS_USED,end,SUBMIT_USED,new ConfirmOrdersEvent());
         }else {
             StringBuilder stringBuilder=new StringBuilder();
@@ -315,7 +315,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             }
 
             String coupon = stringBuilder.toString();
-            Map<String, String> submitMap = MapUtils.Build().addKey(this).addUserId().addId(id).addCoupon(coupon).end();
+            Map<String, String> submitMap = MapUtils.Build().addKey().addUserId().addId(id).addCoupon(coupon).end();
             XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS,submitMap,SUBMIT_NEW,new ConfirmOrdersEvent());
         }
     }

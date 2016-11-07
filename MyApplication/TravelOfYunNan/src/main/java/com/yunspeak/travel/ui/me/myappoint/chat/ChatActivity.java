@@ -95,7 +95,7 @@ public class ChatActivity extends EaseBaseActivity {
      * 获取聊天信息
      */
     private void getChatInfo() {
-        Map<String, String> end = MapUtils.Build().addKey(this).addtId(tId).end();
+        Map<String, String> end = MapUtils.Build().addKey().addtId(tId).end();
         XEventUtils.getUseCommonBackJson(IVariable.GET_CHAT_MESSAGE, end, 0, new ChatEvent());
     }
 

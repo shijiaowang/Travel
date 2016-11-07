@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.utils.UIUtils;
 
 import org.xutils.common.util.DensityUtil;
 
@@ -23,7 +24,8 @@ import java.util.List;
  * 排序
  */
 public class AppointOrderPop2 {
-    public  static void showOrderPop(final Context context, View view, final ParentPopClick parentPopClick, int clickPosition){
+    public  static void showOrderPop(View view, final ParentPopClick parentPopClick, int clickPosition){
+        final Context context= UIUtils.getContext();
         if (parentPopClick==null)return;
            // 获取弹出视图对象
         View viewPopup = View.inflate(context, R.layout.appoint_pop_order, null);

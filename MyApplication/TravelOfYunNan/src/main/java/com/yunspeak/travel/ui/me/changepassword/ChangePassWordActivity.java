@@ -78,7 +78,7 @@ public class ChangePassWordActivity extends BaseNetWorkActivity<ChangePassWordEv
             mPvOldPassword.requestFocus();
             return;
         }
-        Map<String, String> changePwdMap = MapUtils.Build().addKey(this).addOldPassWord(MD5Utils.encode(MD5Utils.encode(oldPassword))).addNewPassWord(MD5Utils.encode(MD5Utils.encode(newPassword))).addUserId().end();
+        Map<String, String> changePwdMap = MapUtils.Build().addKey().addOldPassWord(MD5Utils.encode(MD5Utils.encode(oldPassword))).addNewPassWord(MD5Utils.encode(MD5Utils.encode(newPassword))).addUserId().end();
         XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PASSWORD, changePwdMap, 0, new ChangePassWordEvent());
     }
 

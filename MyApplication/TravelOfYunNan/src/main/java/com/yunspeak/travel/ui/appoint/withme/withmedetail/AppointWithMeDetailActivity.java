@@ -1,25 +1,26 @@
 package com.yunspeak.travel.ui.appoint.withme.withmedetail;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
-
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.PeopleBean;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailEvent;
+import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailHaveEnterAdapter;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailInsuranceAdapter;
+import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
@@ -27,22 +28,25 @@ import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.ImageOptionsUtil;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
-import org.xutils.common.util.DensityUtil;
-import org.xutils.x;
+import com.yunspeak.travel.utils.ToastUtils;
+import com.yunspeak.travel.utils.XEventUtils;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import butterknife.BindString;
 import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/9/6 0006.
  * 带我玩约伴详情
  */
-public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDetailEvent> {
+public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWithMeDetailEvent> {
 
     @BindView(R.id.lv_route_line) ToShowAllListView mLvRouteLine;
     @BindView(R.id.iv_user_icon)
@@ -68,6 +72,10 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
     @BindView(R.id.tv_price) TextView mTvPrice;
     @BindView(R.id.tv_enter_end_time) TextView mTvEnterEndTime;
     @BindView(R.id.tv_surplus_day) TextView mTvSurplusDay;//剩余日期
+    @BindView(R.id.bt_enter)
+    AvoidFastButton btEnter;
+    @BindString(R.string.activity_circle_love_empty) String emptyLove;
+    @BindString(R.string.activity_circle_love_full) String fullLove;
     private String tId;
     private String userId;
 
@@ -79,6 +87,14 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
             @Override
             public void onClick(View v) {
                 OtherUserCenterActivity.start(AppointWithMeDetailActivity.this,mIvUserIcon,userId);
+            }
+        });
+        btEnter.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Map<String, String> appointMap = MapUtils.Build().addKey().addUserId().end();
+                XEventUtils.getUseCommonBackJson(IVariable.MY_CREATE_APPOINT,appointMap,TYPE_OTHER,new AppointWithMeDetailEvent());
             }
         });
 
@@ -106,12 +122,57 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
   }
 
     @Override
-    protected void onSuccess(AppointDetailEvent appointDetailEvent) {
-        dealData(appointDetailEvent);
+    protected void onSuccess(AppointWithMeDetailEvent appointDetailEvent) {
+        switch (appointDetailEvent.getType()){
+            case TYPE_UPDATE://推送约伴
+                ToastUtils.showToast("推送成功！请耐心等待用户确认。");
+                break;
+            case TYPE_OTHER:
+                if (appointDetailEvent.getCode()==2){
+                    onFail(appointDetailEvent);
+                }else {
+                    MyCreateAppointBean myCreateAppointBean = GsonUtils.getObject(appointDetailEvent.getResult(), MyCreateAppointBean.class);
+                    final List<MyCreateAppointBean.DataBean> data = myCreateAppointBean.getData();
+                    EnterAppointDialog.showMyAppoint(this,data, new ParentPopClick() {
+                        @Override
+                        public void onClick(int position) {
+                            MyCreateAppointBean.DataBean dataBean = data.get(position);
+                            Map<String, String> endMap = MapUtils.Build().addKey().addUserId().addtId(tId).addTpId(dataBean.getId()).end();
+                            XEventUtils.postUseCommonBackJson(IVariable.PUSH_MY_APPOINT,endMap,TYPE_UPDATE,new AppointWithMeDetailEvent());
+                        }
+                    });
+                }
+                break;
+            default:
+                dealData(appointDetailEvent);
+                break;
+        }
+
     }
 
+    @Override
+    protected void onFail(AppointWithMeDetailEvent appointWithMeDetailEvent) {
+        switch (appointWithMeDetailEvent.getType()){
+            case TYPE_UPDATE:
+                ToastUtils.showToast(appointWithMeDetailEvent.getMessage());
+                break;
+            case TYPE_OTHER:
+                EnterAppointDialog.showCommonDialog("报名失败", "去创建", "您还没有创建任何约伴[一起玩]线路,请先创建自己的队伍!", new ParentPopClick() {
+                    @Override
+                    public void onClick(int type) {
+                        Intent intent=new Intent(AppointWithMeDetailActivity.this,TravelsPlanActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                break;
+            default:
+                super.onFail(appointWithMeDetailEvent);
+                break;
+        }
 
-    private void dealData(AppointDetailEvent event) {
+    }
+
+    private void dealData(AppointWithMeDetailEvent event) {
         AppointWithMeDetailBean appointWithMeDetail = GsonUtils.getObject(event.getResult(), AppointWithMeDetailBean.class);
         try {
             AppointWithMeDetailBean.DataBean data = appointWithMeDetail.getData();
@@ -127,6 +188,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointDeta
             mTvWatchNumber.setText(data.getBrowse());
             mTvTitle.setText(data.getTitle());
             mTvContent.setText(data.getContent());
+            mTvLove.setText(data.getIs_like().equals("1")?fullLove:emptyLove);
             mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
             mTvStartAndLong.setText(data.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
             mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));

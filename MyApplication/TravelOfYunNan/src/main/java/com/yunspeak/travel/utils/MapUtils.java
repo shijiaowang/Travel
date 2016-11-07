@@ -14,8 +14,8 @@ public class MapUtils {
         return new Builder();
     }
     public static class Builder{
-        public Builder addKey(Context context){
-            stringMap.put(IVariable.KEY,GlobalUtils.getKey(context));
+        public Builder addKey(){
+            stringMap.put(IVariable.KEY,GlobalUtils.getKey());
             return this;
         }
         public Builder addMyId(){

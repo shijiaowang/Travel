@@ -80,7 +80,7 @@ public class DiscussCommonReplyTextHolder extends BaseRecycleViewHolder<TravelRe
         //无法取消赞
         if (!item.getIs_like().equals("1")) {
             mTvLove.setTextColor(mContext.getResources().getColor(R.color.otherFf7f6c));
-            Map<String, String> likeMap = MapUtils.Build().addKey(mContext).addFId(item.getF_id()).addUserId().
+            Map<String, String> likeMap = MapUtils.Build().addKey().addFId(item.getF_id()).addUserId().
                     addRId(item.getId()).addType(typeDestination).addRUserId(item.getUser_id()).
                     end();
             DetailCommonEvent detailCommonEvent = new DetailCommonEvent();

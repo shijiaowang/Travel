@@ -628,7 +628,7 @@
             android:textColor="@color/otherFf7f6c"
             android:textSize="18sp" />
 
-        <Button
+        <com.yunspeak.travel.ui.view.AvoidFastButton
             android:id="@+id/bt_enter"
             android:layout_width="74dp"
             android:layout_height="match_parent"

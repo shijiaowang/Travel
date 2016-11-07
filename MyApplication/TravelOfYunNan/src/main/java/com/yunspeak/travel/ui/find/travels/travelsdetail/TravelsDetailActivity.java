@@ -80,7 +80,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
     @Override
     public void onItemClick(int position) {
         super.onItemClick(position);
-        Map<String, String> destinationMap = MapUtils.Build().addKey(TravelsDetailActivity.this).addFId(mDatas.get(position).getF_id()).addUserId().
+        Map<String, String> destinationMap = MapUtils.Build().addKey().addFId(mDatas.get(position).getF_id()).addUserId().
                 addContent("这只是一个测试评论而已，而已").addPId(mDatas.get(position).getId()).add(IVariable.TYPE, IVariable.TYPE_TRAVELS).
                 addNextPage(haveNextPage).addCount(mDatas.size()).
                 end();

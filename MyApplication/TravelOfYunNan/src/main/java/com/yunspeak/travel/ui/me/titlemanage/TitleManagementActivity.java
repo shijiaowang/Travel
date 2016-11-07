@@ -65,7 +65,7 @@ public class TitleManagementActivity extends BaseNetWorkActivity<TitleManagement
      */
     private void saveLabel() {
         String labelId=getLabelIds();
-        Map<String, String> labelMap = MapUtils.Build().addKey(this).addUserId().addLabel(labelId).end();
+        Map<String, String> labelMap = MapUtils.Build().addKey().addUserId().addLabel(labelId).end();
         XEventUtils.postUseCommonBackJson(IVariable.SAVE_TITLE,labelMap,TYPE_SAVE,new TitleManagementEvent());
     }
 

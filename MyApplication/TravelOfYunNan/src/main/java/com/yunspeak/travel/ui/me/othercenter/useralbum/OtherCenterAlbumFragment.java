@@ -118,7 +118,7 @@ public class OtherCenterAlbumFragment extends LoadBaseFragment<OtherAlbumEvent> 
     @Override
     protected void onLoad(int type) {
         int count=getListSize(mDatas);
-        Map<String, String> albumMap = MapUtils.Build().addKey(getContext()).addMyId().add(IVariable.USER_ID, userId).addType("2").addPageSize().addCount(count).end();
+        Map<String, String> albumMap = MapUtils.Build().addKey().addMyId().add(IVariable.USER_ID, userId).addType("2").addPageSize().addCount(count).end();
         XEventUtils.getUseCommonBackJson(IVariable.OTHER_USER_INFO,albumMap,0,new OtherAlbumEvent());
     }
 

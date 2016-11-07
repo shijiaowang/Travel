@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.appoint.together;
 
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
 import com.yunspeak.travel.global.IVariable;
@@ -38,7 +39,7 @@ public class PlayTogetherFragment extends LoadAndPullBaseFragment<AppointTogethe
     @Override
     public void onSuccess(AppointTogetherEvent appointTogetherEvent) {
         switch (appointTogetherEvent.getType()) {
-            case TYPE_CLICK_ZAN:
+            case TYPE_LIKE:
                 CommonClickLikeBean object = GsonUtils.getObject(appointTogetherEvent.getResult(), CommonClickLikeBean.class);
                 int clickPosition = appointTogetherEvent.getClickPosition();
                 getmDatas().get(clickPosition).setCount_like(object.getData().getCount_like());

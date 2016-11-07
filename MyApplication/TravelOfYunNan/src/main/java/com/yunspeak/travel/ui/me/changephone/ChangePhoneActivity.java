@@ -76,7 +76,7 @@ public class ChangePhoneActivity extends BaseNetWorkActivity<ChangePhoneEvent> {
                     ToastUtils.showToast("请输入验证码。");
                     return;
                 }
-                Map<String, String> end = MapUtils.Build().addKey(ChangePhoneActivity.this).addTel(tel).addUserId().addCode(getString(mEtVer)).end();
+                Map<String, String> end = MapUtils.Build().addKey().addTel(tel).addUserId().addCode(getString(mEtVer)).end();
                 XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE,end,TYPE_OTHER,new ChangePhoneEvent());
             }
 
@@ -84,7 +84,7 @@ public class ChangePhoneActivity extends BaseNetWorkActivity<ChangePhoneEvent> {
         mBtVer.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, String> end = MapUtils.Build().addKey(ChangePhoneActivity.this).addTel(tel).addType("1").end();
+                Map<String, String> end = MapUtils.Build().addKey().addTel(tel).addType("1").end();
                 XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE_VER_MSG, end, TYPE_VER_MSG, new ChangePhoneEvent());
             }
         });

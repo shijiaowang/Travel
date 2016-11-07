@@ -44,7 +44,7 @@ public class SearchCommonFragment extends LoadAndPullBaseFragment<HomeSearchEven
 
     @Override
     protected void onLoad(int t) {
-        MapUtils.Builder builder = MapUtils.Build().addKey(getContext()).addUserId().addType(type).addContent(HomeSearchActivity.content);
+        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId().addType(type).addContent(HomeSearchActivity.content);
         childAdd(builder, t);
         Map<String, String> baseMap = builder.end();
         HomeSearchEvent homeSearchEvent = new HomeSearchEvent();

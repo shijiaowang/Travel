@@ -8,7 +8,7 @@ import android.widget.Button;
 import com.yunspeak.travel.utils.LogUtils;
 
 /**
- * Created by Administrator on 2016/8/19 0019.
+ * Created by wangyang on 2016/8/19 0019.
  * 避免快速点击的button
  */
 public class AvoidFastButton extends Button{

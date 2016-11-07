@@ -7,10 +7,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -21,6 +24,9 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.global.SendTextClick;
+import com.yunspeak.travel.ui.appoint.withme.withmedetail.MyCreateAppointAdapter;
+import com.yunspeak.travel.ui.appoint.withme.withmedetail.MyCreateAppointBean;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.StringUtils;
@@ -29,6 +35,9 @@ import com.yunspeak.travel.utils.TypefaceUtis;
 import com.yunspeak.travel.utils.UIUtils;
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
+
+import java.util.List;
+
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -43,8 +52,11 @@ import cn.sharesdk.wechat.moments.WechatMoments;
 public class EnterAppointDialog {
 
 
-    public static void showDialogSuccess(final Context context) {
+    public static int select=-1;
+
+    public static void showDialogSuccess() {
         //创建视图
+        final Context context=UIUtils.getContext();
         View dialogView = View.inflate(context, R.layout.dialog_appoint_enlist_success, null);
        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
 
@@ -84,11 +96,71 @@ public class EnterAppointDialog {
     }
     /**
      * 改变性别
-     * @param context
+     */
+    public static void showMyAppoint(Context context, final List<MyCreateAppointBean.DataBean> dataBeen, final ParentPopClick parentPopClick) {
+        //创建视图
+        View dialogView = View.inflate(context, R.layout.dialog_appoint_list, null);
+        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
+        final MyCreateAppointAdapter myCreateAppointAdapter=new MyCreateAppointAdapter(dataBeen,context);
+        RecyclerView recyclerView = (RecyclerView) dialogView.findViewById(R.id.rv_appoint);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
+        recyclerView.setAdapter(myCreateAppointAdapter);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        if (dataBeen.size()>3){
+            ViewGroup.LayoutParams layoutParams = recyclerView.getLayoutParams();
+            layoutParams.height=DensityUtil.dip2px(270);
+            recyclerView.setLayoutParams(layoutParams);//最高不能超过三个孩子高度
+        }
+        myCreateAppointAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                if (dataBeen.get(position).getIs_push()==1){
+                    ToastUtils.showToast("您已经向该用户推送过此约伴信息，无法再次推送！");
+                }else {
+                    if (select !=-1){
+                        dataBeen.get(select).setSelect(false);
+                    }
+                    select =position;
+                    dataBeen.get(position).setSelect(true);
+                    myCreateAppointAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+        dialogView.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (select==-1){
+                    ToastUtils.showToast("您未选择任何约伴！");
+                }else {
+                    parentPopClick.onClick(select);
+                    dialog.dismiss();
+                }
+            }
+        });
+        dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        Window window = dialog.getWindow(); //得到对话框
+        window.setGravity(Gravity.CENTER);
+        //创建 Dialog
+//		Dialog dialog=new Dialog(上下文,风格style);
+        //layout_width layout_height
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(285), ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setContentView(dialogView, params);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+    }
+    /**
+     * 改变性别
      * @param sex
      */
-    public static void showChangeSex(final Context context, String sex, final SendTextClick parentPopClick) {
+    public static void showChangeSex(String sex, final SendTextClick parentPopClick) {
         //创建视图
+        final Context context=UIUtils.getContext();
         View dialogView = View.inflate(context, R.layout.pop_change_sex, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
 
@@ -135,11 +207,11 @@ public class EnterAppointDialog {
     }
     /**
      * 设置目的地
-     * @param context
      * @param nick_name
      */
-    public static void showInputTextView(final Context context, String nick_name, final SendTextClick parentPopClick) {
+    public static void showInputTextView( String nick_name, final SendTextClick parentPopClick) {
         //创建视图
+        final Context context=UIUtils.getContext();
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
@@ -185,10 +257,10 @@ public class EnterAppointDialog {
     /**
      * 添加目的地
      * @param isStart
-     * @param context
      */
-    public static void showDialogAddDestination(final Context context, final TextView textView, final boolean isStart) {
+    public static void showDialogAddDestination(final TextView textView, final boolean isStart) {
         //创建视图
+        final Context context=UIUtils.getContext();
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
@@ -283,11 +355,11 @@ public class EnterAppointDialog {
     }
     /**
      * 分享
-     *  @param context
      *
      */
-    public static void showShareDialog(final Context context) {
+    public static void showShareDialog() {
         // 获取弹出视图对象
+      final   Context context=UIUtils.getContext();
         final View dialogView = View.inflate(context, R.layout.pop_share, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         View rlBottom = ((Activity) context).findViewById(R.id.rl_bottom);
@@ -413,12 +485,12 @@ public class EnterAppointDialog {
         dialog.show();
 
     }
-    public static void showCommonDialog(final Context context, String title, String okText, String content, final ParentPopClick parentPopClick) {
+    public static void showCommonDialog(String title, String okText, String content, final ParentPopClick parentPopClick) {
         //创建视图
-        View dialogView = View.inflate(context, R.layout.dialog_appoint_enlist_fail, null);
-        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
+        View dialogView = View.inflate(UIUtils.getContext(), R.layout.dialog_appoint_enlist_fail, null);
+        final Dialog dialog = new Dialog(UIUtils.getContext(),R.style.noTitleDialog);
         ((TextView) dialogView.findViewById(R.id.tv_title)).setText(title);
-        ((TextView) dialogView.findViewById(R.id.tv_content)).setText(context.getString(R.string.kongge)+content);
+        ((TextView) dialogView.findViewById(R.id.tv_content)).setText(UIUtils.getString(R.string.kongge)+content);
         dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
@@ -97,10 +98,10 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder<AppointTogether
           mTvIconLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, String> end = MapUtils.Build().addKey(mContext).addUserId().addType(IVariable.PLAY_TOGETHER_CLICK_TYPE).addtId(datas.getId()).addRUserId(datas.getUser_id()).end();
+                Map<String, String> end = MapUtils.Build().addKey().addUserId().addType(IVariable.PLAY_TOGETHER_CLICK_TYPE).addtId(datas.getId()).addRUserId(datas.getUser_id()).end();
                 AppointTogetherEvent event=new AppointTogetherEvent();
                 event.setClickPosition(position);
-                XEventUtils.postUseCommonBackJson(IVariable.APPOINT_CLICK_ZAN,end, LoadBaseFragment.TYPE_CLICK_ZAN,event);
+                XEventUtils.postUseCommonBackJson(IVariable.APPOINT_CLICK_ZAN,end, IState.TYPE_LIKE,event);
 
             }
         });

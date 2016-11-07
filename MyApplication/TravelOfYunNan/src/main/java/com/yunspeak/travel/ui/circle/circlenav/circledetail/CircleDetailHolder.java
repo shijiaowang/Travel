@@ -105,7 +105,7 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
                     //点赞
                     CircleDetailEvent circleDetailEvent = new CircleDetailEvent();
                     circleDetailEvent.setPosition(position);
-                    Map<String, String> likeMap = MapUtils.Build().addKey(mContext).addFroumId(datas.getId()).addUserId().addRUserId(datas.getUser_id()).end();
+                    Map<String, String> likeMap = MapUtils.Build().addKey().addFroumId(datas.getId()).addUserId().addRUserId(datas.getUser_id()).end();
                     XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_LIKE_POST, likeMap, CircleDetailActivity.TYPE_LIKE,circleDetailEvent);
                 }else {
                     ToastUtils.showToast("你已经点过赞了");
