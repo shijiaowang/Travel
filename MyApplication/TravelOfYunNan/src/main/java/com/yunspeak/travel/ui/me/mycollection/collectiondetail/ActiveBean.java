@@ -10,7 +10,6 @@ import java.util.List;
 
 public class ActiveBean implements ParentBean{
 
-
     private int code;
     private String message;
 
@@ -42,19 +41,21 @@ public class ActiveBean implements ParentBean{
     }
 
     public static class DataBean {
-        private String id;
+        private String cid;
         private String title;
         private String activity_img;
         private String start_time;
         private String end_time;
+        private String price;
         private String add_time;
+        private String id;
 
-        public String getId() {
-            return id;
+        public String getCid() {
+            return cid;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setCid(String cid) {
+            this.cid = cid;
         }
 
         public String getTitle() {
@@ -89,12 +90,28 @@ public class ActiveBean implements ParentBean{
             this.end_time = end_time;
         }
 
+        public String getPrice() {
+            return price;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
+
         public String getAdd_time() {
             return add_time;
         }
 
         public void setAdd_time(String add_time) {
             this.add_time = add_time;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
         }
     }
 }

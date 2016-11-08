@@ -9,7 +9,7 @@ import com.yunspeak.travel.ui.adapter.holer.DeliciousDetailHoler;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/7/26 0026.
+ * Created by wangyang on 2016/7/26 0026.
  */
 public class DeliciousDetailAdapter extends TravelBaseAdapter<DeliciousDetailBean> {
     public DeliciousDetailAdapter(Context mContext, List<DeliciousDetailBean> mDatas) {

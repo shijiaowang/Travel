@@ -46,6 +46,15 @@ public class DestinationBean implements ParentBean {
         private String logo_img;
         private String add_time;
         private String add_ress;
+        private String cid;
+
+        public String getCid() {
+            return cid;
+        }
+
+        public void setCid(String cid) {
+            this.cid = cid;
+        }
 
         public String getId() {
             return id;

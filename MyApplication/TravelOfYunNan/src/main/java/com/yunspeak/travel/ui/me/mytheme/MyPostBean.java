@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.mytheme;
 
 import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.InformBean;
 
 import java.util.List;
 
@@ -53,6 +54,15 @@ public class MyPostBean implements ParentBean {
         private String img;
         private String count_reply;
         private String count_like;
+        private List<InformBean> inform;
+
+        public List<InformBean> getInform() {
+            return inform;
+        }
+
+        public void setInform(List<InformBean> inform) {
+            this.inform = inform;
+        }
 
         public String getId() {
             return id;

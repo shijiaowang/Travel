@@ -2,6 +2,8 @@ package com.yunspeak.travel.ui.me.mytheme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.InformBean;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
@@ -21,13 +24,16 @@ import com.yunspeak.travel.ui.find.travels.TravelsActivity;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.xutils.x;
 
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -60,12 +66,18 @@ public class ThemeCommonHolder extends BaseRecycleViewHolder {
         if (data1 instanceof MyPostBean.DataBean) {
             final MyPostBean.DataBean datas=((MyPostBean.DataBean) data1);
             FrescoUtils.displayIcon(mIvUserIcon,datas.getImg());
-            mTvName.setText(datas.getTitle());
+
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss", datas.getAdd_time()));
             mTvLoveNumber.setText(datas.getCount_like());
             mTvCircle.setText("#" + datas.getCname() + "#");
-            mTvContent.setText(datas.getContent());
+            AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),mContext);
             mTvDiscussNumber.setText(datas.getCount_reply());
+            if (StringUtils.isEmpty(datas.getTitle())){
+                mTvName.setVisibility(View.GONE);
+            }else {
+                mTvName.setVisibility(View.VISIBLE);
+                AiteUtils.parseTextMessage(mTvName,null,datas.getTitle(),mContext);
+            }
             mIvUserIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -100,8 +112,14 @@ public class ThemeCommonHolder extends BaseRecycleViewHolder {
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss", datas.getAdd_time()));
             mTvLoveNumber.setText(datas.getCount_like());
             mTvCircle.setText("#" + datas.getCname() + "#");
-            mTvContent.setText(datas.getContent());
+            AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),mContext);
             mTvDiscuss.setVisibility(View.GONE);
+            if (StringUtils.isEmpty(datas.getTitle())){
+                mTvName.setVisibility(View.GONE);
+            }else {
+                mTvName.setVisibility(View.VISIBLE);
+                AiteUtils.parseTextMessage(mTvName,null,datas.getTitle(),mContext);
+            }
             mTvDiscussNumber.setVisibility(View.GONE);
             final String type = datas.getType();
             final int findType = datas.getFind_type();
@@ -157,4 +175,5 @@ public class ThemeCommonHolder extends BaseRecycleViewHolder {
             });
         }
     }
+
 }

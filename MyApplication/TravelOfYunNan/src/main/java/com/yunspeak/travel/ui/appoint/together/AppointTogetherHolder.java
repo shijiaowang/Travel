@@ -90,9 +90,7 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder<AppointTogether
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, AppointTogetherDetailActivity.class);
-                intent.putExtra(IVariable.T_ID,datas.getId());
-                mContext.startActivity(intent);
+                AppointTogetherDetailActivity.start(mContext,datas.getId());
             }
         });
           mTvIconLove.setOnClickListener(new View.OnClickListener() {

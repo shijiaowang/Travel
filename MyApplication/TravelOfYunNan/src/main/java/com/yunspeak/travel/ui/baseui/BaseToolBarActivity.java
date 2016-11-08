@@ -155,7 +155,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
      */
     protected void setErrorPage(boolean isShow) {
         mIvPageError.setVisibility(isShow ? View.VISIBLE : View.GONE);
-        needHideChildView.setVisibility(View.GONE);//隐藏主布局
+        childView.setVisibility(View.GONE);//隐藏主布局
     }
 
     /**

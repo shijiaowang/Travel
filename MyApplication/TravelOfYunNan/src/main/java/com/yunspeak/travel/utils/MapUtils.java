@@ -1,11 +1,10 @@
 package com.yunspeak.travel.utils;
-import android.content.Context;
 import com.yunspeak.travel.global.IVariable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/7/29 0029.
+ * Created by wangyang on 2016/7/29 0029.
  */
 public class MapUtils {
      static Map<String,String> stringMap=new HashMap<>();

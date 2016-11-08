@@ -1,6 +1,11 @@
 package com.yunspeak.travel.ui.me.titlemanage;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.yunspeak.travel.R;
@@ -12,6 +17,9 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.Serializable;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by wangyang on 2016/9/7 0007.
  * 称号管理
@@ -19,9 +27,14 @@ import java.util.List;
 public class TitleManagementFragment extends BaseFragment {
     private static final String TITLE = "title";
     private static final String TITLE_TYPE = "title_type";
+    @BindView(R.id.lv_title)
+    ListView lvTitle;
+    @BindView(R.id.ll_lv)
+    LinearLayout llLv;
+    @BindView(R.id.rl_empty)
+    LinearLayout llEmpty;
     private List<OfficialLabelBean> mTitle;
     private String mTitleType;
-    private ListView mLvTitle;
     private TitleManagementAdapter titleManagementAdapter;
 
     @Override
@@ -51,14 +64,18 @@ public class TitleManagementFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        mLvTitle = (ListView) root.findViewById(R.id.lv_title);
+
     }
 
     @Override
     protected void initData() {
-        if (mTitle==null)return;
-        titleManagementAdapter = new TitleManagementAdapter(getContext(), mTitle);
-        mLvTitle.setAdapter(titleManagementAdapter);
+        if (mTitle == null){
+            llLv.setVisibility(View.GONE);
+        }else {
+            llEmpty.setVisibility(View.GONE);
+            titleManagementAdapter = new TitleManagementAdapter(getContext(), mTitle);
+            lvTitle.setAdapter(titleManagementAdapter);
+        }
     }
 
     @Override
@@ -68,14 +85,14 @@ public class TitleManagementFragment extends BaseFragment {
 
     @Subscribe
     public void onEvent(TitleDeleteEvent event) {
-       if (event.getType().equals(mTitleType)){
-           for (OfficialLabelBean labelBean:mTitle){
-               if (labelBean.getId().equals(event.getId())){
-                   labelBean.setStatus("1");//改成已获得，未佩戴
-                   titleManagementAdapter.notifyDataSetChanged();
-               }
-           }
-       }
+        if (event.getType().equals(mTitleType)) {
+            for (OfficialLabelBean labelBean : mTitle) {
+                if (labelBean.getId().equals(event.getId())) {
+                    labelBean.setStatus("1");//改成已获得，未佩戴
+                    titleManagementAdapter.notifyDataSetChanged();
+                }
+            }
+        }
     }
 
     @Override
@@ -96,4 +113,6 @@ public class TitleManagementFragment extends BaseFragment {
             EventBus.getDefault().unregister(this);
         }
     }
+
+
 }

@@ -157,7 +157,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
                 ToastUtils.showToast(appointWithMeDetailEvent.getMessage());
                 break;
             case TYPE_OTHER:
-                EnterAppointDialog.showCommonDialog("报名失败", "去创建", "您还没有创建任何约伴[一起玩]线路,请先创建自己的队伍!", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog(this,"报名失败", "去创建", "您还没有创建任何约伴[一起玩]线路,请先创建自己的队伍!", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         Intent intent=new Intent(AppointWithMeDetailActivity.this,TravelsPlanActivity.class);

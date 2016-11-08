@@ -18,8 +18,6 @@ import java.util.List;
  * Created by wangyang on 2016/7/18 0018.
  */
 public class EditAlbumAdapter extends BaseRecycleViewAdapter<EditAlbumBean.DataBean.BodyBean> {
-    private boolean canDelete=false;
-
     public EditAlbumAdapter(List<EditAlbumBean.DataBean.BodyBean> mDatas, Context mContext) {
         super(mDatas, mContext);
     }

@@ -25,6 +25,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -210,7 +211,6 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
 
     private void dealData(EditAlbumEvent event) {
 
-
         if (event.getType() == TYPE_UPDATE) {
             tvAlbumName.setText(name);
             tvDes.setText(des);
@@ -260,8 +260,8 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             editAlbumAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-                    body.remove(position);
-                    editAlbumAdapter.notifyItemRemoved(position);
+                    if (getListSize(pictureList)==0)return;
+                    CirclePreviewActivity.start(EditAlbumActivity.this,pictureList,position);
                 }
             });
         } else {
@@ -273,8 +273,21 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
 
     @Override
     protected void onSuccess(EditAlbumEvent event) {
-        swipeContainer.setLoadingMore(false);
-        dealData(event);
+        switch (event.getType()){
+            case TYPE_DELETE:
+                body.remove(event.getPosition());
+                editAlbumAdapter.notifyItemRemoved(event.getPosition());
+                editAlbumAdapter.notifyDataSetChanged();
+                break;
+            case TYPE_LOAD:
+                swipeContainer.setLoadingMore(false);
+                break;
+            default:
+                dealData(event);
+                break;
+
+        }
+
     }
 
     @Override
@@ -348,6 +361,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             }
             des = etDes.getText().toString().trim();
             updateAlbum(name, des);
+
         }
     }
 
@@ -371,5 +385,6 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
     public void onLoadMore() {
         onLoad(TYPE_LOAD);
     }
+
 }
 

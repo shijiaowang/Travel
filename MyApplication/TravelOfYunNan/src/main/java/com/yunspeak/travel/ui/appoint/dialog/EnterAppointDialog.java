@@ -54,9 +54,8 @@ public class EnterAppointDialog {
 
     public static int select=-1;
 
-    public static void showDialogSuccess() {
+    public static void showDialogSuccess(final Context context) {
         //创建视图
-        final Context context=UIUtils.getContext();
         View dialogView = View.inflate(context, R.layout.dialog_appoint_enlist_success, null);
        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
 
@@ -84,14 +83,6 @@ public class EnterAppointDialog {
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK)
-                    dialog.dismiss();
-                return true;
-            }
-        });
         dialog.show();
     }
     /**
@@ -158,9 +149,8 @@ public class EnterAppointDialog {
      * 改变性别
      * @param sex
      */
-    public static void showChangeSex(String sex, final SendTextClick parentPopClick) {
+    public static void showChangeSex(Context context,String sex, final SendTextClick parentPopClick) {
         //创建视图
-        final Context context=UIUtils.getContext();
         View dialogView = View.inflate(context, R.layout.pop_change_sex, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
 
@@ -209,9 +199,8 @@ public class EnterAppointDialog {
      * 设置目的地
      * @param nick_name
      */
-    public static void showInputTextView( String nick_name, final SendTextClick parentPopClick) {
+    public static void showInputTextView(Context context, String nick_name, final SendTextClick parentPopClick) {
         //创建视图
-        final Context context=UIUtils.getContext();
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
@@ -258,9 +247,8 @@ public class EnterAppointDialog {
      * 添加目的地
      * @param isStart
      */
-    public static void showDialogAddDestination(final TextView textView, final boolean isStart) {
+    public static void showDialogAddDestination(final Context context, final TextView textView, final boolean isStart) {
         //创建视图
-        final Context context=UIUtils.getContext();
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
@@ -343,23 +331,15 @@ public class EnterAppointDialog {
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK)
-                    dialog.dismiss();
-                return true;
-            }
-        });
+
         dialog.show();
     }
     /**
      * 分享
      *
      */
-    public static void showShareDialog() {
+    public static void showShareDialog(final Context context) {
         // 获取弹出视图对象
-      final   Context context=UIUtils.getContext();
         final View dialogView = View.inflate(context, R.layout.pop_share, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         View rlBottom = ((Activity) context).findViewById(R.id.rl_bottom);
@@ -485,10 +465,10 @@ public class EnterAppointDialog {
         dialog.show();
 
     }
-    public static void showCommonDialog(String title, String okText, String content, final ParentPopClick parentPopClick) {
+    public static void showCommonDialog(Context context,String title, String okText, String content, final ParentPopClick parentPopClick) {
         //创建视图
-        View dialogView = View.inflate(UIUtils.getContext(), R.layout.dialog_appoint_enlist_fail, null);
-        final Dialog dialog = new Dialog(UIUtils.getContext(),R.style.noTitleDialog);
+        View dialogView = View.inflate(context, R.layout.dialog_appoint_enlist_fail, null);
+        final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         ((TextView) dialogView.findViewById(R.id.tv_title)).setText(title);
         ((TextView) dialogView.findViewById(R.id.tv_content)).setText(UIUtils.getString(R.string.kongge)+content);
         dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {

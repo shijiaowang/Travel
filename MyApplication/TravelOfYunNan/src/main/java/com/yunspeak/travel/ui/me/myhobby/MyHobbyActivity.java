@@ -1,35 +1,26 @@
 package com.yunspeak.travel.ui.me.myhobby;
-
-import android.app.Activity;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.me.titlemanage.TitleChangeEvent;
 import com.yunspeak.travel.ui.me.titlemanage.TitlePagerAdapter;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-import com.yunspeak.travel.utils.XEventUtils;
 import com.google.android.flexbox.FlexboxLayout;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
 import butterknife.BindView;
 
 /**
@@ -73,7 +64,7 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
 
     private void dealData(MyHobbyEvent event) {
         switch (event.getType()){
-            case TYPE_LOAD:
+            case TYPE_REFRESH:
                 dealLoadData(event);
                 break;
         }
@@ -129,6 +120,16 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
         }
     }
 
+    @Override
+    protected String initRightText() {
+        return "保存";
+    }
+
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+
+    }
+
     private void addLabel(UserLabelBean labelBean) {
         if (labelBean==null)return;
         if (userLabel.size()==7){
@@ -163,6 +164,7 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
     protected void onSuccess(MyHobbyEvent event) {
         dealData(event);
     }
+
 
     @Override
     protected int initLayoutRes() {

@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.appoint.together.togetherdetail;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
@@ -150,6 +151,11 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
             }
         });
     }
+     public static void start(Context context,String tid){
+         Intent intent=new Intent(context,AppointTogetherDetailActivity.class);
+         intent.putExtra(IVariable.T_ID,tid);
+         context.startActivity(intent);
+     }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
@@ -175,7 +181,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 }
                 break;
             case TYPE_ENTER_APPOINT:
-                EnterAppointDialog.showDialogSuccess();
+                EnterAppointDialog.showDialogSuccess(this);
                 initAction(7 + "");
                 break;
             case TYPE_DELETE:
@@ -428,7 +434,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 XEventUtils.postUseCommonBackJson(IVariable.ENTER_APPOINT, map, TYPE_ENTER_APPOINT, new AppointTogetherDetailEvent());
                 break;
             case 3:
-                EnterAppointDialog.showCommonDialog("退出约伴", "确定", "退出约伴团队", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog(this,"退出约伴", "确定", "退出约伴团队", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         XEventUtils.postUseCommonBackJson(IVariable.OUT_APPOINT, map, TYPE_OUT_APPOINT, new AppointTogetherDetailEvent());
@@ -436,7 +442,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 });
               break;
             case 7:
-                EnterAppointDialog.showCommonDialog("取消申请", "确定", "取消发起的约伴请求！", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog(this,"取消申请", "确定", "取消发起的约伴请求！", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         XEventUtils.postUseCommonBackJson(IVariable.CANCEL_APPOINT, map, TYPE_DELETE, new AppointTogetherDetailEvent());

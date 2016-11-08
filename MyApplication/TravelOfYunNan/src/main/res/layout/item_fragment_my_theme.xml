@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_marginLeft="13dp"
         android:layout_marginTop="7dp"
+        android:gravity="center_vertical"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -21,7 +22,8 @@
             android:layout_marginLeft="11dp"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="41dp"
+            android:minHeight="41dp"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@id/iv_icon"
             android:gravity="center_vertical"
             android:orientation="vertical">
@@ -32,11 +34,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#575555"
+                android:layout_marginBottom="10dp"
                 android:textSize="12sp" />
 
             <TextView
                 style="@style/commonSingleLineTextStyle"
-                android:layout_marginTop="10dp"
                 android:id="@+id/tv_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

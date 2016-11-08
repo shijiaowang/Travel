@@ -1,23 +1,16 @@
 package com.yunspeak.travel.ui.me.userservice;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.view.annotation.ViewInject;
-
-import java.util.Map;
-
 import butterknife.BindView;
 
 
@@ -29,10 +22,12 @@ public class CustomerServiceActivity extends BaseNetWorkActivity<CustomerService
     @BindView(R.id.et_phone)  EditText mEtPhone;
     @BindView(R.id.et_content)EditText mEtContent;
     @BindView(R.id.bt_submit) Button mBtSubmit;
+    private boolean isService;
 
 
     @Override
     protected void initEvent() {
+        isService = getIntent().getBooleanExtra(IVariable.DATA,false);
       mBtSubmit.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -52,7 +47,11 @@ public class CustomerServiceActivity extends BaseNetWorkActivity<CustomerService
       });
     }
 
-
+  public static void start(Context context,boolean isService){
+      Intent intent=new Intent(context,CustomerServiceActivity.class);
+      intent.putExtra(IVariable.DATA,isService);
+      context.startActivity(intent);
+  }
 
     @Override
     protected boolean isAutoLoad() {
@@ -61,7 +60,7 @@ public class CustomerServiceActivity extends BaseNetWorkActivity<CustomerService
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        builder.addContent(getString(mEtContent)).addTel(getString(mEtPhone)).addType("2");
+        builder.addContent(getString(mEtContent)).addTel(getString(mEtPhone)).addType(isService?"2":"1");
     }
 
     @Override
@@ -91,6 +90,6 @@ public class CustomerServiceActivity extends BaseNetWorkActivity<CustomerService
 
     @Override
     protected String initTitle() {
-        return "客服中心";
+        return isService?"客服中心":"意见反馈";
     }
 }

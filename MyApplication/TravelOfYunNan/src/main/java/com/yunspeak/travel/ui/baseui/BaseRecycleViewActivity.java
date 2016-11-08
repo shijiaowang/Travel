@@ -235,4 +235,5 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     public void onItemClick(int position) {
 
     }
+
 }

@@ -33,6 +33,9 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
     private String preType="0";
    @BindView(R.id.ll_root)
     LinearLayout llRoot;
+    private RadioButton mRbEntering;
+    private RadioButton mRbPassed;
+    private RadioButton mRbWithMe;
 
 
     @Override
@@ -50,47 +53,20 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
 
     }
 
-    @Override
-    protected void doOtherSuccessData(MyAppointEvent myAppointEvent) {
-        super.doOtherSuccessData(myAppointEvent);
-        switch (myAppointEvent.getType()){
-            case BaseToolBarActivity.TYPE_DELETE:
-                mAdapter.notifyItemChanged(myAppointEvent.getPosition());
-                mDatas.remove(myAppointEvent.getPosition());
-                break;
-            case BaseToolBarActivity.TYPE_CHANGE:
-                changeState(myAppointEvent);
-                break;
-            case BaseToolBarActivity.TYPE_DISCUSS:
-                MyAppointTogetherBean.DataBean dataBean = (MyAppointTogetherBean.DataBean)mDatas.get(myAppointEvent.getPosition());
-                dataBean.setState("10");
-                mAdapter.notifyItemChanged(myAppointEvent.getPosition());
-                ToastUtils.showToast(myAppointEvent.getMessage());
-                break;
-        }
-    }
 
     @Override
     protected void initEvent() {
         super.initEvent();
-        try {
-            changeNeedHideView(mSwipe);
-            mFlContent.removeView(mRlEmpty);
-            mRlEmpty.setVisibility(View.GONE);
-            llRoot.addView(mRlEmpty);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         mVsContent.setLayoutResource(R.layout.activity_my_appoint_header);
         mVsContent.inflate();
         changeMargin(5,10);
-        RadioButton mTvEntering= (RadioButton) findViewById(R.id.tv_entering);
-        RadioButton mTvPassed= (RadioButton) findViewById(R.id.tv_passed);
-        RadioButton mTvWithMe = (RadioButton) findViewById(R.id.tv_with_me);
-        mTvEntering.setOnClickListener(this);
-        mTvEntering.setChecked(true);
-        mTvPassed.setOnClickListener(this);
-        mTvWithMe.setOnClickListener(this);
+        mRbEntering = (RadioButton) findViewById(R.id.tv_entering);
+        mRbPassed = (RadioButton) findViewById(R.id.tv_passed);
+        mRbWithMe = (RadioButton) findViewById(R.id.tv_with_me);
+        mRbEntering.setOnClickListener(this);
+        mRbEntering.setChecked(true);
+        mRbPassed.setOnClickListener(this);
+        mRbWithMe.setOnClickListener(this);
     }
 
     /**
@@ -172,14 +148,31 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
 
     @Override
     protected void onSuccess(MyAppointEvent myAppointEvent) {
-        super.onSuccess(myAppointEvent);
+        switch (myAppointEvent.getType()){
+            case TYPE_DELETE:
+                mDatas.remove(myAppointEvent.getPosition());
+                mAdapter.notifyItemChanged(myAppointEvent.getPosition());
+                break;
+            case TYPE_CHANGE:
+                changeState(myAppointEvent);
+                break;
+            case TYPE_DISCUSS:
+                MyAppointTogetherBean.DataBean dataBean = (MyAppointTogetherBean.DataBean)mDatas.get(myAppointEvent.getPosition());
+                dataBean.setState("10");
+                mAdapter.notifyItemChanged(myAppointEvent.getPosition());
+                ToastUtils.showToast(myAppointEvent.getMessage());
+                break;
+            default:
+                super.onSuccess(myAppointEvent);
+                break;
+        }
         preType=type;
     }
 
     private void toRefresh() {
         if (type.equals(preType))return;
+        if (useCommonBackJson!=null && !useCommonBackJson.isCancelled())useCommonBackJson.cancel();
         setIsProgress(true);
-        resetIsFirstInflate();
         onLoad(TYPE_REFRESH);
     }
 
@@ -187,4 +180,9 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
     protected String initTitle() {
         return "我的约伴";
     }
+
+
+
+
+
 }

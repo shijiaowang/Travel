@@ -3,6 +3,8 @@ package com.yunspeak.travel.utils;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.widget.TextView;
 
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
@@ -17,15 +19,26 @@ import java.util.List;
 
 public class AiteUtils {
 
+    public static void parseTextMessage(TextView textView, List<InformBean> inform, String content, Context mContext){
+        int length = content.length();
+        Spannable span =getSmiledText(mContext, content, length, inform);
+        // 设置内容
+        textView.setText(span);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
+    }
     public static Spannable getSmiledText(Context context, String text, int start,List<InformBean> inform) {
-        if (inform==null || inform.size()==0)return new SpannableStringBuilder(text);
+        if (inform==null || inform.size()==0){
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
+            EaseSmileUtils.addSmiles(context,spannableStringBuilder);
+            return spannableStringBuilder ;
+        }
         StringBuilder stringBuilder=new StringBuilder(text);
         for (InformBean informBean:inform){
             stringBuilder.append("@"+inform.get(inform.indexOf(informBean)).getNick_name());
         }
         String string = stringBuilder.toString();
         SpannableStringBuilder spannable = new SpannableStringBuilder(string);
-       EaseSmileUtils.addSmiles(context, spannable);
+        EaseSmileUtils.addSmiles(context,spannable);
         return addAiteUser(context,spannable,start,inform);
     }
     public static Spannable getSmiedTextWithAiteAndLinke(Context context, String text, int start,List<InformBean> inform,String url) {

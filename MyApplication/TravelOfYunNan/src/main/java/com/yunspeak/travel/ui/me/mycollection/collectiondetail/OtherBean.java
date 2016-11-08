@@ -15,7 +15,6 @@ public class OtherBean implements ParentBean{
     private int code;
     private String message;
 
-
     private List<DataBean> data;
 
     public int getCode() {
@@ -43,19 +42,29 @@ public class OtherBean implements ParentBean{
     }
 
     public static class DataBean {
-        private String id;
+        private String cid;
         private String title;
         private String content;
         private String logo_img;
         private String cname;
         private String add_time;
+        private String id;
+        private String type;
 
-        public String getId() {
-            return id;
+        public String getType() {
+            return type;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getCid() {
+            return cid;
+        }
+
+        public void setCid(String cid) {
+            this.cid = cid;
         }
 
         public String getTitle() {
@@ -96,6 +105,14 @@ public class OtherBean implements ParentBean{
 
         public void setAdd_time(String add_time) {
             this.add_time = add_time;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
         }
     }
 }

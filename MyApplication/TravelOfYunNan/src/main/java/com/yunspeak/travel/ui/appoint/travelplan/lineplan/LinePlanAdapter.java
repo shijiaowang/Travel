@@ -34,7 +34,7 @@ public class LinePlanAdapter extends TravelBaseAdapter<LineBean> {
             linePlanBottomHolder.mTvEndAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EnterAppointDialog.showDialogAddDestination(linePlanBottomHolder.mTvEndAdd,false);
+                    EnterAppointDialog.showDialogAddDestination(mContext,linePlanBottomHolder.mTvEndAdd,false);
                 }
             });
         }
@@ -43,7 +43,7 @@ public class LinePlanAdapter extends TravelBaseAdapter<LineBean> {
             linePlanTopHolder.mTvStartAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EnterAppointDialog.showDialogAddDestination(linePlanTopHolder.mTvStartAdd, true);
+                    EnterAppointDialog.showDialogAddDestination(mContext,linePlanTopHolder.mTvStartAdd, true);
                 }
             });
         }

@@ -10,6 +10,7 @@ import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.Callback;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -25,6 +26,8 @@ import butterknife.OnClick;
 
 public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolBarActivity {
     private boolean isFirstInflate =true;
+    protected Callback.Cancelable useCommonBackJson;
+
     @Override
     protected void initOptions() {
         initEvent();
@@ -75,6 +78,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
 
     @Subscribe
     public void onEvent(T t){
+        useCommonBackJson=null;//同于取消
         try {
             if (!t.getClass().getSimpleName().equals(getTInstance().getClass().getSimpleName())){
                 return;
@@ -119,7 +123,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         MapUtils.Builder builder = MapUtils.Build().addKey().addUserId();
         childAdd(builder,type);
         Map<String, String> baseMap = builder.end();
-        XEventUtils.getUseCommonBackJson(initUrl(),baseMap,type,getTInstance());
+        useCommonBackJson = XEventUtils.getUseCommonBackJson(initUrl(), baseMap, type, getTInstance());
     }
     /**
      * 孩子添加参数

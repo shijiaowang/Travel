@@ -80,12 +80,14 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
         if (!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }
+        getLabel();
     }
 
     @Override
     protected int initLayoutRes() {
         return R.layout.fragment_appoint;
     }
+
     @Subscribe
     public void onEvent(AppointEvent appointEvent){
         AppointBean appointBean = GsonUtils.getObject(appointEvent.getResult(), AppointBean.class);
@@ -107,7 +109,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     }
     @Override
     protected void initView() {
-        getLabel();
+
     }
 
     private void getLabel() {
@@ -323,13 +325,13 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
         EventBus.getDefault().post(new SelectEvent(label,timePosition+"",orderPosition+""));
     }
 
+
+
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
         if (EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().unregister(this);
         }
     }
-
-
 }

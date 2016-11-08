@@ -135,7 +135,8 @@
 
                 <TextView
                     style="@style/activitySettingTvType"
-                    android:text="绑定手机" />
+                    android:text="绑定手机"
+                    android:id="@+id/textView3" />
 
                 <View
                     android:layout_width="0dp"
@@ -183,7 +184,9 @@
 
             <View style="@style/activitySettingLine" />
 
-            <LinearLayout style="@style/activitySettingLl">
+            <LinearLayout
+                android:id="@+id/ll_back"
+                style="@style/activitySettingLl">
 
                 <TextView
                     style="@style/activitySettingTvType"
@@ -224,11 +227,6 @@
                     android:textColor="@color/color323232"
                     android:textSize="13sp" />
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:background="@color/meLine" />
         </LinearLayout>
     </ScrollView>
 

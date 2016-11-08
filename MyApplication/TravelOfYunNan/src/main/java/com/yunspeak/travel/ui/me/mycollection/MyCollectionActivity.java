@@ -22,7 +22,6 @@ public class MyCollectionActivity extends BaseToolBarActivity implements View.On
     public static final  int COLLECTION_DESTINATION=2;
     public static final  int COLLECTION_ACTIVE=3;
     public static final  int COLLECTION_POST=5;
-    public static final int COLLECTION_CANCEL=7;
     @BindView(R.id.ll_active) LinearLayout mLlActive;
     @BindView(R.id.ll_travels) LinearLayout mLlTravels;
     @BindView(R.id.ll_destination) LinearLayout mLlDestination;

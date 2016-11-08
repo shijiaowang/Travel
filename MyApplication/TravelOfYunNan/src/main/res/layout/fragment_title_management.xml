@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ListView
-        android:id="@+id/lv_title"
-        style="@style/commonListViewStyle"
+    <include layout="@layout/empty_view"/>
+    <LinearLayout
+        android:id="@+id/ll_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="40dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/lv_title"
+            style="@style/commonListViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+    </LinearLayout>
+</FrameLayout>

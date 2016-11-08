@@ -16,16 +16,21 @@ import java.util.List;
 /**
  * Created by wangyang on 2016/8/26 0026.
  */
-public class AppointMessageAdapter extends BaseRecycleViewAdapter<CommonMessageBean.DataBean> {
+public class AppointMessageAdapter extends BaseRecycleViewAdapter {
+    public static final int TYPE_AITE = 0;
+    public static final int TYPE_DISCUSS = 1;
+    public static final int TYPE_ZAMBIA = 2;//赞
+    public static final int TYPE_APPOINT = 3;
+    private final int messageType;
 
-
-    public AppointMessageAdapter(List<CommonMessageBean.DataBean> mDatas, Context mContext) {
+    public AppointMessageAdapter(List mDatas, Context mContext,int messageType) {
         super(mDatas, mContext);
+        this.messageType = messageType;
     }
 
 
     @Override
-    public BaseRecycleViewHolder<CommonMessageBean.DataBean> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new AppointMessageHolder(inflateView(R.layout.item_activity_appoint_message,parent));
+    public BaseRecycleViewHolder<Object> onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new AppointMessageHolder(inflateView(R.layout.item_activity_appoint_message,parent),messageType);
     }
 }

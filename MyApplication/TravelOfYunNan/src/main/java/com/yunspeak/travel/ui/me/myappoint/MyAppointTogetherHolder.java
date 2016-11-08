@@ -274,7 +274,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
                         myAppointEvent.setPosition(position);
                         XEventUtils.postUseCommonBackJson(IVariable.DISCUSS_APPOINT, discussMap, BaseToolBarActivity.TYPE_DISCUSS, myAppointEvent);
                     } else {
-                        EnterAppointDialog.showCommonDialog(title, "确定", content, new ParentPopClick() {
+                        EnterAppointDialog.showCommonDialog(mContext,title, "确定", content, new ParentPopClick() {
                             @Override
                             public void onClick(int t) {
                                 changeAppoint(datas, position, mContext, type);
@@ -299,7 +299,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
             mIvDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EnterAppointDialog.showCommonDialog("删除约伴", "确认", "注意！此操作将删除您的约伴！请慎重选择！", new ParentPopClick() {
+                    EnterAppointDialog.showCommonDialog(mContext,"删除约伴", "确认", "注意！此操作将删除您的约伴！请慎重选择！", new ParentPopClick() {
                         @Override
                         public void onClick(int t) {
                             Map<String, String> deleteMap = MapUtils.Build().addKey().addUserId().addtId(datas.getId()).end();
@@ -321,9 +321,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(mContext,AppointTogetherDetailActivity.class);
-                    intent.putExtra(IVariable.T_ID,datas.getId());
-                    mContext.startActivity(intent);
+                    AppointTogetherDetailActivity.start(mContext,datas.getId());
                 }
             });
 

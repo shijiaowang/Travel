@@ -14,15 +14,16 @@ import java.util.List;
  * Created by wangyang on 2016/8/26 0026.
  * 约伴消息
  */
-public class AppointMessageActivity extends BaseRecycleViewActivity<MeCommonEvent,CommonMessageBean,CommonMessageBean.DataBean> {
+public class AppointMessageActivity extends BaseRecycleViewActivity<MeCommonEvent,AppointMessageBean,AppointMessageBean.DataBean> {
     @Override
     protected String initUrl() {
         return IVariable.GET_APPOINT_MESSAGE;
     }
 
+
     @Override
-    protected BaseRecycleViewAdapter<CommonMessageBean.DataBean> initAdapter(List<CommonMessageBean.DataBean> httpData) {
-        return new AppointMessageAdapter(httpData,this);
+    protected BaseRecycleViewAdapter<AppointMessageBean.DataBean> initAdapter(List<AppointMessageBean.DataBean> httpData) {
+        return new AppointMessageAdapter(httpData,this,AppointMessageAdapter.TYPE_APPOINT);
     }
     @Override
     protected String initTitle() {

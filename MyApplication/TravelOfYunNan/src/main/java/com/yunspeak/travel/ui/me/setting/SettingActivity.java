@@ -27,6 +27,7 @@ import com.yunspeak.travel.ui.baseui.PersonalProfileActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.SplashActivity;
 import com.yunspeak.travel.ui.me.about.AboutActivity;
 import com.yunspeak.travel.ui.me.changepassword.ChangePassWordActivity;
+import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
 import com.yunspeak.travel.ui.view.PhoneTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
@@ -64,6 +65,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     @BindView(R.id.ll_logout) LinearLayout mLlLogout;
     @BindView(R.id.ll_about) LinearLayout mLlAbout;
     @BindView(R.id.ll_change_password) LinearLayout mLlChangePassword;
+    @BindView(R.id.ll_back) LinearLayout mLlBack;
     private UserInfo userInfo;
     private String nickName="";
     private String sex="";
@@ -87,6 +89,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         mTvUserNickName.setOnClickListener(this);
         mTvUserLivePlace.setOnClickListener(this);
         mTvUserSex.setOnClickListener(this);
+        mLlBack.setOnClickListener(this);
         initData();
 
     }
@@ -171,7 +174,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 startActivity(new Intent(this, PersonalProfileActivity.class));
                 break;
             case R.id.ll_logout:
-                EnterAppointDialog.showCommonDialog("退出登录", "确定", "是否退出当前登录账号？", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog(this,"退出登录", "确定", "是否退出当前登录账号？", new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         EMClient.getInstance().logout(true);
@@ -200,7 +203,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 showPictureCutPop(mLlLogout);
                 break;
             case R.id.tv_user_nick_name:
-                EnterAppointDialog.showInputTextView(userInfo.getNick_name(),new SendTextClick() {
+                EnterAppointDialog.showInputTextView(this,userInfo.getNick_name(),new SendTextClick() {
                     @Override
                     public void onClick(String text) {
                           mTvUserNickName.setText(text);
@@ -213,7 +216,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 changeLivePlace();
                 break;
             case R.id.tv_user_sex:
-                EnterAppointDialog.showChangeSex(userInfo.getSex(), new SendTextClick() {
+                EnterAppointDialog.showChangeSex(this,userInfo.getSex(), new SendTextClick() {
                     @Override
                     public void onClick(String text) {
                         sex=text;
@@ -225,6 +228,9 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                         messageIsChange=true;
                     }
                 });
+                break;
+            case R.id.ll_back://意见反馈
+                CustomerServiceActivity.start(this,false);
                 break;
         }
     }

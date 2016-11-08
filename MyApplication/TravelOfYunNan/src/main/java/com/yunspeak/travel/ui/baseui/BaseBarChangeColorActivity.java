@@ -163,7 +163,6 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
                 mRvCommon.setLayoutManager(linearLayoutManager);
             }
             mRvCommon.setNestedScrollingEnabled(false);
-            mRvCommon.setItemAnimator(new DefaultItemAnimator());
         } else if (t.getType() == TYPE_LOAD) {
             mDatas.addAll(loadDatas);
             if (t.getCode()==2){

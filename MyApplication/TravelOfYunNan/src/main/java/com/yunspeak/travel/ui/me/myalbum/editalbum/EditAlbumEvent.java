@@ -7,5 +7,13 @@ import com.yunspeak.travel.event.HttpEvent;
  */
 
 public class EditAlbumEvent extends HttpEvent {
+    private int position;
 
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }

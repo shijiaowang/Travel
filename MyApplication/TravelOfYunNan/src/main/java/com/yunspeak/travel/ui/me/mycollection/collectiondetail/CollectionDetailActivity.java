@@ -108,7 +108,20 @@ public class CollectionDetailActivity extends BaseRecycleViewActivity<Collection
         }
     }
 
+    @Override
+    protected void onSuccess(CollectionDetailEvent collectionDetailEvent) {
+        switch (collectionDetailEvent.getType()){
+            case TYPE_DELETE:
+                ToastUtils.showToast("删除成功");
+                mDatas.remove(collectionDetailEvent.getPosition());
+                mAdapter.notifyItemRemoved(collectionDetailEvent.getPosition());
+                break;
+            default:
+                super.onSuccess(collectionDetailEvent);
+                break;
+        }
 
+    }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
@@ -118,6 +131,6 @@ public class CollectionDetailActivity extends BaseRecycleViewActivity<Collection
 
     @Override
     protected String initTitle() {
-        return "我的收藏";
+        return name;
     }
 }

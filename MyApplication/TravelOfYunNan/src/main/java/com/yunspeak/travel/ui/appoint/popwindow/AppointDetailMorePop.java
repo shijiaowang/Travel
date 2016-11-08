@@ -44,7 +44,7 @@ public class AppointDetailMorePop {
         viewPopup.findViewById(R.id.ll_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               EnterAppointDialog.showShareDialog();
+               EnterAppointDialog.showShareDialog(context);
             }
         });
         viewPopup.findViewById(R.id.ll_collection).setOnClickListener(new View.OnClickListener() {

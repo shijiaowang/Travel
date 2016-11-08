@@ -1,7 +1,12 @@
 package com.yunspeak.travel.ui.me.myhobby;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
@@ -13,6 +18,9 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.Serializable;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by wangyang on 2016/9/7 0007.
  * 称号管理
@@ -20,9 +28,12 @@ import java.util.List;
 public class MyHobbyFragment extends BaseFragment {
     private static final String TITLE = "title";
     private static final String TITLE_TYPE = "title_type";
+    @BindView(R.id.gv_title)
+    GridView gvTitle;
+    @BindView(R.id.rl_empty)
+    LinearLayout llEmpty;
     private List<UserLabelBean> mTitle;
     private String mTitleType;
-    private GridView mGvTitle;
     private MyHobbyAdapter myHobbyAdapter;
 
     @Override
@@ -52,14 +63,18 @@ public class MyHobbyFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        mGvTitle = (GridView) root.findViewById(R.id.gv_title);
+
     }
 
     @Override
     protected void initData() {
-        if (mTitle==null)return;
-        myHobbyAdapter = new MyHobbyAdapter(getContext(), mTitle);
-        mGvTitle.setAdapter(myHobbyAdapter);
+        if (mTitle == null) {
+            gvTitle.setVisibility(View.GONE);
+        }else {
+            llEmpty.setVisibility(View.GONE);
+            myHobbyAdapter = new MyHobbyAdapter(getContext(), mTitle);
+            gvTitle.setAdapter(myHobbyAdapter);
+        }
     }
 
     @Override
@@ -69,10 +84,10 @@ public class MyHobbyFragment extends BaseFragment {
 
     @Subscribe
     public void onEvent(TitleChangeEvent event) {
-       if (event.getUserLabelBean().getClassX().equals(mTitleType)){
-           mTitle.add(event.getUserLabelBean());
-           myHobbyAdapter.notifyDataSetChanged();
-       }
+        if (event.getUserLabelBean().getClassX().equals(mTitleType)) {
+            mTitle.add(event.getUserLabelBean());
+            myHobbyAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

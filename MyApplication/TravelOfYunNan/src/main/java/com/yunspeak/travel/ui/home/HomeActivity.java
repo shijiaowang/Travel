@@ -47,6 +47,7 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -85,6 +86,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.ll_bottom) LinearLayout mLlBottom;
     private boolean isNetwork;
     private SharedPreferences sharedPreferences;
+    private boolean isOtherLogin=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -337,11 +339,16 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                         ToastUtils.showToast("聊天账号已被移除");
                     } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                         // 显示帐号在其他设备登录
-                        ToastUtils.showToast("账号在其他地方登录");
+                        if (isOtherLogin) {
+                            ToastUtils.showToast("账号在其他地方登录");
+                            isOtherLogin=false;
+                        }
+                        LogUtil.e("账号在其他地方登陆");
                         login();
                     } else {
                         if (NetUtils.hasNetwork(HomeActivity.this)) {
-                            ToastUtils.showToast("无法连接聊天服务器");
+                            //ToastUtils.showToast("无法连接聊天服务器");
+                            LogUtil.e("无法连接聊天服务器");
                         }
                         //连接不到聊天服务器
                         else {

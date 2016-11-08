@@ -193,7 +193,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
                 startActivity(new Intent(getContext(), OrdersCenterActivity.class));
                 break;
             case R.id.ll_customer_center:
-                startActivity(new Intent(getContext(), CustomerServiceActivity.class));
+                CustomerServiceActivity.start(getContext(),true);
                 break;
             case R.id.ll_identity:
                 startActivity(new Intent(getContext(), IdentityAuthenticationActivity.class));
@@ -324,6 +324,11 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
          }else {
              FrescoUtils.displayIcon(mIvIcon,s);
          }
+    }
+
+    @Override
+    protected void setLoading() {
+
     }
 
     @Override

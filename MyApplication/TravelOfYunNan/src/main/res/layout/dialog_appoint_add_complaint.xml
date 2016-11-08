@@ -72,8 +72,9 @@
             android:layout_alignParentBottom="true"
             android:background="@null"
             android:paddingLeft="20dp"
-            android:text="请输入地点"
-            android:textColor="@color/colorb5b5b5"
+            android:hint="请输入地点"
+            android:textColorHint="@color/colorb5b5b5"
+            android:textColor="@color/color646464"
             android:textSize="13sp" />
 
     </RelativeLayout>

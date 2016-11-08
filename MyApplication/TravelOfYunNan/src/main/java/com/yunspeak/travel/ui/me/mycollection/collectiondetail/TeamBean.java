@@ -15,6 +15,7 @@ public class TeamBean implements ParentBean {
     private int code;
     private String message;
 
+
     private List<DataBean> data;
 
     public int getCode() {
@@ -42,20 +43,21 @@ public class TeamBean implements ParentBean {
     }
 
     public static class DataBean {
-        private String id;
+        private String cid;
         private String travel_img;
         private String start_time;
         private String end_time;
         private String total_price;
         private String routes_title;
         private String add_time;
+        private String id;
 
-        public String getId() {
-            return id;
+        public String getCid() {
+            return cid;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setCid(String cid) {
+            this.cid = cid;
         }
 
         public String getTravel_img() {
@@ -104,6 +106,14 @@ public class TeamBean implements ParentBean {
 
         public void setAdd_time(String add_time) {
             this.add_time = add_time;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
         }
     }
 }

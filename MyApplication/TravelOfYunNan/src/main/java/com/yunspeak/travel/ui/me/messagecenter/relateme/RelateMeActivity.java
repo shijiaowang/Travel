@@ -9,6 +9,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
+import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageAdapter;
 import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
 import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -27,9 +28,7 @@ import butterknife.BindView;
  * 与我相关
  */
 public class RelateMeActivity extends BaseNetWorkActivity<RelateMeEvent> implements View.OnClickListener {
-    public static final int TYPE_AITE = 0;
-    public static final int TYPE_DISCUSS = 1;
-    public static final int TYPE_ZAMBIA = 2;//赞
+
     @BindView(R.id.rl_zambia) RelativeLayout mRlZambia;
     @BindView(R.id.rl_discuss) RelativeLayout mRlDiscuss;
     @BindView(R.id.rl_aite) RelativeLayout mRlAite;
@@ -77,15 +76,15 @@ public class RelateMeActivity extends BaseNetWorkActivity<RelateMeEvent> impleme
         Intent intent = new Intent(this, RelateMeDetailActivity.class);
         switch (v.getId()) {
             case R.id.rl_aite:
-                intent.putExtra(IVariable.TYPE, TYPE_AITE);
+                intent.putExtra(IVariable.TYPE, AppointMessageAdapter.TYPE_AITE);
                 startActivity(intent);
                 break;
             case R.id.rl_discuss:
-                intent.putExtra(IVariable.TYPE, TYPE_DISCUSS);
+                intent.putExtra(IVariable.TYPE, AppointMessageAdapter.TYPE_DISCUSS);
                 startActivity(intent);
                 break;
             case R.id.rl_zambia:
-                intent.putExtra(IVariable.TYPE, TYPE_ZAMBIA);
+                intent.putExtra(IVariable.TYPE, AppointMessageAdapter.TYPE_ZAMBIA);
                 startActivity(intent);
                 break;
         }
