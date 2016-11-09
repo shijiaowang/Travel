@@ -7,6 +7,15 @@ import com.yunspeak.travel.event.HttpEvent;
  */
 public class PostEvent extends HttpEvent {
     public String url;
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     public String getUrl() {
         return url;

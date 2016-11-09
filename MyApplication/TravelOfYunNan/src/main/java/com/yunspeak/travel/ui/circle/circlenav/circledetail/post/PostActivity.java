@@ -6,8 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.style.ClickableSpan;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
@@ -54,10 +56,18 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     private String userId;
     private String isCollect=isFalse;
     public  String imgLists;
+    private int floor=-1;//楼层进入
+    private boolean isByFloor=false;//是否通过楼层进入
+    private int slideFloor;
+    private int currentLoading=TYPE_REFRESH;
+    private LinearLayoutManager linearLayoutManager;
+    private int loadMore=0;//插入时加载更多计算
 
     @Override
     protected void initEvent() {
         forum_id = getIntent().getStringExtra(IVariable.FORUM_ID);
+        floor = getIntent().getIntExtra(IVariable.FLOOR,-1);
+        isByFloor=floor!=-1;
         btDiscuss.setOnClickListener(this);
         View footView = inflater.inflate(R.layout.layout_google_footer, swipeContainer, false);
         View headerView = inflater.inflate(R.layout.layout_google_header, swipeContainer, false);
@@ -75,13 +85,46 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
         intent.putExtra(IVariable.FORUM_ID, forum_id);
         context.startActivity(intent);
     }
+    public static void start(Context context, String forum_id,int floor) {
+        Intent intent = new Intent(context, PostActivity.class);
+        intent.putExtra(IVariable.FORUM_ID, forum_id);
+        intent.putExtra(IVariable.FLOOR, floor);
+        context.startActivity(intent);
+    }
 
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        int count = type == TYPE_REFRESH ? 0 : getListSize(mDatas);
-        if (count>0 && type==TYPE_LOAD){
-            count--;
+        if (floor<=0){
+            isByFloor=false;//转换为正常浏览模式
+        }
+        int count;
+        if (isByFloor && type==TYPE_REFRESH){//如果是从楼层进入,上拉加载
+            if (floor<IVariable.pageCount){
+                count=0;
+                loadMore=count;
+                currentLoading=TYPE_REFRESH;
+                slideFloor =floor;//需要滑动到的楼层
+            }else if (getListSize(mDatas)==0){
+                int size =floor/IVariable.pageCount;
+                count=size*IVariable.pageCount;
+                slideFloor=floor-count;
+                loadMore=count;
+                currentLoading=TYPE_REFRESH;
+            }else {
+                count=floor-IVariable.pageCount;
+                currentLoading=count<0?TYPE_REFRESH:TYPE_UP_LOAD;
+            }
+
+        }else {
+            count = type == TYPE_REFRESH ? 0 : getListSize(mDatas);
+            if (count > 0 && type == TYPE_LOAD && !isByFloor) {
+                count--;
+            }
+
+        }
+        if (isByFloor && type==TYPE_LOAD){
+            count=loadMore;
         }
         builder.addFroumId(forum_id).addPageSize().addCount(count);
     }
@@ -104,6 +147,12 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
                 isCollect=isFalse;
                 item.setTitle("收藏");
                 break;
+            case TYPE_LIKE:
+                CircleClickBean object = GsonUtils.getObject(postEvent.getResult(), CircleClickBean.class);
+                ((PostDetailBean.DataBean.ForumReplyBean) mDatas.get(postEvent.getPosition())).setIs_like("1");
+                ((PostDetailBean.DataBean.ForumReplyBean) mDatas.get(postEvent.getPosition())).setLike_count(object.getData().getCount_like());
+                mAdapter.notifyItemChanged(postEvent.getPosition());
+                break;
             case TYPE_OTHER:
                 if (StringUtils.isEmpty(imgLists))return;
                 String[] split = imgLists.split(",");
@@ -113,7 +162,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
                 CirclePreviewActivity.start(this,images,position);
                 break;
             default:
-                dealLoad(postEvent);
+                    dealLoad(postEvent);
                 break;
         }
 
@@ -133,22 +182,50 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
                 if (item!=null)item.setTitle(isCollect.equals(isTrue)?"已收藏":"收藏");
                 userId = forum.getUser_id();
                 cId = forum.getCid();
-                loadDatas.add(forum);
-                imgLists = parentBean.getData().getImg_lists();
+                if ((floor<=IVariable.pageCount)||!isByFloor) {
+                    loadDatas.add(forum);//从中间进入的只有在最顶部楼层数小于pagesize 的时候才加载帖子头部
+                }
+            case TYPE_UP_LOAD:
+                if (isByFloor && floor==IVariable.pageCount){//最后一次上拉加载添加头部
+                    PostDetailBean.DataBean.ForumBean forum1 = parentBean.getData().getForum();
+                    loadDatas.add(forum1);
+                    ToastUtils.showToast("加载到顶部啦");
+                    isByFloor=false;
+                }
             case TYPE_LOAD:
                 List<PostDetailBean.DataBean.ForumReplyBean> forum_reply = parentBean.getData().getForum_reply();
                 loadDatas.addAll(forum_reply);
                 imgLists = parentBean.getData().getImg_lists();
                 break;
         }
+            normalDeal(postEvent, loadDatas);
+
+    }
+
+    private void normalDeal(PostEvent postEvent, List<Object> loadDatas) {
         if (mAdapter == null) {
             mDatas = loadDatas;
             mAdapter = new PostAdapter(mDatas, this, cId);
             swipeTarget.setAdapter(mAdapter);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            loadMore+=loadDatas.size();
+            linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setAutoMeasureEnabled(true);
             swipeTarget.setLayoutManager(linearLayoutManager);
+            swipeTarget.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    if (isByFloor){
+                        floor=(floor/IVariable.pageCount )*IVariable.pageCount;
+                        linearLayoutManager.scrollToPositionWithOffset(slideFloor,0);
+                    }
+                    swipeTarget.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
+            });
+
         } else if (postEvent.getType() == TYPE_LOAD) {
+            if (isByFloor){
+                loadMore+=loadDatas.size();//计算加载更多索引
+            }
             mDatas.addAll(loadDatas);
             swipeContainer.setLoadingMore(false);
             if (postEvent.getCode() == 2) {
@@ -159,8 +236,18 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
         } else if (postEvent.getType() == TYPE_REFRESH) {
             mDatas = loadDatas;
             mAdapter.notifiyData(mDatas);
+
             swipeContainer.setRefreshing(false);
+        }else if (postEvent.getType()==TYPE_UP_LOAD){
+            //上拉加载
+            mDatas.addAll(0,loadDatas);
+            mAdapter.notifyDataSetChanged();
+            linearLayoutManager.scrollToPositionWithOffset(IVariable.pageCount-1,0);
+            swipeContainer.setRefreshing(false);
+            floor-= IVariable.pageCount;
+
         }
+
     }
 
 
@@ -224,5 +311,9 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
         }
     }
 
-
+    @Override
+    protected int changeType(int type) {
+        if (type==TYPE_REFRESH) return isByFloor?currentLoading:type;
+        return type;
+    }
 }

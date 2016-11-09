@@ -6,8 +6,12 @@ import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.BaseXListViewActivity;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.ReplyEvent;
 import com.yunspeak.travel.ui.me.messagecenter.MeCommonEvent;
 import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.CommonMessageBean;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 /**
@@ -28,5 +32,9 @@ public class AppointMessageActivity extends BaseRecycleViewActivity<MeCommonEven
     @Override
     protected String initTitle() {
         return "约伴消息";
+    }
+    @Subscribe
+    public void onEvent(ReplyEvent replyEvent){
+        onLoad(TYPE_REFRESH);
     }
 }

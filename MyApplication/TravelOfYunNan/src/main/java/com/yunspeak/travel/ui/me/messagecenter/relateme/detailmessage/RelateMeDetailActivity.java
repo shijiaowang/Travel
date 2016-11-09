@@ -57,6 +57,6 @@ public class RelateMeDetailActivity extends BaseRecycleViewActivity<MeCommonEven
 
     @Override
     protected String initTitle() {
-        return "@我";
+        return title;
     }
 }

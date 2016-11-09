@@ -93,6 +93,8 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         intent.putExtra(IVariable.NAME,name);
         context.startActivity(intent);
     }
+
+
     private void init() {
             vsContent.setLayoutResource(R.layout.activity_travels_detail_content);
            vsContent.inflate();
@@ -125,6 +127,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         TravelsDetailBean object = GsonUtils.getObject(detailCommonEvent.getResult(), TravelsDetailBean.class);
         TravelsDetailBean.DataBean data = object.getData();
         try {
+            mTvTitle.setText(data.getTravel().getTitle());
             String url = data.getTravel().getTravels_img().split(",")[0];
             FrescoUtils.displayNormal(mIvBg,url);
         }catch (Exception e){

@@ -52,6 +52,16 @@ public class MyPublishBean implements ParentBean{
         private String count_like;
         private int find_type;
         private int r_id;
+        private String url;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
         private List<InformBean> inform;
 
         public List<InformBean> getInform() {

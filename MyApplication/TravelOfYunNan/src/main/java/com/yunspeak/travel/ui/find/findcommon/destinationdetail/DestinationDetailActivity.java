@@ -118,6 +118,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         DestinationDetailBean destinationDetail = GsonUtils.getObject(detailCommonEvent.getResult(), DestinationDetailBean.class);
         DestinationDetailBean.DataBean.TravelBean travel = destinationDetail.getData().getTravel();
         mTvDestinationDes.setText(travel.getContent());
+        mTvTitle.setText(travel.getTitle());
         mTvAdd.setText("·  " + travel.getAddress());
         String travel_img = travel.getTravel_img();
         String play_way = travel.getPlay_way();

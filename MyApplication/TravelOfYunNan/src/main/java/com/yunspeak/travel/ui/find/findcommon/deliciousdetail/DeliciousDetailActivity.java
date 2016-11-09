@@ -82,6 +82,7 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         DeliciousDetailBean deliciousDetail = GsonUtils.getObject(detailCommonEvent.getResult(), DeliciousDetailBean.class);
         DeliciousDetailBean.DataBean.TravelBean travel = deliciousDetail.getData().getTravel();
         mTvDes.setText(travel.getContent());
+        mTvTitle.setText( travel.getTitle());
         String foodUrl = travel.getFood_img().split(",")[0];
         FrescoUtils.displayNormal(mIvBg,foodUrl);
     }

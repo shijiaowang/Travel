@@ -123,8 +123,18 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         MapUtils.Builder builder = MapUtils.Build().addKey().addUserId();
         childAdd(builder,type);
         Map<String, String> baseMap = builder.end();
-        useCommonBackJson = XEventUtils.getUseCommonBackJson(initUrl(), baseMap, type, getTInstance());
+        useCommonBackJson = XEventUtils.getUseCommonBackJson(initUrl(), baseMap, changeType(type), getTInstance());
     }
+
+    /**
+     * 是否改变状态码
+     * @param type
+     * @return
+     */
+    protected int changeType(int type) {
+        return type;
+    }
+
     /**
      * 孩子添加参数
      * @param builder

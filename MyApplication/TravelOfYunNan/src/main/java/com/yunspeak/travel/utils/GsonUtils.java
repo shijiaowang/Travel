@@ -3,7 +3,7 @@ package com.yunspeak.travel.utils;
 import com.google.gson.Gson;
 
 /**
- * Created by Administrator on 2016/7/29 0029.
+ * Created by wanyang on 2016/7/29 0029.
  */
 public class GsonUtils{
     /**

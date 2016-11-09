@@ -289,4 +289,6 @@ public interface IVariable {
 
 
     String ICON = "icon";
+    String FLOOR="floor";
+    String REPLAY_ID="replay_id";
 }

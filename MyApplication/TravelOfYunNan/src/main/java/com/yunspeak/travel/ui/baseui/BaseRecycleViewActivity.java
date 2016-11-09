@@ -105,13 +105,13 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
 
     @Override
     protected void onSuccess(T t) {
-        ParentBean parentBean = null;
+        ParentBean parentBean;
         if (isUserChild()) {//使用孩子的
             parentBean=GsonUtils.getObject(t.getResult(),useChildedBean());
         } else {
             parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
         }
-        List<F> loadDatas=new ArrayList<>();
+        List<F> loadDatas;
         if (isChangeData()){
             loadDatas=childChangeData((E)parentBean,t);
         }else {

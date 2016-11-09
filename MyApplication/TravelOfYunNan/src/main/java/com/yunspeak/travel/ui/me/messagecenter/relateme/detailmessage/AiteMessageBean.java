@@ -40,24 +40,60 @@ public class AiteMessageBean implements ParentBean{
     }
 
     public static class DataBean {
-        private String floor;
+        private int floor;
         private int type;
         private String user_img;
         private String nick_name;
         private String content;
-        private String f_id;
+        private String forum_id;
         private String reply_time;
         private String title;
         private String title_desc;
         private String img;
+        private String url;
+        private String user_id;
+        private String cid;
+        private String pid;
+
+        public String getPid() {
+            return pid;
+        }
+
+        public void setPid(String pid) {
+            this.pid = pid;
+        }
+
+        public String getCid() {
+            return cid;
+        }
+
+        public void setCid(String cid) {
+            this.cid = cid;
+        }
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
 
         private List<InformBean> inform;
 
-        public String getFloor() {
+        public int getFloor() {
             return floor;
         }
 
-        public void setFloor(String floor) {
+        public void setFloor(int floor) {
             this.floor = floor;
         }
 
@@ -93,12 +129,12 @@ public class AiteMessageBean implements ParentBean{
             this.content = content;
         }
 
-        public String getF_id() {
-            return f_id;
+        public String getForum_id() {
+            return forum_id;
         }
 
-        public void setF_id(String f_id) {
-            this.f_id = f_id;
+        public void setForum_id(String forum_id) {
+            this.forum_id = forum_id;
         }
 
         public String getReply_time() {

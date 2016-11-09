@@ -1,18 +1,30 @@
 package com.yunspeak.travel.ui.me.messagecenter.appointmessage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.ColorInt;
 import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostOptionsDialog;
+import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
+import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
+import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.AiteMessageBean;
+import com.yunspeak.travel.ui.me.myalbum.editalbum.EditAlbumActivity;
+import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.ShowAllTextView;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 
@@ -52,9 +64,7 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
     @BindColor(R.color.color97cb66)
     @ColorInt
     int green2;
-    private String userId;
-    private String tid;
-    private String type;
+
 
     public AppointMessageHolder(View itemView, int messageType) {
         super(itemView);
@@ -63,17 +73,20 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
 
 
     @Override
-    public void childBindView(int position,  Object data, final Context mContext) {
+    public void childBindView(final int position, Object data, final Context mContext) {
         String title="";
         String des="";
         String nickName="";
         String content="";
         String userImg="";
         String travelImg="";
-        userId = "";
-        tid = "";
-        type = "";
+        String userId = "";
+        String tid = "";
+        String type = "";
         String replyTime="";
+        int floor = -1;
+        String cid="";
+        String pid="";
         if (messageType==AppointMessageAdapter.TYPE_APPOINT){
             AppointMessageBean.DataBean datas = (AppointMessageBean.DataBean) data;
             title=datas.getTitle();
@@ -86,7 +99,23 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
              tid = datas.getTid();
             type =datas.getType();
              replyTime = datas.getReply_time();
+            mTvMessage.setLimitContent(content);
         }else {
+            AiteMessageBean.DataBean dataBean = (AiteMessageBean.DataBean) data;
+            title=dataBean.getTitle();
+            des=dataBean.getTitle_desc();
+            content = dataBean.getContent();
+            mTvMessage.setLimitContent(AiteUtils.getSmiedTextWithAiteAndLinke(mContext,content,dataBean.getInform(),dataBean.getUrl()));
+            nickName= dataBean.getNick_name();
+            userImg = dataBean.getUser_img();
+            travelImg = dataBean.getImg();
+             userId = dataBean.getUser_id();
+            tid = dataBean.getForum_id();
+            type =dataBean.getType()+"";
+            floor = dataBean.getFloor();
+            cid = dataBean.getCid();
+            pid = dataBean.getPid();
+            replyTime = dataBean.getReply_time();
 
         }
         mTvDes.setText(des);
@@ -107,22 +136,20 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
         }
         mTvStatus.setTextColor(color);
         mTvStatus.setText(title);
-        mTvMessage.setText(content);
-        int lineCount = mTvMessage.getLineCount();
-        if (lineCount <= 1) {
+        if (mTvMessage.isShowAll()) {
             mTvCatMore.setVisibility(View.GONE);
         } else {
             mTvCatMore.setVisibility(View.VISIBLE);
+            mTvCatMore.setText(R.string.cat_more);
             mTvCatMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTvMessage.isShowAll()) {
                         mTvMessage.setShowAll(false);
-                        mTvCatMore.setText(R.string.close_more);
-
+                        mTvCatMore.setText(R.string.cat_more);
                     } else {
                         mTvMessage.setShowAll(true);
-                        mTvCatMore.setText(R.string.cat_more);
+                        mTvCatMore.setText(R.string.close_more);
                     }
                 }
             });
@@ -132,10 +159,37 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:ss",replyTime));
 
 
+        final String finalUserId = userId;
         mIvUserIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OtherUserCenterActivity.start(mContext, mIvUserIcon, userId);
+                OtherUserCenterActivity.start(mContext, mIvUserIcon, finalUserId);
+            }
+        });
+        final String finalType1 = type;
+        final String finalTid1 = tid;
+        final String finalPid = pid;
+        final String finalUserId1 = userId;
+        final int finalFloor = floor;
+        final String finalCid = cid;
+        mIvImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (messageType){
+                    case AppointMessageAdapter.TYPE_APPOINT:
+                        if (finalType1.equals("1")) {//一起玩
+                            AppointTogetherDetailActivity.start(mContext, finalTid1);
+                        } else if (finalType1.equals("2")){//找人带
+                            AppointWithMeDetailActivity.start(mContext, finalType1);
+                        }
+                        break;
+                    default:
+                        if (finalType1.equals("1") || finalType1.equals("2")) {//一起玩
+                            CircleDetailActivity.start(mContext, finalCid);
+                        }
+                        break;
+                }
+
             }
         });
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -143,15 +197,33 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
             public void onClick(View v) {
                 switch (messageType) {
                     case AppointMessageAdapter.TYPE_APPOINT:
-
-                        if (type.equals("1")) {//一起玩
-                            AppointTogetherDetailActivity.start(mContext, tid);
-                        } else {//找人带
-                            AppointWithMeDetailActivity.start(mContext, tid);
-                        }
+                        Intent intent=new Intent(mContext,MyAppointActivity.class);
+                        mContext.startActivity(intent);
                         break;
+                    case AppointMessageAdapter.TYPE_DISCUSS:
                     case AppointMessageAdapter.TYPE_AITE:
-                        PostActivity.start(mContext, tid);
+                        if (finalType1.equals("1") || finalType1.equals("2")){
+                            showReplyDialog(mContext, finalTid1, finalPid, finalUserId1,finalFloor, finalCid);
+                            break;
+                        }
+                    case AppointMessageAdapter.TYPE_ZAMBIA:
+                        if (finalType1.equals("1")){
+                            PostActivity.start(mContext, finalTid1);
+                        }else if (finalType1.equals("2")){
+                            PostActivity.start(mContext, finalTid1, finalFloor);
+                        }else if(finalType1.equals("3'")){
+                            AppointTogetherDetailActivity.start(mContext, finalTid1);
+                        }else if (finalType1.equals("4")){
+                            AppointWithMeDetailActivity.start(mContext, finalTid1);
+                        }else if (finalType1.equals("5")){
+                            TravelsDetailActivity.start(mContext, finalTid1,"游记详情");
+                        }else if (finalType1.equals("6")){
+                            DeliciousDetailActivity.start(mContext, finalTid1,"美食详情");
+                        }else if (finalType1.equals("7")){
+                            DestinationDetailActivity.start(mContext, finalTid1,"目的地详情");
+                        }else if (finalType1.equals("8")){
+                            EditAlbumActivity.start(mContext, finalTid1);
+                        }
                         break;
                 }
 
@@ -160,4 +232,24 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
         });
 
     }
+    public void showReplyDialog(final Context context, final String fid, final String pid, final String userId, final int finalFloor, final String cid){
+        PostOptionsDialog.showCommonDialog2(context, new ParentPopClick() {
+            @Override
+            public void onClick(int type) {
+                 switch (type){
+                     case PostOptionsDialog.TYPE_REPLY:
+                         CreatePostActivity.start(context,cid,1,CreatePostActivity.REPLY_POST,fid,userId,pid);
+                         break;
+                     case PostOptionsDialog.TYPE_CAT_POST:
+                         PostActivity.start(context,fid);
+                         break;
+                     case PostOptionsDialog.TYPE_CAT_DISCUSS:
+                         PostActivity.start(context,fid,finalFloor);
+                         break;
+
+                 }
+            }
+        });
+    }
+
 }

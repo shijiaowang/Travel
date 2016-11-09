@@ -75,9 +75,12 @@
             android:id="@+id/tv_reply_message"
             android:textSize="12sp"
             android:textColor="#606060"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="1dp"/>
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_love"
                 android:text="@string/activity_circle_love_full"

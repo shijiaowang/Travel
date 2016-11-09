@@ -16,7 +16,7 @@ import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
 import com.yunspeak.travel.utils.ToastUtils;
 
 /**
- * Created by Administrator on 2016/9/8 0008.
+ * Created by wangyang on 2016/9/8 0008.
  * 查看或者收起全部textview
  */
 public class ShowAllTextView extends TextView {
@@ -72,7 +72,14 @@ public class ShowAllTextView extends TextView {
             setText(content);
         }
     }
+    public void setLimitContent(CharSequence text){
+        setText(text);
+        if (text.length()>normalShowLength){
+            setShowAll(false);
+        }else {
+            setShowAll(true);   }
 
+    }
     public String[] getClickText() {
         return clickText;
     }
@@ -106,6 +113,8 @@ public class ShowAllTextView extends TextView {
 
     }
 
+
+
     /**
      * 有备注文字开头的
      * @param isShowAll
@@ -113,11 +122,12 @@ public class ShowAllTextView extends TextView {
     public void setShowAll(boolean isShowAll){
         if (isShowAll){
             setMaxLines(Integer.MAX_VALUE);
-
+            setEllipsize(null);
         }else {
-            setLines(1);
+            setMaxLines(1);
             setEllipsize(TextUtils.TruncateAt.END);
         }
+
         this.isShowAll = isShowAll;
     }
     /**

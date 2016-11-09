@@ -73,12 +73,7 @@ class PostOpHolder extends BaseRecycleViewHolder {
             isFirst = false;
             mTvNickName.setText(forum.getNick_name());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forum.getTime()));
-            List<InformBean> inform = forum.getInform();
-            int length = forum.getContent().length();
-            Spannable span = AiteUtils.getSmiledText(mContext, forum.getContent(), length, inform);
-            // 设置内容
-            mTvContent.setText(span);
-            mTvContent.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
+            AiteUtils.parseTextMessage(mTvContent,forum.getInform(),forum.getContent(),mContext);
             FrescoUtils.displayIcon(mIvUserIcon, forum.getUser_img());
             if (!StringUtils.isEmpty(forum.getForum_img())) {
                 String[] split = forum.getForum_img().split(",");

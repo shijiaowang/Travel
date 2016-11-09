@@ -98,6 +98,15 @@ public class TravelsDetailBean implements ParentBean{
             private String travels_img;
             private String url;
             private String travel_way;
+            private String title;
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
+            }
 
             public String getId() {
                 return id;

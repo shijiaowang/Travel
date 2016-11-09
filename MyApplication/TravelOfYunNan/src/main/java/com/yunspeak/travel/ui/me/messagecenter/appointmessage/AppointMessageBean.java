@@ -51,6 +51,15 @@ public class AppointMessageBean implements ParentBean{
         private String title_desc;
         private String type;
         private String travel_img;
+        private String pid;
+
+        public String getPid() {
+            return pid;
+        }
+
+        public void setPid(String pid) {
+            this.pid = pid;
+        }
 
         public String getId() {
             return id;

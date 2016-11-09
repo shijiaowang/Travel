@@ -288,7 +288,6 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
      * @param content
      */
     private void createPost(String content) {
-        if (isCreateing)return;
         isCreateing = true;
         Map<String, String> createPostMap;
         String url=IVariable.DISCUSS_POST;
@@ -340,6 +339,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
+        if (isCreateing)return;
         String content = mEtContent.getText().toString().trim();
         if (currentType==CREATE_POST&&StringUtils.isEmptyNotNull(content)) {
             ToastUtils.showToast("请输入内容");

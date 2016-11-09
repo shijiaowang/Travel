@@ -108,11 +108,11 @@ public class ThemeCommonHolder extends BaseRecycleViewHolder {
         }else if (data1 instanceof MyPublishBean.DataBean){
             final MyPublishBean.DataBean datas=((MyPublishBean.DataBean) data1);
             FrescoUtils.displayIcon(mIvUserIcon,datas.getImg());
-            mTvName.setText(datas.getTitle());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss", datas.getAdd_time()));
             mTvLoveNumber.setText(datas.getCount_like());
             mTvCircle.setText("#" + datas.getCname() + "#");
             AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),mContext);
+            mTvContent.setText(AiteUtils.getSmiedTextWithAiteAndLinke(mContext,datas.getContent(),datas.getInform(),datas.getUrl()));
             mTvDiscuss.setVisibility(View.GONE);
             if (StringUtils.isEmpty(datas.getTitle())){
                 mTvName.setVisibility(View.GONE);

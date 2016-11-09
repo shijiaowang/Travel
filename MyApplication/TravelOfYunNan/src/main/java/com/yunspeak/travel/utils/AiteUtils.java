@@ -20,13 +20,13 @@ import java.util.List;
 public class AiteUtils {
 
     public static void parseTextMessage(TextView textView, List<InformBean> inform, String content, Context mContext){
-        int length = content.length();
-        Spannable span =getSmiledText(mContext, content, length, inform);
+        Spannable span =getSmiledText(mContext, content, inform);
         // 设置内容
         textView.setText(span);
         textView.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
     }
-    public static Spannable getSmiledText(Context context, String text, int start,List<InformBean> inform) {
+    public static Spannable getSmiledText(Context context, String text, List<InformBean> inform) {
+        int length=text==null?0:text.length();
         if (inform==null || inform.size()==0){
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
             EaseSmileUtils.addSmiles(context,spannableStringBuilder);
@@ -39,20 +39,26 @@ public class AiteUtils {
         String string = stringBuilder.toString();
         SpannableStringBuilder spannable = new SpannableStringBuilder(string);
         EaseSmileUtils.addSmiles(context,spannable);
-        return addAiteUser(context,spannable,start,inform);
+        return addAiteUser(context,spannable,length,inform);
     }
-    public static Spannable getSmiedTextWithAiteAndLinke(Context context, String text, int start,List<InformBean> inform,String url) {
-
-        if (inform==null || inform.size()==0)return new SpannableStringBuilder(text);
-        StringBuilder stringBuilder=new StringBuilder(text);
-        for (InformBean informBean:inform){
-            stringBuilder.append("@"+inform.get(inform.indexOf(informBean)).getNick_name());
+    public static Spannable getSmiedTextWithAiteAndLinke(Context context, String text,List<InformBean> inform,String url) {
+        int start=text==null?0:text.length();
+        text=text==null?"":text;
+        StringBuilder stringBuilder = new StringBuilder(text);
+        if (!(inform==null || inform.size()==0)) {
+            for (InformBean informBean : inform) {
+                stringBuilder.append("@" + inform.get(inform.indexOf(informBean)).getNick_name());
+            }
         }
         String string = stringBuilder.toString();
-        string+="【图片】";
+        if (!StringUtils.isEmpty(url)) {
+            string += "【图片】";
+        }
         SpannableStringBuilder spannable = new SpannableStringBuilder(string);
-        spannable.setSpan(new SomeTextClick(context,url), string.length() - 4, string.length()
-                , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (!StringUtils.isEmpty(url)) {
+            spannable.setSpan(new SomeTextClick(context, url), string.length() - 4, string.length()
+                    , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
         EaseSmileUtils.addSmiles(context, spannable);
         return addAiteUser(context,spannable,start,inform);
     }
@@ -63,7 +69,7 @@ public class AiteUtils {
      * @param start
      */
     public static Spannable addAiteUser(Context context, Spannable spannable, int start,List<InformBean> inform) {
-
+      if (inform==null || inform.size()==0)return spannable;
        for (int i=0;i<inform.size();i++){
             spannable.setSpan(new AiteTextClick(context, inform.get(i).getId()),start,start+=inform.get(i).getNick_name().length()+1
                     , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
