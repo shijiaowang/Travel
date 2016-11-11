@@ -81,6 +81,7 @@ public class SearchCommonHolder extends BaseRecycleViewHolder<SearchCommonBean.D
                     Map<String, String> followMap = MapUtils.Build().addKey().addUserId().add("u_id", data.getId()).addType(clickType).end();
                     HomeSearchEvent event = new HomeSearchEvent();
                     event.setPosition(position);
+                    event.setSearchType(type);
                     XEventUtils.postUseCommonBackJson(IVariable.FOLLOW_OR_CANCEL_FOLLOW, followMap, IState.TYPE_UPDATE, event);
                 }
             });

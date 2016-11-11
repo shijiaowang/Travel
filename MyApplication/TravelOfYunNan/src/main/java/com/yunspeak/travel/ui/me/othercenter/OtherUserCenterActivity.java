@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -144,7 +145,6 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         mVsTab.inflate();
         inflater = LayoutInflater.from(this);
         userId = getIntent().getStringExtra(IVariable.USER_ID);
-
     }
 
     @Override
@@ -385,7 +385,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
                 followOrCancel();
                 break;
             case R.id.ll_private:
-                ChatActivity.start(this,userId,userId, EaseConstant.CHATTYPE_SINGLE,userInfo);
+                ChatActivity.start(this,userId,EaseConstant.CHATTYPE_SINGLE);
                 break;
         }
     }
@@ -452,7 +452,6 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
 
     @Override
     protected void appBarStateChange(AppBarStateChangeListener.State state) {
-        if (mCurrentPage==1){
             AppBarStateEvent appBarStateEvent=new AppBarStateEvent();
             if(state== AppBarStateChangeListener.State.COLLAPSED){
                 appBarStateEvent.setClose(true);
@@ -460,6 +459,6 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
                 appBarStateEvent.setClose(false);
             }
            EventBus.getDefault().post(appBarStateEvent);
-        }
+
     }
 }

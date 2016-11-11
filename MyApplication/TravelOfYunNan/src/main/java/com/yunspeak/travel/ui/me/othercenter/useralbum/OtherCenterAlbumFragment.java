@@ -140,12 +140,7 @@ public class OtherCenterAlbumFragment extends LoadBaseFragment<OtherAlbumEvent> 
 
     @Subscribe
     public void onEvent(AppBarStateEvent appBarStateEvent) {
-        boolean close = appBarStateEvent.isClose();
-        if (close){
-            mSwipe.setLoadMoreEnabled(true);
-        }else {
-            mSwipe.setLoadMoreEnabled(false);
-        }
+        mSwipe.setLoadMoreEnabled(appBarStateEvent.isClose());
     }
 
     @Override

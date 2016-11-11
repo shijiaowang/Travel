@@ -24,6 +24,7 @@ import com.yunspeak.travel.ui.home.welcome.splash.login.forgetpassword.ForgetPas
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.LineEditText;
+import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
@@ -75,6 +76,7 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
 
     @Override
     protected void initView() {
+        ActivityUtils.getInstance().addActivity(this);
         sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
     }
 

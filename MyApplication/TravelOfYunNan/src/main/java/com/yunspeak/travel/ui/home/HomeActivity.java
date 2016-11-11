@@ -18,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.hyphenate.EMMessageListener;
+import com.hyphenate.chat.EMMessage;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Login;
@@ -30,6 +32,7 @@ import com.yunspeak.travel.ui.fragment.CircleFragment;
 import com.yunspeak.travel.ui.find.FindFragment;
 import com.yunspeak.travel.ui.me.me.MeFragment;
 import com.yunspeak.travel.ui.view.GradientTextView;
+import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
@@ -91,6 +94,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityUtils.getInstance().exit();
         initHXListener();
         String registrationId = PushAgent.getInstance(this).getRegistrationId();
         LogUtils.e("注册ID为"+registrationId);
@@ -189,7 +193,43 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
             }
         });
+        EMClient.getInstance().chatManager().addMessageListener(msgListener);
+
     }
+    EMMessageListener msgListener = new EMMessageListener() {
+
+        @Override
+        public void onMessageReceived(List<EMMessage> messages) {
+            //收到消息
+            LogUtils.e("onMessageReceived");
+        }
+
+        @Override
+        public void onCmdMessageReceived(List<EMMessage> messages) {
+            //收到透传消息
+            LogUtils.e("onCmdMessageReceived");
+        }
+
+        @Override
+        public void onMessageReadAckReceived(List<EMMessage> messages) {
+            //收到已读回执
+            LogUtils.e("onCmdMessageReceived");
+        }
+
+        @Override
+        public void onMessageDeliveryAckReceived(List<EMMessage> message) {
+            //收到已送达回执
+            LogUtils.e("onMessageDeliveryAckReceived");
+        }
+
+        @Override
+        public void onMessageChanged(EMMessage message, Object change) {
+            //消息状态变动
+            LogUtils.e("onMessageChanged");
+
+        }
+    };
+
 
     @Override
     protected void initData() {
@@ -365,6 +405,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onStop() {
         super.onStop();
         unregisterEventBus(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EMClient.getInstance().chatManager().removeMessageListener(msgListener);
     }
 }
 

@@ -8,6 +8,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.Follow;
+import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class FanHolder extends BaseRecycleViewHolder<Follow> {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //OtherUserCenterActivity.start(mContext,mIvIcon,datas.get());
+                OtherUserCenterActivity.start(mContext,mIvIcon,datas.getId());
             }
         });
     }

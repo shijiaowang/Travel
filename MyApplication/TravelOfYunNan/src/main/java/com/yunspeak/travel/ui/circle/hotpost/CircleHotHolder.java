@@ -13,6 +13,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.StringUtils;
@@ -49,7 +50,13 @@ public class CircleHotHolder extends BaseRecycleViewHolder<HotPostBean.DataBean>
         }
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-mm-dd",circleHot.getTime()));
         mTvTitle.setText(circleHot.getTitle());
-        mTvContent.setText(circleHot.getContent());
+        if (StringUtils.isEmpty(circleHot.getTitle())){
+            mTvTitle.setVisibility(View.GONE);
+        }else {
+            mTvTitle.setVisibility(View.VISIBLE);
+            AiteUtils.parseTextMessage(mTvTitle, null, circleHot.getTitle(), mContext);
+        }
+        AiteUtils.parseTextMessage(mTvContent,circleHot.getInform(),circleHot.getContent(),mContext);
         FrescoUtils.displayIcon(mIvUserIcon,circleHot.getUser_img());
         mTvNickName.setText(circleHot.getNick_name());
         mTvDiscussNumber.setText(circleHot.getCount_reply());

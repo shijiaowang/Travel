@@ -223,7 +223,7 @@ public class DBManager {
                    String username = chatuser.getString(chatuser.getColumnIndex("username"));
                    String userimg = chatuser.getString(chatuser.getColumnIndex("userimg"));
                    if (userimg.equals(userInfo.getUser_img()) && username.equals(userInfo.getNick_name())){
-                       continue;
+
                    }else {
                        ContentValues contentValues=new ContentValues();
                        contentValues.put("username",userInfo.getNick_name());

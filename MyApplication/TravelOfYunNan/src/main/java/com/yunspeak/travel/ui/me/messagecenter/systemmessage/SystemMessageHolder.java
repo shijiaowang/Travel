@@ -38,18 +38,24 @@ public class SystemMessageHolder extends BaseRecycleViewHolder<SystemMessageBean
         FrescoUtils.displayNormal(mIvIcon,datas.getImg());
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm",datas.getAdd_time()));
         mTvType.setText(datas.getTitle());
-        mTvMessage.setText(datas.getContent());
-       mTvCatMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mTvMessage.isShowAll()){
-                    mTvMessage.swithShow(false);
-                    mTvCatMore.setText(R.string.close_more);
-                }else {
-                    mTvMessage.swithShow(true);
-                    mTvCatMore.setText(R.string.cat_more);
+        mTvMessage.setLimitContent(datas.getContent());
+        if (mTvMessage.isShowAll()) {
+            mTvCatMore.setVisibility(View.GONE);
+        } else {
+            mTvCatMore.setVisibility(View.VISIBLE);
+            mTvCatMore.setText(R.string.cat_more);
+            mTvCatMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mTvMessage.isShowAll()) {
+                        mTvMessage.setShowAll(false);
+                        mTvCatMore.setText(R.string.cat_more);
+                    } else {
+                        mTvMessage.setShowAll(true);
+                        mTvCatMore.setText(R.string.close_more);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }

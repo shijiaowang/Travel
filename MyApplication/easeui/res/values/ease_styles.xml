@@ -2,8 +2,15 @@
 
 
     <style name="AppTheme" parent="android:Theme.Light" />
-
-
+    <style name="ToolBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorFAFAFA</item>
+    </style>
+    <style name="toolbar_theme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/colorFAFAFA</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!--  <item name="android:homeAsUpIndicator">@drawable/back</item>-->
+    </style>
     <style name="chat_content_date_style">
         <item name="android:minHeight">50dp</item>
         <item name="android:gravity">center</item>

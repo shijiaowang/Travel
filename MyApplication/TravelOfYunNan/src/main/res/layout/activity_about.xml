@@ -135,7 +135,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:text="云说软件许可即服务协议"
+            android:text="城外旅游软件许可即服务协议"
             android:textColor="@color/otherTitleBg"
             android:textSize="11sp" />
 
@@ -143,15 +143,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
-            android:text="四川云说科技有限公司"
+            android:text="云南城外旅游文化发展有限公司"
             android:textColor="@color/color232323"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:id="@+id/textView5" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="sichuan yunspeakTechonlogy Go. Ltd"
+            android:text="Yunnan Chengwai Travelling Culture Development Co., Ltd."
             android:textColor="@color/color232323"
             android:textSize="11sp" />
         <View

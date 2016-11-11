@@ -3,6 +3,8 @@ package com.yunspeak.travel.ui.baseui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.widget.NestedScrollView;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -32,7 +34,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/26 0026.
  * 活动详情
  */
-public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailEvent> {
+public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEvent> {
     @BindView(R.id.wv_html) WebView mWvHtml;
     @BindView(R.id.iv_bg) SimpleDraweeView mIvBg;
     @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
@@ -42,13 +44,12 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailE
     @BindView(R.id.tv_money2) TextView mTvMoney2;
     @BindView(R.id.tv_number) TextView mTvNumber;
     @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.nsv_content)
+    NestedScrollView nestedScrollView;
     private String aId;
 
 
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_activate_detail;
-    }
+
     public static void start(Context context, String aid){
         Intent intent=new Intent(context,ActivateDetailActivity.class);
         intent.putExtra(IVariable.A_ID,aid);
@@ -56,42 +57,40 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailE
     }
     @Override
     protected void initEvent() {
-        aId = getIntent().getStringExtra(IVariable.A_ID);
-    }
-
-    @Override
-    protected void onLoad(int typeRefresh) {
-        Map<String, String> activeMap = MapUtils.Build().addKey().addAId(aId).addUserId().end();
-        XEventUtils.getUseCommonBackJson(IVariable.FIND_ACTIVITY_DETAIL,activeMap,0,new ActiveDetailEvent());
-    }
-
-    @Override
-    protected Activity initViewData() {
         WebSettings settings = mWvHtml.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(true);
-        return this;
+        aId = getIntent().getStringExtra(IVariable.A_ID);
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                float absOffset=scrollY/300f;
+                absOffset=absOffset>1?1:absOffset;
+                mToolbar.setBackgroundColor(Color.argb((int) (absOffset * 255), 92 , 208, 194));
+
+            }
+        });
+    }
+
+
+
+    @Override
+    protected void childAdd(MapUtils.Builder builder, int type) {
+         builder.addAId(aId);
     }
 
     @Override
-    protected String setTitleName() {
-        return "活动详情";
+    protected String initUrl() {
+        return IVariable.FIND_ACTIVITY_DETAIL;
     }
 
-    @Override
-    protected boolean rootIsLinearLayout() {
-        return false;
-    }
+
+
 
     @Override
-    protected boolean canScrollToChangeTitleBgColor() {
+    protected boolean isChangeBarColor() {
         return true;
-    }
-
-    @Override
-    public float getAlpha() {
-        return 0f;
     }
 
     @Override
@@ -113,5 +112,15 @@ public class ActivateDetailActivity extends LoadingBarBaseActivity<ActiveDetailE
         mTvMoney2.setText("¥"+data.getPrice());
         mTvNumber.setText(data.getMax_people()+"人");
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getStart_time())+"-"+FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getEnd_time()));
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_activate_detail;
+    }
+
+    @Override
+    protected String initTitle() {
+        return "活动详情";
     }
 }

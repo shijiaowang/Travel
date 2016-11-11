@@ -259,7 +259,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
                 @Override
                 public void onClick(View v) {
                     if (StringUtils.isEmpty(datas.getGroupid())) return;
-                    ChatActivity.start(mContext, id, datas.getGroupid(), EaseConstant.CHATTYPE_GROUP,null);
+                    ChatActivity.start(mContext,datas.getGroupid(), EaseConstant.CHATTYPE_GROUP);
                 }
             });
             mBtStart.setOnClickListener(new View.OnClickListener() {

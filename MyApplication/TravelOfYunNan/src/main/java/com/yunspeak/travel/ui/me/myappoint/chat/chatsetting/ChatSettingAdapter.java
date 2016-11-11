@@ -53,7 +53,7 @@ public class ChatSettingAdapter extends BaseRecycleViewAdapter<ChatSettingUserBe
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PrivateChatSettingActivity.start(mContext,dataBean.getId(),tid);
+                    PrivateChatSettingActivity.start(mContext,tid);
                 }
             });
             tvUserName.setText(dataBean.getNick_name());

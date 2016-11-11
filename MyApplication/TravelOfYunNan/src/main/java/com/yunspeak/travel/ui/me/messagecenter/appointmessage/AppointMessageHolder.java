@@ -186,6 +186,18 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
                     default:
                         if (finalType1.equals("1") || finalType1.equals("2")) {//一起玩
                             CircleDetailActivity.start(mContext, finalCid);
+                        }else if(finalType1.equals("3")){
+                            AppointTogetherDetailActivity.start(mContext, finalTid1);
+                        }else if (finalType1.equals("4")){
+                            AppointWithMeDetailActivity.start(mContext, finalTid1);
+                        }else if (finalType1.equals("5")){
+                            TravelsDetailActivity.start(mContext, finalTid1,"游记详情");
+                        }else if (finalType1.equals("6")){
+                            DeliciousDetailActivity.start(mContext, finalTid1,"美食详情");
+                        }else if (finalType1.equals("7")){
+                            DestinationDetailActivity.start(mContext, finalTid1,"目的地详情");
+                        }else if (finalType1.equals("8")){
+                            EditAlbumActivity.start(mContext, finalTid1);
                         }
                         break;
                 }
@@ -244,7 +256,11 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
                          PostActivity.start(context,fid);
                          break;
                      case PostOptionsDialog.TYPE_CAT_DISCUSS:
-                         PostActivity.start(context,fid,finalFloor);
+                         if (finalFloor==0){
+                             PostActivity.start(context,fid);
+                         }else {
+                             PostActivity.start(context, fid, finalFloor);
+                         }
                          break;
 
                  }

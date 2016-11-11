@@ -22,6 +22,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.FullTransparencyActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.SplashActivity;
+import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MD5Utils;
@@ -58,6 +59,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         EventBus.getDefault().register(this);
+        ActivityUtils.getInstance().addActivity(this);
     }
 
     @Override

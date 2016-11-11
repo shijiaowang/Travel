@@ -24,7 +24,10 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -52,9 +55,10 @@ import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.CoordinateConverter;
+import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.R;
 
-public class EaseBaiduMapActivity extends FragmentActivity {
+public class EaseBaiduMapActivity extends AppCompatActivity {
 
 	private final static String TAG = "map";
 	static MapView mMapView = null;
@@ -62,7 +66,7 @@ public class EaseBaiduMapActivity extends FragmentActivity {
 	LocationClient mLocClient;
 	public MyLocationListenner myListener = new MyLocationListenner();
 
-	TextView sendButton = null;
+
 
 	EditText indexText = null;
 	int index = 0;
@@ -71,6 +75,8 @@ public class EaseBaiduMapActivity extends FragmentActivity {
 	public static EaseBaiduMapActivity instance = null;
 	ProgressDialog progressDialog;
 	private BaiduMap mBaiduMap;
+	private boolean isShowSned;
+	private MenuItem item;
 
 	public class BaiduSDKReceiver extends BroadcastReceiver {
 		public void onReceive(Context context, Intent intent) {
@@ -98,19 +104,6 @@ public class EaseBaiduMapActivity extends FragmentActivity {
         SDKInitializer.initialize(getApplicationContext());  
 		setContentView(R.layout.ease_activity_baidumap);
 		mMapView = (MapView) findViewById(R.id.bmapView);
-		sendButton = (TextView) findViewById(R.id.btn_location_send);
-		sendButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				sendLocation();
-			}
-		});
-		findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
 		Intent intent = getIntent();
 		double latitude = intent.getDoubleExtra("latitude", 0);
 		LocationMode mCurrentMode = LocationMode.NORMAL;
@@ -138,9 +131,32 @@ public class EaseBaiduMapActivity extends FragmentActivity {
 		mBaiduReceiver = new BaiduSDKReceiver();
 		registerReceiver(mBaiduReceiver, iFilter);
 	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.circle_detail_menu,menu);
+		item = menu.findItem(R.id.action_create);
+		item.setTitle("发送");
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				onBackPressed();
+				break;
+			default:
+				if (isShowSned) {
+					sendLocation();
+				}else {
+					item.setTitle("");
+				}
+				break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	private void showMap(double latitude, double longtitude, String address) {
-		sendButton.setVisibility(View.GONE);
+		isShowSned = false;
 		LatLng llA = new LatLng(latitude, longtitude);
 		CoordinateConverter converter= new CoordinateConverter();
 		converter.coord(llA);
@@ -230,7 +246,7 @@ public class EaseBaiduMapActivity extends FragmentActivity {
 			}
 			Log.d("map", "On location change received:" + location);
 			Log.d("map", "addr:" + location.getAddrStr());
-			sendButton.setEnabled(true);
+			isShowSned=true;
 			if (progressDialog != null) {
 				progressDialog.dismiss();
 			}

@@ -33,7 +33,6 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
     public static final String SEARCH_DESTINATION="2";
     public static final String SEARCH_CIRCLE="3";
     public static final String SEARCH_CONTENT="4";
-    private String type=SEARCH_USER;
     protected static String content="";
     private List<SearchCommonFragment> fragments;
     private TextView mTvSearch;
@@ -70,11 +69,11 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
         fragments = new ArrayList<>();
         SearchCommonFragment searchUser=SearchCommonFragment.newInstance(SEARCH_USER);
         SearchCommonFragment searchDestination=SearchCommonFragment.newInstance(SEARCH_DESTINATION);
-        SearchCommonFragment searchCircl=SearchCommonFragment.newInstance(SEARCH_CIRCLE);
+        SearchCommonFragment searchCircle=SearchCommonFragment.newInstance(SEARCH_CIRCLE);
         SearchCommonFragment searchContent=SearchCommonFragment.newInstance(SEARCH_CONTENT);
         fragments.add(searchUser);
         fragments.add(searchDestination);
-        fragments.add(searchCircl);
+        fragments.add(searchCircle);
         fragments.add(searchContent);
         mVpSearch.setAdapter(new SearchPagerAdapter(getSupportFragmentManager()));
         mVpSearch.setOffscreenPageLimit(4);

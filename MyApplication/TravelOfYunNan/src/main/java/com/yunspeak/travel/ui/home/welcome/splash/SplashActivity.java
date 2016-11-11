@@ -25,6 +25,7 @@ import com.yunspeak.travel.ui.baseui.FullTransparencyActivity;
 import com.yunspeak.travel.ui.baseui.RegisterSuccessActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterActivity;
+import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.DensityUtils;
 
 
@@ -69,6 +70,7 @@ public class SplashActivity extends FullTransparencyActivity {
 
     @Override
     protected void initView() {
+        ActivityUtils.getInstance().addActivity(this);
         initVideoView();
     }
 

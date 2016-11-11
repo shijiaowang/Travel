@@ -71,20 +71,6 @@
                      />
             </LinearLayout>
 
-            <View style="@style/activitySettingLine" />
-
-            <LinearLayout style="@style/activitySettingLl">
-
-                <TextView
-                    style="@style/activitySettingTvType"
-                    android:text="性别" />
-
-                <TextView
-                    android:id="@+id/tv_user_sex"
-                    android:layout_width="match_parent"
-                    style="@style/activitySettingTvValue"
-                     />
-            </LinearLayout>
 
             <View style="@style/activitySettingLine" />
 
@@ -195,7 +181,9 @@
 
             <View style="@style/activitySettingLine" />
 
-            <LinearLayout style="@style/activitySettingLl">
+            <LinearLayout
+                android:id="@+id/ll_clear"
+                style="@style/activitySettingLl">
 
                 <TextView
                     style="@style/activitySettingTvType"

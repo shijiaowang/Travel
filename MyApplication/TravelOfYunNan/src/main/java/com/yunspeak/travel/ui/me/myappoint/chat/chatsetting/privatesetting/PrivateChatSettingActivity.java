@@ -8,8 +8,12 @@ import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingUserBean;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
@@ -17,6 +21,7 @@ import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.yunspeak.travel.utils.ToastUtils;
 
 import butterknife.BindView;
 
@@ -25,7 +30,7 @@ import butterknife.BindView;
  * 设置
  */
 
-public class PrivateChatSettingActivity extends BaseNetWorkActivity<PrivateChatSettingEvent> {
+public class PrivateChatSettingActivity extends BaseNetWorkActivity<PrivateChatSettingEvent> implements View.OnClickListener {
 
     @BindView(R.id.iv_icon)
     SimpleDraweeView ivIcon;
@@ -46,17 +51,17 @@ public class PrivateChatSettingActivity extends BaseNetWorkActivity<PrivateChatS
     @BindView(R.id.bt_black)
     Button btBlack;
     private String userId;
-    private String tId;
 
     @Override
     protected void initEvent() {
-        userId = getIntent().getStringExtra(IVariable.ID);
-        tId = getIntent().getStringExtra(IVariable.TID);
+        btClear.setOnClickListener(this);
+        btBlack.setOnClickListener(this);
+        userId = getIntent().getStringExtra(IVariable.DATA);
     }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        builder.add(IVariable.USER_ID,userId).addtId(tId);
+        builder.add(IVariable.USER_ID,userId).addtId(userId);
     }
 
     @Override
@@ -94,12 +99,46 @@ public class PrivateChatSettingActivity extends BaseNetWorkActivity<PrivateChatS
         return "私聊设置";
     }
 
-    public static void start(Context context, String id,String tId) {
+    public static void start(Context context, String id) {
         Intent intent = new Intent(context, PrivateChatSettingActivity.class);
-        intent.putExtra(IVariable.ID, id);
-        intent.putExtra(IVariable.TID, tId);
+        intent.putExtra(IVariable.DATA, id);
         context.startActivity(intent);
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bt_clear:
+                EnterAppointDialog.showCommonDialog(this, "删除聊天记录", "确定", "是否删除相关聊天记录？", new ParentPopClick() {
+                    @Override
+                    public void onClick(int type) {
+                        boolean isSuccess = EMClient.getInstance().chatManager().deleteConversation(userId, true);
+                        if (isSuccess){
+                            ToastUtils.showToast("聊天记录删除完毕");
+                        }else {
+                            ToastUtils.showToast("删除失败");
+                        }
+                    }
+                });
+                break;
+            case R.id.bt_black:
+                EnterAppointDialog.showCommonDialog(this, "加入黑名单", "确定", "是否将该用户加入黑名单？", new ParentPopClick() {
+                    @Override
+                    public void onClick(int type) {
+                        try {
+                            EMClient.getInstance().contactManager().addUserToBlackList(userId,true);
+                            ToastUtils.showToast("加入黑名单成功");
+                        } catch (HyphenateException e) {
+                            e.printStackTrace();
+                            ToastUtils.showToast("加入黑名单失败"+e.getMessage());
+                        }
+
+                    }
+                });
+
+                break;
+
+        }
+    }
 }

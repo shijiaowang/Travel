@@ -15,6 +15,7 @@ import com.google.android.flexbox.FlexboxLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
 import com.yunspeak.travel.bean.FindLastReply;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
 import com.yunspeak.travel.event.DetailCommonEvent;
@@ -34,6 +35,7 @@ import com.yunspeak.travel.utils.XEventUtils;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.x;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -123,8 +125,18 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         String travel_img = travel.getTravel_img();
         String play_way = travel.getPlay_way();
         String url = "";
-        if (!StringUtils.isEmpty(travel_img)) url = travel_img.split(",")[0];
-        FrescoUtils.displayNormal(mIvbg,url);
+        if (!StringUtils.isEmpty(travel_img)) {
+            final String[] split = travel_img.split(",");
+            url = split[0];
+            FrescoUtils.displayNormal(mIvbg, url);
+            mIvbg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CirclePreviewActivity.start(DestinationDetailActivity.this, Arrays.asList(split),0);
+                }
+            });
+
+        }
         initPlayWay(play_way);
     }
 

@@ -3,7 +3,6 @@ package com.yunspeak.travel.utils;
 import android.net.Uri;
 
 import com.facebook.drawee.drawable.ScalingUtils;
-import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.yunspeak.travel.R;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
@@ -14,8 +13,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
-
-import org.xutils.common.util.DensityUtil;
 
 /**
  * Created by wangyang on 2016/10/8.
@@ -38,6 +35,8 @@ public class FrescoUtils {
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
                 .setRoundingParams(roundingParams)
+                .setPlaceholderImage(R.drawable.boy)
+                .setFailureImage(R.drawable.boy)
                 //设置淡入淡出动画持续时间(单位：毫秒ms)
                 .setFadeDuration(1000)
                 //构建

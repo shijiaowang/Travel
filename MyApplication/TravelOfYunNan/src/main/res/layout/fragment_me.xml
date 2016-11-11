@@ -164,6 +164,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/tv_appoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -193,6 +194,7 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/tv_my_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -222,6 +224,7 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/tv_my_collection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -251,6 +254,7 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:background="@drawable/normal_press_bg"
                     android:id="@+id/tv_message_center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

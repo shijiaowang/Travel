@@ -11,15 +11,19 @@ import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.hyphenate.chat.EMClient;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.HotSpotsItemDecoration;
 import com.yunspeak.travel.ui.adapter.SpaceItemDecoration;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.memberdetail.ChatMemberDetailActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.ToastUtils;
 
 import java.util.List;
 
@@ -41,17 +45,18 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
     Button btClear;
     @BindView(R.id.rv_member)
     RecyclerView rvMember;
-    private String tId;
+    private String chatId;
 
     @Override
     protected void initEvent() {
-        tId = getIntent().getStringExtra(IVariable.TID);
+        chatId = getIntent().getStringExtra(IVariable.DATA);
         tvCursor.setOnClickListener(this);
+        btClear.setOnClickListener(this);
     }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        builder.addtId(tId);
+        builder.addtId(chatId);
     }
 
     @Override
@@ -64,7 +69,7 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
         ChatSettingBean chatSettingBean = GsonUtils.getObject(chatSettingEvent.getResult(), ChatSettingBean.class);
         List<ChatSettingUserBean> dataBeen = chatSettingBean.getData();
         tvChatNumber.setText("群成员("+dataBeen.size()+")");
-        ChatSettingAdapter chatSettingAdapter=new ChatSettingAdapter(dataBeen,this,tId);
+        ChatSettingAdapter chatSettingAdapter=new ChatSettingAdapter(dataBeen,this,chatId);
         rvMember.setAdapter(chatSettingAdapter);
         LinearLayoutManager linearLayoutManager=new GridLayoutManager(this,dataBeen.size());
         rvMember.setLayoutManager(linearLayoutManager);
@@ -93,7 +98,21 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_cursor:
-                ChatMemberDetailActivity.start(this,tId);
+                ChatMemberDetailActivity.start(this,chatId);
+                break;
+            case R.id.bt_clear:
+                EnterAppointDialog.showCommonDialog(this, "删除聊天记录", "确定", "是否删除相关聊天记录？", new ParentPopClick() {
+                    @Override
+                    public void onClick(int type) {
+                        boolean isSuccess = EMClient.getInstance().chatManager().deleteConversation(chatId, true);
+                        if (isSuccess){
+                            ToastUtils.showToast("聊天记录删除完毕");
+                        }else {
+                            ToastUtils.showToast("删除失败");
+                        }
+                    }
+                });
+
                 break;
         }
     }

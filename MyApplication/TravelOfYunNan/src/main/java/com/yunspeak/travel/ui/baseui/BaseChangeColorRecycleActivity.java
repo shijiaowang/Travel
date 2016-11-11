@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -35,6 +36,8 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
     protected RecyclerView mRvCommon;
     @BindView(R.id.stll_layout)
     protected SwipeToLoadLayout mSwipe;
+    @BindView(R.id.empty)
+    protected View mRlEmpty;
     protected List<G> mDatas;//从网络获取的数据
     protected BaseRecycleViewAdapter<G> mAdapter;//通用adapter
     private LinearLayoutManager linearLayoutManager;
@@ -46,7 +49,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
 
     @Override
     protected void initListener() {
-
+        mRlEmpty.setVisibility(View.GONE);
         initChildListener();
         View footView = LayoutInflater.from(this).inflate(R.layout.layout_google_footer, mSwipe, false);
         mSwipe.setSwipeStyle(SwipeToLoadLayout.STYLE.BLEW);
@@ -67,6 +70,15 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
 
     @Override
     protected void onSuccess(T t) {
+        if (t.getCode()==2 && t.getType()==TYPE_REFRESH){
+            mRlEmpty.setVisibility(View.VISIBLE);
+            if (mDatas!=null && mAdapter!=null){
+                mDatas.clear();
+                mAdapter.notifyDataSetChanged();
+            }
+            return;
+        }
+        mRlEmpty.setVisibility(View.GONE);
         try {
             ParentBean parentBean = null;
             if (isUserChild(parentBean)) {//使用孩子的
@@ -91,8 +103,6 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
                 mSwipeContainer.setRefreshing(false);
                 mDatas = boy;
                 mAdapter.notifiyData(mDatas);
-            } else {
-                doOtherSuccessData(t);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,10 +111,6 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
     }
 
 
-
-    protected void doOtherSuccessData(T t) {
-
-    }
 
     protected void changeMargin(int space,int top) {
         mRvCommon.addItemDecoration(new MyCollectionDecoration(space,top));

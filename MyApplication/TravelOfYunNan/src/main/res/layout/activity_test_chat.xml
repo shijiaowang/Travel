@@ -6,46 +6,27 @@
     android:orientation="vertical"
     android:id="@+id/container">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tool_bar"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:background="@color/otherTitleBg"
-        android:titleTextColor="@color/colorFAFAFA"
-        android:navigationIcon="@drawable/back"
-        android:elevation="3dp"
-        app:titleTextAppearance="@style/ToolBar.TitleText">
-        <RelativeLayout
+        android:layout_height="wrap_content"
+        android:theme="@style/toolbar_theme">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool_bar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_centerVertical="true"
-                android:id="@+id/iv_back"
-                android:src="@drawable/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
+            android:layout_height="49dp"
+            android:background="@color/otherTitleBg"
+            app:titleTextAppearance="@style/ToolBar.TitleText">
             <TextView
-                android:id="@+id/tv_title"
+                android:id="@+id/tv_appbar_title"
+                style="@style/commonSingleLineTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:textColor="@color/colorFAFAFA"
                 android:textSize="18sp" />
-            <TextView
-                android:text="设置"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="15sp"
-                android:id="@+id/tv_setting"
-                android:layout_marginRight="22dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
-
-
-    </android.support.v7.widget.Toolbar>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
 </LinearLayout>

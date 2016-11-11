@@ -5,7 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
+import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
@@ -14,6 +18,7 @@ import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.ui.me.othercenter.INotify;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterBean;
+import com.yunspeak.travel.ui.me.othercenter.useralbum.AppBarStateEvent;
 import com.yunspeak.travel.ui.view.LoadingPage;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
@@ -34,11 +39,13 @@ import butterknife.BindView;
  * 用户动态
  */
 
-public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> implements INotify<OtherUserCenterBean.DataBean.MoreBean>{
+public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> implements INotify<OtherUserCenterBean.DataBean.MoreBean>, OnLoadMoreListener {
     private boolean isFirst = true;
     private String userId;
-    @BindView(R.id.rv_dynamic)
+    @BindView(R.id.swipe_target)
     RecyclerView mRvRecycle;
+    @BindView(R.id.swipe_container)
+    SwipeToLoadLayout swipeToLoadLayout;
     private List<OtherUserCenterBean.DataBean.MoreBean> mDataBean = new ArrayList<>();
     private UserDynamicAdapter userDynamicAdapter;
 
@@ -72,20 +79,9 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             mRvRecycle.setLayoutManager(linearLayoutManager);
             mRvRecycle.addItemDecoration(new MyWitheMeDecoration(6));
-            mRvRecycle.addOnScrollListener(new LoadMoreListener(linearLayoutManager) {
-                @Override
-                protected void onScrolling(RecyclerView recyclerView, int dx, int dy) {
-
-                }
-
-                @Override
-                public void onLoadMore(int childCount) {
-                    userDynamicAdapter.startLoading();
-                    onLoad(TYPE_LOAD);
-                }
-            });
         } else {
-            userDynamicAdapter.setmDatas(mDataBean);
+            userDynamicAdapter.notifiyData(mDataBean);
+
         }
     }
 
@@ -103,9 +99,7 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
     @Override
     public void onSuccess(UserDynamicEvent userDynamicEvent) {
         if (isFirst) return;
-        if (userDynamicAdapter != null) {
-            userDynamicAdapter.endLoading();
-        }
+        swipeToLoadLayout.setLoadingMore(false);
         OtherUserCenterBean otherUserCenterBean = GsonUtils.getObject(userDynamicEvent.getResult(), OtherUserCenterBean.class);
         mDataBean.addAll(otherUserCenterBean.getData().getMore());
         initData();
@@ -113,14 +107,17 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
 
     @Override
     protected void onFail(UserDynamicEvent event) {
-        if (userDynamicAdapter != null) {
-            userDynamicAdapter.endLoading();
-        }
+        swipeToLoadLayout.setLoadingMore(false);
+
     }
 
     @Override
     protected void initListener() {
-
+        View footView = LayoutInflater.from(getContext()).inflate(R.layout.layout_google_footer, swipeToLoadLayout, false);
+        swipeToLoadLayout.setSwipeStyle(SwipeToLoadLayout.STYLE.BLEW);
+        swipeToLoadLayout.setLoadMoreFooterView(footView);
+        swipeToLoadLayout.setOnLoadMoreListener(this);
+        swipeToLoadLayout.setLoadMoreEnabled(false);
     }
     @Override
     protected void onLoad(int type) {
@@ -148,11 +145,20 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
     public void notifys(List<OtherUserCenterBean.DataBean.MoreBean> t) {
         mDataBean=t;
         initData();
-        LogUtils.e("正在刷新");
     }
 
     @Override
     public void notify(OtherUserCenterBean.DataBean.MoreBean moreBean) {
 
+    }
+    @Subscribe
+    public void onEvent(AppBarStateEvent appBarStateEvent) {
+            swipeToLoadLayout.setLoadMoreEnabled(appBarStateEvent.isClose());
+
+    }
+
+    @Override
+    public void onLoadMore() {
+        onLoad(TYPE_LOAD);
     }
 }

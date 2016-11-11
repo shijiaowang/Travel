@@ -1,21 +1,16 @@
-package com.yunspeak.travel.ui.baseui;
+package com.yunspeak.travel.ui.me.messagecenter.privatemessage;
 
 import android.widget.ListView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.adapter.MessagePrivateAdapter;
+import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 
-import org.xutils.view.annotation.ViewInject;
-
-import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/7/15 0015.
  * 私信
  */
 public class MessagePrivateActivity extends BaseToolBarActivity {
-    @BindView(R.id.lv_private)
-     ListView mLvPrivate;
 
 
 
@@ -27,7 +22,8 @@ public class MessagePrivateActivity extends BaseToolBarActivity {
 
     @Override
     protected void initOptions() {
-        mLvPrivate.setAdapter(new MessagePrivateAdapter(this,null));
+        ConversationListFragment conversationListFragment=new ConversationListFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.lv_private, conversationListFragment).commit();
     }
 
     @Override

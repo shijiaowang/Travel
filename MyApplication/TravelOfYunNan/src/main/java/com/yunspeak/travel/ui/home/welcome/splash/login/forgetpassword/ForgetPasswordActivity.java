@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.home.welcome.splash.login.forgetpassword;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
@@ -17,6 +18,7 @@ import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginNextCommonEvent;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LineEditText;
+import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MD5Utils;
@@ -76,11 +78,11 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
     private String phone;
 
 
-
-
-
-
-
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActivityUtils.getInstance().addActivity(this);
+    }
 
     @Override
     protected boolean isAutoLoad() {

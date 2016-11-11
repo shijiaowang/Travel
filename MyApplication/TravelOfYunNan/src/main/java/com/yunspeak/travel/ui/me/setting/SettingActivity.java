@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.setting;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,7 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.core.ImagePipeline;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
@@ -29,6 +32,7 @@ import com.yunspeak.travel.ui.me.about.AboutActivity;
 import com.yunspeak.travel.ui.me.changepassword.ChangePassWordActivity;
 import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
 import com.yunspeak.travel.ui.view.PhoneTextView;
+import com.yunspeak.travel.utils.CacheUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -58,7 +62,6 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_change_icon) TextView mTvChangeIcon;
     @BindView(R.id.tv_user_live_place) TextView mTvUserLivePlace;
-    @BindView(R.id.tv_user_sex) TextView mTvUserSex;
     @BindView(R.id.ll_phone) LinearLayout mLlPhone;//更改手机
     @BindView(R.id.ll_profile) LinearLayout mLlProfile;//个人简介
     @BindView(R.id.ptv_phone) PhoneTextView mPtvPhone;
@@ -66,9 +69,9 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     @BindView(R.id.ll_about) LinearLayout mLlAbout;
     @BindView(R.id.ll_change_password) LinearLayout mLlChangePassword;
     @BindView(R.id.ll_back) LinearLayout mLlBack;
+    @BindView(R.id.ll_clear) LinearLayout mLlClear;
     private UserInfo userInfo;
     private String nickName="";
-    private String sex="";
     private String provice="";
     private String city="";
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>(0);
@@ -88,8 +91,8 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         mTvChangeIcon.setOnClickListener(this);
         mTvUserNickName.setOnClickListener(this);
         mTvUserLivePlace.setOnClickListener(this);
-        mTvUserSex.setOnClickListener(this);
         mLlBack.setOnClickListener(this);
+        mLlClear.setOnClickListener(this);
         initData();
 
     }
@@ -119,7 +122,6 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
             String cityName = DBManager.getStringById("name", city);
             mTvUserLivePlace.setText( provinceName+ "-" +cityName );
             mTvUserNickName.setText(userInfo.getNick_name());
-            mTvUserSex.setText(userInfo.getSex().equals("1") ? "男" : "女");
             mPtvPhone.setPhoneNumber(userInfo.getTel());
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -178,8 +180,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                     @Override
                     public void onClick(int type) {
                         EMClient.getInstance().logout(true);
-                        ShareUtil.putString(SettingActivity.this, IVariable.SAVE_NAME, "");
-                        ShareUtil.putString(SettingActivity.this, IVariable.SAVE_PWD, "");
+                        ShareUtil.deleteData(SettingActivity.this);
                         PushAgent.getInstance(SettingActivity.this).removeAlias(userInfo.getId(), "YUNS_ID", new UTrack.ICallBack() {
                             @Override
                             public void onMessage(boolean b, String s) {
@@ -215,20 +216,33 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
             case R.id.tv_user_live_place:
                 changeLivePlace();
                 break;
-            case R.id.tv_user_sex:
-                EnterAppointDialog.showChangeSex(this,userInfo.getSex(), new SendTextClick() {
+            case R.id.ll_clear:
+                final ProgressDialog progressDialog=new ProgressDialog(this);
+                EnterAppointDialog.showCommonDialog(this, "清理缓存", "确认", "是否清理缓存", new ParentPopClick() {
                     @Override
-                    public void onClick(String text) {
-                        sex=text;
-                        if (text.equals("2")){
-                            sex="";
-                        }else {
-                            mTvUserSex.setText(sex.equals("1")?"男":"女");
+                    public void onClick(int type) {
+                        progressDialog.setTitle("清理中");
+                        progressDialog.show();
+                        try {
+                            CacheUtils.cleanInternalCache(SettingActivity.this);
+                            CacheUtils.cleanFiles(SettingActivity.this);
+                            CacheUtils.cleanExternalCache(SettingActivity.this);
+                            ImagePipeline imagePipeline =   Fresco.getImagePipeline();
+                            imagePipeline.clearCaches();
+                            ToastUtils.showToast("清除成功");
+                            progressDialog.dismiss();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            ToastUtils.showToast("清理失败");
+                            progressDialog.dismiss();
                         }
-                        messageIsChange=true;
+
                     }
+
                 });
+
                 break;
+
             case R.id.ll_back://意见反馈
                 CustomerServiceActivity.start(this,false);
                 break;
@@ -281,9 +295,6 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         MapUtils.Builder builder = MapUtils.Build().addKey().addUserId();
         if (!StringUtils.isEmptyNotNull(nickName)){
             builder.addNickName(nickName);
-        }
-        if (!StringUtils.isEmptyNotNull(sex)){
-            builder.addSex(sex);
         }
         if (!StringUtils.isEmptyNotNull(provice) && !StringUtils.isEmptyNotNull(city)){
             builder.addProvince(provice).addCity(city);

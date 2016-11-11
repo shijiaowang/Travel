@@ -28,7 +28,7 @@ class CatOtherAlbumHolder extends BaseRecycleViewHolder<CatOtherUserBean.DataBea
 
     @Override
     public void childBindView(int position, CatOtherUserBean.DataBean.BodyBean bodyBean, Context mContext) {
-        FrescoUtils.displayNormal(ivBg,bodyBean.getPath());
+        FrescoUtils.displayNormal(ivBg,bodyBean.getPath(),600,300);
         tvTime.setText(FormatDateUtils.FormatLongTime(IVariable.Y_M_D,bodyBean.getAdd_time()));
     }
 }

@@ -49,15 +49,14 @@
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                         >
                         <TextView
-                            android:layout_marginTop="2dp"
                             android:id="@+id/tv_bar_name"
+                            style="@style/commonSingleLineTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:lines="1"
-                            android:ellipsize="end"
                             android:textColor="@color/colorFAFAFA"
                             android:textSize="18sp" />
                     </android.support.v7.widget.Toolbar>

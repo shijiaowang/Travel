@@ -1,11 +1,8 @@
 package com.yunspeak.travel.ui.baseui;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -16,7 +13,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.MenuItem;
@@ -36,21 +32,16 @@ import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IState;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
-
-import butterknife.BindColor;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

@@ -1,6 +1,5 @@
 package com.yunspeak.travel.ui.me.messagecenter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -9,7 +8,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageActivity;
-import com.yunspeak.travel.ui.baseui.MessagePrivateActivity;
+import com.yunspeak.travel.ui.me.messagecenter.privatemessage.MessagePrivateActivity;
 import com.yunspeak.travel.ui.me.messagecenter.relateme.RelateMeActivity;
 import com.yunspeak.travel.ui.me.messagecenter.systemmessage.SystemMessageActivity;
 import com.yunspeak.travel.ui.view.BadgeView;

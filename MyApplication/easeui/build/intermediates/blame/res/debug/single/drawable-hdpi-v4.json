@@ -20,12 +20,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatting_setmode_keyboard_btn_normal.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_search_clear_pressed.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_search_clear_pressed.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_search_clear_pressed.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_search_clear_pressed.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_16.png",
@@ -54,6 +54,10 @@
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_default_avatar.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_default_avatar.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\boy.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\boy.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_search_bar_icon_normal.png",
@@ -318,6 +322,10 @@
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_btn_radio_to_on_mtrl_015.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\girl.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\girl.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_show_head_toast_bg.9.png",

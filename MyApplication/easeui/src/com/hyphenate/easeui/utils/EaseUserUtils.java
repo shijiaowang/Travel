@@ -99,13 +99,15 @@ public class EaseUserUtils {
         roundingParams.setBorder(Color.parseColor("#fafafa"), 2);
         roundingParams.setRoundAsCircle(true);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setResizeOptions(new ResizeOptions(50, 50))
+                .setResizeOptions(new ResizeOptions(200, 200))
                 .build();
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(context.getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
                 .setRoundingParams(roundingParams)
                 //设置淡入淡出动画持续时间(单位：毫秒ms)
                 .setFadeDuration(1000)
+                .setPlaceholderImage(R.drawable.boy)
+                .setFailureImage(R.drawable.boy)
                 //构建
                 .build();
         DraweeController controller = Fresco.newDraweeControllerBuilder()

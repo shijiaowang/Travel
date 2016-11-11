@@ -20,6 +20,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseTransActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LineEditText;
+import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
@@ -91,7 +92,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
 
     @Override
     protected void initView() {
-
+        ActivityUtils.getInstance().addActivity(this);
     }
 
     @Override

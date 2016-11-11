@@ -40,7 +40,7 @@ public class AiteMessageBean implements ParentBean{
     }
 
     public static class DataBean {
-        private int floor;
+        private String floor;
         private int type;
         private String user_img;
         private String nick_name;
@@ -90,10 +90,16 @@ public class AiteMessageBean implements ParentBean{
         private List<InformBean> inform;
 
         public int getFloor() {
-            return floor;
+            try {
+                return Integer.parseInt(floor);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                return 0;
+            }
+
         }
 
-        public void setFloor(int floor) {
+        public void setFloor(String floor) {
             this.floor = floor;
         }
 

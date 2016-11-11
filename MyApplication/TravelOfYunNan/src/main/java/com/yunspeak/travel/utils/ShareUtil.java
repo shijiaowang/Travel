@@ -20,4 +20,8 @@ public class ShareUtil {
         SharedPreferences sharedPreferences = context.getSharedPreferences(IVariable.SHARE_NAME, Context.MODE_PRIVATE);
         sharedPreferences.edit().putInt(key, value).apply();
     }
+    public static void deleteData(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(IVariable.SHARE_NAME, Context.MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
+    }
 }

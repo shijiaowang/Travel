@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
@@ -39,54 +41,16 @@ import butterknife.BindView;
  * Created by wangyang on 2016/10/13 0013.
  */
 
-public class UserDynamicAdapter extends LoadMoreRecycleViewAdapter<OtherUserCenterBean.DataBean.MoreBean> {
+public class UserDynamicAdapter extends BaseRecycleViewAdapter<OtherUserCenterBean.DataBean.MoreBean> {
 
 
     public UserDynamicAdapter(List<OtherUserCenterBean.DataBean.MoreBean> mDatas, Context mContext) {
         super(mDatas, mContext);
     }
 
-    @Override
-    protected RecyclerView.ViewHolder normalHolder(LayoutInflater context, ViewGroup parent, int viewType) {
-        View inflate = context.inflate(R.layout.item_other_user_fragment_dynamic, parent, false);
-        return new UserDynamicHolder(inflate);
-    }
 
-    @Override
-    protected void bindNormal(RecyclerView.ViewHolder holder, int position) {
-        final UserDynamicHolder userDynamicHolder = (UserDynamicHolder) holder;
-        final OtherUserCenterBean.DataBean.MoreBean moreBean = mDatas.get(position);
-        FrescoUtils.displayIcon(userDynamicHolder.ivUserIcon,moreBean.getUser_img());
-        userDynamicHolder.tvUserName.setText(moreBean.getNick_name());
-        userDynamicHolder.tvTime.setText(FormatDateUtils.FormatLongTime(IVariable.Y_M_DHms,moreBean.getTime()));
-        userDynamicHolder.tvReplyType.setText(moreBean.getType());
-        userDynamicHolder.tvType.setText("#"+moreBean.getCname()+"#");
-        userDynamicHolder.tvDiscuss.setText(moreBean.getTitle());
-        userDynamicHolder.tvType.setTag(moreBean.getCid());
-        userDynamicHolder.tvIconNumber.setText(moreBean.getCount_like());
-        if (moreBean.getIs_like().equals("1")){
-            userDynamicHolder.tvIconNumber.setTextColor(userDynamicHolder.loveColor);
-            userDynamicHolder.tvIcon.setTextColor(userDynamicHolder.loveColor);
-            userDynamicHolder.tvIcon.setText(mContext.getString(R.string.activity_circle_love_full));
-        }else {
-            userDynamicHolder.tvIconNumber.setTextColor(userDynamicHolder.normalColor);
-            userDynamicHolder.tvIcon.setTextColor(userDynamicHolder.normalColor);
-            userDynamicHolder.tvIcon.setText(mContext.getString(R.string.activity_circle_love_empty));
-        }
-        userDynamicHolder.tvOtherUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PostActivity.start(mContext,moreBean.getId());
-            }
-        });
-        userDynamicHolder.tvType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CircleDetailActivity.start(mContext,(String) userDynamicHolder.tvType.getTag());
-            }
-        });
-        textClick(userDynamicHolder.tvOtherUser,moreBean.getContent(),moreBean.getRe_user());
-    }
+
+
     private void textClick(TextView text,String content,String name){
         if (StringUtils.isEmpty(name) || StringUtils.isEmpty(content))return;
         int clickLength=name.trim().length()+1;
@@ -98,6 +62,12 @@ public class UserDynamicAdapter extends LoadMoreRecycleViewAdapter<OtherUserCent
         text.setText(spannable);
 
     }
+
+    @Override
+    public BaseRecycleViewHolder<OtherUserCenterBean.DataBean.MoreBean> onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new UserDynamicHolder(inflateView(R.layout.item_other_user_fragment_dynamic, parent));
+    }
+
     class ClickText extends ClickableSpan{
         private String userId;
 
@@ -116,7 +86,7 @@ public class UserDynamicAdapter extends LoadMoreRecycleViewAdapter<OtherUserCent
             ds.setUnderlineText(false);//是否有下划线
         }
     }
-    class UserDynamicHolder extends ItemViewHolder {
+    class UserDynamicHolder extends BaseRecycleViewHolder<OtherUserCenterBean.DataBean.MoreBean> {
         @BindView(R.id.iv_user_icon)SimpleDraweeView ivUserIcon;
         @BindView(R.id.tv_user_name) TextView tvUserName;
         @BindView(R.id.tv_time) TextView tvTime;
@@ -130,6 +100,40 @@ public class UserDynamicAdapter extends LoadMoreRecycleViewAdapter<OtherUserCent
         @BindColor(R.color.colorb5b5b5) @ColorInt int normalColor;
         public UserDynamicHolder(View itemView) {
             super(itemView);
+        }
+
+        @Override
+        public void childBindView(int position, final OtherUserCenterBean.DataBean.MoreBean moreBean, final Context mContext) {
+            FrescoUtils.displayIcon(ivUserIcon,moreBean.getUser_img());
+            tvUserName.setText(moreBean.getNick_name());
+            tvTime.setText(FormatDateUtils.FormatLongTime(IVariable.Y_M_DHms,moreBean.getTime()));
+            tvReplyType.setText(moreBean.getType());
+            tvType.setText("#"+moreBean.getCname()+"#");
+            tvDiscuss.setText(moreBean.getTitle());
+            tvType.setTag(moreBean.getCid());
+            tvIconNumber.setText(moreBean.getCount_like());
+            if (moreBean.getIs_like().equals("1")){
+                tvIconNumber.setTextColor(loveColor);
+                tvIcon.setTextColor(loveColor);
+                tvIcon.setText(mContext.getString(R.string.activity_circle_love_full));
+            }else {
+                tvIconNumber.setTextColor(normalColor);
+                tvIcon.setTextColor(normalColor);
+                tvIcon.setText(mContext.getString(R.string.activity_circle_love_empty));
+            }
+            tvOtherUser.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PostActivity.start(mContext,moreBean.getId());
+                }
+            });
+            tvType.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CircleDetailActivity.start(mContext,(String) tvType.getTag());
+                }
+            });
+            textClick(tvOtherUser,moreBean.getContent(),moreBean.getRe_user());
         }
     }
 }

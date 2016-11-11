@@ -130,6 +130,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mLlHobby.setOnClickListener(this);//我的兴趣
         mLlTheme.setOnClickListener(this);//我的主题
         mSwifeLayout.setOnRefreshListener(new MyRefreshListener());//刷新数据
+        mSwifeLayout.setColorSchemeResources(R.color.otherTitleBg);
         mIvIcon.setOnClickListener(this);//更改头像
 
     }

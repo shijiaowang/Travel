@@ -136,6 +136,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         mRvHotSpots.addItemDecoration(new HotSpotsItemDecoration(RECYCLE_VIEW_ITEM_SPACE));//设置孩子间距为24px;
         mRvTravels.addItemDecoration(new MyWitheMeDecoration(6));
         mSwipe.setOnRefreshListener(this);
+        mSwipe.setColorSchemeResources(R.color.otherTitleBg);
         mRlSearch.setOnClickListener(this);
         mEtSearch.setOnClickListener(this);
         mRvHotSpots.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -205,5 +206,10 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
 
             container.removeView(((SimpleDraweeView) object));
         }
+    }
+
+    @Override
+    protected void setLoading() {
+
     }
 }

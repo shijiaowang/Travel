@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.circle.hotpost;
 
 import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.InformBean;
 
 import java.util.List;
 
@@ -10,9 +11,9 @@ import java.util.List;
 
 public class HotPostBean implements ParentBean{
 
+
     private int code;
     private String message;
-
 
     private List<DataBean> data;
 
@@ -46,17 +47,23 @@ public class HotPostBean implements ParentBean{
         private String user_id;
         private String title;
         private String content;
-        private String inform;
         private String forum_img;
         private String time;
         private String status;
         private String is_hot;
         private String update_time;
+        private String is_index;
+        private String click;
+        private String collect;
+        private String reply;
+        private String reprinted;
+        private String count_like;
         private String nick_name;
         private String user_img;
         private String cname;
         private String count_reply;
-        private String count_like;
+
+        private List<InformBean> inform;
 
         public String getId() {
             return id;
@@ -96,14 +103,6 @@ public class HotPostBean implements ParentBean{
 
         public void setContent(String content) {
             this.content = content;
-        }
-
-        public String getInform() {
-            return inform;
-        }
-
-        public void setInform(String inform) {
-            this.inform = inform;
         }
 
         public String getForum_img() {
@@ -146,6 +145,54 @@ public class HotPostBean implements ParentBean{
             this.update_time = update_time;
         }
 
+        public String getIs_index() {
+            return is_index;
+        }
+
+        public void setIs_index(String is_index) {
+            this.is_index = is_index;
+        }
+
+        public String getClick() {
+            return click;
+        }
+
+        public void setClick(String click) {
+            this.click = click;
+        }
+
+        public String getCollect() {
+            return collect;
+        }
+
+        public void setCollect(String collect) {
+            this.collect = collect;
+        }
+
+        public String getReply() {
+            return reply;
+        }
+
+        public void setReply(String reply) {
+            this.reply = reply;
+        }
+
+        public String getReprinted() {
+            return reprinted;
+        }
+
+        public void setReprinted(String reprinted) {
+            this.reprinted = reprinted;
+        }
+
+        public String getCount_like() {
+            return count_like;
+        }
+
+        public void setCount_like(String count_like) {
+            this.count_like = count_like;
+        }
+
         public String getNick_name() {
             return nick_name;
         }
@@ -178,12 +225,13 @@ public class HotPostBean implements ParentBean{
             this.count_reply = count_reply;
         }
 
-        public String getCount_like() {
-            return count_like;
+        public List<InformBean> getInform() {
+            return inform;
         }
 
-        public void setCount_like(String count_like) {
-            this.count_like = count_like;
+        public void setInform(List<InformBean> inform) {
+            this.inform = inform;
         }
+
     }
 }

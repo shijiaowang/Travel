@@ -160,8 +160,8 @@
     <color name="homeTopicChosenBg">#fafafa</color>
     <color name="homeTopicChosenText">#323232</color>
     <color name="homeTopicTextColor">#323233</color>
-    <color name="list_itease_primary_color">#000</color>
-    <color name="list_itease_secondary_color">#888888</color>
+    <color name="list_itease_primary_color">#646464</color>
+    <color name="list_itease_secondary_color">#b7b7b7</color>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
     <color name="material_blue_grey_950">#ff21272b</color>
@@ -2416,6 +2416,10 @@
     <style name="ThemeOverlay.AppCompat.Dialog" parent="Base.ThemeOverlay.AppCompat.Dialog"/>
     <style name="ThemeOverlay.AppCompat.Dialog.Alert" parent="Base.ThemeOverlay.AppCompat.Dialog.Alert"/>
     <style name="ThemeOverlay.AppCompat.Light" parent="Base.ThemeOverlay.AppCompat.Light"/>
+    <style name="ToolBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorFAFAFA</item>
+    </style>
     <style name="Widget.AppCompat.ActionBar" parent="Base.Widget.AppCompat.ActionBar">
     </style>
     <style name="Widget.AppCompat.ActionBar.Solid" parent="Base.Widget.AppCompat.ActionBar.Solid">
@@ -2606,4 +2610,9 @@
         <item name="android:windowAnimationStyle">@style/AnimFade2</item>
     </style>
     <style name="nornal_style" parent="android:Theme.NoTitleBar"/>
+    <style name="toolbar_theme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/colorFAFAFA</item>
+        <item name="android:background">@android:color/transparent</item>
+        
+    </style>
 </resources>

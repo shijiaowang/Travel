@@ -39,3 +39,56 @@
 -keep class com.zhy.m.** {*;}
 -keep interface com.zhy.m.** { *; }
 -keep class **$$PermissionProxy { *; }
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+#保持自定义控件类不被混淆
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
+#保持 Parcelable 不被混淆
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+#保持 Serializable 不被混淆
+-keepnames class * implements java.io.Serializable
+#保持 Serializable 不被混淆并且enum 类也不被混淆
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    !private <fields><span></span>;
+    !private <methods>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+#保持枚举 enum 类不被混淆 如果混淆报错，建议直接使用上面的 -keepclassmembers class * implements java.io.Serializable即可
+#-keepclassmembers enum * {
+#  public static **[] values();
+#  public static ** valueOf(java.lang.String);
+#}
+-keepclassmembers class * {
+    public void *ButtonClicked(android.view.View);
+}
+#不混淆资源类
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+################### region for xUtils
+-keepattributes Signature,*Annotation*
+-keep public class org.xutils.** {
+    public protected *;
+}
+-keep public interface org.xutils.** {
+    public protected *;
+}
+-keepclassmembers class * extends org.xutils.** {
+    public protected *;
+}
+-keepclassmembers @org.xutils.db.annotation.* class * {*;}
+-keepclassmembers @org.xutils.http.annotation.* class * {*;}
+-keepclassmembers class * {
+    @org.xutils.view.annotation.Event <methods>;
+}

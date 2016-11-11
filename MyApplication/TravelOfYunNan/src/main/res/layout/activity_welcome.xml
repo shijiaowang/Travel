@@ -10,26 +10,28 @@
         android:id="@+id/pb_load"
         android:layout_width="87dp"
         android:layout_height="87dp"/>
+
     <TextView
         android:layout_centerHorizontal="true"
-        android:text="Copyright 2016 云说配餐 啊哈克里斯的哈市"
-        android:textColor="#424242"
-        android:textSize="12sp"
-        android:layout_marginBottom="53dp"
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
-    <TextView
-        android:layout_centerHorizontal="true"
-        android:text="云说"
+        android:text="云南城外旅游文化发展有限公司"
         android:textColor="@color/color1c1c1c"
         android:textSize="13sp"
         android:layout_marginBottom="80dp"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4" />
 
+    <TextView
+        android:text="Yunnan Chengwai Travelling Culture Development Co., Ltd."
+        android:textColor="#424242"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
 
 
 </RelativeLayout>

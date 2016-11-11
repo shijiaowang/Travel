@@ -109,7 +109,7 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
         if (parentBean==null || loadDatas==null || loadDatas.size()==0){
             mSwipe.setLoadingMore(false);
             mSwipe.setRefreshing(false);
-            if (mDatas!=null && mAdapter!=null){
+            if (mDatas!=null && mAdapter!=null && t.getType()==TYPE_REFRESH){
                 mDatas.clear();
                 mAdapter.notifyDataSetChanged();
             }
@@ -123,11 +123,9 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
             mAdapter.setItemClickListener(this);
             if (isGridLayoutManager()){
                 StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
-                staggeredGridLayoutManager.setAutoMeasureEnabled(true);
                 mRvCommon.setLayoutManager(staggeredGridLayoutManager);
             }else {
                 LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(getContext());
-                linearLayoutManager.setAutoMeasureEnabled(true);
                 mRvCommon.setLayoutManager(linearLayoutManager);
             }
         } else if (t.getType() == TYPE_LOAD) {

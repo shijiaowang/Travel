@@ -3,6 +3,10 @@ package com.yunspeak.travel.ui.me.myappoint.chat;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,9 +16,11 @@ import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatBean;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingActivity;
+import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.privatesetting.PrivateChatSettingActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.domain.UserInfo;
@@ -34,15 +40,16 @@ import butterknife.ButterKnife;
 
 public class ChatActivity extends EaseBaseActivity {
     public static ChatActivity activityInstance;
-    @BindView(R.id.iv_back) ImageView ivBack;
-    @BindView(R.id.tv_title) TextView tvTitle;
-    @BindView(R.id.tv_setting) TextView tvSetting;
+
+    @BindView(R.id.tv_appbar_title) TextView tvTitle;
+    @BindView(R.id.tool_bar)
+    Toolbar toolbar;
     private ChatFragment chatFragment;
     String toChatUsername;
-    public static boolean isGetMessage = false;
+    public  boolean isGetMessage = false;
     private int tryCount;
-    private String tId;
     private int chatType;
+    private String title;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -55,15 +62,13 @@ public class ChatActivity extends EaseBaseActivity {
         activityInstance = this;
         //user or group id
         toChatUsername = getIntent().getStringExtra(IVariable.CHAT_ID);
-        tId = getIntent().getStringExtra(IVariable.TID);
         chatType = getIntent().getIntExtra(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
-        if (chatType==EaseConstant.CHATTYPE_GROUP) {
-            getChatInfo();
+        getChatInfo();
+        if (chatType==EaseConstant.CHATTYPE_GROUP){
+            title="群组聊天";
         }else {
-            UserInfo userInfo = (UserInfo) getIntent().getSerializableExtra(IVariable.DATA);
-            List<UserInfo> userInfos=new ArrayList<>();
-            userInfos.add(userInfo);
-            DBManager.insertChatUserInfo(userInfos);
+            title="单聊";
+
         }
         chatFragment = new ChatFragment();
         Bundle bundle = new Bundle();
@@ -76,35 +81,57 @@ public class ChatActivity extends EaseBaseActivity {
     }
 
     private void initListener() {
-        tvTitle.setText("群组聊天");
-        ivBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        tvSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ChatSettingActivity.start(ChatActivity.this,tId);
-            }
-        });
+
+        tvTitle.setText(title);
+        setSupportActionBar(toolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null)
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my_appoint_menu,menu);
+        menu.findItem(R.id.action_history).setTitle("设置");
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                switch (chatType){
+                    case  EaseConstant.CHATTYPE_SINGLE:
+                        Intent intent1 = new Intent(ChatActivity.this,PrivateChatSettingActivity.class);
+                        intent1.putExtra(IVariable.DATA,toChatUsername);
+                        startActivity(intent1);
+                        break;
+                    case EaseConstant.CHATTYPE_GROUP:
+                        Intent intent = new Intent(ChatActivity.this, ChatSettingActivity.class);
+                        intent.putExtra(IVariable.DATA,toChatUsername);
+                        startActivity(intent);
+                        break;
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     /**
      * 获取聊天信息
      */
     private void getChatInfo() {
-        Map<String, String> end = MapUtils.Build().addKey().addtId(tId).end();
+        Map<String, String> end = MapUtils.Build().addKey().addtId(toChatUsername).addType(chatType==EaseConstant.CHATTYPE_SINGLE?"2":"1").end();
         XEventUtils.getUseCommonBackJson(IVariable.GET_CHAT_MESSAGE, end, 0, new ChatEvent());
     }
 
-    public static void start(Context context, String tId, String chatId,int chatType,UserInfo userInfo) {
+    public static void start(Context context,String chatId,int chatType) {
         Intent intent = new Intent(context, ChatActivity.class);
-        intent.putExtra(IVariable.TID, tId);
         intent.putExtra(IVariable.CHAT_ID, chatId);
         intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, chatType);
-        intent.putExtra(IVariable.DATA,userInfo);
         context.startActivity(intent);
     }
 
@@ -115,6 +142,9 @@ public class ChatActivity extends EaseBaseActivity {
                 isGetMessage = true;
                 ChatBean chatBean = GsonUtils.getObject(chatEvent.getResult(), ChatBean.class);
                 List<UserInfo> data = chatBean.getData();
+                if (chatType==EaseConstant.CHATTYPE_SINGLE){
+                    tvTitle.setText(data.get(0).getNick_name());
+                }
                 DBManager.insertChatUserInfo(data);//初次存入用户信息
             } catch (Exception e) {
                 e.printStackTrace();

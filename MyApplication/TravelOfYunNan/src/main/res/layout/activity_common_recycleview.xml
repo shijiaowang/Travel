@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.aspsine.swipetoloadlayout.SwipeToLoadLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/stll_layout"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_height="match_parent"
-  >
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@id/swipe_target"
+    android:fitsSystemWindows="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/stll_layout"
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:overScrollMode="never"
-        android:scrollbars="none"
+        android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@id/swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:fitsSystemWindows="true"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+        </android.support.v7.widget.RecyclerView>
+
+
+    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+    <include
+        android:id="@+id/empty"
+        layout="@layout/empty_view" />
+</FrameLayout>

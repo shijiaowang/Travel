@@ -36,6 +36,7 @@ public class ActivityUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        mList.clear();
     }
 
 }

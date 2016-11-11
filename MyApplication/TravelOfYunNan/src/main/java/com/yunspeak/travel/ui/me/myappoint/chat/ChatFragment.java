@@ -47,9 +47,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
     @Override
     public void onAvatarClick(String username) {
-        if (username!= GlobalUtils.getUserInfo().getId()) {
             OtherUserCenterActivity.start(getContext(), username);
-        }
     }
 
     @Override

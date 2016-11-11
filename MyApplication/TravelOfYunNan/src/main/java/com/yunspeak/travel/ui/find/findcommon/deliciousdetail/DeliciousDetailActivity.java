@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.yunspeak.travel.bean.FindLastReply;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.DeliciousDetailAdapter;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
 import com.yunspeak.travel.ui.view.refreshview.XScrollView;
@@ -30,6 +32,7 @@ import com.yunspeak.travel.utils.XEventUtils;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.x;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -83,8 +86,20 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         DeliciousDetailBean.DataBean.TravelBean travel = deliciousDetail.getData().getTravel();
         mTvDes.setText(travel.getContent());
         mTvTitle.setText( travel.getTitle());
-        String foodUrl = travel.getFood_img().split(",")[0];
-        FrescoUtils.displayNormal(mIvBg,foodUrl);
+        String foodUrl = travel.getFood_img();
+        if (!StringUtils.isEmpty(foodUrl)){
+            final String[] split = foodUrl.split(",");
+            FrescoUtils.displayNormal(mIvBg,split[0]);
+            mIvBg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CirclePreviewActivity.start(DeliciousDetailActivity.this, Arrays.asList(split),0);
+                }
+            });
+
+        }
+
+
     }
     @Override
     protected List<TravelReplyBean> childChangeData(DeliciousDetailBean parentBean, DetailCommonEvent detailCommonEvent) {

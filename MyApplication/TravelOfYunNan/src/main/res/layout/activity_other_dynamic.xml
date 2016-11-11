@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.aspsine.swipetoloadlayout.SwipeToLoadLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@id/swipe_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_dynamic"
+        android:id="@+id/swipe_target"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
@@ -13,4 +14,4 @@
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null">
     </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+</com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
