@@ -34,6 +34,9 @@ public class TitleManagementAdapter extends TravelBaseAdapter<OfficialLabelBean>
             @Override
             public void onClick(View v) {
                 int type=-1;
+                if (item.getStatus().equals("0")){
+                    return;
+                }
                 if (item.getStatus().equals("1")){//拥有未佩戴
                     if (GlobalValue.count>=7){
                         ToastUtils.showToast("最多佩戴7个称号");

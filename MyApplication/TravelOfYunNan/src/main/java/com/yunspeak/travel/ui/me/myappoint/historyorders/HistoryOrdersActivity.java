@@ -35,7 +35,7 @@ public class HistoryOrdersActivity extends BaseRecycleViewActivity<MyAppointEven
     }
 
     @Override
-    protected boolean isUserChild() {
+    protected boolean isUseChild() {
         return true;
     }
 

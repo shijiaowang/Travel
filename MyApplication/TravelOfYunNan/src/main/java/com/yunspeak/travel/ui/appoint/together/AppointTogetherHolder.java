@@ -31,9 +31,9 @@ import butterknife.BindView;
 
 
 /**
- * Created by Administrator on 2016/7/20 0020.
+ * Created by wangyang on 2016/7/20 0020.
  */
-public class AppointTogetherHolder extends BaseRecycleViewHolder<AppointTogetherBean.DataBean> {
+public class AppointTogetherHolder extends BaseRecycleViewHolder {
     @BindView(R.id.fl_title) FlowLayout mFlTitle;
     @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_time)TextView mTvTime;
@@ -46,6 +46,7 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder<AppointTogether
     @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_how_long) TextView mTvHowLong;
+    private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
 
     public AppointTogetherHolder(View itemView) {
         super(itemView);
@@ -53,8 +54,9 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder<AppointTogether
 
 
     @Override
-    public void childBindView(final int position, final AppointTogetherBean.DataBean datas, final Context mContext) {
-        mTvMoney.setText(datas.getTotal_price());
+    public void childBindView(final int position, final Object data, final Context mContext) {
+        final AppointTogetherBean.DataBean datas = (AppointTogetherBean.DataBean) data;
+        mTvMoney.setText("¥"+datas.getTotal_price());
         mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
         mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
         mTvIconLove.setText((datas.getIs_like().equals("1")) ? R.string.activity_circle_love_full:R.string.activity_circle_love_empty);
@@ -63,6 +65,7 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder<AppointTogether
         if (mFlTitle != null && mFlTitle.getChildCount() > 0) {
             mFlTitle.removeAllViews();
         }
+        mTvHowLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss",datas.getAdd_time()));
         FrescoUtils.displayRoundIcon(mIvIcon,datas.getTravel_img());
         String label = datas.getLabel();
         if (!StringUtils.isEmpty(label)) {
@@ -70,6 +73,7 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder<AppointTogether
             for (int i = 0; i < split.length; i++) {
                 View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
                 TextView textView = (TextView) inflate.findViewById(R.id.tv_text);
+                textView.setBackgroundResource(titleBgs[i%titleBgs.length]);
                 textView.setText(split[i]);
                 mFlTitle.addView(inflate);
             }

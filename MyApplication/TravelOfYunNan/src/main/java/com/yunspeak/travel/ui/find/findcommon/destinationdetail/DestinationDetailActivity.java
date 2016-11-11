@@ -1,6 +1,6 @@
 package com.yunspeak.travel.ui.find.findcommon.destinationdetail;
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -13,31 +13,18 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.flexbox.FlexboxLayout;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
-import com.yunspeak.travel.bean.FindLastReply;
+import com.yunspeak.travel.ui.appoint.searchappoint.SearchAppointActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DiscussCommonAdapter;
-import com.yunspeak.travel.ui.view.FlowLayout;
-import com.yunspeak.travel.ui.view.ToShowAllListView;
-import com.yunspeak.travel.ui.view.refreshview.XScrollView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.ImageOptionsUtil;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
-import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.common.util.DensityUtil;
-import org.xutils.x;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wangyang on 2016/7/30.
@@ -52,6 +39,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     private FlexboxLayout mFlowLayout;
     private ImageView mIvAddPicture;
     private LinearLayout mLlSearchAppoint;
+
 
 
     public static void start(Context context,String tid, String name){
@@ -74,6 +62,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         mIvAddPicture = ((ImageView) findViewById(R.id.iv_add_picture));
         mTvAdd = ((TextView)findViewById(R.id.tv_add));
         mTvShow.setOnClickListener(this);
+        mLlSearchAppoint.setOnClickListener(this);
     }
 
 
@@ -92,6 +81,9 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         switch (v.getId()) {
             case R.id.tv_show:
                 changeShowWay();
+                break;
+            case R.id.ll_search_appoint:
+                SearchAppointActivity.start(this,tName);
                 break;
         }
     }
@@ -120,7 +112,8 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         DestinationDetailBean destinationDetail = GsonUtils.getObject(detailCommonEvent.getResult(), DestinationDetailBean.class);
         DestinationDetailBean.DataBean.TravelBean travel = destinationDetail.getData().getTravel();
         mTvDestinationDes.setText(travel.getContent());
-        mTvTitle.setText(travel.getTitle());
+        tName = travel.getTitle();
+        mTvTitle.setText(tName);
         mTvAdd.setText("·  " + travel.getAddress());
         String travel_img = travel.getTravel_img();
         String play_way = travel.getPlay_way();

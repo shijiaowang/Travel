@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.PeopleBean;
 import com.yunspeak.travel.global.IVariable;
@@ -22,6 +23,7 @@ import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
+import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FlowLayout;
@@ -119,6 +121,9 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     TextView mTvPrice;
     @BindView(R.id.bt_enter)
     AvoidFastButton mBvEnter;
+    @BindView(R.id.bt_chat)
+    AvoidFastButton mBtChat;
+
     private boolean isDetail = false;//默认缩略图
     private String tId;
     private List<List<AppointTogetherDetailBean.DataBean.RoutesBean>> lists = new ArrayList<>();
@@ -130,6 +135,8 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     private TravelDetailLineAdapter normalDetailLineAdapter;
     private boolean isBoss=true;
 
+    private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
+    private String userId;
 
     @Override
     protected void initEvent() {
@@ -148,6 +155,20 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                     return;
                 }
                 clickType();
+            }
+        });
+        mBtChat.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (StringUtils.isEmpty(userId)){
+                    ToastUtils.showToast("联系人信息出问题啦！");
+                }else {
+                    if (userId.equals(GlobalUtils.getUserInfo().getId())){
+                        ToastUtils.showToast("无法与自己聊天！");
+                    }else {
+                        ChatActivity.start(AppointTogetherDetailActivity.this,userId, EaseConstant.CHATTYPE_SINGLE);
+                    }
+                }
             }
         });
     }
@@ -224,7 +245,8 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         AppointTogetherDetailBean.DataBean data = appointTogetherDetail.getData();
         String action = data.getAction();
         isCollect = data.getIs_collect();
-        if (data.getUser_id().equals(GlobalUtils.getUserInfo().getId())){
+        userId = data.getUser_id();
+        if (userId.equals(GlobalUtils.getUserInfo().getId())){
             isBoss = true;
         }else {
             isBoss=false;
@@ -346,6 +368,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
             for (int i = 0; i < split.length; i++) {
                 TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
                 textView.setText(split[i]);
+                textView.setBackgroundResource(titleBgs[i%titleBgs.length]);
                 mFlTitle.addView(textView);
             }
         } catch (Exception e) {

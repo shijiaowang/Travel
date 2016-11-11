@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.CancelDialogClick;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.global.SendTextClick;
@@ -334,6 +335,8 @@ public class EnterAppointDialog {
 
         dialog.show();
     }
+
+
     /**
      * 分享
      *

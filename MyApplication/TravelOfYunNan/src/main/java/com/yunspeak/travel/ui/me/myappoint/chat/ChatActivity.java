@@ -83,6 +83,7 @@ public class ChatActivity extends EaseBaseActivity {
     private void initListener() {
 
         tvTitle.setText(title);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null)

@@ -115,7 +115,7 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
     }
 
     @Override
-    protected boolean isUserChild() {
+    protected boolean isUseChild() {
         return true;
     }
 

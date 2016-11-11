@@ -156,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginRight="-2dp"
                         android:src="@drawable/trangle" />
 
                 </RelativeLayout>
@@ -639,7 +640,8 @@
             android:textColor="@color/colorFAFAFA"
             android:textSize="15sp" />
 
-        <TextView
+        <com.yunspeak.travel.ui.view.AvoidFastButton
+            android:id="@+id/bt_chat"
             android:layout_width="105dp"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/bt_enter"

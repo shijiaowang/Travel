@@ -23,6 +23,6 @@ public class AboutActivity extends BaseToolBarActivity {
 
     @Override
     protected String initTitle() {
-        return "关于云说";
+        return "关于城外";
     }
 }

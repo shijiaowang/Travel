@@ -165,7 +165,7 @@
 
                 <TextView
                     style="@style/activitySettingTvType"
-                    android:text="关于云说" />
+                    android:text="关于城外" />
             </LinearLayout>
 
             <View style="@style/activitySettingLine" />

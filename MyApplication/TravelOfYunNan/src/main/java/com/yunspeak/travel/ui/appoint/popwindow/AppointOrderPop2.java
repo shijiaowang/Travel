@@ -9,9 +9,11 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.global.SendTextClick;
 import com.yunspeak.travel.utils.UIUtils;
 
 import org.xutils.common.util.DensityUtil;
@@ -180,5 +182,28 @@ public class AppointOrderPop2 {
         // 获取控件的坐标 x y
         window.showAsDropDown(view);
     }
+    public  static void showAppointType(final Context context, View view, final SendTextClick parentPopClick, boolean isTogether){
+        if (parentPopClick==null)return;
+        // 获取弹出视图对象
 
+        final TextView tvType = (TextView) View.inflate(context, R.layout.activity_search_appoint_pop, null);
+        // 创建 弹出窗口
+        final PopupWindow window = new PopupWindow(tvType, DensityUtil.dip2px(80), DensityUtil.dip2px(38));
+        tvType.setText(isTogether?"找人带":"一起玩");
+        tvType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentPopClick.onClick(tvType.getText().toString());
+                window.dismiss();
+            }
+        });
+
+        // 响应 视图外的地方 点击关闭当前
+        window.setOutsideTouchable(true);
+        // 响应返回键的关闭
+        window.setFocusable(true);
+        window.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(android.R.color.transparent)));
+        // 获取控件的坐标 x y
+        window.showAsDropDown(view);
+    }
 }

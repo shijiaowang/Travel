@@ -69,6 +69,11 @@ public class TitleManagementFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    protected void initListener() {
         if (mTitle == null){
             llLv.setVisibility(View.GONE);
         }else {
@@ -76,11 +81,6 @@ public class TitleManagementFragment extends BaseFragment {
             titleManagementAdapter = new TitleManagementAdapter(getContext(), mTitle);
             lvTitle.setAdapter(titleManagementAdapter);
         }
-    }
-
-    @Override
-    protected void initListener() {
-
     }
 
     @Subscribe

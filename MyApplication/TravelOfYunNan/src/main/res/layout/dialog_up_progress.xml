@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="284dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/appoint_enter_dialog_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:background="@color/otherTitleBg"
+        android:gravity="center"
+        android:text="上传图片"
+        android:textColor="@color/colorFAFAFA"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="正在上传图片2/10"
+        android:textColor="@color/color646464"
+        android:textSize="14sp" />
+
+    <ProgressBar
+        android:id="@+id/pb_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="92dp"
+        android:layout_height="7dp"
+        android:layout_marginTop="15dp"
+        android:max="100"
+        android:progressDrawable="@drawable/activity_title_management_progress_bg" />
+
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:background="@drawable/normal_press_bg"
+        android:layout_marginTop="25dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/color646464"
+        android:textSize="14sp" />
+
+</LinearLayout>

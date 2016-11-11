@@ -1,7 +1,9 @@
 package com.yunspeak.travel.ui.me.myalbum.editalbum;
 
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,12 +11,20 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
 import android.text.TextWatcher;
+import android.text.style.ClickableSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,7 +32,11 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
@@ -36,11 +50,15 @@ import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.Callback;
+import org.xutils.common.util.DensityUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+
 /**
  * 编辑相册  powered by wangyang
  */
@@ -82,6 +100,12 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
     private String title;
     private int index;
     private List<String> pictureList;
+    private TextView mTvCurrent;
+    private ProgressBar mPbProgress;
+    private Dialog dialog;
+    private boolean isSuccess;
+    private Callback.Cancelable cancelable;
+    private boolean isCancel;
 
     @Override
     protected boolean isChangeBarColor() {
@@ -90,23 +114,23 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
 
     @Override
     protected void initEvent() {
-        mToolbar.setBackgroundColor(Color.argb(0, 92 , 208 , 194));
+        mToolbar.setBackgroundColor(Color.argb(0, 92, 208, 194));
         View footView = inflater.inflate(R.layout.layout_google_footer, swipeContainer, false);
         swipeContainer.setSwipeStyle(SwipeToLoadLayout.STYLE.BLEW);
         swipeContainer.setLoadMoreFooterView(footView);
         swipeContainer.setOnLoadMoreListener(this);
-        id=getIntent().getStringExtra(IVariable.ID);
+        id = getIntent().getStringExtra(IVariable.ID);
         swipeTarget.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                float absOffset=scrollY/300f;
-                absOffset=absOffset>1?1:absOffset;
+                float absOffset = scrollY / 300f;
+                absOffset = absOffset > 1 ? 1 : absOffset;
                 if (absOffset <= 0.5) {
                     mTvTitle.setText("");
                 } else {
                     mTvTitle.setText(title);
                 }
-                mToolbar.setBackgroundColor(Color.argb((int) (absOffset * 255), 92 , 208, 194));
+                mToolbar.setBackgroundColor(Color.argb((int) (absOffset * 255), 92, 208, 194));
                 tvAlbumName.setAlpha(1f - absOffset);
 
             }
@@ -221,10 +245,13 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             }
             ToastUtils.showToast(event.getMessage());
         } else if (event.getType() == TYPE_UP_FILE) {
-            ToastUtils.showToast("第" + index + "张上传成功。");
             index++;
             if (pictureList != null && pictureList.size() - 1 >= index) {
                 upPicture(pictureList.get(index));
+            } else if (dialog != null) {
+                isSuccess = true;
+                onLoad(TYPE_LOAD);
+                dialog.dismiss();
             }
         } else {
             dealLoadData(event);
@@ -247,12 +274,12 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             tvDes.setText(getString(R.string.kongge) + head.getContent());
             title = head.getTitle();
             tvAlbumName.setText(title);
-            FrescoUtils.displayNormal(ivCover,head.getBackground_img(),600,450);
+            FrescoUtils.displayNormal(ivCover, head.getBackground_img(), 600, 450);
             body = data.getBody();
             if (body == null || body.size() == 0) return;
-            editAlbumAdapter = new EditAlbumAdapter(body,this);
+            editAlbumAdapter = new EditAlbumAdapter(body, this);
             rvPhoto.setAdapter(editAlbumAdapter);
-            LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setSmoothScrollbarEnabled(false);
             rvPhoto.setNestedScrollingEnabled(false);
             rvPhoto.setHasFixedSize(true);
@@ -260,12 +287,15 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             editAlbumAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-                    if (getListSize(pictureList)==0)return;
-                    CirclePreviewActivity.start(EditAlbumActivity.this,pictureList,position);
+                    if (getListSize(pictureList) == 0) return;
+                    CirclePreviewActivity.start(EditAlbumActivity.this, pictureList, position);
                 }
             });
-        } else {
+        } else if (event.getType()==TYPE_LOAD){
             body.addAll(data.getBody());
+            editAlbumAdapter.notifyDataSetChanged();
+        }else if (event.getType()==TYPE_REFRESH){
+            body=data.getBody();
             editAlbumAdapter.notifyDataSetChanged();
         }
     }
@@ -273,14 +303,16 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
 
     @Override
     protected void onSuccess(EditAlbumEvent event) {
-        switch (event.getType()){
+        switch (event.getType()) {
             case TYPE_DELETE:
                 body.remove(event.getPosition());
                 editAlbumAdapter.notifyItemRemoved(event.getPosition());
                 editAlbumAdapter.notifyDataSetChanged();
                 break;
             case TYPE_LOAD:
+                dealLoadData(event);
                 swipeContainer.setLoadingMore(false);
+
                 break;
             default:
                 dealData(event);
@@ -315,16 +347,30 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
         pictureList = event.getList();
         if (pictureList == null || pictureList.size() == 0) return;
         index = 0;
+        GlobalValue.mSelectImages=null;
+        upPicture();
         upPicture(pictureList.get(index));
 
     }
 
     private void upPicture(String s) {
+        if (isCancel)return;
         Map<String, String> upAlbum = MapUtils.Build().addKey().addUserId().addId(id).end();
         List<String> files = new ArrayList<>();
         files.add(s);
-        XEventUtils.postFileCommonBackJson(IVariable.ADD_ALBUM_PHOTO, upAlbum, files, TYPE_UP_FILE, new EditAlbumEvent());
-        ToastUtils.showToast("正在上传第" + index + "张图片");
+        cancelable = XEventUtils.postFileCommonBackJson(IVariable.ADD_ALBUM_PHOTO, upAlbum, files, TYPE_UP_FILE, new EditAlbumEvent());
+        if (mTvCurrent != null && mPbProgress != null) {
+            String head="正在上传图片";
+            String current=(index+1)+"";
+            SpannableStringBuilder spannable = new SpannableStringBuilder(head+current+"/"+getListSize(pictureList));
+            spannable.setSpan(new ClickText(),head.length(), head.length()+current.length()
+                        , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            mTvCurrent.setText(spannable);
+            mPbProgress.setMax(pictureList.size());
+            mPbProgress.setProgress((index + 1));
+        }
+
     }
 
     @Override
@@ -386,5 +432,68 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
         onLoad(TYPE_LOAD);
     }
 
+    public void upPicture() {
+        isSuccess = false;
+        isCancel=false;
+        //创建视图
+        View dialogView = View.inflate(this, R.layout.dialog_up_progress, null);
+        mPbProgress = (ProgressBar) dialogView.findViewById(R.id.pb_progress);
+        mTvCurrent = (TextView) dialogView.findViewById(R.id.tv_current);
+        dialog = new Dialog(this, R.style.noTitleDialog);
+
+        dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                if (isSuccess) {
+                    dialog.dismiss();
+                    ToastUtils.showToast("上传完毕");
+                } else {
+                    EnterAppointDialog.showCommonDialog(EditAlbumActivity.this, "取消上传", "确定", "是否取消上传剩余的图片？", new ParentPopClick() {
+                        @Override
+                        public void onClick(int type) {
+                            isSuccess = true;
+                            if (cancelable!=null){
+                                cancelable.cancel();
+                                isCancel=true;
+                                index=0;
+                                pictureList=null;
+                            }
+                            dialog.dismiss();
+                        }
+                    });
+                }
+            }
+        });
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(284), ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setContentView(dialogView, params);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(false);
+        Window window = dialog.getWindow(); //得到对话框
+        if (window != null) {
+            window.setGravity(Gravity.CENTER);
+        }
+        dialog.show();
+    }
+
+    class ClickText extends ClickableSpan {
+
+
+        @Override
+        public void onClick(View widget) {
+
+        }
+        @Override
+        public void updateDrawState(TextPaint ds) {
+            super.updateDrawState(ds);
+            ds.setColor(getColor(R.color.otherTitleBg));
+            ds.setUnderlineText(false);//是否有下划线
+        }
+    }
 }
 

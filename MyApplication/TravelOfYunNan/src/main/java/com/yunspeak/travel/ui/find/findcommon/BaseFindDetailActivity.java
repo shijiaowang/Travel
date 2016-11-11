@@ -35,7 +35,7 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     protected boolean isFirst=true;
     protected String haveNextPage="-1";
     public String tId;
-    private String tName;
+    protected String tName;
     private EaseChatInputMenu inputMenu;
     private String pid="0";
 

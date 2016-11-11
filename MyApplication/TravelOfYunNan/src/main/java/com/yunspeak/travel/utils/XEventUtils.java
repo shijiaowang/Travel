@@ -105,9 +105,123 @@ public class XEventUtils {
         }
         return x.http().post(requestParams, new MyCommonCallback(type,event));
     }
+    /**
+     * post请求
+     *
+     * @param url
+     * @param stringMap
+     * @param type
+     * @return
+     */
+    public static Callback.Cancelable postFileProgressBackJson(String url, Map<String, String> stringMap, List<String> files, int type, HttpEvent event, Callback.ProgressCallback progressCallback) {
+
+        RequestParams requestParams = new RequestParams(url);
+        requestParams.setMethod(HttpMethod.POST);
+        if (stringMap != null) {
+            for (Map.Entry<String, String> entry : stringMap.entrySet()) {
+                requestParams.addBodyParameter(entry.getKey(), entry.getValue());
+            }
+        }
+        if (files != null) {
+            requestParams.setMultipart(true);
+            for (int i=0,j=0;i<files.size();i++,j++) {
+                String fileDir = files.get(i);
+                if (StringUtils.isEmpty(fileDir)){
+                    continue;
+                }
+                if (fileDir.contains("file://")) {
+                    fileDir = fileDir.replace("file://", "");
+                }
+                File file=new File(fileDir);
+                if (!file.exists()){
+                    if (j>0){
+                        j--;
+                    }
+                    continue;
+                }
+                File compressedImageFile = Compressor.getDefault(UIUtils.getContext()).compressToFile(file);
+                LogUtils.e("上传的第"+j+"个文件的大小为"+compressedImageFile.length());
+                requestParams.addBodyParameter("file["+j+"]", compressedImageFile);
+            }
+        }
+        return x.http().post(requestParams, new ProgressCallback(type,event));
+    }
+
+    static class ProgressCallback implements Callback.ProgressCallback<String>{
+        int type = -10;
+        HttpEvent httpEvent;
+        public ProgressCallback(int type,HttpEvent httpEvent) {
+            this.type = type;
+            this.httpEvent=httpEvent;
+            this.httpEvent.setType(type);
+        }
+        @Override
+        public void onWaiting() {
+
+        }
+
+        @Override
+        public void onStarted() {
+
+        }
+
+        @Override
+        public void onLoading(long total, long current, boolean isDownloading) {
+
+        }
 
 
+        @Override
+        public void onSuccess(String result) {
+            int code = -5;
+            String message = "未知错误。";
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                code = jsonObject.getInt("code");
+                message = jsonObject.getString("message");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (code == 1 || code==2) {
+                httpEvent.setIsSuccess(true);
+            } else {
+                httpEvent.setIsSuccess(false);
+            }
+            httpEvent.setMessage(message);
+            httpEvent.setResult(result);
+            httpEvent.setCode(code);
+            LogUtils.e("成功获取到消息了");
+            EventBus.getDefault().post(httpEvent);
+        }
 
+        @Override
+        public void onError(Throwable ex, boolean isOnCallback) {
+            String message = "中途出错";
+            httpEvent.setResult("");
+            httpEvent.setIsSuccess(false);
+            httpEvent.setCode(IVariable.X_UTLIS_ERROR);
+            if (ex != null) {
+                if (ex instanceof ConnectException) {
+                    message = "网络错误";
+                } else {
+                    message = ex.getMessage();
+                }
+            }
+            httpEvent.setMessage(message);
+            LogUtils.e("取到消息失败了");
+            EventBus.getDefault().post(httpEvent);
+        }
+
+        @Override
+        public void onCancelled(CancelledException cex) {
+
+        }
+
+        @Override
+        public void onFinished() {
+
+        }
+    }
     static class MyCommonCallback implements Callback.CommonCallback<String> {
         int type = -10;
         HttpEvent httpEvent;

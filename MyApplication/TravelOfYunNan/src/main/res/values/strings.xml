@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">云说</string>
+    <string name="app_name">城外旅游</string>
     <!--homeFragment-->
     <string name="homeName">云南</string>
     <string name="home_topic_chosen">精选</string>

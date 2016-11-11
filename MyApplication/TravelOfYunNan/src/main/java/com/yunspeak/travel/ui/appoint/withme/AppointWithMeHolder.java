@@ -34,7 +34,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/21 0021.
  * 找人带约伴
  */
-public class AppointWithMeHolder extends BaseRecycleViewHolder<AppointWithMeBean.DataBean> {
+public class AppointWithMeHolder extends BaseRecycleViewHolder {
     @BindView(R.id.fl_title)
     FlowLayout mFlTitle;
     @BindView(R.id.tv_icon_love)
@@ -59,14 +59,15 @@ public class AppointWithMeHolder extends BaseRecycleViewHolder<AppointWithMeBean
     TextView mTvStartAndLong;
     @BindString(R.string.activity_circle_love_empty) String emptyLove;
     @BindString(R.string.activity_circle_love_full) String fullLove;
-
+    private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
     public AppointWithMeHolder(View itemView) {
         super(itemView);
     }
 
 
     @Override
-    public void childBindView(final int position, final AppointWithMeBean.DataBean datas, final Context mContext) {
+    public void childBindView(final int position, final Object data, final Context mContext) {
+        final AppointWithMeBean.DataBean datas = (AppointWithMeBean.DataBean) data;
         mTvDream.setText("理想地:" + datas.getRoutes());
         mTvHaveNumber.setText("已有:" + datas.getNow_people() + "人");
         mTvMoney.setText("预算：¥" + datas.getTotal_price());
@@ -103,6 +104,7 @@ public class AppointWithMeHolder extends BaseRecycleViewHolder<AppointWithMeBean
                 View view = View.inflate(mContext, R.layout.item_fragment_appoint_title, mFlTitle);
                 TextView textView = (TextView) view.findViewById(R.id.tv_text);
                 textView.setText(split[i]);
+                textView.setBackgroundResource(titleBgs[i%titleBgs.length]);
                 mFlTitle.addView(view);
             }
         }

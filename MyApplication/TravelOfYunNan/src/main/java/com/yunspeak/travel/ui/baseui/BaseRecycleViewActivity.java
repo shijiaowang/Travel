@@ -1,13 +1,11 @@
 package com.yunspeak.travel.ui.baseui;
 
 
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.LinearLayout;
 
@@ -17,17 +15,12 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.ParentBean;
-import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
-import org.xutils.common.util.DensityUtil;
-
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -106,7 +99,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     @Override
     protected void onSuccess(T t) {
         ParentBean parentBean;
-        if (isUserChild()) {//使用孩子的
+        if (isUseChild()) {//使用孩子的
             parentBean=GsonUtils.getObject(t.getResult(),useChildedBean());
         } else {
             parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
@@ -123,6 +116,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
             if (t.getType()==TYPE_REFRESH && mDatas!=null){
                 mDatas.clear();
                 mAdapter.notifiyData(mDatas);
+                setIsEmpty();
             }
             return;
         }
@@ -216,7 +210,7 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
      * @return
 
      */
-    protected boolean isUserChild() {
+    protected boolean isUseChild() {
         return false;
     }
 

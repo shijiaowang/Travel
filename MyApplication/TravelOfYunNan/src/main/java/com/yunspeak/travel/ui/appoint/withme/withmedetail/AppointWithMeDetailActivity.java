@@ -9,16 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.PeopleBean;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailHaveEnterAdapter;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailInsuranceAdapter;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FlowLayout;
@@ -27,6 +30,7 @@ import com.yunspeak.travel.ui.view.ToShowAllListView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -74,12 +78,14 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     @BindView(R.id.tv_surplus_day) TextView mTvSurplusDay;//剩余日期
     @BindView(R.id.bt_enter)
     AvoidFastButton btEnter;
+    @BindView(R.id.bt_chat)
+    AvoidFastButton mBtChat;
     @BindString(R.string.activity_circle_love_empty) String emptyLove;
     @BindString(R.string.activity_circle_love_full) String fullLove;
     private String tId;
     private String userId;
 
-
+    private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
     @Override
     protected void initEvent() {
         init();
@@ -95,6 +101,20 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
 
                 Map<String, String> appointMap = MapUtils.Build().addKey().addUserId().end();
                 XEventUtils.getUseCommonBackJson(IVariable.MY_CREATE_APPOINT,appointMap,TYPE_OTHER,new AppointWithMeDetailEvent());
+            }
+        });
+        mBtChat.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (StringUtils.isEmpty(userId)){
+                    ToastUtils.showToast("联系人信息出问题啦！");
+                }else {
+                    if (userId.equals(GlobalUtils.getUserInfo().getId())){
+                        ToastUtils.showToast("无法与自己聊天！");
+                    }else {
+                        ChatActivity.start(AppointWithMeDetailActivity.this,userId, EaseConstant.CHATTYPE_SINGLE);
+                    }
+                }
             }
         });
 
@@ -234,6 +254,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
         for (int i=0;i<split.length;i++){
             TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
             textView.setText(split[i]);
+            textView.setBackgroundResource(titleBgs[i%titleBgs.length]);
             mFlTitle.addView(textView);
         }
     }

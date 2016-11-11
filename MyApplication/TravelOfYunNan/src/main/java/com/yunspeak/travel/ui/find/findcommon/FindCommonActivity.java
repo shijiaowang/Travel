@@ -149,7 +149,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
             if (GlobalValue.mSelectSpot == null) {
                 GlobalValue.mSelectSpot = new ArrayList<String>();
             }
-            if (GlobalValue.mSelectSpot.contains(mDatas.get(position-1).getId())) {
+            if (GlobalValue.mSelectSpot.contains(mDatas.get(position).getId())) {
                 ToastUtils.showToast("已在行程中！");
                 return;
             }

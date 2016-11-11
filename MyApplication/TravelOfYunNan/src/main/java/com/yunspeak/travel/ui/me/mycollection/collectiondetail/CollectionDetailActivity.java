@@ -84,7 +84,7 @@ public class CollectionDetailActivity extends BaseRecycleViewActivity<Collection
     }
 
     @Override
-    protected boolean isUserChild() {
+    protected boolean isUseChild() {
         return true;
     }
 

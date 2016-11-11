@@ -58,65 +58,69 @@ public class AppointCommonPop implements View.OnClickListener {
      * @param view  参考的view
      */
     public void showDown(final Context context, View view){
-        View viewPopup = LayoutInflater.from(context).inflate(R.layout.item_appoint_pop_select_play_way, null);
-        LinearLayout mLlClear = ((LinearLayout) viewPopup.findViewById(R.id.ll_clear));
-        TextView mTvCancel = ((TextView) viewPopup.findViewById(R.id.tv_cancel));
-        TextView mTvSure = ((TextView) viewPopup.findViewById(R.id.tv_sure));
-        final ListView mLvLeft = ((ListView) viewPopup.findViewById(R.id.lv_left));
-        ListView mLvRight = ((ListView) viewPopup.findViewById(R.id.lv_right));
-        leftAdapter = new AppointCommonPopAdapter(context,lefts,AppointCommonPopAdapter.LEFT);
-        mLvLeft.setAdapter(leftAdapter);
-        checkId=lefts.get(0).getId();
-        rightAdapter = new AppointCommonPopAdapter(context,rights.get(checkId),AppointCommonPopAdapter.RIGHT);
-        mLvRight.setAdapter(rightAdapter);
-        mLvLeft.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (prePosition==position)return;
-                lefts.get(position).setChecked(true);
-                lefts.get(prePosition).setChecked(false);
-                checkId = lefts.get(position).getId();
-                leftAdapter.notifyDataSetChanged();
-                rightAdapter.notifyData(rights.get(checkId));
-                prePosition =position;
+        if (window==null) {
+            View viewPopup = LayoutInflater.from(context).inflate(R.layout.item_appoint_pop_select_play_way, null);
+            LinearLayout mLlClear = ((LinearLayout) viewPopup.findViewById(R.id.ll_clear));
+            TextView mTvCancel = ((TextView) viewPopup.findViewById(R.id.tv_cancel));
+            TextView mTvSure = ((TextView) viewPopup.findViewById(R.id.tv_sure));
+            final ListView mLvLeft = ((ListView) viewPopup.findViewById(R.id.lv_left));
+            ListView mLvRight = ((ListView) viewPopup.findViewById(R.id.lv_right));
+            leftAdapter = new AppointCommonPopAdapter(context, lefts, AppointCommonPopAdapter.LEFT);
+            mLvLeft.setAdapter(leftAdapter);
+            checkId = lefts.get(0).getId();
+            rightAdapter = new AppointCommonPopAdapter(context, rights.get(checkId), AppointCommonPopAdapter.RIGHT);
+            mLvRight.setAdapter(rightAdapter);
+            mLvLeft.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (prePosition == position) return;
+                    lefts.get(position).setChecked(true);
+                    lefts.get(prePosition).setChecked(false);
+                    checkId = lefts.get(position).getId();
+                    leftAdapter.notifyDataSetChanged();
+                    rightAdapter.notifyData(rights.get(checkId));
+                    prePosition = position;
 
-            }
-        });
-        mLvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (rights.get(checkId).get(position).isChecked()){
-                    rights.get(checkId).get(position).setChecked(false);
-                    selectCommonBeans.remove(rights.get(checkId).get(position));
-                }else {
-                    rights.get(checkId).get(position).setChecked(true);
-                    selectCommonBeans.add(rights.get(checkId).get(position));
                 }
-                rightAdapter.notifyDataSetChanged();
-            }
-        });
-        mLlClear.setOnClickListener(this);
-        mTvCancel.setOnClickListener(this);
-        mTvSure.setOnClickListener(this);
+            });
+            mLvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (rights.get(checkId).get(position).isChecked()) {
+                        rights.get(checkId).get(position).setChecked(false);
+                        selectCommonBeans.remove(rights.get(checkId).get(position));
+                    } else {
+                        rights.get(checkId).get(position).setChecked(true);
+                        selectCommonBeans.add(rights.get(checkId).get(position));
+                    }
+                    rightAdapter.notifyDataSetChanged();
+                }
+            });
+            mLlClear.setOnClickListener(this);
+            mTvCancel.setOnClickListener(this);
+            mTvSure.setOnClickListener(this);
 
-        window = new PopupWindow(viewPopup, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
-        lp.alpha=0.7f;
-        ((Activity) context).getWindow().setAttributes(lp);
+            window = new PopupWindow(viewPopup, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+            lp.alpha = 0.7f;
+            ((Activity) context).getWindow().setAttributes(lp);
 
-        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            window.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
-            @Override
-            public void onDismiss() {
-                WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
-                lp.alpha = 1.0f;
-                ((Activity) context).getWindow().setAttributes(lp);
-            }
-        });
-        window.setOutsideTouchable(true);
-        window.setFocusable(true);
-        window.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(android.R.color.transparent)));
-        window.showAsDropDown(view);
+                @Override
+                public void onDismiss() {
+                    WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+                    lp.alpha = 1.0f;
+                    ((Activity) context).getWindow().setAttributes(lp);
+                }
+            });
+            window.setOutsideTouchable(true);
+            window.setFocusable(true);
+            window.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(android.R.color.transparent)));
+            window.showAsDropDown(view);
+        }else {
+            window.showAsDropDown(view);
+        }
     }
     public void dismiss(){
         if (window!=null && window.isShowing()){

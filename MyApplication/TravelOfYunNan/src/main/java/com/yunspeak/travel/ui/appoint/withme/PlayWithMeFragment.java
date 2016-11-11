@@ -39,6 +39,7 @@ public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEve
     public void onSuccess(AppointWithMeEvent appointWithMeEvent) {
         switch (appointWithMeEvent.getType()){
             case TYPE_LIKE:
+                if (!getUserVisibleHint())return;
                 CommonClickLikeBean object = GsonUtils.getObject(appointWithMeEvent.getResult(), CommonClickLikeBean.class);
                 int clickPosition = appointWithMeEvent.getPosition();
                 getmDatas().get(clickPosition).setCount_like(object.getData().getCount_like());

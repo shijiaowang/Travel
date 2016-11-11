@@ -12,6 +12,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -25,6 +28,7 @@ import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.fragment.CommonPagerAdapter;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointCommonPop;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointOrderPop2;
+import com.yunspeak.travel.ui.appoint.searchappoint.SearchAppointActivity;
 import com.yunspeak.travel.ui.appoint.together.PlayTogetherFragment;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
@@ -51,8 +55,7 @@ import butterknife.BindView;
  * 约伴
  */
 public class AppointFragment extends BaseFragment implements View.OnClickListener {
-    String[] orderType = {"最新发布", "价格升序", "价格降序","出行人数","行程天数"};
-    String[] timeType = {"默认时序","一周内", "一个月内", "一个月以上"};
+
     @BindView(R.id.tv_play_together) TextView mTvPlayTogether;
     @BindView(R.id.tv_play_with_me) TextView mTvPlayWithMe;
     @BindView(R.id.ll_switch) LinearLayout mLlSwitch;
@@ -62,16 +65,20 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     @BindView(R.id.vp_appoint) ViewPager mVpAppoint;
     @BindView(R.id.fab_add) FloatingActionButton mFabAdd;
     @BindView(R.id.ll_root) LinearLayout mLlRoot;
+    @BindView(R.id.tv_search) TextView mTvSearch;
   private boolean isInitLabel=false;//是否初始化label
     private boolean isTogether = false;
     private List<Fragment> fragments;
+    String[] orderType = {"最新发布", "价格升序", "价格降序","出行人数","行程天数"};
+    String[] timeType = {"默认时序","一周内", "一个月内", "一个月以上"};
     public  int timePosition = 1;
     public  int orderPosition = 1;//选中的
     public  String label="";
-    private boolean isShowDialog = false;
-    private Map<String, List<CityBean>> rights;
     private AppointCommonPop appointCommonPop;
+    private Map<String, List<CityBean>> rights;
+
     private List<CityBean> lefts;
+    private boolean isShowDialog = false;
 
 
     @Override
@@ -90,6 +97,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
 
     @Subscribe
     public void onEvent(AppointEvent appointEvent){
+        if (!getUserVisibleHint())return;
         AppointBean appointBean = GsonUtils.getObject(appointEvent.getResult(), AppointBean.class);
         try {
             AppointBean.DataBean data = appointBean.getData();
@@ -150,6 +158,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     protected void initListener() {
         mTvType.setOnClickListener(this);
         mTvTime.setOnClickListener(this);
+        mTvSearch.setOnClickListener(this);
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -297,6 +306,9 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
                       refreshAppoint();
                     }
                 },timePosition-1);
+                break;
+            case R.id.tv_search:
+                startActivity(new Intent(getContext(),SearchAppointActivity.class));
                 break;
         }
     }
