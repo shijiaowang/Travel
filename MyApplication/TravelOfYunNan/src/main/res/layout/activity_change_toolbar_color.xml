@@ -48,18 +48,27 @@
                         android:gravity="center"
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                         >
+
+                    </android.support.v7.widget.Toolbar>
+                    <FrameLayout
+                        app:layout_collapseMode="pin"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        android:layout_width="match_parent"
+                        android:paddingTop="@dimen/commonStatusHeight"
+                        android:layout_height="@dimen/commonTotalHeight">
                         <TextView
                             android:id="@+id/tv_bar_name"
                             style="@style/commonSingleLineTextStyle"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="20dp"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textColor="@color/colorFAFAFA"
                             android:textSize="18sp" />
-                    </android.support.v7.widget.Toolbar>
+                    </FrameLayout>
 
 
                 </android.support.design.widget.CollapsingToolbarLayout>

@@ -1,10 +1,12 @@
 package com.yunspeak.travel.ui.circle.circlenav.circledetail.post;
 
+import java.io.Serializable;
+
 /**
  * Created by wangyang on 2016/11/3 0003.
  */
 
-public  class InformBean {
+public  class InformBean implements Serializable{
     private String id;
     private String nick_name;
 

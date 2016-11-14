@@ -204,7 +204,8 @@ public class XEventUtils {
                 if (ex instanceof ConnectException) {
                     message = "网络错误";
                 } else {
-                    message = ex.getMessage();
+                    //message = ex.getMessage();
+                    message = "连接错误";
                 }
             }
             httpEvent.setMessage(message);

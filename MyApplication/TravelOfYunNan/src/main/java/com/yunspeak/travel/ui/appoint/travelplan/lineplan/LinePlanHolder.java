@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +28,8 @@ public class LinePlanHolder extends BaseHolder<LineBean> {
     @BindView(R.id.tv_number) TextView mTvNumber;
     @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.lv_add)  ListView mLvAdd;
+    @BindView(R.id.iv_cursor) ImageView mIvCursor;
+    private int [] cursors=new int[]{R.drawable.activity_line_add1,R.drawable.activity_line_add2,R.drawable.activity_line_add3,R.drawable.activity_line_add4,R.drawable.activity_line_add5,R.drawable.activity_line_add6,R.drawable.activity_line_add7};
     public LinePlanHolder(Context context) {
         super(context);
     }
@@ -36,6 +39,7 @@ public class LinePlanHolder extends BaseHolder<LineBean> {
     protected void initItemDatas(LineBean datas, Context mContext, int position) {
         mTvTime.setText(datas.getTime());
         mTvNumber.setText(position + "");
+        mIvCursor.setImageResource(cursors[position%cursors.length]);
         List<LineBean.Destination> destinations = datas.getDestinations();
         if (destinations!=null && destinations.size()>0){
             mLvAdd.setVisibility(View.VISIBLE);

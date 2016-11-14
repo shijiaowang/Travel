@@ -4,8 +4,8 @@
     android:textColor="#ff7f6c"
     android:layout_marginBottom="4dp"
     android:layout_marginRight="11dp"
+    android:gravity="center"
     android:textSize="12sp"
-    android:paddingTop="7dp"
     android:background="@drawable/fragment_appoint_title1_bg"
     android:layout_width="wrap_content"
     android:layout_height="40dp">

@@ -69,6 +69,7 @@ public class MyHobbyFragment extends BaseFragment {
     @Override
     protected void initData() {
         if (mTitle == null) {
+            llEmpty.setVisibility(View.VISIBLE);
             gvTitle.setVisibility(View.GONE);
         }else {
             llEmpty.setVisibility(View.GONE);

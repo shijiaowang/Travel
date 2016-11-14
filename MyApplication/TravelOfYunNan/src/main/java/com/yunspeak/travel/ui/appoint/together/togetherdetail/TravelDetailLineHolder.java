@@ -4,6 +4,7 @@ import android.content.Context;
 
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,6 +27,9 @@ public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetai
     @BindView(R.id.dlv_line) View mDlvLine;
     @BindView(R.id.tv_number) TextView mTvNumber;
     @BindView(R.id.lv_line) ToShowAllListView mLvLine;
+    @BindView(R.id.iv_cursor)
+    ImageView mIvCursor;
+    private int [] cursors=new int[]{R.drawable.activity_line_add1,R.drawable.activity_line_add2,R.drawable.activity_line_add3,R.drawable.activity_line_add4,R.drawable.activity_line_add5,R.drawable.activity_line_add6,R.drawable.activity_line_add7};
 
 
     public TravelDetailLineHolder(Context context, boolean isDetail) {
@@ -38,6 +42,7 @@ public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetai
     protected void initItemDatas(final List<AppointTogetherDetailBean.DataBean.RoutesBean> datas, final Context mContext, int position) {
         mTvTime.setText(datas.get(0).getTime());
         mTvNumber.setText((position + 1) + "");
+        mIvCursor.setImageResource(cursors[position%cursors.length]);
         if (!isDetail) {
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)mLvLine.getLayoutParams();
             layoutParams.leftMargin= DensityUtil.dip2px(40);

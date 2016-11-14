@@ -39,21 +39,21 @@ import butterknife.BindView;
  * 用户动态
  */
 
-public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> implements INotify<OtherUserCenterBean.DataBean.MoreBean>, OnLoadMoreListener {
+public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> implements INotify<DynamicBean>, OnLoadMoreListener {
     private boolean isFirst = true;
     private String userId;
     @BindView(R.id.swipe_target)
     RecyclerView mRvRecycle;
     @BindView(R.id.swipe_container)
     SwipeToLoadLayout swipeToLoadLayout;
-    private List<OtherUserCenterBean.DataBean.MoreBean> mDataBean = new ArrayList<>();
+    private List<DynamicBean> mDataBean = new ArrayList<>();
     private UserDynamicAdapter userDynamicAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userId = getArguments().getString(IVariable.USER_ID);
-        mDataBean = (List<OtherUserCenterBean.DataBean.MoreBean>) getArguments().getSerializable(IVariable.DATA);
+        mDataBean = (List<DynamicBean>) getArguments().getSerializable(IVariable.DATA);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
     }
 
 
-    public static UserDynamicFragment newInstance(String userId, List<OtherUserCenterBean.DataBean.MoreBean> mDataBean) {
+    public static UserDynamicFragment newInstance(String userId, List<DynamicBean> mDataBean) {
         UserDynamicFragment userDynamicFragment = new UserDynamicFragment();
         Bundle bundle = new Bundle();
         bundle.putString(IVariable.USER_ID, userId);
@@ -142,13 +142,13 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
 
 
     @Override
-    public void notifys(List<OtherUserCenterBean.DataBean.MoreBean> t) {
+    public void notifys(List<DynamicBean> t) {
         mDataBean=t;
         initData();
     }
 
     @Override
-    public void notify(OtherUserCenterBean.DataBean.MoreBean moreBean) {
+    public void notify(DynamicBean moreBean) {
 
     }
     @Subscribe
