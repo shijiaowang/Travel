@@ -500,14 +500,6 @@
     </style>
 
     <style name="activityRegisterEditText">
-        <item name="android:singleLine">true</item>
-        <item name="android:textColor">@color/colorFAFAFA</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:focusableInTouchMode">true</item>
-        <item name="android:textColorHint">@color/colorDddddd</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">13sp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">29dp</item>
     </style>

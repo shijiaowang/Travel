@@ -8,11 +8,12 @@ import android.widget.EditText;
 
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.ui.view.LoginEditText;
 
 import org.xutils.x;
 
 /**
- * Created by Administrator on 2016/8/18 0018.
+ * Created by wangyang on 2016/8/18 0018.
  * 透明的基类
  */
 public abstract class BaseTransActivity extends Activity {
@@ -20,7 +21,6 @@ public abstract class BaseTransActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(initRes());
-        x.view().inject(this);
         initView();
         initListener();
         initData();
@@ -43,12 +43,11 @@ public abstract class BaseTransActivity extends Activity {
      * @param request
      * @param errorMessage
      */
-    protected void requestAndSetErrorMessage(EditText request, String errorMessage) {
+    protected void requestAndSetErrorMessage(LoginEditText request, String errorMessage) {
         request.requestFocus();
         String message="<font color=#5cd0c2>"+errorMessage+"</font>";
         request.setError(Html.fromHtml(message));
     }
-
     /**
      * 设置按钮背景
      * @param button

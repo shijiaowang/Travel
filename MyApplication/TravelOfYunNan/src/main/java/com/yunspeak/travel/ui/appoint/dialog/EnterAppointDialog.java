@@ -19,25 +19,32 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.CancelDialogClick;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.global.SendTextClick;
+import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailEvent;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.MyCreateAppointAdapter;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.MyCreateAppointBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.utils.JsonUtils;
+import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.TypefaceUtis;
 import com.yunspeak.travel.utils.UIUtils;
+import com.yunspeak.travel.utils.XEventUtils;
+
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -198,23 +205,24 @@ public class EnterAppointDialog {
     }
     /**
      * 设置目的地
-     * @param nick_name
      */
-    public static void showInputTextView(Context context, String nick_name, final SendTextClick parentPopClick) {
+    public static void showInputTextView(Context context, String hint,String title,String okText, final SendTextClick parentPopClick) {
         //创建视图
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
-        ((TextView) dialogView.findViewById(R.id.tv_title)).setText("昵称设置");
+        ((TextView) dialogView.findViewById(R.id.tv_title)).setText(title);
         mEtDestination.requestFocus();
-        mEtDestination.setHint(nick_name);
         UIUtils.setEmojiFilter(mEtDestination);
-        dialogView.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
+        mEtDestination.setHint(hint);
+        TextView tvOk = (TextView) dialogView.findViewById(R.id.tv_ok);
+        tvOk.setText(okText);
+        tvOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String trim = mEtDestination.getText().toString().trim();
                 if (StringUtils.isEmptyNotNull(trim)){
-                    ToastUtils.showToast("名称不能为空!");
+                    ToastUtils.showToast("填写内容不能为空!");
                     return;
                 }
                 if (parentPopClick!=null){
@@ -308,12 +316,32 @@ public class EnterAppointDialog {
     /**
      * 投诉
      * @param context
+     * @param id
      */
-    public static void showDialogAddComplaint(Context context) {
+    public static void showDialogAddComplaint(Context context, final String id, final String type, final String typeClass, final String rid) {
         //创建视图
-        View dialogView = View.inflate(context, R.layout.dialog_appoint_add_complaint, null);
+        final View dialogView = View.inflate(context, R.layout.dialog_appoint_add_complaint, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
-
+        final RadioGroup mRbGroup = (RadioGroup) dialogView.findViewById(R.id.rg_group);
+        final EditText mEtContent = (EditText) dialogView.findViewById(R.id.et_conetnet);
+        dialogView.findViewById(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int checkedRadioButtonId = mRbGroup.getCheckedRadioButtonId();
+                if (checkedRadioButtonId==-1){
+                    ToastUtils.showToast("请选者投诉类型！");
+                    return;
+                }
+                if (StringUtils.isEmpty(mEtContent.getText().toString())){
+                    ToastUtils.showToast("请输入投诉的详细描述！");
+                    return;
+                }
+                String text = ((RadioButton) dialogView.findViewById(checkedRadioButtonId)).getText().toString();
+                Map<String, String> end = MapUtils.Build().addKey().addUserId().addFId(id).addType(type).add("type_class", typeClass).addClass(text).addContent(mEtContent.getText().toString().trim()).addRId(rid).end();
+                XEventUtils.postUseCommonBackJson(IVariable.REPORT,end, IState.TYPE_OTHER,new AppointTogetherDetailEvent());
+                dialog.dismiss();
+            }
+        });
         dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -68,10 +68,10 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
 
     @Override
     public void childBindView(final int position, Object datas, final Context mContext) {
-        String id="";
+        String cancelId="";
         if (datas instanceof TeamBean.DataBean) {
             final TeamBean.DataBean dataBean = (TeamBean.DataBean) datas;
-            id=dataBean.getId();
+            cancelId=dataBean.getCid();
             FrescoUtils.displayNormal(mIvIcon,dataBean.getTravel_img());
             mTvContent.setText("行程日期:" + formatData(dataBean.getStart_time(), dataBean.getEnd_time()));
             mTvName.setText(dataBean.getRoutes_title());
@@ -87,7 +87,7 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
         } else if (datas instanceof DestinationBean.DataBean) {
             final DestinationBean.DataBean dataBean = (DestinationBean.DataBean) datas;
             FrescoUtils.displayNormal(mIvIcon,dataBean.getLogo_img());
-            id=dataBean.getId();
+            cancelId=dataBean.getCid();
             mTvContent.setText(dataBean.getAdd_ress());
             mTvContent.setTextColor(mContext.getResources().getColor(R.color.color969696));
             mTvIcon.setVisibility(View.VISIBLE);
@@ -103,7 +103,7 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
         } else if (datas instanceof ActiveBean.DataBean) {
             final ActiveBean.DataBean dataBean = (ActiveBean.DataBean) datas;
             FrescoUtils.displayNormal(mIvIcon,dataBean.getActivity_img());
-            id=dataBean.getId();
+            cancelId=dataBean.getCid();
             mTvContent.setText("活的期限:" + formatData(dataBean.getStart_time(), dataBean.getEnd_time()));
             mTvName.setText(dataBean.getTitle());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm", dataBean.getAdd_time()));
@@ -125,7 +125,7 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
                 }
             });
             FrescoUtils.displayNormal(mIvIcon,dataBean.getForum_img());
-            id=dataBean.getId();
+            cancelId=dataBean.getCid();
             mTvContent.setTextColor(mContext.getResources().getColor(R.color.color969696));
             AiteUtils.parseTextMessage(mTvContent,dataBean.getInform(),dataBean.getContent(),mContext);
             if (StringUtils.isEmpty(dataBean.getTitle())){
@@ -147,7 +147,7 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
         } else if (datas instanceof TravelsBean.DataBean) {
             final TravelsBean.DataBean dataBean = (TravelsBean.DataBean) datas;
             FrescoUtils.displayNormal(mIvIcon,dataBean.getLogo_img());
-            id=dataBean.getId();
+            cancelId=dataBean.getCid();
             mTvContent.setText(dataBean.getAuthor());
             mTvContent.setTextColor(mContext.getResources().getColor(R.color.color969696));
             mTvName.setText(dataBean.getTitle());
@@ -164,7 +164,7 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
             final OtherBean.DataBean dataBean = (OtherBean.DataBean) datas;
             FrescoUtils.displayNormal(mIvIcon,dataBean.getLogo_img());
             mTvContent.setText(dataBean.getContent());
-            id=dataBean.getId();
+            cancelId=dataBean.getCid();
             mTvContent.setTextColor(mContext.getResources().getColor(R.color.color969696));
             mTvName.setText(dataBean.getTitle());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm", dataBean.getAdd_time()));
@@ -189,7 +189,7 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
                 }
             });
         }
-        mTvDelete.setTag(id);
+        mTvDelete.setTag(cancelId);
         mTvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

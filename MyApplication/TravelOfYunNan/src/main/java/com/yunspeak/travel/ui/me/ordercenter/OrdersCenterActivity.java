@@ -34,8 +34,6 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
     @BindView(R.id.svpi_indicator) SimpleViewPagerIndicator mIndicator;
     @BindView(R.id.vp_orders) ViewPager mVpOrders;
     private List<Fragment> fragments;
-
-
     private void init() {
         mIndicator.setChildMargin(10);
         mIndicator.changeToShowPop();
@@ -151,7 +149,7 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
         });
         fragments = new ArrayList<>();
         fragments.add(MyOrdersFragment.newInstance(RECENT_ORDERS));
-       fragments.add(MyOrdersFragment.newInstance(ALL_ORDERS));
+        fragments.add(MyOrdersFragment.newInstance(ALL_ORDERS));
         fragments.add(new CouponFragment());
         mVpOrders.setAdapter(new OrdersPagerAdapter(getSupportFragmentManager()));
         mVpOrders.setOffscreenPageLimit(3);

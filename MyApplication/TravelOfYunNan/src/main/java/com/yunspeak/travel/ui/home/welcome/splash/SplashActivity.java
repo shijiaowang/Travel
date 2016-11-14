@@ -22,14 +22,11 @@ import android.widget.VideoView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Splash;
 import com.yunspeak.travel.ui.baseui.FullTransparencyActivity;
-import com.yunspeak.travel.ui.baseui.RegisterSuccessActivity;
+import com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterActivity;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.DensityUtils;
-
-
-import org.xutils.view.annotation.ViewInject;
 
 
 import java.util.ArrayList;

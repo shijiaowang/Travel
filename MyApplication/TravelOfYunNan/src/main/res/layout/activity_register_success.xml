@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
    <View
        android:alpha="0.85"
        android:background="@android:color/black"
@@ -36,13 +37,13 @@
                 android:text="昵称" />
         </LinearLayout>
 
-        <com.yunspeak.travel.ui.view.LineEditText
+        <com.yunspeak.travel.ui.view.LoginEditText
             android:paddingTop="20dp"
-            android:maxLength="8"
             android:id="@+id/et_nick_name"
-            android:layout_height="wrap_content"
             style="@style/activityRegisterEditText"
-            android:hint="中文/英文/数字" />
+            app:line_edittext_max_length="16"
+            app:line_edittext_hint="中文/英文/数字"
+            />
         <LinearLayout
             style="@style/activityRegisterLl"
             android:layout_marginTop="28dp">

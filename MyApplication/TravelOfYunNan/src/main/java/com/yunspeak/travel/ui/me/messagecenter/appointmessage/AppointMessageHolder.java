@@ -204,6 +204,7 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
 
             }
         });
+        final String finalNickName = nickName;
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -215,7 +216,7 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
                     case AppointMessageAdapter.TYPE_DISCUSS:
                     case AppointMessageAdapter.TYPE_AITE:
                         if (finalType1.equals("1") || finalType1.equals("2")){
-                            showReplyDialog(mContext, finalTid1, finalPid, finalUserId1,finalFloor, finalCid);
+                            showReplyDialog(mContext, finalTid1, finalPid, finalUserId1,finalFloor, finalCid, finalNickName);
                             break;
                         }
                     case AppointMessageAdapter.TYPE_ZAMBIA:
@@ -244,13 +245,13 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
         });
 
     }
-    public void showReplyDialog(final Context context, final String fid, final String pid, final String userId, final int finalFloor, final String cid){
+    public void showReplyDialog(final Context context, final String fid, final String pid, final String userId, final int finalFloor, final String cid, final String nickName){
         PostOptionsDialog.showCommonDialog2(context, new ParentPopClick() {
             @Override
             public void onClick(int type) {
                  switch (type){
                      case PostOptionsDialog.TYPE_REPLY:
-                         CreatePostActivity.start(context,cid,1,CreatePostActivity.REPLY_POST,fid,userId,pid);
+                         CreatePostActivity.start(context,cid,1,CreatePostActivity.REPLY_POST,fid,userId,pid,nickName);
                          break;
                      case PostOptionsDialog.TYPE_CAT_POST:
                          PostActivity.start(context,fid);

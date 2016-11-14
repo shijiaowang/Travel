@@ -32,6 +32,7 @@ public interface IVariable {
     String APPOINT_CLICK_ZAN = API_KEY + "Travel/isLikeTravel/";//约伴点赞
     String ENTER_APPOINT = API_KEY + "UserTravel/setIntoTravel/";//约伴报名
     String CANCEL_APPOINT = API_KEY + "UserTravel/revokeIntoTravel/";//取消报名
+    String REPORT = API_KEY + "Circle/forumReport/";//举报
     /**
      * 首页等等
      */
@@ -74,6 +75,7 @@ public interface IVariable {
      * 我
      */
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
+    String ACTIVATE_COUPONS = API_KEY + "Order/setCouponCode/";//激活优惠券
     String DELETE_POST = API_KEY + "Circle/deleteForum/";//删除帖子
     String DELETE_PUBLISH = API_KEY + "Circle/deleteForumreply/";//删除发表
     String MY_CREATE_APPOINT = API_KEY + "UserTravel/getMyTravel/";//获取我创建的约伴

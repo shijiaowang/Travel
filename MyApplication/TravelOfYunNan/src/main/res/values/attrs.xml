@@ -10,8 +10,10 @@
     </declare-styleable>
 
     <attr name="line_edittext_hint" format="string" />
+    <attr name="line_edittext_max_length" format="integer" />
     <declare-styleable name="LoginEditText">
         <attr name="line_edittext_hint" />
+        <attr name="line_edittext_max_length" />
     </declare-styleable>
 
     <!-- Declare custom theme attributes that allow changing which styles are

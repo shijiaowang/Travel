@@ -15,6 +15,7 @@
         android:textSize="15sp" />
 
     <RadioGroup
+        android:id="@+id/rg_group"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_marginLeft="4dp"
@@ -67,12 +68,13 @@
             android:textColor="@color/colorb5b5b5" />
 
         <EditText
+            android:id="@+id/et_conetnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@null"
             android:paddingLeft="20dp"
-            android:hint="请输入地点"
+            android:hint="请输入投诉详细内容"
             android:textColorHint="@color/colorb5b5b5"
             android:textColor="@color/color646464"
             android:textSize="13sp" />
@@ -117,6 +119,7 @@
             android:background="@color/meLine" />
 
         <TextView
+            android:id="@+id/tv_sure"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

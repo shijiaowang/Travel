@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.NestedScrollView;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,10 +59,18 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
     }
     @Override
     protected void initEvent() {
+        mWvHtml = (WebView)findViewById(R.id.wv_html);
+        mWvHtml.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return true;
+            }
+        });
         WebSettings settings = mWvHtml.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(false);
         aId = getIntent().getStringExtra(IVariable.A_ID);
         nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override

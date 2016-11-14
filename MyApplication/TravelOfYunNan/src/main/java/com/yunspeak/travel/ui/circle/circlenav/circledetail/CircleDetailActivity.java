@@ -110,7 +110,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
-        CreatePostActivity.start(this,cId,12,CreatePostActivity.CREATE_POST,"","","");
+        CreatePostActivity.start(this,cId,12,CreatePostActivity.CREATE_POST,"","","","");
     }
 
     @Override

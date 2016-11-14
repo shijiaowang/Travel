@@ -3,12 +3,9 @@ package com.yunspeak.travel.ui.home.welcome.splash.login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.InputType;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
-
-
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
@@ -24,6 +21,7 @@ import com.yunspeak.travel.ui.home.welcome.splash.login.forgetpassword.ForgetPas
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.LineEditText;
+import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -43,31 +41,28 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
- * Created by Administrator on 2016/7/26 0026.
+ * Created by wangyang on 2016/7/26 0026.
+ * 登录
  */
-public class LoginActivity extends BaseTransActivity implements View.OnClickListener, TextWatcher {
+public class LoginActivity extends BaseTransActivity implements View.OnClickListener,LoginEditText.TextChangedListener {
     public static final int SPLASH_RESULT=1;//返回
-    @ViewInject(R.id.et_password)
-    private LineEditText mEdPassword;
-    @ViewInject(R.id.et_name)
-    private AutoCompleteTextView mEdName;
-    @ViewInject(R.id.bt_login)
-    private AvoidFastButton mBtLogin;
+    @BindView(R.id.et_password)
+    LoginEditText mEdPassword;
+    @BindView(R.id.et_name) LoginEditText mEdName;
+    @BindView(R.id.bt_login) AvoidFastButton mBtLogin;
     private SharedPreferences sharedPreferences;
     private String key;
     private int tryGetKey=0;
-    @ViewInject(R.id.tv_back)
-    private FontsIconTextView mTvBack;
-    @ViewInject(R.id.tv_change_password)
-    private TextView mTvChangePassword;
+    @BindView(R.id.tv_back) FontsIconTextView mTvBack;
+    @BindView(R.id.tv_change_password) TextView mTvChangePassword;
     private String name;
     private String password;
     private boolean isFirstError=true;
-
-
 
     @Override
     protected void initData() {
@@ -76,6 +71,8 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
 
     @Override
     protected void initView() {
+        ButterKnife.bind(this);
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
         ActivityUtils.getInstance().addActivity(this);
         sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
     }
@@ -84,13 +81,14 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
     protected void initListener() {
         mTvBack.setOnClickListener(this);
         mEdName.addTextChangedListener(this);
+        mEdName.setInputType(InputType.TYPE_CLASS_PHONE);
         mEdPassword.addTextChangedListener(this);
         mTvChangePassword.setOnClickListener(this);
         mBtLogin.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
-                name = getString(mEdName);
-                password =getString(mEdPassword);
+                name = mEdName.getString();
+                password =mEdPassword.getString();
                 if (StringUtils.isEmpty(name) || StringUtils.isEmpty(password)) {
                     ToastUtils.showToast("密码或者用户名为空");
                     return;
@@ -170,13 +168,12 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        EventBus.getDefault().unregister(this);
+        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -198,7 +195,7 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (StringUtils.isEmpty(getString(mEdName)) || StringUtils.isEmpty(getString(mEdPassword))){
+        if (StringUtils.isEmpty(mEdName.getString()) || StringUtils.isEmpty(mEdPassword.getString())){
             btIsClick(mBtLogin,false);
         }else {
             btIsClick(mBtLogin,true);

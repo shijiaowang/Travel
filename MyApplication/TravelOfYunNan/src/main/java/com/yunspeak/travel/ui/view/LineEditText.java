@@ -11,7 +11,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.utils.UIUtils;
 
 /**
- * Created by Administrator on 2016/8/17 0017.
+ * Created by wangyang on 2016/8/17 0017.
  */
 public class LineEditText extends EditText {
 

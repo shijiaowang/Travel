@@ -1,14 +1,12 @@
 package com.yunspeak.travel.ui.me.changepassword;
 
-import android.app.Activity;
 import android.view.View;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
+import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.MD5Utils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ShareUtil;
@@ -17,11 +15,7 @@ import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 import com.xwray.passwordview.PasswordView;
-
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.Map;
-
 import butterknife.BindView;
 
 /**
@@ -29,9 +23,9 @@ import butterknife.BindView;
  */
 
 public class ChangePassWordActivity extends BaseNetWorkActivity<ChangePassWordEvent> {
-    @BindView(R.id.pv_old_password) PasswordView mPvOldPassword;
-    @BindView(R.id.pv_new_password) PasswordView mPvNewPassword;
-    @BindView(R.id.pv_re_new_password) PasswordView mPvReNewPassword;
+    @BindView(R.id.pv_old_password) LoginEditText mPvOldPassword;
+    @BindView(R.id.pv_new_password) LoginEditText mPvNewPassword;
+    @BindView(R.id.pv_re_new_password) LoginEditText mPvReNewPassword;
     @BindView(R.id.bt_next) AvoidFastButton mBtNext;
     private String newPassword;
 
@@ -50,9 +44,9 @@ public class ChangePassWordActivity extends BaseNetWorkActivity<ChangePassWordEv
      * 修改密码
      */
     private void changePassword() {
-        String oldPassword = getString(mPvOldPassword);
-        newPassword = getString(mPvNewPassword);
-        String reNewPassword = getString(mPvReNewPassword);
+        String oldPassword = mPvOldPassword.getString();
+        newPassword = mPvNewPassword.getString();
+        String reNewPassword = mPvReNewPassword.getString();
         if (StringUtils.isEmpty(oldPassword)) {
             ToastUtils.showToast("请输入旧密码");
             mPvOldPassword.requestFocus();
@@ -120,9 +114,6 @@ public class ChangePassWordActivity extends BaseNetWorkActivity<ChangePassWordEv
     protected void onFail(ChangePassWordEvent event) {
 
     }
-
-
-
     @Override
     protected int initLayoutRes() {
         return R.layout.activity_change_password;

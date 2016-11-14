@@ -321,6 +321,8 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         title = currentType==REPLY_POST?"回复帖子":"创建帖子";
         rigtText = currentType==REPLY_POST?"回复":"创建";
         rUserId = getIntent().getStringExtra(IVariable.R_USER_ID);
+        String hint = getIntent().getStringExtra(IVariable.DATA);
+        if (!StringUtils.isEmptyNotNull(hint))mEtContent.setHint("回复："+hint);
         pId = getIntent().getStringExtra(IVariable.PID);
         forumId = getIntent().getStringExtra(IVariable.FORUM_ID);
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -399,7 +401,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         isCreateing=false;
         setIsProgress(false);
     }
-    public static void start(Context context,String cid,int pictureSize,int type,String forumId,String rid,String pid){
+    public static void start(Context context,String cid,int pictureSize,int type,String forumId,String rid,String pid,String hint){
         Intent intent = new Intent(context, CreatePostActivity.class);
         intent.putExtra(IVariable.C_ID,cid);
         intent.putExtra(IVariable.PAGE_SIZE,pictureSize);
@@ -407,6 +409,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         intent.putExtra(IVariable.FORUM_ID,forumId);
         intent.putExtra(IVariable.R_USER_ID,rid);
         intent.putExtra(IVariable.PID,pid);
+        intent.putExtra(IVariable.DATA,hint);
         context.startActivity(intent);
     }
     @Override

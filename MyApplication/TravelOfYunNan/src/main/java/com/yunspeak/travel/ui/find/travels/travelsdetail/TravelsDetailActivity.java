@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -103,10 +105,17 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
             mIvBg = (SimpleDraweeView) findViewById(R.id.iv_bg);
             mIvIcon = (SimpleDraweeView) findViewById(R.id.iv_travel);
             mWvHtml = (WebView)findViewById(R.id.wv_html);
+           mWvHtml.setWebViewClient(new WebViewClient(){
+               @Override
+               public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                   return true;
+               }
+           });
             WebSettings settings = mWvHtml.getSettings();
             settings.setJavaScriptEnabled(true);
             settings.setLoadWithOverviewMode(true);
             settings.setUseWideViewPort(true);
+            settings.setJavaScriptCanOpenWindowsAutomatically(false);
             mTvStartAndLong = (TextView) findViewById(R.id.tv_start_and_long);
             mTvTime = (TextView) findViewById(R.id.tv_time);
             mTvDream = (TextView) findViewById(R.id.tv_dream);

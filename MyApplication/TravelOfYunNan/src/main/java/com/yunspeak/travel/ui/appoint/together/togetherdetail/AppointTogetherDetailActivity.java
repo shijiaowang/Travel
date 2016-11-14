@@ -221,6 +221,9 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 ToastUtils.showToast("取消收藏成功");
                 isCollect = isFalse;
                 break;
+            case TYPE_OTHER:
+                ToastUtils.showToast("投诉成功，管理员将正在处理中");
+                break;
         }
 
     }
@@ -228,9 +231,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     @Override
     protected void onFail(AppointTogetherDetailEvent appointDetailEvent) {
         super.onFail(appointDetailEvent);
-        if (appointDetailEvent.getType() == TYPE_ENTER_APPOINT) {
-            // ToastUtils.showToast(appointDetailEvent.getMessage());
-        }
+
     }
 
     /**
@@ -487,12 +488,13 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
-        AppointDetailMorePop.showMorePop(this,mToolbar, collection, new ParentPopClick() {
+        AppointDetailMorePop.showMorePop(this,id,mToolbar, collection, new ParentPopClick() {
             @Override
-            public void onClick(int type) {
+            public void onClick(int t) {
                 String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
+                int type=isCollect.equals(isTrue)?TYPE_CANCEL_COLLECTION:TYPE_COLLECTION;
                 Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("1").addId(id).end();
-                XEventUtils.postUseCommonBackJson(url, collectionMap, TYPE_COLLECTION, new AppointTogetherDetailEvent());
+                XEventUtils.postUseCommonBackJson(url, collectionMap, type, new AppointTogetherDetailEvent());
 
             }
         });

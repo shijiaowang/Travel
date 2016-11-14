@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseTransActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LineEditText;
+import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -38,13 +40,15 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
  * Created by wangyang on 2016/8/15 0015.
  * 注册界面
  */
-public class RegisterActivity extends BaseTransActivity implements View.OnClickListener, TextWatcher, AvoidFastButton.AvoidFastOnClickListener {
+public class RegisterActivity extends BaseTransActivity implements View.OnClickListener, AvoidFastButton.AvoidFastOnClickListener, LoginEditText.TextChangedListener {
     //请求
     private static final int REGISTER_REQ = 0;//注册
     private static final int VERIFICATION_REQ = 1;//验证码
@@ -54,20 +58,14 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     public static final int REGISTER_SUCCESS = 4;//注册成功
 
     private boolean isSending = false;//是否发送过验证码
-    @ViewInject(R.id.et_phone)
-    private LineEditText mEtPhone;
-    @ViewInject(R.id.et_password)
-    private LineEditText mEtPassword;
-    @ViewInject(R.id.et_re_password)
-    private LineEditText mEtRePassword;
-    @ViewInject(R.id.et_ver)
-    private LineEditText mEtVer;
-    @ViewInject(R.id.bt_next)
-    private AvoidFastButton mBtNext;
-    @ViewInject(R.id.bt_ver)
-    private AvoidFastButton mBtVer;
-    @ViewInject(R.id.tv_back)
-    private TextView mTvBack;
+    @BindView(R.id.et_phone)
+    LoginEditText mEtPhone;
+    @BindView(R.id.et_password) LoginEditText mEtPassword;
+    @BindView(R.id.et_re_password) LoginEditText mEtRePassword;
+    @BindView(R.id.et_ver) LoginEditText mEtVer;
+    @BindView(R.id.bt_next) AvoidFastButton mBtNext;
+    @BindView(R.id.bt_ver) AvoidFastButton mBtVer;
+    @BindView(R.id.tv_back) TextView mTvBack;
     private int verTime = 60;//验证码时间
     private boolean isSendVer = false;
     private Handler mHandler = new Handler() {
@@ -92,11 +90,17 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
 
     @Override
     protected void initView() {
+        ButterKnife.bind(this);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         ActivityUtils.getInstance().addActivity(this);
     }
 
     @Override
     protected void initData() {
+        mEtPhone.setInputType(InputType.TYPE_CLASS_PHONE);
+        mEtVer.setInputType(InputType.TYPE_CLASS_PHONE);
         mEtPhone.requestFocus();
         btIsClick(mBtNext, false);
         btIsClick(mBtVer, false);
@@ -118,13 +122,13 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
             requestAndSetErrorMessage(mEtVer, getString(R.string.not_send_ver));
             return;
         }
-        String ver = mEtVer.getText().toString().trim();
-        String password = mEtPassword.getText().toString().trim();
-        String rePassword = mEtRePassword.getText().toString().trim();
-        String phone = mEtPhone.getText().toString().trim();
-        int length = mEtVer.getText().toString().length();
+        String ver = mEtVer.getString();
+        String password = mEtPassword.getString();
+        String rePassword = mEtRePassword.getString();
+        String phone = mEtPhone.getString();
+        int length = mEtVer.getString().length();
         if (checkPhoneNumber(phone)) return;
-        if (StringUtils.isEmpty(mEtVer.getText().toString().trim())) {
+        if (StringUtils.isEmpty(mEtVer.getString())) {
             requestAndSetErrorMessage(mEtVer, getString(R.string.ver_is_empty));
             return;
         }
@@ -171,7 +175,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
      * 发送验证码
      */
     private void sendVerCode() {
-        String phone = mEtPhone.getText().toString().trim();
+        String phone = mEtPhone.getString();
         if (checkPhoneNumber(phone)) return;
         Map<String, String> map = MapUtils.Build().addKey().add(IVariable.TEL, phone).end();
         XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, VERIFICATION_REQ,new RegisterEvent());
@@ -186,7 +190,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     @Override
     protected void onResume() {
         super.onResume();
-        EventBus.getDefault().register(this);
+
     }
     @Subscribe
     public void onEvent(RegisterEvent event) {
@@ -223,7 +227,9 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     @Override
     protected void onPause() {
         super.onPause();
-        EventBus.getDefault().unregister(this);
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @Override
@@ -267,13 +273,13 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (mEtPhone.getText().toString().length() == 11 && !isSending) {
+        if (mEtPhone.getString().length() == 11 && !isSending) {
             btIsClick(mBtVer, true);
         } else {
             btIsClick(mBtVer, false);
         }
-        if ((StringUtils.isEmpty(getString(mEtPhone))) || (StringUtils.isEmpty(getString(mEtVer))) || (StringUtils.isEmpty(getString(mEtPassword))) ||
-                (StringUtils.isEmpty(getString(mEtRePassword)))) {
+        if ((StringUtils.isEmpty(mEtPhone.getString())) || (StringUtils.isEmpty(mEtVer.getString())) || (StringUtils.isEmpty(mEtPassword.getString())) ||
+                (StringUtils.isEmpty(mEtRePassword.getString()))) {
             btIsClick(mBtNext, false);
         } else {
             btIsClick(mBtNext, true);

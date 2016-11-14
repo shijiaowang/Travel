@@ -1,20 +1,17 @@
 package com.yunspeak.travel.ui.home.welcome.splash.login.forgetpassword;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.event.RegisterEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginNextCommonEvent;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LineEditText;
@@ -28,12 +25,7 @@ import com.yunspeak.travel.utils.ShareUtil;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.Map;
-
 import butterknife.BindView;
 
 /**
@@ -44,10 +36,7 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
     //请求
     private static final int RESET_PASSWORD = 0;//重置
     private static final int VERIFICATION_REQ = 1;//验证码
-
     //错误码
-    private static final int VER_ERROR = 0;//验证码错误
-    public static final int REGISTER_SUCCESS = 4;//注册成功
 
     private boolean isSending = false;//是否发送过验证码
     @BindView(R.id.et_phone) LineEditText mEtPhone;

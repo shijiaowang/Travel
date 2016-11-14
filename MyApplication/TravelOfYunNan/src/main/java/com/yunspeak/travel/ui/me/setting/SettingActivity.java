@@ -204,7 +204,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 showPictureCutPop(mLlLogout);
                 break;
             case R.id.tv_user_nick_name:
-                EnterAppointDialog.showInputTextView(this,userInfo.getNick_name(),new SendTextClick() {
+                EnterAppointDialog.showInputTextView(this,userInfo.getNick_name(),"昵称设置","确定",new SendTextClick() {
                     @Override
                     public void onClick(String text) {
                           mTvUserNickName.setText(text);
