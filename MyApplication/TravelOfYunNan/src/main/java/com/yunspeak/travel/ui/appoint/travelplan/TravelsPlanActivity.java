@@ -106,7 +106,11 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
     @Override
     protected void addChildJson(JSONObject basecJsonObject) throws Exception {
         JsonUtils.putString(IVariable.TRAFFIC,trafficType,basecJsonObject);
-        JsonUtils.putString(IVariable.TRAFFIC_TEXT,getString(mEtRemark),basecJsonObject);
+        try {
+            JsonUtils.putString(IVariable.TRAFFIC_TEXT,getString(mEtRemark),basecJsonObject);//备注可以不需要，捕获异常
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (!isSelectLine){
             throw new Exception();
         }
@@ -120,13 +124,12 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
         try {
             if (!(endLine != null && startLine != null && endLine == endDate && startLine == startDate)) {
                 List<LineBean> lineBeans = new ArrayList<>();
-                String howDay = CalendarUtils.getHowDay(startDate.getTime() + "", endDate.getTime() + "");
+                int howDay = CalendarUtils.getHowDay(startDate.getTime() + "", endDate.getTime() + "");
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(startDate);
-                int countDay = Integer.parseInt(howDay);
                 lineBeans.add(new LineBean(""));
-                for (int i = 0; i <= countDay + 1; i++) {//这里判断条件是因为添加了集合地和解散地
-                    if (i == countDay) {
+                for (int i = 0; i <= howDay + 1; i++) {//这里判断条件是因为添加了集合地和解散地
+                    if (i == howDay) {
                         lineBeans.add(new LineBean(""));
                         break;
                     }

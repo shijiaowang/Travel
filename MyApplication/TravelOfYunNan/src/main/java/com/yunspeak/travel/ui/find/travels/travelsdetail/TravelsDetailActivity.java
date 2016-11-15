@@ -79,16 +79,6 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         });
     }
 
-    @Override
-    public void onItemClick(int position) {
-        super.onItemClick(position);
-        Map<String, String> destinationMap = MapUtils.Build().addKey().addFId(mDatas.get(position).getF_id()).addUserId().
-                addContent("这只是一个测试评论而已，而已").addPId(mDatas.get(position).getId()).add(IVariable.TYPE, IVariable.TYPE_TRAVELS).
-                addNextPage(haveNextPage).addCount(mDatas.size()).
-                end();
-        XEventUtils.postUseCommonBackJson(IVariable.FIND_REPLY_DISCUSS, destinationMap, TYPE_DISCUSS, new DetailCommonEvent());
-    }
-
     public static void start(Context context, String tid, String name){
         Intent intent=new Intent(context,TravelsDetailActivity.class);
         intent.putExtra(IVariable.T_ID,tid);

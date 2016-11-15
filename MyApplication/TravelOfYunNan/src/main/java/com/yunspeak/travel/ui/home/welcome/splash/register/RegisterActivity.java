@@ -5,22 +5,20 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Key;
-import com.yunspeak.travel.bean.Register;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.RegisterEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseTransActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
-import com.yunspeak.travel.ui.view.LineEditText;
 import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
@@ -28,6 +26,7 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MD5Utils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.PhoneUtils;
 import com.yunspeak.travel.utils.ShareUtil;
 import com.yunspeak.travel.utils.StringUtils;
@@ -36,7 +35,6 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
@@ -87,6 +85,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
             sendEmptyMessageDelayed(0, 1000);
         }
     };
+    private int tryGetKey;
 
     @Override
     protected void initView() {
@@ -115,6 +114,9 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
         mEtVer.addTextChangedListener(this);
         mEtPassword.addTextChangedListener(this);
         mEtRePassword.addTextChangedListener(this);
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        //2.调用showSoftInput方法显示软键盘，其中view为聚焦的view组件
+        imm.showSoftInput(mEtPhone,InputMethodManager.SHOW_FORCED);
     }
 
     private void toRegister() {
@@ -196,16 +198,33 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     public void onEvent(RegisterEvent event) {
         if (event.isSuccess()) {
             dealResult(event);
+        }else {
+            if ((event.getType() == IVariable.TYPE_GET_KEY  || event.getCode()==-1)&& tryGetKey<3){
+                tryGetKey++;
+                XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY,new RegisterEvent());
+            }else  if (event.getCode() == VER_ERROR) {
+                requestAndSetErrorMessage(mEtVer, getString(R.string.ver_is_error));
+            }else if(event.getCode()==-1){
+                ToastUtils.showToast("key错误，正在重新获取！请保持网络畅通");
+            }else if (!NetworkUtils.isNetworkConnected(this)){
+                ToastUtils.showToast("网络错误，请检查网络是否畅通！");
+            }else {
+                ToastUtils.showToast(event.getMessage());
+            }
         }
-        if (event.getCode() == VER_ERROR) {
-            requestAndSetErrorMessage(mEtVer, getString(R.string.ver_is_error));
-        }
-        ToastUtils.showToast(event.getMessage());
+
     }
 
-    private void dealResult(HttpEvent event) {
+    private void dealResult(RegisterEvent event) {
         if (event.getType() == REGISTER_REQ) {
-            Register register = GsonUtils.getObject(event.getResult(), Register.class);
+            RegisterBean register = GsonUtils.getObject(event.getResult(), RegisterBean.class);
+            RegisterBean.DataBean data = register.getData();
+            PushAgent.getInstance(this).addAlias(data.getUser_id(), "YUNS_ID", new UTrack.ICallBack() {
+                @Override
+                public void onMessage(boolean b, String s) {
+                    LogUtils.e("是否成功"+b+"信息"+s);
+                }
+            });
             Intent intent = new Intent();
             intent.putExtra(IVariable.USER_ID, register.getData().getUser_id());
             setResult(REGISTER_SUCCESS, intent);
@@ -218,15 +237,15 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
             mEtPhone.setClickable(false);
             mEtPhone.setFocusableInTouchMode(false);
             mHandler.sendEmptyMessage(0);
-
         } else if (event.getType() == IVariable.TYPE_GET_KEY) {
             dealKey(event);
         }
     }
 
+
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
@@ -239,7 +258,7 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.bt_ver:
-                if (GlobalUtils.getKey() == null) {
+                if (StringUtils.isEmpty(GlobalUtils.getKey())) {
                     XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY,new RegisterEvent());
                     return;
                 }

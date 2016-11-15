@@ -166,7 +166,9 @@ public class PersonnelEquipmentWithMeActivity extends BaseToolBarActivity implem
             case R.id.bt_next:
                 try {
                     checkDataAndAddJson();
-                    startActivity(new Intent(this, CostSettingActivity.class));
+                    Intent intent1 = getIntent();
+                    intent1.setClass(this,CostSettingActivity.class);
+                    startActivity(intent1);
                 } catch (Exception e) {
                     e.printStackTrace();
                     ToastUtils.showToast("请完善约伴信息");

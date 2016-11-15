@@ -108,7 +108,7 @@
             android:windowSoftInputMode="adjustPan"
             />
         <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
+           android:windowSoftInputMode="adjustResize|stateHidden"
             />
         <activity android:name=".ui.appoint.withme.withmedetail.AppointWithMeDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentWithMeActivity"/>

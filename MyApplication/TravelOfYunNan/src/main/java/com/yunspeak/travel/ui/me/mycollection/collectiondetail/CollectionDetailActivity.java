@@ -115,6 +115,9 @@ public class CollectionDetailActivity extends BaseRecycleViewActivity<Collection
                 ToastUtils.showToast("删除成功");
                 mDatas.remove(collectionDetailEvent.getPosition());
                 mAdapter.notifyItemRemoved(collectionDetailEvent.getPosition());
+                if (mDatas.size()==0){
+                    setIsEmpty();
+                }
                 break;
             default:
                 super.onSuccess(collectionDetailEvent);

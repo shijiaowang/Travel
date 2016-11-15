@@ -18,7 +18,19 @@
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:background="@color/otherTitleBg"></android.support.v7.widget.Toolbar>
+            android:background="@color/otherTitleBg">
+            <TextView
+                android:id="@+id/tv_appbar_title"
+                style="@style/commonSingleLineTextStyle"
+                android:text="发现"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="18sp" />
+
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView

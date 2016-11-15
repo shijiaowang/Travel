@@ -46,6 +46,7 @@
                 <EditText
                     android:id="@+id/et_price"
                     android:inputType="number"
+                    android:maxLength="5"
                     style="@style/activityTravelsPlanTvTimeSelect"
                     android:layout_width="51dp"
                     android:layout_marginLeft="15dp"
@@ -81,50 +82,13 @@
                     android:gravity="center_vertical"
                     android:text="其他费用" />
 
-                <LinearLayout
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="39dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="0dp"
-                            android:layout_marginRight="10dp"
-                            android:text="平台服务费" />
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="22dp"
-                            android:text="2元/日" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="39dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="0dp"
-                            android:layout_marginRight="10dp"
-                            android:text="个人旅游险" />
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="22dp"
-                            android:text="2元/日" />
-                    </LinearLayout>
-                </LinearLayout>
+                </android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
 
@@ -140,117 +104,17 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="27dp"
-                    android:text="费用合计："
-                    android:textColor="@color/otherTitleBg"
-                    android:textSize="15sp" />
-
-                <TextView
+                    android:id="@+id/tv_total_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="43dp"
                     android:layout_marginTop="27dp"
-                    android:text="56元/人"
+                    android:text="合计：\u300056元/人"
                     android:textColor="@color/otherTitleBg"
                     android:textSize="15sp" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_with_me"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="53dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/activityTravelsPlanTvTime"
-                    android:layout_height="23dp"
-                    android:gravity="center_vertical"
-                    android:text="费用详情" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/activityTravelsPlanTv"
-                        android:layout_marginLeft="39dp"
-                        android:text="费用包含" />
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="37dp"
-                            android:text="【" />
-
-                        <TextView
-                            style="@style/activityCostSettingText"
-                            android:layout_marginLeft="0dp"
-                            android:layout_marginRight="9dp"
-                            android:text="保险" />
-
-                        <TextView
-                            style="@style/activityCostSettingText"
-                            android:layout_marginLeft="20dp"
-                            android:text="全程路费" />
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="5dp"
-                            android:text="】" />
-                    </LinearLayout>
-
-                    <TextView
-                        style="@style/activityTravelsPlanTv"
-                        android:layout_marginLeft="39dp"
-                        android:layout_marginTop="14dp"
-                        android:text="费用不包含" />
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="37dp"
-                            android:text="【" />
-
-                        <TextView
-                            style="@style/activityCostSettingText"
-                            android:layout_marginLeft="0dp"
-                            android:layout_marginRight="9dp"
-                            android:text="用餐" />
-
-                        <TextView
-                            style="@style/activityCostSettingText"
-                            android:layout_marginLeft="20dp"
-                            android:text="其他个人消费" />
-
-                        <TextView
-                            style="@style/activityTravelsPlanTv"
-                            android:layout_marginLeft="5dp"
-                            android:text="】" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -276,11 +140,12 @@
                 android:layout_marginLeft="38dp"
                 android:layout_marginTop="17dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"/>
         </LinearLayout>
     </ScrollView>
 
     <Button
-   style="@style/commonButtonNext"/>
+          style="@style/commonButtonNext"/>
 
 </LinearLayout>

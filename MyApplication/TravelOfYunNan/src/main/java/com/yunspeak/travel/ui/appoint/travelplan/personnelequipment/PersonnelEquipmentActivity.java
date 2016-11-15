@@ -187,7 +187,9 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
         JsonUtils.putString(IVariable.SEX_CONDITION,sexType,basecJsonObject);
         JsonUtils.putString(IVariable.BIND_CONDITION,authType,basecJsonObject);
         JsonUtils.putString(IVariable.AGREE,autoPass,basecJsonObject);
-        startActivity(new Intent(this, CostSettingActivity.class));
+        Intent intent1 = getIntent();
+        intent1.setClass(this,CostSettingActivity.class);
+        startActivity(intent1);
     }
 
     @Override

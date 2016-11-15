@@ -66,6 +66,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
     protected int year;
     protected Date endLine;
     protected Date startLine;
+    private int howDay;
 
 
     /**
@@ -250,6 +251,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
         if (mTvHowDay != null) {
             mTvHowDay.setText("共计" + CalendarUtils.getHowDayHowNight(startDate.getTime() + "", endDate.getTime() + ""));
         }
+        howDay = CalendarUtils.getHowDay(startDate.getTime()+"",endDate.getTime()+"");
 
     }
 
@@ -263,8 +265,8 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
             return false;
         }
 
-        String howDay = CalendarUtils.getHowDay(startDate.getTime() + "", endDate.getTime() + "");
-        if (Integer.parseInt(howDay) > 30) {
+        int howDay = CalendarUtils.getHowDay(startDate.getTime() + "", endDate.getTime() + "");
+        if (howDay > 30) {
             ToastUtils.showToast("对不起，计划最长时间为30天，若有特殊需要请联系客服。");
             return false;
         }
@@ -283,9 +285,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
             addChildJson(basecJsonObject);
             Class c=isHideRight()? PersonnelEquipmentWithMeActivity.class:PersonnelEquipmentActivity.class;
             Intent intent = new Intent(this, c);
-            if (StringUtils.isEmpty(filename)){
-                throw new Exception();
-            }
+            intent.putExtra(IVariable.PAGE_SIZE,howDay);
             GlobalValue.mFileName=filename;
             startActivity(intent);
         } catch (Exception e) {

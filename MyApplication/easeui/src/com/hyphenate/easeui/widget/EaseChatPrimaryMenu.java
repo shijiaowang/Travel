@@ -240,8 +240,10 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
         // buttonSend.setVisibility(View.VISIBLE);
         buttonPressToSpeak.setVisibility(View.GONE);
         if (TextUtils.isEmpty(editText.getText())) {
-            buttonMore.setVisibility(View.VISIBLE);
-            buttonSend.setVisibility(View.GONE);
+            if (!isDontShowOther) {
+                buttonMore.setVisibility(View.VISIBLE);
+                buttonSend.setVisibility(View.GONE);
+            }
         } else {
             buttonMore.setVisibility(View.GONE);
             buttonSend.setVisibility(View.VISIBLE);

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.text.Editable;
 import android.text.InputType;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
@@ -12,12 +13,15 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.event.LoginEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseTransActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.forgetpassword.ForgetPasswordActivity;
+import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterBean;
+import com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.LineEditText;
@@ -84,6 +88,10 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         mEdName.setInputType(InputType.TYPE_CLASS_PHONE);
         mEdPassword.addTextChangedListener(this);
         mTvChangePassword.setOnClickListener(this);
+       //1.得到InputMethodManager对象
+       InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+         //2.调用showSoftInput方法显示软键盘，其中view为聚焦的view组件
+       imm.showSoftInput(mEdName,InputMethodManager.SHOW_FORCED);
         mBtLogin.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,8 +150,16 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
                 XEventUtils.getUseCommonBackJson(IVariable.GET_KEY,null,IVariable.TYPE_GET_KEY,new LoginEvent());
             }else {
                 ToastUtils.showToast(event.getMessage());
+                if (event.getCode()==3){//信息未完善，前去完善信息页面
+                    RegisterBean registerBean = GsonUtils.getObject(event.getResult(), RegisterBean.class);
+                    Intent intent=new Intent(this, RegisterSuccessActivity.class);
+                    intent.putExtra(IVariable.USER_ID,registerBean.getData().getUser_id());
+                    startActivity(intent);
+                    finish();
+                }
             }
         }
+
     }
 
     private void goToHomeActivity(LoginEvent event) {
@@ -158,6 +174,13 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         setResult(SPLASH_RESULT);
         Intent intent = new Intent(this, HomeActivity.class);
         UserInfo data = login.getData();
+        if (data!=null){
+            com.hyphenate.easeui.domain.UserInfo userInfo=new com.hyphenate.easeui.domain.UserInfo();
+            userInfo.setId(data.getId());
+            userInfo.setNick_name(data.getNick_name());
+            userInfo.setUser_img(data.getUser_img());
+            DBManager.insertChatUserInfo(userInfo);
+        }
         intent.putExtra(IVariable.USER_INFO, data);
         startActivity(intent);
 

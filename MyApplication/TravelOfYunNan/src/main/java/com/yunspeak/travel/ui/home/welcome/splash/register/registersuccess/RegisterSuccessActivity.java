@@ -2,8 +2,10 @@ package com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess;
 
 import android.content.Intent;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
@@ -64,6 +66,7 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
     protected void initData() {
         user_id = getIntent().getStringExtra(IVariable.USER_ID);
         btIsClick(mBtStart, false);
+
     }
 
     @Override
@@ -72,6 +75,7 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
         mRlBoy.setOnClickListener(this);
         mRlGirl.setOnClickListener(this);
         mEtNickName.addTextChangedListener(this);
+        mEtNickName.setInputType(InputType.TYPE_CLASS_TEXT);
     }
 
     @Override
@@ -92,22 +96,26 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
     }
 
     private void selectSex(int id) {
-        setClicked();
         switch (id) {
             case R.id.rl_girl:
                 mRbGirl.setChecked(true);
                 mRbBoy.setChecked(false);
+                setClicked();
                 return;
             case R.id.rl_boy:
                 mRbBoy.setChecked(true);
                 mRbGirl.setChecked(false);
+                setClicked();
                 break;
         }
+
     }
 
     private void setClicked() {
-        if (!(StringUtils.isEmpty(mEtNickName.getString())) && (mRbBoy.isChecked() || mRbBoy.isChecked())){
+        if (!(StringUtils.isEmpty(mEtNickName.getString())) && (mRbBoy.isChecked() || mRbGirl.isChecked())){
             btIsClick(mBtStart,true);
+        }else {
+            btIsClick(mBtStart,false);
         }
     }
 
@@ -116,6 +124,14 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
     @Override
     protected void onPause() {
         super.onPause();
+
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }

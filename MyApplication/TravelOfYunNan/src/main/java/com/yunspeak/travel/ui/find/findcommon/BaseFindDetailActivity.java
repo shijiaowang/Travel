@@ -160,8 +160,12 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
             try {
                 FindLastReply findLastReply = GsonUtils.getObject(event.getResult(), FindLastReply.class);
                 List<TravelReplyBean> data = findLastReply.getData();
-                mDatas.addAll(data);
-                mAdapter.notifyDataSetChanged();
+                if (mDatas==null){
+                    mDatas=data;
+                }else {
+                    mDatas.addAll(data);
+                }
+                mAdapter.notifiyData(mDatas);
             } catch (Exception e) {
                 LogUtils.e("评论返回数据时出现异常");
                 e.printStackTrace();

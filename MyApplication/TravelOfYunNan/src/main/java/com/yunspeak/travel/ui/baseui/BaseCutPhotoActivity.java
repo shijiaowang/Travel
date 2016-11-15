@@ -41,7 +41,7 @@ import java.io.IOException;
 public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetWorkActivity<T> {
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
     protected static final int TAKE_PHOTO = 0x02;
-    protected String filename;
+    protected String filename="";
     protected String filenam2;
     protected static final String IMAGE_NAME = "CropImage";
 
@@ -71,12 +71,14 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
             @Override
             public void onClick(View v) {
                 takePhoto();
+                window.dismiss();
             }
         });
         viewPopup.findViewById(R.id.tv_album).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pickFromGallery();
+                window.dismiss();
             }
         });
         viewPopup.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {

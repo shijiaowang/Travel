@@ -11,6 +11,7 @@ import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.utils.AiteUtils;
@@ -102,13 +103,13 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
             itemView.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  showDialog(t,forumReplyBean,position,forumReplyBean.getNick_name());
+                  showDialog(t,forumReplyBean,position,forumReplyBean.getNick_name(),forumReplyBean.getForum_id(),forumReplyBean.getId());
               }
           });
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    showDialog(t,forumReplyBean,position, forumReplyBean.getNick_name());
+                    showDialog(t,forumReplyBean,position, forumReplyBean.getNick_name(), forumReplyBean.getForum_id(), forumReplyBean.getId());
                     return true;
                 }
             });
@@ -134,19 +135,22 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
 
         }
     }
-    private void showDialog(final Context t, final PostDetailBean.DataBean.ForumReplyBean forumReplyBean, final int position, final String nick_name) {
+    private void showDialog(final Context t, final PostDetailBean.DataBean.ForumReplyBean forumReplyBean, final int position, final String nickName, final String forum_id, final String id) {
         PostOptionsDialog.showCommonDialog(t, new ParentPopClick() {
             @Override
             public void onClick(int type) {
                 switch (type){
                     case PostOptionsDialog.TYPE_REPLY:
-                        CreatePostActivity.start(t,cId,1,CreatePostActivity.REPLY_POST,forumReplyBean.getForum_id(),forumReplyBean.getUser_id(),forumReplyBean.getId(),nick_name);
+                        CreatePostActivity.start(t,cId,1,CreatePostActivity.REPLY_POST,forumReplyBean.getForum_id(),forumReplyBean.getUser_id(),forumReplyBean.getId(),nickName);
                         break;
                     case PostOptionsDialog.TYPE_ZAN:
                         Map<String, String> end = MapUtils.Build().addKey().addUserId().addRUserId(forumReplyBean.getUser_id()).add(IVariable.REPLAY_ID, forumReplyBean.getId()).addFroumId(forumReplyBean.getForum_id()).end();
                         PostEvent event = new PostEvent();
                         event.setPosition(position);
                         XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_RELPLY_LIKE,end,IState.TYPE_LIKE, event);
+                        break;
+                    case PostOptionsDialog.TYPE_REPORT:
+                        EnterAppointDialog.showDialogAddComplaint(t,forum_id,"1","2",id);
                         break;
 
                 }

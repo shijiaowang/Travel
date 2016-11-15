@@ -36,6 +36,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/9/6 0006.
  * 设置标签页面
@@ -47,16 +49,11 @@ public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
     private static final int TYPE_DIY_TITLE = 3;
     private String[] mTitles = {"我的称号", "认证标志", "玩法", "自定义"};
     private List<Fragment> fragmentList = new ArrayList<>();
-    @ViewInject(R.id.ll_indicator)
-    private LinearLayout mLlDot;
-    @ViewInject(R.id.v_dot)
-    private View mVDot;
-    @ViewInject(R.id.vp_pager)
-    private ViewPager mVpPager;
-    @ViewInject(R.id.indicator)
-    private SimpleViewPagerIndicator mIndicator;
-    @ViewInject(R.id.fl_title)
-    private FlowLayout mFlTitle;
+    @BindView(R.id.ll_indicator) LinearLayout mLlDot;
+    @BindView(R.id.v_dot) View mVDot;
+    @BindView(R.id.vp_pager) ViewPager mVpPager;
+    @BindView(R.id.indicator) SimpleViewPagerIndicator mIndicator;
+    @BindView(R.id.fl_title) FlowLayout mFlTitle;
     private boolean isSure=false;//如果用户一旦确认过就一只保存标签，除非用户清除
     private int mPointDistance;
     private int mFirstDotLeft;
@@ -105,7 +102,6 @@ public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
                 addTitle(settingTitle);
             }
         }
-
         mIndicator.setIsTitle(true);
         mIndicator.setViewPager(mVpPager);
         mIndicator.setTitles(mTitles);

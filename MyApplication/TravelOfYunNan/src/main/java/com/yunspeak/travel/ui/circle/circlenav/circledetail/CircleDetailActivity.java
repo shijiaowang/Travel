@@ -81,11 +81,11 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
 
     @Override
     protected void onSuccess(CircleDetailEvent circleDetailEvent) {
-
         switch (circleDetailEvent.getType()) {
-
             case TYPE_REFRESH:
                 dealHeader(circleDetailEvent);
+                super.onSuccess(circleDetailEvent);
+                break;
             case TYPE_LOAD:
                 super.onSuccess(circleDetailEvent);
                 break;

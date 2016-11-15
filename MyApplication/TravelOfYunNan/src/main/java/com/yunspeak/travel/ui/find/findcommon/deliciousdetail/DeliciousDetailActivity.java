@@ -53,14 +53,6 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         mTvDes = (TextView) findViewById(R.id.tv_des);
     }
 
-    @Override
-    public void onItemClick(int position) {
-        Map<String, String> destinationMap = MapUtils.Build().addKey().addFId(mDatas.get(position).getF_id()).addUserId().
-                addContent("这只是一个测试评论而已，而已").addPId(mDatas.get(position).getId()).add(IVariable.TYPE, IVariable.TYPE_DELICIOUS).
-                addNextPage(haveNextPage).addCount(mDatas.size()).
-                end();
-        XEventUtils.postUseCommonBackJson(IVariable.FIND_REPLY_DISCUSS, destinationMap, TYPE_DISCUSS, new DetailCommonEvent());
-    }
 
     @Override
     protected String initUrl() {

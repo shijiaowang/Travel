@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.othercenter.userdynamic;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
 import android.support.v7.widget.RecyclerView;
@@ -23,8 +24,10 @@ import com.yunspeak.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.AiteTextClick;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
+import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
+import com.yunspeak.travel.ui.find.travels.TravelsActivity;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterBean;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
@@ -101,21 +104,6 @@ public class UserDynamicAdapter extends BaseRecycleViewAdapter<DynamicBean> {
 
             tvType.setTag(moreBean.getCid());
             tvIconNumber.setText(moreBean.getLike_count());
-            if (moreBean.getIs_like().equals("1")){
-                tvIconNumber.setTextColor(loveColor);
-                tvIcon.setTextColor(loveColor);
-                tvIcon.setText(mContext.getString(R.string.activity_circle_love_full));
-            }else {
-                tvIconNumber.setTextColor(normalColor);
-                tvIcon.setTextColor(normalColor);
-                tvIcon.setText(mContext.getString(R.string.activity_circle_love_empty));
-            }
-            tvType.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CircleDetailActivity.start(mContext,(String) tvType.getTag());
-                }
-            });
             if (StringUtils.isEmpty(moreBean.getContent())){//没有content隐藏下面
                 tvOtherUser.setVisibility(View.GONE);
             }else {
@@ -126,11 +114,32 @@ public class UserDynamicAdapter extends BaseRecycleViewAdapter<DynamicBean> {
                     tvOtherUser.setText(AiteUtils.getSmiedTextWithAiteAndLinke(mContext, moreBean.getContent(), moreBean.getRe_inform(), moreBean.getRe_reply_img()));
                 }
             }
-
+            final int fType = moreBean.getF_type();
+            tvType.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (fType){
+                        case 0:
+                            CircleDetailActivity.start(mContext,moreBean.getCid());
+                            break;
+                        case 1:
+                            mContext.startActivity(new Intent(mContext,TravelsActivity.class));
+                            break;
+                        case 2:
+                            FindCommonActivity.start(mContext,FindCommonActivity.DELICIOUS_NORMAL,0);
+                            break;
+                        case 3:
+                            FindCommonActivity.start(mContext,FindCommonActivity.DESTINATION_NORMAL,0);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switch (moreBean.getF_type()){
+                    switch (fType){
                         case 0:
                             PostActivity.start(mContext,moreBean.getFid());
                             break;
@@ -143,10 +152,20 @@ public class UserDynamicAdapter extends BaseRecycleViewAdapter<DynamicBean> {
                         case 3:
                             DestinationDetailActivity.start(mContext,moreBean.getFid(),"目的地详情");
                             break;
+                        default:
+                            break;
                     }
                 }
             });
-
+            if (moreBean.getIs_like()!=null && moreBean.getIs_like().equals("1")){
+                tvIconNumber.setTextColor(loveColor);
+                tvIcon.setTextColor(loveColor);
+                tvIcon.setText(mContext.getString(R.string.activity_circle_love_full));
+            }else {
+                tvIconNumber.setTextColor(normalColor);
+                tvIcon.setTextColor(normalColor);
+                tvIcon.setText(mContext.getString(R.string.activity_circle_love_empty));
+            }
         }
     }
 }

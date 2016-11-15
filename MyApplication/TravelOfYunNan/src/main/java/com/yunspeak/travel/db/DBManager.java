@@ -211,6 +211,11 @@ public class DBManager {
             }
         }
     }
+    public static void insertChatUserInfo(UserInfo userInfo){
+        List<UserInfo> userInfos=new ArrayList<>();
+        userInfos.add(userInfo);
+        insertChatUserInfo(userInfos);
+    }
     //userinfo操作
     public static void insertChatUserInfo(List<UserInfo> userInfos){
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();

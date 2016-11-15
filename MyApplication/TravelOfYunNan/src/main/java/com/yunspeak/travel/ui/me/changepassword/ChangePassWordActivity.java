@@ -14,7 +14,6 @@ import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-import com.xwray.passwordview.PasswordView;
 import java.util.Map;
 import butterknife.BindView;
 

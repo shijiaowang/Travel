@@ -6,8 +6,8 @@ package com.yunspeak.travel.global;
  */
 public interface IVariable {
 
-    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
-    String DOMAIN_NAME = "http://192.168.1.71/";
+    String DOMAIN_NAME="http://yuns.yunspeak.com/";
+    /*String DOMAIN_NAME = "http://192.168.1.71/";*/
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -15,6 +15,7 @@ public interface IVariable {
     * 约伴
     * */
     String PLAY_TOGETHER = API_KEY + "Travel/travelLists/";//一起玩
+    String GET_PRICE = API_KEY + "Travel/getPricebasec/";//获取平台费用
     String PUSH_MY_APPOINT = API_KEY + "UserTravel/setMyTravelTotravelplan";//推送约伴
     String PLAY_WITHE_ME = API_KEY + "Travel/travelplanLists/";//带我玩
     String GET_PLAY_LABEL = API_KEY + "Travel/getAllLabel/";//获取玩法类型label
@@ -136,7 +137,7 @@ public interface IVariable {
     String MESSAGE_CENTER_COUNT = API_KEY + "UserMsg/getMyCount/";//消息中心数量 type 1 最外层（全部消息） 2 中间层（消息中心） 3最里层（每个子项目）
 
     //请求type
-    int TYPE_GET_KEY = 0;
+    int TYPE_GET_KEY = 3;
     int TYPE_POST_LOGIN = 1;//请求登录
 
 

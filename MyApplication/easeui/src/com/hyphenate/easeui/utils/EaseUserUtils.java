@@ -49,28 +49,10 @@ public class EaseUserUtils {
     public static void setUserAvatar(Context context, String username, SimpleDraweeView imageView) {
         EaseUser userInfo = getUserInfo(username);
         if (userInfo==null){
-            //这里加载默认图标
+            imageView.setImageURI(Uri.parse("res://"+R.drawable.boy));
         }else {
             displayIcon(imageView, userInfo.getAvatar(), context);
         }
-        //Glide.with(context).load(R.drawable.ease_default_avatar).into(imageView);
-
-
-        // Glide.with(context).load(username).into(imageView);
-        //displayIcon(imageView,username,context);
-
-    	/*EaseUser user = getUserInfo(username);
-        if(user != null && user.getAvatar() != null){
-            try {
-                int avatarResId = Integer.parseInt(user.getAvatar());
-                Glide.with(context).load(avatarResId).into(imageView);
-            } catch (Exception e) {
-                //use default avatar
-                Glide.with(context).load(user.getAvatar()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.ease_default_avatar).into(imageView);
-            }
-        }else{
-            Glide.with(context).load(R.drawable.ease_default_avatar).into(imageView);
-        }*/
     }
 
     /**

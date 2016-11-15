@@ -152,11 +152,16 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         ToastUtils.showToast(settingEvent.getMessage());
         isUpdate=true;
         SettingBean object = GsonUtils.getObject(settingEvent.getResult(), SettingBean.class);
-        UserInfo userInfo = object.getData();
-        if (userInfo!=null){
-            GlobalValue.userInfo=userInfo;
+        UserInfo data = object.getData();
+        if (data!=null){
+            GlobalValue.userInfo=data;
+            com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
+            userInfo.setId(data.getId());
+            userInfo.setNick_name(data.getNick_name());
+            userInfo.setUser_img(data.getUser_img());
+            DBManager.insertChatUserInfo(userInfo);
         }
-        UserUtils.saveUserInfo(userInfo);
+        UserUtils.saveUserInfo(data);
         messageIsChange=false;
         setResult(HomeActivity.UP_RESULT);
     }

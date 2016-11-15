@@ -4,12 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
-
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.bean.Login;
@@ -36,11 +30,8 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.Map;
 
-import butterknife.BindView;
 
 
 /**
@@ -53,7 +44,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
     private int GO_WHERE_PAGE = -1;
     private boolean isNetWork = false;//缓存登录时是否有网
     private SharedPreferences sharedPreferences;
-    @BindView(R.id.pb_load) View mPbLoad;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -80,12 +71,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
     @Override
     protected void initData() {
-        RotateAnimation rotateAnimation = new RotateAnimation(0, 8888, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        rotateAnimation.setDuration(10000);
 
-        rotateAnimation.setFillAfter(true);
-        rotateAnimation.setInterpolator(new LinearInterpolator());
-        mPbLoad.startAnimation(rotateAnimation);
     }
 
     @Override
@@ -176,6 +162,13 @@ public class WelcomeActivity extends FullTransparencyActivity {
             try {
                 Login object = GsonUtils.getObject(event.getResult(), Login.class);
                 UserInfo data = object.getData();
+                if (data!=null) {
+                    com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
+                    userInfo.setId(data.getId());
+                    userInfo.setNick_name(data.getNick_name());
+                    userInfo.setUser_img(data.getUser_img());
+                    DBManager.insertChatUserInfo(userInfo);
+                }
                 UserUtils.saveUserInfo(data);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -201,11 +194,9 @@ public class WelcomeActivity extends FullTransparencyActivity {
         }
         GO_WHERE_PAGE = START_SPLASH;
     }
-
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPbLoad.clearAnimation();
+    protected void onStop() {
+        super.onStop();
         EventBus.getDefault().unregister(this);
     }
 }

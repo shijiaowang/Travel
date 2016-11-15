@@ -49,7 +49,7 @@ public class CalendarUtils {
      * @param time2
      * @return
      */
-    public static String getHowDay(String time,String time2){
+    public static int getHowDay(String time,String time2){
         int day=0;
         try {
             Calendar calendar=Calendar.getInstance();
@@ -80,6 +80,6 @@ public class CalendarUtils {
             day=0;
         }
         if(day<0)day=0;
-        return day+"";
+        return day;
     }
 }

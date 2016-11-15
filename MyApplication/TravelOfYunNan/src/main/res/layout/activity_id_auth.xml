@@ -174,10 +174,12 @@
                 android:textSize="13sp"
                 android:textColor="@color/color969696"
                 android:lineSpacingExtra="7dp"
-                android:text="·请保证您上传的证件照清晰度可辨\n·每当您提供给我们敏感信息时，我们将采取安全措施保护您的敏感信息及已储存的个人资料，以防止您的个人资料丢失，被盗用或遭篡改\n·除非根据法律或政府的强制性规定，在为得到您的书面许可之前，我们不会把您的个人资料提供给无关的第三方（包括公司和个人）。但是，如果您要求我们提供特定客户支援服务时，我们则需要把您的相关信息提供给有关的第三方，如保险公司等"
+                android:text="@string/id_auth_des"
                 android:layout_marginRight="26dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                />
 
         </LinearLayout>
     </ScrollView>

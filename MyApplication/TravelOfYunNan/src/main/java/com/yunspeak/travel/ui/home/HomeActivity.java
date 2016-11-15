@@ -24,11 +24,11 @@ import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.bean.UserInfo;
-import com.yunspeak.travel.event.WelcomeEvent;
+import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.AppointFragment;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
-import com.yunspeak.travel.ui.fragment.CircleFragment;
+import com.yunspeak.travel.ui.circle.CircleFragment;
 import com.yunspeak.travel.ui.find.FindFragment;
 import com.yunspeak.travel.ui.me.me.MeFragment;
 import com.yunspeak.travel.ui.view.GradientTextView;
@@ -51,7 +51,6 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.util.LogUtil;
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -249,14 +248,25 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
        if (event.isSuccess()){
            Login object = GsonUtils.getObject(event.getResult(), Login.class);
            UserInfo data = object.getData();
+           if (data!=null){
+               com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
+               userInfo.setId(data.getId());
+               userInfo.setNick_name(data.getNick_name());
+               userInfo.setUser_img(data.getUser_img());
+               DBManager.insertChatUserInfo(userInfo);
+           }
            UserUtils.saveUserInfo(data);
            if (GlobalUtils.getUserInfo()==null){
                // TODO: 2016/11/5 0005 清除app所有缓存，不再提示
                ToastUtils.showToast("用户信息发生错误，请尝试重新登录，若多次无效，可清除缓存！");
            }
        }else {
-           // TODO: 2016/11/7 0007 确定网络问题
-           ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
+           if (NetworkUtils.isNetworkConnected(this)){
+               ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
+           }else {
+               ToastUtils.showToast("网络错误！");
+           }
+
        }
    }
     /**
