@@ -194,7 +194,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         switch (appointDetailEvent.getType()) {
             case TYPE_REFRESH:
                 try {
-                    setIsProgress(true);
                     dealData(appointDetailEvent);
                 } catch (Exception e) {
                     setIsProgress(false);
@@ -273,7 +272,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         List<AppointTogetherDetailBean.DataBean.PropBean> prop = data.getProp();
         if (prop != null && prop.size() != 0) {
             mLvEquProvider.setAdapter(new ProviderAdapter(this, prop));
-            //measureHeight(mLvEquProvider);
+        
         }
         List<PricebasecBean> pricebasec = data.getPricebasec();
         if (pricebasec == null) {
@@ -284,8 +283,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         pricebasecBean.setValue(data.getPrice());
         pricebasec.add(pricebasecBean);
         mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
-        //measureHeight(mLvInsurance);
-        setIsProgress(false);
     }
 
     /**

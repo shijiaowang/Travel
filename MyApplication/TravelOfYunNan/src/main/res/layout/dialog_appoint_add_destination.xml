@@ -28,18 +28,23 @@
             android:layout_height="wrap_content" />
 
         <EditText
+
             android:id="@+id/et_destination"
             android:textColor="@color/colorb5b5b5"
             android:maxLength="20"
             style="@style/commonSingleLineTextStyle"
             android:textSize="13sp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
             android:hint="请输入地点"
             android:textColorHint="@color/colorb5b5b5"
             android:layout_alignParentBottom="true"
             android:paddingLeft="20dp"
             android:background="@null"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" >
+        </EditText>
 
     </RelativeLayout>
     <View

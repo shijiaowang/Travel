@@ -35,7 +35,6 @@ public class UserInfoFragment extends LoadBaseFragment<UserInfoEvent> implements
     @BindView(R.id.tv_sex) TextView tvSex;
     @BindView(R.id.tv_address) TextView tvAddress;
     @BindView(R.id.tv_des) TextView tvDes;
-    @BindView(R.id.tv_work) TextView tvWork;
     @BindView(R.id.tv_level) TextView tvLevel;
     @BindView(R.id.tv_add_time) TextView tvAddTime;
     private String userId = "";
@@ -86,6 +85,9 @@ public class UserInfoFragment extends LoadBaseFragment<UserInfoEvent> implements
         flTitle.removeAllViews();
         if (interestLabel==null || interestLabel.size()==0){
            //设置什么
+            TextView textView = (TextView) inflater.inflate(R.layout.item_activity_other_title_item, flTitle, false);
+            textView.setText("┅");
+            flTitle.addView(textView);
         }else {
             for (UserLabelBean userLabelBean:interestLabel){
                 TextView textView = (TextView) inflater.inflate(R.layout.item_activity_other_title_item, flTitle, false);

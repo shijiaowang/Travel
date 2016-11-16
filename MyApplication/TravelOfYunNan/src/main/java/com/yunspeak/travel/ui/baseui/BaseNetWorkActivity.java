@@ -87,7 +87,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
             e.printStackTrace();
             onFail(t);
         }
-        setIsProgress(false);
+
         if (t.isSuccess()){
             if (isFirstInflate && t.getCode()==2){
                 setIsEmpty();
@@ -105,11 +105,12 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
                 e.printStackTrace();
                 onFail(t);
             }
+
         }else {
             ToastUtils.showToast(t.getMessage());
             onFail(t);
         }
-
+        setIsProgress(false);
     }
     /**
      * 处理公共的网络参数请求

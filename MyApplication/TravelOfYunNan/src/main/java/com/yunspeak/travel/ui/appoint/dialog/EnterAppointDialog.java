@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -46,6 +47,7 @@ import org.xutils.common.util.DensityUtil;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.OnClick;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -206,7 +208,7 @@ public class EnterAppointDialog {
     /**
      * 设置目的地
      */
-    public static void showInputTextView(Context context, String hint,String title,String okText, final SendTextClick parentPopClick) {
+    public static void showInputTextView(final Context context, String hint, String title, String okText, final SendTextClick parentPopClick) {
         //创建视图
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
@@ -215,6 +217,13 @@ public class EnterAppointDialog {
         mEtDestination.requestFocus();
         UIUtils.setEmojiFilter(mEtDestination);
         mEtDestination.setHint(hint);
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(mEtDestination,InputMethodManager.SHOW_FORCED);
+            }
+        });
         TextView tvOk = (TextView) dialogView.findViewById(R.id.tv_ok);
         tvOk.setText(okText);
         tvOk.setOnClickListener(new View.OnClickListener() {
@@ -261,7 +270,13 @@ public class EnterAppointDialog {
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
-        mEtDestination.requestFocus();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(mEtDestination,InputMethodManager.SHOW_FORCED);
+            }
+        });
         UIUtils.setEmojiFilter(mEtDestination);
         dialogView.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -300,8 +315,9 @@ public class EnterAppointDialog {
             }
         });
         Window window = dialog.getWindow(); //得到对话框
-        window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
-        window.setGravity(Gravity.CENTER);
+        if (window!=null) {
+            window.setGravity(Gravity.CENTER);
+        }
 
         //创建 Dialog
 //		Dialog dialog=new Dialog(上下文,风格style);
@@ -312,18 +328,28 @@ public class EnterAppointDialog {
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
+
+
+
     }
     /**
      * 投诉
      * @param context
      * @param id
      */
-    public static void showDialogAddComplaint(Context context, final String id, final String type, final String typeClass, final String rid) {
+    public static void showDialogAddComplaint(final Context context, final String id, final String type, final String typeClass, final String rid) {
         //创建视图
         final View dialogView = View.inflate(context, R.layout.dialog_appoint_add_complaint, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final RadioGroup mRbGroup = (RadioGroup) dialogView.findViewById(R.id.rg_group);
         final EditText mEtContent = (EditText) dialogView.findViewById(R.id.et_conetnet);
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(mEtContent,InputMethodManager.SHOW_FORCED);
+            }
+        });
         dialogView.findViewById(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

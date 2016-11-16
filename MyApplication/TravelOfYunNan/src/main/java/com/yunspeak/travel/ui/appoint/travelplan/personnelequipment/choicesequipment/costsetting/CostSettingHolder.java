@@ -22,7 +22,7 @@ public class CostSettingHolder extends BaseRecycleViewHolder<CostSettingBean.Dat
 
     @Override
     public void childBindView(int position, CostSettingBean.DataBean data, Context mContext) {
-           tvType.setText(data.getType());
+           tvType.setText(data.getKey());
         tvMoney.setText(data.getValue()+"元/日");
     }
 }

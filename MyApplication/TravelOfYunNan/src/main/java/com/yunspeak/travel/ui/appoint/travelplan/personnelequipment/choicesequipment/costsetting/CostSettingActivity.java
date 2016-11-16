@@ -42,6 +42,7 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
     TextView mTvTotalPrice;
     private int size;
     private double totalMoney;
+    private int countPeople;
 
     @Override
     protected int initLayoutRes() {
@@ -74,6 +75,7 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
             }
         });
         size = getIntent().getIntExtra(IVariable.PAGE_SIZE, -1);
+        countPeople = getIntent().getIntExtra(IVariable.POSITION, -1);
         if (size == -1) {
             ToastUtils.showToast("出行总天数出现错误！");
         }
@@ -113,7 +115,7 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
                 money=Double.parseDouble(value);
                 totalMoney+=money;
             }
-            mTvTotalPrice.setText("合计:\u3000"+totalMoney+"元");
+            mTvTotalPrice.setText("合计:\u3000"+(totalMoney*size)+"元");
         }
 
     }

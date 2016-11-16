@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
+import com.yunspeak.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.AiteTextClick;
@@ -131,6 +133,12 @@ public class UserDynamicAdapter extends BaseRecycleViewAdapter<DynamicBean> {
                         case 3:
                             FindCommonActivity.start(mContext,FindCommonActivity.DESTINATION_NORMAL,0);
                             break;
+                        case 4:
+                            AppointTogetherDetailActivity.start(mContext,moreBean.getFid());
+                            break;
+                        case 5:
+                            AppointWithMeDetailActivity.start(mContext,moreBean.getFid());
+                            break;
                         default:
                             break;
                     }
@@ -151,6 +159,12 @@ public class UserDynamicAdapter extends BaseRecycleViewAdapter<DynamicBean> {
                             break;
                         case 3:
                             DestinationDetailActivity.start(mContext,moreBean.getFid(),"目的地详情");
+                            break;
+                        case 4:
+                            AppointTogetherDetailActivity.start(mContext,moreBean.getFid());
+                            break;
+                        case 5:
+                            AppointWithMeDetailActivity.start(mContext,moreBean.getFid());
                             break;
                         default:
                             break;

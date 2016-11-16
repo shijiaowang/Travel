@@ -82,6 +82,8 @@ public class MemberDetailBean {
             private String id;
             private String sex;
             private String age;
+            private String is_boos;
+            private String is_manage;
 
             public String getAge() {
                 return age;

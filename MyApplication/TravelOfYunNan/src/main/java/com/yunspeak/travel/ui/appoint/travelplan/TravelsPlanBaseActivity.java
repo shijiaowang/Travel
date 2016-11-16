@@ -60,8 +60,8 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
     @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_delete) TextView mTvDelete;
     private TimePickerView pvTime;
-    protected Date startDate = new Date();
-    protected Date endDate = new Date();
+    protected Date startDate;
+    protected Date endDate;
     protected int dayOfYear;
     protected int year;
     protected Date endLine;
@@ -122,8 +122,14 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
         currentDay.setTime(new Date());
         dayOfYear = currentDay.get(Calendar.DAY_OF_YEAR);
         year = currentDay.get(Calendar.YEAR);
-        mTvStartTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
-        mTvEndTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        startDate = new Date();
+        endDate = new Date();
+        mTvStartTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(startDate));
+        mTvEndTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(endDate));
+        if (mTvHowDay != null) {
+            mTvHowDay.setText("共计" + CalendarUtils.getHowDayHowNight(startDate.getTime() + "", endDate.getTime() + ""));
+        }
+        howDay = CalendarUtils.getHowDay(startDate.getTime()+"",endDate.getTime()+"");
     }
 
     @Override

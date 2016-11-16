@@ -88,10 +88,6 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         mEdName.setInputType(InputType.TYPE_CLASS_PHONE);
         mEdPassword.addTextChangedListener(this);
         mTvChangePassword.setOnClickListener(this);
-       //1.得到InputMethodManager对象
-       InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-         //2.调用showSoftInput方法显示软键盘，其中view为聚焦的view组件
-       imm.showSoftInput(mEdName,InputMethodManager.SHOW_FORCED);
         mBtLogin.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,14 +184,10 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this);
     }
 

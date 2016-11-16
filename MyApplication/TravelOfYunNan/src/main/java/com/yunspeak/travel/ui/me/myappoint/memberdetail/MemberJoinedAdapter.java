@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.FrescoUtils;
 
 import org.xutils.x;
 
@@ -39,7 +41,7 @@ public class MemberJoinedAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         MemberDetailHolder memberDetailHolder = (MemberDetailHolder) holder;
         MemberDetailBean.DataBean.JoinBean joinBean = mDatas.get(position);
-        x.image().bind(memberDetailHolder.mIvIcon,joinBean.getUser_img());
+        FrescoUtils.displayIcon(memberDetailHolder.mIvIcon,joinBean.getUser_img());
         memberDetailHolder.mTvAge.setText(joinBean.getAge());
         memberDetailHolder.mTvSex.setText(joinBean.getSex().equals("1")?R.string.activity_member_detail_boy:R.string.activity_member_detail_girl);
         memberDetailHolder.mTvName.setText(joinBean.getNick_name());
@@ -53,13 +55,13 @@ public class MemberJoinedAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
     public class MemberDetailHolder extends RecyclerView.ViewHolder {
-         ImageView mIvIcon;
+         SimpleDraweeView mIvIcon;
          TextView mTvName;
          TextView mTvSex;
          TextView mTvAge;
         public MemberDetailHolder(View itemView) {
             super(itemView);
-            mIvIcon= (ImageView) itemView.findViewById(R.id.iv_icon);
+            mIvIcon= (SimpleDraweeView) itemView.findViewById(R.id.iv_icon);
             mTvName = (TextView) itemView.findViewById(R.id.tv_name);
             mTvSex = (TextView) itemView.findViewById(R.id.tv_sex);
             mTvAge = (TextView) itemView.findViewById(R.id.tv_age);

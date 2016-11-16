@@ -1,26 +1,20 @@
 package com.yunspeak.travel.ui.me.myappoint.memberdetail;
 
 
-import android.app.Activity;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 
 
@@ -34,8 +28,6 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
     @BindView(R.id.rv_enter) RecyclerView mRvEnter;
     @BindView(R.id.tv_enter) TextView mTvEnter;
     private String tId;
-    private int enterSize = 0;
-    private int joinedSize = 0;
     private List<MemberDetailBean.DataBean.JoinBean> joined;
     private List<MemberDetailBean.DataBean.JoinBean> joing;
     private MemberEnterAdapter memberEnterAdapter;

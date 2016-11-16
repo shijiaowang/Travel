@@ -139,7 +139,6 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
                 break;
             case R.id.bt_next:
                 next();
-
                 break;
             case R.id.rl_auth_select:
                 AppointSpinnerPop.showSpinnerPop(this,mRlAuthSelect,auths);
@@ -173,11 +172,12 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
     private void saveData() throws Exception {
         String least = getString(mEtLeast);
         String most = getString(mEtMost);
-        if (Integer.parseInt(least)>Integer.parseInt(most)){
+        int mostPeople = Integer.parseInt(most);
+        if (Integer.parseInt(least)>mostPeople){
             ToastUtils.showToast("最多人数不能少于最少人数！");
             return;
         }
-        if (Integer.parseInt(least)<=0 || Integer.parseInt(most)<=0){
+        if (Integer.parseInt(least)<=0 || mostPeople<=0){
             ToastUtils.showToast("人数不能少于0！");
             return;
         }
@@ -188,6 +188,7 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
         JsonUtils.putString(IVariable.BIND_CONDITION,authType,basecJsonObject);
         JsonUtils.putString(IVariable.AGREE,autoPass,basecJsonObject);
         Intent intent1 = getIntent();
+        intent1.putExtra(IVariable.POSITION,most);
         intent1.setClass(this,CostSettingActivity.class);
         startActivity(intent1);
     }

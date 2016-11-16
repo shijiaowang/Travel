@@ -1,17 +1,12 @@
 package com.yunspeak.travel.ui.me.identityauth.idauth;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
-import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.baseui.BaseCropPhotoActivity;
 import com.yunspeak.travel.ui.baseui.BaseCropPictureActivity;
 import com.yunspeak.travel.ui.me.identityauth.AuthCommonEvent;
 import com.yunspeak.travel.utils.BitmapUtils;
@@ -22,10 +17,6 @@ import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +70,6 @@ public class IdAuthActivity extends BaseCropPictureActivity<AuthCommonEvent> imp
     protected void childAdd(MapUtils.Builder builder, int type) {
 
     }
-
     @Override
     protected String initUrl() {
         return null;

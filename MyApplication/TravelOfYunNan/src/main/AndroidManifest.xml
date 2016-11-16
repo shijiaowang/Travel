@@ -100,7 +100,9 @@
         <activity android:name=".ui.me.titlemanage.TitleManagementActivity"/>
         <activity android:name=".ui.appoint.travelplan.lineplan.selectdestination.customdestination.CustomDestinationActivity"/>
         <activity android:name=".ui.baseui.ActivateDetailActivity"/>
-        <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity"/>
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity android:name=".ui.find.findcommon.deliciousdetail.DeliciousDetailActivity"/>
         <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity"/>
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity"/>
@@ -108,7 +110,7 @@
             android:windowSoftInputMode="adjustPan"
             />
         <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingActivity"
-           android:windowSoftInputMode="adjustResize|stateHidden"
+           android:windowSoftInputMode="adjustPan"
             />
         <activity android:name=".ui.appoint.withme.withmedetail.AppointWithMeDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentWithMeActivity"/>
