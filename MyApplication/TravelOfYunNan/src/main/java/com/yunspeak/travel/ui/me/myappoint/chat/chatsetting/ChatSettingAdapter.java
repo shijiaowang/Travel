@@ -35,8 +35,7 @@ public class ChatSettingAdapter extends BaseRecycleViewAdapter<ChatSettingUserBe
 
     @Override
     public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_chat_setting, parent, false);
-        return new ChatSettingHolder(inflate);
+        return new ChatSettingHolder(inflateView(R.layout.item_activity_chat_setting, parent));
     }
 
     class ChatSettingHolder extends BaseRecycleViewHolder<ChatSettingUserBean> {

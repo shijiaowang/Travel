@@ -105,6 +105,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             }
             }
         };
+    private int prePosition=-1;
 
     @Override
     protected int initLayoutRes() {
@@ -128,18 +129,8 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
 
     }
 
-    /**
-     * 优惠券添加或者移除
-     * @param conpouBean
-     */
-    private void removeOrAdd(CouponBean conpouBean) {
-        String id = conpouBean.getId();
-        if (mConpous.contains(id)){
-            mConpous.remove(id);
-        }else {
-            mConpous.add(id);
-        }
-    }
+
+
 
 
     @Override
@@ -225,14 +216,17 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             public void onItemClick(int position) {
                 if (type.equals(ORDER_IS_NEW)  && orderConpou!=null){//新订单才可以进行选择
                     CouponBean conpouBean = orderConpou.get(position);
-                    removeOrAdd(conpouBean);
                     if (conpouBean.getStatus().equals("1")){
-                        totalReduces +=Float.parseFloat(conpouBean.getNumber());
+                        if (prePosition!=-1){
+                            orderConpou.get(prePosition).setStatus("1");
+                            totalPay+=Float.parseFloat(orderConpou.get(prePosition).getNumber());
+                        }
+                        totalReduces =Float.parseFloat(conpouBean.getNumber());
                         totalPay-=Float.parseFloat(conpouBean.getNumber());
                         conpouBean.setStatus("2");
+                        prePosition=position;
                     }else if (conpouBean.getStatus().equals("2")){
-                        totalReduces -=Float.parseFloat(conpouBean.getNumber());
-                        totalReduces = totalReduces <0?0: totalReduces;
+                        totalReduces = 0f;
                         totalPay+=Float.parseFloat(conpouBean.getNumber());
                         conpouBean.setStatus("1");
                     }

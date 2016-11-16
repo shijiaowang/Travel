@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +16,6 @@ import android.text.TextPaint;
 import android.text.TextWatcher;
 import android.text.style.ClickableSpan;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +33,6 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
-import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
@@ -413,7 +410,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
 
 
     @Override
-    protected void childDisplay(String url) {
+    protected void childDisplay(String url, String filename) {
         FrescoUtils.displayNormal(ivCover, url, 600, 450);
     }
 

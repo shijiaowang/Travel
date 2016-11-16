@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.DesRemarkActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
@@ -19,6 +20,7 @@ import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
 import org.json.JSONObject;
@@ -40,9 +42,12 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
     RecyclerView mRecyclerView;
     @BindView(R.id.tv_total_price)
     TextView mTvTotalPrice;
+    @BindView(R.id.tv_money_des)
+    TextView mTvMoneyDes;
     private int size;
     private double totalMoney;
     private int countPeople;
+    private double payMoney;
 
     @Override
     protected int initLayoutRes() {
@@ -53,7 +58,11 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
 
     @Override
     protected void initEvent() {
+
         ActivityUtils.getInstance().addActivity(this);
+       if (GlobalValue.mAppointType==IVariable.TYPE_WITH_ME){
+           mTvMoneyDes.setText("(请输入您的理想费用，具体费用请咨询邀请您的队长！)");
+       }
         mBtNext.setOnClickListener(this);
         mEtPrice.addTextChangedListener(new TextWatcher() {
             @Override
@@ -64,9 +73,23 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String string = mEtPrice.getText().toString();
+                if (StringUtils.isEmpty(string)){
+                    string="0";
+                }
                 double enterMoney = Double.parseDouble(string);
-                double payMoney=enterMoney+totalMoney*size;
+                if (GlobalValue.mAppointType==IVariable.TYPE_WITH_ME){
+                    payMoney = enterMoney+totalMoney*size;
+                }else {
+                    if (countPeople<=0){
+                        ToastUtils.showToast("人数错误！");
+                        setErrorPage(true);
+                        return;
+                    }
+                     payMoney=(enterMoney*countPeople)/5d+totalMoney*size;
+                }
                 mTvTotalPrice.setText("合计:\u3000"+payMoney+"元");
+
+
             }
 
             @Override
@@ -79,6 +102,13 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
         if (size == -1) {
             ToastUtils.showToast("出行总天数出现错误！");
         }
+    }
+
+    @Override
+    protected void onLoad(int type) {
+        totalMoney=0;
+        payMoney=0;
+        super.onLoad(type);
     }
 
     @Override

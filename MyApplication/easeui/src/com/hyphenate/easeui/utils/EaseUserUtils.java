@@ -49,7 +49,7 @@ public class EaseUserUtils {
     public static void setUserAvatar(Context context, String username, SimpleDraweeView imageView) {
         EaseUser userInfo = getUserInfo(username);
         if (userInfo==null){
-            imageView.setImageURI(Uri.parse("res://"+R.drawable.boy));
+            imageView.setImageURI(Uri.parse("res:///"+R.drawable.boy));
         }else {
             displayIcon(imageView, userInfo.getAvatar(), context);
         }

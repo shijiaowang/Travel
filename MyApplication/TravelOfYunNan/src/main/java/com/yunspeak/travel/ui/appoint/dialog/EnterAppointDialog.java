@@ -23,7 +23,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.global.CancelDialogClick;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -217,11 +216,18 @@ public class EnterAppointDialog {
         mEtDestination.requestFocus();
         UIUtils.setEmojiFilter(mEtDestination);
         mEtDestination.setHint(hint);
+        final InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+
                 imm.showSoftInput(mEtDestination,InputMethodManager.SHOW_FORCED);
+            }
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                imm.hideSoftInputFromWindow(mEtDestination.getWindowToken(), 0); //强制隐藏键盘
             }
         });
         TextView tvOk = (TextView) dialogView.findViewById(R.id.tv_ok);
@@ -270,10 +276,11 @@ public class EnterAppointDialog {
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
+        final InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+
                 imm.showSoftInput(mEtDestination,InputMethodManager.SHOW_FORCED);
             }
         });
@@ -314,6 +321,12 @@ public class EnterAppointDialog {
                 dialog.dismiss();
             }
         });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                imm.hideSoftInputFromWindow(mEtDestination.getWindowToken(), 0); //强制隐藏键盘
+            }
+        });
         Window window = dialog.getWindow(); //得到对话框
         if (window!=null) {
             window.setGravity(Gravity.CENTER);
@@ -340,13 +353,14 @@ public class EnterAppointDialog {
     public static void showDialogAddComplaint(final Context context, final String id, final String type, final String typeClass, final String rid) {
         //创建视图
         final View dialogView = View.inflate(context, R.layout.dialog_appoint_add_complaint, null);
+        final InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
         final RadioGroup mRbGroup = (RadioGroup) dialogView.findViewById(R.id.rg_group);
         final EditText mEtContent = (EditText) dialogView.findViewById(R.id.et_conetnet);
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+
                 imm.showSoftInput(mEtContent,InputMethodManager.SHOW_FORCED);
             }
         });
@@ -372,6 +386,12 @@ public class EnterAppointDialog {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+            }
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                imm.hideSoftInputFromWindow(mEtContent.getWindowToken(), 0); //强制隐藏键盘
             }
         });
         Window window = dialog.getWindow(); //得到对话框

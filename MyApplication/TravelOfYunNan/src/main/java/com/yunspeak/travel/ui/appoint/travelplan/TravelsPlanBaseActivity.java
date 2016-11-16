@@ -24,7 +24,6 @@ import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -314,7 +313,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
     }
 
     @Override
-    protected void childDisplay(String url) {
+    protected void childDisplay(String url, String filename) {
         mRlIcon.setVisibility(View.VISIBLE);
         mTvIcon.setVisibility(View.GONE);
         mTvDelete.setOnClickListener(new View.OnClickListener() {

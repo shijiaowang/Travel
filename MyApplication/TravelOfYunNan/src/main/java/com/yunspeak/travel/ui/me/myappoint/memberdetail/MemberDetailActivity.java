@@ -95,7 +95,7 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
                 memberEnterAdapter.notifyItemRemoved(position1);
                 memberEnterAdapter.notifyItemRangeChanged(position1,joing.size()-position1);
                 joing=newDatas;
-                memberEnterAdapter.setmDatas(joing);
+                memberEnterAdapter.notifiyData(joing);
                 break;
         }
 
@@ -112,7 +112,7 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
         //别忘了将新数据给Adapter
         diffResult.dispatchUpdatesTo(memberEnterAdapter);
         joing = newDatas;
-        memberEnterAdapter.setmDatas(joing);
+        memberEnterAdapter.notifiyData(joing);
 
     }
 
@@ -124,7 +124,7 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
         joing = object.getData().getJoin_ing();
         if (isBoss.equals("1")) {//是否是领队
             mTvEnter.setText(getString(R.string.text_downing, getListSize(joing)));
-            memberEnterAdapter = new MemberEnterAdapter(this, joing);
+            memberEnterAdapter = new MemberEnterAdapter(joing,this);
             mRvEnter.setAdapter(memberEnterAdapter);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             //解决 嵌套滑动不流畅问题
@@ -139,12 +139,11 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
             mRvEnter.setVisibility(View.GONE);
         }
         mTvJoined.setText(getString(R.string.text_down, getListSize(joined)));
-        memberJoinedAdapter = new MemberJoinedAdapter(this, joined);
+        memberJoinedAdapter = new MemberJoinedAdapter(joined,this);
         mRvJoined.setAdapter(memberJoinedAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //解决 嵌套滑动不流畅问题
         linearLayoutManager.setSmoothScrollbarEnabled(true);
-        linearLayoutManager.setAutoMeasureEnabled(true);
         mRvJoined.setLayoutManager(linearLayoutManager);
         mRvJoined.setHasFixedSize(true);
         mRvJoined.setNestedScrollingEnabled(false);

@@ -41,8 +41,8 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
     TextView tvChatNumber;
     @BindView(R.id.s_toggle)
     Switch sToggle;
-    @BindView(R.id.bt_clear)
-    Button btClear;
+    @BindView(R.id.tv_clear)
+    TextView btClear;
     @BindView(R.id.rv_member)
     RecyclerView rvMember;
     private String chatId;
@@ -56,7 +56,7 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        builder.addtId(chatId);
+        builder.add("groupid",chatId);
     }
 
     @Override

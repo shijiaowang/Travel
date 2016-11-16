@@ -9,7 +9,7 @@ import butterknife.ButterKnife;
 /**
  * Created by wangyang on 2016/10/15 0015.
  */
-public abstract class BaseRecycleViewHolder<T> extends RecyclerView.ViewHolder{
+public abstract class   BaseRecycleViewHolder<T> extends RecyclerView.ViewHolder{
 
     public BaseRecycleViewHolder(View itemView) {
         super(itemView);

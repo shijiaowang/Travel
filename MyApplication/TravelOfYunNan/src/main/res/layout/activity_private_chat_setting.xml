@@ -62,36 +62,6 @@
         android:layout_width="match_parent"
         android:layout_height="34dp">
         <TextView
-            android:text="置顶聊天"
-            android:layout_centerVertical="true"
-            android:textColor="@color/color323232"
-            android:textSize="15sp"
-            android:layout_marginLeft="22dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Switch
-            android:id="@+id/s_toggle_message"
-            android:showText="true"
-            android:textOn="开"
-            android:textOff="关"
-            android:switchTextAppearance="@style/mySwitchStyle"
-            android:textColorLink="@color/colorFAFAFA"
-            android:layout_marginRight="22dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp" />
-
-    </RelativeLayout>
-    <View
-        android:background="@color/meLine"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="34dp">
-        <TextView
             android:text="屏蔽消息"
             android:layout_centerVertical="true"
             android:textColor="@color/color323232"
@@ -118,7 +88,8 @@
         android:layout_width="match_parent"
         android:layout_height="6dp"/>
 
-    <Button
+    <TextView
+        android:gravity="center"
         android:id="@+id/bt_clear"
         android:text="清空聊天记录"
         android:textColor="@color/otherFf7f6c"
@@ -131,7 +102,8 @@
         android:background="@color/meLine"
         android:layout_width="match_parent"
         android:layout_height="6dp"/>
-    <Button
+    <TextView
+        android:gravity="center"
         android:id="@+id/bt_black"
         android:text="加入黑名单"
         android:textColor="@color/otherFf7f6c"

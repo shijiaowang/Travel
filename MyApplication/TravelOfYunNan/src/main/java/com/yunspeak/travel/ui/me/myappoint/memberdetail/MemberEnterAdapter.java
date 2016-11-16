@@ -15,7 +15,9 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
+import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
@@ -35,11 +37,14 @@ import butterknife.BindView;
 public class MemberEnterAdapter extends BaseRecycleViewAdapter<MemberDetailBean.DataBean.JoinBean> {
     public static final int TYPE_AGREE = 100;
     public static final int TYPE_RESUSE = 101;
-
+    int okColor1 = Color.parseColor("#5cd0c2");
+    int okColor2 = Color.parseColor("#Ffbf75");
 
     public MemberEnterAdapter(List<MemberDetailBean.DataBean.JoinBean> mDatas, Context mContext) {
         super(mDatas, mContext);
     }
+
+
 
     @Override
     public void onBindViewHolder(BaseRecycleViewHolder<MemberDetailBean.DataBean.JoinBean> holder, int position, List<Object> payloads) {
@@ -62,10 +67,10 @@ public class MemberEnterAdapter extends BaseRecycleViewAdapter<MemberDetailBean.
             memberDetailHolder.tvOkText.setVisibility(View.VISIBLE);
             memberDetailHolder.tvDelete.setVisibility(View.GONE);
         } else {
-            memberDetailHolder.mTvDelete.setVisibility(View.VISIBLE);
-            memberDetailHolder.mTvOk.setTextColor(okColor1);
-            memberDetailHolder.mTvOkText.setVisibility(View.GONE);
-            memberDetailHolder.mTvOk.setOnClickListener(new View.OnClickListener() {
+            memberDetailHolder.tvDelete.setVisibility(View.VISIBLE);
+            memberDetailHolder.tvOk.setTextColor(okColor1);
+            memberDetailHolder.tvOkText.setVisibility(View.GONE);
+            memberDetailHolder.tvOk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     event(memberDetailHolder.getAdapterPosition(), "1", TYPE_AGREE);
@@ -73,57 +78,7 @@ public class MemberEnterAdapter extends BaseRecycleViewAdapter<MemberDetailBean.
             });
         }
     }
-    }
 
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        final MemberDetailHolder memberDetailHolder = (MemberDetailHolder) holder;
-        MemberDetailBean.DataBean.JoinBean joinBean = mDatas.get(position);
-        FrescoUtils.displayIcon(memberDetailHolder.mIvIcon, joinBean.getUser_img());
-        memberDetailHolder.mTvAge.setText(joinBean.getAge());
-        memberDetailHolder.mTvSex.setText(joinBean.getSex().equals("1") ? R.string.activity_member_detail_boy : R.string.activity_member_detail_girl);
-        memberDetailHolder.mTvName.setText(joinBean.getNick_name());
-        if (StringUtils.isEmpty(joinBean.getContent())) {
-            memberDetailHolder.mLlDiscuss.setVisibility(View.GONE);
-        } else {
-            memberDetailHolder.mLlDiscuss.setVisibility(View.VISIBLE);
-            memberDetailHolder.mTvCatAll.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    changeShowWay(memberDetailHolder.mTvDiscuss, memberDetailHolder.mTvCatAll);
-                }
-            });
-        }
-        if (joinBean.getState().equals("1")) {
-            memberDetailHolder.mTvDelete.setVisibility(View.VISIBLE);
-            memberDetailHolder.mTvOk.setTextColor(okColor1);
-            memberDetailHolder.mTvOkText.setVisibility(View.GONE);
-            memberDetailHolder.mTvOk.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    event(memberDetailHolder.getAdapterPosition(), "1", TYPE_AGREE);
-                }
-            });
-        } else {
-            memberDetailHolder.mTvOk.setClickable(false);
-            memberDetailHolder.mTvOk.setTextColor(Color.parseColor("#Ffbf75"));
-            memberDetailHolder.mTvOkText.setVisibility(View.VISIBLE);
-            memberDetailHolder.mTvDelete.setVisibility(View.GONE);
-        }
-        memberDetailHolder.mTvDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // event(position,"2", TYPE_RESUSE);
-                MemBerDetailEvent memBerDetailEvent = new MemBerDetailEvent();
-                memBerDetailEvent.setPosition(position);
-                memBerDetailEvent.setType(TYPE_RESUSE);
-                memBerDetailEvent.setIsSuccess(true);
-                EventBus.getDefault().post(memBerDetailEvent);
-            }
-        });
-
-    }
 
     private void event(int position, String type, int typeAgree) {
         MemBerDetailEvent memBerDetailEvent = new MemBerDetailEvent();
@@ -172,8 +127,56 @@ public class MemberEnterAdapter extends BaseRecycleViewAdapter<MemberDetailBean.
 
 
         @Override
-        public void childBindView(int position, MemberDetailBean.DataBean.JoinBean data, Context mContext) {
-
+        public void childBindView(final int position, final MemberDetailBean.DataBean.JoinBean joinBean, final Context mContext) {
+            FrescoUtils.displayIcon(ivIcon, joinBean.getUser_img());
+            tvAge.setText(joinBean.getAge());
+            tvSex.setText(joinBean.getSex().equals("1") ? R.string.activity_member_detail_boy : R.string.activity_member_detail_girl);
+            tvName.setText(joinBean.getNick_name());
+            tvTime.setText(FormatDateUtils.FormatLongTime("MM:dd HH:mm:ss",joinBean.getAdd_time()));
+            if (StringUtils.isEmpty(joinBean.getContent())) {
+                llDiscuss.setVisibility(View.GONE);
+            } else {
+                llDiscuss.setVisibility(View.VISIBLE);
+                tvCatAll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        changeShowWay(tvDiscuss, tvCatAll);
+                    }
+                });
+            }
+            if (joinBean.getState().equals("1")) {
+                tvDelete.setVisibility(View.VISIBLE);
+                tvOk.setTextColor(okColor1);
+                tvOkText.setVisibility(View.GONE);
+                tvOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        event(getAdapterPosition(), "1", TYPE_AGREE);
+                    }
+                });
+            } else {
+                tvOk.setClickable(false);
+                tvOk.setTextColor(okColor2);
+                tvOkText.setVisibility(View.VISIBLE);
+                tvDelete.setVisibility(View.GONE);
+            }
+            ivIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    OtherUserCenterActivity.start(mContext,ivIcon,joinBean.getUser_id());
+                }
+            });
+            tvDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // event(position,"2", TYPE_RESUSE);
+                    MemBerDetailEvent memBerDetailEvent = new MemBerDetailEvent();
+                    memBerDetailEvent.setPosition(position);
+                    memBerDetailEvent.setType(TYPE_RESUSE);
+                    memBerDetailEvent.setIsSuccess(true);
+                    EventBus.getDefault().post(memBerDetailEvent);
+                }
+            });
         }
 
     }

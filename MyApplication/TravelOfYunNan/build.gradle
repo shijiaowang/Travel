@@ -63,4 +63,5 @@ dependencies {
     apt 'com.zhy:mpermission-compiler:1.0.0'
     compile 'com.zhy:mpermission-api:1.0.0'
     compile 'com.android.support:cardview-v7:24.2.1'
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }

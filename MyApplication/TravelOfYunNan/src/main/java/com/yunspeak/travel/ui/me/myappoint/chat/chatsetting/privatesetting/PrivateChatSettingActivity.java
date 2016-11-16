@@ -42,14 +42,10 @@ public class PrivateChatSettingActivity extends BaseNetWorkActivity<PrivateChatS
     TextView tvDes;
     @BindView(R.id.tv_cursor)
     FontsIconTextView tvCursor;
-    @BindView(R.id.s_toggle_message)
-    Switch sToggleMessage;
-    @BindView(R.id.s_toggle)
-    Switch sToggle;
     @BindView(R.id.bt_clear)
-    Button btClear;
+    TextView btClear;
     @BindView(R.id.bt_black)
-    Button btBlack;
+    TextView btBlack;
     private String userId;
 
     @Override

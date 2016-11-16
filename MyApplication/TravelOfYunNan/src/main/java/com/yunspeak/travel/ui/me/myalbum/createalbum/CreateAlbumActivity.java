@@ -152,7 +152,7 @@ public class CreateAlbumActivity extends BaseCutPhotoActivity<CreateAlbumEvent> 
     }
 
     @Override
-    protected void childDisplay(String url) {
+    protected void childDisplay(String url, String filename) {
         FrescoUtils.displayNormal(mIvBg,url,600,450);
     }
 

@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.home;
 
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 
 import com.hyphenate.EMMessageListener;
+import com.hyphenate.chat.EMChatService;
 import com.hyphenate.chat.EMMessage;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
@@ -111,6 +113,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap, IVariable.TYPE_POST_LOGIN, new HomeLoginEvent());
 
         }
+        Intent startServiceIntent=new Intent(this, EMChatService.class);
+        startServiceIntent.putExtra("reason", "boot");
+        startService(startServiceIntent);
     }
 
     /**

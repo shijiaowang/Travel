@@ -92,3 +92,4 @@
 -keepclassmembers class * {
     @org.xutils.view.annotation.Event <methods>;
 }
+#环信

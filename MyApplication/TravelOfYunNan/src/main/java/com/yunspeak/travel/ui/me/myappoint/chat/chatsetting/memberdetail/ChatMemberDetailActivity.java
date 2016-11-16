@@ -37,7 +37,7 @@ public class ChatMemberDetailActivity extends BaseNetWorkActivity<ChatMemberDeta
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        builder.addtId(tId);
+        builder.add("groupid",tId);
     }
 
     @Override

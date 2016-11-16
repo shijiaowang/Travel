@@ -188,7 +188,7 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
         JsonUtils.putString(IVariable.BIND_CONDITION,authType,basecJsonObject);
         JsonUtils.putString(IVariable.AGREE,autoPass,basecJsonObject);
         Intent intent1 = getIntent();
-        intent1.putExtra(IVariable.POSITION,most);
+        intent1.putExtra(IVariable.POSITION,mostPeople);
         intent1.setClass(this,CostSettingActivity.class);
         startActivity(intent1);
     }

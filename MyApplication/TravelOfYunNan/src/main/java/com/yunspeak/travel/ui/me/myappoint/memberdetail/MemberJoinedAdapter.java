@@ -2,73 +2,78 @@ package com.yunspeak.travel.ui.me.myappoint.memberdetail;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
 
-import org.xutils.x;
-
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/7/6 0006.
  * 已加入
  */
-public class MemberJoinedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
-    private Context mContext;
-    private List<MemberDetailBean.DataBean.JoinBean> mDatas;
-
-    public MemberJoinedAdapter(Context mContext, List<MemberDetailBean.DataBean.JoinBean> mDatas) {
-        this.mContext = mContext;
-        this.mDatas = mDatas;
-    }
+public class MemberJoinedAdapter extends BaseRecycleViewAdapter<MemberDetailBean.DataBean.JoinBean> {
 
 
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_member_joined, parent, false);
-        return new MemberDetailHolder(inflate);
-
+    public MemberJoinedAdapter(List<MemberDetailBean.DataBean.JoinBean> mDatas, Context mContext) {
+        super(mDatas, mContext);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        MemberDetailHolder memberDetailHolder = (MemberDetailHolder) holder;
-        MemberDetailBean.DataBean.JoinBean joinBean = mDatas.get(position);
-        FrescoUtils.displayIcon(memberDetailHolder.mIvIcon,joinBean.getUser_img());
-        memberDetailHolder.mTvAge.setText(joinBean.getAge());
-        memberDetailHolder.mTvSex.setText(joinBean.getSex().equals("1")?R.string.activity_member_detail_boy:R.string.activity_member_detail_girl);
-        memberDetailHolder.mTvName.setText(joinBean.getNick_name());
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return mDatas.size();
+    public BaseRecycleViewHolder<MemberDetailBean.DataBean.JoinBean> onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new MemberDetailHolder(inflateView(R.layout.item_activity_member_joined, parent));
     }
 
 
-    public class MemberDetailHolder extends RecyclerView.ViewHolder {
-         SimpleDraweeView mIvIcon;
-         TextView mTvName;
-         TextView mTvSex;
-         TextView mTvAge;
+    public class MemberDetailHolder extends BaseRecycleViewHolder<MemberDetailBean.DataBean.JoinBean> {
+
+        @BindView(R.id.iv_icon)
+        SimpleDraweeView ivIcon;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.tv_sex)
+        FontsIconTextView tvSex;
+        @BindView(R.id.tv_type)
+        TextView tvType;
+        @BindView(R.id.tv_age)
+        TextView tvAge;
         public MemberDetailHolder(View itemView) {
             super(itemView);
-            mIvIcon= (SimpleDraweeView) itemView.findViewById(R.id.iv_icon);
-            mTvName = (TextView) itemView.findViewById(R.id.tv_name);
-            mTvSex = (TextView) itemView.findViewById(R.id.tv_sex);
-            mTvAge = (TextView) itemView.findViewById(R.id.tv_age);
+        }
+
+        @Override
+        public void childBindView(int position, final MemberDetailBean.DataBean.JoinBean joinBean, final Context mContext) {
+            FrescoUtils.displayIcon(ivIcon, joinBean.getUser_img());
+           tvAge.setText(joinBean.getAge());
+           tvSex.setText(joinBean.getSex().equals("1") ? R.string.activity_member_detail_boy : R.string.activity_member_detail_girl);
+           tvName.setText(joinBean.getNick_name());
+            if (joinBean.getIs_boss().equals("1")){
+                tvType.setVisibility(View.VISIBLE);
+                tvType.setText("发布人");
+                tvType.setBackgroundResource(R.drawable.r_green);
+            }else if (joinBean.getIs_manage().equals("1")){
+                tvType.setVisibility(View.VISIBLE);
+                tvType.setText("专管员");
+                tvType.setBackgroundResource(R.drawable.r_red);
+            }else {
+                tvType.setVisibility(View.GONE);
+            }
+            ivIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    OtherUserCenterActivity.start(mContext,ivIcon,joinBean.getUser_id());
+                }
+            });
         }
     }
-
-
-
-
 }

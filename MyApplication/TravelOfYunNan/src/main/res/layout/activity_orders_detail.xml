@@ -7,7 +7,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="44dp">
+            <ImageView
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/iv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_des"
+                android:textColor="@color/color323232"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:text="付款"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="12sp"
+                android:id="@+id/bt_pay"
+                android:background="@drawable/activity_my_appoint_chat_bg"
+                android:layout_width="49dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="12dp"
+                />
+        </LinearLayout>
         <RelativeLayout
             style="@style/activityConfirmOrdersRl"
             android:layout_height="36dp"
@@ -89,52 +116,58 @@
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
+      <LinearLayout
+          android:id="@+id/ll_pay_way"
+          android:layout_width="match_parent"
+          android:orientation="vertical"
+          android:layout_height="wrap_content">
+          <TextView
+              style="@style/activityConfirmOrdersTextTitle"
+              android:text="· 付款方式" />
 
-        <TextView
-            style="@style/activityConfirmOrdersTextTitle"
-            android:text="· 付款方式" />
 
+          <RelativeLayout
+              android:id="@+id/rl_zfb"
+              style="@style/activityConfirmOrdersRl"
+              android:layout_height="wrap_content"
+              android:paddingBottom="8dp">
 
-        <RelativeLayout
-            android:id="@+id/rl_zfb"
-            style="@style/activityConfirmOrdersRl"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp">
+              <com.yunspeak.travel.ui.view.FontsIconTextView
+                  android:id="@+id/tv_zfb"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="16dp"
+                  android:layout_marginTop="17dp"
+                  android:gravity="center"
+                  android:text="@string/activity_confirm_orders_zfb"
+                  android:textColor="#11B1F0"
+                  android:textSize="20sp" />
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:id="@+id/tv_zfb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="17dp"
-                android:gravity="center"
-                android:text="@string/activity_confirm_orders_zfb"
-                android:textColor="#11B1F0"
-                android:textSize="20sp" />
+              <TextView
+                  android:id="@+id/tv_pay_des"
+                  android:layout_width="wrap_content"
+                  android:layout_height="20dp"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="13dp"
+                  android:layout_toRightOf="@id/tv_zfb"
+                  android:gravity="center"
+                  android:text="支付宝"
+                  android:textColor="@android:color/black"
+                  android:textSize="11sp" />
 
-            <TextView
-                android:id="@+id/tv_pay_des"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="13dp"
-                android:layout_toRightOf="@id/tv_zfb"
-                android:gravity="center"
-                android:text="支付宝"
-                android:textColor="@android:color/black"
-                android:textSize="11sp" />
+              <com.yunspeak.travel.ui.view.FontsIconTextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentRight="true"
+                  android:layout_centerVertical="true"
+                  android:layout_marginRight="16dp"
+                  android:text="@string/activity_orders_detail_pay"
+                  android:textColor="@color/otherFf7f6c"
+                  android:textSize="30sp" />
+          </RelativeLayout>
+      </LinearLayout>
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"
-                android:text="@string/activity_orders_detail_pay"
-                android:textColor="@color/otherFf7f6c"
-                android:textSize="30sp" />
-        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"

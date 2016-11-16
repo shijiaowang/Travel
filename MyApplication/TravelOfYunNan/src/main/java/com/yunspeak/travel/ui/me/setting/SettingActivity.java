@@ -48,7 +48,9 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import org.xutils.x;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -79,6 +81,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     private OptionsPickerView pvOptions;
     private boolean isUpdate=false;
     private boolean messageIsChange=false;
+    private String iconUrl;
 
     @Override
     protected void initEvent() {
@@ -304,7 +307,11 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         if (!StringUtils.isEmptyNotNull(provice) && !StringUtils.isEmptyNotNull(city)){
             builder.addProvince(provice).addCity(city);
         }
-        XEventUtils.postUseCommonBackJson(IVariable.CHANGE_USER_INFO,builder.end(),TYPE_UPDATE,new SettingEvent());
+        List<String> files=new ArrayList<>();
+        if (!StringUtils.isEmpty(iconUrl)){
+              files.add(iconUrl);
+        }
+        XEventUtils.postFileCommonBackJson(IVariable.CHANGE_USER_INFO,builder.end(),files,TYPE_UPDATE,new SettingEvent());
     }
 
 
@@ -315,7 +322,9 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     }
 
     @Override
-    protected void childDisplay(String url) {
+    protected void childDisplay(String url, String filename) {
+        messageIsChange=true;
+        iconUrl = filename;
         FrescoUtils.displayIcon(mIvIcon,url );
     }
 

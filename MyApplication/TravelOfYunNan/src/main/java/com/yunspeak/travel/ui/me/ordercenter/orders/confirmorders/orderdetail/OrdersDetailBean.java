@@ -39,14 +39,6 @@ public class OrdersDetailBean{
         private int total_price;
         private String pay_way;
         private String conpou;
-        /**
-         * id : 1
-         * key : 平台服务费
-         * value : 20
-         * type : 1
-         * time : 1469586077
-         * status : 1
-         */
 
         private List<BasecPriceBean> basec_price;
 
@@ -113,6 +105,5 @@ public class OrdersDetailBean{
         public void setBasec_price(List<BasecPriceBean> basec_price) {
             this.basec_price = basec_price;
         }
-
     }
 }

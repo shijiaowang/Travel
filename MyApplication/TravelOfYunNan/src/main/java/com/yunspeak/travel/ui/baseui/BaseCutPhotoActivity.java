@@ -347,7 +347,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
             f.mkdirs();
         }
         String url = path + "/" + bitName;
-        File file = new File(url);
+        final File file = new File(url);
         boolean flag = false;
         FileOutputStream fOut = null;
         try {
@@ -358,7 +358,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
             x.task().post(new Runnable() {
                 @Override
                 public void run() {
-                    childDisplay("file://"+filename);
+                    childDisplay("file://"+filename,filename);
                 }
             });
 
@@ -378,7 +378,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         return flag;
     }
 
-    protected abstract void childDisplay(String url);
+    protected abstract void childDisplay(String url, String filename);
 
     /**
      * 处理裁剪图片  保存压缩

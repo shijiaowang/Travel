@@ -272,7 +272,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         List<AppointTogetherDetailBean.DataBean.PropBean> prop = data.getProp();
         if (prop != null && prop.size() != 0) {
             mLvEquProvider.setAdapter(new ProviderAdapter(this, prop));
-        
+
         }
         List<PricebasecBean> pricebasec = data.getPricebasec();
         if (pricebasec == null) {
