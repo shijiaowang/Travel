@@ -68,12 +68,12 @@ public class LoginEditText extends FrameLayout {
             if (verTime <= 0) {
                 removeCallbacksAndMessages(null);
                 verTime = 60;//初始化事件
-                mBtSend.setText("重发验证码");
+                mBtSend.setText("重发");
                 changeClickAble(true);
                 canSending=true;
                 return;
             }
-            mBtSend.setText("重发验证码(" + --verTime + ")");
+            mBtSend.setText("重发(" + --verTime + ")");
             sendEmptyMessageDelayed(0, 1000);
         }
     };
@@ -91,16 +91,16 @@ public class LoginEditText extends FrameLayout {
                     length = typedArray.getInt(index,100);
                     break;
                 case R.styleable.LoginEditText_line_edittext_delete_right:
-                    deleteRight = typedArray.getDimension(index, 10f);
+                    deleteRight = typedArray.getDimension(index, 0);
                     break;
                 case R.styleable.LoginEditText_line_edittext_image_src:
                     leftIconSrc = typedArray.getResourceId(index, 0);
                     break;
                 case R.styleable.LoginEditText_line_edittext_image_left:
-                    leftIconLeftMargin = typedArray.getDimension(index,10f);
+                    leftIconLeftMargin = typedArray.getDimension(index,0);
                     break;
                 case R.styleable.LoginEditText_line_edittext_input_left:
-                    editLeftMargin = typedArray.getDimension(index,15f);
+                    editLeftMargin = typedArray.getDimension(index,0);
                     break;
                 case R.styleable.LoginEditText_line_edittext_show_send_button:
                     isShowSendButton = typedArray.getBoolean(index,false);
@@ -129,17 +129,17 @@ public class LoginEditText extends FrameLayout {
                 mTvDelete.setVisibility(GONE);
             }
         });
-        if (deleteRight!=10f) {
+        if (deleteRight!=0) {
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mTvDelete.getLayoutParams();
             layoutParams.rightMargin= (int) deleteRight;
             mTvDelete.setLayoutParams(layoutParams);
         }
-        if (leftIconLeftMargin!=10f){
+        if (leftIconLeftMargin!=0){
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mTvDelete.getLayoutParams();
             layoutParams.leftMargin= (int) leftIconLeftMargin;
             mTvDelete.setLayoutParams(layoutParams);
         }
-        if (editLeftMargin!=15f){
+        if (editLeftMargin!=0){
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mEtEnter.getLayoutParams();
             layoutParams.leftMargin= (int) editLeftMargin;
             mEtEnter.setLayoutParams(layoutParams);

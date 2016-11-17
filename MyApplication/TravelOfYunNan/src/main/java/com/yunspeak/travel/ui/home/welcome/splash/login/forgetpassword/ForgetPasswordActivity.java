@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -72,6 +73,8 @@ public class ForgetPasswordActivity extends BaseEventBusActivity<LoginNextCommon
 
     @Override
     protected void initEvent() {
+        mEtPhone.setInputType(InputType.TYPE_CLASS_PHONE);
+        mEtVer.setInputType(InputType.TYPE_CLASS_PHONE);
         mBtNext.setOnAvoidFastOnClickListener(this);
         mEtVer.setOnSendButtonClickListener(new LoginEditText.SendButtonOnClickListener() {
             @Override

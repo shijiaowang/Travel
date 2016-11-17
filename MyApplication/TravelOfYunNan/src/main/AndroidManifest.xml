@@ -243,6 +243,7 @@
         <activity android:name=".ui.appoint.searchappoint.SearchAppointActivity"
             android:launchMode="singleTop"
             />
+        <activity android:name=".ui.baseui.BaseEventBusActivity" />
 
         <!-- 百度地图所需的service -->
         <service
