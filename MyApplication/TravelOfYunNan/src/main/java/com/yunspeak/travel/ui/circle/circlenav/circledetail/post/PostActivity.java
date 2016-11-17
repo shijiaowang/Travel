@@ -55,7 +55,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     private List<Object> mDatas;
     private String cId;
     private String userId;
-    private String isCollect=isFalse;
+    private String isCollect;
     public  String imgLists;
     private int floor=-1;//楼层进入
     private boolean isByFloor=false;//是否通过楼层进入
@@ -284,6 +284,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
+        if (StringUtils.isEmpty(isCollect))return;
         switch (item.getItemId()){
             case R.id.action_collection:
                 String url=isCollect.equals(isTrue)?IVariable.CANCEL_COMMON_COLLECTION:IVariable.COLLECTION;

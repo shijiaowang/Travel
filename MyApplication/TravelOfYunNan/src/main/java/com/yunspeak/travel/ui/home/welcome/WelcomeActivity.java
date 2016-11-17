@@ -15,7 +15,7 @@ import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.FullTransparencyActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
-import com.yunspeak.travel.ui.home.welcome.splash.SplashActivity;
+import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
@@ -26,8 +26,6 @@ import com.yunspeak.travel.utils.ShareUtil;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import java.util.Map;
@@ -119,7 +117,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
                     homeIntent.putExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, isNetWork);
                     startActivity(homeIntent);
                 } else {
-                    startActivity(new Intent(WelcomeActivity.this, SplashActivity.class));
+                    startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
                 }
                 finish();
             }

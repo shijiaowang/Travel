@@ -3,14 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorFAFAFA"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <View
             android:layout_width="10dp"
             android:layout_height="match_parent"
@@ -98,22 +96,28 @@
             </RelativeLayout>
         </LinearLayout>
 
+         <FrameLayout
+             android:layout_marginTop="20dp"
+             android:background="@color/colorFAFAFA"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent">
+             <TextView
+                 android:layout_marginRight="-4dp"
+                 android:id="@+id/tv_money"
+                 android:paddingLeft="4dp"
+                 android:paddingRight="5dp"
+                 style="@style/commonSingleLineTextStyle"
+                 android:layout_width="wrap_content"
+                 android:layout_height="27dp"
+                 android:layout_marginTop="5dp"
+                 android:paddingTop="5dp"
+                 android:background="@drawable/activity_my_appoint_key_bg"
+                 android:gravity="center"
+                 android:text="¥100"
+                 android:textColor="@color/colorFAFAFA"
+                 android:textSize="11sp" />
 
-            <TextView
-                android:layout_marginRight="-4dp"
-                android:id="@+id/tv_money"
-                android:paddingLeft="4dp"
-                android:paddingRight="5dp"
-                style="@style/commonSingleLineTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_marginTop="20dp"
-                android:paddingTop="5dp"
-                android:background="@drawable/activity_my_appoint_key_bg"
-                android:gravity="center"
-                android:text="¥100"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="11sp" />
+         </FrameLayout>
 
     </LinearLayout>
 

@@ -2,25 +2,21 @@ package com.yunspeak.travel.ui.home;
 
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
-
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-
 import android.view.View;
-
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-
 import com.hyphenate.EMMessageListener;
-import com.hyphenate.chat.EMChatService;
 import com.hyphenate.chat.EMMessage;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
@@ -28,7 +24,9 @@ import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.AppointFragment;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
 import com.yunspeak.travel.ui.circle.CircleFragment;
 import com.yunspeak.travel.ui.find.FindFragment;
@@ -47,17 +45,20 @@ import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.util.NetUtils;
+import com.yunspeak.travel.utils.UIUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
+import org.xutils.http.HttpMethod;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import butterknife.BindView;
 
 /**
@@ -110,16 +111,18 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             String userPwd = sharedPreferences.getString(IVariable.SAVE_PWD, "");
             //网络可用验证登录
                 Map<String, String> stringMap = MapUtils.Build().addKey().addUserName(userName).addPassword(userPwd).end();
-                XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap, IVariable.TYPE_POST_LOGIN, new HomeLoginEvent());
+                XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap,TYPE_REFRESH, new HomeLoginEvent());
 
         }
-        Intent startServiceIntent=new Intent(this, EMChatService.class);
+        /*Intent startServiceIntent=new Intent(this, EMChatService.class);
         startServiceIntent.putExtra("reason", "boot");
-        startService(startServiceIntent);
+        startService(startServiceIntent);*/
+        Map<String, String> end = MapUtils.Build().addKey().addType("1").end();
+        XEventUtils.getUseCommonBackJson(IVariable.UPDATE,end,TYPE_UPDATE,new HomeLoginEvent());
     }
 
     /**
-     * 户厕环信监听
+     * 环信监听
      */
     private void initHXListener() {
         //注册一个监听连接状态的listener
@@ -199,6 +202,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         });
         EMClient.getInstance().chatManager().addMessageListener(msgListener);
 
+
     }
     EMMessageListener msgListener = new EMMessageListener() {
 
@@ -249,31 +253,61 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         setCheckedOfPosition(0);
     }
     @Subscribe
-   public void onEvent(HomeLoginEvent event){
-       if (event.isSuccess()){
-           Login object = GsonUtils.getObject(event.getResult(), Login.class);
-           UserInfo data = object.getData();
-           if (data!=null){
-               com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
-               userInfo.setId(data.getId());
-               userInfo.setNick_name(data.getNick_name());
-               userInfo.setUser_img(data.getUser_img());
-               DBManager.insertChatUserInfo(userInfo);
-           }
-           UserUtils.saveUserInfo(data);
-           if (GlobalUtils.getUserInfo()==null){
-               // TODO: 2016/11/5 0005 清除app所有缓存，不再提示
-               ToastUtils.showToast("用户信息发生错误，请尝试重新登录，若多次无效，可清除缓存！");
-           }
-       }else {
-           if (NetworkUtils.isNetworkConnected(this)){
-               ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
-           }else {
-               ToastUtils.showToast("网络错误！");
-           }
+   public void onEvent(HomeLoginEvent event) {
+        switch (event.getType()) {
+            case TYPE_REFRESH:
+                loginResult(event);
+                break;
+            case TYPE_UPDATE://更新
+                if (event.isSuccess()) {
+                    UpdateBean updateBean = GsonUtils.getObject(event.getResult(), UpdateBean.class);
+                    int currentVersionCode = UIUtils.getVersionCode(this);
+                    final UpdateBean.DataBean data = updateBean.getData();
+                    if (currentVersionCode < data.getVersion()) {
+                        EnterAppointDialog.showCommonDialog(this, "更新应用", "确定", "发现新版本，是否更新？", new ParentPopClick() {
+                            @Override
+                            public void onClick(int type) {
+                                RequestParams requestParams = new RequestParams(data.getDownloadurl());
+                                requestParams.setMethod(HttpMethod.GET);
+                                x.http().get(requestParams,new DownloadProgress());
+                            }
+                        });
+                    }
+                    break;
+                }
 
-       }
-   }
+        }
+    }
+    /**
+     * 登录结果
+     * @param event
+     */
+    private void loginResult(HomeLoginEvent event) {
+        if (event.isSuccess()){
+            Login object = GsonUtils.getObject(event.getResult(), Login.class);
+            UserInfo data = object.getData();
+            if (data!=null){
+                com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
+                userInfo.setId(data.getId());
+                userInfo.setNick_name(data.getNick_name());
+                userInfo.setUser_img(data.getUser_img());
+                DBManager.insertChatUserInfo(userInfo);
+            }
+            UserUtils.saveUserInfo(data);
+            if (GlobalUtils.getUserInfo()==null){
+                // TODO: 2016/11/5 0005 清除app所有缓存，不再提示
+                ToastUtils.showToast("用户信息发生错误，请尝试重新登录，若多次无效，可清除缓存！");
+            }
+        }else {
+            if (NetworkUtils.isNetworkConnected(this)){
+                ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
+            }else {
+                ToastUtils.showToast("网络错误！");
+            }
+
+        }
+    }
+
     /**
      * 初始化字体图标
      */
@@ -426,6 +460,53 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onDestroy() {
         super.onDestroy();
         EMClient.getInstance().chatManager().removeMessageListener(msgListener);
+    }
+    class DownloadProgress implements Callback.ProgressCallback<File> {
+        @Override
+        public void onWaiting() {
+
+        }
+
+        @Override
+        public void onStarted() {
+
+        }
+
+        @Override
+        public void onLoading(long total, long current, boolean isDownloading) {
+
+        }
+
+        @Override
+        public void onSuccess(File result) {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.fromFile(result), "application/vnd.android.package-archive");
+            startActivity(intent);
+        }
+
+        @Override
+        public void onError(Throwable ex, boolean isOnCallback) {
+            ex.printStackTrace();
+            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+                ToastUtils.showToast("SD卡不可用！");
+            }else if (!NetworkUtils.isNetworkConnected(HomeActivity.this)){
+                ToastUtils.showToast("网络不可用！");
+            }else {
+                ToastUtils.showToast("下载失败！");
+            }
+
+        }
+
+        @Override
+        public void onCancelled(CancelledException cex) {
+
+        }
+
+        @Override
+        public void onFinished() {
+
+        }
     }
 }
 

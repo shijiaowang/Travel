@@ -34,6 +34,7 @@ import android.widget.TextView;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
+import com.yunspeak.travel.ui.view.LoginEditText;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -237,15 +238,16 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
      * @param button
      * @param b
      */
-    protected void btIsClick(Button button, boolean b) {
-        if (b) {
-            button.setBackgroundResource(R.drawable.fragment_find_search_bg);
-            button.setClickable(b);
-        } else {
-            button.setBackgroundResource(R.drawable.button_bg_un_click);
-            button.setClickable(b);
-        }
+    protected void changeClickAble(Button button, boolean b) {
+            if (b) {
+                button.setBackgroundResource(R.drawable.login_button_selector);
+                button.setClickable(b);
+            } else {
+                button.setBackgroundResource(R.drawable.green_button_normal_bg_unclick);
+                button.setClickable(b);
+            }
     }
+
 
     protected String getString(EditText editText) {
         return editText.getText().toString().trim();
@@ -257,8 +259,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
      * @param request
      * @param errorMessage
      */
-    protected void requestAndSetErrorMessage(EditText request, String errorMessage) {
-        request.requestFocus();
+    protected void requestAndSetErrorMessage(LoginEditText request, String errorMessage) {
         String message = "<font color=#5cd0c2>" + errorMessage + "</font>";
         request.setError(Html.fromHtml(message));
     }

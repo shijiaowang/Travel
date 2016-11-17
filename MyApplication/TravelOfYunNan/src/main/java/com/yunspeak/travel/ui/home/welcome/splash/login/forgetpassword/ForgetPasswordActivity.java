@@ -13,10 +13,12 @@ import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.event.RegisterEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginNextCommonEvent;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LineEditText;
+import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -34,38 +36,17 @@ import butterknife.BindView;
  * Created by wangyang on 2016/10/2.
  * 忘记密码
  */
-public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonEvent> implements AvoidFastButton.AvoidFastOnClickListener, TextWatcher {
+public class ForgetPasswordActivity extends BaseEventBusActivity<LoginNextCommonEvent> implements AvoidFastButton.AvoidFastOnClickListener {
     //请求
     private static final int RESET_PASSWORD = 0;//重置
     private static final int VERIFICATION_REQ = 1;//验证码
     //错误码
-
-    private boolean isSending = false;//是否发送过验证码
-    @BindView(R.id.et_phone) LineEditText mEtPhone;
-    @BindView(R.id.et_password) LineEditText mEtPassword;
-    @BindView(R.id.et_re_password) LineEditText mEtRePassword;
-    @BindView(R.id.et_ver) LineEditText mEtVer;
+    @BindView(R.id.et_phone) LoginEditText mEtPhone;
+    @BindView(R.id.et_password) LoginEditText mEtPassword;
+    @BindView(R.id.et_re_password) LoginEditText mEtRePassword;
+    @BindView(R.id.et_ver) LoginEditText mEtVer;
     @BindView(R.id.bt_next) AvoidFastButton mBtNext;
-    @BindView(R.id.bt_ver) AvoidFastButton mBtVer;
-    private int verTime = 60;//验证码时间
     private boolean isSendVer = false;
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (verTime <= 0) {
-                removeCallbacksAndMessages(null);
-                verTime = 60;//初始化事件
-                mBtVer.setClickable(true);
-                mBtVer.setText("重发验证码");
-                mBtVer.setBackgroundResource(R.drawable.fragment_find_search_bg);
-                setFcouse(mEtPhone,true);
-                isSending = false;
-                return;
-            }
-            mBtVer.setText("重发验证码(" + --verTime + ")");
-            sendEmptyMessageDelayed(0, 1000);
-        }
-    };
     private String phone;
 
 
@@ -74,22 +55,6 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
         super.onCreate(savedInstanceState);
         ActivityUtils.getInstance().addActivity(this);
     }
-
-    @Override
-    protected boolean isAutoLoad() {
-        return false;
-    }
-
-    @Override
-    protected void childAdd(MapUtils.Builder builder, int type) {
-
-    }
-
-    @Override
-    protected String initUrl() {
-        return null;
-    }
-
 
 
     @Override
@@ -100,22 +65,24 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
 
     @Override
     protected void onFail(LoginNextCommonEvent loginNextCommonEvent) {
-
+        ToastUtils.showToast(loginNextCommonEvent.getMessage());
     }
 
 
 
     @Override
     protected void initEvent() {
-        mEtPhone.requestFocus();
-        btIsClick(mBtNext, false);
-        btIsClick(mBtVer, false);
-        mBtVer.setOnAvoidFastOnClickListener(this);
         mBtNext.setOnAvoidFastOnClickListener(this);
-        mEtPhone.addTextChangedListener(this);
-        mEtVer.addTextChangedListener(this);
-        mEtPassword.addTextChangedListener(this);
-        mEtRePassword.addTextChangedListener(this);
+        mEtVer.setOnSendButtonClickListener(new LoginEditText.SendButtonOnClickListener() {
+            @Override
+            public void onClick(View button) {
+                if (GlobalUtils.getKey() == null) {
+                    XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new RegisterEvent());
+                    return;
+                }
+                sendVerCode();
+            }
+        });
 
     }
 
@@ -124,12 +91,12 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
             requestAndSetErrorMessage(mEtVer, getString(R.string.not_send_ver));
             return;
         }
-        String ver = mEtVer.getText().toString().trim();
-        String password = mEtPassword.getText().toString().trim();
-        String rePassword = mEtRePassword.getText().toString().trim();
-        int length = mEtVer.getText().toString().length();
+        String ver = mEtVer.getString();
+        String password = mEtPassword.getString();
+        String rePassword = mEtRePassword.getString();
+        int length = mEtVer.getString().length();
         if (PhoneUtils.checkPhoneNumber(phone)) return;
-        if (StringUtils.isEmpty(mEtVer.getText().toString().trim())) {
+        if (StringUtils.isEmpty(mEtVer.getString())) {
             requestAndSetErrorMessage(mEtVer, getString(R.string.ver_is_empty));
             return;
         }
@@ -160,26 +127,28 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
      * 发送验证码
      */
     private void sendVerCode() {
-        String phone = getString(mEtPhone);
+        String phone = mEtPhone.getString();
         if (PhoneUtils.checkPhoneNumber(phone)) return;
         Map<String, String> map = MapUtils.Build().addKey().addTel(phone).addType("1").end();
         XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE_VER_MSG,map,VERIFICATION_REQ, new LoginNextCommonEvent());
     }
 
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        //2.调用showSoftInput方法显示软键盘，其中view为聚焦的view组件
+        if (!imm.isActive()) imm.showSoftInput(mEtPhone,InputMethodManager.SHOW_FORCED);
+    }
 
     private void dealResult(LoginNextCommonEvent event) {
         if (event.getType() == RESET_PASSWORD) {
             finish();
         } else if (event.getType() == VERIFICATION_REQ) {
-            btIsClick(mBtVer, false);
-            setFcouse(mEtPhone,false);
-            phone = getString(mEtPhone);
-            isSending = true;
+            phone =mEtPhone.getString();
             isSendVer = true;
-            mHandler.sendEmptyMessage(0);
+
         } else if (event.getType() == IVariable.TYPE_GET_KEY) {
             dealKey(event);
         }
@@ -189,13 +158,6 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bt_ver:
-                if (GlobalUtils.getKey() == null) {
-                    XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new RegisterEvent());
-                    return;
-                }
-                sendVerCode();
-                break;
             case R.id.bt_next:
                 changePassword();
                 break;
@@ -215,32 +177,6 @@ public class ForgetPasswordActivity extends BaseNetWorkActivity<LoginNextCommonE
         sendVerCode();
     }
 
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (mEtPhone.getText().toString().length() == 11 && !isSending) {
-            btIsClick(mBtVer, true);
-        } else {
-            btIsClick(mBtVer, false);
-        }
-        if ((StringUtils.isEmpty(getString(mEtPhone))) || (StringUtils.isEmpty(getString(mEtVer))) || (StringUtils.isEmpty(getString(mEtPassword))) ||
-                (StringUtils.isEmpty(getString(mEtRePassword)))) {
-            btIsClick(mBtNext, false);
-        } else {
-            btIsClick(mBtNext, true);
-        }
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-    }
 
     @Override
     protected int initLayoutRes() {

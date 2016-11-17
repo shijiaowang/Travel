@@ -24,6 +24,7 @@ import com.yunspeak.travel.global.SendTextClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.ProvinceBean;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
+import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.me.changephone.ChangePhoneActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.baseui.PersonalProfileActivity;
@@ -195,7 +196,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                                 LogUtils.e("是否成功"+b+"信息"+s);
                             }
                         });
-                        startActivity(new Intent(SettingActivity.this, SplashActivity.class));
+                        startActivity(new Intent(SettingActivity.this, LoginActivity.class));
                         setResult(HomeActivity.RESULT);
                         finish();
                     }

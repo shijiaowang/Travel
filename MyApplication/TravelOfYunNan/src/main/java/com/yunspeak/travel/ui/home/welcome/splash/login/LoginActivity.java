@@ -1,12 +1,9 @@
 package com.yunspeak.travel.ui.home.welcome.splash.login;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.text.Editable;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
@@ -14,17 +11,15 @@ import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.db.DBManager;
-import com.yunspeak.travel.event.LoginEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.baseui.BaseTransActivity;
+import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.forgetpassword.ForgetPasswordActivity;
+import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterBean;
 import com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
-import com.yunspeak.travel.ui.view.FontsIconTextView;
-import com.yunspeak.travel.ui.view.LineEditText;
 import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
@@ -37,57 +32,39 @@ import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.xutils.view.annotation.ViewInject;
-
-
 import java.util.Map;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
-
-
 /**
  * Created by wangyang on 2016/7/26 0026.
  * 登录
  */
-public class LoginActivity extends BaseTransActivity implements View.OnClickListener,LoginEditText.TextChangedListener {
+public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
     public static final int SPLASH_RESULT=1;//返回
-    @BindView(R.id.et_password)
-    LoginEditText mEdPassword;
+    @BindView(R.id.et_password) LoginEditText mEdPassword;
     @BindView(R.id.et_name) LoginEditText mEdName;
     @BindView(R.id.bt_login) AvoidFastButton mBtLogin;
+    @BindView(R.id.bt_register) AvoidFastButton mBtRegister;
     private SharedPreferences sharedPreferences;
-    private String key;
     private int tryGetKey=0;
-    @BindView(R.id.tv_back) FontsIconTextView mTvBack;
-    @BindView(R.id.tv_change_password) TextView mTvChangePassword;
     private String name;
     private String password;
     private boolean isFirstError=true;
-
-    @Override
-    protected void initData() {
-       btIsClick(mBtLogin,false);
+    private void goToLogin() {
+        Map<String, String> logMap = MapUtils.Build().addKey().add(IVariable.USERNAME, name).add(IVariable.PASSWORD, MD5Utils.encode(MD5Utils.encode(password))).end();
+        XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, logMap, IVariable.TYPE_POST_LOGIN,new LoginEvent());
     }
 
     @Override
-    protected void initView() {
-        ButterKnife.bind(this);
-        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
+    protected void initEvent() {
         ActivityUtils.getInstance().addActivity(this);
         sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
-    }
-
-   @Override
-    protected void initListener() {
-        mTvBack.setOnClickListener(this);
-        mEdName.addTextChangedListener(this);
         mEdName.setInputType(InputType.TYPE_CLASS_PHONE);
-        mEdPassword.addTextChangedListener(this);
-        mTvChangePassword.setOnClickListener(this);
+        mBtRegister.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
         mBtLogin.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,35 +74,39 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
                     ToastUtils.showToast("密码或者用户名为空");
                     return;
                 }
+                if (StringUtils.isEmpty(GlobalUtils.getKey())){
+                    XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new LoginEvent());
+                    return;
+                }
                 goToLogin();
 
             }
         });
+    }
 
+
+
+
+
+    @Override
+    protected String initRightText() {
+        return "忘记密码";
     }
 
     @Override
-    protected int initRes() {
-        return R.layout.activity_login;
+    protected void otherOptionsItemSelected(MenuItem item) {
+        startActivity(new Intent(this, ForgetPasswordActivity.class));
     }
 
-    private void goToLogin() {
-        Map<String, String> logMap = MapUtils.Build().addKey().add(IVariable.USERNAME, name).add(IVariable.PASSWORD, MD5Utils.encode(MD5Utils.encode(password))).end();
-        XEventUtils.postUseCommonBackJson(IVariable.LOGIN_URL, logMap, IVariable.TYPE_POST_LOGIN,new LoginEvent());
-    }
-    @Subscribe
-    public void onEvent(LoginEvent event) {
-        if (event.isSuccess()) {
+    @Override
+    protected void onSuccess(LoginEvent event) {
             if (event.getType()==IVariable.TYPE_GET_KEY ){
-                if (tryGetKey==0){//只重复尝试一次请求key
-                    tryGetKey++;
                     //处理初次key出问题
                     Key key = GsonUtils.getObject(event.getResult(), Key.class);
                     GlobalValue.KEY_VALUE = MD5Utils.encode(MD5Utils.encode(key.getData().getValue()));
                     ShareUtil.putString(this, IVariable.KEY_VALUE, GlobalValue.KEY_VALUE);
                     ShareUtil.putInt(this, IVariable.KEY_CODE, key.getCode());
                     goToLogin();
-                }
             }else {
                 GlobalValue.KEY_VALUE = GlobalUtils.getKey();
                 Login object = GsonUtils.getObject(event.getResult(), Login.class);
@@ -140,22 +121,6 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
                 });
                 goToHomeActivity(event);
             }
-        } else {
-            if (event.getCode()==IVariable.KEY_ERROR && isFirstError){
-                isFirstError=false;//避免无限循环key错误
-                XEventUtils.getUseCommonBackJson(IVariable.GET_KEY,null,IVariable.TYPE_GET_KEY,new LoginEvent());
-            }else {
-                ToastUtils.showToast(event.getMessage());
-                if (event.getCode()==3){//信息未完善，前去完善信息页面
-                    RegisterBean registerBean = GsonUtils.getObject(event.getResult(), RegisterBean.class);
-                    Intent intent=new Intent(this, RegisterSuccessActivity.class);
-                    intent.putExtra(IVariable.USER_ID,registerBean.getData().getUser_id());
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        }
-
     }
 
     private void goToHomeActivity(LoginEvent event) {
@@ -163,9 +128,6 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString(IVariable.SAVE_NAME, login.getData().getName());
         edit.putString(IVariable.SAVE_PWD, login.getData().getPwd());
-        if (key != null) {
-            edit.putString(IVariable.KEY, key);
-        }
         edit.apply();
         setResult(SPLASH_RESULT);
         Intent intent = new Intent(this, HomeActivity.class);
@@ -183,42 +145,33 @@ public class LoginActivity extends BaseTransActivity implements View.OnClickList
         finish();
     }
 
-
-
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.tv_back:
-                finish();
-                break;
-            case R.id.tv_change_password:
-                startActivity(new Intent(this, ForgetPasswordActivity.class));
-                break;
-        }
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (StringUtils.isEmpty(mEdName.getString()) || StringUtils.isEmpty(mEdPassword.getString())){
-            btIsClick(mBtLogin,false);
+    protected void onFail(LoginEvent event) {
+        if (event.getCode()==IVariable.KEY_ERROR && isFirstError){
+            isFirstError=false;//避免无限循环key错误
+            if (tryGetKey<3) {
+                tryGetKey++;
+                XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new LoginEvent());
+            }
         }else {
-            btIsClick(mBtLogin,true);
+            ToastUtils.showToast(event.getMessage());
+            if (event.getCode()==3){//信息未完善，前去完善信息页面
+                RegisterBean registerBean = GsonUtils.getObject(event.getResult(), RegisterBean.class);
+                Intent intent=new Intent(this, RegisterSuccessActivity.class);
+                intent.putExtra(IVariable.USER_ID,registerBean.getData().getUser_id());
+                startActivity(intent);
+                finish();
+            }
         }
     }
 
     @Override
-    public void afterTextChanged(Editable s) {
+    protected int initLayoutRes() {
+        return R.layout.activity_login;
+    }
 
+    @Override
+    protected String initTitle() {
+        return "登录";
     }
 }

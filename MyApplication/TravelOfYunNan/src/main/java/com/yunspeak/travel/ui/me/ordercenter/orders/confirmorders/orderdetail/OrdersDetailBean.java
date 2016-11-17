@@ -9,24 +9,34 @@ import java.util.List;
  */
 
 public class OrdersDetailBean{
+
+
     private int code;
     private String message;
+
+
     private DataBean data;
+
     public int getCode() {
         return code;
     }
+
     public void setCode(int code) {
         this.code = code;
     }
+
     public String getMessage() {
         return message;
     }
+
     public void setMessage(String message) {
         this.message = message;
     }
+
     public DataBean getData() {
         return data;
     }
+
     public void setData(DataBean data) {
         this.data = data;
     }
@@ -35,10 +45,12 @@ public class OrdersDetailBean{
         private String order_sn;
         private String status;
         private String user_id;
+        private String pay_type;
         private String price;
         private int total_price;
-        private String pay_way;
-        private String conpou;
+        private String pay_name;
+        private String pay_status;
+        private int conpou;
 
         private List<BasecPriceBean> basec_price;
 
@@ -66,6 +78,14 @@ public class OrdersDetailBean{
             this.user_id = user_id;
         }
 
+        public String getPay_type() {
+            return pay_type;
+        }
+
+        public void setPay_type(String pay_type) {
+            this.pay_type = pay_type;
+        }
+
         public String getPrice() {
             return price;
         }
@@ -82,19 +102,27 @@ public class OrdersDetailBean{
             this.total_price = total_price;
         }
 
-        public String getPay_way() {
-            return pay_way;
+        public String getPay_name() {
+            return pay_name;
         }
 
-        public void setPay_way(String pay_way) {
-            this.pay_way = pay_way;
+        public void setPay_name(String pay_name) {
+            this.pay_name = pay_name;
         }
 
-        public String getConpou() {
+        public String getPay_status() {
+            return pay_status;
+        }
+
+        public void setPay_status(String pay_status) {
+            this.pay_status = pay_status;
+        }
+
+        public int getConpou() {
             return conpou;
         }
 
-        public void setConpou(String conpou) {
+        public void setConpou(int conpou) {
             this.conpou = conpou;
         }
 
@@ -105,5 +133,6 @@ public class OrdersDetailBean{
         public void setBasec_price(List<BasecPriceBean> basec_price) {
             this.basec_price = basec_price;
         }
+
     }
 }

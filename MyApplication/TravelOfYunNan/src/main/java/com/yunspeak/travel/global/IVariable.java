@@ -43,6 +43,7 @@ public interface IVariable {
     String LOGIN_URL = API_KEY + "User/Login/";//登录
     String HOME_PAGE = API_KEY + "Index/loadIndex/";//首页数据加载
     String HOME_SEARCH = API_KEY + "Index/search/";//首页搜索
+    String UPDATE = API_KEY + "User/getVersionCode/";//检查更新
     /**
      * 圈子
      */

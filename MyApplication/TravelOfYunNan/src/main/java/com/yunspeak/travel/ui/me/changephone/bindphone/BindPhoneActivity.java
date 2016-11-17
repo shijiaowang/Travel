@@ -53,7 +53,7 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
                 mEtPhone.setFocusable(true);
                 mEtPhone.setClickable(true);
                 mEtPhone.setFocusableInTouchMode(true);
-                btIsClick(mBtVer, true);
+                changeClickAble(mBtVer, true);
                 return;
             }
             mBtVer.setText("重发验证码(" + --verTime + ")");
@@ -65,8 +65,8 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
 
     @Override
     protected void initEvent() {
-        btIsClick(mBtNext, false);
-        btIsClick(mBtVer, false);
+        changeClickAble(mBtNext, false);
+        changeClickAble(mBtVer, false);
         UserInfo userInfo = GlobalUtils.getUserInfo();
         try {
             mPtvPhone.setPhoneNumber(userInfo.getTel());
@@ -102,9 +102,9 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (mEtPhone.getText().toString().length() == 11) {
-                    btIsClick(mBtVer, true);
+                    changeClickAble(mBtVer, true);
                 } else {
-                    btIsClick(mBtVer, false);
+                    changeClickAble(mBtVer, false);
                 }
             }
 
@@ -136,8 +136,8 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
         switch (changePhoneEvent.getType()) {
             case TYPE_VER_MSG:
                 //发送验证码
-                btIsClick(mBtVer, false);
-                btIsClick(mBtNext, true);
+                changeClickAble(mBtVer, false);
+                changeClickAble(mBtNext, true);
                 isSend = true;
                 tel = getString(mEtPhone);
                 mEtPhone.setFocusable(false);

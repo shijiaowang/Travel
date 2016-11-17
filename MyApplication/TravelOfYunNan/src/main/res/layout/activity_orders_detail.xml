@@ -9,6 +9,7 @@
         android:orientation="vertical">
         <LinearLayout
             android:gravity="center_vertical"
+            android:background="@color/colorFAFAFA"
             android:layout_width="match_parent"
             android:layout_height="44dp">
             <ImageView
@@ -35,6 +36,9 @@
                 android:layout_marginRight="12dp"
                 />
         </LinearLayout>
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
         <RelativeLayout
             style="@style/activityConfirmOrdersRl"
             android:layout_height="36dp"
@@ -50,6 +54,7 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/tv_order_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

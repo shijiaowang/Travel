@@ -33,7 +33,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_below="@id/iv_empty"
                 android:layout_centerHorizontal="true"
-                android:text="数据为空，快去添加吧~"
+                android:text="这里一片荒芜~ "
                 android:textSize="14sp"
                 android:textColor="@color/color969696"
                 android:layout_width="wrap_content"

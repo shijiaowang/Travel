@@ -51,7 +51,7 @@ public class ChangePhoneActivity extends BaseNetWorkActivity<ChangePhoneEvent> {
                 removeCallbacksAndMessages(null);
                 verTime = 60;//初始化事件
                 mBtVer.setText("重发验证码");
-                btIsClick(mBtVer,true);
+                changeClickAble(mBtVer,true);
                 return;
             }
             mBtVer.setText("重发验证码(" + --verTime + ")");
@@ -94,7 +94,7 @@ public class ChangePhoneActivity extends BaseNetWorkActivity<ChangePhoneEvent> {
     @Override
     protected boolean isAutoLoad() {
         setIsProgress(false);
-        btIsClick(mBtNext,false);
+        changeClickAble(mBtNext,false);
         return super.isAutoLoad();
     }
 
@@ -125,8 +125,8 @@ public class ChangePhoneActivity extends BaseNetWorkActivity<ChangePhoneEvent> {
             case TYPE_VER_MSG:
                 //发送验证码
                 isSend=true;
-                btIsClick(mBtVer,false);
-                btIsClick(mBtNext,true);
+                changeClickAble(mBtVer,false);
+                changeClickAble(mBtNext,true);
                 ToastUtils.showToast("验证码发送成功");
                 mHandler.sendEmptyMessage(0);
                 break;

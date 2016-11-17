@@ -1,46 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-   <View
-       android:alpha="0.85"
-       android:background="@android:color/black"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
-    <LinearLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:orientation="vertical"
+    <ImageView
+        android:src="@drawable/register_banner"
+        android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:paddingTop="15dp"
-            android:layout_marginTop="@dimen/commonStatusHeight"
-            android:layout_gravity="center_horizontal"
-            android:text="注册成功"
-            android:textColor="@color/colorFAFAFA"
-            android:textSize="13sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            style="@style/activityRegisterLl"
-            android:layout_marginTop="39dp">
-
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                style="@style/activityRegisterTextIcon"
-                android:text="@string/activity_register_nick_name" />
-
-            <TextView
-                style="@style/activityRegisterText"
-                android:text="昵称" />
-        </LinearLayout>
+        android:layout_height="150dp"
+        />
 
         <com.yunspeak.travel.ui.view.LoginEditText
 
             android:id="@+id/et_nick_name"
-            style="@style/activityRegisterEditText"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:line_edittext_image_src="@drawable/login_user"
+            app:line_edittext_input_left="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
             app:line_edittext_max_length="8"
             app:line_edittext_hint="中文/英文/数字"
             />
@@ -129,7 +108,4 @@
             android:background="@drawable/fragment_find_search_bg"
             android:layout_width="match_parent"
             android:layout_height="41dp" />
-
     </LinearLayout>
-
-</RelativeLayout>

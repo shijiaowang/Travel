@@ -115,7 +115,6 @@
         <activity android:name=".ui.appoint.withme.withmedetail.AppointWithMeDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentWithMeActivity"/>
         <activity android:name=".ui.home.welcome.splash.login.LoginActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTop"
             />
         <activity android:name=".ui.find.findcommon.FindCommonActivity"/>
@@ -156,11 +155,9 @@
             android:launchMode="singleTask"
             />
         <activity android:name=".ui.home.welcome.splash.register.RegisterActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTop"
             />
         <activity android:name=".ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />
         <activity android:name=".ui.circle.circlenav.circledetail.CircleDetailActivity"
             />

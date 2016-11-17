@@ -16,6 +16,8 @@ import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.RegisterSuccessEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
+import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.BaseTransActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
@@ -43,7 +45,7 @@ import butterknife.ButterKnife;
  * Created by wangyang on 2016/8/18 0018.
  * 注册成功页面
  */
-public class RegisterSuccessActivity extends BaseTransActivity implements View.OnClickListener, AvoidFastButton.AvoidFastOnClickListener, LoginEditText.TextChangedListener {
+public class RegisterSuccessActivity extends BaseEventBusActivity<RegisterSuccessEvent> implements View.OnClickListener, AvoidFastButton.AvoidFastOnClickListener, LoginEditText.TextChangedListener {
     public static final int SPLASH_RESULT = 1;//返回
 
     @BindView(R.id.bt_start) AvoidFastButton mBtStart;
@@ -54,34 +56,9 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
     @BindView(R.id.rb_boy) RadioButton mRbBoy;
     private String user_id;
 
-    @Override
-    protected void initView() {
-        ButterKnife.bind(this);
-        if (!EventBus.getDefault().isRegistered(this)){
-            EventBus.getDefault().register(this);
-        }
-    }
 
-    @Override
-    protected void initData() {
-        user_id = getIntent().getStringExtra(IVariable.USER_ID);
-        btIsClick(mBtStart, false);
 
-    }
 
-    @Override
-    protected void initListener() {
-        mBtStart.setOnAvoidFastOnClickListener(this);
-        mRlBoy.setOnClickListener(this);
-        mRlGirl.setOnClickListener(this);
-        mEtNickName.addTextChangedListener(this);
-        mEtNickName.setInputType(InputType.TYPE_CLASS_TEXT);
-    }
-
-    @Override
-    protected int initRes() {
-        return R.layout.activity_register_success;
-    }
 
     @Override
     public void onClick(View v) {
@@ -113,29 +90,18 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
 
     private void setClicked() {
         if (!(StringUtils.isEmpty(mEtNickName.getString())) && (mRbBoy.isChecked() || mRbGirl.isChecked())){
-            btIsClick(mBtStart,true);
+            changeClickAble(mBtStart,true);
         }else {
-            btIsClick(mBtStart,false);
+            changeClickAble(mBtStart,false);
         }
     }
 
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-    }
 
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
-    }
+
 
     /**
      * 完善信息
@@ -158,12 +124,32 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
         XEventUtils.postUseCommonBackJson(IVariable.PERFECT_INFORMATION, infoMap, IVariable.TYPE_REGISTER_USER,new RegisterSuccessEvent());
 
     }
+
+    @Override
+    protected void initEvent() {
+        user_id = getIntent().getStringExtra(IVariable.USER_ID);
+        changeClickAble(mBtStart, false);
+        mBtStart.setOnAvoidFastOnClickListener(this);
+        mRlBoy.setOnClickListener(this);
+        mRlGirl.setOnClickListener(this);
+        mEtNickName.addTextChangedListener(this);
+        mEtNickName.setInputType(InputType.TYPE_CLASS_TEXT);
+    }
+
     @Subscribe
     public void onEvent(RegisterSuccessEvent event) {
         if (event.isSuccess()) {
-            dealData(event);
+
         }
-        ToastUtils.showToast(event.getMessage());
+
+    }
+
+
+
+    @Override
+    protected void onSuccess(RegisterSuccessEvent registerSuccessEvent) {
+        dealData(registerSuccessEvent);
+
     }
 
     private void dealRegister(HttpEvent event) {
@@ -208,5 +194,21 @@ public class RegisterSuccessActivity extends BaseTransActivity implements View.O
     @Override
     public void afterTextChanged(Editable s) {
 
+    }
+
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_register_success;
+    }
+
+    @Override
+    protected void onFail(RegisterSuccessEvent registerSuccessEvent) {
+        ToastUtils.showToast(registerSuccessEvent.getMessage());
+    }
+
+
+    @Override
+    protected String initTitle() {
+        return "注册成功";
     }
 }

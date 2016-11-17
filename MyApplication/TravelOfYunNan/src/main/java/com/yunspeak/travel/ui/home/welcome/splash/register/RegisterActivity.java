@@ -1,14 +1,10 @@
 package com.yunspeak.travel.ui.home.welcome.splash.register;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Editable;
 import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
-
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
@@ -17,7 +13,7 @@ import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.RegisterEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.baseui.BaseTransActivity;
+import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.ActivityUtils;
@@ -32,93 +28,29 @@ import com.yunspeak.travel.utils.ShareUtil;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
 import java.util.Map;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 /**
  * Created by wangyang on 2016/8/15 0015.
  * 注册界面
  */
-public class RegisterActivity extends BaseTransActivity implements View.OnClickListener, AvoidFastButton.AvoidFastOnClickListener, LoginEditText.TextChangedListener {
+public class RegisterActivity extends BaseEventBusActivity<RegisterEvent> implements View.OnClickListener, AvoidFastButton.AvoidFastOnClickListener, LoginEditText.TextChangedListener {
     //请求
     private static final int REGISTER_REQ = 0;//注册
     private static final int VERIFICATION_REQ = 1;//验证码
-
     //错误码
     private static final int VER_ERROR = 0;//验证码错误
     public static final int REGISTER_SUCCESS = 4;//注册成功
-
-    private boolean isSending = false;//是否发送过验证码
-    @BindView(R.id.et_phone)
-    LoginEditText mEtPhone;
+    @BindView(R.id.et_phone) LoginEditText mEtPhone;
     @BindView(R.id.et_password) LoginEditText mEtPassword;
     @BindView(R.id.et_re_password) LoginEditText mEtRePassword;
     @BindView(R.id.et_ver) LoginEditText mEtVer;
     @BindView(R.id.bt_next) AvoidFastButton mBtNext;
-    @BindView(R.id.bt_ver) AvoidFastButton mBtVer;
-    @BindView(R.id.tv_back) TextView mTvBack;
-    private int verTime = 60;//验证码时间
     private boolean isSendVer = false;
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (verTime <= 0) {
-                removeCallbacksAndMessages(null);
-                verTime = 60;//初始化事件
-                mBtVer.setClickable(true);
-                mBtVer.setText("重发验证码");
-                mBtVer.setBackgroundResource(R.drawable.fragment_find_search_bg);
-                isSending = false;
-                mEtPhone.setFocusable(true);
-                mEtPhone.setClickable(true);
-                mEtPhone.setFocusableInTouchMode(true);
-                return;
-            }
-            mBtVer.setText("重发验证码(" + --verTime + ")");
-            sendEmptyMessageDelayed(0, 1000);
-        }
-    };
     private int tryGetKey;
-
-    @Override
-    protected void initView() {
-        ButterKnife.bind(this);
-        if (!EventBus.getDefault().isRegistered(this)){
-            EventBus.getDefault().register(this);
-        }
-        ActivityUtils.getInstance().addActivity(this);
-    }
-
-    @Override
-    protected void initData() {
-        mEtPhone.setInputType(InputType.TYPE_CLASS_PHONE);
-        mEtVer.setInputType(InputType.TYPE_CLASS_PHONE);
-        mEtPhone.requestFocus();
-        btIsClick(mBtNext, false);
-        btIsClick(mBtVer, false);
-    }
-
-    @Override
-    protected void initListener() {
-        mBtVer.setOnAvoidFastOnClickListener(this);
-        mBtNext.setOnAvoidFastOnClickListener(this);
-        mTvBack.setOnClickListener(this);
-        mEtPhone.addTextChangedListener(this);
-        mEtVer.addTextChangedListener(this);
-        mEtPassword.addTextChangedListener(this);
-        mEtRePassword.addTextChangedListener(this);
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        //2.调用showSoftInput方法显示软键盘，其中view为聚焦的view组件
-        imm.showSoftInput(mEtPhone,InputMethodManager.SHOW_FORCED);
-    }
-
     private void toRegister() {
         if (!isSendVer) {
             requestAndSetErrorMessage(mEtVer, getString(R.string.not_send_ver));
@@ -183,36 +115,64 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
         XEventUtils.postUseCommonBackJson(IVariable.GET_VERIFICATIO_CODE, map, VERIFICATION_REQ,new RegisterEvent());
     }
 
+
+
+
+
+
+
     @Override
-    protected int initRes() {
-        return R.layout.activity_register;
+    protected void onFail(RegisterEvent event) {
+        if ((event.getType() == IVariable.TYPE_GET_KEY  || event.getCode()==-1)&& tryGetKey<3){
+            tryGetKey++;
+            XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY,new RegisterEvent());
+        }else  if (event.getCode() == VER_ERROR) {
+            requestAndSetErrorMessage(mEtVer, getString(R.string.ver_is_error));
+        }else if(event.getCode()==-1){
+            ToastUtils.showToast("key错误，正在重新获取！请保持网络畅通");
+        }else if (!NetworkUtils.isNetworkConnected(this)){
+            ToastUtils.showToast("网络错误，请检查网络是否畅通！");
+        }else {
+            ToastUtils.showToast(event.getMessage());
+        }
+    }
+
+    @Override
+    protected void onSuccess(RegisterEvent registerEvent) {
+        dealResult(registerEvent);
+    }
+
+    @Override
+    protected void initEvent() {
+        ActivityUtils.getInstance().addActivity(this);
+        mEtPhone.setInputType(InputType.TYPE_CLASS_PHONE);
+        mEtVer.setInputType(InputType.TYPE_CLASS_PHONE);
+        mEtPhone.requestFocus();
+        changeClickAble(mBtNext, false);
+        mBtNext.setOnAvoidFastOnClickListener(this);
+        mEtPhone.addTextChangedListener(this);
+        mEtVer.addTextChangedListener(this);
+        mEtPassword.addTextChangedListener(this);
+        mEtRePassword.addTextChangedListener(this);
+        mEtVer.setOnSendButtonClickListener(new LoginEditText.SendButtonOnClickListener() {
+            @Override
+            public void onClick(View button) {
+                if (StringUtils.isEmpty(GlobalUtils.getKey())) {
+                    XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY,new RegisterEvent());
+                    return;
+                }
+                sendVerCode();
+            }
+        });
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-
-    }
-    @Subscribe
-    public void onEvent(RegisterEvent event) {
-        if (event.isSuccess()) {
-            dealResult(event);
-        }else {
-            if ((event.getType() == IVariable.TYPE_GET_KEY  || event.getCode()==-1)&& tryGetKey<3){
-                tryGetKey++;
-                XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY,new RegisterEvent());
-            }else  if (event.getCode() == VER_ERROR) {
-                requestAndSetErrorMessage(mEtVer, getString(R.string.ver_is_error));
-            }else if(event.getCode()==-1){
-                ToastUtils.showToast("key错误，正在重新获取！请保持网络畅通");
-            }else if (!NetworkUtils.isNetworkConnected(this)){
-                ToastUtils.showToast("网络错误，请检查网络是否畅通！");
-            }else {
-                ToastUtils.showToast(event.getMessage());
-            }
-        }
-
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        //2.调用showSoftInput方法显示软键盘，其中view为聚焦的view组件
+        if (!imm.isActive()) imm.showSoftInput(mEtPhone,InputMethodManager.SHOW_FORCED);
     }
 
     private void dealResult(RegisterEvent event) {
@@ -230,40 +190,15 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
             setResult(REGISTER_SUCCESS, intent);
             finish();
         } else if (event.getType() == VERIFICATION_REQ) {
-            btIsClick(mBtVer, false);
-            isSending = true;
             isSendVer = true;
-            mEtPhone.setFocusable(false);
-            mEtPhone.setClickable(false);
-            mEtPhone.setFocusableInTouchMode(false);
-            mHandler.sendEmptyMessage(0);
         } else if (event.getType() == IVariable.TYPE_GET_KEY) {
             dealKey(event);
-        }
-    }
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
         }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_back:
-                finish();
-                break;
-            case R.id.bt_ver:
-                if (StringUtils.isEmpty(GlobalUtils.getKey())) {
-                    XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY,new RegisterEvent());
-                    return;
-                }
-                sendVerCode();
-                break;
             case R.id.bt_next:
                 toRegister();
                 break;
@@ -292,16 +227,16 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (mEtPhone.getString().length() == 11 && !isSending) {
-            btIsClick(mBtVer, true);
+        if (mEtPhone.getString().length() == 11) {
+           mEtVer.setButtonState(true);
         } else {
-            btIsClick(mBtVer, false);
+            mEtVer.setButtonState(false);
         }
         if ((StringUtils.isEmpty(mEtPhone.getString())) || (StringUtils.isEmpty(mEtVer.getString())) || (StringUtils.isEmpty(mEtPassword.getString())) ||
                 (StringUtils.isEmpty(mEtRePassword.getString()))) {
-            btIsClick(mBtNext, false);
+            changeClickAble(mBtNext, false);
         } else {
-            btIsClick(mBtNext, true);
+            changeClickAble(mBtNext, true);
         }
     }
 
@@ -309,6 +244,22 @@ public class RegisterActivity extends BaseTransActivity implements View.OnClickL
     public void afterTextChanged(Editable s) {
 
     }
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.activity_register;
+    }
 
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (EventBus.getDefault().isRegistered(this)){
+
+        }
+    }
+
+    @Override
+    protected String initTitle() {
+        return "注册";
+    }
 }

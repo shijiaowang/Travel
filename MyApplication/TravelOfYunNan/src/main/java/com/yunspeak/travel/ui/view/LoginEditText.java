@@ -2,6 +2,9 @@ package com.yunspeak.travel.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.ColorInt;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -10,14 +13,20 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.StringUtils;
 
 import org.xutils.common.util.DensityUtil;
+
+import butterknife.BindColor;
 
 /**
  * Created by wangyang on 2016/11/5 0005.
@@ -31,6 +40,15 @@ public class LoginEditText extends FrameLayout {
     private TextView mTvDelete;
     private String hint = "";
     private int length=100;
+    private float deleteRight;
+    private int leftIconSrc;
+    private ImageView mIvLeftImage;
+    private float leftIconLeftMargin;
+    private float editLeftMargin;
+    private boolean isShowSendButton;
+    private AvoidFastButton mBtSend;
+    int verTime=60;
+    private boolean canSending=true;//是否可以点击发送按钮
 
     public LoginEditText(Context context) {
         this(context, null);
@@ -44,6 +62,21 @@ public class LoginEditText extends FrameLayout {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (verTime <= 0) {
+                removeCallbacksAndMessages(null);
+                verTime = 60;//初始化事件
+                mBtSend.setText("重发验证码");
+                changeClickAble(true);
+                canSending=true;
+                return;
+            }
+            mBtSend.setText("重发验证码(" + --verTime + ")");
+            sendEmptyMessageDelayed(0, 1000);
+        }
+    };
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LoginEditText, defStyleAttr, 0);
@@ -57,11 +90,28 @@ public class LoginEditText extends FrameLayout {
                 case R.styleable.LoginEditText_line_edittext_max_length:
                     length = typedArray.getInt(index,100);
                     break;
+                case R.styleable.LoginEditText_line_edittext_delete_right:
+                    deleteRight = typedArray.getDimension(index, 10f);
+                    break;
+                case R.styleable.LoginEditText_line_edittext_image_src:
+                    leftIconSrc = typedArray.getResourceId(index, 0);
+                    break;
+                case R.styleable.LoginEditText_line_edittext_image_left:
+                    leftIconLeftMargin = typedArray.getDimension(index,10f);
+                    break;
+                case R.styleable.LoginEditText_line_edittext_input_left:
+                    editLeftMargin = typedArray.getDimension(index,15f);
+                    break;
+                case R.styleable.LoginEditText_line_edittext_show_send_button:
+                    isShowSendButton = typedArray.getBoolean(index,false);
+                    break;
+
             }
 
         }
         typedArray.recycle();
         View inflate = LayoutInflater.from(context).inflate(R.layout.line_edit_text, this, false);
+        mIvLeftImage = (ImageView) inflate.findViewById(R.id.iv_left_image);
         mEtEnter = (EditText) inflate.findViewById(R.id.et_enter);
         mEtEnter.setHint(hint);
         //密码隐藏
@@ -69,6 +119,8 @@ public class LoginEditText extends FrameLayout {
         mEtEnter.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         mVLine = inflate.findViewById(R.id.v_line);
         mTvDelete = (TextView) inflate.findViewById(R.id.tv_delete);
+        mBtSend = (AvoidFastButton) inflate.findViewById(R.id.bt_ver);
+
         this.addView(inflate);
         mTvDelete.setOnClickListener(new OnClickListener() {
             @Override
@@ -77,6 +129,41 @@ public class LoginEditText extends FrameLayout {
                 mTvDelete.setVisibility(GONE);
             }
         });
+        if (deleteRight!=10f) {
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mTvDelete.getLayoutParams();
+            layoutParams.rightMargin= (int) deleteRight;
+            mTvDelete.setLayoutParams(layoutParams);
+        }
+        if (leftIconLeftMargin!=10f){
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mTvDelete.getLayoutParams();
+            layoutParams.leftMargin= (int) leftIconLeftMargin;
+            mTvDelete.setLayoutParams(layoutParams);
+        }
+        if (editLeftMargin!=15f){
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mEtEnter.getLayoutParams();
+            layoutParams.leftMargin= (int) editLeftMargin;
+            mEtEnter.setLayoutParams(layoutParams);
+        }
+        if (leftIconSrc!=0f){
+            mIvLeftImage.setImageResource(leftIconSrc);
+        }
+        if (isShowSendButton){
+            mBtSend.setVisibility(VISIBLE);
+            mBtSend.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!canSending)return;
+                    if (NetworkUtils.isNetworkConnected(getContext())){//判断有网就直接开始计时
+                        mHandler.sendEmptyMessageDelayed(0,1000);
+                        changeClickAble(false);//设置无法点击
+                        canSending = false;
+                    }
+                    if (onClickListener!=null){
+                        onClickListener.onClick(v);
+                    }
+                }
+            });
+        }
         mEtEnter.addTextChangedListener(new TextWatcher() {
 
 
@@ -116,15 +203,24 @@ public class LoginEditText extends FrameLayout {
                     if (!StringUtils.isEmpty(getString())){
                         mTvDelete.setVisibility(VISIBLE);
                     }
+                    mVLine.setBackgroundColor(getResources().getColor(R.color.otherTitleBg));
                 } else {
                     layoutParams.height = DensityUtil.dip2px(1);
                     mTvDelete.setVisibility(GONE);
+                    mVLine.setBackgroundColor(getResources().getColor(R.color.colord2d2d2));
                 }
                 mVLine.setLayoutParams(layoutParams);
             }
         });
     }
 
+    /**
+     * 显示或者隐藏底部
+     * @param isShow
+     */
+    public void showLine(boolean isShow){
+        mVLine.setVisibility(isShow?VISIBLE:GONE);
+    }
     /**
      * 设置提示语
      * @param hint
@@ -168,5 +264,47 @@ public class LoginEditText extends FrameLayout {
 
     public void setError(CharSequence text){
         mEtEnter.setError(text);
+    }
+
+    /**
+     * 获取点击按钮
+     * @return
+     */
+    public AvoidFastButton getmBtSend() {
+        return mBtSend;
+    }
+    /**
+     * 设置按钮背景
+     *
+     * @param b
+     */
+    protected void changeClickAble(boolean b) {
+        if (b) {
+            mBtSend.setBackgroundResource(R.drawable.login_button_selector);
+            mBtSend.setClickable(b);
+        } else {
+            mBtSend.setBackgroundResource(R.drawable.green_button_normal_bg_unclick);
+            mBtSend.setClickable(b);
+        }
+    }
+
+    /**
+     * 设置按钮是否可点击
+     * @param canClick
+     */
+    public void setButtonState(boolean canClick){
+        if (canSending && canClick){
+            changeClickAble(true);
+        }else {
+            changeClickAble(false);
+        }
+    }
+
+    private SendButtonOnClickListener onClickListener;
+    public  interface  SendButtonOnClickListener{
+        void onClick(View button);
+    }
+    public void setOnSendButtonClickListener(SendButtonOnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
 }

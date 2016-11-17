@@ -1,32 +1,63 @@
 package com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail;
-import android.app.Activity;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.PriceDeatilAdapter;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2016/8/26 0026.
  * 订单详情
  */
 public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent> {
-    @BindView(R.id.tv_order_number) TextView mTvOrderNumber;
-    @BindView(R.id.tv_route_price) TextView mTvRoutePrice;
-    @BindView(R.id.lv_price) ToShowAllListView mLvPrice;
-    @BindView(R.id.tv_reduce_price) TextView mTvReducePrice;
-    @BindView(R.id.tv_total_price) TextView mTvTotalPrice;
-    @BindView(R.id.tv_zfb) FontsIconTextView mTvZfb;
-    @BindView(R.id.tv_pay_des) TextView mTvPayDes;
-    @BindView(R.id.rl_zfb) RelativeLayout mRlZfb;
+    @BindView(R.id.tv_order_number)
+    TextView mTvOrderNumber;
+    @BindView(R.id.tv_route_price)
+    TextView mTvRoutePrice;
+    @BindView(R.id.lv_price)
+    ToShowAllListView mLvPrice;
+    @BindView(R.id.tv_reduce_price)
+    TextView mTvReducePrice;
+    @BindView(R.id.tv_total_price)
+    TextView mTvTotalPrice;
+    @BindView(R.id.tv_zfb)
+    FontsIconTextView mTvZfb;
+    @BindView(R.id.tv_pay_des)
+    TextView mTvPayDes;
+    @BindView(R.id.rl_zfb)
+    RelativeLayout mRlZfb;
+    @BindView(R.id.iv_state)
+    ImageView ivState;
+    @BindView(R.id.tv_des)
+    TextView tvDes;
+    @BindView(R.id.bt_pay)
+    Button btPay;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.ll_pay_way)
+    LinearLayout llPayWay;
+    @BindView(R.id.tv_order_type)
+    TextView tvOrderType;
     private String id;
+
 
     @Override
     protected void initEvent() {
@@ -39,7 +70,6 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
     }
 
 
-
     @Override
     protected String initTitle() {
         return "订单详情";
@@ -49,7 +79,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         id = getIntent().getStringExtra(IVariable.ID);
-       builder.addId(id);
+        builder.addId(id);
     }
 
     @Override
@@ -60,14 +90,50 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
     @Override
     protected void onSuccess(OrdersDetailEvent ordersDetailEvent) {
         OrdersDetailBean ordersDetailBean = GsonUtils.getObject(ordersDetailEvent.getResult(), OrdersDetailBean.class);
-        OrdersDetailBean.DataBean data = ordersDetailBean.getData();
-        mTvOrderNumber.setText("订单号:"+data.getOrder_sn());
-        mTvReducePrice.setText(IVariable.RMB+"-"+data.getConpou());
-        mTvTotalPrice.setText("总计:"+data.getTotal_price());
-        mTvRoutePrice.setText(IVariable.RMB+data.getPrice());
-        mLvPrice.setAdapter(new PriceDeatilAdapter(this,data.getBasec_price()));
+        final OrdersDetailBean.DataBean data = ordersDetailBean.getData();
+        mTvOrderNumber.setText("订单号:" + data.getOrder_sn());
+        mTvReducePrice.setText(IVariable.RMB + "-" + data.getConpou());
+        mTvTotalPrice.setText("总计:" + data.getTotal_price());
+        mTvRoutePrice.setText(IVariable.RMB + data.getPrice());
+
+        String payType = data.getPay_type();
+        if (payType.equals("2")){
+            tvOrderType.setText("活动订单");
+            tvTitle.setText("活动价格");
+        }else {
+            mLvPrice.setAdapter(new PriceDeatilAdapter(this, data.getBasec_price()));
+        }
+
+        String payStatus = data.getPay_status();
+        if (payStatus.equals("1")){
+            ivState.setImageResource(R.drawable.order_wiat_pay);
+            tvDes.setText("订单待支付");
+            llPayWay.setVisibility(View.GONE);
+            btPay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(OrdersDetailActivity.this, ConfirmOrdersActivity.class);
+                    intent.putExtra(IVariable.TYPE, data.getPay_status());
+                    intent.putExtra(IVariable.ID, data.getOrder_sn());
+                    startActivity(intent);
+                }
+            });
+        }else if (payStatus.equals("2")){
+            ivState.setImageResource(R.drawable.order_cancel_pay);
+            tvDes.setText("订单已取消");
+            btPay.setVisibility(View.GONE);
+            llPayWay.setVisibility(View.GONE);
+        }else {
+            ivState.setImageResource(R.drawable.order_had_pay);
+            tvDes.setText("订单已支付");
+            btPay.setVisibility(View.GONE);
+            String payName = data.getPay_name();
+            if (payName.equals("2")){
+                mTvZfb.setText(getString(R.string.activity_confirm_orders_we_chat));
+                mTvZfb.setTextColor(Color.parseColor("#39B337"));
+                mTvPayDes.setText("微信支付");
+            }
+        }
     }
-
-
 
 }

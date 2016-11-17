@@ -6,6 +6,9 @@
 
     <!--homeFragment-->
     <color name="homeTitleBg">#5cd1c3</color>
+    <color name="otherTitleBg">#5cd0c2</color>
+    <color name="colord2d2d2">#d2d2d2</color>
+    <color name="otherTitleBg2">#94dcd3</color>
     <color name="homeTopicTextColor">#323233</color>
     <color name="homeContentBg">#f0eff5</color>
     <color name="homeTopicChosenBg">#fafafa</color>
@@ -25,7 +28,7 @@
     <color name="Ffbf75">#ffbf75</color>
     <color name="colorFf8888">#ff8888</color>
     <color name="meLine">#efeff4</color>
-    <color name="otherTitleBg">#5cd0c2</color>
+
     <color name="colorfcb943">#fcb943</color>
     <color name="color50C4EA">#50C4EA</color>
     <color name="colorff806d">#ff806d</color>

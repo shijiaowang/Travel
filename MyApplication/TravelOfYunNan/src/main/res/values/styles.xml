@@ -501,7 +501,9 @@
 
     <style name="activityRegisterEditText">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">29dp</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
     </style>
 
     <style name="activityChangePhoneText">

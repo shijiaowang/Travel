@@ -233,7 +233,7 @@ public class DBManager {
                        ContentValues contentValues=new ContentValues();
                        contentValues.put("username",userInfo.getNick_name());
                        contentValues.put("userimg",userInfo.getUser_img());
-                       writableDatabase.update("chatuser",contentValues,"id=?",new String[]{userInfo.getId()});
+                       writableDatabase.update("chatuser",contentValues,"userid=?",new String[]{userInfo.getId()});
                    }
                }else {
                    ContentValues contentValues=new ContentValues();

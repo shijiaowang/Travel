@@ -484,6 +484,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
+        if (StringUtils.isEmpty(isCollect))return;
         String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
         AppointDetailMorePop.showMorePop(this,id,mToolbar, collection, new ParentPopClick() {
             @Override
