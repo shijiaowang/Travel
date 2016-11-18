@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_create"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:title="" />
+        android:id="@+id/send"
+        android:title="发送" />
 </menu>

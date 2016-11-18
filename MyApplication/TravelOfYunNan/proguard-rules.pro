@@ -92,4 +92,7 @@
 -keepclassmembers class * {
     @org.xutils.view.annotation.Event <methods>;
 }
-#环信
+#百度地图
+-keep class com.baidu.** {*;}
+-keep class vi.com.** {*;}
+-dontwarn com.baidu.**

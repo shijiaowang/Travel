@@ -3413,7 +3413,6 @@ containing a value of this type.
         public static int action_bar_subtitle=0x7f0b0049;
         public static int action_bar_title=0x7f0b0048;
         public static int action_context_bar=0x7f0b006a;
-        public static int action_create=0x7f0b00f0;
         public static int action_divider=0x7f0b00e9;
         public static int action_menu_divider=0x7f0b0002;
         public static int action_menu_presenter=0x7f0b0003;
@@ -3591,6 +3590,7 @@ containing a value of this type.
         public static int search_src_text=0x7f0b0072;
         public static int search_voice_btn=0x7f0b0076;
         public static int select_dialog_listview=0x7f0b0077;
+        public static int send=0x7f0b00f0;
         public static int shortcut=0x7f0b0061;
         public static int showCustom=0x7f0b0011;
         public static int showHome=0x7f0b0012;
@@ -3758,7 +3758,7 @@ containing a value of this type.
         public static int support_simple_spinner_dropdown_item=0x7f030063;
     }
     public static final class menu {
-        public static int circle_detail_menu=0x7f0c0000;
+        public static int circle_map=0x7f0c0000;
     }
     public static final class string {
         public static int Add_a_button_was_clicked=0x7f050084;

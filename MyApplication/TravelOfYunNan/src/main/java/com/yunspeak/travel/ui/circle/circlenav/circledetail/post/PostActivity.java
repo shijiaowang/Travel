@@ -55,7 +55,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     private List<Object> mDatas;
     private String cId;
     private String userId;
-    private String isCollect;
+    private String isCollect=isFalse;
     public  String imgLists;
     private int floor=-1;//楼层进入
     private boolean isByFloor=false;//是否通过楼层进入
@@ -64,7 +64,6 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     private LinearLayoutManager linearLayoutManager;
     private int loadMore=0;//插入时加载更多计算
     private MenuItem collectionMenu;
-
     @Override
     protected void initEvent() {
         forum_id = getIntent().getStringExtra(IVariable.FORUM_ID);

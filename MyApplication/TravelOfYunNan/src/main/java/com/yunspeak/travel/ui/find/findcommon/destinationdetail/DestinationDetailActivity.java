@@ -5,13 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewConfiguration;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.flexbox.FlexboxLayout;
+import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.appoint.searchappoint.SearchAppointActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
@@ -37,9 +43,12 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     private SimpleDraweeView mIvbg;
     private TextView mTvAdd;
     private FlexboxLayout mFlowLayout;
-    private ImageView mIvAddPicture;
+    private WebView mWvView;
     private LinearLayout mLlSearchAppoint;
-
+    private static final String moblieUrl="mcode=95:0B:B5:DE:E3:08:54:D6:EB:CD:FB:59:8C:15:C6:D1:C6:1E:8F:65;com.yunspeak.travel";
+    private boolean click;
+    private float startY;
+    private int tapSlop;
 
 
     public static void start(Context context,String tid, String name){
@@ -52,6 +61,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     @Override
     protected void initEvent() {
         super.initEvent();
+        tapSlop = ViewConfiguration.get(this).getScaledDoubleTapSlop();
         vsContent.setLayoutResource(R.layout.activity_destination_detail_content);
         vsContent.inflate();
         mTvDestinationDes = ((TextView) findViewById(R.id.tv_destination_des));
@@ -59,8 +69,20 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         mIvbg = ((SimpleDraweeView) findViewById(R.id.iv_bg));
         mLlSearchAppoint = ((LinearLayout) findViewById(R.id.ll_search_appoint));
         mFlowLayout = ((FlexboxLayout)findViewById(R.id.fl_label));
-        mIvAddPicture = ((ImageView) findViewById(R.id.iv_add_picture));
+        mWvView = ((WebView) findViewById(R.id.wv_html));
         mTvAdd = ((TextView)findViewById(R.id.tv_add));
+        mWvView = (WebView)findViewById(R.id.wv_html);
+        mWvView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return true;
+            }
+        });
+        WebSettings settings = mWvView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setUseWideViewPort(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(false);
         mTvShow.setOnClickListener(this);
         mLlSearchAppoint.setOnClickListener(this);
     }
@@ -110,7 +132,43 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     @Override
     protected void initHeader(DetailCommonEvent detailCommonEvent) {
         DestinationDetailBean destinationDetail = GsonUtils.getObject(detailCommonEvent.getResult(), DestinationDetailBean.class);
-        DestinationDetailBean.DataBean.TravelBean travel = destinationDetail.getData().getTravel();
+        final DestinationDetailBean.DataBean.TravelBean travel = destinationDetail.getData().getTravel();
+        StringBuilder stringBuilder=new StringBuilder("http://api.map.baidu.com/staticimage/v2?ak=DOwVc765t3sy69IdYQVefrKNEsciH5EO&width=400&height=160");
+        stringBuilder.append("&center="+travel.getCity());
+        stringBuilder.append("&markers="+travel.getCity()+travel.getTitle()+"|"+travel.getLongitude()+","+travel.getLatitude());
+        stringBuilder.append("&zoom=10");
+        stringBuilder.append("&markerStyles=l,A,0xff0000");
+        stringBuilder.append("&"+moblieUrl);
+        mWvView.loadUrl(stringBuilder.toString());
+        mWvView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        startY = event.getRawY();
+                        click=true;
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        float distance=event.getRawY()-startY;
+                        if (distance>tapSlop) {
+                            click = false;
+                        }
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (click) {
+                            Intent intent = new Intent(DestinationDetailActivity.this, EaseBaiduMapActivity.class);
+                            intent.putExtra("latitude", Double.parseDouble(travel.getLatitude()));
+                            intent.putExtra("longitude", Double.parseDouble(travel.getLongitude()));
+                            intent.putExtra("address", travel.getAddress());
+                            intent.putExtra("isNew", true);
+                            startActivity(intent);
+                        }
+                        break;
+                }
+
+                return click;
+            }
+        });
         mTvDestinationDes.setText(travel.getContent());
         tName = travel.getTitle();
         mTvTitle.setText(tName);

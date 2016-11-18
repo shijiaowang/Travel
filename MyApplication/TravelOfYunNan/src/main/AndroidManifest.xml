@@ -231,11 +231,12 @@
         <activity android:name=".ui.me.myappoint.historyorders.HistoryOrdersActivity" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="xySfDvCQc3chqPTFYpA9ywhG" />
+            android:value="DOwVc765t3sy69IdYQVefrKNEsciH5EO" />
         <!-- 地图 -->
         <activity
             android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme"
             >
 
@@ -243,7 +244,6 @@
         <activity android:name=".ui.appoint.searchappoint.SearchAppointActivity"
             android:launchMode="singleTop"
             />
-        <activity android:name=".ui.baseui.BaseEventBusActivity" />
 
         <!-- 百度地图所需的service -->
         <service

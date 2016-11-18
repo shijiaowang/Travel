@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
@@ -12,6 +14,7 @@ import com.yunspeak.travel.ui.me.messagecenter.privatemessage.MessagePrivateActi
 import com.yunspeak.travel.ui.me.messagecenter.relateme.RelateMeActivity;
 import com.yunspeak.travel.ui.me.messagecenter.systemmessage.SystemMessageActivity;
 import com.yunspeak.travel.ui.view.BadgeView;
+import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 
@@ -33,22 +36,26 @@ public class MessageCenterActivity extends BaseNetWorkActivity<MessageCenterEven
     @BindView(R.id.bv_relate_me) BadgeView mBvRelateMe;
 
 
-
-
-
-
-
-
-
-
     @Override
     protected void initEvent() {
         mLlAppointMessage.setOnClickListener(this);
         mLlPrivate.setOnClickListener(this);
         mLlRelateMe.setOnClickListener(this);
         mLlSystemMessage.setOnClickListener(this);
+
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        try {
+            EMConversation conversation = EMClient.getInstance().chatManager().getConversation(GlobalUtils.getUserInfo().getId());
+            int unreadMsgCount = conversation.getUnreadMsgCount();
+            mBvPrivateDot.setBadgeCount(unreadMsgCount);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {

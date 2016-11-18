@@ -20,21 +20,16 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -55,7 +50,6 @@ import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.CoordinateConverter;
-import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.R;
 
 public class EaseBaiduMapActivity extends AppCompatActivity {
@@ -76,7 +70,8 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
 	ProgressDialog progressDialog;
 	private BaiduMap mBaiduMap;
 	private boolean isShowSned;
-	private MenuItem item;
+	private MenuItem menuItem;
+	private boolean isShowOldLoaction;
 
 	public class BaiduSDKReceiver extends BroadcastReceiver {
 		public void onReceive(Context context, Intent intent) {
@@ -104,13 +99,20 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
         SDKInitializer.initialize(getApplicationContext());  
 		setContentView(R.layout.ease_activity_baidumap);
 		mMapView = (MapView) findViewById(R.id.bmapView);
+		Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
 		Intent intent = getIntent();
 		double latitude = intent.getDoubleExtra("latitude", 0);
+		isShowOldLoaction = intent.getBooleanExtra("isNew", false);//是否展示之前定位
 		LocationMode mCurrentMode = LocationMode.NORMAL;
 		mBaiduMap = mMapView.getMap();
 		MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);
 		mBaiduMap.setMapStatus(msu);
 		initMapView();
+		mToolbar.setTitle("");
+		setSupportActionBar(mToolbar);
+		ActionBar supportActionBar = getSupportActionBar();
+		if (supportActionBar != null)
+			supportActionBar.setDisplayHomeAsUpEnabled(true);
 		if (latitude == 0) {
 			mMapView = new MapView(this, new BaiduMapOptions());
 			mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
@@ -123,6 +125,7 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
 			mMapView = new MapView(this,
 					new BaiduMapOptions().mapStatus(new MapStatus.Builder()
 							.target(p).build()));
+			isShowSned = false;
 			showMap(latitude, longtitude, address);
 		}
 		IntentFilter iFilter = new IntentFilter();
@@ -133,10 +136,12 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.circle_detail_menu,menu);
-		item = menu.findItem(R.id.action_create);
-		item.setTitle("发送");
-		return true;
+		if (!isShowOldLoaction) {
+			getMenuInflater().inflate(R.menu.circle_map, menu);
+			return true;
+		}else {
+			return super.onCreateOptionsMenu(menu);
+		}
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -145,10 +150,8 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
 				onBackPressed();
 				break;
 			default:
-				if (isShowSned) {
+				if (isShowSned && !isShowOldLoaction) {
 					sendLocation();
-				}else {
-					item.setTitle("");
 				}
 				break;
 		}
@@ -156,7 +159,7 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
 	}
 
 	private void showMap(double latitude, double longtitude, String address) {
-		isShowSned = false;
+
 		LatLng llA = new LatLng(latitude, longtitude);
 		CoordinateConverter converter= new CoordinateConverter();
 		converter.coord(llA);

@@ -3758,7 +3758,7 @@ containing a value of this type.
         public static int support_simple_spinner_dropdown_item=0x7f030063;
     }
     public static final class menu {
-        public static int circle_detail_menu=0x7f0c0000;
+        public static int circle_map =0x7f0c0000;
     }
     public static final class string {
         public static int Add_a_button_was_clicked=0x7f050084;

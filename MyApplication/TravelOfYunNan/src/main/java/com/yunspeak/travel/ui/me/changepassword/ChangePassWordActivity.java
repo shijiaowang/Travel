@@ -4,6 +4,7 @@ import android.view.View;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LoginEditText;
@@ -21,7 +22,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/10/2.
  */
 
-public class ChangePassWordActivity extends BaseNetWorkActivity<ChangePassWordEvent> {
+public class ChangePassWordActivity extends BaseEventBusActivity<ChangePassWordEvent> {
     @BindView(R.id.pv_old_password) LoginEditText mPvOldPassword;
     @BindView(R.id.pv_new_password) LoginEditText mPvNewPassword;
     @BindView(R.id.pv_re_new_password) LoginEditText mPvReNewPassword;
@@ -75,24 +76,6 @@ public class ChangePassWordActivity extends BaseNetWorkActivity<ChangePassWordEv
         XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PASSWORD, changePwdMap, 0, new ChangePassWordEvent());
     }
 
-    @Override
-    protected boolean isAutoLoad() {
-        return false;
-    }
-
-    @Override
-    protected void childAdd(MapUtils.Builder builder, int type) {
-
-    }
-
-    @Override
-    protected String initUrl() {
-        return null;
-    }
-
-
-
-
 
     @Override
     protected void onSuccess(ChangePassWordEvent httpEvent) {
@@ -111,7 +94,7 @@ public class ChangePassWordActivity extends BaseNetWorkActivity<ChangePassWordEv
 
     @Override
     protected void onFail(ChangePassWordEvent event) {
-
+        ToastUtils.showToast(event.getMessage());
     }
     @Override
     protected int initLayoutRes() {
