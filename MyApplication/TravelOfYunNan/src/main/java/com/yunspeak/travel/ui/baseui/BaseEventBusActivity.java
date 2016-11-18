@@ -18,10 +18,11 @@ public  abstract class BaseEventBusActivity<T extends HttpEvent> extends BaseToo
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         unregisterEventBus(this);
     }
+
     /**
      * 实例化 T
      *

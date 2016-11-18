@@ -11,9 +11,7 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
-import com.yunspeak.travel.ui.me.me.MeFragment;
-
-import org.xutils.view.annotation.ViewInject;
+import com.yunspeak.travel.ui.me.MeFragment;
 
 import java.util.ArrayList;
 import java.util.List;

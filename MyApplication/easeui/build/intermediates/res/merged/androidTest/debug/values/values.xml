@@ -9,7 +9,6 @@
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
     <bool name="abc_config_closeDialogWhenTouchOutside">true</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
-    <color name="Ffbf75">#ffbf75</color>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
@@ -49,71 +48,8 @@
     <color name="btn_white_pressed">#b5b5b6</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <color name="circleDesText">#7e7e7e</color>
-    <color name="circleFragmentSearchHintTextColor">#d2ffee</color>
-    <color name="circleNavLeftChecked">#ffbf75</color>
-    <color name="circleTitleColorChecked">#f1da60</color>
-    <color name="circleTitleColorUnChecked">#fafafa</color>
-    <color name="color1c1c1c">#1c1c1c</color>
-    <color name="color232323">#232323</color>
-    <color name="color313131">#313131</color>
-    <color name="color323232">#323232</color>
-    <color name="color363535">#363535</color>
-    <color name="color3f3f3f">#3f3f3f</color>
-    <color name="color494848">#494848</color>
-    <color name="color4a4a4a">#4a4a4a</color>
-    <color name="color4d4d4d">#4d4d4d</color>
-    <color name="color50C4EA">#50C4EA</color>
-    <color name="color575555">#575555</color>
-    <color name="color606060">#606060</color>
-    <color name="color646464">#646464</color>
-    <color name="color656565">#656565</color>
-    <color name="color747474">#747474</color>
-    <color name="color767676">#767676</color>
-    <color name="color7d7d7d">#7d7d7d</color>
-    <color name="color7f7f7f">#7f7f7f</color>
-    <color name="color7fbdff">#7fbdff</color>
-    <color name="color7fd8cd">#7fd8cd</color>
-    <color name="color858585">#858585</color>
-    <color name="color868686">#868686</color>
-    <color name="color888888">#888888</color>
-    <color name="color89bff7">#89bff7</color>
-    <color name="color8c8c8c">#8c8c8c</color>
-    <color name="color909090">#909090</color>
-    <color name="color90c75c">#90c75c</color>
-    <color name="color969696">#969696</color>
-    <color name="color97bcf0">#97bcf0</color>
-    <color name="color97cb66">#97cb66</color>
-    <color name="color989898">#989898</color>
-    <color name="color9e9c9c">#9e9c9c</color>
-    <color name="colorA1a1a1">#a1a1a1</color>
-    <color name="colorA7a7a7">#a7a7a7</color>
-    <color name="colorA9a8a8">#a9a8a8</color>
-    <color name="colorB1b1b1">#b1b1b1</color>
-    <color name="colorB8b8b8">#b8b8b8</color>
-    <color name="colorC1c1c1">#c1c1c1</color>
-    <color name="colorC4c4c4">#c4c4c4</color>
-    <color name="colorDddddd">#dddddd</color>
-    <color name="colorE4e4e4">#e4e4e4</color>
     <color name="colorFAFAFA">#fafafa</color>
-    <color name="colorFcfcfd">#fcfcfd</color>
-    <color name="colorFf8076">#ff8076</color>
-    <color name="colorFf8888">#ff8888</color>
-    <color name="colora4e0db">#a4e0db</color>
-    <color name="colorafafb0">#afafb0</color>
-    <color name="colorb2b2b2">#b2b2b2</color>
     <color name="colorb5b5b5">#b5b5b5</color>
-    <color name="colorb7e8e3">#b7e8e3</color>
-    <color name="colord8f4f0">#d8f4f0</color>
-    <color name="colordbdbdb">#dbdbdb</color>
-    <color name="colorf5b731">#f5b731</color>
-    <color name="colorf79283">#f79283</color>
-    <color name="colorf7f7f9">#f7f7f9</color>
-    <color name="colorface04">#face04</color>
-    <color name="colorfcb943">#fcb943</color>
-    <color name="colorff806d">#ff806d</color>
-    <color name="colorff8270">#ff8270</color>
-    <color name="colorffda60">#ffda60</color>
     <color name="common_bg">#fcfcfc</color>
     <color name="common_bottom_bar_normal_bg">#2d2f31</color>
     <color name="common_bottom_bar_selected_bg">#161718</color>
@@ -151,15 +87,6 @@
     <color name="holo_green_light">#ff99cc00</color>
     <color name="holo_orange_light">#ffffbb33</color>
     <color name="holo_red_light">#ffff4444</color>
-    <color name="homeButtonCheckedColor">#64d6fb</color>
-    <color name="homeButtonUnCheckedColor">#646464</color>
-    <color name="homeContentBg">#f0eff5</color>
-    <color name="homeIconFontsUpCheckedColor">#60edb3</color>
-    <color name="homeLine">#c7c6c6</color>
-    <color name="homeTitleBg">#5cd1c3</color>
-    <color name="homeTopicChosenBg">#fafafa</color>
-    <color name="homeTopicChosenText">#323232</color>
-    <color name="homeTopicTextColor">#323233</color>
     <color name="list_itease_primary_color">#646464</color>
     <color name="list_itease_secondary_color">#b7b7b7</color>
     <color name="material_blue_grey_800">#ff37474f</color>
@@ -176,8 +103,6 @@
     <color name="material_grey_900">#ff212121</color>
     <color name="meLine">#efeff4</color>
     <color name="orange">#FFA500</color>
-    <color name="otherFcae04">#fcae04</color>
-    <color name="otherFf7f6c">#ff7f6c</color>
     <color name="otherTitleBg">#5cd0c2</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
@@ -2061,16 +1986,16 @@
     <style name="HeadScale" parent="android:Theme.Dialog">
         <item name="android:windowAnimationStyle">@style/AnimHead</item>
         <item name="android:windowFrame">@null</item>
-        <!-- 边框 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 是否浮现在activity之上 -->
+        
         <item name="android:windowIsTranslucent">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:backgroundDimEnabled">false</item>
-        <!-- 模糊 -->
+        
     </style>
     <style name="MyAlertDialog" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -2091,32 +2016,32 @@
     <style name="MyDialogStyleBottom" parent="android:Theme.Dialog">
         <item name="android:windowAnimationStyle">@style/AnimBottom</item>
         <item name="android:windowFrame">@null</item>
-        <!-- 边框 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 是否浮现在activity之上 -->
+        
         <item name="android:windowIsTranslucent">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowBackground">@android:color/transparent</item>
-        <!-- 背景透明 -->
+        
         <item name="android:backgroundDimEnabled">true</item>
-        <!-- 模糊 -->
+        
     </style>
     <style name="MyDialogStyleTop" parent="android:Theme.Dialog">
         <item name="android:windowAnimationStyle">@style/AnimTop2</item>
         <item name="android:windowFrame">@null</item>
-        <!-- 边框 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 是否浮现在activity之上 -->
+        
         <item name="android:windowIsTranslucent">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowBackground">@android:color/transparent</item>
-        <!-- 背景透明 -->
+        
         <item name="android:backgroundDimEnabled">false</item>
-        <!-- 模糊 -->
+        
     </style>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
@@ -2613,6 +2538,6 @@
     <style name="toolbar_theme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlNormal">@color/colorFAFAFA</item>
         <item name="android:background">@android:color/transparent</item>
-        <!--  <item name="android:homeAsUpIndicator">@drawable/back</item>-->
+        
     </style>
 </resources>

@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.messagecenter.privatemessage;
 
-import android.widget.ListView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;

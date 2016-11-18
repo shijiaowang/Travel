@@ -14,14 +14,10 @@ import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.ImageFolder;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
-import com.yunspeak.travel.ui.baseui.BarBaseActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity;
 import com.yunspeak.travel.utils.ToastUtils;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.view.annotation.ViewInject;
-
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;

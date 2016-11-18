@@ -3,12 +3,9 @@ package com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.bean.UserInfo;
@@ -17,11 +14,8 @@ import com.yunspeak.travel.event.RegisterSuccessEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
-import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.baseui.BaseTransActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
-import com.yunspeak.travel.ui.view.LineEditText;
 import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -30,15 +24,9 @@ import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.Map;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 /**
@@ -50,10 +38,8 @@ public class RegisterSuccessActivity extends BaseEventBusActivity<RegisterSucces
 
     @BindView(R.id.bt_start) AvoidFastButton mBtStart;
     @BindView(R.id.et_nick_name) LoginEditText mEtNickName;
-    @BindView(R.id.rl_girl) RelativeLayout mRlGirl;
-    @BindView(R.id.rb_girl) RadioButton mRbGirl;
-    @BindView(R.id.rl_boy) RelativeLayout mRlBoy;
     @BindView(R.id.rb_boy) RadioButton mRbBoy;
+    @BindView(R.id.rb_girl) RadioButton mRbGirl;
     private String user_id;
 
 
@@ -66,27 +52,11 @@ public class RegisterSuccessActivity extends BaseEventBusActivity<RegisterSucces
             case R.id.bt_start:
                 perfectInformation();
                 break;
-            default:
-                selectSex(v.getId());
-                break;
         }
     }
 
-    private void selectSex(int id) {
-        switch (id) {
-            case R.id.rl_girl:
-                mRbGirl.setChecked(true);
-                mRbBoy.setChecked(false);
-                setClicked();
-                return;
-            case R.id.rl_boy:
-                mRbBoy.setChecked(true);
-                mRbGirl.setChecked(false);
-                setClicked();
-                break;
-        }
 
-    }
+
 
     private void setClicked() {
         if (!(StringUtils.isEmpty(mEtNickName.getString())) && (mRbBoy.isChecked() || mRbGirl.isChecked())){
@@ -130,19 +100,10 @@ public class RegisterSuccessActivity extends BaseEventBusActivity<RegisterSucces
         user_id = getIntent().getStringExtra(IVariable.USER_ID);
         changeClickAble(mBtStart, false);
         mBtStart.setOnAvoidFastOnClickListener(this);
-        mRlBoy.setOnClickListener(this);
-        mRlGirl.setOnClickListener(this);
         mEtNickName.addTextChangedListener(this);
         mEtNickName.setInputType(InputType.TYPE_CLASS_TEXT);
     }
 
-    @Subscribe
-    public void onEvent(RegisterSuccessEvent event) {
-        if (event.isSuccess()) {
-
-        }
-
-    }
 
 
 

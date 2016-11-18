@@ -9,10 +9,14 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.util.NetUtils;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
+import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
 public class ConversationListFragment extends EaseConversationListFragment {
@@ -29,7 +33,22 @@ public class ConversationListFragment extends EaseConversationListFragment {
         super.setUpView();
         // register context menu
         hideTitleBar();
-        registerForContextMenu(conversationListView);
+        conversationListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                EnterAppointDialog.showCommonDialog(getContext(), "删除窗口", "确定", "是否删除与当前对象的聊天窗口？", new ParentPopClick() {
+                    @Override
+                    public void onClick(int type) {
+                        EMConversation conversation = conversationListView.getItem(position);
+                        String username = conversation.getUserName();
+                        EMClient.getInstance().chatManager().deleteConversation(username, false);//保存聊天记录
+                        conversationListView.refresh();
+                    }
+                });
+
+                return true;
+            }
+        });
         conversationListView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
@@ -44,7 +63,6 @@ public class ConversationListFragment extends EaseConversationListFragment {
             }
         });
         super.setUpView();
-        //end of red packet code
     }
 
     @Override
@@ -56,42 +74,4 @@ public class ConversationListFragment extends EaseConversationListFragment {
             ToastUtils.showToast("无法连接网络");
         }
     }
-    
-    
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        getActivity().getMenuInflater().inflate(R.menu.together_detail_menu, menu);
-        menu.findItem(R.id.action_more).setTitle("删除");
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-       /* boolean deleteMessage = false;
-        if (item.getItemId() == R.id.delete_message) {
-            deleteMessage = true;
-        } else if (item.getItemId() == R.id.delete_conversation) {
-            deleteMessage = false;
-        }
-    	EMConversation tobeDeleteCons = conversationListView.getItem(((AdapterContextMenuInfo) item.getMenuInfo()).position);
-    	if (tobeDeleteCons == null) {
-    	    return true;
-    	}
-        if(tobeDeleteCons.getType() == EMConversationType.GroupChat){
-            EaseAtMessageHelper.get().removeAtMeGroup(tobeDeleteCons.getUserName());
-        }
-        try {
-            // delete conversation
-            EMClient.getInstance().chatManager().deleteConversation(tobeDeleteCons.getUserName(), deleteMessage);
-            InviteMessgeDao inviteMessgeDao = new InviteMessgeDao(getActivity());
-            inviteMessgeDao.deleteMessage(tobeDeleteCons.getUserName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        refresh();
-
-        // update unread count
-        //(() getActivity()).updateUnreadLabel();*/
-        return true;
-    }
-
 }

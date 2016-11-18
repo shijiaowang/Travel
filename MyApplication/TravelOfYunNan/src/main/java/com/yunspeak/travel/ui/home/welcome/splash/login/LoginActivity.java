@@ -32,6 +32,9 @@ import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.Map;
 import butterknife.BindView;
 /**
@@ -95,7 +98,9 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
-        startActivity(new Intent(this, ForgetPasswordActivity.class));
+        Intent intent = new Intent(this, RegisterActivity.class);
+        intent.putExtra(IVariable.DATA,true);
+        startActivity(intent);
     }
 
     @Override

@@ -16,7 +16,10 @@ import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
+import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailEvent;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.ReplyEvent;
@@ -273,29 +276,20 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.post_menu,menu);
-        collectionMenu = menu.findItem(R.id.action_collection);
-        collectionMenu.setTitle(isCollect.equals(isTrue)?"已收藏":"收藏");
-        return true;
-    }
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         if (StringUtils.isEmpty(isCollect))return;
-        switch (item.getItemId()){
-            case R.id.action_collection:
+        String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
+        AppointDetailMorePop.showMorePop(this,forum_id,mToolbar,"1", collection, new ParentPopClick() {
+            @Override
+            public void onClick(int t) {
                 String url=isCollect.equals(isTrue)?IVariable.CANCEL_COMMON_COLLECTION:IVariable.COLLECTION;
                 int type=isCollect.equals(isTrue)?TYPE_CANCEL_COLLECTION:TYPE_COLLECTION;
                 Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("5").addId(forum_id).end();
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new PostEvent());
-                break;
-            case R.id.action_report:
-                EnterAppointDialog.showDialogAddComplaint(this,forum_id,"1","1","0");
-                break;
-        }
-
+            }
+        });
     }
 
     @Override

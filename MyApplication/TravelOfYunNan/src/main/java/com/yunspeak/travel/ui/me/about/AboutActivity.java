@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.me.about;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.baseui.BarBaseActivity;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 
 /**

@@ -21,19 +21,18 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
- * Created by android on 2016/9/17.
+ * Created by wangyang on 2016/9/17.
  * 约伴详情页点击更多
  */
 public class AppointDetailMorePop {
-    public static final float ALPHA=0.7f;
-    public static void showMorePop(final Context context, final String id, View view, String collection, final ParentPopClick parentPopClick) {
+    public static void showMorePop(final Context context, final String id, View view, final String type, String collection, final ParentPopClick parentPopClick) {
         // 获取弹出视图对象
         final View viewPopup = View.inflate(context, R.layout.pop_appoint_detail_more, null);
 
         viewPopup.findViewById(R.id.ll_complaint).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EnterAppointDialog.showDialogAddComplaint(context,id,"2","1","0");
+                EnterAppointDialog.showDialogAddComplaint(context,id,type,"1","0");
             }
         });
         ((TextView) viewPopup.findViewById(R.id.tv_collection)).setText(collection);

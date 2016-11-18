@@ -1,6 +1,5 @@
 package com.yunspeak.travel.ui.me.bulltetinboard;
 
-import android.app.Activity;
 
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;

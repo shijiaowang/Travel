@@ -27,8 +27,7 @@ import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.me.changephone.ChangePhoneActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
-import com.yunspeak.travel.ui.baseui.PersonalProfileActivity;
-import com.yunspeak.travel.ui.home.welcome.splash.SplashActivity;
+import com.yunspeak.travel.ui.me.setting.personalprofile.PersonalProfileActivity;
 import com.yunspeak.travel.ui.me.about.AboutActivity;
 import com.yunspeak.travel.ui.me.changepassword.ChangePassWordActivity;
 import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
@@ -49,7 +48,6 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import org.xutils.x;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 

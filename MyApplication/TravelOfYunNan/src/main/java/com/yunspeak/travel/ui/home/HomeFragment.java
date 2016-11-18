@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.home;
 
 import android.content.Intent;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,8 +16,7 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.HotSpotsItemDecoration;
-import com.yunspeak.travel.ui.baseui.ActivateDetailActivity;
+import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.home.homesearch.HomeSearchActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;

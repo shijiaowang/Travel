@@ -10,7 +10,7 @@ import org.xutils.common.util.DensityUtil;
 import org.xutils.image.ImageOptions;
 
 /**
- * Created by Administrator on 2016/7/8 0008.
+ * Created by wangyang on 2016/7/8 0008.
  * 抽取的holder基类
  */
 public abstract class BaseHolder<T> {

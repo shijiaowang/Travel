@@ -153,11 +153,6 @@ public class LoginEditText extends FrameLayout {
                 @Override
                 public void onClick(View v) {
                     if (!canSending)return;
-                    if (NetworkUtils.isNetworkConnected(getContext())){//判断有网就直接开始计时
-                        mHandler.sendEmptyMessageDelayed(0,1000);
-                        changeClickAble(false);//设置无法点击
-                        canSending = false;
-                    }
                     if (onClickListener!=null){
                         onClickListener.onClick(v);
                     }
@@ -229,6 +224,14 @@ public class LoginEditText extends FrameLayout {
         mEtEnter.setHint(hint);
     }
 
+    /**
+     * 开始计时
+     */
+   public void setTimeStart(){
+       mHandler.sendEmptyMessageDelayed(0,1000);
+       changeClickAble(false);//设置无法点击
+       canSending = false;
+   }
     /**
      * 获取输入的字
      * @return

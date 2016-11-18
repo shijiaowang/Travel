@@ -2,39 +2,20 @@ package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.baseui.BaseBarChangeColorActivity;
-import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
-import com.yunspeak.travel.bean.FindLastReply;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.DeliciousDetailAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
-import com.yunspeak.travel.ui.view.ToShowAllListView;
-import com.yunspeak.travel.ui.view.refreshview.XScrollView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.ImageOptionsUtil;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
-import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.common.util.DensityUtil;
-import org.xutils.x;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wangyang on 2016/7/26 0026.

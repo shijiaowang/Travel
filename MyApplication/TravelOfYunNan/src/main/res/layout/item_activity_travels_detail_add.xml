@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="91dp"
         android:layout_height="55dp">
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_route_bg"
             android:layout_width="91dp"
             android:layout_height="55dp" />

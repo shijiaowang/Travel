@@ -167,7 +167,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.circle_map,menu);
+        getMenuInflater().inflate(R.menu.circle_detail_menu,menu);
         return true;
     }
 

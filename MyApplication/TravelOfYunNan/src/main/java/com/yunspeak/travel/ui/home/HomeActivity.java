@@ -2,7 +2,6 @@ package com.yunspeak.travel.ui.home;
 
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -13,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +30,7 @@ import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
 import com.yunspeak.travel.ui.circle.CircleFragment;
 import com.yunspeak.travel.ui.find.FindFragment;
-import com.yunspeak.travel.ui.me.me.MeFragment;
+import com.yunspeak.travel.ui.me.MeFragment;
 import com.yunspeak.travel.ui.view.GradientTextView;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
@@ -429,7 +429,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                         // 显示帐号在其他设备登录
                         if (isOtherLogin) {
-                            ToastUtils.showToast("账号在其他地方登录");
+                            ToastUtils.showToast("账号在其他地方登录!");
                             isOtherLogin=false;
                         }
                         LogUtil.e("账号在其他地方登陆");
@@ -507,6 +507,33 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         public void onFinished() {
 
         }
+    }
+
+    /**
+     * 双击退出应用
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                exit();
+                return true;
+            } else {
+                return super.onKeyDown(keyCode, event);
+            }
+
+    }
+    long preTime=0;
+    private void exit() {
+        long currentTimeMillis = System.currentTimeMillis();
+        if (currentTimeMillis-preTime>1000){
+            ToastUtils.showToast("快速双击退出应用");
+        }else {
+            onBackPressed();
+        }
+        preTime=currentTimeMillis;
     }
 }
 

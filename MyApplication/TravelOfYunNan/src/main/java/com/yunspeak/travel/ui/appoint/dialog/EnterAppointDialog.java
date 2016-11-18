@@ -419,7 +419,6 @@ public class EnterAppointDialog {
         // 获取弹出视图对象
         final View dialogView = View.inflate(context, R.layout.pop_share, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
-        View rlBottom = ((Activity) context).findViewById(R.id.rl_bottom);
         Window window = dialog.getWindow(); //得到对话框
         window.setGravity(Gravity.CENTER);
         dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
@@ -520,25 +519,14 @@ public class EnterAppointDialog {
              }
          });
         WindowManager.LayoutParams wl = window.getAttributes();
-        int[] location = new int[2];
-        rlBottom.getLocationInWindow(location);
         wl.x = 0;
-        wl.y = location[1];
+        wl.y = DensityUtil.getScreenHeight();
         //设置显示位置
         dialog.onWindowAttributesChanged(wl);
-
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.getScreenWidth(),DensityUtil.dip2px(200));
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK)
-                    dialog.dismiss();
-                return true;
-            }
-        });
         dialog.show();
 
     }
@@ -574,14 +562,6 @@ public class EnterAppointDialog {
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK)
-                    dialog.dismiss();
-                return true;
-            }
-        });
         dialog.show();
     }
 

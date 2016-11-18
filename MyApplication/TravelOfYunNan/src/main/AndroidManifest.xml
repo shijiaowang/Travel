@@ -99,7 +99,7 @@
         <activity android:name="com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity" />
         <activity android:name=".ui.me.titlemanage.TitleManagementActivity"/>
         <activity android:name=".ui.appoint.travelplan.lineplan.selectdestination.customdestination.CustomDestinationActivity"/>
-        <activity android:name=".ui.baseui.ActivateDetailActivity"/>
+        <activity android:name=".ui.find.active.activedetail.ActivateDetailActivity"/>
         <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity"
             android:windowSoftInputMode="adjustPan"
             />
@@ -135,7 +135,7 @@
         <activity android:name=".ui.me.messagecenter.privatemessage.MessagePrivateActivity"/>
         <activity android:name=".ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity"/>
         <activity android:name=".ui.me.myhobby.MyHobbyActivity"/>
-        <activity android:name=".ui.baseui.PersonalProfileActivity"/>
+        <activity android:name=".ui.me.setting.personalprofile.PersonalProfileActivity"/>
         <activity android:name=".ui.home.homesearch.HomeSearchActivity"/>
         <activity android:name=".ui.me.messagecenter.appointmessage.AppointMessageActivity"/>
         <activity android:name=".ui.me.identityauth.IdentityAuthenticationActivity"/>

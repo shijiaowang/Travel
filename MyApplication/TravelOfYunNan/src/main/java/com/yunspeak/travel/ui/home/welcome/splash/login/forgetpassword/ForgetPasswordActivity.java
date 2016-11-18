@@ -37,7 +37,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/10/2.
  * 忘记密码
  */
-public class ForgetPasswordActivity extends BaseEventBusActivity<LoginNextCommonEvent> implements AvoidFastButton.AvoidFastOnClickListener {
+public class ForgetPasswordActivity extends BaseEventBusActivity<LoginNextCommonEvent> implements AvoidFastButton.AvoidFastOnClickListener, LoginEditText.TextChangedListener {
     //请求
     private static final int RESET_PASSWORD = 0;//重置
     private static final int VERIFICATION_REQ = 1;//验证码
@@ -49,6 +49,7 @@ public class ForgetPasswordActivity extends BaseEventBusActivity<LoginNextCommon
     @BindView(R.id.bt_next) AvoidFastButton mBtNext;
     private boolean isSendVer = false;
     private String phone;
+    private boolean isForget;
 
 
     @Override
@@ -73,7 +74,13 @@ public class ForgetPasswordActivity extends BaseEventBusActivity<LoginNextCommon
 
     @Override
     protected void initEvent() {
+        isForget = getIntent().getBooleanExtra(IVariable.DATA, false);
         mEtPhone.setInputType(InputType.TYPE_CLASS_PHONE);
+        changeClickAble(mBtNext, false);
+        mEtPhone.addTextChangedListener(this);
+        mEtVer.addTextChangedListener(this);
+        mEtPassword.addTextChangedListener(this);
+        mEtRePassword.addTextChangedListener(this);
         mEtVer.setInputType(InputType.TYPE_CLASS_PHONE);
         mBtNext.setOnAvoidFastOnClickListener(this);
         mEtVer.setOnSendButtonClickListener(new LoginEditText.SendButtonOnClickListener() {
@@ -189,5 +196,30 @@ public class ForgetPasswordActivity extends BaseEventBusActivity<LoginNextCommon
     @Override
     protected String initTitle() {
         return "忘记密码";
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (mEtPhone.getString().length() == 11) {
+            mEtVer.setButtonState(true);
+        } else {
+            mEtVer.setButtonState(false);
+        }
+        if ((StringUtils.isEmpty(mEtPhone.getString())) || (StringUtils.isEmpty(mEtVer.getString())) || (StringUtils.isEmpty(mEtPassword.getString())) ||
+                (StringUtils.isEmpty(mEtRePassword.getString()))) {
+            changeClickAble(mBtNext, false);
+        } else {
+            changeClickAble(mBtNext, true);
+        }
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
     }
 }

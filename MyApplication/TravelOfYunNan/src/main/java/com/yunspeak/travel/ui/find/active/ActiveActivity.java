@@ -6,7 +6,7 @@ import android.content.Intent;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.DetailCommonEvent;
-import com.yunspeak.travel.ui.baseui.ActivateDetailActivity;
+import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.baseui.BaseBarChangeColorActivity;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;

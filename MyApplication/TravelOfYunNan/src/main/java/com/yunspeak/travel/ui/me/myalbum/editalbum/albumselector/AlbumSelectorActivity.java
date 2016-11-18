@@ -23,13 +23,9 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.baseui.BarBaseActivity;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity;
 import com.yunspeak.travel.utils.ToastUtils;
-
-import org.xutils.view.annotation.ViewInject;
-
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;

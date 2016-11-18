@@ -38,8 +38,6 @@ import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteFol
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
-import com.yunspeak.travel.ui.fragment.EmojiFragment;
-import com.yunspeak.travel.utils.DensityUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;

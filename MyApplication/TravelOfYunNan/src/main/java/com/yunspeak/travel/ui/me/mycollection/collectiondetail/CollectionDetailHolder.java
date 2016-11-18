@@ -3,7 +3,6 @@ package com.yunspeak.travel.ui.me.mycollection.collectiondetail;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -11,26 +10,22 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
-import com.yunspeak.travel.ui.baseui.ActivateDetailActivity;
+import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
-import com.yunspeak.travel.ui.me.mycollection.MyCollectionActivity;
 import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.x;
 
 import java.util.Map;
 

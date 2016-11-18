@@ -2,18 +2,15 @@ package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteActivity;
-import com.yunspeak.travel.ui.baseui.BarBaseActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteFollow;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingActivity;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointSpinnerPop;
@@ -24,12 +21,9 @@ import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.xutils.view.annotation.ViewInject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

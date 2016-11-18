@@ -17,19 +17,15 @@ import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.HotSpotsItemDecoration;
-import com.yunspeak.travel.ui.adapter.TravelMemberAdapter;
-import com.yunspeak.travel.ui.adapter.TravelsAddAdapter;
+import com.yunspeak.travel.ui.home.HotSpotsItemDecoration;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.XEventUtils;
 
 import org.xutils.common.util.DensityUtil;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wangyang on 2016/7/30.

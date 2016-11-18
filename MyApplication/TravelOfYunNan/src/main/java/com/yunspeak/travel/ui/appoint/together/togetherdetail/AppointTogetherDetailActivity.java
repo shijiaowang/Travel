@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -486,7 +485,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     protected void otherOptionsItemSelected(MenuItem item) {
         if (StringUtils.isEmpty(isCollect))return;
         String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
-        AppointDetailMorePop.showMorePop(this,id,mToolbar, collection, new ParentPopClick() {
+        AppointDetailMorePop.showMorePop(this,id,mToolbar, "2", collection, new ParentPopClick() {
             @Override
             public void onClick(int t) {
                 String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
