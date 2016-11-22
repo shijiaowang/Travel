@@ -91,6 +91,15 @@ public class DestinationDetailBean implements ParentBean {
             private String add_time;
             private String update_time;
             private String travel_img;
+            private String is_collect;
+
+            public String getIs_collect() {
+                return is_collect;
+            }
+
+            public void setIs_collect(String is_collect) {
+                this.is_collect = is_collect;
+            }
 
             public String getId() {
                 return id;

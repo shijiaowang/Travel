@@ -6,16 +6,13 @@
     android:layout_height="wrap_content">
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_spot"
+        android:layout_centerVertical="true"
         android:layout_width="115dp"
+        android:layout_marginBottom="10dp"
         android:layout_height="80dp" />
-    <LinearLayout
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@id/iv_spot"
-        android:layout_width="match_parent"
-        android:layout_height="80dp">
         <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/iv_spot"
             style="@style/commonSingleLineTextStyle"
             android:id="@+id/tv_name"
             android:textColor="@color/color323232"
@@ -23,6 +20,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RatingBar
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/iv_spot"
+            android:layout_below="@id/tv_name"
             android:id="@+id/rb_star"
             android:layout_marginTop="9dp"
             android:layout_width="wrap_content"
@@ -32,29 +32,28 @@
             android:maxHeight="18dp"
             android:progressDrawable="@drawable/activity_delicious_food_star"
             />
-        <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:text="@string/item_fragment_find_add"
+                android:visibility="gone"
                 android:textColor="@color/colorC1c1c1"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/iv_spot"
+                android:layout_below="@id/rb_star"
                 android:id="@+id/tv_add"
+                android:layout_marginTop="12dp"
                 style="@style/commonSingleLineTextStyle"
-                android:layout_marginLeft="5dp"
                 android:textColor="@color/colorC1c1c1"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
 
-    </LinearLayout>
+
+
     <View
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.yunspeak.travel.R;
 
 import com.yunspeak.travel.bean.UserInfo;
@@ -29,6 +31,7 @@ import com.yunspeak.travel.ui.me.myhobby.MyHobbyActivity;
 import com.yunspeak.travel.ui.me.mytheme.MyThemeActivity;
 import com.yunspeak.travel.ui.me.titlemanage.TitleManagementActivity;
 
+import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -97,9 +100,13 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     @BindView(R.id.ll_hobby) LinearLayout mLlHobby;
     @BindView(R.id.ll_theme) LinearLayout mLlTheme;
     @BindView(R.id.tv_setting) TextView mTvSetting;
+
     private int upType=-1;
     private static final int UP_BG=99;//上传背景
     private static final int UP_ICON=100;//上传头像
+    private BadgeView mBvMessageCount;
+    private BadgeView mBvAppointCount;
+    private BadgeView mBvOrderCount;
 
 
     @Override
@@ -130,9 +137,15 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mIvBg.setOnClickListener(this);//设置背景
         mLlHobby.setOnClickListener(this);//我的兴趣
         mLlTheme.setOnClickListener(this);//我的主题
-        mSwifeLayout.setOnRefreshListener(new MyRefreshListener());//刷新数据
+        mSwifeLayout.setOnRefreshListener(this);//刷新数据
         mSwifeLayout.setColorSchemeResources(R.color.otherTitleBg);
         mIvIcon.setOnClickListener(this);//更改头像
+        mBvMessageCount = new BadgeView(getContext());
+        mBvAppointCount = new BadgeView(getContext());
+        mBvOrderCount = new BadgeView(getContext());
+        mBvAppointCount.setTargetView(mTvAppoint);
+        mBvOrderCount.setTargetView(mTvMyOrder);
+        mBvMessageCount.setTargetView(mBvMessageCount);
 
     }
 
@@ -287,6 +300,16 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mTvNickName.setText(user.getNick_name());
         mTvProfile.setText(user.getContent());
         mTvLevel.setText("LV."+user.getLevel());
+        mBvOrderCount.setBadgeCount(data.getCount_order());
+        mBvAppointCount.setBadgeCount(data.getCount_travel());
+        try {
+            EMConversation conversation = EMClient.getInstance().chatManager().getConversation(GlobalUtils.getUserInfo().getId());
+            int unreadMsgCount = conversation.getUnreadMsgCount()+data.getCount_msg();
+            mBvMessageCount.setBadgeCount(unreadMsgCount);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mBvMessageCount.setBadgeCount(data.getCount_msg());
+        }
         List<UserLabelBean> user_label = data.getUser_label();
         mFlLabel.removeAllViews();
         if (user_label==null || user_label.size()==0){
@@ -306,16 +329,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         onLoad(TYPE_REFRESH);
     }
 
-    /**
-     * 下拉刷新
-     */
-   class MyRefreshListener implements SwipeRefreshLayout.OnRefreshListener {
 
-       @Override
-       public void onRefresh() {
-         onLoad(TYPE_REFRESH);
-       }
-   }
 
 
 

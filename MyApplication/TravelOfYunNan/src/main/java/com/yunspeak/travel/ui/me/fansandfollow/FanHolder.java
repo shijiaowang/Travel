@@ -10,6 +10,7 @@ import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.Follow;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.StringUtils;
 
 import java.util.List;
 
@@ -44,7 +45,8 @@ public class FanHolder extends BaseRecycleViewHolder<Follow> {
             mVLine.setVisibility(View.VISIBLE);
         }
         mTvNickName.setText(datas.getNick_name());
-        mTvContent.setText(datas.getContent());
+        String des= StringUtils.isEmpty(datas.getContent())?"这个人很懒，什么都没有留下":datas.getContent();
+        mTvContent.setText(des);
         FrescoUtils.displayIcon(mIvIcon,datas.getUser_img());
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

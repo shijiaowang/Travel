@@ -14,7 +14,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.flexbox.FlexboxLayout;
 import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
@@ -31,7 +30,6 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import java.util.Arrays;
 import java.util.List;
-
 /**
  * Created by wangyang on 2016/7/30.
  * 目的地详情
@@ -49,6 +47,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     private boolean click;
     private float startY;
     private int tapSlop;
+
 
 
     public static void start(Context context,String tid, String name){
@@ -170,6 +169,8 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
             }
         });
         mTvDestinationDes.setText(travel.getContent());
+        isCollect = travel.getIs_collect();
+        item.setTitle(isCollect.equals(isFalse)?"收藏":"已收藏");
         tName = travel.getTitle();
         mTvTitle.setText(tName);
         mTvAdd.setText("·  " + travel.getAddress());
@@ -216,6 +217,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
             mFlowLayout.addView(mTvTitle);
         }
     }
+
 
     @Override
     protected String detailType() {

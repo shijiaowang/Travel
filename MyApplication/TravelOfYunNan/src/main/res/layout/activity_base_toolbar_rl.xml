@@ -54,15 +54,11 @@
         android:elevation="0dp"
         android:layout_height="@dimen/commonTotalHeight"
         app:titleTextAppearance="@style/ToolBar.TitleText">
-        <TextView
-            android:id="@+id/tv_appbar_title"
-            style="@style/commonSingleLineTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ViewStub
+            android:id="@+id/vs_bar"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:elevation="1dp"
-            android:textColor="@color/colorFAFAFA"
-            android:textSize="18sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </android.support.v7.widget.Toolbar>
 </RelativeLayout>

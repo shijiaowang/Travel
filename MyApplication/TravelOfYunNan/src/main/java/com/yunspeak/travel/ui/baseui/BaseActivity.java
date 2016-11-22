@@ -26,6 +26,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.utils.LogUtils;
@@ -93,17 +94,19 @@ public abstract class BaseActivity extends FragmentActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-    }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
 
 
     protected abstract int initLayoutRes();
@@ -114,11 +117,6 @@ public abstract class BaseActivity extends FragmentActivity {
 
     protected abstract void initData();
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-    }
 
     @Override
     protected void onStop() {

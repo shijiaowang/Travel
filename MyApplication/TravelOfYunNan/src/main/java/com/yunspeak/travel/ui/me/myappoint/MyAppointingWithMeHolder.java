@@ -81,7 +81,7 @@ public class MyAppointingWithMeHolder extends BaseRecycleViewHolder<Object> {
             mTvHaveNumber.setText("已有: " + datas.getUser_count() + "人");
             mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
             mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
-            mTvEnterPeolple.setText("("+datas.getUser_count()+")");
+            mTvEnterPeolple.setText("已报名\n("+datas.getUser_count()+")");
             String currentTime = new Date().getTime() + "";
             mTvSurplusDay.setText("剩余：" + CalendarUtils.getHowDay(currentTime, datas.getEnd_time() + "000") + "天");
             mTvPrice.setText("¥" + datas.getTotal_price());

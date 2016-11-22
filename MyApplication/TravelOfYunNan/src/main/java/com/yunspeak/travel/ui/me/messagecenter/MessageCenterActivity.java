@@ -97,7 +97,6 @@ public class MessageCenterActivity extends BaseNetWorkActivity<MessageCenterEven
         mBvRelateMe.setBadgeCount(user);
         mBvAppointDot.setBadgeCount(data.getTravel());
         mBvSystemDot.setBadgeCount(data.getSystem());
-        mBvPrivateDot.setBadgeCount(data.getLetter());
     }
 
 

@@ -6,9 +6,9 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.view.ShowAllTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -71,7 +71,7 @@ public class CustomDestinationHolder extends BaseRecycleViewHolder<CustomDestina
                 Map<String, String> deleteMap = MapUtils.Build().addKey().addUserId().addtId(deleteDataId).end();
                 CustomDestinationEvent customDestinationEvent = new CustomDestinationEvent();
                 customDestinationEvent.setDeletePosition(position);
-                XEventUtils.postUseCommonBackJson(IVariable.DELETE_CUSTOM_SPOT, deleteMap, LoadingBarBaseActivity.TYPE_DELETE, customDestinationEvent);
+                XEventUtils.postUseCommonBackJson(IVariable.DELETE_CUSTOM_SPOT, deleteMap, IState.TYPE_DELETE, customDestinationEvent);
 
             }
         });

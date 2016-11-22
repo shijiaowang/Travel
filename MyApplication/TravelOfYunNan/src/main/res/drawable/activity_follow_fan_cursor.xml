@@ -6,5 +6,6 @@
         android:color="@android:color/white"
         android:width="1dp"
         />
+    <solid android:color="@color/otherTitleBg"/>
     <corners android:radius="270dp"/>
 </shape>

@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMMessage;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Login;
@@ -30,6 +31,7 @@ import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
 import com.yunspeak.travel.ui.circle.CircleFragment;
 import com.yunspeak.travel.ui.find.FindFragment;
+import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.me.MeFragment;
 import com.yunspeak.travel.ui.view.GradientTextView;
 import com.yunspeak.travel.utils.ActivityUtils;
@@ -38,6 +40,7 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.NetworkUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.TypefaceUtis;
 import com.hyphenate.EMCallBack;
@@ -119,6 +122,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         startService(startServiceIntent);*/
         Map<String, String> end = MapUtils.Build().addKey().addType("1").end();
         XEventUtils.getUseCommonBackJson(IVariable.UPDATE,end,TYPE_UPDATE,new HomeLoginEvent());
+        MobclickAgent.openActivityDurationTrack(false);
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
     }
 
     /**
@@ -283,6 +288,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      * @param event
      */
     private void loginResult(HomeLoginEvent event) {
+        LogUtils.e(event.getMessage());
         if (event.isSuccess()){
             Login object = GsonUtils.getObject(event.getResult(), Login.class);
             UserInfo data = object.getData();
@@ -299,10 +305,16 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 ToastUtils.showToast("用户信息发生错误，请尝试重新登录，若多次无效，可清除缓存！");
             }
         }else {
-            if (NetworkUtils.isNetworkConnected(this)){
+            if (NetworkUtils.isNetworkConnected(this) &&  GlobalUtils.getUserInfo()==null){
                 ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
             }else {
-                ToastUtils.showToast("网络错误！");
+                if(event.getMessage().equals("密码错误")){
+                    ToastUtils.showToast("密码错误！请重新登录");
+                    startActivity(new Intent(this, LoginActivity.class));
+                    finish();
+                }else {
+                    ToastUtils.showToast("网络错误！");
+                }
             }
 
         }

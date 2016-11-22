@@ -52,15 +52,17 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="wrap_content">
            <com.facebook.drawee.view.SimpleDraweeView
                android:id="@+id/iv_icon"
+               android:layout_gravity="center_vertical"
                android:layout_width="80dp"
                android:layout_height="80dp" />
              <include layout="@layout/activity_my_appoint_common"/>
             <LinearLayout
-                android:layout_gravity="center"
                 android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Button

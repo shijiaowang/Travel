@@ -37,31 +37,26 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_reply_icon"
             android:layout_width="33dp"
+           android:layout_centerVertical="true"
             android:layout_height="33dp" />
-        <LinearLayout
-            android:layout_toRightOf="@id/iv_reply_icon"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="33dp">
             <TextView
+                android:layout_toRightOf="@id/iv_reply_icon"
+                android:layout_marginLeft="10dp"
                 android:id="@+id/tv_reply_nick_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#323232"
                 android:textSize="14sp" />
-
             <TextView
+                android:layout_below="@id/tv_reply_nick_name"
+                android:layout_toRightOf="@id/iv_reply_icon"
+                android:layout_marginLeft="10dp"
                 android:id="@+id/tv_reply_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:textColor="#949494"
                 android:textSize="10sp" />
-
-        </LinearLayout>
-
     </RelativeLayout>
     <LinearLayout
         android:layout_marginBottom="20dp"

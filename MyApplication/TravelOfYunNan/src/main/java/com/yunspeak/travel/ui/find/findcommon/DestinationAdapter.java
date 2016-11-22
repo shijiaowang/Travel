@@ -20,6 +20,7 @@ public class DestinationAdapter extends BaseRecycleViewAdapter<DestinationBean.D
     public DestinationAdapter(List<DestinationBean.DataBean.BodyBean> mDatas, Context mContext, boolean isDestination) {
         super(mDatas, mContext);
         this.isDestination = isDestination;
+
     }
 
     @Override

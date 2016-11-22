@@ -87,6 +87,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
         mVsContent.inflate();
         changeMargin(0, 5);
         type = getIntent().getIntExtra(IVariable.TYPE, -1);
+        mTvTitle.setText(initTitle());
         url = type == DELICIOUS_NORMAL ? IVariable.FIND_FOOD : IVariable.FIND_DESTINATION;
         mFlTop = (FrameLayout) findViewById(R.id.fl_top);
         View inflate;

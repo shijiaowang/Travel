@@ -59,6 +59,8 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         DeliciousDetailBean.DataBean.TravelBean travel = deliciousDetail.getData().getTravel();
         mTvDes.setText(travel.getContent());
         mTvTitle.setText( travel.getTitle());
+        isCollect = travel.getIs_collect();
+        item.setTitle(isCollect.equals(isFalse)?"收藏":"已收藏");
         String foodUrl = travel.getFood_img();
         if (!StringUtils.isEmpty(foodUrl)){
             final String[] split = foodUrl.split(",");

@@ -241,7 +241,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="14dp"
-                    android:divider="@color/homeContentBg"></android.support.v7.widget.RecyclerView>
+                    android:divider="@color/homeContentBg"/>
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

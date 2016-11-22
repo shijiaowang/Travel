@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.find.findcommon;
 
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -38,6 +39,7 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     protected String tName;
     private EaseChatInputMenu inputMenu;
     private String pid="0";
+    protected String isCollect;
 
     @Override
     protected BaseRecycleViewAdapter initAdapter(List<TravelReplyBean> mDatas) {
@@ -62,6 +64,16 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
                 ToastUtils.showToast("评论成功");
                 dealReplyData(detailCommonEvent);
                 break;
+            case TYPE_CANCEL_COLLECTION:
+                ToastUtils.showToast("取消收藏成功");
+                isCollect=isFalse;
+                item.setTitle("收藏");
+                break;
+            case TYPE_COLLECTION:
+                ToastUtils.showToast("收藏成功");
+                isCollect=isTrue;
+                item.setTitle("已收藏");
+                break;
             default:
                 if (isFirst){
                     initHeader(detailCommonEvent);
@@ -77,11 +89,11 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     protected void onFail(DetailCommonEvent detailCommonEvent) {
         switch (detailCommonEvent.getType()){
             case TYPE_LIKE_DISCUSS:
-                ToastUtils.showToast("点赞失败"+detailCommonEvent.getMessage());
-                break;
             case TYPE_DISCUSS:
-                ToastUtils.showToast("评论失败"+detailCommonEvent.getMessage());
-                break;
+            case TYPE_CANCEL_COLLECTION:
+            case TYPE_COLLECTION:
+                ToastUtils.showToast(detailCommonEvent.getMessage());
+
             default:
                 super.onFail(detailCommonEvent);
                 break;
@@ -172,6 +184,29 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
             }
         }
     }
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        if (StringUtils.isEmpty(isCollect))return;
+        item.setTitle(isCollect.equals(isTrue) ? "已收藏" : "收藏");
+        String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
+        int type=isCollect.equals(isTrue)?TYPE_CANCEL_COLLECTION:TYPE_COLLECTION;
+        Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType(getType()).addId(tId).end();
+        XEventUtils.postUseCommonBackJson(url, collectionMap, type, new DetailCommonEvent());
+    }
+
+    /**
+     * 获取type
+     * @return
+     */
+    private String getType() {
+        if (detailType().equals(IVariable.TYPE_DESTINATION)){
+            return "2";
+        }else if (detailType().equals(IVariable.TYPE_TRAVELS)){
+            return "4";
+        }
+        return "6";//美食，其他
+    }
+
     /**
      * 初始化头部数据
      * @param detailCommonEvent

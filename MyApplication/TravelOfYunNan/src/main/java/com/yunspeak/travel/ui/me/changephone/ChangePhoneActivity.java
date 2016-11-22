@@ -15,7 +15,6 @@ import com.yunspeak.travel.bean.UserInfo;
 
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.me.changephone.bindphone.BindPhoneActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.PhoneTextView;
@@ -25,9 +24,6 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.view.annotation.ViewInject;
-
 import java.util.Map;
 
 import butterknife.BindView;

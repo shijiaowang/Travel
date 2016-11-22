@@ -1,75 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#f6f6f6"
-    android:layout_height="match_parent">
+    android:orientation="horizontal"
+    android:weightSum="4">
+
     <ListView
-        android:cacheColorHint="@android:color/transparent"
-        android:paddingTop="6dp"
-        android:divider="@null"
-        android:choiceMode="singleChoice"
-        android:scrollbars="none"
-        android:background="#ffffff"
         android:id="@+id/lv_left_nav"
-        android:layout_width="89dp"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:cacheColorHint="@android:color/transparent"
+        android:choiceMode="singleChoice"
+        android:divider="@null"
+        android:paddingTop="6dp"
+        android:scrollbars="none">
 
     </ListView>
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3">
+        <ListView
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:id="@+id/lv_right_nav"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <View
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"/>
-            <ListView
-                android:layout_gravity="center_horizontal"
-                android:cacheColorHint="@android:color/transparent"
-                android:divider="@null"
-                android:scrollbars="none"
-                android:id="@+id/lv_right_nav"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:cacheColorHint="@android:color/transparent"
+            android:dividerHeight="16dp"
+            android:divider="@android:color/transparent"
+            android:scrollbars="none">
 
-            </ListView>
-            <View
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"/>
-
-        </LinearLayout>
+        </ListView>
         <ProgressBar
             android:id="@+id/pb_load"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
         <RelativeLayout
             android:id="@+id/rl_empty"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="gone">
             <ImageView
                 android:id="@+id/iv_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/empty_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:src="@drawable/empty_image" />
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/iv_empty"
-                android:text="暂无关注，快去关注喜欢的圈子吧~"
-                android:textColor="@color/color323232"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_empty"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="暂无关注，快去关注喜欢的圈子吧~"
+                android:textColor="@color/color323232" />
         </RelativeLayout>
-
     </RelativeLayout>
-
 </LinearLayout>

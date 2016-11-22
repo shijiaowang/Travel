@@ -124,12 +124,6 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
 
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        showSoft(mEtTitle);
-
-    }
 
     private void showSoft(EditText mEtTitle) {
         mEtTitle.setFocusable(true);

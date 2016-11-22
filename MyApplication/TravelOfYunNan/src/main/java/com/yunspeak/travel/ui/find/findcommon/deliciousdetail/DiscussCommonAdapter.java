@@ -2,24 +2,11 @@ package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
-
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
-import com.yunspeak.travel.event.DetailCommonEvent;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
-import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
-import com.yunspeak.travel.ui.view.FontsIconTextView;
-import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.ToastUtils;
-import com.yunspeak.travel.utils.XEventUtils;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wangyang on 2016/8/25 0025.

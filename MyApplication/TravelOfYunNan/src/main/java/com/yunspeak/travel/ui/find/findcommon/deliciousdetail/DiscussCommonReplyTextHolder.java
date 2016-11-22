@@ -3,18 +3,14 @@ package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 import android.content.Context;
 import android.text.Spannable;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.DetailCommonEvent;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
-import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FormatDateUtils;
@@ -85,7 +81,7 @@ public class DiscussCommonReplyTextHolder extends BaseRecycleViewHolder<TravelRe
                     end();
             DetailCommonEvent detailCommonEvent = new DetailCommonEvent();
             detailCommonEvent.setClickPosition(position);
-            XEventUtils.postUseCommonBackJson(IVariable.FIND_CLICK_LIKE, likeMap, LoadingBarBaseActivity.TYPE_LIKE_DISCUSS, detailCommonEvent);
+            XEventUtils.postUseCommonBackJson(IVariable.FIND_CLICK_LIKE, likeMap, IState.TYPE_LIKE_DISCUSS, detailCommonEvent);
         }else {
             ToastUtils.showToast("你已经点过赞了");
         }

@@ -6,11 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
+import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.MeFragment;
 
 import java.util.ArrayList;
@@ -22,14 +24,13 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/18 0018.
  */
 
-public class FollowAndFanActivity extends BaseActivity implements View.OnClickListener {
+public class FollowAndFanActivity extends BaseToolBarActivity implements View.OnClickListener {
     private int currentPosition = 0;
     private List<Fragment> fragments = new ArrayList<>(2);
-
     @BindView(R.id.vp_follow_fan) ViewPager mVpFollowFan;//pager
-    @BindView(R.id.tv_back) TextView mTvBack;//返回
-    @BindView(R.id.tv_fan) TextView mTvFan;//粉丝
-    @BindView(R.id.tv_follow) TextView mTvFollow;//关注
+    private TextView mTvFan;
+    private TextView mTvFollow;
+
 
     @Override
     protected int initLayoutRes() {
@@ -37,28 +38,38 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
-    protected void initView() {
+    protected void initOptions() {
         boolean isFollow = getIntent().getBooleanExtra(MeFragment.FOLLOW_SELECT, false);
         currentPosition = isFollow ? 0 : 1;
-
-    }
-
-    @Override
-    protected void initListener() {
-        mTvBack.setOnClickListener(this);
-        mTvFan.setOnClickListener(this);
-        mTvFollow.setOnClickListener(this);
         mVpFollowFan.setOnPageChangeListener(new FollowFanChangeListener());
-    }
-
-    @Override
-    protected void initData() {
         fragments.add(FanAndFollowFragment.newInstance("1"));
         fragments.add(FanAndFollowFragment.newInstance("2"));
         mVpFollowFan.setAdapter(new FollowFanAdapter(getSupportFragmentManager()));
         mVpFollowFan.setCurrentItem(currentPosition, false);
+
+
+
+    }
+
+    @Override
+    protected void createTitle() {
+        mVsBar.setLayoutResource(R.layout.follow_and_fan_bar);
+        mVsBar.inflate();
+        mTvFan = (TextView)findViewById(R.id.tv_fan);
+        mTvFollow = (TextView)findViewById(R.id.tv_follow);
+        mTvFan.setOnClickListener(this);
+        mTvFollow.setOnClickListener(this);
         changeSelect();
     }
+
+    @Override
+    protected String initTitle() {
+        return null;
+    }
+
+
+
+
 
     private void changeSelect() {
         if (currentPosition < 0 || currentPosition > fragments.size()) {
@@ -81,9 +92,6 @@ public class FollowAndFanActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_back:
-                finish();
-                break;
             case R.id.tv_follow:
                 currentPosition=0;
                 changeSelect();

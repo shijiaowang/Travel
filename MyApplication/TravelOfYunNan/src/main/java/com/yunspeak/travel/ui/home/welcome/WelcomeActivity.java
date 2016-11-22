@@ -28,6 +28,8 @@ import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.x;
+
 import java.util.Map;
 
 
@@ -96,11 +98,11 @@ public class WelcomeActivity extends FullTransparencyActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
 
         super.onResume();
 
-        new Thread(new Runnable() {
+        x.task().run(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -121,7 +123,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
                 }
                 finish();
             }
-        }).start();
+        });
     }
 
     private void checkNetAndCheckLogin(String userName, String userPwd) {

@@ -1,10 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!--<item name="android:windowNoTitle">true</item>-->
-        <!--<item name="colorPrimary">@android:color/transparent</item>
-        <item name="colorPrimaryDark">@android:color/transparent</item>-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/otherTitleBg</item>
     </style>
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
@@ -69,7 +66,7 @@
         <item name="android:layout_marginLeft">15dp</item>
         <item name="android:layout_marginTop">14dp</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">16dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
     </style>
     <!--android:textSize="10sp"

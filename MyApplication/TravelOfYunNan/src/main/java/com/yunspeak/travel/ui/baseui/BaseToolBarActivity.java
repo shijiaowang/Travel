@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
@@ -63,6 +65,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     protected View needHideChildView;
     protected MenuItem item;
     protected RelativeLayout mRlEmpty;
+    protected ViewStub mVsBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         mIvPageError = (ImageView) findViewById(R.id.page_error);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
         mPbLoading.setVisibility(View.GONE);
-        mTvTitle = (TextView) findViewById(R.id.tv_appbar_title);
+        mVsBar = (ViewStub) findViewById(R.id.vs_bar);
         mRlEmpty = (RelativeLayout) findViewById(R.id.rl_empty);
         mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         mFlContent = (FrameLayout) findViewById(R.id.fl_content);
@@ -88,9 +91,16 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         needHideChildView=childView;//默认隐藏孩子的所有内容，
         mFlContent.addView(childView);
         ButterKnife.bind(this);
+        createTitle();
         initOptions();
-        mTvTitle.setText(initTitle());
         PushAgent.getInstance(this).onAppStart();
+    }
+    //设置头部
+    protected void createTitle() {
+        mVsBar.setLayoutResource(R.layout.bar_text);
+        mVsBar.inflate();
+        mTvTitle = (TextView) findViewById(R.id.tv_appbar_title);
+        mTvTitle.setText(initTitle());
     }
 
     protected boolean isChangeBarColor() {
@@ -148,6 +158,17 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+          MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
 
     /**

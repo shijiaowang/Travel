@@ -99,6 +99,15 @@ public class TravelsDetailBean implements ParentBean{
             private String url;
             private String travel_way;
             private String title;
+            private String is_collect;
+
+            public String getIs_collect() {
+                return is_collect;
+            }
+
+            public void setIs_collect(String is_collect) {
+                this.is_collect = is_collect;
+            }
 
             public String getTitle() {
                 return title;

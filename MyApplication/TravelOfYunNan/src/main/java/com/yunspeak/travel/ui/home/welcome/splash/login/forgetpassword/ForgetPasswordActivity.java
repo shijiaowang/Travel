@@ -144,13 +144,7 @@ public class ForgetPasswordActivity extends BaseEventBusActivity<LoginNextCommon
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        //2.调用showSoftInput方法显示软键盘，其中view为聚焦的view组件
-        if (!imm.isActive()) imm.showSoftInput(mEtPhone,InputMethodManager.SHOW_FORCED);
-    }
+
 
     private void dealResult(LoginNextCommonEvent event) {
         if (event.getType() == RESET_PASSWORD) {

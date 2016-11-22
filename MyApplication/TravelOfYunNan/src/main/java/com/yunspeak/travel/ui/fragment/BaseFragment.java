@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.umeng.analytics.MobclickAgent;
 import com.yunspeak.travel.utils.LogUtils;
 
 import butterknife.ButterKnife;
@@ -59,5 +60,22 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initData();
 
     protected abstract void initListener();
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(getClass().getName());
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(getClass().getName());
+    }
+
+
+
+
 
 }

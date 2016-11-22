@@ -4,21 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.baseui.LoadingBarBaseActivity;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageAdapter;
 import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
 import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.view.annotation.ViewInject;
-
-import java.util.Map;
 
 import butterknife.BindView;
 

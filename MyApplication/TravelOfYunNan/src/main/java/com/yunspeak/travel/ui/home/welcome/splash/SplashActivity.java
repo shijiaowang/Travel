@@ -237,7 +237,8 @@ public class SplashActivity extends FullTransparencyActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
+        super.onResume();
         if (mRlToggle.getVisibility()==View.GONE){
             mRlToggle.setVisibility(View.VISIBLE);
         }
@@ -261,12 +262,7 @@ public class SplashActivity extends FullTransparencyActivity {
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
 
-
-    }
 
     @Override
     protected void onStop() {

@@ -47,6 +47,24 @@ public class MeBean {
         private String follow;
         private String fans;
         private int count_msg;
+        private int count_travel;
+        private int count_order;
+
+        public int getCount_travel() {
+            return count_travel;
+        }
+
+        public void setCount_travel(int count_travel) {
+            this.count_travel = count_travel;
+        }
+
+        public int getCount_order() {
+            return count_order;
+        }
+
+        public void setCount_order(int count_order) {
+            this.count_order = count_order;
+        }
 
         private List<UserLabelBean> user_label;
 
