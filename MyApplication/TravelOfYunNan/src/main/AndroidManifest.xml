@@ -94,7 +94,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name="com.yunspeak.travel.ui.me.level.LevelActivity" />
-        <activity android:name="com.yunspeak.travel.ui.me.setting.SettingActivity" />
+        <activity android:name="com.yunspeak.travel.ui.me.setting.SettingActivity"
+            android:launchMode="singleTop"
+            />
         <activity android:name="com.yunspeak.travel.ui.find.active.ActiveActivity" />
         <activity android:name="com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity" />
         <activity android:name=".ui.me.titlemanage.TitleManagementActivity"/>

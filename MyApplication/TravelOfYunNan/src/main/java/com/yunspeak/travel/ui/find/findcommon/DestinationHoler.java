@@ -2,8 +2,13 @@ package com.yunspeak.travel.ui.find.findcommon;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -31,6 +36,7 @@ public class DestinationHoler extends BaseRecycleViewHolder<DestinationBean.Data
     @BindView(R.id.tv_add)TextView mTvAdd;
     @BindString(R.string.item_fragment_find_add) String addressIcon;
 
+
     public DestinationHoler(View itemView, boolean isDestination) {
         super(itemView);
         this.isDestination = isDestination;
@@ -53,10 +59,14 @@ public class DestinationHoler extends BaseRecycleViewHolder<DestinationBean.Data
         FrescoUtils.displayNormal(mIvSpot,datas.getLogo_img());
         mTvName.setText(datas.getTitle());
         String text=addressIcon+datas.getAddress();
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
-        spannableStringBuilder.setSpan(TypefaceUtis.getTypeface(mContext),0,1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-        mTvAdd.setText(spannableStringBuilder);
-
+        SpannableString spannableString = new SpannableString(text);
+        TypefaceSpan typefaceSpan = new TypefaceSpan("sans-serif");
+        Typeface typeface = TypefaceUtis.getTypeface(mContext);
+        TextPaint textPaint = new TextPaint();
+        textPaint.setTypeface(typeface);
+        typefaceSpan.updateDrawState(textPaint);
+        spannableString.setSpan(typefaceSpan,0,1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        mTvAdd.setText(spannableString);
         float star=5.0f;
         star = getStar(datas, star);
         mRbStart.setRating(star);
@@ -74,7 +84,7 @@ public class DestinationHoler extends BaseRecycleViewHolder<DestinationBean.Data
                     mContext.startActivity(intent);
             }
         });
-
-
     }
+
+
 }

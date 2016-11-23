@@ -86,7 +86,6 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRvChosen.setAdapter(chosenAdapter);
         mRvChosen.setLayoutManager(gridLayoutManager);
-
         canSmoothInNetScroll(mRvChosen, gridLayoutManager);
 
         List<HomeBean.DataBean.DestinationBean> destination = data.getDestination();

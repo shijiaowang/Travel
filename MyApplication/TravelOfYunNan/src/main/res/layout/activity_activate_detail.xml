@@ -155,28 +155,17 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
-        <LinearLayout
-            android:background="@drawable/activity_activate_detail_bg"
-            android:gravity="center"
-            android:layout_marginRight="10dp"
-            android:orientation="horizontal"
-            android:layout_width="65dp"
-            android:layout_height="20dp">
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:id="@+id/tv_pen"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
+
+            <Button
+                android:id="@+id/bt_enter"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/activity_activate_detail_bg"
+                android:gravity="center"
                 android:text="报名"
                 android:layout_marginLeft="1dp"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="65dp"
+                android:layout_height="20dp" />
         </LinearLayout>
-
-
-    </LinearLayout>
 </RelativeLayout>

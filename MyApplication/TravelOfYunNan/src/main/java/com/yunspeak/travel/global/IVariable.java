@@ -62,6 +62,7 @@ public interface IVariable {
      * 发现
      */
     String FIND_DESTINATION = API_KEY + "Find/getfindDestination/";//目的地
+    String ACTIVATE_ENTER = API_KEY + "Find/setToFindActivity/";//活动报名
     String FIND_DESTINATION_DETAIL = API_KEY + "Find/getfindDestinationdetail/";//目的地详情
     String FIND_CLICK_LIKE = API_KEY + "Find/isLikeFind/";//发现评论点赞
     String FIND_REPLY_DISCUSS = API_KEY + "Find/replayFind/";//发现回复评论

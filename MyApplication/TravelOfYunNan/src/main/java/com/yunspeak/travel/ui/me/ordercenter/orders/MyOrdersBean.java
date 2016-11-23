@@ -10,9 +10,9 @@ import java.util.List;
 
 public class MyOrdersBean implements ParentBean {
 
-
     private int code;
     private String message;
+
 
     private List<DataBean> data;
 
@@ -45,7 +45,7 @@ public class MyOrdersBean implements ParentBean {
         private String order_sn;
         private String status;
         private String add_time;
-        private String type;
+        private int pay_type;
         private String travel_img;
         private String start_time;
         private String end_time;
@@ -87,12 +87,12 @@ public class MyOrdersBean implements ParentBean {
             this.add_time = add_time;
         }
 
-        public String getType() {
-            return type;
+        public int getPay_type() {
+            return pay_type;
         }
 
-        public void setType(String type) {
-            this.type = type;
+        public void setPay_type(int pay_type) {
+            this.pay_type = pay_type;
         }
 
         public String getTravel_img() {

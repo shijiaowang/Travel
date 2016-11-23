@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,14 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alipay.sdk.app.PayTask;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
@@ -30,11 +27,9 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import butterknife.BindView;
 
 
@@ -43,36 +38,44 @@ import butterknife.BindView;
  * 确认订单
  */
 public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEvent> implements View.OnClickListener {
-   public static final String ORDER_IS_SURE="1";//之前确认过未付款
-   public static final String ORDER_IS_NEW="0";//新订单，尚未做任何操作
-    public static final int PAY_WAY_ZFB=1;
-    public static final int PAY_WAY_WX=2;
-    public static final int SUBMIT_NEW=45;
-    public static final int SUBMIT_USED=54;
-    private int currentPayWay=-1;
-    @BindView(R.id.tv_pay_zfb) TextView mTvPayZfb;
-    @BindView(R.id.tv_pay_wx) TextView mTvPayWx;
+    public static final int PAY_WAY_ZFB = 1;
+    public static final int PAY_WAY_WX = 2;
+    public static final int SUBMIT_NEW = 45;
+    private int currentPayWay = -1;
+    @BindView(R.id.tv_pay_zfb)
+    TextView mTvPayZfb;
+    @BindView(R.id.tv_pay_wx)
+    TextView mTvPayWx;
     @BindView(R.id.rv_coupon)
     RecyclerView mRvConpun;
-    @BindView(R.id.rl_zfb) RelativeLayout mRlZfb;
-    @BindView(R.id.rl_wx) RelativeLayout mRlWx;
-    @BindView(R.id.cb_agree) CheckBox mCbAgree;
-    @BindView(R.id.lv_price) ListView mLvPrice;
-    @BindView(R.id.tv_route_price) TextView mTvPriceRoute;
-    @BindView(R.id.tv_order_id) TextView mTvOrderId;
-    @BindView(R.id.tv_reduce_price) TextView mTvReducePrice;
-    @BindView(R.id.tv_pay) TextView mTvPay;
-    @BindView(R.id.bt_submit) Button mAcpSubmit;
-    private List<String> mConpous=new ArrayList<>();
+    @BindView(R.id.rl_zfb)
+    RelativeLayout mRlZfb;
+    @BindView(R.id.rl_wx)
+    RelativeLayout mRlWx;
+    @BindView(R.id.cb_agree)
+    CheckBox mCbAgree;
+    @BindView(R.id.lv_price)
+    ListView mLvPrice;
+    @BindView(R.id.tv_route_price)
+    TextView mTvPriceRoute;
+    @BindView(R.id.tv_order_id)
+    TextView mTvOrderId;
+    @BindView(R.id.tv_reduce_price)
+    TextView mTvReducePrice;
+    @BindView(R.id.tv_pay)
+    TextView mTvPay;
+    @BindView(R.id.bt_submit)
+    Button mAcpSubmit;
+    @BindView(R.id.tv_order_name) TextView mTvOrderName;
+    private List<String> mConpous = new ArrayList<>();
 
 
     private List<TextView> selectPayWay = new ArrayList<>();
-    private String type;
     private String id;
     private CouponAdapter ordersCouponAdapter;
     private List<CouponBean> orderConpou;
-    private float totalReduces =0f;
-    private float totalPay =0f;
+    private float totalReduces = 0f;
+    private float totalPay = 0f;
     private static final int SDK_PAY_FLAG = 1;
 
 
@@ -100,9 +103,10 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                     break;
                 }
             }
-            }
-        };
-    private int prePosition=-1;
+        }
+    };
+    private int prePosition = -1;
+    private float currentPrice;
 
     @Override
     protected int initLayoutRes() {
@@ -110,7 +114,6 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     }
 
     private void init() {
-        type = getIntent().getStringExtra(IVariable.TYPE);
         id = getIntent().getStringExtra(IVariable.ID);
         selectPayWay.add(mTvPayZfb);
         selectPayWay.add(mTvPayWx);
@@ -127,12 +130,8 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     }
 
 
-
-
-
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        builder.addType(this.type);
         builder.addId(id);
 
     }
@@ -144,15 +143,14 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
 
     @Override
     protected void onSuccess(ConfirmOrdersEvent confirmOrdersEvent) {
-        switch (confirmOrdersEvent.getType()){
+        switch (confirmOrdersEvent.getType()) {
             case TYPE_REFRESH:
                 dealRefresh(confirmOrdersEvent);
                 break;
             case SUBMIT_NEW:
-            case SUBMIT_USED:
                 CreateAlbumBean order = GsonUtils.getObject(confirmOrdersEvent.getResult(), CreateAlbumBean.class);
                 final String info = order.getData();
-                if (StringUtils.isEmpty(info)){
+                if (StringUtils.isEmpty(info)) {
                     ToastUtils.showToast("订单信息错误！");
                     return;
                 }
@@ -181,29 +179,26 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         ConfirmOrdersBean.DataBean.OrderBean order = confirmOrdersBean.getData().getOrder();
         //订单头
         mTvPriceRoute.setText("¥" + order.getPrice());
-        totalPay+=Float.parseFloat(order.getPrice());
+        totalPay += Float.parseFloat(order.getPrice());
         List<BasecPriceBean> basecPrice = confirmOrdersBean.getData().getBasec_price();
-        if (basecPrice!=null && basecPrice.size()!=0) {
-            for (BasecPriceBean basecPriceBean : basecPrice){
-                totalPay+=Float.parseFloat(basecPriceBean.getValue());
+        if (basecPrice != null && basecPrice.size() != 0) {
+            for (BasecPriceBean basecPriceBean : basecPrice) {
+                totalPay += Float.parseFloat(basecPriceBean.getValue());
             }
         }
-        mLvPrice.setAdapter(new PriceDeatilAdapter(this, basecPrice));
-        mTvOrderId.setText("订单号:"+order.getOrder_sn());
-        //优惠券
-        if (type.equals(ORDER_IS_SURE)){//之前没有确认订单
-            orderConpou = confirmOrdersBean.getData().getOrder_conpou();
-            ConfirmOrdersBean.DataBean.PayBean pay = confirmOrdersBean.getData().getPay();
-            float money = Float.parseFloat(pay.getMoney());
-            mTvPay.setText("总计:"+money+"元");
-            initReduceMoney();
-        }else if (type.equals(ORDER_IS_NEW)){//之前确认过订单
-            orderConpou =confirmOrdersBean.getData().getConpou();
-            mTvPay.setText("总计:"+totalPay+"元");
+        String payType = order.getPay_type();
+        if (payType.equals("2")) {
+           mTvOrderName.setText("约伴订单");
         }
+        mLvPrice.setAdapter(new PriceDeatilAdapter(this, basecPrice));
+        mTvOrderId.setText("订单号:" + order.getOrder_sn());
+        //优惠券
+        orderConpou = confirmOrdersBean.getData().getConpou();
+        mTvPay.setText("总计:" + totalPay + "元");
+        mTvReducePrice.setText("¥-" + 0.00);
         ordersCouponAdapter = new CouponAdapter(this, orderConpou, false);
         mRvConpun.setAdapter(ordersCouponAdapter);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRvConpun.setHasFixedSize(true);
         mRvConpun.setNestedScrollingEnabled(false);
         linearLayoutManager.setSmoothScrollbarEnabled(false);
@@ -211,45 +206,31 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         ordersCouponAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                if (type.equals(ORDER_IS_NEW)  && orderConpou!=null){//新订单才可以进行选择
-                    CouponBean conpouBean = orderConpou.get(position);
-                    if (conpouBean.getStatus().equals("1")){
-                        if (prePosition!=-1){
-                            orderConpou.get(prePosition).setStatus("1");
-                            totalPay+=Float.parseFloat(orderConpou.get(prePosition).getNumber());
-                        }
-                        totalReduces =Float.parseFloat(conpouBean.getNumber());
-                        totalPay-=Float.parseFloat(conpouBean.getNumber());
-                        conpouBean.setStatus("2");
-                        prePosition=position;
-                    }else if (conpouBean.getStatus().equals("2")){
-                        totalReduces = 0f;
-                        totalPay+=Float.parseFloat(conpouBean.getNumber());
-                        conpouBean.setStatus("1");
+                CouponBean conpouBean = orderConpou.get(position);
+                currentPrice = 0f;
+                if (conpouBean.getStatus().equals("1")) {
+                    if (prePosition!=-1){
+                        orderConpou.get(prePosition).setStatus("1");
                     }
-                    ordersCouponAdapter.notifyDataSetChanged();
-                    mTvReducePrice.setText("¥-" + totalReduces);
-                    mTvPay.setText("总计:"+totalPay+"元");
+                    totalReduces = Float.parseFloat(conpouBean.getNumber());
+                    currentPrice=totalPay -Float.parseFloat(conpouBean.getNumber());
+                    conpouBean.setStatus("2");
+                    prePosition = position;
+                } else if (conpouBean.getStatus().equals("2")) {
+                    totalReduces = 0.0f;
+                    currentPrice=totalPay;
+                    conpouBean.setStatus("1");
                 }
+                prePosition=position;
+
+                ordersCouponAdapter.notifyDataSetChanged();
+                mTvReducePrice.setText("¥-" + totalReduces);
+                mTvPay.setText("总计:" + currentPrice + "元");
             }
         });
     }
 
 
-
-
-    /**
-     * 计算一共优惠了多少钱
-     */
-    private void initReduceMoney() {
-        totalReduces = 0f;
-        if (orderConpou != null || orderConpou.size() == 0) {
-            for (CouponBean conpouBean : orderConpou) {
-                totalReduces += Float.parseFloat(conpouBean.getNumber());
-            }
-            mTvReducePrice.setText("¥-" + totalReduces);
-        }
-    }
 
 
     @Override
@@ -260,21 +241,20 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                 break;
             case R.id.rl_zfb:
                 checkRightWay(mTvPayZfb);
-                currentPayWay=PAY_WAY_ZFB;
+                currentPayWay = PAY_WAY_ZFB;
                 break;
             case R.id.rl_wx:
                 checkRightWay(mTvPayWx);
-                currentPayWay=PAY_WAY_WX;
+                currentPayWay = PAY_WAY_WX;
                 break;
         }
     }
 
     /**
-     *
      * 提交订单
      */
     private void submitOrders() {
-        if (currentPayWay==PAY_WAY_WX){
+        if (currentPayWay == PAY_WAY_WX) {
             ToastUtils.showToast("暂不支持微信支付。");
             return;
         }
@@ -286,29 +266,26 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             ToastUtils.showToast("请选择一种支付方式");
             return;
         }
-        if (totalPay<=0 || -totalReduces>0){
+        if (totalPay <= 0 || -totalReduces > 0) {
             ToastUtils.showToast("订单异常");
             return;
         }
-        if (type.equals(ORDER_IS_SURE)){
-            Map<String, String> end = MapUtils.Build().addKey().addId(id).end();
-            XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS_USED,end,SUBMIT_USED,new ConfirmOrdersEvent());
-        }else {
-            StringBuilder stringBuilder=new StringBuilder();
-            if (mConpous.size()!=0){
-                for (int i=0;i<mConpous.size();i++){
-                  if (i==mConpous.size()-1){
-                      stringBuilder.append(mConpous.get(i));
-                  }else {
-                      stringBuilder.append(mConpous.get(i)+",");
-                  }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        if (mConpous.size() != 0) {
+            for (int i = 0; i < mConpous.size(); i++) {
+                if (i == mConpous.size() - 1) {
+                    stringBuilder.append(mConpous.get(i));
+                } else {
+                    stringBuilder.append(mConpous.get(i) + ",");
                 }
             }
-
-            String coupon = stringBuilder.toString();
-            Map<String, String> submitMap = MapUtils.Build().addKey().addUserId().addId(id).addCoupon(coupon).end();
-            XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS,submitMap,SUBMIT_NEW,new ConfirmOrdersEvent());
         }
+
+        String coupon = stringBuilder.toString();
+        Map<String, String> submitMap = MapUtils.Build().addKey().addUserId().addId(id).addCoupon(coupon).end();
+        XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS, submitMap, SUBMIT_NEW, new ConfirmOrdersEvent());
+
     }
 
     /**
@@ -325,7 +302,6 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             }
         }
     }
-
 
 
     @Override

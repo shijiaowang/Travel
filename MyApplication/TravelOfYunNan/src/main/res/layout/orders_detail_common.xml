@@ -15,14 +15,14 @@
         <TextView
             style="@style/activityConfirmOrdersText"
             android:layout_below="@id/tv_title"
-            android:layout_marginBottom="11dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginBottom="@dimen/x11"
+            android:layout_marginTop="@dimen/x14"
             android:text="先筹路费" />
 
         <TextView
             android:id="@+id/tv_route_price"
             style="@style/activityConfirmOrdersTextMoney"
-            android:layout_marginTop="41dp"
+            android:layout_marginTop="@dimen/x41"
              />
     </RelativeLayout>
 

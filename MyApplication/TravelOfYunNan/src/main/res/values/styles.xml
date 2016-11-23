@@ -438,8 +438,8 @@
     </style>
 
     <style name="activityConfirmOrdersText">
-        <item name="android:textSize">12sp</item>
-        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:textSize">@dimen/x12sp</item>
+        <item name="android:layout_marginLeft">@dimen/x16</item>
         <item name="android:textColor">@color/color868686</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -461,17 +461,17 @@
     </style>
 
     <style name="activityConfirmOrdersTextLine">
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginLeft">@dimen/x16</item>
+        <item name="android:layout_marginRight">@dimen/x16</item>
         <item name="android:background">@color/meLine</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_height">@dimen/x1</item>
     </style>
 
     <style name="activityConfirmOrdersTextTitle">
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginLeft">11dp</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:layout_marginTop">@dimen/x10</item>
+        <item name="android:layout_marginLeft">@dimen/x11</item>
+        <item name="android:textSize">@dimen/x13sp</item>
         <item name="android:textColor">@color/color323232</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

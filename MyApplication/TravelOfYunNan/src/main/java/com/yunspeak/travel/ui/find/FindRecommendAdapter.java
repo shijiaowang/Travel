@@ -33,8 +33,7 @@ public class FindRecommendAdapter extends BaseRecycleViewAdapter<FindBean.DataBe
 
     @Override
     public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_find_recommend, parent, false);
-        return new FindRecommendHolder(inflate);
+        return new FindRecommendHolder(inflateView(R.layout.item_fragment_find_recommend, parent));
     }
 
 }

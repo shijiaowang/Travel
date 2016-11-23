@@ -57,6 +57,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
     @BindView(R.id.tv_order_type)
     TextView tvOrderType;
     private String id;
+    private int orderType;
 
 
     @Override
@@ -79,7 +80,12 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         id = getIntent().getStringExtra(IVariable.ID);
-        builder.addId(id);
+        orderType = getIntent().getIntExtra(IVariable.TYPE,-1);
+        if (orderType==-1) {
+            setErrorPage(true);
+            return;
+        }
+        builder.addId(id).add("pay_type",orderType+"");
     }
 
     @Override

@@ -11,7 +11,6 @@ import java.util.List;
 
 public class ConfirmOrdersBean {
 
-
     private int code;
     private String message;
 
@@ -46,12 +45,8 @@ public class ConfirmOrdersBean {
 
         private OrderBean order;
 
-        private PayBean pay;
-
-
         private List<BasecPriceBean> basec_price;
 
-        private List<CouponBean> order_conpou;
 
         private List<CouponBean> conpou;
 
@@ -63,28 +58,12 @@ public class ConfirmOrdersBean {
             this.order = order;
         }
 
-        public PayBean getPay() {
-            return pay;
-        }
-
-        public void setPay(PayBean pay) {
-            this.pay = pay;
-        }
-
         public List<BasecPriceBean> getBasec_price() {
             return basec_price;
         }
 
         public void setBasec_price(List<BasecPriceBean> basec_price) {
             this.basec_price = basec_price;
-        }
-
-        public List<CouponBean> getOrder_conpou() {
-            return order_conpou;
-        }
-
-        public void setOrder_conpou(List<CouponBean> order_conpou) {
-            this.order_conpou = order_conpou;
         }
 
         public List<CouponBean> getConpou() {
@@ -100,7 +79,9 @@ public class ConfirmOrdersBean {
             private String order_sn;
             private String status;
             private String user_id;
+            private String pay_type;
             private String price;
+            private String max_people;
 
             public String getId() {
                 return id;
@@ -134,6 +115,14 @@ public class ConfirmOrdersBean {
                 this.user_id = user_id;
             }
 
+            public String getPay_type() {
+                return pay_type;
+            }
+
+            public void setPay_type(String pay_type) {
+                this.pay_type = pay_type;
+            }
+
             public String getPrice() {
                 return price;
             }
@@ -141,39 +130,15 @@ public class ConfirmOrdersBean {
             public void setPrice(String price) {
                 this.price = price;
             }
-        }
 
-        public static class PayBean {
-            private String id;
-            private String money;
-            private String order_sn;
-
-            public String getId() {
-                return id;
+            public String getMax_people() {
+                return max_people;
             }
 
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getMoney() {
-                return money;
-            }
-
-            public void setMoney(String money) {
-                this.money = money;
-            }
-
-            public String getOrder_sn() {
-                return order_sn;
-            }
-
-            public void setOrder_sn(String order_sn) {
-                this.order_sn = order_sn;
+            public void setMax_people(String max_people) {
+                this.max_people = max_people;
             }
         }
-
-
 
     }
 }

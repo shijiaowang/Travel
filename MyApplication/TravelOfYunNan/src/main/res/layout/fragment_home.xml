@@ -102,16 +102,16 @@
                 android:orientation="vertical">
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="203dp">
+                    android:layout_height="@dimen/x203">
                     <android.support.v4.view.ViewPager
                         android:id="@+id/vp_active"
                         android:layout_width="match_parent"
-                        android:layout_height="203dp"/>
+                        android:layout_height="match_parent"/>
                     <com.yunspeak.travel.ui.view.PagerCursorView
-                        android:layout_marginTop="170dp"
+                        android:layout_marginTop="@dimen/x170"
                         android:id="@+id/pager_cursor"
                         android:layout_width="match_parent"
-                        android:layout_height="6dp"/>
+                        android:layout_height="@dimen/x6"/>
 
                 </FrameLayout>
 
@@ -121,10 +121,10 @@
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
+                        android:layout_marginTop="@dimen/x1"
                         android:text="@string/fragment_home_chosen"
                         android:textColor="@color/homeTopicTextColor"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/x15sp" />
 
                     <TextView
                         style="@style/HomeTopicText"
@@ -133,34 +133,33 @@
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/gv_chosen"
-                    android:layout_width="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
-                    android:layout_marginTop="14dp"
-                    android:horizontalSpacing="18dp"
+                    android:layout_marginTop="@dimen/x14"
+                    android:horizontalSpacing="@dimen/x18"
                     android:numColumns="2"
-                    android:verticalSpacing="10dp" />
+                    android:verticalSpacing="@dimen/x10" />
 
                 <RelativeLayout
                     android:id="@+id/rl_active"
                     android:layout_width="match_parent"
-                    android:layout_height="134dp"
+                    android:layout_height="@dimen/x134"
                     android:layout_marginTop="18dp">
 
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/iv_bg"
                         android:layout_width="match_parent"
-                        android:layout_height="134dp" />
+                        android:layout_height="match_parent" />
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:id="@+id/tv_air"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
+                        android:layout_margin="@dimen/x15"
                         android:text="@string/activity_active_item_air"
                         android:textColor="@color/colorffda60"
-                        android:textSize="40sp" />
+                        android:textSize="@dimen/x40s" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -172,25 +171,25 @@
                             android:id="@+id/tv_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="9dp"
+                            android:layout_marginTop="@dimen/x9"
                             android:textColor="@color/colorffda60"
-                            android:textSize="9sp" />
+                            android:textSize="@dimen/x9sp" />
 
                         <TextView
                             android:id="@+id/tv_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/x10"
                             android:textColor="@color/colorFAFAFA"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/x18sp" />
 
                         <TextView
                             android:id="@+id/tv_people"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="11dp"
+                            android:layout_marginTop="@dimen/x11"
                             android:textColor="@color/colorFAFAFA"
-                            android:textSize="9sp" />
+                            android:textSize="@dimen/x9sp" />
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -200,10 +199,10 @@
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
+                        android:layout_marginTop="@dimen/x1"
                         android:text="@string/fragment_home_spot"
                         android:textColor="@color/homeTopicTextColor"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/x15sp" />
 
                     <TextView
                         style="@style/HomeTopicText"
@@ -214,8 +213,8 @@
                     android:id="@+id/rv_hot_spots"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginLeft="@dimen/x16"
+                    android:layout_marginTop="@dimen/x14">
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -224,10 +223,10 @@
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
+                        android:layout_marginTop="@dimen/x1"
                         android:text="@string/fragment_find_travels"
                         android:textColor="@color/homeTopicTextColor"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/x15sp" />
 
                     <TextView
                         style="@style/HomeTopicText"
@@ -238,9 +237,9 @@
                     android:id="@+id/lv_travels"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_marginTop="@dimen/x14"
                     android:divider="@color/homeContentBg"/>
 
             </LinearLayout>

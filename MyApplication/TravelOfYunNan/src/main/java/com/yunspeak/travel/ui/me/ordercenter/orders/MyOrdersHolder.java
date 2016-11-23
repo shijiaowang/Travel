@@ -102,11 +102,8 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
        mBPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String type = datas.getType();
                 String orderId = datas.getId();
                 Intent intent=new Intent(mContext, ConfirmOrdersActivity.class);
-                intent.putExtra(IVariable.TYPE,type);
                 intent.putExtra(IVariable.ID,orderId);
                 mContext.startActivity(intent);
 
@@ -115,10 +112,9 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String type = datas.getType();
                 String orderId = datas.getId();
                 Intent intent=new Intent(mContext, OrdersDetailActivity.class);
-                intent.putExtra(IVariable.TYPE,type);
+                intent.putExtra(IVariable.TYPE,datas.getPay_type());
                 intent.putExtra(IVariable.ID,orderId);
                 mContext.startActivity(intent);
             }

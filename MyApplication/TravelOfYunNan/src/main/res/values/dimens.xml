@@ -39,4 +39,51 @@
 
     <!-- jd -->
     <dimen name="refresh_header_height_jd">100dp</dimen>
+    <!--圈子导航-->
+    <dimen name="x64">64dp</dimen>
+    <dimen name="x49">49dp</dimen>
+    <dimen name="x44">44dp</dimen>
+    <dimen name="x158">158dp</dimen>
+    <dimen name="x150">150dp</dimen>
+    <dimen name="x109">109dp</dimen>
+    <dimen name="x166">166dp</dimen>
+    <dimen name="x90">90dp</dimen>
+    <dimen name="x35">35dp</dimen>
+    <dimen name="x165">165dp</dimen>
+    <dimen name="x112">112dp</dimen>
+    <dimen name="x10">10dp</dimen>
+    <dimen name="x8">8dp</dimen>
+    <dimen name="x9">9dp</dimen>
+    <dimen name="x5">5dp</dimen>
+    <dimen name="x9sp">9sp</dimen>
+    <dimen name="x13sp">13sp</dimen>
+    <dimen name="x11">11dp</dimen>
+    <dimen name="x14">14dp</dimen>
+    <dimen name="x18">18dp</dimen>
+    <dimen name="x1">1dp</dimen>
+    <dimen name="x134">134dp</dimen>
+    <dimen name="x15">15dp</dimen>
+    <dimen name="x40s">40sp</dimen>
+    <dimen name="x18sp">18sp</dimen>
+    <dimen name="x15sp">15sp</dimen>
+    <dimen name="x16">16dp</dimen>
+    <dimen name="x203">203dp</dimen>
+    <dimen name="x170">170dp</dimen>
+    <dimen name="x6">6dp</dimen>
+    <dimen name="x36">36dp</dimen>
+    <dimen name="x13">13dp</dimen>
+    <dimen name="x11sp">11sp</dimen>
+    <dimen name="x41">41dp</dimen>
+    <dimen name="x4">4dp</dimen>
+    <dimen name="x12sp">12sp</dimen>
+    <dimen name="x17">17dp</dimen>
+    <dimen name="x20sp">20sp</dimen>
+    <dimen name="x20">20dp</dimen>
+    <dimen name="x28">28dp</dimen>
+    <dimen name="x12">12dp</dimen>
+    <dimen name="x30">30dp</dimen>
+    <dimen name="x33">33dp</dimen>
+    <dimen name="x14sp">14sp</dimen>
+    <dimen name="x212">212dp</dimen>
+    <dimen name="x40">40dp</dimen>
 </resources>

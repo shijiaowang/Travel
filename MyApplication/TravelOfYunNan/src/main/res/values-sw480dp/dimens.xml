@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--1280x720 1.5 240ppi-->
+    <!--圈子-->
+    <dimen name="x64">96dp</dimen>
+    <dimen name="x49">75dp</dimen>
+    <dimen name="x44">66dp</dimen>
+    <dimen name="x158">237dp</dimen>
+    <dimen name="x150">225dp</dimen>
+    <dimen name="x109">164dp</dimen>
+    <dimen name="x166">221dp</dimen>
+    <dimen name="x90">121dp</dimen>
+    <dimen name="x35">47dp</dimen>
+    <dimen name="x165">220dp</dimen>
+    <dimen name="x122">149dp</dimen>
+    <dimen name="x10">13dp</dimen>
+    <dimen name="x8">10.7dp</dimen>
+    <dimen name="x9">12dp</dimen>
+    <dimen name="x5">6.7dp</dimen>
+    <dimen name="x9sp">12sp</dimen>
+    <dimen name="x13sp">17.3sp</dimen>
+    <dimen name="x11">14.7dp</dimen>
+    <dimen name="x14">18.7dp</dimen>
+    <dimen name="x18">24dp</dimen>
+    <dimen name="x1">1.3dp</dimen>
+    <dimen name="x134">178.7dp</dimen>
+    <dimen name="x15">20dp</dimen>
+    <dimen name="x40s">53.3sp</dimen>
+    <dimen name="x18sp">24sp</dimen>
+    <dimen name="x15sp">20sp</dimen>
+    <dimen name="x16">21.3dp</dimen>
+    <dimen name="x203">270.7dp</dimen>
+    <dimen name="x170">226.7dp</dimen>
+    <dimen name="x6">8dp</dimen>
+    <dimen name="x36">48dp</dimen>
+    <dimen name="x13">17.3dp</dimen>
+    <dimen name="x11sp">14.7sp</dimen>
+    <dimen name="x41">54.7dp</dimen>
+    <dimen name="x4">5.3dp</dimen>
+    <dimen name="x12sp">16sp</dimen>
+    <dimen name="x17">22.7dp</dimen>
+    <dimen name="x20sp">26.7sp</dimen>
+    <dimen name="x20">26.7dp</dimen>
+    <dimen name="x28">37.3dp</dimen>
+    <dimen name="x12">16dp</dimen>
+    <dimen name="x30">40dp</dimen>
+    <dimen name="x33">44dp</dimen>
+    <dimen name="x14sp">18.7sp</dimen>
+    <dimen name="x212">282.7dp</dimen>
+    <dimen name="x40">53.3dp</dimen>
+</resources>
