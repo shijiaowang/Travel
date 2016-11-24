@@ -9,19 +9,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:paddingLeft="13dp"
-    android:paddingRight="13dp"
+    android:paddingLeft="@dimen/x13"
+    android:paddingRight="@dimen/x13"
     android:background="@color/colorFAFAFA"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_user_icon"
-        android:layout_width="45dp"
-        android:layout_height="45dp" />
+        android:layout_width="@dimen/x45"
+        android:layout_height="@dimen/x45" />
     <RelativeLayout
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="@dimen/x12"
+        android:layout_marginTop="@dimen/x14"
+        android:layout_marginBottom="@dimen/x14"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content">
@@ -33,20 +33,20 @@
             <TextView
                 android:id="@+id/tv_name"
                 android:textColor="@color/color575555"
-                android:textSize="13sp"
+                android:textSize="@dimen/x13sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tv_status"
                 android:textColor="@color/otherTitleBg"
-                android:textSize="13sp"
+                android:textSize="@dimen/x13sp"
                 android:gravity="center_horizontal"
-                android:layout_width="72dp"
+                android:layout_width="@dimen/x72"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tv_des"
                 android:textColor="@color/color575555"
-                android:textSize="13sp"
+                android:textSize="@dimen/x13sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -54,29 +54,29 @@
         <com.yunspeak.travel.ui.view.ShowAllTextView
             android:id="@+id/tv_message"
             android:layout_below="@id/ll_type"
-            android:layout_marginTop="15dp"
-            android:textSize="12sp"
+            android:layout_marginTop="@dimen/x15"
+            android:textSize="@dimen/x12sp"
             android:textColor="@color/colorb2b2b2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_cat_more"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="@dimen/x9"
             android:text="@string/cat_more"
             android:layout_below="@id/tv_message"
             android:layout_alignParentRight="true"
             android:textColor="@color/otherTitleBg"
             style="@style/commonSingleLineTextStyle"
-            android:textSize="11sp"
+            android:textSize="@dimen/x11sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_time"
             android:layout_below="@id/tv_message"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/x24"
             android:ellipsize="end"
             android:lines="1"
-            android:textSize="10sp"
+            android:textSize="@dimen/x10sp"
             android:textColor="@color/colorb2b2b2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -84,14 +84,14 @@
     </RelativeLayout>
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_image"
-        android:layout_marginLeft="11dp"
-        android:layout_width="65dp"
-        android:layout_height="65dp" />
+        android:layout_marginLeft="@dimen/x11"
+        android:layout_width="@dimen/x65"
+        android:layout_height="@dimen/x65" />
 
 </LinearLayout>
     <View
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="@dimen/x70"
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 </LinearLayout>

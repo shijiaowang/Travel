@@ -21,7 +21,9 @@
         <LinearLayout
             android:id="@+id/ll_bottom"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x4"
+            android:paddingTop="@dimen/x4"
             android:elevation="2dp"
             android:background="@color/homeTopicChosenBg"
             android:gravity="center_vertical"
@@ -30,7 +32,6 @@
             <LinearLayout
                 android:id="@+id/ll_main_click"
                 style="@style/HomeButtonParentLL">
-
                 <com.yunspeak.travel.ui.view.GradientTextView
                     android:id="@+id/tv_home_fonts_icon"
                     style="@style/HomeButtonIconFonts"
@@ -55,7 +56,6 @@
                     android:id="@+id/tv_appoint_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_appoint"
-                    android:textSize="28sp"
                     custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
                     custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
                     custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />
@@ -112,7 +112,6 @@
                     android:id="@+id/tv_me_fonts_icon"
                     style="@style/HomeButtonIconFonts"
                     android:text="@string/home_activity_button_me"
-                    android:textSize="18sp"
                     custom:gradient_checked_down_color="@color/homeButtonCheckedColor"
                     custom:gradient_checked_up_color="@color/homeIconFontsUpCheckedColor"
                     custom:gradient_normal_color="@color/homeButtonUnCheckedColor" />

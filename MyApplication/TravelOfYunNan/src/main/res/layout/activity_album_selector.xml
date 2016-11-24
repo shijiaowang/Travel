@@ -6,7 +6,7 @@
     tools:context=".ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity">
     <ListView
         android:id="@+id/lv_photo"
-        android:dividerHeight="3dp"
+        android:dividerHeight="@dimen/x3"
         android:divider="@color/meLine"
         style="@style/commonListViewStyle"
         android:layout_width="match_parent"

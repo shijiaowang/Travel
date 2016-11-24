@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="11dp"
+    android:layout_marginLeft="@dimen/x11"
     android:layout_weight="1"
     android:gravity="center_vertical"
     android:orientation="vertical">
@@ -10,7 +10,7 @@
         style="@style/fragmentAppointWithMeLl"
         android:layout_marginTop="0dp">
         <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:layout_marginLeft="0.5dp"
+            android:id="@+id/tv_air"
             style="@style/fragmentAppointWithMeIconFont"
             android:text="@string/fragment_play_with_me_air" />
 
@@ -23,63 +23,60 @@
 
     <LinearLayout
         style="@style/fragmentAppointWithMeLl"
-        android:layout_marginTop="3dp">
+        android:layout_marginTop="@dimen/x3">
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/fragmentAppointWithMeIconFont"
-            android:layout_marginLeft="1dp"
             android:text="@string/fragment_play_with_me_time"
-            android:textSize="13sp"
             android:textColor="@color/otherTitleBg" />
 
         <TextView
             android:id="@+id/tv_day_and_night"
             style="@style/fragmentAppointWithMeText"
             android:textColor="@color/otherTitleBg"
-            android:textSize="10sp" />
+            android:textSize="@dimen/x10sp" />
 
     </LinearLayout>
 
     <LinearLayout
         style="@style/fragmentAppointWithMeLl"
-        android:layout_marginTop="3dp">
+        android:layout_marginTop="@dimen/x3">
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_third"
             style="@style/fragmentAppointWithMeIconFont"
-            android:paddingLeft="0dp"
             android:text="@string/fragment_play_with_me_add"
-            android:textSize="18sp" />
+             />
 
         <TextView
             style="@style/fragmentAppointWithMeText"
            android:id="@+id/tv_start_and_long"
             android:textColor="@color/color646464"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
 
     </LinearLayout>
 
     <LinearLayout
         style="@style/fragmentAppointWithMeLl"
-        android:layout_marginTop="3dp">
+        android:layout_marginTop="@dimen/x3">
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
             style="@style/fragmentAppointWithMeIconFont"
             android:text="@string/fragment_play_with_me_people"
-            android:textSize="16sp"
             android:textStyle="italic" />
 
         <TextView
             style="@style/fragmentAppointWithMeText"
             android:id="@+id/tv_plan_number"
             android:textColor="@color/color646464"
-            android:layout_marginRight="11dp"
-            android:textSize="12sp" />
+            android:layout_marginRight="@dimen/x11"
+            android:textSize="@dimen/x12sp" />
         <TextView
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="@dimen/x8"
             style="@style/fragmentAppointWithMeText"
             android:id="@+id/tv_have_number"
             android:textColor="@color/color646464"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
 
 
     </LinearLayout>

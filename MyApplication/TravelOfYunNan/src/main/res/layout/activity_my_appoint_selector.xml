@@ -18,11 +18,11 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="32dp">
+            android:layout_height="@dimen/x32">
             <TextView
                 android:id="@+id/tv_appointing"
-                android:layout_marginLeft="13sp"
-                android:textSize="13sp"
+                android:layout_marginLeft="@dimen/x13"
+                android:textSize="@dimen/x13sp"
                 android:textColor="@color/otherFcae04"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -30,51 +30,51 @@
             <TextView
                 android:id="@+id/tv_price"
                 android:textColor="@color/otherFf7f6c"
-                android:layout_marginLeft="14dp"
-                android:layout_marginRight="9dp"
+                android:layout_marginLeft="@dimen/x14"
+                android:layout_marginRight="@dimen/x9"
                 android:layout_alignParentRight="true"
-                android:textSize="13sp"
+                android:textSize="@dimen/x13sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
         <View
             android:background="@color/meLine"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="@dimen/x1"/>
         <LinearLayout
-            android:layout_marginTop="7dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="@dimen/x7"
+            android:layout_marginLeft="@dimen/x5"
+            android:layout_marginBottom="@dimen/x14"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="@dimen/x80">
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_icon"
-                android:layout_width="80dp"
-                android:layout_height="80dp" />
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/x80" />
             <include layout="@layout/activity_my_appoint_common"/>
             <Button
                 android:id="@+id/bt_select"
                 android:gravity="center"
                 android:text="选择"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="12sp"
-                android:layout_marginRight="15dp"
+                android:textSize="@dimen/x12sp"
+                android:layout_marginRight="@dimen/x15"
                 android:background="@drawable/activity_my_appoint_chat_bg"
-                android:layout_width="74dp"
-                android:layout_height="24dp" />
+                android:layout_width="@dimen/x74"
+                android:layout_height="@dimen/x24" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="29dp"
+            android:layout_marginBottom="@dimen/x16"
+            android:layout_marginLeft="@dimen/x29"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="29dp">
+            android:layout_height="@dimen/x29">
             <RelativeLayout
                 android:id="@+id/rl_member_detail"
-                android:layout_width="74dp"
+                android:layout_width="@dimen/x74"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -82,13 +82,13 @@
                     android:text="成员详情"
                     android:layout_alignParentBottom="true"
                     android:textColor="@color/otherTitleBg"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/x12sp"
                     android:background="@drawable/activity_my_appoint_rl_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="24dp" />
+                    android:layout_height="@dimen/x24" />
                 <com.yunspeak.travel.ui.view.BadgeView
                     android:id="@+id/bv_enter_people"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/x5"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -96,8 +96,8 @@
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_bulletin_board"
-                android:layout_marginLeft="20dp"
-                android:layout_width="66dp"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_width="@dimen/x66"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -105,13 +105,13 @@
                     android:text="公告板"
                     android:layout_alignParentBottom="true"
                     android:textColor="@color/otherTitleBg"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/x12sp"
                     android:background="@drawable/activity_my_appoint_rl_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="24dp" />
+                    android:layout_height="@dimen/x24" />
                 <com.yunspeak.travel.ui.view.BadgeView
                     android:id="@+id/bv_bulletin_number"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/x5"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -122,29 +122,29 @@
         <View
             android:background="@color/meLine"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="@dimen/x1"/>
 
     </LinearLayout>
     <LinearLayout
-        android:paddingTop="2dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="2dp"
+        android:paddingTop="@dimen/x2"
+        android:paddingLeft="@dimen/x10"
+        android:paddingRight="@dimen/x2"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="137dp"
+        android:layout_marginTop="@dimen/x137"
         android:layout_alignParentRight="true"
         android:background="@drawable/activity_my_appoint_key_bg"
         android:layout_width="wrap_content"
-        android:layout_height="24dp">
+        android:layout_height="@dimen/x24">
         <TextView
-            android:textSize="12sp"
+            android:textSize="@dimen/x12sp"
             android:textColor="@color/colorFAFAFA"
             android:text="口令："
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/code"
-            android:textSize="12sp"
+            android:textSize="@dimen/x12sp"
             android:textColor="@color/colorFAFAFA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

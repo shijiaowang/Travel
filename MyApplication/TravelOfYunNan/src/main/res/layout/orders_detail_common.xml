@@ -15,6 +15,7 @@
         <TextView
             style="@style/activityConfirmOrdersText"
             android:layout_below="@id/tv_title"
+            android:id="@+id/tv_active_name"
             android:layout_marginBottom="@dimen/x11"
             android:layout_marginTop="@dimen/x14"
             android:text="先筹路费" />

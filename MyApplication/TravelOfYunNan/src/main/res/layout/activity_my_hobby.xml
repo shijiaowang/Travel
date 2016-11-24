@@ -9,41 +9,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginBottom="@dimen/x13"
+        android:layout_marginTop="@dimen/x13"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
+            android:layout_marginLeft="@dimen/x13"
             android:text="·"
             android:textColor="@color/color3f3f3f"
-            android:textSize="13sp" />
+            android:textSize="@dimen/x13" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingLeft="8dp"
+            android:paddingLeft="@dimen/x8"
             android:text="已佩戴标签"
             android:textColor="@color/color3f3f3f"
-            android:textSize="13sp" />
+            android:textSize="@dimen/x13sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
+            android:layout_marginLeft="@dimen/x12"
             android:text="*最多选择7个兴趣标签"
             android:textColor="@color/colorffb2b2"
-            android:textSize="10sp" />
+            android:textSize="@dimen/x10sp" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/x1"
         android:background="@color/meLine" />
 
 
@@ -51,12 +51,12 @@
             android:id="@+id/fl_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="150dp"
+            android:minHeight="@dimen/x150"
 
-            android:layout_marginBottom="25dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="@dimen/x25"
+            android:layout_marginLeft="@dimen/x22"
+            android:layout_marginRight="@dimen/x22"
+            android:layout_marginTop="@dimen/x20"
             app:alignContent="flex_start"
             app:alignItems="flex_start"
             app:dividerDrawable="@drawable/flexbox_space"
@@ -65,40 +65,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="@dimen/x13"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
+            android:layout_marginLeft="@dimen/x13"
             android:text="·"
             android:textColor="@color/color3f3f3f"
-            android:textSize="13sp" />
+            android:textSize="@dimen/x13sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingLeft="8dp"
+            android:paddingLeft="@dimen/x8"
             android:text="添加兴趣标签"
             android:textColor="@color/color3f3f3f"
-            android:textSize="13sp" />
+            android:textSize="@dimen/x13sp" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/x1"
         android:background="@color/meLine" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tl_title"
         android:layout_width="match_parent"
-        android:layout_height="39dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="11dp"
+        android:layout_height="@dimen/x39"
+        android:layout_marginLeft="@dimen/x11"
+        android:layout_marginRight="@dimen/x11"
         android:gravity="center_vertical"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/Ffbf75"
@@ -110,9 +110,9 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_pager"
-        android:layout_marginTop="23dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="11dp"
+        android:layout_marginTop="@dimen/x23"
+        android:layout_marginLeft="@dimen/x11"
+        android:layout_marginRight="@dimen/x11"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

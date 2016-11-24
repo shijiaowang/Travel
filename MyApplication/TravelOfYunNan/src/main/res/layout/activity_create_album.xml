@@ -10,7 +10,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/x200"
             android:background="@drawable/activity_create_bg">
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_bg"
@@ -22,52 +22,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="115dp"
+                android:layout_marginTop="@dimen/x115"
                 android:drawableLeft="@drawable/activity_create_album_set"
-                android:drawablePadding="10dp"
+                android:drawablePadding="@dimen/x10"
                 android:gravity="center"
                 android:text="设置封面"
-                android:textColor="#fafafa"
-                android:textSize="12sp" />
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="@dimen/x12sp" />
 
             <EditText
                 android:maxLength="10"
                 android:id="@+id/ed_set_name"
-                android:layout_width="254dp"
-                android:layout_height="39dp"
+                android:layout_width="@dimen/x254"
+                android:layout_height="@dimen/x39"
                 android:layout_below="@id/tv_set_cover"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="@dimen/x14"
                 android:background="@drawable/activity_create_album_set_name_bg"
                 android:gravity="center"
                 android:lines="1"
                 android:hint="请设置相册名称"
-                android:textColorHint="#fafafa"
-                android:textColor="#fafafa"
+                android:textColorHint="@color/colorFAFAFA"
+                android:textColor="@color/colorFAFAFA"
                 android:textCursorDrawable="@null"
-                android:textSize="17sp" />
+                android:textSize="@dimen/x17sp" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="@dimen/x25"
             android:layout_gravity="center_horizontal"
             android:background="@color/colorFAFAFA"
-            android:layout_width="315dp"
-            android:layout_height="170dp">
+            android:layout_width="@dimen/x315"
+            android:layout_height="@dimen/x170">
             <EditText
                 android:maxLength="80"
-                android:padding="10dp"
+                android:padding="@dimen/x10"
                 android:id="@+id/et_des"
                 android:gravity="start"
-                android:textSize="12sp"
+                android:textSize="@dimen/x12sp"
                 android:textColor="@color/colorC1c1c1"
                 android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <LinearLayout
                 android:id="@+id/ll_des"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/x5"
+                android:layout_marginTop="@dimen/x5"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
@@ -75,14 +75,14 @@
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:text="@string/activity_activate_detail_pen"
                     android:textColor="@color/colorC1c1c1"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/x12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="相册简介"
-                    android:layout_marginLeft="6dp"
+                    android:layout_marginLeft="@dimen/x6"
                     android:textColor="@color/colorC1c1c1"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/x12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -90,9 +90,9 @@
             <TextView
                 android:id="@+id/tv_count"
                 android:textColor="@color/colorC1c1c1"
-                android:textSize="12sp"
+                android:textSize="@dimen/x12sp"
                 android:text="0/80"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/x5"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
@@ -110,13 +110,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/x50"
             android:background="@drawable/activity_create_album_complete"
             android:gravity="center"
             android:elevation="3dp"
             android:text="完成"
             android:textColor="#fafafa"
-            android:textSize="18sp" />
+            android:textSize="@dimen/x18sp" />
     <View
         android:visibility="invisible"
         android:layout_width="match_parent"
@@ -127,6 +127,6 @@
         android:id="@+id/v_bottom"
         android:visibility="invisible"
         android:layout_width="match_parent"
-        android:layout_height="10dp"/>
+        android:layout_height="@dimen/x10"/>
     </LinearLayout>
 

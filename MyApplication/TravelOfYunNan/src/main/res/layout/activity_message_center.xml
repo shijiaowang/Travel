@@ -29,7 +29,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
     <LinearLayout
         android:id="@+id/ll_system_message"
         style="@style/activityMessageCenterLl">
@@ -54,7 +54,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
     <LinearLayout
         android:id="@+id/ll_private"
         style="@style/activityMessageCenterLl">
@@ -78,7 +78,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
     <LinearLayout
         android:id="@+id/ll_relate_me"
         style="@style/activityMessageCenterLl">

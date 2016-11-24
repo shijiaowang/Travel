@@ -5,18 +5,18 @@
     android:layout_height="match_parent">
     <View
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="93dp"
+        android:layout_marginTop="@dimen/x93"
         android:background="@drawable/activity_other_title_load"
         android:id="@+id/pb_load"
-        android:layout_width="87dp"
-        android:layout_height="87dp"/>
+        android:layout_width="@dimen/x87"
+        android:layout_height="@dimen/x87"/>
 
     <TextView
         android:layout_centerHorizontal="true"
         android:text="云南城外旅游文化发展有限公司"
         android:textColor="@color/color1c1c1c"
-        android:textSize="13sp"
-        android:layout_marginBottom="80dp"
+        android:textSize="@dimen/x13sp"
+        android:layout_marginBottom="@dimen/x80"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,13 +25,13 @@
     <TextView
         android:text="Yunnan Chengwai Travelling Culture Development Co., Ltd."
         android:textColor="#424242"
-        android:textSize="12sp"
+        android:textSize="@dimen/x12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:layout_alignTop="@+id/textView4"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
+        android:layout_marginTop="@dimen/x28" />
 
 
 </RelativeLayout>

@@ -52,7 +52,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:paddingTop="@dimen/commonStatusHeight"
         android:elevation="0dp"
-        android:layout_height="@dimen/commonTotalHeight"
+        android:layout_height="@dimen/x74"
         app:titleTextAppearance="@style/ToolBar.TitleText">
         <ViewStub
             android:id="@+id/vs_bar"

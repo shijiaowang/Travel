@@ -40,5 +40,42 @@
         <attr name="metaButtonBarStyle" format="reference" />
         <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
+    <attr name="item_first_icon" format="string" />
+    <attr name="item_second_icon" format="string" />
+    <attr name="item_third_icon" format="string" />
+    <attr name="item_fourth_icon" format="string" />
+    <attr name="item_icon_size" format="dimension" />
+    <attr name="item_first_icon_color" format="color" />
+    <attr name="item_second_icon_color" format="color" />
+    <attr name="item_third_icon_color" format="color" />
+    <attr name="item_fourth_icon_color" format="color" />
+
+    <attr name="item_first_text_size" format="dimension" />
+    <attr name="item_second_text_size" format="dimension" />
+    <attr name="item_third_text_size" format="dimension" />
+    <attr name="item_fourth_text_size" format="dimension" />
+    <attr name="item_first_text_color" format="dimension" />
+    <attr name="item_second_text_color" format="dimension" />
+    <attr name="item_third_text_color" format="dimension" />
+    <attr name="item_fourth_text_color" format="dimension" />
+    <declare-styleable name="AppointItemView">
+        <attr name="item_first_icon" />
+        <attr name="item_second_icon" />
+        <attr name="item_third_icon" />
+        <attr name="item_fourth_icon" />
+        <attr name="item_icon_size" />
+        <attr name="item_first_icon_color" />
+        <attr name="item_second_icon_color" />
+        <attr name="item_third_icon_color" />
+        <attr name="item_fourth_icon_color" />
+        <attr name="item_first_text_size" />
+        <attr name="item_second_text_size" />
+        <attr name="item_third_text_size"  />
+        <attr name="item_fourth_text_size" />
+        <attr name="item_first_text_color" />
+        <attr name="item_second_text_color" />
+        <attr name="item_third_text_color" />
+        <attr name="item_fourth_text_color" />
+    </declare-styleable>
 
 </resources>

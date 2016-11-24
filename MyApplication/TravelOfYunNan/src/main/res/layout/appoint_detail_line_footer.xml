@@ -6,28 +6,28 @@
     android:layout_height="match_parent">
     <View
         android:background="@color/otherTitleBg"
-        android:layout_width="1dp"
-        android:layout_marginLeft="82dp"
-        android:layout_height="6dp" />
+        android:layout_width="@dimen/x1"
+        android:layout_marginLeft="@dimen/x82"
+        android:layout_height="@dimen/x6" />
     <LinearLayout
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_width="60dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="50dp"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/x25"
+            android:layout_marginLeft="@dimen/x50"
             android:background="@drawable/activity_line_plan_add"
             android:gravity="center"
             android:text="解散地"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="13sp" />
+            android:textSize="@dimen/x13sp" />
         <TextView
             android:id="@+id/tv_end_add"
             android:textColor="@color/color323232"
-            android:textSize="16sp"
-            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/x16sp"
+            android:layout_marginLeft="@dimen/x20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

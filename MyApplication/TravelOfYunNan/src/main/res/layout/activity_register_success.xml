@@ -8,28 +8,28 @@
         android:src="@drawable/register_banner"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="@dimen/x150"
         />
 
         <com.yunspeak.travel.ui.view.LoginEditText
 
             android:id="@+id/et_nick_name"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
             app:line_edittext_image_src="@drawable/login_user"
-            app:line_edittext_input_left="20dp"
+            app:line_edittext_input_left="@dimen/x20"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="@dimen/x46"
             app:line_edittext_max_length="8"
             app:line_edittext_hint="中文/英文/数字"
             />
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="@dimen/x70">
         <ImageView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/x20"
             android:src="@drawable/register_sex"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/x20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RadioGroup
@@ -40,45 +40,45 @@
             android:layout_height="wrap_content">
             <RadioButton
                 android:id="@+id/rb_boy"
-                android:layout_width="70dp"
-                android:layout_height="43dp"
+                android:layout_width="@dimen/x70"
+                android:layout_height="@dimen/x43"
                 android:gravity="end|center_vertical"
                 android:button="@drawable/sex_boy_selector"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/x10"
                 android:text="男"
                 android:textColor="@color/select_sex_selector"
-                android:textSize="15sp"
+                android:textSize="@dimen/x15sp"
                 />
             <RadioButton
                 android:id="@+id/rb_girl"
                 android:button="@drawable/sex_girl_selector"
-                android:layout_width="70dp"
-                android:layout_height="43dp"
+                android:layout_width="@dimen/x70"
+                android:layout_height="@dimen/x43"
                 android:gravity="end|center_vertical"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="@dimen/x60"
                 android:text="女"
                 android:textColor="@color/select_sex_selector"
-                android:textSize="14sp"
+                android:textSize="@dimen/x14sp"
                 />
         </RadioGroup>
     </FrameLayout>
     <View
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginRight="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
         android:background="#d2d2d2"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 
         <com.yunspeak.travel.ui.view.AvoidFastButton
             android:id="@+id/bt_start"
             android:text="开启【城外】旅程"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="15sp"
+            android:textSize="@dimen/x15sp"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="39dp"
+            android:layout_marginTop="@dimen/x39"
             android:background="@drawable/green_button_normal_bg_unclick"
-            android:layout_width="150dp"
-            android:layout_height="35dp" />
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x35" />
     </LinearLayout>

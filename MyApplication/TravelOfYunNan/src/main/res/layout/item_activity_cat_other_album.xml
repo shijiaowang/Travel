@@ -6,13 +6,13 @@
     <TextView
         android:id="@+id/tv_time"
         android:textColor="@color/colorb5b5b5"
-        android:textSize="12sp"
+        android:textSize="@dimen/x12sp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="32dp" />
+        android:layout_height="@dimen/x32" />
     <com.facebook.drawee.view.SimpleDraweeView
        android:id="@+id/iv_bg"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="@dimen/x200" />
 
 </LinearLayout>

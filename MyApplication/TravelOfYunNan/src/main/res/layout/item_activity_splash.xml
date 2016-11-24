@@ -15,15 +15,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="25sp" />
+            android:textSize="@dimen/x25" />
 
         <TextView
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="39dp"
+            android:layout_marginTop="@dimen/x39"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x15sp" />
 
 
     </LinearLayout>

@@ -4,22 +4,22 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:layout_height="wrap_content"
-    android:paddingTop="15dp"
-    android:paddingRight="20dp"
+    android:paddingTop="@dimen/x15"
+    android:paddingRight="@dimen/x20"
     >
     <TextView
         android:id="@+id/tv_name"
         style="@style/commonSingleLineTextStyle"
         android:textColor="@color/color646464"
-        android:textSize="14sp"
+        android:textSize="@dimen/x14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
     <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_delete"
         android:textColor="@color/otherFf7f6c"
-        android:layout_marginLeft="6dp"
-        android:textSize="12sp"
+        android:layout_marginLeft="@dimen/x6"
+        android:textSize="@dimen/x12sp"
         android:text="@string/activity_member_detail_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

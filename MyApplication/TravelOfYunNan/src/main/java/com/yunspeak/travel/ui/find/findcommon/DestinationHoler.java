@@ -60,12 +60,7 @@ public class DestinationHoler extends BaseRecycleViewHolder<DestinationBean.Data
         mTvName.setText(datas.getTitle());
         String text=addressIcon+datas.getAddress();
         SpannableString spannableString = new SpannableString(text);
-        TypefaceSpan typefaceSpan = new TypefaceSpan("sans-serif");
-        Typeface typeface = TypefaceUtis.getTypeface(mContext);
-        TextPaint textPaint = new TextPaint();
-        textPaint.setTypeface(typeface);
-        typefaceSpan.updateDrawState(textPaint);
-        spannableString.setSpan(typefaceSpan,0,1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new CustomTypefaceSpan("sans-serif",TypefaceUtis.getTypeface(mContext)),0,1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
         mTvAdd.setText(spannableString);
         float star=5.0f;
         star = getStar(datas, star);

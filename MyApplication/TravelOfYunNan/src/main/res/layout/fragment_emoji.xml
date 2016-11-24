@@ -3,7 +3,7 @@
     android:listSelector="@android:color/transparent"
     android:id="@+id/gv_emoji"
     android:numColumns="7"
-    android:horizontalSpacing="27dp"
+    android:horizontalSpacing="@dimen/x27"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

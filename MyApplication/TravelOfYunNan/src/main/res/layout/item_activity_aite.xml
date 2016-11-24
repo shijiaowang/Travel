@@ -2,36 +2,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_select"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="@dimen/x80"
     >
     <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_aite"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="@dimen/x13"
         android:layout_centerVertical="true"
         android:text="@string/activity_aite_ok"
         android:textColor="@color/colorE4e4e4"
-        android:textSize="25sp"
+        android:textSize="@dimen/x25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:layout_toRightOf="@id/tv_aite"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="@dimen/x20"
+        android:layout_marginBottom="@dimen/x20"
         android:id="@+id/iv_icon"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        android:src="@drawable/user_icon"
+        android:layout_width="@dimen/x43"
+        android:layout_height="@dimen/x43"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/x20"
         android:gravity="center"
        />
 
     <LinearLayout
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/x16"
+        android:layout_marginTop="@dimen/x20"
         android:layout_toRightOf="@id/iv_icon"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/x40"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -43,10 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#8c8c8c"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
         <View
             android:layout_weight="1"
-            android:layout_width="1dp"
+            android:layout_width="@dimen/x1"
             android:layout_height="0dp"/>
 
         <TextView
@@ -57,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#b3b3b3"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
 
 
     </LinearLayout>
@@ -68,15 +67,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="13dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/x13"
+        android:layout_marginTop="@dimen/x20"
         android:textColor="#b7b7b7"
-        android:textSize="12sp" />
+        android:textSize="@dimen/x12sp" />
     <View
-        android:layout_marginRight="13dp"
-        android:layout_marginLeft="71dp"
+        android:layout_marginRight="@dimen/x13"
+        android:layout_marginLeft="@dimen/x71"
         android:background="#efeff4"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 </RelativeLayout>

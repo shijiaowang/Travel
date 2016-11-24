@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/colorFAFAFA"
-    android:layout_marginRight="14dp"
+    android:layout_marginRight="@dimen/x14"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
         android:gravity="center_vertical"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="@dimen/x12"
+        android:layout_marginTop="@dimen/x12"
+        android:layout_marginBottom="@dimen/x14"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_icon"
-            android:layout_width="42dp"
-            android:layout_height="42dp" />
+            android:layout_width="@dimen/x42"
+            android:layout_height="@dimen/x42" />
         <TextView
             android:id="@+id/tv_name"
-            android:textSize="12sp"
+            android:textSize="@dimen/x12sp"
             android:textColor="#444444"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/x15"
             android:lines="1"
             android:ellipsize="end"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/x100"
             android:layout_height="wrap_content" />
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_sex"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="@dimen/x7"
             android:textColor="@color/color97bcf0"
-            android:textSize="12sp"
+            android:textSize="@dimen/x12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_member_detail_age"
-            android:layout_marginLeft="12dp"
+            android:layout_marginLeft="@dimen/x12"
             android:textColor="@color/Ffbf75"
-            android:textSize="12sp"
+            android:textSize="@dimen/x12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:layout_marginLeft="4dp"
+            android:layout_marginLeft="@dimen/x4"
             android:id="@+id/tv_age"
             android:textColor="@color/color767676"
-            android:textSize="11sp"
+            android:textSize="@dimen/x11sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
              android:id="@+id/tv_type"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/x10"
             android:gravity="center"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="12sp"
-            android:layout_width="48dp"
+            android:textSize="@dimen/x12sp"
+            android:layout_width="@dimen/x48"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
     <View
         android:background="@color/meLine"
-        android:layout_marginLeft="67dp"
+        android:layout_marginLeft="@dimen/x67"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 
 </LinearLayout>

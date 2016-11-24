@@ -18,9 +18,9 @@
          app:tabIndicatorColor="@color/otherTitleBg"
          app:tabSelectedTextColor="@color/otherTitleBg"
          app:tabTextColor="@color/color3f3f3f"
-         android:layout_height="48dp"
-         android:layout_marginLeft="35dp"
-         android:layout_marginRight="35dp">
+         android:layout_height="@dimen/x48"
+         android:layout_marginLeft="@dimen/x35"
+         android:layout_marginRight="@dimen/x35">
 
      </android.support.design.widget.TabLayout>
  </android.support.design.widget.AppBarLayout>

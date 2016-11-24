@@ -81,15 +81,16 @@
     <style name="HomeButtonParentLL">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="HomeButtonIconFonts">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">23sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">#7b7b7b</item>
     </style>
 
@@ -98,6 +99,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">10sp</item>
+        <item name="android:layout_marginTop">5dp</item>
     </style>
 
     <!--水平平方线-->
@@ -117,11 +119,11 @@
     <!--个人相册等功能-->
     <style name="fragmentMeAlbum">
         <item name="android:textColor">@color/homeButtonUnCheckedColor</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">@dimen/x13sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:drawablePadding">10dp</item>
-        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:drawablePadding">@dimen/x10</item>
+        <item name="android:layout_marginLeft">@dimen/x20</item>
 
 
     </style>
@@ -132,58 +134,58 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:background">@drawable/normal_press_bg</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">@dimen/x50</item>
     </style>
     <!--相册等功能返回按钮-->
     <style name="ivFragmentMeAlbumButton">
         <item name="android:scaleType">fitXY</item>
         <item name="android:src">@drawable/fragment_circle_nav_left_normal</item>
-        <item name="android:layout_marginRight">22dp</item>
-        <item name="android:layout_height">11dp</item>
+        <item name="android:layout_marginRight">@dimen/x22</item>
+        <item name="android:layout_height">@dimen/x11</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
     <!--个人中心分割线-->
     <style name="fragmentMeLine">
         <item name="android:background">@color/meLine</item>
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:layout_marginRight">22dp</item>
-        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginLeft">@dimen/x20</item>
+        <item name="android:layout_marginRight">@dimen/x20</item>
+        <item name="android:layout_height">@dimen/x1</item>
         <item name="android:layout_width">match_parent</item>
     </style>
 
     <!--关注等-->
     <style name="activityOtherFollow">
-        <item name="android:textSize">11sp</item>
-        <item name="android:textColor">#646464</item>
+        <item name="android:textSize">@dimen/x11sp</item>
+        <item name="android:textColor">@color/color646464</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
     <!--信息名称-->
     <style name="activityOtherInformationType">
-        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_marginLeft">@dimen/x14sp</item>
         <item name="android:textColor">#9f9f9f</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/x12sp</item>
     </style>
     <!--详细信息-->
     <style name="activityOtherInformationDetail" parent="activityOtherInformationType">
-        <item name="android:layout_marginLeft">80dp</item>
+        <item name="android:layout_marginLeft">@dimen/x80</item>
         <item name="android:textColor">#7c7c7c</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/x12sp</item>
     </style>
     <!--线条-->
     <style name="activityOtherInformationLine">
         <item name="android:background">#e8e8e8</item>
-        <item name="android:layout_marginRight">14dp</item>
-        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_marginRight">@dimen/x14</item>
+        <item name="android:layout_marginLeft">@dimen/x14</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_height">@dimen/x1</item>
     </style>
     <!--他人相册下面的字-->
     <style name="activityOtherAlbumFont">
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorFAFAFA</item>
+        <item name="android:textSize">@dimen/x12sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -193,25 +195,25 @@
     <!--系统消息item-->
     <style name="activitySystemMessageRl">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_height">@dimen/x80</item>
     </style>
     <!--系统消息图标-->
     <style name="activitySystemMessageIcon">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">@dimen/x40</item>
+        <item name="android:layout_height">@dimen/x40</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginLeft">@dimen/x12</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/x12sp</item>
     </style>
 
     <style name="activitySystemMessageTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginTop">@dimen/x20</item>
+        <item name="android:layout_marginLeft">@dimen/x16</item>
+        <item name="android:textSize">@dimen/x12sp</item>
         <item name="android:textColor">#8c8c8c</item>
     </style>
 
@@ -219,9 +221,9 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentRight">true</item>
-        <item name="android:layout_marginRight">13dp</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:textSize">11sp</item>
+        <item name="android:layout_marginRight">@dimen/x13</item>
+        <item name="android:layout_marginTop">@dimen/x20</item>
+        <item name="android:textSize">@dimen/x11sp</item>
         <item name="android:textColor">#b7b7b7</item>
     </style>
     <!--返回字体图标-->
@@ -229,7 +231,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/x20sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:text">@string/activity_circle_back_font_icon</item>
     </style>
@@ -237,9 +239,9 @@
     <style name="fragmentFindIconText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">13sp</item>
-        <item name="android:textColor">#323232</item>
-        <item name="android:layout_marginTop">9dp</item>
+        <item name="android:textSize">@dimen/x13sp</item>
+        <item name="android:textColor">@color/color323232</item>
+        <item name="android:layout_marginTop">@dimen/x9</item>
     </style>
 
     <style name="fragmentFindIconLl">
@@ -255,22 +257,22 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">#969696</item>
+        <item name="android:textSize">@dimen/x14sp</item>
+        <item name="android:textColor">@color/color969696</item>
     </style>
 
     <style name="fragmentAppointTitleLine">
-        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_width">@dimen/x1</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:background">#c1c1c1</item>
+        <item name="android:layout_marginBottom">@dimen/x10</item>
+        <item name="android:layout_marginTop">@dimen/x10</item>
+        <item name="android:background">@color/colorC1c1c1</item>
     </style>
 
     <style name="fragmentAppointBottomText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/x14sp</item>
         <item name="android:textColor">@color/colorb5b5b5</item>
     </style>
 
@@ -279,23 +281,47 @@
         <item name="android:lines">1</item>
         <item name="android:ellipsize">end</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginLeft">@dimen/x8</item>
+        <item name="android:textColor">@color/color323232</item>
+        <item name="android:textSize">@dimen/x14sp</item>
+    </style>
+    <style name="firstTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/color323232</item>
         <item name="android:textSize">14sp</item>
+    </style>
+    <style name="secondTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/otherTitleBg</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+    <style name="thirdTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color646464</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="fragmentAppointWithMeIconFont">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:paddingLeft">1dp</item>
+        <item name="android:paddingLeft">@dimen/x1</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorb5b5b5</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/x15sp</item>
     </style>
 
     <style name="fragmentAppointWithMeLl">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">9dp</item>
+        <item name="android:layout_marginTop">@dimen/x9</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
     </style>
@@ -316,17 +342,17 @@
     </style>
 
     <style name="activitySettingTvType">
-        <item name="android:layout_width">96dp</item>
+        <item name="android:layout_width">@dimen/x96</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">@dimen/x13sp</item>
         <item name="android:textColor">@color/color323232</item>
     </style>
 
     <style name="activitySettingLl">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">44dp</item>
-        <item name="android:paddingLeft">30dp</item>
-        <item name="android:paddingRight">30dp</item>
+        <item name="android:layout_height">@dimen/x44</item>
+        <item name="android:paddingLeft">@dimen/x30</item>
+        <item name="android:paddingRight">@dimen/x30</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:background">@drawable/normal_press_bg</item>
@@ -336,17 +362,17 @@
 
     <style name="activityDeliciousDetailLine">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_height">@dimen/x1</item>
+        <item name="android:layout_marginLeft">@dimen/x10</item>
+        <item name="android:layout_marginRight">@dimen/x10</item>
         <item name="android:background">@color/meLine</item>
     </style>
 
     <style name="activityDeliciousDetailLl">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginBottom">@dimen/x10</item>
+        <item name="android:layout_marginTop">@dimen/x14</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
     </style>
@@ -354,23 +380,23 @@
     <style name="activityDeliciousDetailTvIcon">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginLeft">@dimen/x10</item>
         <item name="android:textColor">@color/color656565</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">@dimen/x13sp</item>
     </style>
 
     <style name="activityDeliciousDetailTvName" parent="activityDeliciousDetailTvIcon">
-        <item name="android:layout_marginLeft">9dp</item>
+        <item name="android:layout_marginLeft">@dimen/x9</item>
 
     </style>
 
     <style name="activityCreatePostTvIcon">
-        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_width">@dimen/x25</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginLeft">@dimen/x40</item>
         <item name="android:textColor">@color/color969696</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/x25</item>
     </style>
     <!--目的地-->
     <style name="activityDestinationTv">
@@ -379,7 +405,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/color969696</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/x14sp</item>
     </style>
 
     <style name="activityDestinationLine">
@@ -404,16 +430,16 @@
     </style>
 
     <style name="fragmentMyPublicationRl">
-        <item name="android:layout_marginRight">13dp</item>
+        <item name="android:layout_marginRight">@dimen/x13</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:layout_marginLeft">13dp</item>
+        <item name="android:layout_marginLeft">@dimen/x13</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_height">@dimen/x45</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="fragmentMyPublicationIcon">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/x20sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -422,15 +448,15 @@
         <item name="android:textColor">@color/color8c8c8c</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginLeft">@dimen/x10</item>
+        <item name="android:textSize">@dimen/x12sp</item>
     </style>
 
     <style name="fragmentMyPublicationCursor">
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:src">@drawable/fragment_my_publication_cursor</item>
-        <item name="android:layout_width">20dp</item>
-        <item name="android:layout_height">15dp</item>
+        <item name="android:layout_width">@dimen/x20</item>
+        <item name="android:layout_height">@dimen/x15</item>
     </style>
 
     <style name="fragmentOrderText" parent="fragmentAppointWithMeText">
@@ -448,7 +474,7 @@
     <style name="activityConfirmOrdersRl">
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_height">@dimen/x30</item>
     </style>
 
     <style name="activityConfirmOrdersTextMoney">
@@ -535,10 +561,10 @@
     </style>
     <!--ToolBar TextSize style-->
     <style name="ToolBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/x16sp</item>
         <item name="android:textColor">@color/colorFAFAFA</item>
     </style>
     <style name="textSize14">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/x14sp</item>
     </style>
 </resources>

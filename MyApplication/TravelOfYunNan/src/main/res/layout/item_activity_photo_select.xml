@@ -7,22 +7,21 @@
     android:layout_height="wrap_content">
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_picture"
-        android:layout_width="76dp"
-        android:layout_height="78dp" />
+        android:layout_width="@dimen/x76"
+        android:layout_height="@dimen/x78" />
     <TextView
         android:id="@+id/tv_count"
-        android:layout_marginLeft="17dp"
-        android:text="weibo(33)"
+        android:layout_marginLeft="@dimen/x17"
         android:textColor="#454545"
-        android:textSize="14sp"
+        android:textSize="@dimen/x14sp"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
     <com.yunspeak.travel.ui.view.FontsIconTextView
-        android:layout_marginRight="17dp"
+        android:layout_marginRight="@dimen/x17"
         android:text="@string/activity_message_center_cursor"
         android:textColor="#454545"
-        android:textSize="14sp"
+        android:textSize="@dimen/x14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

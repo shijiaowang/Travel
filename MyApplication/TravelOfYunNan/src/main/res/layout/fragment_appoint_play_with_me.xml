@@ -7,7 +7,7 @@
         android:id="@+id/lv_play_with_me"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="3dp"
+        android:layout_marginLeft="@dimen/x3"
         android:layout_marginRight="3dp"
         android:divider="@null"
         android:dividerHeight="5dp">

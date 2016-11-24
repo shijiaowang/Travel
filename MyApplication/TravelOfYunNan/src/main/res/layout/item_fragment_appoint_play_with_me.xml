@@ -5,23 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:paddingBottom="9dp"
+        android:paddingBottom="@dimen/x9"
        android:orientation="horizontal"
-        android:paddingTop="6dp"
-        android:paddingRight="12dp"
-        android:paddingLeft="14dp"
+        android:paddingTop="@dimen/x6"
+        android:paddingRight="@dimen/x12"
+        android:paddingLeft="@dimen/x14"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include layout="@layout/activity_common_appoint_detail"/>
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_bg"
-            android:layout_width="112dp"
-            android:layout_height="112dp" />
+            android:layout_width="@dimen/x112"
+            android:layout_height="@dimen/x112" />
         
     </LinearLayout>
     <com.yunspeak.travel.ui.view.FlowLayout
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="@dimen/x15"
         android:id="@+id/fl_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -34,17 +34,17 @@
         <View
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="1dp"/>
+            android:layout_height="@dimen/x1"/>
         <TextView
             android:id="@+id/tv_money"
-            android:paddingLeft="15dp"
-            android:paddingRight="10dp"
-            android:textSize="11sp"
+            android:paddingLeft="@dimen/x15"
+            android:paddingRight="@dimen/x10"
+            android:textSize="@dimen/x11sp"
             android:textColor="@color/colorFAFAFA"
             android:gravity="center"
             android:background="@drawable/fragment_play_with_me_money_bg"
             android:layout_width="wrap_content"
-            android:layout_height="25dp" />
+            android:layout_height="@dimen/x25" />
 
     </LinearLayout>
     <include layout="@layout/appoint_bottom_common"/>

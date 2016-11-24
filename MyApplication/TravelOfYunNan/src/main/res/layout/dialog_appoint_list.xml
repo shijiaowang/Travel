@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="285dp"
+    android:layout_width="@dimen/x285"
     android:orientation="vertical"
     android:background="@drawable/appoint_enter_dialog_bg"
     android:layout_height="wrap_content">
@@ -11,56 +11,56 @@
         android:gravity="center"
         android:background="@color/otherTitleBg"
         android:textColor="@color/colorFAFAFA"
-        android:textSize="15sp"
+        android:textSize="@dimen/x15sp"
         android:layout_width="match_parent"
-        android:layout_height="39dp" />
+        android:layout_height="@dimen/x39" />
     <TextView
         android:text="·\u3000亲选择您的队伍"
         android:textColor="#d0d0d0"
-        android:textSize="11sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
+        android:textSize="@dimen/x11sp"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_marginLeft="@dimen/x25"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_appoint"
-        android:layout_marginLeft="25dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginLeft="@dimen/x25"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginRight="@dimen/x25"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <View
         android:background="@color/meLine"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
+        android:layout_marginRight="@dimen/x25"
+        android:layout_marginLeft="@dimen/x25"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:gravity="center_vertical"
-        android:layout_height="40dp">
+        android:layout_height="@dimen/x40">
         <TextView
             android:id="@+id/tv_ok"
             android:gravity="center"
             android:text="确定"
             android:textColor="@color/otherTitleBg"
-            android:textSize="14sp"
+            android:textSize="@dimen/x14sp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
         <View
             android:background="@color/meLine"
-            android:layout_width="1dp"
-            android:layout_height="30dp"/>
+            android:layout_width="@dimen/x1"
+            android:layout_height="@dimen/x30"/>
         <TextView
             android:text="取消"
             android:gravity="center"
             android:id="@+id/tv_cancel"
             android:textColor="@color/color646464"
-            android:textSize="14sp"
+            android:textSize="@dimen/x14sp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent" />

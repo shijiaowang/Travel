@@ -12,22 +12,22 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="13dp">
+        android:paddingLeft="@dimen/x13">
 
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_icon"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/x45"
+            android:layout_height="@dimen/x45"
              />
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="13dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginLeft="@dimen/x12"
+            android:layout_marginRight="@dimen/x13"
+            android:layout_marginTop="@dimen/x10"
 
             android:layout_weight="1">
 
@@ -36,18 +36,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color575555"
-                android:textSize="13sp" />
+                android:textSize="@dimen/x13sp" />
 
             <com.yunspeak.travel.ui.view.ShowAllTextView
                 android:id="@+id/tv_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_type"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/x15"
                 android:ellipsize="end"
                 android:lines="1"
                 android:textColor="@color/colorb2b2b2"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
 
             <TextView
                 android:id="@+id/tv_cat_more"
@@ -56,27 +56,27 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/tv_message"
-                android:layout_marginTop="9dp"
+                android:layout_marginTop="@dimen/x9"
                 android:text="@string/cat_more"
                 android:textColor="@color/otherTitleBg"
-                android:textSize="11sp" />
+                android:textSize="@dimen/x11sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_message"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/x24"
                 android:ellipsize="end"
                 android:lines="1"
                 android:id="@+id/tv_time"
                 android:textColor="@color/colorb2b2b2"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x10sp" />
 
         </RelativeLayout>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="70dp" />
+        android:layout_height="@dimen/x1"
+        android:layout_marginLeft="@dimen/x70" />
 </LinearLayout>

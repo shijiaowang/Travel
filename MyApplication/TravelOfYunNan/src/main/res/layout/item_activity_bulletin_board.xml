@@ -2,36 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical"
-    android:paddingLeft="13dp"
-    android:paddingRight="13dp"
+    android:paddingLeft="@dimen/x13"
+    android:paddingRight="@dimen/x13"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
         android:gravity="center_vertical"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/x10"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_top"
             android:text="置顶"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
+            android:paddingLeft="@dimen/x3"
+            android:paddingRight="@dimen/x3"
             android:textColor="@color/colorFAFAFA"
             android:gravity="center"
-            android:textSize="10sp"
+            android:textSize="@dimen/x10sp"
             android:background="@color/colorFf8076"
             android:layout_width="wrap_content"
-            android:layout_height="13dp" />
+            android:layout_height="@dimen/x13" />
         <View
             android:id="@+id/v_dot"
             android:background="@drawable/activity_bulletin_board_dot"
-            android:layout_width="3dp"
-            android:layout_height="3dp"/>
+            android:layout_width="@dimen/x3"
+            android:layout_height="@dimen/x3"/>
         <TextView
             android:id="@+id/tv_title"
-            android:layout_marginLeft="7dp"
-            android:textSize="13sp"
+            android:layout_marginLeft="@dimen/x7"
+            android:textSize="@dimen/x13sp"
             style="@style/commonSingleLineTextStyle"
             android:textColor="@color/Ffbf75"
             android:layout_width="wrap_content"
@@ -40,25 +40,25 @@
     </LinearLayout>
     <TextView
        android:id="@+id/tv_content"
-        android:layout_marginTop="11dp"
-        android:textSize="13sp"
+        android:layout_marginTop="@dimen/x11"
+        android:textSize="@dimen/x13sp"
         android:textColor="@color/color858585"
         android:maxLines="5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <LinearLayout
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="@dimen/x14"
+        android:layout_marginBottom="@dimen/x12"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <View
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="1dp"/>
+            android:layout_height="@dimen/x1"/>
         <TextView
             android:id="@+id/tv_time"
-            android:textSize="11sp"
+            android:textSize="@dimen/x11sp"
             android:textColor="@color/colorA7a7a7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

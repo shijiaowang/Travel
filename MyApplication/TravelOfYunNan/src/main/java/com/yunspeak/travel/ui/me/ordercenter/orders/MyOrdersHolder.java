@@ -16,6 +16,7 @@ import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity;
+import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -25,6 +26,7 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import java.util.Map;
 
+import butterknife.BindString;
 import butterknife.BindView;
 
 /**
@@ -46,6 +48,14 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
     @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_total_price) TextView mTvTotalPrice;
     @BindView(R.id.tv_price) TextView mTvPrice;
+    @BindView(R.id.tv_air)
+    FontsIconTextView mTvAir;
+    @BindView(R.id.tv_third)
+    FontsIconTextView mTvThird;
+    @BindString(R.string.activity_message_center_recommend) String fly;
+    @BindString(R.string.fragment_play_with_me_air) String air;
+    @BindString(R.string.fragment_play_with_me_add) String add;
+    @BindString(R.string.fragment_find_active) String active;
 
     public MyOrdersHolder(View itemView, int currentType) {
         super(itemView);
@@ -58,12 +68,24 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
 
     @Override
     public void childBindView(final int position, final MyOrdersBean.DataBean datas, final Context mContext) {
+        int payType = datas.getPay_type();
+        if (payType==2){
+            mTvType.setText("活动订单");
+            mTvAir.setText(active);
+            mTvThird.setText(fly);
+            mTvStartAndLong.setText(datas.getMeet_address());
+            mTvDayAndNight.setText( "至"+FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getEnd_time())+"结束");
+        }else {
+            mTvType.setText("约伴订单");
+            mTvAir.setText(air);
+            mTvThird.setText(add);
+            mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
+            mTvDayAndNight.setText(FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getEnd_time()));
+        }
         FrescoUtils.displayRoundIcon(mIvIcon, datas.getTravel_img());
         mTvPlanNumber.setVisibility(View.GONE );
         mTvHaveNumber.setText("已有: " + datas.getPeople() + "人");
-        mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
-        mTvDayAndNight.setText(FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getEnd_time()));
-        mTvLine.setText(datas.getRoutes());
+      mTvLine.setText(datas.getRoutes());
         mTvIdNumber.setText("订单号:"+datas.getOrder_sn());
         mTvTotalPrice.setText("合计:"+datas.getTotal_price());
         mTvPrice.setText("¥"+datas.getTotal_price());
@@ -115,6 +137,7 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
                 String orderId = datas.getId();
                 Intent intent=new Intent(mContext, OrdersDetailActivity.class);
                 intent.putExtra(IVariable.TYPE,datas.getPay_type());
+                intent.putExtra(IVariable.NAME,datas.getRoutes());
                 intent.putExtra(IVariable.ID,orderId);
                 mContext.startActivity(intent);
             }

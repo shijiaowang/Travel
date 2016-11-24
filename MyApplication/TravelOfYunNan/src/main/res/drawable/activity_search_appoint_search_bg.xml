@@ -8,6 +8,7 @@
     <size android:width="200dp"
         android:height="28dp"
         />
+    <solid android:color="@android:color/transparent"/>
     <corners android:radius="10dp"/>
 
 </shape>

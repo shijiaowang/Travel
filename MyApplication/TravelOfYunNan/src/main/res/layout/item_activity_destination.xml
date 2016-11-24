@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingTop="15dp"
+    android:paddingTop="@dimen/x15"
     android:background="@color/colorFAFAFA"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_spot"
         android:layout_centerVertical="true"
-        android:layout_width="115dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="80dp" />
+        android:layout_width="@dimen/x115"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_height="@dimen/x80" />
         <TextView
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/x15"
             android:layout_toRightOf="@id/iv_spot"
             style="@style/commonSingleLineTextStyle"
             android:id="@+id/tv_name"
             android:textColor="@color/color323232"
-            android:textSize="16sp"
+            android:textSize="@dimen/x16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RatingBar
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/x15"
             android:layout_toRightOf="@id/iv_spot"
             android:layout_below="@id/tv_name"
             android:id="@+id/rb_star"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="@dimen/x9"
             android:layout_width="wrap_content"
-            android:layout_height="18dp"
+            android:layout_height="@dimen/x18"
             android:numStars="5"
             android:isIndicator="true"
-            android:maxHeight="18dp"
+            android:maxHeight="@dimen/x18"
             android:progressDrawable="@drawable/activity_delicious_food_star"
             />
 
@@ -37,29 +37,29 @@
                 android:text="@string/item_fragment_find_add"
                 android:visibility="gone"
                 android:textColor="@color/colorC1c1c1"
-                android:textSize="12sp"
+                android:textSize="@dimen/x12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/x15"
                 android:layout_toRightOf="@id/iv_spot"
                 android:layout_below="@id/rb_star"
                 android:id="@+id/tv_add"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/x12"
                 style="@style/commonSingleLineTextStyle"
                 android:textColor="@color/colorC1c1c1"
-                android:textSize="12sp"
+                android:textSize="@dimen/x12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
 
 
     <View
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/x10"
         android:layout_below="@id/iv_spot"
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 </RelativeLayout>

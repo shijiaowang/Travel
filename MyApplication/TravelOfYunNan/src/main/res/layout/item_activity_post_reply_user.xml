@@ -8,15 +8,15 @@
     <include layout="@layout/item_activity_post_reply" />
 
     <LinearLayout
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="@dimen/x3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="17dp"
+        android:layout_marginLeft="@dimen/x60"
+        android:layout_marginRight="@dimen/x17"
         android:background="@color/meLine"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="@dimen/x5">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,21 +31,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/color323232"
-                android:textSize="13sp" />
+                android:textSize="@dimen/x13sp" />
 
             <TextView
                 android:id="@+id/tv_reply_floor_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color969696"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_reply_content"
             android:textColor="@color/color606060"
-            android:textSize="12sp"
-            android:layout_marginTop="10dp"
+            android:textSize="@dimen/x12sp"
+            android:layout_marginTop="@dimen/x10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
            />

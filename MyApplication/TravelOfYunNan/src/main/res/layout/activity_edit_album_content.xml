@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/x200"
         android:background="@drawable/activity_create_bg">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -20,18 +20,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="@dimen/x30"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="24sp" />
+            android:textSize="@dimen/x24sp" />
 
         <EditText
             android:id="@+id/ed_set_name"
-            android:layout_width="254dp"
-            android:layout_height="39dp"
+            android:layout_width="@dimen/x254"
+            android:layout_height="@dimen/x39"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginBottom="@dimen/x20"
+            android:layout_marginTop="@dimen/x14"
             android:background="@drawable/activity_create_album_set_name_bg"
             android:gravity="center"
             android:lines="1"
@@ -39,7 +39,7 @@
             android:textColor="#fafafa"
             android:textColorHint="#fafafa"
             android:textCursorDrawable="@null"
-            android:textSize="17sp"
+            android:textSize="@dimen/x17sp"
             android:visibility="gone" />
 
         <TextView
@@ -48,13 +48,13 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/ed_set_name"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/x10"
             android:drawableLeft="@drawable/activity_create_album_set"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/x10"
             android:gravity="center"
             android:text="设置封面"
-            android:textColor="#fafafa"
-            android:textSize="12sp"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="@dimen/x12sp"
             android:visibility="gone" />
 
 
@@ -63,29 +63,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="@dimen/x14"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x15"
         android:text="相册简介"
-        android:textColor="#323232"
-        android:textSize="13dp" />
+        android:textColor="@color/color323232"
+        android:textSize="@dimen/x13" />
 
     <TextView
         android:id="@+id/tv_des"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:lineSpacingExtra="9dp"
+        android:layout_marginLeft="@dimen/x25"
+        android:layout_marginRight="@dimen/x25"
+        android:lineSpacingExtra="@dimen/x9"
         android:textColor="@color/color646464"
-        android:textSize="12sp" />
+        android:textSize="@dimen/x12sp" />
 
     <RelativeLayout
         android:id="@+id/rl_edit_des"
-        android:layout_width="315dp"
-        android:layout_height="170dp"
+        android:layout_width="@dimen/x315"
+        android:layout_height="@dimen/x170"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/x15"
         android:background="@color/colorFAFAFA"
         android:visibility="gone">
 
@@ -96,16 +96,16 @@
             android:background="@null"
             android:gravity="start"
             android:maxLength="80"
-            android:padding="5dp"
+            android:padding="@dimen/x5"
             android:textColor="@color/colorC1c1c1"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
 
         <LinearLayout
             android:id="@+id/ll_des"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="@dimen/x5"
+            android:layout_marginTop="@dimen/x5"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -114,15 +114,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/activity_activate_detail_pen"
                 android:textColor="@color/colorC1c1c1"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="@dimen/x6"
                 android:text="相册简介"
                 android:textColor="@color/colorC1c1c1"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
 
         </LinearLayout>
 
@@ -132,10 +132,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/x5"
             android:text="0/80"
             android:textColor="@color/colorC1c1c1"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
 
     </RelativeLayout>
 
@@ -143,18 +143,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginBottom="@dimen/x14"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x23"
         android:text="照片列表"
-        android:textColor="#323232"
-        android:textSize="13sp" />
+        android:textColor="@color/color323232"
+        android:textSize="@dimen/x13sp" />
 
 
     <com.yunspeak.travel.ui.view.ToShowAllListView
         android:id="@+id/lv_photo"
         style="@style/commonListViewStyle"
-        android:layout_width="316dp"
+        android:layout_width="@dimen/x316"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 

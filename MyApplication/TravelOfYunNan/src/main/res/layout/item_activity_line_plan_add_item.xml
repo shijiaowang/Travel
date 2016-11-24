@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingTop="20dp"
+    android:paddingTop="@dimen/x20"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
@@ -13,12 +13,12 @@
         android:background="#D9ECED"
         android:text="大理 · 洱海"
         android:textColor="@color/color323232"
-        android:textSize="16sp" />
+        android:textSize="@dimen/x16sp" />
     <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/otherTitleBg"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/x10"
         android:text="@string/activity_member_detail_delete" />
 </LinearLayout>

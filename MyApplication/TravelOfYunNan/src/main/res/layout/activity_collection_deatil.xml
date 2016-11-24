@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.yunspeak.travel.ui.view.refreshview.XListView
-        android:dividerHeight="5dp"
+        android:dividerHeight="@dimen/x5"
         android:id="@+id/lv_collection_detail"
         style="@style/commonListViewStyle"
         android:layout_width="match_parent"

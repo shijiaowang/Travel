@@ -4,6 +4,6 @@
     android:src="@drawable/activity_active_holder_test"
     android:scaleType="fitXY"
     android:layout_width="match_parent"
-    android:layout_height="174dp">
+    android:layout_height="@dimen/x174">
 
 </ImageView>

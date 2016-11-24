@@ -15,7 +15,7 @@
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_bg"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="@dimen/x200"
                  />
            <RelativeLayout
                android:layout_width="wrap_content"
@@ -26,36 +26,36 @@
                 android:id="@+id/tv_user_nick_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="129dp"
-                android:textColor="#fafafa"
-                android:textSize="19sp" />
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginTop="@dimen/x129"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="@dimen/x19sp" />
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_icon"
-                android:layout_width="73dp"
-                android:layout_height="73dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="163dp"
+                android:layout_width="@dimen/x73"
+                android:layout_height="@dimen/x73"
+                android:layout_marginLeft="@dimen/x12"
+                android:layout_marginTop="@dimen/x163"
            />
 
 
             <TextView
                 android:id="@+id/tv_level"
-                android:layout_width="52dp"
-                android:layout_height="29dp"
+                android:layout_width="@dimen/x52"
+                android:layout_height="@dimen/x29"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="85dp"
+                android:layout_marginTop="@dimen/x85"
                 android:background="@drawable/fragment_me_lv_bg"
                 android:gravity="center"
-                android:textColor="#fcae04"
-                android:textSize="14sp" />
+                android:textColor="@color/otherFcae04"
+                android:textSize="@dimen/x14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="213dp"
+                android:layout_marginLeft="@dimen/x13"
+                android:layout_marginTop="@dimen/x213"
                 android:layout_toRightOf="@id/iv_icon"
                 android:orientation="horizontal">
 
@@ -73,7 +73,7 @@
 
                     <TextView
                         style="@style/activityOtherFollow"
-                        android:layout_marginLeft="6dp"
+                        android:layout_marginLeft="@dimen/x6"
                         android:text="私信" />
 
                 </LinearLayout>
@@ -84,8 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="#646464"
-                    android:textSize="13sp"
+                    android:textColor="@color/color646464"
+                    android:textSize="@dimen/x13sp"
                     android:id="@+id/tv_fan_sum" />
 
                 <View style="@style/AVGLine" />
@@ -94,7 +94,7 @@
                     android:id="@+id/ll_follow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginRight="@dimen/x22"
                     android:background="@drawable/activity_other_private_bg"
                     android:gravity="center">
 
@@ -106,7 +106,7 @@
                     <TextView
                         android:id="@+id/tv_follow"
                         style="@style/activityOtherFollow"
-                        android:layout_marginLeft="6dp"
+                        android:layout_marginLeft="@dimen/x6"
                         android:text="关注" />
 
                 </LinearLayout>
@@ -117,13 +117,13 @@
             android:id="@+id/tv_signature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="45dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginBottom="@dimen/x12"
+            android:layout_marginLeft="@dimen/x45"
+            android:layout_marginRight="@dimen/x45"
+            android:layout_marginTop="@dimen/x22"
             android:gravity="center"
-            android:textColor="#323232"
-            android:textSize="14sp" />
+            android:textColor="@color/color323232"
+            android:textSize="@dimen/x14sp" />
 
         <View
             style="@style/fragmentMeLine"
@@ -138,29 +138,29 @@
                 android:id="@+id/tv_title_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="@dimen/x12"
+                android:layout_marginTop="@dimen/x8"
                 android:text="@string/activity_other_title"
-                android:textColor="#646464"
-                android:textSize="13sp" />
+                android:textColor="@color/color646464"
+                android:textSize="@dimen/x13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="@dimen/x5"
+                android:layout_marginTop="@dimen/x8"
                 android:layout_toRightOf="@id/tv_title_icon"
                 android:text="称号"
-                android:textColor="#646464"
-                android:textSize="13sp" />
+                android:textColor="@color/color646464"
+                android:textSize="@dimen/x13sp" />
 
             <View
                 android:id="@+id/pb_load"
                 android:visibility="invisible"
-                android:layout_width="61dp"
-                android:layout_height="60dp"
+                android:layout_width="@dimen/x61"
+                android:layout_height="@dimen/x60"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="@dimen/x25"
                 android:background="@drawable/activity_other_title_load" />
             <LinearLayout
                 android:id="@+id/ll_new_user"
@@ -168,19 +168,19 @@
                 android:layout_width="wrap_content"
                 android:orientation="horizontal"
                 android:layout_centerInParent="true"
-                android:layout_marginBottom="23dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginBottom="@dimen/x23"
+                android:layout_marginTop="@dimen/x48"
                 android:layout_height="wrap_content">
-                <TextView
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:text="@string/activity_other_new_user"
-                    android:textSize="11sp"
+                    android:textSize="@dimen/x11sp"
                     android:textColor="#ffc684"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="新手上路"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="11sp"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:textSize="@dimen/x11sp"
                     android:textColor="#ffc684"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -194,15 +194,15 @@
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:paddingLeft="26dp"
+                android:paddingBottom="@dimen/x20"
+                android:paddingLeft="@dimen/x26"
                 app:alignContent="flex_start"
                 app:alignItems="flex_start"
                 app:dividerDrawable="@drawable/flexbox_space"
                 app:flexWrap="wrap"
                 app:showDivider="middle"
                 android:layout_centerInParent="true"
-                android:paddingTop="30dp">
+                android:paddingTop="@dimen/x30">
 
             </com.google.android.flexbox.FlexboxLayout>
 

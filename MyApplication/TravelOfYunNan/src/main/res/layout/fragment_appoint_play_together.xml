@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/commonListViewStyle"
-    android:dividerHeight="10dp"
-    android:paddingTop="10dp"
+    android:dividerHeight="@dimen/x10"
+    android:paddingTop="@dimen/x10"
     >
 
 </com.yunspeak.travel.ui.view.refreshview.XListView>

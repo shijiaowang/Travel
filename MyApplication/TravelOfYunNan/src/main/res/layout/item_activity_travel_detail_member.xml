@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="53dp"
+    android:layout_width="@dimen/x53"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:layout_height="wrap_content">
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/civ_user_icon"
-        android:layout_width="53dp"
-        android:layout_height="53dp" />
+        android:layout_width="@dimen/x53"
+        android:layout_height="@dimen/x53" />
     <TextView
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/x12"
         android:id="@+id/tv_user_name"
         android:textColor="@color/colorb5b5b5"
-        android:textSize="12sp"
+        android:textSize="@dimen/x12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

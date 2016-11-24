@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 
 import com.yunspeak.travel.R;
@@ -21,6 +22,7 @@ public class CreatePostPhotoHolder extends BaseHolder<String> {
 
     @Override
     protected void initItemDatas(String datas, Context mContext, int position) {
+        mIvPicture.setBackgroundColor(Color.TRANSPARENT);
         FrescoUtils.displayNormal(mIvPicture,"file://"+datas);
 
     }

@@ -8,15 +8,15 @@
         android:src="@drawable/register_banner"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="@dimen/x150"
         />
         <com.yunspeak.travel.ui.view.LoginEditText
             android:id="@+id/et_name"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:layout_marginLeft="10dp"
+            android:layout_height="@dimen/x46"
+            android:layout_marginLeft="@dimen/x10"
             app:line_edittext_image_src="@drawable/login_user"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/x10"
             app:line_edittext_max_length="11"
             app:line_edittext_hint="请输入账号"
             android:lines="1" />
@@ -24,30 +24,30 @@
     <com.yunspeak.travel.ui.view.LoginEditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="@dimen/x46"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
         app:line_edittext_hint="请输入密码"
       />
 
     <com.yunspeak.travel.ui.view.AvoidFastButton
-            android:layout_marginTop="53dp"
+            android:layout_marginTop="@dimen/x53"
             android:id="@+id/bt_register"
             android:background="@drawable/register_button_selector"
             android:gravity="center"
             android:text="注册"
             android:textColor="@color/register_button_selector"
-            android:textSize="18sp"
+            android:textSize="@dimen/x18sp"
             android:layout_gravity="center_horizontal"
-            android:layout_width="150dp"
-            android:layout_height="35dp" />
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x35" />
         <com.yunspeak.travel.ui.view.AvoidFastButton
             android:id="@+id/bt_login"
-            android:textSize="18sp"
+            android:textSize="@dimen/x18sp"
             android:layout_gravity="center_horizontal"
-            android:layout_width="150dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="30dp"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x35"
+            android:layout_marginTop="@dimen/x30"
             android:background="@drawable/login_button_selector"
             android:gravity="center"
             android:text="登录"

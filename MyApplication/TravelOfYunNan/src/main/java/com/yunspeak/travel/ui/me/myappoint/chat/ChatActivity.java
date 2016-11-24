@@ -7,20 +7,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.me.myappoint.chat.ChatBean;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.privatesetting.PrivateChatSettingActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.domain.UserInfo;
@@ -30,8 +26,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.x;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,7 +48,7 @@ public class ChatActivity extends EaseBaseActivity {
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
-        setContentView(R.layout.activity_test_chat);
+        setContentView(R.layout.activity_chat);
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }

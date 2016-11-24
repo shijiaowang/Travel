@@ -4,38 +4,38 @@
     android:layout_width="285dp"
     android:orientation="vertical"
     android:background="@drawable/appoint_enter_dialog_bg"
-    android:layout_height="179dp">
+    android:layout_height="@dimen/x179">
     <TextView
         android:text="报名成功"
         android:gravity="center"
         android:background="@color/otherTitleBg"
         android:textColor="@color/colorFAFAFA"
-        android:textSize="15sp"
+        android:textSize="@dimen/x15sp"
         android:layout_width="match_parent"
-        android:layout_height="39dp" />
+        android:layout_height="@dimen/x39" />
     <TextView
         android:text="您已报名成功，请耐心等待发布人确认！"
         android:textColor="@color/color747474"
-        android:textSize="13sp"
+        android:textSize="@dimen/x13sp"
         android:gravity="center"
-        android:paddingRight="25dp"
-        android:paddingLeft="25dp"
+        android:paddingRight="@dimen/x25"
+        android:paddingLeft="@dimen/x25"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         />
     <View
         android:background="@color/meLine"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
+        android:layout_marginRight="@dimen/x25"
+        android:layout_marginLeft="@dimen/x25"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
         <TextView
             android:gravity="center"
             android:textColor="@color/otherTitleBg"
-            android:textSize="14sp"
+            android:textSize="@dimen/x14sp"
             android:text="关闭"
             android:layout_width="match_parent"
-            android:layout_height="39dp" />
+            android:layout_height="@dimen/x39" />
 
 </LinearLayout>

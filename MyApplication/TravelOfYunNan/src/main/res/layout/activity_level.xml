@@ -6,26 +6,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginLeft="@dimen/x13"
+        android:layout_marginRight="@dimen/x13"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
-            android:layout_marginTop="19dp">
+            android:layout_marginBottom="@dimen/x28"
+            android:layout_marginTop="@dimen/x19">
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_icon"
-                android:layout_width="51dp"
-                android:layout_height="51dp" />
+                android:layout_width="@dimen/x51"
+                android:layout_height="@dimen/x51" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="11dp"
+                android:layout_marginLeft="@dimen/x11"
                 android:layout_toRightOf="@id/iv_icon"
                 android:orientation="vertical">
 
@@ -34,12 +34,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color3f3f3f"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/x13sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginTop="@dimen/x9"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -48,13 +48,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/color3f3f3f"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/x13sp" />
 
                     <ProgressBar
                         android:id="@+id/pb_progress"
                         style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="124dp"
-                        android:layout_height="6dp"
+                        android:layout_width="@dimen/x124"
+                        android:layout_height="@dimen/x6"
                         android:max="100"
                         android:progress="50"
                         android:progressDrawable="@drawable/activity_level_progress_bg" />
@@ -63,10 +63,10 @@
                         android:id="@+id/tv_progress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="6dp"
+                        android:layout_marginLeft="@dimen/x6"
                         android:text="66/100"
                         android:textColor="@color/color8c8c8c"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/x13sp" />
 
                 </LinearLayout>
 
@@ -89,35 +89,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="9dp"
+                android:layout_marginLeft="@dimen/x9"
                 android:text="等级说明"
                 android:textColor="@color/color3f3f3f"
-                android:textSize="13sp" />
+                android:textSize="@dimen/x13sp" />
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="22dp"
+            android:layout_height="@dimen/x30"
+            android:layout_marginTop="@dimen/x22"
             android:background="@color/otherTitleBg"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="@dimen/x50"
                 android:text="等级"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="13sp" />
+                android:textSize="@dimen/x13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="@dimen/x50"
                 android:text="经验"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="13sp" />
+                android:textSize="@dimen/x13sp" />
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -127,7 +127,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="@dimen/x23"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -140,45 +140,45 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="9dp"
+                android:layout_marginLeft="@dimen/x9"
                 android:text="经验获得"
                 android:textColor="@color/color3f3f3f"
-                android:textSize="13sp" />
+                android:textSize="@dimen/x13sp" />
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="22dp"
+            android:layout_height="@dimen/x30"
+            android:layout_marginTop="@dimen/x22"
             android:background="@color/otherTitleBg">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="29dp"
+                android:layout_marginLeft="@dimen/x29"
                 android:text="项目"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="13sp" />
+                android:textSize="@dimen/x13" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="29dp"
+                android:layout_marginLeft="@dimen/x29"
                 android:text="经验"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="13sp" />
+                android:textSize="@dimen/x13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="29dp"
+                android:layout_marginRight="@dimen/x29"
                 android:text="每日上限"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="13sp" />
+                android:textSize="@dimen/x13sp" />
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView

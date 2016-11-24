@@ -7,29 +7,29 @@
         android:id="@+id/ll_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginBottom="@dimen/x15"
+        android:layout_marginTop="@dimen/x19"
         android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/tv_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="@dimen/x25"
             android:text="热门"
             android:textColor="@color/circleNavLeftChecked"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x15sp" />
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:visibility="gone"
             android:id="@+id/tv_cursor"
             android:textColor="@color/circleNavLeftChecked"
-            android:textSize="15sp"
+            android:textSize="@dimen/x15sp"
             android:text="@string/activity_message_center_cursor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x5"
             android:layout_toRightOf="@id/tv_place"
             />
     </LinearLayout>
@@ -37,10 +37,10 @@
     <View
         android:id="@+id/v_line"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/x1"
         android:layout_below="@id/ll_select"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="9dp"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_marginRight="@dimen/x9"
         android:background="#f1f1f1" />
 
 

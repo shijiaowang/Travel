@@ -15,7 +15,7 @@
 
         <RelativeLayout
             style="@style/activityTravelsPlanRl"
-            android:layout_marginTop="35dp">
+            android:layout_marginTop="@dimen/x35">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 style="@style/activityTravelsPlanTv"
@@ -30,45 +30,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_toRightOf="@id/tv_equ"
                 android:text="最多显示7个标签"
                 android:textColor="@color/color909090"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
 
         </RelativeLayout>
         <com.yunspeak.travel.ui.view.FlowLayout
             android:id="@+id/fl_title"
             android:visibility="gone"
-            android:layout_marginTop="27dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginBottom="11dp"
+            android:layout_marginTop="@dimen/x27"
+            android:layout_marginLeft="@dimen/x22"
+            android:layout_marginBottom="@dimen/x11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/bt_select_equ"
-            android:layout_width="125dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/x125"
+            android:layout_height="@dimen/x35"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="@dimen/x15"
+            android:layout_marginTop="@dimen/x16"
             android:background="@drawable/activity_travels_plan_line_bg"
             android:gravity="center"
             android:text="选择编辑"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="16sp" />
+            android:textSize="@dimen/x16sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="25dp"
+            android:layout_height="@dimen/x1"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginTop="@dimen/x25"
             android:background="@color/meLine" />
 
         <RelativeLayout
             style="@style/activityTravelsPlanRl"
-            android:layout_marginTop="35dp">
+            android:layout_marginTop="@dimen/x35">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 style="@style/activityTravelsPlanTv"
@@ -82,40 +82,40 @@
 
         <EditText
             android:id="@+id/et_title"
-            android:layout_width="263dp"
+            android:layout_width="@dimen/x263"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/x20"
             android:background="@null"
             android:hint="请输入标题(20字内)"
             android:maxLength="20"
-            android:paddingLeft="5dp"
+            android:paddingLeft="@dimen/x5"
             android:textColor="@color/color646464"
             android:textColorHint="@color/color646464"
-            android:textSize="13sp" />
+            android:textSize="@dimen/x13sp" />
 
         <View
-            android:layout_width="263dp"
-            android:layout_height="1dp"
+            android:layout_width="@dimen/x263"
+            android:layout_height="@dimen/x1"
             android:layout_gravity="center_horizontal"
             android:background="@color/colorb5b5b5" />
 
         <RelativeLayout
-            android:layout_width="263dp"
-            android:layout_height="114dp"
+            android:layout_width="@dimen/x263"
+            android:layout_height="@dimen/x114"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="@dimen/x16">
 
             <EditText
                 android:id="@+id/et_content"
-                android:textSize="11sp"
-                android:padding="4dp"
+                android:textSize="@dimen/x11sp"
+                android:padding="@dimen/x4"
                 android:textColor="@color/color646464"
                 android:textColorHint="@color/colorb5b5b5"
                 android:hint="随便说点什么吧"
                 android:gravity="start"
-                android:layout_width="263dp"
-                android:layout_height="114dp"
+                android:layout_width="@dimen/x263"
+                android:layout_height="@dimen/x114"
                 android:background="@drawable/activity_des_remark_bg"
                 android:maxLength="200" />
 
@@ -125,11 +125,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginBottom="@dimen/x5"
+                android:layout_marginRight="@dimen/x5"
                 android:text="0/200"
                 android:textColor="@color/colorb5b5b5"
-                android:textSize="11sp" />
+                android:textSize="@dimen/x11sp" />
         </RelativeLayout>
     </LinearLayout>
 

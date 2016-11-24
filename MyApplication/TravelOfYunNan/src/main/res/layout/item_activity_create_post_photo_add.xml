@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="80dp"
-    android:layout_height="80dp"
+    android:layout_width="@dimen/xx80"
+    android:layout_height="@dimen/x80"
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/activity_create_post_photo_item_bg"
@@ -9,22 +9,22 @@
     <com.yunspeak.travel.ui.view.FontsIconTextView
         android:text="@string/activity_my_album_add"
         android:textColor="@color/color969696"
-        android:textSize="25sp"
+        android:textSize="@dimen/x25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/x5"
         android:text="添加图片"
         android:textColor="@color/color969696"
-        android:textSize="10sp"
+        android:textSize="@dimen/x10sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/x5"
         android:text="最多12张"
         android:textColor="@color/color969696"
-        android:textSize="10sp"
+        android:textSize="@dimen/x12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_count" />

@@ -42,7 +42,7 @@
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="49dp"
+                        android:layout_height="@dimen/x49"
                         app:layout_collapseMode="pin"
                         app:layout_scrollFlags="scroll|enterAlways"
                         android:gravity="center"
@@ -54,20 +54,20 @@
                         app:layout_collapseMode="pin"
                         app:layout_scrollFlags="scroll|enterAlways"
                         android:layout_width="match_parent"
-                        android:paddingTop="@dimen/commonStatusHeight"
-                        android:layout_height="@dimen/commonTotalHeight">
+                        android:layout_marginTop="@dimen/commonStatusHeight"
+                        android:layout_height="@dimen/x49">
                         <TextView
                             android:id="@+id/tv_bar_name"
                             style="@style/commonSingleLineTextStyle"
-                            android:layout_marginLeft="40dp"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginLeft="@dimen/x40"
+                            android:layout_marginRight="@dimen/x40"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textColor="@color/colorFAFAFA"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/x18sp" />
                     </FrameLayout>
 
 

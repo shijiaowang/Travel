@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fafafa"
+            android:background="@color/colorFAFAFA"
             android:orientation="vertical">
 
 
@@ -26,44 +26,43 @@
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/iv_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="@dimen/x200"
                      />
 
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/iv_icon"
-                    android:layout_width="73dp"
-                    android:layout_height="73dp"
+                    android:layout_width="@dimen/x73"
+                    android:layout_height="@dimen/x73"
                     fresco:roundAsCircle="true"
                     fresco:actualImageScaleType="centerInside"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="163dp"
+                    android:layout_marginTop="@dimen/x163"
                     />
 
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_setting"
                     android:text="@string/activity_message_center_setting"
                     android:textColor="@color/colorFAFAFA"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="@dimen/x35"
+                    android:layout_height="@dimen/x35"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="@dimen/x25sp"
                     android:clickable="true"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
-                    android:padding="10dp"
+                    android:padding="@dimen/x10"
                    />
 
                 <TextView
                     android:id="@+id/tv_level"
-                    android:layout_width="52dp"
-                    android:layout_height="29dp"
+                    android:layout_width="@dimen/x52"
+                    android:layout_height="@dimen/x29"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="85dp"
+                    android:layout_marginTop="@dimen/x85"
                     android:background="@drawable/fragment_me_lv_bg"
                     android:gravity="center"
-                    android:text="Lv.1"
-                    android:textColor="#fcae04"
-                    android:textSize="14sp" />
+                    android:textColor="@color/otherFcae04"
+                    android:textSize="@dimen/x14sp" />
 
                 <TextView
                     android:id="@+id/tv_nick_name"
@@ -71,9 +70,9 @@
                     android:layout_height="wrap_content"
                     style="@style/commonSingleLineTextStyle"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="129dp"
-                    android:textColor="#fafafa"
-                    android:textSize="19sp" />
+                    android:layout_marginTop="@dimen/x129"
+                    android:textColor="@color/colorFAFAFA"
+                    android:textSize="@dimen/x19sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,53 +85,51 @@
                         android:id="@+id/tv_follow_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp"
+                        android:paddingBottom="@dimen/x8"
+                        android:paddingTop="@dimen/x8"
                         android:text="关注"
                         android:textColor="@color/homeButtonUnCheckedColor"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/x14sp" />
 
                     <TextView
                         android:id="@+id/tv_follow_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="8dp"
-                        android:paddingLeft="6dp"
-                        android:paddingTop="8dp"
-                        android:text="12"
+                        android:paddingBottom="@dimen/x8"
+                        android:paddingLeft="@dimen/x6"
+                        android:paddingTop="@dimen/x8"
                         android:textColor="@color/homeButtonUnCheckedColor"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/x14sp" />
 
                     <View
-                        android:layout_width="3dp"
-                        android:layout_height="3dp"
+                        android:layout_width="@dimen/x3"
+                        android:layout_height="@dimen/x3"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="@dimen/x4"
+                        android:layout_marginLeft="@dimen/x8"
+                        android:layout_marginRight="@dimen/x8"
+                        android:layout_marginTop="@dimen/x4"
                         android:background="@drawable/fragment_me_dot" />
 
                     <TextView
                         android:id="@+id/tv_fan_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp"
+                        android:paddingBottom="@dimen/x8"
+                        android:paddingTop="@dimen/x8"
                         android:text="粉丝"
                         android:textColor="@color/homeButtonUnCheckedColor"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/x14sp" />
 
                     <TextView
                         android:id="@+id/tv_fan_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="8dp"
-                        android:paddingLeft="6dp"
-                        android:paddingTop="8dp"
-                        android:text="35"
+                        android:paddingBottom="@dimen/x8"
+                        android:paddingLeft="@dimen/x6"
+                        android:paddingTop="@dimen/x8"
                         android:textColor="@color/homeButtonUnCheckedColor"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/x14sp" />
 
                 </LinearLayout>
             </RelativeLayout>
@@ -141,57 +138,57 @@
                 android:id="@+id/tv_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginLeft="45dp"
-                android:layout_marginRight="45dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/x24"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginRight="@dimen/x45"
+                android:layout_marginTop="@dimen/x10"
                 android:gravity="center"
-                android:textColor="#323232"
-                android:textSize="14sp" />
+                android:textColor="@color/color323232"
+                android:textSize="@dimen/x14sp" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_height="@dimen/x1"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
                 android:background="@color/meLine" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
-                android:layout_marginLeft="33dp"
-                android:layout_marginRight="33dp"
+                android:layout_height="@dimen/x59"
+                android:layout_marginLeft="@dimen/x33"
+                android:layout_marginRight="@dimen/x33"
                 android:orientation="horizontal">
                    <TextView
                        android:background="@drawable/normal_press_bg"
                        android:id="@+id/tv_appoint"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginTop="6dp"
-                       android:drawablePadding="8dp"
+                       android:layout_marginTop="@dimen/x6"
+                       android:drawablePadding="@dimen/x8"
                        android:drawableTop="@drawable/fragment_me_togther_button"
                        android:gravity="center"
                        android:text="我的约伴"
-                       android:textColor="#323232"
-                       android:textSize="10sp" />
+                       android:textColor="@color/color323232"
+                       android:textSize="@dimen/x10sp" />
 
 
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/x1"
                     android:layout_weight="1" />
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="11dp"
-                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="@dimen/x11"
+                    android:layout_marginTop="@dimen/x11"
                     android:background="@color/meLine" />
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/x1"
                     android:layout_weight="1" />
 
                     <TextView
@@ -199,32 +196,32 @@
                         android:id="@+id/tv_my_order"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:drawablePadding="9dp"
+                        android:layout_marginTop="@dimen/x6"
+                        android:drawablePadding="@dimen/x9"
                         android:drawableTop="@drawable/fragment_me_order"
                         android:gravity="center"
                         android:text="我的订单"
-                        android:textColor="#323232"
-                        android:textSize="10sp" />
+                        android:textColor="@color/color323232"
+                        android:textSize="@dimen/x10sp" />
 
 
 
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/x1"
                     android:layout_weight="1" />
 
                 <View
-                    android:layout_width="1dp"
+                    android:layout_width="@dimen/x1"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="11dp"
-                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="@dimen/x11"
+                    android:layout_marginTop="@dimen/x11"
                     android:background="@color/meLine" />
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/x1"
                     android:layout_weight="1" />
 
                 <TextView
@@ -232,29 +229,29 @@
                     android:id="@+id/tv_my_collection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:drawablePadding="8dp"
+                    android:layout_marginTop="@dimen/x6"
+                    android:drawablePadding="@dimen/x8"
                     android:drawableTop="@drawable/fragment_me_collection"
                     android:gravity="center"
                     android:text="我的收藏"
-                    android:textColor="#323232"
-                    android:textSize="10sp" />
+                    android:textColor="@color/color323232"
+                    android:textSize="@dimen/x10sp" />
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/x1"
                     android:layout_weight="1" />
 
                 <View
-                    android:layout_width="1dp"
+                    android:layout_width="@dimen/x1"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="11dp"
-                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="@dimen/x11"
+                    android:layout_marginTop="@dimen/x11"
                     android:background="@color/meLine" />
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/x1"
                     android:layout_weight="1" />
 
              <TextView
@@ -262,18 +259,18 @@
                  android:id="@+id/tv_message_center"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_marginTop="6dp"
-                 android:drawablePadding="12dp"
+                 android:layout_marginTop="@dimen/x6"
+                 android:drawablePadding="@dimen/x12"
                  android:drawableTop="@drawable/fragment_me_message"
                  android:gravity="center"
                  android:text="消息中心"
-                 android:textColor="#323232"
-                 android:textSize="10sp" />
+                 android:textColor="@color/color323232"
+                 android:textSize="@dimen/x10sp" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
+                android:layout_height="@dimen/x6"
                 android:background="@color/meLine" />
 
             <RelativeLayout
@@ -284,21 +281,21 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginTop="@dimen/x9"
                     android:drawableLeft="@drawable/fragment_me_title"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/x10"
                     android:text="我的称号"
-                    android:textColor="#646464"
-                    android:textSize="13sp" />
+                    android:textColor="@color/color323232"
+                    android:textSize="@dimen/x13sp" />
 
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_title_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="9dp"
-                    android:padding="10dp"
+                    android:layout_marginRight="@dimen/x9"
+                    android:padding="@dimen/x10"
                     android:text="@string/activity_activate_detail_pen"
 
                     />
@@ -314,17 +311,17 @@
                 app:dividerDrawable="@drawable/me_label_distance"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_title"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginBottom="@dimen/x10"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_marginTop="@dimen/x8">
 
 
             </com.google.android.flexbox.FlexboxLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
+                android:layout_height="@dimen/x6"
                 android:background="@color/meLine" />
 
             <LinearLayout
@@ -428,7 +425,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="@dimen/x10"
                 android:background="@color/meLine" />
         </LinearLayout>
 

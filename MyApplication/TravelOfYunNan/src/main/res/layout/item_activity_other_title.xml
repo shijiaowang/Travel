@@ -4,8 +4,8 @@
     android:id="@+id/fl_title_in_vs"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="20dp"
-    android:paddingLeft="26dp"
-    android:paddingTop="30dp">
+    android:paddingBottom="@dimen/x20"
+    android:paddingLeft="@dimen/x26"
+    android:paddingTop="@dimen/x30">
 
 </com.yunspeak.travel.ui.view.FlowLayout>

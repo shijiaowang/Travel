@@ -27,7 +27,6 @@
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
                 android:id="@+id/tv_time"
-                android:textSize="11sp"
                 android:textColor="@color/otherTitleBg"
                 style="@style/fragmentAppointWithMeText"/>
 
@@ -37,12 +36,10 @@
             style="@style/fragmentAppointWithMeLl">
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:paddingLeft="0dp"
-                android:textSize="18sp"
                 android:text="@string/fragment_play_with_me_add"
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
                 android:id="@+id/tv_start_and_long"
-                android:textSize="12sp"
                 android:textColor="@color/color646464"
                 style="@style/fragmentAppointWithMeText"/>
 
@@ -52,12 +49,10 @@
             style="@style/fragmentAppointWithMeLl">
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:textStyle="italic"
-                android:textSize="16sp"
                 android:text="@string/fragment_play_with_me_people"
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
                 android:id="@+id/tv_have_number"
-                android:textSize="12sp"
                 android:textColor="@color/color646464"
                 style="@style/fragmentAppointWithMeText"/>
 

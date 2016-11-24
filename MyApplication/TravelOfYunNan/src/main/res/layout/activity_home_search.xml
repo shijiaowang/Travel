@@ -11,7 +11,7 @@
         android:elevation="2dp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="38dp">
+        android:layout_height="@dimen/x38">
         <LinearLayout
             android:id="@+id/ll_user"
             style="@style/activityHomeSearchLl">
@@ -20,7 +20,7 @@
               android:text="@string/activity_register_nick_name"
               style="@style/activityHomeSearchText" />
             <TextView
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/x5"
                 android:text="用户"
                 android:id="@+id/tv_user"
                 style="@style/activityHomeSearchText"/>
@@ -33,7 +33,7 @@
                 android:text="@string/fragment_find_add"
                 style="@style/activityHomeSearchText" />
             <TextView
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/x5"
                 android:text="目的地"
                 android:id="@+id/tv_destination"
                 style="@style/activityHomeSearchText"/>
@@ -46,7 +46,7 @@
                 android:text="@string/home_activity_button_circle"
                 style="@style/activityHomeSearchText" />
             <TextView
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/x5"
                 android:text="圈子"
                 android:id="@+id/tv_circle"
                 style="@style/activityHomeSearchText"/>
@@ -59,7 +59,7 @@
                 android:text="@string/activity_register_nick_name"
                 style="@style/activityHomeSearchText" />
             <TextView
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/x5"
                 android:text="内容"
                 android:id="@+id/tv_content"
                 style="@style/activityHomeSearchText"/>
@@ -69,7 +69,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="4dp"/>
+        android:layout_height="@dimen/x4"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_search"
         android:background="@color/colorFAFAFA"

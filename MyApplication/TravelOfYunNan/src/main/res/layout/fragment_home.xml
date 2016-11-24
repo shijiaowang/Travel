@@ -11,19 +11,19 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/commonTotalHeight"
+        android:layout_height="wrap_content"
         android:background="@color/otherTitleBg"
         android:paddingTop="@dimen/commonStatusHeight"
         android:theme="@style/toolbar_theme">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="@dimen/x49"
             android:background="@color/otherTitleBg">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="49dp"
+                android:layout_height="@dimen/x49"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -32,24 +32,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="@dimen/x15"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:text="@string/homeName"
                     android:textColor="@android:color/white"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/x18sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/x5"
                     android:src="@drawable/home_triangle" />
 
                 <RelativeLayout
                     android:id="@+id/rl_search"
-                    android:layout_width="250dp"
-                    android:layout_height="28dp"
-                    android:layout_marginLeft="26dp"
+                    android:layout_width="@dimen/x250"
+                    android:layout_height="@dimen/x28"
+                    android:layout_marginLeft="@dimen/x26"
                     android:background="@drawable/home_search_bg">
 
                     <EditText
@@ -57,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="@dimen/x10"
                         android:background="@null"
                         android:clickable="false"
                         android:focusable="false"
@@ -65,17 +65,17 @@
                         android:hint="输入您的关键词"
                         android:textColorHint="@android:color/white"
                         android:textCursorDrawable="@null"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/x15sp" />
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="@dimen/x10"
                         android:text="@string/fragment_circle_search"
                         android:textColor="@color/colorFAFAFA"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/x15sp" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -159,7 +159,7 @@
                         android:layout_margin="@dimen/x15"
                         android:text="@string/activity_active_item_air"
                         android:textColor="@color/colorffda60"
-                        android:textSize="@dimen/x40s" />
+                        android:textSize="@dimen/x40sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

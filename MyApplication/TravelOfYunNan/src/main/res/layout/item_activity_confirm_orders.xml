@@ -12,17 +12,17 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp">
+        android:paddingLeft="@dimen/x4"
+        android:paddingRight="@dimen/x4">
 
         <TextView
             android:id="@+id/tv_valuee"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/x20"
             android:background="@drawable/activity_confirm_orders_coupon"
             android:gravity="center"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="9sp" />
+            android:textSize="@dimen/x9sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,8 +37,8 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="11dp"
+                    android:layout_height="@dimen/x45"
+                    android:layout_marginLeft="@dimen/x11"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
@@ -48,15 +48,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/color8c8c8c"
-                        android:textSize="12sp" />
+                        android:textSize="@dimen/x12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/x10"
                        android:id="@+id/tv_time"
                         android:textColor="@color/colorB1b1b1"
-                        android:textSize="10sp" />
+                        android:textSize="@dimen/x10sp" />
 
                 </LinearLayout>
 
@@ -65,15 +65,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color90c75c"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/x12sp" />
             </LinearLayout>
             <View
-                android:layout_marginLeft="11dp"
+                android:layout_marginLeft="@dimen/x11"
                 android:id="@+id/v_line"
                 android:background="@color/meLine"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/x5"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"/>
+                android:layout_height="@dimen/x1"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -82,7 +82,7 @@
     <View
         android:id="@+id/v_line2"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="@dimen/x10"
         android:background="@color/colorFAFAFA" />
 
 </LinearLayout>

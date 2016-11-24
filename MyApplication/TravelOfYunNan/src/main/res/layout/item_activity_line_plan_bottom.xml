@@ -5,41 +5,41 @@
     android:orientation="vertical">
 
     <com.yunspeak.travel.ui.view.DottedLineView
-        android:layout_width="2dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/x2"
+        android:layout_height="@dimen/x32"
         android:layout_marginBottom="-4dp"
-        android:layout_marginLeft="79dp" />
+        android:layout_marginLeft="@dimen/x79" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="@dimen/x92"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="60dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="53dp"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/x25"
+            android:layout_marginLeft="@dimen/x53"
             android:background="@drawable/activity_line_plan_add"
             android:gravity="center"
             android:text="结束"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="13sp" />
+            android:textSize="@dimen/x13sp" />
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_end_add"
-            android:minWidth="55dp"
+            android:minWidth="@dimen/x55"
             style="@style/commonSingleLineTextStyle"
             android:layout_width="wrap_content"
-            android:layout_height="27dp"
-            android:layout_marginLeft="25dp"
+            android:layout_height="@dimen/x27"
+            android:layout_marginLeft="@dimen/x25"
             android:layout_toRightOf="@id/tv_end"
             android:background="@drawable/activity_line_plan_add_bg"
             android:gravity="center"
             android:text="@string/activity_other_follow"
             android:textColor="@color/colorb5b5b5"
-            android:textSize="18sp" />
+            android:textSize="@dimen/x18sp" />
     </LinearLayout>
 </LinearLayout>

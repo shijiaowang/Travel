@@ -3,66 +3,66 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="76dp"
+    android:layout_height="@dimen/x76"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_height="75dp">
+        android:layout_height="@dimen/x75">
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_marginLeft="22dp"
+            android:layout_marginLeft="@dimen/x22"
             android:id="@+id/iv_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/x50" />
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/x10"
             android:orientation="vertical"
             android:layout_height="wrap_content">
 
           <TextView
               android:id="@+id/tv_user_name"
               android:textColor="@color/color646464"
-              android:textSize="14sp"
+              android:textSize="@dimen/x14sp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content" />
             <TextView
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="@dimen/x2"
                 android:id="@+id/tv_type"
                 android:gravity="center"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="11sp"
-                android:layout_marginLeft="15dp"
+                android:textSize="@dimen/x11sp"
+                android:layout_marginLeft="@dimen/x15"
                 android:layout_toRightOf="@id/tv_user_name"
-                android:layout_width="48dp"
-                android:layout_height="14dp" />
+                android:layout_width="@dimen/x48"
+                android:layout_height="@dimen/x14" />
             <TextView
                 android:id="@+id/tv_des"
                 android:layout_below="@id/tv_user_name"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="@dimen/x11"
                 android:textColor="@color/color969696"
-                android:textSize="12sp"
+                android:textSize="@dimen/x12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor"
-            android:layout_marginRight="22dp"
-            android:textSize="15sp"
+            android:layout_marginRight="@dimen/x22"
+            android:textSize="@dimen/x15sp"
             android:text="@string/activity_message_center_cursor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
     <View
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="@dimen/x15"
+        android:layout_marginRight="@dimen/x15"
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 </LinearLayout>

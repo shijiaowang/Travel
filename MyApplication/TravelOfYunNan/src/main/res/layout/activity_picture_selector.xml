@@ -7,11 +7,11 @@
     <GridView
         android:id="@+id/gv_photo"
         android:scrollbars="none"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:verticalSpacing="8dp"
-        android:horizontalSpacing="8dp"
+        android:layout_marginRight="@dimen/x8"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_marginTop="@dimen/x8"
+        android:verticalSpacing="@dimen/x8"
+        android:horizontalSpacing="@dimen/x8"
         android:numColumns="3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -23,26 +23,26 @@
         android:background="@color/otherTitleBg"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="@dimen/x50">
         <TextView
             android:id="@+id/tv_watch"
             android:gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/x20"
+            android:paddingRight="@dimen/x20"
             android:text="预览"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="13sp"
+            android:textSize="@dimen/x13sp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <TextView
             android:id="@+id/tv_send"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/x20"
+            android:paddingRight="@dimen/x20"
             android:text="发送"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="13sp"
+            android:textSize="@dimen/x13sp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 

@@ -2,12 +2,12 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tv_text"
     android:textColor="#ff7f6c"
-    android:layout_marginBottom="4dp"
-    android:layout_marginRight="11dp"
+    android:layout_marginBottom="@dimen/x4"
+    android:layout_marginRight="@dimen/x11"
     android:gravity="center"
-    android:textSize="12sp"
+    android:textSize="@dimen/x12sp"
     android:background="@drawable/fragment_appoint_title1_bg"
     android:layout_width="wrap_content"
-    android:layout_height="40dp">
+    android:layout_height="@dimen/x40">
 
 </TextView>

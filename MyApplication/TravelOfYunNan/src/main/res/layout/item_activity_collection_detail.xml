@@ -2,35 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@color/colorFAFAFA"
-    android:paddingLeft="13dp"
+    android:paddingLeft="@dimen/x13"
     android:orientation="vertical"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:paddingRight="13dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="9dp"
+        android:paddingRight="@dimen/x13"
+        android:layout_marginTop="@dimen/x9"
+        android:layout_marginBottom="@dimen/x9"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_icon"
-            android:layout_width="45dp"
-            android:layout_height="45dp" />
+            android:layout_width="@dimen/x45"
+            android:layout_height="@dimen/x45" />
         <LinearLayout
             android:gravity="center_vertical"
-            android:layout_marginLeft="13dp"
+            android:layout_marginLeft="@dimen/x13"
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:minHeight="45dp"
+            android:minHeight="@dimen/x45"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_name"
                 style="@style/commonSingleLineTextStyle"
                 android:textColor="@color/color323232"
-                android:textSize="13sp"
-                android:layout_marginBottom="3dp"
+                android:textSize="@dimen/x13sp"
+                android:layout_marginBottom="@dimen/x3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <LinearLayout
@@ -43,14 +43,14 @@
                     android:text="@string/fragment_find_add"
                     android:textColor="@color/otherTitleBg"
                     android:visibility="gone"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/x13sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/tv_content"
                     style="@style/commonSingleLineTextStyle"
                     android:textColor="@color/otherTitleBg"
-                    android:textSize="11sp"
+                    android:textSize="@dimen/x11sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -60,9 +60,9 @@
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_delete"
             android:text="@string/activity_my_appoint_delete"
-            android:textSize="15sp"
+            android:textSize="@dimen/x15sp"
             android:textColor="@color/Ffbf75"
-            android:padding="5dp"
+            android:padding="@dimen/x5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -70,24 +70,24 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
     <RelativeLayout
-        android:paddingRight="13dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="9dp"
+        android:paddingRight="@dimen/x13"
+        android:layout_marginTop="@dimen/x9"
+        android:layout_marginBottom="@dimen/x9"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
            android:id="@+id/tv_time"
             android:textColor="@color/colorA9a8a8"
-            android:textSize="10sp"
+            android:textSize="@dimen/x10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_alignParentRight="true"
            android:id="@+id/tv_price"
-            android:textSize="10sp"
+            android:textSize="@dimen/x10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

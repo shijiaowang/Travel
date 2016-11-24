@@ -56,6 +56,8 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
     LinearLayout llPayWay;
     @BindView(R.id.tv_order_type)
     TextView tvOrderType;
+    @BindView(R.id.tv_active_name)
+    TextView mTvActiveName;
     private String id;
     private int orderType;
 
@@ -106,6 +108,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
         if (payType.equals("2")){
             tvOrderType.setText("活动订单");
             tvTitle.setText("活动价格");
+            mTvActiveName.setText(getIntent().getStringExtra(IVariable.NAME));
         }else {
             mLvPrice.setAdapter(new PriceDeatilAdapter(this, data.getBasec_price()));
         }
@@ -120,7 +123,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
                 public void onClick(View v) {
                     Intent intent = new Intent(OrdersDetailActivity.this, ConfirmOrdersActivity.class);
                     intent.putExtra(IVariable.TYPE, data.getPay_status());
-                    intent.putExtra(IVariable.ID, data.getOrder_sn());
+                    intent.putExtra(IVariable.ID, id);
                     startActivity(intent);
                 }
             });

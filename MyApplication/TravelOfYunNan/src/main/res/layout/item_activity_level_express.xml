@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
-android:layout_height="30dp">
+android:layout_height="@dimen/x30">
 <TextView
     android:layout_centerVertical="true"
     android:id="@+id/tv_type"
-    android:layout_marginLeft="17dp"
-    android:textSize="13sp"
+    android:layout_marginLeft="@dimen/x17"
+    android:textSize="@dimen/x13sp"
     android:textColor="@color/color646464"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 <TextView
     android:id="@+id/tv_express"
     android:layout_centerInParent="true"
-    android:layout_marginLeft="29dp"
-    android:textSize="13sp"
+    android:layout_marginLeft="@dimen/x29"
+    android:textSize="@dimen/x13sp"
     android:textColor="@color/color646464"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
@@ -22,8 +22,8 @@ android:layout_height="30dp">
     android:layout_centerVertical="true"
     android:id="@+id/tv_max"
     android:layout_alignParentRight="true"
-    android:layout_marginRight="42dp"
-    android:textSize="13sp"
+    android:layout_marginRight="@dimen/x42"
+    android:textSize="@dimen/x13sp"
     android:textColor="@color/color646464"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />

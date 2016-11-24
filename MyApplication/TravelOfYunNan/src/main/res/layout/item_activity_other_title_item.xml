@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:textColor="#fcae04"
-    android:layout_marginTop="10dp"
-    android:textSize="10sp"
-    android:layout_marginRight="8dp"
+    android:textColor="@color/otherFcae04"
+    android:layout_marginTop="@dimen/x10"
+    android:textSize="@dimen/x10sp"
+    android:layout_marginRight="@dimen/x8"
     android:gravity="center"
     android:background="@drawable/fragment_me_titles_bg"
     android:layout_width="wrap_content"

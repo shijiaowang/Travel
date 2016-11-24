@@ -12,8 +12,8 @@
         android:orientation="vertical">
 
             <LinearLayout
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="@dimen/x12"
+                android:layout_marginTop="@dimen/x8"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -24,24 +24,24 @@
                     android:layout_height="wrap_content"
                     android:text="@string/activity_other_title"
                     android:textColor="#5f5f5f"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/x13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/x5"
                     android:layout_toRightOf="@id/tv_title_icon"
                     android:text="兴趣标签"
                     android:textColor="#5f5f5f"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/x13sp" />
             </LinearLayout>
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/fl_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="20dp"
+                android:paddingBottom="@dimen/x20"
+                android:layout_marginTop="@dimen/x10"
+                android:paddingLeft="@dimen/x20"
                 app:alignContent="flex_start"
                 app:alignItems="flex_start"
                 app:dividerDrawable="@drawable/flexbox_space"
@@ -53,18 +53,18 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/x10"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 style="@style/activityOtherInformationType"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="@dimen/x12"
                 android:text="@string/activity_other_detail_message" />
 
             <TextView
                 style="@style/activityOtherInformationDetail"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/x10"
                 android:text="基本资料" />
 
         </LinearLayout>
@@ -72,8 +72,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="@dimen/x12"
+            android:layout_marginTop="@dimen/x20"
             android:orientation="horizontal">
 
             <TextView
@@ -91,8 +91,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginBottom="@dimen/x12"
+            android:layout_marginTop="@dimen/x13"
             android:orientation="horizontal">
 
             <TextView
@@ -109,8 +109,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginBottom="@dimen/x12"
+            android:layout_marginTop="@dimen/x13"
             android:orientation="horizontal">
 
             <TextView
@@ -127,8 +127,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginBottom="@dimen/x12"
+            android:layout_marginTop="@dimen/x13"
             android:orientation="horizontal">
 
             <TextView
@@ -144,8 +144,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginBottom="@dimen/x12"
+            android:layout_marginTop="@dimen/x13"
             android:orientation="horizontal">
 
             <TextView
@@ -162,8 +162,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginBottom="@dimen/x12"
+            android:layout_marginTop="@dimen/x13"
             android:orientation="horizontal">
 
             <TextView

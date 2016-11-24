@@ -6,7 +6,7 @@
     >
    <View
        android:background="@color/meLine"
-       android:layout_width="80dp"
+       android:layout_width="@dimen/x80"
        android:layout_height="match_parent"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 <ListView
                     android:id="@+id/lv_type"
                     style="@style/commonListViewStyle"
-                    android:layout_width="80dp"
+                    android:layout_width="@dimen/x80"
                     android:layout_height="match_parent">
 
                 </ListView>
@@ -57,9 +57,9 @@
                     android:layout_alignParentBottom="true"
                     style="@style/commonListViewStyle"
                     android:id="@+id/lv_select_equ"
-                    android:layout_width="220dp"
+                    android:layout_width="@dimen/x220"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="41dp"
+                    android:paddingBottom="@dimen/x41"
                     />
             </RelativeLayout>
         </RelativeLayout>
@@ -67,55 +67,55 @@
         <RelativeLayout
             android:id="@+id/rl_bottom"
             android:layout_width="match_parent"
-            android:layout_height="47dp"
+            android:layout_height="@dimen/x47"
             android:background="@color/colora4e0db">
 
             <Button
                 android:id="@+id/bt_sure"
-                android:layout_width="79dp"
+                android:layout_width="@dimen/x79"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:background="@color/color7fd8cd"
                 android:gravity="center"
                 android:text="选好了"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="15sp" />
+                android:textSize="@dimen/x15sp" />
 
             <TextView
                 android:id="@+id/tv_number"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="69dp"
+                android:layout_marginLeft="@dimen/x69"
                 android:gravity="center"
                 android:text="已选择：0件物品"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
 
         </RelativeLayout>
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rl_equ"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/x50"
+        android:layout_height="@dimen/x50"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="@dimen/x15"
+        android:layout_marginLeft="@dimen/x15"
         android:background="@drawable/activity_choice_props_bg">
 
         <TextView
             android:id="@+id/tv_equ_number"
             android:layout_width="wrap_content"
-            android:layout_height="14dp"
+            android:layout_height="@dimen/x14"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/x2"
             android:background="@drawable/number_bg"
             android:gravity="center"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
+            android:paddingLeft="@dimen/x4"
+            android:paddingRight="@dimen/x4"
             android:text="0"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="11sp" />
+            android:textSize="@dimen/x11sp" />
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
             android:layout_centerInParent="true"
             android:text="@string/activity_personnel_equipment_equ"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="20sp" />
+            android:textSize="@dimen/x20sp" />
 
     </RelativeLayout>
 </RelativeLayout>

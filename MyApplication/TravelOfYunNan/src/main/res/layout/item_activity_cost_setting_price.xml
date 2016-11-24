@@ -10,7 +10,7 @@
         style="@style/activityTravelsPlanTv"
         android:layout_marginLeft="0dp"
         android:gravity="end"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/x100"
          />
 
     <TextView

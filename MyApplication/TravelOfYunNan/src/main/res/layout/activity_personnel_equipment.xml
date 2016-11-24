@@ -24,7 +24,7 @@
 
             <RelativeLayout
                 style="@style/activityTravelsPlanRl"
-                android:layout_marginTop="36dp">
+                android:layout_marginTop="@dimen/x36">
 
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     style="@style/activityTravelsPlanTv"
@@ -39,8 +39,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="53dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="@dimen/x53"
+                android:layout_marginTop="@dimen/x15"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -50,7 +50,7 @@
 
                     <TextView
                         style="@style/activityTravelsPlanTvTime"
-                        android:layout_height="23dp"
+                        android:layout_height="@dimen/x23"
                         android:gravity="center_vertical"
                         android:text="约伴人数" />
 
@@ -62,53 +62,53 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="24dp"
+                            android:layout_marginLeft="@dimen/x24"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
                             <TextView
                                 style="@style/activityTravelsPlanTv"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginRight="@dimen/x10"
                                 android:text="至少" />
 
                             <EditText
                                 android:inputType="number"
                                 android:id="@+id/et_least"
                                 style="@style/activityTravelsPlanTvTimeSelect"
-                                android:layout_width="51dp"
+                                android:layout_width="@dimen/x51"
                                 android:gravity="start|center_vertical"
                                 />
 
                             <TextView
                                 style="@style/activityTravelsPlanTv"
-                                android:layout_marginLeft="6dp"
+                                android:layout_marginLeft="@dimen/x6"
                                 android:text="人" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="@dimen/x24"
+                            android:layout_marginTop="@dimen/x15"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
                             <TextView
                                 style="@style/activityTravelsPlanTv"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginRight="@dimen/x10"
                                 android:text="最多" />
 
                             <EditText
                                 android:inputType="number"
                                 android:id="@+id/et_most"
                                 style="@style/activityTravelsPlanTvTimeSelect"
-                                android:layout_width="51dp"
+                                android:layout_width="@dimen/x51"
                                 android:gravity="start|center_vertical"
                                  />
 
                             <TextView
                                 style="@style/activityTravelsPlanTv"
-                                android:layout_marginLeft="6dp"
+                                android:layout_marginLeft="@dimen/x6"
                                 android:text="人" />
                         </LinearLayout>
                     </LinearLayout>
@@ -118,12 +118,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginTop="@dimen/x13"
                     android:orientation="horizontal">
 
                     <TextView
                         style="@style/activityTravelsPlanTvTime"
-                        android:layout_height="23dp"
+                        android:layout_height="@dimen/x23"
                         android:gravity="center_vertical"
                         android:text="认证筛选" />
 
@@ -135,7 +135,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="24dp"
+                            android:layout_marginLeft="@dimen/x24"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -145,37 +145,37 @@
 
                             <RelativeLayout
                                 android:id="@+id/rl_sex_select"
-                                android:layout_width="105dp"
-                                android:layout_height="23dp"
-                                android:layout_marginLeft="16dp"
+                                android:layout_width="@dimen/x105"
+                                android:layout_height="@dimen/x23"
+                                android:layout_marginLeft="@dimen/x16"
                                 android:background="@drawable/activity_travels_plan_time_bg">
 
                                 <TextView
                                     android:id="@+id/tv_sex"
-                                    android:layout_width="84dp"
-                                    android:layout_height="23dp"
+                                    android:layout_width="@dimen/x84"
+                                    android:layout_height="@dimen/x23"
                                     android:gravity="center"
                                     android:text="不限"
                                     android:textColor="@color/color323232"
-                                    android:textSize="15sp" />
+                                    android:textSize="@dimen/x15sp" />
 
                                 <TextView
-                                    android:layout_width="22dp"
-                                    android:layout_height="23dp"
+                                    android:layout_width="@dimen/x22"
+                                    android:layout_height="@dimen/x23"
                                     android:layout_alignParentRight="true"
                                     android:background="@drawable/activity_travels_plan_time_bg"
                                     android:gravity="center"
                                     android:text="▼"
                                     android:textColor="@color/color323232"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/x10sp" />
                             </RelativeLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="@dimen/x24"
+                            android:layout_marginTop="@dimen/x15"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -185,37 +185,37 @@
 
                             <RelativeLayout
                                 android:id="@+id/rl_auth_select"
-                                android:layout_width="105dp"
-                                android:layout_height="23dp"
-                                android:layout_marginLeft="16dp"
+                                android:layout_width="@dimen/x105"
+                                android:layout_height="@dimen/x23"
+                                android:layout_marginLeft="@dimen/x16"
                                 android:background="@drawable/activity_travels_plan_time_bg">
 
                                 <TextView
                                     android:id="@+id/tv_auth"
-                                    android:layout_width="84dp"
-                                    android:layout_height="23dp"
+                                    android:layout_width="@dimen/x84"
+                                    android:layout_height="@dimen/x23"
                                     android:gravity="center"
                                     android:text="不限"
                                     android:textColor="@color/color323232"
-                                    android:textSize="15sp" />
+                                    android:textSize="@dimen/x15" />
 
                                 <TextView
-                                    android:layout_width="22dp"
-                                    android:layout_height="23dp"
+                                    android:layout_width="@dimen/x22"
+                                    android:layout_height="@dimen/x23"
                                     android:layout_alignParentRight="true"
                                     android:background="@drawable/activity_travels_plan_time_bg"
                                     android:gravity="center"
                                     android:text="▼"
                                     android:textColor="@color/color323232"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/x10sp" />
                             </RelativeLayout>
 
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginTop="19dp"
+                            android:layout_marginLeft="@dimen/x24"
+                            android:layout_marginTop="@dimen/x19"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -229,7 +229,7 @@
                                 android:textOff="关"
                                 android:switchTextAppearance="@style/mySwitchStyle"
                                 android:textColorLink="@color/colorFAFAFA"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="@dimen/x10"
 
                                 android:layout_centerInParent="true"
                                 android:layout_width="wrap_content"
@@ -241,9 +241,9 @@
 
             <View
                 style="@style/fragmentMeLine"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="19dp" />
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_marginTop="@dimen/x19" />
 
             <RelativeLayout style="@style/activityTravelsPlanRl">
 
@@ -260,19 +260,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/x10"
                     android:layout_toRightOf="@id/tv_equ"
                     android:text="免费租用"
                     android:textColor="@color/color909090"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/x12sp" />
 
             </RelativeLayout>
             <com.yunspeak.travel.ui.view.ToShowAllListView
                 android:id="@+id/lv_equ"
                 android:visibility="gone"
                 style="@style/commonListViewStyle"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="31dp"
+                android:layout_marginTop="@dimen/x20"
+                android:layout_marginLeft="@dimen/x31"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -280,37 +280,37 @@
 
             <Button
                 android:id="@+id/bt_select_equ"
-                android:layout_width="125dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/x125"
+                android:layout_height="@dimen/x35"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="@dimen/x15"
+                android:layout_marginTop="@dimen/x16"
                 android:background="@drawable/activity_travels_plan_line_bg"
                 android:gravity="center"
                 android:text="选择编辑"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="16sp" />
+                android:textSize="@dimen/x16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="53dp"
+                android:layout_marginLeft="@dimen/x53"
                 android:text="备注"
                 android:textColor="@color/color646464"
-                android:textSize="15sp" />
+                android:textSize="@dimen/x15sp" />
 
             <TextView
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="@dimen/x40"
                 android:id="@+id/tv_remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="53dp"
-                android:layout_marginRight="53dp"
-                android:layout_marginTop="6dp"
-                android:lineSpacingExtra="6dp"
+                android:layout_marginLeft="@dimen/x53"
+                android:layout_marginRight="@dimen/x53"
+                android:layout_marginTop="@dimen/x6"
+                android:lineSpacingExtra="@dimen/x6"
                 android:text="平台的高级认证用户选择道具才有效，其他用户请跳过此步"
                 android:textColor="@color/color969696"
-                android:textSize="14sp" />
+                android:textSize="@dimen/x14sp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

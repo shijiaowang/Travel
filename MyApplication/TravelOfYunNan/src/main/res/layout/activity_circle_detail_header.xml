@@ -11,73 +11,73 @@
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_post_bg"
                 android:layout_width="match_parent"
-                android:layout_height="202dp"
+                android:layout_height="@dimen/x202"
               />
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_post_icon"
-                android:layout_width="63dp"
-                android:layout_height="63dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="174dp"
+                android:layout_width="@dimen/x63"
+                android:layout_height="@dimen/x63"
+                android:layout_marginLeft="@dimen/x14"
+                android:layout_marginTop="@dimen/x17"
                 />
 
             <TextView
                 android:id="@+id/tv_circle_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="180dp"
+                android:layout_marginLeft="@dimen/x15"
+                android:layout_marginTop="@dimen/x180"
                 android:layout_toRightOf="@id/iv_post_icon"
-                android:textColor="#ffffff"
-                android:textSize="14sp" />
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="@dimen/x14" />
 
             <TextView
                 android:id="@+id/tv_follow"
                 android:textColor="@color/colorFAFAFA"
                 android:gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="23dp"
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/x23"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="14dp"
-                android:layout_marginTop="170dp"
+                android:layout_marginRight="@dimen/x14"
+                android:layout_marginTop="@dimen/x170"
                 android:background="@drawable/activity_circle_detail_follow_bg" />
 
             <TextView
                 android:id="@+id/tv_des"
                 style="@style/CircleText"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="208dp"
+                android:layout_marginLeft="@dimen/x15"
+                android:layout_marginTop="@dimen/x208"
                 android:layout_toRightOf="@id/iv_post_icon" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_des"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/x4"
                 android:layout_toRightOf="@id/iv_post_icon"
                 android:orientation="horizontal">
 
                 <TextView
                     style="@style/CircleText"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="@dimen/x15"
                     android:text="@string/post" />
 
                 <TextView
                     android:id="@+id/tv_post_number"
                     style="@style/CircleText"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="@dimen/x2"
                     android:textColor="@color/Ffbf75" />
 
                 <TextView
                     style="@style/CircleText"
-                    android:layout_marginLeft="33dp"
+                    android:layout_marginLeft="@dimen/x33"
                     android:text="@string/follow" />
 
                 <TextView
                     android:id="@+id/tv_follow_number"
                     style="@style/CircleText"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="@dimen/x2"
                     android:textColor="@color/Ffbf75" />
 
             </LinearLayout>
@@ -86,12 +86,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="#f6f6f6" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/x1"
+            android:layout_marginTop="@dimen/x10"
             android:background="#f6f6f6" />
     </LinearLayout>

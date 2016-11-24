@@ -20,30 +20,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="@dimen/x70"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/bt_register"
-                android:layout_width="162dp"
-                android:layout_height="47dp"
+                android:layout_width="@dimen/x162"
+                android:layout_height="@dimen/x47"
                 android:background="@drawable/fragment_find_search_bg"
                 android:gravity="center"
                 android:text="注册"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="15sp" />
+                android:textSize="@dimen/x15sp" />
 
             <Button
                 android:id="@+id/bt_login"
-                android:layout_width="162dp"
-                android:layout_height="47dp"
-                android:layout_marginLeft="11dp"
+                android:layout_width="@dimen/x162"
+                android:layout_height="@dimen/x47"
+                android:layout_marginLeft="@dimen/x11"
                 android:background="@drawable/fragment_find_search_bg"
                 android:gravity="center"
                 android:text="登录"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="15sp" />
+                android:textSize="@dimen/x15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,22 +55,22 @@
         <RelativeLayout
             android:id="@+id/rl_cursor"
             android:layout_width="match_parent"
-            android:layout_height="6dp"
+            android:layout_height="@dimen/x6"
             android:layout_above="@id/ll_btn"
-            android:layout_marginBottom="68dp">
+            android:layout_marginBottom="@dimen/x68">
 
             <LinearLayout
                 android:id="@+id/ll_indicator"
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
+                android:layout_height="@dimen/x6"
                 android:layout_alignParentBottom="true"
                 android:gravity="center"
                 android:orientation="horizontal" />
 
             <View
                 android:id="@+id/v_dot"
-                android:layout_width="6dp"
-                android:layout_height="6dp"
+                android:layout_width="@dimen/x6"
+                android:layout_height="@dimen/x6"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/dot_for_viewpager_indicator_current" />
         </RelativeLayout>
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/rl_cursor"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginBottom="@dimen/x30" />
 
     </RelativeLayout>
 

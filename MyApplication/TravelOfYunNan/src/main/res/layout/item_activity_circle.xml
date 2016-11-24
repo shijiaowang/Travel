@@ -7,41 +7,41 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="@dimen/x13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp">
+        android:layout_marginTop="@dimen/x9">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_user_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/x40"
             android:layout_centerVertical="true"
              />
             <TextView
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/x15"
                 android:layout_toRightOf="@id/iv_user_icon"
                 android:id="@+id/tv_user_nick_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/circleDesText"
-                android:textSize="14sp" />
+                android:textSize="@dimen/x14sp" />
             <TextView
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/x15"
                 android:layout_toRightOf="@id/iv_user_icon"
                 android:layout_below="@id/tv_user_nick_name"
                android:id="@+id/tv_time"
                 android:textColor="@color/circleDesText"
-                android:textSize="11sp"
-                android:layout_marginTop="8dp"
+                android:textSize="@dimen/x11sp"
+                android:layout_marginTop="@dimen/x8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
     </RelativeLayout>
     <TextView
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="@dimen/x13"
         android:id="@+id/tv_title"
-        android:layout_marginTop="16dp"
-        android:textSize="15sp"
+        android:layout_marginTop="@dimen/x16"
+        android:textSize="@dimen/x15sp"
         android:lines="1"
         android:ellipsize="end"
         android:textColor="@android:color/black"
@@ -49,65 +49,64 @@
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tv_content"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="@dimen/x13"
+        android:layout_marginTop="@dimen/x16"
         android:textColor="@color/circleDesText"
-        android:textSize="14sp"
+        android:textSize="@dimen/x14sp"
         android:maxLines="2"
         android:ellipsize="end"
-        android:lineSpacingExtra="7dp"
+        android:lineSpacingExtra="@dimen/x7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
    <android.support.v7.widget.RecyclerView
        android:id="@+id/rv_photo"
        android:scrollbars="none"
-       android:layout_marginTop="3dp"
-       android:layout_marginLeft="13dp"
-       android:layout_marginRight="13dp"
-       android:layout_width="match_parent"
+       android:layout_gravity="center_horizontal"
+       android:layout_marginTop="@dimen/x3"
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content">
 
    </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
         android:gravity="center_vertical"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="@dimen/x20"
+        android:layout_marginBottom="@dimen/x5"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <View
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="1dp"/>
+            android:layout_height="@dimen/x1"/>
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_icon_love"
             android:text="@string/activity_circle_love"
             android:textColor="@color/colorA1a1a1"
-            android:textSize="14sp"
+            android:textSize="@dimen/x14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_love_number"
-            android:textColor="#ff7f6c"
-            android:layout_marginLeft="7dp"
-            android:textSize="11sp"
+            android:textColor="@color/otherFf7f6c"
+            android:layout_marginLeft="@dimen/x7"
+            android:textSize="@dimen/x11sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_icon_discuss"
-            android:layout_marginLeft="27dp"
+            android:layout_marginLeft="@dimen/x27"
             android:text="@string/activity_circle_discuss"
             android:textColor="@color/colorA1a1a1"
-            android:textSize="14sp"
+            android:textSize="@dimen/x14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_discuss_number"
-            android:layout_marginRight="31dp"
+            android:layout_marginRight="@dimen/x31"
             android:textColor="#a1a1a1"
-            android:layout_marginLeft="7dp"
-            android:textSize="11sp"
+            android:layout_marginLeft="@dimen/x7"
+            android:textSize="@dimen/x11sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

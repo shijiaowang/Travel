@@ -4,40 +4,40 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="47dp">
+    android:layout_height="@dimen/x47">
 
     <Button
         android:id="@+id/bt_diy"
         android:text="自定义景点"
         android:gravity="center"
         android:textColor="@color/colorFAFAFA"
-        android:textSize="12sp"
-        android:layout_marginLeft="22dp"
+        android:textSize="@dimen/x12sp"
+        android:layout_marginLeft="@dimen/x22"
         android:layout_toRightOf="@id/rl_search"
         android:layout_centerVertical="true"
         android:background="@drawable/fragment_find_search_bg"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingLeft="@dimen/x10"
+        android:paddingRight="@dimen/x10"
         android:layout_width="wrap_content"
-        android:layout_height="22dp" />
+        android:layout_height="@dimen/x22" />
 
     <RelativeLayout
         android:id="@+id/rl_search"
         android:background="@drawable/activity_select_destination_search_bg"
-        android:layout_width="230dp"
-        android:layout_height="27dp"
+        android:layout_width="@dimen/x230"
+        android:layout_height="@dimen/x27"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp">
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginStart="@dimen/x20">
         <EditText
             android:id="@+id/et_search"
-            android:paddingLeft="27dp"
+            android:paddingLeft="@dimen/x27"
             style="@style/commonSingleLineTextStyle"
             android:imeOptions="actionSearch"
             android:maxLength="18"
-            android:textSize="10sp"
+            android:textSize="@dimen/x10sp"
             android:textColorHint="@color/colorb5b5b5"
             android:hint="输入你想搜索的目的地"
             android:background="@null"
@@ -49,8 +49,8 @@
             android:text="@string/fragment_circle_search"
             android:gravity="center"
             android:textColor="@color/otherTitleBg"
-            android:textSize="12sp"
-            android:layout_width="27dp"
+            android:textSize="@dimen/x12sp"
+            android:layout_width="@dimen/x27"
             android:layout_height="match_parent" />
 
     </RelativeLayout>

@@ -7,16 +7,16 @@
     <RelativeLayout
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="47dp">
+        android:layout_height="@dimen/x47">
         <RelativeLayout
             android:id="@+id/rl_search"
             android:layout_centerVertical="true"
             android:background="@drawable/activity_select_destination_search_bg"
-            android:layout_width="230dp"
-            android:layout_height="27dp" >
+            android:layout_width="@dimen/x230"
+            android:layout_height="@dimen/x27" >
             <EditText
                 android:id="@+id/et_search"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="@dimen/x40"
                 android:background="@null"
                 style="@style/commonSingleLineTextStyle"
                 android:imeOptions="actionSearch"
@@ -29,8 +29,8 @@
                 android:layout_centerVertical="true"
                 android:text="@string/fragment_circle_search"
                 android:textColor="@color/otherTitleBg"
-                android:textSize="12sp"
-                android:layout_width="40dp"
+                android:textSize="@dimen/x12sp"
+                android:layout_width="@dimen/x40"
                 android:layout_height="match_parent" />
 
         </RelativeLayout>
@@ -39,28 +39,28 @@
             android:text="添加自定义景点"
             android:gravity="center"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="12sp"
-            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/x12sp"
+            android:layout_marginLeft="@dimen/x10"
             android:layout_toRightOf="@id/rl_search"
             android:layout_centerVertical="true"
             android:background="@drawable/fragment_find_search_bg"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x10"
             android:layout_width="wrap_content"
-            android:layout_height="22dp" />
+            android:layout_height="@dimen/x22" />
     </RelativeLayout>
     <TextView
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginTop="@dimen/x5"
+        android:layout_marginLeft="@dimen/x15"
+        android:layout_marginBottom="@dimen/x11"
         android:text="· 热门自定义景点"
         android:textColor="@color/colorb5b5b5"
-        android:textSize="11sp"
+        android:textSize="@dimen/x11sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="7dp"/>
+        android:layout_height="@dimen/x7"/>
 </LinearLayout>

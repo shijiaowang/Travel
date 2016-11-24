@@ -22,6 +22,7 @@ import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.bulltetinboard.BulletinBoardActivity;
 import com.yunspeak.travel.ui.me.myappoint.memberdetail.MemberDetailActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
+import com.yunspeak.travel.ui.view.AppointItemView;
 import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
@@ -96,6 +97,8 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
     Button mBtChat;
     @BindView(R.id.line)
     View mLine;
+ /*   @BindView(R.id.ap_item)
+    AppointItemView appointItemView;*/
     @BindView(R.id.code2)
     TextView mTvCode2;
     @BindColor(R.color.colorff806d)
@@ -125,6 +128,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
 
 
     private void hideOrShow(MyAppointTogetherBean.DataBean datas, String isBoss) {
+        //appointItemView.setContent("我是一个标题而已。能不能不要这么在意？","可以达到","why？","我有一百人");
         if (isBoss.equals("1")) {
             mBtStart.setVisibility(View.VISIBLE);
             if (payStates == 3 || payStates == 7) {

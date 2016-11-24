@@ -10,43 +10,44 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="92dp"
-            android:layout_height="92dp"
-            android:layout_marginTop="25dp"
+            android:layout_width="@dimen/x92"
+            android:layout_height="@dimen/x92"
+            android:layout_marginTop="@dimen/x25"
+            android:scaleType="fitXY"
             android:src="@drawable/activity_other_title_load" />
 
         <TextView
+            android:id="@+id/tv_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="27dp"
-            android:layout_marginTop="24dp"
-            android:text="v1.01"
+            android:layout_marginBottom="@dimen/x27"
+            android:layout_marginTop="@dimen/x24"
             android:textColor="@color/color323232"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginLeft="42dp"
-            android:layout_marginRight="42dp"
+            android:layout_height="@dimen/x2"
+            android:layout_marginLeft="@dimen/x42"
+            android:layout_marginRight="@dimen/x42"
             android:background="@drawable/dash_line" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="56dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginBottom="@dimen/x56"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x26"
             android:text="有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说有人说"
             android:textColor="@color/color989898"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="@dimen/x100"
             android:orientation="horizontal">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
@@ -57,26 +58,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/x5"
                 android:text="公众号"
                 android:textColor="@color/color232323"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
+                android:layout_marginLeft="@dimen/x26"
                 android:text="yunspeak"
                 android:textColor="@color/color232323"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="@dimen/x100"
+            android:layout_marginTop="@dimen/x15sp"
             android:orientation="horizontal">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
@@ -95,18 +96,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
+                android:layout_marginLeft="@dimen/x13"
                 android:text="\@云说同好约伴游"
                 android:textColor="@color/color232323"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="@dimen/x100"
+            android:layout_marginTop="@dimen/x15"
             android:orientation="horizontal">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
@@ -117,47 +118,46 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="客户电话"
+                android:layout_marginLeft="@dimen/x5"
+                android:text="客服电话"
                 android:textColor="@color/color232323"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
+                android:layout_marginLeft="@dimen/x13"
                 android:text="0829-08299451"
                 android:textColor="@color/color232323"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="@dimen/x48"
             android:text="城外旅游软件许可即服务协议"
             android:textColor="@color/otherTitleBg"
-            android:textSize="11sp" />
+            android:textSize="@dimen/x11sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="@dimen/x34"
             android:text="云南城外旅游文化发展有限公司"
             android:textColor="@color/color232323"
-            android:textSize="12sp"
-            android:id="@+id/textView5" />
+            android:textSize="@dimen/x12"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/x10"
             android:text="Yunnan Chengwai Travelling Culture Development Co., Ltd."
             android:textColor="@color/color232323"
-            android:textSize="11sp" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="120dp"/>
+            android:textSize="@dimen/x11sp"
+            android:layout_marginBottom="100dp"
+            />
 
     </LinearLayout>
 </ScrollView>

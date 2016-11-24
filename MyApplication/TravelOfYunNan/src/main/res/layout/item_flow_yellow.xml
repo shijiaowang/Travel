@@ -17,13 +17,13 @@
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
-                android:layout_height="27dp"
+                android:layout_height="@dimen/x27"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="@dimen/x2"
                 android:gravity="center"
-                android:paddingLeft="15dp"
+                android:paddingLeft="@dimen/x15"
                 android:textColor="@color/Ffbf75"
-                android:textSize="14sp" />
+                android:textSize="@dimen/x14sp" />
         </RelativeLayout>
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
@@ -31,12 +31,12 @@
             android:id="@+id/tv_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
+            android:paddingBottom="@dimen/x10"
+            android:paddingLeft="@dimen/x3"
+            android:paddingRight="@dimen/x3"
             android:text="@string/activity_member_detail_delete"
             android:textColor="@color/otherTitleBg"
-            android:textSize="10sp" />
+            android:textSize="@dimen/x10sp" />
 
     </RelativeLayout>
 

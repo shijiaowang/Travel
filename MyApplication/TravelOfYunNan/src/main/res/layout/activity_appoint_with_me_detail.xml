@@ -20,8 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorFAFAFA"
-                android:paddingLeft="22dp"
-                android:paddingRight="10dp">
+                android:paddingLeft="@dimen/x22"
+                android:paddingRight="@dimen/x10">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -32,20 +32,20 @@
                         android:id="@+id/ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="@dimen/x10"
+                        android:layout_marginTop="@dimen/x10"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <com.facebook.drawee.view.SimpleDraweeView
                             android:id="@+id/iv_user_icon"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp" />
+                            android:layout_width="@dimen/x30"
+                            android:layout_height="@dimen/x30" />
 
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="9dp"
+                            android:layout_marginLeft="@dimen/x9"
                             android:layout_weight="1">
 
                             <TextView
@@ -53,16 +53,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/color646464"
-                                android:textSize="12sp" />
+                                android:textSize="@dimen/x12sp" />
 
                             <com.yunspeak.travel.ui.view.FontsIconTextView
                                 android:id="@+id/tv_sex"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
+                                android:layout_marginLeft="@dimen/x15"
                                 android:layout_toRightOf="@id/tv_user_nick_name"
                                 android:textColor="@color/color97bcf0"
-                                android:textSize="13sp" />
+                                android:textSize="@dimen/x13sp" />
 
                             <TextView
 
@@ -70,70 +70,70 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/tv_user_nick_name"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="@dimen/x5"
                                 android:textColor="@color/colorb5b5b5"
-                                android:textSize="11sp" />
+                                android:textSize="@dimen/x11sp" />
 
                             <TextView
                                 android:id="@+id/tv_time"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/tv_user_nick_name"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="@dimen/x16"
+                                android:layout_marginTop="@dimen/x5"
                                 android:layout_toRightOf="@id/tv_day"
                                 android:textColor="@color/colorb5b5b5"
-                                android:textSize="11sp" />
+                                android:textSize="@dimen/x11sp" />
 
                         </RelativeLayout>
 
                         <com.yunspeak.travel.ui.view.FontsIconTextView
                             style="@style/activityTogetherDetail"
-                            android:layout_marginRight="6dp"
+                            android:layout_marginRight="@dimen/x6"
                             android:text="@string/activity_other_album_eye" />
 
                         <TextView
                             android:id="@+id/tv_watch_number"
                             style="@style/activityTogetherDetail"
-                            android:layout_marginRight="15dp" />
+                            android:layout_marginRight="@dimen/x15" />
 
                         <com.yunspeak.travel.ui.view.FontsIconTextView
                             android:id="@+id/tv_love"
                             style="@style/activityTogetherDetail"
-                            android:layout_marginRight="6dp"
+                            android:layout_marginRight="@dimen/x6"
                             android:text="@string/activity_circle_love_empty" />
 
                         <TextView
                             android:id="@+id/tv_love_number"
                             style="@style/activityTogetherDetail"
-                            android:layout_marginRight="3dp" />
+                            android:layout_marginRight="@dimen/x3" />
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/x1"
                         android:background="@color/meLine" />
 
                     <TextView
                         android:id="@+id/tv_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="@dimen/x12"
+                        android:layout_marginTop="@dimen/x12"
                         android:textColor="@color/color323232"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/x16sp" />
                 </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp">
+                android:layout_marginTop="@dimen/x6">
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="128dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="@dimen/x128"
+                    android:layout_marginTop="@dimen/x5"
                     android:background="@color/colorFAFAFA" />
 
 
@@ -141,11 +141,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="@dimen/x20">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="22dp"
+                        android:layout_marginLeft="@dimen/x22"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
 
@@ -155,7 +155,6 @@
 
                             <com.yunspeak.travel.ui.view.FontsIconTextView
                                 style="@style/fragmentAppointWithMeIconFont"
-                                android:layout_marginLeft="0.5dp"
                                 android:text="@string/fragment_play_with_me_air" />
 
                             <TextView
@@ -166,71 +165,68 @@
 
                         <LinearLayout
                             style="@style/fragmentAppointWithMeLl"
-                            android:layout_marginTop="3dp">
+                            android:layout_marginTop="@dimen/x3">
 
                             <com.yunspeak.travel.ui.view.FontsIconTextView
                                 style="@style/fragmentAppointWithMeIconFont"
-                                android:layout_marginLeft="1dp"
                                 android:text="@string/fragment_play_with_me_time"
                                 android:textColor="@color/otherTitleBg"
-                                android:textSize="13sp" />
+                                android:textSize="@dimen/x13sp" />
 
                             <TextView
                                 android:id="@+id/tv_day_and_night"
                                 style="@style/fragmentAppointWithMeText"
                                 android:textColor="@color/otherTitleBg"
-                                android:textSize="10sp" />
+                                android:textSize="@dimen/x10sp" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             style="@style/fragmentAppointWithMeLl"
-                            android:layout_marginTop="3dp">
+                            android:layout_marginTop="@dimen/x3">
 
                             <com.yunspeak.travel.ui.view.FontsIconTextView
                                 style="@style/fragmentAppointWithMeIconFont"
-                                android:paddingLeft="0dp"
                                 android:text="@string/fragment_play_with_me_add"
-                                android:textSize="18sp" />
+                                 />
 
                             <TextView
                                 android:id="@+id/tv_start_and_long"
                                 style="@style/fragmentAppointWithMeText"
                                 android:textColor="@color/color646464"
-                                android:textSize="12sp" />
+                            />
 
                         </LinearLayout>
 
                         <LinearLayout
                             style="@style/fragmentAppointWithMeLl"
-                            android:layout_marginTop="3dp">
+                            android:layout_marginTop="@dimen/x3">
 
                             <com.yunspeak.travel.ui.view.FontsIconTextView
                                 style="@style/fragmentAppointWithMeIconFont"
                                 android:text="@string/fragment_play_with_me_people"
-                                android:textSize="16sp"
                                 android:textStyle="italic" />
 
                             <TextView
                                 android:id="@+id/tv_have_number"
                                 style="@style/fragmentAppointWithMeText"
                                 android:textColor="@color/color646464"
-                                android:textSize="12sp" />
+                           />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
                 <RelativeLayout
-                    android:layout_width="116dp"
-                    android:layout_height="116dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_width="@dimen/x116"
+                    android:layout_height="@dimen/x116"
+                    android:layout_marginRight="@dimen/x20"
                     android:layout_alignParentRight="true"
                     android:background="@color/colorFAFAFA">
 
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/iv_appoint_bg"
-                        android:layout_width="116dp"
-                        android:layout_height="116dp"
-                        android:padding="3dp" />
+                        android:layout_width="@dimen/x116"
+                        android:layout_height="@dimen/x116"
+                        android:padding="@dimen/x3" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -252,80 +248,80 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_height="@dimen/x1"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
                     android:background="@color/meLine" />
 
                 <TextView
                     android:id="@+id/tv_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="@dimen/x15"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_marginTop="@dimen/x15"
                     android:textColor="@color/color323232"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/x14sp" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_height="@dimen/x1"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
                     android:background="@color/meLine" />
 
                 <com.yunspeak.travel.ui.view.FlowLayout
                     android:id="@+id/fl_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginBottom="@dimen/x30"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginTop="@dimen/x20" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_height="@dimen/x1"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
                     android:background="@color/meLine" />
                 <LinearLayout
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp">
+                    android:layout_height="@dimen/x56">
                   <TextView
                       android:id="@+id/tv_enter_end_time"
                       android:textColor="@color/otherTitleBg"
-                      android:textSize="15sp"
-                      android:layout_marginLeft="39dp"
+                      android:textSize="@dimen/x15"
+                      android:layout_marginLeft="@dimen/x39"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content" />
                     <TextView
                         android:id="@+id/tv_surplus_day"
-                        android:layout_marginLeft="39dp"
+                        android:layout_marginLeft="@dimen/x39"
                         android:textColor="@color/otherTitleBg"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/x15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <View
                     android:background="@color/meLine"
                     android:layout_width="match_parent"
-                    android:layout_height="6dp"/>
+                    android:layout_height="@dimen/x6"/>
 
                 <TextView
                     android:id="@+id/tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginTop="@dimen/x15"
                     android:text="理想地"
                     android:textColor="@color/color323232"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/x16" />
 
                 <com.yunspeak.travel.ui.view.ToShowAllListView
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/x10"
+                    android:layout_marginLeft="@dimen/x20"
                     android:id="@+id/lv_route_line"
                     style="@style/commonListViewStyle"
                     android:layout_width="match_parent"
@@ -333,46 +329,46 @@
                     />
                 <View
                     android:background="@color/meLine"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_marginLeft="@dimen/x10"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="@dimen/x1"/>
                 <TextView
                     android:id="@+id/tv_have_enter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginTop="@dimen/x14"
                     android:textColor="@color/color969696"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/x14sp" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_have_enter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="14dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginBottom="@dimen/x14"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginTop="@dimen/x10" />
                 <View
                     android:background="@color/meLine"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_marginLeft="@dimen/x10"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="@dimen/x1"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginTop="@dimen/x15"
                     android:text="费用详情"
                     android:textColor="@color/color323232"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/x16sp" />
                 <TextView
                     android:text="\u3000\u3000 备注："
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/x10"
                     android:textColor="@color/color969696"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="22dp"
+                    android:textSize="@dimen/x14sp"
+                    android:layout_marginLeft="@dimen/x22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -381,43 +377,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/commonListViewStyle"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginBottom="@dimen/x15"
+                    android:layout_marginTop="@dimen/x20" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_height="@dimen/x1"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
                     android:background="@color/meLine" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginTop="@dimen/x15"
                     android:text="注意事项"
                     android:textColor="@color/color323232"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/x16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="39dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
-                    android:layout_marginTop="10dp"
-                    android:lineSpacingExtra="8dp"
+                    android:layout_marginBottom="@dimen/x39"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginRight="@dimen/x22"
+                    android:layout_marginTop="@dimen/x10"
+                    android:lineSpacingExtra="@dimen/x8"
                     android:text="请一定要注意安全注意安全注意安全注意安全注意安全注意安全请一定要注意安全注意安全注意安全注意安全注意安全注意安全"
                     android:textColor="@color/color969696"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/x14sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="@dimen/x45"
         android:background="#185cd0c2"
         android:gravity="center_vertical">
 
@@ -426,31 +422,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="@dimen/x25"
             android:text="¥200"
             android:textColor="@color/otherFf7f6c"
             android:textSize="18sp" />
 
         <com.yunspeak.travel.ui.view.AvoidFastButton
             android:id="@+id/bt_enter"
-            android:layout_width="74dp"
+            android:layout_width="@dimen/x74"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:background="#4a5cd0c2"
             android:gravity="center"
             android:text="报名"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x15sp" />
 
         <com.yunspeak.travel.ui.view.AvoidFastButton
             android:id="@+id/bt_chat"
-            android:layout_width="105dp"
+            android:layout_width="@dimen/x105"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/bt_enter"
             android:background="#305cd0c2"
             android:gravity="center"
             android:text="联系发布人"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x15sp" />
     </RelativeLayout>
 </LinearLayout>

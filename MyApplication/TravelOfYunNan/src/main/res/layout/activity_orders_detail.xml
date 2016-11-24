@@ -11,57 +11,57 @@
             android:gravity="center_vertical"
             android:background="@color/colorFAFAFA"
             android:layout_width="match_parent"
-            android:layout_height="44dp">
+            android:layout_height="@dimen/x44">
             <ImageView
-                android:layout_marginLeft="11dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/x11"
+                android:layout_marginRight="@dimen/x10"
                 android:id="@+id/iv_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tv_des"
                 android:textColor="@color/color323232"
-                android:textSize="14sp"
+                android:textSize="@dimen/x14sp"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
             <Button
                 android:text="付款"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="12sp"
+                android:textSize="@dimen/x12sp"
                 android:id="@+id/bt_pay"
                 android:background="@drawable/activity_my_appoint_chat_bg"
-                android:layout_width="49dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="12dp"
+                android:layout_width="@dimen/x49"
+                android:layout_height="@dimen/x20"
+                android:layout_marginRight="@dimen/x12"
                 />
         </LinearLayout>
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_height="@dimen/x1" />
         <RelativeLayout
             style="@style/activityConfirmOrdersRl"
-            android:layout_height="36dp"
+            android:layout_height="@dimen/x36"
             android:background="@color/colorFcfcfd">
 
             <TextView
                 android:id="@+id/tv_order_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
+                android:layout_marginLeft="@dimen/x13"
                 android:gravity="center"
                 android:textColor="@color/color8c8c8c"
-                android:textSize="11sp" />
+                android:textSize="@dimen/x11sp" />
 
             <TextView
                 android:id="@+id/tv_order_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="@dimen/x16"
                 android:text="约伴订单"
                 android:textColor="@color/Ffbf75"
-                android:textSize="11sp" />
+                android:textSize="@dimen/x11" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -69,9 +69,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/activity_orders_detail_border"
             android:gravity="center"
-            android:padding="2dp">
+            android:padding="@dimen/x2">
 
             <LinearLayout
+                android:gravity="center"
+                android:minHeight="@dimen/x230"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FEFEF9"
@@ -91,19 +93,19 @@
                     <TextView
                         style="@style/activityConfirmOrdersText"
                         android:layout_below="@id/tv_title1"
-                        android:layout_marginBottom="11dp"
-                        android:layout_marginTop="14dp"
+                        android:layout_marginBottom="@dimen/x11"
+                        android:layout_marginTop="@dimen/x14"
                         android:text="折扣券" />
 
                     <TextView
                         android:id="@+id/tv_reduce_price"
                         style="@style/activityConfirmOrdersTextMoney"
-                        android:layout_marginTop="41dp" />
+                        android:layout_marginTop="@dimen/x41" />
                 </RelativeLayout>
 
                 <View
                     style="@style/activityConfirmOrdersTextLine"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="@dimen/x10" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -114,10 +116,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="@dimen/x10"
+                        android:layout_marginRight="@dimen/x16"
                         android:textColor="@color/colorFf8888"
-                        android:textSize="12sp" />
+                        android:textSize="@dimen/x12sp" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -135,41 +137,41 @@
               android:id="@+id/rl_zfb"
               style="@style/activityConfirmOrdersRl"
               android:layout_height="wrap_content"
-              android:paddingBottom="8dp">
+              android:paddingBottom="@dimen/x8">
 
               <com.yunspeak.travel.ui.view.FontsIconTextView
                   android:id="@+id/tv_zfb"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_centerVertical="true"
-                  android:layout_marginLeft="16dp"
-                  android:layout_marginTop="17dp"
+                  android:layout_marginLeft="@dimen/x16"
+                  android:layout_marginTop="@dimen/x17"
                   android:gravity="center"
                   android:text="@string/activity_confirm_orders_zfb"
                   android:textColor="#11B1F0"
-                  android:textSize="20sp" />
+                  android:textSize="@dimen/x20sp" />
 
               <TextView
                   android:id="@+id/tv_pay_des"
                   android:layout_width="wrap_content"
-                  android:layout_height="20dp"
+                  android:layout_height="@dimen/x20"
                   android:layout_centerVertical="true"
-                  android:layout_marginLeft="13dp"
+                  android:layout_marginLeft="@dimen/x13"
                   android:layout_toRightOf="@id/tv_zfb"
                   android:gravity="center"
                   android:text="支付宝"
                   android:textColor="@android:color/black"
-                  android:textSize="11sp" />
+                  android:textSize="@dimen/x11sp" />
 
               <com.yunspeak.travel.ui.view.FontsIconTextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_alignParentRight="true"
                   android:layout_centerVertical="true"
-                  android:layout_marginRight="16dp"
+                  android:layout_marginRight="@dimen/x16"
                   android:text="@string/activity_orders_detail_pay"
                   android:textColor="@color/otherFf7f6c"
-                  android:textSize="30sp" />
+                  android:textSize="@dimen/x30sp" />
           </RelativeLayout>
       </LinearLayout>
 
@@ -178,8 +180,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="58dp"
-            android:singleLine="true"
+            android:layout_marginTop="@dimen/x58"
+            android:lines="1"
+            android:ellipsize="end"
             android:text="如有疑问请致电客服 123123131"
             android:textColor="@color/colorb5b5b5"
             android:textSize="10sp" />

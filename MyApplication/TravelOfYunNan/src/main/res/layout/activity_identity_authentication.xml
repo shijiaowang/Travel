@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
+    android:paddingLeft="@dimen/x20"
+    android:paddingRight="@dimen/x20"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
@@ -95,21 +95,21 @@
     <View
         style="@style/oneHeightMatchLine"/>
     <TextView
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/x25"
         android:text="认证说明"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/color323232"
-        android:textSize="15sp"
+        android:textSize="@dimen/x15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/x20"
         android:text="@string/id_auth_des"
         android:textColor="@color/color646464"
-        android:textSize="13sp"
-        android:lineSpacingExtra="8dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
+        android:textSize="@dimen/x13sp"
+        android:lineSpacingExtra="@dimen/x8"
+        android:layout_marginLeft="@dimen/x25"
+        android:layout_marginRight="@dimen/x25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

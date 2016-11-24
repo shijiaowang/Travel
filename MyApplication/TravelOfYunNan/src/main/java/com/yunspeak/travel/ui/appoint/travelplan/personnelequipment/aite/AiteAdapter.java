@@ -8,7 +8,7 @@ import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/1 0001.
+ * Created by wangyang on 2016/8/1 0001.
  */
 public class AiteAdapter extends TravelBaseAdapter<AiteFollow> {
     public AiteAdapter(Context mContext, List mDatas) {

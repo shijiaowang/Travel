@@ -16,41 +16,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="40dp">
+            android:paddingBottom="@dimen/x40">
 
             <TextView
                 android:id="@+id/tv_icon"
-                android:layout_width="159dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/x159"
+                android:layout_height="@dimen/x35"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginBottom="@dimen/x8"
+                android:layout_marginTop="@dimen/x19"
                 android:background="@drawable/activity_line_plan_add_bg"
                 android:gravity="center"
                 android:text="您的自拍"
                 android:textColor="@color/colorb5b5b5"
-                android:textSize="16sp" />
+                android:textSize="@dimen/x16sp" />
 
             <RelativeLayout
                 android:id="@+id/rl_icon"
-                android:layout_width="95dp"
-                android:layout_height="95dp"
+                android:layout_width="@dimen/x95"
+                android:layout_height="@dimen/x95"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginBottom="@dimen/x20"
+                android:layout_marginTop="@dimen/x25"
                 android:visibility="gone">
 
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/iv_icon"
-                    android:layout_width="95dp"
-                    android:layout_height="95dp" />
+                    android:layout_width="@dimen/x95"
+                    android:layout_height="@dimen/x95" />
 
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:padding="5dp"
+                    android:padding="@dimen/x5"
                     android:text="@string/activity_member_detail_delete"
                     android:textColor="@color/color9e9c9c" />
 
@@ -72,10 +72,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/x10"
                     android:layout_toRightOf="@id/tv_time"
                     android:textColor="@color/color909090"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/x12sp" />
 
             </RelativeLayout>
 
@@ -83,8 +83,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="53dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="@dimen/x53"
+                android:layout_marginTop="@dimen/x15"
                 android:orientation="vertical">
 
                 <TextView
@@ -94,7 +94,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/x12"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -107,10 +107,10 @@
                         android:id="@+id/tv_start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
+                        android:layout_marginLeft="@dimen/x7"
                         android:text="@string/activity_travels_plan_data"
                         android:textColor="@color/otherTitleBg"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/x20sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_start_morning"
@@ -125,7 +125,7 @@
 
                         <TextView
                             style="@style/activityTravelsPlanIconText"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginLeft="@dimen/x12"
                             android:layout_toRightOf="@id/tv_start_morning"
                             android:text="上午" />
                     </RelativeLayout>
@@ -133,7 +133,7 @@
                     <RelativeLayout
                         android:id="@+id/rl_start_night"
                         style="@style/activityTravelsPlanIconRl"
-                        android:layout_marginLeft="15dp">
+                        android:layout_marginLeft="@dimen/x15">
 
                         <com.yunspeak.travel.ui.view.GradientTextView
                             android:id="@+id/tv_start_night"
@@ -144,7 +144,7 @@
 
                         <TextView
                             style="@style/activityTravelsPlanIconText"
-                            android:layout_marginLeft="7dp"
+                            android:layout_marginLeft="@dimen/x7"
                             android:layout_toRightOf="@id/tv_start_night"
                             android:text="下午" />
                     </RelativeLayout>
@@ -153,13 +153,13 @@
 
                 <TextView
                     style="@style/activityTravelsPlanTvTime"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/x20"
                     android:text="结束日期" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/x10"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -172,10 +172,10 @@
                         android:id="@+id/tv_end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
+                        android:layout_marginLeft="@dimen/x7"
                         android:text="@string/activity_travels_plan_data"
                         android:textColor="@color/otherTitleBg"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/x20sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_end_morning"
@@ -190,7 +190,7 @@
 
                         <TextView
                             style="@style/activityTravelsPlanIconText"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginLeft="@dimen/x12"
                             android:layout_toRightOf="@id/tv_end_morning"
                             android:text="上午" />
                     </RelativeLayout>
@@ -198,7 +198,7 @@
                     <RelativeLayout
                         android:id="@+id/rl_end_night"
                         style="@style/activityTravelsPlanIconRl"
-                        android:layout_marginLeft="15dp">
+                        android:layout_marginLeft="@dimen/x15">
 
 
                         <com.yunspeak.travel.ui.view.GradientTextView
@@ -210,7 +210,7 @@
 
                         <TextView
                             style="@style/activityTravelsPlanIconText"
-                            android:layout_marginLeft="7dp"
+                            android:layout_marginLeft="@dimen/x7"
                             android:layout_toRightOf="@id/tv_end_night"
                             android:text="下午" />
                     </RelativeLayout>

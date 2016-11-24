@@ -15,7 +15,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
+        android:layout_height="@dimen/x49"
         android:layout_marginTop="@dimen/commonStatusHeight"
         app:titleTextAppearance="@style/ToolBar.TitleText">
 
@@ -26,13 +26,13 @@
                 android:id="@+id/iv_back"
                 android:layout_centerVertical="true"
                 android:src="@drawable/back"
-                android:layout_width="20dp"
+                android:layout_width="@dimen/x20"
                 android:layout_height="match_parent" />
             <TextView
                 android:id="@+id/tv_size"
-                android:textSize="15sp"
+                android:textSize="@dimen/x15sp"
                 android:textColor="@color/colorFAFAFA"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/iv_back"
                 android:layout_width="wrap_content"
@@ -41,8 +41,8 @@
                 android:text="保存"
                 android:id="@+id/tv_save"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="15sp"
-                android:layout_marginRight="20dp"
+                android:textSize="@dimen/x15sp"
+                android:layout_marginRight="@dimen/x20"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"

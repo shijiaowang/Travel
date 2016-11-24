@@ -3,6 +3,6 @@
     android:elevation="1dp"
     android:id="@+id/input"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="@dimen/x50">
 
 </com.hyphenate.easeui.widget.EaseChatInputMenu>

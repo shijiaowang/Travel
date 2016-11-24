@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="334dp"
-    android:layout_height="211dp"
+    android:layout_width="@dimen/x334"
+    android:layout_height="@dimen/x211"
     android:background="@drawable/appoint_enter_dialog_bg"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="39dp"
+        android:layout_height="@dimen/x39"
         android:background="@color/otherTitleBg"
         android:gravity="center"
         android:text="投诉举报"
         android:textColor="@color/colorFAFAFA"
-        android:textSize="15sp" />
+        android:textSize="@dimen/x15sp" />
 
     <RadioGroup
         android:id="@+id/rg_group"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="@dimen/x25"
+        android:layout_marginLeft="@dimen/x4"
+        android:layout_marginRight="@dimen/x4"
+        android:layout_marginTop="@dimen/x10"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -55,15 +55,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="22dp"
+        android:layout_marginLeft="@dimen/x22"
+        android:layout_marginRight="@dimen/x22"
         android:layout_weight="1">
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="2dp"
+            android:layout_marginLeft="@dimen/x2"
             android:text="@string/activity_activate_detail_pen"
             android:textColor="@color/colorb5b5b5" />
 
@@ -73,33 +73,33 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@null"
-            android:paddingLeft="20dp"
+            android:paddingLeft="@dimen/x20"
             android:hint="请输入投诉详细内容"
             android:textColorHint="@color/colorb5b5b5"
             android:textColor="@color/color646464"
-            android:textSize="13sp" />
+            android:textSize="@dimen/x13sp" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginBottom="22dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginTop="2dp"
+        android:layout_height="@dimen/x2"
+        android:layout_marginBottom="@dimen/x22"
+        android:layout_marginLeft="@dimen/x22"
+        android:layout_marginRight="@dimen/x22"
+        android:layout_marginTop="@dimen/x2"
         android:background="@drawable/line_dot" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
+        android:layout_height="@dimen/x1"
+        android:layout_marginLeft="@dimen/x25"
+        android:layout_marginRight="@dimen/x25"
         android:background="@color/meLine" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="39dp"
+        android:layout_height="@dimen/x39"
         android:orientation="horizontal">
 
         <TextView
@@ -110,11 +110,11 @@
             android:gravity="center"
             android:text="取消"
             android:textColor="@color/color646464"
-            android:textSize="14sp" />
+            android:textSize="@dimen/x14sp" />
 
         <View
-            android:layout_width="1dp"
-            android:layout_height="27dp"
+            android:layout_width="@dimen/x1"
+            android:layout_height="@dimen/x27"
             android:layout_gravity="center_vertical"
             android:background="@color/meLine" />
 
@@ -126,6 +126,6 @@
             android:gravity="center"
             android:text="确定"
             android:textColor="@color/otherTitleBg"
-            android:textSize="14sp" />
+            android:textSize="@dimen/x14sp" />
     </LinearLayout>
 </LinearLayout>

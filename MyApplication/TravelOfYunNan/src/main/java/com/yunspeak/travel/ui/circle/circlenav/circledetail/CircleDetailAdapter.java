@@ -44,8 +44,7 @@ public class CircleDetailAdapter extends BaseRecycleViewAdapter<CircleDetailBean
 
     @Override
     public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_activity_circle, parent, false);
-        return new CircleDetailHolder(inflate);
+        return new CircleDetailHolder(inflateView(R.layout.item_activity_circle, parent));
     }
 
 

@@ -7,35 +7,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="267dp"
+        android:layout_height="@dimen/x267"
         android:background="@color/colorFAFAFA"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x35"
             android:gravity="center_vertical"
-            android:paddingLeft="20dp"
+            android:paddingLeft="@dimen/x20"
             android:text="公开显示"
             android:textColor="@color/color646464"
-            android:textSize="14sp" />
+            android:textSize="@dimen/x14sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="@dimen/x1"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
             android:background="@color/meLine" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/x12"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
             android:text="最多同时显示7个称号"
             android:textColor="@color/colorb5b5b5"
-            android:textSize="11sp" />
+            android:textSize="@dimen/x11sp" />
 
         <ScrollView
             android:layout_width="wrap_content"
@@ -52,31 +52,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="@dimen/x6"
         android:background="@color/colorFAFAFA"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x35"
             android:gravity="center_vertical"
-            android:paddingLeft="20dp"
+            android:paddingLeft="@dimen/x20"
             android:text="添加标签"
             android:textColor="@color/color646464"
-            android:textSize="14sp" />
+            android:textSize="@dimen/x14sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="@dimen/x1"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
             android:background="@color/meLine" />
 
         <com.yunspeak.travel.ui.view.SimpleViewPagerIndicator
             android:id="@+id/indicator"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
+            android:layout_height="@dimen/x40"
+            android:layout_marginLeft="@dimen/x20"
             android:gravity="center_vertical">
 
         </com.yunspeak.travel.ui.view.SimpleViewPagerIndicator>
@@ -84,22 +84,22 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="@dimen/x10">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="4dp">
+                android:layout_marginBottom="@dimen/x10"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginTop="@dimen/x4">
 
             </android.support.v4.view.ViewPager>
 
             <LinearLayout
                 android:id="@+id/ll_indicator"
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
+                android:layout_height="@dimen/x6"
                 android:layout_alignParentBottom="true"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -108,8 +108,8 @@
 
             <View
                 android:id="@+id/v_dot"
-                android:layout_width="6dp"
-                android:layout_height="6dp"
+                android:layout_width="@dimen/x6"
+                android:layout_height="@dimen/x6"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/dot_for_viewpager_indicator_current" />
         </RelativeLayout>

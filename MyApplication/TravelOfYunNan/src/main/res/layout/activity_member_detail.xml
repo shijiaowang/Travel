@@ -13,12 +13,11 @@
         <Button
             android:id="@+id/tv_joined"
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="@dimen/x37"
             android:gravity="center"
-            android:text="已加入(4) ∨ "
             android:background="@color/colorFAFAFA"
             android:textColor="@color/otherTitleBg"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
 
 
 
@@ -33,11 +32,10 @@
             android:id="@+id/tv_enter"
             android:background="@color/colorFAFAFA"
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="@dimen/x37"
             android:gravity="center"
-            android:text="报名中(6) ∨ "
             android:textColor="@color/otherTitleBg"
-            android:textSize="12sp" />
+            android:textSize="@dimen/x12sp" />
 
 
         <android.support.v7.widget.RecyclerView

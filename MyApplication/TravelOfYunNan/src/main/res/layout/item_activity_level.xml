@@ -2,23 +2,23 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="30dp"
+    android:layout_height="@dimen/x30"
     android:gravity="center_vertical">
 
     <TextView
         android:id="@+id/tv_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="@dimen/x50"
         android:textColor="@color/color646464"
-        android:textSize="13sp" />
+        android:textSize="@dimen/x13sp" />
 
     <TextView
         android:id="@+id/tv_express"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
+        android:layout_marginRight="@dimen/x50"
         android:textColor="@color/color646464"
-        android:textSize="13sp" />
+        android:textSize="@dimen/x13sp" />
 </RelativeLayout>

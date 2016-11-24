@@ -24,7 +24,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
     <LinearLayout
         android:id="@+id/ll_destination"
         style="@style/fragmentMyPublicationRl">
@@ -45,7 +45,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 
     <LinearLayout
         android:id="@+id/ll_active"
@@ -67,7 +67,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 
     <LinearLayout
         android:id="@+id/ll_travels"
@@ -89,7 +89,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 
     <LinearLayout
         android:id="@+id/ll_post"
@@ -111,7 +111,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 
     <LinearLayout
         android:id="@+id/ll_other"
@@ -133,5 +133,5 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
 </LinearLayout>

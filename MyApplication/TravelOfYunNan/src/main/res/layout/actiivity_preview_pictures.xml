@@ -12,29 +12,24 @@
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/commonTotalHeight">
-        <View
-            android:id="@+id/bg_1"
-            android:alpha="0.28"
-            android:background="@color/otherTitleBg"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/commonTotalHeight"/>
-
+        android:alpha="0.28"
+        android:background="@color/otherTitleBg"
+        android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="@dimen/x49"
             android:layout_marginTop="@dimen/commonStatusHeight">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_back"
                 style="@style/backFontsIcon"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="@dimen/x12"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textSize="25sp" />
+                android:paddingLeft="@dimen/x10"
+                android:paddingRight="@dimen/x10"
+                android:textSize="@dimen/x25sp" />
 
             <TextView
                 android:id="@+id/tv_name"
@@ -42,19 +37,19 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="预览"
-                android:textColor="#fafafa"
-                android:textSize="18sp" />
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="@dimen/x18sp" />
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_alignParentRight="true"
                 android:id="@+id/tv_cancel"
                 android:text="@string/activity_aite_ok"
                 android:gravity="center"
-                android:textSize="13sp"
+                android:textSize="@dimen/x13sp"
                 android:textColor="@color/colorFAFAFA"
-                android:layout_width="49dp"
+                android:layout_width="@dimen/x49"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:paddingRight="12dp"
+                android:paddingRight="@dimen/x12"
                 />
         </RelativeLayout>
     </RelativeLayout>
@@ -62,20 +57,17 @@
     <RelativeLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <View
-            android:alpha="0.28"
-            android:background="@color/otherTitleBg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:alpha="0.28"
+        android:background="@color/otherTitleBg"
+        android:layout_height="@dimen/x50">
         <TextView
             android:layout_alignParentRight="true"
             android:textColor="@color/colorFAFAFA"
             android:id="@+id/tv_send"
             android:text="发送"
             android:gravity="center"
-            android:textSize="14sp"
-            android:layout_width="50dp"
+            android:textSize="@dimen/x14sp"
+            android:layout_width="@dimen/x50"
             android:layout_height="match_parent" />
     </RelativeLayout>
 

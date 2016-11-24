@@ -9,13 +9,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="36dp">
+            android:layout_marginLeft="@dimen/x17"
+            android:layout_marginTop="@dimen/x36">
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_icon"
-                android:layout_width="33dp"
-                android:layout_height="33dp"
+                android:layout_width="@dimen/x33"
+                android:layout_height="@dimen/x33"
                 android:layout_centerVertical="true"
                 android:clickable="true"
                 android:focusable="true"
@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_toRightOf="@id/iv_icon"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
@@ -34,16 +34,16 @@
                     android:id="@+id/tv_nick_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#323232"
-                    android:textSize="14sp" />
+                    android:textColor="@color/color323232"
+                    android:textSize="@dimen/x14sp" />
 
                 <TextView
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#646464"
-                    android:textSize="10sp" />
+                    android:layout_marginTop="@dimen/x5"
+                    android:textColor="@color/color646464"
+                    android:textSize="@dimen/x10sp" />
 
             </LinearLayout>
 
@@ -53,38 +53,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="19dp"
-                android:layout_marginTop="11dp"
+                android:layout_marginRight="@dimen/x19"
+                android:layout_marginTop="@dimen/x11"
                 android:textColor="#878686"
-                android:textSize="14sp" />
+                android:textSize="@dimen/x14sp" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_marginRight="17dp"
-            android:layout_marginTop="25dp"
-            android:textColor="#646464"
-            android:textSize="15sp" />
+            android:layout_marginLeft="@dimen/x17"
+            android:layout_marginRight="@dimen/x17"
+            android:layout_marginTop="@dimen/x25"
+            android:textColor="@color/color646464"
+            android:textSize="@dimen/x15sp" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_post_image"
             android:scrollbars="none"
             android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_marginRight="17dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginLeft="@dimen/x17"
+            android:layout_marginRight="@dimen/x17"
+            android:layout_marginTop="@dimen/x24"
            />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="14dp"
-        android:layout_marginBottom="14dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="14dp"
+        android:layout_height="@dimen/x14"
+        android:layout_marginBottom="@dimen/x14"
+        android:layout_marginLeft="@dimen/x19"
+        android:layout_marginTop="@dimen/x14"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -93,21 +93,21 @@
             android:text="@string/activity_circle_love_empty"
             android:layout_width="wrap_content"
             android:textColor="@color/color969696"
-            android:textSize="14sp"
+            android:textSize="@dimen/x14sp"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tv_like_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/x5"
             android:textColor="@color/color969696"
-            android:textSize="11sp" />
+            android:textSize="@dimen/x11sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="@dimen/x5"
         android:background="@color/meLine"
         />
 
@@ -115,17 +115,17 @@
             android:id="@+id/tv_discuss_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="10dp"
-            android:textColor="#323232"
-            android:textSize="14sp" />
+            android:layout_marginBottom="@dimen/x9"
+            android:layout_marginLeft="@dimen/x17"
+            android:layout_marginTop="@dimen/x10"
+            android:textColor="@color/color323232"
+            android:textSize="@dimen/x14sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginRight="17dp"
+            android:layout_height="@dimen/x1"
+            android:layout_marginLeft="@dimen/x17"
+            android:layout_marginRight="@dimen/x17"
             android:background="@color/meLine" />
 
     </LinearLayout>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="61dp"
+    android:layout_height="wrap_content"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/x60"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_icon"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginRight="12dp"
+            android:layout_width="@dimen/x45"
+            android:layout_height="@dimen/x45"
+            android:layout_marginLeft="@dimen/x13"
+            android:layout_marginRight="@dimen/x12"
            />
 
         <LinearLayout
@@ -32,27 +32,27 @@
                 style="@style/commonSingleLineTextStyle"
                 android:id="@+id/tv_title"
                 android:textColor="@color/Ffbf75"
-                android:textSize="12sp" />
+                android:textSize="@dimen/x12sp" />
 
             <TextView
                 style="@style/commonSingleLineTextStyle"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/x10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_content"
                 android:textColor="@color/color7d7d7d"
-                android:textSize="11sp" />
+                android:textSize="@dimen/x11sp" />
 
         </LinearLayout>
 
         <TextView
             android:gravity="center"
-            android:textSize="11sp"
+            android:textSize="@dimen/x11sp"
             style="@style/commonSingleLineTextStyle"
-            android:layout_marginRight="13dp"
-            android:minWidth="70dp"
+            android:layout_marginRight="@dimen/x13"
+            android:minWidth="@dimen/x70"
             android:layout_width="wrap_content"
-            android:layout_height="18dp"
+            android:layout_height="@dimen/x18"
             android:id="@+id/tv_follow" />
 
 
