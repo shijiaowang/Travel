@@ -38,7 +38,7 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
     TextView tvChatNumber;
     @BindView(R.id.s_toggle)
     Switch sToggle;
-    @BindView(R.id.tv_clear)
+    @BindView(R.id.bt_clear)
     TextView btClear;
     @BindView(R.id.rv_member)
     RecyclerView rvMember;
