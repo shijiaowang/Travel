@@ -24,6 +24,7 @@ import java.util.List;
 public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommonEvent,DeliciousDetailBean> {
     private SimpleDraweeView mIvBg;
     private TextView mTvDes;
+    private TextView mTvNumber;
 
     @Override
     protected void initEvent() {
@@ -32,6 +33,7 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         vsContent.inflate();
         mIvBg = (SimpleDraweeView) findViewById(R.id.iv_bg);
         mTvDes = (TextView) findViewById(R.id.tv_des);
+        mTvNumber = (TextView) findViewById(R.id.tv_number);
     }
 
 
@@ -64,6 +66,7 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         String foodUrl = travel.getFood_img();
         if (!StringUtils.isEmpty(foodUrl)){
             final String[] split = foodUrl.split(",");
+            mTvNumber.setText("共"+split.length+"张图片");
             FrescoUtils.displayNormal(mIvBg,split[0]);
             mIvBg.setOnClickListener(new View.OnClickListener() {
                 @Override

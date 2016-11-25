@@ -11,14 +11,15 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/otherTitleBg"
         android:theme="@style/toolbar_theme">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/tool_bar"
             android:layout_width="match_parent"
-            android:paddingTop="@dimen/commonStatusHeight"
-            android:layout_height="@dimen/x74"
-            android:background="@color/otherTitleBg"
+            android:layout_height="@dimen/x49"
+            android:minHeight="@dimen/x49"
+
             app:titleTextAppearance="@style/ToolBar.TitleText">
             <ViewStub
                 android:id="@+id/vs_bar"

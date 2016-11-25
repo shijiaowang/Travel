@@ -272,7 +272,7 @@
     <style name="fragmentAppointBottomText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/x14sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/colorb5b5b5</item>
     </style>
 

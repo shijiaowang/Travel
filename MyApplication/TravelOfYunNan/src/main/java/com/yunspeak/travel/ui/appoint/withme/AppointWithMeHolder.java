@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.appoint.withme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.ColorInt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import java.util.Map;
 
+import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.BindView;
 
@@ -41,24 +43,25 @@ public class AppointWithMeHolder extends BaseRecycleViewHolder {
     FontsIconTextView mTvIconLove;
     @BindView(R.id.iv_bg)
     SimpleDraweeView mIvBg;
-    @BindView(R.id.tv_time)
-    TextView mTvTime;
-    @BindView(R.id.tv_dream)
-    TextView mTvDream;
-    @BindView(R.id.tv_have_number)
-    TextView mTvHaveNumber;
-    @BindView(R.id.tv_money)
-    TextView mTvMoney;
-    @BindView(R.id.tv_watch_number)
-    TextView mTvWatchNumber;
-    @BindView(R.id.tv_love_number)
-    TextView mTvLoveNumber;
-    @BindView(R.id.tv_how_long)
-    TextView mTvHowLong;
-    @BindView(R.id.tv_start_and_long)
-    TextView mTvStartAndLong;
+    @BindView(R.id.tv_time) TextView mTvTime;
+    @BindView(R.id.tv_dream) TextView mTvDream;
+    @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
+    @BindView(R.id.tv_money) TextView mTvMoney;
+    @BindView(R.id.tv_watch_number) TextView mTvWatchNumber;
+    @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
+    @BindView(R.id.tv_how_long) TextView mTvHowLong;
+    @BindView(R.id.tv_start_and_long) TextView mTvStartAndLong;
     @BindString(R.string.activity_circle_love_empty) String emptyLove;
     @BindString(R.string.activity_circle_love_full) String fullLove;
+    @BindColor(R.color.otherFf7f6c) @ColorInt
+    int color1;
+    @BindColor(R.color.otherTitleBg) @ColorInt int color2;
+    @BindColor(R.color.other74b8ff) @ColorInt int color3;
+    @BindColor(R.color.otherFcae04) @ColorInt int color4;
+    @BindColor(R.color.other9f8fe4) @ColorInt int color5;
+    @BindColor(R.color.other50c3eb) @ColorInt int color6;
+    @BindColor(R.color.other5ee5c5) @ColorInt int color7;
+    private int [] colors=new int[]{color1,color2,color3,color4,color5,color6,color7};
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
     public AppointWithMeHolder(View itemView) {
         super(itemView);
@@ -74,8 +77,9 @@ public class AppointWithMeHolder extends BaseRecycleViewHolder {
         FrescoUtils.displayRoundIcon(mIvBg, datas.getTravel_img());
         mTvIconLove.setText(datas.getIs_like().equals("1")?fullLove:emptyLove);
         mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
-        mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
+        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
         mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
+        mTvHowLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss",datas.getAdd_time()));
         mTvLoveNumber.setText(datas.getCount_like());
         mTvWatchNumber.setText(datas.getBrowse());
         if (mFlTitle != null && mFlTitle.getChildCount() > 0) {
@@ -105,6 +109,7 @@ public class AppointWithMeHolder extends BaseRecycleViewHolder {
                 TextView textView = (TextView) view.findViewById(R.id.tv_text);
                 textView.setText(split[i]);
                 textView.setBackgroundResource(titleBgs[i%titleBgs.length]);
+                textView.setTextColor(colors[i%colors.length]);
                 mFlTitle.addView(view);
             }
         }

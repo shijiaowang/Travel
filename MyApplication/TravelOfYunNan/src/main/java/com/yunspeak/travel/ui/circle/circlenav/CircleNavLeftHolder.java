@@ -34,7 +34,7 @@ public class CircleNavLeftHolder extends BaseHolder<Circle.DataBean.CircleLeftBe
         }else {
             mVLine.setBackgroundColor(Color.parseColor("#f1f1f1"));
             mTvPlace.setTextColor(Color.parseColor("#c1c1c1"));
-            mTvCursor.setVisibility(View.GONE);
+            mTvCursor.setVisibility(View.INVISIBLE);
         }
     }
 

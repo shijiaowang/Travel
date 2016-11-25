@@ -27,6 +27,7 @@
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
                 android:id="@+id/tv_time"
+                android:textSize="@dimen/x10sp"
                 android:textColor="@color/otherTitleBg"
                 style="@style/fragmentAppointWithMeText"/>
 
@@ -35,7 +36,6 @@
 
             style="@style/fragmentAppointWithMeLl">
             <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:paddingLeft="0dp"
                 android:text="@string/fragment_play_with_me_add"
                 style="@style/fragmentAppointWithMeIconFont"/>
             <TextView
@@ -45,7 +45,6 @@
 
         </LinearLayout>
         <LinearLayout
-
             style="@style/fragmentAppointWithMeLl">
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:textStyle="italic"

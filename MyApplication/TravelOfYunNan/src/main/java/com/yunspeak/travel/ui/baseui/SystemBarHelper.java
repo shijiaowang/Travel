@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.UIUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -445,7 +446,7 @@ public class SystemBarHelper
     public static int getStatusBarHeight(Context context)
     {
 
-        int result = 0;
+        int result = (int) context.getResources().getDimension(R.dimen.x25);//默认高度
         int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resId > 0)
         {

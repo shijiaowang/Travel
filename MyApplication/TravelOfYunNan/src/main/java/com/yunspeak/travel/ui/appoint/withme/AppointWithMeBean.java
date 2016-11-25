@@ -43,6 +43,7 @@ public class AppointWithMeBean implements ParentBean{
         private String travel_img;
         private String start_time;
         private String end_time;
+        private String add_time;
         private String meet_address;
         private String label;
         private String total_price;
@@ -52,6 +53,15 @@ public class AppointWithMeBean implements ParentBean{
         private String is_like;
         private String user_count;
         private String routes;
+
+        public String getAdd_time() {
+            return add_time;
+        }
+
+        public void setAdd_time(String add_time) {
+            this.add_time = add_time;
+        }
+
         private String user_id;
 
         public String getUser_id() {

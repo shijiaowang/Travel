@@ -25,7 +25,7 @@
     <TextView
         android:text="Yunnan Chengwai Travelling Culture Development Co., Ltd."
         android:textColor="#424242"
-        android:textSize="@dimen/x12sp"
+        android:textSize="@dimen/splash_english_des"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"

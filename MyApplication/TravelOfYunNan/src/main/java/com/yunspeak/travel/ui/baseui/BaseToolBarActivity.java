@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -66,6 +67,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     protected MenuItem item;
     protected RelativeLayout mRlEmpty;
     protected ViewStub mVsBar;
+    private AppBarLayout mAppBarLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         inflater = LayoutInflater.from(this);
         mIvPageError = (ImageView) findViewById(R.id.page_error);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         mPbLoading.setVisibility(View.GONE);
         mVsBar = (ViewStub) findViewById(R.id.vs_bar);
         mRlEmpty = (RelativeLayout) findViewById(R.id.rl_empty);
@@ -86,7 +89,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         //设置StatusBar透明
         SystemBarHelper.immersiveStatusBar(this);
-        //SystemBarHelper.setPadding(this, mToolbar);
+        SystemBarHelper.setPadding(this, mAppBarLayout);
         childView = inflater.inflate(initLayoutRes(), mFlContent, false);
         needHideChildView=childView;//默认隐藏孩子的所有内容，
         mFlContent.addView(childView);
@@ -158,6 +161,18 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
 
     }
 
+    /**
+     * 获取状态栏高度
+     * @return
+     */
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
     @Override
     public void onResume() {
         super.onResume();

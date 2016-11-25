@@ -93,7 +93,7 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
             case TYPE_CANCEL_COLLECTION:
             case TYPE_COLLECTION:
                 ToastUtils.showToast(detailCommonEvent.getMessage());
-
+               break;
             default:
                 super.onFail(detailCommonEvent);
                 break;
@@ -123,7 +123,6 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     @Override
     protected void initEvent() {
         super.initEvent();
-
         tId = getIntent().getStringExtra(IVariable.T_ID);
         tName = getIntent().getStringExtra(IVariable.NAME);
         vsFooter.setLayoutResource(R.layout.input);

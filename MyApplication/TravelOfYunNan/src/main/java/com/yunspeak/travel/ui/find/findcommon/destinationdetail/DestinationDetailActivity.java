@@ -47,7 +47,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     private boolean click;
     private float startY;
     private int tapSlop;
-
+    private TextView mTvNumber;
 
 
     public static void start(Context context,String tid, String name){
@@ -65,6 +65,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         vsContent.inflate();
         mTvDestinationDes = ((TextView) findViewById(R.id.tv_destination_des));
         mTvShow = ((TextView) findViewById(R.id.tv_show));
+        mTvNumber = ((TextView) findViewById(R.id.tv_number));
         mIvbg = ((SimpleDraweeView) findViewById(R.id.iv_bg));
         mLlSearchAppoint = ((LinearLayout) findViewById(R.id.ll_search_appoint));
         mFlowLayout = ((FlexboxLayout)findViewById(R.id.fl_label));
@@ -179,6 +180,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         String url = "";
         if (!StringUtils.isEmpty(travel_img)) {
             final String[] split = travel_img.split(",");
+            mTvNumber.setText("共"+split.length+"张图片");
             url = split[0];
             FrescoUtils.displayNormal(mIvbg, url);
             mIvbg.setOnClickListener(new View.OnClickListener() {

@@ -60,11 +60,6 @@
                android:layout_height="@dimen/x80" />
           <include
               layout="@layout/activity_my_appoint_common"/>
-           <!-- <com.yunspeak.travel.ui.view.AppointItemView
-                android:id="@+id/ap_item"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content" />-->
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_gravity="center_vertical"

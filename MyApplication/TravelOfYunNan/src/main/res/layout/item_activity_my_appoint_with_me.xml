@@ -55,7 +55,7 @@
                android:layout_width="@dimen/x80"
                android:layout_height="@dimen/x80" />
 
-            <include layout="@layout/activity_my_appoint_common"/>
+            <include layout="@layout/activity_common_appoint_detail"/>
 
             <LinearLayout
                 android:elevation="3dp"

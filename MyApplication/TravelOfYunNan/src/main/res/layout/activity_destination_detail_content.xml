@@ -5,15 +5,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical">
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/x200">
 
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/iv_bg"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x200"
-             />
-
-        <LinearLayout style="@style/activityDeliciousDetailLl">
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         />
+      <TextView
+         android:id="@+id/tv_number"
+          android:textSize="@dimen/x15sp"
+          android:textColor="@color/colorFAFAFA"
+          android:layout_margin="10dp"
+          android:layout_gravity="end|bottom"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+  </FrameLayout>
+    <LinearLayout style="@style/activityDeliciousDetailLl">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:id="@+id/tv_play_way"

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginRight="2dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorFAFAFA"
@@ -25,7 +24,6 @@
        />
 
     <com.yunspeak.travel.ui.view.FontsIconTextView
-        android:layout_marginTop="0.5dp"
         android:id="@+id/tv_icon_love"
         style="@style/fragmentAppointBottomText"
         android:layout_height="@dimen/x30"
@@ -50,7 +48,7 @@
         style="@style/fragmentAppointBottomText"
         android:layout_marginRight="@dimen/x15"
         android:textColor="@color/color969696"
-        android:textSize="@dimen/x13sp" />
+        android:textSize="13sp" />
 
 
 </LinearLayout>

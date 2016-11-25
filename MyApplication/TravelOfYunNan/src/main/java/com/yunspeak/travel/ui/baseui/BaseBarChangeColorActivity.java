@@ -159,7 +159,7 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
             }else {
                 LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(this);
                 linearLayoutManager.setAutoMeasureEnabled(true);
-                 linearLayoutManager.setStackFromEnd(true);//软键盘弹出上移
+                // linearLayoutManager.setStackFromEnd(true);//软键盘弹出上移
                 mRvCommon.setLayoutManager(linearLayoutManager);
             }
             mRvCommon.setNestedScrollingEnabled(false);

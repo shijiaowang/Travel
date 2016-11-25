@@ -126,7 +126,7 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
             List<String> list = Arrays.asList(newImage);
             if (circleDetailPhotoAdapter==null){
                 circleDetailPhotoAdapter = new CircleDetailPhotoAdapter(list,mContext,datas.getId(),datas.getCid());
-                mRvPhoto.addItemDecoration(new CircleDetailDecoration(6));
+                mRvPhoto.addItemDecoration(new CircleDetailPhotoDecoration(6));
                 mRvPhoto.setAdapter(circleDetailPhotoAdapter);
                 LinearLayoutManager linearLayoutManager=new GridLayoutManager(mContext,3);
                 //响应toolebar收缩

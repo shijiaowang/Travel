@@ -52,6 +52,7 @@
             android:layout_width="@dimen/x73"
             android:layout_height="@dimen/x73"
              />
+
         <include layout="@layout/activity_my_appoint_common"/>
         <LinearLayout
             android:gravity="center"

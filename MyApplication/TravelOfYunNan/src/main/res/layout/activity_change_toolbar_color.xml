@@ -43,6 +43,7 @@
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/x49"
+                        android:minHeight="@dimen/x49"
                         app:layout_collapseMode="pin"
                         app:layout_scrollFlags="scroll|enterAlways"
                         android:gravity="center"

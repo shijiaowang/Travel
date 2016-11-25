@@ -19,7 +19,7 @@
                 android:layout_width="@dimen/x63"
                 android:layout_height="@dimen/x63"
                 android:layout_marginLeft="@dimen/x14"
-                android:layout_marginTop="@dimen/x17"
+                android:layout_marginTop="@dimen/x170"
                 />
 
             <TextView
