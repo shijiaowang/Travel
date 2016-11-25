@@ -17,25 +17,25 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_width="wrap_content"
-            android:minWidth="45dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_marginTop="4dp"
+            android:minWidth="@dimen/x45"
+            android:paddingLeft="@dimen/x5"
+            android:paddingRight="@dimen/x5"
+            android:layout_marginTop="@dimen/x4"
             android:background="@drawable/home_chosen_bg"
-            android:layout_height="20dp">
+            android:layout_height="@dimen/x20">
             <ImageView
                 android:background="@drawable/home_fragment_chosen_bg"
                 android:src="@drawable/home_chosen"
                 android:scaleType="center"
-                android:layout_width="12dp"
-                android:layout_height="12dp" />
+                android:layout_width="@dimen/x12"
+                android:layout_height="@dimen/x12" />
             <TextView
                  android:id="@+id/tv_type"
                 android:lines="1"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/x5"
                 android:ellipsize="end"
                 android:textColor="@color/otherFcae04"
-                android:textSize="11sp"
+                android:textSize="@dimen/x11sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -44,14 +44,14 @@
     </RelativeLayout>
     <TextView
         android:id="@+id/tv_chosen_text"
-        android:lineSpacingExtra="3dp"
+        android:lineSpacingExtra="@dimen/x3"
         android:ellipsize="end"
-        android:textSize="10sp"
+        android:textSize="@dimen/x10sp"
         android:textColor="@color/homeTopicChosenText"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="14dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_marginBottom="@dimen/x14"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
         android:gravity="center_vertical"
         android:lines="2"
         android:layout_width="match_parent"

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="112dp"
-    android:layout_height="138dp"
+    android:layout_width="@dimen/x112"
+    android:layout_height="@dimen/x138"
     android:background="@color/homeTopicChosenBg">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="33dp"
+        android:layout_height="@dimen/x33"
         android:layout_below="@id/iv_picture"
         android:gravity="center"
         android:orientation="vertical">
@@ -28,7 +28,7 @@
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_picture"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="@dimen/x105"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

@@ -2,40 +2,40 @@
 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@drawable/pop_window_order_bg"
-    android:paddingLeft="12dp"
-    android:paddingRight="12dp"
+    android:paddingLeft="@dimen/x12"
+    android:paddingRight="@dimen/x12"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:layout_height="49dp">
+    android:layout_height="@dimen/x49">
   <RadioButton
       android:button="@null"
       android:textColor="@drawable/pop_order_text_selector"
       android:text="@string/pop_order"
       android:gravity="center"
       android:background="@drawable/pop_order_selector"
-      android:textSize="14sp"
+      android:textSize="@dimen/x14sp"
       android:layout_width="0dp"
       android:layout_weight="1"
-      android:layout_height="30dp" />
+      android:layout_height="@dimen/x30" />
     <RadioButton
         android:button="@null"
         android:textColor="@drawable/pop_order_text_selector"
         android:text="@string/pop_star"
         android:gravity="center"
         android:background="@drawable/pop_order_selector"
-        android:textSize="14sp"
+        android:textSize="@dimen/x14sp"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="30dp" />
+        android:layout_height="@dimen/x30" />
     <RadioButton
         android:button="@null"
         android:textColor="@drawable/pop_order_text_selector"
         android:text="@string/pop_mouth"
         android:gravity="center"
         android:background="@drawable/pop_order_selector"
-        android:textSize="14sp"
+        android:textSize="@dimen/x14sp"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="30dp" />
+        android:layout_height="@dimen/x30" />
 
 </RadioGroup>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="@dimen/x200"
     android:orientation="vertical"
     android:background="@color/colorFAFAFA"
     android:gravity="center_horizontal"
     >
     <LinearLayout
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="@dimen/x38"
         android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -47,10 +47,10 @@
         android:text="取消"
         android:background="@drawable/normal_press_bg"
         android:textColor="@color/color646464"
-        android:textSize="15sp"
+        android:textSize="@dimen/x15sp"
         android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_width="80dp"
+        android:layout_marginTop="@dimen/x30"
+        android:layout_width="@dimen/x80"
         android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="128dp"
-    android:layout_height="122dp"
+    android:layout_width="@dimen/x128"
+    android:layout_height="@dimen/x122"
 
 >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="110dp"
-        android:layout_height="114dp"
+        android:layout_width="@dimen/x110"
+        android:layout_height="@dimen/x114"
         android:background="@drawable/pop_appoint_detail_more_bg"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/x8"
             android:id="@+id/ll_share"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -24,26 +24,26 @@
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/x15"
                 android:text="@string/activity_appoint_detail_share"
                 android:textColor="@color/colorf79283" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/x20"
                 android:text="分享"
                 android:textColor="@color/color646464"
-                android:textSize="14sp" />
+                android:textSize="@dimen/x14sp" />
 
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_height="@dimen/x1"
+            android:layout_marginLeft="@dimen/x8"
+            android:layout_marginRight="@dimen/x8"
             android:background="@color/meLine" />
 
         <LinearLayout
@@ -57,7 +57,7 @@
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/x15"
                 android:text="@string/activity_appoint_detail_collection"
                 android:textColor="@color/colorf5b731" />
 
@@ -65,19 +65,19 @@
                 android:id="@+id/tv_collection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/x20"
                 android:text="收藏"
                 android:textColor="@color/color646464"
-                android:textSize="14sp" />
+                android:textSize="@dimen/x14sp" />
 
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_height="@dimen/x1"
+            android:layout_marginLeft="@dimen/x8"
+            android:layout_marginRight="@dimen/x8"
             android:background="@color/meLine" />
 
         <LinearLayout
@@ -91,17 +91,17 @@
             <com.yunspeak.travel.ui.view.FontsIconTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/x15"
                 android:text="@string/activity_appoint_detail_complaint"
                 android:textColor="@color/color89bff7" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/x20"
                 android:text="投诉"
                 android:textColor="@color/color646464"
-                android:textSize="14sp" />
+                android:textSize="@dimen/x14sp" />
 
 
         </LinearLayout>

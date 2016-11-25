@@ -3,27 +3,27 @@
     android:orientation="vertical"
     android:background="@drawable/activity_photo_dialog_bg"
     android:layout_width="match_parent"
-    android:layout_height="93dp">
+    android:layout_height="@dimen/x93">
     <TextView
         android:id="@+id/tv_save"
         android:text="保存图片"
         android:textColor="@color/color232323"
-        android:textSize="14sp"
+        android:textSize="@dimen/x14sp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="42dp" />
+        android:layout_height="@dimen/x42" />
     <View
         android:background="@color/otherTitleBg"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/x1"/>
     <TextView
         android:text="取消"
         android:id="@+id/tv_cancel"
         android:textColor="@color/color232323"
-        android:textSize="14sp"
+        android:textSize="@dimen/x14sp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="@dimen/x50" />
 
 
 </LinearLayout>

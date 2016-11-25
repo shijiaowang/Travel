@@ -4,26 +4,26 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@color/colorFAFAFA"
-    android:layout_height="95dp">
+    android:layout_height="@dimen/x95">
     <TextView
         android:id="@+id/tv_album"
         android:gravity="center"
         android:text="更换封面"
         android:textColor="@color/otherTitleBg"
-        android:textSize="18sp"
+        android:textSize="@dimen/x18sp"
         android:layout_width="match_parent"
-        android:layout_height="45dp" />
+        android:layout_height="@dimen/x45" />
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="5dp"/>
+        android:layout_height="@dimen/x5"/>
     <TextView
         android:id="@+id/tv_cancel"
         android:textColor="@color/color646464"
-        android:textSize="18sp"
+        android:textSize="@dimen/x18sp"
         android:text="取消"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="45dp" />
+        android:layout_height="@dimen/x45" />
 
 </LinearLayout>

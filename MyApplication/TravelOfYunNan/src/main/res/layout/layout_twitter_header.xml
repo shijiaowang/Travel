@@ -5,7 +5,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/x40"
         android:layout_gravity="center">
 
         <ImageView
@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="48dp"
+            android:layout_marginRight="@dimen/x48"
             android:layout_toLeftOf="@+id/tvRefresh"
             android:background="@mipmap/twitter_pull_arrow" />
 
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="48dp"
+            android:layout_marginRight="@dimen/x48"
             android:layout_toLeftOf="@+id/tvRefresh"
             android:background="@mipmap/qq_refresh_success" />
 
@@ -32,12 +32,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="48dp"
+            android:layout_marginRight="@dimen/x48"
             android:layout_toLeftOf="@+id/tvRefresh" />
 
         <TextView
             android:id="@+id/tvRefresh"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/x150"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"

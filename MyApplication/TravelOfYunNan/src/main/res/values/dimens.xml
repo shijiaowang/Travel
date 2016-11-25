@@ -216,6 +216,16 @@
     <dimen name="x235">235dp</dimen>
     <dimen name="x142">142dp</dimen>
     <dimen name="x8sp">8sp</dimen>
+    <dimen name="x308">308dp</dimen>
+    <dimen name="x210">210dp</dimen>
+    <dimen name="x104">104dp</dimen>
+    <dimen name="x23sp">23sp</dimen>
+    <dimen name="x97">97dp</dimen>
+    <dimen name="x122">122dp</dimen>
+    <dimen name="x138">138dp</dimen>
+    <dimen name="x175">175dp</dimen>
+    <dimen name="x108">108dp</dimen>
+    <dimen name="x226">226dp</dimen>
 
 
 </resources>

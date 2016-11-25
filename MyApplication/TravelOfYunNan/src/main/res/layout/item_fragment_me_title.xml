@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:textColor="#fcae04"
-    android:textSize="10sp"
+    android:textColor="@color/otherFcae04"
+    android:textSize="@dimen/x10sp"
     android:gravity="center"
     android:background="@drawable/fragment_me_titles_bg"
     android:layout_width="wrap_content"

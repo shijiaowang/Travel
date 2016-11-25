@@ -56,15 +56,15 @@
         <item name="android:layout_marginLeft">9dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">@color/homeTopicTextColor</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/x14sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
     <!--话题的父布局-->
     <style name="HomeTopicParent">
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginLeft">@dimen/x15</item>
+        <item name="android:layout_marginTop">@dimen/x14</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
@@ -73,7 +73,7 @@
         android:textColor="@color/homeTopicChosenText"-->
     <!--话题的父布局-->
     <style name="HomeHotSpotsText">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/x10sp</item>
         <item name="android:textColor">@color/homeTopicChosenText</item>
     </style>
 

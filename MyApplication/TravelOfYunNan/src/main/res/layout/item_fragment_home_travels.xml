@@ -2,40 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/colorFAFAFA"
     android:layout_width="match_parent"
-    android:layout_height="226dp">
+    android:layout_height="@dimen/x226">
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_travels"
         android:layout_width="match_parent"
-        android:layout_height="165dp" />
+        android:layout_height="@dimen/x165" />
     <TextView
         android:layout_below="@id/iv_travels"
         android:id="@+id/tv_content"
         android:textColor="@color/color323232"
-        android:paddingRight="80dp"
+        android:paddingRight="@dimen/x80"
         android:gravity="center_vertical"
-        android:textSize="14sp"
-        android:paddingLeft="10dp"
+        android:textSize="@dimen/x14sp"
+        android:paddingLeft="@dimen/x10"
         android:lines="2"
         android:ellipsize="end"
         android:layout_width="match_parent"
-        android:layout_height="61dp" />
+        android:layout_height="@dimen/x61" />
     <LinearLayout
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="@dimen/x140"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="@dimen/x10"
         android:layout_width="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_height="wrap_content">
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/x50"/>
         <TextView
             android:id="@+id/tv_user"
             style="@style/commonSingleLineTextStyle"
             android:textColor="@color/color646464"
-            android:textSize="8sp"
+            android:textSize="@dimen/x8sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

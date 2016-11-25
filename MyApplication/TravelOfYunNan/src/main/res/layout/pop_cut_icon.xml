@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@color/colorFAFAFA"
-    android:layout_height="151dp">
+    android:layout_height="@dimen/x151">
     <TextView
         android:id="@+id/tv_camera"
         android:gravity="center"
         android:text="拍照"
         android:textColor="@color/otherTitleBg"
-        android:textSize="18sp"
+        android:textSize="@dimen/x18sp"
         android:layout_width="match_parent"
-        android:layout_height="45dp" />
+        android:layout_height="@dimen/x45" />
     <View
         android:background="@color/meLine"
         android:layout_marginRight="20dp"

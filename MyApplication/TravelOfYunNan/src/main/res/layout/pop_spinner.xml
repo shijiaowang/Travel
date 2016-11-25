@@ -5,7 +5,7 @@
     android:dividerHeight="0dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/activity_travels_plan_spinner_bg"
-    android:layout_width="105dp"
+    android:layout_width="@dimen/x105"
     android:layout_height="wrap_content">
 
 </ListView>
