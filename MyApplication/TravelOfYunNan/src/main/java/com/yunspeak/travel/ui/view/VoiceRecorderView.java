@@ -74,6 +74,7 @@ public class VoiceRecorderView extends RelativeLayout {
                 getResources().getDrawable(R.drawable.chat_voice6),
                 getResources().getDrawable(R.drawable.chat_voice7),
                 getResources().getDrawable(R.drawable.chat_voice8),
+
                 getResources().getDrawable(R.drawable.chat_voice9),
                 getResources().getDrawable(R.drawable.chat_voice10),
                 getResources().getDrawable(R.drawable.chat_voice11),
