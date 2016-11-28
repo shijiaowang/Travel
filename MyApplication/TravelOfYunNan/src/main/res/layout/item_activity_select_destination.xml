@@ -61,7 +61,7 @@
         android:id="@+id/tv_select"
         android:textColor="@color/colorb5b5b5"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/x15"
+        android:paddingRight="@dimen/x15"
         android:layout_centerVertical="true"
         android:text="@string/activity_aite_ok"
         android:textSize="@dimen/x15sp"

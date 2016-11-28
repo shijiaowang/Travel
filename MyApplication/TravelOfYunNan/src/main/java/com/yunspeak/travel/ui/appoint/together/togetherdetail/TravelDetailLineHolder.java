@@ -41,7 +41,7 @@ public class TravelDetailLineHolder extends BaseHolder<List<AppointTogetherDetai
     @Override
     protected void initItemDatas(final List<AppointTogetherDetailBean.DataBean.RoutesBean> datas, final Context mContext, int position) {
         mTvTime.setText(datas.get(0).getTime());
-        mTvNumber.setText((position + 1) + "");
+        mTvNumber.setText("Day\n"+(position + 1));
         mIvCursor.setImageResource(cursors[position%cursors.length]);
         if (!isDetail) {
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)mLvLine.getLayoutParams();

@@ -506,7 +506,7 @@ public class SystemBarHelper
      */
     public static void setPadding(Context context, View view)
     {
-
+      if (view==null)return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
         {
             view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + getStatusBarHeight(context),

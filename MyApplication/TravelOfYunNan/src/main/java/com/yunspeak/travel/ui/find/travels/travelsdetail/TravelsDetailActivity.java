@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.event.ActiveDetailEvent;
+import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
 import com.yunspeak.travel.event.DetailCommonEvent;
@@ -23,9 +27,12 @@ import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
+import com.yunspeak.travel.utils.XEventUtils;
 
 import org.xutils.common.util.DensityUtil;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wangyang on 2016/7/30.
@@ -45,6 +52,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
     private WebView mWvHtml;
 
     private boolean isFirstMove = true;//避免第一次margin为0
+    private String title;
 
     @Override
     protected String detailType() {
@@ -82,6 +90,26 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         context.startActivity(intent);
     }
 
+    @Override
+    protected String initRightText() {
+        return "更多";
+    }
+
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        if (StringUtils.isEmpty(isCollect))return;
+        String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
+        //没有举报第三个参数无所谓
+        AppointDetailMorePop.showMorePopIsNotCompliant(this,tId,mToolbar, "0", collection, new ParentPopClick() {
+            @Override
+            public void onClick(int t) {
+                String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
+                int type=isCollect.equals(isTrue)?TYPE_CANCEL_COLLECTION:TYPE_COLLECTION;
+                Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("5").addId(tId).end();
+                XEventUtils.postUseCommonBackJson(url, collectionMap, type, new ActiveDetailEvent());
+            }
+        },"城外旅游游记分享",title,false);
+    }
 
     private void init() {
             vsContent.setLayoutResource(R.layout.activity_travels_detail_content);
@@ -122,7 +150,8 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         TravelsDetailBean object = GsonUtils.getObject(detailCommonEvent.getResult(), TravelsDetailBean.class);
         TravelsDetailBean.DataBean data = object.getData();
         try {
-            mTvTitle.setText(data.getTravel().getTitle());
+            title = data.getTravel().getTitle();
+            mTvTitle.setText(title);
             String url = data.getTravel().getTravels_img().split(",")[0];
             FrescoUtils.displayNormal(mIvBg,url);
         }catch (Exception e){

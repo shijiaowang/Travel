@@ -20,8 +20,10 @@ public class ActiveActivity extends BaseBarChangeColorActivity<DetailCommonEvent
 
     @Override
     protected void initEvent() {
+        super.initEvent();
         vsContent.setLayoutResource(R.layout.activity_active_content);
         vsContent.inflate();
+        changeMargin(10,15);
 }
 
     @Override

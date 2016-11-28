@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginLeft="@dimen/x10"
+    android:layout_marginRight="@dimen/x10"
     android:layout_width="match_parent"
     android:layout_height="@dimen/x150">
     <com.facebook.drawee.view.SimpleDraweeView

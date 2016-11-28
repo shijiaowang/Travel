@@ -50,6 +50,15 @@ public class TravelsBean implements ParentBean{
         private String travel_id;
         private String add_time;
         private String status;
+        private String browse;
+
+        public String getBrowse() {
+            return browse;
+        }
+
+        public void setBrowse(String browse) {
+            this.browse = browse;
+        }
 
         public String getId() {
             return id;

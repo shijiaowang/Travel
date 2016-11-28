@@ -130,8 +130,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      * 环信监听
      */
     private void initHXListener() {
-        //注册一个监听连接状态的listener
-        EMClient.getInstance().addConnectionListener(new MyConnectionListener());
         login();
     }
 
@@ -205,43 +203,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
             }
         });
-        EMClient.getInstance().chatManager().addMessageListener(msgListener);
+
 
 
     }
-    EMMessageListener msgListener = new EMMessageListener() {
 
-        @Override
-        public void onMessageReceived(List<EMMessage> messages) {
-            //收到消息
-            LogUtils.e("onMessageReceived");
-        }
-
-        @Override
-        public void onCmdMessageReceived(List<EMMessage> messages) {
-            //收到透传消息
-            LogUtils.e("onCmdMessageReceived");
-        }
-
-        @Override
-        public void onMessageReadAckReceived(List<EMMessage> messages) {
-            //收到已读回执
-            LogUtils.e("onCmdMessageReceived");
-        }
-
-        @Override
-        public void onMessageDeliveryAckReceived(List<EMMessage> message) {
-            //收到已送达回执
-            LogUtils.e("onMessageDeliveryAckReceived");
-        }
-
-        @Override
-        public void onMessageChanged(EMMessage message, Object change) {
-            //消息状态变动
-            LogUtils.e("onMessageChanged");
-
-        }
-    };
 
 
     @Override
@@ -424,43 +390,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    //实现ConnectionListener接口
-    class MyConnectionListener implements EMConnectionListener {
-        @Override
-        public void onConnected() {
-            LogUtils.e("成功连接聊天服务器");
-        }
 
-        @Override
-        public void onDisconnected(final int error) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (error == EMError.USER_REMOVED) {
-                        ToastUtils.showToast("聊天账号已被移除");
-                    } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
-                        // 显示帐号在其他设备登录
-                        if (isOtherLogin) {
-                            ToastUtils.showToast("账号在其他地方登录!");
-                            isOtherLogin=false;
-                        }
-                        LogUtil.e("账号在其他地方登陆");
-                        login();
-                    } else {
-                        if (NetUtils.hasNetwork(HomeActivity.this)) {
-                            //ToastUtils.showToast("无法连接聊天服务器");
-                            LogUtil.e("无法连接聊天服务器");
-                        }
-                        //连接不到聊天服务器
-                        else {
-                            //当前网络不可用，请检查网络设置
-                            ToastUtils.showToast("当前网络不可用，请检查网络。");
-                        }
-                    }
-
-                }
-            });
-        }}
 
     @Override
     protected void onStop() {
@@ -471,7 +401,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EMClient.getInstance().chatManager().removeMessageListener(msgListener);
     }
     class DownloadProgress implements Callback.ProgressCallback<File> {
         @Override
@@ -547,6 +476,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         }
         preTime=currentTimeMillis;
     }
+
 }
 
 

@@ -67,6 +67,8 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     private LinearLayoutManager linearLayoutManager;
     private int loadMore=0;//插入时加载更多计算
     private MenuItem collectionMenu;
+    private String shareContent;
+
     @Override
     protected void initEvent() {
         forum_id = getIntent().getStringExtra(IVariable.FORUM_ID);
@@ -182,6 +184,9 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
         switch (postEvent.getType()) {
             case TYPE_REFRESH:
                 PostDetailBean.DataBean.ForumBean forum = parentBean.getData().getForum();
+                String title = forum.getTitle();
+                String content = forum.getContent();
+                shareContent = StringUtils.isEmpty(title)?content:title;
                 isCollect = forum.getIs_collect();
                 if (collectionMenu!=null)collectionMenu.setTitle(isCollect.equals(isTrue)?"已收藏":"收藏");
                 userId = forum.getUser_id();
@@ -289,7 +294,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
                 Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("5").addId(forum_id).end();
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new PostEvent());
             }
-        });
+        },"城外旅游帖子分享",shareContent);
     }
 
     @Override

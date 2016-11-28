@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorFAFAFA"
+    android:elevation="2dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:paddingBottom="@dimen/x6"
+    android:paddingTop="@dimen/x6">
+
     <RelativeLayout
-       android:elevation="2dp"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x40"
-        android:background="@color/colorFAFAFA">
-        <RelativeLayout
-            android:layout_width="@dimen/x280"
-            android:layout_height="@dimen/x28"
-            android:layout_marginTop="@dimen/x6"
-            android:layout_marginBottom="@dimen/x6"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/activity_travels_search_bg">
+        android:layout_width="@dimen/x280"
+        android:layout_height="@dimen/x28"
+        android:layout_centerInParent="true"
+        android:background="@drawable/activity_travels_search_bg">
 
-            <EditText
-                android:id="@+id/et_search"
-                style="@style/commonSingleLineTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x15"
-                android:layout_marginRight="@dimen/x45"
-                android:background="@null"
-                android:hint="输入感兴趣的关键字"
-                android:textColorHint="@color/colorC1c1c1"
-                android:textCursorDrawable="@null"
-                android:textSize="@dimen/x12sp" />
+        <EditText
+            android:id="@+id/et_search"
+            style="@style/commonSingleLineTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginRight="@dimen/x45"
+            android:background="@null"
+            android:hint="输入感兴趣的关键字"
+            android:textColorHint="@color/colorC1c1c1"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/x12sp" />
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:id="@+id/tv_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x8"
-                android:paddingLeft="@dimen/x7"
-                android:background="@drawable/normal_press_bg"
-                android:paddingRight="@dimen/x7"
-                android:text="@string/fragment_circle_search"
-                android:textColor="@color/colorC1c1c1"
-                android:textSize="@dimen/x20sp" />
-        </RelativeLayout>
-
+        <com.yunspeak.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x8"
+            android:background="@drawable/normal_press_bg"
+            android:paddingLeft="@dimen/x7"
+            android:paddingRight="@dimen/x7"
+            android:text="@string/fragment_circle_search"
+            android:textColor="@color/colorC1c1c1"
+            android:textSize="@dimen/x20sp" />
     </RelativeLayout>
+
+</RelativeLayout>
 

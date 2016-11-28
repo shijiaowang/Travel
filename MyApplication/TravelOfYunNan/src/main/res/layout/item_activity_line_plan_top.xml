@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x18"
+        android:layout_marginTop="18dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -14,36 +14,36 @@
             android:id="@+id/tv_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x53"
+            android:layout_marginLeft="53dp"
             android:background="@drawable/activity_line_plan_add"
             android:gravity="center"
             android:text="集合地"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="@dimen/x13sp" />
+            android:textSize="13sp" />
 
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_start_add"
-            android:minWidth="@dimen/x55"
+            android:minWidth="55dp"
             android:layout_width="wrap_content"
             style="@style/commonSingleLineTextStyle"
-            android:layout_height="@dimen/x27"
-            android:layout_marginLeft="@dimen/x25"
+            android:layout_height="27dp"
+            android:layout_marginLeft="25dp"
             android:layout_toRightOf="@id/tv_add"
             android:background="@drawable/activity_line_plan_add_bg"
             android:gravity="center"
             android:text="@string/activity_other_follow"
             android:textColor="@color/colorb5b5b5"
-            android:textSize="@dimen/x18sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <com.yunspeak.travel.ui.view.DottedLineView
         android:id="@+id/end_line"
         android:layout_marginTop="-2dp"
-        android:layout_width="@dimen/x2"
-        android:layout_height="@dimen/x4"
-        android:layout_marginLeft="@dimen/x79"
+        android:layout_width="2dp"
+        android:layout_height="4dp"
+        android:layout_marginLeft="79dp"
         android:layerType="software" />
 
 

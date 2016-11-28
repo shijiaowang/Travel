@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.NestedScrollView;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -18,11 +19,14 @@ import com.yunspeak.travel.event.ActiveDetailEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
+import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailEvent;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
@@ -44,12 +48,11 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
     @BindView(R.id.tv_money2) TextView mTvMoney2;
     @BindView(R.id.tv_number) TextView mTvNumber;
     @BindView(R.id.tv_time) TextView mTvTime;
-    @BindView(R.id.nsv_content)
-    NestedScrollView nestedScrollView;
-    @BindView(R.id.bt_enter)
-    Button mBtEnter;
+    @BindView(R.id.nsv_content) NestedScrollView nestedScrollView;
+    @BindView(R.id.bt_enter) Button mBtEnter;
     private String aId;
-
+    private String isCollect;
+    private String title;
 
 
     public static void start(Context context, String aid){
@@ -96,7 +99,26 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
         });
     }
 
+    @Override
+    protected String initRightText() {
+        return "更多";
+    }
 
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        if (StringUtils.isEmpty(isCollect))return;
+        String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
+        //没有举报第三个参数无所谓
+        AppointDetailMorePop.showMorePopIsNotCompliant(this,aId,mToolbar, "0", collection, new ParentPopClick() {
+            @Override
+            public void onClick(int t) {
+                String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
+                int type=isCollect.equals(isTrue)?TYPE_CANCEL_COLLECTION:TYPE_COLLECTION;
+                Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("3").addId(aId).end();
+                XEventUtils.postUseCommonBackJson(url, collectionMap, type, new ActiveDetailEvent());
+            }
+        },"城外旅游活动分享",title,false);
+    }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
@@ -128,13 +150,23 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
             case TYPE_UPDATE:
                 ToastUtils.showToast("报名成功，您可以到‘我的订单’页面支付相应费用。");
                 break;
+            case TYPE_COLLECTION:
+                ToastUtils.showToast("收藏成功");
+                isCollect = isTrue;
+                break;
+            case TYPE_CANCEL_COLLECTION:
+                ToastUtils.showToast("取消收藏成功");
+                isCollect = isFalse;
+                break;
             default:
                 ActiveDetailBean activeDetail = GsonUtils.getObject(event.getResult(), ActiveDetailBean.class);
                 ActiveDetailBean.DataBean data = activeDetail.getData();
                 mWvHtml.loadUrl(data.getUrl());
+                isCollect=data.getIs_collect();
                 FrescoUtils.displayNormal(mIvBg,data.getTitle_img());
                 FrescoUtils.displayIcon(mIvIcon,data.getActivity_img());
-                mTvName.setText(data.getTitle());
+                title = data.getTitle();
+                mTvName.setText(title);
                 mTvContnet.setText(data.getContent());
                 mTvMoney.setText("¥" + data.getPrice());
                 mTvMoney2.setText("¥"+data.getPrice());

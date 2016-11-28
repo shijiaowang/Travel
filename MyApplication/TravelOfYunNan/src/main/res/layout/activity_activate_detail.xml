@@ -12,13 +12,13 @@
             android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/iv_bg"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x228"
-                 />
-
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
             <RelativeLayout
                 android:id="@+id/rl_root"
                 android:layout_width="match_parent"
@@ -75,6 +75,8 @@
                     android:layout_marginTop="@dimen/x40"
                     android:background="@drawable/fragment_play_with_me_money_bg"
                     android:gravity="center"
+                    android:paddingLeft="@dimen/x5"
+                    android:paddingRight="@dimen/x5"
                     android:textColor="@color/colorFAFAFA"
                     android:textSize="@dimen/x12sp" />
 
@@ -86,10 +88,10 @@
                     android:background="@color/meLine" />
 
                 <LinearLayout
+                    android:id="@+id/ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/iv_icon"
-                    android:layout_marginBottom="@dimen/x13"
                     android:layout_marginLeft="@dimen/x9"
                     android:layout_marginTop="@dimen/x14"
                     android:gravity="center_vertical"
@@ -128,6 +130,10 @@
                         android:textColor="@color/otherTitleBg"
                         android:textSize="@dimen/x12sp" />
                 </LinearLayout>
+                <android.support.v4.widget.Space
+                    android:layout_below="@id/ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x13" />
             </RelativeLayout>
             <WebView
                 android:id="@+id/wv_html"
@@ -136,6 +142,8 @@
                 android:layout_height="wrap_content">
 
             </WebView>
+
+
 
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
@@ -162,7 +170,6 @@
                 android:background="@drawable/activity_activate_detail_bg"
                 android:gravity="center"
                 android:text="报名"
-                android:layout_marginLeft="@dimen/x1"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/x15sp"
                 android:layout_width="@dimen/x65"

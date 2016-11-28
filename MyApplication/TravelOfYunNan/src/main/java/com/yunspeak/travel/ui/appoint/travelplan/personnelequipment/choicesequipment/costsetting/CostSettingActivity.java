@@ -44,6 +44,8 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
     TextView mTvTotalPrice;
     @BindView(R.id.tv_money_des)
     TextView mTvMoneyDes;
+    @BindView(R.id.tv_cost)
+    TextView mTvCost;
     private int size;
     private double totalMoney;
     private int countPeople;
@@ -62,6 +64,7 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
         ActivityUtils.getInstance().addActivity(this);
        if (GlobalValue.mAppointType==IVariable.TYPE_WITH_ME){
            mTvMoneyDes.setText("(请输入您的理想费用，具体费用请咨询邀请您的队长！)");
+           mTvCost.setText("理想费用");
        }
         mBtNext.setOnClickListener(this);
         mEtPrice.addTextChangedListener(new TextWatcher() {

@@ -146,6 +146,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     private int [] colors=new int[]{color1,color2,color3,color4,color5,color6,color7};
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
     private String userId;
+    private String title;
 
     @Override
     protected void initEvent() {
@@ -253,6 +254,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         if (appointTogetherDetail == null) return;
         AppointTogetherDetailBean.DataBean data = appointTogetherDetail.getData();
         String action = data.getAction();
+        title = data.getRoutes_title();
         isCollect = data.getIs_collect();
         userId = data.getUser_id();
         if (userId.equals(GlobalUtils.getUserInfo().getId())){
@@ -505,7 +507,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new AppointTogetherDetailEvent());
 
             }
-        });
+        },"城外旅游约伴分享","[约伴征集]"+title);
     }
 
     @Override

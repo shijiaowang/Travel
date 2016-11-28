@@ -7,64 +7,50 @@
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x16"
-        android:layout_marginRight="@dimen/x10"
-        android:layout_marginTop="@dimen/x52"
-
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="52dp"
         android:textColor="@color/color646464"
-        android:textSize="@dimen/x12sp" />
+        android:textSize="12sp" />
 
 
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x59"
+        android:layout_marginLeft="59dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/rl_day"
-            android:layout_width="@dimen/x30"
-            android:layout_height="@dimen/x30"
-            android:layout_marginLeft="@dimen/x29"
-            android:layout_marginTop="@dimen/x45"
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="45dp"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="9sp"
             android:background="@drawable/activity_line_plan_day_number_bg"
             android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Day"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="@dimen/x9sp" />
-
-            <TextView
-                android:id="@+id/tv_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="@dimen/x9sp" />
-        </LinearLayout>
+            />
 
        <com.yunspeak.travel.ui.view.ToShowAllListView
            android:id="@+id/lv_add"
-           android:layout_marginLeft="@dimen/x37"
+           android:layout_marginLeft="37dp"
            style="@style/commonListViewStyle"
            android:listSelector="@android:color/transparent"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"/>
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_add"
-            android:layout_width="@dimen/x70"
-            android:layout_height="@dimen/x30"
-            android:layout_marginLeft="@dimen/x37"
-            android:layout_marginTop="@dimen/x20"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/activity_create_album_add_bg"
             android:gravity="center"
             android:text="@string/activity_other_follow"
             android:textColor="@color/otherTitleBg"
-            android:textSize="@dimen/x18sp" />
+            android:textSize="18sp" />
 
 
     </LinearLayout>
@@ -72,13 +58,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/x70"
+        android:layout_marginLeft="70dp"
         android:orientation="vertical">
 
         <com.yunspeak.travel.ui.view.DottedLineView
-            android:layout_width="@dimen/x2"
-            android:layout_height="@dimen/x51"
-            android:layout_marginLeft="@dimen/x9" />
+            android:layout_width="2dp"
+            android:layout_height="51dp"
+            android:layout_marginLeft="9dp" />
 
         <ImageView
             android:id="@+id/iv_cursor"
@@ -88,9 +74,9 @@
 
         <com.yunspeak.travel.ui.view.DottedLineView
             android:id="@+id/dlv_line"
-            android:layout_width="@dimen/x1"
-            android:layout_height="@dimen/x57"
-            android:layout_marginLeft="@dimen/x9" />
+            android:layout_width="1dp"
+            android:layout_height="57dp"
+            android:layout_marginLeft="9dp" />
 
     </LinearLayout>
 

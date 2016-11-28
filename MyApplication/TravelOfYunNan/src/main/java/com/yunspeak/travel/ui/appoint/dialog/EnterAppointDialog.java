@@ -108,7 +108,7 @@ public class EnterAppointDialog {
         recyclerView.setLayoutManager(linearLayoutManager);
         if (dataBeen.size()>3){
             ViewGroup.LayoutParams layoutParams = recyclerView.getLayoutParams();
-            layoutParams.height=DensityUtil.dip2px(270);
+            layoutParams.height= (int) context.getResources().getDimension(R.dimen.x267);
             recyclerView.setLayoutParams(layoutParams);//最高不能超过三个孩子高度
         }
         myCreateAppointAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
@@ -148,7 +148,8 @@ public class EnterAppointDialog {
         //创建 Dialog
 //		Dialog dialog=new Dialog(上下文,风格style);
         //layout_width layout_height
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(285), ViewGroup.LayoutParams.WRAP_CONTENT);
+        float width = context.getResources().getDimension(R.dimen.x285);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
@@ -336,7 +337,8 @@ public class EnterAppointDialog {
 //		Dialog dialog=new Dialog(上下文,风格style);
 
         //layout_width layout_height
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(285),DensityUtil.dip2px(159));
+        float width = context.getResources().getDimension(R.dimen.x285);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width,LinearLayout.LayoutParams.WRAP_CONTENT);
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
@@ -402,7 +404,9 @@ public class EnterAppointDialog {
 //		Dialog dialog=new Dialog(上下文,风格style);
 
         //layout_width layout_height
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(334),DensityUtil.dip2px(211));
+        float width = context.getResources().getDimension(R.dimen.x334);
+        float height = context.getResources().getDimension(R.dimen.x211);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, (int) height);
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
@@ -415,7 +419,7 @@ public class EnterAppointDialog {
      * 分享
      *
      */
-    public static void showShareDialog(final Context context) {
+    public static void showShareDialog(final Context context, final String title, final String content) {
         // 获取弹出视图对象
         final View dialogView = View.inflate(context, R.layout.pop_share, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
@@ -436,12 +440,12 @@ public class EnterAppointDialog {
                         //oks.disableSSOWhenAuthorize();
                         oks.setPlatform(SinaWeibo.NAME);
 // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
-                        oks.setTitle("云说约伴分享");
+                        oks.setTitle(title);
 // text是分享文本，所有平台都需要这个字段
-                        oks.setText("这是一个不得了的约伴分享");
+                        oks.setText(content);
 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
 //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-                        oks.setComment("哇，不得了啦，有美女哟");
+                        oks.setComment("小伙伴召集中，期待您的加入！");
 // 启动分享GUI
                         oks.show(context);
 
@@ -457,15 +461,14 @@ public class EnterAppointDialog {
                 //oks.disableSSOWhenAuthorize();
                 oks.setPlatform(Wechat.NAME);
 // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
-                oks.setTitle("云说约伴分享");
+                oks.setTitle(title);
 // text是分享文本，所有平台都需要这个字段
-                oks.setText("这是一个不得了的约伴分享");
+                oks.setText(content);
 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
 //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
 // url仅在微信（包括好友和朋友圈）中使用
                 oks.setUrl("http://yunspeak.cn");
 // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-                oks.setComment("哇，不得了啦，有美女哟");
                 oks.show(context);
             }
         });
@@ -478,15 +481,13 @@ public class EnterAppointDialog {
                 //oks.disableSSOWhenAuthorize();
                 oks.setPlatform(WechatMoments.NAME);
 // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
-                oks.setTitle("云说约伴分享");
+                oks.setTitle(title);
 // text是分享文本，所有平台都需要这个字段
-                oks.setText("这是一个不得了的约伴分享");
+                oks.setText(content);
 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
 //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
 // url仅在微信（包括好友和朋友圈）中使用
                 oks.setUrl("http://yunspeak.cn");
-// comment是我对这条分享的评论，仅在人人网和QQ空间使用
-                oks.setComment("哇，不得了啦，有美女哟");
                 oks.show(context);
             }
         });
@@ -499,17 +500,17 @@ public class EnterAppointDialog {
                  //oks.disableSSOWhenAuthorize();
                  oks.setPlatform(QZone.NAME);
 // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
-                 oks.setTitle("云说约伴分享");
+                 oks.setTitle(title);
+// text是分享文本，所有平台都需要这个字段
+                 oks.setText(content);
 // titleUrl是标题的网络链接，QQ和QQ空间等使用
                  oks.setTitleUrl("http://yunspeak.cn");
 // text是分享文本，所有平台都需要这个字段
-                 oks.setText("这是一个不得了的约伴分享");
+
 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
 //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
 // url仅在微信（包括好友和朋友圈）中使用
                //  oks.setUrl("http://sharesdk.cn");
-// comment是我对这条分享的评论，仅在人人网和QQ空间使用
-                 oks.setComment("哇，不得了啦，有美女哟");
 // site是分享此内容的网站名称，仅在QQ空间使用
                  oks.setSite(context.getString(R.string.app_name));
 // siteUrl是分享此内容的网站地址，仅在QQ空间使用
@@ -523,7 +524,8 @@ public class EnterAppointDialog {
         wl.y = DensityUtil.getScreenHeight();
         //设置显示位置
         dialog.onWindowAttributesChanged(wl);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.getScreenWidth(),DensityUtil.dip2px(200));
+        float height = context.getResources().getDimension(R.dimen.x200);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.getScreenWidth(), (int) height);
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
@@ -558,7 +560,9 @@ public class EnterAppointDialog {
 //		Dialog dialog=new Dialog(上下文,风格style);
 
         //layout_width layout_height
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(285),DensityUtil.dip2px(179));
+        float width = context.getResources().getDimension(R.dimen.x285);
+        float height = context.getResources().getDimension(R.dimen.x179);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width,(int)height);
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);

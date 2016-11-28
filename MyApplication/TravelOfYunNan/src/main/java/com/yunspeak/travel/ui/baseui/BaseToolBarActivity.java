@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.baseui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -52,12 +53,12 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseToolBarActivity extends AppCompatActivity implements IState {
-    public static final int TRAFFIC_TYPE =0;//交通方式
-    public static final int SEX_TYPE=1;//性别赛选
-    public static final int AUTH_TYPE=2;//认证筛选
+    public static final int TRAFFIC_TYPE = 0;//交通方式
+    public static final int SEX_TYPE = 1;//性别赛选
+    public static final int AUTH_TYPE = 2;//认证筛选
 
-   protected FrameLayout mFlContent;
-    protected  TextView mTvTitle;
+    protected FrameLayout mFlContent;
+    protected TextView mTvTitle;
     protected Toolbar mToolbar;
     ImageView mIvPageError;//展示错误页面
     ProgressBar mPbLoading;//加载中
@@ -72,7 +73,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(isChangeBarColor()?R.layout.activity_base_toolbar_rl:R.layout.activity_base_toolbar);
+        setContentView(isChangeBarColor() ? R.layout.activity_base_toolbar_rl : R.layout.activity_base_toolbar);
         inflater = LayoutInflater.from(this);
         mIvPageError = (ImageView) findViewById(R.id.page_error);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
@@ -89,15 +90,24 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         //设置StatusBar透明
         SystemBarHelper.immersiveStatusBar(this);
-        SystemBarHelper.setPadding(this, mAppBarLayout);
+        if (!isChangeBarColor()) {
+            SystemBarHelper.setPadding(this, mAppBarLayout);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            ViewGroup.LayoutParams layoutParams = mToolbar.getLayoutParams();
+            layoutParams.height = layoutParams.height + getStatusBarHeight();
+            mToolbar.setLayoutParams(layoutParams);
+            SystemBarHelper.setPadding(this, mToolbar);
+        }
+
         childView = inflater.inflate(initLayoutRes(), mFlContent, false);
-        needHideChildView=childView;//默认隐藏孩子的所有内容，
+        needHideChildView = childView;//默认隐藏孩子的所有内容，
         mFlContent.addView(childView);
         ButterKnife.bind(this);
         createTitle();
         initOptions();
         PushAgent.getInstance(this).onAppStart();
     }
+
     //设置头部
     protected void createTitle() {
         mVsBar.setLayoutResource(R.layout.bar_text);
@@ -116,7 +126,6 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
 
 
     /**
-
      * 初始化布局文件
      *
      * @return
@@ -129,9 +138,10 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     protected abstract void initOptions();
 
 
-    protected void changeNeedHideView(View view){
-        needHideChildView=view;
+    protected void changeNeedHideView(View view) {
+        needHideChildView = view;
     }
+
     /**
      * 初始化标题
      *
@@ -163,20 +173,22 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
 
     /**
      * 获取状态栏高度
+     *
      * @return
      */
     public int getStatusBarHeight() {
-        int result = 0;
+        int result = (int) getResources().getDimension(R.dimen.x25);
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
             result = getResources().getDimensionPixelSize(resourceId);
         }
         return result;
     }
+
     @Override
     public void onResume() {
         super.onResume();
-          MobclickAgent.onResume(this);
+        MobclickAgent.onResume(this);
     }
 
     @Override
@@ -188,6 +200,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
 
     /**
      * 网络加载错误
+     *
      * @param isShow
      */
     protected void setErrorPage(boolean isShow) {
@@ -208,13 +221,14 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     /**
      * 显示数据为空
      */
-    protected void setIsEmpty(){
+    protected void setIsEmpty() {
         needHideChildView.setVisibility(View.GONE);
         mIvPageError.setVisibility(View.GONE);
         mPbLoading.setVisibility(View.GONE);
         mRlEmpty.setVisibility(View.VISIBLE);
 
     }
+
     /**
      * 展示加载进度条
      *
@@ -229,7 +243,8 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         }
         mPbLoading.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
-    protected void setSuccess(){
+
+    protected void setSuccess() {
         needHideChildView.setVisibility(View.VISIBLE);
         mIvPageError.setVisibility(View.GONE);
         mPbLoading.setVisibility(View.GONE);
@@ -246,6 +261,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
             EventBus.getDefault().register(activity);
         }
     }
+
     /**
      * 解除EventBus
      *
@@ -275,13 +291,13 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
      * @param b
      */
     protected void changeClickAble(Button button, boolean b) {
-            if (b) {
-                button.setBackgroundResource(R.drawable.login_button_selector);
-                button.setClickable(b);
-            } else {
-                button.setBackgroundResource(R.drawable.green_button_normal_bg_unclick);
-                button.setClickable(b);
-            }
+        if (b) {
+            button.setBackgroundResource(R.drawable.login_button_selector);
+            button.setClickable(b);
+        } else {
+            button.setBackgroundResource(R.drawable.green_button_normal_bg_unclick);
+            button.setClickable(b);
+        }
     }
 
 
@@ -299,7 +315,6 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         String message = "<font color=#5cd0c2>" + errorMessage + "</font>";
         request.setError(Html.fromHtml(message));
     }
-
 
 
     /**
@@ -339,11 +354,13 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
 
         return params.height;
     }
+
     /**
      * 隐藏软键盘
+     *
      * @param view
      */
-    public void hideSoftWore(EditText view){
+    public void hideSoftWore(EditText view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
@@ -352,19 +369,16 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
 
     /**
      * 判断集合是否为空
+     *
      * @param list
      * @return
      */
-    public boolean ListIsEmpty(List list){
-        if (list ==null || list.size()==0){
+    public boolean ListIsEmpty(List list) {
+        if (list == null || list.size() == 0) {
             return true;
         }
         return false;
     }
-
-
-
-
 
 
     /**
@@ -411,14 +425,15 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
         builder.show();
     }
 
-    public  void setFcouse(View view,boolean b){
+    public void setFcouse(View view, boolean b) {
         view.setClickable(b);
         view.setFocusableInTouchMode(b);
         view.setFocusable(b);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.my_appoint_menu,menu);
+        getMenuInflater().inflate(R.menu.my_appoint_menu, menu);
         item = menu.findItem(R.id.action_history);
         item.setTitle(initRightText());
         return true;
@@ -427,10 +442,11 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
     protected String initRightText() {
         return "";
     }
-   public void canSmoothInNetScroll(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager){
-       linearLayoutManager.setSmoothScrollbarEnabled(true);
-       linearLayoutManager.setAutoMeasureEnabled(true);
-       recyclerView.setHasFixedSize(true);
-       recyclerView.setNestedScrollingEnabled(false);
-   }
+
+    public void canSmoothInNetScroll(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
+        linearLayoutManager.setSmoothScrollbarEnabled(true);
+        linearLayoutManager.setAutoMeasureEnabled(true);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
+    }
 }

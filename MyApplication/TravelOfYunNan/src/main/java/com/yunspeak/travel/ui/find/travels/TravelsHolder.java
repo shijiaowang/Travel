@@ -36,7 +36,7 @@ public class TravelsHolder extends BaseRecycleViewHolder<TravelsBean.DataBean> {
         FrescoUtils.displayIcon(mIvUserIcon,datas.getLogo_img());
         mTvNickName.setText(datas.getAuthor());
         mTvContent.setText(datas.getTitle());
-        //mTvWatchNumber.setText(datas.get);
+        mTvWatchNumber.setText(datas.getBrowse());
         mTvTime.setText(FormatDateUtils.FormatLongTime(IVariable.Y_M_D,datas.getAdd_time()));
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

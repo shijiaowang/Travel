@@ -42,7 +42,7 @@ public class TravelsAddAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TravelAddHolder travelAddHolder = (TravelAddHolder) holder;
-        FrescoUtils.displayIcon(travelAddHolder.mIvRouteBg,mDatas.get(position).getLogo_img());
+        FrescoUtils.displayNormal(travelAddHolder.mIvRouteBg,mDatas.get(position).getLogo_img());
         travelAddHolder.mTvName.setText(mDatas.get(position).getTitle());
         travelAddHolder.mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd",mDatas.get(position).getTime()));
 

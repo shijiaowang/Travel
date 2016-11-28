@@ -23,7 +23,7 @@
         android:gravity="center"
         android:text="从相册中选择"
         android:textColor="@color/otherTitleBg"
-        android:textSize="18sp"
+        android:textSize="@dimen/x18sp"
         android:layout_width="match_parent"
         android:layout_height="45dp" />
     <View
@@ -33,7 +33,7 @@
     <TextView
         android:id="@+id/tv_cancel"
         android:textColor="@color/color646464"
-        android:textSize="18sp"
+        android:textSize="@dimen/x18sp"
         android:text="取消"
         android:gravity="center"
         android:layout_width="match_parent"

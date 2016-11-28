@@ -9,6 +9,7 @@
     <string name="prop_select_number">已选择：%1$d件物品</string>
     <string name="down">∨</string>
     <string name="up">∧</string>
+    <string name="at_your_in_group">%s在群聊中@了你</string>
     <string name="text_limit_200">%1$d/200</string>
     <string name="sure_number">确定(%1$d)</string>
     <string name="text_up">已加入(%1$d) ∧</string>

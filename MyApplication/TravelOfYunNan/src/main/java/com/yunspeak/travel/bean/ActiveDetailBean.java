@@ -56,6 +56,15 @@ public class ActiveDetailBean {
         private String url;
         private String is_into;
         private String content;
+        private String is_collect="0";
+
+        public String getIs_collect() {
+            return is_collect;
+        }
+
+        public void setIs_collect(String is_collect) {
+            this.is_collect = is_collect;
+        }
 
         public String getContent() {
             return content;

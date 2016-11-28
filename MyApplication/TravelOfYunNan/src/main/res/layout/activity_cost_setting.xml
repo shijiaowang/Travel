@@ -40,6 +40,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_cost"
                     style="@style/activityTravelsPlanTvTime"
                     android:text="每人收费" />
 

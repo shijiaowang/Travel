@@ -63,7 +63,7 @@ public class TravelsActivity extends BaseRecycleViewActivity<TravelsEvent,Travel
                 return false;
             }
         });
-        changeMargin(10,10);
+        changeMargin(10,0);
     }
 
     @Override
