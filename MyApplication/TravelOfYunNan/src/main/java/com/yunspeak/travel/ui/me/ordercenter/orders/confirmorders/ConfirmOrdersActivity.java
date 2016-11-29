@@ -14,7 +14,11 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.alipay.sdk.app.PayTask;
+import com.tencent.mm.sdk.modelpay.PayReq;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
@@ -27,9 +31,11 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import butterknife.BindView;
 
 
@@ -66,7 +72,8 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     TextView mTvPay;
     @BindView(R.id.bt_submit)
     Button mAcpSubmit;
-    @BindView(R.id.tv_order_name) TextView mTvOrderName;
+    @BindView(R.id.tv_order_name)
+    TextView mTvOrderName;
     private List<String> mConpous = new ArrayList<>();
 
 
@@ -148,30 +155,59 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                 dealRefresh(confirmOrdersEvent);
                 break;
             case SUBMIT_NEW:
-                CreateAlbumBean order = GsonUtils.getObject(confirmOrdersEvent.getResult(), CreateAlbumBean.class);
-                final String info = order.getData();
-                if (StringUtils.isEmpty(info)) {
-                    ToastUtils.showToast("订单信息错误！");
-                    return;
+                switch (currentPayWay) {
+                    case PAY_WAY_ZFB:
+                        CreateAlbumBean order = GsonUtils.getObject(confirmOrdersEvent.getResult(), CreateAlbumBean.class);
+                        payZFB(order);
+                        break;
+                    case PAY_WAY_WX:
+                        WXPayBean wxPayBean = GsonUtils.getObject(confirmOrdersEvent.getResult(), WXPayBean.class);
+                        IWXAPI wxapi = WXAPIFactory.createWXAPI(this, null);
+                        WXPayBean.DataBean dataBean = wxPayBean.getData();
+                        try {
+                            PayReq req = new PayReq();
+                            req.appId = dataBean.getAppid();
+                            req.partnerId = dataBean.getPartnerid();
+                            req.prepayId = dataBean.getPrepayid();
+                            req.nonceStr = dataBean.getNoncestr();
+                            req.timeStamp = String.valueOf(dataBean.getTimestamp());
+                            req.packageValue = dataBean.getPackageX();
+                            req.sign = dataBean.getSign();
+                            req.extData = "城外旅游点订单";
+                            wxapi.sendReq(req);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            ToastUtils.showToast("支付出错了");
+                        }
+                        break;
                 }
-                Runnable payRunnable = new Runnable() {
 
-                    @Override
-                    public void run() {
-                        PayTask alipay = new PayTask(ConfirmOrdersActivity.this);
-                        Map<String, String> result = alipay.payV2(info, true);
-                        Log.i("msp", result.toString());
-                        Message msg = new Message();
-                        msg.what = SDK_PAY_FLAG;
-                        msg.obj = result;
-                        mHandler.sendMessage(msg);
-                    }
-                };
 
-                Thread payThread = new Thread(payRunnable);
-                payThread.start();
-                break;
         }
+    }
+
+    private void payZFB(CreateAlbumBean order) {
+        final String info = order.getData();
+        if (StringUtils.isEmpty(info)) {
+            ToastUtils.showToast("订单信息错误！");
+            return;
+        }
+        Runnable payRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(ConfirmOrdersActivity.this);
+                Map<String, String> result = alipay.payV2(info, true);
+                Log.i("msp", result.toString());
+                Message msg = new Message();
+                msg.what = SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
     }
 
     private void dealRefresh(ConfirmOrdersEvent confirmOrdersEvent) {
@@ -188,7 +224,8 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         }
         String payType = order.getPay_type();
         if (payType.equals("2")) {
-           mTvOrderName.setText("约伴订单");
+            mTvOrderName.setText("活动订单");
+            mTvOrderName.setTextColor(getResources().getColor(R.color.otherFf7f6c));
         }
         mLvPrice.setAdapter(new PriceDeatilAdapter(this, basecPrice));
         mTvOrderId.setText("订单号:" + order.getOrder_sn());
@@ -209,19 +246,19 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                 CouponBean conpouBean = orderConpou.get(position);
                 currentPrice = 0f;
                 if (conpouBean.getStatus().equals("1")) {
-                    if (prePosition!=-1){
+                    if (prePosition != -1) {
                         orderConpou.get(prePosition).setStatus("1");
                     }
                     totalReduces = Float.parseFloat(conpouBean.getNumber());
-                    currentPrice=totalPay -Float.parseFloat(conpouBean.getNumber());
+                    currentPrice = totalPay - Float.parseFloat(conpouBean.getNumber());
                     conpouBean.setStatus("2");
                     prePosition = position;
                 } else if (conpouBean.getStatus().equals("2")) {
                     totalReduces = 0.0f;
-                    currentPrice=totalPay;
+                    currentPrice = totalPay;
                     conpouBean.setStatus("1");
                 }
-                prePosition=position;
+                prePosition = position;
 
                 ordersCouponAdapter.notifyDataSetChanged();
                 mTvReducePrice.setText("¥-" + totalReduces);
@@ -229,8 +266,6 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             }
         });
     }
-
-
 
 
     @Override
@@ -254,10 +289,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
      * 提交订单
      */
     private void submitOrders() {
-        if (currentPayWay == PAY_WAY_WX) {
-            ToastUtils.showToast("暂不支持微信支付。");
-            return;
-        }
+
         if (!mCbAgree.isChecked()) {
             ToastUtils.showToast("请阅读并勾选协议");
             return;
@@ -283,7 +315,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         }
 
         String coupon = stringBuilder.toString();
-        Map<String, String> submitMap = MapUtils.Build().addKey().addUserId().addId(id).addCoupon(coupon).end();
+        Map<String, String> submitMap = MapUtils.Build().addKey().addUserId().addId(id).addCoupon(coupon).add("pay_name", currentPayWay == PAY_WAY_WX ? "2" : "1").end();
         XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS, submitMap, SUBMIT_NEW, new ConfirmOrdersEvent());
 
     }

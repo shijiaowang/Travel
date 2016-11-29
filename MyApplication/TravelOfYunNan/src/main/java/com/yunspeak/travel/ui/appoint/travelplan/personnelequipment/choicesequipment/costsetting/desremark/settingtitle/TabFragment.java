@@ -2,7 +2,8 @@ package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequi
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.ViewTreeObserver;
+import android.view.View;
+import android.view.ViewStub;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
@@ -67,47 +68,11 @@ public class TabFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        mFlTitle = (FlowLayout) root.findViewById(R.id.fl_title);
+
     }
 
     @Override
     protected void initData() {
-        int count = mTitle == null ? 0 : mTitle.size();
-        inflater = LayoutInflater.from(getContext());
-        for (int i = 0; i < count; i++) {
-            TextView textView = (TextView) inflater.inflate(R.layout.item_fragment_tab_title, mFlTitle, false);
-            textView.setText(mTitle.get(i).getName());
-            textView.setTag(mTitle.get(i).getId());
-            //如果之前退出再次进入后，设置之前被选中的过的颜色
-            changeBeforeSelect(i, textView);
-            mFlTitle.addView(textView);
-        }
-        mFlTitle.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                mFlTitle.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                mFlTitle.setOnItemClickListener(new FlowLayout.OnItemClickListener() {
-                    @Override
-                    public void OnItemClick(int position) {
-                        prePosition = position;
-                        if (integerSet.contains(position)) {
-                            integerSet.remove(position);
-                            GlobalValue.selectTitleNumber--;
-                            notifyTitle(REMOVE);
-                        } else {
-                            if (GlobalValue.selectTitleNumber >= 7) {
-                                ToastUtils.showToast("最不起，最多选择7个称号");
-                                return;
-                            }
-                            GlobalValue.selectTitleNumber++;
-                            integerSet.add(position);
-                            notifyTitle(TYPE_ADD);
-                        }
-
-                    }
-                });
-            }
-        });
 
     }
 
@@ -136,15 +101,56 @@ public class TabFragment extends BaseFragment {
         settingTitle.setChangeType(type);
         settingTitle.setId(mTitle.get(prePosition).getId());
         settingTitle.setTitle(mTitle.get(prePosition).getName());
-        SettingTitleEvent settingTitleEvent = new SettingTitleEvent();
-        settingTitleEvent.setSettingTitle(settingTitle);
-        EventBus.getDefault().post(settingTitleEvent);
+        AddTitleEvent addTitleEvent = new AddTitleEvent();
+        addTitleEvent.setSettingTitle(settingTitle);
+        EventBus.getDefault().post(addTitleEvent);
         mFlTitle.changeColorAndBg(type, mTitle.get(prePosition).getId());
     }
 
 
     @Override
     protected void initListener() {
+        int count = mTitle == null ? 0 : mTitle.size();
+        mFlTitle = (FlowLayout) root.findViewById(R.id.fl_title);
+        if (count==0){
+            ViewStub  vsEmpty = (ViewStub) root.findViewById(R.id.vs_empty);
+            vsEmpty.inflate();
+            mFlTitle.setVisibility(View.GONE);
+            return;
+        }
+
+        inflater = LayoutInflater.from(getContext());
+        for (int i = 0; i < count; i++) {
+            TextView textView = (TextView) inflater.inflate(R.layout.item_fragment_tab_title, mFlTitle, false);
+            textView.setText(mTitle.get(i).getName());
+            textView.setTag(mTitle.get(i).getId());
+            //如果之前退出再次进入后，设置之前被选中的过的颜色
+            changeBeforeSelect(i, textView);
+            mFlTitle.addView(textView);
+        }
+
+                mFlTitle.setOnItemClickListener(new FlowLayout.OnItemClickListener() {
+                    @Override
+                    public void OnItemClick(int position) {
+                        prePosition = position;
+                        if (integerSet.contains(position)) {
+                            integerSet.remove(position);
+                            GlobalValue.selectTitleNumber--;
+                            notifyTitle(REMOVE);
+                        } else {
+                            if (GlobalValue.selectTitleNumber >= 7) {
+                                ToastUtils.showToast("最不起，最多选择7个称号");
+                                return;
+                            }
+                            GlobalValue.selectTitleNumber++;
+                            integerSet.add(position);
+                            notifyTitle(TYPE_ADD);
+                        }
+
+                    }
+                });
+
+
 
     }
 

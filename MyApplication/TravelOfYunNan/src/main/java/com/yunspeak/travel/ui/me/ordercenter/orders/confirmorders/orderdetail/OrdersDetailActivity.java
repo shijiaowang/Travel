@@ -2,7 +2,6 @@ package com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +20,6 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2016/8/26 0026.
@@ -107,6 +105,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
         String payType = data.getPay_type();
         if (payType.equals("2")){
             tvOrderType.setText("活动订单");
+            tvOrderType.setTextColor(getResources().getColor(R.color.otherFf7f6c));
             tvTitle.setText("活动价格");
             mTvActiveName.setText(getIntent().getStringExtra(IVariable.NAME));
         }else {

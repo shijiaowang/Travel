@@ -1,19 +1,33 @@
 ECLIPSE ANDROID PROJECT IMPORT SUMMARY
 ======================================
 
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .idea\
+* .idea\compiler.xml
+* .idea\copyright\
+* .idea\copyright\profiles_settings.xml
+* .idea\encodings.xml
+* .idea\misc.xml
+* .idea\modules.xml
+* .idea\wechat_sdk_sample_android.iml
+* .idea\workspace.xml
+* debug.keystore
+
 Moved Files:
 ------------
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => payDemoActivity_20\src\main\AndroidManifest.xml
-* assets\ => payDemoActivity_20\src\main\assets
-* libs\alipaySdk-20161009.jar => payDemoActivity_20\libs\alipaySdk-20161009.jar
-* libs\android-support-v13.jar => payDemoActivity_20\libs\android-support-v13.jar
-* lint.xml => payDemoActivity_20\lint.xml
-* proguard-project.txt => payDemoActivity_20\proguard-project.txt
-* res\ => payDemoActivity_20\src\main\res\
-* src\ => payDemoActivity_20\src\main\java\
+* AndroidManifest.xml => amm_sdk_sample\src\main\AndroidManifest.xml
+* assets\ => amm_sdk_sample\src\main\assets
+* libs\libammsdk.jar => amm_sdk_sample\libs\libammsdk.jar
+* res\ => amm_sdk_sample\src\main\res\
+* src\ => amm_sdk_sample\src\main\java\
 
 Next Steps:
 -----------

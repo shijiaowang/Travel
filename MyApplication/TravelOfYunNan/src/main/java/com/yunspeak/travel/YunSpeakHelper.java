@@ -2,40 +2,30 @@ package com.yunspeak.travel;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.EMGroupChangeListener;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMCmdMessageBody;
-import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMOptions;
-import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.controller.EaseUI;
+import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.model.EaseNotifier;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
-
 import com.hyphenate.util.NetUtils;
 import com.yunspeak.travel.db.DBManager;
-import com.hyphenate.easeui.controller.EaseUI;
-import com.hyphenate.easeui.domain.EaseUser;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UIUtils;
 
-import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
 import java.util.Iterator;
@@ -303,7 +293,8 @@ public class YunSpeakHelper {
                 toast("聊天账号已被移除");
             } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                 // 显示帐号在其他设备登录
-                    toast("账号在其他地方登录!");
+                   // toast("账号在其他地方登录!");
+                LogUtils.e("账号在其他地方登录");
 
             } else {
                 if (NetUtils.hasNetwork(UIUtils.getContext())) {

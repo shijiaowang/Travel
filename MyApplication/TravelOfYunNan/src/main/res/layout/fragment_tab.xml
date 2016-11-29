@@ -2,9 +2,20 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.yunspeak.travel.ui.view.FlowLayout
-        android:id="@+id/fl_title"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <ViewStub
+            android:id="@+id/vs_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/empty_view"
+            />
+        <com.yunspeak.travel.ui.view.FlowLayout
+            android:id="@+id/fl_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
 
 </ScrollView>

@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.utils.DensityUtils;
 
-import org.w3c.dom.Attr;
 import org.xutils.common.util.DensityUtil;
 
 import java.util.List;
@@ -43,8 +42,8 @@ public class PagerCursorView extends RelativeLayout {
     };
     private int mPointDistance;
     private int mFirstDotLeft;
-    public  int childCount;
-    private ViewPager viewPager=null;
+    public int childCount;
+    private ViewPager viewPager = null;
 
     public PagerCursorView(Context context) {
         super(context);
@@ -70,19 +69,26 @@ public class PagerCursorView extends RelativeLayout {
     }
 
     public void setViewPager(ViewPager viewPager, int count, boolean isAutoMove) {
-        if (count == 0 && this.viewPager!=null) return;
-        this.viewPager = viewPager;
+        if (count < 2 || this.viewPager != null) return;//少于二或者为已经设置过了
+
         childCount = count;
-        for (int i = 0; i < childCount; i++) {
-            View view = new View(getContext());
-            view.setBackgroundResource(R.drawable.dot_for_viewpager_indicator);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(height, height);
-            if (i > 0) {
-                params.leftMargin = DensityUtils.dipToPx(getContext(), 11);
+        if (childCount >= 2) {
+            for (int i = 0; i < childCount; i++) {
+                View view = new View(getContext());
+                view.setBackgroundResource(R.drawable.dot_for_viewpager_indicator);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(height, height);
+                if (i > 0) {
+                    params.leftMargin = DensityUtils.dipToPx(getContext(), 11);
+                }
+                view.setLayoutParams(params);
+                mLlRoot.addView(view);
             }
-            view.setLayoutParams(params);
-            mLlRoot.addView(view);
+        }else {
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mVDot.getLayoutParams();
+            layoutParams.gravity= Gravity.CENTER;
+            mVDot.setLayoutParams(layoutParams);
         }
+        this.viewPager = viewPager;
         /**
          * 绘制完成回调
          */
@@ -178,7 +184,7 @@ public class PagerCursorView extends RelativeLayout {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            return inflateView(container,position%data.size());
+            return inflateView(container, position % data.size());
         }
 
         public abstract Object inflateView(ViewGroup container, int position);

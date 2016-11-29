@@ -37,7 +37,7 @@ public class CircleNavRightHolder extends BaseHolder<CircleNavRight.RightCircle>
             mTvFollowNumber.setText(datas.getCount_follow());
             mTvPostNumber.setText(datas.getCount_forum());
             mTvCircleName.setText(datas.getCname());
-            FrescoUtils.displayNormal(mIvCircleBg,datas.getCircle_img());
+            FrescoUtils.displayNormal(mIvCircleBg,datas.getCircle_img(),R.drawable.normal_1_3);
             FrescoUtils.displayIcon(mCivCircleIcon,datas.getCircle_ico());
 
 

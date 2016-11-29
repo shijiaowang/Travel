@@ -11,8 +11,8 @@ android {
         applicationId "com.yunspeak.travel"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 102
-        versionName "1.0.2"
+        versionCode 103
+        versionName "1.0.3"
         multiDexEnabled true
     }
     buildTypes {
@@ -65,4 +65,5 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.android.support:percent:24.2.1'
+    compile files('libs/libammsdk.jar')
 }

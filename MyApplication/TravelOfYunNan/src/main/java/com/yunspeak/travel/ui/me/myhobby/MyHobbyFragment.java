@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 import com.yunspeak.travel.ui.me.titlemanage.TitleChangeEvent;
 
@@ -28,14 +29,11 @@ import butterknife.ButterKnife;
 public class MyHobbyFragment extends BaseFragment {
     private static final String TITLE = "title";
     private static final String TITLE_TYPE = "title_type";
-    @BindView(R.id.gv_title)
-    GridView gvTitle;
-    @BindView(R.id.rl_empty)
-    LinearLayout llEmpty;
+    @BindView(R.id.gv_title) GridView gvTitle;
+    @BindView(R.id.rl_empty) LinearLayout llEmpty;
     private List<UserLabelBean> mTitle;
     private String mTitleType;
     private MyHobbyAdapter myHobbyAdapter;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +66,11 @@ public class MyHobbyFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    protected void initListener() {
         if (mTitle == null) {
             llEmpty.setVisibility(View.VISIBLE);
             gvTitle.setVisibility(View.GONE);
@@ -78,16 +81,12 @@ public class MyHobbyFragment extends BaseFragment {
         }
     }
 
-    @Override
-    protected void initListener() {
-
-    }
-
     @Subscribe
     public void onEvent(TitleChangeEvent event) {
         if (event.getUserLabelBean().getClassX().equals(mTitleType)) {
             mTitle.add(event.getUserLabelBean());
             myHobbyAdapter.notifyDataSetChanged();
+            GlobalValue.count--;
         }
     }
 

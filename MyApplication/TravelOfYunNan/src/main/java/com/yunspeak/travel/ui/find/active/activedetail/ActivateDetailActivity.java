@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.ActiveDetailBean;
@@ -20,7 +21,6 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailEvent;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -163,7 +163,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                 ActiveDetailBean.DataBean data = activeDetail.getData();
                 mWvHtml.loadUrl(data.getUrl());
                 isCollect=data.getIs_collect();
-                FrescoUtils.displayNormal(mIvBg,data.getTitle_img());
+                FrescoUtils.displayNormal(mIvBg,data.getTitle_img(),R.drawable.normal_2_1);
                 FrescoUtils.displayIcon(mIvIcon,data.getActivity_img());
                 title = data.getTitle();
                 mTvName.setText(title);

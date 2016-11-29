@@ -65,12 +65,17 @@ public class FrescoUtils {
         //获取GenericDraweeHierarchy对象
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
                 .setResizeOptions(new ResizeOptions(width,height))
+
                 .build();
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
                 .setRoundingParams(roundingParams)
                 //设置淡入淡出动画持续时间(单位：毫秒ms)
                 .setFadeDuration(1000)
+                .setPlaceholderImage(R.drawable.normal_1_1)
+                .setPlaceholderImageScaleType(ScalingUtils.ScaleType.FIT_XY)
+                .setFailureImage(R.drawable.normal_1_1)
+                .setFailureImageScaleType(ScalingUtils.ScaleType.FIT_XY)
                 //构建
                 .build();
 
@@ -93,8 +98,8 @@ public class FrescoUtils {
                 .build();
         GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(UIUtils.getContext().getResources())
                 //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
-                .setFailureImage(failimge, ScalingUtils.ScaleType.CENTER_INSIDE)
-                .setPlaceholderImage(failimge, ScalingUtils.ScaleType.CENTER_INSIDE)
+                .setFailureImage(failimge, ScalingUtils.ScaleType.FIT_XY)
+                .setPlaceholderImage(failimge, ScalingUtils.ScaleType.FIT_XY)
                 //构建
                 .build();
         DraweeController controller = Fresco.newDraweeControllerBuilder()
@@ -109,14 +114,14 @@ public class FrescoUtils {
      * @param simpleDraweeView 显示
      */
     public static void displayNormal(SimpleDraweeView simpleDraweeView, String url){
-       displayNormal(simpleDraweeView,url,200,200,R.drawable.activity_circle_bg);
+       displayNormal(simpleDraweeView,url,200,200,R.drawable.normal_1_1);
     }
     /**
      * 加载一般图片
      * @param simpleDraweeView 显示
      */
     public static void displayNormal(SimpleDraweeView simpleDraweeView, String url,int width,int height){
-        displayNormal(simpleDraweeView,url,width,height,R.drawable.activity_circle_bg);
+        displayNormal(simpleDraweeView,url,width,height,R.drawable.normal_1_1);
     }
     /**
      * 加载一般图片

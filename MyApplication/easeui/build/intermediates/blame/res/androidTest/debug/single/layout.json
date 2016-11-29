@@ -40,12 +40,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_voice_call.xml",
-        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_voice_call.xml"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_voice_recorder.xml",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_voice_recorder.xml"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_voice_call.xml",
+        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_voice_call.xml"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_layout_snackbar_include.xml",

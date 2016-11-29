@@ -5,18 +5,17 @@ import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.find.findcommon.DestinationBean;
-import com.yunspeak.travel.global.GlobalValue;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/9/8 0008.
+ * Created by wangyang on 2016/9/8 0008.
  * 选择景点
  */
 public class SelectDestinationHolder extends BaseRecycleViewHolder<DestinationBean.DataBean.BodyBean> {

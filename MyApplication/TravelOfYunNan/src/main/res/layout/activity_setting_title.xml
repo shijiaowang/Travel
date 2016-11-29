@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
+    android:background="@color/colorFAFAFA"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x267"
-        android:background="@color/colorFAFAFA"
-        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -37,24 +32,21 @@
             android:textColor="@color/colorb5b5b5"
             android:textSize="@dimen/x11sp" />
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
-            <com.yunspeak.travel.ui.view.FlowLayout
-                android:id="@+id/fl_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </ScrollView>
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/fl_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x200"
+            app:alignContent="flex_start"
+            app:alignItems="flex_start"
+            app:dividerDrawable="@drawable/flexbox_space"
+            app:flexWrap="wrap"
+            app:showDivider="middle" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/x6"
-        android:background="@color/colorFAFAFA"
-        android:orientation="vertical">
+       <View
+           android:background="@color/meLine"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/x6"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -81,38 +73,23 @@
 
         </com.yunspeak.travel.ui.view.SimpleViewPagerIndicator>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/x10">
+
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_marginBottom="@dimen/x10"
                 android:layout_marginLeft="@dimen/x20"
                 android:layout_marginTop="@dimen/x4">
 
             </android.support.v4.view.ViewPager>
 
-            <LinearLayout
-                android:id="@+id/ll_indicator"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x6"
-                android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/v_dot"
-                android:layout_width="@dimen/x6"
-                android:layout_height="@dimen/x6"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/dot_for_viewpager_indicator_current" />
-        </RelativeLayout>
-
-    </LinearLayout>
+          <com.yunspeak.travel.ui.view.PagerCursorView
+              android:layout_marginTop="@dimen/x5"
+              android:layout_marginBottom="@dimen/x10"
+              android:id="@+id/pager_cursor"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/x6"/>
 </LinearLayout>

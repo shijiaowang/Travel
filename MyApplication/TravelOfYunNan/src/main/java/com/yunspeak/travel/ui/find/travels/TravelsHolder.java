@@ -32,7 +32,7 @@ public class TravelsHolder extends BaseRecycleViewHolder<TravelsBean.DataBean> {
 
     @Override
     public void childBindView(int position, final TravelsBean.DataBean datas, final Context mContext) {
-        FrescoUtils.displayNormal(mIvPicture,datas.getTitle_img());
+        FrescoUtils.displayNormal(mIvPicture,datas.getTitle_img(),R.drawable.normal_2_1);
         FrescoUtils.displayIcon(mIvUserIcon,datas.getLogo_img());
         mTvNickName.setText(datas.getAuthor());
         mTvContent.setText(datas.getTitle());

@@ -22,12 +22,11 @@ import android.widget.VideoView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Splash;
 import com.yunspeak.travel.ui.baseui.FullTransparencyActivity;
-import com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterActivity;
+import com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.DensityUtils;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,8 +72,9 @@ public class SplashActivity extends FullTransparencyActivity {
 
     private void initVideoView() {
         mVideoView = (VideoView) findViewById(R.id.vv_video);
-        Uri parse = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.entrance_video);
+        Uri parse = Uri.parse("android.resource://" + getPackageName() );
         mVideoView.setVideoURI(parse);
+
     }
 
     @Override

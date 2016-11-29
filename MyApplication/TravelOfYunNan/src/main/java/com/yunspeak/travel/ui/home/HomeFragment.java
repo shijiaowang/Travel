@@ -105,7 +105,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         final HomeBean.DataBean.ActivitBean activit = data.getActivit();
         if (activit != null) {
             tvType.setText(activit.getTitle());
-            FrescoUtils.displayNormal(ivBg, activit.getActivity_img());
+            FrescoUtils.displayNormal(ivBg, activit.getActivity_img(),R.drawable.normal_1_3);
             tvPeople.setText(activit.getNow_people() + "人参加");
             tvName.setText(activit.getTitle());
             rlActive.setOnClickListener(new View.OnClickListener() {

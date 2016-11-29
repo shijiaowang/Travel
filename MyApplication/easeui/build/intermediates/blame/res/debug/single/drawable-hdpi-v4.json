@@ -20,12 +20,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatting_setmode_keyboard_btn_normal.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_search_clear_pressed.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_search_clear_pressed.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_16.png",
@@ -52,12 +52,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_icon_marka.png"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_default_avatar.png",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_default_avatar.png"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\boy.png",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\boy.png"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_default_avatar.png",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_default_avatar.png"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_search_bar_icon_normal.png",

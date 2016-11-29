@@ -107,11 +107,11 @@
 
         <Button
             android:id="@+id/bt_sure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x40"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/x50"
-            android:background="@drawable/activity_create_album_complete"
+            android:background="@drawable/activity_follow_fan_cursor"
             android:gravity="center"
             android:elevation="3dp"
             android:text="完成"

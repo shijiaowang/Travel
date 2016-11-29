@@ -5,18 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailBean;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.yunspeak.travel.utils.ImageOptionsUtil;
-
-import org.xutils.common.util.DensityUtil;
-import org.xutils.x;
 
 import java.util.List;
 
@@ -42,7 +36,7 @@ public class TravelsAddAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TravelAddHolder travelAddHolder = (TravelAddHolder) holder;
-        FrescoUtils.displayNormal(travelAddHolder.mIvRouteBg,mDatas.get(position).getLogo_img());
+        FrescoUtils.displayNormal(travelAddHolder.mIvRouteBg,mDatas.get(position).getLogo_img(),R.drawable.normal_2_1);
         travelAddHolder.mTvName.setText(mDatas.get(position).getTitle());
         travelAddHolder.mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd",mDatas.get(position).getTime()));
 

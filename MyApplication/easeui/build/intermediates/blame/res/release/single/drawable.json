@@ -28,12 +28,12 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable\\abc_ic_go_search_api_material.xml"
     },
     {
-        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable\\ease_btn_cancel_normal_shape.xml",
-        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable\\ease_btn_cancel_normal_shape.xml"
-    },
-    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable\\ease_chat_send_btn_selector.xml",
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable\\ease_chat_send_btn_selector.xml"
+    },
+    {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable\\ease_btn_cancel_normal_shape.xml",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\drawable\\ease_btn_cancel_normal_shape.xml"
     },
     {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable\\ease_chat_press_speak_btn.xml",

@@ -46,7 +46,7 @@ public class CustomDestinationHolder extends BaseRecycleViewHolder<CustomDestina
 
     @Override
     public void childBindView(final int position, final CustomDestinationBean.DataBean datas, final Context mContext) {
-        FrescoUtils.displayNormal(mIvSpot, datas.getLogo_img());
+        FrescoUtils.displayNormal(mIvSpot, datas.getLogo_img(),R.drawable.normal_2_1);
         mTvDelete.setVisibility(datas.getIs_del().equals("1") ? View.VISIBLE : View.GONE);
         mTvName.setText(datas.getTitle());
         mTvAdd.setText(datas.getProvince() + datas.getCity() + datas.getAddress());

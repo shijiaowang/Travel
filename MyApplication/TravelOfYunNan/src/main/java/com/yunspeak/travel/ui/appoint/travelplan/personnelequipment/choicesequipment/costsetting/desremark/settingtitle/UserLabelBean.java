@@ -3,7 +3,7 @@ package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequi
 import java.io.Serializable;
 
 /**
- * Created by Administrator on 2016/9/19 0019.
+ * Created by wangyang on 2016/9/19 0019.
  */
   class UserLabelBean implements Serializable {
     private String id;

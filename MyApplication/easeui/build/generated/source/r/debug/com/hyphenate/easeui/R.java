@@ -4191,10 +4191,16 @@ containing a value of this type.
         public static int Base_Widget_AppCompat_Toolbar_Button_Navigation=0x7f070081;
         public static int Base_Widget_Design_AppBarLayout=0x7f0700cc;
         public static int Base_Widget_Design_TabLayout=0x7f0700cd;
+        /**  模糊 
+         */
         public static int HeadScale=0x7f0700ce;
         public static int MyAlertDialog=0x7f0700cf;
         public static int MyDialogStyle=0x7f0700d0;
+        /**  模糊 
+         */
         public static int MyDialogStyleBottom=0x7f0700d1;
+        /**  模糊 
+         */
         public static int MyDialogStyleTop=0x7f0700d2;
         public static int Platform_AppCompat=0x7f07001b;
         public static int Platform_AppCompat_Light=0x7f07001c;
@@ -4404,6 +4410,8 @@ containing a value of this type.
         public static int devide_line_eee=0x7f07017a;
         public static int horizontal_slide=0x7f070020;
         public static int nornal_style=0x7f070021;
+        /**   <item name="android:homeAsUpIndicator">@drawable/back</item>
+         */
         public static int toolbar_theme=0x7f07017b;
     }
     public static final class styleable {

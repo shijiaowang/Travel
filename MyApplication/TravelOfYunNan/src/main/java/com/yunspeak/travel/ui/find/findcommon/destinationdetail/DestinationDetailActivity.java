@@ -14,20 +14,22 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.flexbox.FlexboxLayout;
 import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.event.DetailCommonEvent;
+import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.searchappoint.SearchAppointActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
-import com.yunspeak.travel.event.DetailCommonEvent;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
+
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -48,6 +50,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     private float startY;
     private int tapSlop;
     private TextView mTvNumber;
+
 
 
     public static void start(Context context,String tid, String name){
@@ -133,10 +136,10 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     protected void initHeader(DetailCommonEvent detailCommonEvent) {
         DestinationDetailBean destinationDetail = GsonUtils.getObject(detailCommonEvent.getResult(), DestinationDetailBean.class);
         final DestinationDetailBean.DataBean.TravelBean travel = destinationDetail.getData().getTravel();
-        StringBuilder stringBuilder=new StringBuilder("http://api.map.baidu.com/staticimage/v2?ak=DOwVc765t3sy69IdYQVefrKNEsciH5EO&width=400&height=160");
+        StringBuilder stringBuilder=new StringBuilder("http://api.map.baidu.com/staticimage/v2?ak=DOwVc765t3sy69IdYQVefrKNEsciH5EO&width=600&height=300");
         stringBuilder.append("&center="+travel.getCity());
         stringBuilder.append("&markers="+travel.getCity()+travel.getTitle()+"|"+travel.getLongitude()+","+travel.getLatitude());
-        stringBuilder.append("&zoom=10");
+        stringBuilder.append("&zoom=8");
         stringBuilder.append("&markerStyles=l,A,0xff0000");
         stringBuilder.append("&"+moblieUrl);
         mWvView.loadUrl(stringBuilder.toString());
@@ -182,7 +185,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
             final String[] split = travel_img.split(",");
             mTvNumber.setText("共"+split.length+"张图片");
             url = split[0];
-            FrescoUtils.displayNormal(mIvbg, url);
+            FrescoUtils.displayNormal(mIvbg, url,R.drawable.normal_2_1);
             mIvbg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -192,7 +195,10 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
 
         }
         initPlayWay(play_way);
+
     }
+
+
 
 
     @Override

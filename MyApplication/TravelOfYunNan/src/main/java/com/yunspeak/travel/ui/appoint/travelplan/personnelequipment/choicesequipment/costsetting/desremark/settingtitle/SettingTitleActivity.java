@@ -8,21 +8,17 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.flexbox.FlexboxLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.view.FlowLayout;
+import com.yunspeak.travel.ui.view.PagerCursorView;
 import com.yunspeak.travel.ui.view.SimpleViewPagerIndicator;
-import com.yunspeak.travel.utils.DensityUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.JsonUtils;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 
@@ -30,7 +26,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.view.annotation.ViewInject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,21 +37,19 @@ import butterknife.BindView;
  * Created by wangyang on 2016/9/6 0006.
  * 设置标签页面
  */
-public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
+public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent> {
     private static final int TYPE_MY_TITLE = 0;
     private static final int TYPE_VER_TITLE = 1;//认证标志
     private static final int TYPE_PLAY_WAY = 2;//玩法
     private static final int TYPE_DIY_TITLE = 3;
     private String[] mTitles = {"我的称号", "认证标志", "玩法", "自定义"};
     private List<Fragment> fragmentList = new ArrayList<>();
-    @BindView(R.id.ll_indicator) LinearLayout mLlDot;
-    @BindView(R.id.v_dot) View mVDot;
     @BindView(R.id.vp_pager) ViewPager mVpPager;
     @BindView(R.id.indicator) SimpleViewPagerIndicator mIndicator;
-    @BindView(R.id.fl_title) FlowLayout mFlTitle;
+    @BindView(R.id.fl_title) FlexboxLayout mFlTitle;
+    @BindView(R.id.pager_cursor)
+    PagerCursorView mPagerCursorView;
     private boolean isSure=false;//如果用户一旦确认过就一只保存标签，除非用户清除
-    private int mPointDistance;
-    private int mFirstDotLeft;
     private LayoutInflater inflater;
     private TextView mTvTitle;
     private List<SettingTitle>  settingTitles=new ArrayList<>();
@@ -68,17 +61,10 @@ public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
     @Override
     protected void initEvent() {
         init();
-        mVpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mPagerCursorView.setPagerOnChangeListener(new PagerCursorView.PagerOnChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mIndicator.scroll(position, positionOffset);
-                //动态改变小红点的值
-                float len = mPointDistance * positionOffset + mPointDistance * position;
-                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mVDot.getLayoutParams();
-                layoutParams.leftMargin = (int) (len + mFirstDotLeft);
-                //Utils.ShowToast(MainActivity.this,len+"");
-                mVDot.setLayoutParams(layoutParams);
-
+                mIndicator.scroll(position,positionOffset);
             }
 
             @Override
@@ -120,7 +106,7 @@ public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
         try {
             String label = sb.toString();
             if (!StringUtils.isEmpty(label)){
-                 label.substring(label.length()-1,label.length());
+                 label=label.substring(label.length()-1,label.length());
             }
             basecJsonObject.put(IVariable.LABEL,label);
         } catch (JSONException e) {
@@ -140,43 +126,6 @@ public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
         return "确定";
     }
 
-    /**
-     * 初始化小圆点
-     */
-    private void initDot() {
-        if (fragmentList == null || fragmentList.size() == 0) {
-            return;
-        }
-        mLlDot = (LinearLayout) findViewById(R.id.ll_indicator);
-        for (int i = 0; i < fragmentList.size(); i++) {
-            View view = new View(this);
-            view.setBackgroundResource(R.drawable.dot_for_viewpager_indicator);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtils.dipToPx(this, 6), DensityUtils.dipToPx(this, 6));
-            if (i > 0) {
-                params.leftMargin = DensityUtils.dipToPx(this, 11);
-            }
-            view.setLayoutParams(params);
-            mLlDot.addView(view);
-        }
-        /**
-         * 绘制完成回调
-         */
-        mLlDot.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                mPointDistance = mLlDot.getChildAt(1).getLeft() - mLlDot.getChildAt(0).getLeft();
-                //获取第一个的左边
-                mFirstDotLeft = mLlDot.getChildAt(0).getLeft();
-                //初始化小圆点
-                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mVDot.getLayoutParams();
-                layoutParams.leftMargin = mFirstDotLeft;
-                mVDot.setLayoutParams(layoutParams);
-                //移除监听事件
-                mLlDot.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-            }
-        });
-    }
-
 
 
     @Override
@@ -190,7 +139,7 @@ public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
     }
 
 
-    private void dealData(AddTitleEvent event){
+    private void dealData(SettingTitleEvent event){
         SettingTitleBean settingTitleBean = GsonUtils.getObject(event.getResult(), SettingTitleBean.class);
         List<UserLabelBean> userLabel = settingTitleBean.getData().getUser_label();
         List<UserLabelBean> platformLabel = settingTitleBean.getData().getPlatform_label();
@@ -203,14 +152,15 @@ public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
         fragmentList.add(tabFragment2);
         fragmentList.add(tabFragment3);
         fragmentList.add(tabFragment4);
-        mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager()));
+        mPagerCursorView.setViewPager(mVpPager,4,false);
         mVpPager.setOffscreenPageLimit(3);
-        initDot();
+        mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager()));
+
     }
 
 
     @Override
-    protected void onSuccess(AddTitleEvent addTitleEvent) {
+    protected void onSuccess(SettingTitleEvent addTitleEvent) {
         dealData(addTitleEvent);
     }
 
@@ -232,6 +182,7 @@ public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
 
         @Override
         public Fragment getItem(int position) {
+
             return fragmentList.get(position);
         }
 
@@ -245,12 +196,11 @@ public class SettingTitleActivity extends BaseNetWorkActivity<AddTitleEvent> {
     protected void onDestroy() {
         super.onDestroy();
         GlobalValue.selectTitleNumber = 0;
-        LogUtils.e("设置标签页面被销毁了");
     }
 
 
     @Subscribe
-    public void onEvent(SettingTitleEvent event) {
+    public void onEvent(AddTitleEvent event) {
         SettingTitle settingTitle = event.getSettingTitle();
         addTitle(settingTitle);
     }

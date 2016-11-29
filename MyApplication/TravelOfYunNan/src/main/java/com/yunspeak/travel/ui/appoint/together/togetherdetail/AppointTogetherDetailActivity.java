@@ -3,7 +3,7 @@ package com.yunspeak.travel.ui.appoint.together.togetherdetail;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.support.annotation.ColorInt;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,7 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindColor;
 import butterknife.BindView;
 import cn.sharesdk.framework.ShareSDK;
 
@@ -135,14 +134,13 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     private TravelDetailLineAdapter travelDetailLineAdapter;
     private TravelDetailLineAdapter normalDetailLineAdapter;
     private boolean isBoss=true;
-    @BindColor(R.color.otherFf7f6c) @ColorInt
-    int color1;
-    @BindColor(R.color.otherTitleBg) @ColorInt int color2;
-    @BindColor(R.color.other74b8ff) @ColorInt int color3;
-    @BindColor(R.color.otherFcae04) @ColorInt int color4;
-    @BindColor(R.color.other9f8fe4) @ColorInt int color5;
-    @BindColor(R.color.other50c3eb) @ColorInt int color6;
-    @BindColor(R.color.other5ee5c5) @ColorInt int color7;
+     int color1=Color.parseColor("#ff7f6c");
+     int color2=Color.parseColor("#5cd0c2");
+     int color3=Color.parseColor("#74b8ff");
+     int color4=Color.parseColor("#fcae04");
+     int color5=Color.parseColor("#9f8fe4");
+     int color6=Color.parseColor("#50c3eb");
+     int color7=Color.parseColor("#5ee5c5");
     private int [] colors=new int[]{color1,color2,color3,color4,color5,color6,color7};
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
     private String userId;

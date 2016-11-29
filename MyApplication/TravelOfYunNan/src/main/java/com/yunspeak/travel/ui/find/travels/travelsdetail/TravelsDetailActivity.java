@@ -153,7 +153,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
             title = data.getTravel().getTitle();
             mTvTitle.setText(title);
             String url = data.getTravel().getTravels_img().split(",")[0];
-            FrescoUtils.displayNormal(mIvBg,url);
+            FrescoUtils.displayNormal(mIvBg,url,R.drawable.normal_2_1);
         }catch (Exception e){
             e.printStackTrace();
         }

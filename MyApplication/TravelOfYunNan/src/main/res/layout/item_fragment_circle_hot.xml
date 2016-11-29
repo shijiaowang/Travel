@@ -7,7 +7,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x254"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x8"
         android:layout_marginTop="@dimen/x22">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -47,7 +48,7 @@
             android:id="@+id/tv_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+
             android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/x18"
             android:layout_marginRight="@dimen/x25"

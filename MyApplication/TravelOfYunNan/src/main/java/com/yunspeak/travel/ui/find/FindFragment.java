@@ -41,8 +41,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
     @BindView(R.id.ll_active) LinearLayout mLlActive;
     @BindView(R.id.rv_recommend) RecyclerView mRvRecommend;
     @BindView(R.id.rv_hot) RecyclerView mRvHot;
-    @BindView(R.id.pager_cursor)
-    PagerCursorView pagerCursorView;
+    @BindView(R.id.pager_cursor) PagerCursorView pagerCursorView;
     private List<FindBean.DataBean.RecommendBean> banner;
 
     @Override

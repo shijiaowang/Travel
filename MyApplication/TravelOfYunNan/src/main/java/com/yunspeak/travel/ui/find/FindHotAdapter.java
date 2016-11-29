@@ -32,8 +32,7 @@ public class FindHotAdapter extends BaseRecycleViewAdapter<FindBean.DataBean.Rec
 
     @Override
     public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_find_hot, parent, false);
-        return new FindHotHolder(inflate);
+        return new FindHotHolder(inflateView(R.layout.item_fragment_find_hot, parent));
     }
 
 

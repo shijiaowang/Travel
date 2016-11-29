@@ -1,9 +1,7 @@
 package com.yunspeak.travel;
 
-import android.app.ActivityManager;
 import android.app.Notification;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -14,16 +12,12 @@ import android.widget.RemoteViews;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMOptions;
-import com.hyphenate.easeui.controller.EaseUI;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.MsgConstant;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengMessageHandler;
 import com.umeng.message.entity.UMessage;
 import com.yunspeak.travel.utils.FormatDateUtils;
-
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.x;
@@ -32,8 +26,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by wangyang on 2016/7/8 0008.
@@ -94,7 +86,7 @@ public class TravelsApplication extends MultiDexApplication {
                         long time = new Date().getTime();
                         myNotificationView.setTextViewText(R.id.tv_time, FormatDateUtils.FormatLongTime("HH:mm",time/1000+""));
                         builder.setCustomBigContentView(myNotificationView)
-                                .setSmallIcon(R.drawable.user_icon)
+                                .setSmallIcon(R.mipmap.icon)
                                 .setLargeIcon(bitmap)
                                 .setWhen(time)
                                 .setContentTitle(msg.title)

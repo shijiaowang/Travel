@@ -137,7 +137,6 @@
                 style="@style/activityDeliciousDetailTvName"
                 android:text="景点位置" />
         </LinearLayout>
-
         <WebView
             android:id="@+id/wv_html"
             android:layout_width="match_parent"

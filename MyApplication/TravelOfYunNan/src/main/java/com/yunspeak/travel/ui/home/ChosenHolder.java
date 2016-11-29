@@ -2,16 +2,13 @@ package com.yunspeak.travel.ui.home;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.Chosen;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 
@@ -29,7 +26,7 @@ public class ChosenHolder extends BaseRecycleViewHolder<HomeBean.DataBean.ForumB
 
     @Override
     public void childBindView(int position, final HomeBean.DataBean.ForumBean data, final Context mContext) {
-        FrescoUtils.displayNormal(mIvChosenPicture,data.getCircle_img());
+        FrescoUtils.displayNormal(mIvChosenPicture,data.getCircle_img(),R.drawable.normal_2_1);
         mTvType.setText(data.getCname());
         mTvChosenText.setText(data.getTitle());
         itemView.setOnClickListener(new View.OnClickListener() {

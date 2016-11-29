@@ -67,7 +67,7 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         if (!StringUtils.isEmpty(foodUrl)){
             final String[] split = foodUrl.split(",");
             mTvNumber.setText("共"+split.length+"张图片");
-            FrescoUtils.displayNormal(mIvBg,split[0]);
+            FrescoUtils.displayNormal(mIvBg,split[0],R.drawable.normal_2_1);
             mIvBg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

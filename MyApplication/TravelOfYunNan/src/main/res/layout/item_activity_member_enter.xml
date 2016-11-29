@@ -20,7 +20,7 @@
             android:id="@+id/iv_icon"
             android:layout_width="@dimen/x42"
             android:layout_height="@dimen/x42"
-            android:src="@drawable/appoint_icon_test" />
+          />
 
         <LinearLayout
 

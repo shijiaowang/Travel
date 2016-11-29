@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.home;
 
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -16,8 +15,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.hyphenate.EMMessageListener;
-import com.hyphenate.chat.EMMessage;
+
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
@@ -34,26 +34,21 @@ import com.yunspeak.travel.ui.find.FindFragment;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.me.MeFragment;
 import com.yunspeak.travel.ui.view.GradientTextView;
+import com.yunspeak.travel.ui.view.NoScrollViewPager;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.NetworkUtils;
-import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.TypefaceUtis;
-import com.hyphenate.EMCallBack;
-import com.hyphenate.EMConnectionListener;
-import com.hyphenate.EMError;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.util.NetUtils;
 import com.yunspeak.travel.utils.UIUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
+
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.Callback;
-import org.xutils.common.util.LogUtil;
 import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -62,6 +57,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import butterknife.BindView;
 
 /**
@@ -75,26 +71,43 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private List<TextView> iconNames = new ArrayList<>(5);
     private List<Fragment> fragments;
     //渐变图标
-    @BindView(R.id.vp_home) ViewPager mVpHome;
-    @BindView(R.id.tv_home_fonts_icon) GradientTextView mTvHomeIconFonts;
-    @BindView(R.id.tv_appoint_fonts_icon) GradientTextView mTvAppointIconFonts;
-    @BindView(R.id.tv_circle_fonts_icon) GradientTextView mTvCircleIconFonts;
-    @BindView(R.id.tv_find_fonts_icon) GradientTextView mTvFindIconFonts;
-    @BindView(R.id.tv_me_fonts_icon) GradientTextView mTvMeIconFonts;
-    @BindView(R.id.tv_circle_name) TextView mTvCircleName;
-    @BindView(R.id.tv_appoint_name) TextView mTvAppointName;
-    @BindView(R.id.tv_me_name) TextView mTvMeName;
-    @BindView(R.id.tv_find_name) TextView mTvFindName;
-    @BindView(R.id.tv_home_name) TextView mTvHomeName;
-    @BindView(R.id.ll_appoint_click) LinearLayout mLlAppointClick;
-    @BindView(R.id.ll_circle_click) LinearLayout mLlCircleClick;
-    @BindView(R.id.ll_me_click) LinearLayout mLlMeClick;
-    @BindView(R.id.ll_find_click) LinearLayout mLlFindClick;
-    @BindView(R.id.ll_main_click) LinearLayout mLlMainClick;
-    @BindView(R.id.ll_bottom) LinearLayout mLlBottom;
+    @BindView(R.id.vp_home)
+    NoScrollViewPager mVpHome;
+    @BindView(R.id.tv_home_fonts_icon)
+    GradientTextView mTvHomeIconFonts;
+    @BindView(R.id.tv_appoint_fonts_icon)
+    GradientTextView mTvAppointIconFonts;
+    @BindView(R.id.tv_circle_fonts_icon)
+    GradientTextView mTvCircleIconFonts;
+    @BindView(R.id.tv_find_fonts_icon)
+    GradientTextView mTvFindIconFonts;
+    @BindView(R.id.tv_me_fonts_icon)
+    GradientTextView mTvMeIconFonts;
+    @BindView(R.id.tv_circle_name)
+    TextView mTvCircleName;
+    @BindView(R.id.tv_appoint_name)
+    TextView mTvAppointName;
+    @BindView(R.id.tv_me_name)
+    TextView mTvMeName;
+    @BindView(R.id.tv_find_name)
+    TextView mTvFindName;
+    @BindView(R.id.tv_home_name)
+    TextView mTvHomeName;
+    @BindView(R.id.ll_appoint_click)
+    LinearLayout mLlAppointClick;
+    @BindView(R.id.ll_circle_click)
+    LinearLayout mLlCircleClick;
+    @BindView(R.id.ll_me_click)
+    LinearLayout mLlMeClick;
+    @BindView(R.id.ll_find_click)
+    LinearLayout mLlFindClick;
+    @BindView(R.id.ll_main_click)
+    LinearLayout mLlMainClick;
+    @BindView(R.id.ll_bottom)
+    LinearLayout mLlBottom;
     private boolean isNetwork;
     private SharedPreferences sharedPreferences;
-    private boolean isOtherLogin=true;
+    private boolean isOtherLogin = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,26 +115,26 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         ActivityUtils.getInstance().exit();
         initHXListener();
         String registrationId = PushAgent.getInstance(this).getRegistrationId();
-        LogUtils.e("注册ID为"+registrationId);
+        LogUtils.e("注册ID为" + registrationId);
         registerEventBus(this);
         if (!NetworkUtils.isNetworkConnected(this)) {
             ToastUtils.showToast("网络未连接");
         }
         isNetwork = getIntent().getBooleanExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, true);
-        if (!isNetwork || GlobalUtils.getUserInfo()==null){
+        if (!isNetwork || GlobalUtils.getUserInfo() == null) {
             sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
             String userName = sharedPreferences.getString(IVariable.SAVE_NAME, "");
             String userPwd = sharedPreferences.getString(IVariable.SAVE_PWD, "");
             //网络可用验证登录
-                Map<String, String> stringMap = MapUtils.Build().addKey().addUserName(userName).addPassword(userPwd).end();
-                XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap,TYPE_REFRESH, new HomeLoginEvent());
+            Map<String, String> stringMap = MapUtils.Build().addKey().addUserName(userName).addPassword(userPwd).end();
+            XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap, TYPE_REFRESH, new HomeLoginEvent());
 
         }
         /*Intent startServiceIntent=new Intent(this, EMChatService.class);
         startServiceIntent.putExtra("reason", "boot");
         startService(startServiceIntent);*/
         Map<String, String> end = MapUtils.Build().addKey().addType("1").end();
-        XEventUtils.getUseCommonBackJson(IVariable.UPDATE,end,TYPE_UPDATE,new HomeLoginEvent());
+        XEventUtils.getUseCommonBackJson(IVariable.UPDATE, end, TYPE_UPDATE, new HomeLoginEvent());
         MobclickAgent.openActivityDurationTrack(false);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
     }
@@ -204,10 +217,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             }
         });
 
-
-
     }
-
 
 
     @Override
@@ -223,8 +233,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         initIconFonts();
         setCheckedOfPosition(0);
     }
+
     @Subscribe
-   public void onEvent(HomeLoginEvent event) {
+    public void onEvent(HomeLoginEvent event) {
         switch (event.getType()) {
             case TYPE_REFRESH:
                 loginResult(event);
@@ -240,7 +251,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                             public void onClick(int type) {
                                 RequestParams requestParams = new RequestParams(data.getDownloadurl());
                                 requestParams.setMethod(HttpMethod.GET);
-                                x.http().get(requestParams,new DownloadProgress());
+                                x.http().get(requestParams, new DownloadProgress());
                             }
                         });
                     }
@@ -249,16 +260,18 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
         }
     }
+
     /**
      * 登录结果
+     *
      * @param event
      */
     private void loginResult(HomeLoginEvent event) {
         LogUtils.e(event.getMessage());
-        if (event.isSuccess()){
+        if (event.isSuccess()) {
             Login object = GsonUtils.getObject(event.getResult(), Login.class);
             UserInfo data = object.getData();
-            if (data!=null){
+            if (data != null) {
                 com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
                 userInfo.setId(data.getId());
                 userInfo.setNick_name(data.getNick_name());
@@ -266,19 +279,19 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 DBManager.insertChatUserInfo(userInfo);
             }
             UserUtils.saveUserInfo(data);
-            if (GlobalUtils.getUserInfo()==null){
+            if (GlobalUtils.getUserInfo() == null) {
                 // TODO: 2016/11/5 0005 清除app所有缓存，不再提示
                 ToastUtils.showToast("用户信息发生错误，请尝试重新登录，若多次无效，可清除缓存！");
             }
-        }else {
-            if (NetworkUtils.isNetworkConnected(this) &&  GlobalUtils.getUserInfo()==null){
+        } else {
+            if (NetworkUtils.isNetworkConnected(this) && GlobalUtils.getUserInfo() == null) {
                 ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
-            }else {
-                if(event.getMessage().equals("密码错误")){
+            } else {
+                if (event.getMessage().equals("密码错误")) {
                     ToastUtils.showToast("密码错误！请重新登录");
                     startActivity(new Intent(this, LoginActivity.class));
                     finish();
-                }else {
+                } else {
                     ToastUtils.showToast("网络错误！");
                 }
             }
@@ -391,7 +404,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -402,6 +414,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onDestroy() {
         super.onDestroy();
     }
+
     class DownloadProgress implements Callback.ProgressCallback<File> {
         @Override
         public void onWaiting() {
@@ -429,11 +442,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         @Override
         public void onError(Throwable ex, boolean isOnCallback) {
             ex.printStackTrace();
-            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 ToastUtils.showToast("SD卡不可用！");
-            }else if (!NetworkUtils.isNetworkConnected(HomeActivity.this)){
+            } else if (!NetworkUtils.isNetworkConnected(HomeActivity.this)) {
                 ToastUtils.showToast("网络不可用！");
-            }else {
+            } else {
                 ToastUtils.showToast("下载失败！");
             }
 
@@ -452,29 +465,32 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     /**
      * 双击退出应用
+     *
      * @param keyCode
      * @param event
      * @return
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                exit();
-                return true;
-            } else {
-                return super.onKeyDown(keyCode, event);
-            }
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return true;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
 
     }
-    long preTime=0;
+
+    long preTime = 0;
+
     private void exit() {
         long currentTimeMillis = System.currentTimeMillis();
-        if (currentTimeMillis-preTime>1000){
+        if (currentTimeMillis - preTime > 1000) {
             ToastUtils.showToast("快速双击退出应用");
-        }else {
+        } else {
             onBackPressed();
         }
-        preTime=currentTimeMillis;
+        preTime = currentTimeMillis;
     }
 
 }

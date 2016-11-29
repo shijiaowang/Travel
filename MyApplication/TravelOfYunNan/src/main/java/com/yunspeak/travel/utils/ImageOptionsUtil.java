@@ -68,8 +68,8 @@ public class ImageOptionsUtil {
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-                .setLoadingDrawableId(R.drawable.fragment_me_icon)
-                .setFailureDrawableId(R.drawable.fragment_me_icon)
+                .setLoadingDrawableId(R.drawable.girl)
+                .setFailureDrawableId(R.drawable.girl)
                 .build();
         x.image().bind(imageView, iconUrl,imageOptions);
     }
@@ -87,8 +87,8 @@ public class ImageOptionsUtil {
                 .setRadius(DensityUtil.dip2px(radius))
                 .setIgnoreGif(false)
                 .setCrop(true)//是否对图片进行裁剪
-                .setLoadingDrawableId(R.drawable.fragment_me_icon)
-                .setFailureDrawableId(R.drawable.fragment_me_icon)
+                .setLoadingDrawableId(R.drawable.girl)
+                .setFailureDrawableId(R.drawable.girl)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
     }
@@ -105,8 +105,8 @@ public class ImageOptionsUtil {
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
                 .setCircular(isCircluar)
                 .setCrop(true)
-                .setLoadingDrawableId(R.drawable.fragment_me_icon)
-                .setFailureDrawableId(R.drawable.fragment_me_icon)
+                .setLoadingDrawableId(R.drawable.girl)
+                .setFailureDrawableId(R.drawable.girl)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
     }

@@ -24,7 +24,7 @@ public class AppointWithMeDetailDestinationHolder extends BaseHolder<AppointWith
 
     @Override
     protected void initItemDatas(AppointWithMeDetailBean.DataBean.RoutesBean datas, Context mContext, int position) {
-        FrescoUtils.displayNormal(mIvBg,datas.getLogo_img());
+        FrescoUtils.displayNormal(mIvBg,datas.getLogo_img(),R.drawable.normal_2_1);
         mTvAdd.setText(datas.getProvince()+datas.getAddress());
         mTvName.setText(datas.getCity()+" · "+datas.getTitle());
     }

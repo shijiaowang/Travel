@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_marginLeft="@dimen/x10"
         android:layout_marginRight="@dimen/x10"
         android:background="@color/colorFAFAFA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -29,7 +27,7 @@
                 android:layout_width="@dimen/x45"
                 android:layout_height="@dimen/x20" />
 
-        </RelativeLayout>
+        </FrameLayout>
         <TextView
             android:id="@+id/tv_content"
             android:layout_marginTop="@dimen/x9"
@@ -38,37 +36,19 @@
             android:textSize="@dimen/x14sp"
             android:lineSpacingExtra="@dimen/x8"
             android:ellipsize="end"
-            android:lines="2"
+            android:maxLines="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
           />
-        <LinearLayout
-            android:layout_marginTop="@dimen/x10"
-            android:layout_marginBottom="@dimen/x10"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:text="@string/item_fragment_find_add"
-                android:layout_marginLeft="@dimen/x10"
-                android:textColor="@color/colorC1c1c1"
-                android:textSize="@dimen/x10sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tv_address"
+                android:layout_marginTop="@dimen/x10"
+                android:layout_marginBottom="@dimen/x10"
                 android:textColor="@color/colorC1c1c1"
                 android:layout_marginLeft="@dimen/x7"
                 style="@style/commonSingleLineTextStyle"
                 android:textSize="@dimen/x10sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
     </LinearLayout>
 
-
-
-</RelativeLayout>

@@ -4,13 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.xutils.common.util.DensityUtil;
-import org.xutils.x;
 
 import butterknife.BindView;
 
@@ -29,7 +26,7 @@ public class AppointDetailLineDetailHolder extends BaseHolder<AppointTogetherDet
 
     @Override
     protected void initItemDatas(AppointTogetherDetailBean.DataBean.RoutesBean datas, Context mContext, int position) {
-        FrescoUtils.displayNormal(mIvBg,datas.getLogo_img());
+        FrescoUtils.displayNormal(mIvBg,datas.getLogo_img(),R.drawable.normal_2_1);
         mTvAddress.setText(datas.getAddress());
         mTvDes.setText(datas.getProvince()+datas.getContent());
         mTvName.setText(datas.getCity()+" · "+datas.getTitle());

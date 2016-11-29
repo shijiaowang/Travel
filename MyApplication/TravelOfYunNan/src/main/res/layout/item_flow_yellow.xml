@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="@drawable/empty_circle_yellow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +22,6 @@
                 android:textColor="@color/Ffbf75"
                 android:textSize="@dimen/x14sp" />
         </RelativeLayout>
-
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:layout_toRightOf="@id/rl_right"
             android:id="@+id/tv_delete"
@@ -37,7 +33,5 @@
             android:text="@string/activity_member_detail_delete"
             android:textColor="@color/otherTitleBg"
             android:textSize="@dimen/x10sp" />
-
     </RelativeLayout>
 
-</RelativeLayout>

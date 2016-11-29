@@ -1,14 +1,19 @@
 package com.yunspeak.travel.ui.find;
 
 import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.find.findcommon.CustomTypefaceSpan;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.yunspeak.travel.utils.TypefaceUtis;
 
+import butterknife.BindString;
 import butterknife.BindView;
 
 /**
@@ -24,6 +29,8 @@ public class FindHotHolder extends BaseRecycleViewHolder<FindBean.DataBean.Recom
     TextView tvContent;
     @BindView(R.id.tv_address)
     TextView tvAddress;
+    @BindString(R.string.item_fragment_find_add) String addressIcon;
+    private String address;
 
     public FindHotHolder(View itemView) {
         super(itemView);
@@ -34,7 +41,11 @@ public class FindHotHolder extends BaseRecycleViewHolder<FindBean.DataBean.Recom
         itemView.setOnClickListener(new MyOnClickListener(mContext,data));
         FrescoUtils.displayNormal(ivPhoto,data.getLogo_img());
         tvContent.setText(data.getTitle());
-        tvAddress.setText(data.getProvince()+data.getCity()+data.getAddress());
+        address =addressIcon+"\u3000"+data.getProvince()+data.getCity()+data.getAddress();
+        SpannableString spannableString = new SpannableString(address);
+        spannableString.setSpan(new CustomTypefaceSpan("sans-serif", TypefaceUtis.getTypeface(mContext)),0,1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvAddress.setText(spannableString);
+
         int type = data.getType();
         if (type==1){
             tvType.setText("热门景点");
