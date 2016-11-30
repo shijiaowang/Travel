@@ -91,9 +91,18 @@ public class PostDetailBean implements ParentBean{
             private String is_collect;
             private String is_like;
             private String replay_count;
+            private String share_url;
             private List<InformBean> inform;
 
             private List<LikeBean> like;
+
+            public String getShare_url() {
+                return share_url;
+            }
+
+            public void setShare_url(String share_url) {
+                this.share_url = share_url;
+            }
 
             public String getId() {
                 return id;

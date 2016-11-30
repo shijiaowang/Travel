@@ -3,7 +3,6 @@ package com.yunspeak.travel.ui.circle.circlenav;
 import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -13,7 +12,6 @@ import android.widget.RelativeLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Circle;
 import com.yunspeak.travel.bean.CircleNavRight;
-import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.NavLeftEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
@@ -24,6 +22,7 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.Callback;
 
 import java.util.List;
@@ -63,7 +62,6 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
         Map<String, String> map = MapUtils.Build().addKey().addUserId().end();
         useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.FIRST_CIRCLE_URL, map, IVariable.FIRST_REQ,new NavLeftEvent());
     }
-
 
     @Override
     protected void initListener() {
@@ -110,11 +108,11 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
 
     @Override
     protected void onLoad(int type) {
+        pbLoading.setVisibility(View.VISIBLE);
         if (isFirst) {
             isFirst = false;
             firstReq();
         } else {
-            pbLoading.setVisibility(View.VISIBLE);
             normalReq(cid);
         }
     }
@@ -165,19 +163,31 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
                     return;
                 }
                 rlEmpty.setVisibility(View.GONE);
-
                 if (circleNavRightAdapter==null){
+                    mLvRightNav.setVisibility(View.VISIBLE);
                     circleNavRightAdapter = new CircleNavRightAdapter(getContext(), rightList);
                     mLvRightNav.setAdapter(circleNavRightAdapter);
+                }else if (getListSize(rightList)==0){
+                    rlEmpty.setVisibility(View.VISIBLE);
+                    mLvRightNav.setVisibility(View.GONE);
                 }else {
+                    mLvRightNav.setVisibility(View.VISIBLE);
                     circleNavRightAdapter.notifyData(rightList);
                 }
             }
     }
-
+    @Subscribe
+    public void onEvent(RefreshEvent refreshEvent){
+        if (prePosition==0){
+            firstReq();
+        }
+    }
     @Override
     protected void onFail(NavLeftEvent event) {
         super.onFail(event);
+        if(event.getType()==IVariable.FIRST_REQ){
+            isFirst=true;
+        }
         pbLoading.setVisibility(View.GONE);
     }
 
@@ -199,15 +209,19 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
             mLvLeftNav.setAdapter(circleNavLeftAdapter);
         }
         if (rightList != null) {
+
             if (rightList.size()==0){
                 rlEmpty.setVisibility(View.VISIBLE);
+                mLvRightNav.setVisibility(View.GONE);
             }else {
+                mLvRightNav.setVisibility(View.VISIBLE);
                 circleNavRightAdapter = new CircleNavRightAdapter(getContext(), rightList);
                 mLvRightNav.setAdapter(circleNavRightAdapter);
                 rlEmpty.setVisibility(View.GONE);
             }
         }else {
             rlEmpty.setVisibility(View.VISIBLE);
+            mLvRightNav.setVisibility(View.GONE);
         }
 
     }

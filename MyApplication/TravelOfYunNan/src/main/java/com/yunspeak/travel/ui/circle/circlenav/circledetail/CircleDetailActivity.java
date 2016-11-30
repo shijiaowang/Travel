@@ -7,12 +7,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.AppBarStateChangeListener;
 import com.yunspeak.travel.ui.baseui.BaseChangeColorRecycleActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.circle.circlenav.RefreshEvent;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreateEvent;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -20,8 +22,8 @@ import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
@@ -195,11 +197,13 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
         CircleFollowBean circleFollow = GsonUtils.getObject(result, CircleFollowBean.class);
         String follow_count = circleFollow.getData().getFollow_count();
         mTvFollowNumber.setText(follow_count);
+        EventBus.getDefault().post(new RefreshEvent());//刷新关注列表
         if (mTvFollow.getText().toString().trim().equals(getString(R.string.activity_circle_detail_followed))){
             mTvFollow.setText(getString(R.string.activity_circle_detail_follow));
         }else {
             mTvFollow.setText(getString(R.string.activity_circle_detail_followed));
         }
+
     }
 
   /**
@@ -218,11 +222,5 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
         mTvTitle.setText(head.getCname());
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
 
 }

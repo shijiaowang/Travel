@@ -3,7 +3,6 @@ package com.yunspeak.travel.ui.me.myappoint.memberdetail;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,7 +131,7 @@ public class MemberEnterAdapter extends BaseRecycleViewAdapter<MemberDetailBean.
             tvAge.setText(joinBean.getAge());
             tvSex.setText(joinBean.getSex().equals("1") ? R.string.activity_member_detail_boy : R.string.activity_member_detail_girl);
             tvName.setText(joinBean.getNick_name());
-            tvTime.setText(FormatDateUtils.FormatLongTime("MM:dd HH:mm:ss",joinBean.getAdd_time()));
+            tvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss",joinBean.getAdd_time()));
             if (StringUtils.isEmpty(joinBean.getContent())) {
                 llDiscuss.setVisibility(View.GONE);
             } else {

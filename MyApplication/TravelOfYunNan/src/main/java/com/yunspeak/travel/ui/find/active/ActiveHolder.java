@@ -2,17 +2,12 @@ package com.yunspeak.travel.ui.find.active;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.find.active.ActiveBean;
 import com.yunspeak.travel.utils.FrescoUtils;
-
-import org.xutils.x;
 
 import butterknife.BindView;
 
@@ -36,7 +31,7 @@ public class ActiveHolder extends BaseRecycleViewHolder<ActiveBean.DataBean> {
     public void childBindView(int position, ActiveBean.DataBean datas, Context mContext) {
         mTvName.setText(datas.getTitle());
         mTvPeople.setText(datas.getNow_people()+"人参赛");
-        mTvType.setText(datas.getType().equals("1")?"线下活动":"线上活动");
+        mTvType.setText(datas.getType().equals("2")?"线下活动":"线上活动");
         FrescoUtils.displayNormal(mIvBg,datas.getActivity_img());
     }
 }

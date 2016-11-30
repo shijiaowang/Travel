@@ -55,7 +55,7 @@ public class ActiveDetailBean {
         private String is_banner;
         private String url;
         private String is_into;
-        private String content;
+        private String title_desc;
         private String is_collect="0";
 
         public String getIs_collect() {
@@ -66,12 +66,12 @@ public class ActiveDetailBean {
             this.is_collect = is_collect;
         }
 
-        public String getContent() {
-            return content;
+        public String getTitle_desc() {
+            return title_desc;
         }
 
-        public void setContent(String content) {
-            this.content = content;
+        public void setTitle_desc(String title_desc) {
+            this.title_desc = title_desc;
         }
 
         public String getId() {

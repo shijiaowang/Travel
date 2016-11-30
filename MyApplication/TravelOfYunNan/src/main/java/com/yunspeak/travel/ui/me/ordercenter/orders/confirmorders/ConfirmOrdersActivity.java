@@ -114,6 +114,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     };
     private int prePosition = -1;
     private float currentPrice;
+    private String payType;
 
     @Override
     protected int initLayoutRes() {
@@ -122,6 +123,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
 
     private void init() {
         id = getIntent().getStringExtra(IVariable.ID);
+        payType = getIntent().getStringExtra("pay_type");
         selectPayWay.add(mTvPayZfb);
         selectPayWay.add(mTvPayWx);
     }
@@ -139,7 +141,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        builder.addId(id);
+        builder.addId(id).add("pay_type",payType);
 
     }
 
@@ -162,8 +164,9 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                         break;
                     case PAY_WAY_WX:
                         WXPayBean wxPayBean = GsonUtils.getObject(confirmOrdersEvent.getResult(), WXPayBean.class);
-                        IWXAPI wxapi = WXAPIFactory.createWXAPI(this, null);
+
                         WXPayBean.DataBean dataBean = wxPayBean.getData();
+                        IWXAPI wxapi = WXAPIFactory.createWXAPI(this,dataBean.getAppid());
                         try {
                             PayReq req = new PayReq();
                             req.appId = dataBean.getAppid();
@@ -222,7 +225,6 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                 totalPay += Float.parseFloat(basecPriceBean.getValue());
             }
         }
-        String payType = order.getPay_type();
         if (payType.equals("2")) {
             mTvOrderName.setText("活动订单");
             mTvOrderName.setTextColor(getResources().getColor(R.color.otherFf7f6c));

@@ -86,7 +86,7 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
                 mIvImage.setVisibility(View.GONE);
             }else {
                 mIvImage.setVisibility(View.VISIBLE);
-                FrescoUtils.displayNormal(mIvImage,forumReplyBean.getReply_img(),600,450);
+                FrescoUtils.displayNormal(mIvImage,forumReplyBean.getReply_img(),600,450,R.drawable.normal_2_1);
             }
             List<InformBean> inform1 = reply.getInform();
             String replyContent = reply.getContent();

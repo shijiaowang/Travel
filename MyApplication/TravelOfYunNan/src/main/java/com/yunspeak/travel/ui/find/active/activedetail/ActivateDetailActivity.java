@@ -22,6 +22,7 @@ import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -117,7 +118,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                 Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("3").addId(aId).end();
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new ActiveDetailEvent());
             }
-        },"城外旅游活动分享",title,false);
+        },"城外旅游活动分享",title,false,"http://cityoff.yunspeak.com/",mIvBg);
     }
 
     @Override
@@ -148,7 +149,18 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
     private void dealData(ActiveDetailEvent event) {
         switch (event.getType()){
             case TYPE_UPDATE:
-                ToastUtils.showToast("报名成功，您可以到‘我的订单’页面支付相应费用。");
+                if (event.getCode()==2){
+                    ToastUtils.showToast(event.getMessage());
+                    return;
+                }
+                EnterActiveBean enterActiveBean = GsonUtils.getObject(event.getResult(), EnterActiveBean.class);
+                EnterActiveBean.DataBean enterActiveBeanData = enterActiveBean.getData();
+                if (enterActiveBeanData==null)return;
+                ToastUtils.showToast("报名成功，前往支付页面。");
+                Intent intent=new Intent(this, ConfirmOrdersActivity.class);
+                intent.putExtra(IVariable.ID,enterActiveBeanData.getId());
+                intent.putExtra("pay_type",enterActiveBeanData.getPay_type());
+                startActivity(intent);
                 break;
             case TYPE_COLLECTION:
                 ToastUtils.showToast("收藏成功");
@@ -167,7 +179,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                 FrescoUtils.displayIcon(mIvIcon,data.getActivity_img());
                 title = data.getTitle();
                 mTvName.setText(title);
-                mTvContnet.setText(data.getContent());
+                mTvContnet.setText(data.getTitle_desc());
                 mTvMoney.setText("¥" + data.getPrice());
                 mTvMoney2.setText("¥"+data.getPrice());
                 mTvNumber.setText(data.getMax_people()+"人");

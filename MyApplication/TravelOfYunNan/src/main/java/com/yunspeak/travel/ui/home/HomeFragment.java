@@ -192,7 +192,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         @Override
         public Object inflateView(ViewGroup container, int position) {
             SimpleDraweeView imageView = new SimpleDraweeView(getContext());
-            FrescoUtils.displayNormal(imageView, data.get(position).getPath(),600,450);
+            FrescoUtils.displayNormal(imageView, data.get(position).getPath(),600,450,R.drawable.normal_2_1);
             container.addView(imageView);
             return imageView;
 

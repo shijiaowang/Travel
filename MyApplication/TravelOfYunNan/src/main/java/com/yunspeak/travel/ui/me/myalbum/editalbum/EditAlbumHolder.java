@@ -4,12 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -38,6 +37,16 @@ public class EditAlbumHolder extends BaseRecycleViewHolder<EditAlbumBean.DataBea
         FrescoUtils.displayNormal(mIvImage,datas.getPath());
         mTvNumber.setText((position+1)+"/"+size.size());
         mTvDelete.setVisibility(canDelete?View.VISIBLE:View.GONE);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditAlbumEvent event = new EditAlbumEvent();
+                event.setIsSuccess(true);
+                event.setType(IState.TYPE_OTHER);
+                event.setPosition(position);
+                EventBus.getDefault().post(event);
+            }
+        });
         mTvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

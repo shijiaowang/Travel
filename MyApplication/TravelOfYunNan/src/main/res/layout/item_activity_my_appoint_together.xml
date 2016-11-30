@@ -135,7 +135,9 @@
                     android:textSize="@dimen/x12sp"
                     android:background="@drawable/activity_my_appoint_rl_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/x24" />
+                    android:layout_height="@dimen/x24"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
                 <com.yunspeak.travel.ui.view.BadgeView
                     android:id="@+id/bv_bulletin_number"
                     android:layout_marginRight="@dimen/x5"
@@ -172,58 +174,36 @@
             android:layout_height="@dimen/x1"/>
         <include layout="@layout/appoint_bottom_common"/>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_code1"
-        android:paddingTop="@dimen/x2"
-        android:paddingLeft="@dimen/x10"
-        android:paddingRight="@dimen/x5"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/x150"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/x7"
-        android:background="@drawable/activity_my_appoint_key_bg"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/x24">
-        <TextView
-            android:textSize="@dimen/x12sp"
-            android:textColor="@color/colorFAFAFA"
-            android:text="口令："
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/code"
             android:textSize="@dimen/x12sp"
-            android:textColor="@color/colorFAFAFA"
+            android:paddingTop="@dimen/x5"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x5"
+            android:layout_marginTop="@dimen/x150"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x7"
+            android:background="@drawable/activity_my_appoint_key_bg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginRight="@dimen/x7"
-        android:id="@+id/ll_code2"
-        android:paddingTop="@dimen/x2"
-        android:paddingLeft="@dimen/x10"
-        android:paddingRight="@dimen/x5"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/x180"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/activity_my_appoint_key_bg"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/x24">
-        <TextView
-            android:textSize="@dimen/x12sp"
+            android:layout_height="@dimen/x24"
             android:textColor="@color/colorFAFAFA"
-            android:text="口令："
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+           />
         <TextView
             android:id="@+id/code2"
             android:textSize="@dimen/x12sp"
-            android:textColor="@color/colorFAFAFA"
+            android:paddingTop="@dimen/x5"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x5"
+            android:layout_marginRight="@dimen/x7"
+            android:layout_marginTop="@dimen/x191"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/activity_my_appoint_key_bg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="@dimen/x24"
+            android:textColor="@color/colorFAFAFA"
+           />
+
     <ImageView
         android:layout_marginRight="@dimen/x3"
         android:id="@+id/iv_delete"

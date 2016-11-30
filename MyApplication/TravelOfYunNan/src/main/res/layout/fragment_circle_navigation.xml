@@ -20,7 +20,7 @@
 
     </ListView>
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3">
@@ -37,11 +37,7 @@
             android:scrollbars="none">
 
         </ListView>
-        <ProgressBar
-            android:id="@+id/pb_load"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+
         <RelativeLayout
             android:id="@+id/rl_empty"
             android:layout_width="match_parent"
@@ -62,5 +58,11 @@
                 android:text="暂无关注，快去关注喜欢的圈子吧~"
                 android:textColor="@color/color323232" />
         </RelativeLayout>
-    </RelativeLayout>
+        <ProgressBar
+            android:id="@+id/pb_load"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </FrameLayout>
 </LinearLayout>

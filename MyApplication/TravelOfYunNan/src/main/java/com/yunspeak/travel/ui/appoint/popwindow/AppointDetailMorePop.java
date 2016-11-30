@@ -12,24 +12,18 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
-import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
-import com.yunspeak.travel.utils.UIUtils;
-
 
 import org.xutils.common.util.DensityUtil;
-
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by wangyang on 2016/9/17.
  * 约伴详情页点击更多
  */
 public class AppointDetailMorePop {
-    public static void showMorePop(final Context context, final String id, View view, final String type, String collection, final ParentPopClick parentPopClick, final String shareTitle, final String shareContent) {
-       showMorePopIsNotCompliant(context,id,view,type,collection,parentPopClick,shareTitle,shareContent,true);
+    public static void showMorePop(final Context context, final String id, View view, final String type, String collection, final ParentPopClick parentPopClick, final String shareTitle, final String shareContent,String url,View cropView) {
+       showMorePopIsNotCompliant(context,id,view,type,collection,parentPopClick,shareTitle,shareContent,true,url,cropView);
     }
-    public static void showMorePopIsNotCompliant(final Context context, final String id, View view, final String type, String collection, final ParentPopClick parentPopClick, final String shareTitle, final String shareContent,boolean isHasCompliant) {
+    public static void showMorePopIsNotCompliant(final Context context, final String id, View view, final String type, String collection, final ParentPopClick parentPopClick, final String shareTitle, final String shareContent, boolean isHasCompliant, final String url, final View cropView) {
         // 获取弹出视图对象
         final View viewPopup = View.inflate(context, R.layout.pop_appoint_detail_more, null);
         if (isHasCompliant) {
@@ -49,7 +43,7 @@ public class AppointDetailMorePop {
         viewPopup.findViewById(R.id.ll_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EnterAppointDialog.showShareDialog(context,shareTitle,shareContent);
+                EnterAppointDialog.showShareDialog(context,shareTitle,shareContent,url,cropView);
             }
         });
         viewPopup.findViewById(R.id.ll_collection).setOnClickListener(new View.OnClickListener() {

@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.find;
 
 import android.content.Intent;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.find.active.ActiveActivity;
@@ -22,7 +22,6 @@ import com.yunspeak.travel.ui.view.PagerCursorView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -129,7 +128,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
             SimpleDraweeView imageView = new SimpleDraweeView(getContext());
             imageView.setTag(data.get(position));
             imageView.setOnClickListener(new MyOnClickListener(getContext(), (FindBean.DataBean.RecommendBean) imageView.getTag()));
-            FrescoUtils.displayNormal(imageView,data.get(position).getLogo_img(),600,300);
+            FrescoUtils.displayNormal(imageView,data.get(position).getLogo_img(),600,300,R.drawable.normal_2_1);
             container.addView(imageView);
             return imageView;
         }

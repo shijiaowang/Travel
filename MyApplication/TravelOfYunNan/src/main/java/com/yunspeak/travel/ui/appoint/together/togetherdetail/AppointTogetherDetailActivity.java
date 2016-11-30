@@ -145,6 +145,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
     private String userId;
     private String title;
+    private String travelImg;
 
     @Override
     protected void initEvent() {
@@ -254,6 +255,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         String action = data.getAction();
         title = data.getRoutes_title();
         isCollect = data.getIs_collect();
+
         userId = data.getUser_id();
         if (userId.equals(GlobalUtils.getUserInfo().getId())){
             isBoss = true;
@@ -333,7 +335,8 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 OtherUserCenterActivity.start(AppointTogetherDetailActivity.this,mIvUserIcon,data.getUser_id());
             }
         });
-        FrescoUtils.displayNormal(mIvAppointBg, data.getTravel_img());
+        travelImg = data.getTravel_img();
+        FrescoUtils.displayNormal(mIvAppointBg, travelImg);
         if (mFlTitle.getChildCount() > 0) mFlTitle.removeAllViews();
         dealLabel(data);
         mTvUserNickName.setText(data.getUser_name());
@@ -505,7 +508,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new AppointTogetherDetailEvent());
 
             }
-        },"城外旅游约伴分享","[约伴征集]"+title);
+        },"城外旅游约伴分享","[约伴征集]"+title,"http://cityoff.yunspeak.com",mIvAppointBg);
     }
 
     @Override

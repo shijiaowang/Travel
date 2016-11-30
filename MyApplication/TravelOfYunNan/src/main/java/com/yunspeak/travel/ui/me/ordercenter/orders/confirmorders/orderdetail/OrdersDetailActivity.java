@@ -106,7 +106,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
         if (payType.equals("2")){
             tvOrderType.setText("活动订单");
             tvOrderType.setTextColor(getResources().getColor(R.color.otherFf7f6c));
-            tvTitle.setText("活动价格");
+            tvTitle.setText("·活动价格");
             mTvActiveName.setText(getIntent().getStringExtra(IVariable.NAME));
         }else {
             mLvPrice.setAdapter(new PriceDeatilAdapter(this, data.getBasec_price()));
@@ -121,7 +121,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(OrdersDetailActivity.this, ConfirmOrdersActivity.class);
-                    intent.putExtra(IVariable.TYPE, data.getPay_status());
+                    intent.putExtra("pay_type", data.getPay_type());
                     intent.putExtra(IVariable.ID, id);
                     startActivity(intent);
                 }

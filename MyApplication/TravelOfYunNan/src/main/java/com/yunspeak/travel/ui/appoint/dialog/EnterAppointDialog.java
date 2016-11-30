@@ -1,6 +1,5 @@
 package com.yunspeak.travel.ui.appoint.dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -22,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
@@ -46,7 +45,6 @@ import org.xutils.common.util.DensityUtil;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.OnClick;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -59,7 +57,7 @@ import cn.sharesdk.wechat.moments.WechatMoments;
  * 报名dialog
  */
 public class EnterAppointDialog {
-
+    public static final String APP_ID = "wxd1592e864505fb39";
 
     public static int select=-1;
 
@@ -419,7 +417,7 @@ public class EnterAppointDialog {
      * 分享
      *
      */
-    public static void showShareDialog(final Context context, final String title, final String content) {
+    public static void showShareDialog(final Context context, final String title, final String content, final String url, final View cropView) {
         // 获取弹出视图对象
         final View dialogView = View.inflate(context, R.layout.pop_share, null);
         final Dialog dialog = new Dialog(context,R.style.noTitleDialog);
@@ -446,6 +444,7 @@ public class EnterAppointDialog {
 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
 //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
                         oks.setComment("小伙伴召集中，期待您的加入！");
+                        oks.setViewToShare(cropView);
 // 启动分享GUI
                         oks.show(context);
 
@@ -467,7 +466,8 @@ public class EnterAppointDialog {
 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
 //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
 // url仅在微信（包括好友和朋友圈）中使用
-                oks.setUrl("http://yunspeak.cn");
+                oks.setUrl(url);
+                oks.setViewToShare(cropView);
 // comment是我对这条分享的评论，仅在人人网和QQ空间使用
                 oks.show(context);
             }
@@ -482,12 +482,13 @@ public class EnterAppointDialog {
                 oks.setPlatform(WechatMoments.NAME);
 // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
                 oks.setTitle(title);
+                oks.setViewToShare(cropView);
 // text是分享文本，所有平台都需要这个字段
                 oks.setText(content);
 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
 //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
 // url仅在微信（包括好友和朋友圈）中使用
-                oks.setUrl("http://yunspeak.cn");
+                oks.setUrl(url);
                 oks.show(context);
             }
         });
@@ -503,8 +504,9 @@ public class EnterAppointDialog {
                  oks.setTitle(title);
 // text是分享文本，所有平台都需要这个字段
                  oks.setText(content);
+                 oks.setViewToShare(cropView);
 // titleUrl是标题的网络链接，QQ和QQ空间等使用
-                 oks.setTitleUrl("http://yunspeak.cn");
+                 oks.setTitleUrl(url);
 // text是分享文本，所有平台都需要这个字段
 
 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
@@ -514,7 +516,7 @@ public class EnterAppointDialog {
 // site是分享此内容的网站名称，仅在QQ空间使用
                  oks.setSite(context.getString(R.string.app_name));
 // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-                 oks.setSiteUrl("http://yunspeak.cn");
+                 oks.setSiteUrl(url);
 // 启动分享GUI
                  oks.show(context);
              }

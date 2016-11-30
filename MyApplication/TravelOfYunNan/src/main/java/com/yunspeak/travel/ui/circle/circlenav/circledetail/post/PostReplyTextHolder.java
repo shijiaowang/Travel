@@ -67,7 +67,7 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
                 mIvImage.setVisibility(View.GONE);
             }else {
                 mIvImage.setVisibility(View.VISIBLE);
-                FrescoUtils.displayNormal(mIvImage,forumReplyBean.getReply_img(),600,450);
+                FrescoUtils.displayNormal(mIvImage,forumReplyBean.getReply_img(),600,450,R.drawable.normal_2_1);
             }
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());

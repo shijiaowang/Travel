@@ -46,7 +46,6 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
     private TextView mTvStartAndLong;
     private TextView mTvTime;
     private TextView mTvDream;
-    private String haveNextPage;
     private TextView mTvHaveNumber;
     private TextView mTvMoney;
     private WebView mWvHtml;
@@ -108,7 +107,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
                 Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("5").addId(tId).end();
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new ActiveDetailEvent());
             }
-        },"城外旅游游记分享",title,false);
+        },"城外旅游游记分享",title,false,"http://cityoff.yunspeak.com/",mIvBg);
     }
 
     private void init() {
@@ -161,7 +160,6 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         TravelsDetailBean.DataBean.TravelRoutesBean travelRoutes = data.getTravel_routes();
         FrescoUtils.displayRoundIcon(mIvIcon, travelRoutes.getTravel_img());
         isCollect = data.getTravel().getIs_collect();
-        item.setTitle(isCollect.equals(isFalse)?"收藏":"已收藏");
         mTvDream.setText(data.getTravel().getTravel_way());
         mTvStartAndLong.setText(travelRoutes.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(travelRoutes.getStar_time(), travelRoutes.getEnd_time()));
         mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getStar_time() + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getEnd_time())));

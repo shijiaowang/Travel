@@ -25,7 +25,7 @@ class FindRecommendHolder extends BaseRecycleViewHolder<FindBean.DataBean.Recomm
 
     @Override
     public void childBindView(int position, FindBean.DataBean.RecommendBean recommendBean, Context mContext) {
-        FrescoUtils.displayNormal(ivPhoto,recommendBean.getLogo_img());
+        FrescoUtils.displayNormal(ivPhoto,recommendBean.getLogo_img(),R.drawable.normal_2_1);
         tvText.setText(recommendBean.getTitle());
         itemView.setOnClickListener(new MyOnClickListener(mContext,recommendBean));
     }

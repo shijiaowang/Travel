@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -17,9 +16,7 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
-import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailEvent;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.ReplyEvent;
@@ -68,6 +65,8 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     private int loadMore=0;//插入时加载更多计算
     private MenuItem collectionMenu;
     private String shareContent;
+    private String forumImg;
+    private String shareUrl;
 
     @Override
     protected void initEvent() {
@@ -186,6 +185,8 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
                 PostDetailBean.DataBean.ForumBean forum = parentBean.getData().getForum();
                 String title = forum.getTitle();
                 String content = forum.getContent();
+                forumImg = forum.getForum_img();
+                shareUrl = forum.getShare_url();
                 shareContent = StringUtils.isEmpty(title)?content:title;
                 isCollect = forum.getIs_collect();
                 if (collectionMenu!=null)collectionMenu.setTitle(isCollect.equals(isTrue)?"已收藏":"收藏");
@@ -294,7 +295,7 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
                 Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("5").addId(forum_id).end();
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new PostEvent());
             }
-        },"城外旅游帖子分享",shareContent);
+        },"城外旅游帖子分享",shareContent,shareUrl,swipeTarget);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class FindHotHolder extends BaseRecycleViewHolder<FindBean.DataBean.Recom
     @Override
     public void childBindView(int position, FindBean.DataBean.RecommendBean data, Context mContext) {
         itemView.setOnClickListener(new MyOnClickListener(mContext,data));
-        FrescoUtils.displayNormal(ivPhoto,data.getLogo_img());
+        FrescoUtils.displayNormal(ivPhoto,data.getLogo_img(),R.drawable.normal_2_1);
         tvContent.setText(data.getTitle());
         address =addressIcon+"\u3000"+data.getProvince()+data.getCity()+data.getAddress();
         SpannableString spannableString = new SpannableString(address);

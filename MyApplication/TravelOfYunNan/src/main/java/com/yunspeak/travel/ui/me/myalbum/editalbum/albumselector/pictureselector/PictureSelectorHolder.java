@@ -3,16 +3,13 @@ package com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselecto
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
-import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.xutils.x;
 
 import java.io.File;
 
@@ -38,7 +35,7 @@ public class PictureSelectorHolder extends BaseHolder<String> {
     @Override
     protected void initItemDatas(String datas, Context mContext, int position) {
         String url="file://"+dir + File.separator + datas;
-        FrescoUtils.displayNormal(mIvPicture,url,200,200);
+        FrescoUtils.displayNormal(mIvPicture,url);
         if (GlobalValue.mSelectImages!=null && GlobalValue.mSelectImages.contains(url)){
             mImage.setBackgroundColor(Color.parseColor("#77000000"));
             mTvSelect.setTextColor(mContext.getResources().getColor(R.color.otherTitleBg));

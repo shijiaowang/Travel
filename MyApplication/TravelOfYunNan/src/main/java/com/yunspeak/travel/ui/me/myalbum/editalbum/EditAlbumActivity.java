@@ -35,7 +35,6 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
-import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
@@ -48,7 +47,6 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.Callback;
-import org.xutils.common.util.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -281,13 +279,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             rvPhoto.setNestedScrollingEnabled(false);
             rvPhoto.setHasFixedSize(true);
             rvPhoto.setLayoutManager(linearLayoutManager);
-            editAlbumAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    if (getListSize(pictureList) == 0) return;
-                    CirclePreviewActivity.start(EditAlbumActivity.this, pictureList, position);
-                }
-            });
+
         } else if (event.getType()==TYPE_LOAD){
             body.addAll(data.getBody());
             editAlbumAdapter.notifyDataSetChanged();
@@ -309,7 +301,14 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             case TYPE_LOAD:
                 dealLoadData(event);
                 swipeContainer.setLoadingMore(false);
-
+                break;
+            case TYPE_OTHER:
+                if (getListSize(body)==0)return;//点击事件
+                List<String> imageList=new ArrayList<>();
+                for (EditAlbumBean.DataBean.BodyBean bodyBean:body){
+                    imageList.add(bodyBean.getPath());
+                }
+                CirclePreviewActivity.start(this,imageList,event.getPosition());
                 break;
             default:
                 dealData(event);
@@ -467,7 +466,8 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
                 }
             }
         });
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(284), ViewGroup.LayoutParams.WRAP_CONTENT);
+        float width = getResources().getDimension(R.dimen.x285);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(false);
@@ -488,7 +488,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
         @Override
         public void updateDrawState(TextPaint ds) {
             super.updateDrawState(ds);
-            ds.setColor(getColor(R.color.otherTitleBg));
+            ds.setColor(Color.parseColor("#5cd0c2"));
             ds.setUnderlineText(false);//是否有下划线
         }
     }
