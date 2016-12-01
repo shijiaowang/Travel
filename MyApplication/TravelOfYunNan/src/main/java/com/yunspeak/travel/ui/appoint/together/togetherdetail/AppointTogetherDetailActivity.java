@@ -146,6 +146,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     private String userId;
     private String title;
     private String travelImg;
+    private String shareUrl;
 
     @Override
     protected void initEvent() {
@@ -255,7 +256,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         String action = data.getAction();
         title = data.getRoutes_title();
         isCollect = data.getIs_collect();
-
+        shareUrl = data.getShare_url();
         userId = data.getUser_id();
         if (userId.equals(GlobalUtils.getUserInfo().getId())){
             isBoss = true;
@@ -281,10 +282,16 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
             mRvHaveEnter.setLayoutManager(new GridLayoutManager(this, intoPeople.size()));
         }
         List<AppointTogetherDetailBean.DataBean.PropBean> prop = data.getProp();
-        if (prop != null && prop.size() != 0) {
-            mLvEquProvider.setAdapter(new ProviderAdapter(this, prop));
-
+        if (getListSize(prop)==0) {
+            prop=new ArrayList<>();
+            AppointTogetherDetailBean.DataBean.PropBean propBean=new AppointTogetherDetailBean.DataBean.PropBean();
+            propBean.setId("1");
+            propBean.setContent("该约伴未提供任何道具");
+            propBean.setName("无");
+            propBean.setNumber("0");
+            prop.add(propBean);
         }
+        mLvEquProvider.setAdapter(new ProviderAdapter(this, prop));
         List<PricebasecBean> pricebasec = data.getPricebasec();
         if (pricebasec == null) {
             pricebasec = new ArrayList<>();
@@ -508,7 +515,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new AppointTogetherDetailEvent());
 
             }
-        },"城外旅游约伴分享","[约伴征集]"+title,"http://cityoff.yunspeak.com",mIvAppointBg);
+        },"城外旅游约伴分享","[约伴征集]"+title,shareUrl,mIvAppointBg);
     }
 
     @Override

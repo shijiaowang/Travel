@@ -19,11 +19,13 @@ import java.util.List;
 
 public class AiteUtils {
 
-    public static void parseTextMessage(TextView textView, List<InformBean> inform, String content, Context mContext){
+    public static void parseTextMessage(TextView textView, List<InformBean> inform, String content, Context mContext,boolean isClick){
         Spannable span =getSmiledText(mContext, content, inform);
         // 设置内容
         textView.setText(span);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
+        if (isClick) {
+            textView.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
+        }
     }
     public static Spannable getSmiledText(Context context, String text, List<InformBean> inform) {
         int length=text==null?0:text.length();

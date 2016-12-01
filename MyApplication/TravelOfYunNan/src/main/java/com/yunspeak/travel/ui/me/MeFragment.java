@@ -296,7 +296,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mTvFollowNumber.setText(data.getFollow());
         UserInfo user = data.getUser();
         FrescoUtils.displayIcon(mIvIcon, user.getUser_img());
-        FrescoUtils.displayNormal(mIvBg, user.getBackground_img(),600,450,R.drawable.user_center_norbg);
+        FrescoUtils.displayNormal(mIvBg, user.getBackground_img(),640,360,R.drawable.register_banner);
         mTvNickName.setText(user.getNick_name());
         mTvProfile.setText(user.getContent());
         mTvLevel.setText("LV."+user.getLevel());

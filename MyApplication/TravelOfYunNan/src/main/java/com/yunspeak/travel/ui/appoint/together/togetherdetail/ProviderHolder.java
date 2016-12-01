@@ -24,7 +24,12 @@ public class ProviderHolder extends BaseHolder {
     protected void initItemDatas(Object datas, Context mContext, int position) {
         if (datas instanceof AppointTogetherDetailBean.DataBean.PropBean){
             AppointTogetherDetailBean.DataBean.PropBean datas1 = (AppointTogetherDetailBean.DataBean.PropBean) datas;
-            mTvName.setText(datas1.getName()+"x"+datas1.getNumber());
+            String text = datas1.getNumber();
+            mTvName.setText(datas1.getName()+"x"+text);
+            if (text==null || text.equals("0")){
+                mTvName.setText(text);
+            }
+
             mTvDes.setText(datas1.getContent());
         }else if (datas instanceof ChoicePropSelectBean){
             ChoicePropSelectBean datas1 = (ChoicePropSelectBean) datas;

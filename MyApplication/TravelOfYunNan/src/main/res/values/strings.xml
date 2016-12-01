@@ -31,7 +31,7 @@
     <string name="activity_circle_love">昝</string>
     <string name="activity_circle_discuss">倫</string>
     <!--留言-->
-    <string name="activity_circle_love_empty">簪</string>
+    <string name="activity_circle_love_empty">昊</string>
     <!--空心-->
     <string name="activity_title_management_title">颢</string>
     <!--称号-->
@@ -62,7 +62,7 @@
     <!--添加-->
     <string name="fragment_circle_search">璟</string>
     <!--搜索-->
-    <string name="fragment_find_add">睇</string>
+    <string name="fragment_find_add">桁</string>
     <!--目的地-->
     <string name="activity_travels_plan_time">食</string>
     <!--时间-->
@@ -70,7 +70,7 @@
     <!--日历-->
     <string name="fragment_find_hotel">玖</string>
     <!--酒店-->
-    <string name="fragment_find_travels">搵</string>
+    <string name="fragment_find_travels">紊</string>
     <!--游记-->
     <string name="fragment_find_food">赤</string>
     <!--美食-->
@@ -265,6 +265,7 @@
     <string name="recoding_fail">录音失败</string>
     <string name="release_to_cancel">松开取消</string>
     <string name="id_auth_des">·请保证您上传的证件照清晰度可辨\n·每当您提供给我们敏感信息时，我们将采取安全措施保护您的敏感信息及已储存的个人资料，以防止您的个人资料丢失，被盗用或遭篡改\n·除非根据法律或政府的强制性规定，在为得到您的书面许可之前，我们不会把您的个人资料提供给无关的第三方（包括公司和个人）。但是，如果您要求我们提供特定客户支援服务时，我们则需要把您的相关信息提供给有关的第三方，如保险公司等</string>
+    <string name="prop_des">平台的认证高级用户选择道具才有效，其他用户请跳过此步，具体请咨询客服。</string>
     <string-array name="together_appoint">
             <item>约伴订单</item>
             <item>已报名待通过</item>

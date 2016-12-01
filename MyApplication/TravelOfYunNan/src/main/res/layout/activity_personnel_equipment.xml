@@ -308,7 +308,7 @@
                 android:layout_marginRight="@dimen/x53"
                 android:layout_marginTop="@dimen/x6"
                 android:lineSpacingExtra="@dimen/x6"
-                android:text="平台的认证高级用户选择道具才有效，其他用户请跳过此步，具体请咨询客服。"
+                android:text="@string/prop_des"
                 android:textColor="@color/color969696"
                 android:textSize="@dimen/x14sp" />
         </LinearLayout>

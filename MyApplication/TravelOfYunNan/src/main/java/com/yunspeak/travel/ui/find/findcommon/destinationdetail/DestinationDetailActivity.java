@@ -82,10 +82,9 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
             }
         });
         WebSettings settings = mWvView.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setUseWideViewPort(true);
-        settings.setJavaScriptCanOpenWindowsAutomatically(false);
+        settings.setLoadWithOverviewMode(false);
+        mWvView.setHorizontalScrollBarEnabled(false);
+        mWvView.setVerticalScrollBarEnabled(false);
         mTvShow.setOnClickListener(this);
         mLlSearchAppoint.setOnClickListener(this);
     }
@@ -136,7 +135,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     protected void initHeader(DetailCommonEvent detailCommonEvent) {
         DestinationDetailBean destinationDetail = GsonUtils.getObject(detailCommonEvent.getResult(), DestinationDetailBean.class);
         final DestinationDetailBean.DataBean.TravelBean travel = destinationDetail.getData().getTravel();
-        StringBuilder stringBuilder=new StringBuilder("http://api.map.baidu.com/staticimage/v2?ak=DOwVc765t3sy69IdYQVefrKNEsciH5EO&width=600&height=300");
+        StringBuilder stringBuilder=new StringBuilder("http://api.map.baidu.com/staticimage/v2?ak=DOwVc765t3sy69IdYQVefrKNEsciH5EO&width=400&height=200");
         stringBuilder.append("&center="+travel.getCity());
         stringBuilder.append("&markers="+travel.getCity()+travel.getTitle()+"|"+travel.getLongitude()+","+travel.getLatitude());
         stringBuilder.append("&zoom=8");
@@ -185,7 +184,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
             final String[] split = travel_img.split(",");
             mTvNumber.setText("共"+split.length+"张图片");
             url = split[0];
-            FrescoUtils.displayNormal(mIvbg, url,R.drawable.normal_2_1);
+            FrescoUtils.displayNormal(mIvbg, url,640,360,R.drawable.normal_2_1);
             mIvbg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

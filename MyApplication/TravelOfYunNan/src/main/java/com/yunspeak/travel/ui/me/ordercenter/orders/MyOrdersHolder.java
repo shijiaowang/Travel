@@ -126,7 +126,7 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
                 String orderId = datas.getId();
                 Intent intent=new Intent(mContext, ConfirmOrdersActivity.class);
                 intent.putExtra(IVariable.ID,orderId);
-                intent.putExtra("pay_type",datas.getPay_type());
+                intent.putExtra("pay_type",datas.getPay_type()+"");
                 mContext.startActivity(intent);
 
             }

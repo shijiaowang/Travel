@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.view.Gravity;
@@ -16,13 +17,11 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.utils.BitmapUtils;
-import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.IOUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
@@ -33,6 +32,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import static android.os.Environment.getExternalStorageDirectory;
 
 /**
  * Created by wangyang on 2016/10/28 0028.
@@ -112,7 +113,14 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
     private void takePhoto() {
         String state = Environment.getExternalStorageState(); //拿到sdcard是否可用的状态码
         if (state.equals(Environment.MEDIA_MOUNTED)) {   //如果可用
-            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            String parent=Environment.getExternalStorageDirectory().getPath()+"cityoff";
+            File file=new File(parent);
+            if (!file.exists()){
+                file.mkdirs();
+            }
+            Uri uri = Uri.fromFile(new File(file.getAbsolutePath() +"/"+ System.currentTimeMillis() + ".jpg"));
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
             currentCode=TAKE_PHOTO;
             startActivityForResult(intent, currentCode);
         }else {
@@ -238,8 +246,8 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         options.setToolbarColor(getResources().getColor(R.color.otherTitleBg));
         options.setStatusBarColor(getResources().getColor(R.color.otherTitleBg));
         options.setAspectRatioOptions(0,new AspectRatio("1",1,1));
-        options.setCompressionQuality(30);
-        options.setMaxBitmapSize(400);//图片压缩
+        options.setCompressionQuality(50);
+        options.setMaxBitmapSize(800);//图片压缩
         options.setImageToCropBoundsAnimDuration(100);
         setOptions(options);
 
@@ -308,7 +316,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         if (b != null) {
             try {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                    final String downloadsDirectoryPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                    final String downloadsDirectoryPath = getExternalStorageDirectory().getAbsolutePath();
                     final String saveName = System.currentTimeMillis() + "icon.jpg";
                     x.task().run(new Runnable() {
                         @Override

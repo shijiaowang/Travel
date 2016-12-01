@@ -20,10 +20,9 @@ public class CircleDetailPhotoDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
 
-        if (parent.getChildAdapterPosition(view)%3!=0){
-            outRect.left = space;
-        }
-        outRect.right=0;
-        outRect.top=space;
+
+            outRect.left = space/2;
+            outRect.right=space/2;
+            outRect.top=space;
     }
 }

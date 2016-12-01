@@ -6,8 +6,8 @@ package com.yunspeak.travel.global;
  */
 public interface IVariable {
 
-    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
-    String DOMAIN_NAME = "http://192.168.1.45/";
+    String DOMAIN_NAME="http://yuns.yunspeak.com/";
+    /*String DOMAIN_NAME = "http://192.168.1.45/";*/
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -38,6 +38,7 @@ public interface IVariable {
      * 首页等等
      */
     String REGISTER_USER = API_KEY + "User/register/";//注册
+    String PROTOCOL = API_KEY + "/index.php?s=/Home/Article/protocol.html";//协议地址
     String RESET_PASSWORD = API_KEY + "User/resetPassword/";//重置密码
     String RESET_PASSWORD_VER = API_KEY + "User/sendUsermsg/";//重置验证码
     String LOGIN_URL = API_KEY + "User/Login/";//登录

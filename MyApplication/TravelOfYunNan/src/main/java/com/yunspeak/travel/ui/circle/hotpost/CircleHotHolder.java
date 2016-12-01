@@ -1,25 +1,19 @@
 package com.yunspeak.travel.ui.circle.hotpost;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.StringUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.xutils.x;
 
 import butterknife.BindView;
 
@@ -32,7 +26,8 @@ public class CircleHotHolder extends BaseRecycleViewHolder<HotPostBean.DataBean>
     @BindView(R.id.iv_user_icon) SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_type) TextView mTvType;
     @BindView(R.id.tv_title) TextView mTvTitle;
-    @BindView(R.id.tv_content) TextView mTvContent;
+    @BindView(R.id.tv_content)
+    TextView mTvContent;
     @BindView(R.id.tv_zhan) TextView mTvZhan;
     @BindView(R.id.tv_zhan_number) TextView mTvZhanNumber;
     @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
@@ -54,9 +49,9 @@ public class CircleHotHolder extends BaseRecycleViewHolder<HotPostBean.DataBean>
             mTvTitle.setVisibility(View.GONE);
         }else {
             mTvTitle.setVisibility(View.VISIBLE);
-            AiteUtils.parseTextMessage(mTvTitle, null, circleHot.getTitle(), mContext);
+            AiteUtils.parseTextMessage(mTvTitle, null, circleHot.getTitle(), mContext,false);
         }
-        AiteUtils.parseTextMessage(mTvContent,circleHot.getInform(),circleHot.getContent(),mContext);
+        AiteUtils.parseTextMessage(mTvContent,circleHot.getInform(),circleHot.getContent(),mContext,false);
         FrescoUtils.displayIcon(mIvUserIcon,circleHot.getUser_img());
         mTvNickName.setText(circleHot.getNick_name());
         mTvDiscussNumber.setText(circleHot.getCount_reply());
@@ -83,5 +78,6 @@ public class CircleHotHolder extends BaseRecycleViewHolder<HotPostBean.DataBean>
                 mLlPicture.addView(imageView);
             }
         }
+
     }
 }

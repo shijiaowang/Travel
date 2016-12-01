@@ -7,7 +7,6 @@ import android.support.v4.widget.NestedScrollView;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -54,6 +53,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
     private String aId;
     private String isCollect;
     private String title;
+    private String shareUrl;
 
 
     public static void start(Context context, String aid){
@@ -70,12 +70,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                 return true;
             }
         });
-        WebSettings settings = mWvHtml.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setUseWideViewPort(true);
-        settings.setJavaScriptCanOpenWindowsAutomatically(false);
-        aId = getIntent().getStringExtra(IVariable.A_ID);
+       aId = getIntent().getStringExtra(IVariable.A_ID);
         mBtEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +113,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                 Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("3").addId(aId).end();
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new ActiveDetailEvent());
             }
-        },"城外旅游活动分享",title,false,"http://cityoff.yunspeak.com/",mIvBg);
+        },"城外旅游活动分享",title,false,shareUrl,mIvBg);
     }
 
     @Override
@@ -159,7 +154,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                 ToastUtils.showToast("报名成功，前往支付页面。");
                 Intent intent=new Intent(this, ConfirmOrdersActivity.class);
                 intent.putExtra(IVariable.ID,enterActiveBeanData.getId());
-                intent.putExtra("pay_type",enterActiveBeanData.getPay_type());
+                intent.putExtra("pay_type",enterActiveBeanData.getPay_type()+"");
                 startActivity(intent);
                 break;
             case TYPE_COLLECTION:
@@ -173,9 +168,10 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
             default:
                 ActiveDetailBean activeDetail = GsonUtils.getObject(event.getResult(), ActiveDetailBean.class);
                 ActiveDetailBean.DataBean data = activeDetail.getData();
+                shareUrl = data.getShare_url();
                 mWvHtml.loadUrl(data.getUrl());
                 isCollect=data.getIs_collect();
-                FrescoUtils.displayNormal(mIvBg,data.getTitle_img(),R.drawable.normal_2_1);
+                FrescoUtils.displayNormal(mIvBg,data.getTitle_img(),640,360,R.drawable.normal_2_1);
                 FrescoUtils.displayIcon(mIvIcon,data.getActivity_img());
                 title = data.getTitle();
                 mTvName.setText(title);
@@ -198,4 +194,6 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
     protected String initTitle() {
         return "活动详情";
     }
+
+
 }

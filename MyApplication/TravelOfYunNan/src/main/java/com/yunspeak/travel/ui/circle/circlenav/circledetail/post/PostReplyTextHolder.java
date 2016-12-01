@@ -71,13 +71,25 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
             }
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
-            AiteUtils.parseTextMessage(mTvReplyMessage,forumReplyBean.getInform(),forumReplyBean.getContent(),t);
+            AiteUtils.parseTextMessage(mTvReplyMessage,forumReplyBean.getInform(),forumReplyBean.getContent(),t,true);
             mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forumReplyBean.getReply_time()));
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
             mTvLoveNumber.setText(forumReplyBean.getLike_count());
             boolean equals = forumReplyBean.getIs_like().equals("1");
             mTvLove.setTextColor(equals? t.getResources().getColor(R.color.otherFf7f6c) : t.getResources().getColor(R.color.color969696));
             mTvLove.setText(equals?fullLove:emptyLove);
+            mTvLove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    zan(forumReplyBean,position);
+                }
+            });
+            mTvLoveNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    zan(forumReplyBean,position);
+                }
+            });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -121,10 +133,7 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
                         CreatePostActivity.start(t,cId,1,CreatePostActivity.REPLY_POST,forumReplyBean.getForum_id(),forumReplyBean.getUser_id(),forumReplyBean.getId(),nickName);
                         break;
                     case PostOptionsDialog.TYPE_ZAN:
-                        Map<String, String> end = MapUtils.Build().addKey().addUserId().addRUserId(forumReplyBean.getUser_id()).add(IVariable.REPLAY_ID, forumReplyBean.getId()).addFroumId(forumReplyBean.getForum_id()).end();
-                        PostEvent event = new PostEvent();
-                        event.setPosition(position);
-                        XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_RELPLY_LIKE,end,IState.TYPE_LIKE, event);
+                        zan(forumReplyBean, position);
                         break;
                     case PostOptionsDialog.TYPE_REPORT:
                         EnterAppointDialog.showDialogAddComplaint(t,forum_id,"1","2",id);
@@ -133,5 +142,12 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
                 }
             }
         });
+    }
+
+    private void zan(PostDetailBean.DataBean.ForumReplyBean forumReplyBean, int position) {
+        Map<String, String> end = MapUtils.Build().addKey().addUserId().addRUserId(forumReplyBean.getUser_id()).add(IVariable.REPLAY_ID, forumReplyBean.getId()).addFroumId(forumReplyBean.getForum_id()).end();
+        PostEvent event = new PostEvent();
+        event.setPosition(position);
+        XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_RELPLY_LIKE,end, IState.TYPE_LIKE, event);
     }
 }

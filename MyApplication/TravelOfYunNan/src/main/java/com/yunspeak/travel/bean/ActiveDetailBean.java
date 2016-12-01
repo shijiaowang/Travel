@@ -57,6 +57,7 @@ public class ActiveDetailBean {
         private String is_into;
         private String title_desc;
         private String is_collect="0";
+        private String share_url;
 
         public String getIs_collect() {
             return is_collect;
@@ -76,6 +77,14 @@ public class ActiveDetailBean {
 
         public String getId() {
             return id;
+        }
+
+        public String getShare_url() {
+            return share_url;
+        }
+
+        public void setShare_url(String share_url) {
+            this.share_url = share_url;
         }
 
         public void setId(String id) {

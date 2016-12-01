@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical">
 
@@ -48,7 +49,6 @@
             android:id="@+id/tv_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/x18"
             android:layout_marginRight="@dimen/x25"
@@ -75,17 +75,16 @@
         android:textColor="@color/homeTopicChosenText"
         android:textSize="@dimen/x18sp" />
 
-    <TextView
+    <com.yunspeak.travel.ui.view.EllipsizeTextView
         android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="@dimen/x40"
         android:layout_marginRight="@dimen/x40"
         android:layout_marginTop="@dimen/x15"
-        android:gravity="center"
         android:lineSpacingExtra="@dimen/x10"
         android:ellipsize="end"
+        app:m_limit_lines="3"
         android:maxLines="3"
         android:textSize="@dimen/x14sp" />
 

@@ -15,12 +15,12 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.ActiveDetailEvent;
+import com.yunspeak.travel.event.DetailCommonEvent;
+import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
-import com.yunspeak.travel.event.DetailCommonEvent;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.home.HotSpotsItemDecoration;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
@@ -31,6 +31,7 @@ import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.xutils.common.util.DensityUtil;
+
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ import java.util.Map;
  * Created by wangyang on 2016/7/30.
  * 游记详情
  */
-public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEvent,TravelsDetailBean> {
+public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEvent, TravelsDetailBean> {
     private RecyclerView mRvAddLine;
     private RecyclerView mRvMember;
     private SimpleDraweeView mIvBg;
@@ -52,6 +53,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
 
     private boolean isFirstMove = true;//避免第一次margin为0
     private String title;
+    private String shareUrl;
 
     @Override
     protected String detailType() {
@@ -82,10 +84,10 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         });
     }
 
-    public static void start(Context context, String tid, String name){
-        Intent intent=new Intent(context,TravelsDetailActivity.class);
-        intent.putExtra(IVariable.T_ID,tid);
-        intent.putExtra(IVariable.NAME,name);
+    public static void start(Context context, String tid, String name) {
+        Intent intent = new Intent(context, TravelsDetailActivity.class);
+        intent.putExtra(IVariable.T_ID, tid);
+        intent.putExtra(IVariable.NAME, name);
         context.startActivity(intent);
     }
 
@@ -96,44 +98,41 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
-        if (StringUtils.isEmpty(isCollect))return;
+        if (StringUtils.isEmpty(isCollect)) return;
         String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
         //没有举报第三个参数无所谓
-        AppointDetailMorePop.showMorePopIsNotCompliant(this,tId,mToolbar, "0", collection, new ParentPopClick() {
+        AppointDetailMorePop.showMorePopIsNotCompliant(this, tId, mToolbar, "0", collection, new ParentPopClick() {
             @Override
             public void onClick(int t) {
                 String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
-                int type=isCollect.equals(isTrue)?TYPE_CANCEL_COLLECTION:TYPE_COLLECTION;
+                int type = isCollect.equals(isTrue) ? TYPE_CANCEL_COLLECTION : TYPE_COLLECTION;
                 Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("5").addId(tId).end();
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new ActiveDetailEvent());
             }
-        },"城外旅游游记分享",title,false,"http://cityoff.yunspeak.com/",mIvBg);
+        }, "城外旅游游记分享", title, false, shareUrl, mIvBg);
     }
 
     private void init() {
-            vsContent.setLayoutResource(R.layout.activity_travels_detail_content);
-           vsContent.inflate();
-            mRvMember = ((RecyclerView) findViewById(R.id.rv_member));
-            mRvAddLine = ((RecyclerView)findViewById(R.id.rv_add_line));
-            mIvBg = (SimpleDraweeView) findViewById(R.id.iv_bg);
-            mIvIcon = (SimpleDraweeView) findViewById(R.id.iv_travel);
-            mWvHtml = (WebView)findViewById(R.id.wv_html);
-           mWvHtml.setWebViewClient(new WebViewClient(){
-               @Override
-               public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                   return true;
-               }
-           });
-            WebSettings settings = mWvHtml.getSettings();
-            settings.setJavaScriptEnabled(true);
-            settings.setLoadWithOverviewMode(true);
-            settings.setUseWideViewPort(true);
-            settings.setJavaScriptCanOpenWindowsAutomatically(false);
-            mTvStartAndLong = (TextView) findViewById(R.id.tv_start_and_long);
-            mTvTime = (TextView) findViewById(R.id.tv_time);
-            mTvDream = (TextView) findViewById(R.id.tv_dream);
-            mTvHaveNumber = (TextView) findViewById(R.id.tv_have_number);
-            mTvMoney = (TextView) findViewById(R.id.tv_money);
+        vsContent.setLayoutResource(R.layout.activity_travels_detail_content);
+        vsContent.inflate();
+        mRvMember = ((RecyclerView) findViewById(R.id.rv_member));
+        mRvAddLine = ((RecyclerView) findViewById(R.id.rv_add_line));
+        mIvBg = (SimpleDraweeView) findViewById(R.id.iv_bg);
+        mIvIcon = (SimpleDraweeView) findViewById(R.id.iv_travel);
+        mWvHtml = (WebView) findViewById(R.id.wv_html);
+        mWvHtml.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return true;
+            }
+        });
+        WebSettings settings = mWvHtml.getSettings();
+        settings.setLoadWithOverviewMode(true);
+        mTvStartAndLong = (TextView) findViewById(R.id.tv_start_and_long);
+        mTvTime = (TextView) findViewById(R.id.tv_time);
+        mTvDream = (TextView) findViewById(R.id.tv_dream);
+        mTvHaveNumber = (TextView) findViewById(R.id.tv_have_number);
+        mTvMoney = (TextView) findViewById(R.id.tv_money);
 
     }
 
@@ -151,9 +150,10 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         try {
             title = data.getTravel().getTitle();
             mTvTitle.setText(title);
-            String url = data.getTravel().getTravels_img().split(",")[0];
-            FrescoUtils.displayNormal(mIvBg,url,R.drawable.normal_2_1);
-        }catch (Exception e){
+            final String[] split = data.getTravel().getTravels_img().split(",");
+            String url = split[0];
+            FrescoUtils.displayNormal(mIvBg, url, 640, 360, R.drawable.normal_2_1);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -161,6 +161,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         FrescoUtils.displayRoundIcon(mIvIcon, travelRoutes.getTravel_img());
         isCollect = data.getTravel().getIs_collect();
         mTvDream.setText(data.getTravel().getTravel_way());
+        shareUrl = data.getTravel().getShare_url();
         mTvStartAndLong.setText(travelRoutes.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(travelRoutes.getStar_time(), travelRoutes.getEnd_time()));
         mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getStar_time() + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getEnd_time())));
         mTvHaveNumber.setText("已有: " + travelRoutes.getCount());
@@ -181,7 +182,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
 
     @Override
     protected List<TravelReplyBean> childChangeData(TravelsDetailBean parentBean, DetailCommonEvent detailCommonEvent) {
-        haveNextPage=parentBean.getData().getHave_next().getNextpage();
+        haveNextPage = parentBean.getData().getHave_next().getNextpage();
         return parentBean.getData().getTravel_reply();
     }
 

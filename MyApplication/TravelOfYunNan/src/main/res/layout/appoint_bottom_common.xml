@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/x40"
     android:background="@color/colorFAFAFA"
     android:gravity="center_vertical"
     android:orientation="horizontal"
@@ -9,12 +9,9 @@
     android:paddingTop="@dimen/x9">
 
     <com.yunspeak.travel.ui.view.FontsIconTextView
-        android:layout_marginBottom="1.5dp"
         android:id="@+id/tv_icon_eye"
         style="@style/fragmentAppointBottomText"
         android:layout_marginLeft="@dimen/x15"
-        android:textSize="@dimen/x20sp"
-        android:gravity="center_vertical"
         android:text="@string/activity_other_album_eye" />
 
     <TextView
@@ -26,22 +23,18 @@
     <com.yunspeak.travel.ui.view.FontsIconTextView
         android:id="@+id/tv_icon_love"
         style="@style/fragmentAppointBottomText"
-        android:layout_height="@dimen/x30"
         android:gravity="center"
-        android:layout_width="@dimen/x30"
         android:layout_marginLeft="@dimen/x5"
         android:text="@string/activity_circle_love_empty" />
 
     <TextView
         android:id="@+id/tv_love_number"
         style="@style/fragmentAppointBottomText"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_marginLeft="@dimen/x3"
      />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/tv_how_long"
@@ -49,8 +42,6 @@
         android:layout_marginRight="@dimen/x15"
         android:textColor="@color/color969696"
         android:textSize="13sp" />
-
-
 </LinearLayout>
 
 

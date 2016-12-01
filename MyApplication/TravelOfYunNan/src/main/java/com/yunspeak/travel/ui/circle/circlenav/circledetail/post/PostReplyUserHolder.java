@@ -100,6 +100,18 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
             mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
             mTvReplyName.setText(reply.getNick_name());
             mTvReplyFloorNumber.setText(reply.getFloor()+"楼");
+            mTvLove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    zan(forumReplyBean,position);
+                }
+            });
+            mTvLoveNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    zan(forumReplyBean,position);
+                }
+            });
             itemView.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
@@ -144,10 +156,7 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
                         CreatePostActivity.start(t,cId,1,CreatePostActivity.REPLY_POST,forumReplyBean.getForum_id(),forumReplyBean.getUser_id(),forumReplyBean.getId(),nickName);
                         break;
                     case PostOptionsDialog.TYPE_ZAN:
-                        Map<String, String> end = MapUtils.Build().addKey().addUserId().addRUserId(forumReplyBean.getUser_id()).add(IVariable.REPLAY_ID, forumReplyBean.getId()).addFroumId(forumReplyBean.getForum_id()).end();
-                        PostEvent event = new PostEvent();
-                        event.setPosition(position);
-                        XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_RELPLY_LIKE,end,IState.TYPE_LIKE, event);
+                        zan(forumReplyBean, position);
                         break;
                     case PostOptionsDialog.TYPE_REPORT:
                         EnterAppointDialog.showDialogAddComplaint(t,forum_id,"1","2",id);
@@ -156,5 +165,12 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
                 }
             }
         });
+    }
+
+    private void zan(PostDetailBean.DataBean.ForumReplyBean forumReplyBean, int position) {
+        Map<String, String> end = MapUtils.Build().addKey().addUserId().addRUserId(forumReplyBean.getUser_id()).add(IVariable.REPLAY_ID, forumReplyBean.getId()).addFroumId(forumReplyBean.getForum_id()).end();
+        PostEvent event = new PostEvent();
+        event.setPosition(position);
+        XEventUtils.postUseCommonBackJson(IVariable.CIRCLE_RELPLY_LIKE,end, IState.TYPE_LIKE, event);
     }
 }

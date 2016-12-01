@@ -446,7 +446,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x22"
                     android:textColor="@color/color969696"
-                    android:textSize="@dimen/x14" />
+                    android:textSize="@dimen/x14sp" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_entering"
@@ -524,6 +524,7 @@
                     android:background="@color/meLine" />
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
@@ -537,7 +538,6 @@
                     style="@style/commonListViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="13dp" />
 
                 <View
@@ -557,14 +557,6 @@
                     android:textColor="@color/color323232"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="10dp"
-                    android:text="\u3000\u3000 备注："
-                    android:textColor="@color/color969696"
-                    android:textSize="14sp" />
 
                 <com.yunspeak.travel.ui.view.ToShowAllListView
                     android:id="@+id/lv_insurance"

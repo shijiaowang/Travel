@@ -2,6 +2,7 @@
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/iv_top"
     android:scaleType="fitXY"
+    android:src="@drawable/register_banner"
     android:layout_width="match_parent"
     android:layout_height="@dimen/x174">
 

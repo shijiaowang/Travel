@@ -3,136 +3,141 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorFAFAFA"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/colorFAFAFA">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <RelativeLayout
-            style="@style/activityTravelsPlanRl"
-            android:layout_marginTop="@dimen/x35">
+            <RelativeLayout
+                style="@style/activityTravelsPlanRl"
+                android:layout_marginTop="@dimen/x35">
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                style="@style/activityTravelsPlanTv"
-                android:text="@string/activity_des_remark_title" />
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    style="@style/activityTravelsPlanTv"
+                    android:text="@string/activity_des_remark_title" />
 
-            <TextView
-                android:id="@+id/tv_equ"
-                style="@style/activityTravelsPlanDes"
-                android:text="设置标签" />
+                <TextView
+                    android:id="@+id/tv_equ"
+                    style="@style/activityTravelsPlanDes"
+                    android:text="设置标签" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_toRightOf="@id/tv_equ"
+                    android:text="最多显示7个标签"
+                    android:textColor="@color/color909090"
+                    android:textSize="@dimen/x12sp" />
+
+            </RelativeLayout>
+
+            <com.yunspeak.travel.ui.view.FlowLayout
+                android:id="@+id/fl_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x10"
-                android:layout_toRightOf="@id/tv_equ"
-                android:text="最多显示7个标签"
-                android:textColor="@color/color909090"
-                android:textSize="@dimen/x12sp" />
+                android:layout_marginBottom="@dimen/x11"
+                android:layout_marginLeft="@dimen/x22"
+                android:layout_marginTop="@dimen/x27"
+                android:visibility="gone" />
 
-        </RelativeLayout>
-        <com.yunspeak.travel.ui.view.FlowLayout
-            android:id="@+id/fl_title"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/x27"
-            android:layout_marginLeft="@dimen/x22"
-            android:layout_marginBottom="@dimen/x11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/bt_select_equ"
-            android:layout_width="@dimen/x125"
-            android:layout_height="@dimen/x35"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/x15"
-            android:layout_marginTop="@dimen/x16"
-            android:background="@drawable/activity_travels_plan_line_bg"
-            android:gravity="center"
-            android:text="选择编辑"
-            android:textColor="@color/colorFAFAFA"
-            android:textSize="@dimen/x16sp" />
+            <Button
+                android:id="@+id/bt_select_equ"
+                android:layout_width="@dimen/x125"
+                android:layout_height="@dimen/x35"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/x15"
+                android:layout_marginTop="@dimen/x16"
+                android:background="@drawable/activity_travels_plan_line_bg"
+                android:gravity="center"
+                android:text="选择编辑"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="@dimen/x16sp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
-            android:layout_marginLeft="@dimen/x15"
-            android:layout_marginRight="@dimen/x15"
-            android:layout_marginTop="@dimen/x25"
-            android:background="@color/meLine" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:layout_marginLeft="@dimen/x15"
+                android:layout_marginRight="@dimen/x15"
+                android:layout_marginTop="@dimen/x25"
+                android:background="@color/meLine" />
 
-        <RelativeLayout
-            style="@style/activityTravelsPlanRl"
-            android:layout_marginTop="@dimen/x35">
+            <RelativeLayout
+                style="@style/activityTravelsPlanRl"
+                android:layout_marginTop="@dimen/x35">
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                style="@style/activityTravelsPlanTv"
-                android:text="@string/activity_des_remark_des" />
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    style="@style/activityTravelsPlanTv"
+                    android:text="@string/activity_des_remark_des" />
 
-            <TextView
-                android:id="@+id/tv_e"
-                style="@style/activityTravelsPlanDes"
-                android:text="约伴简介" />
-        </RelativeLayout>
-
-        <EditText
-            android:id="@+id/et_title"
-            android:layout_width="@dimen/x263"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/x20"
-            android:background="@null"
-            android:hint="请输入标题(20字内)"
-            android:maxLength="20"
-            android:paddingLeft="@dimen/x5"
-            android:textColor="@color/color646464"
-            android:textColorHint="@color/color646464"
-            android:textSize="@dimen/x13sp" />
-
-        <View
-            android:layout_width="@dimen/x263"
-            android:layout_height="@dimen/x1"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/colorb5b5b5" />
-
-        <RelativeLayout
-            android:layout_width="@dimen/x263"
-            android:layout_height="@dimen/x114"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/x16">
+                <TextView
+                    android:id="@+id/tv_e"
+                    style="@style/activityTravelsPlanDes"
+                    android:text="约伴简介" />
+            </RelativeLayout>
 
             <EditText
-                android:id="@+id/et_content"
-                android:textSize="@dimen/x11sp"
-                android:padding="@dimen/x4"
+                android:id="@+id/et_title"
+                android:layout_width="@dimen/x263"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/x20"
+                android:background="@null"
+                android:hint="请输入标题(20字内)"
+                android:maxLength="20"
+                android:paddingLeft="@dimen/x5"
                 android:textColor="@color/color646464"
-                android:textColorHint="@color/colorb5b5b5"
-                android:hint="随便说点什么吧"
-                android:gravity="start"
+                android:textColorHint="@color/color646464"
+                android:textSize="@dimen/x13sp" />
+
+            <View
+                android:layout_width="@dimen/x263"
+                android:layout_height="@dimen/x1"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorb5b5b5" />
+
+            <RelativeLayout
                 android:layout_width="@dimen/x263"
                 android:layout_height="@dimen/x114"
-                android:background="@drawable/activity_des_remark_bg"
-                android:maxLength="200" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/x16">
 
-            <TextView
-                android:id="@+id/tv_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="@dimen/x5"
-                android:layout_marginRight="@dimen/x5"
-                android:text="0/200"
-                android:textColor="@color/colorb5b5b5"
-                android:textSize="@dimen/x11sp" />
-        </RelativeLayout>
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/et_content"
+                    android:layout_width="@dimen/x263"
+                    android:layout_height="@dimen/x114"
+                    android:background="@drawable/activity_des_remark_bg"
+                    android:gravity="start"
+                    android:hint="随便说点什么吧"
+                    android:maxLength="200"
+                    android:padding="@dimen/x4"
+                    android:textColor="@color/color646464"
+                    android:textColorHint="@color/colorb5b5b5"
+                    android:textSize="@dimen/x11sp" />
 
-    <Button
-        style="@style/commonButtonNext" />
+                <TextView
+                    android:id="@+id/tv_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5"
+                    android:text="0/200"
+                    android:textColor="@color/colorb5b5b5"
+                    android:textSize="@dimen/x11sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button style="@style/commonButtonNext" />
 </LinearLayout>

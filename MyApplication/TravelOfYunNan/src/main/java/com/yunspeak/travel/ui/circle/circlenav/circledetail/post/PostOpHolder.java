@@ -3,11 +3,10 @@ package com.yunspeak.travel.ui.circle.circlenav.circledetail.post;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
@@ -16,9 +15,7 @@ import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.StringUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -73,7 +70,7 @@ class PostOpHolder extends BaseRecycleViewHolder {
             isFirst = false;
             mTvNickName.setText(forum.getNick_name());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forum.getTime()));
-            AiteUtils.parseTextMessage(mTvContent,forum.getInform(),forum.getContent(),mContext);
+            AiteUtils.parseTextMessage(mTvContent,forum.getInform(),forum.getContent(),mContext,true);
             FrescoUtils.displayIcon(mIvUserIcon, forum.getUser_img());
             if (!StringUtils.isEmpty(forum.getForum_img())) {
                 String[] split = forum.getForum_img().split(",");

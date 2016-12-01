@@ -15,7 +15,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -24,6 +23,8 @@ import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.flexbox.FlexboxLayout;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.domain.UserInfo;
 import com.yunspeak.travel.R;
@@ -34,7 +35,6 @@ import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.AppBarStateEvent;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.OtherAlbumBean;
-import com.yunspeak.travel.ui.me.othercenter.useralbum.OtherAlbumEvent;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.OtherCenterAlbumFragment;
 import com.yunspeak.travel.ui.me.othercenter.userdynamic.UserDynamicFragment;
 import com.yunspeak.travel.ui.me.othercenter.userinfo.UserInfoBean;
@@ -47,8 +47,6 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.android.flexbox.FlexboxLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -302,7 +300,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         mTvTitle.setText(nickName);
         tvSignature.setText(user.getContent());
         FrescoUtils.displayIcon(ivIcon, user.getUser_img());
-        FrescoUtils.displayNormal(ivBg, user.getBackground_img());
+        FrescoUtils.displayNormal(ivBg, user.getBackground_img(),640,360,R.drawable.normal_2_1);
         tvFanSum.setText("粉丝:" + user.getFans());
         tvLevel.setText("Lv." + user.getLevel());
         tvUserNickNmae.setText(user.getNick_name());

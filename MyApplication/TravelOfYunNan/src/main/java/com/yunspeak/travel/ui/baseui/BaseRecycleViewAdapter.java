@@ -6,14 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yunspeak.travel.R;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.utils.LogUtils;
 
 import java.util.List;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2016/10/8 0008.
@@ -76,6 +72,6 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        return mDatas==null?0:mDatas.size();
     }
 }

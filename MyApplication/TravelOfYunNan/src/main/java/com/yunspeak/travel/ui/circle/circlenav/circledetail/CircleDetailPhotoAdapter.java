@@ -5,15 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.xutils.common.util.DensityUtil;
-import org.xutils.x;
 
 import java.util.List;
 
@@ -54,7 +50,7 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
                 PostActivity.start(mContext,id);
             }
         });
-         FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag(), DensityUtil.dip2px(105),DensityUtil.dip2px(93));
+         FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag(),300,200,R.drawable.normal_2_1);
 
     }
 

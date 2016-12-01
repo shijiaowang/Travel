@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -59,7 +58,8 @@ public class PostOptionsDialog {
 //		Dialog dialog=new Dialog(上下文,风格style);
 
         //layout_width layout_height
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(250),DensityUtil.dip2px(119));
+        float width = context.getResources().getDimension(R.dimen.x250);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width,LinearLayout.LayoutParams.WRAP_CONTENT);
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);

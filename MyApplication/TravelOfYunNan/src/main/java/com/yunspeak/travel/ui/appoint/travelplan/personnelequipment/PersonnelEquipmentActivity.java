@@ -13,16 +13,15 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.appoint.popwindow.AppointSpinnerPop;
+import com.yunspeak.travel.ui.appoint.popwindow.SpinnerBean;
+import com.yunspeak.travel.ui.appoint.together.togetherdetail.ProviderAdapter;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.ChoicePropSelectBean;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.ChoicePropsActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.appoint.popwindow.AppointSpinnerPop;
-import com.yunspeak.travel.ui.appoint.popwindow.SpinnerBean;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.ProviderAdapter;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
 import com.yunspeak.travel.utils.ActivityUtils;
-import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -117,13 +116,16 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
         return IVariable.GET_PROP_REMARK;
     }
 
-
-
+    @Override
+    protected boolean isAutoLoad() {
+        return false;
+    }
 
     @Override
     protected void onSuccess(PersonnelEquipmentEvent personnelEquipmentEvent) {
-        PropRemarkBean propRemarkBean = GsonUtils.getObject(personnelEquipmentEvent.getResult(), PropRemarkBean.class);
-        mTvRemark.setText(propRemarkBean.getData().getContent());
+        //之前是从服务器获取的备注
+       /* PropRemarkBean propRemarkBean = GsonUtils.getObject(personnelEquipmentEvent.getResult(), PropRemarkBean.class);
+        mTvRemark.setText(propRemarkBean.getData().getContent());*/
     }
 
     @Override

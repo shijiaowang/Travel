@@ -209,7 +209,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="同意《云说软件服务许可协议》"
+                    android:id="@+id/tv_appoint"
                     android:textColor="@color/color7f7f7f"
                     android:textSize="@dimen/x11sp"
                     android:layout_marginLeft="@dimen/x12"

@@ -95,11 +95,10 @@
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_find_hotel"
                         android:textColor="#50c3eb"
-                        android:textSize="@dimen/x28sp" />
+                        android:textSize="@dimen/x25sp" />
 
                     <TextView
                         style="@style/fragmentFindIconText"
-                        android:layout_marginTop="@dimen/x6"
                         android:text="酒店" />
 
                 </LinearLayout>
@@ -149,15 +148,12 @@
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/x5"
                         android:text="@string/fragment_find_active"
                         android:textColor="#fcae04"
-                        android:textSize="@dimen/x26sp" />
+                        android:textSize="@dimen/x25sp" />
 
                     <TextView
                         style="@style/fragmentFindIconText"
-                        android:layout_marginTop="@dimen/x4"
-
                         android:text="活动" />
 
                 </LinearLayout>

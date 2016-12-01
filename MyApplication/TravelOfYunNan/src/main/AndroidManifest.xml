@@ -244,6 +244,7 @@
         <activity android:name=".ui.appoint.searchappoint.SearchAppointActivity"
             android:launchMode="singleTop"
             />
+        <activity android:name=".ui.home.welcome.splash.register.WebViewActivity" />
 
         <!-- 百度地图所需的service -->
         <service

@@ -6,17 +6,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.InformBean;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
@@ -28,7 +25,6 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -89,7 +85,7 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         mTvLoveNumber.setText(countLike);
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-M-dd HH:mm", datas.getTime()));
        mTvUserNickName.setText(datas.getNick_name());
-        AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),mContext);
+        AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),mContext,false);
         mTvIconLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

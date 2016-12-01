@@ -3,8 +3,10 @@ package com.yunspeak.travel.ui.home.welcome.splash.register;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.umeng.message.PushAgent;
@@ -16,7 +18,6 @@ import com.yunspeak.travel.event.RegisterEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
-import com.yunspeak.travel.ui.home.welcome.splash.login.LoginNextCommonEvent;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.ActivityUtils;
@@ -31,8 +32,9 @@ import com.yunspeak.travel.utils.ShareUtil;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-import org.greenrobot.eventbus.EventBus;
+
 import java.util.Map;
+
 import butterknife.BindView;
 
 
@@ -160,6 +162,12 @@ public class RegisterActivity extends BaseEventBusActivity<RegisterEvent> implem
         mEtVer.setInputType(InputType.TYPE_CLASS_PHONE);
         mEtPhone.requestFocus();
         changeClickAble(mBtNext, false);
+        String text="点击下一步即表示同意《城外旅游软件许可及服务协议》";
+        SpannableString spannableString=new SpannableString(text);
+        int startIndex=text.indexOf("《");
+        spannableString.setSpan(new CityoffSpeak(this),startIndex,text.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        mTvAppoint.setText(spannableString);
+        mTvAppoint.setMovementMethod(LinkMovementMethod.getInstance());
         mBtNext.setOnAvoidFastOnClickListener(this);
         mEtPhone.addTextChangedListener(this);
         mEtVer.addTextChangedListener(this);

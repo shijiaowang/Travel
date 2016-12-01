@@ -355,7 +355,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
      * @param b
      */
     private void showAppoint(boolean b) {
-        int showType = b ? View.VISIBLE : View.GONE;
+        int showType = b ? View.VISIBLE : View.INVISIBLE;
         mTvLoveNumber.setVisibility(showType);
         mTvIconLove.setVisibility(showType);
         mTvWatchNumber.setVisibility(showType);

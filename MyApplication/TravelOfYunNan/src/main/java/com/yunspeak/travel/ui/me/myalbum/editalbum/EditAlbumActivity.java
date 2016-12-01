@@ -327,8 +327,9 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
     protected void onFail(EditAlbumEvent editAlbumEvent) {
         swipeContainer.setLoadingMore(false);
         if (editAlbumEvent.getType() == TYPE_UP_FILE) {
-            ToastUtils.showToast("第" + index + "张上传失败。");
             index++;
+            ToastUtils.showToast("第"+index+"张上传失败。");
+
             if (pictureList != null && pictureList.size() - 1 >= index) {
                 upPicture(pictureList.get(index));
             }

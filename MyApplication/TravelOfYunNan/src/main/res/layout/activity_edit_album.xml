@@ -21,7 +21,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x200"
-                    android:background="@drawable/activity_create_bg">
+                    android:background="@drawable/register_banner">
 
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/iv_cover"

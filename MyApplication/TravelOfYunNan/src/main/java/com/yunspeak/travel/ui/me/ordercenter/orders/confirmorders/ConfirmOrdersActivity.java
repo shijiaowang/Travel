@@ -5,7 +5,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +26,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.home.welcome.splash.register.CityoffSpeak;
 import com.yunspeak.travel.ui.me.myalbum.createalbum.CreateAlbumBean;
 import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 import com.yunspeak.travel.ui.me.ordercenter.CouponBean;
@@ -74,6 +78,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     Button mAcpSubmit;
     @BindView(R.id.tv_order_name)
     TextView mTvOrderName;
+    @BindView(R.id.tv_appoint) TextView mTvAppoint;
     private List<String> mConpous = new ArrayList<>();
 
 
@@ -135,6 +140,12 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         mAcpSubmit.setOnClickListener(this);
         mRlZfb.setOnClickListener(this);
         mRlWx.setOnClickListener(this);
+        String text="同意《城外旅游软件许可及服务协议》";
+        SpannableString spannableString=new SpannableString(text);
+        int startIndex=text.indexOf("《");
+        spannableString.setSpan(new CityoffSpeak(this),startIndex,text.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        mTvAppoint.setText(spannableString);
+        mTvAppoint.setMovementMethod(LinkMovementMethod.getInstance());
 
     }
 

@@ -3,7 +3,9 @@ package com.yunspeak.travel.ui.me.myalbum;
 import android.content.Intent;
 import android.support.annotation.ColorInt;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
@@ -11,7 +13,11 @@ import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myalbum.createalbum.CreateAlbumActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.GsonUtils;
+
+import org.xutils.common.util.DensityUtil;
+
 import java.util.List;
+
 import butterknife.BindColor;
 /**
  * Created by wangyang on 2016/7/18 0018.
@@ -36,6 +42,12 @@ public class MyAlbumActivity extends BaseRecycleViewActivity<MyAlbumEvent,MyAlbu
         mRvCommon.setBackgroundColor(bgColor);
         mTvAdd.setOnClickListener(this);
         mTvCreateAlbum.setOnClickListener(this);
+        float width = getResources().getDimension(R.dimen.x165);
+        int screenWidth = DensityUtil.getScreenWidth();
+        int leftMargin= (int) ((screenWidth-width*2)/2);
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mRvCommon.getLayoutParams();
+        layoutParams.leftMargin=leftMargin;
+        mRvCommon.setLayoutParams(layoutParams);
     }
 
     @Override
