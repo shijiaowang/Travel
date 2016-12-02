@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.view.Gravity;
@@ -17,14 +18,16 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.util.PathUtil;
+import com.yalantis.ucrop.UCrop;
+import com.yalantis.ucrop.model.AspectRatio;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.utils.BitmapUtils;
 import com.yunspeak.travel.utils.IOUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.model.AspectRatio;
 
 import org.xutils.common.util.DensityUtil;
 import org.xutils.x;
@@ -33,7 +36,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 
 
 /**
@@ -50,6 +52,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
     private Intent intent;//存放图片的uri
     private int currentCode;
     private ImageView imageView;
+    private File cameraFile;
 
 
     /**
@@ -64,7 +67,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
         viewPopup.findViewById(R.id.tv_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 takePhoto();
+                takePhoto();
             }
         });
         viewPopup.findViewById(R.id.tv_album).setOnClickListener(new View.OnClickListener() {
@@ -109,12 +112,15 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
                     getString(R.string.permission_read_storage_rationale),
                     REQUEST_STORAGE_READ_ACCESS_PERMISSION);
         } else {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            Intent intent;
             currentCode = REQUEST_SELECT_PICTURE;
-            startActivityForResult(Intent.createChooser(intent, getString(R.string.label_select_picture)), currentCode);
+            if (Build.VERSION.SDK_INT < 19) {
+                intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+            } else {
+                intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            }
+            startActivityForResult(intent, currentCode);
         }
     }
 
@@ -122,15 +128,24 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
      * 拍照
      */
     private void takePhoto() {
+
         String state = Environment.getExternalStorageState(); //拿到sdcard是否可用的状态码
         if (state.equals(Environment.MEDIA_MOUNTED)) {   //如果可用
-            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-            currentCode=TAKE_PHOTO;
-            startActivityForResult(intent, currentCode);
-        }else {
+
+            cameraFile = new File(PathUtil.getInstance().getImagePath(), EMClient.getInstance().getCurrentUser()
+                    + System.currentTimeMillis() + ".jpg");
+            //noinspection ResultOfMethodCallIgnored
+            cameraFile.getParentFile().mkdirs();
+            currentCode = TAKE_PHOTO;
+            startActivityForResult(
+                    new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraFile)),
+                    currentCode);
+        } else {
             ToastUtils.showToast("SD卡不可用");
         }
+
     }
+
     /**
      * 请求相关权限
      */
@@ -144,7 +159,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
                 break;
             case REQUEST_STORAGE_WRITE_ACCESS_PERMISSION: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (intent==null)return;
+                    if (intent == null) return;
                     handleCropResult(intent);
                 }
             }
@@ -152,10 +167,17 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == -1) {//成功result_ok
-            if (requestCode == REQUEST_SELECT_PICTURE || requestCode==TAKE_PHOTO) {
+            if (requestCode == TAKE_PHOTO) {
+                if (cameraFile != null && cameraFile.exists()) {
+                    startCropActivity(Uri.fromFile(cameraFile));
+                } else {
+                    Toast.makeText(getContext(), R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
+                }
+            } else if (requestCode == REQUEST_SELECT_PICTURE) {
                 final Uri selectedUri = data.getData();
                 if (selectedUri != null) {
                     startCropActivity(data.getData());
@@ -165,12 +187,12 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
             } else if (requestCode == UCrop.REQUEST_CROP) {
                 handleCropResult(data);
             }
-        }else if (resultCode == UCrop.RESULT_ERROR) {
+        } else if (resultCode == UCrop.RESULT_ERROR) {
             handleCropError(data);
-        }else if (resultCode==UCrop.RESULT_CHANGE){
-            if (currentCode==TAKE_PHOTO){
+        } else if (resultCode == UCrop.RESULT_CHANGE) {
+            if (currentCode == TAKE_PHOTO) {
                 takePhoto();
-            }else {
+            } else {
                 pickFromGallery();
             }
         }
@@ -178,6 +200,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
 
     /**
      * 反馈错误信息
+     *
      * @param result
      */
     private void handleCropError(@NonNull Intent result) {
@@ -191,13 +214,14 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
 
     /**
      * 启动裁剪页面
+     *
      * @param uri
      */
     private void startCropActivity(@NonNull Uri uri) {
-        String destinationFileName = IMAGE_NAME+".jpg";
+        String destinationFileName = IMAGE_NAME + ".jpg";
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getActivity().getCacheDir(), destinationFileName)));
         uCrop = advancedConfig(uCrop);
-        uCrop.start(getContext(),this);//Fragment中使用
+        uCrop.withMaxResultSize(300,300).start(getContext(), this);//Fragment中使用
     }
     /**
      * Sometimes you want to adjust more options, it's done via {@link com.yalantis.ucrop.UCrop.Options} class.
@@ -207,6 +231,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
      */
     /**
      * 配置常用属性
+     *
      * @param uCrop
      * @return
      */
@@ -219,7 +244,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
         options.setActiveWidgetColor(getResources().getColor(R.color.otherTitleBg));
         options.setToolbarColor(getResources().getColor(R.color.otherTitleBg));
         options.setStatusBarColor(getResources().getColor(R.color.otherTitleBg));
-        options.setAspectRatioOptions(0,new AspectRatio("1",16,9));
+        options.setAspectRatioOptions(0, new AspectRatio("1", 16, 9));
         options.setCompressionQuality(50);
         //options.setMaxBitmapSize(800);//图片压缩
         options.setImageToCropBoundsAnimDuration(100);
@@ -274,6 +299,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
 
     /**
      * 子类设置一些需要的属性
+     *
      * @param options
      */
     protected abstract void setOptions(UCrop.Options options);
@@ -335,14 +361,14 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
             bmp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
             flag = true;
             fileName = url;
-           x.task().post(new Runnable() {
-               @Override
-               public void run() {
-                   childViewShow("file://"+fileName);
-               }
-           });
+            x.task().post(new Runnable() {
+                @Override
+                public void run() {
+                    childViewShow("file://" + fileName);
+                }
+            });
             childUpImage();
-           bmp.recycle();
+            bmp.recycle();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -361,10 +387,12 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
 
     /**
      * 孩子显示图片控件图片，并且可以做一些处理
-     * @return
+     *
      * @param s
+     * @return
      */
-    protected  abstract void childViewShow(String s);
+    protected abstract void childViewShow(String s);
+
     /**
      * 处理裁剪图片  保存压缩
      *
@@ -383,9 +411,9 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
 
                 try {
                     Bitmap bitmap = null;
-                        bitmap = BitmapUtils.getBitmapFormUri(getActivity(), resultUri,200);
-                        if (bitmap == null) return;
-                        saveCroppedImage(bitmap);//保存图片到本地
+                    bitmap = BitmapUtils.getBitmapFormUri(getActivity(), resultUri, 200);
+                    if (bitmap == null) return;
+                    saveCroppedImage(bitmap);//保存图片到本地
                 } catch (Exception e) {
                     e.printStackTrace();
                     ToastUtils.showToast("未解析到图片");

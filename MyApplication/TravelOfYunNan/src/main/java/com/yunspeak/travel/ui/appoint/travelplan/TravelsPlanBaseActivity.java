@@ -24,6 +24,7 @@ import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -291,6 +292,10 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
             Class c=isHideRight()? PersonnelEquipmentWithMeActivity.class:PersonnelEquipmentActivity.class;
             Intent intent = new Intent(this, c);
             intent.putExtra(IVariable.PAGE_SIZE,howDay);
+            if (StringUtils.isEmpty(filename)){
+                ToastUtils.showToast("请上传您的自拍照或者游玩相关图片。");
+                return;
+            }
             GlobalValue.mFileName=filename;
             startActivity(intent);
         } catch (Exception e) {

@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="635g"
+            android:id="@+id/tv_code"
             android:textColor="@color/otherTitleBg"
             android:textSize="@dimen/x18sp"
             android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <Button
         android:text="分享"
         android:textColor="@color/otherTitleBg"
         android:textSize="@dimen/x17sp"
@@ -59,7 +59,7 @@
         android:background="@drawable/activity_my_appoint_rl_bg"
         android:layout_width="@dimen/x155"
         android:layout_height="@dimen/x40" />
-    <TextView
+    <Button
         android:text="进入我的约伴"
         android:textColor="@color/otherTitleBg"
         android:textSize="@dimen/x17sp"

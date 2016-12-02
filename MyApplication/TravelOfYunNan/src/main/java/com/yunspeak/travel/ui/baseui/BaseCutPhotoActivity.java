@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.baseui;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -17,6 +18,8 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.util.PathUtil;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 import com.yunspeak.travel.R;
@@ -42,14 +45,12 @@ import static android.os.Environment.getExternalStorageDirectory;
 public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetWorkActivity<T> {
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
     protected static final int TAKE_PHOTO = 0x02;
-    protected String filename="";
-    protected String filenam2;
+    protected String filename = "";
     protected static final String IMAGE_NAME = "CropImage";
-
     private Intent intent;//存放图片的uri
-    private boolean needCrop=true;//默认需要裁剪
-    private int currentCode=-1;
-
+    private boolean needCrop = true;//默认需要裁剪
+    private int currentCode = -1;
+    private File cameraFile;
     public boolean isNeedCrop() {
         return needCrop;
     }
@@ -113,17 +114,16 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
     private void takePhoto() {
         String state = Environment.getExternalStorageState(); //拿到sdcard是否可用的状态码
         if (state.equals(Environment.MEDIA_MOUNTED)) {   //如果可用
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            String parent=Environment.getExternalStorageDirectory().getPath()+"cityoff";
-            File file=new File(parent);
-            if (!file.exists()){
-                file.mkdirs();
-            }
-            Uri uri = Uri.fromFile(new File(file.getAbsolutePath() +"/"+ System.currentTimeMillis() + ".jpg"));
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-            currentCode=TAKE_PHOTO;
-            startActivityForResult(intent, currentCode);
-        }else {
+
+            cameraFile = new File(PathUtil.getInstance().getImagePath(), EMClient.getInstance().getCurrentUser()
+                    + System.currentTimeMillis() + ".jpg");
+            //noinspection ResultOfMethodCallIgnored
+            cameraFile.getParentFile().mkdirs();
+            currentCode = TAKE_PHOTO;
+            startActivityForResult(
+                    new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraFile)),
+                    currentCode);
+        } else {
             ToastUtils.showToast("SD卡不可用");
         }
     }
@@ -139,12 +139,15 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
                     getString(R.string.permission_read_storage_rationale),
                     REQUEST_STORAGE_READ_ACCESS_PERMISSION);
         } else {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            currentCode=REQUEST_SELECT_PICTURE;
-            startActivityForResult(Intent.createChooser(intent, getString(R.string.label_select_picture)), currentCode);
+            Intent intent;
+            currentCode = REQUEST_SELECT_PICTURE;
+            if (Build.VERSION.SDK_INT < 19) {
+                intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+            } else {
+                intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            }
+            startActivityForResult(intent, currentCode);
         }
     }
 
@@ -161,7 +164,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
                 break;
             case REQUEST_STORAGE_WRITE_ACCESS_PERMISSION: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (intent==null)return;
+                    if (intent == null) return;
                     handleCropResult(intent);
                 }
             }
@@ -169,40 +172,64 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode ==RESULT_OK) {
-            if (requestCode == REQUEST_SELECT_PICTURE ||requestCode == TAKE_PHOTO) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == TAKE_PHOTO) {
+                if (cameraFile != null && cameraFile.exists()) {
+                    if (!needCrop) {
+                        showImage(cameraFile.getAbsolutePath());
+                    } else {
+                        startCropActivity(Uri.fromFile(cameraFile));
+                    }
+                }
+            } else if (requestCode == REQUEST_SELECT_PICTURE) {
                 final Uri selectedUri = data.getData();
                 if (selectedUri != null) {
-                    if (!needCrop){
-                        showImage(data);
-                    }else {
+                    if (!needCrop) {
+                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                        Cursor cursor = getContentResolver().query(selectedUri, filePathColumn, null, null, null);
+                        if (cursor != null) {
+                            cursor.moveToFirst();
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            String picturePath = cursor.getString(columnIndex);
+                            cursor.close();
+                            cursor = null;
+                            if (picturePath == null || picturePath.equals("null")) {
+                                ToastUtils.showToast("图片不存在");
+                                return;
+                            }
+                            showImage(picturePath);
+                        }
+                    } else {
                         startCropActivity(data.getData());
                     }
-                } else {
-                    Toast.makeText(this, R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
                 }
             } else if (requestCode == UCrop.REQUEST_CROP) {
                 handleCropResult(data);
+            } else {
+                Toast.makeText(this, R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
             handleCropError(data);
-        }else if (resultCode==UCrop.RESULT_CHANGE){
-            if (currentCode==TAKE_PHOTO){
+        } else if (resultCode == UCrop.RESULT_CHANGE) {
+            if (currentCode == TAKE_PHOTO) {
                 takePhoto();
-            }else {
+            } else {
                 pickFromGallery();
             }
         }
     }
 
-    protected  void showImage(Intent data)  {
+
+    protected void showImage(String data) {
 
     }
 
     /**
      * 反馈错误信息
+     *
      * @param result
      */
     private void handleCropError(@NonNull Intent result) {
@@ -216,13 +243,14 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
 
     /**
      * 启动裁剪页面
+     *
      * @param uri
      */
     private void startCropActivity(@NonNull Uri uri) {
-        String destinationFileName = IMAGE_NAME+".jpg";
+        String destinationFileName = IMAGE_NAME + ".jpg";
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
         uCrop = advancedConfig(uCrop);
-        uCrop.start(this);
+        uCrop.withMaxResultSize(300, 300).start(this);
 
     }
     /**
@@ -233,6 +261,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
      */
     /**
      * 配置常用属性
+     *
      * @param uCrop
      * @return
      */
@@ -245,7 +274,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         options.setActiveWidgetColor(getResources().getColor(R.color.otherTitleBg));
         options.setToolbarColor(getResources().getColor(R.color.otherTitleBg));
         options.setStatusBarColor(getResources().getColor(R.color.otherTitleBg));
-        options.setAspectRatioOptions(0,new AspectRatio("1",1,1));
+        options.setAspectRatioOptions(0, new AspectRatio("1", 1, 1));
         options.setCompressionQuality(50);
         options.setMaxBitmapSize(800);//图片压缩
         options.setImageToCropBoundsAnimDuration(100);
@@ -300,6 +329,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
 
     /**
      * 子类修改选项
+     *
      * @param options
      */
     protected void setOptions(UCrop.Options options) {
@@ -366,7 +396,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
             x.task().post(new Runnable() {
                 @Override
                 public void run() {
-                    childDisplay("file://"+filename,filename);
+                    childDisplay("file://" + filename, filename);
                 }
             });
 
@@ -406,7 +436,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
 
                 try {
                     Bitmap bitmap = null;
-                    bitmap = BitmapUtils.getBitmapFormUri(this, resultUri,100);
+                    bitmap = BitmapUtils.getBitmapFormUri(this, resultUri, 100);
                     if (bitmap == null) return;
                     saveCroppedImage(bitmap);//保存图片到本地
 

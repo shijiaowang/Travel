@@ -30,7 +30,7 @@ public class CreateAppointSuccessActivity extends BaseToolBarActivity {
 
 
     private void finishActivity() {
-        ActivityUtils.getInstance().exit();
+
     }
 
 

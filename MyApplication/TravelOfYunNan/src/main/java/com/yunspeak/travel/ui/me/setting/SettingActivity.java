@@ -258,7 +258,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
 
     private void changeLivePlace() {
         //选项选择器
-        if (pvOptions == null) {
+        if (pvOptions==null) {
             pvOptions = new OptionsPickerView(this);
             //三级联动效果
             pvOptions.setPicker(options1Items, options2Items, true);
@@ -274,12 +274,12 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 public void onOptionsSelect(int options1, int option2, int options3) {
                     //返回的分别是三个级别的选中位置
                     String tx = options1Items.get(options1).getPickerViewText()
-                            + "-"+options2Items.get(options1).get(option2);
+                            + "-" + options2Items.get(options1).get(option2);
                     mTvUserLivePlace.setText(tx);
                     provice = options1Items.get(options1).getId();//省得id
                     String cityName = options2Items.get(options1).get(option2);
                     city = DBManager.getCityId(cityName, provice);
-                    messageIsChange=true;
+                    messageIsChange = true;
                 }
             });
 
@@ -339,8 +339,8 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         options1Items=null;
         options2Items=null;
     }

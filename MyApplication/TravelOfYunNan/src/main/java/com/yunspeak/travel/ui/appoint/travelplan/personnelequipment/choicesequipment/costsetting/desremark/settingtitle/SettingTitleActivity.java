@@ -42,7 +42,7 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
     private static final int TYPE_VER_TITLE = 1;//认证标志
     private static final int TYPE_PLAY_WAY = 2;//玩法
     private static final int TYPE_DIY_TITLE = 3;
-    private String[] mTitles = {"我的称号", "认证标志", "玩法", "自定义"};
+    private String[] mTitles = {"我的称号", "认证标志", "玩法"};
     private List<Fragment> fragmentList = new ArrayList<>();
     @BindView(R.id.vp_pager) ViewPager mVpPager;
     @BindView(R.id.indicator) SimpleViewPagerIndicator mIndicator;
@@ -147,13 +147,11 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
         TabFragment tabFragment1 = TabFragment.newInstance(userLabel, TYPE_MY_TITLE,settingTitles);
         TabFragment tabFragment2 = TabFragment.newInstance(platformLabel, TYPE_VER_TITLE,settingTitles);
         TabFragment tabFragment3 = TabFragment.newInstance(playWayLabel, TYPE_PLAY_WAY,settingTitles);
-        TabFragment tabFragment4 = TabFragment.newInstance(userLabel, TYPE_DIY_TITLE,settingTitles);
         fragmentList.add(tabFragment1);
         fragmentList.add(tabFragment2);
         fragmentList.add(tabFragment3);
-        fragmentList.add(tabFragment4);
-        mPagerCursorView.setViewPager(mVpPager,4,false);
-        mVpPager.setOffscreenPageLimit(3);
+        mPagerCursorView.setViewPager(mVpPager,fragmentList.size(),false);
+        mVpPager.setOffscreenPageLimit(2);
         mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager()));
 
     }

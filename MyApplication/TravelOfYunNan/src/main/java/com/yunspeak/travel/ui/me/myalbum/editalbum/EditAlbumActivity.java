@@ -269,7 +269,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             tvDes.setText(getString(R.string.kongge) + head.getContent());
             title = head.getTitle();
             tvAlbumName.setText(title);
-            FrescoUtils.displayNormal(ivCover, head.getBackground_img(), 600, 450);
+            FrescoUtils.displayNormal(ivCover, head.getBackground_img(), 600, 450,R.drawable.normal_2_1);
             body = data.getBody();
             if (body == null || body.size() == 0) return;
             editAlbumAdapter = new EditAlbumAdapter(body, this);

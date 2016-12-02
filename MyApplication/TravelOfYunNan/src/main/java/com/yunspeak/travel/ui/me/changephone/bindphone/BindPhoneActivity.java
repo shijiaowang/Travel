@@ -1,20 +1,15 @@
 package com.yunspeak.travel.ui.me.changephone.bindphone;
 
-import android.app.Activity;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.InputType;
 import android.view.View;
-import android.widget.EditText;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
-import com.yunspeak.travel.ui.view.LineEditText;
-import com.yunspeak.travel.ui.view.PhoneTextView;
+import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.PhoneUtils;
@@ -22,8 +17,6 @@ import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.view.annotation.ViewInject;
 
 import java.util.Map;
 
@@ -35,64 +28,46 @@ import butterknife.BindView;
  */
 
 public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
-    @BindView(R.id.bt_next) AvoidFastButton mBtNext;
-    @BindView(R.id.ptv_phone) PhoneTextView mPtvPhone;
-    @BindView(R.id.bt_ver) AvoidFastButton mBtVer;
-    @BindView(R.id.et_ver) EditText mEtVer;
-    @BindView(R.id.et_phone) LineEditText mEtPhone;
+    @BindView(R.id.et_phone)
+    LoginEditText etPhone;
+    @BindView(R.id.et_ver)
+    LoginEditText etVer;
+    @BindView(R.id.bt_next)
+    AvoidFastButton btNext;
     private boolean isSend = false;
-    private int verTime = 60;//验证码时间
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (verTime <= 0) {
-                removeCallbacksAndMessages(null);
-                verTime = 60;//初始化事件
-                mBtVer.setText("重发验证码");
-                mEtPhone.setFocusable(true);
-                mEtPhone.setClickable(true);
-                mEtPhone.setFocusableInTouchMode(true);
-                changeClickAble(mBtVer, true);
-                return;
-            }
-            mBtVer.setText("重发验证码(" + --verTime + ")");
-            sendEmptyMessageDelayed(0, 1000);
-        }
-    };
     private String tel;
 
 
     @Override
     protected void initEvent() {
-        changeClickAble(mBtNext, false);
-        changeClickAble(mBtVer, false);
-        UserInfo userInfo = GlobalUtils.getUserInfo();
-        try {
-            mPtvPhone.setPhoneNumber(userInfo.getTel());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        mBtNext.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
+        changeClickAble(btNext, false);
+        etPhone.setInputType(InputType.TYPE_CLASS_PHONE);
+        etVer.setInputType(InputType.TYPE_CLASS_TEXT);
+        btNext.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
-                if (StringUtils.isEmpty(getString(mEtVer))) {
+                if (StringUtils.isEmpty(etVer.getString())) {
                     ToastUtils.showToast("请输入验证码。");
                     return;
                 }
-                Map<String, String> end = MapUtils.Build().addKey().addTel(tel).addUserId().addCode(getString(mEtVer)).end();
+                Map<String, String> end = MapUtils.Build().addKey().addTel(tel).addUserId().addCode(etVer.getString()).end();
                 XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE, end, TYPE_OTHER, new BindPhoneEvent());
             }
 
         });
-        mBtVer.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
+        etVer.setOnSendButtonClickListener(new LoginEditText.SendButtonOnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (PhoneUtils.checkPhoneNumber(getString(mEtPhone))) return;
-                Map<String, String> end = MapUtils.Build().addKey().addTel(getString(mEtPhone)).addType("2").end();
+            public void onClick(View button) {
+                if (PhoneUtils.checkPhoneNumber(etPhone.getString())){
+                    ToastUtils.showToast("请输入正确的手机号码格式");
+                    etPhone.setError("手机号码格式错误！");
+                    return;}
+                tel = etPhone.getString();
+                Map<String, String> end = MapUtils.Build().addKey().addTel(tel).addType("2").end();
                 XEventUtils.postUseCommonBackJson(IVariable.CHANGE_PHONE_VER_MSG, end, TYPE_VER_MSG, new BindPhoneEvent());
             }
         });
-        mEtPhone.addTextChangedListener(new TextWatcher() {
+        etPhone.addTextChangedListener(new LoginEditText.TextChangedListener() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -100,10 +75,10 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mEtPhone.getText().toString().length() == 11) {
-                    changeClickAble(mBtVer, true);
+                if (etPhone.getString()!=null && etPhone.getString().length() == 11) {
+                    etVer.setButtonState(true);
                 } else {
-                    changeClickAble(mBtVer, false);
+                    etVer.setButtonState(false);
                 }
             }
 
@@ -112,6 +87,7 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
 
             }
         });
+
     }
 
     @Override
@@ -135,16 +111,9 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
         switch (changePhoneEvent.getType()) {
             case TYPE_VER_MSG:
                 //发送验证码
-                changeClickAble(mBtVer, false);
-                changeClickAble(mBtNext, true);
+                changeClickAble(btNext, true);
+                etVer.setTimeStart();
                 isSend = true;
-                tel = getString(mEtPhone);
-                mEtPhone.setFocusable(false);
-                mEtPhone.setClickable(false);
-                mEtPhone.setFocusableInTouchMode(false);
-
-                ToastUtils.showToast("验证码发送成功");
-                mHandler.sendEmptyMessage(0);
                 break;
             case TYPE_OTHER:
                 //绑定成功
@@ -172,4 +141,6 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
     protected String initTitle() {
         return "绑定手机";
     }
+
+
 }

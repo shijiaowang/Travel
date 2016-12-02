@@ -34,7 +34,7 @@ public class EditAlbumHolder extends BaseRecycleViewHolder<EditAlbumBean.DataBea
 
     @Override
     public void childBindView(final int position, EditAlbumBean.DataBean.BodyBean datas, Context mContext) {
-        FrescoUtils.displayNormal(mIvImage,datas.getPath());
+        FrescoUtils.displayNormal(mIvImage,datas.getPath(),640,360,R.drawable.normal_2_1);
         mTvNumber.setText((position+1)+"/"+size.size());
         mTvDelete.setVisibility(canDelete?View.VISIBLE:View.GONE);
         itemView.setOnClickListener(new View.OnClickListener() {

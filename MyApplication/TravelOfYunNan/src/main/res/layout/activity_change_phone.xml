@@ -2,92 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorFAFAFA"
     android:orientation="vertical"
     android:paddingLeft="@dimen/x22">
+    <com.yunspeak.travel.ui.view.LoginEditText
+        android:id="@+id/et_phone"
+        style="@style/activityRegisterEditText"
+        app:line_edittext_hint="请输入手机号"
+        app:line_edittext_image_src="@drawable/login_phone"
+        app:line_edittext_input_left="@dimen/x15"
+        app:line_edittext_max_length="11" />
+    <com.yunspeak.travel.ui.view.LoginEditText
+        android:id="@+id/et_ver"
+        style="@style/activityRegisterEditText"
+        app:line_edittext_image_src="@drawable/login_message"
+        app:line_edittext_input_left="@dimen/x9"
+        app:line_edittext_hint="请输入短信验证码"
+        app:line_edittext_show_send_button="true"
+        app:line_edittext_max_length="6" />
+    <com.yunspeak.travel.ui.view.AvoidFastButton
+        android:id="@+id/bt_next"
+        android:layout_width="@dimen/x150"
+        android:layout_height="@dimen/x37"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/x31"
+        android:layout_marginTop="@dimen/x47"
+        android:background="@drawable/login_button_selector"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="@color/colorFAFAFA"
+        android:textSize="@dimen/x18sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            style="@style/activityRegisterLl"
-            android:layout_marginTop="24dp">
-
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                style="@style/activityRegisterTextIcon"
-                android:text="@string/activity_register_phone" />
-
-            <TextView
-                style="@style/activityRegisterText"
-                android:text="当前手机号" />
-        </LinearLayout>
-
-        <com.yunspeak.travel.ui.view.PhoneTextView
-            android:id="@+id/ptv_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="13579071102"
-            android:textColor="@color/colorFAFAFA" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                style="@style/activityRegisterTextIcon"
-                android:text="@string/activity_register_message" />
-
-            <TextView
-                style="@style/activityRegisterText"
-                android:text="短信验证码" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.yunspeak.travel.ui.view.LineEditText
-                android:id="@+id/et_ver"
-                style="@style/activityRegisterEditText"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:hint="请输入验证码"
-                android:inputType="number" />
-
-            <com.yunspeak.travel.ui.view.AvoidFastButton
-                android:id="@+id/bt_ver"
-                android:layout_width="120dp"
-                android:layout_height="29dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/fragment_find_search_bg"
-                android:gravity="center"
-                android:text="获取验证码"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="13sp" />
-        </LinearLayout>
-
-        <com.yunspeak.travel.ui.view.AvoidFastButton
-            android:id="@+id/bt_next"
-            android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/button_bg_un_click"
-            android:gravity="center"
-            android:text="下一步"
-            android:textColor="@color/colorFAFAFA"
-            android:textSize="14sp" />
-
-    </LinearLayout>
 </LinearLayout>

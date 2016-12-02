@@ -149,7 +149,6 @@ public class DBManager {
                 }
                 arrayLists.add(arrayList);
             }
-            writableDatabase.close();
             return arrayLists;
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,8 +172,6 @@ public class DBManager {
             query = writableDatabase.query("yuns_district", new String[]{type}, "_id=?", new String[]{id}, null, null, null);
             if (query.moveToNext()) {
                 name = query.getString(0);
-                writableDatabase.close();
-
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -190,7 +187,6 @@ public class DBManager {
             query = writableDatabase.query("yuns_district", new String[]{"_id"}, "name=? and upid=?", new String[]{cityName,id}, null, null, null);
             if (query.moveToNext()) {
                 String cityId = query.getString(query.getColumnIndex("_id"));
-                writableDatabase.close();
                 return cityId;
             }
         }catch (Exception e){

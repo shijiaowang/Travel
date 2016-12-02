@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.ColorInt;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -13,7 +12,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -21,12 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.utils.NetworkUtils;
+import com.yunspeak.travel.utils.PhoneUtils;
 import com.yunspeak.travel.utils.StringUtils;
 
 import org.xutils.common.util.DensityUtil;
-
-import butterknife.BindColor;
 
 /**
  * Created by wangyang on 2016/11/5 0005.
@@ -49,6 +45,7 @@ public class LoginEditText extends FrameLayout {
     private AvoidFastButton mBtSend;
     int verTime=60;
     private boolean canSending=true;//是否可以点击发送按钮
+    private boolean canShowDelete=true;//是否显示删除按钮
 
     public LoginEditText(Context context) {
         this(context, null);
@@ -176,7 +173,9 @@ public class LoginEditText extends FrameLayout {
                 } else {
                     isEmpty=false;
                 }
-                mTvDelete.setVisibility(isEmpty?GONE:VISIBLE);
+                if (canShowDelete) {
+                    mTvDelete.setVisibility(isEmpty ? GONE : VISIBLE);
+                }
                 if (textChangedListener!=null){
                     textChangedListener.onTextChanged(s,start,before,count);
                 }
@@ -196,7 +195,9 @@ public class LoginEditText extends FrameLayout {
                 if (hasFocus) {
                     layoutParams.height = DensityUtil.dip2px(1.5f);
                     if (!StringUtils.isEmpty(getString())){
-                        mTvDelete.setVisibility(VISIBLE);
+                        if (canShowDelete) {
+                            mTvDelete.setVisibility(VISIBLE);
+                        }
                     }
                     mVLine.setBackgroundColor(getResources().getColor(R.color.otherTitleBg));
                 } else {
@@ -309,5 +310,27 @@ public class LoginEditText extends FrameLayout {
     }
     public void setOnSendButtonClickListener(SendButtonOnClickListener onClickListener) {
         this.onClickListener = onClickListener;
+    }
+
+    /**
+     * 设置电话号码
+     * @param phoneText
+     */
+    public void setPhoneText(String phoneText){
+        if (PhoneUtils.checkPhoneNumber(phoneText))return;
+        mEtEnter.setClickable(false);
+        mEtEnter.setFocusable(false);
+        mEtEnter.setFocusableInTouchMode(false);
+        mEtEnter.setText(phoneText.substring(0,3)+"*******"+phoneText.substring(phoneText.length()-1,phoneText.length()));
+    }
+
+    /**
+     * 隐藏删除按钮
+     */
+    public void hideDeleteButton(){
+        if (mTvDelete!=null){
+            canShowDelete = false;
+            mTvDelete.setVisibility(GONE);
+        }
     }
 }

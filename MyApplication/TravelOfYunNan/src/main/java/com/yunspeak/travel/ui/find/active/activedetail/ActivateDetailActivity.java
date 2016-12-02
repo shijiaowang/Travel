@@ -54,6 +54,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
     private String isCollect;
     private String title;
     private String shareUrl;
+    private String isInto;
 
 
     public static void start(Context context, String aid){
@@ -74,14 +75,16 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
         mBtEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EnterAppointDialog.showCommonDialog(ActivateDetailActivity.this, "报名活动", "确定", "是否参加该活动？参加活动可能产生一定费用。", new ParentPopClick() {
-                    @Override
-                    public void onClick(int type) {
-                        Map<String, String> enterMap = MapUtils.Build().addKey().addUserId().addAId(aId).end();
-                        XEventUtils.postUseCommonBackJson(IVariable.ACTIVATE_ENTER,enterMap,TYPE_UPDATE,new ActiveDetailEvent());
-                    }
-                });
-
+                if (isInto==null)return;
+                if (isInto.equals("0")) {
+                    EnterAppointDialog.showCommonDialog(ActivateDetailActivity.this, "报名活动", "确定", "是否参加该活动？参加活动可能产生一定费用。", new ParentPopClick() {
+                        @Override
+                        public void onClick(int type) {
+                            Map<String, String> enterMap = MapUtils.Build().addKey().addUserId().addAId(aId).end();
+                            XEventUtils.postUseCommonBackJson(IVariable.ACTIVATE_ENTER, enterMap, TYPE_UPDATE, new ActiveDetailEvent());
+                        }
+                    });
+                }
             }
         });
         nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
@@ -170,6 +173,10 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                 ActiveDetailBean.DataBean data = activeDetail.getData();
                 shareUrl = data.getShare_url();
                 mWvHtml.loadUrl(data.getUrl());
+                isInto = data.getIs_into();
+                if (isInto!=null && !isInto.equals("0")){
+                    mBtEnter.setText("已报名");
+                }
                 isCollect=data.getIs_collect();
                 FrescoUtils.displayNormal(mIvBg,data.getTitle_img(),640,360,R.drawable.normal_2_1);
                 FrescoUtils.displayIcon(mIvIcon,data.getActivity_img());

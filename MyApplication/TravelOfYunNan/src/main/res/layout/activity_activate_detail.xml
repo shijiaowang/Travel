@@ -168,7 +168,8 @@
                 android:text="报名"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/x15sp"
-                android:layout_width="@dimen/x65"
+                android:minWidth="@dimen/x65"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/x20" />
         </LinearLayout>
 </RelativeLayout>

@@ -9,7 +9,6 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -175,9 +174,9 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                         break;
                     case PAY_WAY_WX:
                         WXPayBean wxPayBean = GsonUtils.getObject(confirmOrdersEvent.getResult(), WXPayBean.class);
-
                         WXPayBean.DataBean dataBean = wxPayBean.getData();
-                        IWXAPI wxapi = WXAPIFactory.createWXAPI(this,dataBean.getAppid());
+
+                        IWXAPI wxapi = WXAPIFactory.createWXAPI(this,null);
                         try {
                             PayReq req = new PayReq();
                             req.appId = dataBean.getAppid();
@@ -187,7 +186,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                             req.timeStamp = String.valueOf(dataBean.getTimestamp());
                             req.packageValue = dataBean.getPackageX();
                             req.sign = dataBean.getSign();
-                            req.extData = "城外旅游点订单";
+                            req.extData = "城外旅游订单";
                             wxapi.sendReq(req);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -201,25 +200,24 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     }
 
     private void payZFB(CreateAlbumBean order) {
-        final String info = order.getData();
+       final String info = order.getData();
         if (StringUtils.isEmpty(info)) {
             ToastUtils.showToast("订单信息错误！");
             return;
         }
+        //final String   info="app_id=2016111402791670&timestamp=2016-07-29+16%3A55%3A53&biz_content=%7B%22timeout_express%22%3A%2230m%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%221%22%2C%22body%22%3A%22%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%22%2C%22out_trade_no%22%3A%221202124847-1682%22%7D&method=alipay.trade.app.pay&charset=utf-8&version=1.0&sign_type=RSA&sign=E0LhmU%2BvgXQcOX2s6VgXPtHihX%2B7Gdbf62%2BmrMlKpX5nqlt8IM4QRx58YyuDANF0D588zjBI%2FKTOYB4SSIkuHdJWPJOhNwvWzhPVucy5pVErK3vzabCcHNGUE2vp1eVgvecAVWDnaRCT6WLLaixqZMOWpzHACAZtruhQPeC0BxY%3D";
         Runnable payRunnable = new Runnable() {
 
             @Override
             public void run() {
                 PayTask alipay = new PayTask(ConfirmOrdersActivity.this);
                 Map<String, String> result = alipay.payV2(info, true);
-                Log.i("msp", result.toString());
                 Message msg = new Message();
                 msg.what = SDK_PAY_FLAG;
                 msg.obj = result;
                 mHandler.sendMessage(msg);
             }
         };
-
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }

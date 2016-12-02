@@ -51,7 +51,7 @@ public class MyAppointTogetherBean implements ParentBean {
         private String state;
         private String add_time;
         private String user_id;
-        private String order_type;
+        private String pay_type;
         private String order_id;
         private String groupid;
         private int type;
@@ -80,12 +80,12 @@ public class MyAppointTogetherBean implements ParentBean {
             this.order_id = order_id;
         }
 
-        public String getOrder_type() {
-            return order_type;
+        public String getPay_type() {
+            return pay_type;
         }
 
-        public void setOrder_type(String order_type) {
-            this.order_type = order_type;
+        public void setPay_type(String pay_type) {
+            this.pay_type = pay_type;
         }
 
         public String getBulletin() {

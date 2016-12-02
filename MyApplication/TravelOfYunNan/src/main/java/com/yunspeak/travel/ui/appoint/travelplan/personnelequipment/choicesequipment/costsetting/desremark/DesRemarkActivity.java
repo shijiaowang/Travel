@@ -13,12 +13,13 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.createsuccess.CreateAppointSuccessActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.settingtitle.SettingTitle;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.settingtitle.SettingTitleActivity;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
+import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.utils.ActivityUtils;
+import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -114,7 +115,17 @@ public class DesRemarkActivity extends BaseToolBarActivity implements View.OnCli
     public void onEvent(DesRemarkEvent desRemarkEvent) {
         ToastUtils.showToast(desRemarkEvent.getMessage());
         if (desRemarkEvent.isSuccess()) {
-            startActivity(new Intent(this, CreateAppointSuccessActivity.class));
+            try {
+                CreateBean object = GsonUtils.getObject(desRemarkEvent.getResult(), CreateBean.class);
+                CreateBean.DataBean data = object.getData();
+                Intent intent=new Intent(this,ConfirmOrdersActivity.class);
+                intent.putExtra(IVariable.ID,data.getRet_order());
+                intent.putExtra("pay_type",data.getPay_type());
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            ActivityUtils.getInstance().exit();
         }
 
     }

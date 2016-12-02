@@ -234,8 +234,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
             mBtPay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String orderType = datas.getOrder_type();
-                    if (StringUtils.isEmpty(orderType)) return;
+                    String orderType = datas.getPay_type();
                     Intent intent = new Intent(mContext, ConfirmOrdersActivity.class);
                     intent.putExtra("pay_type", orderType);
                     intent.putExtra(IVariable.ID, datas.getOrder_id());
