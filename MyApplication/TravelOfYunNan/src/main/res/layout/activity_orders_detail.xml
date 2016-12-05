@@ -183,7 +183,7 @@
             android:layout_marginTop="@dimen/x58"
             android:lines="1"
             android:ellipsize="end"
-            android:text="如有疑问请致电客服 123123131"
+            android:text="如有疑问请致电客服 0871-65126820"
             android:textColor="@color/colorb5b5b5"
             android:textSize="10sp" />
 

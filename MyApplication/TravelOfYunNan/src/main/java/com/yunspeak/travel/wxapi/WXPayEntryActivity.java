@@ -2,7 +2,6 @@ package com.yunspeak.travel.wxapi;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,8 +11,9 @@ import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-import com.yunspeak.travel.R;
 import com.yunspeak.travel.Constants;
+import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.ToastUtils;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 	
@@ -25,7 +25,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_result);
-        
     	api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
         api.handleIntent(getIntent(), this);
     }
@@ -44,10 +43,17 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 	@Override
 	public void onResp(BaseResp resp) {
 		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle("提示");
-			builder.setMessage(getString(R.string.pay_result_callback_msg, String.valueOf(resp.errCode)));
-			builder.show();
+			switch (resp.errCode){
+				case BaseResp.ErrCode.ERR_OK:
+
+
+					break;
+				default:
+					ToastUtils.showToast("支付失败");
+
+					break;
+			}
+			finish();
 		}
 	}
 }

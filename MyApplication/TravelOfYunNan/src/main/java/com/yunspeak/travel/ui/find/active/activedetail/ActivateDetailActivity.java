@@ -154,7 +154,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                 EnterActiveBean enterActiveBean = GsonUtils.getObject(event.getResult(), EnterActiveBean.class);
                 EnterActiveBean.DataBean enterActiveBeanData = enterActiveBean.getData();
                 if (enterActiveBeanData==null)return;
-                ToastUtils.showToast("报名成功，前往支付页面。");
+                mBtEnter.setText("已报名");
                 Intent intent=new Intent(this, ConfirmOrdersActivity.class);
                 intent.putExtra(IVariable.ID,enterActiveBeanData.getId());
                 intent.putExtra("pay_type",enterActiveBeanData.getPay_type()+"");

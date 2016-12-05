@@ -2,14 +2,14 @@ package com.yunspeak.travel.ui.me.ordercenter.orders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
 import com.yunspeak.travel.utils.ToastUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -73,7 +73,10 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
         myOrdersEvent.setOrderType(currentType);
         return myOrdersEvent;
     }
-
+    @Subscribe
+   public void onEvent(PayNotifyEvent payNotifyEvent){
+       onLoad(TYPE_REFRESH);
+   }
     @Override
     protected BaseRecycleViewAdapter<MyOrdersBean.DataBean> initAdapter(List<MyOrdersBean.DataBean> httpData) {
         return new MyOrdersAdapter(httpData,getContext(),currentType);

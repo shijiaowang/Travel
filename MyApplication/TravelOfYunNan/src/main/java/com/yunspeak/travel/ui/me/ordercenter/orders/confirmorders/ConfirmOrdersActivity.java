@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,11 +30,16 @@ import com.yunspeak.travel.ui.home.welcome.splash.register.CityoffSpeak;
 import com.yunspeak.travel.ui.me.myalbum.createalbum.CreateAlbumBean;
 import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 import com.yunspeak.travel.ui.me.ordercenter.CouponBean;
+import com.yunspeak.travel.ui.me.ordercenter.orders.PayNotifyEvent;
+import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +112,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        Toast.makeText(ConfirmOrdersActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        startShowDetail();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(ConfirmOrdersActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
@@ -116,6 +122,19 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             }
         }
     };
+
+    /**
+     * 显示详情
+     */
+    private void startShowDetail() {
+        Intent intent=new Intent(ConfirmOrdersActivity.this,OrdersDetailActivity.class);
+        intent.putExtra(IVariable.ID,id);
+        intent.putExtra(IVariable.TYPE,payType);
+        startActivity(intent);
+        EventBus.getDefault().post(new PayNotifyEvent());
+        finish();
+    }
+
     private int prePosition = -1;
     private float currentPrice;
     private String payType;
@@ -326,7 +345,10 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                 break;
         }
     }
-
+    @Subscribe
+   public void  onEvent(WxPaySuccessEvent wxPaySuccessEvent){
+      startShowDetail();
+  }
     /**
      * 提交订单
      */

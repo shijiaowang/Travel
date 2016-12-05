@@ -12,8 +12,11 @@ import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myappoint.historyorders.HistoryOrdersActivity;
+import com.yunspeak.travel.ui.me.ordercenter.orders.PayNotifyEvent;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -95,7 +98,10 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
     }
 
 
-
+    @Subscribe
+    public void onEvent(PayNotifyEvent payNotifyEvent){
+        onLoad(TYPE_REFRESH);
+    }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int t) {
