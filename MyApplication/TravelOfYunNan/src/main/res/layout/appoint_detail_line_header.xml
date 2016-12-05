@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+  android:id="@+id/ll_top"
     android:orientation="vertical"
+    android:paddingLeft="49dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_marginTop="35dp"
         android:orientation="horizontal"
+        android:layout_marginLeft="1dp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/tv_add"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:layout_marginLeft="50dp"
-
+            android:minWidth="60dp"
             android:background="@drawable/activity_line_plan_add"
             android:gravity="center"
             android:text="集合地"
@@ -33,8 +33,6 @@
     <View
         android:background="@color/otherTitleBg"
         android:layout_width="1dp"
-        android:layout_marginLeft="82dp"
+        android:layout_marginLeft="33dp"
         android:layout_height="27dp" />
-
-
 </LinearLayout>

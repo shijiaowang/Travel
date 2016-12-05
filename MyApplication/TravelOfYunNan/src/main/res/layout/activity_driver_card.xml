@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        style="@style/commonButtonNext"
+        android:layout_alignParentBottom="true"
+        android:text="确认提交" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorFAFAFA"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x22"
+                android:layout_marginTop="@dimen/x10"
+                android:text="示例"
+                android:textColor="@color/color646464"
+                android:textSize="@dimen/x16sp" />
+
+
+                    <ImageView
+                        android:layout_marginTop="@dimen/x10"
+                        android:src="@drawable/id_card_2"
+                        android:layout_width="@dimen/x121"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="@dimen/x84"
+                        android:scaleType="fitXY"
+                        />
+
+                    <TextView
+                        android:layout_marginBottom="@dimen/x10"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x12"
+                        android:text="示例图"
+                        android:textColor="@color/color323232"
+                        android:textSize="@dimen/x14sp" />
+
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x9"
+                android:background="@color/meLine" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x22"
+                android:layout_marginTop="@dimen/x10"
+                android:text="上传证件照"
+                android:textColor="@color/color646464"
+                android:textSize="@dimen/x16sp" />
+
+
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
+                        android:layout_marginTop="@dimen/x18"
+                        android:id="@+id/tv_icon1"
+                        android:text="@string/activity_my_album_add"
+                        android:textSize="@dimen/x30sp"
+                        android:gravity="center"
+                        android:background="@drawable/green_dot_line"
+                        android:textColor="@color/otherTitleBg"
+                        android:layout_width="@dimen/x121"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="@dimen/x84" />
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/iv_image1"
+                        android:layout_marginTop="@dimen/x18"
+                        android:visibility="gone"
+                        android:layout_width="@dimen/x121"
+                        android:layout_height="@dimen/x84"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x28"
+                        android:text="驾驶证"
+                        android:textColor="@color/color323232"
+                        android:textSize="@dimen/x14sp" />
+
+
+
+
+            <TextView
+                android:layout_marginTop="@dimen/x30"
+                android:layout_marginLeft="@dimen/x26"
+                android:textSize="@dimen/x13sp"
+                android:textColor="@color/color969696"
+                android:lineSpacingExtra="@dimen/x7"
+                android:text="@string/id_auth_des"
+                android:layout_marginRight="@dimen/x26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x100"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

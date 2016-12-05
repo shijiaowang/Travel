@@ -4,6 +4,6 @@
     <item
         android:id="@+id/action_history"
         android:orderInCategory="100"
-        android:title="历史订单"
+        android:title="历史行程"
         app:showAsAction="always" />
 </menu>

@@ -230,5 +230,8 @@
                 android:layout_height="@dimen/x40" />
 
         </LinearLayout>
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x100" />
     </LinearLayout>
 </com.yunspeak.travel.ui.view.SlippingScrollView>

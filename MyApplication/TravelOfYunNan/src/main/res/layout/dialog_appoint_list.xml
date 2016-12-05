@@ -25,10 +25,9 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_appoint"
-        android:layout_marginLeft="@dimen/x25"
         android:layout_marginBottom="@dimen/x10"
-        android:layout_marginRight="@dimen/x25"
-        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <View

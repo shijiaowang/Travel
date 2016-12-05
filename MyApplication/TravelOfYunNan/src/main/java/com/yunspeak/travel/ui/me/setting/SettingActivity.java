@@ -12,8 +12,10 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.core.ImagePipeline;
+import com.hyphenate.chat.EMClient;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
+import com.yalantis.ucrop.UCrop;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.db.DBManager;
@@ -24,12 +26,12 @@ import com.yunspeak.travel.global.SendTextClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.ProvinceBean;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
-import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
-import com.yunspeak.travel.ui.me.changephone.ChangePhoneActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
-import com.yunspeak.travel.ui.me.setting.personalprofile.PersonalProfileActivity;
+import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.me.about.AboutActivity;
 import com.yunspeak.travel.ui.me.changepassword.ChangePassWordActivity;
+import com.yunspeak.travel.ui.me.changephone.ChangePhoneActivity;
+import com.yunspeak.travel.ui.me.setting.personalprofile.PersonalProfileActivity;
 import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
 import com.yunspeak.travel.ui.view.PhoneTextView;
 import com.yunspeak.travel.utils.CacheUtils;
@@ -39,14 +41,10 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ShareUtil;
-import com.hyphenate.chat.EMClient;
-import com.yalantis.ucrop.UCrop;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,17 +98,8 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     }
 
     private void initCity() {
-        x.task().run(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    options1Items = DBManager.getProvince();
-                    options2Items = DBManager.getCity(options1Items);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        options1Items = DBManager.getProvince();
+        options2Items = DBManager.getCity(options1Items);
     }
 
     private void initData() {

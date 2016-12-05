@@ -10,7 +10,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
@@ -25,8 +24,6 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,17 +118,9 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
     }
 
     private void initCity() {
-        x.task().run(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    options1Items = DBManager.getProvince();
-                    options2Items = DBManager.getCity(options1Items);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        options1Items = DBManager.getProvince();
+        options2Items = DBManager.getCity(options1Items);
+
     }
 
 

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorFAFAFA"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/x22">
+  >
     <com.yunspeak.travel.ui.view.LoginEditText
         android:id="@+id/et_phone"
         style="@style/activityRegisterEditText"

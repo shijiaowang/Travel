@@ -7,7 +7,7 @@ package com.yunspeak.travel.global;
 public interface IVariable {
 
     String DOMAIN_NAME="http://yuns.yunspeak.com/";
-    /*String DOMAIN_NAME = "http://192.168.1.45/";*/
+    /*String DOMAIN_NAME = "http://10.5.192.232/";*/
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -80,6 +80,7 @@ public interface IVariable {
      */
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
     String ACTIVATE_COUPONS = API_KEY + "Order/setCouponCode/";//激活优惠券
+    String SAVE_HOBBY = API_KEY + "User/setInteres/";//保存兴趣
     String DELETE_POST = API_KEY + "Circle/deleteForum/";//删除帖子
     String DELETE_PUBLISH = API_KEY + "Circle/deleteForumreply/";//删除发表
     String MY_CREATE_APPOINT = API_KEY + "UserTravel/getMyTravel/";//获取我创建的约伴

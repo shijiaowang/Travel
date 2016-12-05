@@ -57,13 +57,22 @@ public class DBManager {
         }
         ArrayList<ProvinceBean> provinceBeanList = new ArrayList<>();
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
-        Cursor query = writableDatabase.query("yuns_district", null, "level=?", new String[]{"1"}, null, null, null);
-        while (query.moveToNext()) {
-            String id = query.getString(query.getColumnIndex("_id"));
-            String name = query.getString(query.getColumnIndex("name"));
-            ProvinceBean provinceBean = new ProvinceBean(id, name);
-            provinceBeanList.add(provinceBean);
+        Cursor query=null;
+        try {
+           query = writableDatabase.query("yuns_district", null, "level=?", new String[]{"1"}, null, null, null);
+            while (query.moveToNext()) {
+                String id = query.getString(query.getColumnIndex("_id"));
+                String name = query.getString(query.getColumnIndex("name"));
+                ProvinceBean provinceBean = new ProvinceBean(id, name);
+                provinceBeanList.add(provinceBean);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            closeQuery(query);
         }
+
+
         return provinceBeanList;
     }
 
@@ -85,7 +94,6 @@ public class DBManager {
                     writableDatabase.execSQL(sql);
                 }
             }
-            writableDatabase.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -164,7 +172,7 @@ public class DBManager {
      * @return
      */
 
-    public static String getStringById(String type,String id) {
+    public static synchronized String getStringById(String type,String id) {
         String name="未知";
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
         Cursor query = null;
@@ -173,6 +181,7 @@ public class DBManager {
             if (query.moveToNext()) {
                 name = query.getString(0);
             }
+
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -202,6 +211,7 @@ public class DBManager {
         if (cursor!=null){
             try {
                 cursor.close();
+                cursor=null;
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -242,7 +252,6 @@ public class DBManager {
                 e.printStackTrace();
             }
         }
-        writableDatabase.close();
         closeQuery(chatuser);
     }
     public static EaseUser getChatUserByChatId(String chatId){
@@ -254,9 +263,10 @@ public class DBManager {
             EaseUser easeUser=new EaseUser(chatId);
             easeUser.setNickname(username);
             easeUser.setAvatar(userimg);
+            closeQuery(chatuser);
             return easeUser;
         }
-
+        closeQuery(chatuser);
         return null;
     }
 }

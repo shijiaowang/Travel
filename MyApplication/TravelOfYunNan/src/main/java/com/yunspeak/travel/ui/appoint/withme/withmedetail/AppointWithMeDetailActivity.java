@@ -104,7 +104,6 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
         btEnter.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Map<String, String> appointMap = MapUtils.Build().addKey().addUserId().end();
                 XEventUtils.getUseCommonBackJson(IVariable.MY_CREATE_APPOINT,appointMap,TYPE_OTHER,new AppointWithMeDetailEvent());
             }
@@ -218,7 +217,6 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
             mTvStartAndLong.setText(data.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
             mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
-           // mTvHaveNumber.setText("已有："+data.get()+"人");
             String currentTime=new Date().getTime()+"";
             mTvSurplusDay.setText("剩余："+CalendarUtils.getHowDay(currentTime,data.getEnd_time()+"000")+"天");
             mTvLine.setText(data.getRoutes_title());
@@ -242,7 +240,6 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             pricebasecBean.setValue(data.getPrice());
             pricebasec.add(pricebasecBean);
             mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
-            //measureHeight(mLvInsurance);
             List<AppointWithMeDetailBean.DataBean.RoutesBean> routes = data.getRoutes();
             if (routes!=null && routes.size()!=0){
                 mLvRouteLine.setAdapter(new AppointWithMeDetailDestinationAdapter(this,routes));

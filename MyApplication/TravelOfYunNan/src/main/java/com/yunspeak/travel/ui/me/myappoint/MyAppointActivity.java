@@ -3,15 +3,14 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.myappoint.historyorders.HistoryOrdersActivity;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -178,7 +177,7 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
 
     @Override
     protected String initTitle() {
-        return "我的约伴";
+        return "我的行程";
     }
 
 

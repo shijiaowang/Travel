@@ -24,6 +24,9 @@
     <style name="activityIdentityAuthenticationRl">
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/x20</item>
+        <item name="android:layout_marginRight">@dimen/x20</item>
+        <item name="android:background">@drawable/normal_press_bg</item>
         <item name="android:layout_height">@dimen/x50</item>
     </style>
     <style name="activityIdentityAuthenticationText">

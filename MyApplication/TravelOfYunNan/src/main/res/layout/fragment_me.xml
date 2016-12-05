@@ -168,7 +168,7 @@
                        android:drawablePadding="@dimen/x8"
                        android:drawableTop="@drawable/fragment_me_togther_button"
                        android:gravity="center"
-                       android:text="我的约伴"
+                       android:text="我的行程"
                        android:textColor="@color/color323232"
                        android:textSize="@dimen/x10sp" />
 

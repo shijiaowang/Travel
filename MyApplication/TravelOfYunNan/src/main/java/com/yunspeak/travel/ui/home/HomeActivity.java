@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -486,7 +487,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private void exit() {
         long currentTimeMillis = System.currentTimeMillis();
         if (currentTimeMillis - preTime > 1000) {
-            ToastUtils.showToast("快速双击退出应用");
+     Snackbar.make(mLlBottom, "快速双击退出应用", 300)
+                    .setAction("", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+                        }
+                    })
+                    .show();
         } else {
             onBackPressed();
         }

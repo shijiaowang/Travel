@@ -20,8 +20,6 @@
         <TextView
             android:id="@+id/tv_location"
             style="@style/fragmentAppointTitleText"
-            android:layout_height="wrap_content"
-
             android:text="地区" />
 
         <View style="@style/fragmentAppointTitleLine" />

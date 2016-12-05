@@ -1,75 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/tv_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="14dp"
-        android:text="7月1日"
-        android:textColor="@color/color646464"
-        android:textSize="12sp" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="59dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
+
         <TextView
-            android:id="@+id/tv_number"
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="7dp"
-            android:textColor="@color/colorFAFAFA"
-            android:textSize="9sp"
-            android:background="@drawable/activity_line_plan_day_number_bg"
-            android:gravity="center"
-            />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="14dp"
+            android:text="7月1日"
+            android:textColor="@color/color646464"
+            android:textSize="12sp" />
 
-        <com.yunspeak.travel.ui.view.ToShowAllListView
-            android:paddingBottom="25dp"
-            android:id="@+id/lv_line"
-            android:layout_marginTop="22dp"
-            android:layout_marginLeft="40dp"
-            style="@style/commonListViewStyle"
+
+        <LinearLayout
+            android:id="@+id/ll_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="73dp"
-        android:orientation="vertical">
-        <View
-            android:id="@+id/iv_top_line"
-            android:layout_width="1dp"
-            android:layout_height="13dp"
-            android:background="@color/otherTitleBg"
-            android:layout_marginLeft="9dp" />
-
-        <ImageView
-            android:id="@+id/iv_cursor"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/activity_line_add1" />
-        <View
-            android:id="@+id/dlv_line"
-            android:layout_width="1dp"
-            android:layerType="software"
-            android:background="@color/otherTitleBg"
+            android:layout_marginLeft="59dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/activity_line_plan_day_number_bg"
+                android:gravity="center"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="9sp" />
+
+            <com.yunspeak.travel.ui.view.ToShowAllListView
+                android:id="@+id/lv_line"
+                style="@style/commonListViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="22dp"
+                android:paddingBottom="25dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="9dp" />
+            android:layout_marginLeft="73dp"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <View
+                android:id="@+id/iv_top_line"
+                android:layout_width="1dp"
+                android:layout_height="13dp"
+                android:layout_marginLeft="9dp"
+                android:background="@color/otherTitleBg" />
+
+            <ImageView
+                android:id="@+id/iv_cursor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/activity_line_add1" />
+
+            <View
+                android:id="@+id/dlv_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="9dp"
+                android:background="@color/otherTitleBg"
+                android:layerType="software" />
+
+        </LinearLayout>
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

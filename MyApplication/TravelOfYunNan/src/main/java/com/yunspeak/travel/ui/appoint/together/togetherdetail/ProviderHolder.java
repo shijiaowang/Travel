@@ -27,7 +27,7 @@ public class ProviderHolder extends BaseHolder {
             String text = datas1.getNumber();
             mTvName.setText(datas1.getName()+"x"+text);
             if (text==null || text.equals("0")){
-                mTvName.setText(text);
+                mTvName.setText(datas1.getName());
             }
 
             mTvDes.setText(datas1.getContent());

@@ -14,13 +14,18 @@ import com.yunspeak.travel.ui.me.titlemanage.TitleChangeEvent;
 import com.yunspeak.travel.ui.me.titlemanage.TitlePagerAdapter;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.google.android.flexbox.FlexboxLayout;
+import com.yunspeak.travel.utils.XEventUtils;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import butterknife.BindView;
 
 /**
@@ -66,6 +71,9 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
         switch (event.getType()){
             case TYPE_REFRESH:
                 dealLoadData(event);
+                break;
+            case TYPE_UPDATE:
+                ToastUtils.showToast("兴趣修改成功");
                 break;
         }
     }
@@ -127,6 +135,21 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
+        setIsProgress(true);
+        StringBuilder stringBuilder=new StringBuilder();
+        for (UserLabelBean userLabelBean:userLabel){
+            stringBuilder.append(userLabelBean.getId()+",");
+        }
+        String label = stringBuilder.toString();
+        if (StringUtils.isEmpty(label)){
+            label=label.substring(label.length()-1,label.length());
+        }
+        Map<String, String> saveLabel = MapUtils.Build().addKey().addUserId().addId(label).end();
+        XEventUtils.postUseCommonBackJson(IVariable.SAVE_HOBBY,saveLabel,TYPE_UPDATE,new MyHobbyEvent());
+    }
+
+    @Override
+    protected void onFail(MyHobbyEvent myHobbyEvent) {
 
     }
 
@@ -148,7 +171,6 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
                 EventBus.getDefault().post(new TitleChangeEvent(0,tag));
                 mFlTitle.removeViewAt(index);
                 userLabel.remove(index);
-
             }
         });
         TextView tvTitle = (TextView) inflate.findViewById(R.id.tv_title);

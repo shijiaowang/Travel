@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/x20"
-    android:paddingRight="@dimen/x20"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:id="@+id/rl_change_phone"
         style="@style/activityIdentityAuthenticationRl">
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_identity_phone"
@@ -51,6 +50,7 @@
     <View
         style="@style/oneHeightMatchLine"/>
     <RelativeLayout
+        android:id="@+id/rl_dirver"
         style="@style/activityIdentityAuthenticationRl">
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_identity_run_card"
@@ -73,6 +73,7 @@
     <View
         style="@style/oneHeightMatchLine"/>
     <RelativeLayout
+        android:id="@+id/rl_car"
         style="@style/activityIdentityAuthenticationRl">
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:text="@string/activity_identity_car_card"
