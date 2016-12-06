@@ -224,6 +224,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             public void onClick(View v) {
                 GlobalValue.mAppointType = IVariable.TYPE_TOGETHER;
                 startActivity(new Intent(getContext(), TravelsPlanActivity.class));
+                dialog.dismiss();
 
             }
         });
@@ -232,6 +233,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             public void onClick(View v) {
                 GlobalValue.mAppointType = IVariable.TYPE_WITH_ME;
                 startActivity(new Intent(getContext(), TravelsPlanWithMeActivity.class));
+                dialog.dismiss();
 
             }
         });

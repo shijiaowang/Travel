@@ -68,7 +68,7 @@
                 android:layout_marginBottom="@dimen/x15"
                 android:layout_marginLeft="@dimen/x53"
                 android:layout_marginTop="@dimen/x14"
-                android:text="(约伴发起人需预交约伴最大人数*每人收费*20%的押金)"
+                android:text="(约伴发起人需预交约伴最大人数*(每人收费+其他费用)*20%的押金)"
                 android:textColor="@color/colorb5b5b5"
                 android:textSize="@dimen/x11sp" />
 

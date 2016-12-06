@@ -136,6 +136,7 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
                 sendMessage(content,pid);
                 pid="0";
                 inputMenu.setHint("");
+                hideSoftWore(inputMenu);
 
             }
 
@@ -172,7 +173,7 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
                 FindLastReply findLastReply = GsonUtils.getObject(event.getResult(), FindLastReply.class);
                 List<TravelReplyBean> data = findLastReply.getData();
                 if (mDatas==null){
-                    mDatas=data;
+                    dealAdapterNull(data);
                 }else {
                     mDatas.addAll(data);
                 }

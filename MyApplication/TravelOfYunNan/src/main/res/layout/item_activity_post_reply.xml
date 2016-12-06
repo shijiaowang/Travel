@@ -1,103 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     android:background="@color/colorFAFAFA"
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
+
     <View
         android:id="@+id/v_line"
-        android:layout_marginRight="@dimen/x17"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
         android:layout_marginLeft="@dimen/x60"
-        android:background="#efeff4"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"/>
+        android:layout_marginRight="@dimen/x17"
+        android:background="#efeff4" />
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <View
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="@dimen/x1"
-            />
+            android:layout_weight="1" />
+
         <TextView
-            android:layout_marginTop="@dimen/x10"
+            android:id="@+id/tv_floor_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/x10"
             android:layout_marginRight="@dimen/x17"
-            android:id="@+id/tv_floor_number"
+            android:layout_marginTop="@dimen/x10"
             android:textColor="@color/color969696"
-            android:textSize="@dimen/x12sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/x12sp" />
     </LinearLayout>
+
     <RelativeLayout
-        android:layout_marginLeft="@dimen/x17"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x17">
+
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_reply_icon"
             android:layout_width="@dimen/x33"
-           android:layout_centerVertical="true"
-            android:layout_height="@dimen/x33" />
-            <TextView
-                android:layout_toRightOf="@id/iv_reply_icon"
-                android:layout_marginLeft="@dimen/x10"
-                android:id="@+id/tv_reply_nick_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color323232"
-                android:textSize="@dimen/x14sp" />
-            <TextView
-                android:layout_below="@id/tv_reply_nick_name"
-                android:layout_toRightOf="@id/iv_reply_icon"
-                android:layout_marginLeft="@dimen/x10"
-                android:id="@+id/tv_reply_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/x2"
-                android:textColor="#949494"
-                android:textSize="@dimen/x10sp" />
+            android:layout_height="@dimen/x33"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/tv_reply_nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_toRightOf="@id/iv_reply_icon"
+            android:textColor="@color/color323232"
+            android:textSize="@dimen/x14sp" />
+
+        <TextView
+            android:id="@+id/tv_reply_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_reply_nick_name"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x2"
+            android:layout_toRightOf="@id/iv_reply_icon"
+            android:textColor="#949494"
+            android:textSize="@dimen/x10sp" />
     </RelativeLayout>
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/x20"
-        android:layout_marginTop="@dimen/x9"
         android:layout_marginLeft="@dimen/x60"
         android:layout_marginRight="@dimen/x22"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="@dimen/x9"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/tv_reply_message"
-            android:textSize="@dimen/x12sp"
-            android:textColor="#606060"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <View
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="@dimen/x1"/>
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:id="@+id/tv_love"
-                android:text="@string/activity_circle_love_full"
-                android:textColor="@color/color969696"
-                android:textSize="@dimen/x11sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_love_number"
-                android:layout_marginLeft="@dimen/x5"
-                android:textColor="@color/color969696"
-                android:textSize="@dimen/x11sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#606060"
+            android:textSize="@dimen/x12sp" />
+
+        <com.yunspeak.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_love"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_circle_love_full"
+            android:textColor="@color/color969696"
+            android:textSize="@dimen/x14sp" />
+
+        <TextView
+            android:id="@+id/tv_love_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x5"
+            android:textColor="@color/color969696"
+            android:textSize="@dimen/x11sp" />
     </LinearLayout>
+
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_image"
-        android:layout_marginBottom="@dimen/x5"
-        android:layout_marginRight="@dimen/x17"
-        android:layout_marginLeft="@dimen/x17"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x165" />
+        android:layout_height="@dimen/x165"
+        android:layout_marginBottom="@dimen/x5"
+        android:layout_marginLeft="@dimen/x17"
+        android:layout_marginRight="@dimen/x17" />
 
 
 </LinearLayout>

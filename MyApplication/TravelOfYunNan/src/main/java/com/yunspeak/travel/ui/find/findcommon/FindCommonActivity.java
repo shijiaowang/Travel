@@ -11,12 +11,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.SelectCommonBean;
 import com.yunspeak.travel.event.DestinationEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
@@ -30,7 +27,6 @@ import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.cust
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -41,8 +37,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-
 /**
  * Created by wangyang on 2016/7/30.
  * 目的地  美食共用
@@ -52,6 +46,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     private String province = "";
     private String city = "";
     private String typelist = "";
+    private String playList = "";
     private String star = "";
     private String score = "";
     private int type;
@@ -74,9 +69,12 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     private List<CityBean> provinceBean;
     private List<CityBean> cityBean;
     private Map<String, List<CityBean>> citys;
+    private Map<String, List<CityBean>> plays;
     private FrameLayout mFlTop;
     private int position;
     private Button mBtDiy;
+    private List<CityBean> lefts;
+    private AppointCommonPop appointType;
 
 
     @Override
@@ -120,6 +118,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
         mTvOrder.setOnClickListener(this);
         mTvLocation.setOnClickListener(this);
         mTvType.setOnClickListener(this);
+        mTvType.setOnClickListener(this);
         mEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -141,6 +140,15 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
                 search();
             }
         });
+        CityBean cityBean1=new CityBean();
+        cityBean1.setId("1");
+        cityBean1.setName("按玩法");
+        CityBean cityBean2=new CityBean();
+        cityBean2.setId("2");
+        cityBean2.setName("按类型");
+        lefts = new ArrayList<>();
+        lefts.add(cityBean1);
+        lefts.add(cityBean2);
     }
 
     @Override
@@ -195,6 +203,12 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
                                 citys.get(cityBean1.getUpid()).add(cityBean1);
                             }
                         }
+                        plays=new HashMap<String, List<CityBean>>();
+
+                        List<CityBean> travelPlay = parentBean.getData().getTravel_play();
+                        List<CityBean> travelType = parentBean.getData().getTravel_type();
+                        plays.put("1",travelPlay);
+                        plays.put("2",travelType);
                         loactionIsGet = true;
                     }
                 });
@@ -264,7 +278,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
         return url;
     }
 
-    private void showType() {
+    private void showLocation() {
         if (!loactionIsGet) return;
         if (appointCommonPop == null && provinceBean != null && provinceBean.size() != 0) {
             provinceBean.get(0).setChecked(true);
@@ -313,7 +327,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     protected void childAdd(MapUtils.Builder builder, int type) {
         super.childAdd(builder, type);
         builder.add(IVariable.CONTENT, content).add(IVariable.PROVINCE, province).add(IVariable.CITY, city).add(IVariable.TYPELIST, typelist)
-                .add(IVariable.STAR, star).add(IVariable.SCORE, score);
+                .add(IVariable.STAR, star).add(IVariable.SCORE, score).add("playlist",playList);
     }
 
 
@@ -333,11 +347,34 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_location:
-                showType();
+                showLocation();
                 break;
             case R.id.tv_order:
                 orderPop(mTvOrder, timeTypePop, orderPosition);
                 break;
+            case R.id.tv_type:
+                showType();
+                break;
+        }
+    }
+
+    private void showType() {
+        if (!loactionIsGet) return;
+        if (appointType == null && plays != null && plays.size() != 0) {
+            provinceBean.get(0).setChecked(true);
+            appointType = AppointCommonPop.newInstance(lefts, plays, new ParentPopClick() {
+                @Override
+                public void onClick(int type) {
+                   typelist=appointType.getTypeList();
+                    playList=appointType.getPlayList();
+                    onLoad(TYPE_REFRESH);
+                }
+            });
+        }
+        if (appointType.isShowing()) {
+            appointType.dismiss();
+        } else {
+            appointType.showDown(this,mTvType);
         }
     }
 

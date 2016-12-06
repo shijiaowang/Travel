@@ -1,9 +1,7 @@
 package com.yunspeak.travel.ui.baseui;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -16,22 +14,17 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.ParentBean;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
-import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
 import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2016/10/31 0031.
@@ -147,22 +140,7 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
             return;
         }
         if (mAdapter == null) {
-            mDatas = loadDatas;
-            mAdapter = initAdapter(mDatas);
-            mRvCommon.setHasFixedSize(true);
-            mRvCommon.setAdapter(mAdapter);
-            mAdapter.setItemClickListener(this);
-            if (isGridLayoutManager()){
-                StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
-                staggeredGridLayoutManager.setAutoMeasureEnabled(true);
-                mRvCommon.setLayoutManager(staggeredGridLayoutManager);
-            }else {
-                LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(this);
-                linearLayoutManager.setAutoMeasureEnabled(true);
-                // linearLayoutManager.setStackFromEnd(true);//软键盘弹出上移
-                mRvCommon.setLayoutManager(linearLayoutManager);
-            }
-            mRvCommon.setNestedScrollingEnabled(false);
+            dealAdapterNull(loadDatas);
         } else if (t.getType() == TYPE_LOAD) {
             mDatas.addAll(loadDatas);
             if (t.getCode()==2){
@@ -177,6 +155,29 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
             mAdapter.notifiyData(mDatas);
             mSwipe.setRefreshing(false);
         }
+    }
+
+    /**
+     * 处理数据为空的情况
+     * @param loadDatas
+     */
+    protected void dealAdapterNull(List<F> loadDatas) {
+        mDatas = loadDatas;
+        mAdapter = initAdapter(mDatas);
+        mRvCommon.setHasFixedSize(true);
+        mRvCommon.setAdapter(mAdapter);
+        mAdapter.setItemClickListener(this);
+        if (isGridLayoutManager()){
+            StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
+            staggeredGridLayoutManager.setAutoMeasureEnabled(true);
+            mRvCommon.setLayoutManager(staggeredGridLayoutManager);
+        }else {
+            LinearLayoutManager  linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager.setAutoMeasureEnabled(true);
+            // linearLayoutManager.setStackFromEnd(true);//软键盘弹出上移
+            mRvCommon.setLayoutManager(linearLayoutManager);
+        }
+        mRvCommon.setNestedScrollingEnabled(false);
     }
 
     protected Class<? extends ParentBean> useChildedBean() {

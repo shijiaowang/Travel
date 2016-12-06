@@ -9,6 +9,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.changephone.ChangePhoneActivity;
+import com.yunspeak.travel.ui.me.identityauth.idauth.DriverAuthActivity;
 import com.yunspeak.travel.ui.me.identityauth.idauth.IdAuthActivity;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.StringUtils;
@@ -47,14 +48,16 @@ public class IdentityAuthenticationActivity extends BaseToolBarActivity implemen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_id_auth:
-                startActivity(new Intent(this, IdAuthActivity.class));
+               IdAuthActivity.start(this,true);
                 break;
             case R.id.rl_car:
+                IdAuthActivity.start(this,false);
                 break;
             case R.id.rl_change_phone:
                 startActivity(new Intent(IdentityAuthenticationActivity.this, ChangePhoneActivity.class));
                 break;
             case R.id.rl_dirver:
+                startActivity(new Intent(this, DriverAuthActivity.class));
                 break;
         }
     }
@@ -62,6 +65,12 @@ public class IdentityAuthenticationActivity extends BaseToolBarActivity implemen
     @Override
     protected int initLayoutRes() {
         return R.layout.activity_identity_authentication;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initOptions();
     }
 
     @Override
@@ -86,18 +95,32 @@ public class IdentityAuthenticationActivity extends BaseToolBarActivity implemen
     }
 
     private void initClick(RelativeLayout relativeLayout, String string) {
-        try {
-            if (string.equals("0")) {
-                relativeLayout.setOnClickListener(this);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        relativeLayout.setOnClickListener(new ShowWhatOnClickListener(string));
     }
 
     @Override
     protected String initTitle() {
         return "身份认证";
+    }
+
+    /**
+     * 展示多种可能点击事件
+     */
+    class ShowWhatOnClickListener implements View.OnClickListener {
+        private String bindText;
+
+        public ShowWhatOnClickListener(String bindText) {
+            this.bindText = bindText;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (StringUtils.isEmpty(bindText) || bindText.equals("0")){
+                IdentityAuthenticationActivity.this.onClick(v);
+            }else {
+                ToastUtils.showToast("您已经认证过啦，无需再次认证。");
+            }
+        }
     }
 
 }

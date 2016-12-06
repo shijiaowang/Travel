@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <com.yunspeak.travel.ui.view.AvoidFastButton
         style="@style/commonButtonNext"
         android:layout_alignParentBottom="true"
         android:text="确认提交" />
@@ -34,7 +34,7 @@
 
                     <ImageView
                         android:layout_marginTop="@dimen/x10"
-                        android:src="@drawable/id_card_2"
+                        android:src="@drawable/car_card"
                         android:layout_width="@dimen/x121"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="@dimen/x84"

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.find.findcommon.CityBean;
-import com.yunspeak.travel.utils.UIUtils;
+import com.yunspeak.travel.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -177,6 +177,32 @@ public class AppointCommonPop implements View.OnClickListener {
         }
         return stringBuilder.toString();
     }
+    public String getPlayList(){
+        return getList("1");
+    }
+    public String getTypeList(){
+        return getList("2");
+    }
+
+    public String getList(String key){
+        if (selectCommonBeans.size()==0){
+            return "";
+        }
+        StringBuilder stringBuilder=new StringBuilder();
+        List<CityBean> cityBeanList = rights.get(key);
+        if (cityBeanList==null || cityBeanList.size()==0)return "";
+        for (int i=0;i<selectCommonBeans.size();i++){
+            if (cityBeanList.contains(selectCommonBeans.get(i))){
+                stringBuilder.append(selectCommonBeans.get(i).getId()+"");
+            }
+        }
+        String string = stringBuilder.toString();
+        if (!StringUtils.isEmpty(string) && string.length()>0){
+            string=string.substring(string.length()-1,string.length());
+        }
+        return string;
+    }
+
     public String getTyepString(){
         if (selectCommonBeans.size()==0){
             return "";

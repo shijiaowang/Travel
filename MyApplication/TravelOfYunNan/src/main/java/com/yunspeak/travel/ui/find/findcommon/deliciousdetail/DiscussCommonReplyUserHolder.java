@@ -2,24 +2,21 @@ package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 
 import android.content.Context;
 import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.StringUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
@@ -66,19 +63,8 @@ public class DiscussCommonReplyUserHolder extends BaseRecycleViewHolder<TravelRe
         mTvLoveNumber.setText(datas.getLike_count());
         mTvLove.setTextColor(datas.getIs_like().equals("1") ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
         TravelReplyBean.ReplyBean reply = datas.getReply();
-        if (!StringUtils.isEmpty(reply.getReply_img())) {
-            String content = reply.getContent() + "【图片】";
-            Spannable replySpan = EaseSmileUtils.getSmiledText(mContext, content);
-            // 设置内容
-            mTvReplyMessage.setText(replySpan, TextView.BufferType.SPANNABLE);
-            mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
-            SpannableStringBuilder spannable = new SpannableStringBuilder(content);
-            spannable.setSpan(new SomeTextClick(mContext, ""), content.length() - 4, content.length()
-                    , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mTvReplyContent.setText(spannable);
-        } else {
-            mTvReplyContent.setText(reply.getContent());
-        }
+        Spannable smiledText = EaseSmileUtils.getSmiledText(mContext, datas.getContent());
+        mTvReplyContent.setText(smiledText, TextView.BufferType.SPANNABLE);
         mTvReplyName.setText(reply.getNick_name());
         mTvReplyFloorNumber.setText(reply.getFloor() + "楼");
         mTvLove.setOnClickListener(new View.OnClickListener() {

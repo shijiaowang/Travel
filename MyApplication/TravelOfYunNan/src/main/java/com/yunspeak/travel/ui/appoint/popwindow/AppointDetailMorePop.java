@@ -78,5 +78,51 @@ public class AppointDetailMorePop {
         window.showAsDropDown(view,DensityUtil.getScreenWidth()-DensityUtil.dip2px(125),0);
     }
 
+    public static void showEdit(final Context context, final ParentPopClick parentPopClick,View view) {
+        // 获取弹出视图对象
+        final View viewPopup = View.inflate(context, R.layout.activity_delete_edit, null);
+        float width = context.getResources().getDimension(R.dimen.x110);
+        float height = context.getResources().getDimension(R.dimen.x80);
+        final PopupWindow window = new PopupWindow(viewPopup, (int) width, (int) height);
+        // 响应 视图外的地方 点击关闭当前
+        viewPopup.findViewById(R.id.tv_edit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if (parentPopClick!=null){
+                   parentPopClick.onClick(1);
+                   window.dismiss();
+               }
+            }
+        });
+        viewPopup.findViewById(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentPopClick.onClick(2);
+                window.dismiss();
+            }
+        });
+        WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+        lp.alpha=0.7f;
+        ((Activity) context).getWindow().setAttributes(lp);
 
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                ((Activity) context).getWindow().setAttributes(lp);
+
+
+            }
+        });
+        window.setOutsideTouchable(true);
+
+        // 响应返回键的关闭
+        window.setFocusable(true);
+        window.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(android.R.color.transparent)));
+
+        // 获取控件的坐标 x y
+        window.showAsDropDown(view,DensityUtil.getScreenWidth()-DensityUtil.dip2px(125),0);
+    }
 }

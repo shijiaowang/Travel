@@ -25,7 +25,6 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
         currentType = getArguments().getInt(IVariable.TYPE);
     }
 
-
     @Override
     protected void initListener() {
         super.initListener();

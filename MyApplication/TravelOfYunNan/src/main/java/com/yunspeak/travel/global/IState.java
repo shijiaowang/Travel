@@ -23,6 +23,7 @@ public interface IState {
      int TYPE_CANCEL_COLLECTION = 15;//取消收藏
       int TYPE_REFRESH_BY_USER = 16;//手动刷新
       int TYPE_UP_LOAD = 17;//上拉刷新
+      int TYPE_DELETE2 = 18;//删除
     String isTrue="1";
     String isFalse="0";
     int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;

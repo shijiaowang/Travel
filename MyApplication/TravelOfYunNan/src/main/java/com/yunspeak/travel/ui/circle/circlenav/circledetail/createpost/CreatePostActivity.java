@@ -4,25 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
-import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hyphenate.easeui.domain.EaseEmojicon;
@@ -36,8 +29,8 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteFollow;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
+import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -53,7 +46,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import okhttp3.internal.framed.Variant;
 
 /**
  * Created by wangyang on 2016/7/29 0029.
@@ -310,8 +302,12 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         cId = getIntent().getStringExtra(IVariable.C_ID);
         GlobalValue.size = getIntent().getIntExtra(IVariable.PAGE_SIZE,12);
         currentType = getIntent().getIntExtra(IVariable.TYPE,0);
-        title = currentType==REPLY_POST?"回复帖子":"创建帖子";
-        rigtText = currentType==REPLY_POST?"回复":"创建";
+        boolean isReply = currentType==REPLY_POST;
+       title=isReply?"回复帖子":"创建帖子";
+        int limitLength=isReply?300:2000;
+        mEtContent.setFilters(new InputFilter[]{new InputFilter.LengthFilter(limitLength)});
+        mTvTitle.setText(title);
+        rigtText =isReply?"回复":"创建";
         rUserId = getIntent().getStringExtra(IVariable.R_USER_ID);
         String hint = getIntent().getStringExtra(IVariable.DATA);
         if (!StringUtils.isEmptyNotNull(hint))mEtContent.setHint("回复："+hint);

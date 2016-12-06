@@ -5,4 +5,13 @@ package com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders;
  */
 
 public class WxPaySuccessEvent {
+    private boolean isSuccess;
+
+    public boolean isSuccess() {
+        return isSuccess;
+    }
+
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
 }

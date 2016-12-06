@@ -109,7 +109,7 @@
         <item name="android:layout_weight">1</item>
     </style>
     <!--圈子文字-->
-    <style name="CircleText">
+    <style name="CircleText" parent="commonSingleLineTextStyle">
         <item name="android:textColor">@color/circleDesText</item>
         <item name="android:textSize">11sp</item>
         <item name="android:layout_width">wrap_content</item>

@@ -16,7 +16,6 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.tencent.mm.sdk.modelpay.PayReq;
@@ -24,14 +23,16 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.createsuccess.CreateAppointSuccessActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.home.welcome.splash.register.CityoffSpeak;
 import com.yunspeak.travel.ui.me.myalbum.createalbum.CreateAlbumBean;
 import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 import com.yunspeak.travel.ui.me.ordercenter.CouponBean;
+import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.PayNotifyEvent;
-import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity;
+import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.payresult.PayResultActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
@@ -112,10 +113,10 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        startShowDetail();
+                        startShowDetail(true,false);
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-                        Toast.makeText(ConfirmOrdersActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                        startShowDetail(false,false);
                     }
                     break;
                 }
@@ -126,13 +127,34 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     /**
      * 显示详情
      */
-    private void startShowDetail() {
-        Intent intent=new Intent(ConfirmOrdersActivity.this,OrdersDetailActivity.class);
-        intent.putExtra(IVariable.ID,id);
-        intent.putExtra(IVariable.TYPE,payType);
-        startActivity(intent);
-        EventBus.getDefault().post(new PayNotifyEvent());
-        finish();
+    private void startShowDetail(boolean isSuccess,boolean isWx) {
+        if (payType.equals("1") && isSuccess){
+            Intent intent=new Intent(this,CreateAppointSuccessActivity.class);
+            intent.putExtra(IVariable.ID,id);
+            startActivity(intent);
+            EventBus.getDefault().post(new PayNotifyEvent());
+            finish();
+        }else {
+            Intent intent = new Intent(this, PayResultActivity.class);
+            intent.putExtra("result", isSuccess ? "支付成功" : "支付失败");
+            intent.putExtra("des", isSuccess ? "订单等待处理" : "订单支付失败");
+            intent.putExtra("isWX", isWx);
+            startActivityForResult(intent, REQ_CODE);
+            EventBus.getDefault().post(new PayNotifyEvent());
+            finish();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==REQ_CODE && resultCode==RESULT_CODE){
+            if (OrdersCenterActivity.instance!=null){
+                finish();
+            }else {
+                startActivity(new Intent(this, OrdersCenterActivity.class));
+            }
+        }
     }
 
     private int prePosition = -1;
@@ -347,7 +369,8 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     }
     @Subscribe
    public void  onEvent(WxPaySuccessEvent wxPaySuccessEvent){
-      startShowDetail();
+            startShowDetail(wxPaySuccessEvent.isSuccess(),true);
+
   }
     /**
      * 提交订单

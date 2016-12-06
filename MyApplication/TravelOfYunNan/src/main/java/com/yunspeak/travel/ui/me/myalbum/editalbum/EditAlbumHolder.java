@@ -20,7 +20,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/18 0018.
  */
 public class EditAlbumHolder extends BaseRecycleViewHolder<EditAlbumBean.DataBean.BodyBean> {
-    public static boolean canDelete=false;
+    public static boolean canDelete;
     private final List<EditAlbumBean.DataBean.BodyBean> size;
     @BindView(R.id.iv_image) SimpleDraweeView mIvImage;
     @BindView(R.id.tv_number) TextView mTvNumber;
@@ -29,6 +29,7 @@ public class EditAlbumHolder extends BaseRecycleViewHolder<EditAlbumBean.DataBea
     public EditAlbumHolder(View itemView, List<EditAlbumBean.DataBean.BodyBean> size) {
         super(itemView);
         this.size = size;
+        canDelete=false;
     }
 
 

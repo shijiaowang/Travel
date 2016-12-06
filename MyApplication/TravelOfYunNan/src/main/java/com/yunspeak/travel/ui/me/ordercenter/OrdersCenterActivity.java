@@ -25,6 +25,7 @@ import butterknife.BindView;
  * 我的订单
  */
 public class OrdersCenterActivity extends BaseToolBarActivity {
+    public static OrdersCenterActivity instance=null;
     private String[] mTitles = {"最近订单", "全部订单", "优惠券"};
     private String[] ordersType = {"全部订单", "约伴订单", "活动订单"};
     private int currentOrders = 0;//当前为全部订单
@@ -123,6 +124,7 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
     @Override
     protected void initOptions() {
         init();
+        instance=this;
         mIndicator.setOnPopShowListener(new SimpleViewPagerIndicator.OnPopShowListener() {
             @Override
             public void onShow(TextView tv) {
@@ -175,5 +177,11 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
         public int getCount() {
             return fragments.size();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        instance=null;
     }
 }

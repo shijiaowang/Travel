@@ -45,13 +45,15 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:src="@drawable/id_card_2"
+                        android:id="@+id/iv_example1"
+                        android:src="@drawable/id_card2"
                         android:layout_width="@dimen/x121"
                         android:layout_height="@dimen/x84"
                         android:scaleType="fitXY"
                          />
 
                     <TextView
+                        android:id="@+id/tv_example1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x12"
@@ -68,13 +70,14 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:src="@drawable/id_card_1"
+                        android:src="@drawable/id_card1"
                         android:layout_width="@dimen/x121"
                         android:layout_height="@dimen/x84"
                         android:scaleType="fitXY"
-                        android:id="@+id/imageView" />
+                        android:id="@+id/iv_example2" />
 
                     <TextView
+                        android:id="@+id/tv_example2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x12"
@@ -129,6 +132,7 @@
                        />
 
                     <TextView
+                        android:id="@+id/tv_up1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x12"
@@ -162,6 +166,7 @@
                       />
 
                     <TextView
+                        android:id="@+id/tv_up2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x12"

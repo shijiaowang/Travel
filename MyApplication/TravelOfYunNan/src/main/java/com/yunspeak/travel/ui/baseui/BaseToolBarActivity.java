@@ -33,7 +33,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
@@ -41,7 +40,6 @@ import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.ui.view.LoginEditText;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -360,7 +358,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
      *
      * @param view
      */
-    public void hideSoftWore(EditText view) {
+    public void hideSoftWore(View view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘

@@ -2,6 +2,7 @@ package com.hyphenate.easeui.widget;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -14,7 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.hyphenate.easeui.R;
 
@@ -123,6 +123,7 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
         buttonPressToSpeak.setVisibility(GONE);
         buttonSetModeKeyboard.setVisibility(GONE);
         buttonSetModeVoice.setVisibility(GONE);
+        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(300)});
     }
     /**
      * set recorder view when speak icon is touched
@@ -202,8 +203,8 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
                 listener.onEditTextClicked();
             }
         } else if (id == R.id.iv_face_checked) {
-            faceChecked.setImageResource(isFace?R.drawable.chat_emoj:R.drawable.chat_soft_wore);
             isFace = !isFace;
+            faceChecked.setImageResource(isFace?R.drawable.chat_emoj:R.drawable.chat_soft_wore);
             if(listener != null){
                 listener.onToggleEmojiconClicked();
             }

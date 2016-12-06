@@ -1,7 +1,7 @@
 package com.yunspeak.travel.bean;
 
 /**
- * Created by Administrator on 2016/7/8 0008.
+ * Created by wangyang on 2016/7/8 0008.
  */
 public class CircleNavLeft {
     private String add;//地名

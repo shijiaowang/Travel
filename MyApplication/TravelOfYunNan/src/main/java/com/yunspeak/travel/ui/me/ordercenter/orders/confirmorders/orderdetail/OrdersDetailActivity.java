@@ -12,12 +12,15 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.me.ordercenter.orders.PayNotifyEvent;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.PriceDeatilAdapter;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.ToShowAllListView;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 
@@ -92,7 +95,10 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
     protected String initUrl() {
         return IVariable.ORDERS_DETAIL;
     }
-
+    @Subscribe
+    public void onEvent(PayNotifyEvent payNotifyEvent){
+        finish();
+    }
     @Override
     protected void onSuccess(OrdersDetailEvent ordersDetailEvent) {
         OrdersDetailBean ordersDetailBean = GsonUtils.getObject(ordersDetailEvent.getResult(), OrdersDetailBean.class);

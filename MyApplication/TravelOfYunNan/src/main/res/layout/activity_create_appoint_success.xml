@@ -50,7 +50,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
+    <com.yunspeak.travel.ui.view.AvoidFastButton
+        android:id="@+id/tv_share"
         android:text="分享"
         android:textColor="@color/otherTitleBg"
         android:textSize="@dimen/x17sp"
@@ -59,7 +60,8 @@
         android:background="@drawable/activity_my_appoint_rl_bg"
         android:layout_width="@dimen/x155"
         android:layout_height="@dimen/x40" />
-    <Button
+    <com.yunspeak.travel.ui.view.AvoidFastButton
+        android:id="@+id/tv_appoint"
         android:text="进入我的约伴"
         android:textColor="@color/otherTitleBg"
         android:textSize="@dimen/x17sp"

@@ -10,8 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.circle.hotpost.HotFragment;
 import com.yunspeak.travel.ui.circle.circlenav.NavLeftFragment;
+import com.yunspeak.travel.ui.circle.hotpost.HotFragment;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
@@ -30,6 +30,8 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
     @BindView(R.id.rl_title_bg) RelativeLayout mRlTitleBg;
     @BindView(R.id.tv_left_title) TextView mTvLeftTitle;
     @BindView(R.id.tv_right_title) TextView mTvRightTitle;
+    @BindView(R.id.v_left) View left;
+    @BindView(R.id.v_right) View right;
 
     @Override
     protected int initLayoutRes() {
@@ -51,9 +53,24 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
         initTitle(0);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    /**
+     * 设置颜色
+     * @param isEmpty
+     */
+    public void showEmpty(boolean isEmpty){
+
+        if (isEmpty){
+            int meLine=getContext().getResources().getColor(R.color.meLine);
+            setColor(meLine);
+        }else {
+            int meWhite=getContext().getResources().getColor(R.color.colorFAFAFA);
+            setColor(meWhite);
+        }
+    }
+
+    private void setColor(int meLine) {
+        left.setBackgroundColor(meLine);
+        right.setBackgroundColor(meLine);
     }
 
     @Override

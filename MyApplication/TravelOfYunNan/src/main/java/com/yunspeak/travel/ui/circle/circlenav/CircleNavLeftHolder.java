@@ -43,7 +43,6 @@ public class CircleNavLeftHolder extends BaseHolder<Circle.DataBean.CircleLeftBe
 
     @Override
     public View initRootView(Context mContext) {
-        View inflate =inflateView(R.layout.item_fragment_circle_nav_left);
-        return inflate;
+        return inflateView(R.layout.item_fragment_circle_nav_left);
     }
 }

@@ -38,7 +38,7 @@ public class CouponFragment extends LoadAndPullBaseFragment<CouponEvent, CouponD
         mBtAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EnterAppointDialog.showInputTextView(getContext(), "输入优惠券验证码", "激活优惠券", "激活", new SendTextClick() {
+                EnterAppointDialog.showInputTextView(getContext(),mBtAdd, "输入优惠券验证码", "激活优惠券", "激活", new SendTextClick() {
                     @Override
                     public void onClick(String text) {
                         Map<String, String> end = MapUtils.Build().addKey().addUserId().addContent(text).end();

@@ -40,27 +40,39 @@ public class DestinationBean implements ParentBean{
     }
 
     public static class DataBean {
-
         private List<CityBean> province;
-
         private List<CityBean> city;
-
+        private List<CityBean> travel_type;
+        private List<CityBean> travel_play;
         private List<BodyBean> body;
-
         public List<CityBean> getProvince() {
             return province;
         }
-
         public void setProvince(List<CityBean> province) {
             this.province = province;
         }
-
         public List<CityBean> getCity() {
             return city;
         }
 
         public void setCity(List<CityBean> city) {
             this.city = city;
+        }
+
+        public List<CityBean> getTravel_type() {
+            return travel_type;
+        }
+
+        public void setTravel_type(List<CityBean> travel_type) {
+            this.travel_type = travel_type;
+        }
+
+        public List<CityBean> getTravel_play() {
+            return travel_play;
+        }
+
+        public void setTravel_play(List<CityBean> travel_play) {
+            this.travel_play = travel_play;
         }
 
         public List<BodyBean> getBody() {
@@ -70,9 +82,6 @@ public class DestinationBean implements ParentBean{
         public void setBody(List<BodyBean> body) {
             this.body = body;
         }
-
-
-
 
         public static class BodyBean {
             private String id;

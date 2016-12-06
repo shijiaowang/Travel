@@ -32,7 +32,7 @@
             android:layout_marginLeft="@dimen/x10"
            android:text="@string/activity_circle_love_empty"
             android:textColor="@color/colorb5b5b5"
-            android:textSize="@dimen/x15sp"
+            android:textSize="@dimen/x18sp"
             android:id="@+id/tv_love_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -50,7 +50,7 @@
             android:layout_marginLeft="@dimen/x10"
             android:text="@string/activity_circle_discuss"
             android:textColor="@color/colorb5b5b5"
-            android:textSize="@dimen/x15sp"
+            android:textSize="@dimen/x18sp"
            />
 
         <TextView

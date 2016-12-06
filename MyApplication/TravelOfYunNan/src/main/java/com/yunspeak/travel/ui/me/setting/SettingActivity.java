@@ -200,16 +200,18 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 showPictureCutPop(mLlLogout);
                 break;
             case R.id.tv_user_nick_name:
-                EnterAppointDialog.showInputTextView(this,userInfo.getNick_name(),"昵称设置","确定",new SendTextClick() {
+
+                EnterAppointDialog.showInputTextView(this,mTvUserNickName,userInfo.getNick_name(),"昵称设置","确定",new SendTextClick() {
                     @Override
                     public void onClick(String text) {
                           mTvUserNickName.setText(text);
-                        nickName = text;
-                        messageIsChange=true;
+                          nickName = text;
+                          messageIsChange=true;
                     }
                 });
                 break;
             case R.id.tv_user_live_place:
+                hideSoftWore(mTvUserNickName);
                 changeLivePlace();
                 break;
             case R.id.ll_clear:

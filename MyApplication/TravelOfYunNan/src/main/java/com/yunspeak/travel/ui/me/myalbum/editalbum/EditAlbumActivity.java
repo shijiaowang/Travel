@@ -34,6 +34,7 @@ import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
+import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
@@ -164,7 +165,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
 
     @Override
     protected String initRightText() {
-        return "编辑";
+        return "更多";
     }
 
     @Override
@@ -302,6 +303,10 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
                 dealLoadData(event);
                 swipeContainer.setLoadingMore(false);
                 break;
+            case TYPE_DELETE2:
+                ToastUtils.showToast("删除成功");
+                finish();
+                break;
             case TYPE_OTHER:
                 if (getListSize(body)==0)return;//点击事件
                 List<String> imageList=new ArrayList<>();
@@ -320,7 +325,27 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
-        changeEdit();
+        if (isEdit){//如果是编辑状态，启用保存
+            changeEdit();
+            return;
+        }
+        AppointDetailMorePop.showEdit(this, new ParentPopClick() {
+            @Override
+            public void onClick(int type) {
+                if (type==1){
+                    changeEdit();
+                }else if (type==2){
+                    EnterAppointDialog.showCommonDialog(EditAlbumActivity.this, "删除相册", "确认", "是否删除当前相册?", new ParentPopClick() {
+                        @Override
+                        public void onClick(int type) {
+                            Map<String, String> end = MapUtils.Build().addKey().addUserId().addId(id).end();
+                            XEventUtils.postUseCommonBackJson(IVariable.DELETE_ALBUM,end,TYPE_DELETE2,new EditAlbumEvent());
+                        }
+                    });
+                }
+            }
+        },mToolbar);
+
     }
 
     @Override
@@ -404,7 +429,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             }
             des = etDes.getText().toString().trim();
             updateAlbum(name, des);
-
+            item.setTitle("更多");
         }
     }
 
