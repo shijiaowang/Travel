@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -21,6 +22,8 @@ import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.appoint.searchappoint.SearchAppointActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
@@ -29,9 +32,12 @@ import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
+import com.yunspeak.travel.utils.XEventUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 /**
  * Created by wangyang on 2016/7/30.
  * 目的地详情
@@ -50,7 +56,8 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     private float startY;
     private int tapSlop;
     private TextView mTvNumber;
-
+    private String shareUrl;
+    private String title;
 
 
     public static void start(Context context,String tid, String name){
@@ -89,6 +96,10 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         mLlSearchAppoint.setOnClickListener(this);
     }
 
+    @Override
+    protected String initRightText() {
+        return "更多";
+    }
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
@@ -172,8 +183,9 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
             }
         });
         mTvDestinationDes.setText(travel.getContent());
+        shareUrl = travel.getShare_url();
+        title = travel.getTitle();
         isCollect = travel.getIs_collect();
-        item.setTitle(isCollect.equals(isFalse)?"收藏":"已收藏");
         tName = travel.getTitle();
         mTvTitle.setText(tName);
         mTvAdd.setText("·  " + travel.getAddress());
@@ -225,6 +237,21 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         }
     }
 
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        if (StringUtils.isEmpty(isCollect))return;
+        String collection = isCollect.equals(isTrue) ? "已收藏" : "收藏";
+        //没有举报第三个参数无所谓
+        AppointDetailMorePop.showMorePopIsNotCompliant(this,tId,mToolbar, "0", collection, new ParentPopClick() {
+            @Override
+            public void onClick(int t) {
+                String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
+                int type=isCollect.equals(isTrue)?TYPE_CANCEL_COLLECTION:TYPE_COLLECTION;
+                Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("2").addId(tId).end();
+                XEventUtils.postUseCommonBackJson(url, collectionMap, type, new DetailCommonEvent());
+            }
+        },"城外旅游活动分享",title,false,shareUrl,mIvbg);
+    }
 
     @Override
     protected String detailType() {

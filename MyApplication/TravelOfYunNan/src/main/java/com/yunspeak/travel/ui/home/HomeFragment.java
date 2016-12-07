@@ -10,22 +10,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
-import com.yunspeak.travel.ui.home.homesearch.HomeSearchActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
+import com.yunspeak.travel.ui.home.homesearch.HomeSearchActivity;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.AlbumSpace;
 import com.yunspeak.travel.ui.view.PagerCursorView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -36,33 +35,19 @@ import butterknife.BindView;
  * 主页Fragment
  */
 public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
-    private static final int RECYCLE_VIEW_ITEM_SPACE = 24;//子VIEW之间的间距
-    public boolean isFirst = true;//避免进入主页已经调用onScrolled，造成未滑动边距就已经为0
-    @BindView(R.id.gv_chosen)
-    RecyclerView mRvChosen;//精选
-    @BindView(R.id.rv_hot_spots)
-    RecyclerView mRvHotSpots;
-    @BindView(R.id.lv_travels)
-    RecyclerView mRvTravels;
-    @BindView(R.id.vp_active)
-    ViewPager mVpActive;
-    @BindView(R.id.rl_search)
-    RelativeLayout mRlSearch;
-    @BindView(R.id.iv_bg)
-    SimpleDraweeView ivBg;
-    @BindView(R.id.tv_type)
-    TextView tvType;
-    @BindView(R.id.tv_name)
-    TextView tvName;
-    @BindView(R.id.tv_people)
-    TextView tvPeople;
-    @BindView(R.id.et_search)
-    EditText mEtSearch;
+    @BindView(R.id.gv_chosen) RecyclerView mRvChosen;//精选
+    @BindView(R.id.rv_hot_spots) RecyclerView mRvHotSpots;
+    @BindView(R.id.lv_travels) RecyclerView mRvTravels;
+    @BindView(R.id.vp_active) ViewPager mVpActive;
+    @BindView(R.id.rl_search) RelativeLayout mRlSearch;
+    @BindView(R.id.iv_bg) SimpleDraweeView ivBg;
+    @BindView(R.id.tv_type) TextView tvType;
+    @BindView(R.id.tv_name) TextView tvName;
+    @BindView(R.id.tv_people) TextView tvPeople;
+    @BindView(R.id.et_search) EditText mEtSearch;
     @BindView(R.id.rl_active) RelativeLayout rlActive;
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout mSwipe;
-    @BindView(R.id.pager_cursor)
-    PagerCursorView pagerCursorView;
+    @BindView(R.id.swipe_container) SwipeRefreshLayout mSwipe;
+    @BindView(R.id.pager_cursor) PagerCursorView pagerCursorView;
     private List<HomeBean.DataBean.BannerBean> banner;
 
     @Override
@@ -130,30 +115,12 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     @Override
     protected void initListener() {
         mRvChosen.addItemDecoration(new AlbumSpace(6));
-        mRvHotSpots.addItemDecoration(new HotSpotsItemDecoration(RECYCLE_VIEW_ITEM_SPACE));//设置孩子间距为24px;
+        mRvHotSpots.addItemDecoration(new HotSpotsItemDecoration(12));//设置孩子间距为24px;
         mRvTravels.addItemDecoration(new MyWitheMeDecoration(6));
         mSwipe.setOnRefreshListener(this);
         mSwipe.setColorSchemeResources(R.color.otherTitleBg);
         mRlSearch.setOnClickListener(this);
         mEtSearch.setOnClickListener(this);
-        mRvHotSpots.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (isFirst) {
-                    isFirst = false;
-                } else {
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mRvHotSpots.getLayoutParams();
-                    layoutParams.leftMargin = 0;
-                    mRvHotSpots.setLayoutParams(layoutParams);
-                }
-            }
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-        });
     }
 
 

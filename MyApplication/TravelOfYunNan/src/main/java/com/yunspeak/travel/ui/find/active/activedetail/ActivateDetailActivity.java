@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.NestedScrollView;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebResourceRequest;
@@ -185,7 +187,10 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                 mTvContnet.setText(data.getTitle_desc());
                 mTvMoney.setText("¥" + data.getPrice());
                 mTvMoney2.setText("¥"+data.getPrice());
-                mTvNumber.setText(data.getMax_people()+"人");
+                String text=data.getMax_people()+"人";
+                SpannableStringBuilder spannableStringBuilder=new SpannableStringBuilder(text);
+                spannableStringBuilder.setSpan(new ChangeColorSpan(Color.parseColor("#989898")),text.length()-1,text.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                mTvNumber.setText(spannableStringBuilder);
                 mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getStart_time())+"-"+FormatDateUtils.FormatLongTime("yyyy.MM.dd",data.getEnd_time()));
                 break;
         }

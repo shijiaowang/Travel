@@ -1,22 +1,17 @@
 package com.yunspeak.travel.ui.me.messagecenter.privatemessage;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
 import com.hyphenate.easeui.EaseConstant;
-import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.util.NetUtils;
-import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
 public class ConversationListFragment extends EaseConversationListFragment {

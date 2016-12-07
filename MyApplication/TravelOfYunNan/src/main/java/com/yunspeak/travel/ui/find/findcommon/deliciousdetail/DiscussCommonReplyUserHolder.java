@@ -13,7 +13,7 @@ import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
-import com.yunspeak.travel.ui.view.FontsIconTextView;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -22,6 +22,7 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import java.util.Map;
 
+import butterknife.BindString;
 import butterknife.BindView;
 
 /**
@@ -37,11 +38,12 @@ public class DiscussCommonReplyUserHolder extends BaseRecycleViewHolder<TravelRe
     @BindView(R.id.tv_floor_number) TextView mTvFloorNumber;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_reply_time) TextView mTvReplyTime;
-    @BindView(R.id.tv_love)public FontsIconTextView mTvLove;
     @BindView(R.id.tv_reply_content)TextView mTvReplyContent;
     @BindView(R.id.tv_reply_name)TextView mTvReplyName;
     @BindView(R.id.tv_reply_floor_number) TextView mTvReplyFloorNumber;
     @BindView(R.id.iv_image) public SimpleDraweeView mIvImage;
+    @BindString(R.string.activity_circle_love_empty) String emptyLove;
+    @BindString(R.string.activity_circle_love_full) String fullLove;
 
     public DiscussCommonReplyUserHolder(View itemView, String typeDestination) {
         super(itemView);
@@ -60,17 +62,18 @@ public class DiscussCommonReplyUserHolder extends BaseRecycleViewHolder<TravelRe
         FrescoUtils.displayIcon(mIvReplyIcon,datas.getUser_img());
         mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", datas.getReply_time()));
         mTvFloorNumber.setText(datas.getFloor() + "楼");
-        mTvLoveNumber.setText(datas.getLike_count());
-        mTvLove.setTextColor(datas.getIs_like().equals("1") ? mContext.getResources().getColor(R.color.otherFf7f6c) : mContext.getResources().getColor(R.color.color969696));
+
         TravelReplyBean.ReplyBean reply = datas.getReply();
         Spannable smiledText = EaseSmileUtils.getSmiledText(mContext, datas.getContent());
         mTvReplyContent.setText(smiledText, TextView.BufferType.SPANNABLE);
         mTvReplyName.setText(reply.getNick_name());
         mTvReplyFloorNumber.setText(reply.getFloor() + "楼");
-        mTvLove.setOnClickListener(new View.OnClickListener() {
+        boolean equals = datas.getIs_like().equals("1");
+        AiteUtils.setIconText(equals,equals?fullLove:emptyLove,-1,datas.getLike_count(),mContext,mTvLoveNumber,R.dimen.x14sp);
+        mTvLoveNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickReq(datas,mTvLove, position,mContext);
+                clickReq(datas, position);
             }
         });
         mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
@@ -80,10 +83,9 @@ public class DiscussCommonReplyUserHolder extends BaseRecycleViewHolder<TravelRe
             }
         });
     }
-    private void clickReq(TravelReplyBean item, FontsIconTextView mTvLove, int position,Context mContext) {
+    private void clickReq(TravelReplyBean item,int position) {
         //无法取消赞
         if (!item.getIs_like().equals("1")) {
-            mTvLove.setTextColor(mContext.getResources().getColor(R.color.otherFf7f6c));
             Map<String, String> likeMap = MapUtils.Build().addKey().addFId(item.getF_id()).addUserId().
                     addRId(item.getId()).addType(typeDestination).addRUserId(item.getUser_id()).
                     end();

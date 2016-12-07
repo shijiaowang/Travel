@@ -1,9 +1,9 @@
 package com.yunspeak.travel.ui.home.welcome.splash.login;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
+
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
@@ -15,7 +15,6 @@ import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
-import com.yunspeak.travel.ui.home.welcome.splash.login.forgetpassword.ForgetPasswordActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterBean;
 import com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity;
@@ -33,10 +32,10 @@ import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
-import org.greenrobot.eventbus.Subscribe;
-
 import java.util.Map;
+
 import butterknife.BindView;
+
 /**
  * Created by wangyang on 2016/7/26 0026.
  * 登录
@@ -47,7 +46,6 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
     @BindView(R.id.et_name) LoginEditText mEdName;
     @BindView(R.id.bt_login) AvoidFastButton mBtLogin;
     @BindView(R.id.bt_register) AvoidFastButton mBtRegister;
-    private SharedPreferences sharedPreferences;
     private int tryGetKey=0;
     private String name;
     private String password;
@@ -60,7 +58,6 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
     @Override
     protected void initEvent() {
         ActivityUtils.getInstance().addActivity(this);
-        sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
         mEdName.setInputType(InputType.TYPE_CLASS_PHONE);
         mBtRegister.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
@@ -110,7 +107,6 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
                     Key key = GsonUtils.getObject(event.getResult(), Key.class);
                     GlobalValue.KEY_VALUE = MD5Utils.encode(MD5Utils.encode(key.getData().getValue()));
                     ShareUtil.putString(this, IVariable.KEY_VALUE, GlobalValue.KEY_VALUE);
-                    ShareUtil.putInt(this, IVariable.KEY_CODE, key.getCode());
                     goToLogin();
             }else {
                 GlobalValue.KEY_VALUE = GlobalUtils.getKey();
@@ -130,13 +126,12 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
 
     private void goToHomeActivity(LoginEvent event) {
         Login login = GsonUtils.getObject(event.getResult(), Login.class);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString(IVariable.SAVE_NAME, login.getData().getName());
-        edit.putString(IVariable.SAVE_PWD, login.getData().getPwd());
-        edit.apply();
+        UserInfo data = login.getData();
+        ShareUtil.putString(this,IVariable.SAVE_NAME, data.getName());
+        ShareUtil.putString(this,IVariable.SAVE_PWD, data.getPwd());
         setResult(SPLASH_RESULT);
         Intent intent = new Intent(this, HomeActivity.class);
-        UserInfo data = login.getData();
+
         if (data!=null){
             com.hyphenate.easeui.domain.UserInfo userInfo=new com.hyphenate.easeui.domain.UserInfo();
             userInfo.setId(data.getId());

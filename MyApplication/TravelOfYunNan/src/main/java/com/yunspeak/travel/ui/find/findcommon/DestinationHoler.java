@@ -2,8 +2,6 @@ package com.yunspeak.travel.ui.find.findcommon;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -14,8 +12,8 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.yunspeak.travel.utils.TypefaceUtis;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -53,10 +51,7 @@ public class DestinationHoler extends BaseRecycleViewHolder<DestinationBean.Data
     public void childBindView(int position, final DestinationBean.DataBean.BodyBean datas, final Context mContext) {
         FrescoUtils.displayNormal(mIvSpot,datas.getLogo_img(),R.drawable.normal_2_1);
         mTvName.setText(datas.getTitle());
-        String text=addressIcon+datas.getAddress();
-        SpannableString spannableString = new SpannableString(text);
-        spannableString.setSpan(new CustomTypefaceSpan("sans-serif",TypefaceUtis.getTypeface(mContext)),0,1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-        mTvAdd.setText(spannableString);
+        AiteUtils.setIconText(addressIcon,datas.getAddress(),mContext,mTvAdd);
         float star=5.0f;
         star = getStar(datas, star);
         mRbStart.setRating(star);

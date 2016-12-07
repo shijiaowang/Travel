@@ -30,7 +30,7 @@ public class ActiveHolder extends BaseRecycleViewHolder<ActiveBean.DataBean> {
     @Override
     public void childBindView(int position, ActiveBean.DataBean datas, Context mContext) {
         mTvName.setText(datas.getTitle());
-        mTvPeople.setText(datas.getNow_people()+"人参赛");
+        mTvPeople.setText(datas.getNow_people()+"人参加");
         mTvType.setText(datas.getType().equals("2")?"线下活动":"线上活动");
         FrescoUtils.displayNormal(mIvBg,datas.getActivity_img());
     }

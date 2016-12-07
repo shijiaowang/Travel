@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -35,8 +36,10 @@ public class PagerCursorView extends RelativeLayout {
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            int position = viewPager.getCurrentItem() + 1;
-            viewPager.setCurrentItem(position, true);
+            if (!breakAutoSlide) {
+                int position = viewPager.getCurrentItem() + 1;
+                viewPager.setCurrentItem(position, true);
+            }
             mHandler.sendEmptyMessageDelayed(0, 3000);
         }
     };
@@ -44,6 +47,7 @@ public class PagerCursorView extends RelativeLayout {
     private int mFirstDotLeft;
     public int childCount;
     private ViewPager viewPager = null;
+    private boolean breakAutoSlide=false;
 
     public PagerCursorView(Context context) {
         super(context);
@@ -70,7 +74,6 @@ public class PagerCursorView extends RelativeLayout {
 
     public void setViewPager(ViewPager viewPager, int count, boolean isAutoMove) {
         if (count < 2 || this.viewPager != null) return;//少于二或者为已经设置过了
-
         childCount = count;
         if (childCount >= 2) {
             for (int i = 0; i < childCount; i++) {
@@ -89,6 +92,20 @@ public class PagerCursorView extends RelativeLayout {
             mVDot.setLayoutParams(layoutParams);
         }
         this.viewPager = viewPager;
+        viewPager.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        breakAutoSlide = true;
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        breakAutoSlide=false;
+                        break;
+                }
+                return false;
+            }
+        });
         /**
          * 绘制完成回调
          */

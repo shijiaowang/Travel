@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.ActiveDetailEvent;
 import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -106,8 +105,8 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
             public void onClick(int t) {
                 String url = isCollect.equals(isTrue) ? IVariable.CANCEL_COMMON_COLLECTION : IVariable.COLLECTION;
                 int type = isCollect.equals(isTrue) ? TYPE_CANCEL_COLLECTION : TYPE_COLLECTION;
-                Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("5").addId(tId).end();
-                XEventUtils.postUseCommonBackJson(url, collectionMap, type, new ActiveDetailEvent());
+                Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("4").addId(tId).end();
+                XEventUtils.postUseCommonBackJson(url, collectionMap, type, new DetailCommonEvent());
             }
         }, "城外旅游游记分享", title, false, shareUrl, mIvBg);
     }

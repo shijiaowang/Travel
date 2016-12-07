@@ -67,12 +67,10 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
             case TYPE_CANCEL_COLLECTION:
                 ToastUtils.showToast("取消收藏成功");
                 isCollect=isFalse;
-                item.setTitle("收藏");
                 break;
             case TYPE_COLLECTION:
                 ToastUtils.showToast("收藏成功");
                 isCollect=isTrue;
-                item.setTitle("已收藏");
                 break;
             default:
                 if (isFirst){
@@ -99,7 +97,6 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
                 break;
         }
         }
-
 
 
     @Override

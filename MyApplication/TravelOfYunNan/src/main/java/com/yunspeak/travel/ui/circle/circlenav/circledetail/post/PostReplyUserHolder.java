@@ -6,6 +6,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
@@ -19,7 +20,6 @@ import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -43,7 +43,6 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
     @BindView(R.id.tv_floor_number) TextView mTvFloorNumber;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_reply_time) TextView mTvReplyTime;
-    @BindView(R.id.tv_love) TextView mTvLove;
     @BindView(R.id.tv_reply_content) TextView mTvReplyContent;
     @BindView(R.id.tv_reply_name) TextView mTvReplyName;
     @BindView(R.id.tv_reply_floor_number) TextView mTvReplyFloorNumber;
@@ -56,7 +55,7 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
     }
 
     @Override
-    public void childBindView(final int position, final Object data, final Context t) {
+    public void childBindView(final int position, final Object data, final Context mContext) {
         if (data instanceof PostDetailBean.DataBean.ForumReplyBean){
             final PostDetailBean.DataBean.ForumReplyBean forumReplyBean = (PostDetailBean.DataBean.ForumReplyBean) data;
             line.setVisibility(position==1?View.GONE:View.VISIBLE);
@@ -64,23 +63,21 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
                 @Override
                 public void onClick(View v) {
                     PostDetailBean.DataBean.ForumReplyBean item1 = (PostDetailBean.DataBean.ForumReplyBean) data;
-                    OtherUserCenterActivity.start(t, v, item1.getUser_id());
+                    OtherUserCenterActivity.start(mContext, v, item1.getUser_id());
 
                 }
             });
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             List<InformBean> inform = forumReplyBean.getInform();
-            Spannable span = AiteUtils.getSmiledText(t, forumReplyBean.getContent(),inform);
+            Spannable span = AiteUtils.getSmiledText(mContext, forumReplyBean.getContent(),inform);
             // 设置内容
             mTvReplyMessage.setText(span);
             mTvReplyMessage.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
             mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forumReplyBean.getReply_time()));
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
-            mTvLoveNumber.setText(forumReplyBean.getLike_count());
             boolean equals = forumReplyBean.getIs_like().equals("1");
-            mTvLove.setTextColor(equals? t.getResources().getColor(R.color.otherFf7f6c) : t.getResources().getColor(R.color.color969696));
-            mTvLove.setText(equals?fullLove:emptyLove);
+            AiteUtils.setIconText(equals,equals?fullLove:emptyLove,-1,forumReplyBean.getLike_count(),mContext,mTvLoveNumber,R.dimen.x14sp);
             PostDetailBean.DataBean.ForumReplyBean.ReplyBean reply = forumReplyBean.getReply();
             if (StringUtils.isEmpty(forumReplyBean.getReply_img())){
                 mIvImage.setVisibility(View.GONE);
@@ -92,20 +89,15 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
             String replyContent = reply.getContent();
             Spannable replySpan;
             if (!StringUtils.isEmpty(reply.getReply_img())){
-                replySpan = AiteUtils.getSmiedTextWithAiteAndLinke(t, replyContent, inform1,reply.getReply_img());
+                replySpan = AiteUtils.getSmiedTextWithAiteAndLinke(mContext, replyContent, inform1,reply.getReply_img());
             } else {
-                replySpan = AiteUtils.getSmiledText(t, replyContent,inform1);
+                replySpan = AiteUtils.getSmiledText(mContext, replyContent,inform1);
             }
             mTvReplyContent.setText(replySpan);
             mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
             mTvReplyName.setText(reply.getNick_name());
             mTvReplyFloorNumber.setText(reply.getFloor()+"楼");
-            mTvLove.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    zan(forumReplyBean,position);
-                }
-            });
+
             mTvLoveNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -115,13 +107,13 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
             itemView.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  showDialog(t,forumReplyBean,position,forumReplyBean.getNick_name(),forumReplyBean.getForum_id(),forumReplyBean.getId());
+                  showDialog(mContext,forumReplyBean,position,forumReplyBean.getNick_name(),forumReplyBean.getForum_id(),forumReplyBean.getId());
               }
           });
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    showDialog(t,forumReplyBean,position, forumReplyBean.getNick_name(), forumReplyBean.getForum_id(), forumReplyBean.getId());
+                    showDialog(mContext,forumReplyBean,position, forumReplyBean.getNick_name(), forumReplyBean.getForum_id(), forumReplyBean.getId());
                     return true;
                 }
             });
@@ -129,7 +121,7 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
             mIvReplyIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    OtherUserCenterActivity.start(t,mIvReplyIcon,forumReplyBean.getUser_id());
+                    OtherUserCenterActivity.start(mContext,mIvReplyIcon,forumReplyBean.getUser_id());
                 }
             });
             mIvImage.setOnClickListener(new View.OnClickListener() {

@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.baseui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -22,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -50,7 +47,7 @@ import butterknife.ButterKnife;
  * Toolbar基类
  */
 
-public abstract class BaseToolBarActivity extends AppCompatActivity implements IState {
+public abstract class BaseToolBarActivity extends BaseHideSoftActivity implements IState {
     public static final int TRAFFIC_TYPE = 0;//交通方式
     public static final int SEX_TYPE = 1;//性别赛选
     public static final int AUTH_TYPE = 2;//认证筛选
@@ -359,10 +356,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements I
      * @param view
      */
     public void hideSoftWore(View view) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm.isActive()) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
-        }
+        hideKeyboard(view.getWindowToken());
     }
 
     /**

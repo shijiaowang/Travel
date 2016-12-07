@@ -12,7 +12,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.MenuItem;
@@ -36,13 +35,16 @@ import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -50,7 +52,7 @@ import butterknife.OnClick;
  * Created by wangyang on 2016/10/12 0012.
  */
 
-public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends AppCompatActivity implements IState, SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends BaseHideSoftActivity implements IState, SwipeRefreshLayout.OnRefreshListener {
     protected  boolean isFirstInflate =true;
     protected  SwipeRefreshLayout mSwipeContainer;
     protected  AppBarLayout mAppBarLayout;

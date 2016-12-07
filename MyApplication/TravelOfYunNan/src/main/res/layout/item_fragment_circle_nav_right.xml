@@ -18,7 +18,7 @@
         android:layout_width="@dimen/x45"
         android:layout_height="@dimen/x45"
         android:layout_marginLeft="@dimen/x6"
-        android:layout_marginTop="@dimen/x49" />
+        android:layout_marginTop="@dimen/x41" />
 
 
     <LinearLayout

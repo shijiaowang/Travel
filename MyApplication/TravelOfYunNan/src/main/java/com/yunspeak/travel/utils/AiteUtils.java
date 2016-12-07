@@ -1,6 +1,7 @@
 package com.yunspeak.travel.utils;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
@@ -10,6 +11,7 @@ import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.AiteTextClick;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.InformBean;
+import com.yunspeak.travel.ui.find.findcommon.CustomTypefaceSpan;
 
 import java.util.List;
 
@@ -78,5 +80,17 @@ public class AiteUtils {
        }
         return spannable;
 
+    }
+    public static int normalColor= Color.parseColor("#969696");
+    public static int clickColor=Color.parseColor("#ff7f6c");
+
+    public static void setIconText(String text,String number,Context context,TextView textView){
+        setIconText(false,text,-1,number,context,textView,-1);
+    }
+    public static void setIconText(boolean isLove,String text,int color,String number,Context context,TextView textView,int resSize){
+        String likeNumber =text+"\u0020"+number;
+        SpannableStringBuilder spannableStringBuilder=new SpannableStringBuilder(likeNumber);
+        spannableStringBuilder.setSpan(new CustomTypefaceSpan("sans-serif",context,isLove?clickColor:color,resSize),0,1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        textView.setText(spannableStringBuilder);
     }
 }

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
@@ -43,7 +42,7 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
     private List<EMConversation> copyConversationList;
     private ConversationFilter conversationFilter;
     private boolean notiyfyByFilter;
-    
+    private List<EMConversation> mOriginalValues = new ArrayList<>();
     protected int primaryColor;
     protected int secondaryColor;
     protected int timeColor;
@@ -211,19 +210,18 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
 
 
     private class ConversationFilter extends Filter {
-        List<EMConversation> mOriginalValues = null;
+
 
         public ConversationFilter(List<EMConversation> mList) {
-            mOriginalValues = mList;
+            if (mList!=null) {
+                mOriginalValues.clear();
+                mOriginalValues.addAll(mList);
+            }
         }
 
         @Override
         protected FilterResults performFiltering(CharSequence prefix) {
             FilterResults results = new FilterResults();
-
-            if (mOriginalValues == null) {
-                mOriginalValues = new ArrayList<EMConversation>();
-            }
             if (prefix == null || prefix.length() == 0) {
                 results.values = copyConversationList;
                 results.count = copyConversationList.size();
@@ -241,9 +239,8 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
                         username = group.getGroupName();
                     }else{
                         EaseUser user = EaseUserUtils.getUserInfo(username);
-                        // TODO: not support Nick anymore
-//                        if(user != null && user.getNick() != null)
-//                            username = user.getNick();
+                        if(user != null && user.getNick() != null)
+                          username = user.getNick();
                     }
 
                     // First match against the whole ,non-splitted value

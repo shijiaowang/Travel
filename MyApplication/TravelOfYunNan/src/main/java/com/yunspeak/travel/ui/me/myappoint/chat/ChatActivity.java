@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.domain.UserInfo;
+import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
@@ -18,9 +21,6 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-import com.hyphenate.easeui.EaseConstant;
-import com.hyphenate.easeui.domain.UserInfo;
-import com.hyphenate.easeui.ui.EaseBaseActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

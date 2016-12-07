@@ -496,7 +496,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     })
                     .show();
         } else {
+            //退出程序
             onBackPressed();
+
         }
         preTime = currentTimeMillis;
     }

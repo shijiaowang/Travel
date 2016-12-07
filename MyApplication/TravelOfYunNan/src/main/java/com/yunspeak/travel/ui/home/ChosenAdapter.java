@@ -1,8 +1,6 @@
 package com.yunspeak.travel.ui.home;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.yunspeak.travel.R;
@@ -24,7 +22,6 @@ public class ChosenAdapter extends BaseRecycleViewAdapter<HomeBean.DataBean.Foru
 
     @Override
     public BaseRecycleViewHolder<HomeBean.DataBean.ForumBean> onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_home_chosen, parent, false);
-        return new ChosenHolder(inflate);
+        return new ChosenHolder(inflateView(R.layout.item_fragment_home_chosen, parent));
     }
 }

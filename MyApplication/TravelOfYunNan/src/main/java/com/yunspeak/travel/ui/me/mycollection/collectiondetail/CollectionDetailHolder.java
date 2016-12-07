@@ -99,7 +99,7 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
             final ActiveBean.DataBean dataBean = (ActiveBean.DataBean) datas;
             FrescoUtils.displayNormal(mIvIcon,dataBean.getActivity_img());
             cancelId=dataBean.getCid();
-            mTvContent.setText("活的期限:" + formatData(dataBean.getStart_time(), dataBean.getEnd_time()));
+            mTvContent.setText("报名时间:" + formatData(dataBean.getStart_time(), dataBean.getEnd_time()));
             mTvName.setText(dataBean.getTitle());
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm", dataBean.getAdd_time()));
             mTvPrice.setTextColor(Color.parseColor("#ff8888"));

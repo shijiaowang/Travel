@@ -125,8 +125,6 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
         dealRecycle(t, parentBean, loadDatas);
 
 
-
-
     }
 
     private void dealRecycle(T t, ParentBean parentBean, List<F> loadDatas) {

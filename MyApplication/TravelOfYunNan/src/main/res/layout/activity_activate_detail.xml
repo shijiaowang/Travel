@@ -63,8 +63,8 @@
                         android:layout_marginTop="@dimen/x14"
                         android:ellipsize="end"
                         android:lines="1"
-                        android:textColor="#bebebe"
-                        android:textSize="@dimen/x11sp" />
+                        android:textColor="@color/Ffbf75"
+                        android:textSize="@dimen/x12sp" />
                 </LinearLayout>
 
                 <TextView

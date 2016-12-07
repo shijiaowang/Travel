@@ -30,12 +30,9 @@ import butterknife.BindView;
  */
 
 public class DriverAuthActivity extends BaseCutPhotoActivity<AuthCommonEvent> implements View.OnClickListener {
-    @BindView(R.id.tv_icon1)
-    FontsIconTextView tvIcon1;
-    @BindView(R.id.iv_image1)
-    SimpleDraweeView ivImage1;
-    @BindView(R.id.bt_next)
-    AvoidFastButton btNext;
+    @BindView(R.id.tv_icon1) FontsIconTextView tvIcon1;
+    @BindView(R.id.iv_image1) SimpleDraweeView ivImage1;
+    @BindView(R.id.bt_next) AvoidFastButton btNext;
     private String url;
 
 

@@ -213,7 +213,6 @@
                     android:id="@+id/rv_hot_spots"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x16"
                     android:layout_marginTop="@dimen/x14">
 
                 </android.support.v7.widget.RecyclerView>

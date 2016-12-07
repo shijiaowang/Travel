@@ -26,7 +26,7 @@ public class TravelsHolder extends BaseRecycleViewHolder<HomeBean.DataBean.FindT
     @Override
     public void childBindView(int position, final HomeBean.DataBean.FindTravelBean data, final Context mContext) {
         FrescoUtils.displayIcon(ivIcon,data.getLogo_img());
-        FrescoUtils.displayNormal(ivTravels,data.getTitle_img(),R.drawable.normal_2_1);
+        FrescoUtils.displayNormal(ivTravels,data.getTitle_img(),640,360,R.drawable.normal_2_1);
         tvUser.setText(data.getAuthor());
         tvContent.setText(data.getTitle());
         itemView.setOnClickListener(new View.OnClickListener() {

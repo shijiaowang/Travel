@@ -24,8 +24,11 @@ public class AppointDetailMorePop {
        showMorePopIsNotCompliant(context,id,view,type,collection,parentPopClick,shareTitle,shareContent,true,url,cropView);
     }
     public static void showMorePopIsNotCompliant(final Context context, final String id, View view, final String type, String collection, final ParentPopClick parentPopClick, final String shareTitle, final String shareContent, boolean isHasCompliant, final String url, final View cropView) {
+
+
         // 获取弹出视图对象
         final View viewPopup = View.inflate(context, R.layout.pop_appoint_detail_more, null);
+        ((TextView) viewPopup.findViewById(R.id.tv_collection)).setText(collection);
         if (isHasCompliant) {
             viewPopup.findViewById(R.id.ll_complaint).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -33,7 +36,7 @@ public class AppointDetailMorePop {
                     EnterAppointDialog.showDialogAddComplaint(context, id, type, "1", "0");
                 }
             });
-            ((TextView) viewPopup.findViewById(R.id.tv_collection)).setText(collection);
+
         }else {
             viewPopup.findViewById(R.id.ll_complaint).setVisibility(View.GONE);
         }

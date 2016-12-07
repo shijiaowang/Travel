@@ -81,7 +81,7 @@ public class IdentityAuthenticationActivity extends BaseToolBarActivity implemen
         if (userInfo != null) {
             String tel = userInfo.getTel();
             initIdentity(mTvIdentityPhone, tel);
-            initClick(mRlIdAuth, tel);
+            initClick(mRlIdAuth, userInfo.getId_card());
             initClick(rlCar, userInfo.getRun_card());
             initClick(rlDirver, userInfo.getDrive_card());
             initIdentity(mTvIdentityIdCard, userInfo.getId_card());

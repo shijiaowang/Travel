@@ -83,14 +83,6 @@
             android:textColor="#606060"
             android:textSize="@dimen/x12sp" />
 
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_love"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/activity_circle_love_full"
-            android:textColor="@color/color969696"
-            android:textSize="@dimen/x14sp" />
-
         <TextView
             android:id="@+id/tv_love_number"
             android:layout_width="wrap_content"

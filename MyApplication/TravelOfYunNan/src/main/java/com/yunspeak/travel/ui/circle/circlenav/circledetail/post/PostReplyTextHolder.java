@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
@@ -17,7 +18,6 @@ import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -41,10 +41,10 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
     @BindView(R.id.tv_floor_number) TextView mTvFloorNumber;
     @BindView(R.id.tv_love_number) TextView mTvLoveNumber;
     @BindView(R.id.tv_reply_time) TextView mTvReplyTime;
-    @BindView(R.id.tv_love) TextView mTvLove;
     @BindView(R.id.iv_image) SimpleDraweeView mIvImage;
     @BindString(R.string.activity_circle_love_empty) String emptyLove;
     @BindString(R.string.activity_circle_love_full) String fullLove;
+
 
     public PostReplyTextHolder(View itemView,String cId) {
         super(itemView);
@@ -74,16 +74,8 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
             AiteUtils.parseTextMessage(mTvReplyMessage,forumReplyBean.getInform(),forumReplyBean.getContent(),t,true);
             mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forumReplyBean.getReply_time()));
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
-            mTvLoveNumber.setText(forumReplyBean.getLike_count());
             boolean equals = forumReplyBean.getIs_like().equals("1");
-            mTvLove.setTextColor(equals? t.getResources().getColor(R.color.otherFf7f6c) : t.getResources().getColor(R.color.color969696));
-            mTvLove.setText(equals?fullLove:emptyLove);
-            mTvLove.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    zan(forumReplyBean,position);
-                }
-            });
+            AiteUtils.setIconText(equals,equals?fullLove:emptyLove,-1,forumReplyBean.getLike_count(),t,mTvLoveNumber,R.dimen.x14sp);
             mTvLoveNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

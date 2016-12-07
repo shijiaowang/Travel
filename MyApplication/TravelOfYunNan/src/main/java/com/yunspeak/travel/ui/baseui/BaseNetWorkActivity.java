@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
+import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -81,6 +82,8 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         useCommonBackJson=null;//同于取消
         try {
             if (!t.getClass().getSimpleName().equals(getTInstance().getClass().getSimpleName())){
+                LogUtils.e(t.getClass().getSimpleName());
+                LogUtils.e(getTInstance().getClass().getSimpleName());
                 return;
             }
         } catch (Exception e) {
