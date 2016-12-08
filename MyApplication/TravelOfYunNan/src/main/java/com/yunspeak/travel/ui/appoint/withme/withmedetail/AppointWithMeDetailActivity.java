@@ -20,6 +20,7 @@ import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailHaveE
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailInsuranceAdapter;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
@@ -92,6 +93,8 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     int color7=Color.parseColor("#5ee5c5");
     private int [] colors=new int[]{color1,color2,color3,color4,color5,color6,color7};
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
+    private int action;
+
     @Override
     protected void initEvent() {
         init();
@@ -104,6 +107,10 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
         btEnter.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
+                if (userId.equals(GlobalUtils.getUserInfo().getId())){
+                    MyAppointActivity.start(AppointWithMeDetailActivity.this,MyAppointActivity.WITH_ME);
+                    return;
+                }
                 Map<String, String> appointMap = MapUtils.Build().addKey().addUserId().end();
                 XEventUtils.getUseCommonBackJson(IVariable.MY_CREATE_APPOINT,appointMap,TYPE_OTHER,new AppointWithMeDetailEvent());
             }
@@ -205,6 +212,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
            mTvTime.setText(FormatDateUtils.FormatLongTime("HH:mm",data.getAdd_time()));
             FrescoUtils.displayIcon(mIvUserIcon, data.getUser_img());
             userId = data.getUser_id();
+            btEnter.setText("我的约伴");
             mTvUserNickName.setText(data.getUser_name());
             FrescoUtils.displayRoundIcon(mIvAppointBg, data.getTravel_img());
             if (mFlTitle.getChildCount()>0)mFlTitle.removeAllViews();
@@ -213,6 +221,10 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             mTvWatchNumber.setText(data.getBrowse());
             mTvTitle.setText(data.getTitle());
             mTvContent.setText(data.getContent());
+            action = data.getAction();
+            if (action!=1){
+                btEnter.setText("已报名");
+            }
             mTvLove.setText(data.getIs_like().equals("1")?fullLove:emptyLove);
             mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
             mTvStartAndLong.setText(data.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));

@@ -60,7 +60,7 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
 
     @Override
     protected boolean isHideRight() {
-        return false;
+        return true;
     }
 
 

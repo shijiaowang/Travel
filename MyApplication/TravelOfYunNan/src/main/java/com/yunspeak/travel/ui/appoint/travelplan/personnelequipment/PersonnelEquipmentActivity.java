@@ -56,7 +56,7 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
     private List<SpinnerBean> auths;
     private String sexType="3";
     private String authType="5";
-    private String autoPass="1";//自动通过
+    private String autoPass="2";//自动通过
 
     @Override
     protected int initLayoutRes() {
@@ -81,7 +81,7 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
         mSToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-              autoPass=isChecked?"1":"2";//自动通过验证
+              autoPass=isChecked?"2":"1";//自动通过验证
             }
         });
     }

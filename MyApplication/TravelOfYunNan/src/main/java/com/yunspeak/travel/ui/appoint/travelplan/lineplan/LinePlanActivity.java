@@ -56,7 +56,7 @@ public class LinePlanActivity extends BaseToolBarActivity {
      * 保存线路计划
      */
     private void saveRoutes() throws JSONException {
-        JSONArray routesJsonArray = JsonUtils.getRoutesJsonArray();
+        JSONArray routesJsonArray = JsonUtils.getNewJsonArray();
        for (int i=1;i<GlobalValue.mLineBeans.size()-1;i++){//去掉集合地和解散地
            LineBean lineBean = GlobalValue.mLineBeans.get(i);
            if (lineBean.getDestinations()!=null && lineBean.getDestinations().size()>0){

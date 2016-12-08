@@ -121,7 +121,7 @@
             android:gravity="center"
             android:textSize="@dimen/x10sp"
             android:text="取消订单"
-            android:layout_marginRight="@dimen/x11"
+            android:layout_marginRight="@dimen/x14"
             android:background="@drawable/activity_travels_search_bg"
             android:layout_width="@dimen/x67"
             android:layout_height="@dimen/x24" />

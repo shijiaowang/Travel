@@ -64,6 +64,15 @@ public class AppointWithMeDetailBean {
         private String count_like;
         private String is_like;
         private String routes_title;
+        private int action;
+
+        public int getAction() {
+            return action;
+        }
+
+        public void setAction(int action) {
+            this.action = action;
+        }
 
         private List<PeopleBean> people;
 

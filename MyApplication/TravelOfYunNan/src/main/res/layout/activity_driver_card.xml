@@ -3,10 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.yunspeak.travel.ui.view.AvoidFastButton
-        style="@style/commonButtonNext"
-        android:layout_alignParentBottom="true"
-        android:text="确认提交" />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -117,4 +114,8 @@
 
         </LinearLayout>
     </ScrollView>
+    <com.yunspeak.travel.ui.view.AvoidFastButton
+        style="@style/commonButtonNext"
+        android:layout_alignParentBottom="true"
+        android:text="确认提交" />
 </RelativeLayout>

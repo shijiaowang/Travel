@@ -115,6 +115,12 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
     String fullLove;
     @BindString(R.string.activity_circle_love_empty)
     String emptyLove;
+    @BindView(R.id.tv_air) FontsIconTextView mTvAir;
+    @BindView(R.id.tv_third) FontsIconTextView mTvThird;
+    @BindString(R.string.activity_message_center_recommend) String fly;
+    @BindString(R.string.fragment_play_with_me_air) String air;
+    @BindString(R.string.fragment_play_with_me_add) String add;
+    @BindString(R.string.fragment_find_active) String active;
     private int desColor = stateAppointing;
     protected int payStates = -1;
     private String title;
@@ -173,12 +179,22 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
             showPay = View.GONE;
             final MyAppointTogetherBean.DataBean datas = (MyAppointTogetherBean.DataBean) datas1;
             final int type = datas.getType();
+            final String payType = datas.getPay_type();
+            if (payType.equals("2")){
+                mTvAir.setText(active);
+                mTvThird.setText(fly);
+                mTvStartAndLong.setText(datas.getMeet_address());
+                mTvDayAndNight.setText( "至"+FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getEnd_time())+"结束");
+            }else {
+                mTvAir.setText(air);
+                mTvThird.setText(add);
+                mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
+                mTvDayAndNight.setText(FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getEnd_time()));
+            }
             FrescoUtils.displayNormal(mIvIcon, datas.getTravel_img());
             mTvPrice.setText(IVariable.RMB + datas.getTotal_price());
             mTvHaveNumber.setText("已有: " + datas.getNow_people() + "人");
             mTvPlanNumber.setText("计划: " + datas.getMax_people() + "人");
-            mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
-            mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
             mTvLine.setText(datas.getRoutes());
             mBvEnterPeople.setBadgeCount(datas.getNow_people());
             mBvBulletinNumber.setBadgeCount(datas.getBulletin());
@@ -234,9 +250,8 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
             mBtPay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String orderType = datas.getPay_type();
                     Intent intent = new Intent(mContext, ConfirmOrdersActivity.class);
-                    intent.putExtra("pay_type", orderType);
+                    intent.putExtra("pay_type", payType);
                     intent.putExtra(IVariable.ID, datas.getOrder_id());
                     mContext.startActivity(intent);
                 }

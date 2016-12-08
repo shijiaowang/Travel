@@ -6,5 +6,5 @@ import com.yunspeak.travel.event.HttpEvent;
  * Created by wangyang on 2016/12/6 0006.
  */
 
-public class CreateSuccessEvent extends HttpEvent {
+public class CreateAppointSuccessEvent extends HttpEvent {
 }

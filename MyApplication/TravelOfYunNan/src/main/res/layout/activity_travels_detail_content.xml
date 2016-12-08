@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorFAFAFA"
+    android:id="@+id/header_root"
     android:orientation="vertical">
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_bg"
@@ -37,7 +38,7 @@
         android:id="@+id/rv_add_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x10">
+        >
 
     </android.support.v7.widget.RecyclerView>
 

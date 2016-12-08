@@ -1,4 +1,5 @@
 package com.yunspeak.travel.ui.me.myappoint;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myappoint.historyorders.HistoryOrdersActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.PayNotifyEvent;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -28,9 +30,9 @@ import butterknife.BindView;
  * 我的约伴
  */
 public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,MyAppointTogetherBean,Object> implements View.OnClickListener {
-    private static final String ENTERING="1";
-    private static final String PASSED="2";
-    private static final String WITH_ME="4";
+    public static final String ENTERING="1";
+    public static final String PASSED="2";
+    public static final String WITH_ME="4";
     private String type=ENTERING;
     private String preType="0";
    @BindView(R.id.ll_root)
@@ -46,7 +48,11 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
         return super.onCreateOptionsMenu(menu);
     }
 
-
+  public static void start(Context context,String type){
+      Intent intent=new Intent(context,MyAppointActivity.class);
+      intent.putExtra(IVariable.TYPE,type);
+      context.startActivity(intent);
+  }
 
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
@@ -59,6 +65,7 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
     @Override
     protected void initEvent() {
         super.initEvent();
+
         mVsContent.setLayoutResource(R.layout.activity_my_appoint_header);
         mVsContent.inflate();
         changeMargin(5,10);
@@ -66,9 +73,23 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
         mRbPassed = (RadioButton) findViewById(R.id.tv_passed);
         mRbWithMe = (RadioButton) findViewById(R.id.tv_with_me);
         mRbEntering.setOnClickListener(this);
-        mRbEntering.setChecked(true);
+
         mRbPassed.setOnClickListener(this);
         mRbWithMe.setOnClickListener(this);
+        String type = getIntent().getStringExtra(IVariable.DATA);
+        if (!StringUtils.isEmpty(type)){
+            if (type.equals(PASSED)){
+                this.type=type;
+                mRbPassed.setChecked(true);
+            }else if (type.equals(WITH_ME)){
+                this.type=type;
+                mRbWithMe.setChecked(true);
+            }else {
+                mRbEntering.setChecked(true);
+            }
+        }else {
+            mRbEntering.setChecked(true);
+        }
     }
 
     /**

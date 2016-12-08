@@ -118,6 +118,11 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     }
 
     @Override
+    protected boolean isShouldHideKeyboard(View v, MotionEvent event) {
+        return false;
+    }
+
+    @Override
     protected void initEvent() {
         super.initEvent();
         tId = getIntent().getStringExtra(IVariable.T_ID);

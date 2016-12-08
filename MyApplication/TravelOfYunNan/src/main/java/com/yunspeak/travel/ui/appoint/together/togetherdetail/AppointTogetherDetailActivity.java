@@ -156,15 +156,15 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         mBvEnter.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isBoss){
-                    startActivity(new Intent(AppointTogetherDetailActivity.this,MyAppointActivity.class));
+                if (isBoss || payStatus>1){
+                    MyAppointActivity.start(AppointTogetherDetailActivity.this,MyAppointActivity.PASSED);
                     return;
                 }
                 if (StringUtils.isEmpty(id) || payStatus == -1) {
                     ToastUtils.showToast("数据加载错误，请重新进入！");
                     return;
                 }
-                clickType();
+                enter();
             }
         });
         mBtChat.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
@@ -213,14 +213,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
             case TYPE_ENTER_APPOINT:
                 EnterAppointDialog.showDialogSuccess(this);
                 initAction(7 + "");
-                break;
-            case TYPE_DELETE:
-                ToastUtils.showToast("取消成功");
-                initAction(1 + "");
-                break;
-            case TYPE_OUT_APPOINT:
-                ToastUtils.showToast("申请成功");
-                initAction(6 + "");
                 break;
             case TYPE_COLLECTION:
                 ToastUtils.showToast("收藏成功");
@@ -314,11 +306,10 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
             if (isBoss){
                 mBvEnter.setText("我的约伴");
             }else {
-                String[] stringArray = getResources().getStringArray(R.array.together_appoint_detail);
-                int i = Integer.parseInt(action);
-                payStatus = i;
-                payType = stringArray[i];
-                mBvEnter.setText(payType);
+                payStatus= Integer.parseInt(action);
+                if (payStatus>1){
+                    mBvEnter.setText("已报名");
+                }
             }
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
@@ -468,33 +459,9 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         }
     }
 
-    private void clickType() {
-        final Map<String, String> map = MapUtils.Build().addKey().addtId(id).addUserId().end();
-        switch (payStatus) {
-            case 1:
-                XEventUtils.postUseCommonBackJson(IVariable.ENTER_APPOINT, map, TYPE_ENTER_APPOINT, new AppointTogetherDetailEvent());
-                break;
-            case 3:
-                EnterAppointDialog.showCommonDialog(this,"退出约伴", "确定", "退出约伴团队", new ParentPopClick() {
-                    @Override
-                    public void onClick(int type) {
-                        XEventUtils.postUseCommonBackJson(IVariable.OUT_APPOINT, map, TYPE_OUT_APPOINT, new AppointTogetherDetailEvent());
-                    }
-                });
-              break;
-            case 7:
-                EnterAppointDialog.showCommonDialog(this,"取消申请", "确定", "取消发起的约伴请求！", new ParentPopClick() {
-                    @Override
-                    public void onClick(int type) {
-                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_APPOINT, map, TYPE_DELETE, new AppointTogetherDetailEvent());
-                    }
-                });
-
-                break;
-            default:
-                ToastUtils.showToast(payType);
-                break;
-        }
+    private void enter() {
+         Map<String, String> map = MapUtils.Build().addKey().addtId(id).addUserId().end();
+        XEventUtils.postUseCommonBackJson(IVariable.ENTER_APPOINT, map, TYPE_ENTER_APPOINT, new AppointTogetherDetailEvent());
     }
 
     @Override

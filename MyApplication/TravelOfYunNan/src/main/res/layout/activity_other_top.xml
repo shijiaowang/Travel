@@ -17,17 +17,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x200"
                  />
-           <RelativeLayout
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content">
-
-           </RelativeLayout>
             <TextView
                 android:id="@+id/tv_user_nick_name"
                 android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x30"
-                android:layout_marginTop="@dimen/x129"
+                android:layout_marginTop="@dimen/x150"
                 android:textColor="@color/colorFAFAFA"
                 android:textSize="@dimen/x19sp" />
 

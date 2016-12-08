@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -114,11 +116,24 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
     private void init() {
         vsContent.setLayoutResource(R.layout.activity_travels_detail_content);
         vsContent.inflate();
+        LinearLayout  mLlRoot = ((LinearLayout) findViewById(R.id.header_root));
+        mLlRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideSoftWore(v);
+            }
+        });
         mRvMember = ((RecyclerView) findViewById(R.id.rv_member));
         mRvAddLine = ((RecyclerView) findViewById(R.id.rv_add_line));
         mIvBg = (SimpleDraweeView) findViewById(R.id.iv_bg);
         mIvIcon = (SimpleDraweeView) findViewById(R.id.iv_travel);
         mWvHtml = (WebView) findViewById(R.id.wv_html);
+       mWvHtml.setOnTouchListener(new View.OnTouchListener() {
+           @Override
+           public boolean onTouch(View v, MotionEvent event) {
+               return true;
+           }
+       });
         mWvHtml.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {

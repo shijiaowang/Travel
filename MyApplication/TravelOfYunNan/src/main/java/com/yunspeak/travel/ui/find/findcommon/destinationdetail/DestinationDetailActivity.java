@@ -74,6 +74,13 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         vsContent.setLayoutResource(R.layout.activity_destination_detail_content);
         vsContent.inflate();
         mTvDestinationDes = ((TextView) findViewById(R.id.tv_destination_des));
+        LinearLayout  mLlRoot = ((LinearLayout) findViewById(R.id.header_root));
+        mLlRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideSoftWore(v);
+            }
+        });
         mTvShow = ((TextView) findViewById(R.id.tv_show));
         mTvNumber = ((TextView) findViewById(R.id.tv_number));
         mIvbg = ((SimpleDraweeView) findViewById(R.id.iv_bg));

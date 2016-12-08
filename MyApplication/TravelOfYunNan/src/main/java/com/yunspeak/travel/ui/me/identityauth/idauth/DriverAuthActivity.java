@@ -42,8 +42,8 @@ public class DriverAuthActivity extends BaseCutPhotoActivity<AuthCommonEvent> im
     }
 
     @Override
-    protected void childDisplay(String url, String filename) {
-        this.url=url;
+    protected void showImage(String data) {
+        this.url=data;
         tvIcon1.setVisibility(View.GONE);
         ivImage1.setVisibility(View.VISIBLE);
         FrescoUtils.displayNormal(ivImage1,url);
@@ -51,6 +51,7 @@ public class DriverAuthActivity extends BaseCutPhotoActivity<AuthCommonEvent> im
 
     @Override
     protected void initEvent() {
+        setNeedCrop(false);
         tvIcon1.setOnClickListener(this);
         ivImage1.setOnClickListener(this);
         btNext.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {

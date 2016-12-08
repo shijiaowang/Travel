@@ -179,7 +179,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
             if (requestCode == TAKE_PHOTO) {
                 if (cameraFile != null && cameraFile.exists()) {
                     if (!needCrop) {
-                        showImage(cameraFile.getAbsolutePath());
+                        showImage("file://"+cameraFile.getAbsolutePath());
                     } else {
                         startCropActivity(Uri.fromFile(cameraFile));
                     }
@@ -200,7 +200,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
                                 ToastUtils.showToast("图片不存在");
                                 return;
                             }
-                            showImage(picturePath);
+                            showImage("file://"+picturePath);
                         }
                     } else {
                         startCropActivity(data.getData());
@@ -416,7 +416,9 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         return flag;
     }
 
-    protected abstract void childDisplay(String url, String filename);
+    protected  void childDisplay(String url, String filename){
+
+    }
 
     /**
      * 处理裁剪图片  保存压缩

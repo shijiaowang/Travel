@@ -84,6 +84,7 @@ public interface IVariable {
     String SAVE_HOBBY = API_KEY + "User/setInteres/";//保存兴趣
     String DELETE_POST = API_KEY + "Circle/deleteForum/";//删除帖子
     String DELETE_ALBUM = API_KEY + "User/delUserImg/";//删除相册
+    String DELETE_ORDER_HISTORY = API_KEY + "Order/delOrderRecord/";//删除订单记录
     String DELETE_PUBLISH = API_KEY + "Circle/deleteForumreply/";//删除发表
     String MY_CREATE_APPOINT = API_KEY + "UserTravel/getMyTravel/";//获取我创建的约伴
     String COLLECTION = API_KEY + "User/setUserCollect/";//统一收藏

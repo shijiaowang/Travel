@@ -1,14 +1,11 @@
 package com.yunspeak.travel.ui.appoint.dialog;
 
 import android.app.Dialog;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -78,7 +75,8 @@ public class EnterAppointDialog {
         dialogView.findViewById(R.id.tv_my_appoint).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, MyAppointActivity.class));
+                MyAppointActivity.start(context,MyAppointActivity.PASSED);
+                dialog.dismiss();
             }
         });
         Window window = dialog.getWindow(); //得到对话框
@@ -551,14 +549,11 @@ public class EnterAppointDialog {
     }
 
     private static void getPicture(OnekeyShare oks, View cropView, Context context) {
+
         try {
-            if (cropView != null) {
-                oks.setViewToShare(cropView);
-            } else {
-                Resources r = context.getResources();
-                Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + r.getResourcePackageName(R.mipmap.yun_speak) + "/" + r.getResourceTypeName(R.mipmap.yun_speak) + "/" + r.getResourceEntryName(R.mipmap.yun_speak));
-                oks.setImagePath(uri.getPath());
-            }
+                if (cropView != null) {
+                    oks.setViewToShare(cropView);
+                }
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }

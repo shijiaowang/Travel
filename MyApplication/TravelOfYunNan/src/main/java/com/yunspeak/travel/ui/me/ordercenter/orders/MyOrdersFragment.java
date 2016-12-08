@@ -41,13 +41,22 @@ public class MyOrdersFragment extends LoadAndPullBaseFragment<MyOrdersEvent,MyOr
     @Override
     public void onSuccess(MyOrdersEvent myOrdersEvent) {
         if (getUserVisibleHint() && myOrdersEvent.getOrderType()==currentType) {
-            if (myOrdersEvent.getType()== IState.TYPE_DELETE){
-                ToastUtils.showToast("订单取消成功");
-                mDatas.get(myOrdersEvent.getPosition()).setStatus("2");//订单改为取消
-                mAdapter.notifyDataSetChanged();
-            }else {
-                super.onSuccess(myOrdersEvent);
+            switch (myOrdersEvent.getType()){
+                case IState.TYPE_DELETE:
+                    ToastUtils.showToast("订单取消成功");
+                    mDatas.get(myOrdersEvent.getPosition()).setStatus("2");//订单改为取消
+                    mAdapter.notifyDataSetChanged();
+                    break;
+                case IState.TYPE_DELETE2:
+                    ToastUtils.showToast("订单删除成功");
+                    mDatas.remove(myOrdersEvent.getPosition());
+                    mAdapter.notifyItemRemoved(myOrdersEvent.getPosition());
+                    break;
+                default:
+                    super.onSuccess(myOrdersEvent);
+                    break;
             }
+
         }
     }
 

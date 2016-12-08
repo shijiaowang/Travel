@@ -5,6 +5,7 @@
     android:background="@color/colorFAFAFA"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:id="@+id/header_root"
     android:orientation="vertical">
 
     <FrameLayout

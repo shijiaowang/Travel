@@ -14,8 +14,6 @@ import android.widget.EditText;
  */
 
 public abstract class BaseHideSoftActivity extends AppCompatActivity {
-
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -44,7 +42,7 @@ public abstract class BaseHideSoftActivity extends AppCompatActivity {
      * @param event
      * @return
      */
-    private boolean isShouldHideKeyboard(View v, MotionEvent event) {
+    protected boolean isShouldHideKeyboard(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {
             int[] l = {0, 0};
             v.getLocationInWindow(l);
@@ -63,5 +61,9 @@ public abstract class BaseHideSoftActivity extends AppCompatActivity {
         // 如果焦点不是EditText则忽略，这个发生在视图刚绘制完，第一个焦点不在EditText上，和用户用轨迹球选择其他的焦点
         return false;
     }
+
+
+
+
 
 }

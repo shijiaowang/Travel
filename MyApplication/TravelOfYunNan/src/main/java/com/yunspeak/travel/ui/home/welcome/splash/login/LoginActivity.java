@@ -82,9 +82,8 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
 
             }
         });
+
     }
-
-
 
 
 

@@ -23,6 +23,7 @@ import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -86,6 +87,8 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                             XEventUtils.postUseCommonBackJson(IVariable.ACTIVATE_ENTER, enterMap, TYPE_UPDATE, new ActiveDetailEvent());
                         }
                     });
+                }else {
+                    MyAppointActivity.start(ActivateDetailActivity.this,MyAppointActivity.PASSED);
                 }
             }
         });

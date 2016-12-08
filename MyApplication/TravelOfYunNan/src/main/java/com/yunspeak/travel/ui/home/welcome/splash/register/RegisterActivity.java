@@ -18,6 +18,7 @@ import com.yunspeak.travel.event.RegisterEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
+import com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.ActivityUtils;
@@ -190,21 +191,22 @@ public class RegisterActivity extends BaseEventBusActivity<RegisterEvent> implem
 
     private void dealResult(RegisterEvent event) {
         if (event.getType() == REGISTER_REQ) {
+            ToastUtils.showToast(event.getMessage());
             if (event.getCode()==2){
-                ToastUtils.showToast(event.getMessage());
                 return;
             }
             RegisterBean register = GsonUtils.getObject(event.getResult(), RegisterBean.class);
             RegisterBean.DataBean data = register.getData();
-            PushAgent.getInstance(this).addAlias(data.getUser_id(), "YUNS_ID", new UTrack.ICallBack() {
+            PushAgent.getInstance(this).addAlias(data.getUser_id(), "CITYOFF_ID", new UTrack.ICallBack() {
                 @Override
                 public void onMessage(boolean b, String s) {
                     LogUtils.e("是否成功"+b+"信息"+s);
                 }
             });
-            Intent intent = new Intent();
+            Intent intent = new Intent(this, RegisterSuccessActivity.class);
             intent.putExtra(IVariable.USER_ID, register.getData().getUser_id());
-            setResult(REGISTER_SUCCESS, intent);
+            startActivity(intent);
+            //setResult(REGISTER_SUCCESS, intent);
             finish();
         } else if (event.getType() == VERIFICATION_REQ) {
             if (event.getCode()==2){

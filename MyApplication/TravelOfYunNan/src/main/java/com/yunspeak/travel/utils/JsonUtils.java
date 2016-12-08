@@ -29,6 +29,10 @@ public class JsonUtils {
         return propArray;
     }
 
+    public static JSONArray getNewJsonArray(){
+        return routesArray = new JSONArray();
+    }
+
     public static JSONArray getPropArray() {
         return propArray;
     }

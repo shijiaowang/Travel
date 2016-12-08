@@ -212,7 +212,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
     private void dealHeader(HttpEvent event) {
         CircleDetailBean circle = GsonUtils.getObject(event.getResult(), CircleDetailBean.class);
         CircleDetailBean.DataBean.HeadBean head = circle.getData().getHead();
-        FrescoUtils.displayNormal(mIvPostBg,head.getTitle_img(),R.drawable.normal_2_1);
+        FrescoUtils.displayNormal(mIvPostBg,head.getTitle_img(),640,360,R.drawable.normal_2_1);
         FrescoUtils.displayIcon(mIvPostIcon,head.getCircle_ico());
         mTvCircleName.setText(head.getCname());
         mTvDes.setText("简介：" + head.getTitle());

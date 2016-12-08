@@ -169,21 +169,25 @@ public class IdAuthActivity extends BaseCutPhotoActivity<AuthCommonEvent> implem
     }
 
     @Override
-    protected void childDisplay(String url, String filename) {
+    protected void showImage(String data) {
         try {
             if (upSide == POSITIVE_SIDE) {
                 mIvImage1.setVisibility(View.VISIBLE);
                 mTvIcon1.setVisibility(View.GONE);
-                posUrl = url;
-                FrescoUtils.displayNormal(mIvImage1, url);
+                posUrl = data;
+                FrescoUtils.displayNormal(mIvImage1, data);
             } else {
-                otherUrl = url;
+                otherUrl = data;
                 mIvImage2.setVisibility(View.VISIBLE);
                 mTvIcon2.setVisibility(View.GONE);
-                FrescoUtils.displayNormal(mIvImage2, url);
+                FrescoUtils.displayNormal(mIvImage2, data);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+
+
 }

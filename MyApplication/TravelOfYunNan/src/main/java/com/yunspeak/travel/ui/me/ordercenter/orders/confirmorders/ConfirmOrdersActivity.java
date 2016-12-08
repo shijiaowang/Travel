@@ -128,11 +128,11 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
      * 显示详情
      */
     private void startShowDetail(boolean isSuccess,boolean isWx) {
+        EventBus.getDefault().post(new PayNotifyEvent());
         if (payType.equals("1") && isSuccess){
             Intent intent=new Intent(this,CreateAppointSuccessActivity.class);
             intent.putExtra(IVariable.ID,id);
             startActivity(intent);
-            EventBus.getDefault().post(new PayNotifyEvent());
             finish();
         }else {
             Intent intent = new Intent(this, PayResultActivity.class);
@@ -140,8 +140,6 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             intent.putExtra("des", isSuccess ? "订单等待处理" : "订单支付失败");
             intent.putExtra("isWX", isWx);
             startActivityForResult(intent, REQ_CODE);
-            EventBus.getDefault().post(new PayNotifyEvent());
-            finish();
         }
     }
 

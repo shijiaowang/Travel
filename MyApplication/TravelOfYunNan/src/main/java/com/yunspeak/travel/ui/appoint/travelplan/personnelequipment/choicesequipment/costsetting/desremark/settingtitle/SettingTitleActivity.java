@@ -85,7 +85,7 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
         inflater = LayoutInflater.from(this);
         if (settingTitles!=null){
             for (SettingTitle settingTitle:settingTitles) {
-                addTitle(settingTitle);
+                insertTitle(settingTitle);
             }
         }
         mIndicator.setIsTitle(true);
@@ -106,7 +106,7 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
         try {
             String label = sb.toString();
             if (!StringUtils.isEmpty(label)){
-                 label=label.substring(label.length()-1,label.length());
+                 label=label.substring(0,label.length()-1);
             }
             basecJsonObject.put(IVariable.LABEL,label);
         } catch (JSONException e) {
@@ -211,29 +211,36 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
     private void addTitle(final SettingTitle settingTitle) {
         if (settingTitles==null)settingTitles=new ArrayList<>();
         if (settingTitle.getChangeType() == TabFragment.TYPE_ADD && settingTitles.size()<7) {
-            if (!settingTitles.contains(settingTitle)){
-                settingTitles.add(settingTitle);
-            }
-            View inflate = inflater.inflate(R.layout.item_activity_setting_title_select, mFlTitle, false);
-            inflate.findViewById(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    TabEvent tabEvent = new TabEvent();
-                    tabEvent.setId(settingTitle.getId());
-                    tabEvent.setType(settingTitle.getType());
-                    EventBus.getDefault().post(tabEvent);
-                    remove(settingTitle);
-                }
-            });
-            mTvTitle = (TextView) inflate.findViewById(R.id.tv_title);
-            mTvTitle.setText(settingTitle.getTitle());
-            if (mFlTitle.getChildCount() >= 7) return;
-            mFlTitle.addView(inflate);
+            insertTitle(settingTitle);
         }else {
             remove(settingTitle);
         }
     }
 
+    /**
+     * 添加
+     * @param settingTitle
+     */
+    private void insertTitle(final SettingTitle settingTitle) {
+        if (!settingTitles.contains(settingTitle)){
+            settingTitles.add(settingTitle);
+        }
+        View inflate = inflater.inflate(R.layout.item_activity_setting_title_select, mFlTitle, false);
+        inflate.findViewById(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TabEvent tabEvent = new TabEvent();
+                tabEvent.setId(settingTitle.getId());
+                tabEvent.setType(settingTitle.getType());
+                EventBus.getDefault().post(tabEvent);
+                remove(settingTitle);
+            }
+        });
+        mTvTitle = (TextView) inflate.findViewById(R.id.tv_title);
+        mTvTitle.setText(settingTitle.getTitle());
+        if (mFlTitle.getChildCount() >= 7) return;
+        mFlTitle.addView(inflate);
+    }
 
 
     /**
@@ -244,8 +251,10 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
         for (SettingTitle settingTitle1:settingTitles){
             if (settingTitle1.getId().equals(settingTitle.getId())){
                 int index = settingTitles.indexOf(settingTitle1);
-                settingTitles.remove(settingTitle1);
-                mFlTitle.removeViewAt(index);
+                if (index!=-1) {
+                    settingTitles.remove(settingTitle1);
+                    mFlTitle.removeViewAt(index);
+                }
                 break;
             }
         }

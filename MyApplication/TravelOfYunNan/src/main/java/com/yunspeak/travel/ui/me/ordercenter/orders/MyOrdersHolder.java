@@ -46,10 +46,8 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
     @BindView(R.id.iv_icon) SimpleDraweeView mIvIcon;
     @BindView(R.id.tv_total_price) TextView mTvTotalPrice;
     @BindView(R.id.tv_price) TextView mTvPrice;
-    @BindView(R.id.tv_air)
-    FontsIconTextView mTvAir;
-    @BindView(R.id.tv_third)
-    FontsIconTextView mTvThird;
+    @BindView(R.id.tv_air) FontsIconTextView mTvAir;
+    @BindView(R.id.tv_third) FontsIconTextView mTvThird;
     @BindString(R.string.activity_message_center_recommend) String fly;
     @BindString(R.string.fragment_play_with_me_air) String air;
     @BindString(R.string.fragment_play_with_me_add) String add;
@@ -66,7 +64,7 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
 
     @Override
     public void childBindView(final int position, final MyOrdersBean.DataBean datas, final Context mContext) {
-        int payType = datas.getPay_type();
+        final int payType = datas.getPay_type();
         if (payType==2){
             mTvType.setText("活动订单");
             mTvType.setBackgroundResource(R.drawable.activity_orders_center02);
@@ -90,54 +88,74 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
         mTvPrice.setText("¥"+datas.getTotal_price());
         mTvTime.setText(FormatDateUtils.FormatLongTime(IVariable.Y_M_DHms, datas.getAdd_time()));
         String status = datas.getStatus();
+        mTvCancel.setTag(status);
         if (status.equals("1")){
             status="已支付";
-            mBPay.setVisibility(View.GONE);
-            mTvCancel.setVisibility(View.GONE);
+          mBPay.setVisibility(View.GONE);
+            mTvCancel.setText("删除");
+
         }else if (status.equals("2")){
             status="已取消";
             mBPay.setVisibility(View.GONE);
-            mTvCancel.setVisibility(View.GONE);
+            mTvCancel.setText("删除");
         }else {
             status="未支付";
-            mBPay.setVisibility(View.VISIBLE);
             mTvCancel.setVisibility(View.VISIBLE);
+            mBPay.setBackgroundResource(R.drawable.activity_activate_detail_bg);
         }
         mTvStatus.setText(status);
+        final String id = datas.getId();
         mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EnterAppointDialog.showCommonDialog(mContext,"取消订单", "确定","您是否要取消当前订单？" , new ParentPopClick() {
-                    @Override
-                    public void onClick(int type) {
-                        Map<String, String> deleteMap = MapUtils.Build().addKey().addUserId().addId(datas.getId()).end();
-                        MyOrdersEvent event = new MyOrdersEvent();
-                        event.setPosition(position);
-                        event.setOrderType(currentType);
-                        XEventUtils.postUseCommonBackJson(IVariable.CANCEL_ORDERS,deleteMap, IState.TYPE_DELETE, event);
-                    }
-                });
+                String tag = (String) mTvCancel.getTag();
+                if (tag.equals("1")|| tag.equals("2")){
+                    EnterAppointDialog.showCommonDialog(mContext, "删除订单记录", "确定", "删除订单后将无法查询到相关记录，是否删除？", new ParentPopClick() {
+                        @Override
+                        public void onClick(int type) {
+                            Map<String, String> orderMap = MapUtils.Build().addKey().addUserId().add("order_id",id).end();
+                            MyOrdersEvent event = new MyOrdersEvent();
+                            event.setPosition(position);
+                            event.setOrderType(currentType);//页面状态
+                            XEventUtils.postUseCommonBackJson(IVariable.DELETE_ORDER_HISTORY,orderMap,IState.TYPE_DELETE2, event);
+                        }
+                    });
+                }else {
+                    EnterAppointDialog.showCommonDialog(mContext,"取消订单", "确定","您是否要取消当前订单？" , new ParentPopClick() {
+                        @Override
+                        public void onClick(int type) {
+                            Map<String, String> deleteMap = MapUtils.Build().addKey().addUserId().addId(datas.getId()).end();
+                            MyOrdersEvent event = new MyOrdersEvent();
+                            event.setPosition(position);
+                            event.setOrderType(currentType);
+                            XEventUtils.postUseCommonBackJson(IVariable.CANCEL_ORDERS,deleteMap, IState.TYPE_DELETE, event);
+                        }
+                    });
+                }
 
             }
         });
-       mBPay.setOnClickListener(new View.OnClickListener() {
+
+
+        mBPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String orderId = datas.getId();
+
                 Intent intent=new Intent(mContext, ConfirmOrdersActivity.class);
-                intent.putExtra(IVariable.ID,orderId);
-                intent.putExtra("pay_type",datas.getPay_type()+"");
+                intent.putExtra(IVariable.ID,id);
+                intent.putExtra("pay_type",payType);
                 mContext.startActivity(intent);
 
             }
         });
+        final String routes = datas.getRoutes();
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String orderId = datas.getId();
                 Intent intent=new Intent(mContext, OrdersDetailActivity.class);
-                intent.putExtra(IVariable.TYPE,datas.getPay_type());
-                intent.putExtra(IVariable.NAME,datas.getRoutes());
+                intent.putExtra(IVariable.TYPE,payType);
+                intent.putExtra(IVariable.NAME,routes);
                 intent.putExtra(IVariable.ID,orderId);
                 mContext.startActivity(intent);
             }

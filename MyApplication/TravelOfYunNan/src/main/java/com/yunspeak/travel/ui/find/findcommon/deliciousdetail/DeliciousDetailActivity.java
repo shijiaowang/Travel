@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
@@ -31,6 +32,13 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         super.initEvent();
         vsContent.setLayoutResource(R.layout.activity_delicious_detail_content);
         vsContent.inflate();
+        LinearLayout mLlRoot = ((LinearLayout) findViewById(R.id.header_root));
+        mLlRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideSoftWore(v);
+            }
+        });
         mIvBg = (SimpleDraweeView) findViewById(R.id.iv_bg);
         mTvDes = (TextView) findViewById(R.id.tv_des);
         mTvNumber = (TextView) findViewById(R.id.tv_number);
