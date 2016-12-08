@@ -143,6 +143,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
         CityBean cityBean1=new CityBean();
         cityBean1.setId("1");
         cityBean1.setName("按玩法");
+        cityBean1.setChecked(true);
         CityBean cityBean2=new CityBean();
         cityBean2.setId("2");
         cityBean2.setName("按类型");

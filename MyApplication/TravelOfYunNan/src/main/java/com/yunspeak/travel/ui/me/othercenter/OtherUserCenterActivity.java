@@ -264,6 +264,8 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
             List<UserLabelBean> userLabel = otherUserCenterBean.getData().getUser_label();
             initTitle(userLabel);
             UserBean user = otherUserCenterBean.getData().getUser();
+            int isFans = user.getIs_fans();
+            dealFanOrNotFan(isFans);
             initUserInfo(user);
             if (!viewPageIsInflate) {
                 viewPageIsInflate = true;
@@ -316,9 +318,11 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         if (isFans == 1) {
             mTvFollowIcon.setText(R.string.activity_other_followed);
             mTvFollow.setText("已关注");
+            mLlFollow.setBackgroundResource(R.drawable.activity_other_follow);
         } else {
             mTvFollowIcon.setText(R.string.activity_my_album_add);
             mTvFollow.setText("关注");
+            mLlFollow.setBackgroundResource(R.drawable.activity_other_private_bg);
         }
 
     }
