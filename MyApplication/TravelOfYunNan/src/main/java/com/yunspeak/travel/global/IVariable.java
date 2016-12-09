@@ -263,8 +263,8 @@ public interface IVariable {
     String ID = "id";//活动id
     int NO_MORE = 2;//没有跟多数据了
 
-    int TYPE_TOGETHER=0;//一起玩
-    int TYPE_WITH_ME=1;//带我玩
+    int TYPE_TOGETHER=4;//一起玩
+    int TYPE_WITH_ME=5;//带我玩
     String DATA = "data";
     String ITEM_DATA = "item_data";
       int SEND_PICTURE = 2;//发送图片

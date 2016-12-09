@@ -567,4 +567,11 @@
     <style name="textSize14">
         <item name="android:textSize">@dimen/x14sp</item>
     </style>
+    <style name="backMoneyStyle">
+        <item name="android:textSize">@dimen/x15sp</item>
+        <item name="android:textColor">@color/color323232</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

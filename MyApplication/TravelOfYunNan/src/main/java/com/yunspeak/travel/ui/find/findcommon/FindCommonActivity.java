@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
@@ -20,6 +21,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointCommonPop;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointOrderPop;
+import com.yunspeak.travel.ui.appoint.popwindow.AppointOrderPop2;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LinePlanEvent;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.SelectDestinationAdapter;
@@ -75,6 +77,9 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     private Button mBtDiy;
     private List<CityBean> lefts;
     private AppointCommonPop appointType;
+    private List<CityBean> foodBean;
+    private String foodType;
+    private PopupWindow popupWindow;
 
 
     @Override
@@ -140,31 +145,26 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
                 search();
             }
         });
-        CityBean cityBean1=new CityBean();
-        cityBean1.setId("1");
-        cityBean1.setName("按玩法");
-        cityBean1.setChecked(true);
-        CityBean cityBean2=new CityBean();
-        cityBean2.setId("2");
-        cityBean2.setName("按类型");
-        lefts = new ArrayList<>();
-        lefts.add(cityBean1);
-        lefts.add(cityBean2);
+        if (type!=DELICIOUS_NORMAL) {
+            CityBean cityBean1 = new CityBean();
+            cityBean1.setId("1");
+            cityBean1.setName("按玩法");
+            cityBean1.setChecked(true);
+            CityBean cityBean2 = new CityBean();
+            cityBean2.setId("2");
+            cityBean2.setName("按类型");
+            lefts = new ArrayList<>();
+            lefts.add(cityBean1);
+            lefts.add(cityBean2);
+        }
     }
 
     @Override
     public void onItemClick(int position) {
         super.onItemClick(position);
         if (DESTINATION_SELECTION==type){
-            if (GlobalValue.mSelectSpot == null) {
-                GlobalValue.mSelectSpot = new ArrayList<String>();
-            }
-            if (GlobalValue.mSelectSpot.contains(mDatas.get(position).getId())) {
-                ToastUtils.showToast("已在行程中！");
-                return;
-            }
             GlobalValue.clickPosition = position;
-            mAdapter.notifyDataSetChanged();
+            mAdapter.notifyItemChanged(position);
         }
     }
 
@@ -204,12 +204,15 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
                                 citys.get(cityBean1.getUpid()).add(cityBean1);
                             }
                         }
-                        plays=new HashMap<String, List<CityBean>>();
-
-                        List<CityBean> travelPlay = parentBean.getData().getTravel_play();
-                        List<CityBean> travelType = parentBean.getData().getTravel_type();
-                        plays.put("1",travelPlay);
-                        plays.put("2",travelType);
+                        if (type==DELICIOUS_NORMAL){
+                            foodBean = parentBean.getData().getFood_type();
+                        }else {
+                            plays = new HashMap<String, List<CityBean>>();
+                            List<CityBean> travelPlay = parentBean.getData().getTravel_play();
+                            List<CityBean> travelType = parentBean.getData().getTravel_type();
+                            plays.put("1", travelPlay);
+                            plays.put("2", travelType);
+                        }
                         loactionIsGet = true;
                     }
                 });
@@ -249,9 +252,6 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
             if (GlobalValue.clickPosition < 0 || GlobalValue.clickPosition > mDatas.size()) {
                 ToastUtils.showToast("您尚未选择任何景点。");
                 return;
-            }
-            if (GlobalValue.mSelectSpot != null) {
-                GlobalValue.mSelectSpot.add(mDatas.get(GlobalValue.clickPosition).getId());
             }
             DestinationBean.DataBean.BodyBean bodyBean = mDatas.get(GlobalValue.clickPosition);
             String add = bodyBean.getCity() + "·" + bodyBean.getTitle();
@@ -328,7 +328,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     protected void childAdd(MapUtils.Builder builder, int type) {
         super.childAdd(builder, type);
         builder.add(IVariable.CONTENT, content).add(IVariable.PROVINCE, province).add(IVariable.CITY, city).add(IVariable.TYPELIST, typelist)
-                .add(IVariable.STAR, star).add(IVariable.SCORE, score).add("playlist",playList);
+                .add(IVariable.STAR, star).add(IVariable.SCORE, score).add("playlist",playList).add("foodtype", foodType);
     }
 
 
@@ -354,7 +354,25 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
                 orderPop(mTvOrder, timeTypePop, orderPosition);
                 break;
             case R.id.tv_type:
-                showType();
+                if (type==DELICIOUS_NORMAL) {
+                    if (foodBean == null || foodBean.size() == 0) return;
+                    if (popupWindow != null) {
+                        popupWindow.showAsDropDown(mTvType);
+                    } else{
+                        popupWindow = AppointOrderPop2.showDeliciousType(this, foodBean, mTvOrder, new ParentPopClick() {
+                            @Override
+                            public void onClick(int type) {
+                                CityBean cityBean = foodBean.get(type);
+                                foodType = cityBean.getId();
+                                mTvType.setText(cityBean.getName());
+                                onLoad(TYPE_REFRESH);
+                            }
+                        });
+                }
+                }else {
+                    showType();
+                }
+
                 break;
         }
     }

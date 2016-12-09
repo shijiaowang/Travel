@@ -141,8 +141,8 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
             stringBuilder.append(userLabelBean.getId()+",");
         }
         String label = stringBuilder.toString();
-        if (StringUtils.isEmpty(label)){
-            label=label.substring(label.length()-1,label.length());
+        if (!StringUtils.isEmpty(label)){
+            label=label.substring(0,label.length()-1);
         }
         Map<String, String> saveLabel = MapUtils.Build().addKey().addUserId().addId(label).end();
         XEventUtils.postUseCommonBackJson(IVariable.SAVE_HOBBY,saveLabel,TYPE_UPDATE,new MyHobbyEvent());

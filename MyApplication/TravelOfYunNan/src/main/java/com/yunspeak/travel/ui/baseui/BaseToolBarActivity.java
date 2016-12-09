@@ -56,7 +56,7 @@ public abstract class BaseToolBarActivity extends BaseHideSoftActivity implement
     protected TextView mTvTitle;
     protected Toolbar mToolbar;
     ImageView mIvPageError;//展示错误页面
-    ProgressBar mPbLoading;//加载中
+    protected ProgressBar mPbLoading;//加载中
     protected LayoutInflater inflater;
     protected View childView;
     protected View needHideChildView;

@@ -47,12 +47,5 @@ public class SelectDestinationHolder extends BaseRecycleViewHolder<DestinationBe
         star = getStar(datas, star);
         mRbStart.setRating(star);
         mTvSelect.setTextColor(GlobalValue.clickPosition ==position?mContext.getResources().getColor(R.color.Ffbf75):mContext.getResources().getColor(R.color.colorb5b5b5));
-        if (GlobalValue.mSelectSpot!=null && GlobalValue.mSelectSpot.contains(datas.getId())){
-            itemView.setAlpha(0.3f);
-            mTvSelect.setVisibility(View.GONE);
-        }else {
-            itemView.setAlpha(1.0f);
-            mTvSelect.setVisibility(View.VISIBLE);
-        }
     }
 }

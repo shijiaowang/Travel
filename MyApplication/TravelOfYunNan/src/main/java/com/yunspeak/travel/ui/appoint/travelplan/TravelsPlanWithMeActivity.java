@@ -11,11 +11,11 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.db.DBManager;
-import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.ProvinceBean;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LinePlanEvent;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.ProvinceBean;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.PersonnelEquipmentWithMeActivity;
 import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconButton;
@@ -160,6 +160,11 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
     }
 
     @Override
+    protected void setClass(Intent intent) {
+        intent.setClass(this, PersonnelEquipmentWithMeActivity.class);
+    }
+
+    @Override
     protected void addChildJson(JSONObject basecJsonObject) throws Exception {
         JsonUtils.putString(IVariable.MEET_ADDRESS, cityName, basecJsonObject);
 
@@ -199,7 +204,6 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
                         int index = destinations.indexOf(tag);
                         mFlDestination.removeViewAt(index);
                         destinations.remove(index);
-                        GlobalValue.mSelectSpot.remove(tag.getId());
                         if (destinations.size() < 3) {
                             mBtDestination.setVisibility(View.VISIBLE);
                         }

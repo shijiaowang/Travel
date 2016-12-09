@@ -10,13 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.bigkoo.pickerview.TimePickerView;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.PersonnelEquipmentWithMeActivity;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.view.GradientTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
@@ -26,7 +26,6 @@ import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.json.JSONObject;
 
@@ -289,20 +288,22 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
             JsonUtils.putString(IVariable.START_TIME, startDate.getTime() / 1000 + "", basecJsonObject);
             JsonUtils.putString(IVariable.END_TIME, endDate.getTime() / 1000 + "", basecJsonObject);
             addChildJson(basecJsonObject);
-            Class c=isHideRight()? PersonnelEquipmentWithMeActivity.class:PersonnelEquipmentActivity.class;
-            Intent intent = new Intent(this, c);
+            Intent intent = new Intent();
             intent.putExtra(IVariable.PAGE_SIZE,howDay);
             if (StringUtils.isEmpty(filename)){
                 ToastUtils.showToast("请上传您的自拍照或者游玩相关图片。");
                 return;
             }
             GlobalValue.mFileName=filename;
+            setClass(intent);
             startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
             ToastUtils.showToast("您尚有未填的项目");
         }
     }
+
+    protected abstract void setClass(Intent intent);
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -335,7 +336,6 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        GlobalValue.mSelectSpot = null;
         GlobalValue.mLineBeans = null;
         GlobalValue.mPropSelects=null;
         GlobalValue.mFileName=null;

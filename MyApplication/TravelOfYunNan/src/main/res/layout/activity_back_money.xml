@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x43"
+            android:layout_marginLeft="@dimen/x45"
+            android:layout_marginRight="@dimen/x45"
+            android:layout_marginTop="@dimen/x38">
+
+            <TextView
+                style="@style/backMoneyStyle"
+                android:text="您的支付金额为：" />
+
+            <TextView
+                android:id="@+id/tv_back_money_pay_money"
+                style="@style/backMoneyStyle"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                style="@style/backMoneyStyle"
+                android:layout_below="@id/tv_back_money_pay_money"
+                android:layout_marginTop="@dimen/x25"
+                android:text="当前可退款金额为：" />
+
+            <TextView
+                android:id="@+id/tv_back_money_back_money"
+                style="@style/backMoneyStyle"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_back_money_pay_money"
+                android:layout_marginTop="@dimen/x25" />
+
+            <TextView
+                android:id="@+id/tv_back_money_time"
+                style="@style/backMoneyStyle"
+                android:layout_below="@id/tv_back_money_back_money"
+                android:layout_marginTop="@dimen/x25" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
+            android:background="@color/colorb5b5b5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/x44"
+            android:text="退款说明"
+            android:textColor="@color/color969696"
+            android:textSize="@dimen/x15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x53"
+            android:layout_marginLeft="@dimen/x38"
+            android:layout_marginRight="@dimen/x38"
+            android:layout_marginTop="@dimen/x18"
+            android:lineSpacingExtra="@dimen/x8"
+            android:text="·用户在行程开始前3日申请取消，可全额退款\n·用户在行程开始前2日申请取消，将扣除订单费用的30%作为手续费用\n·用户在行程开始前1日申请取消，将不能申请退款\n·于活动中自愿终止参与活动，将不予退款款项\n·退款金额以具体提交时间为准\n·到达出发时间仍未达到最低人数将全额退款"
+            android:textColor="@color/color969696"
+            android:textSize="@dimen/x13sp" />
+        <FrameLayout
+            android:layout_marginRight="@dimen/x46"
+            android:layout_marginLeft="@dimen/x46"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.yunspeak.travel.ui.view.AvoidFastButton
+                android:background="@drawable/activity_travels_plan_line_bg"
+                android:layout_gravity="start"
+                android:id="@+id/bt_back_money_sure"
+                android:gravity="center"
+                android:textColor="@color/colorFAFAFA"
+                android:text="确认退款"
+                android:textSize="@dimen/x15sp"
+                android:layout_width="@dimen/x95"
+                android:layout_height="@dimen/x35" />
+            <com.yunspeak.travel.ui.view.AvoidFastButton
+                android:background="@drawable/activity_cut_picture_button_bg"
+                android:layout_gravity="end"
+                android:id="@+id/bt_back_money_cancel"
+                android:gravity="center"
+                android:textColor="@color/otherTitleBg"
+                android:text="取消"
+                android:textSize="@dimen/x15sp"
+                android:layout_width="@dimen/x95"
+                android:layout_height="@dimen/x35" />
+        </FrameLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

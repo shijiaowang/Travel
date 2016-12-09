@@ -19,12 +19,14 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.home.homesearch.HomeSearchActivity;
+import com.yunspeak.travel.ui.home.welcome.splash.register.WebViewActivity;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.AlbumSpace;
 import com.yunspeak.travel.ui.view.PagerCursorView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 
 import java.util.List;
 
@@ -105,8 +107,9 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         if (banner==null) {
             banner = data.getBanner();
             mVpActive.setOffscreenPageLimit(banner.size());
-            pagerCursorView.setViewPager(mVpActive, banner.size(), true);
+            pagerCursorView.setViewPager(mVpActive, banner.size(), true,this);
             mVpActive.setAdapter(new HomePagerAdapter(banner));
+            mVpActive.setCurrentItem(banner.size()*100,false);
         }
 
 
@@ -157,9 +160,20 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         }
 
         @Override
-        public Object inflateView(ViewGroup container, int position) {
+        public Object inflateView(ViewGroup container, final int position) {
             SimpleDraweeView imageView = new SimpleDraweeView(getContext());
             FrescoUtils.displayNormal(imageView, data.get(position).getPath(),600,450,R.drawable.normal_2_1);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String title = data.get(position).getTitle();
+                    String url = data.get(position).getUrl();
+                    if (StringUtils.isEmpty(title) || StringUtils.isEmpty(url)){
+                        return;
+                    }
+                    WebViewActivity.start(getContext(),title,url);
+                }
+            });
             container.addView(imageView);
             return imageView;
 

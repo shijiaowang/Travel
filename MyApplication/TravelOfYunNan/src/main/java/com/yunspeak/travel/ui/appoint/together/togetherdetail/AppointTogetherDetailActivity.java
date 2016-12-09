@@ -260,8 +260,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         initSomeData(data);
         classificationDay(lists, routes);
         travelDetailLineAdapter = new TravelDetailLineAdapter(this, lists,true);
-        normalDetailLineAdapter = new TravelDetailLineAdapter(this, lists,false);
-        mLvRouteLine.setAdapter(normalDetailLineAdapter);
         mLvRouteDetailLine.setAdapter(travelDetailLineAdapter);
         List<PeopleBean> ingPeople = data.getIng_people();
         if (ingPeople != null && ingPeople.size() != 0) {
@@ -450,10 +448,13 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
             case R.id.tv_switch:
                 isDetail = !isDetail;
                 if (lists == null || lists.size() == 0) return;
+                if (normalDetailLineAdapter==null){
+                    normalDetailLineAdapter = new TravelDetailLineAdapter(this, lists,false);
+                    mLvRouteLine.setAdapter(normalDetailLineAdapter);
+                }
                 mLvRouteDetailLine.setVisibility(isDetail?View.VISIBLE:View.GONE);
                 mLvRouteLine.setVisibility(isDetail?View.GONE:View.VISIBLE);
                 mTvSitch.setText(isDetail ? "缩略图" : "详情图");
-
                 break;
 
         }

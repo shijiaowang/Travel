@@ -1,34 +1,28 @@
 package com.yunspeak.travel.ui.me.othercenter.useralbum;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.baseui.LoadMoreListener;
-import com.yunspeak.travel.ui.baseui.LoadMoreRecycleViewAdapter;
-import com.yunspeak.travel.ui.fragment.BaseFragment;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.othercenter.INotify;
-import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterBean;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.albumdetail.CatOtherUserAlbumActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.x;
+import org.xutils.common.util.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +107,12 @@ public class OtherCenterAlbumFragment extends LoadBaseFragment<OtherAlbumEvent> 
         mSwipe.setLoadMoreFooterView(footView);
         mSwipe.setOnLoadMoreListener(this);
         mSwipe.setLoadMoreEnabled(false);
+        float width = getResources().getDimension(R.dimen.x162);//动态居中
+        int screenWidth = DensityUtil.getScreenWidth();
+        int leftMargin= (int) ((screenWidth-width*2)/2);
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mSwipeContainer.getLayoutParams();
+        layoutParams.leftMargin=leftMargin;
+        mSwipeContainer.setLayoutParams(layoutParams);
     }
 
     @Override

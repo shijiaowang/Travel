@@ -2,27 +2,27 @@ package com.yunspeak.travel.ui.appoint.travelplan;
 
 
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.view.View;
-
 import android.widget.EditText;
-
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
-import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LinePlanActivity;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointSpinnerPop;
 import com.yunspeak.travel.ui.appoint.popwindow.SpinnerBean;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LinePlanActivity;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.JsonUtils;
+
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -101,6 +101,11 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
     @Override
     protected EditText getEdView() {
         return mEtRemark;
+    }
+
+    @Override
+    protected void setClass(Intent intent) {
+        intent.setClass(this, PersonnelEquipmentActivity.class);
     }
 
     @Override

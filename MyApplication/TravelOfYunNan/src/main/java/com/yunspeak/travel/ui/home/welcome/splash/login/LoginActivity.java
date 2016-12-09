@@ -78,6 +78,7 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
                     XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new LoginEvent());
                     return;
                 }
+                setIsProgress(true);
                 goToLogin();
 
             }

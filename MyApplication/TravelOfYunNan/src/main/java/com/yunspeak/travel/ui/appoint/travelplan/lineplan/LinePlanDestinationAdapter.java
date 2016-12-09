@@ -3,7 +3,6 @@ package com.yunspeak.travel.ui.appoint.travelplan.lineplan;
 import android.content.Context;
 import android.view.View;
 
-import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 
@@ -26,7 +25,6 @@ public class LinePlanDestinationAdapter extends TravelBaseAdapter<LineBean.Desti
             @Override
             public void onClick(View v) {
                 mDatas.remove(item);
-                GlobalValue.mSelectSpot.remove(item.getId());
                 LinePlanEvent linePlanEvent = new LinePlanEvent();
                 linePlanEvent.setIsDelete(true);
                 EventBus.getDefault().post(linePlanEvent);

@@ -14,22 +14,17 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.AddCustomDestinationActivity;
-import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LinePlanEvent;
+import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.AddCustomDestinationActivity;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
-import org.xutils.view.annotation.ViewInject;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/9/8 0008.
@@ -102,9 +97,6 @@ public class CustomDestinationActivity extends BaseRecycleViewActivity<CustomDes
             ToastUtils.showToast("您尚未选择任何景点。");
             return;
         }
-        if (GlobalValue.mSelectSpot != null) {
-            GlobalValue.mSelectSpot.add(mDatas.get(GlobalValue.clickPosition).getId());
-        }
         CustomDestinationBean.DataBean bodyBean = mDatas.get(GlobalValue.clickPosition);
         String add = bodyBean.getCity() + "·" + bodyBean.getTitle();
         String id = bodyBean.getId();
@@ -157,15 +149,8 @@ public class CustomDestinationActivity extends BaseRecycleViewActivity<CustomDes
 
     @Override
     public void onItemClick(int position) {
-        if (GlobalValue.mSelectSpot == null) {
-            GlobalValue.mSelectSpot = new ArrayList<String>();
-        }
-        if (GlobalValue.mSelectSpot.contains(mDatas.get(position).getId())) {
-            ToastUtils.showToast("已在行程中！");
-            return;
-        }
         GlobalValue.clickPosition=position;
-        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyItemChanged(position);
     }
 
     @Override

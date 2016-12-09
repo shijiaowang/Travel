@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:button="@null"
+    android:textColor="@drawable/pop_order_text_selector"
+    android:text="@string/pop_order"
+    android:gravity="center"
+    android:background="@drawable/appoint_enter_dialog_bg"
+    android:textSize="@dimen/x14sp"
+    android:layout_width="@dimen/x110"
+    android:layout_height="@dimen/x30"
+    android:id="@+id/radioButton"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

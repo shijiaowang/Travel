@@ -99,11 +99,11 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
             }
             try {
                 isFirstInflate =false;
-                needHideChildView.setVisibility(View.VISIBLE);//读取完毕，展示主页
                 if ( t.getCode()==2){
                     ToastUtils.showToast("没有更多数据了");
                 }
                 onSuccess(t);
+                needHideChildView.setVisibility(View.VISIBLE);//读取完毕，展示主页
             }catch (Exception e){
                 e.printStackTrace();
                 onFail(t);
@@ -113,7 +113,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
             ToastUtils.showToast(t.getMessage());
             onFail(t);
         }
-        setIsProgress(false);
+       setIsProgress(false);
     }
     /**
      * 处理公共的网络参数请求

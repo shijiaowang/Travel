@@ -53,13 +53,6 @@ public class CustomDestinationHolder extends BaseRecycleViewHolder<CustomDestina
         mTvShow.setContent(datas.getContent());
         mTvUser.setText(datas.getUser_name());
         mTvSelect.setTextColor(GlobalValue.clickPosition == position ? mContext.getResources().getColor(R.color.Ffbf75) : mContext.getResources().getColor(R.color.colorb5b5b5));
-        if (GlobalValue.mSelectSpot != null && GlobalValue.mSelectSpot.contains(datas.getId())) {
-            itemView.setAlpha(0.3f);
-            mTvSelect.setVisibility(View.GONE);
-        } else {
-            itemView.setAlpha(1.0f);
-            mTvSelect.setVisibility(View.VISIBLE);
-        }
         mTvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

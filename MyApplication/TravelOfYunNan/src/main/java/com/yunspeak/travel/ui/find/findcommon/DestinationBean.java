@@ -45,6 +45,7 @@ public class DestinationBean implements ParentBean{
         private List<CityBean> travel_type;
         private List<CityBean> travel_play;
         private List<BodyBean> body;
+        private List<CityBean> food_type;
         public List<CityBean> getProvince() {
             return province;
         }
@@ -81,6 +82,14 @@ public class DestinationBean implements ParentBean{
 
         public void setBody(List<BodyBean> body) {
             this.body = body;
+        }
+
+        public List<CityBean> getFood_type() {
+            return food_type;
+        }
+
+        public void setFood_type(List<CityBean> food_type) {
+            this.food_type = food_type;
         }
 
         public static class BodyBean {
@@ -149,4 +158,5 @@ public class DestinationBean implements ParentBean{
             }
         }
     }
+
 }

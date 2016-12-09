@@ -72,9 +72,10 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         mRvHot.addItemDecoration(new MyWitheMeDecoration(10));
         if (banner==null) {
             banner = findBean.getData().getBanner();
-            pagerCursorView.setViewPager(vpFind, banner.size(), true);
+            pagerCursorView.setViewPager(vpFind, banner.size(), true,this);
             vpFind.setAdapter(new HomePagerAdapter(banner));
             vpFind.setOffscreenPageLimit(banner.size());
+            vpFind.setCurrentItem( banner.size()*100, false);
         }
 
     }
@@ -125,11 +126,11 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         }
         @Override
         public Object inflateView(ViewGroup container, int position) {
-            SimpleDraweeView imageView = new SimpleDraweeView(getContext());
-            imageView.setTag(data.get(position));
-            imageView.setOnClickListener(new MyOnClickListener(getContext(), (FindBean.DataBean.RecommendBean) imageView.getTag()));
-            FrescoUtils.displayNormal(imageView,data.get(position).getLogo_img(),640,360,R.drawable.normal_2_1);
-            container.addView(imageView);
+                SimpleDraweeView imageView = new SimpleDraweeView(getContext());
+                imageView.setTag(data.get(position));
+                imageView.setOnClickListener(new MyOnClickListener(getContext(), (FindBean.DataBean.RecommendBean) imageView.getTag()));
+                FrescoUtils.displayNormal(imageView, data.get(position).getLogo_img(), 640, 360, R.drawable.normal_2_1);
+                container.addView(imageView);
             return imageView;
         }
 

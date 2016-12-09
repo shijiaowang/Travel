@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.view;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.utils.DensityUtils;
+import com.yunspeak.travel.utils.LogUtils;
 
 import org.xutils.common.util.DensityUtil;
 
@@ -36,11 +38,14 @@ public class PagerCursorView extends RelativeLayout {
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (!breakAutoSlide) {
+            LogUtils.e(breakAutoSlide+"");
+            isShow = fragment!=null && fragment.getUserVisibleHint();
+            if (!breakAutoSlide && isShow) {
                 int position = viewPager.getCurrentItem() + 1;
                 viewPager.setCurrentItem(position, true);
+                LogUtils.e("滑动中");
             }
-            mHandler.sendEmptyMessageDelayed(0, 3000);
+            mHandler.sendEmptyMessageDelayed(0,5000);
         }
     };
     private int mPointDistance;
@@ -48,6 +53,8 @@ public class PagerCursorView extends RelativeLayout {
     public int childCount;
     private ViewPager viewPager = null;
     private boolean breakAutoSlide=false;
+    private Fragment fragment;
+    private boolean isShow;
 
     public PagerCursorView(Context context) {
         super(context);
@@ -72,9 +79,14 @@ public class PagerCursorView extends RelativeLayout {
         mVDot = inflate.findViewById(R.id.v_dot);
     }
 
-    public void setViewPager(ViewPager viewPager, int count, boolean isAutoMove) {
-        if (count < 2 || this.viewPager != null) return;//少于二或者为已经设置过了
+    public void setViewPager(ViewPager viewPager, int count, boolean isAutoMove, Fragment fragment) {
+
+        if (count < 2 || this.viewPager != null) {
+            mVDot.setVisibility(GONE);
+            return;//少于二
+        }
         childCount = count;
+        this.fragment = fragment;
         if (childCount >= 2) {
             for (int i = 0; i < childCount; i++) {
                 View view = new View(getContext());
@@ -99,6 +111,10 @@ public class PagerCursorView extends RelativeLayout {
                     case MotionEvent.ACTION_DOWN:
                         breakAutoSlide = true;
                         break;
+                    case MotionEvent.ACTION_MOVE:
+                        breakAutoSlide = true;
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
                     case MotionEvent.ACTION_UP:
                         breakAutoSlide=false;
                         break;
@@ -123,8 +139,7 @@ public class PagerCursorView extends RelativeLayout {
                 mLlRoot.getViewTreeObserver().removeGlobalOnLayoutListener(this);
             }
         });
-        int position = (Integer.MAX_VALUE / 2) - (Integer.MAX_VALUE / 2) % childCount;
-        viewPager.setCurrentItem(position, false);
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -156,9 +171,8 @@ public class PagerCursorView extends RelativeLayout {
                 }
             }
         });
-
         if (isAutoMove) {
-            mHandler.sendEmptyMessageDelayed(0, 3000);
+            mHandler.sendEmptyMessageDelayed(0, 5000);
         }
     }
 

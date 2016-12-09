@@ -150,7 +150,7 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
         fragmentList.add(tabFragment1);
         fragmentList.add(tabFragment2);
         fragmentList.add(tabFragment3);
-        mPagerCursorView.setViewPager(mVpPager,fragmentList.size(),false);
+        mPagerCursorView.setViewPager(mVpPager,fragmentList.size(),false,null);
         mVpPager.setOffscreenPageLimit(2);
         mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager()));
 

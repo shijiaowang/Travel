@@ -115,22 +115,22 @@ public class DesRemarkActivity extends BaseToolBarActivity implements View.OnCli
     @Subscribe
     public void onEvent(DesRemarkEvent desRemarkEvent) {
         ToastUtils.showToast(desRemarkEvent.getMessage());
-        if (desRemarkEvent.isSuccess()) {
-            if (GlobalValue.mAppointType==IVariable.TYPE_WITH_ME){
-                startActivity(new Intent(this, CreateAppointSuccessActivity.class));
-                return;
+        try {
+            if (desRemarkEvent.isSuccess()) {
+                if (GlobalValue.mAppointType==IVariable.TYPE_WITH_ME){
+                    startActivity(new Intent(this, CreateAppointSuccessActivity.class));
+                }else {
+                    CreateBean object = GsonUtils.getObject(desRemarkEvent.getResult(), CreateBean.class);
+                    CreateBean.DataBean data = object.getData();
+                    Intent intent = new Intent(this, ConfirmOrdersActivity.class);
+                    intent.putExtra(IVariable.ID, data.getRet_order());
+                    intent.putExtra("pay_type", "1");
+                    startActivity(intent);
+                }
+                ActivityUtils.getInstance().exit();
             }
-            try {
-                CreateBean object = GsonUtils.getObject(desRemarkEvent.getResult(), CreateBean.class);
-                CreateBean.DataBean data = object.getData();
-                Intent intent=new Intent(this,ConfirmOrdersActivity.class);
-                intent.putExtra(IVariable.ID,data.getRet_order());
-                intent.putExtra("pay_type","1");
-                startActivity(intent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            ActivityUtils.getInstance().exit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

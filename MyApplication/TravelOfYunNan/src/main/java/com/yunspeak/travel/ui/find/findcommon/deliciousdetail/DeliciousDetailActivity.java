@@ -15,6 +15,8 @@ import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
+import com.yunspeak.travel.utils.ToastUtils;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -57,6 +59,24 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         context.startActivity(intent);
     }
 
+    @Override
+    protected void onSuccess(DetailCommonEvent detailCommonEvent) {
+        switch (detailCommonEvent.getType()){
+            case TYPE_CANCEL_COLLECTION:
+                ToastUtils.showToast("取消收藏成功");
+                isCollect=isFalse;
+                item.setTitle("收藏");
+                break;
+            case TYPE_COLLECTION:
+                ToastUtils.showToast("收藏成功");
+                isCollect=isTrue;
+                item.setTitle("已收藏");
+            default:
+                super.onSuccess(detailCommonEvent);
+                break;
+        }
+
+    }
 
     @Override
     protected String detailType() {

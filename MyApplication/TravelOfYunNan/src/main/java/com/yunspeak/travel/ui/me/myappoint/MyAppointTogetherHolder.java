@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.DiscussPopClick;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
@@ -115,12 +116,18 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
     String fullLove;
     @BindString(R.string.activity_circle_love_empty)
     String emptyLove;
-    @BindView(R.id.tv_air) FontsIconTextView mTvAir;
-    @BindView(R.id.tv_third) FontsIconTextView mTvThird;
-    @BindString(R.string.activity_message_center_recommend) String fly;
-    @BindString(R.string.fragment_play_with_me_air) String air;
-    @BindString(R.string.fragment_play_with_me_add) String add;
-    @BindString(R.string.fragment_find_active) String active;
+    @BindView(R.id.tv_air)
+    FontsIconTextView mTvAir;
+    @BindView(R.id.tv_third)
+    FontsIconTextView mTvThird;
+    @BindString(R.string.activity_message_center_recommend)
+    String fly;
+    @BindString(R.string.fragment_play_with_me_air)
+    String air;
+    @BindString(R.string.fragment_play_with_me_add)
+    String add;
+    @BindString(R.string.fragment_find_active)
+    String active;
     private int desColor = stateAppointing;
     protected int payStates = -1;
     private String title;
@@ -136,7 +143,6 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
     public MyAppointTogetherHolder(View itemView) {
         super(itemView);
     }
-
 
 
     /**
@@ -180,12 +186,12 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
             final MyAppointTogetherBean.DataBean datas = (MyAppointTogetherBean.DataBean) datas1;
             final int type = datas.getType();
             final String payType = datas.getPay_type();
-            if (payType.equals("2")){
+            if (payType.equals("2")) {
                 mTvAir.setText(active);
                 mTvThird.setText(fly);
                 mTvStartAndLong.setText(datas.getMeet_address());
-                mTvDayAndNight.setText( "至"+FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getEnd_time())+"结束");
-            }else {
+                mTvDayAndNight.setText("至" + FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getEnd_time()) + "结束");
+            } else {
                 mTvAir.setText(air);
                 mTvThird.setText(add);
                 mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
@@ -283,16 +289,16 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
     private void dealPayState(int payStates, MyAppointTogetherBean.DataBean datas) {
         String isBoos = datas.getIs_boss();
         int type = datas.getType();
-        showCode2= View.GONE;
-        showCode1=View.VISIBLE;
-        showBoard=View.VISIBLE;
+        showCode2 = View.GONE;
+        showCode1 = View.VISIBLE;
+        showBoard = View.VISIBLE;
         switch (payStates) {
             case 1:
-                showBoard=View.GONE;
+                showBoard = View.GONE;
                 break;
             case 2:
-                showCode2= View.VISIBLE;
-                showCode1=View.GONE;
+                showCode2 = View.VISIBLE;
+                showCode1 = View.GONE;
                 showBoard = View.VISIBLE;
                 showPay = View.VISIBLE;
                 break;
@@ -307,23 +313,23 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
                 break;
         }
         if (type == 2) {
-            showCode2= View.GONE;
-            showCode1=View.GONE;
+            showCode2 = View.GONE;
+            showCode1 = View.GONE;
             showAppoint(false);
         } else {
             if (isBoos.equals("1")) {
                 if (payStates == 3) {
                     mBtStart.setText("确认出发");
-                    showDelete=View.VISIBLE;
+                    showDelete = View.VISIBLE;
                     showStart = View.VISIBLE;
                 } else if (payStates == 7) {
                     mBtStart.setText("出发");
-                    showDelete=View.VISIBLE;
+                    showDelete = View.VISIBLE;
                     showStart = View.VISIBLE;
                 } else if (payStates == 8) {
                     mBtStart.setText("结束行程");
                     showStart = View.VISIBLE;
-                }else if (payStates == 9) {
+                } else if (payStates == 9) {
                     mBtStart.setText("评价");
                     showStart = View.VISIBLE;
                 } else {
@@ -338,12 +344,12 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
                     showStart = View.GONE;
                 }
             }
-            if (showCode2==View.VISIBLE){
+            if (showCode2 == View.VISIBLE) {
                 mTvCode2.setText("口令:" + datas.getId_code());
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mLine.getLayoutParams();
                 layoutParams.topMargin = DensityUtil.dip2px(25);
                 mLine.setLayoutParams(layoutParams);
-            }else {
+            } else {
                 mTvCode.setText("口令:" + datas.getId_code());
             }
             showAppoint(true);
@@ -361,7 +367,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
         }
 
 
-}
+    }
 
     /**
      * 显示约伴特有的
@@ -380,22 +386,27 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
         final String type = initType(payStates);
         if (StringUtils.isEmpty(type)) return;
         if (payStates == 9) {
-            String content = "这真是一次不错的旅行啊";
-            Map<String, String> discussMap = MapUtils.Build().addKey().addUserId().addtId(datas.getId()).addContent(content).end();
-            MyAppointEvent myAppointEvent = new MyAppointEvent();
-            myAppointEvent.setPosition(position);
-            XEventUtils.postUseCommonBackJson(IVariable.DISCUSS_APPOINT, discussMap, BaseToolBarActivity.TYPE_DISCUSS, myAppointEvent);
+            EnterAppointDialog.showOrderDiscuss(mContext, new DiscussPopClick() {
+                @Override
+                public void onClick(int type, String content) {
+                    Map<String, String> discussMap = MapUtils.Build().addKey().addUserId().addtId(datas.getId()).addContent(content).end();
+                    MyAppointEvent myAppointEvent = new MyAppointEvent();
+                    myAppointEvent.setPosition(position);
+                    XEventUtils.postUseCommonBackJson(IVariable.DISCUSS_APPOINT, discussMap, BaseToolBarActivity.TYPE_DISCUSS, myAppointEvent);
+                }
+            });
+
         } else {
             EnterAppointDialog.showCommonDialog(mContext, title, "确定", content, new ParentPopClick() {
                 @Override
                 public void onClick(int t) {
-                    changeAppoint(datas, position, mContext, type);
+                    changeAppoint(datas, position, type);
                 }
             });
         }
     }
 
-    private void changeAppoint(MyAppointTogetherBean.DataBean item1, int position, Context mContext, String type) {
+    private void changeAppoint(MyAppointTogetherBean.DataBean item1, int position, String type) {
         Map<String, String> end = MapUtils.Build().addKey().addUserId().addtId(item1.getId()).addType(type).end();
         MyAppointEvent myAppointEvent = new MyAppointEvent();
         myAppointEvent.setPosition(position);

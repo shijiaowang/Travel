@@ -7,6 +7,7 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:layout_height="@dimen/x49">
+
   <RadioButton
       android:button="@null"
       android:textColor="@drawable/pop_order_text_selector"
@@ -16,8 +17,10 @@
       android:textSize="@dimen/x14sp"
       android:layout_width="0dp"
       android:layout_weight="1"
-      android:layout_height="@dimen/x30" />
-    <RadioButton
+      android:layout_height="@dimen/x30"
+      android:id="@+id/radioButton" />
+
+  <RadioButton
         android:button="@null"
         android:textColor="@drawable/pop_order_text_selector"
         android:text="@string/pop_star"

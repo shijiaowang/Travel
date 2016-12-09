@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -22,6 +24,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.DiscussPopClick;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -79,19 +82,8 @@ public class EnterAppointDialog {
                 dialog.dismiss();
             }
         });
-        Window window = dialog.getWindow(); //得到对话框
-        window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
-        window.setGravity(Gravity.CENTER);
+       showEndCommon(dialogView,dialog,R.dimen.x285);
 
-        //创建 Dialog
-//		Dialog dialog=new Dialog(上下文,风格style);
-
-        //layout_width layout_height
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(285), DensityUtil.dip2px(179));
-        dialog.setContentView(dialogView, params);
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
     }
 
     /**
@@ -143,17 +135,7 @@ public class EnterAppointDialog {
                 dialog.dismiss();
             }
         });
-        Window window = dialog.getWindow(); //得到对话框
-        window.setGravity(Gravity.CENTER);
-        //创建 Dialog
-//		Dialog dialog=new Dialog(上下文,风格style);
-        //layout_width layout_height
-        float width = context.getResources().getDimension(R.dimen.x285);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setContentView(dialogView, params);
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
+        showEndCommon(dialogView,dialog,R.dimen.x285);
     }
 
     /**
@@ -196,16 +178,7 @@ public class EnterAppointDialog {
                 dialog.dismiss();
             }
         });
-        Window window = dialog.getWindow(); //得到对话框
-        window.setGravity(Gravity.CENTER);
-        //创建 Dialog
-//		Dialog dialog=new Dialog(上下文,风格style);
-        //layout_width layout_height
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(200), DensityUtil.dip2px(160));
-        dialog.setContentView(dialogView, params);
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
+        showEndCommon(dialogView, dialog,R.dimen.x200);
     }
 
     /**
@@ -263,15 +236,17 @@ public class EnterAppointDialog {
                 dialog.dismiss();
             }
         });
+        showEndCommon(dialogView, dialog,R.dimen.x285);
+    }
+
+    private static void showEndCommon(View dialogView, Dialog dialog, int resWidth) {
         Window window = dialog.getWindow(); //得到对话框
-        window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
-        window.setGravity(Gravity.CENTER);
-
-        //创建 Dialog
-//		Dialog dialog=new Dialog(上下文,风格style);
-
-        //layout_width layout_height
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DensityUtil.dip2px(285), DensityUtil.dip2px(159));
+        if (window!=null) {
+            window.setGravity(Gravity.CENTER);
+        }
+        Context context = dialog.getContext();
+        float dimension = context.getResources().getDimension(resWidth);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) dimension, LinearLayout.LayoutParams.WRAP_CONTENT);
         dialog.setContentView(dialogView, params);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
@@ -339,21 +314,7 @@ public class EnterAppointDialog {
                 imm.hideSoftInputFromWindow(mEtDestination.getWindowToken(), 0); //强制隐藏键盘
             }
         });
-        Window window = dialog.getWindow(); //得到对话框
-        if (window != null) {
-            window.setGravity(Gravity.CENTER);
-        }
-
-        //创建 Dialog
-//		Dialog dialog=new Dialog(上下文,风格style);
-
-        //layout_width layout_height
-        float width = context.getResources().getDimension(R.dimen.x285);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, LinearLayout.LayoutParams.WRAP_CONTENT);
-        dialog.setContentView(dialogView, params);
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
+        showEndCommon(dialogView, dialog,R.dimen.x285);
 
 
     }
@@ -408,22 +369,7 @@ public class EnterAppointDialog {
                 imm.hideSoftInputFromWindow(mEtContent.getWindowToken(), 0); //强制隐藏键盘
             }
         });
-        Window window = dialog.getWindow(); //得到对话框
-        window.setWindowAnimations(R.style.dialogAnima); //设置窗口弹出动画
-        window.setGravity(Gravity.CENTER);
-
-        //创建 Dialog
-//		Dialog dialog=new Dialog(上下文,风格style);
-
-        //layout_width layout_height
-        float width = context.getResources().getDimension(R.dimen.x334);
-        float height = context.getResources().getDimension(R.dimen.x211);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, (int) height);
-        dialog.setContentView(dialogView, params);
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(true);
-
-        dialog.show();
+        showEndCommon(dialogView, dialog,R.dimen.x334);
     }
 
 
@@ -447,19 +393,11 @@ public class EnterAppointDialog {
             public void onClick(View v) {
                 ShareSDK.initSDK(context);
                 OnekeyShare oks = new OnekeyShare();
-//关闭sso授权
-                //oks.disableSSOWhenAuthorize();
                 oks.setPlatform(SinaWeibo.NAME);
-// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
                 oks.setTitle(title);
-// text是分享文本，所有平台都需要这个字段
                 oks.setText(content);
-// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-//oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
                 oks.setComment("小伙伴召集中，期待您的加入！");
-                getPicture(oks, cropView, context);
-// 启动分享GUI
-                oks.show(context);
+                shareEndCommon(oks, cropView, context);
 
 
             }
@@ -469,20 +407,11 @@ public class EnterAppointDialog {
             public void onClick(View v) {
                 ShareSDK.initSDK(context);
                 OnekeyShare oks = new OnekeyShare();
-//关闭sso授权
-                //oks.disableSSOWhenAuthorize();
                 oks.setPlatform(Wechat.NAME);
-// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
                 oks.setTitle(title);
-// text是分享文本，所有平台都需要这个字段
                 oks.setText(content);
-// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-//oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-// url仅在微信（包括好友和朋友圈）中使用
                 oks.setUrl(url);
-                getPicture(oks, cropView, context);
-// comment是我对这条分享的评论，仅在人人网和QQ空间使用
-                oks.show(context);
+                shareEndCommon(oks, cropView, context);
             }
         });
         dialogView.findViewById(R.id.tv_we_moment).setOnClickListener(new View.OnClickListener() {
@@ -490,19 +419,11 @@ public class EnterAppointDialog {
             public void onClick(View v) {
                 ShareSDK.initSDK(context);
                 OnekeyShare oks = new OnekeyShare();
-//关闭sso授权
-                //oks.disableSSOWhenAuthorize();
                 oks.setPlatform(WechatMoments.NAME);
-// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
                 oks.setTitle(title);
-                getPicture(oks, cropView, context);
-// text是分享文本，所有平台都需要这个字段
                 oks.setText(content);
-// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-//oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-// url仅在微信（包括好友和朋友圈）中使用
                 oks.setUrl(url);
-                oks.show(context);
+                shareEndCommon(oks, cropView, context);
             }
         });
         dialogView.findViewById(R.id.tv_qq_zone).setOnClickListener(new View.OnClickListener() {
@@ -510,28 +431,13 @@ public class EnterAppointDialog {
             public void onClick(View v) {
                 ShareSDK.initSDK(context);
                 OnekeyShare oks = new OnekeyShare();
-//关闭sso授权
-                //oks.disableSSOWhenAuthorize();
                 oks.setPlatform(QZone.NAME);
-// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
                 oks.setTitle(title);
-// text是分享文本，所有平台都需要这个字段
                 oks.setText(content);
-                getPicture(oks, cropView, context);
-// titleUrl是标题的网络链接，QQ和QQ空间等使用
                 oks.setTitleUrl(url);
-// text是分享文本，所有平台都需要这个字段
-
-// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-//oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-// url仅在微信（包括好友和朋友圈）中使用
-                //  oks.setUrl("http://sharesdk.cn");
-// site是分享此内容的网站名称，仅在QQ空间使用
                 oks.setSite(context.getString(R.string.app_name));
-// siteUrl是分享此内容的网站地址，仅在QQ空间使用
                 oks.setSiteUrl(url);
-// 启动分享GUI
-                oks.show(context);
+                shareEndCommon(oks, cropView, context);
             }
         });
         WindowManager.LayoutParams wl = window.getAttributes();
@@ -546,6 +452,11 @@ public class EnterAppointDialog {
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
 
+    }
+
+    private static void shareEndCommon(OnekeyShare oks, View cropView, Context context) {
+        getPicture(oks, cropView, context);
+        oks.show(context);
     }
 
     private static void getPicture(OnekeyShare oks, View cropView, Context context) {
@@ -580,21 +491,71 @@ public class EnterAppointDialog {
                 dialog.dismiss();
             }
         });
-        Window window = dialog.getWindow(); //得到对话框
-        window.setGravity(Gravity.CENTER);
-
-        //创建 Dialog
-//		Dialog dialog=new Dialog(上下文,风格style);
-
-        //layout_width layout_height
-        float width = context.getResources().getDimension(R.dimen.x285);
-        float height = context.getResources().getDimension(R.dimen.x179);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, (int) height);
-        dialog.setContentView(dialogView, params);
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
+        showEndCommon(dialogView, dialog,R.dimen.x285);
     }
 
+    public static void showOrderDiscuss(Context context, final DiscussPopClick parentPopClick) {
+        //创建视图
+        View dialogView = View.inflate(context, R.layout.dialog_activity_order_disscuss, null);
+        final Dialog dialog = new Dialog(context, R.style.noTitleDialog);
+        final EditText etText = (EditText) dialogView.findViewById(R.id.et_content);
+        final TextView tvCount = (TextView) dialogView.findViewById(R.id.tv_count);
+        final RadioGroup rbGroup = (RadioGroup) dialogView.findViewById(R.id.rb_group);
+        etText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String countString = etText.getText().toString();
+                tvCount.setText(countString.length()+"/120");
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        TextView tvSure = (TextView) dialogView.findViewById(R.id.tv_sure);
+        tvSure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int checkedRadioButtonId = rbGroup.getCheckedRadioButtonId();
+                if (checkedRadioButtonId==-1){
+                    ToastUtils.showToast("请选择一种评价类型");
+                    return;
+                }
+                String trim = etText.getText().toString().trim();
+
+                if (StringUtils.isEmptyNotNull(trim) && checkedRadioButtonId!=R.id.rb_discuss_good){//好评不用输入评论
+                    ToastUtils.showToast("请输入您的宝贵评价");
+                    return;
+                }
+                int type;
+                switch (checkedRadioButtonId){
+                    case R.id.rb_discuss_good:
+                        type=1;
+                        break;
+                    case R.id.rb_discuss_normal:
+                        type=2;
+                        break;
+                    default:
+                        type=3;
+                        break;
+                }
+                parentPopClick.onClick(type,trim);
+                dialog.dismiss();
+            }
+        });
+        showEndCommon(dialogView, dialog,R.dimen.x285);
+    }
 }
