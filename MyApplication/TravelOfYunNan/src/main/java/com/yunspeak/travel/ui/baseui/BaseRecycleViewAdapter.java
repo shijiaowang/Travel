@@ -25,26 +25,29 @@ import java.util.Set;
 public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<BaseRecycleViewHolder<T>> {
     public List<T> mDatas;
     public Context mContext;
-    Set<Integer> errorList=new HashSet<>();
-    private RecyclerView recyclerView;
-    private Set<Integer> currentSets;
-    private boolean scrolled;
+    Set<Integer> errorList = new HashSet<>();
+    protected RecyclerView recyclerView;
+    protected Set<Integer> currentSets;
+    protected boolean scrolled;
 
     public BaseRecycleViewAdapter(List<T> mDatas, Context mContext) {
         this.mDatas = mDatas;
         this.mContext = mContext;
     }
-    public void notifiyData(List list){
-        if (list==null)return;
-        mDatas=list;
+
+    public void notifiyData(List list) {
+        if (list == null) return;
+        mDatas = list;
         this.notifyDataSetChanged();
     }
-    public void setDatas(List list){
-        if (list==null || list==mDatas)return;
-        mDatas=list;
+
+    public void setDatas(List list) {
+        if (list == null || list == mDatas) return;
+        mDatas = list;
     }
-    public View inflateView(int res,ViewGroup parent){
-       return LayoutInflater.from(mContext).inflate(res, parent, false);
+
+    public View inflateView(int res, ViewGroup parent) {
+        return LayoutInflater.from(mContext).inflate(res, parent, false);
     }
 
 
@@ -52,7 +55,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
     public void onBindViewHolder(final BaseRecycleViewHolder holder, int position) {
         try {
             holder.itemView.setTag(mDatas.get(position));
-            if (itemClickListener!=null) {
+            if (itemClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -61,7 +64,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
                     }
                 });
             }
-            holder.childBindView(position,mDatas.get(position),mContext);
+            holder.childBindView(position, mDatas.get(position), mContext);
         } catch (Exception e) {
             e.printStackTrace();
             errorList.add(position);
@@ -75,9 +78,9 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
     /**
      * 如果一进来就报错
      */
-    private synchronized void clearErrorDateWhileShowFirstTime() {
-        if (recyclerView!=null){
-            scrolled=true;
+    protected synchronized void clearErrorDateWhileShowFirstTime() {
+        if (recyclerView != null) {
+            scrolled = true;
             recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
@@ -92,9 +95,9 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
     /**
      * 处理错误数据
      */
-    private synchronized void onErrorDeal() {
+    protected synchronized void onErrorDeal() {
         try {
-            if ( recyclerView==null || mDatas.size()==0)return;
+            if (recyclerView == null || mDatas.size() == 0) return;
             remove();
             recyclerView.post(new Runnable() {
                 @Override
@@ -107,44 +110,47 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
             LogUtils.e("处理错误数据时出错了");
         }
     }
+
     /**
      * 移除
      */
-    private synchronized void remove() {
+    protected synchronized void remove() {
         Iterator<Integer> iterator = errorList.iterator();
-        List<T> tempList=new ArrayList<>();
-        int itemCount = getItemCount()-1;
-        int min=itemCount;
+        List<T> tempList = new ArrayList<>();
+        int itemCount = getItemCount() - 1;
+        int min = itemCount;
         while (iterator.hasNext()) {
             int next = iterator.next();
-            min=min>next?next:min;
+            min = min > next ? next : min;
             tempList.add(mDatas.get(next));
         }
-        if (mDatas.size()==tempList.size()){//清除全部数据需要调用此方法，否者会抛出
+        if (mDatas.size() == tempList.size()) {//清除全部数据需要调用此方法，否者会抛出
             mDatas.clear();
-            BaseRecycleViewAdapter.this.notifyDataSetChanged();//清理所有数据
-        }else {
-            BaseRecycleViewAdapter.this.notifyItemRangeRemoved(min,itemCount);
+            this.notifyDataSetChanged();//清理所有数据
+        } else {
+            this.notifyItemRangeRemoved(min, itemCount);
             mDatas.removeAll(tempList);
         }
 
         tempList.clear();
         errorList.clear();
     }
+
     /**
      * 处理错误数据
+     *
      * @param recyclerView
      */
     @Override
     public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
-        this.recyclerView=recyclerView;
+        this.recyclerView = recyclerView;
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (newState==RecyclerView.SCROLL_STATE_IDLE && errorList.size()!=0){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && errorList.size() != 0) {
                     onErrorDeal();
-                }else {
-                    scrolled=true;
+                } else {
+                    scrolled = true;
                 }
             }
         });
@@ -152,7 +158,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
 
     @Override
     public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
-        this.recyclerView=null;
+        this.recyclerView = null;
     }
 
     private OnItemClickListener itemClickListener;
@@ -165,12 +171,12 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
         this.itemClickListener = itemClickListener;
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
     @Override
     public int getItemCount() {
-        return mDatas==null?0:mDatas.size();
+        return mDatas == null ? 0 : mDatas.size();
     }
 }

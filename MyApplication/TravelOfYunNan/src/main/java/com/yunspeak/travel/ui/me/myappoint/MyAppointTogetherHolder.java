@@ -47,7 +47,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/8/2 0002.
  * 一起玩约伴订单
  */
-public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
+public class MyAppointTogetherHolder extends BaseRecycleViewHolder {
     @BindView(R.id.rl_bulletin_board)
     RelativeLayout mRlBulletinBoard;
     @BindView(R.id.rl_member_detail)

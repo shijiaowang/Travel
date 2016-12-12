@@ -4,8 +4,6 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.me.myappoint.MyAppointAdapter;
-import com.yunspeak.travel.ui.me.myappoint.MyAppointEvent;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointTogetherBean;
 import com.yunspeak.travel.utils.MapUtils;
 
@@ -16,7 +14,7 @@ import java.util.List;
  * 历史订单
  */
 
-public class HistoryOrdersActivity extends BaseRecycleViewActivity<MyAppointEvent,MyAppointTogetherBean,Object> {
+public class HistoryOrdersActivity extends BaseRecycleViewActivity<HistoryEvent,MyAppointTogetherBean,MyAppointTogetherBean.DataBean> {
 
     @Override
     protected String initUrl() {
@@ -45,7 +43,7 @@ public class HistoryOrdersActivity extends BaseRecycleViewActivity<MyAppointEven
     }
 
     @Override
-    protected BaseRecycleViewAdapter initAdapter(List<Object> mDatas) {
-        return new MyAppointAdapter(mDatas,this);
+    protected BaseRecycleViewAdapter initAdapter(List<MyAppointTogetherBean.DataBean> mDatas) {
+        return new HistoryAdapter(mDatas,this);
     }
 }
