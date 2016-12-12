@@ -252,7 +252,20 @@ public class EnterAppointDialog {
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
     }
-
+    private static void showEndCommon(View dialogView, Dialog dialog, int resWidth,int resHeiht) {
+        Window window = dialog.getWindow(); //得到对话框
+        if (window!=null) {
+            window.setGravity(Gravity.CENTER);
+        }
+        Context context = dialog.getContext();
+        float dimension = context.getResources().getDimension(resWidth);
+        float height = context.getResources().getDimension(resHeiht);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) dimension, (int) height);
+        dialog.setContentView(dialogView, params);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+    }
     /**
      * 添加目的地
      *
@@ -369,7 +382,7 @@ public class EnterAppointDialog {
                 imm.hideSoftInputFromWindow(mEtContent.getWindowToken(), 0); //强制隐藏键盘
             }
         });
-        showEndCommon(dialogView, dialog,R.dimen.x334);
+        showEndCommon(dialogView, dialog,R.dimen.x334,R.dimen.x211);
     }
 
 
@@ -491,7 +504,7 @@ public class EnterAppointDialog {
                 dialog.dismiss();
             }
         });
-        showEndCommon(dialogView, dialog,R.dimen.x285);
+        showEndCommon(dialogView, dialog,R.dimen.x285,R.dimen.x179);
     }
 
     public static void showOrderDiscuss(Context context, final DiscussPopClick parentPopClick) {

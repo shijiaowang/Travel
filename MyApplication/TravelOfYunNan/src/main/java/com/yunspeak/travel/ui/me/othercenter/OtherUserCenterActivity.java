@@ -398,11 +398,11 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
             case -1:
                 ToastUtils.showToast("出现了不明错误");
                 return;
-            case 0://取消关注
-                type = "2";
+            case 0:
+                type = "1";
                 break;
             case 1:
-                type = "1";
+                type = "2";//取消关注
                 break;
         }
         Map<String, String> followMap = MapUtils.Build().addKey().addUserId().add("u_id", userId).addType(type).end();

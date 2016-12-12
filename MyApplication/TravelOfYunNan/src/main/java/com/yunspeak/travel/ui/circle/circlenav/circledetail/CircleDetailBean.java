@@ -157,17 +157,6 @@ public class CircleDetailBean implements ParentBean {
             }
         }
 
-        public static class ActivityBean {
-            private String activity_img;
-
-            public String getActivity_img() {
-                return activity_img;
-            }
-
-            public void setActivity_img(String activity_img) {
-                this.activity_img = activity_img;
-            }
-        }
 
         public static class BodyBean {
             private String id;

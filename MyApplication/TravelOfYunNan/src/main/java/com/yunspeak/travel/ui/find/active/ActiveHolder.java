@@ -7,6 +7,8 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.ActivityBean;
+import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
 
 import butterknife.BindView;
@@ -14,7 +16,7 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/7/25 0025.
  */
-public class ActiveHolder extends BaseRecycleViewHolder<ActiveBean.DataBean> {
+public class ActiveHolder extends BaseRecycleViewHolder<ActivityBean> {
     @BindView(R.id.tv_air) TextView mTvAir;
     @BindView(R.id.tv_type) TextView mTvType;
     @BindView(R.id.tv_people) TextView mTvPeople;
@@ -28,10 +30,16 @@ public class ActiveHolder extends BaseRecycleViewHolder<ActiveBean.DataBean> {
 
 
     @Override
-    public void childBindView(int position, ActiveBean.DataBean datas, Context mContext) {
+    public void childBindView(int position, final ActivityBean datas, final Context mContext) {
         mTvName.setText(datas.getTitle());
         mTvPeople.setText(datas.getNow_people()+"人参加");
         mTvType.setText(datas.getType().equals("2")?"线下活动":"线上活动");
         FrescoUtils.displayNormal(mIvBg,datas.getActivity_img());
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivateDetailActivity.start(mContext,datas.getId());
+            }
+        });
     }
 }

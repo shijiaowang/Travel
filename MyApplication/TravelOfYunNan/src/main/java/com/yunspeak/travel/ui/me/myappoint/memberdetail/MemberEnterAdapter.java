@@ -119,6 +119,8 @@ public class MemberEnterAdapter extends BaseRecycleViewAdapter<MemberDetailBean.
         LinearLayout llDiscuss;
         @BindView(R.id.tv_time)
         TextView tvTime;
+        @BindView(R.id.v_hide_line)
+        View mVHideLine;
 
         public MemberDetailHolder(View itemView) {
             super(itemView);
@@ -128,10 +130,21 @@ public class MemberEnterAdapter extends BaseRecycleViewAdapter<MemberDetailBean.
         @Override
         public void childBindView(final int position, final MemberDetailBean.DataBean.JoinBean joinBean, final Context mContext) {
             FrescoUtils.displayIcon(ivIcon, joinBean.getUser_img());
-            tvAge.setText(joinBean.getAge());
+            String age = joinBean.getAge();
+            if (StringUtils.isEmpty(age) || age.equals("0")){
+                tvAge.setText("保密");
+            }else {
+                tvAge.setText(age);
+            }
+
             tvSex.setText(joinBean.getSex().equals("1") ? R.string.activity_member_detail_boy : R.string.activity_member_detail_girl);
             tvName.setText(joinBean.getNick_name());
             tvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss",joinBean.getAdd_time()));
+            if (position==mDatas.size()-1){
+                mVHideLine.setVisibility(View.GONE);
+            }else {
+                mVHideLine.setVisibility(View.VISIBLE);
+            }
             if (StringUtils.isEmpty(joinBean.getContent())) {
                 llDiscuss.setVisibility(View.GONE);
             } else {

@@ -1,7 +1,5 @@
 package com.yunspeak.travel.ui.me.myappoint.withmeselect;
 
-import android.app.Activity;
-
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
@@ -24,6 +22,7 @@ public class MyWithMeSelectActivity extends BaseRecycleViewActivity<MyWithMeSele
     protected String initUrl() {
         return IVariable.WITH_ME_SELECT;
     }
+
 
 
     @Override

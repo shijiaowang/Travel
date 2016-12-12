@@ -34,6 +34,11 @@ import com.yunspeak.travel.ui.circle.CircleFragment;
 import com.yunspeak.travel.ui.find.FindFragment;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.me.MeFragment;
+import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageActivity;
+import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageAdapter;
+import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
+import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
+import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
 import com.yunspeak.travel.ui.view.GradientTextView;
 import com.yunspeak.travel.ui.view.NoScrollViewPager;
 import com.yunspeak.travel.utils.ActivityUtils;
@@ -42,6 +47,7 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.NetworkUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.TypefaceUtis;
 import com.yunspeak.travel.utils.UIUtils;
@@ -68,6 +74,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     public static final int REQ = 0;
     public static final int RESULT = 1;
     public static final int UP_RESULT = 2;
+    public static HomeActivity instance = null;
     private List<GradientTextView> iconFonts = new ArrayList<>(5);
     private List<TextView> iconNames = new ArrayList<>(5);
     private List<Fragment> fragments;
@@ -121,6 +128,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         if (!NetworkUtils.isNetworkConnected(this)) {
             ToastUtils.showToast("网络未连接");
         }
+        goToWhere();
+        instance = this;
         isNetwork = getIntent().getBooleanExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, true);
         if (!isNetwork || GlobalUtils.getUserInfo() == null) {
             sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
@@ -138,6 +147,45 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         XEventUtils.getUseCommonBackJson(IVariable.UPDATE, end, TYPE_UPDATE, new HomeLoginEvent());
         MobclickAgent.openActivityDurationTrack(false);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+
+    }
+
+    /**
+     * 跳转到其他页面
+     */
+    private void goToWhere() {
+        String msgType = getIntent().getStringExtra(IVariable.MSG_TYPE);
+        if (StringUtils.isEmpty(msgType))return;
+        switch (msgType) {
+            case "1":
+            case "3":
+            case "4":
+                startActivity(new Intent(this, AppointMessageActivity.class));
+                break;
+            case "2":
+                startActivity(new Intent(this, OrdersCenterActivity.class));
+                break;
+            case "5":
+                Intent intent = new Intent(this, RelateMeDetailActivity.class);
+                intent.putExtra(IVariable.TYPE, AppointMessageAdapter.TYPE_DISCUSS);
+                startActivity(intent);
+                break;
+            case "6":
+                Intent intent2 = new Intent(this, RelateMeDetailActivity.class);
+                intent2.putExtra(IVariable.TYPE, AppointMessageAdapter.TYPE_AITE);
+                startActivity(intent2);
+                break;
+            case "7":
+                Intent intent3 = new Intent(this, RelateMeDetailActivity.class);
+                intent3.putExtra(IVariable.TYPE, AppointMessageAdapter.TYPE_ZAMBIA);
+                startActivity(intent3);
+                break;
+            case "9":
+                Intent intentChat = getIntent();
+                intentChat.setClass(this, ChatActivity.class);
+                startActivity(intentChat);
+                break;
+        }
     }
 
     /**
@@ -414,6 +462,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        instance = null;
     }
 
     class DownloadProgress implements Callback.ProgressCallback<File> {
@@ -487,7 +536,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private void exit() {
         long currentTimeMillis = System.currentTimeMillis();
         if (currentTimeMillis - preTime > 1000) {
-     Snackbar.make(mLlBottom, "快速双击退出应用", 300)
+            Snackbar.make(mLlBottom, "快速双击退出应用", 300)
                     .setAction("", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

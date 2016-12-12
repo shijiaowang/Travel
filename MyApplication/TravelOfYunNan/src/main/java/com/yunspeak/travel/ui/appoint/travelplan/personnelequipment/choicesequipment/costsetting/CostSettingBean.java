@@ -11,6 +11,15 @@ public class CostSettingBean {
     private int code;
     private String message;
     private List<DataBean> data;
+    private String basectext;
+
+    public String getBasectext() {
+        return basectext;
+    }
+
+    public void setBasectext(String basectext) {
+        this.basectext = basectext;
+    }
     public int getCode() {
         return code;
     }
@@ -42,6 +51,7 @@ public class CostSettingBean {
         private String type;
         private String time;
         private String status;
+
 
         public String getId() {
             return id;

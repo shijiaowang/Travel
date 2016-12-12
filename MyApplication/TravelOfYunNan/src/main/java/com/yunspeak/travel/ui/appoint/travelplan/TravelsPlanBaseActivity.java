@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -226,12 +225,11 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
 
         });
         if (!isHideRight()){
-            hideSoftWore(getEdView());
+            hideSoftWore(mTvTitle);
         }
         pvTime.show();
     }
 
-    protected abstract EditText getEdView();
 
     /**
      * 检查日期是否合法

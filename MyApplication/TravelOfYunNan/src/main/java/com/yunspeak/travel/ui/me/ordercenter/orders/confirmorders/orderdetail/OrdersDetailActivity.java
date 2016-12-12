@@ -119,7 +119,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
         }
 
         String payStatus = data.getPay_status();
-        if (payStatus.equals("1")){
+        if (payStatus.equals("0")){
             ivState.setImageResource(R.drawable.order_wiat_pay);
             tvDes.setText("订单待支付");
             llPayWay.setVisibility(View.GONE);
@@ -137,7 +137,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
             tvDes.setText("订单已取消");
             btPay.setVisibility(View.GONE);
             llPayWay.setVisibility(View.GONE);
-        }else {
+        }else if (payStatus.equals("1")){
             ivState.setImageResource(R.drawable.order_had_pay);
             tvDes.setText("订单已支付");
             btPay.setVisibility(View.GONE);

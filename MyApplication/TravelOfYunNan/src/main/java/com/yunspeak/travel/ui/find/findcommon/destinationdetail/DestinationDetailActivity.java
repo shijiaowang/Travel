@@ -111,7 +111,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         super.childAdd(builder, type);
-        builder.addTId(tId);
+        builder.addT_Id(tId);
     }
 
     @Override
@@ -257,7 +257,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
                 Map<String, String> collectionMap = MapUtils.Build().addKey().addUserId().addType("2").addId(tId).end();
                 XEventUtils.postUseCommonBackJson(url, collectionMap, type, new DetailCommonEvent());
             }
-        },"城外旅游活动分享",title,false,shareUrl,mIvbg);
+        },"城外旅游目的地分享",title,false,shareUrl,mIvbg);
     }
 
     @Override

@@ -103,10 +103,10 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
                     ToastUtils.showToast("没有更多数据了");
                 }
                 onSuccess(t);
-                needHideChildView.setVisibility(View.VISIBLE);//读取完毕，展示主页
+                setSuccess();
             }catch (Exception e){
                 e.printStackTrace();
-                onFail(t);
+                setErrorPage(true);
             }
 
         }else {

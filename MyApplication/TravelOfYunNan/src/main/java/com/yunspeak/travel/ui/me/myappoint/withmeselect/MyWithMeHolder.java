@@ -72,7 +72,7 @@ class MyWithMeHolder extends BaseRecycleViewHolder<MyWithMeSelectBean.DataBean> 
         mRlMemberDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startTarget(datas, MemberDetailActivity.class,mContext);
+                MemberDetailActivity.start(mContext,datas.getId(),"1");
             }
         });
        mRlBulletinBoard.setOnClickListener(new View.OnClickListener() {

@@ -2,7 +2,6 @@ package com.yunspeak.travel.utils;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.zip.Adler32;
 
 /**
  * Created by wangyang on 2016/9/1 0001.
@@ -81,5 +80,28 @@ public class CalendarUtils {
         }
         if(day<0)day=0;
         return day;
+    }
+    public  static int getAge(Date date) {
+        Date nowData = new Date();
+        Calendar start = Calendar.getInstance();
+        start.setTime(date);
+        Calendar now = Calendar.getInstance();
+        now.setTime(nowData);
+        int startYear = start.get(Calendar.YEAR);
+        int startMonth = start.get(Calendar.MONTH);
+        int startDay = start.get(Calendar.DAY_OF_MONTH);
+        int nowYear = now.get(Calendar.YEAR);
+        int nowMonth = now.get(Calendar.MONTH);
+        int nowDay = now.get(Calendar.DAY_OF_MONTH);
+        if (nowYear < startYear) return 0;
+        int age = nowYear - startYear;
+        if (nowMonth < startMonth) {
+            age--;
+        } else if (nowMonth == startMonth) {
+            if (nowDay < startDay) {
+                age--;
+            }
+        }
+        return age;
     }
 }

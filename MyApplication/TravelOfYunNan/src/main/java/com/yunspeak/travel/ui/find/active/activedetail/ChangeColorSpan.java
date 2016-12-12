@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.find.active.activedetail;
 
+import android.graphics.Color;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
@@ -14,7 +15,9 @@ public class ChangeColorSpan extends ClickableSpan {
     public ChangeColorSpan(int color) {
         this.color = color;
     }
-
+    public ChangeColorSpan() {
+        this.color = Color.parseColor("#5cd0c2");
+    }
     @Override
     public void onClick(View widget) {
 

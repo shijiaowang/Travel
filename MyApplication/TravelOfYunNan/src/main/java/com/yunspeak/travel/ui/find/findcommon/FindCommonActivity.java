@@ -327,8 +327,13 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         super.childAdd(builder, type);
-        builder.add(IVariable.CONTENT, content).add(IVariable.PROVINCE, province).add(IVariable.CITY, city).add(IVariable.TYPELIST, typelist)
-                .add(IVariable.STAR, star).add(IVariable.SCORE, score).add("playlist",playList).add("foodtype", foodType);
+        builder.add(IVariable.CONTENT, content).add(IVariable.PROVINCE, province).add(IVariable.CITY, city)
+                .add(IVariable.STAR, star).add(IVariable.SCORE, score);
+        if (type==DELICIOUS_NORMAL){
+            builder.add(IVariable.TYPELIST, foodType);
+        }else {
+            builder.add(IVariable.TYPELIST, typelist).add("playlist",playList);
+        }
     }
 
 

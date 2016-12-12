@@ -1,18 +1,16 @@
 package com.yunspeak.travel.ui.me.myappoint.chat.chatsetting;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.privatesetting.PrivateChatSettingActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -52,7 +50,7 @@ public class ChatSettingAdapter extends BaseRecycleViewAdapter<ChatSettingUserBe
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PrivateChatSettingActivity.start(mContext,tid);
+                    PrivateChatSettingActivity.start(mContext,dataBean.getId());
                 }
             });
             tvUserName.setText(dataBean.getNick_name());

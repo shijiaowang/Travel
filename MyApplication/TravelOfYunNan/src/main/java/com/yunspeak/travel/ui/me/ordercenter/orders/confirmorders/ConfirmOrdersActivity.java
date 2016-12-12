@@ -147,11 +147,10 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==REQ_CODE && resultCode==RESULT_CODE){
-            if (OrdersCenterActivity.instance!=null){
-                finish();
-            }else {
+            if (OrdersCenterActivity.instance==null){
                 startActivity(new Intent(this, OrdersCenterActivity.class));
             }
+            finish();
         }
     }
 

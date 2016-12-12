@@ -25,6 +25,7 @@ import com.yunspeak.travel.ui.me.bulltetinboard.BulletinBoardActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.ui.me.myappoint.memberdetail.MemberDetailActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
+import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.backmoney.BackMoneyActivity;
 import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
@@ -209,6 +210,11 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
             mTvAppointing.setTextColor(desColor);
             final String id = datas.getId();
             dealPayState(payStates, datas);
+            if (payStates==3){
+                mBtPay.setText("退款");
+            }else {
+                mBtPay.setText("付款");
+            }
             mRlBulletinBoard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -238,10 +244,14 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
                     EnterAppointDialog.showCommonDialog(mContext, "删除约伴", "确认", "注意！此操作将删除您的约伴！请慎重选择！", new ParentPopClick() {
                         @Override
                         public void onClick(int t) {
-                            Map<String, String> deleteMap = MapUtils.Build().addKey().addUserId().addtId(datas.getId()).end();
-                            MyAppointEvent myAppointEvent = new MyAppointEvent();
-                            myAppointEvent.setPosition(position);
-                            XEventUtils.postUseCommonBackJson(IVariable.DELETE_APPOINT, deleteMap, BaseToolBarActivity.TYPE_DELETE, myAppointEvent);
+                            if (payStates==2){//未付款 直接删除
+                                Map<String, String> deleteMap = MapUtils.Build().addKey().addUserId().addtId(datas.getId()).end();
+                                MyAppointEvent myAppointEvent = new MyAppointEvent();
+                                myAppointEvent.setPosition(position);
+                                XEventUtils.postUseCommonBackJson(IVariable.DELETE_APPOINT, deleteMap, BaseToolBarActivity.TYPE_DELETE, myAppointEvent);
+                            }else {//进入退款流程
+                                BackMoneyActivity.start(mContext, datas.getId(), "1", true);
+                            }
                         }
                     });
                 }
@@ -256,19 +266,25 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
             mBtPay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, ConfirmOrdersActivity.class);
-                    intent.putExtra("pay_type", payType);
-                    intent.putExtra(IVariable.ID, datas.getOrder_id());
-                    mContext.startActivity(intent);
+                    if (payStates==2) {//付款
+                        Intent intent = new Intent(mContext, ConfirmOrdersActivity.class);
+                        intent.putExtra("pay_type", payType);
+                        intent.putExtra(IVariable.ID, datas.getOrder_id());
+                        mContext.startActivity(intent);
+                    }else if (payStates==3){//退款
+                        if (payType.equals("2")) {//活动退款
+                            BackMoneyActivity.start(mContext, datas.getId(), "2", false);
+                        }else {
+                            BackMoneyActivity.start(mContext, datas.getId(), "1", false);
+                        }
+                    }
                 }
             });
 
             mRlMemberDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, MemberDetailActivity.class);
-                    intent.putExtra(IVariable.DATA, id);
-                    mContext.startActivity(intent);
+                    MemberDetailActivity.start(mContext,id,type+"");
                 }
             });
 
@@ -303,6 +319,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
                 showPay = View.VISIBLE;
                 break;
             case 3:
+                showPay = View.VISIBLE;
             case 6:
             case 7:
             case 8:
@@ -322,6 +339,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder<Object> {
                     mBtStart.setText("确认出发");
                     showDelete = View.VISIBLE;
                     showStart = View.VISIBLE;
+                    showPay=View.GONE;
                 } else if (payStates == 7) {
                     mBtStart.setText("出发");
                     showDelete = View.VISIBLE;

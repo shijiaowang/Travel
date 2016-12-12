@@ -1,6 +1,8 @@
 package com.yunspeak.travel.ui.me.myappoint.memberdetail;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,21 +35,29 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
     private MemberEnterAdapter memberEnterAdapter;
     private List<MemberDetailBean.DataBean.JoinBean> newDatas;
     private MemberJoinedAdapter memberJoinedAdapter;
+    private String type;
 
 
+    public static void start(Context context,String tid,String type){
+      Intent intent=new Intent(context,MemberDetailActivity.class);
+      intent.putExtra(IVariable.TID,tid);
+      intent.putExtra(IVariable.TYPE,type);
+      context.startActivity(intent);
 
+  }
 
     @Override
     protected void initEvent() {
-        tId = getIntent().getStringExtra(IVariable.DATA);
+        tId = getIntent().getStringExtra(IVariable.TID);
+        type = getIntent().getStringExtra(IVariable.TYPE);
         mTvEnter.setOnClickListener(this);
         mTvJoined.setOnClickListener(this);
     }
 
 
     @Override
-    protected void childAdd(MapUtils.Builder builder, int type) {
-            builder.addtId(tId);
+    protected void childAdd(MapUtils.Builder builder, int state) {
+            builder.addtId(tId).addType(type);
     }
 
     @Override

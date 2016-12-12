@@ -58,6 +58,7 @@
 
     </LinearLayout>
     <View
+        android:id="@+id/v_hide_line"
         android:background="@color/meLine"
         android:layout_marginLeft="@dimen/x67"
         android:layout_width="match_parent"

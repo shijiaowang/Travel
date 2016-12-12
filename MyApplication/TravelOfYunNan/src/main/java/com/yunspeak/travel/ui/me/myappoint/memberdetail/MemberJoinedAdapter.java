@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.me.myappoint.memberdetail;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,6 +12,7 @@ import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.StringUtils;
 
 import java.util.List;
 
@@ -47,6 +47,8 @@ public class MemberJoinedAdapter extends BaseRecycleViewAdapter<MemberDetailBean
         TextView tvType;
         @BindView(R.id.tv_age)
         TextView tvAge;
+        @BindView(R.id.v_hide_line)
+        View mVHideLine;
         public MemberDetailHolder(View itemView) {
             super(itemView);
         }
@@ -54,9 +56,19 @@ public class MemberJoinedAdapter extends BaseRecycleViewAdapter<MemberDetailBean
         @Override
         public void childBindView(int position, final MemberDetailBean.DataBean.JoinBean joinBean, final Context mContext) {
             FrescoUtils.displayIcon(ivIcon, joinBean.getUser_img());
-           tvAge.setText(joinBean.getAge());
+            String age = joinBean.getAge();
+            if (StringUtils.isEmpty(age) || age.equals("0")){
+                tvAge.setText("保密");
+            }else {
+                tvAge.setText(age);
+            }
            tvSex.setText(joinBean.getSex().equals("1") ? R.string.activity_member_detail_boy : R.string.activity_member_detail_girl);
            tvName.setText(joinBean.getNick_name());
+            if (position==mDatas.size()-1){
+                mVHideLine.setVisibility(View.GONE);
+            }else {
+                mVHideLine.setVisibility(View.VISIBLE);
+            }
             if (joinBean.getIs_boss().equals("1")){
                 tvType.setVisibility(View.VISIBLE);
                 tvType.setText("发布人");

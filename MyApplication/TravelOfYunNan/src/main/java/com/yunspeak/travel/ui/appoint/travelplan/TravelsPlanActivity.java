@@ -98,10 +98,7 @@ public class TravelsPlanActivity extends TravelsPlanBaseActivity {
 
 
 
-    @Override
-    protected EditText getEdView() {
-        return mEtRemark;
-    }
+
 
     @Override
     protected void setClass(Intent intent) {

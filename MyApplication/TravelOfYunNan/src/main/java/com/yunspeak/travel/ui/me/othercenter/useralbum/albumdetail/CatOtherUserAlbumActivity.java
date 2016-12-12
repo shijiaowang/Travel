@@ -1,29 +1,21 @@
 package com.yunspeak.travel.ui.me.othercenter.useralbum.albumdetail;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.AppBarStateChangeListener;
 import com.yunspeak.travel.ui.baseui.BaseChangeColorRecycleActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
-import org.xutils.common.util.DensityUtil;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -39,6 +31,7 @@ public class CatOtherUserAlbumActivity extends BaseChangeColorRecycleActivity<Ca
     @BindView(R.id.tv_user) TextView tvUser;
     @BindView(R.id.tv_title) TextView tvTitle;
     private String id;
+    private List<String> list;
 
 
     @Override
@@ -77,7 +70,13 @@ public class CatOtherUserAlbumActivity extends BaseChangeColorRecycleActivity<Ca
 
     @Override
     protected void initChildListener() {
+    }
 
+    @Override
+    protected void onChildItemClick(int position) {
+        super.onChildItemClick(position);
+        if (mDatas==null || mDatas.size()==0)return;
+        CirclePreviewActivity.start(this,list,position);
     }
 
     @Override
@@ -90,6 +89,11 @@ public class CatOtherUserAlbumActivity extends BaseChangeColorRecycleActivity<Ca
                 FrescoUtils.displayNormal(ivCover,head.getBackground_img(),1000,500);
                 tvUser.setText(head.getTitle());
                 tvTitle.setText(head.getContent());
+            case TYPE_LOAD:
+                list = new ArrayList<>();
+                for (CatOtherUserBean.DataBean.BodyBean bodyBean:mDatas){
+                   list.add(bodyBean.getPath());
+                }
                 break;
         }
     }
@@ -98,7 +102,6 @@ public class CatOtherUserAlbumActivity extends BaseChangeColorRecycleActivity<Ca
     protected BaseRecycleViewAdapter<CatOtherUserBean.DataBean.BodyBean> initAdapter(List<CatOtherUserBean.DataBean.BodyBean> mDatas) {
         return new CatOtherAlbumAdapter(mDatas,this);
     }
-
     public static void start(Context context, String id) {
         Intent intent = new Intent(context, CatOtherUserAlbumActivity.class);
         intent.putExtra(IVariable.ID, id);

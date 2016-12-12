@@ -114,7 +114,7 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
                 UserInfo userInfo = object.getData();
                 GlobalValue.userInfo=userInfo;//赋值
                 UserUtils.saveUserInfo(userInfo);//序列化
-                PushAgent.getInstance(this).addAlias(userInfo.getId(), "YUNS_ID", new UTrack.ICallBack() {
+                PushAgent.getInstance(this).addAlias(userInfo.getId(), "CITYOFF_ID", new UTrack.ICallBack() {
                     @Override
                     public void onMessage(boolean b, String s) {
                         LogUtils.e("是否成功"+b+"信息"+s);

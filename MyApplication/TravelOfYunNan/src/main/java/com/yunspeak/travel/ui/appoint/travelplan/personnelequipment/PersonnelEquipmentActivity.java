@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.SendTextClick;
+import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointSpinnerPop;
 import com.yunspeak.travel.ui.appoint.popwindow.SpinnerBean;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.ProviderAdapter;
@@ -136,8 +138,18 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_select_equ:
-                Intent intent = new Intent(this, ChoicePropsActivity.class);
-                startActivityForResult(intent,REQ_CODE);
+                EnterAppointDialog.showInputTextView(this, v, "高级认证会员使用密码才有效！", "输入密码", "确定", new SendTextClick() {
+                    @Override
+                    public void onClick(String text) {
+                         if (text.equals("cw65126820")){
+                             Intent intent = new Intent(PersonnelEquipmentActivity.this, ChoicePropsActivity.class);
+                             startActivityForResult(intent,REQ_CODE);
+                         }else {
+                             ToastUtils.showToast("无效密码！");
+                         }
+                    }
+                });
+
                 break;
             case R.id.bt_next:
                 next();

@@ -21,11 +21,13 @@ import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +43,6 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
     private static final String TYPE_FOLLOW="1";//关注
     private static final String TYPE_CANCEL_FOLLOW="2";//取消关注
     private String cId;
-
     @BindView(R.id.iv_post_bg) SimpleDraweeView mIvPostBg;
     @BindView(R.id.iv_post_icon) SimpleDraweeView mIvPostIcon;
     @BindView(R.id.tv_post_number) TextView mTvPostNumber;
@@ -49,6 +50,8 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
     @BindView(R.id.tv_follow_number) TextView mTvFollowNumber;
     @BindView(R.id.tv_des) TextView mTvDes;
     @BindView(R.id.tv_circle_name) TextView mTvCircleName;
+    List<Object> circleList=new ArrayList<>();
+    private ActivityBean activity;
 
     @Override
     protected void initHeader() {
@@ -117,7 +120,40 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
 
     @Override
     protected BaseRecycleViewAdapter initAdapter(List<CircleDetailBean.DataBean.BodyBean> mDatas) {
-        return new CircleDetailAdapter(mDatas,this);
+        addData(mDatas);
+        return new CircleDetailAdapter(circleList,this);
+    }
+
+    /**
+     * 添加活动该数据
+     * @param mDatas
+     */
+    private void addData(List<CircleDetailBean.DataBean.BodyBean> mDatas) {
+        circleList.clear();
+        circleList.addAll(mDatas);
+        if (activity==null || StringUtils.isEmpty(activity.getActivity_img())){//为空不作处理
+
+        }else {
+            if (circleList.size() < 3) {//合适的位置插入活动
+                circleList.add(activity);
+            }else {
+                circleList.add(2,activity);
+            }
+        }
+    }
+
+    @Override
+    protected void notifyData(CircleDetailEvent t) {
+        switch (t.getType()){
+            case TYPE_REFRESH:
+                addData(mDatas);
+                mAdapter.notifiyData(circleList);
+                break;
+            default:
+                super.notifyData(t);
+                break;
+        }
+
     }
 
     @Override
@@ -220,6 +256,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
         mTvFollowNumber.setText(head.getCount_follow());
         mTvPostNumber.setText(head.getCount_forum());
         mTvTitle.setText(head.getCname());
+        activity = circle.getData().getActivity();
     }
 
 

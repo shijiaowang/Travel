@@ -5,8 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -14,13 +12,9 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IChildParent;
 import com.yunspeak.travel.global.ParentBean;
-import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
-
-import org.xutils.common.util.DensityUtil;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -90,6 +84,12 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
             if (mAdapter == null) {
                 mDatas = boy;
                 mAdapter = initAdapter(mDatas);
+                mAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        onChildItemClick(position);
+                    }
+                });
                 mRvCommon.setAdapter(mAdapter);
                 linearLayoutManager = new LinearLayoutManager(this);
                 linearLayoutManager.setAutoMeasureEnabled(true);
@@ -98,11 +98,11 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
             } else if (t.getType() == TYPE_LOAD) {
                 mDatas.addAll(boy);
                 mSwipe.setLoadingMore(false);
-                mAdapter.notifiyData(mDatas);
+                notifyData(t);
             } else if (t.getType() == TYPE_REFRESH) {
                 mSwipeContainer.setRefreshing(false);
                 mDatas = boy;
-                mAdapter.notifiyData(mDatas);
+                notifyData(t);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,6 +110,18 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
         }
     }
 
+    /**
+     * 刷新数据
+     * @param t
+     */
+    protected void notifyData(T t) {
+        mAdapter.notifiyData(mDatas);
+    }
+
+
+    protected  void onChildItemClick(int position){
+
+    }
 
 
     protected void changeMargin(int space,int top) {

@@ -21,6 +21,7 @@ import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.NetUtils;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -97,9 +98,15 @@ public class YunSpeakHelper {
 
             @Override
             public Intent getLaunchIntent(EMMessage message) {
-                // you can set what activity you want display when user click the notification
-                Intent intent = new Intent(appContext, ChatActivity.class);
-
+                Intent intent;
+                if (HomeActivity.instance==null){
+                    intent=new Intent(appContext,HomeActivity.class);
+                    intent.putExtra(IVariable.MSG_TYPE,"9");//9为跳转聊天页面
+                    intent.putExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK,false);//9为跳转聊天页面
+                }else {
+                    // you can set what activity you want display when user click the notification
+                    intent = new Intent(appContext, ChatActivity.class);
+                }
                     EMMessage.ChatType chatType = message.getChatType();
                     if (chatType == EMMessage.ChatType.Chat) { // single chat message
                         intent.putExtra(IVariable.CHAT_ID, message.getFrom());

@@ -14,6 +14,7 @@ import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myappoint.historyorders.HistoryOrdersActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.PayNotifyEvent;
+import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.backmoney.BackMoneyNotifyEvent;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -33,7 +34,7 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
     public static final String ENTERING="1";
     public static final String PASSED="2";
     public static final String WITH_ME="4";
-    private String type=ENTERING;
+    private String type=PASSED;
     private String preType="0";
    @BindView(R.id.ll_root)
     LinearLayout llRoot;
@@ -50,7 +51,7 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
 
   public static void start(Context context,String type){
       Intent intent=new Intent(context,MyAppointActivity.class);
-      intent.putExtra(IVariable.TYPE,type);
+     // intent.putExtra(IVariable.TYPE,type);
       context.startActivity(intent);
   }
 
@@ -60,7 +61,10 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
         startActivity(new Intent(this, HistoryOrdersActivity.class));
 
     }
-
+   @Subscribe
+   public void onEvent(BackMoneyNotifyEvent event){
+       onLoad(TYPE_REFRESH);
+   }
 
     @Override
     protected void initEvent() {
@@ -88,7 +92,7 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
                 mRbEntering.setChecked(true);
             }
         }else {
-            mRbEntering.setChecked(true);
+            mRbPassed.setChecked(true);
         }
     }
 

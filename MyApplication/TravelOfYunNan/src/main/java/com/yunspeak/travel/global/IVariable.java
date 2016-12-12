@@ -82,6 +82,7 @@ public interface IVariable {
     String GET_VERIFICATIO_CODE = API_KEY + "User/sendRegistermsg/";//获取验证码
     String ACTIVATE_COUPONS = API_KEY + "Order/setCouponCode/";//激活优惠券
     String SAVE_HOBBY = API_KEY + "User/setInteres/";//保存兴趣
+    String BACK_MONEY = API_KEY + "UserTravel/getOutTraveldetail/";//退款计算
     String DELETE_POST = API_KEY + "Circle/deleteForum/";//删除帖子
     String DELETE_ALBUM = API_KEY + "User/delUserImg/";//删除相册
     String DELETE_ORDER_HISTORY = API_KEY + "Order/delOrderRecord/";//删除订单记录
@@ -253,7 +254,8 @@ public interface IVariable {
  String TYPE_DESTINATION = "3";//类型，type  所属类型 1 游记 2美食 3 目的地
  String TYPE_TRAVELS = "1";//类型，type  所属类型 1 游记 2美食 3 目的地
  String TYPE_DELICIOUS = "2";//类型，type  所属类型 1 游记 2美食 3 目的地
- 
+ String MSG_TYPE = "msg_type";
+
  String PID = "pid";
 
  String NEXT_PAGE = "nextpage";//发现评论，是否有下一页
@@ -301,4 +303,6 @@ public interface IVariable {
     String ICON = "icon";
     String FLOOR="floor";
     String REPLAY_ID="replay_id";
+    String BIRTHDAY = "birthday";
+    String BIRTHDAY_SEE = "birthday_see";
 }

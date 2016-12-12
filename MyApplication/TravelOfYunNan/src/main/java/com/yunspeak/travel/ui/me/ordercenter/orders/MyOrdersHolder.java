@@ -91,7 +91,7 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
         mTvCancel.setTag(status);
         if (status.equals("1")){
             status="已支付";
-          mBPay.setVisibility(View.GONE);
+           mBPay.setVisibility(View.GONE);
             mTvCancel.setText("删除");
 
         }else if (status.equals("2")){
@@ -140,10 +140,9 @@ public class MyOrdersHolder extends BaseRecycleViewHolder<MyOrdersBean.DataBean>
         mBPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent=new Intent(mContext, ConfirmOrdersActivity.class);
                 intent.putExtra(IVariable.ID,id);
-                intent.putExtra("pay_type",payType);
+                intent.putExtra("pay_type",payType+"");
                 mContext.startActivity(intent);
 
             }

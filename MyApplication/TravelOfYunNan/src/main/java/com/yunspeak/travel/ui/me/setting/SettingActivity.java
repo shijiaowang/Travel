@@ -5,10 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.bigkoo.pickerview.TimePickerView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.core.ImagePipeline;
@@ -35,6 +38,7 @@ import com.yunspeak.travel.ui.me.setting.personalprofile.PersonalProfileActivity
 import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
 import com.yunspeak.travel.ui.view.PhoneTextView;
 import com.yunspeak.travel.utils.CacheUtils;
+import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -47,6 +51,8 @@ import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -69,6 +75,9 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     @BindView(R.id.ll_change_password) LinearLayout mLlChangePassword;
     @BindView(R.id.ll_back) LinearLayout mLlBack;
     @BindView(R.id.ll_clear) LinearLayout mLlClear;
+    @BindView(R.id.tv_user_age) TextView mTvUserAge;
+    @BindView(R.id.s_toggle)
+    Switch mSToggle;
     private UserInfo userInfo;
     private String nickName="";
     private String provice="";
@@ -79,6 +88,9 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     private boolean isUpdate=false;
     private boolean messageIsChange=false;
     private String iconUrl;
+    private int isCanSee=0;//默认不能看
+    private TimePickerView pvTime;
+    private long time;
 
     @Override
     protected void initEvent() {
@@ -93,6 +105,14 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         mTvUserLivePlace.setOnClickListener(this);
         mLlBack.setOnClickListener(this);
         mLlClear.setOnClickListener(this);
+        mTvUserAge.setOnClickListener(this);
+        mSToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isCanSee=isChecked?1:0;
+                messageIsChange=true;
+            }
+        });
         initData();
 
     }
@@ -114,6 +134,19 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
             mTvUserLivePlace.setText( provinceName+ "-" +cityName );
             mTvUserNickName.setText(userInfo.getNick_name());
             mPtvPhone.setPhoneNumber(userInfo.getTel());
+            String birthday = userInfo.getBirthday();
+            isCanSee=userInfo.getBirthday_see();
+            mSToggle.setChecked(isCanSee==1);
+            if (StringUtils.isEmpty(birthday) || birthday.equals("0")){
+                mTvUserAge.setText("保密");
+            }else {
+                //计算年龄
+                long parseLong = Long.parseLong(birthday);
+                parseLong=parseLong*1000;
+                Date date=new Date(parseLong);
+                int age = CalendarUtils.getAge(date);
+                mTvUserAge.setText(age+"");
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -154,6 +187,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         }
         UserUtils.saveUserInfo(data);
         messageIsChange=false;
+        time=0;
         setResult(HomeActivity.UP_RESULT);
     }
     @Override
@@ -165,6 +199,9 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_user_age:
+                showTime();
+                break;
             case R.id.ll_phone:
                 startActivity(new Intent(this, ChangePhoneActivity.class));
                 break;
@@ -246,6 +283,35 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 break;
         }
     }
+    protected void showTime() {
+        if (pvTime == null) {
+            pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
+            //控制时间范围
+            Calendar calendar = Calendar.getInstance();
+            pvTime.setRange(1970, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果
+            pvTime.setTime(new Date());
+            pvTime.setCyclic(false);
+            pvTime.setCancelable(true);
+            pvTime.setTitle("选择生日");
+        }
+        //时间选择后回调
+        pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date) {
+                int age = CalendarUtils.getAge(date);
+
+                if (age<0){
+                    ToastUtils.showToast("日子还没到呢");
+                    return;
+                }
+                messageIsChange=true;
+                time=date.getTime();
+                mTvUserAge.setText(age+"");
+            }
+        });
+        hideSoftWore(mTvTitle);
+        pvTime.show();
+    }
 
     private void changeLivePlace() {
         //选项选择器
@@ -264,6 +330,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 @Override
                 public void onOptionsSelect(int options1, int option2, int options3) {
                     //返回的分别是三个级别的选中位置
+
                     String tx = options1Items.get(options1).getPickerViewText()
                             + "-" + options2Items.get(options1).get(option2);
                     mTvUserLivePlace.setText(tx);
@@ -297,6 +364,10 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         if (!StringUtils.isEmptyNotNull(provice) && !StringUtils.isEmptyNotNull(city)){
             builder.addProvince(provice).addCity(city);
         }
+        if (time!=0){
+            builder.add(IVariable.BIRTHDAY,(time/1000)+"");
+        }
+        builder.add(IVariable.BIRTHDAY_SEE,isCanSee+"");
         List<String> files=new ArrayList<>();
         if (!StringUtils.isEmpty(iconUrl)){
               files.add(iconUrl);

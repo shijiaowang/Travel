@@ -54,7 +54,7 @@ public class MapUtils {
             return this;
         }
         public Builder addType(String type){
-            stringMap.put(IVariable.TYPE,type+"");
+            stringMap.put(IVariable.TYPE,type);
             return this;
         }
         public Builder addClass(String clazz){
@@ -127,7 +127,7 @@ public class MapUtils {
             return this;
         }
 
-        public Builder addTId(String tId){
+        public Builder addT_Id(String tId){
             stringMap.put(IVariable.T_ID,tId);
             return this;
         }

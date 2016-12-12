@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.utils.LogUtils;
@@ -26,8 +27,8 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
     public Context mContext;
     Set<Integer> errorList=new HashSet<>();
     private RecyclerView recyclerView;
-    private boolean isGlobaling;
     private Set<Integer> currentSets;
+    private boolean scrolled;
 
     public BaseRecycleViewAdapter(List<T> mDatas, Context mContext) {
         this.mDatas = mDatas;
@@ -64,17 +65,36 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
         } catch (Exception e) {
             e.printStackTrace();
             errorList.add(position);
+            if (!scrolled) {
+                clearErrorDateWhileShowFirstTime();
+            }
             LogUtils.e("抛异常啦");
         }
     }
 
     /**
+     * 如果一进来就报错
+     */
+    private synchronized void clearErrorDateWhileShowFirstTime() {
+        if (recyclerView!=null){
+            scrolled=true;
+            recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    onErrorDeal();
+                    recyclerView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
+            });
+        }
+    }
+
+
+    /**
      * 处理错误数据
      */
-    private  void onErrorDeal() {
+    private synchronized void onErrorDeal() {
         try {
-            if (isGlobaling || recyclerView==null)return;
-            isGlobaling = true;
+            if ( recyclerView==null || mDatas.size()==0)return;
             remove();
             recyclerView.post(new Runnable() {
                 @Override
@@ -90,7 +110,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
     /**
      * 移除
      */
-    private void remove() {
+    private synchronized void remove() {
         Iterator<Integer> iterator = errorList.iterator();
         List<T> tempList=new ArrayList<>();
         int itemCount = getItemCount()-1;
@@ -100,10 +120,15 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
             min=min>next?next:min;
             tempList.add(mDatas.get(next));
         }
-        BaseRecycleViewAdapter.this.notifyItemRangeRemoved(min,itemCount);
-        mDatas.removeAll(tempList);
+        if (mDatas.size()==tempList.size()){//清除全部数据需要调用此方法，否者会抛出
+            mDatas.clear();
+            BaseRecycleViewAdapter.this.notifyDataSetChanged();//清理所有数据
+        }else {
+            BaseRecycleViewAdapter.this.notifyItemRangeRemoved(min,itemCount);
+            mDatas.removeAll(tempList);
+        }
+
         tempList.clear();
-        isGlobaling = false;
         errorList.clear();
     }
     /**
@@ -118,6 +143,8 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState==RecyclerView.SCROLL_STATE_IDLE && errorList.size()!=0){
                     onErrorDeal();
+                }else {
+                    scrolled=true;
                 }
             }
         });

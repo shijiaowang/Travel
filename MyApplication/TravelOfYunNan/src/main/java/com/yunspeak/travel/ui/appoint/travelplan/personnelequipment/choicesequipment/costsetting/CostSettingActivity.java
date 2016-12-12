@@ -44,8 +44,8 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
     TextView mTvTotalPrice;
     @BindView(R.id.tv_money_des)
     TextView mTvMoneyDes;
-    @BindView(R.id.tv_cost)
-    TextView mTvCost;
+    @BindView(R.id.tv_cost) TextView mTvCost;
+    @BindView(R.id.tv_des) TextView mTvdes;
     private int size;
     private double totalMoney;
     private int countPeople;
@@ -137,6 +137,7 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
         } else {
             CostSettingBean costSettingBean = GsonUtils.getObject(costSettingEvent.getResult(), CostSettingBean.class);
             List<CostSettingBean.DataBean> data = costSettingBean.getData();
+            mTvdes.setText(costSettingBean.getBasectext());
             CostSettingAdapter costSettingAdapter = new CostSettingAdapter(data, this);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.setAdapter(costSettingAdapter);

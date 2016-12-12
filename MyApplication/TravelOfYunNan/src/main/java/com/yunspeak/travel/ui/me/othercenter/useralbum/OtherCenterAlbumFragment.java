@@ -2,12 +2,15 @@ package com.yunspeak.travel.ui.me.othercenter.useralbum;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -37,7 +40,8 @@ import butterknife.BindView;
  */
 public class OtherCenterAlbumFragment extends LoadBaseFragment<OtherAlbumEvent> implements INotify<OtherAlbumBean.DataBean.MoreBean>, OnLoadMoreListener {
     @BindView(R.id.swipe_container) SwipeToLoadLayout mSwipe;
-    @BindView(R.id.swipe_target) RecyclerView mSwipeContainer;
+    @BindView(R.id.swipe_target) FrameLayout mSwipeContainer;
+    @BindView(R.id.rv_album) RecyclerView recyclerView;
     private String userId;
     private List<OtherAlbumBean.DataBean.MoreBean> mDatas=new ArrayList<>();
     private OtherAlbumAdapter albumAdapter;
@@ -64,16 +68,24 @@ public class OtherCenterAlbumFragment extends LoadBaseFragment<OtherAlbumEvent> 
         if (mDatas==null ||mDatas.size()==0)return;
         if (albumAdapter==null){
             albumAdapter = new OtherAlbumAdapter(mDatas, getContext());
-            mSwipeContainer.setAdapter(albumAdapter);
+            recyclerView.setAdapter(albumAdapter);
             LinearLayoutManager layout = new GridLayoutManager(getContext(),2);
-            mSwipeContainer.setLayoutManager(layout);
-            mSwipeContainer.addItemDecoration(new AlbumSpace(6));
+            recyclerView.setLayoutManager(layout);
+            recyclerView.addItemDecoration(new AlbumSpace(6));
             albumAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
                     CatOtherUserAlbumActivity.start(getContext(),mDatas.get(position).getId());
                 }
             });
+
+                /*float width = getResources().getDimension(R.dimen.x162);//动态居中
+                int screenWidth = DensityUtil.getScreenWidth();
+                int leftMargin= (int) ((screenWidth-width*2-DensityUtil.dip2px(6))/2);
+                ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) recyclerView.getLayoutParams();
+                layoutParams.leftMargin=leftMargin;
+                recyclerView.setLayoutParams(layoutParams);*/
+
         }else {
             albumAdapter.notifiyData(mDatas);
         }
@@ -107,12 +119,7 @@ public class OtherCenterAlbumFragment extends LoadBaseFragment<OtherAlbumEvent> 
         mSwipe.setLoadMoreFooterView(footView);
         mSwipe.setOnLoadMoreListener(this);
         mSwipe.setLoadMoreEnabled(false);
-        float width = getResources().getDimension(R.dimen.x162);//动态居中
-        int screenWidth = DensityUtil.getScreenWidth();
-        int leftMargin= (int) ((screenWidth-width*2)/2);
-        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mSwipeContainer.getLayoutParams();
-        layoutParams.leftMargin=leftMargin;
-        mSwipeContainer.setLayoutParams(layoutParams);
+
     }
 
     @Override

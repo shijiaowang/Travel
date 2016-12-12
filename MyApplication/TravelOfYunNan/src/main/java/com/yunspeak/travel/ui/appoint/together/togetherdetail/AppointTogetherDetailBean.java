@@ -78,6 +78,15 @@ public class AppointTogetherDetailBean {
         private String is_collect;
         private String routes_title;
         private String share_url;
+        private String basectext;
+
+        public String getBasectext() {
+            return basectext;
+        }
+
+        public void setBasectext(String basectext) {
+            this.basectext = basectext;
+        }
 
         public String getShare_url() {
             return share_url;

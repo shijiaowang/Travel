@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by wangyang on 2016/9/20 0020.
  */
 public class UserInfo implements Serializable {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
     private String id;
     private String tel;
@@ -31,9 +31,18 @@ public class UserInfo implements Serializable {
     private String level_max_score;
     private String add_time;
     private String update_time;
+    private int birthday_see;
 
     public String getId() {
         return id;
+    }
+
+    public int getBirthday_see() {
+        return birthday_see;
+    }
+
+    public void setBirthday_see(int birthday_see) {
+        this.birthday_see = birthday_see;
     }
 
     public void setId(String id) {

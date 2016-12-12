@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.ActivityBean;
 import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.home.homesearch.HomeSearchActivity;
@@ -27,6 +28,7 @@ import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
+import com.yunspeak.travel.utils.ToastUtils;
 
 import java.util.List;
 
@@ -47,6 +49,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     @BindView(R.id.tv_name) TextView tvName;
     @BindView(R.id.tv_people) TextView tvPeople;
     @BindView(R.id.et_search) EditText mEtSearch;
+    @BindView(R.id.tv_focus) TextView mTvFocus;
     @BindView(R.id.rl_active) RelativeLayout rlActive;
     @BindView(R.id.swipe_container) SwipeRefreshLayout mSwipe;
     @BindView(R.id.pager_cursor) PagerCursorView pagerCursorView;
@@ -89,9 +92,9 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
 
         canSmoothInNetScroll(mRvTravels, linearLayoutManager);
 
-        final HomeBean.DataBean.ActivitBean activit = data.getActivit();
+        final ActivityBean activit = data.getActivit();
         if (activit != null) {
-            tvType.setText(activit.getTitle());
+            tvType.setText(activit.getType().equals("2")?"线下活动":"线上活动");
             FrescoUtils.displayNormal(ivBg, activit.getActivity_img(),R.drawable.normal_1_3);
             tvPeople.setText(activit.getNow_people() + "人参加");
             tvName.setText(activit.getTitle());
@@ -124,6 +127,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         mSwipe.setColorSchemeResources(R.color.otherTitleBg);
         mRlSearch.setOnClickListener(this);
         mEtSearch.setOnClickListener(this);
+        mTvFocus.setOnClickListener(this);
     }
 
 
@@ -144,6 +148,9 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
             case R.id.et_search:
             case R.id.rl_search:
                 startActivity(new Intent(getContext(), HomeSearchActivity.class));
+                break;
+            case R.id.tv_focus:
+                ToastUtils.showToast("暂时只支持云南");
                 break;
 
         }

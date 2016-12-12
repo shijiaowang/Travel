@@ -2,7 +2,6 @@ package com.yunspeak.travel.ui.me.myappoint.chat.chatsetting;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -65,7 +64,7 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
         tvChatNumber.setText("群成员("+dataBeen.size()+")");
         ChatSettingAdapter chatSettingAdapter=new ChatSettingAdapter(dataBeen,this,chatId);
         rvMember.setAdapter(chatSettingAdapter);
-        LinearLayoutManager linearLayoutManager=new GridLayoutManager(this,dataBeen.size());
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         rvMember.setLayoutManager(linearLayoutManager);
         rvMember.addItemDecoration(new HotSpotsItemDecoration(15));
 

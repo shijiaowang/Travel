@@ -52,7 +52,6 @@ import cn.sharesdk.framework.ShareSDK;
  */
 public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTogetherDetailEvent> implements View.OnClickListener {
     private static final int TYPE_ENTER_APPOINT = 95;
-    private static final int TYPE_OUT_APPOINT = 59;
     @BindView(R.id.tv_start_add)
     TextView mTvStartAdd;
     @BindView(R.id.tv_end_add)
@@ -115,8 +114,8 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     ToShowAllListView mLvEquProvider;
     @BindView(R.id.lv_insurance)
     ToShowAllListView mLvInsurance;//保险
-    @BindView(R.id.fl_title)
-    FlowLayout mFlTitle;
+    @BindView(R.id.fl_title) FlowLayout mFlTitle;
+    @BindView(R.id.tv_appoint_des) TextView mTvDes;
     @BindView(R.id.tv_price)
     TextView mTvPrice;
     @BindView(R.id.bt_enter)
@@ -351,6 +350,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         mTvPlanPeople.setText(data.getMin_people() + "-" + data.getMax_people() + "人");
         mTvTraffic.setText(data.getTraffic());
         mTvPrice.setText("¥" + data.getTotal_price());
+        mTvDes.setText(data.getBasectext());
         mTvRemark.setText(data.getTraffic_text());
         mTvStartAdd.setText(data.getMeet_address());
         mTvEndAdd.setText(data.getOver_address());

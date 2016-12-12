@@ -2,10 +2,12 @@ package com.yunspeak.travel.ui.find.active;
 
 
 import android.content.Intent;
+import android.view.ViewGroup;
 
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.DetailCommonEvent;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.ActivityBean;
 import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.baseui.BaseBarChangeColorActivity;
 import com.yunspeak.travel.global.IVariable;
@@ -16,7 +18,7 @@ import java.util.List;
  * Created by wangyang on 2016/7/25 0025.
  * 活动界面
  */
-public class ActiveActivity extends BaseBarChangeColorActivity<DetailCommonEvent,ActiveBean,ActiveBean.DataBean> {
+public class ActiveActivity extends BaseBarChangeColorActivity<DetailCommonEvent,ActiveBean,ActivityBean> {
 
     @Override
     protected void initEvent() {
@@ -24,14 +26,13 @@ public class ActiveActivity extends BaseBarChangeColorActivity<DetailCommonEvent
         vsContent.setLayoutResource(R.layout.activity_active_content);
         vsContent.inflate();
         changeMargin(10,15);
-}
-
-    @Override
-    public void onItemClick(int position) {
-        Intent intent = new Intent(ActiveActivity.this, ActivateDetailActivity.class);
-        intent.putExtra(IVariable.A_ID,mDatas.get(position).getId());
-        startActivity(intent);
+        int margin = (int) getResources().getDimension(R.dimen.x10);
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mRvCommon.getLayoutParams();
+        layoutParams.leftMargin=margin;
+        layoutParams.rightMargin=margin;
+        mRvCommon.setLayoutParams(layoutParams);
     }
+
 
     @Override
     protected String initUrl() {
@@ -42,7 +43,7 @@ public class ActiveActivity extends BaseBarChangeColorActivity<DetailCommonEvent
 
 
     @Override
-    protected BaseRecycleViewAdapter initAdapter(List<ActiveBean.DataBean> mDatas) {
+    protected BaseRecycleViewAdapter initAdapter(List<ActivityBean> mDatas) {
         return new ActiveAdapter(mDatas,this);
     }
 

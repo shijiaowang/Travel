@@ -153,7 +153,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         super.childAdd(builder, type);
-        builder.addTId(tId);
+        builder.addT_Id(tId);
     }
 
 
@@ -164,9 +164,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         try {
             title = data.getTravel().getTitle();
             mTvTitle.setText(title);
-            final String[] split = data.getTravel().getTravels_img().split(",");
-            String url = split[0];
-            FrescoUtils.displayNormal(mIvBg, url, 640, 360, R.drawable.normal_2_1);
+            FrescoUtils.displayNormal(mIvBg, data.getTravel().getLogo_img(), 640, 360, R.drawable.normal_2_1);
         } catch (Exception e) {
             e.printStackTrace();
         }

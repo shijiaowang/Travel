@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
@@ -154,10 +153,6 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
         }
     }
 
-    @Override
-    protected EditText getEdView() {
-        return null;
-    }
 
     @Override
     protected void setClass(Intent intent) {

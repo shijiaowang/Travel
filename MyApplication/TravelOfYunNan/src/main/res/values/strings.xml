@@ -280,7 +280,7 @@
             <item>已评价</item>
             <item>已退款</item>
             <item>取消报名</item>
-            <item>申请退出</item>
+            <item>申请退款</item>
             <item>取消支付</item>
         </string-array>
     <string-array name="with_me_appoint">
@@ -302,5 +302,6 @@
     <!-- WXPayEntryActivity -->
     <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
     <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="cost_des" formatted="false">·行程结束后，【城外旅游】结算予发布人佣金\n·到达出发时间仍未达到最低人数将全额退款\n·游玩结束后，城外旅游将收取总费用5%的服务佣金\n·用户在行程开始前3日申请取消，可全额退款\n·用户在行程开始前2日申请取消，将扣除订单费用的30%作为手续费用\n·用户在行程开始前1日申请取消，将不能申请退款\n·于活动中自愿终止参与活动，将不予退款款项\n·如因天灾等不可抗拒因素，【城外旅游】将主动通知延期或退款</string>
 
 </resources>

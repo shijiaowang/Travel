@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/swipe_container"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+<com.aspsine.swipetoloadlayout.SwipeToLoadLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <FrameLayout
+        android:id="@id/swipe_target"
         android:layout_width="match_parent"
-        android:overScrollMode="never"
         android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:background="@color/meLine"
-        android:id="@id/swipe_target"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:clipToPadding="false" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_album"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/meLine"
+            android:clipToPadding="false"
+            android:overScrollMode="never" />
+
+    </FrameLayout>
 
 
-
-
-
-
-    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+</com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
 
