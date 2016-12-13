@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x285"
+    android:orientation="vertical"
+    android:background="@drawable/appoint_enter_dialog_bg"
+    android:layout_height="@dimen/x179">
+    <TextView
+        android:text="报名失败"
+        android:id="@+id/tv_title"
+        android:gravity="center"
+        android:background="@color/otherTitleBg"
+        android:textColor="@color/colorFAFAFA"
+        android:textSize="@dimen/x15sp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x39" />
+    <TextView
+        android:text="您还没有创建任何约伴[一起玩]路线，请先创建自己的队伍。"
+        android:id="@+id/tv_content"
+        android:lineSpacingExtra="@dimen/x5"
+        android:textColor="@color/color747474"
+        android:textSize="@dimen/x13sp"
+        android:gravity="center|start"
+        android:paddingRight="@dimen/x25"
+        android:paddingLeft="@dimen/x25"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <View
+        android:background="@color/meLine"
+        android:layout_marginRight="@dimen/x25"
+        android:layout_marginLeft="@dimen/x25"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x39">
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:gravity="center"
+            android:textColor="@color/color646464"
+            android:textSize="@dimen/x14sp"
+            android:text="取消"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <View
+            android:background="@color/meLine"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/x1"
+            android:layout_height="@dimen/x27"/>
+        <TextView
+            android:id="@+id/tv_sure"
+            android:gravity="center"
+            android:textColor="@color/otherTitleBg"
+            android:textSize="@dimen/x14sp"
+            android:text="去创建"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>

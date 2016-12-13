@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 
 /**
- * Created by Administrator on 2016/8/17 0017.
+ * Created by wangyang on 2016/8/17 0017.
  * 隐藏中间位数的显示
  */
 public class PhoneTextView extends TextView {

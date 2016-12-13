@@ -1,10 +1,9 @@
 package com.yunspeak.travel.utils;
 
-import android.content.Context;
 import android.widget.Toast;
 
 /**
- * Created by android on 2016/4/25.
+ * Created by wangyang on 2016/4/25.
  */
 public class ToastUtils {
     //工具类不让实例化

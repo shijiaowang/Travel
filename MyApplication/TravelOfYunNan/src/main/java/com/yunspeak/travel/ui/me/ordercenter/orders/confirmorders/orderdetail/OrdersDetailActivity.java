@@ -2,6 +2,8 @@ package com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,12 +13,11 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingAdapter;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.PayNotifyEvent;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
-import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.PriceDeatilAdapter;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
-import com.yunspeak.travel.ui.view.ToShowAllListView;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 
@@ -34,7 +35,7 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
     @BindView(R.id.tv_route_price)
     TextView mTvRoutePrice;
     @BindView(R.id.lv_price)
-    ToShowAllListView mLvPrice;
+    RecyclerView mLvPrice;
     @BindView(R.id.tv_reduce_price)
     TextView mTvReducePrice;
     @BindView(R.id.tv_total_price)
@@ -115,7 +116,12 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
             tvTitle.setText("·活动价格");
             mTvActiveName.setText(getIntent().getStringExtra(IVariable.NAME));
         }else {
-            mLvPrice.setAdapter(new PriceDeatilAdapter(this, data.getBasec_price()));
+            CostSettingAdapter costSettingAdapter=new CostSettingAdapter(data.getBasec_price(),this);
+            LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+            mLvPrice.setHasFixedSize(true);
+            linearLayoutManager.setSmoothScrollbarEnabled(false);
+            mLvPrice.setAdapter(costSettingAdapter);
+            mLvPrice.setLayoutManager(linearLayoutManager);
         }
 
         String payStatus = data.getPay_status();

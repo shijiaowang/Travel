@@ -31,7 +31,7 @@
         <attr name="line_edittext_text_size" />
         <attr name="line_edittext_show_send_button" />
     </declare-styleable>
-    <attr name="m_limit_lines"  format="integer"/>
+    <attr name="m_limit_lines" format="integer" />
     <declare-styleable name="EllipsizeTextView">
         <attr name="m_limit_lines" />
     </declare-styleable>
@@ -74,7 +74,7 @@
         <attr name="item_fourth_icon_color" />
         <attr name="item_first_text_size" />
         <attr name="item_second_text_size" />
-        <attr name="item_third_text_size"  />
+        <attr name="item_third_text_size" />
         <attr name="item_fourth_text_size" />
         <attr name="item_first_text_color" />
         <attr name="item_second_text_color" />

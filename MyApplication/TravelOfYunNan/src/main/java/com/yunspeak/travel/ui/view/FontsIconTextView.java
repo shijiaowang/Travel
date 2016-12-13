@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.utils.TypefaceUtis;
 
 /**
- * Created by Administrator on 2016/8/19 0019.
+ * Created by wangyang on 2016/8/19 0019.
  * 字体图标textview
  */
 public class FontsIconTextView extends TextView {

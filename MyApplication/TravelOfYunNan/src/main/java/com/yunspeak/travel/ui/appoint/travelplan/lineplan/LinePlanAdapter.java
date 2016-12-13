@@ -2,6 +2,8 @@ package com.yunspeak.travel.ui.appoint.travelplan.lineplan;
 
 import android.content.Context;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
@@ -25,6 +27,10 @@ public class LinePlanAdapter extends TravelBaseAdapter<LineBean> {
             linePlanHolder.mTvAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm.isActive()) {
+                        imm.hideSoftInputFromWindow(linePlanHolder.mTvAdd.getWindowToken(), 0); //强制隐藏键盘
+                    }
                     FindCommonActivity.start(mContext,FindCommonActivity.DESTINATION_SELECTION,position);
                 }
             });

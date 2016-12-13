@@ -1,23 +1,15 @@
 package com.yunspeak.travel.bean;
 
 /**
- * Created by Administrator on 2016/7/27 0027.
+ * Created by wangyang on 2016/7/27 0027.
  */
 public class Key {
 
 
-    /**
-     * code :
-     * message :
-     * data : {"":"","":""}
-     */
+
 
     private int code;
     private String message;
-    /**
-     * name :
-     * value :
-     */
 
     private DataBean data;
 

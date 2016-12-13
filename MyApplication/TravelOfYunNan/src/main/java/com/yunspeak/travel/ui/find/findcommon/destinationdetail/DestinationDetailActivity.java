@@ -154,8 +154,32 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         DestinationDetailBean destinationDetail = GsonUtils.getObject(detailCommonEvent.getResult(), DestinationDetailBean.class);
         final DestinationDetailBean.DataBean.TravelBean travel = destinationDetail.getData().getTravel();
         StringBuilder stringBuilder=new StringBuilder("http://api.map.baidu.com/staticimage/v2?ak=DOwVc765t3sy69IdYQVefrKNEsciH5EO&width=400&height=200");
-        stringBuilder.append("&center="+travel.getCity());
-        stringBuilder.append("&markers="+travel.getCity()+travel.getTitle()+"|"+travel.getLongitude()+","+travel.getLatitude());
+
+        String longitude = travel.getLongitude();
+        String latitude = travel.getLatitude();
+        String address=travel.getAddress();
+        String city = travel.getCity();
+        String province = travel.getProvince();
+        String cityDes=province+city;
+        if (StringUtils.isEmpty(city) || StringUtils.isEmpty(province)){//都为空默认设置云南
+            cityDes="云南";
+            if (StringUtils.isEmpty(city)){
+                city="云南";
+            }
+        }
+        stringBuilder.append("&center="+city);
+
+
+        final Intent intent = new Intent(DestinationDetailActivity.this, EaseBaiduMapActivity.class);
+        if (!(StringUtils.isEmpty(longitude) || StringUtils.isEmpty(latitude))){
+            stringBuilder.append("&markers="+longitude+","+latitude);
+            intent.putExtra("latitude", Double.parseDouble(travel.getLatitude()));
+            intent.putExtra("longitude", Double.parseDouble(travel.getLongitude()));
+        }else {//没有经纬度使用默认位置
+            stringBuilder.append("&markers="+cityDes);
+            intent.putExtra("longitude", 102.728219);
+            intent.putExtra("latitude", 25.022114);
+        }
         stringBuilder.append("&zoom=8");
         stringBuilder.append("&markerStyles=l,A,0xff0000");
         stringBuilder.append("&"+moblieUrl);
@@ -176,10 +200,6 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
                         break;
                     case MotionEvent.ACTION_UP:
                         if (click) {
-                            Intent intent = new Intent(DestinationDetailActivity.this, EaseBaiduMapActivity.class);
-                            intent.putExtra("latitude", Double.parseDouble(travel.getLatitude()));
-                            intent.putExtra("longitude", Double.parseDouble(travel.getLongitude()));
-                            intent.putExtra("address", travel.getAddress());
                             intent.putExtra("isNew", true);
                             startActivity(intent);
                         }

@@ -1,4 +1,3 @@
-include 'pickerview',  ':easeui', ":TravelOfYunNan", ':PushSDK',':ucrop'
+include 'pickerview', ':easeui', ":TravelOfYunNan", ':PushSDK', ':ucrop'
 
-include ':amm_sdk_sample'
-include ':payDemoActivity_20'
+include ':cityoffService'

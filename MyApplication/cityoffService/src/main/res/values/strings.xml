@@ -1,0 +1,307 @@
+<resources>
+    <string name="app_name">城外Service</string>
+    <!--homeFragment-->
+    <string name="homeName">云南</string>
+    <string name="home_topic_chosen">精选</string>
+    <string name="home_topic_travels">经典游记</string>
+    <string name="home_topic_hot_spots">热门景点</string>
+    <string name="text_down">已加入(%1$d) ∨</string>
+    <string name="prop_select_number">已选择：%1$d件物品</string>
+    <string name="down">∨</string>
+    <string name="up">∧</string>
+    <string name="at_your_in_group">%s在群聊中@了你</string>
+    <string name="text_limit_200">%1$d/200</string>
+    <string name="sure_number">确定(%1$d)</string>
+    <string name="text_up">已加入(%1$d) ∧</string>
+    <string name="text_uping">加入中(%1$d) ∧</string>
+    <string name="text_downing">加入中(%1$d) ∨</string>
+    <!--底部导航-->
+    <string name="home_activity_button_appoint">樾</string>
+    <!--//约伴字体-->
+    <string name="home_activity_button_circle">荃</string>
+    <!--//圈子字体-->
+    <string name="home_activity_button_find">阀</string>
+    <!--//发现字体-->
+    <string name="home_activity_button_me">涡</string>
+    <!--//我字体-->
+    <string name="home_activity_button_main">绶</string>
+    <string name="activity_circle_back_font_icon">泛</string>
+    <!--返回-->
+    <string name="activity_circle_create_post_font_icon">屑</string>
+    <string name="activity_circle_love">昝</string>
+    <string name="activity_circle_discuss">倫</string>
+    <!--留言-->
+    <string name="activity_circle_love_empty">昊</string>
+    <!--空心-->
+    <string name="activity_title_management_title">颢</string>
+    <!--称号-->
+    <string name="activity_circle_love_full">昝</string>
+    <!--实心-->
+    <string name="activity_other_private_message">辛</string>
+    <!--私信-->
+    <string name="activity_other_follow">罐</string>
+    <!--关注，加号-->
+    <string name="activity_other_followed">咦</string>
+    <!--已关注，对勾-->
+    <string name="activity_other_title">膘</string>
+    <!--称号-->
+    <string name="activity_other_new_user">坼</string>
+    <!--新手上路-->
+    <string name="activity_message_center_recommend">煎</string>
+    <!--推荐-->
+    <string name="activity_message_center_aite">铨</string>
+    <!--@-->
+    <string name="activity_message_center_more">铎</string>
+    <!--更多-->
+    <string name="activity_other_detail_message">暨</string>
+    <!--基本信息-->
+    <string name="activity_other_album_eye">晏</string>
+    <!--眼睛-->
+    <string name="activity_my_album_add">罐</string>
+
+    <!--添加-->
+    <string name="fragment_circle_search">璟</string>
+    <!--搜索-->
+    <string name="fragment_find_add">桁</string>
+    <!--目的地-->
+    <string name="activity_travels_plan_time">食</string>
+    <!--时间-->
+    <string name="activity_travels_plan_data">轴</string>
+    <!--日历-->
+    <string name="fragment_find_hotel">玖</string>
+    <!--酒店-->
+    <string name="fragment_find_travels">紊</string>
+    <!--游记-->
+    <string name="fragment_find_food">赤</string>
+    <!--美食-->
+    <string name="fragment_find_active">嚯</string>
+    <!--活动-->
+    <string name="item_fragment_find_add">芷</string>
+    <!--item地址-->
+    <string name="activity_appoint_detail_share">享</string>
+    <!--分享-->
+    <string name="activity_appoint_detail_collection">仓</string>
+    <!--收藏-->
+    <string name="activity_appoint_detail_complaint">诉</string>
+    <!--投诉-->
+    <string name="fragment_play_with_me_time">誓</string>
+    <!--时间-->
+    <string name="fragment_play_with_me_air">籍</string>
+    <!--飞机-->
+    <string name="fragment_play_with_me_people">頭</string>
+    <!--人-->
+    <string name="activity_personnel_equipment_people">仞</string>
+    <!--人员计划-->
+    <string name="activity_setting_camera">昭</string>
+    <!--相机-->
+    <string name="fragment_home_chosen">菁</string>
+    <!--精选-->
+    <string name="fragment_home_spot">娣</string>
+    <!--热门景点-->
+    <string name="activity_active_item_air">萱</string>
+    <string name="activity_register_phone">冀</string>
+    <!--手机-->
+    <string name="activity_register_sex">緈</string>
+    <!--性别-->
+    <string name="activity_register_nick_name">涌</string>
+    <!--昵称-->
+    <string name="activity_register_message">芯</string>
+    <!--短信-->
+    <string name="activity_register_password">觅</string>
+    <!--锁-->
+    <!--纸飞机-->
+    <string name="fragment_play_with_me_add">桁</string>
+    <!--地点-->
+    <string name="activity_custom_destination_user">者</string>
+    <!--创建者-->
+
+
+    <string name="activity_message_center_cursor">暇</string>
+
+
+    <!--进入游标> -->
+    <string name="activity_activate_detail_pen">銘</string>
+    <!--钢笔-->
+    <string name="activity_cursor_left">佐</string>
+    <!--左边-->
+    <string name="activity_cursor_down">峡</string>
+    <!--下-->
+    <string name="fragment_me_my_theme">嫦</string>
+    <!--主题-->
+    <string name="fragment_me_my_hobby">趣</string>
+    <!--兴趣-->
+    <string name="activity_add_detail_line">炉</string>
+    <!--路线-->
+    <string name="activity_personnel_equipment_equ">俱</string>
+    <!--道具-->
+    <string name="activity_des_remark_title">q</string>
+    <!--标签-->
+    <string name="activity_des_remark_des">榕</string>
+    <!--简介-->
+    <string name="activity_delicious_detail_wan">炽</string>
+    <!--美味-->
+    <string name="activity_delicious_detail_store">厨</string>
+    <!--店家-->
+    <string name="activity_create_post_aite">忑</string>
+    <!--@-->
+    <string name="activity_create_post_smell">筱</string>
+    <!--微笑-->
+    <string name="activity_create_post_picture">骈</string>
+    <!--照片-->
+    <string name="activity_add_detail_team_profile">揭</string>
+    <!--队伍简介-->
+    <string name="activity_add_detail_spot">靖</string>
+    <!--景点-->
+    <string name="activity_add_detail_spot_add">炜</string>
+    <!--景点位置-->
+    <string name="activity_aite_ok">垢</string>
+    <!--aite页面对勾-->
+    <string name="activity_orders_detail_pay">傅</string>
+    <!--已付款-->
+    <string name="activity_my_appoint_delete">邋</string>
+    <!--删除-->
+    <string name="activity_my_appoint_key">仟</string>
+    <!--秘钥-->
+    <string name="activity_my_publication_team">対</string>
+    <!--队伍-->
+    <string name="activity_my_publication_other">沓</string>
+    <!--其他-->
+    <string name="activity_my_publication_post">貼</string>
+    <!--帖子-->
+    <string name="activity_member_detail_age">撵</string>
+    <!--年龄-->
+    <string name="activity_member_detail_girl">钕</string>
+    <!--女-->
+    <string name="activity_member_detail_boy">囡</string>
+    <!--男-->
+    <string name="activity_member_detail_delete">叉</string>
+    <!--叉-->
+    <string name="activity_pop_delete">桶</string>
+    <!--垃圾桶-->
+    <string name="activity_customer_center_tel">殿</string>
+    <!--电话号码-->
+    <string name="activity_confirm_orders_zfb">芝</string>
+    <!--支付宝-->
+    <string name="activity_confirm_orders_we_chat">微</string>
+    <!--微信支付-->
+    <string name="activity_identity_phone">皓</string>
+    <!--手机认证-->
+    <string name="activity_identity_id_card">绅</string>
+    <!--身份证认证-->
+    <string name="activity_identity_run_card">驾</string>
+    <!--驾驶证认证-->
+    <string name="activity_identity_car_card">筝</string>
+    <!--车辆认证-->
+    <string name="activity_message_center_setting">置</string>
+    <!--设置-->
+    <string name="activity_travels_plan_car">車</string>
+    <!--车-->
+    <string name="activity_album_add">添</string>
+    <!--照片添加-->
+    <string name="activity_select_cursor">佑</string>
+    <!--选择游标-->
+    <string name="activity_setting_log_out">莞</string>
+
+    <!--退出登录-->
+    <!--留言-->
+    <!--//首页字体-->
+    <string name="cat_more">查看全部 ∨ </string>
+    <string name="close_more">收起全部 ∧ </string>
+    <string name="post">帖子：</string>
+    <string name="follow">关注：</string>
+    <!--关注和已关注-->
+    <string name="activity_circle_detail_follow">＋ 关注</string>
+    <string name="activity_circle_detail_followed">√ 已关注</string>
+    <string name="ver_is_error">验证码不正确</string>
+    <string name="enter_right_11_number">请输入11位手机号</string>
+    <string name="enterr_right_number_with_11">请输入正确的11位手机号</string>
+    <string name="please_enter_password">请输入密码</string>
+    <string name="password_not_consistent">密码不一致</string>
+    <string name="ver_is_empty">请输入验证码</string>
+    <string name="please_enter_nick_name">请输入昵称(最多8位)</string>
+    <string name="please_select_your_sex">请选择性别</string>
+    <string name="not_send_ver">尚未请求验证码</string>
+    <string name="save_change">保存修改</string>
+    <string name="recommend_user">· 推荐用户</string>
+    <string name="next">下一步</string>
+
+
+    <string name="header_hint_refresh_normal">Pull to refresh</string>
+    <string name="header_hint_refresh_ready">Release to refresh</string>
+    <string name="header_hint_refresh_loading">Refreshing&#8230;</string>
+    <string name="header_hint_refresh_time">Time：</string>
+    <string name="footer_hint_load_normal">Load more</string>
+    <string name="footer_hint_load_ready">Release to load more</string>
+    <string name="activity_travels_plan_remark">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;备注</string>
+    <string name="pop_order">·\u3000智能排序</string>
+    <string name="pop_star">·\u3000按星级</string>
+    <string name="pop_mouth">·\u3000按口碑</string>
+    <string name="pop_now">·\u3000最新发布</string>
+    <string name="pop_price_up">·\u3000价格升序</string>
+    <string name="pop_price_down">·\u3000价格降序</string>
+    <string name="pop_out_number">·\u3000出行人数</string>
+    <string name="pop_day_number">·\u3000行程天数</string>
+    <string name="kongge">\u3000\u3000</string>
+    <string name="permission_title_rationale">需要相关权限</string>
+    <string name="label_ok">确定</string>
+    <string name="label_cancel">取消</string>
+    <string name="permission_read_storage_rationale">需要读取SD卡权限</string>
+    <string name="label_select_picture">选择图片</string>
+    <string name="toast_cannot_retrieve_selected_image">未接受到图片</string>
+    <string name="toast_unexpected_error">未知错误</string>
+    <string name="permission_write_storage_rationale">写入sd卡权限</string>
+    <string name="total_album">共有%1$d个相册</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="Recording_without_permission">没有麦克风权限</string>
+    <string name="The_recording_time_is_too_short">录音时间太短了</string>
+    <string name="send_failure_please">发送失败，请检测服务器是否连接</string>
+    <string name="Send_voice_need_sdcard_support">未检查到SD卡，发送语音需要SD卡</string>
+    <string name="move_up_to_cancel">向上移动取消发送</string>
+    <string name="recoding_fail">录音失败</string>
+    <string name="release_to_cancel">松开取消</string>
+    <string name="id_auth_des">·请保证您上传的证件照清晰度可辨\n·每当您提供给我们敏感信息时，我们将采取安全措施保护您的敏感信息及已储存的个人资料，以防止您的个人资料丢失，被盗用或遭篡改\n·除非根据法律或政府的强制性规定，在为得到您的书面许可之前，我们不会把您的个人资料提供给无关的第三方（包括公司和个人）。但是，如果您要求我们提供特定客户支援服务时，我们则需要把您的相关信息提供给有关的第三方，如保险公司等</string>
+    <string name="prop_des">平台的认证高级用户选择道具才有效，其他用户请跳过此步，具体请咨询客服。</string>
+    <string-array name="together_appoint">
+            <item>约伴订单</item>
+            <item>已报名待通过</item>
+            <item>已通过待支付</item>
+            <item>报名成功待出发</item>
+            <item>报名失败被拒绝</item>
+            <item>报名失败支付超时</item>
+            <item>约伴未完成退款中</item>
+            <item>约伴完成准备出发</item>
+            <item>出游中</item>
+            <item>约伴结束待评价</item>
+            <item>已评价</item>
+            <item>已退款</item>
+            <item>取消报名</item>
+            <item>申请退款</item>
+            <item>取消支付</item>
+        </string-array>
+    <string-array name="with_me_appoint">
+        <item>招募中</item>
+        <item>招募中</item>
+        <item>招募成功</item>
+        <item>招募失败</item>
+    </string-array>
+    <string-array name="together_appoint_detail">
+        <item>报名</item>
+        <item>报名</item>
+        <item>支付</item>
+        <item>退出</item>
+        <item>评价</item>
+        <item>出行中</item>
+        <item>退款中</item>
+        <item>审核中</item>
+    </string-array>
+    <!-- WXPayEntryActivity -->
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="cost_des" formatted="false">·行程结束后，【城外旅游】结算予发布人佣金\n·到达出发时间仍未达到最低人数将全额退款\n·游玩结束后，城外旅游将收取总费用5%的服务佣金\n·用户在行程开始前3日申请取消，可全额退款\n·用户在行程开始前2日申请取消，将扣除订单费用的30%作为手续费用\n·用户在行程开始前1日申请取消，将不能申请退款\n·于活动中自愿终止参与活动，将不予退款款项\n·如因天灾等不可抗拒因素，【城外旅游】将主动通知延期或退款</string>
+
+</resources>

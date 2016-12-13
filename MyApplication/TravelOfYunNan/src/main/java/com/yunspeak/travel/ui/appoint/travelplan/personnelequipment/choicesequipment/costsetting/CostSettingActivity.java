@@ -16,10 +16,12 @@ import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.DesRemarkActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 import com.yunspeak.travel.utils.ActivityUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.JsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.MoneyUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
@@ -81,14 +83,14 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
                 }
                 double enterMoney = Double.parseDouble(string);
                 if (GlobalValue.mAppointType==IVariable.TYPE_WITH_ME){
-                    payMoney = enterMoney+totalMoney*size;
+                    payMoney = enterMoney+totalMoney;
                 }else {
                     if (countPeople<=0){
                         ToastUtils.showToast("人数错误！");
                         setErrorPage(true);
                         return;
                     }
-                     payMoney=(enterMoney*countPeople)/5d+totalMoney*size;
+                     payMoney=(enterMoney*countPeople)/5d+totalMoney;
                 }
                 mTvTotalPrice.setText("合计:\u3000"+payMoney+"元");
 
@@ -136,20 +138,15 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
             setErrorPage(true);
         } else {
             CostSettingBean costSettingBean = GsonUtils.getObject(costSettingEvent.getResult(), CostSettingBean.class);
-            List<CostSettingBean.DataBean> data = costSettingBean.getData();
+            List<BasecPriceBean> data = costSettingBean.getData();
             mTvdes.setText(costSettingBean.getBasectext());
             CostSettingAdapter costSettingAdapter = new CostSettingAdapter(data, this);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.setAdapter(costSettingAdapter);
             mRecyclerView.setLayoutManager(linearLayoutManager);
             mRecyclerView.setHasFixedSize(true);
-            double money;
-            for (CostSettingBean.DataBean dataBean:data){
-                String value = dataBean.getValue();
-                money=Double.parseDouble(value);
-                totalMoney+=money;
-            }
-            mTvTotalPrice.setText("合计:\u3000"+(totalMoney*size)+"元");
+            totalMoney= MoneyUtils.getMoney(data,size);
+            mTvTotalPrice.setText("合计:\u3000"+totalMoney+"元");
         }
 
     }

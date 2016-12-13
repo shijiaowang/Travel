@@ -13,7 +13,6 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,6 +22,7 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingAdapter;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.createsuccess.CreateAppointSuccessActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
@@ -35,6 +35,7 @@ import com.yunspeak.travel.ui.me.ordercenter.orders.PayNotifyEvent;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.payresult.PayResultActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.MoneyUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -71,7 +72,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     @BindView(R.id.cb_agree)
     CheckBox mCbAgree;
     @BindView(R.id.lv_price)
-    ListView mLvPrice;
+    RecyclerView mLvPrice;
     @BindView(R.id.tv_route_price)
     TextView mTvPriceRoute;
     @BindView(R.id.tv_order_id)
@@ -298,16 +299,17 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         mTvPriceRoute.setText("¥" + order.getPrice());
         totalPay += Float.parseFloat(order.getPrice());
         List<BasecPriceBean> basecPrice = confirmOrdersBean.getData().getBasec_price();
-        if (basecPrice != null && basecPrice.size() != 0) {
-            for (BasecPriceBean basecPriceBean : basecPrice) {
-                totalPay += Float.parseFloat(basecPriceBean.getValue());
-            }
-        }
+        totalPay+= MoneyUtils.getMoney(basecPrice,3);
         if (payType.equals("2")) {
             mTvOrderName.setText("活动订单");
             mTvOrderName.setTextColor(getResources().getColor(R.color.otherFf7f6c));
         }
-        mLvPrice.setAdapter(new PriceDeatilAdapter(this, basecPrice));
+        CostSettingAdapter costSettingAdapter=new CostSettingAdapter(basecPrice,this);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        mLvPrice.setHasFixedSize(true);
+        linearLayoutManager.setSmoothScrollbarEnabled(false);
+        mLvPrice.setAdapter(costSettingAdapter);
+        mLvPrice.setLayoutManager(linearLayoutManager);
         mTvOrderId.setText("订单号:" + order.getOrder_sn());
         //优惠券
         orderConpou = confirmOrdersBean.getData().getConpou();
@@ -315,11 +317,11 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         mTvReducePrice.setText("¥-" + 0.00);
         ordersCouponAdapter = new CouponAdapter(this, orderConpou, false);
         mRvConpun.setAdapter(ordersCouponAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this);
         mRvConpun.setHasFixedSize(true);
         mRvConpun.setNestedScrollingEnabled(false);
-        linearLayoutManager.setSmoothScrollbarEnabled(false);
-        mRvConpun.setLayoutManager(linearLayoutManager);
+        linearLayoutManager1.setSmoothScrollbarEnabled(false);
+        mRvConpun.setLayoutManager(linearLayoutManager1);
         ordersCouponAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {

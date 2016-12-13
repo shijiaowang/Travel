@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/otherTitleBg</item>
+    </style>
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/otherTitleBg</item>
+        <item name="colorPrimaryDark">@color/otherTitleBg</item>
+        <item name="colorAccent">@color/otherTitleBg</item>
+    </style>
+    <style name="ToolBarTheme" parent="AppTheme.Base"></style>
+    <!-- 自定义对话框 系统默认 :1.白边 2.标题 -->
+    <style name="tabTextStyle">
+        <item name="android:textSize">@dimen/x16sp</item>
+    </style>
+    <style name="commonDialog" >
+        <!-- 去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 将背景透明化 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="noTitleDialog" parent="@android:style/Theme.Dialog">
+
+        <!-- 去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 将背景透明化 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+</resources>
