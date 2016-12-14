@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.yalantis.ucrop.UCrop;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
@@ -173,7 +174,10 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
         int count = type == TYPE_REFRESH ? 0 : getListSize(body);
         builder.addId(id).addPageSize().addCount(count).end();
     }
-
+    @Override
+    protected void userResultSize(UCrop uCrop, int width, int height) {
+        super.userResultSize(uCrop, 2000, 1000);
+    }
     @Override
     protected String initUrl() {
         return IVariable.EDIT_ALBUM;

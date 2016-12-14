@@ -6,8 +6,8 @@ package yunshuo.yneb.com.myapplication;
  */
 public interface IVariable {
 
-    /*String DOMAIN_NAME="http://yuns.yunspeak.com/";*/
-    String DOMAIN_NAME = "http://10.5.192.232/";
+    String DOMAIN_NAME="http://yuns.yunspeak.com/";
+    /*String DOMAIN_NAME = "http://10.5.192.232/";*/
     String API_KEY = DOMAIN_NAME + "api.php?s=/";
     //下面为请求链接
     String GET_KEY = API_KEY + "api/getKeys";
@@ -44,6 +44,7 @@ public interface IVariable {
     String RESET_PASSWORD_VER = API_KEY + "User/sendUsermsg/";//重置验证码
     String LOGIN_URL = API_KEY + "User/serviceLogin/";//客服登录
     String HOME_PAGE = API_KEY + "Index/loadIndex/";//首页数据加载
+    String SEARCH_BY_ID = API_KEY + "User/searchByid/";//客服搜索
     String HOME_SEARCH = API_KEY + "Index/search/";//首页搜索
     String UPDATE = API_KEY + "User/getVersionCode/";//检查更新
     /**

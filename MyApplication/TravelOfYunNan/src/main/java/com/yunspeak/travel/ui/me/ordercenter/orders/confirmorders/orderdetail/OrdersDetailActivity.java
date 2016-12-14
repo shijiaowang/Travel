@@ -116,7 +116,8 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
             tvTitle.setText("·活动价格");
             mTvActiveName.setText(getIntent().getStringExtra(IVariable.NAME));
         }else {
-            CostSettingAdapter costSettingAdapter=new CostSettingAdapter(data.getBasec_price(),this);
+            int day = data.getDay();
+            CostSettingAdapter costSettingAdapter=new CostSettingAdapter(data.getBasec_price(),this,day);
             LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
             mLvPrice.setHasFixedSize(true);
             linearLayoutManager.setSmoothScrollbarEnabled(false);

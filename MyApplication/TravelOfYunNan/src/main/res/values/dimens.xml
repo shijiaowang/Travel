@@ -50,6 +50,7 @@
     <dimen name="x1">1dp</dimen>
     <dimen name="x134">134dp</dimen>
     <dimen name="x15">15dp</dimen>
+    <dimen name="fx13">-13dp</dimen>
     <dimen name="x40sp">40sp</dimen>
     <dimen name="x18sp">18sp</dimen>
     <dimen name="x15sp">15sp</dimen>

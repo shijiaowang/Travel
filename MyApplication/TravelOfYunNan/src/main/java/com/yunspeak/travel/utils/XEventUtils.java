@@ -1,6 +1,8 @@
 package com.yunspeak.travel.utils;
 
 
+import android.graphics.Bitmap;
+
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
 
@@ -14,7 +16,6 @@ import org.xutils.x;
 
 import java.io.File;
 import java.net.ConnectException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,9 @@ import id.zelory.compressor.Compressor;
  * Created by wangyang on 2016/7/27 0027.
  */
 public class XEventUtils {
+
+    private static Compressor compressor;
+
     /**
      * get获取请求
      *
@@ -98,13 +102,27 @@ public class XEventUtils {
                     }
                     continue;
                 }
-                File compressedImageFile = Compressor.getDefault(UIUtils.getContext()).compressToFile(file);
+                Compressor compressor = getCompressor();
+                File compressedImageFile = compressor.compressToFile(file);
                 LogUtils.e("上传的第"+j+"个文件的大小为"+compressedImageFile.length());
                 requestParams.addBodyParameter("file["+j+"]", compressedImageFile);
             }
         }
         return x.http().post(requestParams, new MyCommonCallback(type,event));
     }
+
+    private synchronized static Compressor getCompressor() {
+        if (compressor==null) {
+            Compressor.Builder builder = new Compressor.Builder(UIUtils.getContext());
+            builder.setMaxWidth(1920);
+            builder.setMaxHeight(1080);
+            builder.setQuality(80);
+            builder.setCompressFormat(Bitmap.CompressFormat.JPEG);
+            compressor = builder.build();
+        }
+        return compressor;
+    }
+
     /**
      * post请求
      *

@@ -86,6 +86,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     @BindView(R.id.tv_order_name)
     TextView mTvOrderName;
     @BindView(R.id.tv_appoint) TextView mTvAppoint;
+    @BindView(R.id.tv_active_name) TextView mTvActiveName;
     private List<String> mConpous = new ArrayList<>();
 
 
@@ -167,6 +168,9 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     private void init() {
         id = getIntent().getStringExtra(IVariable.ID);
         payType = getIntent().getStringExtra("pay_type");
+        if (payType.equals("1")){
+            mTvActiveName.setText("约伴押金");
+        }
         selectPayWay.add(mTvPayZfb);
         selectPayWay.add(mTvPayWx);
     }
@@ -299,12 +303,13 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
         mTvPriceRoute.setText("¥" + order.getPrice());
         totalPay += Float.parseFloat(order.getPrice());
         List<BasecPriceBean> basecPrice = confirmOrdersBean.getData().getBasec_price();
-        totalPay+= MoneyUtils.getMoney(basecPrice,3);
+        int day = order.getDay();
+        totalPay+= MoneyUtils.getMoney(basecPrice,day);
         if (payType.equals("2")) {
             mTvOrderName.setText("活动订单");
             mTvOrderName.setTextColor(getResources().getColor(R.color.otherFf7f6c));
         }
-        CostSettingAdapter costSettingAdapter=new CostSettingAdapter(basecPrice,this);
+        CostSettingAdapter costSettingAdapter=new CostSettingAdapter(basecPrice,this,day);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         mLvPrice.setHasFixedSize(true);
         linearLayoutManager.setSmoothScrollbarEnabled(false);

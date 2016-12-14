@@ -2,7 +2,7 @@ package com.yunspeak.travel.ui.appoint.together.togetherdetail;
 
 
 import com.yunspeak.travel.bean.PeopleBean;
-import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
+import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 
 import java.util.List;
 
@@ -79,6 +79,15 @@ public class AppointTogetherDetailBean {
         private String routes_title;
         private String share_url;
         private String basectext;
+        private int day;
+
+        public int getDay() {
+            return day;
+        }
+
+        public void setDay(int day) {
+            this.day = day;
+        }
 
         public String getBasectext() {
             return basectext;
@@ -115,7 +124,7 @@ public class AppointTogetherDetailBean {
         private List<PropBean> prop;
 
 
-        private List<PricebasecBean> pricebasec;
+        private List<BasecPriceBean> pricebasec;
 
         public String getId() {
             return id;
@@ -421,11 +430,11 @@ public class AppointTogetherDetailBean {
             this.prop = prop;
         }
 
-        public List<PricebasecBean> getPricebasec() {
+        public List<BasecPriceBean> getPricebasec() {
             return pricebasec;
         }
 
-        public void setPricebasec(List<PricebasecBean> pricebasec) {
+        public void setPricebasec(List<BasecPriceBean> pricebasec) {
             this.pricebasec = pricebasec;
         }
 

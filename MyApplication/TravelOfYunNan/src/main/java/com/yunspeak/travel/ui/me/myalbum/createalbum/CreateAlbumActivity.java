@@ -46,7 +46,10 @@ public class CreateAlbumActivity extends BaseCutPhotoActivity<CreateAlbumEvent> 
 
 
 
-
+    @Override
+    protected void userResultSize(UCrop uCrop, int width, int height) {
+        super.userResultSize(uCrop, 2000, 1000);
+    }
 
     @Override
     protected void initEvent() {

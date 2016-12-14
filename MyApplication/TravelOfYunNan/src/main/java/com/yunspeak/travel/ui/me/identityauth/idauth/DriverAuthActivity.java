@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.me.identityauth.idauth;
 import android.view.View;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.yalantis.ucrop.UCrop;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
@@ -48,7 +49,10 @@ public class DriverAuthActivity extends BaseCutPhotoActivity<AuthCommonEvent> im
         ivImage1.setVisibility(View.VISIBLE);
         FrescoUtils.displayNormal(ivImage1,url);
     }
-
+    @Override
+    protected void userResultSize(UCrop uCrop, int width, int height) {
+        super.userResultSize(uCrop, 2000, 1000);
+    }
     @Override
     protected void initEvent() {
         setNeedCrop(false);

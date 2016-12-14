@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.yalantis.ucrop.UCrop;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
@@ -60,6 +61,11 @@ public class IdAuthActivity extends BaseCutPhotoActivity<AuthCommonEvent> implem
         Intent intent = new Intent(context, IdAuthActivity.class);
         intent.putExtra(IVariable.DATA, isId);
         context.startActivity(intent);
+    }
+
+    @Override
+    protected void userResultSize(UCrop uCrop, int width, int height) {
+        super.userResultSize(uCrop, 2000, 1000);
     }
 
     @Override

@@ -2,14 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/ll_appoint_message"
         style="@style/activityMessageCenterLl">
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
-
             style="@style/activityMessageCenterIconText"
             android:text="@string/activity_my_publication_team"
             android:textColor="@color/otherFcae04" />
@@ -17,8 +15,9 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="约伴消息" />
-        <com.yunspeak.travel.ui.view.BadgeView
+        <View
             android:id="@+id/bv_appoint_dot"
+            android:background="@drawable/message_dot"
             style="@style/activityMessageCenterDot"/>
 
         <com.yunspeak.travel.ui.view.FontsIconTextView
@@ -43,8 +42,9 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="系统消息" />
-        <com.yunspeak.travel.ui.view.BadgeView
+        <View
             android:id="@+id/bv_system_dot"
+            android:background="@drawable/message_dot"
             style="@style/activityMessageCenterDot" />
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_system"
@@ -67,8 +67,9 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="私信" />
-        <com.yunspeak.travel.ui.view.BadgeView
+        <View
             android:id="@+id/bv_private_dot"
+            android:background="@drawable/message_dot"
             style="@style/activityMessageCenterDot"/>
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_private"
@@ -91,8 +92,9 @@
         <TextView
             style="@style/activityMessageCenterText"
             android:text="与我相关" />
-        <com.yunspeak.travel.ui.view.BadgeView
+        <View
             android:id="@+id/bv_relate_me"
+            android:background="@drawable/message_dot"
             style="@style/activityMessageCenterDot" />
         <com.yunspeak.travel.ui.view.FontsIconTextView
             android:id="@+id/tv_cursor_relate"

@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import yunshuo.yneb.com.myapplication.activity.HomeActivity;
+import yunshuo.yneb.com.myapplication.activity.chat.ChatActivity;
 import yunshuo.yneb.com.myapplication.other.db.DBManager;
 import yunshuo.yneb.com.myapplication.other.utils.UIUtils;
 
@@ -103,7 +104,7 @@ public class YunSpeakHelper {
                     intent.putExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK,false);//9为跳转聊天页面
                 }else {
                     // you can set what activity you want display when user click the notification
-                    intent = new Intent(appContext,HomeActivity.class);
+                    intent = new Intent(appContext,ChatActivity.class);
                 }
                     EMMessage.ChatType chatType = message.getChatType();
                     if (chatType == EMMessage.ChatType.Chat) { // single chat message

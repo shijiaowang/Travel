@@ -53,7 +53,7 @@ public class ConversationListFragment extends EaseConversationListFragment {
                 if (username.equals(EMClient.getInstance().getCurrentUser()))
                     ToastUtils.showToast("不能与你自己聊天");
                 else {
-                    ChatActivity.start(getActivity(),username,conversation.getType() == EMConversationType.ChatRoom?EaseConstant.CHATTYPE_GROUP:EaseConstant.CHATTYPE_SINGLE);
+                    ChatActivity.start(getActivity(),username,conversation.getType() == EMConversationType.GroupChat?EaseConstant.CHATTYPE_GROUP:EaseConstant.CHATTYPE_SINGLE);
                 }
             }
         });

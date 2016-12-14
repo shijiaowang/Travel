@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,10 +21,11 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
-import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingAdapter;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
+import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FlowLayout;
@@ -113,15 +115,15 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     @BindView(R.id.lv_equ_provider)
     ToShowAllListView mLvEquProvider;
     @BindView(R.id.lv_insurance)
-    ToShowAllListView mLvInsurance;//保险
+    RecyclerView mLvInsurance;//保险
     @BindView(R.id.fl_title) FlowLayout mFlTitle;
     @BindView(R.id.tv_appoint_des) TextView mTvDes;
     @BindView(R.id.tv_price)
     TextView mTvPrice;
     @BindView(R.id.bt_enter)
     AvoidFastButton mBvEnter;
-    @BindView(R.id.bt_chat)
-    AvoidFastButton mBtChat;
+    @BindView(R.id.bt_chat) AvoidFastButton mBtChat;
+    @BindView(R.id.v_line) View mVline;
 
     private boolean isDetail = false;//默认缩略图
     private String tId;
@@ -281,15 +283,21 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
             prop.add(propBean);
         }
         mLvEquProvider.setAdapter(new ProviderAdapter(this, prop));
-        List<PricebasecBean> pricebasec = data.getPricebasec();
+        List<BasecPriceBean> pricebasec = data.getPricebasec();
         if (pricebasec == null) {
             pricebasec = new ArrayList<>();
         }
-        PricebasecBean pricebasecBean = new PricebasecBean();
+        BasecPriceBean pricebasecBean=new BasecPriceBean();//添加用户设置的路程费用
         pricebasecBean.setKey("路程费用");
         pricebasecBean.setValue(data.getPrice());
+        pricebasecBean.setType("2");
         pricebasec.add(pricebasecBean);
-        mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
+        CostSettingAdapter costSettingAdapter=new CostSettingAdapter(pricebasec,this,data.getDay());
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        linearLayoutManager.setSmoothScrollbarEnabled(false);
+        mLvInsurance.setHasFixedSize(true);
+        mLvInsurance.setAdapter(costSettingAdapter);
+        mLvInsurance.setLayoutManager(linearLayoutManager);
     }
 
     /**
@@ -369,7 +377,10 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     private void dealLabel(AppointTogetherDetailBean.DataBean data) {
         try {
             String label = data.getLabel();
-            if (StringUtils.isEmpty(label)) return;
+            if (StringUtils.isEmpty(label)){
+                mFlTitle.setVisibility(View.GONE);
+                mVline.setVisibility(View.GONE);
+                return;}
             String[] split = label.split(",");
             for (int i = 0; i < split.length; i++) {
                 TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);

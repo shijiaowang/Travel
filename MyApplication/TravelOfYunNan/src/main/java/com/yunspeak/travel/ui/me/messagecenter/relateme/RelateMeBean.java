@@ -38,31 +38,31 @@ public class RelateMeBean {
     }
 
     public static class DataBean {
-        private String reply;
-        private String inform;
-        private String like;
+        private int reply;
+        private int inform;
+        private int like;
 
-        public String getReply() {
+        public int getReply() {
             return reply;
         }
 
-        public void setReply(String reply) {
+        public void setReply(int reply) {
             this.reply = reply;
         }
 
-        public String getInform() {
+        public int getInform() {
             return inform;
         }
 
-        public void setInform(String inform) {
+        public void setInform(int inform) {
             this.inform = inform;
         }
 
-        public String getLike() {
+        public int getLike() {
             return like;
         }
 
-        public void setLike(String like) {
+        public void setLike(int like) {
             this.like = like;
         }
     }

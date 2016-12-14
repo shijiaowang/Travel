@@ -37,24 +37,24 @@ public class MessageCenterBean {
     }
 
     public static class DataBean {
-        private String travel;
-        private String system;
+        private int travel;
+        private int system;
         private int letter;
         private int user;
 
-        public String getTravel() {
+        public int getTravel() {
             return travel;
         }
 
-        public void setTravel(String travel) {
+        public void setTravel(int travel) {
             this.travel = travel;
         }
 
-        public String getSystem() {
+        public int getSystem() {
             return system;
         }
 
-        public void setSystem(String system) {
+        public void setSystem(int system) {
             this.system = system;
         }
 

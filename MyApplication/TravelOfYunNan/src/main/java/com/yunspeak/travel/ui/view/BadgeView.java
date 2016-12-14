@@ -6,13 +6,8 @@ package com.yunspeak.travel.ui.view;
 
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RoundRectShape;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.TabWidget;
 import android.widget.TextView;
+
+import com.yunspeak.travel.R;
 
 
 public class BadgeView extends TextView {
@@ -42,38 +39,40 @@ public class BadgeView extends TextView {
 
     private void init() {
         if (!(getLayoutParams() instanceof LayoutParams)) {
+            int dimension = (int) getContext().getResources().getDimension(R.dimen.x12);
             LayoutParams layoutParams =
                     new LayoutParams(
-                            android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
-                            android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
-                            Gravity.RIGHT | Gravity.TOP);
+                            dimension,
+                            dimension,
+                            Gravity.END | Gravity.TOP);
             setLayoutParams(layoutParams);
         }
 
         // set default font
-        setTextColor(Color.WHITE);
-        setTypeface(Typeface.DEFAULT_BOLD);
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 9);
-        setPadding(dip2Px(5), dip2Px(1), dip2Px(5), dip2Px(1));
+        //setTextColor(Color.WHITE);
+        //setTypeface(Typeface.DEFAULT_BOLD);
+        //setTextSize(TypedValue.COMPLEX_UNIT_SP, 9);
+        //setPadding(dip2Px(5), dip2Px(1), dip2Px(5), dip2Px(1));
 
         // set default background
-        setBackground(9, Color.RED);
-
+        //setBackground(9, Color.RED);
+        setBackgroundResource(R.drawable.message_dot);
         setGravity(Gravity.CENTER);
 
         // default values
-        setHideOnNull(true);
+        //setHideOnNull(false);//默认不隐藏
         setBadgeCount(0);
     }
 
     public void setBackground(int dipRadius, int badgeColor) {
-        int radius = dip2Px(dipRadius);
+        /*int radius = dip2Px(dipRadius);
         float[] radiusArray = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
 
         RoundRectShape roundRect = new RoundRectShape(radiusArray, null, null);
         ShapeDrawable bgDrawable = new ShapeDrawable(roundRect);
         bgDrawable.getPaint().setColor(badgeColor);
-        setBackground(bgDrawable);
+        setBackgroundDrawable(bgDrawable);*/
+
     }
 
     /**
@@ -98,12 +97,17 @@ public class BadgeView extends TextView {
      */
     @Override
     public void setText(CharSequence text, BufferType type) {
-        if (isHideOnNull() && (text == null || text.toString().equalsIgnoreCase("0"))) {
+       /* if (isHideOnNull() && (text == null || text.toString().equalsIgnoreCase("0"))) {
             setVisibility(View.GONE);
         } else {
             setVisibility(View.VISIBLE);
+        }*/
+        if (text==null || text.toString().equalsIgnoreCase("0")){
+            setVisibility(View.GONE);
+        }else {
+            setVisibility(View.VISIBLE);
         }
-        super.setText(text, type);
+        super.setText("", type);
     }
 
     public void setBadgeCount(int count) {

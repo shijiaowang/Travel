@@ -174,8 +174,8 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         isCollect = data.getTravel().getIs_collect();
         mTvDream.setText(data.getTravel().getTravel_way());
         shareUrl = data.getTravel().getShare_url();
-        mTvStartAndLong.setText(travelRoutes.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(travelRoutes.getStar_time(), travelRoutes.getEnd_time()));
-        mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getStar_time() + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getEnd_time())));
+        mTvStartAndLong.setText(travelRoutes.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(travelRoutes.getStart_time(), travelRoutes.getEnd_time()));
+        mTvTime.setText("行程日期: " + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getStart_time())+ "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", travelRoutes.getEnd_time()));
         mTvHaveNumber.setText("已有: " + travelRoutes.getCount());
         mTvMoney.setText(travelRoutes.getTotal_price());
         List<TravelsDetailBean.DataBean.TravelRoutesBean.RoutesBean> routes = travelRoutes.getRoutes();

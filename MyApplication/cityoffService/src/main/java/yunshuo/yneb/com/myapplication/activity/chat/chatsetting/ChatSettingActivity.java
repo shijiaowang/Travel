@@ -7,20 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hyphenate.chat.EMClient;
-
 import java.util.List;
 
 import butterknife.BindView;
 import yunshuo.yneb.com.myapplication.IVariable;
-import yunshuo.yneb.com.myapplication.ParentPopClick;
 import yunshuo.yneb.com.myapplication.R;
 import yunshuo.yneb.com.myapplication.activity.BaseNetWorkActivity;
 import yunshuo.yneb.com.myapplication.activity.chat.chatsetting.memberdetail.ChatMemberDetailActivity;
-import yunshuo.yneb.com.myapplication.other.dialog.EnterAppointDialog;
 import yunshuo.yneb.com.myapplication.other.utils.GsonUtils;
 import yunshuo.yneb.com.myapplication.other.utils.MapUtils;
-import yunshuo.yneb.com.myapplication.other.utils.ToastUtils;
 import yunshuo.yneb.com.myapplication.other.view.FontsIconTextView;
 
 /**
@@ -33,8 +28,6 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
     FontsIconTextView tvCursor;
     @BindView(R.id.tv_chat_number)
     TextView tvChatNumber;
-    @BindView(R.id.bt_clear)
-    TextView btClear;
     @BindView(R.id.rv_member)
     RecyclerView rvMember;
     private String chatId;
@@ -43,7 +36,6 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
     protected void initEvent() {
         chatId = getIntent().getStringExtra(IVariable.DATA);
         tvCursor.setOnClickListener(this);
-        btClear.setOnClickListener(this);
     }
 
     @Override
@@ -92,20 +84,7 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
             case R.id.tv_cursor:
                 ChatMemberDetailActivity.start(this,chatId);
                 break;
-            case R.id.bt_clear:
-                EnterAppointDialog.showCommonDialog(this, "删除聊天记录", "确定", "是否删除相关聊天记录？", new ParentPopClick() {
-                    @Override
-                    public void onClick(int type) {
-                        boolean isSuccess = EMClient.getInstance().chatManager().deleteConversation(chatId, true);
-                        if (isSuccess){
-                            ToastUtils.showToast("聊天记录删除完毕");
-                        }else {
-                            ToastUtils.showToast("删除失败");
-                        }
-                    }
-                });
 
-                break;
         }
     }
 }

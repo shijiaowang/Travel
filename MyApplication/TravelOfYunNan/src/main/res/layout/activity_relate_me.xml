@@ -70,7 +70,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <com.yunspeak.travel.ui.view.BadgeView
+            <View
                 android:layout_marginBottom="@dimen/x15"
                 android:id="@+id/bv_number_discuss"
                 android:layout_marginRight="@dimen/x20"
@@ -157,7 +157,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <com.yunspeak.travel.ui.view.BadgeView
+            <View
                 android:layout_marginBottom="@dimen/x15"
                 android:id="@+id/bv_number_aite"
                 android:layout_marginRight="@dimen/x20"
@@ -246,7 +246,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <com.yunspeak.travel.ui.view.BadgeView
+            <View
                 android:layout_marginBottom="@dimen/x15"
                 android:id="@+id/bv_number_zan"
                 android:layout_marginRight="@dimen/x20"

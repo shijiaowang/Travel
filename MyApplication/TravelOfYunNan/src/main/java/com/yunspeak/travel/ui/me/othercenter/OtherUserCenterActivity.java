@@ -302,7 +302,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         mTvTitle.setText(nickName);
         tvSignature.setText(user.getContent());
         FrescoUtils.displayIcon(ivIcon, user.getUser_img());
-        FrescoUtils.displayNormal(ivBg, user.getBackground_img(),640,360,R.drawable.normal_2_1);
+        FrescoUtils.displayNormal(ivBg, user.getBackground_img(),960,540,R.drawable.normal_2_1);
         tvFanSum.setText("粉丝:" + user.getFans());
         tvLevel.setText("Lv." + user.getLevel());
         tvUserNickNmae.setText(user.getNick_name());

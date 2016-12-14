@@ -145,7 +145,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mBvOrderCount = new BadgeView(getContext());
         mBvAppointCount.setTargetView(mTvAppoint);
         mBvOrderCount.setTargetView(mTvMyOrder);
-        mBvMessageCount.setTargetView(mBvMessageCount);
+        mBvMessageCount.setTargetView(mTvMessageCenter);
 
     }
 
@@ -170,6 +170,15 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
 
+    }
+
+    @Override
+    protected void userResultSize(UCrop uCrop, int width, int height) {
+        if (upType==UP_BG){
+            super.userResultSize(uCrop, 2000, 1000);
+        }else {
+            super.userResultSize(uCrop, width, height);
+        }
     }
 
     @Override
@@ -296,7 +305,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mTvFollowNumber.setText(data.getFollow());
         UserInfo user = data.getUser();
         FrescoUtils.displayIcon(mIvIcon, user.getUser_img());
-        FrescoUtils.displayNormal(mIvBg, user.getBackground_img(),640,360,R.drawable.register_banner);
+        FrescoUtils.displayNormal(mIvBg, user.getBackground_img(),2000,1000,R.drawable.register_banner);
         mTvNickName.setText(user.getNick_name());
         mTvProfile.setText(user.getContent());
         mTvLevel.setText("LV."+user.getLevel());
@@ -336,7 +345,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     @Override
     protected void childViewShow(String s) {
          if (upType==UP_BG){
-             FrescoUtils.displayNormal(mIvBg,s,600,450);
+             FrescoUtils.displayNormal(mIvBg,s,960,540);
          }else {
              FrescoUtils.displayIcon(mIvIcon,s);
          }

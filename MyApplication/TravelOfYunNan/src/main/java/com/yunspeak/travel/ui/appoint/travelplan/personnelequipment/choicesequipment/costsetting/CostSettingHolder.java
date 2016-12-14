@@ -15,12 +15,15 @@ import butterknife.BindView;
  */
 
 public class CostSettingHolder extends BaseRecycleViewHolder<BasecPriceBean> {
+    private final int day;
     @BindView(R.id.tv_type) TextView tvType;
     @BindView(R.id.tv_money) TextView tvMoney;
+    @BindView(R.id.tv_number) TextView tvNumber;
     private String des;
 
-    public CostSettingHolder(View itemView) {
+    public CostSettingHolder(View itemView, int day) {
         super(itemView);
+        this.day = day;
     }
 
     @Override
@@ -30,15 +33,21 @@ public class CostSettingHolder extends BaseRecycleViewHolder<BasecPriceBean> {
         switch (data.getType()){
             case "1":
                 des+="元/日";
+                tvNumber.setText("x"+day);
                 break;
             case "2":
                 des+="元/次";
+                tvNumber.setText("x"+1);
                 break;
             case "3":
                 des+="元/周期";
+                int number=day/7;
+                number=number<1?1:number;
+                tvNumber.setText("x"+number);
                 break;
             default:
                 des ="错误数据！谨慎！";
+                tvNumber.setText("");
                 break;
         }
         tvMoney.setText(des);

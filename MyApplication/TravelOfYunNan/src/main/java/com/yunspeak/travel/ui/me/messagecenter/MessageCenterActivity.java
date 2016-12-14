@@ -13,7 +13,6 @@ import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageActi
 import com.yunspeak.travel.ui.me.messagecenter.privatemessage.MessagePrivateActivity;
 import com.yunspeak.travel.ui.me.messagecenter.relateme.RelateMeActivity;
 import com.yunspeak.travel.ui.me.messagecenter.systemmessage.SystemMessageActivity;
-import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -30,10 +29,10 @@ public class MessageCenterActivity extends BaseNetWorkActivity<MessageCenterEven
     @BindView(R.id.ll_private) LinearLayout mLlPrivate;
     @BindView(R.id.ll_relate_me) LinearLayout mLlRelateMe;
     @BindView(R.id.ll_system_message) LinearLayout mLlSystemMessage;
-    @BindView(R.id.bv_appoint_dot) BadgeView mBvAppointDot;
-    @BindView(R.id.bv_private_dot) BadgeView mBvPrivateDot;
-    @BindView(R.id.bv_system_dot) BadgeView mBvSystemDot;
-    @BindView(R.id.bv_relate_me) BadgeView mBvRelateMe;
+    @BindView(R.id.bv_appoint_dot) View mBvAppointDot;
+    @BindView(R.id.bv_private_dot) View mBvPrivateDot;
+    @BindView(R.id.bv_system_dot) View mBvSystemDot;
+    @BindView(R.id.bv_relate_me) View mBvRelateMe;
 
 
     @Override
@@ -51,9 +50,11 @@ public class MessageCenterActivity extends BaseNetWorkActivity<MessageCenterEven
         try {
             EMConversation conversation = EMClient.getInstance().chatManager().getConversation(GlobalUtils.getUserInfo().getId());
             int unreadMsgCount = conversation.getUnreadMsgCount();
-            mBvPrivateDot.setBadgeCount(unreadMsgCount);
+           setShow(unreadMsgCount,mBvPrivateDot);
+
         } catch (Exception e) {
             e.printStackTrace();
+            mBvPrivateDot.setVisibility(View.GONE);
         }
     }
 
@@ -73,15 +74,19 @@ public class MessageCenterActivity extends BaseNetWorkActivity<MessageCenterEven
         switch (v.getId()) {
             case R.id.ll_system_message:
                 startActivity(new Intent(this, SystemMessageActivity.class));
+                mBvSystemDot.setVisibility(View.GONE);
                 break;
             case R.id.ll_appoint_message:
                 startActivity(new Intent(this, AppointMessageActivity.class));
+                mBvAppointDot.setVisibility(View.GONE);
                 break;
             case R.id.ll_private:
                 startActivity(new Intent(this, MessagePrivateActivity.class));
+                mBvPrivateDot.setVisibility(View.GONE);
                 break;
             case R.id.ll_relate_me:
                 startActivity(new Intent(this, RelateMeActivity.class));
+                mBvPrivateDot.setVisibility(View.GONE);
                 break;
         }
     }
@@ -93,12 +98,19 @@ public class MessageCenterActivity extends BaseNetWorkActivity<MessageCenterEven
     protected void onSuccess(MessageCenterEvent messageCenterEvent) {
         MessageCenterBean object = GsonUtils.getObject(messageCenterEvent.getResult(), MessageCenterBean.class);
         MessageCenterBean.DataBean data = object.getData();
-        int user = data.getUser();
-        mBvRelateMe.setBadgeCount(user);
-        mBvAppointDot.setBadgeCount(data.getTravel());
-        mBvSystemDot.setBadgeCount(data.getSystem());
+        setShow(data.getUser(),mBvRelateMe);
+        setShow(data.getTravel(),mBvAppointDot);
+        setShow(data.getSystem(),mBvSystemDot);
+
     }
 
+    private void setShow(int i, View view) {
+        if (i>0){
+            view.setVisibility(View.VISIBLE);
+        }else {
+            view.setVisibility(View.GONE);
+        }
+    }
 
 
     @Override

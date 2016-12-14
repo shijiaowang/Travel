@@ -216,9 +216,18 @@ public class TravelsDetailBean implements ParentBean{
         }
 
         public static class TravelRoutesBean {
-            private String star_time;
+            private String start_time;
             private String end_time;
             private String meet_address;
+
+            public String getStart_time() {
+                return start_time;
+            }
+
+            public void setStart_time(String start_time) {
+                this.start_time = start_time;
+            }
+
             private String total_price;
             private String travel_img;
             private int count;
@@ -228,13 +237,7 @@ public class TravelsDetailBean implements ParentBean{
 
             private List<RoutesBean> routes;
 
-            public String getStar_time() {
-                return star_time;
-            }
 
-            public void setStar_time(String star_time) {
-                this.star_time = star_time;
-            }
 
             public String getEnd_time() {
                 return end_time;

@@ -1,5 +1,6 @@
 package yunshuo.yneb.com.myapplication.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -10,8 +11,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +26,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import yunshuo.yneb.com.myapplication.R;
 import yunshuo.yneb.com.myapplication.SystemBarHelper;
+import yunshuo.yneb.com.myapplication.other.utils.GlobalUtils;
+import yunshuo.yneb.com.myapplication.other.utils.LogUtils;
 
 /**
  * 主页面
@@ -45,13 +53,53 @@ public class HomeActivity extends BaseHideSoftActivity implements View.OnClickLi
             layoutParams.height+=SystemBarHelper.getStatusBarHeight(this);
             tvToolbar.setLayoutParams(layoutParams);
         }
+        tvToolbar.setTitle("");
+        setSupportActionBar(tvToolbar);
+
         initTabLayout();
+        login();
+    }
+    private void login() {
+        if (!EMClient.getInstance().isConnected()) {
+            EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {//回调
+                @Override
+                public void onSuccess() {
+                    EMClient.getInstance().groupManager().loadAllGroups();
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                    LogUtils.e("登录聊天服务器成功！");
+                }
+
+                @Override
+                public void onProgress(int progress, String status) {
+
+                }
+
+                @Override
+                public void onError(int code, String message) {
+                    LogUtils.e(message);
+                }
+            });
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.circle_home,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.send){
+             startActivity(new Intent(this,HomeSearchActivity.class));
+        }
+        return true;
     }
 
     private void initTabLayout() {
         fragments = new ArrayList<>(2);
-        fragments.add(new FragmentTest());
-        fragments.add(new FragmentTest());
+        fragments.add(new ConversationListFragment());
+        fragments.add(new GroupFragment());
         HomePagerAdapter homePagerAdapter=new HomePagerAdapter(getSupportFragmentManager());
         ivPager.setAdapter(homePagerAdapter);
         tabLayout.setupWithViewPager(ivPager);

@@ -54,7 +54,7 @@ public class FrescoUtils {
      * @param simpleDraweeView 显示
      */
     public static void displayRoundIcon(SimpleDraweeView simpleDraweeView, String url){
-       displayRoundIcon(simpleDraweeView,url,200,200);
+       displayRoundIcon(simpleDraweeView,url,400,400);
     }
     public static void displayRoundIcon(SimpleDraweeView simpleDraweeView, String url,int width,int height){
         if (simpleDraweeView==null || url==null)return;

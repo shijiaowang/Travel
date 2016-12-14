@@ -52,6 +52,16 @@ public class OrdersDetailBean{
         private String pay_status;
         private int conpou;
 
+        public int getDay() {
+            return day;
+        }
+
+        public void setDay(int day) {
+            this.day = day;
+        }
+
+        private int day;
+
         private List<BasecPriceBean> basec_price;
 
         public String getOrder_sn() {

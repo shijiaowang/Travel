@@ -140,7 +140,7 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
             CostSettingBean costSettingBean = GsonUtils.getObject(costSettingEvent.getResult(), CostSettingBean.class);
             List<BasecPriceBean> data = costSettingBean.getData();
             mTvdes.setText(costSettingBean.getBasectext());
-            CostSettingAdapter costSettingAdapter = new CostSettingAdapter(data, this);
+            CostSettingAdapter costSettingAdapter = new CostSettingAdapter(data, this,size);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.setAdapter(costSettingAdapter);
             mRecyclerView.setLayoutManager(linearLayoutManager);

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#FFFFC27C"
+    android:background="@color/otherTitleBg"
     android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
         android:id="@+id/tv_toolbar"

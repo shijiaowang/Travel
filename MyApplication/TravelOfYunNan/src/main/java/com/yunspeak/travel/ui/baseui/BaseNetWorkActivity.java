@@ -16,7 +16,9 @@ import org.xutils.common.Callback;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.OnClick;
 
@@ -28,6 +30,7 @@ import butterknife.OnClick;
 public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolBarActivity {
     private boolean isFirstInflate =true;
     protected Callback.Cancelable useCommonBackJson;
+    protected Set<Integer> errorMessageCodeNotToast=new HashSet<>();//不弹toast的错误code集合
 
     @Override
     protected void initOptions() {
@@ -110,7 +113,10 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
             }
 
         }else {
-            ToastUtils.showToast(t.getMessage());
+            if (!errorMessageCodeNotToast.contains(t.getType())){
+                ToastUtils.showToast(t.getMessage());
+            }
+
             onFail(t);
         }
        setIsProgress(false);

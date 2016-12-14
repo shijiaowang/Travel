@@ -250,8 +250,13 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         String destinationFileName = IMAGE_NAME + ".jpg";
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
         uCrop = advancedConfig(uCrop);
-        uCrop.withMaxResultSize(300, 300).start(this);
 
+        userResultSize(uCrop,300,300);
+
+    }
+
+    protected void userResultSize(UCrop uCrop, int width, int height) {
+        uCrop.withMaxResultSize(width, height).start(this);
     }
     /**
      * Sometimes you want to adjust more options, it's done via {@link com.yalantis.ucrop.UCrop.Options} class.
@@ -275,7 +280,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         options.setToolbarColor(getResources().getColor(R.color.otherTitleBg));
         options.setStatusBarColor(getResources().getColor(R.color.otherTitleBg));
         options.setAspectRatioOptions(0, new AspectRatio("1", 1, 1));
-        options.setCompressionQuality(50);
+        options.setCompressionQuality(80);
         options.setMaxBitmapSize(800);//图片压缩
         options.setImageToCropBoundsAnimDuration(100);
         setOptions(options);

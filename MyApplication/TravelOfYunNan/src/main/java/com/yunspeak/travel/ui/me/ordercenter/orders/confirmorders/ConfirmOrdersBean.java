@@ -83,6 +83,16 @@ public class ConfirmOrdersBean {
             private String price;
             private String max_people;
 
+            public int getDay() {
+                return day;
+            }
+
+            public void setDay(int day) {
+                this.day = day;
+            }
+
+            private int  day;
+
             public String getId() {
                 return id;
             }

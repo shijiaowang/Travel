@@ -58,59 +58,6 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-    <RelativeLayout
-        android:background="@color/colorFAFAFA"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x34">
-        <TextView
-            android:text="屏蔽消息"
-            android:layout_centerVertical="true"
-            android:textColor="@color/color323232"
-            android:textSize="@dimen/x15sp"
-            android:layout_marginLeft="@dimen/x22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Switch
-            android:id="@+id/s_toggle"
-            android:showText="true"
-            android:textOn="开"
-            android:textOff="关"
-            android:switchTextAppearance="@style/mySwitchStyle"
-            android:textColorLink="@color/colorFAFAFA"
-            android:layout_marginRight="@dimen/x22"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/x20" />
 
-    </RelativeLayout>
-    <View
-        android:background="@color/meLine"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x6"/>
-
-    <TextView
-        android:gravity="center"
-        android:id="@+id/bt_clear"
-        android:text="清空聊天记录"
-        android:textColor="@color/otherFf7f6c"
-        android:textSize="@dimen/x15sp"
-        android:background="@color/colorFAFAFA"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x34" />
-
-    <View
-        android:background="@color/meLine"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x6"/>
-    <TextView
-        android:gravity="center"
-        android:id="@+id/bt_black"
-        android:text="加入黑名单"
-        android:textColor="@color/otherFf7f6c"
-        android:textSize="@dimen/x15sp"
-        android:background="@color/colorFAFAFA"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x34" />
 
 </LinearLayout>

@@ -12,15 +12,6 @@ import android.widget.TextView;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.domain.UserInfo;
 import com.hyphenate.easeui.ui.EaseBaseActivity;
-import com.yunspeak.travel.R;
-import com.yunspeak.travel.db.DBManager;
-import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingActivity;
-import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.privatesetting.PrivateChatSettingActivity;
-import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.LogUtils;
-import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -31,10 +22,18 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import yunshuo.yneb.com.myapplication.IVariable;
+import yunshuo.yneb.com.myapplication.R;
+import yunshuo.yneb.com.myapplication.activity.chat.chatsetting.ChatSettingActivity;
+import yunshuo.yneb.com.myapplication.activity.chat.chatsetting.privatesetting.PrivateChatSettingActivity;
+import yunshuo.yneb.com.myapplication.other.db.DBManager;
+import yunshuo.yneb.com.myapplication.other.utils.GsonUtils;
+import yunshuo.yneb.com.myapplication.other.utils.LogUtils;
+import yunshuo.yneb.com.myapplication.other.utils.MapUtils;
+import yunshuo.yneb.com.myapplication.other.utils.XEventUtils;
 
 public class ChatActivity extends EaseBaseActivity {
     public static ChatActivity activityInstance;
-
     @BindView(R.id.tv_appbar_title) TextView tvTitle;
     @BindView(R.id.tool_bar)
     Toolbar toolbar;

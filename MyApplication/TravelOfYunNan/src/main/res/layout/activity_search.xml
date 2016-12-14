@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/x49"
+    android:layout_height="49dp"
     android:gravity="center_vertical">
-   <RelativeLayout
-       android:layout_width="@dimen/x280"
-       android:layout_centerInParent="true"
-       android:layout_height="@dimen/x28">
-       <EditText
-           android:id="@+id/et_search"
-           style="@style/commonSingleLineTextStyle"
-           android:layout_width="@dimen/x208"
-           android:layout_height="@dimen/x28"
-           android:background="@drawable/home_search_bg"
-           android:hint="请输入关键字"
-           android:imeOptions="actionSearch"
-           android:paddingLeft="20dp"
-           android:paddingRight="40dp"
-           android:textColor="@color/colorFAFAFA"
-           android:textColorHint="@color/colorFAFAFA"
-           android:textSize="13sp" />
-       <com.yunspeak.travel.ui.view.FontsIconTextView
-           android:id="@+id/tv_search"
-           android:background="@drawable/normal_press_bg"
-           android:padding="@dimen/x5"
-           android:textColor="@color/colorFAFAFA"
-           android:text="@string/fragment_circle_search"
-           android:layout_marginRight="@dimen/x10"
-           android:layout_alignParentRight="true"
-           android:layout_centerVertical="true"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content" />
 
-   </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="28dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/home_search_bg">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="208dp"
+            android:layout_height="28dp"
+            android:background="@null"
+            android:ellipsize="end"
+            android:hint="请输入关键字"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:lines="1"
+            android:paddingLeft="20dp"
+            android:paddingRight="40dp"
+            android:textColor="@color/colorFAFAFA"
+            android:textColorHint="@color/colorFAFAFA"
+            android:textSize="13sp" />
+
+        <com.yunspeak.travel.ui.view.FontsIconTextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:inputType="phone"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x10"
+            android:background="@drawable/normal_press_bg"
+            android:padding="@dimen/x5"
+            android:text="@string/fragment_circle_search"
+            android:textColor="@color/colorFAFAFA" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
-

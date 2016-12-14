@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +18,12 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailHaveEnterAdapter;
-import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailInsuranceAdapter;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingAdapter;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
+import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FlowLayout;
@@ -71,15 +73,16 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     @BindView(R.id.tv_have_number) TextView mTvHaveNumber;
     @BindView(R.id.tv_have_enter) TextView mTvHaveEnter;//已报名
     @BindView(R.id.rv_have_enter) RecyclerView mRvHaveEnter;
-    @BindView(R.id.lv_insurance) ToShowAllListView mLvInsurance;//保险
+    @BindView(R.id.lv_insurance) RecyclerView mLvInsurance;//保险
     @BindView(R.id.fl_title) FlowLayout mFlTitle;
     @BindView(R.id.tv_price) TextView mTvPrice;
     @BindView(R.id.tv_enter_end_time) TextView mTvEnterEndTime;
     @BindView(R.id.tv_surplus_day) TextView mTvSurplusDay;//剩余日期
     @BindView(R.id.bt_enter)
     AvoidFastButton btEnter;
-    @BindView(R.id.bt_chat)
-    AvoidFastButton mBtChat;
+    @BindView(R.id.bt_chat) AvoidFastButton mBtChat;
+    @BindView(R.id.v_line) View mVLine;
+    @BindView(R.id.tv_des) TextView mTvDes;
     @BindString(R.string.activity_circle_love_empty) String emptyLove;
     @BindString(R.string.activity_circle_love_full) String fullLove;
     private String tId;
@@ -93,11 +96,11 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     int color7=Color.parseColor("#5ee5c5");
     private int [] colors=new int[]{color1,color2,color3,color4,color5,color6,color7};
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
-    private int action;
 
     @Override
     protected void initEvent() {
         init();
+        errorMessageCodeNotToast.add(TYPE_OTHER);
         mIvUserIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,9 +188,6 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     @Override
     protected void onFail(AppointWithMeDetailEvent appointWithMeDetailEvent) {
         switch (appointWithMeDetailEvent.getType()){
-            case TYPE_UPDATE:
-                ToastUtils.showToast(appointWithMeDetailEvent.getMessage());
-                break;
             case TYPE_OTHER:
                 EnterAppointDialog.showCommonDialog(this,"报名失败", "去创建", "您还没有创建任何约伴[一起玩]线路,请先创建自己的队伍!", new ParentPopClick() {
                     @Override
@@ -221,9 +221,9 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             mTvWatchNumber.setText(data.getBrowse());
             mTvTitle.setText(data.getTitle());
             mTvContent.setText(data.getContent());
-            action = data.getAction();
-            if (action!=1){
-                btEnter.setText("已报名");
+            int action = data.getAction();
+            if (action==1){
+                btEnter.setText("已接单");
             }
             mTvLove.setText(data.getIs_like().equals("1")?fullLove:emptyLove);
             mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
@@ -235,7 +235,8 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             mTvSex.setText(data.getSex().equals("0")?R.string.activity_member_detail_boy:R.string.activity_member_detail_girl);
             mTvPrice.setText("¥"+data.getTotal_price());
             mTvEnterEndTime.setText("招募截止日期："+FormatDateUtils.FormatLongTime("yyyy-MM-dd",data.getEnd_time()));
-            List<PricebasecBean> pricebasec = data.getPricebasec();
+            mTvDes.setText(data.getBasectext());
+            List<BasecPriceBean> pricebasec = data.getPricebasec();
             if (pricebasec==null){
                 pricebasec=new ArrayList<>();
             }
@@ -247,11 +248,17 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             int count=people==null?0:people.size();
             mTvHaveEnter.setText("已加入("+count+")");
             mTvHaveNumber.setText("已有："+count+"人");
-            PricebasecBean pricebasecBean=new PricebasecBean();//添加用户设置的路程费用
+            BasecPriceBean pricebasecBean=new BasecPriceBean();//添加用户设置的路程费用
             pricebasecBean.setKey("路程费用");
             pricebasecBean.setValue(data.getPrice());
+            pricebasecBean.setType("2");
             pricebasec.add(pricebasecBean);
-            mLvInsurance.setAdapter(new AppointDetailInsuranceAdapter(this, pricebasec));
+            CostSettingAdapter costSettingAdapter=new CostSettingAdapter(pricebasec,this,data.getDay());
+            LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+            linearLayoutManager.setSmoothScrollbarEnabled(false);
+            mLvInsurance.setHasFixedSize(true);
+            mLvInsurance.setAdapter(costSettingAdapter);
+            mLvInsurance.setLayoutManager(linearLayoutManager);
             List<AppointWithMeDetailBean.DataBean.RoutesBean> routes = data.getRoutes();
             if (routes!=null && routes.size()!=0){
                 mLvRouteLine.setAdapter(new AppointWithMeDetailDestinationAdapter(this,routes));
@@ -264,7 +271,11 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
 
     private void dealLabel(AppointWithMeDetailBean.DataBean data) {
         String label = data.getLabel();
-        if (StringUtils.isEmpty(label))return;
+        if (StringUtils.isEmpty(label)){
+            mFlTitle.setVisibility(View.GONE);
+            mVLine.setVisibility(View.GONE);
+            return;
+        }
         String[] split = label.split(",");
         for (int i=0;i<split.length;i++){
             TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);

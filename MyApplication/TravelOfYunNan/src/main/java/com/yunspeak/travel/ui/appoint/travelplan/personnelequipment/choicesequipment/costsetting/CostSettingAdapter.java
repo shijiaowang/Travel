@@ -15,12 +15,15 @@ import java.util.List;
  */
 
 public class CostSettingAdapter extends BaseRecycleViewAdapter<BasecPriceBean> {
-    public CostSettingAdapter(List<BasecPriceBean> mDatas, Context mContext) {
+    private  int day;
+
+    public CostSettingAdapter(List<BasecPriceBean> mDatas, Context mContext, int day) {
         super(mDatas, mContext);
+        this.day = day;
     }
 
     @Override
     public BaseRecycleViewHolder<BasecPriceBean> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new CostSettingHolder(inflateView(R.layout.item_activity_cost_setting_price,parent));
+        return new CostSettingHolder(inflateView(R.layout.item_activity_cost_setting_price,parent),day);
     }
 }

@@ -221,7 +221,11 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
         String destinationFileName = IMAGE_NAME + ".jpg";
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getActivity().getCacheDir(), destinationFileName)));
         uCrop = advancedConfig(uCrop);
-        uCrop.withMaxResultSize(300,300).start(getContext(), this);//Fragment中使用
+        userResultSize(uCrop,300,300);
+    }
+
+    protected void userResultSize(UCrop uCrop,int width,int height) {
+        uCrop.withMaxResultSize(width,height).start(getContext(), this);//Fragment中使用
     }
     /**
      * Sometimes you want to adjust more options, it's done via {@link com.yalantis.ucrop.UCrop.Options} class.
@@ -245,7 +249,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
         options.setToolbarColor(getResources().getColor(R.color.otherTitleBg));
         options.setStatusBarColor(getResources().getColor(R.color.otherTitleBg));
         options.setAspectRatioOptions(0, new AspectRatio("1", 16, 9));
-        options.setCompressionQuality(50);
+        //options.setCompressionQuality(50);
         //options.setMaxBitmapSize(800);//图片压缩
         options.setImageToCropBoundsAnimDuration(100);
         setOptions(options);

@@ -290,6 +290,7 @@
                     android:layout_marginTop="@dimen/x20" />
 
                 <View
+                    android:id="@+id/v_line"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x6"
                     android:background="@color/meLine" />
@@ -558,9 +559,8 @@
                     android:textSize="16sp" />
 
 
-                <com.yunspeak.travel.ui.view.ToShowAllListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/lv_insurance"
-                    style="@style/commonListViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
