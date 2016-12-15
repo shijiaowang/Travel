@@ -59,7 +59,6 @@ public class FrescoUtils {
     public static void displayRoundIcon(SimpleDraweeView simpleDraweeView, String url,int width,int height){
         if (simpleDraweeView==null || url==null)return;
         Uri uri=Uri.parse(url);
-        if (simpleDraweeView==null || uri==null)return;
         RoundingParams roundingParams=new RoundingParams();
         roundingParams.setCornersRadius(10f);
         //获取GenericDraweeHierarchy对象

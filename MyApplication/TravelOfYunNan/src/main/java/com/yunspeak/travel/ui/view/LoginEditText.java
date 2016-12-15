@@ -38,7 +38,6 @@ public class LoginEditText extends FrameLayout {
     private int length=100;
     private float deleteRight;
     private int leftIconSrc;
-    private ImageView mIvLeftImage;
     private float leftIconLeftMargin;
     private float editLeftMargin;
     private boolean isShowSendButton;
@@ -108,7 +107,7 @@ public class LoginEditText extends FrameLayout {
         }
         typedArray.recycle();
         View inflate = LayoutInflater.from(context).inflate(R.layout.line_edit_text, this, false);
-        mIvLeftImage = (ImageView) inflate.findViewById(R.id.iv_left_image);
+        ImageView mIvLeftImage = (ImageView) inflate.findViewById(R.id.iv_left_image);
         mEtEnter = (EditText) inflate.findViewById(R.id.et_enter);
         mEtEnter.setHint(hint);
         //密码隐藏
@@ -168,11 +167,7 @@ public class LoginEditText extends FrameLayout {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (StringUtils.isEmptyNotNull(mEtEnter.getText().toString().toString())) {
-                    isEmpty = true;
-                } else {
-                    isEmpty=false;
-                }
+                isEmpty = StringUtils.isEmptyNotNull(mEtEnter.getText().toString().trim());
                 if (canShowDelete) {
                     mTvDelete.setVisibility(isEmpty ? GONE : VISIBLE);
                 }
@@ -285,11 +280,10 @@ public class LoginEditText extends FrameLayout {
     protected void changeClickAble(boolean b) {
         if (b) {
             mBtSend.setBackgroundResource(R.drawable.login_button_selector);
-            mBtSend.setClickable(b);
         } else {
             mBtSend.setBackgroundResource(R.drawable.green_button_normal_bg_unclick);
-            mBtSend.setClickable(b);
         }
+        mBtSend.setClickable(b);
     }
 
     /**

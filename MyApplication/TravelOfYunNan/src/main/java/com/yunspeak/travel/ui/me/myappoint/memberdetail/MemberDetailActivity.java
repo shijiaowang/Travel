@@ -33,7 +33,6 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
     private List<MemberDetailBean.DataBean.JoinBean> joined;
     private List<MemberDetailBean.DataBean.JoinBean> joing;
     private MemberEnterAdapter memberEnterAdapter;
-    private List<MemberDetailBean.DataBean.JoinBean> newDatas;
     private MemberJoinedAdapter memberJoinedAdapter;
     private String type;
 
@@ -90,7 +89,7 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
             case MemberEnterAdapter.TYPE_AGREE:
                 int position = memBerDetailEvent.getPosition();
                 memberEnterAdapter.notifyDataSetChanged();
-                newDatas = new ArrayList<>(joing);
+                List<MemberDetailBean.DataBean.JoinBean> newDatas = new ArrayList<>(joing);
                 newDatas.get(position).setState("2");
                 changeData(newDatas);
                 break;
@@ -104,7 +103,7 @@ public class MemberDetailActivity extends BaseNetWorkActivity<MemBerDetailEvent>
                 //changeData(newDatas);
                 memberEnterAdapter.notifyItemRemoved(position1);
                 memberEnterAdapter.notifyItemRangeChanged(position1,joing.size()-position1);
-                joing=newDatas;
+                joing= newDatas;
                 memberEnterAdapter.notifiyData(joing);
                 break;
         }

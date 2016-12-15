@@ -414,8 +414,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
             if (resultUri != null) {
 
                 try {
-                    Bitmap bitmap = null;
-                    bitmap = BitmapUtils.getBitmapFormUri(getActivity(), resultUri, 200);
+                    Bitmap bitmap = BitmapUtils.getBitmapFormUri(getActivity(), resultUri, 200);
                     if (bitmap == null) return;
                     saveCroppedImage(bitmap);//保存图片到本地
                 } catch (Exception e) {

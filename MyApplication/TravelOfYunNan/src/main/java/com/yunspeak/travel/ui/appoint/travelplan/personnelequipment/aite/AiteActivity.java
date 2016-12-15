@@ -3,14 +3,12 @@ package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -24,17 +22,19 @@ import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/8/1 0001.
  *
- * @联系人列表
+ * 联系人列表
  */
 public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
     @BindView(R.id.tv_search) FontsIconTextView tvSearch;
@@ -45,7 +45,6 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
     private List<AiteFollow> followAndFans;
     private List<AiteFollow> mSelectPeople;
     private AiteAdapter adapter;
-    private List<String> indexList;
     private String content="";
 
 
@@ -220,7 +219,7 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
     }
 
     private void initIndexQuery() {
-        indexList = new ArrayList<>();
+        List<String> indexList = new ArrayList<>();
         indexList.add("*");//第一个默认
         //排好序后获得有序索引
         for (AiteFollow aiteFollow : followAndFans) {

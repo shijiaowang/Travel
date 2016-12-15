@@ -39,7 +39,7 @@ public class PagerCursorView extends RelativeLayout {
         @Override
         public void handleMessage(Message msg) {
             LogUtils.e(breakAutoSlide+"");
-            isShow = fragment!=null && fragment.getUserVisibleHint();
+            boolean isShow = fragment != null && fragment.getUserVisibleHint();
             if (!breakAutoSlide && isShow) {
                 int position = viewPager.getCurrentItem() + 1;
                 viewPager.setCurrentItem(position, true);
@@ -54,7 +54,6 @@ public class PagerCursorView extends RelativeLayout {
     private ViewPager viewPager = null;
     private boolean breakAutoSlide=false;
     private Fragment fragment;
-    private boolean isShow;
 
     public PagerCursorView(Context context) {
         super(context);
@@ -189,11 +188,11 @@ public class PagerCursorView extends RelativeLayout {
     }
 
     public interface PagerOnChangeListener {
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels);
+        void onPageScrolled(int position, float positionOffset, int positionOffsetPixels);
 
-        public void onPageSelected(int position);
+         void onPageSelected(int position);
 
-        public void onPageScrollStateChanged(int state);
+         void onPageScrollStateChanged(int state);
     }
 
     public static abstract class CursorPagerAdapter<T> extends PagerAdapter {

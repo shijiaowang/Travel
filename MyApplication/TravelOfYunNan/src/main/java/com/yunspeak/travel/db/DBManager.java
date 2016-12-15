@@ -147,7 +147,7 @@ public class DBManager {
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
         Cursor query = null;
         try {
-            String city="";
+            String city;
             for (ProvinceBean provinceBean : options1Items) {
                 query = writableDatabase.query("yuns_district", null, "level=? and upid=?", new String[]{"2", provinceBean.getId()}, null, null, null);
                 ArrayList<String> arrayList=new ArrayList<>();
@@ -211,7 +211,6 @@ public class DBManager {
         if (cursor!=null){
             try {
                 cursor.close();
-                cursor=null;
             } catch (Exception e) {
                 e.printStackTrace();
             }

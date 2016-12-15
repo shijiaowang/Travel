@@ -71,7 +71,6 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     private EaseEmojiconMenu mEsEmoj;
     private InputMethodManager imm;
 
-    private int sendDelayTime = 0;//延迟发送广播时间，解决软键盘弹出情况下，再弹出表情包等等闪屏状况
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -152,7 +151,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     }
 
     private void hideSoftClick(View v) {
-        sendDelayTime = 0;//初始化
+        int sendDelayTime = 0;
         if (imm.isActive()) {
             imm.hideSoftInputFromWindow(mEtTitle.getWindowToken(), 0); //强制隐藏键盘
             sendDelayTime = 300;
@@ -172,7 +171,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
             mVsEmoji = (ViewStub) findViewById(R.id.vs_emoji);
             mVsEmoji.inflate();
             mEsEmoj = (EaseEmojiconMenu) findViewById(R.id.ease_emoji);
-            List<EaseEmojiconGroupEntity> emojiconGroupList = new ArrayList<EaseEmojiconGroupEntity>();
+            List<EaseEmojiconGroupEntity> emojiconGroupList = new ArrayList<>();
             emojiconGroupList.add(new EaseEmojiconGroupEntity(com.hyphenate.easeui.R.drawable.ee_1,  Arrays.asList(EaseDefaultEmojiconDatas.getData())));
             mEsEmoj.init(emojiconGroupList,4);
             mEsEmoj.setOnEmojiChangeListener(new CreatePostEmojiListenerListener());
@@ -279,7 +278,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         if (mSelectPeople!=null){
             StringBuilder stringBuilder=new StringBuilder();
             for (AiteFollow aiteFollow:mSelectPeople){
-                stringBuilder.append(aiteFollow.getFollow().getId()+",");
+                stringBuilder.append(aiteFollow.getFollow().getId()).append(",");
             }
             String string = stringBuilder.toString();
             if (!StringUtils.isEmptyNotNull(string)){

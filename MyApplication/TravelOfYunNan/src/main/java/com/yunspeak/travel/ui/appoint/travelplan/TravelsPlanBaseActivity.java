@@ -31,6 +31,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 
@@ -65,6 +66,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
     protected Date endLine;
     protected Date startLine;
     private int howDay;
+    private SimpleDateFormat simpleDateFormat;
 
 
     /**
@@ -122,8 +124,9 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
         year = currentDay.get(Calendar.YEAR);
         startDate = new Date();
         endDate = new Date();
-        mTvStartTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(startDate));
-        mTvEndTime.setText(new SimpleDateFormat("dd/MM/yyyy").format(endDate));
+        simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.CHINA);
+        mTvStartTime.setText(simpleDateFormat.format(startDate));
+        mTvEndTime.setText(simpleDateFormat.format(endDate));
         if (mTvHowDay != null) {
             mTvHowDay.setText("共计" + CalendarUtils.getHowDayHowNight(startDate.getTime() + "", endDate.getTime() + ""));
         }
@@ -245,7 +248,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
             return;
         }
 
-        currentText.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
+        currentText.setText(simpleDateFormat.format(date));
         if (currentText == mTvStartTime) {
             startDate = date;
         } else {

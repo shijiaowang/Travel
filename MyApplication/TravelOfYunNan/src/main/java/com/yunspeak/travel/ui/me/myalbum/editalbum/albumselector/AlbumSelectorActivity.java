@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
@@ -26,6 +25,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity;
 import com.yunspeak.travel.utils.ToastUtils;
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
@@ -61,8 +61,7 @@ public class AlbumSelectorActivity extends BaseToolBarActivity {
     /**
      * 临时的辅助类，用于防止同一个文件夹的多次扫描
      */
-    private HashSet<String> mDirPaths = new HashSet<String>();
-    private TextView mTvCancel;
+    private HashSet<String> mDirPaths = new HashSet<>();
 
     private void initImages() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -123,10 +122,8 @@ public class AlbumSelectorActivity extends BaseToolBarActivity {
                     continue;
                 }
                 String dirPath = parentFile.getAbsolutePath();
-                ImageFolder imageFolder = null;
-                if (mDirPaths.contains(dirPath)) {
-                    continue;//继续下次
-                } else {
+                ImageFolder imageFolder ;
+                if (!mDirPaths.contains(dirPath)) {
                     mDirPaths.add(dirPath);
                     imageFolder = new ImageFolder();
                     imageFolder.setDir(dirPath);
@@ -135,10 +132,7 @@ public class AlbumSelectorActivity extends BaseToolBarActivity {
                     int dirCount = parentFile.list(new FilenameFilter() {
                         @Override
                         public boolean accept(File dir, String filename) {
-                            if (filename.endsWith(".jpg") || filename.endsWith(".jpeg") || filename.endsWith(".png")) {
-                                return true;
-                            }
-                            return false;
+                            return filename.endsWith(".jpg") || filename.endsWith(".jpeg") || filename.endsWith(".png");
                         }
                     }).length;
 

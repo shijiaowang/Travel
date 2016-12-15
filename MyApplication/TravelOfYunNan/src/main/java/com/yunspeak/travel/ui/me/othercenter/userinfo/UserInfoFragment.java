@@ -3,13 +3,11 @@ package com.yunspeak.travel.ui.me.othercenter.userinfo;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.widget.TextView;
-
+import com.google.android.flexbox.FlexboxLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.db.DBManager;
-import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
@@ -18,7 +16,6 @@ import com.yunspeak.travel.ui.me.othercenter.UserBean;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.List;
 

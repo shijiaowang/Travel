@@ -4,7 +4,7 @@ import android.text.InputType;
 import android.view.View;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.changephone.bindphone.BindPhoneActivity;
@@ -34,7 +34,6 @@ public class ChangePhoneActivity extends BaseNetWorkActivity<ChangePhoneEvent> {
     @BindView(R.id.bt_next)
     AvoidFastButton btNext;
     private String tel;
-    private boolean isSend;
 
 
     @Override
@@ -102,7 +101,6 @@ public class ChangePhoneActivity extends BaseNetWorkActivity<ChangePhoneEvent> {
                 break;
             case TYPE_VER_MSG:
                 //发送验证码
-                isSend = true;
                 changeClickAble(btNext, true);
                 etVer.setTimeStart();
                 ToastUtils.showToast("验证码发送成功");

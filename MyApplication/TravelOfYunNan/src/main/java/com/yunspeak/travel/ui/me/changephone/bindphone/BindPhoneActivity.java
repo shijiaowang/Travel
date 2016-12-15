@@ -5,7 +5,7 @@ import android.text.InputType;
 import android.view.View;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
@@ -34,7 +34,6 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
     LoginEditText etVer;
     @BindView(R.id.bt_next)
     AvoidFastButton btNext;
-    private boolean isSend = false;
     private String tel;
 
 
@@ -113,7 +112,6 @@ public class BindPhoneActivity extends BaseNetWorkActivity<BindPhoneEvent> {
                 //发送验证码
                 changeClickAble(btNext, true);
                 etVer.setTimeStart();
-                isSend = true;
                 break;
             case TYPE_OTHER:
                 //绑定成功

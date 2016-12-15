@@ -28,7 +28,6 @@ import butterknife.BindView;
 public class TravelsActivity extends BaseRecycleViewActivity<TravelsEvent,TravelsBean,TravelsBean.DataBean> implements View.OnClickListener {
     private String content="";
     private EditText mEtSearch;
-    private FontsIconTextView mTvSearch;
     @BindView(R.id.ll_root)
     LinearLayout llRoot;
 
@@ -46,7 +45,7 @@ public class TravelsActivity extends BaseRecycleViewActivity<TravelsEvent,Travel
         mVsContent.setLayoutResource(R.layout.activity_travels_header);
         mVsContent.inflate();
         mEtSearch = (EditText) findViewById(R.id.et_search);
-        mTvSearch = (FontsIconTextView) findViewById(R.id.tv_search);
+        FontsIconTextView mTvSearch = (FontsIconTextView) findViewById(R.id.tv_search);
         mTvSearch.setOnClickListener(this);
         mEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

@@ -159,7 +159,7 @@
                 android:layout_marginLeft="@dimen/x29"
                 android:text="项目"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="@dimen/x13" />
+                android:textSize="@dimen/x13sp" />
 
             <TextView
                 android:layout_width="wrap_content"

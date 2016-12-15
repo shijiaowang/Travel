@@ -1,17 +1,14 @@
 package com.yunspeak.travel.ui.find.active;
 
 
-import android.content.Intent;
+
 import android.view.ViewGroup;
-
-
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.DetailCommonEvent;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.ActivityBean;
-import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
-import com.yunspeak.travel.ui.baseui.BaseBarChangeColorActivity;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.BaseBarChangeColorActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.circle.circlenav.circledetail.ActivityBean;
 import java.util.List;
 
 /**

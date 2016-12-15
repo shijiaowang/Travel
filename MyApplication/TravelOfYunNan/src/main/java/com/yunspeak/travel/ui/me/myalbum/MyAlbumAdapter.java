@@ -1,15 +1,13 @@
 package com.yunspeak.travel.ui.me.myalbum;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.EditAlbumActivity;

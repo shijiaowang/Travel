@@ -58,7 +58,7 @@
                 android:layout_marginTop="@dimen/x25"
                 android:layout_below="@id/iv_empty"
                 android:layout_centerHorizontal="true"
-                android:text="这里一片荒芜~"
+                android:text="@string/there_is_nothing"
                 android:textSize="@dimen/x14sp"
                 android:textColor="@color/color969696"
                 android:layout_width="wrap_content"

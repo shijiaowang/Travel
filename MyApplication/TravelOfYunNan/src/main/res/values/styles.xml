@@ -9,7 +9,7 @@
         <item name="colorPrimaryDark">@color/otherTitleBg</item>
         <item name="colorAccent">@color/otherTitleBg</item>
     </style>
-    <style name="ToolBarTheme" parent="AppTheme.Base"></style>
+    <style name="ToolBarTheme" parent="AppTheme.Base"/>
     <!-- 自定义对话框 系统默认 :1.白边 2.标题 -->
 
     <style name="commonDialog" >
@@ -28,10 +28,7 @@
         <item name="android:windowExitAnimation">@anim/exit_anima</item>
     </style>
     <!--从下向上-->
-    <style name="popDownToUp">
-        <item name="android:windowEnterAnimation">@anim/down_to_up_enter</item>
-        <item name="android:windowExitAnimation">@anim/down_to_up_exit</item>
-    </style>
+
 
     <style name="noTitleDialog" parent="@android:style/Theme.Dialog">
 
@@ -192,40 +189,10 @@
     <!--android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@android:color/white"-->
-    <!--系统消息item-->
-    <style name="activitySystemMessageRl">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/x80</item>
-    </style>
-    <!--系统消息图标-->
-    <style name="activitySystemMessageIcon">
-        <item name="android:layout_width">@dimen/x40</item>
-        <item name="android:layout_height">@dimen/x40</item>
-        <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginLeft">@dimen/x12</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/x12sp</item>
-    </style>
 
-    <style name="activitySystemMessageTitle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/x20</item>
-        <item name="android:layout_marginLeft">@dimen/x16</item>
-        <item name="android:textSize">@dimen/x12sp</item>
-        <item name="android:textColor">#8c8c8c</item>
-    </style>
 
-    <style name="activitySystemMessageTime">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentRight">true</item>
-        <item name="android:layout_marginRight">@dimen/x13</item>
-        <item name="android:layout_marginTop">@dimen/x20</item>
-        <item name="android:textSize">@dimen/x11sp</item>
-        <item name="android:textColor">#b7b7b7</item>
-    </style>
+
+
     <!--返回字体图标-->
     <style name="backFontsIcon">
         <item name="android:layout_width">wrap_content</item>
@@ -293,22 +260,7 @@
         <item name="android:textColor">@color/color323232</item>
         <item name="android:textSize">14sp</item>
     </style>
-    <style name="secondTextStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:lines">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/otherTitleBg</item>
-        <item name="android:textSize">10sp</item>
-    </style>
-    <style name="thirdTextStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:lines">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/color646464</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+
 
     <style name="fragmentAppointWithMeIconFont">
         <item name="android:layout_width">wrap_content</item>
@@ -399,22 +351,8 @@
         <item name="android:textColor">@color/color969696</item>
         <item name="android:textSize">@dimen/x25</item>
     </style>
-    <!--目的地-->
-    <style name="activityDestinationTv">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/color969696</item>
-        <item name="android:textSize">@dimen/x14sp</item>
-    </style>
 
-    <style name="activityDestinationLine">
-        <item name="android:layout_width">1dp</item>
-        <item name="android:layout_height">20dp</item>
-        <item name="android:background">@color/colorC1c1c1</item>
 
-    </style>
 
 
     <style name="commonListViewStyle">
@@ -504,24 +442,9 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="activityRegisterLl">
-        <item name="android:orientation">horizontal</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_marginTop">33dp</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
 
-    <style name="activityRegisterTextIcon">
-        <item name="android:textColor">@color/colorFAFAFA</item>
-        <item name="android:textSize">13sp</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
 
-    <style name="activityRegisterText" parent="activityRegisterTextIcon">
-        <item name="android:layout_marginLeft">14dp</item>
-    </style>
+
 
     <style name="activityRegisterEditText">
         <item name="android:layout_width">match_parent</item>
@@ -530,12 +453,6 @@
         <item name="android:layout_marginRight">10dp</item>
     </style>
 
-    <style name="activityChangePhoneText">
-        <item name="android:textColor">@color/color323232</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
 
     <style name="FullscreenTheme" parent="AppTheme">
         <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>

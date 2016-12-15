@@ -17,7 +17,7 @@ import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.zoomable.ZoomableDraweeView;
 import com.yunspeak.travel.utils.ToastUtils;
 import org.greenrobot.eventbus.EventBus;
-import org.xutils.view.annotation.ViewInject;
+
 import java.util.ArrayList;
 import java.util.List;
 

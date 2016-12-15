@@ -12,8 +12,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
-import com.yunspeak.travel.utils.ToastUtils;
 
 /**
  * Created by wangyang on 2016/9/8 0008.

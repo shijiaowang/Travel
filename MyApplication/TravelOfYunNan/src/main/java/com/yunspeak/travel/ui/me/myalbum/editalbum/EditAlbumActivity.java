@@ -210,7 +210,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             if (body.indexOf(bodyBean) == body.size() - 1) {
                 builder.append(bodyBean.getId());
             } else {
-                builder.append(bodyBean.getId() + ",");
+                builder.append(bodyBean.getId()).append(",");
             }
         }
         return builder.toString();

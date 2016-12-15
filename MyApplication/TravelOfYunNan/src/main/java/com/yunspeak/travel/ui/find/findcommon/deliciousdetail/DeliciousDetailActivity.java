@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.DetailCommonEvent;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;

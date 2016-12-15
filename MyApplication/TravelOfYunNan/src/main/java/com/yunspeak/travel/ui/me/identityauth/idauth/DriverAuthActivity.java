@@ -5,7 +5,7 @@ import android.view.View;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yalantis.ucrop.UCrop;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.me.identityauth.AuthCommonEvent;
@@ -67,9 +67,9 @@ public class DriverAuthActivity extends BaseCutPhotoActivity<AuthCommonEvent> im
                 }
                 setIsProgress(true);
                 Map<String, String> upMap = MapUtils.Build().addKey().addUserId().addType("2").addClass("1").end();
-                List<String> urls=new ArrayList<String>();
+                List<String> urls=new ArrayList<>();
                 urls.add(url);
-                XEventUtils.postUseCommonBackJson(IVariable.IDENTITY_AUTH,upMap,TYPE_UP_FILE,new AuthCommonEvent());
+                XEventUtils.postFileCommonBackJson(IVariable.IDENTITY_AUTH,upMap,urls,TYPE_UP_FILE,new AuthCommonEvent());
             }
         });
 

@@ -82,7 +82,7 @@ class MyWithMeHolder extends BaseRecycleViewHolder<MyWithMeSelectBean.DataBean> 
             }
         });
         final String status = datas.getStatus();
-        String des="";
+        String des;
         int bg;
         if (status.equals("1")){
             des="已选择";

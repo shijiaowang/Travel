@@ -34,7 +34,6 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
     @BindView(R.id.gv_photo) GridView mGvPhoto;
     @BindView(R.id.tv_send) TextView mTvSend;
     @BindView(R.id.tv_watch) TextView mTvWatch;
-    private ImageFolder mFolder;
     private List<String> mImages;
     private PictureSelectorAdapter adapter;
     private List<String> mSelectImages=new ArrayList<>();
@@ -114,18 +113,15 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
 
     protected void initViewData() {
         //获取图片
-        mFolder = (ImageFolder) getIntent().getSerializableExtra(IVariable.IMAGE_FOLDER);
+        ImageFolder mFolder = (ImageFolder) getIntent().getSerializableExtra(IVariable.IMAGE_FOLDER);
         if (mFolder != null) {
             String dir = mFolder.getDir();
             File file = new File(dir);
             mImages = Arrays.asList(file.list(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String filename) {
-                    if (filename.endsWith(".jpg") || filename.endsWith(".png")
-                            || filename.endsWith(".jpeg")) {
-                        return true;
-                    }
-                    return false;
+                    return filename.endsWith(".jpg") || filename.endsWith(".png")
+                            || filename.endsWith(".jpeg");
                 }
             }));
         }

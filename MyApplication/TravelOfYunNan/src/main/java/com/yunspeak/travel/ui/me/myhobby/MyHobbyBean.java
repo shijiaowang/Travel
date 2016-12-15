@@ -1,6 +1,5 @@
 package com.yunspeak.travel.ui.me.myhobby;
 
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 

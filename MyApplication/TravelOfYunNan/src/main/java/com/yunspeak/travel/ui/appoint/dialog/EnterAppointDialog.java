@@ -394,7 +394,9 @@ public class EnterAppointDialog {
         final View dialogView = View.inflate(context, R.layout.pop_share, null);
         final Dialog dialog = new Dialog(context, R.style.noTitleDialog);
         Window window = dialog.getWindow(); //得到对话框
-        window.setGravity(Gravity.CENTER);
+        if (window!=null) {
+            window.setGravity(Gravity.CENTER);
+        }
         dialogView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

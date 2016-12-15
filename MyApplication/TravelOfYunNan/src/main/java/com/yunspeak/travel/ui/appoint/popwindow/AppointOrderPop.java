@@ -10,7 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.utils.UIUtils;
+
 
 import org.xutils.common.util.DensityUtil;
 

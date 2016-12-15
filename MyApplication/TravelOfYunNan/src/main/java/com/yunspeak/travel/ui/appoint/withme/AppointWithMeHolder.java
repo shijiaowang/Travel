@@ -1,27 +1,22 @@
 package com.yunspeak.travel.ui.appoint.withme;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.ColorInt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.appoint.together.AppointTogetherEvent;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
-import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -63,8 +58,11 @@ public class AppointWithMeHolder extends BaseRecycleViewHolder {
     @BindColor(R.color.other5ee5c5) @ColorInt int color7;
     private int [] colors=new int[]{color1,color2,color3,color4,color5,color6,color7};
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
+    private  LayoutInflater inflater;
+
     public AppointWithMeHolder(View itemView) {
         super(itemView);
+        inflater = LayoutInflater.from(itemView.getContext());
     }
 
 
@@ -105,7 +103,7 @@ public class AppointWithMeHolder extends BaseRecycleViewHolder {
         if (!StringUtils.isEmpty(label)) {
             String[] split = label.split(",");
             for (int i = 0; i < split.length; i++) {
-                View view = View.inflate(mContext, R.layout.item_fragment_appoint_title, mFlTitle);
+                View view =inflater.inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
                 TextView textView = (TextView) view.findViewById(R.id.tv_text);
                 textView.setText(split[i]);
                 textView.setBackgroundResource(titleBgs[i%titleBgs.length]);

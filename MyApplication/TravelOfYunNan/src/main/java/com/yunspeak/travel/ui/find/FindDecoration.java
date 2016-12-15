@@ -13,12 +13,13 @@ import org.xutils.common.util.DensityUtil;
 public class FindDecoration extends RecyclerView.ItemDecoration {
 
 
-    private  int top;
+    private int top;
     private  int left;
 
     public FindDecoration(int top, int left) {
-
         this.top = top;
+
+
         this.left = left;
     }
 
@@ -26,10 +27,10 @@ public class FindDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         int childAdapterPosition = parent.getChildAdapterPosition(view);
         if (childAdapterPosition%2==1) {
-            outRect.left = DensityUtil.dip2px(5);
+            outRect.left = DensityUtil.dip2px(left);
         }
         if (childAdapterPosition>=2){
-            outRect.top = DensityUtil.dip2px(5);
+            outRect.top = DensityUtil.dip2px(top);
         }
     }
 }

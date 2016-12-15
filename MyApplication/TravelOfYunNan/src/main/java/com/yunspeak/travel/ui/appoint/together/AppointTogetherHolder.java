@@ -2,25 +2,22 @@ package com.yunspeak.travel.ui.appoint.together;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.ColorInt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
-import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.view.FlowLayout;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -57,9 +54,11 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder {
     @BindColor(R.color.other5ee5c5) @ColorInt int color7;
     private int [] colors=new int[]{color1,color2,color3,color4,color5,color6,color7};
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
+    private  LayoutInflater inflater;
 
     public AppointTogetherHolder(View itemView) {
         super(itemView);
+        inflater = LayoutInflater.from(itemView.getContext());
     }
 
 
@@ -81,7 +80,7 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder {
         if (!StringUtils.isEmpty(label)) {
             String[] split = label.split(",");
             for (int i = 0; i < split.length; i++) {
-                View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
+                View inflate = inflater.inflate(R.layout.item_fragment_appoint_title, mFlTitle, false);
                 TextView textView = (TextView) inflate.findViewById(R.id.tv_text);
                 textView.setBackgroundResource(titleBgs[i%titleBgs.length]);
                 textView.setTextColor(colors[i%colors.length]);
@@ -93,7 +92,7 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder {
         StringBuffer stringBuffer = new StringBuffer();
         if (routes!=null && routes.size()!=0) {
             for (AppointTogetherBean.DataBean.RoutesBean bean : routes) {
-                stringBuffer.append(bean.getTitle() + "-");
+                stringBuffer.append(bean.getTitle()).append("-");
             }
             String add = stringBuffer.toString().substring(0, stringBuffer.toString().length() - 1);
             mTvAdd.setText(add);

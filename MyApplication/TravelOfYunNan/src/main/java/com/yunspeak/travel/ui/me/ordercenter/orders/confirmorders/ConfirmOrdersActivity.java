@@ -87,7 +87,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     TextView mTvOrderName;
     @BindView(R.id.tv_appoint) TextView mTvAppoint;
     @BindView(R.id.tv_active_name) TextView mTvActiveName;
-    private List<String> mConpous = new ArrayList<>();
+    private String mConpousId="";
 
 
     private List<TextView> selectPayWay = new ArrayList<>();
@@ -111,6 +111,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                      对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
                      */
                     String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    // TODO: 2016/12/15 0015  同步返回需要验证的信息
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
@@ -272,12 +273,11 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     }
 
     private void payZFBAgain(final String info) {
-        //final String   info="app_id=2016111402791670&timestamp=2016-07-29+16%3A55%3A53&biz_content=%7B%22timeout_express%22%3A%2230m%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%221%22%2C%22body%22%3A%22%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%22%2C%22out_trade_no%22%3A%221202124847-1682%22%7D&method=alipay.trade.app.pay&charset=utf-8&version=1.0&sign_type=RSA&sign=E0LhmU%2BvgXQcOX2s6VgXPtHihX%2B7Gdbf62%2BmrMlKpX5nqlt8IM4QRx58YyuDANF0D588zjBI%2FKTOYB4SSIkuHdJWPJOhNwvWzhPVucy5pVErK3vzabCcHNGUE2vp1eVgvecAVWDnaRCT6WLLaixqZMOWpzHACAZtruhQPeC0BxY%3D";
         Runnable payRunnable = new Runnable() {
 
             @Override
             public void run() {
-                Map<String, String> result = null;
+                Map<String, String> result;
                 try {
                     PayTask alipay = new PayTask(ConfirmOrdersActivity.this);
                     result = alipay.payV2(info, true);
@@ -339,6 +339,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                     totalReduces = Float.parseFloat(conpouBean.getNumber());
                     currentPrice = totalPay - Float.parseFloat(conpouBean.getNumber());
                     conpouBean.setStatus("2");
+                    mConpousId=conpouBean.getId();
                     prePosition = position;
                 } else if (conpouBean.getStatus().equals("2")) {
                     totalReduces = 0.0f;
@@ -346,7 +347,6 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
                     conpouBean.setStatus("1");
                 }
                 prePosition = position;
-
                 ordersCouponAdapter.notifyDataSetChanged();
                 mTvReducePrice.setText("¥-" + totalReduces);
                 mTvPay.setText("总计:" + currentPrice + "元");
@@ -393,20 +393,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             ToastUtils.showToast("订单异常");
             return;
         }
-
-        StringBuilder stringBuilder = new StringBuilder();
-        if (mConpous.size() != 0) {
-            for (int i = 0; i < mConpous.size(); i++) {
-                if (i == mConpous.size() - 1) {
-                    stringBuilder.append(mConpous.get(i));
-                } else {
-                    stringBuilder.append(mConpous.get(i) + ",");
-                }
-            }
-        }
-
-        String coupon = stringBuilder.toString();
-        Map<String, String> submitMap = MapUtils.Build().addKey().addUserId().addId(id).addCoupon(coupon).add("pay_name", currentPayWay == PAY_WAY_WX ? "2" : "1").end();
+        Map<String, String> submitMap = MapUtils.Build().addKey().addUserId().addId(id).addCoupon(mConpousId).add("pay_name", currentPayWay == PAY_WAY_WX ? "2" : "1").end();
         XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS, submitMap, SUBMIT_NEW, new ConfirmOrdersEvent());
 
     }

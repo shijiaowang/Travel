@@ -1,14 +1,13 @@
 package com.yunspeak.travel.ui.me.messagecenter.privatemessage;
 
-import android.view.Menu;
-import android.view.MenuItem;
+
 
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
-import com.yunspeak.travel.utils.LogUtils;
+
 
 import java.util.List;
 

@@ -1,10 +1,7 @@
 package com.yunspeak.travel.ui.me.titlemanage;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -18,7 +15,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2016/9/7 0007.

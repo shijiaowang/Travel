@@ -17,7 +17,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.utils.UIUtils;
+
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

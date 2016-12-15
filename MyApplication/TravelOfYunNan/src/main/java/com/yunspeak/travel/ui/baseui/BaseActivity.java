@@ -6,25 +6,20 @@ import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.text.Html;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
@@ -32,9 +27,6 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
-import org.xutils.x;
-
-import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -132,37 +124,12 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
 
-    /**
-     * 设置按钮背景
-     *
-     * @param button
-     * @param b
-     */
-    protected void btIsClick(Button button, boolean b) {
-        if (b) {
-            button.setBackgroundResource(R.drawable.fragment_find_search_bg);
-            button.setClickable(b);
-        } else {
-            button.setBackgroundResource(R.drawable.button_bg_un_click);
-            button.setClickable(b);
-        }
-    }
+
 
     protected String getString(EditText editText) {
         return editText.getText().toString().trim();
     }
 
-    /**
-     * 设置 错误信息
-     *
-     * @param request
-     * @param errorMessage
-     */
-    protected void requestAndSetErrorMessage(EditText request, String errorMessage) {
-        request.requestFocus();
-        String message = "<font color=#5cd0c2>" + errorMessage + "</font>";
-        request.setError(Html.fromHtml(message));
-    }
 
     protected void registerEventBus(Activity activity) {
         if (!EventBus.getDefault().isRegistered(activity)) {
@@ -225,12 +192,7 @@ public abstract class BaseActivity extends FragmentActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
         }
     }
-    public boolean ListIsEmpty(List list){
-        if (list ==null || list.size()==0){
-            return true;
-        }
-        return false;
-    }
+
 
 
 

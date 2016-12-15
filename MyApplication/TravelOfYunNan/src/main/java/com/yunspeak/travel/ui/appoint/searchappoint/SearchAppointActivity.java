@@ -35,8 +35,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-
 /**
  * Created by wangyang on 2016/11/11 0011.
  * 搜索约伴页面
@@ -45,7 +43,6 @@ import butterknife.BindView;
 public class SearchAppointActivity extends BaseRecycleViewActivity<SearchAppointEvent, AppointWithMeBean, Object> implements View.OnClickListener {
     private boolean isTogether = true;
     private EditText mEtSearch;
-    private TextView mTvSearch;
     private TextView mTvSelect;
     private boolean isInitLabel;
     private Map<String, List<CityBean>> rights;
@@ -73,7 +70,7 @@ public class SearchAppointActivity extends BaseRecycleViewActivity<SearchAppoint
         mVsContent.setLayoutResource(R.layout.activity_search_appoint_head);
         mVsContent.inflate();
         mEtSearch = (EditText) findViewById(R.id.et_search);
-        mTvSearch = (TextView) findViewById(R.id.tv_search);
+        TextView mTvSearch = (TextView) findViewById(R.id.tv_search);
         mTvSelect = (TextView) findViewById(R.id.tv_select);
         mTvType = (TextView) findViewById(R.id.tv_type);
         mTvTime = (TextView) findViewById(R.id.tv_time);

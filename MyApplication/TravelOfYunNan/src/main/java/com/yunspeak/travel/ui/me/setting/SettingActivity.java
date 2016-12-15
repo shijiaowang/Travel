@@ -20,7 +20,7 @@ import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yalantis.ucrop.UCrop;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
@@ -85,7 +85,6 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>(0);
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>(0);
     private OptionsPickerView pvOptions;
-    private boolean isUpdate=false;
     private boolean messageIsChange=false;
     private String iconUrl;
     private int isCanSee=0;//默认不能看
@@ -174,7 +173,6 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     @Override
     protected void onSuccess(SettingEvent settingEvent) {
         ToastUtils.showToast(settingEvent.getMessage());
-        isUpdate=true;
         SettingBean object = GsonUtils.getObject(settingEvent.getResult(), SettingBean.class);
         UserInfo data = object.getData();
         if (data!=null){

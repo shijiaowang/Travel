@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.PeopleBean;
+import com.yunspeak.travel.ui.appoint.PeopleBean;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
 
@@ -34,13 +34,13 @@ public class AppointDetailHaveEnterAdapter extends RecyclerView.Adapter<Recycler
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder,  int position) {
         final EnterHolder enterHolder = (EnterHolder) holder;
         FrescoUtils.displayIcon(enterHolder.mIvIcon,mDatas.get(position).getUser_img());
         enterHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OtherUserCenterActivity.start(mContext,enterHolder.mIvIcon,mDatas.get(position).getId());
+                OtherUserCenterActivity.start(mContext,enterHolder.mIvIcon,mDatas.get(enterHolder.getAdapterPosition()).getId());
             }
         });
     }

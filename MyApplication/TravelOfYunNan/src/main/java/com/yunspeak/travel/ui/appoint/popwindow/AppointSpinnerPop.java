@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.utils.UIUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.common.util.DensityUtil;

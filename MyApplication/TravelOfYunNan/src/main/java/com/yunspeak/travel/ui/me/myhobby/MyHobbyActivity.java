@@ -40,7 +40,6 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
     private List<Fragment> fragments=new ArrayList<>();
     private LayoutInflater inflater;
     private List<UserLabelBean> userLabel=new ArrayList<>();
-    private String[] mTitles;
 
     @Override
     protected void initEvent() {
@@ -88,7 +87,7 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
         initTitle(data.getUser_label());
         List<LabelTitleBean> labelTitle = data.getLabel_title();
         mVpPager.setOffscreenPageLimit(labelTitle.size());
-        mTitles = new String[labelTitle.size()];
+        String[] mTitles = new String[labelTitle.size()];
         int i=0;
         for (LabelTitleBean labelTitleBean:labelTitle){
             mTitles[i]=labelTitleBean.getName();
@@ -111,7 +110,7 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
             fragments.add(newInstance);
             i++;
         }
-        mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager(),fragments,mTitles));
+        mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager(),fragments, mTitles));
         mTlTitle.setupWithViewPager(mVpPager);
 
     }
@@ -138,7 +137,7 @@ public class MyHobbyActivity extends BaseNetWorkActivity<MyHobbyEvent> {
         setIsProgress(true);
         StringBuilder stringBuilder=new StringBuilder();
         for (UserLabelBean userLabelBean:userLabel){
-            stringBuilder.append(userLabelBean.getId()+",");
+            stringBuilder.append(userLabelBean.getId()).append(",");
         }
         String label = stringBuilder.toString();
         if (!StringUtils.isEmpty(label)){

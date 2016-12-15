@@ -65,7 +65,6 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
     private int loadMore=0;//插入时加载更多计算
     private MenuItem collectionMenu;
     private String shareContent;
-    private String forumImg;
     private String shareUrl;
 
     @Override
@@ -185,7 +184,6 @@ public class PostActivity extends BaseNetWorkActivity<PostEvent> implements View
                 PostDetailBean.DataBean.ForumBean forum = parentBean.getData().getForum();
                 String title = forum.getTitle();
                 String content = forum.getContent();
-                forumImg = forum.getForum_img();
                 shareUrl = forum.getShare_url();
                 shareContent = StringUtils.isEmpty(title)?content:title;
                 isCollect = forum.getIs_collect();

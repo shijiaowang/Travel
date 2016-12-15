@@ -4,8 +4,7 @@ import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.messagecenter.MeCommonEvent;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageAdapter;
-import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageBean;
-import com.yunspeak.travel.ui.me.messagecenter.relateme.RelateMeActivity;
+
 import java.util.List;
 
 /**

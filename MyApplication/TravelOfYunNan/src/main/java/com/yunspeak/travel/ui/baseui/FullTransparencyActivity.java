@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import org.xutils.x;
 
 /**
  * Created by wangyang on 2016/7/27 0027.

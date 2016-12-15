@@ -14,10 +14,11 @@
 
         <TextView
             style="@style/activityAddDestinationText"
-            android:text="景点名称" />
+            android:text="@string/spots_name" />
 
         <EditText
             android:id="@+id/et_name"
+            android:inputType="text"
             style="@style/activityAddDestinationEd"
             android:layout_width="@dimen/x183"
             android:layout_height="@dimen/x32" />
@@ -33,7 +34,7 @@
 
         <TextView
             style="@style/activityAddDestinationText"
-            android:text="景点简介" />
+            android:text="@string/spots_des" />
 
         <EditText
             android:id="@+id/et_des"
@@ -41,7 +42,7 @@
             android:layout_width="@dimen/x183"
             android:layout_height="@dimen/x105"
             android:gravity="start"
-            android:hint="*选填"
+            android:hint="@string/optional"
             android:padding="@dimen/x3"
             android:textColorHint="@color/colorFAFAFA"
             android:textSize="@dimen/x11sp" />
@@ -57,7 +58,7 @@
 
         <TextView
             style="@style/activityAddDestinationText"
-            android:text="景点地址" />
+            android:text="@string/spots_address" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/x32"
                 android:gravity="center"
-                android:text="选择地址▼"
+                android:text="@string/option_address"
                 android:minWidth="@dimen/x80"
                 android:textColor="@color/otherTitleBg"
                 android:textSize="@dimen/x13sp" />
@@ -99,7 +100,7 @@
 
         <TextView
             style="@style/activityAddDestinationText"
-            android:text="景点照片" />
+            android:text="@string/spots_photo" />
 
         <RelativeLayout
             android:layout_width="@dimen/x160"
@@ -141,6 +142,6 @@
 
     <Button
         style="@style/commonButtonNext"
-        android:text="保存修改" />
+        android:text="@string/save_change" />
 
 </LinearLayout>

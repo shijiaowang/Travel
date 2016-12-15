@@ -8,8 +8,8 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.Login;
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.welcome.Login;
+import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.RegisterSuccessEvent;
 import com.yunspeak.travel.global.GlobalValue;

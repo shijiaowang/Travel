@@ -20,13 +20,11 @@ import java.util.List;
 public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
       private List<String> mDatas;
       private Context mContext;
-    private String cId;
     private String id;
 
-    public CircleDetailPhotoAdapter(List<String> mDatas, Context mContext, String id,String cId) {
+    public CircleDetailPhotoAdapter(List<String> mDatas, Context mContext, String id) {
         this.mDatas = mDatas;
         this.mContext = mContext;
-        this.cId = cId;
         this.id = id;
     }
     public void setList(List<String> mDatas){

@@ -94,11 +94,8 @@ public class UIUtils {
 	public static boolean isRunOnUIThread() {
 		// 获取当前线程id, 如果当前线程id和主线程id相同, 那么当前就是主线�?
 		int myTid = android.os.Process.myTid();
-		if (myTid == getMainThreadId()) {
-			return true;
-		}
+		return myTid == getMainThreadId();
 
-		return false;
 	}
 
 	// 运行在主线程

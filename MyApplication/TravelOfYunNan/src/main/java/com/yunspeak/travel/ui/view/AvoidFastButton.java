@@ -5,8 +5,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 
-import com.yunspeak.travel.utils.LogUtils;
-
 /**
  * Created by wangyang on 2016/8/19 0019.
  * 避免快速点击的button

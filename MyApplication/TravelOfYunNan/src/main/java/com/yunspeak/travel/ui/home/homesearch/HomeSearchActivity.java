@@ -35,7 +35,6 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
     public static final String SEARCH_CONTENT="4";
     protected static String content="";
     private List<SearchCommonFragment> fragments;
-    private TextView mTvSearch;
     private EditText mEtSearch;
 
     @Override
@@ -46,7 +45,7 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
     @Override
     protected void initOptions() {
         View inflate = LayoutInflater.from(this).inflate(R.layout.activity_search, mToolbar,false);
-        mTvSearch = (TextView) inflate.findViewById(R.id.tv_search);
+        TextView mTvSearch = (TextView) inflate.findViewById(R.id.tv_search);
         mEtSearch = (EditText) inflate.findViewById(R.id.et_search);
         mEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

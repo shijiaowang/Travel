@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.view.ShowAllTextView;
 import com.yunspeak.travel.utils.FormatDateUtils;

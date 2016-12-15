@@ -30,7 +30,7 @@
                 android:layout_marginTop="@dimen/x180"
                 android:layout_toRightOf="@id/iv_post_icon"
                 android:textColor="@color/colorFAFAFA"
-                android:textSize="@dimen/x14" />
+                android:textSize="@dimen/x14sp" />
 
             <TextView
                 android:id="@+id/tv_follow"

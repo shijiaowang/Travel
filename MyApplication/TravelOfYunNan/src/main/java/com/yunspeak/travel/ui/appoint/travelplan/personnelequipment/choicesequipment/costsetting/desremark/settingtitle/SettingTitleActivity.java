@@ -100,7 +100,7 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
     private void sureTitle() {
         StringBuffer sb=new StringBuffer("");
         for (SettingTitle settingTitle:settingTitles){
-            sb.append(settingTitle.getTitle()+",");
+            sb.append(settingTitle.getTitle()).append(",");
         }
         JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
         try {

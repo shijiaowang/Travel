@@ -1,6 +1,6 @@
 package com.yunspeak.travel.ui.appoint.withme.withmedetail;
 
-import com.yunspeak.travel.bean.PeopleBean;
+import com.yunspeak.travel.ui.appoint.PeopleBean;
 import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 
 import java.util.List;

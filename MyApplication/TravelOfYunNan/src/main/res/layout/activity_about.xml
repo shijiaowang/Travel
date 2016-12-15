@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -39,7 +39,7 @@
             android:layout_marginLeft="@dimen/x20"
             android:layout_marginRight="@dimen/x20"
             android:layout_marginTop="@dimen/x26"
-            android:text="如果你讨厌上车睡觉、下车拍照，被导游牵着鼻子走的跟团游；或是厌倦了查攻略到吐血、事事自己操心、没人管没人问的自助游；\n[城外旅游]将开启您旅行的新方式！"
+            android:text="@string/about_des"
             android:textColor="@color/color989898"
             android:textSize="@dimen/x12sp" />
 
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x5"
-                android:text="公众号"
+                android:text="@string/public_number"
                 android:textColor="@color/color232323"
                 android:textSize="@dimen/x12sp" />
 
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x26"
-                android:text="城外旅行"
+                android:text="@string/app_name"
                 android:textColor="@color/color232323"
                 android:textSize="@dimen/x12sp" />
         </LinearLayout>
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="官方微博"
+                android:text="@string/official_micro_blog"
                 android:textColor="@color/color232323"
                 android:textSize="12sp" />
 
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x13"
-                android:text="\@城外旅游"
+                android:text="@string/aite_cityoff"
                 android:textColor="@color/color232323"
                 android:textSize="@dimen/x12sp" />
         </LinearLayout>
@@ -119,15 +119,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x5"
-                android:text="客服电话"
+                android:text="@string/service_tel"
                 android:textColor="@color/color232323"
-                android:textSize="@dimen/x12" />
+                android:textSize="@dimen/x12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x13"
-                android:text="0871-65126820"
+                android:text="@string/service_tel_number"
                 android:textColor="@color/color232323"
                 android:textSize="@dimen/x12sp" />
         </LinearLayout>
@@ -137,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x48"
-            android:text="城外旅游软件许可及服务协议"
+            android:text="@string/cityoff_protocol"
             android:textColor="@color/otherTitleBg"
             android:textSize="@dimen/x11sp" />
 
@@ -145,16 +145,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x34"
-            android:text="云南城外旅游文化发展有限公司"
+            android:text="@string/cityoff_company"
             android:textColor="@color/color232323"
-            android:textSize="@dimen/x12"
+            android:textSize="@dimen/x12sp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x10"
-            android:text="Yunnan Chengwai Travelling Culture Development Co., Ltd."
+            android:text="@string/cityoff_english_des"
             android:textColor="@color/color232323"
             android:textSize="@dimen/x11sp"
             android:layout_marginBottom="100dp"

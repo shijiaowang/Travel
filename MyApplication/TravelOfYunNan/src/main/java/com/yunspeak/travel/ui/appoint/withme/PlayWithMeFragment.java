@@ -1,11 +1,9 @@
 package com.yunspeak.travel.ui.appoint.withme;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.AppointFragment;
 import com.yunspeak.travel.ui.appoint.SelectEvent;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
-import com.yunspeak.travel.ui.view.refreshview.XListView;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 
@@ -18,7 +16,7 @@ import java.util.List;
  * Created by wangyang on 2016/7/21 0021.
  * 带我玩
  */
-public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEvent,AppointWithMeBean,AppointWithMeBean.DataBean> implements XListView.IXListViewListener {
+public class PlayWithMeFragment extends LoadAndPullBaseFragment<AppointWithMeEvent,AppointWithMeBean,AppointWithMeBean.DataBean> {
 
 
     private String label="";

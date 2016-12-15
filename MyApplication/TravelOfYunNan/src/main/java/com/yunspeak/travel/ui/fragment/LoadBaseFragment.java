@@ -18,8 +18,6 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.ui.view.LoadingPage;
-import com.yunspeak.travel.ui.view.refreshview.XListView;
-import com.yunspeak.travel.ui.view.refreshview.XScrollView;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -352,7 +350,7 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
         builder.setMessage(message);
         builder.setPositiveButton(positiveText, onPositiveButtonClickListener);
         builder.setNegativeButton(negativeText, onNegativeButtonClickListener);
-        AlertDialog mAlertDialog = builder.show();
+        builder.show();
     }
     public void canSmoothInNetScroll(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager){
         linearLayoutManager.setSmoothScrollbarEnabled(true);

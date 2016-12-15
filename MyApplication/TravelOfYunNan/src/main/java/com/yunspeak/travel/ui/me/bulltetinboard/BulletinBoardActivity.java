@@ -13,14 +13,11 @@ import java.util.List;
  * 公告栏
  */
 public class BulletinBoardActivity extends BaseRecycleViewActivity<BulletinBoardEvent,BulletinBoardBean,BulletinBoardBean.DataBean> {;
-    private String tId;
-
-
 
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        tId = getIntent().getStringExtra(IVariable.DATA);
+        String tId = getIntent().getStringExtra(IVariable.DATA);
          builder.addtId(tId);
     }
     @Override

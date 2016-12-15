@@ -2,14 +2,11 @@ package com.yunspeak.travel.ui.me.othercenter.useralbum;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
@@ -25,7 +22,6 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.common.util.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;

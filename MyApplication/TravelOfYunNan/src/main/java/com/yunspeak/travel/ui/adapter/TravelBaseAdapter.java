@@ -7,7 +7,6 @@ import android.widget.BaseAdapter;
 
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 
-import org.xutils.x;
 
 import java.util.List;
 

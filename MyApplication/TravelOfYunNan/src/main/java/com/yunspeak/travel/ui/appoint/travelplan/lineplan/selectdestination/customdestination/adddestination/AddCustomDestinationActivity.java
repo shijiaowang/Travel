@@ -48,8 +48,6 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private OptionsPickerView pvOptions;
-    private String name;
-    private String des;
     private String address;
     private String id;
     private String cityName;
@@ -223,8 +221,8 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
      * 创建景点，检查数据对不对
      */
     private void createSpot() {
-        name = getString(mEtName);
-        des = getString(mEtDes);
+        String name = getString(mEtName);
+        String des = getString(mEtDes);
         String add = getString(mEtAdd);
         if (StringUtils.isEmpty(name)) {
             ToastUtils.showToast("自定义景点名称不能为空。");

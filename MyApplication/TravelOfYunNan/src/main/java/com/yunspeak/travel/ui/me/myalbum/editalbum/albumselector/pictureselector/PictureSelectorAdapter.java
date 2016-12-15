@@ -34,7 +34,7 @@ public class PictureSelectorAdapter extends TravelBaseAdapter<String> {
                 @Override
                 public void onClick(View v) {
                     if (GlobalValue.mSelectImages==null){
-                        GlobalValue.mSelectImages=new ArrayList<String>();
+                        GlobalValue.mSelectImages=new ArrayList<>();
                     }
                     String url="file://"+dir+ File.separator+item;
                     if (GlobalValue.mSelectImages.contains(url)){

@@ -20,7 +20,7 @@ import com.yunspeak.travel.utils.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.xutils.view.annotation.ViewInject;
+
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -63,7 +63,6 @@ public abstract class BaseToolBarActivity extends BaseHideSoftActivity implement
     protected MenuItem item;
     protected RelativeLayout mRlEmpty;
     protected ViewStub mVsBar;
-    private AppBarLayout mAppBarLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,7 +71,7 @@ public abstract class BaseToolBarActivity extends BaseHideSoftActivity implement
         inflater = LayoutInflater.from(this);
         mIvPageError = (ImageView) findViewById(R.id.page_error);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+        AppBarLayout mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         mPbLoading.setVisibility(View.GONE);
         mVsBar = (ViewStub) findViewById(R.id.vs_bar);
         mRlEmpty = (RelativeLayout) findViewById(R.id.rl_empty);
@@ -288,11 +287,10 @@ public abstract class BaseToolBarActivity extends BaseHideSoftActivity implement
     protected void changeClickAble(Button button, boolean b) {
         if (b) {
             button.setBackgroundResource(R.drawable.login_button_selector);
-            button.setClickable(b);
         } else {
             button.setBackgroundResource(R.drawable.green_button_normal_bg_unclick);
-            button.setClickable(b);
         }
+        button.setClickable(b);
     }
 
 
@@ -366,10 +364,7 @@ public abstract class BaseToolBarActivity extends BaseHideSoftActivity implement
      * @return
      */
     public boolean ListIsEmpty(List list) {
-        if (list == null || list.size() == 0) {
-            return true;
-        }
-        return false;
+        return list == null || list.size() == 0;
     }
 
 

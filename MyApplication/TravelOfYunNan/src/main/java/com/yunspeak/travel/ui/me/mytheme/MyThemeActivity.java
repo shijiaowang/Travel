@@ -23,7 +23,6 @@ public class MyThemeActivity extends BaseToolBarActivity {
     @BindView(R.id.tb_cursor)  TabLayout mTbCursor;
     @BindView(R.id.vp_theme)  ViewPager mVpTheme;
     String[] mTitles={"我的帖子","我的发表"};
-    private List<Fragment> fragments;
 
     @Override
     protected int initLayoutRes() {
@@ -32,10 +31,10 @@ public class MyThemeActivity extends BaseToolBarActivity {
 
     @Override
     protected void initOptions() {
-        fragments = new ArrayList<>();
+        List<Fragment> fragments = new ArrayList<>();
         fragments.add(new MyPostFragment());
         fragments.add(new MyPublishFragment());
-        mVpTheme.setAdapter(new TitlePagerAdapter(getSupportFragmentManager(),fragments,mTitles));
+        mVpTheme.setAdapter(new TitlePagerAdapter(getSupportFragmentManager(), fragments,mTitles));
         mTbCursor.setupWithViewPager(mVpTheme);
     }
 

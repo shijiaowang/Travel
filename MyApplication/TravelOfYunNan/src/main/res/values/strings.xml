@@ -27,7 +27,6 @@
     <string name="home_activity_button_main">绶</string>
     <string name="activity_circle_back_font_icon">泛</string>
     <!--返回-->
-    <string name="activity_circle_create_post_font_icon">屑</string>
     <string name="activity_circle_love">昝</string>
     <string name="activity_circle_discuss">倫</string>
     <!--留言-->
@@ -99,15 +98,8 @@
     <string name="fragment_home_spot">娣</string>
     <!--热门景点-->
     <string name="activity_active_item_air">萱</string>
-    <string name="activity_register_phone">冀</string>
-    <!--手机-->
-    <string name="activity_register_sex">緈</string>
     <!--性别-->
     <string name="activity_register_nick_name">涌</string>
-    <!--昵称-->
-    <string name="activity_register_message">芯</string>
-    <!--短信-->
-    <string name="activity_register_password">觅</string>
     <!--锁-->
     <!--纸飞机-->
     <string name="fragment_play_with_me_add">桁</string>
@@ -125,10 +117,6 @@
     <string name="activity_cursor_left">佐</string>
     <!--左边-->
     <string name="activity_cursor_down">峡</string>
-    <!--下-->
-    <string name="fragment_me_my_theme">嫦</string>
-    <!--主题-->
-    <string name="fragment_me_my_hobby">趣</string>
     <!--兴趣-->
     <string name="activity_add_detail_line">炉</string>
     <!--路线-->
@@ -139,8 +127,6 @@
     <string name="activity_des_remark_des">榕</string>
     <!--简介-->
     <string name="activity_delicious_detail_wan">炽</string>
-    <!--美味-->
-    <string name="activity_delicious_detail_store">厨</string>
     <!--店家-->
     <string name="activity_create_post_aite">忑</string>
     <!--@-->
@@ -159,8 +145,7 @@
     <string name="activity_orders_detail_pay">傅</string>
     <!--已付款-->
     <string name="activity_my_appoint_delete">邋</string>
-    <!--删除-->
-    <string name="activity_my_appoint_key">仟</string>
+
     <!--秘钥-->
     <string name="activity_my_publication_team">対</string>
     <!--队伍-->
@@ -175,8 +160,7 @@
     <string name="activity_member_detail_boy">囡</string>
     <!--男-->
     <string name="activity_member_detail_delete">叉</string>
-    <!--叉-->
-    <string name="activity_pop_delete">桶</string>
+
     <!--垃圾桶-->
     <string name="activity_customer_center_tel">殿</string>
     <!--电话号码-->
@@ -222,8 +206,6 @@
     <string name="please_select_your_sex">请选择性别</string>
     <string name="not_send_ver">尚未请求验证码</string>
     <string name="save_change">保存修改</string>
-    <string name="recommend_user">· 推荐用户</string>
-    <string name="next">下一步</string>
 
 
     <string name="header_hint_refresh_normal">Pull to refresh</string>
@@ -251,12 +233,6 @@
     <string name="toast_unexpected_error">未知错误</string>
     <string name="permission_write_storage_rationale">写入sd卡权限</string>
     <string name="total_album">共有%1$d个相册</string>
-
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
-    <string name="action_settings">Settings</string>
     <string name="Recording_without_permission">没有麦克风权限</string>
     <string name="The_recording_time_is_too_short">录音时间太短了</string>
     <string name="send_failure_please">发送失败，请检测服务器是否连接</string>
@@ -289,7 +265,7 @@
         <item>招募成功</item>
         <item>招募失败</item>
     </string-array>
-    <string-array name="together_appoint_detail">
+<!--    <string-array name="together_appoint_detail">
         <item>报名</item>
         <item>报名</item>
         <item>支付</item>
@@ -298,10 +274,54 @@
         <item>出行中</item>
         <item>退款中</item>
         <item>审核中</item>
-    </string-array>
+    </string-array>-->
     <!-- WXPayEntryActivity -->
-    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
-    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
     <string name="cost_des" formatted="false">·行程结束后，【城外旅游】结算予发布人佣金\n·到达出发时间仍未达到最低人数将全额退款\n·游玩结束后，城外旅游将收取总费用5%的服务佣金\n·用户在行程开始前3日申请取消，可全额退款\n·用户在行程开始前2日申请取消，将扣除订单费用的30%作为手续费用\n·用户在行程开始前1日申请取消，将不能申请退款\n·于活动中自愿终止参与活动，将不予退款款项\n·如因天灾等不可抗拒因素，【城外旅游】将主动通知延期或退款</string>
+    <string name="preview_see">预览</string>
+    <string name="send">发送</string>
+    <string name="about_des">如果你讨厌上车睡觉、下车拍照，被导游牵着鼻子走的跟团游；或是厌倦了查攻略到吐血、事事自己操心、没人管没人问的自助游；\n[城外旅游]将开启您旅行的新方式！</string>
+    <string name="public_number">公众号</string>
+    <string name="official_micro_blog">官方微博</string>
+    <string name="aite_cityoff">\@城外旅游</string>
+    <string name="service_tel">客服电话</string>
+    <string name="service_tel_number">0871–65126820</string>
+    <string name="cityoff_protocol">城外旅游软件许可及服务协议</string>
+    <string name="cityoff_company">云南城外旅游文化发展有限公司</string>
+    <string name="cityoff_english_des">Yunnan Chengwai Travelling Culture Development Co., Ltd.</string>
+    <string name="enter_time">报名时间</string>
+    <string name="enter_people_sum">参与人数</string>
+    <string name="enter">报名</string>
+    <string name="spots_name">景点名称</string>
+    <string name="spots_des">景点简介</string>
+    <string name="optional">*选填</string>
+    <string name="spots_address">景点地址</string>
+    <string name="option_address">选择地址▼</string>
+    <string name="spots_photo">景点照片</string>
+    <string name="search">搜索</string>
+    <string name="appoint_key">约伴口令:</string>
+    <string name="travel_way">交通方式:</string>
+    <string name="remark">\u3000\u3000备注:</string>
+    <string name="people_plan">人员计划:</string>
+    <string name="trip_plan">行程安排</string>
+    <string name="thumbnail">缩略图</string>
+    <string name="props_provide">道具提供</string>
+    <string name="cost_detail">费用详情</string>
+    <string name="matters_needing_attention">注意事项</string>
+    <string name="connect_creator">联系发布人</string>
+    <string name="dream_place">理想地</string>
+    <string name="get_order">接单</string>
+    <string name="you_current_pay_money_is">您的支付金额为：</string>
+    <string name="current_back_money_may_is">当前可退款金额为：</string>
+    <string name="back_money_des">退款说明</string>
+    <string name="back_money_detail">·用户在行程开始前3日申请取消，可全额退款\n·用户在行程开始前2日申请取消，将扣除订单费用的30%作为手续费用\n·用户在行程开始前1日申请取消，将不能申请退款\n·于活动中自愿终止参与活动，将不予退款款项\n·退款金额以具体提交时间为准\n·到达出发时间仍未达到最低人数将全额退款</string>
+    <string name="sure_back_money">确认退款</string>
+    <string name="cancel">取消</string>
+    <string name="there_is_nothing">这里一片荒芜~</string>
+    <string name="next_step">下一步</string>
+    <string name="clear_chat">清空聊天记录</string>
+    <string name="select_ok">选好了</string>
+    <string name="have_select_haw_number">已选择：0件物品</string>
+    <string name="save">保存</string>
+
 
 </resources>

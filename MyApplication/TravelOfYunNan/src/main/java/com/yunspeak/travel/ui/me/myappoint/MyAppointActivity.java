@@ -38,9 +38,6 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
     private String preType="0";
    @BindView(R.id.ll_root)
     LinearLayout llRoot;
-    private RadioButton mRbEntering;
-    private RadioButton mRbPassed;
-    private RadioButton mRbWithMe;
 
 
     @Override
@@ -73,9 +70,9 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
         mVsContent.setLayoutResource(R.layout.activity_my_appoint_header);
         mVsContent.inflate();
         changeMargin(5,10);
-        mRbEntering = (RadioButton) findViewById(R.id.tv_entering);
-        mRbPassed = (RadioButton) findViewById(R.id.tv_passed);
-        mRbWithMe = (RadioButton) findViewById(R.id.tv_with_me);
+        RadioButton mRbEntering = (RadioButton) findViewById(R.id.tv_entering);
+        RadioButton mRbPassed = (RadioButton) findViewById(R.id.tv_passed);
+        RadioButton mRbWithMe = (RadioButton) findViewById(R.id.tv_with_me);
         mRbEntering.setOnClickListener(this);
 
         mRbPassed.setOnClickListener(this);

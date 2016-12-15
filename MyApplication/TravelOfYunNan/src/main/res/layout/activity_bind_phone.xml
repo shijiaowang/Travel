@@ -30,7 +30,7 @@
         android:layout_marginTop="@dimen/x47"
         android:background="@drawable/login_button_selector"
         android:gravity="center"
-        android:text="下一步"
+        android:text="@string/next_step"
         android:textColor="@color/colorFAFAFA"
         android:textSize="@dimen/x18sp" />
 

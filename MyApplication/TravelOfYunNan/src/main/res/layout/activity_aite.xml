@@ -38,7 +38,7 @@
             android:layout_marginLeft="@dimen/x9"
             android:layout_marginRight="@dimen/x20"
             android:background="@null"
-            android:hint="搜索"
+            android:hint="@string/search"
             android:textColorHint="@color/colorFAFAFA"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/x12sp" />

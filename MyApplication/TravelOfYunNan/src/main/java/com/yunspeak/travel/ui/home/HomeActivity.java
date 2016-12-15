@@ -22,8 +22,7 @@ import com.hyphenate.chat.EMClient;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.Login;
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.welcome.Login;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -113,7 +112,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     LinearLayout mLlMainClick;
     @BindView(R.id.ll_bottom)
     LinearLayout mLlBottom;
-    private boolean isNetwork;
     private SharedPreferences sharedPreferences;
     private boolean isOtherLogin = true;
 
@@ -130,7 +128,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         }
         goToWhere();
         instance = this;
-        isNetwork = getIntent().getBooleanExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, true);
+        boolean isNetwork = getIntent().getBooleanExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, true);
         if (!isNetwork || GlobalUtils.getUserInfo() == null) {
             sharedPreferences = getSharedPreferences(IVariable.SHARE_NAME, MODE_PRIVATE);
             String userName = sharedPreferences.getString(IVariable.SAVE_NAME, "");

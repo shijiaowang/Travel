@@ -143,7 +143,6 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
     @Override
     protected void childClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_right_icon:
             case R.id.bt_destination:
                 FindCommonActivity.start(this,FindCommonActivity.DESTINATION_SELECTION,0);
                 break;

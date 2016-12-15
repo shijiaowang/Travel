@@ -1,6 +1,5 @@
 package com.yunspeak.travel.ui.appoint;
 
-import com.google.gson.annotations.SerializedName;
 import com.yunspeak.travel.ui.find.findcommon.CityBean;
 
 import java.util.List;

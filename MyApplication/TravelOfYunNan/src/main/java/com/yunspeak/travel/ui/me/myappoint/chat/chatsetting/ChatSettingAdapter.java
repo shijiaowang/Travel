@@ -22,12 +22,8 @@ import butterknife.BindView;
 
 public class ChatSettingAdapter extends BaseRecycleViewAdapter<ChatSettingUserBean> {
 
-
-    private final String tid;
-
-    public ChatSettingAdapter(List<ChatSettingUserBean> mDatas, Context mContext, String tid) {
+    public ChatSettingAdapter(List<ChatSettingUserBean> mDatas, Context mContext) {
         super(mDatas, mContext);
-        this.tid = tid;
     }
 
 

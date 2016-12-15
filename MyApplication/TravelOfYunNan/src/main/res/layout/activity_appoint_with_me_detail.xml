@@ -140,6 +140,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_marginRight="@dimen/x137"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/x20">
                     <LinearLayout
@@ -293,7 +294,7 @@
                   <TextView
                       android:id="@+id/tv_enter_end_time"
                       android:textColor="@color/otherTitleBg"
-                      android:textSize="@dimen/x15"
+                      android:textSize="@dimen/x15sp"
                       android:layout_marginLeft="@dimen/x39"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content" />
@@ -316,9 +317,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x22"
                     android:layout_marginTop="@dimen/x15"
-                    android:text="理想地"
+                    android:text="@string/dream_place"
                     android:textColor="@color/color323232"
-                    android:textSize="@dimen/x16" />
+                    android:textSize="@dimen/x16sp" />
 
                 <com.yunspeak.travel.ui.view.ToShowAllListView
                     android:layout_marginTop="@dimen/x10"
@@ -361,13 +362,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x22"
                     android:layout_marginTop="@dimen/x15"
-                    android:text="费用详情"
+                    android:text="@string/cost_detail"
                     android:textColor="@color/color323232"
                     android:textSize="@dimen/x16sp" />
 
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/lv_insurance"
+                    android:layout_marginLeft="@dimen/x22"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/x15"
@@ -385,7 +387,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x22"
                     android:layout_marginTop="@dimen/x15"
-                    android:text="注意事项"
+                    android:text="@string/matters_needing_attention"
                     android:textColor="@color/color323232"
                     android:textSize="@dimen/x16sp" />
 
@@ -416,7 +418,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x25"
-            android:text="¥200"
             android:textColor="@color/otherFf7f6c"
             android:textSize="18sp" />
 
@@ -427,7 +428,7 @@
             android:layout_alignParentRight="true"
             android:background="#4a5cd0c2"
             android:gravity="center"
-            android:text="接单"
+            android:text="@string/get_order"
             android:textColor="@color/colorFAFAFA"
             android:textSize="@dimen/x15sp" />
 
@@ -438,7 +439,7 @@
             android:layout_toLeftOf="@id/bt_enter"
             android:background="#305cd0c2"
             android:gravity="center"
-            android:text="联系发布人"
+            android:text="@string/connect_creator"
             android:textColor="@color/colorFAFAFA"
             android:textSize="@dimen/x15sp" />
     </RelativeLayout>

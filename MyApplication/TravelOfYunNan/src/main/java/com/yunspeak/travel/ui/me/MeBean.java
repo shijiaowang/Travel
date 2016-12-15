@@ -1,8 +1,7 @@
 package com.yunspeak.travel.ui.me;
 
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 

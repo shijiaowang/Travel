@@ -195,7 +195,6 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
                             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                             String picturePath = cursor.getString(columnIndex);
                             cursor.close();
-                            cursor = null;
                             if (picturePath == null || picturePath.equals("null")) {
                                 ToastUtils.showToast("图片不存在");
                                 return;
@@ -442,8 +441,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
             if (resultUri != null) {
 
                 try {
-                    Bitmap bitmap = null;
-                    bitmap = BitmapUtils.getBitmapFormUri(this, resultUri, 100);
+                    Bitmap bitmap = BitmapUtils.getBitmapFormUri(this, resultUri, 100);
                     if (bitmap == null) return;
                     saveCroppedImage(bitmap);//保存图片到本地
 

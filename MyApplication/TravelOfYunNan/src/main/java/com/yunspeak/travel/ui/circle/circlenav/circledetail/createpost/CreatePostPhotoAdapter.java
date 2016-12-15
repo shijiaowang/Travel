@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost;
 
 import android.content.Context;
-import android.view.View;
 
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;

@@ -1,21 +1,17 @@
 package com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.memberdetail;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingBean;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingUserBean;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
-import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 

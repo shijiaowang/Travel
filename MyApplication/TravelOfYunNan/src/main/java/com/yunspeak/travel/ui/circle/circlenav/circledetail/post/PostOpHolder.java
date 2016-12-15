@@ -95,7 +95,7 @@ class PostOpHolder extends BaseRecycleViewHolder {
             for (PostDetailBean.DataBean.ForumBean.LikeBean bean : like) {
                 currentPosition++;
                 if (!StringUtils.isEmpty(bean.getNick_name())) {
-                    likeName.append(bean.getNick_name() + "、");
+                    likeName.append(bean.getNick_name()).append("、");
                 }
                 if (currentPosition >= limit) {
                     break;

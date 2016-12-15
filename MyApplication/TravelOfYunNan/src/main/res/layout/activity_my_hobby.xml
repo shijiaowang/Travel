@@ -20,7 +20,7 @@
             android:layout_marginLeft="@dimen/x13"
             android:text="·"
             android:textColor="@color/color3f3f3f"
-            android:textSize="@dimen/x13" />
+            android:textSize="@dimen/x13sp" />
 
         <TextView
             android:layout_width="wrap_content"

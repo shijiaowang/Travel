@@ -2,7 +2,7 @@ package com.yunspeak.travel.ui.me.titlemanage;
 
 import com.yunspeak.travel.ui.me.myhobby.LabelTitleBean;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
-import com.google.gson.annotations.SerializedName;
+
 
 import java.util.List;
 

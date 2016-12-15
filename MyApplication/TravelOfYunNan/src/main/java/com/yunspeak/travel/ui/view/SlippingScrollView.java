@@ -6,10 +6,6 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.ScrollView;
 
-import com.yunspeak.travel.utils.LogUtils;
-
-import java.util.Scanner;
-
 /**
  * Created by Administrator on 2016/7/11 0011.
  * 解决滑动冲突，和惯性滑动回调

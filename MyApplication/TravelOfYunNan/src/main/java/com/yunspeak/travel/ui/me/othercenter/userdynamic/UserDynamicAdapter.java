@@ -2,27 +2,21 @@ package com.yunspeak.travel.ui.me.othercenter.userdynamic;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.ColorInt;
-import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.baseui.LoadMoreRecycleViewAdapter;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.AiteTextClick;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
@@ -31,16 +25,11 @@ import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailAct
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
 import com.yunspeak.travel.ui.find.travels.TravelsActivity;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
-import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterBean;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
-import com.yunspeak.travel.ui.view.ShowAllTextView;
 import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.StringUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

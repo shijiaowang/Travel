@@ -2,12 +2,10 @@ package com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.privatesetting;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.yunspeak.travel.R;
@@ -20,7 +18,6 @@ import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.utils.ToastUtils;
 
 import butterknife.BindView;

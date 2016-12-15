@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.SelectCommonBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.find.findcommon.CityBean;
 

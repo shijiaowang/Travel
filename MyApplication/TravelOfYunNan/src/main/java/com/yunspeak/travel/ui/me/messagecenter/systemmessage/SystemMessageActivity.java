@@ -2,11 +2,10 @@ package com.yunspeak.travel.ui.me.messagecenter.systemmessage;
 
 
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.baseui.BaseXListViewActivity;
 import com.yunspeak.travel.ui.me.messagecenter.MeCommonEvent;
+
 import java.util.List;
 
 /**

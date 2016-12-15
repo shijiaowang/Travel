@@ -66,7 +66,8 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
 
     @Override
     protected void initEvent() {
-
+        id = getIntent().getStringExtra(IVariable.ID);
+        orderType = getIntent().getIntExtra(IVariable.TYPE,-1);
     }
 
     @Override
@@ -83,8 +84,6 @@ public class OrdersDetailActivity extends BaseNetWorkActivity<OrdersDetailEvent>
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        id = getIntent().getStringExtra(IVariable.ID);
-        orderType = getIntent().getIntExtra(IVariable.TYPE,-1);
         if (orderType==-1) {
             setErrorPage(true);
             return;

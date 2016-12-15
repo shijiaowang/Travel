@@ -1,7 +1,7 @@
 package com.yunspeak.travel.ui.me.myappoint.withmeselect;
 
 import com.yunspeak.travel.global.ParentBean;
-import com.yunspeak.travel.ui.me.myappoint.MyAppointTogetherBean;
+
 
 import java.util.List;
 

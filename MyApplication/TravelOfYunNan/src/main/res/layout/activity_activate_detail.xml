@@ -100,7 +100,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="报名时间"
+                        android:text="@string/enter_time"
                         android:textColor="@color/color989898"
                         android:textSize="@dimen/x12sp" />
 
@@ -117,7 +117,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="参与人数"
+                        android:text="@string/enter_people_sum"
                         android:textColor="@color/color989898"
                         android:textSize="@dimen/x12sp" />
 
@@ -165,7 +165,7 @@
                 android:layout_marginRight="@dimen/x10"
                 android:background="@drawable/activity_activate_detail_bg"
                 android:gravity="center"
-                android:text="报名"
+                android:text="@string/enter"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/x15sp"
                 android:minWidth="@dimen/x65"

@@ -61,7 +61,7 @@
                 android:layout_marginRight="@dimen/x16"
                 android:text="约伴订单"
                 android:textColor="@color/Ffbf75"
-                android:textSize="@dimen/x11" />
+                android:textSize="@dimen/x11sp" />
         </RelativeLayout>
 
         <RelativeLayout

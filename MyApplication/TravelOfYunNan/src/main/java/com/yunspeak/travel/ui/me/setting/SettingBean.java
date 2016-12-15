@@ -1,7 +1,7 @@
 package com.yunspeak.travel.ui.me.setting;
 
 
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.UserInfo;
 
 /**
  * Created by wangyang on 2016/11/5 0005.

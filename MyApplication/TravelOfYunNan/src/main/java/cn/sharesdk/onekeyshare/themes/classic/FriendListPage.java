@@ -8,9 +8,6 @@
 
 package cn.sharesdk.onekeyshare.themes.classic;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.graphics.drawable.ColorDrawable;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -23,13 +20,17 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.mob.tools.gui.PullToRequestView;
+import com.mob.tools.utils.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.onekeyshare.OnekeySharePage;
 import cn.sharesdk.onekeyshare.OnekeyShareThemeImpl;
 import cn.sharesdk.onekeyshare.themes.classic.FriendAdapter.Following;
-
-import com.mob.tools.gui.PullToRequestView;
-import com.mob.tools.utils.R;
 
 /** 编辑界面，@好友时，弹出的好友列表 */
 public abstract class FriendListPage extends OnekeySharePage implements OnClickListener, OnItemClickListener {
@@ -37,7 +38,6 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 
 	private Platform platform;
 	private LinearLayout llPage;
-	private RelativeLayout rlTitle;
 	private TextView tvCancel;
 	private TextView tvConfirm;
 	private FriendAdapter adapter;
@@ -60,7 +60,7 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 		llPage.setOrientation(LinearLayout.VERTICAL);
 		activity.setContentView(llPage);
 
-		rlTitle = new RelativeLayout(activity);
+		RelativeLayout rlTitle = new RelativeLayout(activity);
 		float ratio = getRatio();
 		int titleHeight = (int) (getDesignTitleHeight() * ratio);
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -155,7 +155,7 @@ public abstract class FriendListPage extends OnekeySharePage implements OnClickL
 				}
 			}
 
-			HashMap<String, Object> res = new HashMap<String, Object>();
+			HashMap<String, Object> res = new HashMap<>();
 			res.put("selected", selected);
 			res.put("platform", platform);
 			setResult(res);

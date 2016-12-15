@@ -2,7 +2,6 @@ package com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.memberdetail;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -17,7 +16,6 @@ import com.yunspeak.travel.utils.MapUtils;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2016/10/14 0014.

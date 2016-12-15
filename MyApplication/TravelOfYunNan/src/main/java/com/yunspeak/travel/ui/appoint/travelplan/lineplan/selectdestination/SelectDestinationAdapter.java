@@ -7,8 +7,6 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.find.findcommon.DestinationBean;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 
 import java.util.List;
 

@@ -1,13 +1,12 @@
 package com.yunspeak.travel.ui.baseui;
 
-import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -19,6 +18,7 @@ import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecor
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
+
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +91,7 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
 
     @Override
     public void onSuccess(T t) {
-        ParentBean parentBean = null;
+        ParentBean parentBean;
         if (t.getCode()==2){
             ToastUtils.showToast("没有更多数据了");
         }

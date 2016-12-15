@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.DetailCommonEvent;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;

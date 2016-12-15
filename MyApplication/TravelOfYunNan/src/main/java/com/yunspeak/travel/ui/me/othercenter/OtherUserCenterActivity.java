@@ -90,7 +90,6 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
         }
     };
 
-    private int i = -1;
     private LayoutInflater inflater;
     private AnimationSet animationSet;
     @BindView(R.id.pb_load)
@@ -132,7 +131,6 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
     private String userId;
     private int isFans = -1;
     private int mCurrentPage = 0;
-    private UserInfo userInfo;
 
 
     @Override
@@ -292,7 +290,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
      * @param user
      */
     private void initUserInfo(UserBean user) {
-        userInfo = new UserInfo();
+        UserInfo userInfo = new UserInfo();
         userInfo.setId(userId);
         userInfo.setNick_name(user.getNick_name());
         userInfo.setUser_img(user.getUser_img());
@@ -334,6 +332,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
      */
     private void initTitle(List<UserLabelBean> userLabel) {
         isInflate = false;
+        int i = -1;
         if (userLabel != null && userLabel.size() > 0) {
             mFlTitle.removeAllViews();
             mFlTitle.setVisibility(View.GONE);

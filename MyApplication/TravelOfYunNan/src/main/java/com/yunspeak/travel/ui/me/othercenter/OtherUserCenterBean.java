@@ -3,7 +3,6 @@ package com.yunspeak.travel.ui.me.othercenter;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 import com.yunspeak.travel.ui.me.othercenter.userdynamic.DynamicBean;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**

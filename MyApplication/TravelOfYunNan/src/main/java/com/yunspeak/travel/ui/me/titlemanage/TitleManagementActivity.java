@@ -72,7 +72,7 @@ public class TitleManagementActivity extends BaseNetWorkActivity<TitleManagement
             if (userLabel.indexOf(labelBean)==userLabel.size()-1){
                 stringBuffer.append(labelBean.getId());//最后一位没有逗号
             }else {
-                stringBuffer.append(labelBean.getId()+",");
+                stringBuffer.append(labelBean.getId()).append(",");
             }
         }
         return stringBuffer.toString();

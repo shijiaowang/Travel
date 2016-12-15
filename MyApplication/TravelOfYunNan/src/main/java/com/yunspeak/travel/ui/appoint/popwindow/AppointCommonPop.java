@@ -130,8 +130,7 @@ public class AppointCommonPop implements View.OnClickListener {
         }
     }
     public boolean isShowing(){
-        if (window!=null && window.isShowing())return true;
-        return false;
+        return window != null && window.isShowing();
     }
 
     @Override
@@ -172,7 +171,7 @@ public class AppointCommonPop implements View.OnClickListener {
                 stringBuilder.append(id);
             }else {
                 String id = selectCommonBeans.get(i).getName();
-                stringBuilder.append(id+",");
+                stringBuilder.append(id).append(",");
             }
         }
         return stringBuilder.toString();
@@ -193,7 +192,7 @@ public class AppointCommonPop implements View.OnClickListener {
         if (cityBeanList==null || cityBeanList.size()==0)return "";
         for (int i=0;i<selectCommonBeans.size();i++){
             if (cityBeanList.contains(selectCommonBeans.get(i))){
-                stringBuilder.append(selectCommonBeans.get(i).getId()+"");
+                stringBuilder.append(selectCommonBeans.get(i).getId());
             }
         }
         String string = stringBuilder.toString();
@@ -215,7 +214,7 @@ public class AppointCommonPop implements View.OnClickListener {
                 stringBuilder.append(id);
             }else {
                 String id = selectCommonBeans.get(i).getId();
-                stringBuilder.append(id+",");
+                stringBuilder.append(id).append(",");
             }
         }
         return stringBuilder.toString();

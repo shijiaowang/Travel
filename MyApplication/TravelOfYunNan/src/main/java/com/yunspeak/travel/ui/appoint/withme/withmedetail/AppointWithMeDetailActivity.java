@@ -7,13 +7,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.PeopleBean;
+import com.yunspeak.travel.ui.appoint.PeopleBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
@@ -96,6 +97,8 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     int color7=Color.parseColor("#5ee5c5");
     private int [] colors=new int[]{color1,color2,color3,color4,color5,color6,color7};
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
+    private String title;
+    private String content;
 
     @Override
     protected void initEvent() {
@@ -219,8 +222,10 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             dealLabel(data);
             mTvLoveNumber.setText(data.getCount_like());
             mTvWatchNumber.setText(data.getBrowse());
-            mTvTitle.setText(data.getTitle());
-            mTvContent.setText(data.getContent());
+            title = data.getTitle();
+            content = data.getContent();
+            mTvTitle.setText(title);
+            mTvContent.setText(content);
             int action = data.getAction();
             if (action==1){
                 btEnter.setText("已接单");
@@ -284,6 +289,17 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             textView.setTextColor(colors[i%colors.length]);
             mFlTitle.addView(textView);
         }
+    }
+
+    @Override
+    protected String initRightText() {
+        return "分享";
+    }
+
+    @Override
+    protected void otherOptionsItemSelected(MenuItem item) {
+        super.otherOptionsItemSelected(item);
+        EnterAppointDialog.showShareDialog(this,title,content,"www.cityoff.cn",mIvAppointBg);
     }
 
     @Override

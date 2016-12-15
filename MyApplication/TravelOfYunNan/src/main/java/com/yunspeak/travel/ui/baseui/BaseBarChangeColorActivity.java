@@ -11,7 +11,7 @@ import android.view.ViewStub;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.DetailCommonEvent;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;

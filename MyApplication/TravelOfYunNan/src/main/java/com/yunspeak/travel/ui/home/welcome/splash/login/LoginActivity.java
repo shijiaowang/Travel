@@ -7,9 +7,9 @@ import android.view.View;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.Key;
-import com.yunspeak.travel.bean.Login;
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.Key;
+import com.yunspeak.travel.ui.home.welcome.Login;
+import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
@@ -131,7 +131,6 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
         ShareUtil.putString(this,IVariable.SAVE_PWD, data.getPwd());
         setResult(SPLASH_RESULT);
         Intent intent = new Intent(this, HomeActivity.class);
-
         if (data!=null){
             com.hyphenate.easeui.domain.UserInfo userInfo=new com.hyphenate.easeui.domain.UserInfo();
             userInfo.setId(data.getId());

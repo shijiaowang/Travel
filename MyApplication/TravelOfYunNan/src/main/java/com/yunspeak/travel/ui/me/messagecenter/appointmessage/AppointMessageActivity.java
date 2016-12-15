@@ -2,13 +2,10 @@ package com.yunspeak.travel.ui.me.messagecenter.appointmessage;
 
 
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.baseui.BaseXListViewActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.ReplyEvent;
 import com.yunspeak.travel.ui.me.messagecenter.MeCommonEvent;
-import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.CommonMessageBean;
 
 import org.greenrobot.eventbus.Subscribe;
 

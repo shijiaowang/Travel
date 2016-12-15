@@ -2,7 +2,7 @@ package com.yunspeak.travel.ui.circle.circlenav;
 
 import android.content.Context;
 
-import com.yunspeak.travel.bean.Circle;
+import com.yunspeak.travel.ui.circle.Circle;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 

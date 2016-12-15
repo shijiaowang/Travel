@@ -34,7 +34,6 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
     protected View mRlEmpty;
     protected List<G> mDatas;//从网络获取的数据
     protected BaseRecycleViewAdapter<G> mAdapter;//通用adapter
-    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected int initContent() {
@@ -75,10 +74,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
         mRlEmpty.setVisibility(View.GONE);
         try {
             ParentBean parentBean = null;
-            if (isUserChild(parentBean)) {//使用孩子的
-            } else {
-                parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
-            }
+            parentBean = (E) GsonUtils.getObject(t.getResult(), getEType());
              F data = (F) parentBean.getData();
             List<G> boy = (List<G>) data.getBody();
             if (mAdapter == null) {
@@ -91,7 +87,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
                     }
                 });
                 mRvCommon.setAdapter(mAdapter);
-                linearLayoutManager = new LinearLayoutManager(this);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
                 linearLayoutManager.setAutoMeasureEnabled(true);
                 mRvCommon.setLayoutManager(linearLayoutManager);
                 mRvCommon.setItemAnimator(new DefaultItemAnimator());
@@ -138,14 +134,7 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
         return (Class<E>) pt.getActualTypeArguments()[1];
     }
 
-    /**
-     * 是否是 瀑布流
-     *
-     * @return
-     */
-    protected boolean isGridLayoutManager() {
-        return false;
-    }
+
 
     @Override
     protected void onFail(T t) {
@@ -169,15 +158,6 @@ public abstract class BaseChangeColorRecycleActivity<T extends HttpEvent, E exte
      */
     protected abstract BaseRecycleViewAdapter initAdapter(List<G> mDatas);
 
-    /**
-     * 是否使用孩子另外设置设置的bean对象
-     *
-     * @param e
-     * @return
-     */
-    protected boolean isUserChild(ParentBean e) {
-        return false;
-    }
 
     @Override
     public void onLoadMore() {

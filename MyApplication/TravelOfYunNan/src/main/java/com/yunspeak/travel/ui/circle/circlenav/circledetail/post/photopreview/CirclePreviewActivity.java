@@ -5,22 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.os.EnvironmentCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,31 +22,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.facebook.binaryresource.FileBinaryResource;
-import com.facebook.cache.common.CacheKey;
-import com.facebook.cache.common.SimpleCacheKey;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
-import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
-import com.facebook.imagepipeline.common.ResizeOptions;
-import com.facebook.imagepipeline.core.ImagePipelineFactory;
-import com.facebook.imagepipeline.image.ImageInfo;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity;
 import com.yunspeak.travel.ui.view.zoomable.ZoomableDraweeView;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MD5Utils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.zhy.m.permission.MPermissions;
-import com.zhy.m.permission.PermissionDenied;
 import com.zhy.m.permission.PermissionGrant;
 
 import org.xutils.common.Callback;
@@ -249,9 +228,9 @@ public class CirclePreviewActivity extends AppCompatActivity implements View.OnC
         if (loadUri == null) {
             return ;
         }
-        ImageRequest imageRequest = ImageRequest.fromUri(loadUri);
+       /* ImageRequest imageRequest = ImageRequest.fromUri(loadUri);
         CacheKey cacheKey = DefaultCacheKeyFactory.getInstance()
-                .getEncodedCacheKey(imageRequest,null);
+                .getEncodedCacheKey(imageRequest,null);*/
        /* if ( ImagePipelineFactory.getInstance()
                  .getMainFileCache().hasKey(cacheKey)){
             FileBinaryResource resource = (FileBinaryResource) Fresco.getImagePipelineFactory().getMainFileCache().getResource(new SimpleCacheKey(imgListsBeen.get(currentPosition)));

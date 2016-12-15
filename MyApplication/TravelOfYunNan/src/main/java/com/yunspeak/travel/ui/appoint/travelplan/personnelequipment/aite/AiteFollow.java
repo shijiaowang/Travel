@@ -80,9 +80,6 @@ public class AiteFollow implements Serializable{
         if (this.follow==null || o==null){
             return false;
         }
-        if (this.follow.getId().equals(o.getId())){
-            return true;
-        }
-        return false;
+        return this.follow.getId().equals(o.getId());
     }
 }

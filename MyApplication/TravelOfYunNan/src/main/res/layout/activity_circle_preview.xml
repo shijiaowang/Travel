@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:text="保存"
+                android:text="@string/save"
                 android:id="@+id/tv_save"
                 android:textColor="@color/colorFAFAFA"
                 android:textSize="@dimen/x15sp"

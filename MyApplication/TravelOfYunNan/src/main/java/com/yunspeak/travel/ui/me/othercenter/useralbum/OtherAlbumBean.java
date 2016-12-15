@@ -2,7 +2,7 @@ package com.yunspeak.travel.ui.me.othercenter.useralbum;
 
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 import com.yunspeak.travel.ui.me.othercenter.UserBean;
-import com.google.gson.annotations.SerializedName;
+
 
 import java.util.List;
 

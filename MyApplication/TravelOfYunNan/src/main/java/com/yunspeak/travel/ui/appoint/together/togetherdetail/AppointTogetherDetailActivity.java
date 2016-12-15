@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.PeopleBean;
+import com.yunspeak.travel.ui.appoint.PeopleBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
@@ -132,7 +132,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     private String payType = "-1";
     private int payStatus = -1;
     private String isCollect;
-    private TravelDetailLineAdapter travelDetailLineAdapter;
     private TravelDetailLineAdapter normalDetailLineAdapter;
     private boolean isBoss=true;
      int color1=Color.parseColor("#ff7f6c");
@@ -146,7 +145,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
     private String userId;
     private String title;
-    private String travelImg;
     private String shareUrl;
 
     @Override
@@ -251,16 +249,12 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         isCollect = data.getIs_collect();
         shareUrl = data.getShare_url();
         userId = data.getUser_id();
-        if (userId.equals(GlobalUtils.getUserInfo().getId())){
-            isBoss = true;
-        }else {
-            isBoss=false;
-        }
+        isBoss = userId.equals(GlobalUtils.getUserInfo().getId());
         initAction(action);
         List<AppointTogetherDetailBean.DataBean.RoutesBean> routes = dealDate(data);
         initSomeData(data);
         classificationDay(lists, routes);
-        travelDetailLineAdapter = new TravelDetailLineAdapter(this, lists,true);
+        TravelDetailLineAdapter travelDetailLineAdapter = new TravelDetailLineAdapter(this, lists, true);
         mLvRouteDetailLine.setAdapter(travelDetailLineAdapter);
         List<PeopleBean> ingPeople = data.getIng_people();
         if (ingPeople != null && ingPeople.size() != 0) {
@@ -338,7 +332,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 OtherUserCenterActivity.start(AppointTogetherDetailActivity.this,mIvUserIcon,data.getUser_id());
             }
         });
-        travelImg = data.getTravel_img();
+        String travelImg = data.getTravel_img();
         FrescoUtils.displayNormal(mIvAppointBg, travelImg);
         if (mFlTitle.getChildCount() > 0) mFlTitle.removeAllViews();
         dealLabel(data);

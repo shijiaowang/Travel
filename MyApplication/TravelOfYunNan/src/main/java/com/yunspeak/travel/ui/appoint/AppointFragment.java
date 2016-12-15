@@ -251,7 +251,9 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             }
         });
         Window window = dialog.getWindow();
-        window.setWindowAnimations(R.style.myDialog);
+        if (window!=null) {
+            window.setWindowAnimations(R.style.myDialog);
+        }
         dialog.show();
 
     }

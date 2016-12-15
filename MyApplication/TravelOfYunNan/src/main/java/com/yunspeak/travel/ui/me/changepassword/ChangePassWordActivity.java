@@ -1,11 +1,11 @@
 package com.yunspeak.travel.ui.me.changepassword;
 
 import android.view.View;
+
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
-import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.MD5Utils;
@@ -15,7 +15,9 @@ import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
+
 import java.util.Map;
+
 import butterknife.BindView;
 
 /**
@@ -86,8 +88,10 @@ public class ChangePassWordActivity extends BaseEventBusActivity<ChangePassWordE
         }
         UserInfo userInfo = UserUtils.getUserInfo();
         String encode = MD5Utils.encode(MD5Utils.encode(newPassword));
-        userInfo.setPwd(encode);
-        UserUtils.saveUserInfo(userInfo);
+        if (userInfo!=null){
+            userInfo.setPwd(encode);
+            UserUtils.saveUserInfo(userInfo);
+        }
         ShareUtil.putString(this,IVariable.SAVE_PWD,encode);
         finish();
     }

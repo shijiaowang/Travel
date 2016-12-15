@@ -1,11 +1,8 @@
 package com.yunspeak.travel.ui.me.myhobby;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yunspeak.travel.R;
@@ -20,7 +17,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2016/9/7 0007.
@@ -29,7 +25,8 @@ import butterknife.ButterKnife;
 public class MyHobbyFragment extends BaseFragment {
     private static final String TITLE = "title";
     private static final String TITLE_TYPE = "title_type";
-    @BindView(R.id.gv_title) GridView gvTitle;
+    @BindView(R.id.gv_title)
+    GridView gvTitle;
     @BindView(R.id.rl_empty) LinearLayout llEmpty;
     private List<UserLabelBean> mTitle;
     private String mTitleType;

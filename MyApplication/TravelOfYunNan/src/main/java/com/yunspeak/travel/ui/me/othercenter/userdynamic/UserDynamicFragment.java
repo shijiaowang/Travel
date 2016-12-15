@@ -2,7 +2,6 @@ package com.yunspeak.travel.ui.me.othercenter.userdynamic;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +10,7 @@ import android.view.View;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.baseui.LoadMoreListener;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
 import com.yunspeak.travel.ui.me.othercenter.INotify;
@@ -21,16 +18,13 @@ import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterBean;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.AppBarStateEvent;
 import com.yunspeak.travel.ui.view.LoadingPage;
 import com.yunspeak.travel.utils.GsonUtils;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
-import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 

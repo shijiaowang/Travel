@@ -15,7 +15,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.DestinationEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -56,7 +55,6 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     public static final int DESTINATION_NORMAL = 1;
     public static final int DESTINATION_SELECTION = 2;
     public static final int DELICIOUS_NORMAL = 3;
-    private TextView mTvSearch;
     private EditText mEtSearch;
     private boolean loactionIsGet = false;
     String[] timeTypePop = {"·\u3000默认", "·\u3000按星级", "·\u3000按评分"};
@@ -72,9 +70,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     private List<CityBean> cityBean;
     private Map<String, List<CityBean>> citys;
     private Map<String, List<CityBean>> plays;
-    private FrameLayout mFlTop;
     private int position;
-    private Button mBtDiy;
     private List<CityBean> lefts;
     private AppointCommonPop appointType;
     private List<CityBean> foodBean;
@@ -92,12 +88,12 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
         type = getIntent().getIntExtra(IVariable.TYPE, -1);
         mTvTitle.setText(initTitle());
         url = type == DELICIOUS_NORMAL ? IVariable.FIND_FOOD : IVariable.FIND_DESTINATION;
-        mFlTop = (FrameLayout) findViewById(R.id.fl_top);
+        FrameLayout mFlTop = (FrameLayout) findViewById(R.id.fl_top);
         View inflate;
         if (type == DESTINATION_SELECTION) {
             position = getIntent().getIntExtra(IVariable.POSITION, -1);
             inflate = LayoutInflater.from(this).inflate(R.layout.activity_select_destination, mFlTop, false);
-            mBtDiy = (Button) inflate.findViewById(R.id.bt_diy);
+            Button mBtDiy = (Button) inflate.findViewById(R.id.bt_diy);
             if (GlobalValue.mAppointType == IVariable.TYPE_WITH_ME) {
                 mBtDiy.setVisibility(View.GONE);
             } else {
@@ -115,7 +111,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
             inflate = LayoutInflater.from(this).inflate(R.layout.activity_findcommon_top, mFlTop, false);
         }
         mFlTop.addView(inflate);
-        mTvSearch = (TextView) findViewById(R.id.tv_search);
+        TextView mTvSearch = (TextView) findViewById(R.id.tv_search);
         mEtSearch = (EditText) findViewById(R.id.et_search);
         mTvOrder = (TextView) findViewById(R.id.tv_order);
         mTvLocation = (TextView) findViewById(R.id.tv_location);
@@ -193,9 +189,9 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
                         if (loactionIsGet) return;
                         provinceBean = parentBean.getData().getProvince();
                         cityBean = parentBean.getData().getCity();
-                        citys = new HashMap<String, List<CityBean>>();
+                        citys = new HashMap<>();
                         for (CityBean provice : provinceBean) {
-                            List<CityBean> cityBeanList = new ArrayList<CityBean>();
+                            List<CityBean> cityBeanList = new ArrayList<>();
                             citys.put(provice.getId(), cityBeanList);
                         }
                         for (CityBean cityBean1 : cityBean) {
@@ -207,7 +203,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
                         if (type==DELICIOUS_NORMAL){
                             foodBean = parentBean.getData().getFood_type();
                         }else {
-                            plays = new HashMap<String, List<CityBean>>();
+                            plays = new HashMap<>();
                             List<CityBean> travelPlay = parentBean.getData().getTravel_play();
                             List<CityBean> travelType = parentBean.getData().getTravel_type();
                             plays.put("1", travelPlay);

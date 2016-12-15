@@ -11,7 +11,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.yunspeak.travel.R;
 
-import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.CropPhotoBaseFragment;
 import com.yunspeak.travel.ui.me.level.LevelActivity;
@@ -251,7 +251,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == HomeActivity.REQ && resultCode == HomeActivity.RESULT) {
-            ((HomeActivity) getActivity()).finish();
+            getActivity().finish();
         }
         if (requestCode == HomeActivity.REQ && resultCode == HomeActivity.UP_RESULT){
            onRefresh();

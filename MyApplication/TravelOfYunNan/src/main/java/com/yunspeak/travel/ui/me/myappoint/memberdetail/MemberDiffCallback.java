@@ -24,10 +24,7 @@ class MemberDiffCallback extends BaseDiffUtilCallback<MemberDetailBean.DataBean.
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
         MemberDetailBean.DataBean.JoinBean newItem = newList.get(newItemPosition);
         MemberDetailBean.DataBean.JoinBean oldItem = oldList.get(oldItemPosition);
-        if (newItem.getState().equals(oldItem.getState())){//通过用户是否被邀请的状态判断
-            return true;
-        }
-        return false;
+        return newItem.getState().equals(oldItem.getState());
 
     }
     //找出其中的不同

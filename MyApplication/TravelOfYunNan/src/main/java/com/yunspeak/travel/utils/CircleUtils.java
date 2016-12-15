@@ -1,7 +1,7 @@
 package com.yunspeak.travel.utils;
 
-import com.yunspeak.travel.bean.Circle;
-import com.yunspeak.travel.bean.CircleNavRight;
+import com.yunspeak.travel.ui.circle.Circle;
+import com.yunspeak.travel.ui.circle.circlenav.CircleNavRight;
 
 import java.util.ArrayList;
 import java.util.List;

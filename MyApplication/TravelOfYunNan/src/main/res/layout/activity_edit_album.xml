@@ -85,7 +85,7 @@
                     android:layout_marginTop="@dimen/x15"
                     android:text="相册简介"
                     android:textColor="@color/color323232"
-                    android:textSize="@dimen/x13" />
+                    android:textSize="@dimen/x13sp" />
 
                 <TextView
                     android:id="@+id/tv_des"

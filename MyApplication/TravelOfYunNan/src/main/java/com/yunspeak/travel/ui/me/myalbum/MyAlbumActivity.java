@@ -24,8 +24,6 @@ import butterknife.BindColor;
  * 我的相册
  */
 public class MyAlbumActivity extends BaseRecycleViewActivity<MyAlbumEvent,MyAlbumBean,MyAlbumBean.DataBean> implements View.OnClickListener {
-    private FontsIconTextView mTvAdd;
-    private TextView mTvCreateAlbum;
     private TextView mTvAlbumSum;
     private boolean initAlbumSize=false;
     @BindColor(R.color.meLine) @ColorInt int bgColor;
@@ -35,8 +33,8 @@ public class MyAlbumActivity extends BaseRecycleViewActivity<MyAlbumEvent,MyAlbu
         super.initEvent();
         mVsContent.setLayoutResource(R.layout.activity_my_album_header);
         mVsContent.inflate();
-        mTvAdd = (FontsIconTextView)findViewById(R.id.tv_add);
-        mTvCreateAlbum = (TextView)findViewById(R.id.tv_create_album);
+        FontsIconTextView mTvAdd = (FontsIconTextView) findViewById(R.id.tv_add);
+        TextView mTvCreateAlbum = (TextView) findViewById(R.id.tv_create_album);
         mTvAlbumSum = (TextView)findViewById(R.id.tv_sum);
         mTvAlbumSum.setText(getString(R.string.total_album,0));
         mRvCommon.setBackgroundColor(bgColor);

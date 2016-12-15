@@ -20,7 +20,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.flexbox.FlexboxLayout;
 import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.event.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
@@ -50,7 +49,6 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     private TextView mTvAdd;
     private FlexboxLayout mFlowLayout;
     private WebView mWvView;
-    private LinearLayout mLlSearchAppoint;
     private static final String moblieUrl="mcode=95:0B:B5:DE:E3:08:54:D6:EB:CD:FB:59:8C:15:C6:D1:C6:1E:8F:65;com.yunspeak.travel";
     private boolean click;
     private float startY;
@@ -84,7 +82,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         mTvShow = ((TextView) findViewById(R.id.tv_show));
         mTvNumber = ((TextView) findViewById(R.id.tv_number));
         mIvbg = ((SimpleDraweeView) findViewById(R.id.iv_bg));
-        mLlSearchAppoint = ((LinearLayout) findViewById(R.id.ll_search_appoint));
+        LinearLayout mLlSearchAppoint = ((LinearLayout) findViewById(R.id.ll_search_appoint));
         mFlowLayout = ((FlexboxLayout)findViewById(R.id.fl_label));
         mWvView = ((WebView) findViewById(R.id.wv_html));
         mTvAdd = ((TextView)findViewById(R.id.tv_add));
@@ -157,7 +155,6 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
 
         String longitude = travel.getLongitude();
         String latitude = travel.getLatitude();
-        String address=travel.getAddress();
         String city = travel.getCity();
         String province = travel.getProvince();
         String cityDes=province+city;
@@ -167,16 +164,16 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
                 city="云南";
             }
         }
-        stringBuilder.append("&center="+city);
+        stringBuilder.append("&center=").append(city);
 
 
         final Intent intent = new Intent(DestinationDetailActivity.this, EaseBaiduMapActivity.class);
         if (!(StringUtils.isEmpty(longitude) || StringUtils.isEmpty(latitude))){
-            stringBuilder.append("&markers="+longitude+","+latitude);
+            stringBuilder.append("&markers=").append(longitude).append(",").append(latitude);
             intent.putExtra("latitude", Double.parseDouble(travel.getLatitude()));
             intent.putExtra("longitude", Double.parseDouble(travel.getLongitude()));
         }else {//没有经纬度使用默认位置
-            stringBuilder.append("&markers="+cityDes);
+            stringBuilder.append("&markers=").append(cityDes);
             intent.putExtra("longitude", 102.728219);
             intent.putExtra("latitude", 25.022114);
         }
@@ -218,7 +215,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         mTvAdd.setText("·  " + travel.getAddress());
         String travel_img = travel.getTravel_img();
         String play_way = travel.getPlay_way();
-        String url = "";
+        String url;
         if (!StringUtils.isEmpty(travel_img)) {
             final String[] split = travel_img.split(",");
             mTvNumber.setText("共"+split.length+"张图片");

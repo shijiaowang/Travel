@@ -31,12 +31,12 @@ public class PostImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = mDatas.get(position);
+                String url = mDatas.get(holder.getAdapterPosition());
                 PostEvent postEvent=new PostEvent();
                 postEvent.setIsSuccess(true);
                 postEvent.setUrl(url);

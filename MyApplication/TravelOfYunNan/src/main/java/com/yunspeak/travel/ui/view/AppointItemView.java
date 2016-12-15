@@ -2,7 +2,6 @@ package com.yunspeak.travel.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.text.SpannableString;
@@ -25,8 +24,6 @@ import com.yunspeak.travel.utils.TypefaceUtis;
 public class AppointItemView extends TextView {
 
     private String firstIcon;
-    private String secondIcon;
-    private String thirdIcon;
     private String fourthIcon;
     private int firstIconColor;
     private int fourthIconColor;
@@ -67,12 +64,12 @@ public class AppointItemView extends TextView {
                     firstIcon= setStringIfEmpty(firstIcon,R.string.fragment_play_with_me_air);
                     break;
                 case R.styleable.AppointItemView_item_second_icon:
-                    secondIcon = typedArray.getString(index);
-                    secondIcon= setStringIfEmpty(secondIcon,R.string.fragment_play_with_me_time);
+                    String secondIcon = typedArray.getString(index);
+                    secondIcon = setStringIfEmpty(secondIcon,R.string.fragment_play_with_me_time);
                     break;
                 case R.styleable.AppointItemView_item_third_icon:
-                    thirdIcon = typedArray.getString(index);
-                    thirdIcon= setStringIfEmpty(thirdIcon,R.string.fragment_play_with_me_add);
+                    String thirdIcon = typedArray.getString(index);
+                    thirdIcon = setStringIfEmpty(thirdIcon,R.string.fragment_play_with_me_add);
                     break;
                 case R.styleable.AppointItemView_item_fourth_icon:
                     fourthIcon = typedArray.getString(index);
@@ -154,9 +151,9 @@ public class AppointItemView extends TextView {
         return StringUtils.isEmpty(temp)?getResources().getString(res):temp;
     }
     class IconTypefaceSpan extends TypefaceSpan{
-        private final Typeface newType;
+        private  Typeface newType;
 
-        public IconTypefaceSpan() {
+        private IconTypefaceSpan() {
             super("sans-serif");
             newType = TypefaceUtis.getTypeface(getContext());
         }

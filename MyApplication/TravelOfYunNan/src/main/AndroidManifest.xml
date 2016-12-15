@@ -53,7 +53,7 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="umeng" >
+            android:value="${UMENG_CHANNEL_VALUE}" >
         </meta-data>
 
         <activity
@@ -169,13 +169,8 @@
         <activity android:name=".ui.me.identityauth.idauth.IdAuthActivity" />
         <activity android:name=".ui.me.changepassword.ChangePassWordActivity" />
         <activity android:name=".ui.me.changephone.bindphone.BindPhoneActivity" />
-        <activity android:name=".ui.home.welcome.splash.login.forgetpassword.ForgetPasswordActivity" />
         <activity android:name=".ui.me.myappoint.withmeselect.MyWithMeSelectActivity" />
-        <activity android:name=".ui.baseui.BaseToolBarActivity"
-            android:theme="@style/ToolBarTheme"
-            />
         <!-- alipay sdk begin -->
-
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"

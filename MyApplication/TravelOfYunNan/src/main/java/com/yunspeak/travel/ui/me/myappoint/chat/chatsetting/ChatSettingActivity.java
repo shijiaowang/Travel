@@ -62,7 +62,7 @@ public class ChatSettingActivity extends BaseNetWorkActivity<ChatSettingEvent> i
         ChatSettingBean chatSettingBean = GsonUtils.getObject(chatSettingEvent.getResult(), ChatSettingBean.class);
         List<ChatSettingUserBean> dataBeen = chatSettingBean.getData();
         tvChatNumber.setText("群成员("+dataBeen.size()+")");
-        ChatSettingAdapter chatSettingAdapter=new ChatSettingAdapter(dataBeen,this,chatId);
+        ChatSettingAdapter chatSettingAdapter=new ChatSettingAdapter(dataBeen,this);
         rvMember.setAdapter(chatSettingAdapter);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         rvMember.setLayoutManager(linearLayoutManager);

@@ -305,7 +305,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="约伴口令:"
+                        android:text="@string/appoint_key"
                         android:textColor="@color/color323232"
                         android:textSize="@dimen/x15sp" />
 
@@ -343,7 +343,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="交通方式:"
+                            android:text="@string/travel_way"
                             android:textColor="@color/color323232"
                             android:textSize="@dimen/x15sp" />
 
@@ -368,7 +368,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="\u3000\u3000备注:"
+                            android:text="@string/remark"
                             android:textColor="@color/color646464"
                             android:textSize="@dimen/x15sp" />
 
@@ -409,7 +409,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="人员计划:"
+                        android:text="@string/people_plan"
                         android:textColor="@color/color323232"
                         android:textSize="@dimen/x15sp" />
 
@@ -473,7 +473,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x22"
                         android:layout_marginTop="@dimen/x15"
-                        android:text="行程安排"
+                        android:text="@string/trip_plan"
                         android:textColor="@color/color323232"
                         android:textSize="@dimen/x16sp" />
 
@@ -486,7 +486,7 @@
                         android:layout_marginTop="@dimen/x20"
                         android:background="@drawable/activity_detail_map_bg"
                         android:gravity="center"
-                        android:text="缩略图"
+                        android:text="@string/thumbnail"
                         android:textColor="@color/otherTitleBg"
                         android:textSize="@dimen/x16sp" />
 
@@ -521,79 +521,80 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="6dp"
+                    android:layout_height="@dimen/x6"
                     android:background="@color/meLine" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="15dp"
-                    android:text="道具提供"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginTop="@dimen/x15"
+                    android:text="@string/props_provide"
                     android:textColor="@color/color323232"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/x16sp" />
 
                 <com.yunspeak.travel.ui.view.ToShowAllListView
                     android:id="@+id/lv_equ_provider"
                     style="@style/commonListViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp" />
+                    android:layout_marginTop="@dimen/x13" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="@dimen/x1"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_marginTop="@dimen/x15"
                     android:background="@color/meLine" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="15dp"
-                    android:text="费用详情"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginTop="@dimen/x15"
+                    android:text="@string/cost_detail"
                     android:textColor="@color/color323232"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/x16sp" />
 
 
                 <android.support.v7.widget.RecyclerView
+                    android:layout_marginLeft="@dimen/x22"
                     android:id="@+id/lv_insurance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginBottom="@dimen/x15"
+                    android:layout_marginTop="@dimen/x20" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_height="@dimen/x1"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
                     android:background="@color/meLine" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="15dp"
-                    android:text="注意事项"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginTop="@dimen/x15"
+                    android:text="@string/matters_needing_attention"
                     android:textColor="@color/color323232"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/x16sp" />
 
                 <TextView
                     android:id="@+id/tv_appoint_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="39dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
-                    android:layout_marginTop="10dp"
-                    android:lineSpacingExtra="8dp"
+                    android:layout_marginBottom="@dimen/x39"
+                    android:layout_marginLeft="@dimen/x22"
+                    android:layout_marginRight="@dimen/x22"
+                    android:layout_marginTop="@dimen/x10"
+                    android:lineSpacingExtra="@dimen/x8"
                     android:text="@string/cost_des"
                     android:textColor="@color/color969696"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/x14sp" />
 
 
             </LinearLayout>
@@ -605,7 +606,7 @@
     <RelativeLayout
         android:id="@+id/rl_bottom"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="@dimen/x45"
         android:background="#185cd0c2"
         android:gravity="center_vertical">
 
@@ -614,30 +615,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="@dimen/x25"
             android:textColor="@color/otherFf7f6c"
-            android:textSize="18sp" />
+            android:textSize="@dimen/x18sp" />
 
         <com.yunspeak.travel.ui.view.AvoidFastButton
             android:id="@+id/bt_enter"
-            android:layout_width="74dp"
+            android:layout_width="@dimen/x74"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:background="#4a5cd0c2"
             android:gravity="center"
-            android:text="报名"
+            android:text="@string/enter"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x15sp" />
 
         <com.yunspeak.travel.ui.view.AvoidFastButton
             android:id="@+id/bt_chat"
-            android:layout_width="105dp"
+            android:layout_width="@dimen/x105"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/bt_enter"
             android:background="#305cd0c2"
             android:gravity="center"
-            android:text="联系发布人"
+            android:text="@string/connect_creator"
             android:textColor="@color/colorFAFAFA"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x15sp" />
     </RelativeLayout>
 </LinearLayout>

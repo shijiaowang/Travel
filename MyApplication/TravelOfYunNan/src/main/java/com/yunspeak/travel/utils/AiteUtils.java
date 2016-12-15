@@ -51,7 +51,7 @@ public class AiteUtils {
         StringBuilder stringBuilder = new StringBuilder(text);
         if (!(inform==null || inform.size()==0)) {
             for (InformBean informBean : inform) {
-                stringBuilder.append("@" + inform.get(inform.indexOf(informBean)).getNick_name());
+                stringBuilder.append("@").append(inform.get(inform.indexOf(informBean)).getNick_name());
             }
         }
         String string = stringBuilder.toString();

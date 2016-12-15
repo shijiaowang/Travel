@@ -3,7 +3,6 @@ package com.yunspeak.travel.ui.me.fansandfollow;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteBean;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.Follow;

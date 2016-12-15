@@ -1,12 +1,9 @@
 package com.yunspeak.travel.ui.me.messagecenter.systemmessage;
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 

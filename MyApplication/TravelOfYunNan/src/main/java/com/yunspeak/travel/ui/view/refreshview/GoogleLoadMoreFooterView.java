@@ -16,7 +16,6 @@ import com.yunspeak.travel.ui.view.drawable.RingProgressDrawable;
  * Created by Aspsine on 2015/11/5.
  */
 public class GoogleLoadMoreFooterView extends FrameLayout implements SwipeTrigger, SwipeLoadMoreTrigger {
-    private ImageView ivLoadMore;
 
     private int mTriggerOffset;
 
@@ -44,7 +43,7 @@ public class GoogleLoadMoreFooterView extends FrameLayout implements SwipeTrigge
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        ivLoadMore = (ImageView) findViewById(R.id.ivLoadMore);
+        ImageView ivLoadMore = (ImageView) findViewById(R.id.ivLoadMore);
         ivLoadMore.setBackgroundDrawable(ringProgressDrawable);
     }
 
