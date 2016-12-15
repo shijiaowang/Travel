@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -53,6 +54,16 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
     private File cameraFile;
     public boolean isNeedCrop() {
         return needCrop;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState!=null){
+            cameraFile=((File) savedInstanceState.getSerializable("file"));
+            currentCode=savedInstanceState.getInt("code");
+            filename=savedInstanceState.getString("filename");
+        }
     }
 
     public void setNeedCrop(boolean needCrop) {
@@ -107,7 +118,13 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         // 获取控件的坐标 x y
         window.showAtLocation(view, Gravity.TOP, 0, DensityUtil.getScreenHeight() - DensityUtil.dip2px(151));
     }
-
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putString("filename", filename);
+        savedInstanceState.putInt("code", currentCode);
+        savedInstanceState.putSerializable("file",cameraFile);
+        super.onSaveInstanceState(savedInstanceState); //实现父类方法 放在最后 防止拍照后无法返回当前activity
+    }
     /**
      * 拍照
      */

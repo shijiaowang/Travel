@@ -12,6 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.yunspeak.travel"
+
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 105

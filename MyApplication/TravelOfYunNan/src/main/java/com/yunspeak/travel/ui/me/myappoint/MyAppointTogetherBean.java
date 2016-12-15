@@ -88,19 +88,19 @@ public class MyAppointTogetherBean implements ParentBean {
             this.pay_type = pay_type;
         }
 
-        public String getBulletin() {
+        public int getBulletin() {
             return bulletin;
         }
 
-        public void setBulletin(String bulletin) {
+        public void setBulletin(int bulletin) {
             this.bulletin = bulletin;
         }
 
-        private String bulletin;
+        private int bulletin;
         private String browse;
         private String status;
         private String is_boss;
-        private String now_people;
+        private int now_people;
         private String count_like;
         private String is_like;
         private String routes;
@@ -217,11 +217,11 @@ public class MyAppointTogetherBean implements ParentBean {
             this.is_boss = is_boss;
         }
 
-        public String getNow_people() {
+        public int getNow_people() {
             return now_people;
         }
 
-        public void setNow_people(String now_people) {
+        public void setNow_people(int now_people) {
             this.now_people = now_people;
         }
 

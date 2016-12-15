@@ -26,7 +26,6 @@ import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.ui.me.myappoint.memberdetail.MemberDetailActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.backmoney.BackMoneyActivity;
-import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
@@ -80,9 +79,9 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder {
     TextView mTvCode;
 
     @BindView(R.id.bv_enter_people)
-    BadgeView mBvEnterPeople;
+    View mBvEnterPeople;
     @BindView(R.id.bv_bulletin_number)
-    BadgeView mBvBulletinNumber;
+    View mBvBulletinNumber;
     @BindView(R.id.tv_appointing)
     TextView mTvAppointing;
     @BindView(R.id.iv_delete)
@@ -203,8 +202,8 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder {
             mTvHaveNumber.setText("已有: " + datas.getNow_people() + "人");
             mTvPlanNumber.setText("计划: " + datas.getMax_people() + "人");
             mTvLine.setText(datas.getRoutes());
-            mBvEnterPeople.setBadgeCount(datas.getNow_people());
-            mBvBulletinNumber.setBadgeCount(datas.getBulletin());
+            mBvEnterPeople.setVisibility(datas.getNow_people()>0?View.VISIBLE:View.GONE);
+            mBvBulletinNumber.setVisibility(datas.getBulletin()>0?View.VISIBLE:View.GONE);
             mTvHowLong.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd", datas.getAdd_time()));
             mTvAppointing.setText(getDesTextByState(datas.getState(), mContext));
             mTvAppointing.setTextColor(desColor);
