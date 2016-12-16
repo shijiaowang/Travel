@@ -168,6 +168,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
 
 
         final Intent intent = new Intent(DestinationDetailActivity.this, EaseBaiduMapActivity.class);
+        intent.putExtra("title",travel.getTitle());
         if (!(StringUtils.isEmpty(longitude) || StringUtils.isEmpty(latitude))){
             stringBuilder.append("&markers=").append(longitude).append(",").append(latitude);
             intent.putExtra("latitude", Double.parseDouble(travel.getLatitude()));

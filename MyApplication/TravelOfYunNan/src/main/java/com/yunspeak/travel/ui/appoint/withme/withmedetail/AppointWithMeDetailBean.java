@@ -67,6 +67,16 @@ public class AppointWithMeDetailBean {
         private String routes_title;
         private String basectext;
 
+        public String getShare_url() {
+            return share_url;
+        }
+
+        public void setShare_url(String share_url) {
+            this.share_url = share_url;
+        }
+
+        private String share_url;
+
         public int getDay() {
             return day;
         }

@@ -195,7 +195,7 @@
             android:windowSoftInputMode="stateHidden"
             />
 
-
+        <activity android:name="com.hyphenate.easeui.ui.EaseWebMapActivity" />
 
         <activity
             android:name="com.mob.tools.MobUIShell"

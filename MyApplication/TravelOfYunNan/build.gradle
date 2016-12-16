@@ -47,12 +47,9 @@ android {
             // 不显示Log
             buildConfigField "boolean", "LOG_DEBUG", "false"
             //混淆
-            minifyEnabled true
-            //Zipalign优化
-            zipAlignEnabled true
-
-            // 移除无用的resource文件
-            shrinkResources true
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
             //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明，后一个文件是自己的定义混淆文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //签名
@@ -114,16 +111,14 @@ dependencies {
     compile 'com.github.promeg:tinypinyin:1.0.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.google.android:flexbox:0.2.3'
-
     compile 'com.android.support:multidex:1.0.1'
     compile project(':easeui')
     compile files('libs/MobTools-2016.1020.1028.jar')
-    compile project(':PushSDK')
     compile files('libs/alipaySdk-20161009.jar')
     compile 'id.zelory:compressor:1.0.3'
     apt 'com.zhy:mpermission-compiler:1.0.0'
-
     compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile files('libs/libammsdk.jar')
+    compile project(':PushSDK')
 }

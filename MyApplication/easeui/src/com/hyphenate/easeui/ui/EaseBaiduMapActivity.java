@@ -28,8 +28,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -51,26 +49,23 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.CoordinateConverter;
 import com.hyphenate.easeui.R;
+import com.hyphenate.easeui.utils.MapUtils;
+
+import java.net.URISyntaxException;
 
 public class EaseBaiduMapActivity extends AppCompatActivity {
-
-    private final static String TAG = "map";
     static MapView mMapView = null;
-    FrameLayout mMapViewContainer = null;
     LocationClient mLocClient;
     public MyLocationListenner myListener = new MyLocationListenner();
-
-
-    EditText indexText = null;
-    int index = 0;
     // LocationData locData = null;
     static BDLocation lastLocation = null;
     public static EaseBaiduMapActivity instance = null;
     ProgressDialog progressDialog;
     private BaiduMap mBaiduMap;
     private boolean isShowSned;
-    private MenuItem menuItem;
     private boolean isShowOldLoaction;
+    private double latitude;
+    private double longtitude;
 
     public class BaiduSDKReceiver extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
@@ -99,7 +94,8 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
         mMapView = (MapView) findViewById(R.id.bmapView);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         Intent intent = getIntent();
-        double latitude = intent.getDoubleExtra("latitude", 0);
+        latitude = intent.getDoubleExtra("latitude", 0);
+        longtitude = intent.getDoubleExtra("longitude", 0);
         isShowOldLoaction = intent.getBooleanExtra("isNew", false);//是否展示之前定位
         LocationMode mCurrentMode = LocationMode.NORMAL;
         mBaiduMap = mMapView.getMap();
@@ -123,7 +119,6 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
                 showMapWithLocationClient();
             }
         } else {
-            double longtitude = intent.getDoubleExtra("longitude", 0);
 
             LatLng p = new LatLng(latitude, longtitude);
             mMapView = new MapView(this, new BaiduMapOptions().mapStatus(new MapStatus.Builder()
@@ -144,10 +139,10 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!isShowOldLoaction) {
             getMenuInflater().inflate(R.menu.circle_map, menu);
-            return true;
         } else {
-            return super.onCreateOptionsMenu(menu);
+            getMenuInflater().inflate(R.menu.circle_map2, menu);
         }
+        return true;
     }
 
     @Override
@@ -159,10 +154,32 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
             default:
                 if (isShowSned && !isShowOldLoaction) {
                     sendLocation();
+                }else {
+                    String title = getIntent().getStringExtra("title");
+                    if (MapUtils.isBaiduMapInstalled()){
+                        openLocationBaiduMap(title);
+                    }
+
+
                 }
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 打开本地百度地图
+     * @param title
+     */
+    private void openLocationBaiduMap(String title) {
+        try {
+            String stringBuilder = "intent://map/marker?location=" + latitude + "," + lastLocation +
+                    "&" + "title="+title + "&content=位置信息&src=城外旅游#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
+            Intent intent= Intent.parseUri(stringBuilder,0);
+            startActivity(intent);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showMap(double latitude, double longtitude, String address) {
@@ -204,10 +221,7 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
         mLocClient.registerLocationListener(myListener);
 
         LocationClientOption option = new LocationClientOption();
-        option.setOpenGps(true);// open gps
-        // option.setCoorType("bd09ll");
-        // Johnson change to use gcj02 coordination. chinese national standard
-        // so need to conver to bd09 everytime when draw on baidu map
+        option.setOpenGps(true);
         option.setCoorType("gcj02");
         option.setScanSpan(30000);
         option.setAddrType("all");

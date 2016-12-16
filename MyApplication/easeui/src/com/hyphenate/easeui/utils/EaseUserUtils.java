@@ -3,7 +3,6 @@ package com.hyphenate.easeui.utils;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -55,6 +54,19 @@ public class EaseUserUtils {
         }
     }
 
+    /**
+     * 获取用户名
+     * @param id
+     * @return
+     */
+   public static String  getUserNickName(String id){
+       EaseUser userInfo = getUserInfo(id);
+       String userName="cityoff用户";
+       if (userInfo!=null){
+           userName=userInfo.getNickname();
+       }
+       return userName;
+   }
     /**
      * set user's nickname
      */

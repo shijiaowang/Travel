@@ -14,16 +14,16 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.appoint.PeopleBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
+import com.yunspeak.travel.ui.appoint.PeopleBean;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailHaveEnterAdapter;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingAdapter;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
+import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWithMeSelectActivity;
 import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
@@ -99,6 +99,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     private int [] titleBgs=new int[]{R.drawable.fragment_appoint_title1_bg,R.drawable.fragment_appoint_title2_bg,R.drawable.fragment_appoint_title3_bg,R.drawable.fragment_appoint_title4_bg,R.drawable.fragment_appoint_title5_bg,R.drawable.fragment_appoint_title6_bg,R.drawable.fragment_appoint_title7_bg,};
     private String title;
     private String content;
+    private String shareUrl;
 
     @Override
     protected void initEvent() {
@@ -114,7 +115,9 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             @Override
             public void onClick(View v) {
                 if (userId.equals(GlobalUtils.getUserInfo().getId())){
-                    MyAppointActivity.start(AppointWithMeDetailActivity.this,MyAppointActivity.WITH_ME);
+                    Intent intent=new Intent(AppointWithMeDetailActivity.this,MyWithMeSelectActivity.class);
+                    intent.putExtra(IVariable.ID,tId);
+                    startActivity(intent);
                     return;
                 }
                 Map<String, String> appointMap = MapUtils.Build().addKey().addUserId().end();
@@ -215,8 +218,11 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
            mTvTime.setText(FormatDateUtils.FormatLongTime("HH:mm",data.getAdd_time()));
             FrescoUtils.displayIcon(mIvUserIcon, data.getUser_img());
             userId = data.getUser_id();
-            btEnter.setText("我的约伴");
+            if (userId.equals(GlobalUtils.getUserInfo().getId())) {
+                btEnter.setText("查看推送");
+            }
             mTvUserNickName.setText(data.getUser_name());
+            shareUrl = data.getShare_url();
             FrescoUtils.displayRoundIcon(mIvAppointBg, data.getTravel_img());
             if (mFlTitle.getChildCount()>0)mFlTitle.removeAllViews();
             dealLabel(data);
@@ -299,7 +305,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     @Override
     protected void otherOptionsItemSelected(MenuItem item) {
         super.otherOptionsItemSelected(item);
-        EnterAppointDialog.showShareDialog(this,title,content,"www.cityoff.cn",mIvAppointBg);
+        EnterAppointDialog.showShareDialog(this,title,content,shareUrl,mIvAppointBg);
     }
 
     @Override

@@ -1,19 +1,20 @@
 package com.hyphenate.easeui.widget.chatrow;
 
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMLocationMessageBody;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessage.ChatType;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
+import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.LatLng;
-
-import android.content.Context;
-import android.content.Intent;
-import android.view.View;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 public class EaseChatRowLocation extends EaseChatRow{
 
@@ -86,6 +87,7 @@ public class EaseChatRowLocation extends EaseChatRow{
         intent.putExtra("latitude", locBody.getLatitude());
         intent.putExtra("longitude", locBody.getLongitude());
         intent.putExtra("address", locBody.getAddress());
+        intent.putExtra("title", EaseUserUtils.getUserInfo(message.getFrom()));
         intent.putExtra("isNew", true);
         activity.startActivity(intent);
     }

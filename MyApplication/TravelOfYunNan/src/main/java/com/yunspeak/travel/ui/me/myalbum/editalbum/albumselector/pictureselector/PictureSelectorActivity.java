@@ -135,6 +135,10 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
             @Override
             public void change(int size) {
                 mTvSend.setText("发送(" + size + ")");
+                if (GlobalValue.size==0){
+                    //刷新，如果只有一个照片
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
     }

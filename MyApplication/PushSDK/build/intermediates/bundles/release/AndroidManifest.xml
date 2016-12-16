@@ -25,18 +25,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
-    <application
-        android:allowBackup="true"
-        tools:replace="android:allowBackup" >
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="5847c974f43e4812a80004fd" >
-        </meta-data>
-        <meta-data
-            android:name="UMENG_MESSAGE_SECRET"
-            android:value="974f4a49efa12e426b256792b5b4e0c1" >
-        </meta-data>
-
+    <application>
         <service
             android:name="com.taobao.accs.ChannelService"
             android:exported="true"
@@ -76,6 +65,7 @@
         </receiver>
         <receiver
             android:name="com.taobao.accs.ServiceReceiver"
+            android:exported="false"
             android:process=":channel" >
             <intent-filter>
                 <action android:name="com.taobao.accs.intent.action.COMMAND" />
@@ -98,7 +88,8 @@
         </service>
         <service
             android:name="com.umeng.message.UmengIntentService"
-            android:exported="true" >
+            android:exported="true"
+            android:process=":channel" >
             <intent-filter>
                 <action android:name="org.agoo.android.intent.action.RECEIVE" />
             </intent-filter>
@@ -151,8 +142,7 @@
         <provider
             android:name="com.umeng.message.provider.MessageProvider"
             android:authorities="${applicationId}.umeng.message"
-            android:exported="false"
-            android:process=":channel" >
+            android:exported="false" >
             <grant-uri-permission android:pathPattern=".*" />
         </provider>
     </application>

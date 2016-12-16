@@ -42,10 +42,13 @@ public class PictureSelectorAdapter extends TravelBaseAdapter<String> {
                         pictureSelectorHolder.mTvSelect.setTextColor(mContext.getResources().getColor(R.color.colorb5b5b5));
                         pictureSelectorHolder.mImage.setBackgroundColor(Color.TRANSPARENT);
                     }else {
-                        if (GlobalValue.mSelectImages.size()>=GlobalValue.size){
+                        if (GlobalValue.size==1){
+                            GlobalValue.mSelectImages.clear();
+                        }else {
                             ToastUtils.showToast("对不起，最多添加"+GlobalValue.size+"张");
                             return;
                         }
+
                         GlobalValue.mSelectImages.add(url);
                         pictureSelectorHolder.mImage.setBackgroundColor(Color.parseColor("#77000000"));
                         pictureSelectorHolder.mTvSelect.setTextColor(mContext.getResources().getColor(R.color.otherTitleBg));

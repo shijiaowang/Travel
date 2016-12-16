@@ -36,6 +36,10 @@
         "source": "D:\\Travel\\MyApplication\\easeui\\res\\layout\\ease_row_chat_history.xml"
     },
     {
+        "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_activity_web_map.xml",
+        "source": "D:\\Travel\\MyApplication\\easeui\\res\\layout\\ease_activity_web_map.xml"
+    },
+    {
         "merged": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_title_item.xml",
         "source": "D:\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_bar_title_item.xml"
     },

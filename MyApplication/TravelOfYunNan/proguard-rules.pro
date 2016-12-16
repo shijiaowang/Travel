@@ -128,6 +128,7 @@
 -dontwarn org.android.**
 -dontwarn org.apache.thrift.**
 -dontwarn com.xiaomi.**
+-dontwarn com.umeng.**
 -dontwarn com.huawei.**
 -keepattributes *Annotation*
 -keep class com.taobao.** {*;}

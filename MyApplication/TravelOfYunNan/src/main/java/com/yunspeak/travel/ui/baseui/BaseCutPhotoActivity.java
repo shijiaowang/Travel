@@ -25,10 +25,12 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
+import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.yunspeak.travel.utils.BitmapUtils;
 import com.yunspeak.travel.utils.IOUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.x;
 
@@ -36,6 +38,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -52,6 +55,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
     private boolean needCrop = true;//默认需要裁剪
     private int currentCode = -1;
     private File cameraFile;
+
     public boolean isNeedCrop() {
         return needCrop;
     }
@@ -59,10 +63,10 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState!=null){
-            cameraFile=((File) savedInstanceState.getSerializable("file"));
-            currentCode=savedInstanceState.getInt("code");
-            filename=savedInstanceState.getString("filename");
+        if (savedInstanceState != null) {
+            cameraFile = ((File) savedInstanceState.getSerializable("file"));
+            currentCode = savedInstanceState.getInt("code");
+            filename = savedInstanceState.getString("filename");
         }
     }
 
@@ -118,13 +122,15 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         // 获取控件的坐标 x y
         window.showAtLocation(view, Gravity.TOP, 0, DensityUtil.getScreenHeight() - DensityUtil.dip2px(151));
     }
+
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState){
+    public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString("filename", filename);
         savedInstanceState.putInt("code", currentCode);
-        savedInstanceState.putSerializable("file",cameraFile);
+        savedInstanceState.putSerializable("file", cameraFile);
         super.onSaveInstanceState(savedInstanceState); //实现父类方法 放在最后 防止拍照后无法返回当前activity
     }
+
     /**
      * 拍照
      */
@@ -160,12 +166,30 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
             currentCode = REQUEST_SELECT_PICTURE;
             if (Build.VERSION.SDK_INT < 19) {
                 intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
+                intent.setType("image");
             } else {
                 intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             }
             startActivityForResult(intent, currentCode);
+            /*GlobalValue.size = 1;
+            startActivity(new Intent(this, AlbumSelectorActivity.class));*/
         }
+    }
+
+    @Subscribe
+    public void onEvent(UpPhotoEvent upPhotoEvent) {
+        List<String> list = upPhotoEvent.getList();
+        if (list == null || list.size() == 0) {
+            ToastUtils.showToast("未接收到图片");
+            return;
+        }
+        String path = list.get(0);
+        if (needCrop) {
+            startCropActivity(Uri.parse(path));
+        } else {
+            showImage(path);
+        }
+
     }
 
     /**
@@ -196,7 +220,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
             if (requestCode == TAKE_PHOTO) {
                 if (cameraFile != null && cameraFile.exists()) {
                     if (!needCrop) {
-                        showImage("file://"+cameraFile.getAbsolutePath());
+                        showImage("file://" + cameraFile.getAbsolutePath());
                     } else {
                         startCropActivity(Uri.fromFile(cameraFile));
                     }
@@ -216,7 +240,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
                                 ToastUtils.showToast("图片不存在");
                                 return;
                             }
-                            showImage("file://"+picturePath);
+                            showImage("file://" + picturePath);
                         }
                     } else {
                         startCropActivity(data.getData());
@@ -267,7 +291,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
         uCrop = advancedConfig(uCrop);
 
-        userResultSize(uCrop,300,300);
+        userResultSize(uCrop, 300, 300);
 
     }
 
@@ -437,7 +461,7 @@ public abstract class BaseCutPhotoActivity<T extends HttpEvent> extends BaseNetW
         return flag;
     }
 
-    protected  void childDisplay(String url, String filename){
+    protected void childDisplay(String url, String filename) {
 
     }
 
