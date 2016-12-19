@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.flexbox.FlexboxLayout;
-import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
+import com.hyphenate.easeui.ui.EaseWebMapActivity;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -167,7 +167,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         stringBuilder.append("&center=").append(city);
 
 
-        final Intent intent = new Intent(DestinationDetailActivity.this, EaseBaiduMapActivity.class);
+        final Intent intent = new Intent(DestinationDetailActivity.this, EaseWebMapActivity.class);
         intent.putExtra("title",travel.getTitle());
         if (!(StringUtils.isEmpty(longitude) || StringUtils.isEmpty(latitude))){
             stringBuilder.append("&markers=").append(longitude).append(",").append(latitude);

@@ -1,12 +1,13 @@
 package com.yunspeak.travel.ui.find.findcommon;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.utils.StringUtils;
 
 /**
  * Created by wangyang on 2016/10/28 0028.
  */
 
-public class CityBean {
+public class CityBean extends TravelsObject {
 
         private String id;
         private String name;

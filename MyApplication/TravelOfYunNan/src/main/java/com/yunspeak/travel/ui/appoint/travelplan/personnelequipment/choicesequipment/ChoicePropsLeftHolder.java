@@ -11,7 +11,7 @@ import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2016/8/31 0031.
+ * Created by wangyang on 2016/8/31 0031.
  * 选择道具类型
  */
 public class ChoicePropsLeftHolder extends BaseHolder<ChoicePropBean.DataBean.ProptypeBean> {

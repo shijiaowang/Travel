@@ -38,9 +38,8 @@ import butterknife.BindView;
  * 相册选择 powered by wangyang
  */
 public class AlbumSelectorActivity extends BaseToolBarActivity {
-    public static final int GET_PICTURE=0;
-    public static final int SEND_PICTURE=1;
-    public static final int CANCEL_PER=2;//取消预览
+    public static final int GET_PICTURE=16;
+    public static final int SEND_PICTURE=61;
     @BindView(R.id.lv_photo) ListView mLvPhoto;
     private ProgressDialog mProgressDialog;
     private List<ImageFolder> imageFolders = new ArrayList<>();

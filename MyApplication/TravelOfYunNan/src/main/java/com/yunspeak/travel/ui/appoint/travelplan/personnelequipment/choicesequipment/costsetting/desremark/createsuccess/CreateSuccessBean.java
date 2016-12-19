@@ -1,32 +1,15 @@
 package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.createsuccess;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/12/6 0006.
  */
 
-public class CreateSuccessBean {
-
-    private int code;
-    private String message;
+public class CreateSuccessBean extends TravelsObject {
 
 
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

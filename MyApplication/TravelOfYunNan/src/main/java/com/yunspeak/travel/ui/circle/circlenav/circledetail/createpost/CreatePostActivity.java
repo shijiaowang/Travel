@@ -90,7 +90,6 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     private String addFlag="add";
     private String cId;
     private boolean isCreateing=false;
-    private int size;
     private String rUserId;
     private String pId;
     private String forumId;
@@ -113,17 +112,6 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         return title;
     }
 
-
-
-
-    private void showSoft(EditText mEtTitle) {
-        mEtTitle.setFocusable(true);
-        mEtTitle.requestFocus();
-        //第一次进入强制显示软键盘
-        if (!imm.isActive()) {
-            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    }
 
     @Override
     protected String initRightText() {
@@ -196,9 +184,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
             mGvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (pictures==null ||pictures.size()==1 ||(pictures.size() != GlobalValue.size && position == pictures.size() - 1)) {
-                        startSelectAlbum();
-                    }
+                        startSelectAlbum();//点谁都可以进行换图
                 }
             });
         } else {
@@ -213,9 +199,10 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
      * 打开相册
      */
     private void startSelectAlbum() {
-        startActivity(new Intent(CreatePostActivity.this, AlbumSelectorActivity.class));
         GlobalValue.mSelectImages = pictures;
         GlobalValue.mSelectImages.remove(addFlag);
+        startActivity(new Intent(CreatePostActivity.this, AlbumSelectorActivity.class));
+
     }
 
 

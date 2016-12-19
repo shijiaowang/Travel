@@ -1,11 +1,12 @@
 package com.yunspeak.travel.ui.me.myhobby;
 
 import com.google.gson.annotations.SerializedName;
+import com.yunspeak.travel.global.TravelsObject;
 
 /**
  * Created by wangyang on 2016/9/28 0028.
  */
-public  class UserLabelBean {
+public  class UserLabelBean  extends TravelsObject {
     private String id;
     private String name;
     private String type;

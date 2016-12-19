@@ -10,7 +10,7 @@ import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetai
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/5 0005.
+ * Created by wangyang on 2016/9/5 0005.
  */
 public class AppointDetailLineDetailAdapter extends TravelBaseAdapter<AppointTogetherDetailBean.DataBean.RoutesBean> {
     public AppointDetailLineDetailAdapter(Context mContext, List<AppointTogetherDetailBean.DataBean.RoutesBean> mDatas) {

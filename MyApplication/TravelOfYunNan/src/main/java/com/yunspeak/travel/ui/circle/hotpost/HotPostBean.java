@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.circle.hotpost;
 
 import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.InformBean;
 
 import java.util.List;
@@ -9,29 +10,9 @@ import java.util.List;
  * Created by wangyang on 2016/9/23 0023.
  */
 
-public class HotPostBean implements ParentBean{
-
-
-    private int code;
-    private String message;
+public class HotPostBean extends TravelsObject implements ParentBean{
 
     private List<DataBean> data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public List<DataBean> getData() {
         return data;

@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.myappoint.memberdetail;
 
 import com.yunspeak.travel.global.DataParentBean;
+import com.yunspeak.travel.global.TravelsObject;
 
 import java.util.List;
 
@@ -8,29 +9,12 @@ import java.util.List;
  * Created by wangyang on 2016/10/7 0007.
  */
 
-public class MemberDetailBean {
+public class MemberDetailBean extends TravelsObject {
 
 
-    private int code;
-    private String message;
 
     private DataBean data;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

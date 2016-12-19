@@ -1,33 +1,15 @@
 package com.yunspeak.travel.ui.home.welcome;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.home.UserInfo;
 
 /**
  * Created by wangyang on 2016/7/26 0026.
  * 登录，包含用户信息
  */
-public class Login {
-
-    private int code;
-    private String message;
-
+public class Login extends TravelsObject {
     private UserInfo data;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public UserInfo getData() {
         return data;

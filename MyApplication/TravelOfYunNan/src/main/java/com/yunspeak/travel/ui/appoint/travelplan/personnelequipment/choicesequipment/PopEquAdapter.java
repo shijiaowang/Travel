@@ -8,7 +8,7 @@ import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/31 0031.
+ * Created by wangyang on 2016/8/31 0031.
  */
 public class PopEquAdapter extends TravelBaseAdapter<ChoicePropSelectBean> {
 

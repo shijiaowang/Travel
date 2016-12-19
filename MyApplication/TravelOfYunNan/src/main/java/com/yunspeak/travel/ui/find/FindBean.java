@@ -1,33 +1,16 @@
 package com.yunspeak.travel.ui.find;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/10/15 0015.
  */
 
-public class FindBean {
+public class FindBean extends TravelsObject {
 
-    private int code;
-    private String message;
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public DataBean getData() {
         return data;
     }

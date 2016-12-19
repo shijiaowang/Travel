@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.me.ordercenter;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/10/9 0009.
  */
-public  class BasecPriceBean {
+public  class BasecPriceBean extends TravelsObject {
     private String id;
     private String key;
     private String value;

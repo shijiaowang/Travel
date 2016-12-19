@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.me.othercenter;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 import com.yunspeak.travel.ui.me.othercenter.userdynamic.DynamicBean;
 
@@ -9,27 +10,10 @@ import java.util.List;
  * Created by wangyang on 2016/10/13 0013.
  */
 
-public class OtherUserCenterBean {
+public class OtherUserCenterBean extends TravelsObject {
 
-    private int code;
-    private String message;
+
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

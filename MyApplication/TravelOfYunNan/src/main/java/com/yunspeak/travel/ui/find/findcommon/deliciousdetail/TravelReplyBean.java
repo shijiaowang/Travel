@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/8/25 0025.
  */
-public class TravelReplyBean {
+public class TravelReplyBean extends TravelsObject {
 
         private String id;
         private String f_id;
@@ -19,7 +21,6 @@ public class TravelReplyBean {
         private String is_like;
         private String nick_name;
         private String user_img;
-
         private ReplyBean reply;
 
         public String getId() {

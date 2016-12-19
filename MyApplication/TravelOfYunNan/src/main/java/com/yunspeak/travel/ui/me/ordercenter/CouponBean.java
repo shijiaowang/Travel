@@ -1,10 +1,12 @@
 package com.yunspeak.travel.ui.me.ordercenter;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/10/9 0009.
  */
 
-public class CouponBean {
+public class CouponBean extends TravelsObject {
         private String id;
         private String user_id;
         private String type;

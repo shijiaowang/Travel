@@ -1,31 +1,15 @@
 package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/9/18 0018.
+ * Created by wangyang on 2016/9/18 0018.
  */
-public class ChoicePropBean {
+public class ChoicePropBean extends TravelsObject {
 
-    private int code;
-    private String message;
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

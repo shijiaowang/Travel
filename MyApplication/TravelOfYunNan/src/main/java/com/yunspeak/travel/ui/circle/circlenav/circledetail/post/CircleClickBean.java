@@ -1,38 +1,16 @@
 package com.yunspeak.travel.ui.circle.circlenav.circledetail.post;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/11/9 0009.
  */
 
-public class CircleClickBean {
-
-
-
-    private int code;
-    private String message;
-
+public class CircleClickBean extends TravelsObject {
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public DataBean getData() {
         return data;
     }
-
     public void setData(DataBean data) {
         this.data = data;
     }

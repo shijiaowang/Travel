@@ -3,7 +3,7 @@ package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequi
 import java.io.Serializable;
 
 /**
- * Created by Administrator on 2016/9/6 0006.
+ * Created by wangyang on 2016/9/6 0006.
  */
 public class SettingTitle implements Serializable{
     private int type;

@@ -1,11 +1,13 @@
 package com.yunspeak.travel.ui.circle.circlenav.circledetail;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/12/12 0012.
  * 插入的活动详情
  */
 
-public  class ActivityBean {
+public  class ActivityBean extends TravelsObject {
     private String id;
     private String title;
     private String activity_img;

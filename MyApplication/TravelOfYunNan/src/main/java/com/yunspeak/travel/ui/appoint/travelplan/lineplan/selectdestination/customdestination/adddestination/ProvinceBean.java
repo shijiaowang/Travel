@@ -2,11 +2,12 @@ package com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.cus
 
 
 import com.bigkoo.pickerview.model.IPickerViewData;
+import com.yunspeak.travel.global.TravelsObject;
 
 /**
- * Created by Sai on 15/11/22.
+ * Created by wangyang on 15/11/22.
  */
-public class ProvinceBean implements IPickerViewData {
+public class ProvinceBean extends TravelsObject implements IPickerViewData {
     private String id;
     private String name;
 

@@ -13,7 +13,6 @@
  */
 package com.hyphenate.easeui.ui;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
@@ -24,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -35,17 +35,13 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
-import com.baidu.mapapi.SDKInitializer;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.utils.MapUtils;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 public class EaseWebMapActivity extends AppCompatActivity {
-
-
-    public static EaseWebMapActivity instance = null;
-    private boolean isShowSned;
     private boolean isShowOldLoaction;
     private double latitude;
     private double longtitude;
@@ -57,7 +53,6 @@ public class EaseWebMapActivity extends AppCompatActivity {
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     private String address;
-    private ProgressDialog progress;
     private String title;
     private WebView mWvView;
 
@@ -65,12 +60,9 @@ public class EaseWebMapActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        instance = this;
-        SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.ease_activity_web_map);
         mWvView = (WebView)findViewById(R.id.wv_html);
-        mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
-        mLocationClient.registerLocationListener( myListener );
+
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         Intent intent = getIntent();
         latitude = intent.getDoubleExtra("latitude", 0);
@@ -90,14 +82,17 @@ public class EaseWebMapActivity extends AppCompatActivity {
         settings.setAllowFileAccess(true);
         settings.setDomStorageEnabled(true);//允许DCOM
         settings.setLoadWithOverviewMode(true);
-        mWvView.setWebChromeClient(new WebChromeClient(){
+        mWvView.addJavascriptInterface(new NotifyLocationListener(),"locationNotify");
+        mWvView.setWebChromeClient(new WebChromeClient(){});
+        mWvView.setWebViewClient(new WebViewClient(){
             @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                if (progress!=null && newProgress==100){
-                    progress.dismiss();
-                }
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                //页面加载完成
+                showWebMap();
             }
         });
+        mWvView.loadUrl("file:///android_asset/location.html");
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         ActionBar supportActionBar = getSupportActionBar();
@@ -114,21 +109,15 @@ public class EaseWebMapActivity extends AppCompatActivity {
         }
 
     }
-/**/
+
     private void showWebMap() {
-       /* String url = "http://api.map.baidu.com/marker?location=" + latitude + "," + longtitude +
-                "&" + "title="+"城外旅游" + "&content=位置信息&output=html&src=城外旅游";*/
-       // String url=" http://api.map.baidu.com/marker?location=40.047669,116.313082&title=我的位置&content=百度奎科大厦&output=html&src=cityoff";
-        mWvView.loadUrl("file:///android_asset/test.html");
+      mWvView.loadUrl("javascript:locationByAndroid("+latitude+","+longtitude+","+!isShowOldLoaction+")");
     }
 
     private void initLocation(){
-        progress = new ProgressDialog(this);
-        progress.setTitle("定位中...");
-        progress.show();
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);//可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
-        option.setCoorType("bd09ll");//可选，默认gcj02，设置返回的定位结果坐标系
+        option.setCoorType("BD09ll");//可选，默认gcj02，设置返回的定位结果坐标系
         int span=1000;
         option.setScanSpan(span);//可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
         option.setIsNeedAddress(true);//可选，设置是否需要地址信息，默认不需要
@@ -145,10 +134,13 @@ public class EaseWebMapActivity extends AppCompatActivity {
      * 获取地址信息
      */
     private void getLoaction() {
+        mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
+        mLocationClient.registerLocationListener( myListener );
+        mLocationClient.start();
         LocationManager locManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         if(!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
         {
-            Toast.makeText(instance, "打开GPS定位将更准确", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "打开GPS定位将更准确", Toast.LENGTH_SHORT).show();
         }
         initLocation();
 
@@ -158,8 +150,6 @@ public class EaseWebMapActivity extends AppCompatActivity {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-            //Receive Location
-            progress.dismiss();
             StringBuffer sb = new StringBuffer(256);
             sb.append("time : ");
             sb.append(location.getTime());
@@ -186,7 +176,7 @@ public class EaseWebMapActivity extends AppCompatActivity {
                 sb.append(location.getAddrStr());
                 sb.append("\ndescribe : ");
                 sb.append("gps定位成功");
-
+                locationIsSuccess=true;
             } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
                 sb.append("\naddr : ");
                 sb.append(location.getAddrStr());
@@ -195,6 +185,7 @@ public class EaseWebMapActivity extends AppCompatActivity {
                 sb.append(location.getOperators());
                 sb.append("\ndescribe : ");
                 sb.append("网络定位成功");
+                locationIsSuccess=true;
             } else if (location.getLocType() == BDLocation.TypeOffLineLocation) {// 离线定位结果
                 sb.append("\ndescribe : ");
                 sb.append("离线定位成功，离线定位结果也是有效的");
@@ -202,13 +193,12 @@ public class EaseWebMapActivity extends AppCompatActivity {
                 showWebMap();
             } else if (location.getLocType() == BDLocation.TypeServerError) {
                 sb.append("\ndescribe : ");
-                locationIsSuccess=true;
+
                 showWebMap();
                 sb.append("服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因");
                 Toast.makeText(EaseWebMapActivity.this, "定位失败", Toast.LENGTH_SHORT).show();
             } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
                 sb.append("\ndescribe : ");
-                locationIsSuccess=true;
                 showWebMap();
                 sb.append("网络不同导致定位失败，请检查网络是否通畅");
                 Toast.makeText(EaseWebMapActivity.this, "定位失败", Toast.LENGTH_SHORT).show();
@@ -250,22 +240,33 @@ public class EaseWebMapActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             default:
-                if (isShowSned && !isShowOldLoaction) {
+                if (!isShowOldLoaction) {
                     sendLocation();
                 }else {
                     String title = getIntent().getStringExtra("title");
                     if (MapUtils.isBaiduMapInstalled()){
-
+                       openLocationBaiduMap(title);
                     }
-
-
                 }
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * 打开本地百度地图
+     * @param title
+     */
+    private void openLocationBaiduMap(String title) {
+        try {
+            String stringBuilder = "intent://map/marker?location=" + latitude + "," + longtitude +
+                    "&" + "title="+title + "&content=位置信息&src=城外旅游#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
+            Intent intent= Intent.parseUri(stringBuilder,0);
+            startActivity(intent);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -281,7 +282,7 @@ public class EaseWebMapActivity extends AppCompatActivity {
 
     public void sendLocation() {
         if (!locationIsSuccess){
-            Toast.makeText(instance, "定位失败！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "定位失败！", Toast.LENGTH_SHORT).show();
             return;
         }
         Intent intent = this.getIntent();
@@ -291,6 +292,15 @@ public class EaseWebMapActivity extends AppCompatActivity {
         this.setResult(RESULT_OK, intent);
         finish();
         overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+    }
+    public class NotifyLocationListener{
+        @JavascriptInterface
+        public void notify(double la,double lg,String add){
+            latitude=la;
+            longtitude=lg;
+            address=add;
+            Toast.makeText(EaseWebMapActivity.this,address,Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.appoint.together.togetherdetail;
 
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.appoint.PeopleBean;
 import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 
@@ -9,29 +10,11 @@ import java.util.List;
 /**
  * Created by wangyang on 2016/7/20 0020.
  */
-public class AppointTogetherDetailBean {
+public class AppointTogetherDetailBean extends TravelsObject {
 
-
-
-    private int code;
-    private String message;
     private DataBean data;
 
-    public int getCode() {
-        return code;
-    }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

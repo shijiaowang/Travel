@@ -1,35 +1,18 @@
 package com.yunspeak.travel.ui.appoint.together;
 
 import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.global.TravelsObject;
 
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/7/20 0020.
  */
-public class AppointTogetherBean implements ParentBean{
+public class AppointTogetherBean extends TravelsObject implements ParentBean{
 
-
-    private int code;
-    private String message;
 
     private List<DataBean> data;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public List<DataBean> getData() {
         return data;

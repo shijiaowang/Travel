@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 
 import java.util.List;
@@ -8,10 +9,8 @@ import java.util.List;
  * Created by wangyang on 2016/11/15 0015.
  */
 
-public class CostSettingBean {
+public class CostSettingBean extends TravelsObject{
 
-    private int code;
-    private String message;
     private List<BasecPriceBean> data;
     private String basectext;
 
@@ -21,21 +20,6 @@ public class CostSettingBean {
 
     public void setBasectext(String basectext) {
         this.basectext = basectext;
-    }
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public List<BasecPriceBean> getData() {

@@ -135,7 +135,7 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
             @Override
             public void change(int size) {
                 mTvSend.setText("发送(" + size + ")");
-                if (GlobalValue.size==0){
+                if (GlobalValue.size==1){
                     //刷新，如果只有一个照片
                     adapter.notifyDataSetChanged();
                 }
@@ -178,6 +178,7 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
         } else {
             mSelectImages.clear();
             mSelectImages.addAll(GlobalValue.mSelectImages);
+
             UpPhotoEvent upPhotoEvent=new UpPhotoEvent();
             upPhotoEvent.setList(mSelectImages);
             EventBus.getDefault().post(upPhotoEvent);
@@ -190,5 +191,7 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
     protected void onDestroy() {
         super.onDestroy();
         unregisterEventBus(this);
+        GlobalValue.mSelectImages.clear();
+        GlobalValue.mSelectImages.add("add");
     }
 }

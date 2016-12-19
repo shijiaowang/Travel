@@ -1,10 +1,12 @@
 package com.yunspeak.travel.ui.appoint;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/11/7 0007.
  */
 
-public class SelectEvent {
+public class SelectEvent extends TravelsObject {
     private String label="";
     private String timePosition="";
     private String orderPosition="";

@@ -11,7 +11,7 @@ import com.hyphenate.chat.EMLocationMessageBody;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessage.ChatType;
 import com.hyphenate.easeui.R;
-import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
+import com.hyphenate.easeui.ui.EaseWebMapActivity;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.LatLng;
@@ -83,7 +83,7 @@ public class EaseChatRowLocation extends EaseChatRow{
     
     @Override
     protected void onBubbleClick() {
-        Intent intent = new Intent(context, EaseBaiduMapActivity.class);
+        Intent intent = new Intent(context, EaseWebMapActivity.class);
         intent.putExtra("latitude", locBody.getLatitude());
         intent.putExtra("longitude", locBody.getLongitude());
         intent.putExtra("address", locBody.getAddress());

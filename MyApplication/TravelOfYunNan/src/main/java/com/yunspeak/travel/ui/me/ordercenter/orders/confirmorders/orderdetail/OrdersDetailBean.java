@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.orderdetail;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
 
 import java.util.List;
@@ -8,31 +9,13 @@ import java.util.List;
  * Created by wangyang on 2016/10/9 0009.
  */
 
-public class OrdersDetailBean{
+public class OrdersDetailBean extends TravelsObject {
 
 
-    private int code;
-    private String message;
+
 
 
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public DataBean getData() {
         return data;
     }

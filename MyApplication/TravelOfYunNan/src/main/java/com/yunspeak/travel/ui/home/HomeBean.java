@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.home;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.ActivityBean;
 
 import java.util.List;
@@ -8,28 +9,9 @@ import java.util.List;
  * Created by wangyang on 2016/10/17 0017.
  */
 
-public class HomeBean {
-    private int code;
-    private String message;
-
+public class HomeBean extends TravelsObject {
 
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

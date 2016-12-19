@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.me;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Created by wangyang on 2016/10/1.
  */
 
-public class MeBean {
+public class MeBean extends TravelsObject {
 
 
     private int code;

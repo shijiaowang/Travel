@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.me.othercenter;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * Created by wangyang on 2016/10/13 0013.
  */
-public  class UserBean {
+public  class UserBean extends TravelsObject {
     private String id;
     private String tel;
     private String name;

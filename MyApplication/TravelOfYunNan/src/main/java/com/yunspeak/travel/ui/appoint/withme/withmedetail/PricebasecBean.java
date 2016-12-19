@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.appoint.withme.withmedetail;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/9/8 0008.
  */
-public  class PricebasecBean {
+public  class PricebasecBean extends TravelsObject {
     private String id;
     private String key;
     private String value;

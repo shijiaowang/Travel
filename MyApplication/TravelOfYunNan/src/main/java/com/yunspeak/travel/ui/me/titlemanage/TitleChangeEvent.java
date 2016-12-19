@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.me.titlemanage;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 
 /**
@@ -7,7 +8,7 @@ import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
  * 添加标签
  */
 
-public class TitleChangeEvent {
+public class TitleChangeEvent extends TravelsObject {
     private UserLabelBean userLabelBean;
     private int Type;
 

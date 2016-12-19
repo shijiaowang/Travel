@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.myalbum;
 
 import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.global.TravelsObject;
 
 import java.util.List;
 
@@ -8,31 +9,12 @@ import java.util.List;
  * Created by wangyang on 2016/9/26 0026.
  */
 
-public class MyAlbumBean implements ParentBean{
-
-
-
-    private int code;
-    private String message;
+public class MyAlbumBean extends TravelsObject implements ParentBean{
 
 
     private List<DataBean> data;
 
-    public int getCode() {
-        return code;
-    }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public List<DataBean> getData() {
         return data;

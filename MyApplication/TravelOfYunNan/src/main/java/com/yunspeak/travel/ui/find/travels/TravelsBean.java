@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.find.travels;
 
 import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.global.TravelsObject;
 
 import java.util.List;
 
@@ -8,30 +9,11 @@ import java.util.List;
  * Created by wangyang on 2016/7/7 0007.
  * 游记列表
  */
-public class TravelsBean implements ParentBean{
-
-
-    private int code;
-    private String message;
+public class TravelsBean extends TravelsObject implements ParentBean{
 
 
     private List<DataBean> data;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public List<DataBean> getData() {
         return data;

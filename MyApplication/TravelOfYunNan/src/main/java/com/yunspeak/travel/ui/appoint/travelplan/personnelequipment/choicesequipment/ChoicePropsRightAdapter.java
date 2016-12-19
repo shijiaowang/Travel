@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/31 0031.
+ * Created by wangyang on 2016/8/31 0031.
  */
 public class ChoicePropsRightAdapter extends TravelBaseAdapter<ChoicePropBean.DataBean.ProplistsBean> {
     public ChoicePropsRightAdapter(Context mContext, List<ChoicePropBean.DataBean.ProplistsBean> mDatas) {

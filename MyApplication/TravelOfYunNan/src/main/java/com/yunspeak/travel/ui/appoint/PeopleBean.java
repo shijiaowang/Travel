@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.appoint;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/9/8 0008.
  */
-public class PeopleBean {
+public class PeopleBean extends TravelsObject {
 
         private String id;
         private String user_img;

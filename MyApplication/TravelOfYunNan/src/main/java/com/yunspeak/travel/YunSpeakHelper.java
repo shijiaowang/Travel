@@ -153,6 +153,7 @@ public class YunSpeakHelper {
         // 默认添加好友时，是不需要验证的，改成需要验证
         options.setAcceptInvitationAlways(false);
         options.setDeleteMessagesAsExitGroup(true);
+        options.setAutoLogin(true);
         EMClient.getInstance().init(context, options);
         easeUI.init(context,options);
 

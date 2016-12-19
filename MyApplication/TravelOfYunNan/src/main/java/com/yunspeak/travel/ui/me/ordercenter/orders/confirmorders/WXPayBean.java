@@ -1,33 +1,18 @@
 package com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders;
 
 import com.google.gson.annotations.SerializedName;
+import com.yunspeak.travel.global.TravelsObject;
 
 /**
  * Created by wangyang on 2016/11/29 0029.
  */
 
-public class WXPayBean {
+public class WXPayBean extends TravelsObject {
 
-    private int code;
-    private String message;
+
 
     private DataBean data;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

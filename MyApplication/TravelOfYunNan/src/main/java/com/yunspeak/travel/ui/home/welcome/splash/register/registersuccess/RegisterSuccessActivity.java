@@ -7,18 +7,21 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.home.welcome.Login;
-import com.yunspeak.travel.ui.home.UserInfo;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.RegisterSuccessEvent;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
+import com.yunspeak.travel.ui.home.UserInfo;
+import com.yunspeak.travel.ui.home.welcome.Login;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LoginEditText;
 import com.yunspeak.travel.utils.GsonUtils;
+import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ShareUtil;
 import com.yunspeak.travel.utils.StringUtils;
@@ -124,6 +127,26 @@ public class RegisterSuccessActivity extends BaseEventBusActivity<RegisterSucces
         UserInfo userInfo = object.getData();
         GlobalValue.userInfo = userInfo;//赋值
         UserUtils.saveUserInfo(userInfo);//序列化
+        if (!EMClient.getInstance().isConnected()) {
+            EMClient.getInstance().login(userInfo.getId(), userInfo.getPwd(), new EMCallBack() {//回调
+                @Override
+                public void onSuccess() {
+                    EMClient.getInstance().groupManager().loadAllGroups();
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                    LogUtils.e("登录聊天服务器成功！");
+                }
+
+                @Override
+                public void onProgress(int progress, String status) {
+
+                }
+
+                @Override
+                public void onError(int code, String message) {
+                    LogUtils.e(message);
+                }
+            });
+        }
         ShareUtil.putString(this, IVariable.SAVE_NAME, userInfo.getName());
         ShareUtil.putString(this, IVariable.SAVE_PWD, userInfo.getPwd());
         if (GlobalValue.KEY_VALUE != null) {

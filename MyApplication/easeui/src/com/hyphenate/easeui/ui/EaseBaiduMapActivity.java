@@ -13,48 +13,10 @@
  */
 package com.hyphenate.easeui.ui;
 
-import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.baidu.mapapi.SDKInitializer;
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BaiduMapOptions;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapStatus;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
-import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.MyLocationConfiguration;
-import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.utils.CoordinateConverter;
-import com.hyphenate.easeui.R;
-import com.hyphenate.easeui.utils.MapUtils;
-
-import java.net.URISyntaxException;
 
 public class EaseBaiduMapActivity extends AppCompatActivity {
-    static MapView mMapView = null;
+   /* static MapView mMapView = null;
     LocationClient mLocClient;
     public MyLocationListenner myListener = new MyLocationListenner();
     // LocationData locData = null;
@@ -167,10 +129,10 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
+    *//**
      * 打开本地百度地图
      * @param title
-     */
+     *//*
     private void openLocationBaiduMap(String title) {
         try {
             String stringBuilder = "intent://map/marker?location=" + latitude + "," + lastLocation +
@@ -260,9 +222,9 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
         mMapView.setLongClickable(true);
     }
 
-    /**
+    *//**
      * format new location to string and show on screen
-     */
+     *//*
     public class MyLocationListenner implements BDLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -318,5 +280,5 @@ public class EaseBaiduMapActivity extends AppCompatActivity {
         finish();
         overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     }
-
+*/
 }

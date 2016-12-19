@@ -1,30 +1,14 @@
 package com.yunspeak.travel.ui.circle.circlenav.circledetail;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/8/17 0017.
  * 点赞
  */
-public class CommonClickLikeBean {
+public class CommonClickLikeBean extends TravelsObject {
 
-    private int code;
-    private String message;
     private DataBean data;
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public DataBean getData() {
         return data;
     }

@@ -1,5 +1,7 @@
 package com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 import java.util.List;
 
 /**
@@ -7,7 +9,7 @@ import java.util.List;
  * 上传图片
  */
 
-public class UpPhotoEvent {
+public class UpPhotoEvent extends TravelsObject {
     private List<String> list;
 
     public List<String> getList() {

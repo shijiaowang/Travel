@@ -1,12 +1,14 @@
 package com.yunspeak.travel.ui.home;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 import java.io.Serializable;
 
 /**
  * Created by wangyang on 2016/9/20 0020.
  */
-public class UserInfo implements Serializable {
-    private static final long serialVersionUID = 5L;
+public class UserInfo extends TravelsObject implements Serializable {
+
 
     private String id;
     private String tel;

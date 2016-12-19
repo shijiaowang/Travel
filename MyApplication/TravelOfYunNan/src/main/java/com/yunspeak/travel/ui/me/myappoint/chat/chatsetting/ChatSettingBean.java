@@ -1,31 +1,18 @@
 package com.yunspeak.travel.ui.me.myappoint.chat.chatsetting;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/10/14 0014.
  */
 
-public class ChatSettingBean {
-    private int code;
-    private String message;
+public class ChatSettingBean extends TravelsObject {
+
     private List<ChatSettingUserBean> data;
 
-    public int getCode() {
-        return code;
-    }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public List<ChatSettingUserBean> getData() {
         return data;

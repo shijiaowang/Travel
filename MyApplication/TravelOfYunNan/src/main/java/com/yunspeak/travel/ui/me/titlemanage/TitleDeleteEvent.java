@@ -1,11 +1,13 @@
 package com.yunspeak.travel.ui.me.titlemanage;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/9/27 0027.
  * 删除事件
  */
 
-public class TitleDeleteEvent {
+public class TitleDeleteEvent extends TravelsObject {
     private String type;
     private String id;
 

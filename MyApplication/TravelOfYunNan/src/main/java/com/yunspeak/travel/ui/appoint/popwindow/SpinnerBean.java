@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.appoint.popwindow;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
- * Created by Administrator on 2016/9/20 0020.
+ * Created by wangyang on 2016/9/20 0020.
  */
-public class SpinnerBean {
+public class SpinnerBean extends TravelsObject {
     private String type;
     private String id;
     private int spinnerId;

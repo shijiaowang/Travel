@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.me.titlemanage;
 
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.me.myhobby.LabelTitleBean;
 import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
 
@@ -10,28 +11,8 @@ import java.util.List;
  * Created by wangyang on 2016/9/27 0027.
  */
 
-public class TitleManagementBean {
-
-    private int code;
-    private String message;
+public class TitleManagementBean extends TravelsObject {
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public DataBean getData() {
         return data;
     }

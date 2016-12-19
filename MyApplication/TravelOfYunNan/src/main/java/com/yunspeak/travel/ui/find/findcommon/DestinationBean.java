@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.find.findcommon;
 
 import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.global.TravelsObject;
 
 import java.util.List;
 
@@ -8,28 +9,9 @@ import java.util.List;
  * Created by wangyang on 2016/8/24 0024.
  * 目的地
  */
-public class DestinationBean implements ParentBean{
+public class DestinationBean extends TravelsObject implements ParentBean{
 
-
-    private int code;
-    private String message;
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

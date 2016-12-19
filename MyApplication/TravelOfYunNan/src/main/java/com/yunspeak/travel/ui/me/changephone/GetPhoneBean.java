@@ -1,34 +1,18 @@
 package com.yunspeak.travel.ui.me.changephone;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/10/6 0006.
  * 获取用户当前的手机号
  */
 
-public class GetPhoneBean  {
+public class GetPhoneBean extends TravelsObject {
 
 
-
-    private int code;
-    private String message;
 
     private DataBean data;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

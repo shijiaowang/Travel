@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.text.InputType;
 import android.view.View;
 
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
+
 import java.util.Map;
 
 import butterknife.BindView;
@@ -18,6 +21,7 @@ import yunshuo.yneb.com.myapplication.other.event.LoginEvent;
 import yunshuo.yneb.com.myapplication.other.utils.ActivityUtils;
 import yunshuo.yneb.com.myapplication.other.utils.GlobalUtils;
 import yunshuo.yneb.com.myapplication.other.utils.GsonUtils;
+import yunshuo.yneb.com.myapplication.other.utils.LogUtils;
 import yunshuo.yneb.com.myapplication.other.utils.MD5Utils;
 import yunshuo.yneb.com.myapplication.other.utils.MapUtils;
 import yunshuo.yneb.com.myapplication.other.utils.ShareUtil;
@@ -98,13 +102,33 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
     }
 
     private void goToHomeActivity(LoginEvent event) {
+
         Login login = GsonUtils.getObject(event.getResult(), Login.class);
         UserInfo data = login.getData();
         ShareUtil.putString(this,IVariable.SAVE_NAME, data.getName());
         ShareUtil.putString(this,IVariable.SAVE_PWD, data.getPwd());
         setResult(SPLASH_RESULT);
-        Intent intent = new Intent(this, HomeActivity.class);
+        if (!EMClient.getInstance().isConnected()) {
+            EMClient.getInstance().login(data.getId(), data.getPwd(), new EMCallBack() {//回调
+                @Override
+                public void onSuccess() {
+                    EMClient.getInstance().groupManager().loadAllGroups();
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                    LogUtils.e("登录聊天服务器成功！");
+                }
 
+                @Override
+                public void onProgress(int progress, String status) {
+
+                }
+
+                @Override
+                public void onError(int code, String message) {
+                    LogUtils.e(message);
+                }
+            });
+        }
+        Intent intent = new Intent(this, HomeActivity.class);
         if (data!=null){
             com.hyphenate.easeui.domain.UserInfo userInfo=new com.hyphenate.easeui.domain.UserInfo();
             userInfo.setId(data.getId());
@@ -114,7 +138,6 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
         }
         intent.putExtra(IVariable.USER_INFO, data);
         startActivity(intent);
-
         finish();
     }
 

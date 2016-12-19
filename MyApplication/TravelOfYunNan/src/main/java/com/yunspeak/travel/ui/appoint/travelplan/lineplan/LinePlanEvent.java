@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.appoint.travelplan.lineplan;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/9/12 0012.
  */
-public class LinePlanEvent {
+public class LinePlanEvent extends TravelsObject {
     private int position;
     public int getPosition() {
         return position;

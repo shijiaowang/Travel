@@ -1,10 +1,12 @@
 package com.yunspeak.travel.ui.me.myappoint.chat.chatsetting;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/10/14 0014.
  */
 
-public class ChatSettingUserBean {
+public class ChatSettingUserBean extends TravelsObject {
         private String id;
         private String nick_name;
         private String user_img;

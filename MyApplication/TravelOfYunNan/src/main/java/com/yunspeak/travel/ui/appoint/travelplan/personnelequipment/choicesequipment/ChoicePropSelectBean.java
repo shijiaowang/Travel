@@ -1,10 +1,12 @@
 package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
- * Created by Administrator on 2016/9/18 0018.
+ * Created by wangyang on 2016/9/18 0018.
  * 选中的
  */
-public class ChoicePropSelectBean {
+public class ChoicePropSelectBean extends TravelsObject {
     private String id;
     private int number;
     private String name;

@@ -3,7 +3,7 @@ package com.yunspeak.travel.ui.appoint.together;
 import com.yunspeak.travel.event.HttpEvent;
 
 /**
- * Created by Administrator on 2016/9/1 0001.
+ * Created by wangyang on 2016/9/1 0001.
  */
 public class AppointTogetherEvent extends HttpEvent {
 

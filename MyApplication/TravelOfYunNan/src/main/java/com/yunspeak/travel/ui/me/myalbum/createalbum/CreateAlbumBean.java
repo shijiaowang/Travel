@@ -1,33 +1,16 @@
 package com.yunspeak.travel.ui.me.myalbum.createalbum;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/11/4 0004.
  */
 
-public class CreateAlbumBean {
+public class CreateAlbumBean extends TravelsObject {
 
 
 
-    private int code;
-    private String message;
     private String data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public String getData() {
         return data;
     }

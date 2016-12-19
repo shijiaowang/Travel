@@ -60,8 +60,6 @@ import cn.sharesdk.wechat.moments.WechatMoments;
  * 报名dialog
  */
 public class EnterAppointDialog {
-    public static final String APP_ID = "wxd1592e864505fb39";
-
     public static int select = -1;
 
     public static void showDialogSuccess(final Context context) {

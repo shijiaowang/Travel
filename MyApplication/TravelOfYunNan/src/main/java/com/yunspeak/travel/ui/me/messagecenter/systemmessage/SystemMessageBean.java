@@ -1,7 +1,8 @@
 package com.yunspeak.travel.ui.me.messagecenter.systemmessage;
 
-import com.yunspeak.travel.global.ParentBean;
 import com.google.gson.annotations.SerializedName;
+import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.global.TravelsObject;
 
 import java.util.List;
 
@@ -9,29 +10,11 @@ import java.util.List;
  * Created by wangyang on 2016/9/29 0029.
  */
 
-public class SystemMessageBean implements ParentBean{
+public class SystemMessageBean extends TravelsObject implements ParentBean{
 
-
-    private int code;
-    private String message;
 
     private List<DataBean> data;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public List<DataBean> getData() {
         return data;

@@ -17,12 +17,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMClient;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.home.welcome.Login;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -31,6 +28,7 @@ import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
 import com.yunspeak.travel.ui.circle.CircleFragment;
 import com.yunspeak.travel.ui.find.FindFragment;
+import com.yunspeak.travel.ui.home.welcome.Login;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.me.MeFragment;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageActivity;
@@ -113,13 +111,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.ll_bottom)
     LinearLayout mLlBottom;
     private SharedPreferences sharedPreferences;
-    private boolean isOtherLogin = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityUtils.getInstance().exit();
-        initHXListener();
         String registrationId = PushAgent.getInstance(this).getRegistrationId();
         LogUtils.e("注册ID为" + registrationId);
         registerEventBus(this);
@@ -138,9 +134,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             XEventUtils.getUseCommonBackJson(IVariable.LOGIN_URL, stringMap, TYPE_REFRESH, new HomeLoginEvent());
 
         }
-        /*Intent startServiceIntent=new Intent(this, EMChatService.class);
-        startServiceIntent.putExtra("reason", "boot");
-        startService(startServiceIntent);*/
         Map<String, String> end = MapUtils.Build().addKey().addType("1").end();
         XEventUtils.getUseCommonBackJson(IVariable.UPDATE, end, TYPE_UPDATE, new HomeLoginEvent());
         MobclickAgent.openActivityDurationTrack(false);
@@ -186,35 +179,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    /**
-     * 环信监听
-     */
-    private void initHXListener() {
-        login();
-    }
 
-    private void login() {
-        if (!EMClient.getInstance().isConnected()) {
-            EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {//回调
-                @Override
-                public void onSuccess() {
-                    EMClient.getInstance().groupManager().loadAllGroups();
-                    EMClient.getInstance().chatManager().loadAllConversations();
-                    LogUtils.e("登录聊天服务器成功！");
-                }
 
-                @Override
-                public void onProgress(int progress, String status) {
-
-                }
-
-                @Override
-                public void onError(int code, String message) {
-                    LogUtils.e(message);
-                }
-            });
-        }
-    }
 
     public LinearLayout getmLlBottom() {
         return mLlBottom;

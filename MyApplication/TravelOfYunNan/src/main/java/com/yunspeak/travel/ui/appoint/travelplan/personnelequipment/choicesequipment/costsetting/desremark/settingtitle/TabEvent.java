@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.settingtitle;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
- * Created by Administrator on 2016/9/6 0006.
+ * Created by wangyang on 2016/9/6 0006.
  */
-public class TabEvent {
+public class TabEvent extends TravelsObject {
     private int type;
    private String id;
 

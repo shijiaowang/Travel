@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.hyphenate.easeui.widget.chatrow.EaseCustomChatRowProvider;
+import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
+import com.yunspeak.travel.utils.GlobalUtils;
 
 /**
  * Created by wangyang on 2016/10/21 0021.
@@ -19,7 +22,6 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -79,4 +81,27 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         super.onDestroy();
 
     }
+
+    @Override
+    public void resendMessage(final EMMessage message) {
+        if (!EMClient.getInstance().isConnected()){//未登陆进行登陆
+            EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {
+                @Override
+                public void onSuccess() {
+                  resendMessage(message);
+                }
+                @Override
+                public void onError(int i, String s) {
+                }
+                @Override
+                public void onProgress(int i, String s) {
+                }
+            });
+        }else {
+            super.resendMessage(message);
+        }
+
+    }
+
+
 }

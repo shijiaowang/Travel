@@ -1,36 +1,18 @@
 package com.yunspeak.travel.ui.circle.circlenav;
 
 
+import com.yunspeak.travel.global.TravelsObject;
+
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/7/8 0008.
  */
-public class CircleNavRight {
-
-
-    private int code;
-    private String message;
+public class CircleNavRight extends TravelsObject {
 
 
     private List<RightCircle> data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public List<RightCircle> getData() {
         return data;

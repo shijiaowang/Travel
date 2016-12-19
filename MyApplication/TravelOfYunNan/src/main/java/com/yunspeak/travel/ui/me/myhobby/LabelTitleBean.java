@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.me.myhobby;
 
+import com.yunspeak.travel.global.TravelsObject;
+
 /**
  * Created by wangyang on 2016/9/28 0028.
  */
-public  class LabelTitleBean {
+public  class LabelTitleBean extends TravelsObject {
     private String id;
     private String name;
 

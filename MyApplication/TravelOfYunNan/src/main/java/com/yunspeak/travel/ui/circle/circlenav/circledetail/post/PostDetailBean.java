@@ -1,34 +1,16 @@
 package com.yunspeak.travel.ui.circle.circlenav.circledetail.post;
 
 import com.yunspeak.travel.global.ParentBean;
+import com.yunspeak.travel.global.TravelsObject;
 
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/8/23 0023.
  */
-public class PostDetailBean implements ParentBean{
+public class PostDetailBean extends TravelsObject implements ParentBean{
 
-
-    private int code;
-    private String message;
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;

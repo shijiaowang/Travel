@@ -5,11 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by Administrator on 2016/9/13 0013.
+ * Created by wangyang on 2016/9/13 0013.
  */
 public class DBHelper extends SQLiteOpenHelper {
+    private static final String yunsDb="yuns_district.db";
     public DBHelper(Context context) {
-        super(context, "yuns_district.db", null, 1);
+        super(context,yunsDb , null, 1);
     }
 
     @Override
