@@ -31,6 +31,7 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yalantis.ucrop.UCrop;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.EditAlbumBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -40,6 +41,7 @@ import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
+import com.yunspeak.travel.ui.me.myappoint.withmeselect.TopDecoration;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -60,6 +62,7 @@ import butterknife.BindView;
  * 编辑相册  powered by wangyang
  */
 public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> implements View.OnClickListener, OnLoadMoreListener {
+    public static boolean canDelete=false;
     @BindView(R.id.rl_toggle)
     RelativeLayout mRlToggle;
     @BindView(R.id.tv_photo)
@@ -240,7 +243,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             tvDes.setText(des);
             changeViewShow(isEdit);
             if (editAlbumAdapter != null) {
-                EditAlbumHolder.canDelete = false;
+                canDelete = false;
                 editAlbumAdapter.notifyDataSetChanged();
             }
             ToastUtils.showToast(event.getMessage());
@@ -282,6 +285,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setSmoothScrollbarEnabled(false);
             rvPhoto.setNestedScrollingEnabled(false);
+            rvPhoto.addItemDecoration(new TopDecoration(10));
             rvPhoto.setHasFixedSize(true);
             rvPhoto.setLayoutManager(linearLayoutManager);
 
@@ -420,7 +424,7 @@ public class EditAlbumActivity extends BaseCutPhotoActivity<EditAlbumEvent> impl
             edSetName.setText(tvAlbumName.getText().toString().trim());
             tvDes.setText(tvDes.getText().toString().trim());
             if (editAlbumAdapter != null) {
-                EditAlbumHolder.canDelete = true;
+                canDelete = true;
                 editAlbumAdapter.notifyDataSetChanged();
             }
             changeViewShow(isEdit);

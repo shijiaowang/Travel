@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.CustomDestinationBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;

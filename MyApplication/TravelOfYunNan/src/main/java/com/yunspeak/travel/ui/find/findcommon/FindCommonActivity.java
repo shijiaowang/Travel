@@ -15,13 +15,15 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.CityBean;
+import com.yunspeak.travel.bean.FindDestinationBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointCommonPop;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointOrderPop;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointOrderPop2;
-import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
+import com.yunspeak.travel.bean.LineBean;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LinePlanEvent;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.SelectDestinationAdapter;
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.CustomDestinationActivity;
@@ -42,7 +44,7 @@ import java.util.Map;
  * Created by wangyang on 2016/7/30.
  * 目的地  美食共用
  */
-public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent, DestinationBean, DestinationBean.DataBean.BodyBean> implements View.OnClickListener {
+public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent, FindDestinationBean, FindDestinationBean.DataBean.BodyBean> implements View.OnClickListener {
     private String content = "";//搜索内容
     private String province = "";
     private String city = "";
@@ -180,7 +182,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
 
 
     @Override
-    protected List<DestinationBean.DataBean.BodyBean> childChangeData(final DestinationBean parentBean, DestinationEvent destinationEvent) {
+    protected List<FindDestinationBean.DataBean.BodyBean> childChangeData(final FindDestinationBean parentBean, DestinationEvent destinationEvent) {
         if (!loactionIsGet) {
             try {
                 x.task().run(new Runnable() {
@@ -221,7 +223,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     }
 
     @Override
-    protected BaseRecycleViewAdapter initAdapter(List<DestinationBean.DataBean.BodyBean> mDatas) {
+    protected BaseRecycleViewAdapter initAdapter(List<FindDestinationBean.DataBean.BodyBean> mDatas) {
         if (type == DESTINATION_SELECTION) {
             return new SelectDestinationAdapter(mDatas, this);
         } else {
@@ -249,7 +251,7 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
                 ToastUtils.showToast("您尚未选择任何景点。");
                 return;
             }
-            DestinationBean.DataBean.BodyBean bodyBean = mDatas.get(GlobalValue.clickPosition);
+            FindDestinationBean.DataBean.BodyBean bodyBean = mDatas.get(GlobalValue.clickPosition);
             String add = bodyBean.getCity() + "·" + bodyBean.getTitle();
             String id = bodyBean.getId();
             LinePlanEvent linePlanEvent = new LinePlanEvent();

@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.circle.hotpost;
 
 
+import com.yunspeak.travel.bean.HotPostBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;

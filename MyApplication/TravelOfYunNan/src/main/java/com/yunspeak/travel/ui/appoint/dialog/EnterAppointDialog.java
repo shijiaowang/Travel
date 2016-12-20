@@ -31,7 +31,7 @@ import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.global.SendTextClick;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailEvent;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.MyCreateAppointAdapter;
-import com.yunspeak.travel.ui.appoint.withme.withmedetail.MyCreateAppointBean;
+import com.yunspeak.travel.bean.MyCreateAppointBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.utils.JsonUtils;

@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.SpinnerBean;
 import com.yunspeak.travel.utils.UIUtils;
 
 import java.util.List;

@@ -7,6 +7,7 @@ import android.view.ViewStub;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.UserLabelBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 import com.yunspeak.travel.ui.view.FlowLayout;

@@ -45,8 +45,6 @@ public class TravelsApplication extends MultiDexApplication {
     protected static Handler mHandler;
     private static int mainThreadId;
 
-
-
     @Override
     public void onCreate() {
         super.onCreate();

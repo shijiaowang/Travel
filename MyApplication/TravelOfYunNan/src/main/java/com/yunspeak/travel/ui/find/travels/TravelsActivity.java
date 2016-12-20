@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.FindTravelsBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
@@ -25,7 +26,7 @@ import butterknife.BindView;
  * wangyang
  * 游记
  */
-public class TravelsActivity extends BaseRecycleViewActivity<TravelsEvent,TravelsBean,TravelsBean.DataBean> implements View.OnClickListener {
+public class TravelsActivity extends BaseRecycleViewActivity<TravelsEvent,FindTravelsBean,FindTravelsBean.DataBean> implements View.OnClickListener {
     private String content="";
     private EditText mEtSearch;
     @BindView(R.id.ll_root)
@@ -94,7 +95,7 @@ public class TravelsActivity extends BaseRecycleViewActivity<TravelsEvent,Travel
 
 
     @Override
-    protected BaseRecycleViewAdapter initAdapter(List<TravelsBean.DataBean> httpData) {
+    protected BaseRecycleViewAdapter initAdapter(List<FindTravelsBean.DataBean> httpData) {
         return new TravelsAdapter(mDatas,this);
     }
 

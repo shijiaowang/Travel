@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.appoint.withme.withmedetail;
 import android.content.Context;
 import android.view.View;
 
+import com.yunspeak.travel.bean.AppointWithMeDetailBean;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;

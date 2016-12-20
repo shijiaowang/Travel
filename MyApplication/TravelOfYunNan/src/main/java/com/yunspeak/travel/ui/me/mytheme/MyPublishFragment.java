@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.mytheme;
 
 
+import com.yunspeak.travel.bean.MyPublishBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;

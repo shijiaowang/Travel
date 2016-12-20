@@ -322,6 +322,17 @@
     <string name="select_ok">选好了</string>
     <string name="have_select_haw_number">已选择：0件物品</string>
     <string name="save">保存</string>
+    <string name="push_success">推送成功！请耐心等待用户确认。</string>
+    <string name="contact_message_error">联系人信息出问题啦！</string>
+    <string name="not_chat_self">无法与自己聊天！</string>
+    <string name="enter_error">报名失败</string>
+    <string name="go_create">去创建</string>
+    <string name="you_not_have_any_together_team">您还没有创建任何约伴[一起玩]线路,请先创建自己的队伍!</string>
+    <string name="mm_dd">MM-dd</string>
+    <string name="hh_mm">HH:mm</string>
+    <string name="cat_push">查看推送</string>
+    <string name="have_get">已接单</string>
+    <string name="start">出发</string>
 
 
 </resources>

@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.home.homesearch;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.yunspeak.travel.bean.SearchCommonBean;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;

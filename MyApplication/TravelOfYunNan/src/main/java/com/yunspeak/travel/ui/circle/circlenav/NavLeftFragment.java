@@ -10,7 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.circle.Circle;
+import com.yunspeak.travel.bean.Circle;
+import com.yunspeak.travel.bean.CircleNavRight;
 import com.yunspeak.travel.event.NavLeftEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;

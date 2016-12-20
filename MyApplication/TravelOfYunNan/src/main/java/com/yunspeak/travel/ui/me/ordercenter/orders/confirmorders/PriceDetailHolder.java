@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
-import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
+import com.yunspeak.travel.bean.BasecPriceBean;
 
 import butterknife.BindView;
 

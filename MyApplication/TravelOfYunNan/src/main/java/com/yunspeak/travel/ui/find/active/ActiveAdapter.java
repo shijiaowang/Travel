@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.ActivityBean;
+import com.yunspeak.travel.bean.ActivityBean;
 
 import java.util.List;
 

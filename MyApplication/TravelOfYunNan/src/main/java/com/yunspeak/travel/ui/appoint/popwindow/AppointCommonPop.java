@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.ParentPopClick;
-import com.yunspeak.travel.ui.find.findcommon.CityBean;
+import com.yunspeak.travel.bean.CityBean;
 import com.yunspeak.travel.utils.StringUtils;
 
 import java.util.ArrayList;

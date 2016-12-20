@@ -4,18 +4,19 @@ package com.yunspeak.travel.ui.find.active;
 
 import android.view.ViewGroup;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.FindActiveBean;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseBarChangeColorActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.ActivityBean;
+import com.yunspeak.travel.bean.ActivityBean;
 import java.util.List;
 
 /**
  * Created by wangyang on 2016/7/25 0025.
  * 活动界面
  */
-public class ActiveActivity extends BaseBarChangeColorActivity<DetailCommonEvent,ActiveBean,ActivityBean> {
+public class ActiveActivity extends BaseBarChangeColorActivity<DetailCommonEvent,FindActiveBean,ActivityBean> {
 
     @Override
     protected void initEvent() {

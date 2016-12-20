@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.SettingTitleBean;
+import com.yunspeak.travel.bean.UserLabelBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.FindTravelsBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
@@ -16,7 +17,7 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/7/25 0025.
  */
-public class TravelsHolder extends BaseRecycleViewHolder<TravelsBean.DataBean> {
+public class TravelsHolder extends BaseRecycleViewHolder<FindTravelsBean.DataBean> {
     @BindView(R.id.iv_picture) SimpleDraweeView mIvPicture;
     @BindView(R.id.iv_user_icon) SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_nick_name) TextView mTvNickName;
@@ -31,7 +32,7 @@ public class TravelsHolder extends BaseRecycleViewHolder<TravelsBean.DataBean> {
 
 
     @Override
-    public void childBindView(int position, final TravelsBean.DataBean datas, final Context mContext) {
+    public void childBindView(int position, final FindTravelsBean.DataBean datas, final Context mContext) {
         FrescoUtils.displayNormal(mIvPicture,datas.getLogo_img(),640,360,R.drawable.normal_2_1);
         FrescoUtils.displayIcon(mIvUserIcon,datas.getTitle_img());
         mTvNickName.setText(datas.getAuthor());

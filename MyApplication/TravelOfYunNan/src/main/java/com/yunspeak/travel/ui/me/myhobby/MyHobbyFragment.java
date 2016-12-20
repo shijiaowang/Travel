@@ -6,6 +6,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.UserLabelBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 import com.yunspeak.travel.ui.me.titlemanage.TitleChangeEvent;

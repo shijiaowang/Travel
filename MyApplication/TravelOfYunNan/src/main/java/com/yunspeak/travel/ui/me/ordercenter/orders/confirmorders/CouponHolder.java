@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.me.ordercenter.CouponBean;
+import com.yunspeak.travel.bean.CouponBean;
 import com.yunspeak.travel.utils.FormatDateUtils;
 
 import butterknife.BindColor;

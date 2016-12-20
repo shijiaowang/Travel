@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.appoint.travelplan.lineplan;
 
+import com.yunspeak.travel.bean.LineBean;
 import com.yunspeak.travel.global.TravelsObject;
 
 /**

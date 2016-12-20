@@ -38,21 +38,20 @@
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
 -keep public class com.android.vending.licensing.ILicensingService
--keep class com.yunspeak.travel.global.** {*;}#不混淆网页链接
--keepclasseswithmembers class * extends com.yunspeak.travel.event.HttpEvent{
-    <fields>;
-    <methods>;
+-keep public class * extends com.yunspeak.travel.event.HttpEvent{
+    *;
 }
--keepclasseswithmembers class * extends com.yunspeak.travel.global.TravelsObject{
-    <fields>;
-    <methods>;
-}
--keep com.yunspeak.travel.utils.XEventUtils{
+
+-keep public class com.yunspeak.travel.bean.** {*;}#不混淆bean对象，包括内部类
+-keep public class com.yunspeak.travel.ui.view.** {*;}#不混淆自定义view
+
+-keep public class com.yunspeak.travel.utils.XEventUtils{
     <fields>;
     <methods>;
 }
 -dontwarn android.support.v4.**
--keep class android.support.v4.** { ; }
+-keep class android.support.v4.** {*;}
+
 
 #忽略警告
 -ignorewarning
@@ -172,6 +171,7 @@
 -keep class com.alipay.sdk.app.AuthTask{ public *;}
 #分享
 -keep class com.tencent.mm.sdk.**{*;}
+-keep class cn.sharesdk.** {*;}#不混淆分享
 #权限
 -dontwarn com.zhy.m.**
 -keep class com.zhy.m.** {*;}

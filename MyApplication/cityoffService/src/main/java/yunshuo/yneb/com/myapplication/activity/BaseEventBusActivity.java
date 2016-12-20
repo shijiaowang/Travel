@@ -1,13 +1,13 @@
 package yunshuo.yneb.com.myapplication.activity;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.util.LogUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 
 import yunshuo.yneb.com.myapplication.other.event.HttpEvent;
-import yunshuo.yneb.com.myapplication.other.utils.ToastUtils;
 
 /**
  * Created by wangyang on 2016/11/17 0017.
@@ -60,7 +60,7 @@ public  abstract class BaseEventBusActivity<T extends HttpEvent> extends BaseToo
             if (t.isSuccess()) {
                 onSuccess(t);
             } else {
-                ToastUtils.showToast(t.getMessage());
+                LogUtil.e("解析数据出异常了"+t.getMessage());
                 onFail(t);
             }
         }catch (Exception e){

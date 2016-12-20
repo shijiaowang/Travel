@@ -8,8 +8,9 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.PostDetailBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.yunspeak.travel.ui.me.myappoint.withmeselect.TopDecoration;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.AiteUtils;
@@ -81,7 +82,7 @@ class PostOpHolder extends BaseRecycleViewHolder {
                 mRvPostImage.setLayoutManager(linearLayoutManager);
                 linearLayoutManager.setAutoMeasureEnabled(true);
                 mRvPostImage.setHasFixedSize(true);
-                mRvPostImage.addItemDecoration(new MyWitheMeDecoration(6));
+                mRvPostImage.addItemDecoration(new TopDecoration(6));
             } else {
                 mRvPostImage.setVisibility(View.GONE);
             }

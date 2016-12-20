@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.ChoicePropBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 

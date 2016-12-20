@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.messagecenter.appointmessage;
 
 
+import com.yunspeak.travel.bean.AppointMessageBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;

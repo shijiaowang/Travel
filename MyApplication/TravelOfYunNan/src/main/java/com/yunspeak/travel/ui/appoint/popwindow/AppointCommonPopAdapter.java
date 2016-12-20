@@ -3,7 +3,7 @@ package com.yunspeak.travel.ui.appoint.popwindow;
 import android.content.Context;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
-import com.yunspeak.travel.ui.find.findcommon.CityBean;
+import com.yunspeak.travel.bean.CityBean;
 
 import java.util.List;
 

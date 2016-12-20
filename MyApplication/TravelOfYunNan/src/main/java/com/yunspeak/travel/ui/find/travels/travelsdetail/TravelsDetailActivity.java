@@ -16,12 +16,13 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.TravelsDetailBean;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
-import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.TravelReplyBean;
+import com.yunspeak.travel.bean.TravelReplyBean;
 import com.yunspeak.travel.ui.home.HotSpotsItemDecoration;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;

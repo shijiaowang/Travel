@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.appoint.together.togetherdetail;
 
 import android.content.Context;
 
+import com.yunspeak.travel.bean.AppointTogetherDetailBean;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 

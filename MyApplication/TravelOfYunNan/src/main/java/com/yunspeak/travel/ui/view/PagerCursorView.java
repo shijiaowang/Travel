@@ -18,7 +18,6 @@ import android.widget.RelativeLayout;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.utils.DensityUtils;
-import com.yunspeak.travel.utils.LogUtils;
 
 import org.xutils.common.util.DensityUtil;
 
@@ -38,12 +37,10 @@ public class PagerCursorView extends RelativeLayout {
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            LogUtils.e(breakAutoSlide+"");
             boolean isShow = fragment != null && fragment.getUserVisibleHint();
             if (!breakAutoSlide && isShow) {
                 int position = viewPager.getCurrentItem() + 1;
                 viewPager.setCurrentItem(position, true);
-                LogUtils.e("滑动中");
             }
             mHandler.sendEmptyMessageDelayed(0,5000);
         }

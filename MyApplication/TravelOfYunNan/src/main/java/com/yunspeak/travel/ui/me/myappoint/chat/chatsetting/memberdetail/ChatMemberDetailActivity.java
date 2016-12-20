@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingBean;
-import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingUserBean;
+import com.yunspeak.travel.bean.ChatSettingBean;
+import com.yunspeak.travel.bean.ChatSettingUserBean;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 

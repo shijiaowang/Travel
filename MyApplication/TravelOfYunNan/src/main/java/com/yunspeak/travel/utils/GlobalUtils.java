@@ -2,7 +2,7 @@ package com.yunspeak.travel.utils;
 
 import android.content.Context;
 
-import com.yunspeak.travel.ui.home.UserInfo;
+import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 

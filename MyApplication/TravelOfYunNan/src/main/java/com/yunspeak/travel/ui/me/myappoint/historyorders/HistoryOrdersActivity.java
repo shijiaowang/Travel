@@ -4,7 +4,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.me.myappoint.MyAppointTogetherBean;
+import com.yunspeak.travel.bean.MyAppointTogetherBean;
 import com.yunspeak.travel.utils.MapUtils;
 
 import java.util.List;

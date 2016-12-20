@@ -2,7 +2,7 @@ package com.yunspeak.travel.ui.appoint.together.togetherdetail;
 
 import android.content.Context;
 
-import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
+import com.yunspeak.travel.bean.PricebasecBean;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 

@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.me.ordercenter.orders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.yunspeak.travel.bean.MyOrdersBean;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;

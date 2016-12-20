@@ -45,6 +45,7 @@ public class XEventUtils {
                 requestParams.addBodyParameter(entry.getKey(), entry.getValue());
             }
         }
+        LogUtils.e("请求参数为"+requestParams.toString());
         return x.http().get(requestParams, new MyCommonCallback(type,event));
     }
 
@@ -66,6 +67,7 @@ public class XEventUtils {
                 requestParams.addBodyParameter(entry.getKey(), entry.getValue());
             }
         }
+        LogUtils.e("请求参数为"+requestParams.toString());
         return x.http().post(requestParams, new MyCommonCallback(type, event));
     }
     /**
@@ -108,6 +110,7 @@ public class XEventUtils {
                 requestParams.addBodyParameter("file["+j+"]", compressedImageFile);
             }
         }
+        LogUtils.e("请求参数为"+requestParams.toString());
         return x.http().post(requestParams, new MyCommonCallback(type,event));
     }
 
@@ -270,7 +273,7 @@ public class XEventUtils {
             httpEvent.setMessage(message);
             httpEvent.setResult(result);
             httpEvent.setCode(code);
-            LogUtils.e("成功获取到消息了");
+            LogUtils.e("成功获取到消息了"+result);
             EventBus.getDefault().post(httpEvent);
         }
 

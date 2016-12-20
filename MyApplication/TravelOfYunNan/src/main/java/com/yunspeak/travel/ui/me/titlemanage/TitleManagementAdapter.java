@@ -4,10 +4,11 @@ import android.content.Context;
 import android.view.View;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.OfficialLabelBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
-import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
+import com.yunspeak.travel.bean.UserLabelBean;
 import com.yunspeak.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;

@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.OfficialLabelBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 
 import butterknife.BindView;

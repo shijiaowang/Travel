@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequi
 
 import android.content.Context;
 
+import com.yunspeak.travel.bean.ChoicePropBean;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 

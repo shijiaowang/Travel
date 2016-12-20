@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.me.myappoint.memberdetail;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.yunspeak.travel.bean.MemberDetailBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseDiffUtilCallback;
 

@@ -1,6 +1,6 @@
 package com.yunspeak.travel.utils;
 
-import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
+import com.yunspeak.travel.bean.BasecPriceBean;
 
 import java.util.List;
 

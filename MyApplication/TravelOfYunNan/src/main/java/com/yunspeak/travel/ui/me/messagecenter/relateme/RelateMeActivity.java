@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.RelateMeBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageAdapter;

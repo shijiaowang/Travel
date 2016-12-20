@@ -13,6 +13,7 @@ import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.domain.UserInfo;
 import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.ChatBean;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingActivity;

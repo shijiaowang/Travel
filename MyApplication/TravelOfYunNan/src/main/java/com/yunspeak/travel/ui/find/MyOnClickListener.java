@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.find;
 import android.content.Context;
 import android.view.View;
 
+import com.yunspeak.travel.bean.FindBean;
 import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;

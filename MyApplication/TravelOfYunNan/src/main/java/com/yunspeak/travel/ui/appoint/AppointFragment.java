@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.AppointBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -29,7 +30,7 @@ import com.yunspeak.travel.ui.appoint.together.PlayTogetherFragment;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
 import com.yunspeak.travel.ui.appoint.withme.PlayWithMeFragment;
-import com.yunspeak.travel.ui.find.findcommon.CityBean;
+import com.yunspeak.travel.bean.CityBean;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 import com.yunspeak.travel.utils.FastBlur;
 import com.yunspeak.travel.utils.GsonUtils;

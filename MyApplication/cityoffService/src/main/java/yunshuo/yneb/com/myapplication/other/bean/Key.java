@@ -3,7 +3,7 @@ package yunshuo.yneb.com.myapplication.other.bean;
 /**
  * Created by wangyang on 2016/7/27 0027.
  */
-public class Key {
+public class Key{
 
 
 

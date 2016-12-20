@@ -1,9 +1,10 @@
 package com.yunspeak.travel.ui.appoint.together;
+import com.yunspeak.travel.bean.AppointTogetherBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.SelectEvent;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.CommonClickLikeBean;
+import com.yunspeak.travel.bean.CommonClickLikeBean;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 

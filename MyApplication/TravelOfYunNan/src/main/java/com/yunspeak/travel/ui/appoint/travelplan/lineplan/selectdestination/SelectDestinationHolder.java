@@ -9,7 +9,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.find.findcommon.DestinationBean;
+import com.yunspeak.travel.bean.FindDestinationBean;
 import com.yunspeak.travel.utils.FrescoUtils;
 
 import butterknife.BindView;
@@ -18,7 +18,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/9/8 0008.
  * 选择景点
  */
-public class SelectDestinationHolder extends BaseRecycleViewHolder<DestinationBean.DataBean.BodyBean> {
+public class SelectDestinationHolder extends BaseRecycleViewHolder<FindDestinationBean.DataBean.BodyBean> {
     @BindView(R.id.iv_spot) SimpleDraweeView mIvSpot;
     @BindView(R.id.tv_name) TextView mTvName;
     @BindView(R.id.rb_star) RatingBar mRbStart;
@@ -29,7 +29,7 @@ public class SelectDestinationHolder extends BaseRecycleViewHolder<DestinationBe
         super(itemView);
     }
 
-    private float getStar(DestinationBean.DataBean.BodyBean datas, float star) {
+    private float getStar(FindDestinationBean.DataBean.BodyBean datas, float star) {
         try {
             star = Float.parseFloat(datas.getStar());
         }catch (Exception e){
@@ -39,7 +39,7 @@ public class SelectDestinationHolder extends BaseRecycleViewHolder<DestinationBe
     }
 
     @Override
-    public void childBindView(int position, DestinationBean.DataBean.BodyBean datas, Context mContext) {
+    public void childBindView(int position, FindDestinationBean.DataBean.BodyBean datas, Context mContext) {
         FrescoUtils.displayNormal(mIvSpot,datas.getLogo_img());
         mTvName.setText(datas.getTitle());
         mTvAdd.setText(datas.getAddress());

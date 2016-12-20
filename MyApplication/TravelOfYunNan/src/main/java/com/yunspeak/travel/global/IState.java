@@ -24,8 +24,9 @@ public interface IState {
       int TYPE_REFRESH_BY_USER = 16;//手动刷新
       int TYPE_UP_LOAD = 17;//上拉刷新
       int TYPE_DELETE2 = 18;//删除
-    String isTrue="1";
-    String isFalse="0";
+      String isTrue="1";
+      String isFalse="0";
+      String isOther="2";
     int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
     int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
      int TYPE_OTHER = 103;//其他

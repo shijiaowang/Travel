@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.MessageCenterBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageActivity;
@@ -68,6 +69,10 @@ public class MessageCenterActivity extends BaseNetWorkActivity<MessageCenterEven
         return IVariable.MESSAGE_CENTER_COUNT;
     }
 
+    @Override
+    protected void onFail(MessageCenterEvent messageCenterEvent) {
+
+    }
 
     @Override
     public void onClick(View v) {

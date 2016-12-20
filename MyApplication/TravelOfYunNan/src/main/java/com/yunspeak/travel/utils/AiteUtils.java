@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.AiteTextClick;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.InformBean;
+import com.yunspeak.travel.bean.InformBean;
 import com.yunspeak.travel.ui.find.findcommon.CustomTypefaceSpan;
 
 import java.util.List;

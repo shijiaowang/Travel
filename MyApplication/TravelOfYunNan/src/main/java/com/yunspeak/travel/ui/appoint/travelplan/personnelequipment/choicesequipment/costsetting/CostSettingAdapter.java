@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
+import com.yunspeak.travel.bean.BasecPriceBean;
 
 import java.util.List;
 

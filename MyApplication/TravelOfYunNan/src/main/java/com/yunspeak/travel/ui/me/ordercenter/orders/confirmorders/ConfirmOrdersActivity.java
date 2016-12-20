@@ -21,15 +21,18 @@ import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.ConfirmOrdersBean;
+import com.yunspeak.travel.bean.PayResult;
+import com.yunspeak.travel.bean.WXPayBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingAdapter;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.createsuccess.CreateAppointSuccessActivity;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.home.welcome.splash.register.CityoffSpeak;
-import com.yunspeak.travel.ui.me.myalbum.createalbum.CreateAlbumBean;
-import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
-import com.yunspeak.travel.ui.me.ordercenter.CouponBean;
+import com.yunspeak.travel.bean.CreateAlbumBean;
+import com.yunspeak.travel.bean.BasecPriceBean;
+import com.yunspeak.travel.bean.CouponBean;
 import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
 import com.yunspeak.travel.ui.me.ordercenter.orders.PayNotifyEvent;
 import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.payresult.PayResultActivity;
@@ -195,7 +198,7 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
 
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
-        builder.addId(id).add("pay_type",payType);
+        builder.addId(id).add(IVariable.PAY_TYPE,payType);
 
     }
 
@@ -393,8 +396,13 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
             ToastUtils.showToast("订单异常");
             return;
         }
-        Map<String, String> submitMap = MapUtils.Build().addKey().addUserId().addId(id).addCoupon(mConpousId).add("pay_name", currentPayWay == PAY_WAY_WX ? "2" : "1").end();
+        Map<String, String> submitMap = MapUtils.Build().addKey().addUserId().addId(id).addCoupon(mConpousId).add(IVariable.PAY_NAME, currentPayWay == PAY_WAY_WX ? "2" : "1").end();
         XEventUtils.postUseCommonBackJson(IVariable.SUBMIT_ORDERS, submitMap, SUBMIT_NEW, new ConfirmOrdersEvent());
+
+    }
+
+    @Override
+    protected void onFail(ConfirmOrdersEvent confirmOrdersEvent) {
 
     }
 

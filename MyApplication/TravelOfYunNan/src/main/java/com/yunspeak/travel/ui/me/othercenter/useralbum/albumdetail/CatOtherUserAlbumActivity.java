@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.CatOtherUserBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.AppBarStateChangeListener;
 import com.yunspeak.travel.ui.baseui.BaseChangeColorRecycleActivity;

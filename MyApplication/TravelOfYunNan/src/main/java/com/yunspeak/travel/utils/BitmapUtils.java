@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by Administrator on 2016/9/22 0022.
+ * Created by wangyang on 2016/9/22 0022.
  */
 public class BitmapUtils {
     /**

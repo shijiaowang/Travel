@@ -26,8 +26,24 @@ public class CreatePostPhotoAdapter extends TravelBaseAdapter<String> {
     }
 
     @Override
+    public int getCount() {
+        if (super.getCount()<count){
+            return super.getCount()+1;
+        }
+        return super.getCount();
+    }
+
+    @Override
+    public String getItem(int position) {
+        if (super.getCount()==0 || (position==getCount()-1 && super.getCount()<count)){
+            return null;
+        }
+        return super.getItem(position);
+    }
+
+    @Override
     public int getItemViewType(int position) {
-        if (position==mDatas.size()-1 && mDatas.get(position).equals("add"))
+        if (position==getCount()-1 && super.getCount()<count)
         {
             return TYPE_ADD;
         }

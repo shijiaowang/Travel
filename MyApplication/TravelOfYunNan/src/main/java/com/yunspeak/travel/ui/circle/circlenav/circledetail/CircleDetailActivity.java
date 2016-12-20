@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.ActivityBean;
+import com.yunspeak.travel.bean.CircleDetailBean;
+import com.yunspeak.travel.bean.CircleFollowBean;
+import com.yunspeak.travel.bean.CommonClickLikeBean;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.AppBarStateChangeListener;

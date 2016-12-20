@@ -7,6 +7,12 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.ActiveBean;
+import com.yunspeak.travel.bean.DestinationBean;
+import com.yunspeak.travel.bean.OtherBean;
+import com.yunspeak.travel.bean.PostBean;
+import com.yunspeak.travel.bean.TeamBean;
+import com.yunspeak.travel.bean.TravelsBean;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;

@@ -4,6 +4,7 @@ package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 import android.content.Context;
 import android.view.ViewGroup;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.TravelReplyBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import java.util.List;

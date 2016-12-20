@@ -18,11 +18,7 @@ import com.yunspeak.travel.ui.me.ordercenter.orders.confirmorders.WxPaySuccessEv
 import org.greenrobot.eventbus.EventBus;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
-	
-	private static final String TAG = "WXPayEntryActivity";
-	
     private IWXAPI api;
-	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +26,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
     	api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
         api.handleIntent(getIntent(), this);
     }
-
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
@@ -41,7 +36,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 	@Override
 	public void onReq(BaseReq req) {
 	}
-
 	@Override
 	public void onResp(BaseResp resp) {
 		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {

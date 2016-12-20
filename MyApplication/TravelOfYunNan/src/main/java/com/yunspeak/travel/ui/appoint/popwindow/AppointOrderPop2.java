@@ -16,7 +16,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.global.SendTextClick;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.find.findcommon.CityBean;
+import com.yunspeak.travel.bean.CityBean;
 
 import org.xutils.common.util.DensityUtil;
 

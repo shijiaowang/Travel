@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteFollow;
+import com.yunspeak.travel.bean.AiteFollow;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 
 import org.greenrobot.eventbus.EventBus;

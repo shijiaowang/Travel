@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.ProvinceBean;
+import com.yunspeak.travel.bean.ProvinceBean;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.hyphenate.easeui.domain.EaseUser;

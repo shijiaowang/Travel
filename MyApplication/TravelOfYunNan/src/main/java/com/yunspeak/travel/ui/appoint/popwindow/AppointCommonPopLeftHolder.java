@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
-import com.yunspeak.travel.ui.find.findcommon.CityBean;
+import com.yunspeak.travel.bean.CityBean;
 
 import butterknife.BindView;
 

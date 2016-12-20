@@ -10,11 +10,12 @@ import android.view.View;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.DynamicBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
-import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.yunspeak.travel.ui.me.myappoint.withmeselect.TopDecoration;
 import com.yunspeak.travel.ui.me.othercenter.INotify;
-import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterBean;
+import com.yunspeak.travel.bean.OtherUserCenterBean;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.AppBarStateEvent;
 import com.yunspeak.travel.ui.view.LoadingPage;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -72,7 +73,7 @@ public class UserDynamicFragment extends LoadBaseFragment<UserDynamicEvent> impl
             mRvRecycle.setAdapter(userDynamicAdapter);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             mRvRecycle.setLayoutManager(linearLayoutManager);
-            mRvRecycle.addItemDecoration(new MyWitheMeDecoration(6));
+            mRvRecycle.addItemDecoration(new TopDecoration(6));
         } else {
             userDynamicAdapter.notifiyData(mDataBean);
 

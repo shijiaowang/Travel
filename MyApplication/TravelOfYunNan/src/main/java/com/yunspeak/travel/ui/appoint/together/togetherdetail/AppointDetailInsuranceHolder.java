@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.appoint.withme.withmedetail.PricebasecBean;
+import com.yunspeak.travel.bean.PricebasecBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 
 import butterknife.BindView;

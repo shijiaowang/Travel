@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.ui.me.myappoint.MyAppointTogetherBean;
+import com.yunspeak.travel.bean.MyAppointTogetherBean;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointTogetherHolder;
 
 import java.util.List;

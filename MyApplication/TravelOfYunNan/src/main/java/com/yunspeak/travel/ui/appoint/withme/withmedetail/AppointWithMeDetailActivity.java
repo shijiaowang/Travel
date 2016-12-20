@@ -14,9 +14,11 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.AppointWithMeDetailBean;
+import com.yunspeak.travel.bean.MyCreateAppointBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
-import com.yunspeak.travel.ui.appoint.PeopleBean;
+import com.yunspeak.travel.bean.PeopleBean;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointDetailHaveEnterAdapter;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
@@ -24,7 +26,7 @@ import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequip
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWithMeSelectActivity;
-import com.yunspeak.travel.ui.me.ordercenter.BasecPriceBean;
+import com.yunspeak.travel.bean.BasecPriceBean;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FlowLayout;
@@ -128,10 +130,10 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             @Override
             public void onClick(View v) {
                 if (StringUtils.isEmpty(userId)){
-                    ToastUtils.showToast("联系人信息出问题啦！");
+                    ToastUtils.showToast(getString(R.string.contact_message_error));
                 }else {
                     if (userId.equals(GlobalUtils.getUserInfo().getId())){
-                        ToastUtils.showToast("无法与自己聊天！");
+                        ToastUtils.showToast(getString(R.string.not_chat_self));
                     }else {
                         ChatActivity.start(AppointWithMeDetailActivity.this,userId, EaseConstant.CHATTYPE_SINGLE);
                     }
@@ -166,7 +168,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     protected void onSuccess(AppointWithMeDetailEvent appointDetailEvent) {
         switch (appointDetailEvent.getType()){
             case TYPE_UPDATE://推送约伴
-                ToastUtils.showToast("推送成功！请耐心等待用户确认。");
+                ToastUtils.showToast(getString(R.string.push_success));
                 break;
             case TYPE_OTHER:
                 if (appointDetailEvent.getCode()==2){
@@ -195,7 +197,7 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
     protected void onFail(AppointWithMeDetailEvent appointWithMeDetailEvent) {
         switch (appointWithMeDetailEvent.getType()){
             case TYPE_OTHER:
-                EnterAppointDialog.showCommonDialog(this,"报名失败", "去创建", "您还没有创建任何约伴[一起玩]线路,请先创建自己的队伍!", new ParentPopClick() {
+                EnterAppointDialog.showCommonDialog(this,getString(R.string.enter_error), getString(R.string.go_create), getString(R.string.you_not_have_any_together_team), new ParentPopClick() {
                     @Override
                     public void onClick(int type) {
                         Intent intent=new Intent(AppointWithMeDetailActivity.this,TravelsPlanActivity.class);
@@ -214,12 +216,12 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
         AppointWithMeDetailBean appointWithMeDetail = GsonUtils.getObject(event.getResult(), AppointWithMeDetailBean.class);
         try {
             AppointWithMeDetailBean.DataBean data = appointWithMeDetail.getData();
-           mTvDay.setText(FormatDateUtils.FormatLongTime("MM-dd",data.getAdd_time()));
-           mTvTime.setText(FormatDateUtils.FormatLongTime("HH:mm",data.getAdd_time()));
+           mTvDay.setText(FormatDateUtils.FormatLongTime(getString(R.string.mm_dd),data.getAdd_time()));
+           mTvTime.setText(FormatDateUtils.FormatLongTime(getString(R.string.hh_mm),data.getAdd_time()));
             FrescoUtils.displayIcon(mIvUserIcon, data.getUser_img());
             userId = data.getUser_id();
             if (userId.equals(GlobalUtils.getUserInfo().getId())) {
-                btEnter.setText("查看推送");
+                btEnter.setText(R.string.cat_push);
             }
             mTvUserNickName.setText(data.getUser_name());
             shareUrl = data.getShare_url();
@@ -234,11 +236,11 @@ public class AppointWithMeDetailActivity extends BaseNetWorkActivity<AppointWith
             mTvContent.setText(content);
             int action = data.getAction();
             if (action==1){
-                btEnter.setText("已接单");
+                btEnter.setText(R.string.have_get);
             }
-            mTvLove.setText(data.getIs_like().equals("1")?fullLove:emptyLove);
-            mTvLove.setTextColor(data.getIs_like().equals("1") ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
-            mTvStartAndLong.setText(data.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
+            mTvLove.setText(data.getIs_like().equals(isTrue)?fullLove:emptyLove);
+            mTvLove.setTextColor(data.getIs_like().equals(isTrue) ? getResources().getColor(R.color.colorFf8076) : getResources().getColor(R.color.colorb5b5b5));
+            mTvStartAndLong.setText(data.getMeet_address() + getString(R.string.start) + CalendarUtils.getHowDayHowNight(data.getStart_time()+"000", data.getEnd_time()+"000"));
             mTvDayAndNight.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getStart_time()) + "至" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", data.getEnd_time()));
             String currentTime=new Date().getTime()+"";
             mTvSurplusDay.setText("剩余："+CalendarUtils.getHowDay(currentTime,data.getEnd_time()+"000")+"天");

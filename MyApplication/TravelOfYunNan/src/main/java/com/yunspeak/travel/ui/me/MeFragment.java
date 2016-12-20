@@ -11,11 +11,12 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.yunspeak.travel.R;
 
-import com.yunspeak.travel.ui.home.UserInfo;
+import com.yunspeak.travel.bean.MeBean;
+import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.CropPhotoBaseFragment;
 import com.yunspeak.travel.ui.me.level.LevelActivity;
-import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
+import com.yunspeak.travel.bean.UserLabelBean;
 import com.yunspeak.travel.ui.me.setting.SettingActivity;
 import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
 import com.yunspeak.travel.ui.me.fansandfollow.FollowAndFanActivity;

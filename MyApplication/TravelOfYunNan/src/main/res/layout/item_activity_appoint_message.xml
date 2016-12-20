@@ -1,97 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:background="@color/colorFAFAFA"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorFAFAFA"
     android:orientation="vertical">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:paddingLeft="@dimen/x13"
-    android:paddingRight="@dimen/x13"
-    android:background="@color/colorFAFAFA"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/iv_user_icon"
-        android:layout_width="@dimen/x45"
-        android:layout_height="@dimen/x45" />
-    <RelativeLayout
-        android:layout_marginLeft="@dimen/x12"
-        android:layout_marginTop="@dimen/x14"
-        android:layout_marginBottom="@dimen/x14"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/ll_type"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_name"
-                android:textColor="@color/color575555"
-                android:textSize="@dimen/x13sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_status"
-                android:textColor="@color/otherTitleBg"
-                android:textSize="@dimen/x13sp"
-                android:gravity="center_horizontal"
-                android:layout_width="@dimen/x72"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_des"
-                android:textColor="@color/color575555"
-                android:textSize="@dimen/x13sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-        <com.yunspeak.travel.ui.view.ShowAllTextView
-            android:id="@+id/tv_message"
-            android:layout_below="@id/ll_type"
-            android:layout_marginTop="@dimen/x15"
-            android:textSize="@dimen/x12sp"
-            android:textColor="@color/colorb2b2b2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_cat_more"
-            android:layout_marginTop="@dimen/x9"
-            android:text="@string/cat_more"
-            android:layout_below="@id/tv_message"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/otherTitleBg"
-            style="@style/commonSingleLineTextStyle"
-            android:textSize="@dimen/x11sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_below="@id/tv_message"
-            android:layout_marginTop="@dimen/x24"
-            android:ellipsize="end"
-            android:lines="1"
-            android:textSize="@dimen/x10sp"
-            android:textColor="@color/colorb2b2b2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/iv_image"
-        android:layout_marginLeft="@dimen/x11"
-        android:layout_width="@dimen/x65"
-        android:layout_height="@dimen/x65" />
-
-</LinearLayout>
-    <View
-        android:layout_marginLeft="@dimen/x70"
-        android:background="@color/meLine"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"/>
+        android:layout_height="wrap_content"
+        android:background="@color/colorFAFAFA"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x13"
+        android:paddingRight="@dimen/x13">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_user_icon"
+            android:layout_width="@dimen/x45"
+            android:layout_height="@dimen/x45" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x14"
+            android:layout_marginLeft="@dimen/x12"
+            android:layout_marginTop="@dimen/x14"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/ll_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color575555"
+                    android:textSize="@dimen/x13sp" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="@dimen/x72"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/otherTitleBg"
+                    android:textSize="@dimen/x13sp" />
+
+                <TextView
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:id="@+id/tv_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color575555"
+                    android:textSize="@dimen/x13sp" />
+
+            </LinearLayout>
+
+            <com.yunspeak.travel.ui.view.ShowAllTextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_type"
+                android:layout_marginTop="@dimen/x15"
+                android:textColor="@color/colorb2b2b2"
+                android:textSize="@dimen/x12sp" />
+
+            <TextView
+                android:id="@+id/tv_cat_more"
+                style="@style/commonSingleLineTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_message"
+                android:layout_marginTop="@dimen/x9"
+                android:text="@string/cat_more"
+                android:textColor="@color/otherTitleBg"
+                android:textSize="@dimen/x11sp" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_message"
+                android:layout_marginTop="@dimen/x24"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/colorb2b2b2"
+                android:textSize="@dimen/x10sp" />
+
+        </RelativeLayout>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_image"
+            android:layout_width="@dimen/x65"
+            android:layout_height="@dimen/x65"
+            android:layout_marginLeft="@dimen/x11" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:layout_marginLeft="@dimen/x70"
+        android:background="@color/meLine" />
 </LinearLayout>

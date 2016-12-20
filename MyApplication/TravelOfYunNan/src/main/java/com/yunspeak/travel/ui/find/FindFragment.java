@@ -11,13 +11,14 @@ import android.widget.LinearLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.FindBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.find.active.ActiveActivity;
 import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 import com.yunspeak.travel.ui.find.hotel.HotelActivity;
 import com.yunspeak.travel.ui.find.travels.TravelsActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
-import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.yunspeak.travel.ui.me.myappoint.withmeselect.TopDecoration;
 import com.yunspeak.travel.ui.view.PagerCursorView;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -69,7 +70,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         linearLayoutManager.setAutoMeasureEnabled(true);
         mRvHot.setHasFixedSize(true);
         mRvHot.setNestedScrollingEnabled(false);
-        mRvHot.addItemDecoration(new MyWitheMeDecoration(10));
+        mRvHot.addItemDecoration(new TopDecoration(10));
         if (banner==null) {
             banner = findBean.getData().getBanner();
             pagerCursorView.setViewPager(vpFind, banner.size(), true,this);

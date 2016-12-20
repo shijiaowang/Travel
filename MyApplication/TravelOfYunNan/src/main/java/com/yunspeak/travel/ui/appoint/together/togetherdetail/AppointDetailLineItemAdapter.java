@@ -4,6 +4,7 @@ package com.yunspeak.travel.ui.appoint.together.togetherdetail;
 import android.content.Context;
 import android.view.View;
 
+import com.yunspeak.travel.bean.AppointTogetherDetailBean;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;

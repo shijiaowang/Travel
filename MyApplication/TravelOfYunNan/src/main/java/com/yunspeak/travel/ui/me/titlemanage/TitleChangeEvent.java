@@ -1,7 +1,7 @@
 package com.yunspeak.travel.ui.me.titlemanage;
 
 import com.yunspeak.travel.global.TravelsObject;
-import com.yunspeak.travel.ui.me.myhobby.UserLabelBean;
+import com.yunspeak.travel.bean.UserLabelBean;
 
 /**
  * Created by wangyang on 2016/9/27 0027.

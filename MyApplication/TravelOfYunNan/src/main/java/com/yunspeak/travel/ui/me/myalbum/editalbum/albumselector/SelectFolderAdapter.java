@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector;
 
 import android.content.Context;
 
+import com.yunspeak.travel.bean.ImageFolder;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 

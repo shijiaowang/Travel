@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.OfficialLabelBean;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 
 import org.greenrobot.eventbus.EventBus;

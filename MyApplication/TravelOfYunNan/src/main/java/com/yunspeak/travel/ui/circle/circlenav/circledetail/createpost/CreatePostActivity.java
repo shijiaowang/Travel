@@ -27,7 +27,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteActivity;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteFollow;
+import com.yunspeak.travel.bean.AiteFollow;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
@@ -87,7 +87,6 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     };
     private List<String> pictures;
     private CreatePostPhotoAdapter createPostPhotoAdapter;
-    private String addFlag="add";
     private String cId;
     private boolean isCreateing=false;
     private String rUserId;
@@ -178,8 +177,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
             mVsPhoto.inflate();
             mGvPhoto = (GridView) findViewById(R.id.gv_photo);
             pictures = new ArrayList<>();
-            pictures.add(addFlag);
-            createPostPhotoAdapter = new CreatePostPhotoAdapter(CreatePostActivity.this, pictures,GlobalValue.size);
+            createPostPhotoAdapter = new CreatePostPhotoAdapter(CreatePostActivity.this, pictures,currentType==REPLY_POST?1:12);
             mGvPhoto.setAdapter(createPostPhotoAdapter);
             mGvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -200,7 +198,6 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
      */
     private void startSelectAlbum() {
         GlobalValue.mSelectImages = pictures;
-        GlobalValue.mSelectImages.remove(addFlag);
         startActivity(new Intent(CreatePostActivity.this, AlbumSelectorActivity.class));
 
     }
@@ -356,10 +353,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     @Subscribe
     public void onEvent(UpPhotoEvent event) {
         pictures.clear();
-        pictures.addAll(event.getList());
-        if (pictures.size() != GlobalValue.size && !pictures.contains("add")) {
-            pictures.add(addFlag);
-        }
+        pictures=event.getList();
         createPostPhotoAdapter.notifyData(pictures);
 
     }

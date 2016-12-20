@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.TravelReplyBean;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;

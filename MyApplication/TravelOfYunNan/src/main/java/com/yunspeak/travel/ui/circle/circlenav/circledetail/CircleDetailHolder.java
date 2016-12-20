@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.CircleDetailBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;

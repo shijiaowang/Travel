@@ -3,7 +3,7 @@ package com.yunspeak.travel.ui.me.changepassword;
 import android.view.View;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.home.UserInfo;
+import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;

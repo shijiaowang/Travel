@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.Follow;
+import com.yunspeak.travel.bean.Follow;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 
 

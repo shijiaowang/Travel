@@ -5,7 +5,7 @@ import android.text.InputType;
 import android.view.View;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.home.UserInfo;
+import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;

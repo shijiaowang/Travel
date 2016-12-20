@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.LineBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;

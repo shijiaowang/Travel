@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteBean;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.Follow;
+import com.yunspeak.travel.bean.AiteBean;
+import com.yunspeak.travel.bean.Follow;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
 import com.yunspeak.travel.utils.MapUtils;

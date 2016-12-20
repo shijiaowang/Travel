@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.MyAppointTogetherBean;
+import com.yunspeak.travel.bean.MyAppointWithMeBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;

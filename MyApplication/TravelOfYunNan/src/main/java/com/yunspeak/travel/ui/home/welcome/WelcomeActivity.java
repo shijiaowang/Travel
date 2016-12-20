@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.home.Key;
-import com.yunspeak.travel.ui.home.UserInfo;
+import com.yunspeak.travel.bean.Key;
+import com.yunspeak.travel.bean.Login;
+import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.WelcomeEvent;

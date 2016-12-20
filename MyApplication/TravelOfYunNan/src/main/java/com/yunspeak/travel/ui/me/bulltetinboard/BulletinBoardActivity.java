@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.me.bulltetinboard;
 
 
+import com.yunspeak.travel.bean.BulletinBoardBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;

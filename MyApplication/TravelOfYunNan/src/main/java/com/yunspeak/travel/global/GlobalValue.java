@@ -1,8 +1,8 @@
 package com.yunspeak.travel.global;
 
-import com.yunspeak.travel.ui.home.UserInfo;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.ChoicePropSelectBean;
-import com.yunspeak.travel.ui.appoint.travelplan.lineplan.LineBean;
+import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.bean.ChoicePropSelectBean;
+import com.yunspeak.travel.bean.LineBean;
 
 
 import java.util.List;

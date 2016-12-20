@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.me.myappoint.withmeselect;
 
+import com.yunspeak.travel.bean.MyWithMeSelectBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;

@@ -1,4 +1,5 @@
 package com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage;
+import com.yunspeak.travel.bean.AiteMessageBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;

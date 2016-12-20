@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.FindDestinationBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
@@ -21,7 +22,7 @@ import butterknife.BindView;
 /**
  * Created by wangyang on 2016/7/30.
  */
-public class DestinationHoler extends BaseRecycleViewHolder<DestinationBean.DataBean.BodyBean> {
+public class DestinationHoler extends BaseRecycleViewHolder<FindDestinationBean.DataBean.BodyBean> {
     private final boolean isDestination;
     @BindView(R.id.iv_spot) SimpleDraweeView mIvSpot;
     @BindView(R.id.tv_name) TextView mTvName;
@@ -37,7 +38,7 @@ public class DestinationHoler extends BaseRecycleViewHolder<DestinationBean.Data
 
 
 
-    private float getStar(DestinationBean.DataBean.BodyBean datas, float star) {
+    private float getStar(FindDestinationBean.DataBean.BodyBean datas, float star) {
         try {
             star = Float.parseFloat(datas.getStar());
         }catch (Exception e){
@@ -48,7 +49,7 @@ public class DestinationHoler extends BaseRecycleViewHolder<DestinationBean.Data
 
 
     @Override
-    public void childBindView(int position, final DestinationBean.DataBean.BodyBean datas, final Context mContext) {
+    public void childBindView(int position, final FindDestinationBean.DataBean.BodyBean datas, final Context mContext) {
         FrescoUtils.displayNormal(mIvSpot,datas.getLogo_img(),R.drawable.normal_2_1);
         mTvName.setText(datas.getTitle());
         AiteUtils.setIconText(addressIcon,datas.getAddress(),mContext,mTvAdd);

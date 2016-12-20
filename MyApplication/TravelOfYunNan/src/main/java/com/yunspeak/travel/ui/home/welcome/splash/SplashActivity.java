@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.home.Splash;
+import com.yunspeak.travel.bean.Splash;
 import com.yunspeak.travel.ui.baseui.FullTransparencyActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterActivity;

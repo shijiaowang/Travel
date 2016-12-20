@@ -1,6 +1,6 @@
 package com.yunspeak.travel.utils;
 
-import com.yunspeak.travel.ui.home.UserInfo;
+import com.yunspeak.travel.bean.UserInfo;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -20,7 +20,7 @@ public class CityOffApplication extends Application {
         x.Ext.init(this);
         ImagePipelineConfig imagePipelineConfig = ImagePipelineConfigFactory.getImagePipelineConfig(this);
         Fresco.initialize(this,imagePipelineConfig);
-        YunSpeakHelper.getInstance().init(this);
+        ServiceHelper.getInstance().init(this);
         UIUtils.init(this);
     }
 }

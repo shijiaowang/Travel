@@ -300,14 +300,10 @@ public class YunSpeakHelper {
             if (error == EMError.USER_REMOVED) {
                 toast("聊天账号已被移除");
             } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
-                // 显示帐号在其他设备登录
-                   // toast("账号在其他地方登录!");
                 LogUtils.e("账号在其他地方登录");
 
             } else {
                 if (NetUtils.hasNetwork(UIUtils.getContext())) {
-                    //ToastUtils.showToast("无法连接聊天服务器");
-                    //toast("无法连接聊天服务器");
                     LogUtils.e("无法连接聊天服务器");
                 }
                 //连接不到聊天服务器

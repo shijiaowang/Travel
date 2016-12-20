@@ -15,13 +15,14 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.HomeBean;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.ActivityBean;
+import com.yunspeak.travel.bean.ActivityBean;
 import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.home.homesearch.HomeSearchActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.register.WebViewActivity;
-import com.yunspeak.travel.ui.me.myappoint.withmeselect.MyWitheMeDecoration;
+import com.yunspeak.travel.ui.me.myappoint.withmeselect.TopDecoration;
 import com.yunspeak.travel.ui.me.othercenter.useralbum.AlbumSpace;
 import com.yunspeak.travel.ui.view.PagerCursorView;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -122,7 +123,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     protected void initListener() {
         mRvChosen.addItemDecoration(new AlbumSpace(6));
         mRvHotSpots.addItemDecoration(new HotSpotsItemDecoration(12));//设置孩子间距为24px;
-        mRvTravels.addItemDecoration(new MyWitheMeDecoration(6));
+        mRvTravels.addItemDecoration(new TopDecoration(6));
         mSwipe.setOnRefreshListener(this);
         mSwipe.setColorSchemeResources(R.color.otherTitleBg);
         mRlSearch.setOnClickListener(this);

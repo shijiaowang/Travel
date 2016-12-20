@@ -1,8 +1,10 @@
 package com.yunspeak.travel.ui.me.messagecenter.privatemessage;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
@@ -13,6 +15,7 @@ import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.utils.ToastUtils;
+import com.yunspeak.travel.utils.UserUtils;
 
 public class ConversationListFragment extends EaseConversationListFragment {
 
@@ -22,7 +25,7 @@ public class ConversationListFragment extends EaseConversationListFragment {
         super.initView();
 
     }
-    
+
     @Override
     protected void setUpView() {
         super.setUpView();
@@ -53,7 +56,7 @@ public class ConversationListFragment extends EaseConversationListFragment {
                 if (username.equals(EMClient.getInstance().getCurrentUser()))
                     ToastUtils.showToast("不能与你自己聊天");
                 else {
-                    ChatActivity.start(getActivity(),username,conversation.getType() == EMConversationType.GroupChat?EaseConstant.CHATTYPE_GROUP:EaseConstant.CHATTYPE_SINGLE);
+                    ChatActivity.start(getActivity(), username, conversation.getType() == EMConversationType.GroupChat ? EaseConstant.CHATTYPE_GROUP : EaseConstant.CHATTYPE_SINGLE);
                 }
             }
         });
@@ -63,8 +66,19 @@ public class ConversationListFragment extends EaseConversationListFragment {
     @Override
     protected void onConnectionDisconnected() {
         super.onConnectionDisconnected();
-        if (NetUtils.hasNetwork(getActivity())){
-         ToastUtils.showToast("无法连接聊天服务器");
+        if (NetUtils.hasNetwork(getActivity())) {
+            EMClient.getInstance().login(UserUtils.getUserInfo().getId(), UserUtils.getUserInfo().getPwd(), new EMCallBack() {
+                @Override
+                public void onSuccess() {
+                }
+                @Override
+                public void onError(int i, String s) {
+                    ToastUtils.showToast(s);
+                }
+                @Override
+                public void onProgress(int i, String s) {
+                }
+            });
         } else {
             ToastUtils.showToast("无法连接网络");
         }

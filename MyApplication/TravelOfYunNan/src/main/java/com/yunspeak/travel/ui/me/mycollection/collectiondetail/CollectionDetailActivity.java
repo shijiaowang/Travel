@@ -1,5 +1,11 @@
 package com.yunspeak.travel.ui.me.mycollection.collectiondetail;
 
+import com.yunspeak.travel.bean.ActiveBean;
+import com.yunspeak.travel.bean.DestinationBean;
+import com.yunspeak.travel.bean.OtherBean;
+import com.yunspeak.travel.bean.PostBean;
+import com.yunspeak.travel.bean.TeamBean;
+import com.yunspeak.travel.bean.TravelsBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;

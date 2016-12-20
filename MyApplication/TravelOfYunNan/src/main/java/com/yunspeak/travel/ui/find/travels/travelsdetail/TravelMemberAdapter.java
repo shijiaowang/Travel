@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.TravelsDetailBean;
 import com.yunspeak.travel.utils.FrescoUtils;
 
 import java.util.List;

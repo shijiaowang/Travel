@@ -20,7 +20,6 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         super.onCreate(savedInstanceState);
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);

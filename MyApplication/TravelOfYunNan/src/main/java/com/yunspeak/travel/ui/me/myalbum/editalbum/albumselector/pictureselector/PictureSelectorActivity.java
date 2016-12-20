@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
-import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.ImageFolder;
+import com.yunspeak.travel.bean.ImageFolder;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
@@ -37,11 +37,13 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
     private List<String> mImages;
     private PictureSelectorAdapter adapter;
     private List<String> mSelectImages=new ArrayList<>();
+    private List<String> images;//之前选中的images
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         registerEventBus(this);
+        images = ((List<String>) getIntent().getSerializableExtra(IVariable.DATA));
     }
 
     @Override
@@ -178,7 +180,6 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
         } else {
             mSelectImages.clear();
             mSelectImages.addAll(GlobalValue.mSelectImages);
-
             UpPhotoEvent upPhotoEvent=new UpPhotoEvent();
             upPhotoEvent.setList(mSelectImages);
             EventBus.getDefault().post(upPhotoEvent);
@@ -191,7 +192,8 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
     protected void onDestroy() {
         super.onDestroy();
         unregisterEventBus(this);
-        GlobalValue.mSelectImages.clear();
-        GlobalValue.mSelectImages.add("add");
+        if (GlobalValue.mSelectImages!=null) {
+            GlobalValue.mSelectImages.clear();
+        }
     }
 }

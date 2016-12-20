@@ -7,16 +7,16 @@ import android.view.View;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.home.Key;
-import com.yunspeak.travel.ui.home.welcome.Login;
-import com.yunspeak.travel.ui.home.UserInfo;
+import com.yunspeak.travel.bean.Key;
+import com.yunspeak.travel.bean.Login;
+import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterActivity;
-import com.yunspeak.travel.ui.home.welcome.splash.register.RegisterBean;
+import com.yunspeak.travel.bean.RegisterBean;
 import com.yunspeak.travel.ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.LoginEditText;
@@ -74,6 +74,7 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
                     ToastUtils.showToast("密码或者用户名为空");
                     return;
                 }
+                LogUtils.e(GlobalUtils.getKey()+"key为");
                 if (StringUtils.isEmpty(GlobalUtils.getKey())){
                     XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new LoginEvent());
                     return;

@@ -5,8 +5,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.AppointTogetherDetailBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
-import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.ChoicePropSelectBean;
+import com.yunspeak.travel.bean.ChoicePropSelectBean;
 
 import butterknife.BindView;
 

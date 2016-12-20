@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.appoint.travelplan.lineplan;
 import android.content.Context;
 import android.view.View;
 
+import com.yunspeak.travel.bean.LineBean;
 import com.yunspeak.travel.ui.adapter.TravelBaseAdapter;
 import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
 
