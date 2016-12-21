@@ -24,6 +24,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.MyCreateAppointBean;
 import com.yunspeak.travel.global.DiscussPopClick;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
@@ -31,7 +32,6 @@ import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.global.SendTextClick;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailEvent;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.MyCreateAppointAdapter;
-import com.yunspeak.travel.bean.MyCreateAppointBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.utils.JsonUtils;
@@ -468,11 +468,11 @@ public class EnterAppointDialog {
     }
 
     private static void shareEndCommon(OnekeyShare oks, View cropView, Context context) {
-        getPicture(oks, cropView, context);
+        getPicture(oks, cropView);
         oks.show(context);
     }
 
-    private static void getPicture(OnekeyShare oks, View cropView, Context context) {
+    private static void getPicture(OnekeyShare oks, View cropView) {
 
         try {
                 if (cropView != null) {

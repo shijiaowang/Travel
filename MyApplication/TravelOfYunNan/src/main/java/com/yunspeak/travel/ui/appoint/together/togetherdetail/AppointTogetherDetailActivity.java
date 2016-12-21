@@ -11,12 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.AppointTogetherDetailBean;
+import com.yunspeak.travel.bean.BasecPriceBean;
 import com.yunspeak.travel.bean.PeopleBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
@@ -26,7 +28,6 @@ import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequip
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
-import com.yunspeak.travel.bean.BasecPriceBean;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.AvoidFastButton;
 import com.yunspeak.travel.ui.view.FlowLayout;
@@ -125,12 +126,11 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     AvoidFastButton mBvEnter;
     @BindView(R.id.bt_chat) AvoidFastButton mBtChat;
     @BindView(R.id.v_line) View mVline;
-
+    @BindView(R.id.ll_hide_root) LinearLayout mLlRoot;
     private boolean isDetail = false;//默认缩略图
     private String tId;
     private List<List<AppointTogetherDetailBean.DataBean.RoutesBean>> lists = new ArrayList<>();
     private String id;
-    private String payType = "-1";
     private int payStatus = -1;
     private String isCollect;
     private TravelDetailLineAdapter normalDetailLineAdapter;
@@ -200,15 +200,10 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
 
 
     @Override
-    protected void onSuccess(AppointTogetherDetailEvent appointDetailEvent) {
+    protected void onSuccess(final AppointTogetherDetailEvent appointDetailEvent) {
         switch (appointDetailEvent.getType()) {
             case TYPE_REFRESH:
-                try {
-                    dealData(appointDetailEvent);
-                } catch (Exception e) {
-                    setIsProgress(false);
-                    e.printStackTrace();
-                }
+                dealData(appointDetailEvent);
                 break;
             case TYPE_ENTER_APPOINT:
                 EnterAppointDialog.showDialogSuccess(this);
@@ -293,6 +288,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         mLvInsurance.setHasFixedSize(true);
         mLvInsurance.setAdapter(costSettingAdapter);
         mLvInsurance.setLayoutManager(linearLayoutManager);
+        mLlRoot.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -334,7 +330,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
             }
         });
         String travelImg = data.getTravel_img();
-        FrescoUtils.displayNormal(mIvAppointBg, travelImg);
+      FrescoUtils.displayNormal(mIvAppointBg, travelImg);
         if (mFlTitle.getChildCount() > 0) mFlTitle.removeAllViews();
         dealLabel(data);
         mTvUserNickName.setText(data.getUser_name());

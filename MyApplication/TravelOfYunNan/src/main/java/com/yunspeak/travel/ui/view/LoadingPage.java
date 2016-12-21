@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.utils.UIUtils;
 
@@ -53,6 +54,12 @@ public abstract class LoadingPage extends FrameLayout {
         //加载读取页面
         if (emptyView == null) {
             emptyView = UIUtils.inflate(R.layout.empty_view);
+            emptyView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadData(IState.TYPE_REFRESH);
+                }
+            });
             addView(emptyView);//添加加载页面
         }
         //加载错误页面

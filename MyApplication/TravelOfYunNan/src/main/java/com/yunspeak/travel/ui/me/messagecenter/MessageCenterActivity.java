@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.MessageCenterBean;
 import com.yunspeak.travel.global.IVariable;
@@ -14,7 +12,7 @@ import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageActi
 import com.yunspeak.travel.ui.me.messagecenter.privatemessage.MessagePrivateActivity;
 import com.yunspeak.travel.ui.me.messagecenter.relateme.RelateMeActivity;
 import com.yunspeak.travel.ui.me.messagecenter.systemmessage.SystemMessageActivity;
-import com.yunspeak.travel.utils.GlobalUtils;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 
@@ -48,15 +46,7 @@ public class MessageCenterActivity extends BaseNetWorkActivity<MessageCenterEven
     @Override
     protected void onStart() {
         super.onStart();
-        try {
-            EMConversation conversation = EMClient.getInstance().chatManager().getConversation(GlobalUtils.getUserInfo().getId());
-            int unreadMsgCount = conversation.getUnreadMsgCount();
-           setShow(unreadMsgCount,mBvPrivateDot);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            mBvPrivateDot.setVisibility(View.GONE);
-        }
+        setShow(AiteUtils.getUnReadMessage(),mBvPrivateDot);
     }
 
     @Override

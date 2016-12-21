@@ -191,7 +191,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
     /**
      * 重新读取网络
      */
-    @OnClick(R.id.page_error)
+    @OnClick(R.id.iv_page_error)
     protected void onReLoad() {
         onLoad(TYPE_REFRESH);
     }

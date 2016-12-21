@@ -7,13 +7,18 @@ import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.ui.adapter.holer.SomeTextClick;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.AiteTextClick;
 import com.yunspeak.travel.bean.InformBean;
 import com.yunspeak.travel.ui.find.findcommon.CustomTypefaceSpan;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by wangyang on 2016/11/3 0003.
@@ -92,5 +97,27 @@ public class AiteUtils {
         SpannableStringBuilder spannableStringBuilder=new SpannableStringBuilder(likeNumber);
         spannableStringBuilder.setSpan(new CustomTypefaceSpan("sans-serif",context,isLove?clickColor:color,resSize),0,1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textView.setText(spannableStringBuilder);
+    }
+
+    /**
+     * 获取唯独消息的数量
+     * @return
+     */
+    public static int getUnReadMessage(){
+        try {
+            int unreadMsgCount=0;//获取唯独消息数量
+            Map<String, EMConversation> allConversations = EMClient.getInstance().chatManager().getAllConversations();
+            Set<String> strings = allConversations.keySet();
+            Iterator<String> iterator = strings.iterator();
+            if (iterator.hasNext()){
+                String next = iterator.next();
+                EMConversation emConversation = allConversations.get(next);
+                unreadMsgCount+= emConversation.getUnreadMsgCount();
+            }
+            return unreadMsgCount;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

@@ -63,7 +63,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ba
         mSwipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        mIvPageError = (ImageView) findViewById(R.id.page_error);
+        mIvPageError = (ImageView) findViewById(R.id.iv_page_error);
         mCoorLayout = (CoordinatorLayout) findViewById(R.id.coor_layout);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
         mVsTab = (ViewStub) findViewById(R.id.vs_tab);
@@ -235,7 +235,7 @@ public abstract class BaseChangeBarColorActivity<T extends HttpEvent> extends Ba
     /**
      * 重新读取网络
      */
-    @OnClick(R.id.page_error)
+    @OnClick(R.id.iv_page_error)
     protected void onReLoad() {
         setIsProgress(true,true);
         onLoad(TYPE_REFRESH);

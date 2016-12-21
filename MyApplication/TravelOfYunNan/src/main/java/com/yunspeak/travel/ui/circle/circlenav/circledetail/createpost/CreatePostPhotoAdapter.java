@@ -13,7 +13,7 @@ import java.util.List;
 public class CreatePostPhotoAdapter extends TravelBaseAdapter<String> {
     private static  final  int TYPE_NORMAL =0;
     private static final  int TYPE_ADD =1;
-    private final int count;
+    private  int count;
 
     public CreatePostPhotoAdapter(Context mContext, List<String> mDatas,int count) {
         super(mContext, mDatas);

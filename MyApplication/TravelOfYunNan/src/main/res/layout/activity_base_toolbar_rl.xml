@@ -13,7 +13,7 @@
         <!--页面加载错误-->
         <ImageView
             android:visibility="gone"
-            android:id="@+id/page_error"
+            android:id="@+id/iv_page_error"
             android:layout_gravity="center"
             android:src="@drawable/page_not_found"
             android:layout_width="wrap_content"

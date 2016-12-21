@@ -17,9 +17,12 @@ import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.bean.ChatSettingUserBean;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -45,12 +48,23 @@ public class PrivateChatSettingActivity extends BaseNetWorkActivity<PrivateChatS
     @BindView(R.id.bt_black)
     TextView btBlack;
     private String userId;
+    boolean isBlackListNumber=false;
 
     @Override
     protected void initEvent() {
         btClear.setOnClickListener(this);
         btBlack.setOnClickListener(this);
         userId = getIntent().getStringExtra(IVariable.DATA);
+        try {
+            List<String> blackListFromServer = EMClient.getInstance().contactManager().getBlackListFromServer();
+            if (blackListFromServer.contains(GlobalUtils.getUserInfo().getId())){
+                isBlackListNumber=true;
+                btBlack.setText("移除黑名单");
+            }
+        } catch (HyphenateException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -117,19 +131,37 @@ public class PrivateChatSettingActivity extends BaseNetWorkActivity<PrivateChatS
                 });
                 break;
             case R.id.bt_black:
-                EnterAppointDialog.showCommonDialog(this, "加入黑名单", "确定", "是否将该用户加入黑名单？", new ParentPopClick() {
-                    @Override
-                    public void onClick(int type) {
-                        try {
-                            EMClient.getInstance().contactManager().addUserToBlackList(userId,true);
-                            ToastUtils.showToast("加入黑名单成功");
-                        } catch (HyphenateException e) {
-                            e.printStackTrace();
-                            ToastUtils.showToast("加入黑名单失败"+e.getMessage());
-                        }
+                if (isBlackListNumber){
+                    EnterAppointDialog.showCommonDialog(this, "移除黑名单", "确定", "是否将该用户从黑名单中删除？", new ParentPopClick() {
+                        @Override
+                        public void onClick(int type) {
+                            try {
+                                EMClient.getInstance().contactManager().removeUserFromBlackList(userId);
+                                ToastUtils.showToast("移除黑名单成功");
+                                isBlackListNumber = false;
+                            } catch (HyphenateException e) {
+                                e.printStackTrace();
+                                ToastUtils.showToast("移除黑名单失败" + e.getMessage());
+                            }
 
-                    }
-                });
+                        }
+                    });
+                }else {
+                    EnterAppointDialog.showCommonDialog(this, "加入黑名单", "确定", "是否将该用户加入黑名单？", new ParentPopClick() {
+                        @Override
+                        public void onClick(int type) {
+                            try {
+                                EMClient.getInstance().contactManager().addUserToBlackList(userId, true);
+                                ToastUtils.showToast("加入黑名单成功");
+                                isBlackListNumber = true;
+                            } catch (HyphenateException e) {
+                                e.printStackTrace();
+                                ToastUtils.showToast("加入黑名单失败" + e.getMessage());
+                            }
+
+                        }
+                    });
+                }
 
                 break;
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
+import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -29,6 +30,8 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
     protected RecyclerView recyclerView;
     protected Set<Integer> currentSets;
     protected boolean scrolled;
+
+
 
     public BaseRecycleViewAdapter(List<T> mDatas, Context mContext) {
         this.mDatas = mDatas;

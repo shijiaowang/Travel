@@ -17,6 +17,7 @@ import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostOptionsDialog;
+import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
@@ -98,7 +99,7 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
             travelImg = datas.getTravel_img();
              userId = datas.getUser_id();
              tid = datas.getTid();
-            type =datas.getType();
+             type =datas.getType();
              replyTime = datas.getReply_time();
             mTvMessage.setLimitContent(content);
         }else {
@@ -181,7 +182,9 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
                         if (finalType1.equals("1")) {//一起玩
                             AppointTogetherDetailActivity.start(mContext, finalTid1);
                         } else if (finalType1.equals("2")){//找人带
-                            AppointWithMeDetailActivity.start(mContext, finalType1);
+                            AppointWithMeDetailActivity.start(mContext, finalTid1);
+                        }else if (finalType1.equals("3")){
+                            ActivateDetailActivity.start(mContext,finalTid1);
                         }
                         break;
                     default:

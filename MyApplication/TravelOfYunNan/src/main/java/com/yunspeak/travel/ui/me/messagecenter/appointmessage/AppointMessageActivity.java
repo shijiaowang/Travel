@@ -29,7 +29,7 @@ public class AppointMessageActivity extends BaseRecycleViewActivity<MeCommonEven
     }
     @Override
     protected String initTitle() {
-        return "约伴消息";
+        return "出行消息";
     }
     @Subscribe
     public void onEvent(ReplyEvent replyEvent){

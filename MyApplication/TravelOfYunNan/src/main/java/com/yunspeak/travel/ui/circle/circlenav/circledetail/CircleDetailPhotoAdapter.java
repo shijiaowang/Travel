@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
 
 import java.util.List;
@@ -20,12 +19,10 @@ import java.util.List;
 public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
       private List<String> mDatas;
       private Context mContext;
-    private String id;
 
-    public CircleDetailPhotoAdapter(List<String> mDatas, Context mContext, String id) {
+    public CircleDetailPhotoAdapter(List<String> mDatas, Context mContext) {
         this.mDatas = mDatas;
         this.mContext = mContext;
-        this.id = id;
     }
     public void setList(List<String> mDatas){
         this.mDatas=mDatas;
@@ -42,12 +39,6 @@ public class CircleDetailPhotoAdapter extends RecyclerView.Adapter<RecyclerView.
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final CircleDetailPhotoHolder circleDetailPhotoHolder = (CircleDetailPhotoHolder) holder;
         circleDetailPhotoHolder.mIvImage.setTag(mDatas.get(position));
-        circleDetailPhotoHolder.mIvImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PostActivity.start(mContext,id);
-            }
-        });
          FrescoUtils.displayNormal(circleDetailPhotoHolder.mIvImage, (String) circleDetailPhotoHolder.mIvImage.getTag(),300,200,R.drawable.normal_2_1);
 
     }

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
+
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -24,7 +25,7 @@ public class AiteTextClick extends ClickableSpan{
 
     @Override
     public void onClick(View widget) {
-        //ToastUtils.showToast("点击啦");
+        widget.invalidate();
         if (StringUtils.isEmpty(id)){
             ToastUtils.showToast("用户不存在");
             return;

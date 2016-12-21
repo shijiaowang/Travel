@@ -1,5 +1,6 @@
 package com.yunspeak.travel.ui.baseui;
 
+
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Build;
@@ -69,7 +70,7 @@ public abstract class BaseToolBarActivity extends BaseHideSoftActivity implement
         super.onCreate(savedInstanceState);
         setContentView(isChangeBarColor() ? R.layout.activity_base_toolbar_rl : R.layout.activity_base_toolbar);
         inflater = LayoutInflater.from(this);
-        mIvPageError = (ImageView) findViewById(R.id.page_error);
+        mIvPageError = (ImageView) findViewById(R.id.iv_page_error);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_loading);
         AppBarLayout mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         mPbLoading.setVisibility(View.GONE);

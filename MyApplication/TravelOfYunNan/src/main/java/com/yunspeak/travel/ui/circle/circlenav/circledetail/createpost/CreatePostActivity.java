@@ -29,6 +29,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite.AiteActivity;
 import com.yunspeak.travel.bean.AiteFollow;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
+import com.yunspeak.travel.ui.home.HotSpotsItemDecoration;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.yunspeak.travel.utils.MapUtils;
@@ -197,9 +198,11 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
      * 打开相册
      */
     private void startSelectAlbum() {
-        GlobalValue.mSelectImages = pictures;
+        if (GlobalValue.mSelectImages!=null && pictures!=null) {
+            GlobalValue.mSelectImages.clear();
+            GlobalValue.mSelectImages.addAll(pictures);
+        }
         startActivity(new Intent(CreatePostActivity.this, AlbumSelectorActivity.class));
-
     }
 
 
@@ -232,9 +235,10 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
                    return;
                }
                aitePeopleAdapter = new AitePeopleAdapter(mSelectPeople, this);
-               LinearLayoutManager gridLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+               LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
                mRvAite.setAdapter(aitePeopleAdapter);
-               mRvAite.setLayoutManager(gridLayoutManager);
+               mRvAite.addItemDecoration(new HotSpotsItemDecoration(10));
+               mRvAite.setLayoutManager(linearLayoutManager);
                mRvAite.setVisibility(View.VISIBLE);
            } catch (Exception e) {
                e.printStackTrace();
@@ -285,8 +289,8 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
         cId = getIntent().getStringExtra(IVariable.C_ID);
         GlobalValue.size = getIntent().getIntExtra(IVariable.PAGE_SIZE,12);
         currentType = getIntent().getIntExtra(IVariable.TYPE,0);
-        boolean isReply = currentType==REPLY_POST;
-       title=isReply?"回复帖子":"创建帖子";
+        boolean isReply =  currentType==REPLY_POST;
+        title=isReply?"回复帖子":"创建帖子";
         int limitLength=isReply?300:2000;
         mEtContent.setFilters(new InputFilter[]{new InputFilter.LengthFilter(limitLength)});
         mTvTitle.setText(title);
@@ -353,7 +357,7 @@ public class CreatePostActivity extends BaseNetWorkActivity<CreatePostEvent> imp
     @Subscribe
     public void onEvent(UpPhotoEvent event) {
         pictures.clear();
-        pictures=event.getList();
+       pictures.addAll(event.getList());
         createPostPhotoAdapter.notifyData(pictures);
 
     }

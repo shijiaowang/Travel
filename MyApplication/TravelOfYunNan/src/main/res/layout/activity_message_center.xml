@@ -14,7 +14,7 @@
 
         <TextView
             style="@style/activityMessageCenterText"
-            android:text="约伴消息" />
+            android:text="出行相关" />
         <View
             android:id="@+id/bv_appoint_dot"
             android:background="@drawable/message_dot"

@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -122,12 +123,36 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
             }
             List<String> list = Arrays.asList(newImage);
             if (circleDetailPhotoAdapter==null){
-                circleDetailPhotoAdapter = new CircleDetailPhotoAdapter(list,mContext,datas.getId());
+                circleDetailPhotoAdapter = new CircleDetailPhotoAdapter(list,mContext);
                 mRvPhoto.addItemDecoration(new CircleDetailPhotoDecoration(6));
                 mRvPhoto.setAdapter(circleDetailPhotoAdapter);
                 LinearLayoutManager linearLayoutManager=new GridLayoutManager(mContext,3);
                 //响应toolebar收缩
                 mRvPhoto.setHasFixedSize(true);
+                mRvPhoto.setOnTouchListener(new View.OnTouchListener() {
+                    boolean needCallItemClick=false;
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()){
+                            case MotionEvent.ACTION_DOWN:
+                                needCallItemClick=true;
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                needCallItemClick=false;
+                                break;
+                            case MotionEvent.ACTION_CANCEL:
+                                needCallItemClick=false;
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                if (needCallItemClick){
+                                    itemView.callOnClick();
+                                }
+                                break;
+                        }
+
+                        return false;
+                    }
+                });
                 mRvPhoto.setNestedScrollingEnabled(false);
                 linearLayoutManager.setSmoothScrollbarEnabled(false);
                 mRvPhoto.setLayoutManager(linearLayoutManager);

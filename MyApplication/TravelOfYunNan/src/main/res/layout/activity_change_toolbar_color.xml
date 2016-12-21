@@ -96,7 +96,7 @@
             android:layout_gravity="center" />
         <!--页面加载错误-->
         <ImageView
-            android:id="@+id/page_error"
+            android:id="@+id/iv_page_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

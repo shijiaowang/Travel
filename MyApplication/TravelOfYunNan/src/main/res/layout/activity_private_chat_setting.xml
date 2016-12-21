@@ -58,7 +58,7 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:background="@color/colorFAFAFA"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x34">
@@ -87,7 +87,7 @@
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x6"/>
+        android:layout_height="@dimen/x6"/>-->
 
     <TextView
         android:gravity="center"

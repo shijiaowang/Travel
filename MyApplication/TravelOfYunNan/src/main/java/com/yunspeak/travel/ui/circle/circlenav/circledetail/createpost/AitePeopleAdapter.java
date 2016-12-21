@@ -21,6 +21,6 @@ public class AitePeopleAdapter extends BaseRecycleViewAdapter<AiteFollow> {
 
     @Override
     public BaseRecycleViewHolder<AiteFollow> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new AitePeopleHolder(inflateView(R.layout.item_activity_aite_people, parent));
+        return new AitePeopleHolder(inflateView(R.layout.item_activity_aite_people, null));
     }
 }

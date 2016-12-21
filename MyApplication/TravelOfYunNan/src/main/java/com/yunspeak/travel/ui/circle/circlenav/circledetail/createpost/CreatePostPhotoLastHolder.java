@@ -13,8 +13,7 @@ import butterknife.BindView;
  * Created by wangyang on 2016/7/31.
  */
 public class CreatePostPhotoLastHolder extends BaseHolder {
-    private final int count;
-    public View mTvAdd;
+    private  int count;
     @BindView(R.id.tv_count) TextView mTvCount;
 
 
@@ -25,12 +24,16 @@ public class CreatePostPhotoLastHolder extends BaseHolder {
 
     @Override
     protected void initItemDatas(Object datas, Context mContext, int position) {
+
+    }
+
+    @Override
+    protected void initNullDatas(int position) {
         mTvCount.setText("最多"+count+"张");
     }
 
     @Override
     public View initRootView(Context mContext) {
-        mTvAdd = inflateView(R.layout.item_activity_create_post_photo_add);
-        return mTvAdd;
+        return inflateView(R.layout.item_activity_create_post_photo_add);
     }
 }

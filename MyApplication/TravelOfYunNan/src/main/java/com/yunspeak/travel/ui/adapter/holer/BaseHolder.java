@@ -30,6 +30,7 @@ public abstract class BaseHolder<T> {
     public void setDatas(T datas, int position){
         this.datas=datas;
         if (datas==null){
+            initNullDatas(position);
             return;
         }
         try {
@@ -38,7 +39,12 @@ public abstract class BaseHolder<T> {
             e.printStackTrace();
         }
     }
-  //赋值item
+
+    protected  void initNullDatas(int position){
+
+    }
+
+    //赋值item
     protected abstract void initItemDatas(T datas, Context mContext, int position);
 
     public T getDatas(){

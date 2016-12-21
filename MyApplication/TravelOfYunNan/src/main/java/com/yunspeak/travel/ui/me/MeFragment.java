@@ -7,32 +7,32 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.flexbox.FlexboxLayout;
+import com.yalantis.ucrop.UCrop;
+import com.yalantis.ucrop.model.AspectRatio;
 import com.yunspeak.travel.R;
-
 import com.yunspeak.travel.bean.MeBean;
 import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.bean.UserLabelBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.CropPhotoBaseFragment;
-import com.yunspeak.travel.ui.me.level.LevelActivity;
-import com.yunspeak.travel.bean.UserLabelBean;
-import com.yunspeak.travel.ui.me.setting.SettingActivity;
-import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
-import com.yunspeak.travel.ui.me.fansandfollow.FollowAndFanActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
+import com.yunspeak.travel.ui.me.fansandfollow.FollowAndFanActivity;
 import com.yunspeak.travel.ui.me.identityauth.IdentityAuthenticationActivity;
+import com.yunspeak.travel.ui.me.level.LevelActivity;
 import com.yunspeak.travel.ui.me.messagecenter.MessageCenterActivity;
 import com.yunspeak.travel.ui.me.myalbum.MyAlbumActivity;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.mycollection.MyCollectionActivity;
-import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
-
 import com.yunspeak.travel.ui.me.myhobby.MyHobbyActivity;
 import com.yunspeak.travel.ui.me.mytheme.MyThemeActivity;
+import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
+import com.yunspeak.travel.ui.me.setting.SettingActivity;
 import com.yunspeak.travel.ui.me.titlemanage.TitleManagementActivity;
-
+import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
 import com.yunspeak.travel.ui.view.BadgeView;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -40,10 +40,6 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.android.flexbox.FlexboxLayout;
-import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.model.AspectRatio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +104,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     private BadgeView mBvMessageCount;
     private BadgeView mBvAppointCount;
     private BadgeView mBvOrderCount;
+    private int countMsg=0;
 
 
     @Override
@@ -295,6 +292,12 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mBvMessageCount.setBadgeCount(countMsg+ AiteUtils.getUnReadMessage());
+    }
+
     /**
      * 刷新个人数据
      * @param meEvent
@@ -312,14 +315,9 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mTvLevel.setText("LV."+user.getLevel());
         mBvOrderCount.setBadgeCount(data.getCount_order());
         mBvAppointCount.setBadgeCount(data.getCount_travel());
-        try {
-            EMConversation conversation = EMClient.getInstance().chatManager().getConversation(GlobalUtils.getUserInfo().getId());
-            int unreadMsgCount = conversation.getUnreadMsgCount()+data.getCount_msg();
-            mBvMessageCount.setBadgeCount(unreadMsgCount);
-        } catch (Exception e) {
-            e.printStackTrace();
-            mBvMessageCount.setBadgeCount(data.getCount_msg());
-        }
+        countMsg = data.getCount_msg();
+        mBvMessageCount.setBadgeCount(countMsg+ AiteUtils.getUnReadMessage());
+
         List<UserLabelBean> user_label = data.getUser_label();
         mFlLabel.removeAllViews();
         if (user_label==null || user_label.size()==0){
