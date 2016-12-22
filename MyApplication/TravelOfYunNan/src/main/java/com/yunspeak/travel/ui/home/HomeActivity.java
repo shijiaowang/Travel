@@ -17,9 +17,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hyphenate.EMMessageListener;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMMessage;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.bean.UpdateBean;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.db.DBManager;
@@ -30,7 +34,6 @@ import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
 import com.yunspeak.travel.ui.circle.CircleFragment;
 import com.yunspeak.travel.ui.find.FindFragment;
-import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.me.MeFragment;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageActivity;
@@ -113,6 +116,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.ll_bottom)
     LinearLayout mLlBottom;
     private SharedPreferences sharedPreferences;
+    private EMMessageListener messageListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +128,34 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         if (!NetworkUtils.isNetworkConnected(this)) {
             ToastUtils.showToast("网络未连接");
         }
+
+        //收到消息刷新
+        messageListener = new EMMessageListener() {
+            @Override
+            public void onMessageReceived(List<EMMessage> messages) {
+
+            }
+
+            @Override
+            public void onCmdMessageReceived(List<EMMessage> messages) {
+
+            }
+
+            @Override
+            public void onMessageReadAckReceived(List<EMMessage> messages) {
+            }
+
+            @Override
+            public void onMessageDeliveryAckReceived(List<EMMessage> message) {
+            }
+
+            @Override
+            public void onMessageChanged(EMMessage message, Object change) {
+
+            }
+        };
+        EMClient.getInstance().chatManager().addMessageListener(messageListener);
+
         goToWhere();
         instance = this;
         boolean isNetwork = getIntent().getBooleanExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, true);
@@ -429,6 +461,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onDestroy() {
         super.onDestroy();
         instance = null;
+        EMClient.getInstance().chatManager().removeMessageListener(messageListener);
     }
 
     class DownloadProgress implements Callback.ProgressCallback<File> {

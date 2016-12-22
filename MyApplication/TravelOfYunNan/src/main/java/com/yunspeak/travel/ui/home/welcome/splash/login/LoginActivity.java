@@ -147,6 +147,7 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
 
     @Override
     protected void onFail(LoginEvent event) {
+        setIsProgress(false);
         if (event.getCode()==IVariable.KEY_ERROR && isFirstError){
             isFirstError=false;//避免无限循环key错误
             if (tryGetKey<3) {

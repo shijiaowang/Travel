@@ -15,6 +15,7 @@ import com.hyphenate.easeui.EaseConstant;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.MyAppointTogetherBean;
 import com.yunspeak.travel.global.DiscussPopClick;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
@@ -212,6 +213,8 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder {
             dealPayState(payStates, datas);
             if (payStates==3){
                 mBtPay.setText("退款");
+            }else if (payStates==1){
+                mBtPay.setText("取消");
             }else {
                 mBtPay.setText("付款");
             }
@@ -263,19 +266,31 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder {
                     startBtn(datas, position, mContext);
                 }
             });
+            final String tid = datas.getId();
             mBtPay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (payStates==2) {//付款
+                    if (payStates==1){
+                        EnterAppointDialog.showCommonDialog(mContext, "取消约伴", "确定", "您正在取消报名中的约伴。", new ParentPopClick() {
+                            @Override
+                            public void onClick(int type) {
+                                Map<String, String> end = MapUtils.Build().addKey().addUserId().addtId(tid).end();
+                                MyAppointEvent myAppointEvent = new MyAppointEvent();
+                                myAppointEvent.setPosition(position);
+                                XEventUtils.postUseCommonBackJson(IVariable.CANCEL_APPOINT,end, IState.TYPE_DELETE2,myAppointEvent);
+                            }
+                        });
+
+                    } else if (payStates==2) {//付款
                         Intent intent = new Intent(mContext, ConfirmOrdersActivity.class);
                         intent.putExtra("pay_type", payType);
                         intent.putExtra(IVariable.ID, datas.getOrder_id());
                         mContext.startActivity(intent);
                     }else if (payStates==3){//退款
                         if (payType.equals("2")) {//活动退款
-                            BackMoneyActivity.start(mContext, datas.getId(), "2", false);
+                            BackMoneyActivity.start(mContext, tid, "2", false);
                         }else {
-                            BackMoneyActivity.start(mContext, datas.getId(), "1", false);
+                            BackMoneyActivity.start(mContext, tid, "1", false);
                         }
                     }
                 }
@@ -311,6 +326,7 @@ public class MyAppointTogetherHolder extends BaseRecycleViewHolder {
         switch (payStates) {
             case 1:
                 showBoard = View.GONE;
+                showPay=View.VISIBLE;
                 break;
             case 2:
                 showCode2 = View.VISIBLE;

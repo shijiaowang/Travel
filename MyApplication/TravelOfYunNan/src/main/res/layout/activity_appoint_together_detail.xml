@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_hide_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorFAFAFA"
                 android:paddingLeft="@dimen/x22"
                 android:paddingRight="@dimen/x10">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -129,6 +124,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:clipChildren="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/x6">
@@ -140,9 +136,9 @@
                     android:background="@color/colorFAFAFA" />
 
                 <RelativeLayout
+                    android:layout_gravity="bottom"
                     android:layout_width="@dimen/x116"
                     android:layout_height="@dimen/x116"
-
                     android:layout_marginLeft="@dimen/x17"
                     android:background="@color/colorFAFAFA">
 
@@ -503,15 +499,14 @@
 
                             <include layout="@layout/appoint_detail_line_header" />
 
-                            <com.yunspeak.travel.ui.view.ToShowAllListView
+                            <android.support.v7.widget.RecyclerView
                                 android:visibility="gone"
                                 android:id="@+id/lv_route_line"
-                                style="@style/commonListViewStyle"
+                                android:focusable="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
-                            <com.yunspeak.travel.ui.view.ToShowAllListView
+                            <android.support.v7.widget.RecyclerView
                                 android:id="@+id/lv_route_detail_line"
-                                style="@style/commonListViewStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
@@ -602,7 +597,7 @@
 
 
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
     <RelativeLayout
         android:id="@+id/rl_bottom"

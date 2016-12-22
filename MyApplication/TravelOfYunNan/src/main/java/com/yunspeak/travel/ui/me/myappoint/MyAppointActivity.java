@@ -185,6 +185,12 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
             case TYPE_CHANGE:
                 changeState(myAppointEvent);
                 break;
+            case TYPE_DELETE2://取消约伴数据
+                ToastUtils.showToast("取消报名成功");
+                mDatas.remove(myAppointEvent.getPosition());
+                mAdapter.notifyItemRemoved(myAppointEvent.getPosition());
+
+                break;
             case TYPE_DISCUSS:
                 MyAppointTogetherBean.DataBean dataBean = (MyAppointTogetherBean.DataBean)mDatas.get(myAppointEvent.getPosition());
                 dataBean.setState("10");

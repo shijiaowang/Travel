@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yunspeak.travel">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -23,14 +24,15 @@
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <!-- 这个权限用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <!-- 这个权限用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -41,28 +43,24 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-       <meta-data android:name="EASEMOB_APPKEY"  android:value="yuns#yuns" />
-
-
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="yuns#yuns" />
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5847c974f43e4812a80004fd">
-        </meta-data>
+            android:value="5847c974f43e4812a80004fd"></meta-data>
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="974f4a49efa12e426b256792b5b4e0c1">
-        </meta-data>
+            android:value="974f4a49efa12e426b256792b5b4e0c1"></meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL_VALUE}" >
-        </meta-data>
+            android:value="${UMENG_CHANNEL_VALUE}"></meta-data>
 
         <activity
-            android:name="com.yunspeak.travel.ui.home.welcome.splash.SplashActivity"
-            android:theme="@style/SplashTheme">
-        </activity>
+            android:name=".ui.home.welcome.splash.SplashActivity"
+            android:theme="@style/SplashTheme"></activity>
         <activity
-            android:name="com.yunspeak.travel.ui.home.welcome.WelcomeActivity"
+            android:name=".ui.home.welcome.WelcomeActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,103 +69,104 @@
             </intent-filter>
         </activity>
         <activity android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity" />
-        <activity android:name="com.yunspeak.travel.ui.home.HomeActivity"
-            android:launchMode="singleTop"
-            >
-            <!-- <intent-filter>
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:launchMode="singleTop">
+
+            <!--
+             <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
                  <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>-->
+             </intent-filter>
+            -->
         </activity>
-        <activity android:name="com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity"
-            android:launchMode="singleTop"
-            />
-        <activity android:name="com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity" />
+        <activity
+            android:name=".ui.circle.circlenav.circledetail.post.PostActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.me.othercenter.OtherUserCenterActivity" />
         <activity android:name=".ui.me.messagecenter.MessageCenterActivity" />
         <activity android:name=".ui.appoint.travelplan.lineplan.selectdestination.customdestination.adddestination.AddCustomDestinationActivity" />
-        <activity android:name="com.yunspeak.travel.ui.me.fansandfollow.FollowAndFanActivity" />
-        <activity android:name="com.yunspeak.travel.ui.me.myalbum.MyAlbumActivity" />
-        <activity android:name="com.yunspeak.travel.ui.me.myalbum.createalbum.CreateAlbumActivity" />
-        <activity android:name="com.yunspeak.travel.ui.me.myalbum.editalbum.EditAlbumActivity" />
-        <activity android:name="com.yunspeak.travel.ui.me.othercenter.useralbum.albumdetail.CatOtherUserAlbumActivity" />
+        <activity android:name=".ui.me.fansandfollow.FollowAndFanActivity" />
+        <activity android:name=".ui.me.myalbum.MyAlbumActivity" />
+        <activity android:name=".ui.me.myalbum.createalbum.CreateAlbumActivity" />
+        <activity android:name=".ui.me.myalbum.editalbum.EditAlbumActivity" />
+        <activity android:name=".ui.me.othercenter.useralbum.albumdetail.CatOtherUserAlbumActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name="com.yunspeak.travel.ui.me.level.LevelActivity" />
-        <activity android:name="com.yunspeak.travel.ui.me.setting.SettingActivity" />
-        <activity android:name="com.yunspeak.travel.ui.find.active.ActiveActivity" />
-        <activity android:name="com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity" />
-        <activity android:name=".ui.me.titlemanage.TitleManagementActivity"/>
-        <activity android:name=".ui.appoint.travelplan.lineplan.selectdestination.customdestination.CustomDestinationActivity"/>
-        <activity android:name=".ui.find.active.activedetail.ActivateDetailActivity"/>
-        <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
-        <activity android:name=".ui.find.findcommon.deliciousdetail.DeliciousDetailActivity"/>
-        <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity"/>
-        <activity android:name=".ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity"/>
-        <activity android:name=".ui.appoint.travelplan.TravelsPlanActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ui.me.level.LevelActivity" />
+        <activity android:name=".ui.me.setting.SettingActivity" />
+        <activity android:name=".ui.find.active.ActiveActivity" />
+        <activity android:name=".ui.appoint.travelplan.TravelsPlanWithMeActivity" />
+        <activity android:name=".ui.me.titlemanage.TitleManagementActivity" />
+        <activity android:name=".ui.appoint.travelplan.lineplan.selectdestination.customdestination.CustomDestinationActivity" />
+        <activity android:name=".ui.find.active.activedetail.ActivateDetailActivity" />
+        <activity
+            android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.find.findcommon.deliciousdetail.DeliciousDetailActivity" />
+        <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity" />
+        <activity android:name=".ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity" />
+        <activity
+            android:name=".ui.appoint.travelplan.TravelsPlanActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard|"
             android:screenOrientation="portrait"
-            />
-        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingActivity"
-           android:windowSoftInputMode="adjustPan"
-            />
-        <activity android:name=".ui.appoint.withme.withmedetail.AppointWithMeDetailActivity"/>
-        <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentWithMeActivity"/>
-        <activity android:name=".ui.home.welcome.splash.login.LoginActivity"
-            android:launchMode="singleTop"
-            />
-        <activity android:name=".ui.find.findcommon.FindCommonActivity"/>
-        <activity android:name=".ui.find.travels.travelsdetail.TravelsDetailActivity"/>
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.CostSettingActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.appoint.withme.withmedetail.AppointWithMeDetailActivity" />
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentWithMeActivity" />
+        <activity
+            android:name=".ui.home.welcome.splash.login.LoginActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.find.findcommon.FindCommonActivity" />
+        <activity android:name=".ui.find.travels.travelsdetail.TravelsDetailActivity" />
         <activity android:name=".ui.find.findcommon.destinationdetail.DestinationDetailActivity" />
-        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.ChoicePropsActivity"/>
-        <activity android:name=".ui.appoint.travelplan.personnelequipment.aite.AiteActivity"/>
-        <activity android:name=".ui.me.myappoint.MyAppointActivity"/>
-        <activity android:name=".ui.me.bulltetinboard.BulletinBoardActivity"/>
-        <activity android:name=".ui.me.mycollection.MyCollectionActivity"/>
-        <activity android:name=".ui.me.myappoint.memberdetail.MemberDetailActivity"/>
-        <activity android:name=".ui.me.ordercenter.OrdersCenterActivity"/>
-        <activity android:name=".ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity"/>
-        <activity android:name=".ui.me.mycollection.collectiondetail.CollectionDetailActivity"/>
-        <activity android:name=".ui.me.userservice.CustomerServiceActivity"/>
-        <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity"/>
-        <activity android:name=".ui.me.changephone.ChangePhoneActivity"/>
-        <activity android:name=".ui.me.messagecenter.privatemessage.MessagePrivateActivity"/>
-        <activity android:name=".ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity"/>
-        <activity android:name=".ui.me.myhobby.MyHobbyActivity"/>
-        <activity android:name=".ui.me.setting.personalprofile.PersonalProfileActivity"/>
-        <activity android:name=".ui.home.homesearch.HomeSearchActivity"/>
-        <activity android:name=".ui.me.messagecenter.appointmessage.AppointMessageActivity"/>
-        <activity android:name=".ui.me.identityauth.IdentityAuthenticationActivity"/>
-        <activity android:name=".ui.appoint.travelplan.lineplan.LinePlanActivity"/>
-        <activity android:name=".ui.me.messagecenter.systemmessage.SystemMessageActivity"/>
-        <activity android:name=".ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity"/>
-        <activity android:name=".ui.me.about.AboutActivity"/>
-        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.createsuccess.CreateAppointSuccessActivity"/>
-        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.DesRemarkActivity"
-            android:windowSoftInputMode="adjustPan"
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.ChoicePropsActivity" />
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.aite.AiteActivity" />
+        <activity android:name=".ui.me.myappoint.MyAppointActivity" />
+        <activity android:name=".ui.me.bulltetinboard.BulletinBoardActivity" />
+        <activity android:name=".ui.me.mycollection.MyCollectionActivity" />
+        <activity android:name=".ui.me.myappoint.memberdetail.MemberDetailActivity" />
+        <activity android:name=".ui.me.ordercenter.OrdersCenterActivity" />
+        <activity android:name=".ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity" />
+        <activity android:name=".ui.me.mycollection.collectiondetail.CollectionDetailActivity" />
+        <activity android:name=".ui.me.userservice.CustomerServiceActivity" />
+        <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity" />
+        <activity android:name=".ui.me.changephone.ChangePhoneActivity" />
+        <activity android:name=".ui.me.messagecenter.privatemessage.MessagePrivateActivity" />
+        <activity android:name=".ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity" />
+        <activity android:name=".ui.me.myhobby.MyHobbyActivity" />
+        <activity android:name=".ui.me.setting.personalprofile.PersonalProfileActivity" />
+        <activity android:name=".ui.home.homesearch.HomeSearchActivity" />
+        <activity android:name=".ui.me.messagecenter.appointmessage.AppointMessageActivity" />
+        <activity android:name=".ui.me.identityauth.IdentityAuthenticationActivity" />
+        <activity android:name=".ui.appoint.travelplan.lineplan.LinePlanActivity" />
+        <activity android:name=".ui.me.messagecenter.systemmessage.SystemMessageActivity" />
+        <activity android:name=".ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity" />
+        <activity android:name=".ui.me.about.AboutActivity" />
+        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.createsuccess.CreateAppointSuccessActivity" />
+        <activity
+            android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.DesRemarkActivity"
             android:launchMode="singleTop"
-            />
-        <activity android:name=".ui.appoint.together.togetherdetail.AppointTogetherDetailActivity"/>
-        <activity android:name=".ui.me.messagecenter.relateme.RelateMeActivity"/>
-        <activity android:name=".ui.find.hotel.HotelActivity"/>
-        <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.settingtitle.SettingTitleActivity"
-            android:launchMode="singleTop"
-            />
-        <activity android:name=".ui.home.welcome.splash.register.RegisterActivity"
-            android:launchMode="singleTop"
-            />
-        <activity android:name=".ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity"
-            />
-        <activity android:name=".ui.circle.circlenav.circledetail.CircleDetailActivity"
-            />
-        <activity android:name=".ui.circle.circlenav.circledetail.createpost.CreatePostActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.appoint.together.togetherdetail.AppointTogetherDetailActivity" />
+        <activity android:name=".ui.me.messagecenter.relateme.RelateMeActivity" />
+        <activity android:name=".ui.find.hotel.HotelActivity" />
+        <activity
+            android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.settingtitle.SettingTitleActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ui.home.welcome.splash.register.RegisterActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.home.welcome.splash.register.registersuccess.RegisterSuccessActivity" />
+        <activity android:name=".ui.circle.circlenav.circledetail.CircleDetailActivity" />
+        <activity
+            android:name=".ui.circle.circlenav.circledetail.createpost.CreatePostActivity"
             android:theme="@style/CreatePostTheme"
-            />
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.me.mytheme.MyThemeActivity" />
         <activity android:name=".ui.me.identityauth.idauth.IdAuthActivity" />
         <activity android:name=".ui.me.changepassword.ChangePassWordActivity" />
@@ -179,34 +178,33 @@
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity
             android:name="com.alipay.sdk.app.H5AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity android:name=".ui.me.myappoint.chat.chatsetting.memberdetail.ChatMemberDetailActivity" />
         <activity android:name=".ui.me.myappoint.chat.chatsetting.ChatSettingActivity" />
         <activity android:name=".ui.me.myappoint.chat.chatsetting.privatesetting.PrivateChatSettingActivity" />
-        <activity android:name=".ui.me.myappoint.chat.ChatActivity"
-            android:windowSoftInputMode="stateHidden"
-            />
-
+        <activity
+            android:name=".ui.me.myappoint.chat.ChatActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.hyphenate.easeui.ui.EaseWebMapActivity" />
-
         <activity
             android:name="com.mob.tools.MobUIShell"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
             <!-- QQ和QQ空间分享 QQ登录的回调必须要配置的 -->
             <intent-filter>
                 <data android:scheme="tencent1105710671" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -214,31 +212,37 @@
             <!-- 新浪微博客户端分享回调必须配置 -->
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!--微信分享回调 -->
+        <!-- 微信分享回调 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity" />
         <activity android:name=".ui.find.travels.TravelsActivity" />
         <activity android:name=".ui.me.myappoint.historyorders.HistoryOrdersActivity" />
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="DOwVc765t3sy69IdYQVefrKNEsciH5EO" />
         <!-- 地图 -->
-        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"/>
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
-        <activity android:name=".ui.appoint.searchappoint.SearchAppointActivity"
-            android:launchMode="singleTop"
-            />
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ui.appoint.searchappoint.SearchAppointActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".ui.home.welcome.splash.register.WebViewActivity" />
         <activity android:name=".ui.me.identityauth.idauth.DriverAuthActivity" />
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.payresult.PayResultActivity" />
@@ -250,20 +254,27 @@
             android:enabled="true"
             android:process=":remote" />
         <!-- alipay sdk end -->
-        <!-- 声明SDK所需的service SDK核心功能-->
-        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
+        <!-- 声明SDK所需的service SDK核心功能 -->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true" />
         <!-- 声明SDK所需的receiver -->
         <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                <data android:scheme="package"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
             </intent-filter>
             <!-- 可选filter -->
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name=".service.MessageReciviceService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

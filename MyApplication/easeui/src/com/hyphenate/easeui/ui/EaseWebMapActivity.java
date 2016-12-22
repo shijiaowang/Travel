@@ -47,10 +47,6 @@ public class EaseWebMapActivity extends AppCompatActivity {
     private double latitude;
     private double longtitude;
     private boolean locationIsSuccess=false;
-
-
-
-
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     private String address;

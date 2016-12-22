@@ -30,8 +30,7 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
     @BindView(R.id.rl_title_bg) RelativeLayout mRlTitleBg;
     @BindView(R.id.tv_left_title) TextView mTvLeftTitle;
     @BindView(R.id.tv_right_title) TextView mTvRightTitle;
-    @BindView(R.id.v_left) View left;
-    @BindView(R.id.v_right) View right;
+
 
     @Override
     protected int initLayoutRes() {
@@ -53,31 +52,15 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
         initTitle(0);
     }
 
-    /**
-     * 设置颜色
-     * @param isEmpty
-     */
-    public void showEmpty(boolean isEmpty){
 
-        if (isEmpty){
-            int meLine=getContext().getResources().getColor(R.color.meLine);
-            setColor(meLine);
-        }else {
-            int meWhite=getContext().getResources().getColor(R.color.colorFAFAFA);
-            setColor(meWhite);
-        }
-    }
 
-    private void setColor(int meLine) {
-        left.setBackgroundColor(meLine);
-        right.setBackgroundColor(meLine);
-    }
+
 
     @Override
     protected void initListener() {
         mTvLeftTitle.setOnClickListener(this);
         mTvRightTitle.setOnClickListener(this);
-       mVpCircle.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+       mVpCircle.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
            @Override
            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                initTitle(position);

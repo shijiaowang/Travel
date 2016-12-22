@@ -6,26 +6,28 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.AppointTogetherDetailBean;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
 
 import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/9/5 0005.
  */
-public class AppointDetailLineItemHolder extends BaseHolder<AppointTogetherDetailBean.DataBean.RoutesBean> {
+public class AppointDetailLineItemHolder extends BaseRecycleViewHolder<AppointTogetherDetailBean.DataBean.RoutesBean> {
     @BindView(R.id.tv_spot_name) TextView mTvSpotName;
-    public AppointDetailLineItemHolder(Context context) {
-        super(context);
-    }
 
+    public AppointDetailLineItemHolder(View itemView) {
+        super(itemView);
+    }
     @Override
-    protected void initItemDatas(AppointTogetherDetailBean.DataBean.RoutesBean datas, Context mContext, int position) {
+    public void childBindView(int position, final AppointTogetherDetailBean.DataBean.RoutesBean datas, final Context mContext) {
         mTvSpotName.setText(datas.getCity()+" · "+datas.getTitle());
-    }
-
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_appoint_detail_line_item);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DestinationDetailActivity.start(mContext,datas.getId(),datas.getTitle());
+            }
+        });
     }
 }

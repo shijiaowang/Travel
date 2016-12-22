@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -61,9 +60,9 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     @BindView(R.id.tv_end_add)
     TextView mTvEndAdd;
     @BindView(R.id.lv_route_line)
-    ToShowAllListView mLvRouteLine;
+    RecyclerView mLvRouteLine;
     @BindView(R.id.lv_route_detail_line)
-    ToShowAllListView mLvRouteDetailLine;
+    RecyclerView mLvRouteDetailLine;
     @BindView(R.id.iv_user_icon)
     SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_user_nick_name)
@@ -126,7 +125,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
     AvoidFastButton mBvEnter;
     @BindView(R.id.bt_chat) AvoidFastButton mBtChat;
     @BindView(R.id.v_line) View mVline;
-    @BindView(R.id.ll_hide_root) LinearLayout mLlRoot;
     private boolean isDetail = false;//默认缩略图
     private String tId;
     private List<List<AppointTogetherDetailBean.DataBean.RoutesBean>> lists = new ArrayList<>();
@@ -239,7 +237,7 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
 
         AppointTogetherDetailBean appointTogetherDetail = GsonUtils.getObject(event.getResult(), AppointTogetherDetailBean.class);
         if (appointTogetherDetail == null) return;
-        AppointTogetherDetailBean.DataBean data = appointTogetherDetail.getData();
+        final AppointTogetherDetailBean.DataBean data = appointTogetherDetail.getData();
         String action = data.getAction();
         title = data.getRoutes_title();
         isCollect = data.getIs_collect();
@@ -247,11 +245,19 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         userId = data.getUser_id();
         isBoss = userId.equals(GlobalUtils.getUserInfo().getId());
         initAction(action);
-        List<AppointTogetherDetailBean.DataBean.RoutesBean> routes = dealDate(data);
         initSomeData(data);
-        classificationDay(lists, routes);
-        TravelDetailLineAdapter travelDetailLineAdapter = new TravelDetailLineAdapter(this, lists, true);
-        mLvRouteDetailLine.setAdapter(travelDetailLineAdapter);
+        String travelImg = data.getTravel_img();
+        FrescoUtils.displayNormal(mIvAppointBg, travelImg);
+        waitLoadData(data);
+
+
+    }
+
+    /**
+     * 延迟加载的数据
+     * @param data
+     */
+    private void waitLoadData(AppointTogetherDetailBean.DataBean data) {
         List<PeopleBean> ingPeople = data.getIng_people();
         if (ingPeople != null && ingPeople.size() != 0) {
             mRvEnter.setAdapter(new AppointDetailHaveEnterAdapter(this, ingPeople));
@@ -262,6 +268,11 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
             mRvHaveEnter.setAdapter(new AppointDetailHaveEnterAdapter(this, intoPeople));
             mRvHaveEnter.setLayoutManager(new GridLayoutManager(this, intoPeople.size()));
         }
+
+
+        mTvRemark.setText(data.getTraffic_text());
+        mTvStartAdd.setText(data.getMeet_address());
+        mTvEndAdd.setText(data.getOver_address());
         List<AppointTogetherDetailBean.DataBean.PropBean> prop = data.getProp();
         if (getListSize(prop)==0) {
             prop=new ArrayList<>();
@@ -288,7 +299,16 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         mLvInsurance.setHasFixedSize(true);
         mLvInsurance.setAdapter(costSettingAdapter);
         mLvInsurance.setLayoutManager(linearLayoutManager);
-        mLlRoot.setVisibility(View.VISIBLE);
+        List<AppointTogetherDetailBean.DataBean.RoutesBean> routes = dealDate(data);
+        classificationDay(routes);
+        TravelDetailLineAdapter travelDetailLineAdapter = new TravelDetailLineAdapter(lists,this,true);
+        LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(this);
+        linearLayoutManager.setAutoMeasureEnabled(true);
+        mLvRouteDetailLine.setNestedScrollingEnabled(false);
+        mLvRouteDetailLine.setHasFixedSize(true);
+        mLvRouteDetailLine.setAdapter(travelDetailLineAdapter);
+        mLvRouteDetailLine.setLayoutManager(linearLayoutManager1);
+
     }
 
     /**
@@ -329,8 +349,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 OtherUserCenterActivity.start(AppointTogetherDetailActivity.this,mIvUserIcon,data.getUser_id());
             }
         });
-        String travelImg = data.getTravel_img();
-      FrescoUtils.displayNormal(mIvAppointBg, travelImg);
         if (mFlTitle.getChildCount() > 0) mFlTitle.removeAllViews();
         dealLabel(data);
         mTvUserNickName.setText(data.getUser_name());
@@ -350,9 +368,6 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
         mTvTraffic.setText(data.getTraffic());
         mTvPrice.setText("¥" + data.getTotal_price());
         mTvDes.setText(data.getBasectext());
-        mTvRemark.setText(data.getTraffic_text());
-        mTvStartAdd.setText(data.getMeet_address());
-        mTvEndAdd.setText(data.getOver_address());
         mTvKey.setText(data.getId_code());
         int intoCount = data.getInto_people() == null ? 0 : data.getInto_people().size();
         mTvHaveEnter.setText("已报名(" + intoCount + ")");
@@ -406,11 +421,9 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
 
     /**
      * 分类目的地 根据时间进行天数归类
-     *
-     * @param lists
      * @param routes
      */
-    private void classificationDay(List<List<AppointTogetherDetailBean.DataBean.RoutesBean>> lists, List<AppointTogetherDetailBean.DataBean.RoutesBean> routes) {
+    private void classificationDay(List<AppointTogetherDetailBean.DataBean.RoutesBean> routes) {
 
         try {
             List<AppointTogetherDetailBean.DataBean.RoutesBean> dayList = new ArrayList<>();
@@ -451,8 +464,13 @@ public class AppointTogetherDetailActivity extends BaseNetWorkActivity<AppointTo
                 isDetail = !isDetail;
                 if (lists == null || lists.size() == 0) return;
                 if (normalDetailLineAdapter==null){
-                    normalDetailLineAdapter = new TravelDetailLineAdapter(this, lists,false);
+                    normalDetailLineAdapter = new TravelDetailLineAdapter(lists,this,false);
+                    LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
                     mLvRouteLine.setAdapter(normalDetailLineAdapter);
+                    linearLayoutManager.setAutoMeasureEnabled(true);
+                    mLvRouteLine.setNestedScrollingEnabled(false);
+                    mLvRouteLine.setHasFixedSize(true);
+                    mLvRouteLine.setLayoutManager(linearLayoutManager);
                 }
                 mLvRouteDetailLine.setVisibility(isDetail?View.VISIBLE:View.GONE);
                 mLvRouteLine.setVisibility(isDetail?View.GONE:View.VISIBLE);

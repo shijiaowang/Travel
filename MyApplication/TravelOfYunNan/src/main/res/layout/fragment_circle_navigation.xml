@@ -16,6 +16,7 @@
         android:choiceMode="singleChoice"
         android:divider="@null"
         android:paddingTop="@dimen/x6"
+        android:clipToPadding="false"
         android:scrollbars="none">
 
     </ListView>
@@ -25,6 +26,8 @@
         android:layout_height="match_parent"
         android:layout_weight="3">
         <ListView
+            android:paddingTop="@dimen/x6"
+            android:clipToPadding="false"
             android:paddingLeft="@dimen/x20"
             android:paddingRight="@dimen/x20"
             android:id="@+id/lv_right_nav"

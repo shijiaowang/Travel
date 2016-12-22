@@ -7,34 +7,40 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.AppointTogetherDetailBean;
-import com.yunspeak.travel.ui.adapter.holer.BaseHolder;
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
+import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 
+import butterknife.BindString;
 import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/9/5 0005.
  */
-public class AppointDetailLineDetailHolder extends BaseHolder<AppointTogetherDetailBean.DataBean.RoutesBean> {
+public class AppointDetailLineDetailHolder extends BaseRecycleViewHolder<AppointTogetherDetailBean.DataBean.RoutesBean> {
     @BindView(R.id.iv_bg) SimpleDraweeView mIvBg;
     @BindView(R.id.tv_des) TextView mTvDes;
     @BindView(R.id.tv_address) TextView mTvAddress;
     @BindView(R.id.tv_name) TextView mTvName;
+    @BindString(R.string.item_fragment_find_add) String addressIcon;
 
-    public AppointDetailLineDetailHolder(Context context) {
-        super(context);
+    public AppointDetailLineDetailHolder(View itemView) {
+        super(itemView);
     }
 
+
     @Override
-    protected void initItemDatas(AppointTogetherDetailBean.DataBean.RoutesBean datas, Context mContext, int position) {
-        FrescoUtils.displayNormal(mIvBg,datas.getLogo_img(),R.drawable.normal_2_1);
-        mTvAddress.setText(datas.getAddress());
+    public void childBindView(int position, final AppointTogetherDetailBean.DataBean.RoutesBean datas, final Context mContext) {
+        FrescoUtils.displayNormal(mIvBg,datas.getLogo_img(),300,200,R.drawable.normal_2_1);
+        AiteUtils.setIconText(addressIcon,datas.getAddress(),mContext,mTvAddress);
         mTvDes.setText(datas.getProvince()+datas.getContent());
         mTvName.setText(datas.getCity()+" · "+datas.getTitle());
-    }
-
-    @Override
-    public View initRootView(Context mContext) {
-        return inflateView(R.layout.item_appoint_detail_line_detail);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DestinationDetailActivity.start(mContext,datas.getId(),datas.getTitle());
+            }
+        });
     }
 }

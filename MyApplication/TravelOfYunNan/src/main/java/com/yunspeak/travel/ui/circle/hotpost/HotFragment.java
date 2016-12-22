@@ -5,7 +5,6 @@ import com.yunspeak.travel.bean.HotPostBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.LoadAndPullBaseFragment;
-import com.yunspeak.travel.ui.circle.CircleFragment;
 
 import java.util.List;
 
@@ -26,17 +25,7 @@ public class HotFragment extends LoadAndPullBaseFragment<HotEvent,HotPostBean,Ho
         changeMargin(10,5);
     }
 
-    @Override
-    public void onSuccess(HotEvent hotEvent) {
-        super.onSuccess(hotEvent);
-        try {
-            boolean isEmpty=getListSize(mDatas)==0;
-            ((CircleFragment) this.getParentFragment()).showEmpty(isEmpty);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-    }
 
     @Override
     protected String initUrl() {
