@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 
+
 /** 编辑页面中删除图片“X”按钮 */
 public class XView extends View {
 	private float ratio;

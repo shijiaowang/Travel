@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.generic.RoundingParams;
@@ -53,6 +54,27 @@ public class EaseUserUtils {
             displayIcon(imageView, userInfo.getAvatar(), context);
         }
     }
+    /**
+     * set user avatar
+     *
+     * @param username
+     */
+    public static void setGroupAvatar(Context context, String username, SimpleDraweeView imageView) {
+        EaseUser userInfo = getUserInfo(username);
+        if (userInfo==null){
+            imageView.setImageURI(Uri.parse("res:///"+R.drawable.ease_group_icon));
+        }else {
+            displayRoundIcon(context,imageView, userInfo.getAvatar(), 200,200,R.drawable.ease_group_icon);
+        }
+    }
+    public static void setUserAvatarInChat(Context context, String username, SimpleDraweeView imageView) {
+        EaseUser userInfo = getUserInfo(username);
+        if (userInfo==null){
+            imageView.setImageURI(Uri.parse("res:///"+R.drawable.ease_default_avatar));
+        }else {
+            displayRoundIcon(context, imageView, userInfo.getAvatar(), 200,200,R.drawable.ease_default_avatar);
+        }
+    }
 
     /**
      * 获取用户名
@@ -80,7 +102,35 @@ public class EaseUserUtils {
         	}
         }
     }
+    public static void displayRoundIcon(Context context, SimpleDraweeView simpleDraweeView, String url, int width, int height,int res){
+        if (simpleDraweeView==null || url==null)return;
+        Uri uri=Uri.parse(url);
+        RoundingParams roundingParams=new RoundingParams();
+        roundingParams.setCornersRadius(10f);
+        //获取GenericDraweeHierarchy对象
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setResizeOptions(new ResizeOptions(width,height))
 
+                .build();
+        GenericDraweeHierarchy hierarchy = GenericDraweeHierarchyBuilder.newInstance(context.getResources())
+                //设置圆形圆角参数；RoundingParams.asCircle()是将图像设置成圆形
+                .setRoundingParams(roundingParams)
+                //设置淡入淡出动画持续时间(单位：毫秒ms)
+                .setFadeDuration(1000)
+                .setPlaceholderImage(res)
+                .setPlaceholderImageScaleType(ScalingUtils.ScaleType.FIT_XY)
+                .setFailureImage(res)
+                .setFailureImageScaleType(ScalingUtils.ScaleType.FIT_XY)
+                //构建
+                .build();
+
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setImageRequest(request)
+                .setOldController(simpleDraweeView.getController())
+                .build();
+        simpleDraweeView.setHierarchy(hierarchy);
+        simpleDraweeView.setController(controller);
+    }
     /**
      * 加载圆形头像
      *

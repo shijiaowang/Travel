@@ -63,7 +63,6 @@ public class ChatActivity extends EaseBaseActivity {
             title="群组聊天";
         }else {
             title="单聊";
-
         }
         chatFragment = new ChatFragment();
         Bundle bundle = new Bundle();

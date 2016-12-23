@@ -41,7 +41,6 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
    @BindView(R.id.ll_root)
     LinearLayout llRoot;
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.my_appoint_menu,menu);
@@ -203,6 +202,7 @@ public class MyAppointActivity extends BaseRecycleViewActivity<MyAppointEvent,My
         }
         preType=type;
     }
+
 
     private void toRefresh() {
         if (type.equals(preType))return;

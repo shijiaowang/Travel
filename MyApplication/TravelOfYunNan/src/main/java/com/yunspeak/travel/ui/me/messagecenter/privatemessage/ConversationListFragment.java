@@ -39,7 +39,7 @@ public class ConversationListFragment extends EaseConversationListFragment {
                     public void onClick(int type) {
                         EMConversation conversation = conversationListView.getItem(position);
                         String username = conversation.getUserName();
-                        EMClient.getInstance().chatManager().deleteConversation(username, false);//保存聊天记录
+                        EMClient.getInstance().chatManager().deleteConversation(username, true);//保存聊天记录
                         conversationListView.refresh();
                     }
                 });
