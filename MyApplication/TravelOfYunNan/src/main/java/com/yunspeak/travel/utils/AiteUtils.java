@@ -109,7 +109,7 @@ public class AiteUtils {
             Map<String, EMConversation> allConversations = EMClient.getInstance().chatManager().getAllConversations();
             Set<String> strings = allConversations.keySet();
             Iterator<String> iterator = strings.iterator();
-            if (iterator.hasNext()){
+            while(iterator.hasNext()){
                 String next = iterator.next();
                 EMConversation emConversation = allConversations.get(next);
                 unreadMsgCount+= emConversation.getUnreadMsgCount();

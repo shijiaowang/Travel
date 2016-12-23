@@ -13,10 +13,20 @@
  */
 package com.hyphenate.easeui.ui;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
@@ -29,22 +39,7 @@ import com.hyphenate.easeui.widget.photoview.PhotoViewAttacher;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.ImageUtils;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import java.io.File;
 
 /**
  * download and show original image
@@ -58,6 +53,7 @@ public class EaseShowBigImageActivity extends EaseBaseActivity {
 	private String localFilePath;
 	private Bitmap bitmap;
 	private boolean isDownloaded;
+	private String path;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -80,7 +76,7 @@ public class EaseShowBigImageActivity extends EaseBaseActivity {
 		image = (EasePhotoView) findViewById(R.id.image);
 		ProgressBar loadLocalPb = (ProgressBar) findViewById(R.id.pb_load_local);
 		default_res = getIntent().getIntExtra("default_image", R.drawable.ease_default_avatar);
-		Uri uri = getIntent().getParcelableExtra("uri");
+		final Uri uri = getIntent().getParcelableExtra("uri");
 		localFilePath = getIntent().getExtras().getString("localUrl");
 		String msgId = getIntent().getExtras().getString("messageId");
 		EMLog.d(TAG, "show big msgId:" + msgId );
@@ -91,7 +87,8 @@ public class EaseShowBigImageActivity extends EaseBaseActivity {
 			getWindowManager().getDefaultDisplay().getMetrics(metrics);
 			// int screenWidth = metrics.widthPixels;
 			// int screenHeight =metrics.heightPixels;
-			bitmap = EaseImageCache.getInstance().get(uri.getPath());
+			path = uri.getPath();
+			bitmap = EaseImageCache.getInstance().get(path);
 			if (bitmap == null) {
 				EaseLoadLocalBigImgTask task = new EaseLoadLocalBigImgTask(this, uri.getPath(), image, loadLocalPb, ImageUtils.SCALE_IMAGE_WIDTH,
 						ImageUtils.SCALE_IMAGE_HEIGHT);
@@ -111,7 +108,16 @@ public class EaseShowBigImageActivity extends EaseBaseActivity {
       image.setOnLongClickListener(new View.OnLongClickListener() {
 	  @Override
 	  public boolean onLongClick(View v) {
-		  Toast.makeText(EaseShowBigImageActivity.this, "长按啦", Toast.LENGTH_SHORT).show();
+		  String url;
+		  if (path!=null && !path.equalsIgnoreCase("")){
+			  url=path;
+		  }else {
+			  url=localFilePath;
+		  }
+		  if (url==null || url.equalsIgnoreCase("")){
+			  url="未知";
+		  }
+		  Toast.makeText(EaseShowBigImageActivity.this,"图片路径为:"+url, Toast.LENGTH_SHORT).show();
 		  return true;
 	  }
      });

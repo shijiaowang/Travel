@@ -21,6 +21,7 @@ import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.privatesetting.Priva
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -57,12 +58,18 @@ public class ChatActivity extends EaseBaseActivity {
         activityInstance = this;
         //user or group id
         toChatUsername = getIntent().getStringExtra(IVariable.CHAT_ID);
+        String userName = getIntent().getStringExtra(IVariable.USERNAME);
+
         chatType = getIntent().getIntExtra(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
         getChatInfo();
-        if (chatType==EaseConstant.CHATTYPE_GROUP){
-            title="群组聊天";
+        if (StringUtils.isEmpty(userName)) {
+            if (chatType == EaseConstant.CHATTYPE_GROUP) {
+                title = "群组聊天";
+            } else {
+                title = "单聊";
+            }
         }else {
-            title="单聊";
+            title=userName;
         }
         chatFragment = new ChatFragment();
         Bundle bundle = new Bundle();
@@ -139,6 +146,16 @@ public class ChatActivity extends EaseBaseActivity {
                 List<UserInfo> data = chatBean.getData();
                 if (chatType==EaseConstant.CHATTYPE_SINGLE){
                     tvTitle.setText(data.get(0).getNick_name());
+                }else if (chatType==EaseConstant.CHATTYPE_GROUP){
+                    ChatBean.TravelBean travel = chatBean.getTravel();
+                    if (travel!=null) {
+                        tvTitle.setText(travel.getTravel_title());
+                        UserInfo userInfo = new UserInfo();
+                        userInfo.setId(toChatUsername);
+                        userInfo.setNick_name(travel.getTravel_title());
+                        userInfo.setUser_img(travel.getTravel_img());
+                        data.add(userInfo);
+                    }
                 }
                 DBManager.insertChatUserInfo(data);//初次存入用户信息
             } catch (Exception e) {

@@ -14,6 +14,7 @@ import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorAc
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorEvent;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
+import com.yunspeak.travel.ui.view.zoomable.DoubleTapGestureListener;
 import com.yunspeak.travel.ui.view.zoomable.ZoomableDraweeView;
 import com.yunspeak.travel.utils.ToastUtils;
 import org.greenrobot.eventbus.EventBus;
@@ -120,7 +121,8 @@ public class PreviewPicturesActivity extends BaseActivity implements View.OnClic
         public Object instantiateItem(ViewGroup container, int position) {
 
             ZoomableDraweeView zoomableDraweeView =new ZoomableDraweeView(PreviewPicturesActivity.this);
-            zoomableDraweeView.setAllowTouchInterceptionWhileZoomed(false);
+            zoomableDraweeView.setAllowTouchInterceptionWhileZoomed(true);
+            zoomableDraweeView.setTapListener(new DoubleTapGestureListener(zoomableDraweeView));
             DraweeController controller = Fresco.newDraweeControllerBuilder()
                     .setUri(GlobalValue.mSelectImages.get(position))
                     .build();

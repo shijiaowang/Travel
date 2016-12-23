@@ -14,8 +14,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -27,8 +25,8 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.view.zoomable.DoubleTapGestureListener;
 import com.yunspeak.travel.ui.view.zoomable.ZoomableDraweeView;
-import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MD5Utils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.zhy.m.permission.MPermissions;
@@ -151,31 +149,12 @@ public class CirclePreviewActivity extends AppCompatActivity implements View.OnC
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             final ZoomableDraweeView zoomableDraweeView =new ZoomableDraweeView(CirclePreviewActivity.this);
-            zoomableDraweeView.setAllowTouchInterceptionWhileZoomed(false);
+            zoomableDraweeView.setAllowTouchInterceptionWhileZoomed(true);
             DraweeController controller = Fresco.newDraweeControllerBuilder()
                     .setUri(imgListsBeen.get(position))
                     .build();
             zoomableDraweeView.setController(controller);
-            zoomableDraweeView.setTapListener(new GestureDetector.SimpleOnGestureListener(){
-
-
-                @Override
-                public boolean onSingleTapConfirmed(MotionEvent e) {
-                    LogUtils.e("onSingleTapConfirmed");
-                    onBackPressed();
-                    return super.onSingleTapConfirmed(e);
-                }
-
-                @Override
-                public boolean onDoubleTap(MotionEvent e) {
-                    return super.onDoubleTap(e);
-                }
-
-                @Override
-                public void onLongPress(MotionEvent e) {
-                    savePhoto();
-                }
-            });
+            zoomableDraweeView.setTapListener(new DoubleTapGestureListener(zoomableDraweeView));
             container.addView(zoomableDraweeView);
             return zoomableDraweeView;
         }

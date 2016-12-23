@@ -20,6 +20,8 @@ import com.yunspeak.travel.utils.UserUtils;
 public class ConversationListFragment extends EaseConversationListFragment {
 
 
+
+
     @Override
     protected void initView() {
         super.initView();
@@ -83,4 +85,5 @@ public class ConversationListFragment extends EaseConversationListFragment {
             ToastUtils.showToast("无法连接网络");
         }
     }
+
 }
