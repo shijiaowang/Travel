@@ -44,6 +44,10 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
         this.mDatas = mDatas;
     }
 
+    @Override
+    protected void noMoreData() {
+        mSwipe.setLoadingMore(false);
+    }
 
     @Override
     protected int initLayoutRes() {

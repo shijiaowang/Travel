@@ -24,6 +24,7 @@ import android.widget.ListView;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,28 +32,11 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.ButterKnife;
 
 
-public abstract class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity extends FragmentActivity implements IState{
 
-    public static final int TYPE_LOAD = 1;//普通读取请求
-    public static final int TYPE_REFRESH = 3;//刷新
-    public static final int TYPE_SEARCH = 5;//搜索
-    public static final int TYPE_UPDATE = 7;//更新
-    public static final int TYPE_UP_FILE = 12;//上传文件
-    public static final int TYPE_DISCUSS = 2;//留言
-    public static final int TYPE_LIKE_DISCUSS = 0;//点赞请求
-    public static final int TYPE_DELETE = 4;//删除
-    public static final int TYPE_SAVE = 6;//保存
-    public static final int TYPE_VER_MSG = 8;//发送短信验证
-    public static final int TYPE_OTHER = 9;//其他
-    public static final  int REQ_CODE=10;
-    public static final  int RESULT_CODE=11;
-    protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
-    protected static final int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
 
     private AlertDialog mAlertDialog;
-    public static final int TRAFFIC_TYPE =0;//交通方式
-    public static final int SEX_TYPE=1;//性别赛选
-    public static final int AUTH_TYPE=2;//认证筛选
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

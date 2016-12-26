@@ -105,7 +105,9 @@
         <activity
             android:name=".ui.appoint.travelplan.personnelequipment.PersonnelEquipmentActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.find.findcommon.deliciousdetail.DeliciousDetailActivity" />
+        <activity android:name=".ui.find.findcommon.deliciousdetail.DeliciousDetailActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
         <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.PictureSelectorActivity" />
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.orderdetail.OrdersDetailActivity" />
         <activity
@@ -122,8 +124,12 @@
             android:name=".ui.home.welcome.splash.login.LoginActivity"
             android:launchMode="singleTop" />
         <activity android:name=".ui.find.findcommon.FindCommonActivity" />
-        <activity android:name=".ui.find.travels.travelsdetail.TravelsDetailActivity" />
-        <activity android:name=".ui.find.findcommon.destinationdetail.DestinationDetailActivity" />
+        <activity android:name=".ui.find.travels.travelsdetail.TravelsDetailActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+        <activity android:name=".ui.find.findcommon.destinationdetail.DestinationDetailActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
         <activity android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.ChoicePropsActivity" />
         <activity android:name=".ui.appoint.travelplan.personnelequipment.aite.AiteActivity" />
         <activity android:name=".ui.me.myappoint.MyAppointActivity" />

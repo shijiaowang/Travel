@@ -76,7 +76,6 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
             pagerCursorView.setViewPager(vpFind, banner.size(), true,this);
             vpFind.setAdapter(new HomePagerAdapter(banner));
             vpFind.setOffscreenPageLimit(banner.size());
-            vpFind.setCurrentItem( banner.size()*100, false);
         }
 
     }

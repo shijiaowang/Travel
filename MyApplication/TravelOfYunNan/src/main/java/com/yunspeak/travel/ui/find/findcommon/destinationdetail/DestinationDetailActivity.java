@@ -1,8 +1,8 @@
 package com.yunspeak.travel.ui.find.findcommon.destinationdetail;
 
-
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -21,13 +21,13 @@ import com.google.android.flexbox.FlexboxLayout;
 import com.hyphenate.easeui.ui.EaseWebMapActivity;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.DestinationDetailBean;
+import com.yunspeak.travel.bean.TravelReplyBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.popwindow.AppointDetailMorePop;
 import com.yunspeak.travel.ui.appoint.searchappoint.SearchAppointActivity;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.photopreview.CirclePreviewActivity;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
-import com.yunspeak.travel.bean.TravelReplyBean;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -66,6 +66,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
        context.startActivity(intent);
   }
 
+
     @Override
     protected void initEvent() {
         super.initEvent();
@@ -83,6 +84,11 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         mTvShow = ((TextView) findViewById(R.id.tv_show));
         mTvNumber = ((TextView) findViewById(R.id.tv_number));
         mIvbg = ((SimpleDraweeView) findViewById(R.id.iv_bg));
+        String url = getIntent().getStringExtra(IVariable.URL);
+        if (!StringUtils.isEmpty(url)){
+            ViewCompat.setTransitionName(mIvbg,TRANSIT_IMAGE1);
+            FrescoUtils.displayNormal(mIvbg,url, 640, 360, R.drawable.normal_2_1);
+        }
         LinearLayout mLlSearchAppoint = ((LinearLayout) findViewById(R.id.ll_search_appoint));
         mFlowLayout = ((FlexboxLayout)findViewById(R.id.fl_label));
         mWvView = ((WebView) findViewById(R.id.wv_html));
@@ -100,6 +106,7 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         mWvView.setVerticalScrollBarEnabled(false);
         mTvShow.setOnClickListener(this);
         mLlSearchAppoint.setOnClickListener(this);
+
     }
 
     @Override
@@ -217,12 +224,9 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         mTvAdd.setText("·  " + travel.getAddress());
         String travel_img = travel.getTravel_img();
         String play_way = travel.getPlay_way();
-        String url;
         if (!StringUtils.isEmpty(travel_img)) {
             final String[] split = travel_img.split(",");
             mTvNumber.setText("共"+split.length+"张图片");
-            url = split[0];
-            FrescoUtils.displayNormal(mIvbg, url,640,360,R.drawable.normal_2_1);
             mIvbg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

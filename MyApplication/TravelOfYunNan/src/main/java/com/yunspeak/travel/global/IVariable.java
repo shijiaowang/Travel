@@ -208,6 +208,7 @@ public interface IVariable {
     String END_TIME = "end_time";//结束时间
     String TRAFFIC = "traffic";//交通
     String TRAFFIC_TEXT = "traffic_text";//出游备注
+    String SHARE_TEXT = "share_text";//共享的文字
     String MIN_PEOPLE = "min_people";//最少人数
     String MAX_PEOPLE = "max_people";//最多人数
     String TOTAL_PRICE = "total_price";//总价

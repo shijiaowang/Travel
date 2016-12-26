@@ -12,9 +12,6 @@
 
 package com.yunspeak.travel.ui.view.zoomable;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.RectF;
@@ -22,6 +19,9 @@ import android.support.annotation.IntDef;
 import android.view.MotionEvent;
 
 import com.facebook.common.logging.FLog;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 
 /**
@@ -57,7 +57,7 @@ public class DefaultZoomableController
   private Listener mListener = null;
 
   private boolean mIsEnabled = false;
-  private boolean mIsRotationEnabled = false;
+  private boolean mIsRotationEnabled = true;
   private boolean mIsScaleEnabled = true;
   private boolean mIsTranslationEnabled = true;
 

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -40,6 +41,7 @@ import butterknife.BindView;
  * 圈子详情
  */
 class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean.BodyBean> {
+
     @BindView(R.id.iv_user_icon) SimpleDraweeView mIvUserIcon;
     @BindView(R.id.tv_user_nick_name) TextView mTvUserNickName;
     @BindView(R.id.tv_time) TextView mTvTime;
@@ -47,6 +49,7 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
     @BindView(R.id.tv_title) TextView mTvTitle;
     @BindView(R.id.tv_discuss_number) TextView mTvDiscussNumber;
     @BindView(R.id.tv_content) TextView mTvContent;
+
     @BindView(R.id.rv_photo)
     RecyclerView mRvPhoto;
     @BindView(R.id.tv_icon_love) FontsIconTextView mTvIconLove;
@@ -54,8 +57,11 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
     int loveColor;
     @BindColor(R.color.colorA1a1a1) @ColorInt int notLoveColor;
     CircleDetailPhotoAdapter circleDetailPhotoAdapter;
+    private  int minScroll;//最小滑动距离
+
     public CircleDetailHolder(View itemView) {
         super(itemView);
+        minScroll = ViewConfiguration.get(itemView.getContext()).getScaledTouchSlop();
     }
 
     @Override
@@ -130,21 +136,30 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
                 //响应toolebar收缩
                 mRvPhoto.setHasFixedSize(true);
                 mRvPhoto.setOnTouchListener(new View.OnTouchListener() {
+                     float rawY;
+                     float rawX;
                     boolean needCallItemClick=false;
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         switch (event.getAction()){
                             case MotionEvent.ACTION_DOWN:
                                 needCallItemClick=true;
+                                 rawX =  event.getRawX();
+                                 rawY =  event.getRawY();
                                 break;
                             case MotionEvent.ACTION_MOVE:
-                                needCallItemClick=false;
+                                float currentX=event.getRawX();
+                                float currentY=event.getRawY();
+                                if (Math.abs(currentX-rawX)>minScroll || Math.abs(currentY-rawY)>minScroll){
+                                    needCallItemClick=false;
+                                }
                                 break;
                             case MotionEvent.ACTION_CANCEL:
                                 needCallItemClick=false;
                                 break;
                             case MotionEvent.ACTION_UP:
                                 if (needCallItemClick){
+                                    needCallItemClick=false;
                                     itemView.callOnClick();
                                 }
                                 break;

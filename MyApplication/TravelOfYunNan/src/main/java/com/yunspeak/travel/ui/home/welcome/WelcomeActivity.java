@@ -29,7 +29,6 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.x;
 
 import java.util.Map;
 
@@ -48,8 +47,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        EventBus.getDefault().register(this);
-        ActivityUtils.getInstance().addActivity(this);
+
     }
 
     @Override
@@ -59,7 +57,8 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
     @Override
     protected void initView() {
-
+        EventBus.getDefault().register(this);
+        ActivityUtils.getInstance().addActivity(this);
     }
 
     @Override
@@ -69,12 +68,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
     @Override
     protected void initData() {
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
+        LogUtils.e("闪屏页启动啦");
         String code = ShareUtil.getString(this,IVariable.KEY_VALUE, "");
         //获取key
         if (StringUtils.isEmpty(code)) {
@@ -92,13 +86,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
                 GO_WHERE_PAGE = START_LOGIN;
             }
         }
-    }
-
-    @Override
-    public void onResume() {
-
-        super.onResume();
-        x.task().postDelayed(new Runnable() {
+        getWindow().getDecorView().postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (!DBManager.cityDBIsExits()) {
@@ -113,9 +101,11 @@ public class WelcomeActivity extends FullTransparencyActivity {
                 }
                 finish();
             }
-        }, 1500);
-
+        },1500);
     }
+
+
+
 
 
     private void checkNetAndCheckLogin(String userName, String userPwd) {
@@ -186,8 +176,8 @@ public class WelcomeActivity extends FullTransparencyActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 }

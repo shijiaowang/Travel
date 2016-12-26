@@ -31,4 +31,7 @@ public interface IState {
     int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
      int TYPE_OTHER = 103;//其他
      int REQ_CODE = 104;
+     String TRANSIT_IMAGE1 = "transit_image1";
+     String TRANSIT_IMAGE2 = "transit_image2";
+     String TRANSIT_TEXT = "transit_text";
 }

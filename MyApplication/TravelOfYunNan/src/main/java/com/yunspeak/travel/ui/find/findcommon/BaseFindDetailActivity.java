@@ -1,5 +1,11 @@
 package com.yunspeak.travel.ui.find.findcommon;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -7,16 +13,17 @@ import android.view.View;
 import com.hyphenate.easeui.domain.EaseEmojicon;
 import com.hyphenate.easeui.widget.EaseChatInputMenu;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.CommonClickLikeBean;
 import com.yunspeak.travel.bean.FindLastReply;
-import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
+import com.yunspeak.travel.bean.TravelReplyBean;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.baseui.BaseBarChangeColorActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
-import com.yunspeak.travel.bean.CommonClickLikeBean;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DiscussCommonAdapter;
-import com.yunspeak.travel.bean.TravelReplyBean;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -45,7 +52,17 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     protected BaseRecycleViewAdapter initAdapter(List<TravelReplyBean> mDatas) {
         return new DiscussCommonAdapter(mDatas,this,detailType());
     }
+    public static void  startShareElement(Context context, String tid, String name, View imageView, String imageUrl){
+        Intent intent = new Intent(context, DestinationDetailActivity.class);
+        intent.putExtra(IVariable.T_ID, tid);
+        intent.putExtra(IVariable.NAME, name);
+        intent.putExtra(IVariable.URL, imageUrl);
+        ActivityOptionsCompat optionsCompat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,
+                        Pair.create(imageView,TRANSIT_IMAGE1));
+        ActivityCompat.startActivity((Activity) context, intent, optionsCompat.toBundle());
 
+    }
     /**
      * 那个孩子的详情
      * @return
@@ -53,7 +70,7 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     protected abstract String detailType();
 
     @Override
-    protected void onSuccess(DetailCommonEvent detailCommonEvent) {
+    protected void onSuccess(final DetailCommonEvent detailCommonEvent) {
 
         switch (detailCommonEvent.getType()){
             case TYPE_LIKE_DISCUSS:
@@ -75,9 +92,18 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
             default:
                 if (isFirst){
                     initHeader(detailCommonEvent);
-                    isFirst=false;
+                    getWindow().getDecorView().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            onSuccess(detailCommonEvent);//延迟加载下面的评论数据
+                            isFirst=false;
+                        }
+                    },150);
+
+                }else {
+                    super.onSuccess(detailCommonEvent);
                 }
-                super.onSuccess(detailCommonEvent);
+
                 break;
         }
 

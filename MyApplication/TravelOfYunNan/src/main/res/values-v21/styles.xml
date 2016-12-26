@@ -4,7 +4,12 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">@color/otherTitleBg</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentTransitions">true</item>
         <item name="colorAccent">@color/otherTitleBg</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/fresco_share_view</item>
+        <item name="android:windowSharedElementExitTransition">@transition/fresco_share_view</item>
     </style>
 
     <style name="ToolBarTheme" parent="AppTheme.Base"/>

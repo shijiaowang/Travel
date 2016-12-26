@@ -50,13 +50,13 @@ public class TravelsApplication extends MultiDexApplication {
         super.onCreate();
         MultiDex.install(this);
         x.Ext.init(this);
-        ImagePipelineConfig imagePipelineConfig = ImagePipelineConfigFactory.getImagePipelineConfig(this);
-        Fresco.initialize(this,imagePipelineConfig);
+        ImagePipelineConfig imagePipelineConfig = ImagePipelineConfigFactory.getImagePipelineConfig(getApplicationContext());
+        Fresco.initialize(getApplicationContext(),imagePipelineConfig);
         mContext = getApplicationContext();
-        mHandler = new Handler();
-        mainThreadId = android.os.Process.myTid();//获取主线程的id
         initUmeng();
         YunSpeakHelper.getInstance().init(mContext);
+
+
 
 
 

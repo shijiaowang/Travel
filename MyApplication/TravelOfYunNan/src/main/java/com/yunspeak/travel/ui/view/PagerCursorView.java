@@ -3,6 +3,8 @@ package com.yunspeak.travel.ui.view;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -51,6 +53,7 @@ public class PagerCursorView extends RelativeLayout {
     private ViewPager viewPager = null;
     private boolean breakAutoSlide=false;
     private Fragment fragment;
+    private int prePosition;
 
     public PagerCursorView(Context context) {
         super(context);
@@ -135,6 +138,13 @@ public class PagerCursorView extends RelativeLayout {
                 mLlRoot.getViewTreeObserver().removeGlobalOnLayoutListener(this);
             }
         });
+        viewPager.addOnAdapterChangeListener(new ViewPager.OnAdapterChangeListener() {
+            @Override
+            public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter oldAdapter, @Nullable PagerAdapter newAdapter) {
+                viewPager.setCurrentItem(childCount*100,false);
+                prePosition=childCount*100;
+            }
+        });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -146,18 +156,22 @@ public class PagerCursorView extends RelativeLayout {
                 if (rightPosition < childCount - 1) {
                     //动态改变小红点的值
                     float len = mPointDistance * positionOffset + mPointDistance * rightPosition;
-                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mVDot.getLayoutParams();
-                    layoutParams.leftMargin = (int) (len + mFirstDotLeft);
-                    //Utils.ShowToast(MainActivity.this,len+"");
-                    mVDot.setLayoutParams(layoutParams);
+                    movePoint(len);
                 }
+
             }
 
             @Override
             public void onPageSelected(int position) {
+
                 if (pagerOnChangeListener != null) {
                     pagerOnChangeListener.onPageSelected(position);
                 }
+                if (position%childCount==childCount-1 && prePosition==position+1){//第一个向左滑
+                    float len = mPointDistance * (childCount-1);
+                    movePoint(len);
+                }
+                prePosition = position;
             }
 
             @Override
@@ -170,6 +184,13 @@ public class PagerCursorView extends RelativeLayout {
         if (isAutoMove) {
             mHandler.sendEmptyMessageDelayed(0, 5000);
         }
+    }
+
+    private void movePoint(float len) {
+        LayoutParams layoutParams = (LayoutParams) mVDot.getLayoutParams();
+        layoutParams.leftMargin = (int) (len + mFirstDotLeft);
+        //Utils.ShowToast(MainActivity.this,len+"");
+        mVDot.setLayoutParams(layoutParams);
     }
 
     @Override

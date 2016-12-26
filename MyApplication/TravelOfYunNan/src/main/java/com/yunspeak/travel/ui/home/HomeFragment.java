@@ -66,7 +66,6 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         super.onFail(event);
         mSwipe.setRefreshing(false);
     }
-
     @Override
     public void onSuccess(HomeEvent event) {
        mSwipe.setRefreshing(false);
@@ -113,7 +112,6 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
             mVpActive.setOffscreenPageLimit(banner.size());
             pagerCursorView.setViewPager(mVpActive, banner.size(), true,this);
             mVpActive.setAdapter(new HomePagerAdapter(banner));
-            mVpActive.setCurrentItem(banner.size()*100,false);
         }
 
 

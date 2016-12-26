@@ -228,14 +228,14 @@ public abstract class BaseToolBarActivity extends BaseHideSoftActivity implement
      * 展示加载进度条
      *
      * @param isShow        显示还是隐藏
-     * @param needHideOther 显示时是否需要隐藏其他布局
+     * @param needHideContentView 显示时是否需要隐藏其他布局
      */
-    protected void setIsProgress(boolean isShow, boolean needHideOther) {
-        if (needHideOther) {
-            mIvPageError.setVisibility(View.GONE);
+    protected void setIsProgress(boolean isShow, boolean needHideContentView) {
+        if (needHideContentView) {
             needHideChildView.setVisibility(View.GONE);
-            mRlEmpty.setVisibility(View.GONE);
         }
+        mIvPageError.setVisibility(View.GONE);
+        mRlEmpty.setVisibility(View.GONE);
         mPbLoading.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 

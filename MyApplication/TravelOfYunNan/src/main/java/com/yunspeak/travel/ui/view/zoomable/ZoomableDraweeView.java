@@ -37,6 +37,7 @@ import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.generic.GenericDraweeHierarchyInflater;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.DraweeView;
+import com.yunspeak.travel.utils.LogUtils;
 
 /**
  * DraweeView that has zoomable capabilities.
@@ -189,8 +190,7 @@ public class ZoomableDraweeView extends DraweeView<GenericDraweeHierarchy>
    *
    * @param allowTouchInterceptionWhileZoomed true if the parent needs to intercept touches
    */
-  public void setAllowTouchInterceptionWhileZoomed(
-      boolean allowTouchInterceptionWhileZoomed) {
+  public void setAllowTouchInterceptionWhileZoomed(boolean allowTouchInterceptionWhileZoomed) {
     mAllowTouchInterceptionWhileZoomed = allowTouchInterceptionWhileZoomed;
   }
 
@@ -284,6 +284,7 @@ public class ZoomableDraweeView extends DraweeView<GenericDraweeHierarchy>
           "onTouchEvent: %d, view %x, handled by tap gesture detector",
           a,
           this.hashCode());
+      LogUtils.e("mTapGestureDetector.onTouchEvent");
       return true;
     }
     if (mZoomableController.onTouchEvent(event)) {
@@ -294,6 +295,7 @@ public class ZoomableDraweeView extends DraweeView<GenericDraweeHierarchy>
           (mAllowTouchInterceptionWhileZoomed && !mZoomableController.wasTransformCorrected())) {
         getParent().requestDisallowInterceptTouchEvent(true);
       }
+
       FLog.v(
           getLogTag(),
           "onTouchEvent: %d, view %x, handled by zoomable controller",
@@ -302,6 +304,7 @@ public class ZoomableDraweeView extends DraweeView<GenericDraweeHierarchy>
       return true;
     }
     if (super.onTouchEvent(event)) {
+      LogUtils.e("super.onTouchEvent");
       FLog.v(getLogTag(), "onTouchEvent: %d, view %x, handled by the super", a, this.hashCode());
       return true;
     }

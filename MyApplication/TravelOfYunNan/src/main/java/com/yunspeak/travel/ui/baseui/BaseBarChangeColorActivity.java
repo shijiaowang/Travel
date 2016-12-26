@@ -11,6 +11,7 @@ import android.view.ViewStub;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.ParentBean;
@@ -67,6 +68,10 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
         mRvCommon.addItemDecoration(new MyCollectionDecoration(space,top));
     }
 
+    @Override
+    protected void noMoreData() {
+        mSwipe.setLoadingMore(false);
+    }
 
     @Override
     protected int initLayoutRes() {
@@ -95,7 +100,7 @@ public abstract class BaseBarChangeColorActivity<T extends HttpEvent,E extends P
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         int count=type==TYPE_REFRESH?0:getListSize(mDatas);
-        builder.addPageSize().addCount(count);
+        builder.addPageSize().addCount(count).add(IVariable.PAGE_SIZE,10+"");
     }
 
     @Override

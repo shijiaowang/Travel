@@ -38,10 +38,18 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         mIvPageError.setOnClickListener(new ErrorPageClickListener());
         registerEventBus(this);
         if (isAutoLoad()) {
-            setIsProgress(true, true);//初次加载隐藏其他布局
+            setIsProgress(true,needHideContentView());//初次加载隐藏其他布局
             onLoad(TYPE_REFRESH);
         }
 
+    }
+
+    /**
+     * 初次加载是否需要隐藏子view
+     * @return
+     */
+    protected boolean needHideContentView() {
+        return false;
     }
 
     protected boolean isAutoLoad() {
@@ -103,7 +111,10 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
             try {
                 isFirstInflate =false;
                 if ( t.getCode()==2){
+                    setIsProgress(false);
                     ToastUtils.showToast("没有更多数据了");
+                    noMoreData();
+                    return;
                 }
                 onSuccess(t);
                 setSuccess();
@@ -121,6 +132,11 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
         }
        setIsProgress(false);
     }
+
+    protected  void noMoreData(){
+
+    };
+
     /**
      * 处理公共的网络参数请求
      *

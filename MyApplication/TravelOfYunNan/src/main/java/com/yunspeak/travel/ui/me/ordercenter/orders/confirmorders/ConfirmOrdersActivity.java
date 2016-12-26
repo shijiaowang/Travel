@@ -196,6 +196,8 @@ public class ConfirmOrdersActivity extends BaseNetWorkActivity<ConfirmOrdersEven
     }
 
 
+
+
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
         builder.addId(id).add(IVariable.PAY_TYPE,payType);
