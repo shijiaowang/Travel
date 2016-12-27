@@ -14,8 +14,8 @@ import com.yunspeak.travel.ui.me.myappoint.withmeselect.TopDecoration;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.AiteUtils;
-import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.HowLongWithCurrentUtils;
 import com.yunspeak.travel.utils.StringUtils;
 
 import java.util.Arrays;
@@ -67,10 +67,10 @@ class PostOpHolder extends BaseRecycleViewHolder {
                 OtherUserCenterActivity.start(mContext, mIvUserIcon, forum.getUser_id());
             }
         });
+        mTvTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(forum.getTime(),"yyyy-MM-dd HH:mm"));
         if (isFirst) {
             isFirst = false;
             mTvNickName.setText(forum.getNick_name());
-            mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forum.getTime()));
             AiteUtils.parseTextMessage(mTvContent,forum.getInform(),forum.getContent(),mContext,true);
             FrescoUtils.displayIcon(mIvUserIcon, forum.getUser_img());
             if (!StringUtils.isEmpty(forum.getForum_img())) {

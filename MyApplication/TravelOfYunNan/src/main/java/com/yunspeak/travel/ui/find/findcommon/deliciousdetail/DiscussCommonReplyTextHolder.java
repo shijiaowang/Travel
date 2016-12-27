@@ -9,14 +9,14 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.TravelReplyBean;
-import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.utils.AiteUtils;
-import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.HowLongWithCurrentUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -58,7 +58,7 @@ public class DiscussCommonReplyTextHolder extends BaseRecycleViewHolder<TravelRe
         // 设置内容
         mTvReplyMessage.setText(span, TextView.BufferType.SPANNABLE);
         FrescoUtils.displayIcon(mIvReplyIcon,datas.getUser_img());
-        mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", datas.getReply_time()));
+        mTvReplyTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(datas.getReply_time(),"yyyy-MM-dd HH:mm"));
         mTvFloorNumber.setText(datas.getFloor() + "楼");
         boolean equals = datas.getIs_like().equals("1");
         AiteUtils.setIconText(equals,equals?fullLove:emptyLove,-1,datas.getLike_count(),mContext,mTvLoveNumber,R.dimen.x14sp);

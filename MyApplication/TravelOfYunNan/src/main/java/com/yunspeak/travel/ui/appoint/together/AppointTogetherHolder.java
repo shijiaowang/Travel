@@ -19,6 +19,7 @@ import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.HowLongWithCurrentUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -75,7 +76,7 @@ public class AppointTogetherHolder extends BaseRecycleViewHolder {
         if (mFlTitle != null && mFlTitle.getChildCount() > 0) {
             mFlTitle.removeAllViews();
         }
-        mTvHowLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss",datas.getAdd_time()));
+        mTvHowLong.setText(HowLongWithCurrentUtils.getDesStringFromTime(datas.getAdd_time()));
         FrescoUtils.displayRoundIcon(mIvIcon,datas.getTravel_img());
         String label = datas.getLabel();
         if (!StringUtils.isEmpty(label)) {

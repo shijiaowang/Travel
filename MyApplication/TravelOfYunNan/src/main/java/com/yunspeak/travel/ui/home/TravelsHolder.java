@@ -5,6 +5,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.HomeBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -33,8 +34,7 @@ public class TravelsHolder extends BaseRecycleViewHolder<HomeBean.DataBean.FindT
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TravelsDetailActivity.start(mContext,data.getId(),data.getTitle());
-                TravelsDetailActivity.startShareElement(mContext,data.getId(),data.getTitle(),ivTravels,data.getLogo_img());
+                TravelsDetailActivity.startShareElement(mContext,data.getId(),data.getTitle(),ivTravels,data.getLogo_img(), BaseFindDetailActivity.TYPE_TRAVELS);
             }
         });
 

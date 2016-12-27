@@ -21,8 +21,8 @@ import com.yunspeak.travel.ui.circle.circlenav.circledetail.post.PostActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.AiteUtils;
-import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.HowLongWithCurrentUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
@@ -85,13 +85,13 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         boolean isLike = datas.getIs_like().equals("1");
         mTvIconLove.setTextColor(isLike?loveColor:notLoveColor);
         mTvIconLove.setText(isLike?mContext.getString(R.string.activity_circle_love_full):mContext.getString(R.string.activity_circle_love_empty));
-     mTvLoveNumber.setTextColor(isLike?loveColor:notLoveColor);
+        mTvLoveNumber.setTextColor(isLike?loveColor:notLoveColor);
         String countLike = datas.getCount_like();
         if (StringUtils.isEmpty(countLike)){
             countLike="0";
         }
         mTvLoveNumber.setText(countLike);
-        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-M-dd HH:mm", datas.getTime()));
+        mTvTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(datas.getTime(),"yyyy-M-dd HH:mm"));
        mTvUserNickName.setText(datas.getNick_name());
         AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),mContext,false);
         mTvIconLove.setOnClickListener(new View.OnClickListener() {

@@ -4,14 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-
 import com.yunspeak.travel.bean.SystemMessageBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.view.ShowAllTextView;
-import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.yunspeak.travel.utils.HowLongWithCurrentUtils;
 
 import butterknife.BindView;
 
@@ -37,7 +36,7 @@ public class SystemMessageHolder extends BaseRecycleViewHolder<SystemMessageBean
     @Override
     public void childBindView(int position, SystemMessageBean.DataBean datas, Context mContext) {
         FrescoUtils.displayNormal(mIvIcon,datas.getImg());
-        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm",datas.getAdd_time()));
+        mTvTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(datas.getAdd_time(),"yyyy.MM.dd HH:mm"));
         mTvType.setText(datas.getTitle());
         mTvMessage.setLimitContent(datas.getContent());
         if (mTvMessage.isShowAll()) {

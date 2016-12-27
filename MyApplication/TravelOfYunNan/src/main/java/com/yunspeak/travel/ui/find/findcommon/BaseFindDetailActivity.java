@@ -21,9 +21,11 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.baseui.BaseBarChangeColorActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DiscussCommonAdapter;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DetailCommonEvent;
+import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -40,6 +42,9 @@ import java.util.Map;
  */
 
 public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends ParentBean> extends BaseBarChangeColorActivity<DetailCommonEvent,E,TravelReplyBean> {
+    public static final  int TYPE_DESTINATION=1;
+    public static final  int TYPE_DELICIOUS=2;
+    public static final  int TYPE_TRAVELS=3;
     protected boolean isFirst=true;
     protected String haveNextPage="-1";
     public String tId;
@@ -52,8 +57,19 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     protected BaseRecycleViewAdapter initAdapter(List<TravelReplyBean> mDatas) {
         return new DiscussCommonAdapter(mDatas,this,detailType());
     }
-    public static void  startShareElement(Context context, String tid, String name, View imageView, String imageUrl){
-        Intent intent = new Intent(context, DestinationDetailActivity.class);
+    public static void  startShareElement(Context context, String tid, String name, View imageView, String imageUrl,int type){
+        Class clazz;
+        switch (type){
+            case  TYPE_DESTINATION:clazz= DestinationDetailActivity.class;
+                break;
+            case TYPE_DELICIOUS:
+                clazz= DeliciousDetailActivity.class;
+                break;
+            default:
+                clazz= TravelsDetailActivity.class;
+                break;
+        }
+        Intent intent = new Intent(context,clazz);
         intent.putExtra(IVariable.T_ID, tid);
         intent.putExtra(IVariable.NAME, name);
         intent.putExtra(IVariable.URL, imageUrl);
@@ -63,6 +79,9 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
         ActivityCompat.startActivity((Activity) context, intent, optionsCompat.toBundle());
 
     }
+
+
+
     /**
      * 那个孩子的详情
      * @return

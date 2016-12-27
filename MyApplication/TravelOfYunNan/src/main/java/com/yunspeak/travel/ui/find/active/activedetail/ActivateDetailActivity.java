@@ -1,8 +1,13 @@
 package com.yunspeak.travel.ui.find.active.activedetail;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -58,6 +63,7 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
     private String title;
     private String shareUrl;
     private String isInto;
+    private String url;
 
 
     public static void start(Context context, String aid){
@@ -67,7 +73,11 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
     }
     @Override
     protected void initEvent() {
-        mWvHtml = (WebView)findViewById(R.id.wv_html);
+        url = getIntent().getStringExtra(IVariable.URL);
+        if (!StringUtils.isEmpty(url)){
+            ViewCompat.setTransitionName(mIvBg,TRANSIT_IMAGE1);
+            FrescoUtils.displayNormal(mIvBg,url,640,360,R.drawable.normal_2_1);
+        }
         mWvHtml.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -147,7 +157,16 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
         dealData(activeDetailEvent);
     }
 
+    public static void  startShareElement(Context context, String tid, View imageView, String imageUrl){
+        Intent intent = new Intent(context,ActivateDetailActivity.class);
+        intent.putExtra(IVariable.A_ID, tid);
+        intent.putExtra(IVariable.URL, imageUrl);
+        ActivityOptionsCompat optionsCompat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,
+                        Pair.create(imageView,TRANSIT_IMAGE1));
+        ActivityCompat.startActivity((Activity) context, intent, optionsCompat.toBundle());
 
+    }
 
     private void dealData(ActiveDetailEvent event) {
         switch (event.getType()){
@@ -183,8 +202,10 @@ public class ActivateDetailActivity extends BaseNetWorkActivity<ActiveDetailEven
                     mBtEnter.setText("已报名");
                 }
                 isCollect=data.getIs_collect();
-                FrescoUtils.displayNormal(mIvBg,data.getTitle_img(),640,360,R.drawable.normal_2_1);
-                FrescoUtils.displayIcon(mIvIcon,data.getActivity_img());
+                FrescoUtils.displayIcon(mIvIcon, data.getTitle_img());
+                if (StringUtils.isEmpty(url)) {
+                    FrescoUtils.displayNormal(mIvBg,data.getActivity_img(),640,360,R.drawable.normal_2_1);
+                }
                 title = data.getTitle();
                 mTvName.setText(title);
                 mTvContnet.setText(data.getTitle_desc());

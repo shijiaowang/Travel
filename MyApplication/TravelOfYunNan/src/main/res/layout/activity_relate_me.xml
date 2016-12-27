@@ -51,41 +51,15 @@
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/tv_time_discuss"
-            android:text="07-14 16:35"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x13"
-            android:layout_marginTop="@dimen/x20"
-            android:textColor="#b7b7b7"
-            android:textSize="@dimen/x11sp" />
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/x10"
-            android:layout_below="@id/tv_time_discuss"
-
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
             <View
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/x15"
                 android:id="@+id/bv_number_discuss"
                 android:layout_marginRight="@dimen/x20"
                 style="@style/activityMessageCenterDot"
                 />
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:layout_gravity="center_vertical"
-                android:id="@+id/tv_cursor_discuss"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/x15"
-                android:layout_below="@id/tv_time_discuss"
-                android:layout_marginRight="@dimen/x13"
-                android:gravity="center"
-                android:textColor="#7b7b7b"
-                android:textSize="@dimen/x11sp" />
-        </LinearLayout>
+
     </RelativeLayout>
     <View
         android:layout_marginLeft="0dp"
@@ -139,40 +113,16 @@
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/tv_time_aite"
-            android:text="07-14 16:35"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x13"
-            android:layout_marginTop="@dimen/x20"
-            android:textColor="#b7b7b7"
-            android:textSize="@dimen/x11sp" />
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/x10"
-            android:layout_below="@id/tv_time_aite"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+
             <View
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/x15"
                 android:id="@+id/bv_number_aite"
                 android:layout_marginRight="@dimen/x20"
                 style="@style/activityMessageCenterDot"
                 />
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:layout_gravity="center_vertical"
-                android:id="@+id/tv_cursor_aite"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/x15"
-                android:layout_below="@id/tv_time_aite"
-                android:layout_marginRight="@dimen/x13"
-                android:gravity="center"
-                android:textColor="#7b7b7b"
-                android:textSize="@dimen/x11sp" />
-        </LinearLayout>
+
     </RelativeLayout>
 
     <View
@@ -227,42 +177,18 @@
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/tv_time_zan"
-            android:text="07-14 16:35"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x13"
-            android:layout_marginTop="@dimen/x20"
-            android:textColor="#b7b7b7"
-            android:textSize="@dimen/x11sp" />
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/x10"
-            android:layout_below="@id/tv_time_zan"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+
+
 
             <View
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/x15"
                 android:id="@+id/bv_number_zan"
                 android:layout_marginRight="@dimen/x20"
                 style="@style/activityMessageCenterDot"
                 />
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:layout_gravity="center_vertical"
-                android:id="@+id/tv_cursor"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/x15"
-                android:layout_below="@id/tv_time_zan"
-                android:layout_marginRight="@dimen/x13"
-                android:gravity="center"
-                android:textColor="#7b7b7b"
-                android:textSize="@dimen/x11sp" />
-        </LinearLayout>
     </RelativeLayout>
 
 

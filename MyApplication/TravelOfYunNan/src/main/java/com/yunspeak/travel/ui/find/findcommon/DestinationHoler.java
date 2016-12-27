@@ -1,7 +1,6 @@
 package com.yunspeak.travel.ui.find.findcommon;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.FindDestinationBean;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
@@ -59,14 +57,10 @@ public class DestinationHoler extends BaseRecycleViewHolder<FindDestinationBean.
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
                 if (isDestination) {
-                    DestinationDetailActivity.startShareElement(mContext,datas.getId(),datas.getTitle(),mIvSpot,datas.getLogo_img());
+                    DestinationDetailActivity.startShareElement(mContext,datas.getId(),datas.getTitle(),mIvSpot,datas.getLogo_img(),BaseFindDetailActivity.TYPE_DESTINATION);
                 } else {
-                    intent = new Intent(mContext, DeliciousDetailActivity.class);
-                    intent.putExtra(IVariable.T_ID, datas.getId());
-                    intent.putExtra(IVariable.NAME,datas.getTitle());
-                    mContext.startActivity(intent);
+                    DeliciousDetailActivity.startShareElement(mContext,datas.getId(),datas.getTitle(),mIvSpot,datas.getLogo_img(),BaseFindDetailActivity.TYPE_DELICIOUS);
                 }
 
             }

@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.find.findcommon.deliciousdetail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
     private SimpleDraweeView mIvBg;
     private TextView mTvDes;
     private TextView mTvNumber;
+    private String url;
 
     @Override
     protected void initEvent() {
@@ -46,6 +48,11 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         mIvBg = (SimpleDraweeView) findViewById(R.id.iv_bg);
         mTvDes = (TextView) findViewById(R.id.tv_des);
         mTvNumber = (TextView) findViewById(R.id.tv_number);
+        url = getIntent().getStringExtra(IVariable.URL);
+        if (!StringUtils.isEmpty(url)){
+            ViewCompat.setTransitionName(mIvBg,TRANSIT_IMAGE1);
+            FrescoUtils.displayNormal(mIvBg, url, 640, 360, R.drawable.normal_2_1);
+        }
     }
 
 
@@ -97,7 +104,9 @@ public class DeliciousDetailActivity extends BaseFindDetailActivity<DetailCommon
         if (!StringUtils.isEmpty(foodUrl)){
             final String[] split = foodUrl.split(",");
             mTvNumber.setText("共"+split.length+"张图片");
-            FrescoUtils.displayNormal(mIvBg,split[0],640,360,R.drawable.normal_2_1);
+            if (StringUtils.isEmpty(url)) {
+                FrescoUtils.displayNormal(mIvBg, split[0], 640, 360, R.drawable.normal_2_1);
+            }
             mIvBg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

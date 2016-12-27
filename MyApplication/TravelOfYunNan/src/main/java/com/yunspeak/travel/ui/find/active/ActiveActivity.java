@@ -29,6 +29,7 @@ public class ActiveActivity extends BaseBarChangeColorActivity<DetailCommonEvent
         layoutParams.leftMargin=margin;
         layoutParams.rightMargin=margin;
         mRvCommon.setLayoutParams(layoutParams);
+        changeNeedHideView(mRvCommon);
     }
 
 

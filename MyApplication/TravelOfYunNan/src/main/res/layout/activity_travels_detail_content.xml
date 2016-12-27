@@ -15,9 +15,7 @@
         android:id="@+id/wv_html"
         android:minHeight="500dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </WebView>
+        android:layout_height="wrap_content"/>
 
     <View
         android:layout_width="match_parent"

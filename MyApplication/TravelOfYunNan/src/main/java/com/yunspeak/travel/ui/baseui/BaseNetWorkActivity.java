@@ -135,7 +135,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
 
     protected  void noMoreData(){
 
-    };
+    }
 
     /**
      * 处理公共的网络参数请求

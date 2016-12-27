@@ -15,8 +15,8 @@ import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.createpost.CreatePostActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.utils.AiteUtils;
-import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.HowLongWithCurrentUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -73,7 +73,7 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
             AiteUtils.parseTextMessage(mTvReplyMessage,forumReplyBean.getInform(),forumReplyBean.getContent(),t,true);
-            mTvReplyTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd HH:mm", forumReplyBean.getReply_time()));
+            mTvReplyTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(forumReplyBean.getReply_time(),"yyyy-MM-dd HH:mm"));
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
             boolean equals = forumReplyBean.getIs_like().equals("1");
             AiteUtils.setIconText(equals,equals?fullLove:emptyLove,-1,forumReplyBean.getLike_count(),t,mTvLoveNumber,R.dimen.x14sp);

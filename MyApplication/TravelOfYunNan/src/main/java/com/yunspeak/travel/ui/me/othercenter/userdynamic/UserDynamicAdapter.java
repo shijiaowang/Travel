@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.DynamicBean;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.appoint.together.togetherdetail.AppointTogetherDetailActivity;
 import com.yunspeak.travel.ui.appoint.withme.withmedetail.AppointWithMeDetailActivity;
@@ -28,8 +27,8 @@ import com.yunspeak.travel.ui.find.travels.TravelsActivity;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.AiteUtils;
-import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.HowLongWithCurrentUtils;
 import com.yunspeak.travel.utils.StringUtils;
 
 import java.util.List;
@@ -89,7 +88,7 @@ public class UserDynamicAdapter extends BaseRecycleViewAdapter<DynamicBean> {
         public void childBindView(int position, final DynamicBean moreBean, final Context mContext) {
             FrescoUtils.displayIcon(ivUserIcon,moreBean.getUser_img());
             tvUserName.setText(moreBean.getNick_name());
-            tvTime.setText(FormatDateUtils.FormatLongTime(IVariable.Y_M_DHms,moreBean.getTime()));
+            tvTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(moreBean.getTime()));
             tvReplyType.setText(moreBean.getType());
             tvType.setText("#"+moreBean.getCname()+"#");
             tvDiscuss.setText(AiteUtils.getSmiedTextWithAiteAndLinke(mContext,moreBean.getTitle(),moreBean.getInform(),moreBean.getReply_img()));

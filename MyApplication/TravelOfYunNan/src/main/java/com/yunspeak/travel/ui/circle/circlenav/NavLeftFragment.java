@@ -87,7 +87,7 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
-                Intent intent = new Intent(getActivity(), CircleDetailActivity.class);
+                Intent intent = new Intent(getContext(), CircleDetailActivity.class);
                 intent.putExtra(IVariable.C_ID, rightList.get(position).getCid());
                 intent.putExtra(IVariable.C_NAME, rightList.get(position).getCname());
                 ActivityCompat.startActivity(getActivity(), intent, compat.toBundle());

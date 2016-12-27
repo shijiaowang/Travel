@@ -1,11 +1,7 @@
 package com.yunspeak.travel.ui.find.travels.travelsdetail;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -61,6 +57,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
     private boolean isFirstMove = true;//避免第一次margin为0
     private String title;
     private String shareUrl;
+    private String url;
 
     @Override
     protected String detailType() {
@@ -90,16 +87,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
             }
         });
     }
-     public static void  startShareElement(Context context,String tid,String name,View imageView,String imageUrl){
-         Intent intent = new Intent(context, TravelsDetailActivity.class);
-         intent.putExtra(IVariable.T_ID, tid);
-         intent.putExtra(IVariable.NAME, name);
-         intent.putExtra(IVariable.URL, imageUrl);
-         ActivityOptionsCompat optionsCompat =
-                 ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,
-                         Pair.create(imageView,TRANSIT_IMAGE1));
-         ActivityCompat.startActivity((Activity) context, intent, optionsCompat.toBundle());
-     }
+
 
     public static void start(Context context, String tid, String name) {
         Intent intent = new Intent(context, TravelsDetailActivity.class);
@@ -163,10 +151,10 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         mTvDream = (TextView) findViewById(R.id.tv_dream);
         mTvHaveNumber = (TextView) findViewById(R.id.tv_have_number);
         mTvMoney = (TextView) findViewById(R.id.tv_money);
-        String url = getIntent().getStringExtra(IVariable.URL);
+        url = getIntent().getStringExtra(IVariable.URL);
         if (!StringUtils.isEmpty(url)){
             ViewCompat.setTransitionName(mIvBg,TRANSIT_IMAGE1);
-            FrescoUtils.displayNormal(mIvBg,url, 640, 360, R.drawable.normal_2_1);
+            FrescoUtils.displayNormal(mIvBg, url, 640, 360, R.drawable.normal_2_1);
       }
     }
 
@@ -184,7 +172,9 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         try {
             title = data.getTravel().getTitle();
             mTvTitle.setText(title);
-            //FrescoUtils.displayNormal(mIvBg, data.getTravel().getLogo_img(), 640, 360, R.drawable.normal_2_1);
+            if (StringUtils.isEmpty(url)) {
+                FrescoUtils.displayNormal(mIvBg, data.getTravel().getLogo_img(), 640, 360, R.drawable.normal_2_1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -18,6 +18,7 @@ import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.HowLongWithCurrentUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -78,7 +79,7 @@ public class AppointWithMeHolder extends BaseRecycleViewHolder {
         mTvIconLove.setTextColor((datas.getIs_like().equals("1")) ? mContext.getResources().getColor(R.color.colorff806d) : mContext.getResources().getColor(R.color.colorb5b5b5));
         mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getStart_time()) + "-" + FormatDateUtils.FormatLongTime("yyyy.MM.dd", datas.getEnd_time()));
         mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
-        mTvHowLong.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss",datas.getAdd_time()));
+        mTvHowLong.setText(HowLongWithCurrentUtils.getDesStringFromTime(datas.getAdd_time()));
         mTvLoveNumber.setText(datas.getCount_like());
         mTvWatchNumber.setText(datas.getBrowse());
         if (mFlTitle != null && mFlTitle.getChildCount() > 0) {

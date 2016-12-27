@@ -57,9 +57,10 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
     private TextView mTvNumber;
     private String shareUrl;
     private String title;
+    private String url;
 
 
-    public static void start(Context context,String tid, String name){
+    public static void start(Context context, String tid, String name){
        Intent intent=new Intent(context,DestinationDetailActivity.class);
        intent.putExtra(IVariable.T_ID,tid);
        intent.putExtra(IVariable.NAME,name);
@@ -84,10 +85,10 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         mTvShow = ((TextView) findViewById(R.id.tv_show));
         mTvNumber = ((TextView) findViewById(R.id.tv_number));
         mIvbg = ((SimpleDraweeView) findViewById(R.id.iv_bg));
-        String url = getIntent().getStringExtra(IVariable.URL);
+        url = getIntent().getStringExtra(IVariable.URL);
         if (!StringUtils.isEmpty(url)){
             ViewCompat.setTransitionName(mIvbg,TRANSIT_IMAGE1);
-            FrescoUtils.displayNormal(mIvbg,url, 640, 360, R.drawable.normal_2_1);
+            FrescoUtils.displayNormal(mIvbg, url, 640, 360, R.drawable.normal_2_1);
         }
         LinearLayout mLlSearchAppoint = ((LinearLayout) findViewById(R.id.ll_search_appoint));
         mFlowLayout = ((FlexboxLayout)findViewById(R.id.fl_label));
@@ -227,6 +228,9 @@ public class DestinationDetailActivity extends BaseFindDetailActivity<DetailComm
         if (!StringUtils.isEmpty(travel_img)) {
             final String[] split = travel_img.split(",");
             mTvNumber.setText("共"+split.length+"张图片");
+            if (StringUtils.isEmpty(url)){
+                FrescoUtils.displayNormal(mIvbg, split[0], 640, 360, R.drawable.normal_2_1);
+            }
             mIvbg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

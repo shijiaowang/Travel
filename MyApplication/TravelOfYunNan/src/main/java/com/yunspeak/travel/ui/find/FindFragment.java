@@ -128,7 +128,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         public Object inflateView(ViewGroup container, int position) {
                 SimpleDraweeView imageView = new SimpleDraweeView(getContext());
                 imageView.setTag(data.get(position));
-                imageView.setOnClickListener(new MyOnClickListener(getContext(), (FindBean.DataBean.RecommendBean) imageView.getTag()));
+                imageView.setOnClickListener(new MyOnClickListener(getContext(), (FindBean.DataBean.RecommendBean) imageView.getTag(),imageView));
                 FrescoUtils.displayNormal(imageView, data.get(position).getLogo_img(), 640, 360, R.drawable.normal_2_1);
                 container.addView(imageView);
             return imageView;

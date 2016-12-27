@@ -72,12 +72,6 @@ public class ThemeCommonHolder extends BaseRecycleViewHolder {
                 mTvName.setVisibility(View.VISIBLE);
                 AiteUtils.parseTextMessage(mTvName,null,datas.getTitle(),mContext,false);
             }
-            mIvUserIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    OtherUserCenterActivity.start(mContext,mIvUserIcon,datas.getUser_id());
-                }
-            });
             mTvCircle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

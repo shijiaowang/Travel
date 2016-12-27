@@ -95,6 +95,7 @@
     <item name="android:layout_width">@dimen/x12</item>
     <item name="android:layout_height">@dimen/x12</item>
     <item name="android:layout_marginRight">@dimen/x5</item>
+    <item name="android:visibility">gone</item>
     <item name="android:background">@drawable/message_dot</item>
 </style>
 

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.AiteMessageBean;
 import com.yunspeak.travel.bean.AppointMessageBean;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
@@ -21,14 +22,13 @@ import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.deliciousdetail.DeliciousDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
-import com.yunspeak.travel.bean.AiteMessageBean;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.EditAlbumActivity;
 import com.yunspeak.travel.ui.me.myappoint.MyAppointActivity;
 import com.yunspeak.travel.ui.me.othercenter.OtherUserCenterActivity;
 import com.yunspeak.travel.ui.view.ShowAllTextView;
 import com.yunspeak.travel.utils.AiteUtils;
-import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
+import com.yunspeak.travel.utils.HowLongWithCurrentUtils;
 
 import butterknife.BindColor;
 import butterknife.BindView;
@@ -158,7 +158,7 @@ public class AppointMessageHolder extends BaseRecycleViewHolder {
         }
         FrescoUtils.displayIcon(mIvUserIcon,userImg );
         FrescoUtils.displayRoundIcon(mIvImage,travelImg );
-        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:ss",replyTime));
+        mTvTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(replyTime,"yyyy.MM.dd HH:mm"));
 
 
         final String finalUserId = userId;

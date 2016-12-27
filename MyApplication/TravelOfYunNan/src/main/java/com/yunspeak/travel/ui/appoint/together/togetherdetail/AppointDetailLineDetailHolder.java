@@ -8,6 +8,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.AppointTogetherDetailBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
 import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -39,7 +40,7 @@ public class AppointDetailLineDetailHolder extends BaseRecycleViewHolder<Appoint
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DestinationDetailActivity.start(mContext,datas.getId(),datas.getTitle());
+                DestinationDetailActivity.startShareElement(mContext,datas.getId(),datas.getTitle(),mIvBg,datas.getLogo_img(), BaseFindDetailActivity.TYPE_DESTINATION);
             }
         });
     }

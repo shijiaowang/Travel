@@ -45,7 +45,7 @@ public class AiteUtils {
         for (InformBean informBean:inform){
             stringBuilder.append("@"+inform.get(inform.indexOf(informBean)).getNick_name());
         }
-        String string = stringBuilder.toString();
+        String string = stringBuilder.toString()+"\u3000";
         SpannableStringBuilder spannable = new SpannableStringBuilder(string);
         EaseSmileUtils.addSmiles(context,spannable);
         return addAiteUser(context,spannable,length,inform);
@@ -59,7 +59,7 @@ public class AiteUtils {
                 stringBuilder.append("@").append(inform.get(inform.indexOf(informBean)).getNick_name());
             }
         }
-        String string = stringBuilder.toString();
+        String string = stringBuilder.toString()+"\u3000";
         if (!StringUtils.isEmpty(url)) {
             string += "【图片】";
         }

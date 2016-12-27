@@ -101,7 +101,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
             rlActive.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ActivateDetailActivity.start(getContext(), activit.getId());
+                    ActivateDetailActivity.startShareElement(getContext(),activit.getId(),ivBg,activit.getActivity_img());
                 }
             });
         } else {

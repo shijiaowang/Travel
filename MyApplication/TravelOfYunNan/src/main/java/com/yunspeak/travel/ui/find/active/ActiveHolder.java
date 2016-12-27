@@ -38,7 +38,7 @@ public class ActiveHolder extends BaseRecycleViewHolder<ActivityBean> {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivateDetailActivity.start(mContext,datas.getId());
+                ActivateDetailActivity.startShareElement(mContext,datas.getId(),mIvBg,datas.getActivity_img());
             }
         });
     }

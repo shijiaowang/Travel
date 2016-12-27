@@ -1,17 +1,19 @@
 package com.yunspeak.travel.ui.find.travels;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.FindTravelsBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.travels.travelsdetail.TravelsDetailActivity;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
+
 import butterknife.BindView;
 
 /**
@@ -42,9 +44,7 @@ public class TravelsHolder extends BaseRecycleViewHolder<FindTravelsBean.DataBea
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, TravelsDetailActivity.class);
-                intent.putExtra(IVariable.T_ID,datas.getId());
-                mContext.startActivity(intent);
+                TravelsDetailActivity.startShareElement(mContext,datas.getId(),datas.getTitle(),mIvPicture,datas.getLogo_img(), BaseFindDetailActivity.TYPE_TRAVELS);
             }
         });
     }
