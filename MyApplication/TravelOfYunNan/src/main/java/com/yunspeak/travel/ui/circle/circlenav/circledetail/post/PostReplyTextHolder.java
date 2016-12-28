@@ -73,6 +73,12 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
             AiteUtils.parseTextMessage(mTvReplyMessage,forumReplyBean.getInform(),forumReplyBean.getContent(),t,true);
+            mTvReplyMessage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemView.callOnClick();
+                }
+            });
             mTvReplyTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(forumReplyBean.getReply_time(),"yyyy-MM-dd HH:mm"));
             mTvFloorNumber.setText(forumReplyBean.getFloor() + "楼");
             boolean equals = forumReplyBean.getIs_like().equals("1");

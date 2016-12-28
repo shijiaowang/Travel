@@ -17,7 +17,6 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.circle.circlenav.circledetail.CircleDetailActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.utils.CircleUtils;
-import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.XEventUtils;
@@ -86,6 +85,7 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
         mLvRightNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (rightList==null || rightList.size()==0)return;
                 ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
                 Intent intent = new Intent(getContext(), CircleDetailActivity.class);
                 intent.putExtra(IVariable.C_ID, rightList.get(position).getCid());
@@ -95,10 +95,10 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
         });
     }
 
-    private void normalReq(String cid) {
-        MapUtils.Builder builder = MapUtils.Build().addKey().add("cid", cid);
-        if (cid != null && cid.equals("1")) {//再次获取关注
-            builder.add("user_id", GlobalUtils.getUserInfo().getId());
+    private void normalReq() {
+        MapUtils.Builder builder = MapUtils.Build().addKey().add("cid", cid).addUserId();
+        if (cid.equals("1")) {//再次获取关注
+            builder.addUserId();
         }
         Map<String, String> map = builder.end();
         useCommonBackJson = XEventUtils.getUseCommonBackJson(IVariable.NORMAL_CIRCLE_URL, map, IVariable.NORMAL_REQ,new NavLeftEvent());
@@ -113,7 +113,7 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
             isFirst = false;
             firstReq();
         } else {
-            normalReq(cid);
+            normalReq();
         }
     }
 
@@ -180,6 +180,8 @@ public class NavLeftFragment extends LoadBaseFragment<NavLeftEvent> {
     public void onEvent(RefreshEvent refreshEvent){
         if (prePosition==0){
             firstReq();
+        }else {
+            normalReq();
         }
     }
     @Override

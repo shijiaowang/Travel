@@ -237,7 +237,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
         CircleFollowBean circleFollow = GsonUtils.getObject(result, CircleFollowBean.class);
         String follow_count = circleFollow.getData().getFollow_count();
         mTvFollowNumber.setText(follow_count);
-        EventBus.getDefault().post(new RefreshEvent());//刷新关注列表
+        EventBus.getDefault().post( new RefreshEvent());//刷新列表
         if (mTvFollow.getText().toString().trim().equals(getString(R.string.activity_circle_detail_followed))){
             mTvFollow.setText(getString(R.string.activity_circle_detail_follow));
         }else {

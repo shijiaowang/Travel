@@ -86,12 +86,12 @@
                     android:background="@drawable/activity_my_appoint_rl_bg"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x24" />
-                <com.yunspeak.travel.ui.view.BadgeView
+                <View
                     android:id="@+id/bv_enter_people"
+                    android:background="@drawable/message_dot"
                     android:layout_marginRight="@dimen/x5"
                     android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    style="@style/activityMessageCenterDot" />
 
             </RelativeLayout>
             <RelativeLayout
@@ -109,12 +109,12 @@
                     android:background="@drawable/activity_my_appoint_rl_bg"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x24" />
-                <com.yunspeak.travel.ui.view.BadgeView
+                <View
                     android:id="@+id/bv_bulletin_number"
+                    android:background="@drawable/message_dot"
                     android:layout_marginRight="@dimen/x5"
                     android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    style="@style/activityMessageCenterDot" />
 
             </RelativeLayout>
 

@@ -45,7 +45,6 @@ public class XEventUtils {
                 requestParams.addBodyParameter(entry.getKey(), entry.getValue());
             }
         }
-        LogUtils.e("请求参数为"+requestParams.toString());
         return x.http().get(requestParams, new MyCommonCallback(type,event));
     }
 
@@ -67,7 +66,6 @@ public class XEventUtils {
                 requestParams.addBodyParameter(entry.getKey(), entry.getValue());
             }
         }
-        LogUtils.e("请求参数为"+requestParams.toString());
         return x.http().post(requestParams, new MyCommonCallback(type, event));
     }
     /**
@@ -106,11 +104,9 @@ public class XEventUtils {
                 }
                 Compressor compressor = getCompressor();
                 File compressedImageFile = compressor.compressToFile(file);
-                LogUtils.e("上传的第"+j+"个文件的大小为"+compressedImageFile.length());
                 requestParams.addBodyParameter("file["+j+"]", compressedImageFile);
             }
         }
-        LogUtils.e("请求参数为"+requestParams.toString());
         return x.http().post(requestParams, new MyCommonCallback(type,event));
     }
 
@@ -161,7 +157,6 @@ public class XEventUtils {
                     continue;
                 }
                 File compressedImageFile = Compressor.getDefault(UIUtils.getContext()).compressToFile(file);
-                LogUtils.e("上传的第"+j+"个文件的大小为"+compressedImageFile.length());
                 requestParams.addBodyParameter("file["+j+"]", compressedImageFile);
             }
         }
@@ -244,7 +239,7 @@ public class XEventUtils {
 
         }
     }
-    static class MyCommonCallback implements Callback.CommonCallback<String> {
+   private static class MyCommonCallback implements Callback.CommonCallback<String> {
         int type = -10;
         HttpEvent httpEvent;
         public MyCommonCallback(int type,HttpEvent httpEvent) {

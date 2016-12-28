@@ -8,4 +8,5 @@ import com.yunspeak.travel.global.TravelsObject;
  */
 
 public class RefreshEvent extends TravelsObject {
+
 }

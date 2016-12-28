@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.MyWithMeSelectBean;
 import com.yunspeak.travel.global.IVariable;
@@ -16,14 +17,13 @@ import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.bulltetinboard.BulletinBoardActivity;
 import com.yunspeak.travel.ui.me.myappoint.memberdetail.MemberDetailActivity;
-import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.utils.CalendarUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.Map;
 
@@ -48,8 +48,8 @@ class MyWithMeHolder extends BaseRecycleViewHolder<MyWithMeSelectBean.DataBean> 
     @BindView(R.id.tv_line) TextView mTvLine;
     //Common end
     @BindView(R.id.code) TextView mTvCode;
-    @BindView(R.id.bv_enter_people)BadgeView mBvEnterPeople;
-    @BindView(R.id.bv_bulletin_number)BadgeView mBvBulletinNumber;
+    @BindView(R.id.bv_enter_people)View mBvEnterPeople;
+    @BindView(R.id.bv_bulletin_number)View mBvBulletinNumber;
     @BindView(R.id.tv_appointing)TextView mTvAppointing;
     @BindView(R.id.bt_select)Button mBtSelect;
     public MyWithMeHolder(View itemView) {
@@ -66,19 +66,21 @@ class MyWithMeHolder extends BaseRecycleViewHolder<MyWithMeSelectBean.DataBean> 
         mTvStartAndLong.setText(datas.getMeet_address() + "出发  " + CalendarUtils.getHowDayHowNight(datas.getStart_time() + "000", datas.getEnd_time() + "000"));
         mTvDayAndNight.setText(FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getStart_time()) + "至" + FormatDateUtils.FormatLongTime(IVariable.YMD, datas.getEnd_time()));
         mTvLine.setText(datas.getRoutes());
-        mBvEnterPeople.setBadgeCount(datas.getNow_people());
-        mBvBulletinNumber.setBadgeCount(datas.getBulletin());
+        mBvEnterPeople.setVisibility(stringIsEmpty(datas.getNow_people())?View.GONE:View.VISIBLE);
+        mBvBulletinNumber.setVisibility(stringIsEmpty(datas.getBulletin())?View.GONE:View.VISIBLE);
         mTvCode.setText(datas.getId_code());
         mTvAppointing.setText(getDesTextByState(datas.getState(),mContext));
         mRlMemberDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mBvEnterPeople.setVisibility(View.GONE);
                 MemberDetailActivity.start(mContext,datas.getId(),"1");
             }
         });
        mRlBulletinBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mBvBulletinNumber.setVisibility(View.GONE);
                 startTarget(datas,BulletinBoardActivity.class,mContext);
             }
         });
@@ -121,6 +123,12 @@ class MyWithMeHolder extends BaseRecycleViewHolder<MyWithMeSelectBean.DataBean> 
 
 
     }
+
+    private boolean stringIsEmpty(String text) {
+        if (StringUtils.isEmpty(text) || text.equalsIgnoreCase("0"))return true;
+        return false;
+    }
+
     /**
      * 选择推送约伴
      * @param datas

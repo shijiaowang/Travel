@@ -97,6 +97,18 @@ public class PostReplyUserHolder extends BaseRecycleViewHolder {
             }
             mTvReplyContent.setText(replySpan);
             mTvReplyContent.setMovementMethod(LinkMovementMethod.getInstance());
+            mTvReplyContent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemView.callOnClick();
+                }
+            });
+            mTvReplyMessage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemView.callOnClick();
+                }
+            });
             mTvReplyName.setText(reply.getNick_name());
             mTvReplyFloorNumber.setText(reply.getFloor()+"楼");
 

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Handler;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.NotificationCompat;
@@ -42,9 +41,6 @@ import java.util.Map;
  */
 public class TravelsApplication extends MultiDexApplication {
     private static Context mContext;
-    protected static Handler mHandler;
-    private static int mainThreadId;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -186,12 +182,7 @@ public class TravelsApplication extends MultiDexApplication {
         return mContext;
     }
 
-    public static Handler getmHandler() {
-        return mHandler;
-    }
 
-    public static int getMainThreadId() {
-        return mainThreadId;
-    }
+
 }
 

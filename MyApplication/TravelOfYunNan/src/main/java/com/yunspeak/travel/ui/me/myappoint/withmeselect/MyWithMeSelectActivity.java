@@ -24,7 +24,11 @@ public class MyWithMeSelectActivity extends BaseRecycleViewActivity<MyWithMeSele
         return IVariable.WITH_ME_SELECT;
     }
 
-
+    @Override
+    protected void initEvent() {
+        super.initEvent();
+        changeMargin(10,5);
+    }
 
     @Override
     protected String initTitle() {
