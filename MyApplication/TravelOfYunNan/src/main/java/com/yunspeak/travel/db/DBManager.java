@@ -23,8 +23,7 @@ import java.util.List;
  */
 public class DBManager {
     public static final String SQL_NAME = "yun.sql";
-    static private DBHelper   dbHelper = new DBHelper(UIUtils.getContext());
-
+    static private DBHelper dbHelper = new DBHelper(UIUtils.getContext());
 
 
     /**
@@ -57,18 +56,18 @@ public class DBManager {
         }
         ArrayList<ProvinceBean> provinceBeanList = new ArrayList<>();
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
-        Cursor query=null;
+        Cursor query = null;
         try {
-           query = writableDatabase.query("yuns_district", null, "level=?", new String[]{"1"}, null, null, null);
+            query = writableDatabase.query("yuns_district", null, "level=?", new String[]{"1"}, null, null, null);
             while (query.moveToNext()) {
                 String id = query.getString(query.getColumnIndex("_id"));
                 String name = query.getString(query.getColumnIndex("name"));
                 ProvinceBean provinceBean = new ProvinceBean(id, name);
                 provinceBeanList.add(provinceBean);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             closeQuery(query);
         }
 
@@ -150,9 +149,9 @@ public class DBManager {
             String city;
             for (ProvinceBean provinceBean : options1Items) {
                 query = writableDatabase.query("yuns_district", null, "level=? and upid=?", new String[]{"2", provinceBean.getId()}, null, null, null);
-                ArrayList<String> arrayList=new ArrayList<>();
+                ArrayList<String> arrayList = new ArrayList<>();
                 while (query.moveToNext()) {
-                     city=query.getString(query.getColumnIndex("name"));
+                    city = query.getString(query.getColumnIndex("name"));
                     arrayList.add(city);
                 }
                 arrayLists.add(arrayList);
@@ -168,12 +167,13 @@ public class DBManager {
 
     /**
      * 查询id
+     *
      * @param id
      * @return
      */
 
-    public static synchronized String getStringById(String type,String id) {
-        String name="未知";
+    public static synchronized String getStringById(String type, String id) {
+        String name = "未知";
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
         Cursor query = null;
         try {
@@ -182,33 +182,34 @@ public class DBManager {
                 name = query.getString(0);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             closeQuery(query);
         }
         return name;
     }
+
     public static String getCityId(String cityName, String id) {
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
         Cursor query = null;
         try {
-            query = writableDatabase.query("yuns_district", new String[]{"_id"}, "name=? and upid=?", new String[]{cityName,id}, null, null, null);
+            query = writableDatabase.query("yuns_district", new String[]{"_id"}, "name=? and upid=?", new String[]{cityName, id}, null, null, null);
             if (query.moveToNext()) {
                 String cityId = query.getString(query.getColumnIndex("_id"));
                 return cityId;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             closeQuery(query);
         }
         return null;
     }
 
 
-    public static void closeQuery(Cursor cursor){
-        if (cursor!=null){
+    public static void closeQuery(Cursor cursor) {
+        if (cursor != null) {
             try {
                 cursor.close();
             } catch (Exception e) {
@@ -216,50 +217,53 @@ public class DBManager {
             }
         }
     }
-    public static void insertChatUserInfo(UserInfo userInfo){
-        List<UserInfo> userInfos=new ArrayList<>();
+
+    public static void insertChatUserInfo(UserInfo userInfo) {
+        List<UserInfo> userInfos = new ArrayList<>();
         userInfos.add(userInfo);
         insertChatUserInfo(userInfos);
     }
+
     //userinfo操作
-    public static void insertChatUserInfo(List<UserInfo> userInfos){
+    public static void insertChatUserInfo(List<UserInfo> userInfos) {
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
-        Cursor chatuser=null;
-        for (UserInfo userInfo:userInfos){
+        Cursor chatuser = null;
+        for (UserInfo userInfo : userInfos) {
             try {
                 if (userInfo == null) continue;
                 chatuser = writableDatabase.query("chatuser", null, "userid=?", new String[]{userInfo.getId()}, null, null, null);
-               if (chatuser.moveToLast()){
-                   String username = chatuser.getString(chatuser.getColumnIndex("username"));
-                   String userimg = chatuser.getString(chatuser.getColumnIndex("userimg"));
-                   if (userimg.equals(userInfo.getUser_img()) && username.equals(userInfo.getNick_name())){
+                if (chatuser.moveToLast()) {
+                    String username = chatuser.getString(chatuser.getColumnIndex("username"));
+                    String userimg = chatuser.getString(chatuser.getColumnIndex("userimg"));
+                    if (userimg.equals(userInfo.getUser_img()) && username.equals(userInfo.getNick_name())) {
 
-                   }else {
-                       ContentValues contentValues=new ContentValues();
-                       contentValues.put("username",userInfo.getNick_name());
-                       contentValues.put("userimg",userInfo.getUser_img());
-                       writableDatabase.update("chatuser",contentValues,"userid=?",new String[]{userInfo.getId()});
-                   }
-               }else {
-                   ContentValues contentValues=new ContentValues();
-                   contentValues.put("userid",userInfo.getId());
-                   contentValues.put("username",userInfo.getNick_name());
-                   contentValues.put("userimg",userInfo.getUser_img());
-                   writableDatabase.insert("chatuser",null,contentValues);
-               }
-            }catch (Exception e){
+                    } else {
+                        ContentValues contentValues = new ContentValues();
+                        contentValues.put("username", userInfo.getNick_name());
+                        contentValues.put("userimg", userInfo.getUser_img());
+                        writableDatabase.update("chatuser", contentValues, "userid=?", new String[]{userInfo.getId()});
+                    }
+                } else {
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put("userid", userInfo.getId());
+                    contentValues.put("username", userInfo.getNick_name());
+                    contentValues.put("userimg", userInfo.getUser_img());
+                    writableDatabase.insert("chatuser", null, contentValues);
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         closeQuery(chatuser);
     }
-    public static EaseUser getChatUserByChatId(String chatId){
+
+    public static EaseUser getChatUserByChatId(String chatId) {
         SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
-        Cursor  chatuser = writableDatabase.query("chatuser", null, "userid=?", new String[]{chatId}, null, null, null);
+        Cursor chatuser = writableDatabase.query("chatuser", null, "userid=?", new String[]{chatId}, null, null, null);
         if (chatuser.moveToLast()) {
             String username = chatuser.getString(chatuser.getColumnIndex("username"));
             String userimg = chatuser.getString(chatuser.getColumnIndex("userimg"));
-            EaseUser easeUser=new EaseUser(chatId);
+            EaseUser easeUser = new EaseUser(chatId);
             easeUser.setNickname(username);
             easeUser.setAvatar(userimg);
             closeQuery(chatuser);
@@ -267,5 +271,33 @@ public class DBManager {
         }
         closeQuery(chatuser);
         return null;
+    }
+
+    /**
+     * 插入缓存数据
+     *
+     * @param pageName
+     * @param saveData
+     */
+    public static void insertHomePageSavaData(String pageName, String saveData) {
+        if (StringUtils.isEmpty(saveData)) return;
+        SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("pagename", pageName);
+        contentValues.put("pagecontent", saveData);
+        writableDatabase.insert("homedata", null, contentValues);
+    }
+
+    /**
+     * 获取缓存数据
+     */
+    public static String querySaveDataByPageName(String pageName) {
+        SQLiteDatabase writableDatabase = dbHelper.getReadableDatabase();
+        Cursor cursor = writableDatabase.query("homedata", null, "pagename=?", new String[]{pageName}, null, null, null);
+        if (cursor.moveToFirst()) {
+            String name = cursor.getString(cursor.getColumnIndex("pagecontent"));
+            return name;
+        }
+        return "";
     }
 }

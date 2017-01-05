@@ -16,6 +16,7 @@ import org.xutils.x;
 
 import java.io.File;
 import java.net.ConnectException;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 
@@ -281,7 +282,9 @@ public class XEventUtils {
             if (ex != null) {
                 if (ex instanceof ConnectException) {
                     message = "网络错误";
-                } else {
+                } else if (ex instanceof UnknownHostException){
+                    message = "网络错误";
+                }else {
                     message = ex.getMessage();
                 }
             }

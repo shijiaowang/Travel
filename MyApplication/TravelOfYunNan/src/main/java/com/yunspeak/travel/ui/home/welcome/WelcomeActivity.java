@@ -110,7 +110,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
     private void checkNetAndCheckLogin(String userName, String userPwd) {
         //网络不可用，且缓存了信息，直接跳入主页
-        if (!NetworkUtils.isNetworkConnected(this)) {
+        if (!NetworkUtils.isNetworkConnected()) {
             isNetWork = false;
         } else {
             //网络可用验证登录

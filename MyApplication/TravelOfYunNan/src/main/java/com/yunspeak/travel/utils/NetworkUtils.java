@@ -11,15 +11,13 @@ public class NetworkUtils {
     /**
      * 检查是否有网络
      */
-    public static boolean isNetworkConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+    public static boolean isNetworkConnected() {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) UIUtils.getContext()
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
             if (mNetworkInfo != null) {
                 return mNetworkInfo.isAvailable();
             }
-        }
         return false;
     }
 

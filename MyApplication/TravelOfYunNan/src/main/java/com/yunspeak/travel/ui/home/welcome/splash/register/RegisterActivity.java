@@ -143,7 +143,7 @@ public class RegisterActivity extends BaseEventBusActivity<RegisterEvent> implem
         }else if(event.getCode()==-1 && event.getType()!=IVariable.TYPE_GET_KEY){
             ToastUtils.showToast("key错误，正在重新获取！请保持网络畅通");
             XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY,new RegisterEvent());
-        }else if (!NetworkUtils.isNetworkConnected(this)){
+        }else if (!NetworkUtils.isNetworkConnected()){
             ToastUtils.showToast("网络错误，请检查网络是否畅通！");
         }else {
             ToastUtils.showToast(event.getMessage());

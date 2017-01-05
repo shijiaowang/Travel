@@ -125,7 +125,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         String registrationId = PushAgent.getInstance(this).getRegistrationId();
         LogUtils.e("注册ID为" + registrationId);
         registerEventBus(this);
-        if (!NetworkUtils.isNetworkConnected(this)) {
+        if (!NetworkUtils.isNetworkConnected()) {
             ToastUtils.showToast("网络未连接");
         }
 
@@ -331,7 +331,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 ToastUtils.showToast("用户信息发生错误，请尝试重新登录，若多次无效，可清除缓存！");
             }
         } else {
-            if (NetworkUtils.isNetworkConnected(this) && GlobalUtils.getUserInfo() == null) {
+            if (NetworkUtils.isNetworkConnected() && GlobalUtils.getUserInfo() == null) {
                 ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
             } else {
                 if (event.getMessage().equals("密码错误")) {
@@ -493,7 +493,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             ex.printStackTrace();
             if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 ToastUtils.showToast("SD卡不可用！");
-            } else if (!NetworkUtils.isNetworkConnected(HomeActivity.this)) {
+            } else if (!NetworkUtils.isNetworkConnected()) {
                 ToastUtils.showToast("网络不可用！");
             } else {
                 ToastUtils.showToast("下载失败！");

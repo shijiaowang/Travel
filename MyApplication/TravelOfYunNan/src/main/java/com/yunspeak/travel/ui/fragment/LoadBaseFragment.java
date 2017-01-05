@@ -15,16 +15,20 @@ import android.view.ViewGroup;
 
 import com.umeng.analytics.MobclickAgent;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.ui.view.LoadingPage;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
+import com.yunspeak.travel.utils.NetworkUtils;
+import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.DbManager;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -43,7 +47,7 @@ import butterknife.ButterKnife;
  */
 public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment implements IState{
 
-
+    private  final String TAG=this.getClass().getSimpleName();
     public LoadingPage.ResultState currentState;
     private LoadingPage loadingPage;
     protected View inflate;
@@ -51,6 +55,7 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
     private boolean isVisible=false;
     private boolean isPrepared=false;
     protected boolean isFirst=true;
+    private boolean isSaveData=false;
 
 
     @Override
@@ -138,7 +143,6 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
 
     private void load(int type) {
         if (isVisible && isPrepared && isFirst) {
-
             onLoad(type);
             isFirst=false;
         }
@@ -176,6 +180,7 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
                     try {
                         onSuccess(t);
                         doSuccess(t);
+                        saveData(t);
                         LogUtils.e("baseFragment加载成功");
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -186,6 +191,16 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
                     onFail(t);
                 }
             }
+
+    /**
+     * 第一次获取到成功数据缓存
+     */
+    private void saveData(T event) {
+        if(!isSaveData){
+            DBManager.insertHomePageSavaData(TAG,event.getResult());
+            isSaveData=true;
+        }
+    }
 
     protected void doSuccess(T t) {
         isSuccessed = true;
@@ -205,11 +220,31 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
 
     protected  void onFail(T event){
         if (!isSuccessed){
+            if (!NetworkUtils.isNetworkConnected()){//没有网络，加载数据库数据
+               loadSqlData(event);
+            }else {
+                setState(LoadingPage.ResultState.STATE_ERROR);
+            }
             isFirst=true;
-            setState(LoadingPage.ResultState.STATE_ERROR);
         }
     }
 
+    /**
+     * 加载数据库数据
+     * @param event 事件
+     */
+    protected void loadSqlData(T event) {
+        event.setCode(1);
+        event.setIsSuccess(true);
+        String data = DBManager.querySaveDataByPageName(TAG);
+        if (!StringUtils.isEmpty(data)){
+            event.setResult(data);
+            setState(LoadingPage.ResultState.STATE_SUCCESS);
+            onSuccess(event);//读取缓存数据
+        }else {
+            setState(LoadingPage.ResultState.STATE_ERROR);//继续设置错误页面
+        }
+    }
 
 
     protected int getListSize(List list){

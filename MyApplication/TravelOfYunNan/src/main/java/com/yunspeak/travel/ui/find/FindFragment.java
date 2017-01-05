@@ -57,7 +57,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),2);
         mRvRecommend.setAdapter(findRecommendAdapter);
         mRvRecommend.setLayoutManager(gridLayoutManager);
-        mRvRecommend.addItemDecoration(new FindDecoration(5,5));
+
         gridLayoutManager.setSmoothScrollbarEnabled(true);
         gridLayoutManager.setAutoMeasureEnabled(true);
         mRvRecommend.setHasFixedSize(true);
@@ -70,7 +70,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         linearLayoutManager.setAutoMeasureEnabled(true);
         mRvHot.setHasFixedSize(true);
         mRvHot.setNestedScrollingEnabled(false);
-        mRvHot.addItemDecoration(new TopDecoration(10));
+
         if (banner==null) {
             banner = findBean.getData().getBanner();
             pagerCursorView.setViewPager(vpFind, banner.size(), true,this);
@@ -82,6 +82,8 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
 
     @Override
     protected void initListener() {
+        mRvRecommend.addItemDecoration(new FindDecoration(5,5));
+        mRvHot.addItemDecoration(new TopDecoration(10));
         mLlActive.setOnClickListener(this);
         mLlDeliciousFood.setOnClickListener(this);
         mLlTravels.setOnClickListener(this);
