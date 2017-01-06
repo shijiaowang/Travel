@@ -21,7 +21,4 @@
         android:textSize="@dimen/x15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-
-
 </FrameLayout>

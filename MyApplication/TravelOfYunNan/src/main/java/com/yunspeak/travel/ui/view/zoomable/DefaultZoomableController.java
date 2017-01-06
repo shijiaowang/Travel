@@ -19,6 +19,7 @@ import android.support.annotation.IntDef;
 import android.view.MotionEvent;
 
 import com.facebook.common.logging.FLog;
+import com.yunspeak.travel.utils.LogUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -595,26 +596,32 @@ public class DefaultZoomableController
 
   @Override
   public int computeHorizontalScrollRange() {
+    LogUtils.e("computeHorizontalScrollRange"+((int)mTransformedImageBounds.width()));
     return (int)mTransformedImageBounds.width();
   }
   @Override
   public int computeHorizontalScrollOffset() {
+    LogUtils.e("computeHorizontalScrollOffset"+((int)(mViewBounds.left - mTransformedImageBounds.left)));
     return (int)(mViewBounds.left - mTransformedImageBounds.left);
   }
   @Override
   public int computeHorizontalScrollExtent() {
+    LogUtils.e("computeHorizontalScrollExtent"+(int)mViewBounds.width());
     return (int)mViewBounds.width();
   }
   @Override
   public int computeVerticalScrollRange() {
+    LogUtils.e("computeVerticalScrollRange"+(int)mTransformedImageBounds.height());
     return (int)mTransformedImageBounds.height();
   }
   @Override
   public int computeVerticalScrollOffset() {
+    LogUtils.e("computeVerticalScrollOffset"+((int)(mViewBounds.top - mTransformedImageBounds.top)));
     return (int)(mViewBounds.top - mTransformedImageBounds.top);
   }
   @Override
   public int computeVerticalScrollExtent() {
+    LogUtils.e("computeVerticalScrollExtent"+(int)mViewBounds.height());
     return (int)mViewBounds.height();
   }
 }

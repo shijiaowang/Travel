@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.hyphenate.util.DensityUtil;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.UpPhotoEvent;
@@ -15,7 +16,10 @@ import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.AlbumSelectorActivity;
 import com.yunspeak.travel.ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity;
+import com.yunspeak.travel.utils.DensityUtils;
 import com.yunspeak.travel.utils.ToastUtils;
+import com.yunspeak.travel.utils.UIUtils;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import java.io.File;
@@ -129,6 +133,11 @@ public class PictureSelectorActivity extends BaseToolBarActivity implements View
             ToastUtils.showToast("没有图片");
             return;
         }
+        int screenWidthPixels = DensityUtils.getScreenWidthPixels(this);
+        int dimen = UIUtils.getDimen(R.dimen.x110);
+        int margin = UIUtils.getDimen(R.dimen.x5);
+        int childDistance=(screenWidthPixels-dimen*3-margin*2)/2;
+        mGvPhoto.setHorizontalSpacing(childDistance>0?childDistance:0);
         adapter = new PictureSelectorAdapter(this, mImages, mFolder.getDir());
         mGvPhoto.setAdapter(adapter);
         adapter.setOnSelectChangeListener(new PictureSelectorAdapter.OnSelectChangeListener() {

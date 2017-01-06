@@ -14,6 +14,8 @@ package com.yunspeak.travel.ui.view.zoomable;
 
 import android.view.MotionEvent;
 
+import com.yunspeak.travel.utils.LogUtils;
+
 /**
  * Component that detects translation, scale and rotation based on touch events.
  * <p>
@@ -134,12 +136,17 @@ public class TransformGestureDetector implements MultiPointerGestureDetector.Lis
 
   /** Gets the X component of the translation */
   public float getTranslationX() {
+    float x=calcAverage(mDetector.getCurrentX(), mDetector.getPointerCount()) -
+            calcAverage(mDetector.getStartX(), mDetector.getPointerCount());
+    LogUtils.e("getTranslationX"+x);
     return calcAverage(mDetector.getCurrentX(), mDetector.getPointerCount()) -
-        calcAverage(mDetector.getStartX(), mDetector.getPointerCount());
+            calcAverage(mDetector.getStartX(), mDetector.getPointerCount());
   }
 
   /** Gets the Y component of the translation */
   public float getTranslationY() {
+    LogUtils.e("getTranslationY"+(calcAverage(mDetector.getCurrentY(), mDetector.getPointerCount()) -
+            calcAverage(mDetector.getStartY(), mDetector.getPointerCount())));
     return calcAverage(mDetector.getCurrentY(), mDetector.getPointerCount()) -
         calcAverage(mDetector.getStartY(), mDetector.getPointerCount());
   }

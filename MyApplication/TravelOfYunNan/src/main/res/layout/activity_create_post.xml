@@ -39,6 +39,7 @@
             android:background="#dcdcdc" />
 
         <EditText
+            android:textCursorDrawable="@null"
             android:id="@+id/et_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -77,12 +78,11 @@
                 android:background="@color/colorFAFAFA"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="@dimen/x20">
+                >
 
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_emoji"
                     style="@style/activityCreatePostTvIcon"
-                    android:layout_marginLeft="0dp"
                     android:text="@string/activity_create_post_smell" />
 
                 <com.yunspeak.travel.ui.view.FontsIconTextView

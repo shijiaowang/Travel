@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.me.setting;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -292,22 +293,20 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
             pvTime.setCyclic(false);
             pvTime.setCancelable(true);
             pvTime.setTitle("选择生日");
-        }
-        //时间选择后回调
-        pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date) {
-                int age = CalendarUtils.getAge(date);
-
-                if (age<0){
-                    ToastUtils.showToast("日子还没到呢");
-                    return;
+            pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
+                @Override
+                public void onTimeSelect(Date date) {
+                    int age = CalendarUtils.getAge(date);
+                    if (age<0){
+                        ToastUtils.showToast("日子还没到呢");
+                        return;
+                    }
+                    messageIsChange=true;
+                    time=date.getTime();
+                    mTvUserAge.setText(age+"");
                 }
-                messageIsChange=true;
-                time=date.getTime();
-                mTvUserAge.setText(age+"");
-            }
-        });
+            });
+        }
         hideSoftWore(mTvTitle);
         pvTime.show();
     }
@@ -405,4 +404,20 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         options1Items=null;
         options2Items=null;
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // 过滤按键动作
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+            if (pvTime != null && pvTime.isShowing()) {
+                pvTime.dismiss();
+                return true;
+            }else if (pvOptions!=null && pvOptions.isShowing()){
+                pvOptions.dismiss();
+                return true;
+            }
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
 }

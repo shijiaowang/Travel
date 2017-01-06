@@ -4,5 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/meLine">
+
     <include layout="@layout/activity_active_top"/>
 </LinearLayout>
