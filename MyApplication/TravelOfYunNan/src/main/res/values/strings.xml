@@ -333,6 +333,9 @@
     <string name="cat_push">查看推送</string>
     <string name="have_get">已接单</string>
     <string name="start">出发</string>
+    <string name="sd_not_available">SD卡不可用！</string>
+    <string name="network_not_available">网络不可用！</string>
+    <string name="download_fail">下载失败！</string>
 
 
 </resources>

@@ -192,7 +192,7 @@ public class TravelsDetailActivity extends BaseFindDetailActivity<DetailCommonEv
         mRvAddLine.setAdapter(new TravelsAddAdapter(this, routes));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRvAddLine.setLayoutManager(linearLayoutManager);
-        mRvAddLine.addItemDecoration(new HotSpotsItemDecoration(DensityUtil.dip2px(9)));
+        mRvAddLine.addItemDecoration(new TravelsAddLineItenDecoration(9));
         LinearLayoutManager memberLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         List<TravelsDetailBean.DataBean.TravelRoutesBean.UserBean> user = travelRoutes.getUser();
         mRvMember.setAdapter(new TravelMemberAdapter(this, user));

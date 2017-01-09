@@ -5,6 +5,7 @@
     android:background="@color/colorFAFAFA"
     android:id="@+id/header_root"
     android:orientation="vertical">
+
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_bg"
         android:layout_width="match_parent"
@@ -84,6 +85,7 @@
             android:id="@+id/tv_money"
             android:layout_width="wrap_content"
             android:minWidth="@dimen/x53"
+            android:lines="1"
             android:layout_height="@dimen/x26"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.home;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -117,6 +118,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     LinearLayout mLlBottom;
     private SharedPreferences sharedPreferences;
     private EMMessageListener messageListener;
+    private Callback.Cancelable cancelable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -298,7 +300,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                             public void onClick(int type) {
                                 RequestParams requestParams = new RequestParams(data.getDownloadurl());
                                 requestParams.setMethod(HttpMethod.GET);
-                                x.http().get(requestParams, new DownloadProgress());
+                                cancelable = x.http().get(requestParams, new DownloadProgress());
                             }
                         });
                     }
@@ -465,6 +467,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
 
     class DownloadProgress implements Callback.ProgressCallback<File> {
+        private UpAppDialog upAppDialog;
+
         @Override
         public void onWaiting() {
 
@@ -472,16 +476,36 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
         @Override
         public void onStarted() {
-
+            upAppDialog=  new UpAppDialog(HomeActivity.this, true, new DialogInterface.OnCancelListener() {
+               @Override
+               public void onCancel(DialogInterface dialog) {
+                     if (cancelable!=null){
+                         cancelable.cancel();
+                     }
+               }
+           });
+            upAppDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (cancelable!=null){
+                        cancelable.cancel();
+                    }
+                }
+            });
+            upAppDialog.show();
         }
 
         @Override
         public void onLoading(long total, long current, boolean isDownloading) {
-
+            if (isDownloading) {
+                upAppDialog.setTotal(total);
+                upAppDialog.upProgress(current);
+            }
         }
 
         @Override
         public void onSuccess(File result) {
+            upAppDialog.dismiss();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.fromFile(result), "application/vnd.android.package-archive");
@@ -492,18 +516,20 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         public void onError(Throwable ex, boolean isOnCallback) {
             ex.printStackTrace();
             if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                ToastUtils.showToast("SD卡不可用！");
+                ToastUtils.showToast(getString(R.string.sd_not_available));
             } else if (!NetworkUtils.isNetworkConnected()) {
-                ToastUtils.showToast("网络不可用！");
+                ToastUtils.showToast(getString(R.string.network_not_available));
             } else {
-                ToastUtils.showToast("下载失败！");
+                ToastUtils.showToast(getString(R.string.download_fail));
             }
+            upAppDialog.dismiss();
 
         }
 
         @Override
         public void onCancelled(CancelledException cex) {
-
+            ToastUtils.showToast("下载失败：取消下载");
+            upAppDialog.dismiss();
         }
 
         @Override
@@ -535,7 +561,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private void exit() {
         long currentTimeMillis = System.currentTimeMillis();
         if (currentTimeMillis - preTime > 1000) {
-            Snackbar.make(mLlBottom, "快速双击退出应用", 300)
+            Snackbar.make(mLlBottom, "再点一下退出应用", 300)
                     .setAction("", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
