@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
 import com.yunspeak.travel.ui.appoint.withme.PlayWithMeFragment;
 import com.yunspeak.travel.bean.CityBean;
+import com.yunspeak.travel.ui.baseui.SystemBarHelper;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 import com.yunspeak.travel.utils.FastBlur;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -56,6 +58,8 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     @BindView(R.id.tv_play_together) TextView mTvPlayTogether;
     @BindView(R.id.tv_play_with_me) TextView mTvPlayWithMe;
     @BindView(R.id.ll_switch) LinearLayout mLlSwitch;
+    @BindView(R.id.tool_bar)
+    Toolbar mToolbar;
     @BindView(R.id.tv_type) TextView mTvType;
     @BindView(R.id.tv_time) TextView mTvTime;
     @BindView(R.id.tv_order) TextView mTvOrder;
@@ -114,7 +118,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
     }
     @Override
     protected void initView() {
-
+        SystemBarHelper.setHeightAndPadding(getContext(),mToolbar);
     }
 
     private void getLabel() {

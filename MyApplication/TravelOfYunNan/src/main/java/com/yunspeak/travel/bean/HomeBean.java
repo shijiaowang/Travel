@@ -10,6 +10,7 @@ import java.util.List;
 
 public class HomeBean extends TravelsObject {
 
+
     private DataBean data;
 
     public DataBean getData() {
@@ -27,12 +28,16 @@ public class HomeBean extends TravelsObject {
         private List<ForumBean> forum;
         private List<DestinationBean> destination;
         private List<FindTravelBean> find_travel;
+        private List<IndexTextBean> index_text;
+
         public ActivityBean getActivit() {
             return activit;
         }
+
         public void setActivit(ActivityBean activit) {
             this.activit = activit;
         }
+
         public List<BannerBean> getBanner() {
             return banner;
         }
@@ -65,29 +70,20 @@ public class HomeBean extends TravelsObject {
             this.find_travel = find_travel;
         }
 
+        public List<IndexTextBean> getIndex_text() {
+            return index_text;
+        }
 
+        public void setIndex_text(List<IndexTextBean> index_text) {
+            this.index_text = index_text;
+        }
 
         public static class BannerBean {
             private String id;
             private String path;
+            private String article_id;
             private String title;
             private String url;
-
-            public String getTitle() {
-                return title;
-            }
-
-            public void setTitle(String title) {
-                this.title = title;
-            }
-
-            public String getUrl() {
-                return url;
-            }
-
-            public void setUrl(String url) {
-                this.url = url;
-            }
 
             public String getId() {
                 return id;
@@ -104,6 +100,30 @@ public class HomeBean extends TravelsObject {
             public void setPath(String path) {
                 this.path = path;
             }
+
+            public String getArticle_id() {
+                return article_id;
+            }
+
+            public void setArticle_id(String article_id) {
+                this.article_id = article_id;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
         }
 
         public static class ForumBean {
@@ -112,14 +132,7 @@ public class HomeBean extends TravelsObject {
             private String circle_img;
             private String cname;
             private String cid;
-
-            public String getCid() {
-                return cid;
-            }
-
-            public void setCid(String cid) {
-                this.cid = cid;
-            }
+            private String index_img;
 
             public String getId() {
                 return id;
@@ -151,6 +164,22 @@ public class HomeBean extends TravelsObject {
 
             public void setCname(String cname) {
                 this.cname = cname;
+            }
+
+            public String getCid() {
+                return cid;
+            }
+
+            public void setCid(String cid) {
+                this.cid = cid;
+            }
+
+            public String getIndex_img() {
+                return index_img;
+            }
+
+            public void setIndex_img(String index_img) {
+                this.index_img = index_img;
             }
         }
 
@@ -256,6 +285,46 @@ public class HomeBean extends TravelsObject {
 
             public void setTitle_img(String title_img) {
                 this.title_img = title_img;
+            }
+        }
+
+        public static class IndexTextBean {
+            private int type;
+            private String title;
+            private String img;
+            private String url;
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public int getType() {
+                return type;
+
+            }
+
+            public void setType(int type) {
+                this.type = type;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
+            }
+
+            public String getImg() {
+                return img;
+            }
+
+            public void setImg(String img) {
+                this.img = img;
             }
         }
     }

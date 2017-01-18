@@ -198,4 +198,7 @@
     <dimen name="x226">226dp</dimen>
     <dimen name="splash_english_des">12sp</dimen>
     <dimen name="commonStatusHeight">0dp</dimen>
+    <!--新加的 没有适配其他-->
+    <dimen name="x232">232dp</dimen>
+    <dimen name="x94dp">94dp</dimen>
 </resources>

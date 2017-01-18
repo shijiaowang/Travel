@@ -9,18 +9,15 @@
     tools:context=".ui.home.HomeActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/otherTitleBg"
-        android:paddingTop="@dimen/commonStatusHeight"
         android:theme="@style/toolbar_theme">
-
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x49"
             android:background="@color/otherTitleBg">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x49"
@@ -83,12 +80,10 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
+   <!-- <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
+        android:layout_height="match_parent">-->
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -114,9 +109,87 @@
                         android:layout_height="@dimen/x6"/>
 
                 </FrameLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/x15"
+                    android:layout_marginEnd="@dimen/x15"
+                    android:layout_marginTop="@dimen/x22"
+                    android:layout_height="@dimen/x232">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+                        <FrameLayout
+                            android:id="@+id/fl_home_search_appoint"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/x116">
+                            <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/sdv_home_search_bg"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:text="寻找导游"
+                                android:background="@drawable/fragment_home_menu_search_bg"
+                                style="@style/HomeFragmentMenuText" />
 
+                        </FrameLayout>
+                        <TextView
+                             android:id="@+id/tv_home_search_text"
+                            style="@style/HomeMenuText"/>
 
-                <LinearLayout style="@style/HomeTopicParent">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/x16"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+                        <FrameLayout
+                            android:id="@+id/fl_home_together"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp">
+                            <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/sdv_home_together_bg"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:text="我是老司机"
+                                android:textSize="@dimen/x13sp"
+                                android:background="@drawable/fragment_home_menu_together_bg"
+                                style="@style/HomeFragmentMenuText" />
+                        </FrameLayout>
+                        <TextView
+                            android:id="@+id/tv_home_together_text"
+                            style="@style/HomeMenuText"
+                            />
+                        <FrameLayout
+                            android:id="@+id/fl_home_with_me"
+                            android:layout_marginTop="@dimen/x5"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp">
+                            <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/sdv_home_with_me_bg"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:text="定制行程"
+                                android:textSize="@dimen/x13sp"
+                                android:background="@drawable/fragment_home_menu_with_me_bg"
+                                style="@style/HomeFragmentMenuText" />
+                        </FrameLayout>
+                        <TextView
+                           android:id="@+id/tv_home_with_me_text"
+                            style="@style/HomeMenuText"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--精选-->
+                <!--<LinearLayout style="@style/HomeTopicParent">
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
@@ -139,13 +212,14 @@
                     android:layout_marginTop="@dimen/x14"
                     android:horizontalSpacing="@dimen/x18"
                     android:numColumns="2"
-                    android:verticalSpacing="@dimen/x10" />
+                    android:verticalSpacing="@dimen/x10" />-->
 
                 <RelativeLayout
                     android:id="@+id/rl_active"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x134"
-                    android:layout_marginTop="18dp">
+                    android:layout_marginTop="@dimen/x15"
+                    >
 
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/iv_bg"
@@ -210,7 +284,8 @@
 
                 </RelativeLayout>
 
-                <LinearLayout style="@style/HomeTopicParent">
+                <!--热门景点-->
+               <!-- <LinearLayout style="@style/HomeTopicParent">
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
@@ -231,9 +306,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/x14">
 
-                </android.support.v7.widget.RecyclerView>
-
-                <LinearLayout style="@style/HomeTopicParent">
+                </android.support.v7.widget.RecyclerView>-->
+                <!--经典游记-->
+                <!--<LinearLayout style="@style/HomeTopicParent">
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
@@ -255,9 +330,8 @@
                     android:layout_marginLeft="@dimen/x10"
                     android:layout_marginRight="@dimen/x10"
                     android:layout_marginTop="@dimen/x14"
-                    android:divider="@color/homeContentBg"/>
-
+                    android:divider="@color/homeContentBg"/>-->
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+   <!-- </android.support.v4.widget.SwipeRefreshLayout>-->
 </LinearLayout>

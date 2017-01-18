@@ -14,7 +14,6 @@
             android:theme="@style/toolbar_theme">
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tool_bar"
-                android:layout_marginTop="@dimen/commonStatusHeight"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x49"
                 >

@@ -26,9 +26,4 @@
 
 
     </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
-    <ViewStub
-        android:layout_alignParentBottom="true"
-        android:id="@+id/vs_footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>

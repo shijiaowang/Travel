@@ -34,7 +34,6 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     protected RecyclerView mRvCommon;
     protected SwipeToLoadLayout mSwipe;
     protected ViewStub mVsContent;
-    protected ViewStub mVsFooter;
 
     public List<F> getmDatas() {
         return mDatas;
@@ -58,11 +57,10 @@ public  abstract class BaseRecycleViewActivity<T extends HttpEvent,E extends Par
     protected void initEvent() {
         mRvCommon = (RecyclerView) findViewById(R.id.swipe_target);
         mVsContent= (ViewStub) findViewById(R.id.vs_content);
-        mVsFooter = (ViewStub) findViewById(R.id.vs_footer);
         mSwipe = (SwipeToLoadLayout) findViewById(R.id.swipe_container);
         View headerView = inflater.inflate(R.layout.layout_google_header, mSwipe, false);
         View footView = inflater.inflate(R.layout.layout_google_footer, mSwipe, false);
-        mSwipe.setSwipeStyle(SwipeToLoadLayout.STYLE.BLEW);
+        mSwipe.setSwipeStyle(REFRESH_STYLE);
         mSwipe.setRefreshHeaderView(headerView);
         mSwipe.setLoadMoreFooterView(footView);
         mSwipe.setOnRefreshListener(this);

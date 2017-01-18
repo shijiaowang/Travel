@@ -58,7 +58,7 @@ public abstract class LoadAndPullBaseFragment<T extends HttpEvent, E extends Par
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View headerView = inflater.inflate(R.layout.layout_google_header, mSwipe, false);
         View footView = inflater.inflate(R.layout.layout_google_footer, mSwipe, false);
-        mSwipe.setSwipeStyle(SwipeToLoadLayout.STYLE.BLEW);
+        mSwipe.setSwipeStyle(REFRESH_STYLE);
         mSwipe.setRefreshHeaderView(headerView);
         mSwipe.setLoadMoreFooterView(footView);
         mSwipe.setOnRefreshListener(this);

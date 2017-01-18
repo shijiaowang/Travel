@@ -3,15 +3,19 @@
 <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="1dp"
     android:orientation="vertical">
-
     <FrameLayout
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:layout_collapseParallaxMultiplier="0.7"
         android:id="@+id/fl_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x47" />
 
     <LinearLayout
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:layout_collapseParallaxMultiplier="0.7"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x40"
         android:background="@color/colorFAFAFA"

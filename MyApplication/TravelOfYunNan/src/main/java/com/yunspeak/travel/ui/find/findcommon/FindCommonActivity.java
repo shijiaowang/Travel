@@ -79,13 +79,14 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     private String foodType;
     private PopupWindow popupWindow;
 
+    @Override
+    protected int initLayoutRes() {
+        return R.layout.acitivity_find_common;
+    }
 
     @Override
     protected void initEvent() {
         super.initEvent();
-
-        mVsContent.setLayoutResource(R.layout.activity_destination);
-        mVsContent.inflate();
         changeMargin(0, 5);
         type = getIntent().getIntExtra(IVariable.TYPE, -1);
         mTvTitle.setText(initTitle());

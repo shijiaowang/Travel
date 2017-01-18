@@ -253,6 +253,7 @@
         <activity android:name=".ui.me.identityauth.idauth.DriverAuthActivity" />
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.payresult.PayResultActivity" />
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.backmoney.BackMoneyActivity" />
+        <activity android:name=".ui.home.welcome.homeswitch.HomeSwitchActivity" />
 
         <!-- 百度地图所需的service -->
         <service

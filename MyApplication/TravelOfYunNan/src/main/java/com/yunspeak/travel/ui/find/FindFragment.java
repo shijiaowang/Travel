@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.FindBean;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.SystemBarHelper;
 import com.yunspeak.travel.ui.find.active.ActiveActivity;
 import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
 import com.yunspeak.travel.ui.find.hotel.HotelActivity;
@@ -41,6 +43,8 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
     @BindView(R.id.ll_active) LinearLayout mLlActive;
     @BindView(R.id.rv_recommend) RecyclerView mRvRecommend;
     @BindView(R.id.rv_hot) RecyclerView mRvHot;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.pager_cursor) PagerCursorView pagerCursorView;
     private List<FindBean.DataBean.RecommendBean> banner;
 
@@ -82,6 +86,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
 
     @Override
     protected void initListener() {
+        SystemBarHelper.setHeightAndPadding(getContext(),toolbar);
         mRvRecommend.addItemDecoration(new FindDecoration(5,5));
         mRvHot.addItemDecoration(new TopDecoration(10));
         mLlActive.setOnClickListener(this);

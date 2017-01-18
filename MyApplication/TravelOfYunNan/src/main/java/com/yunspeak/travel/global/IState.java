@@ -1,5 +1,7 @@
 package com.yunspeak.travel.global;
 
+import static com.aspsine.swipetoloadlayout.SwipeToLoadLayout.STYLE.CLASSIC;
+
 /**
  * Created by wangyang on 2016/10/12 0012.
  */
@@ -34,4 +36,5 @@ public interface IState {
      String TRANSIT_IMAGE1 = "transit_image1";
      String TRANSIT_IMAGE2 = "transit_image2";
      String TRANSIT_TEXT = "transit_text";
+     int REFRESH_STYLE=CLASSIC;
 }
