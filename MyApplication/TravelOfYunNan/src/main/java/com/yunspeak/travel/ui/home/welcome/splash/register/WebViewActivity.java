@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
+import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.StringUtils;
 
 import butterknife.BindView;

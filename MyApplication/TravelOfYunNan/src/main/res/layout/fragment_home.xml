@@ -124,26 +124,22 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/ll_home_search_menu"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@color/colorFAFAFA"
                     android:orientation="vertical">
 
-                    <FrameLayout
-                        android:id="@+id/fl_home_search_appoint"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/x116">
+                    <TextView
+                        android:layout_marginTop="@dimen/x21"
+                        android:layout_marginLeft="@dimen/x22"
+                        android:layout_marginStart="@dimen/x22"
+                        android:layout_marginBottom="@dimen/x20"
+                        android:background="@drawable/home_fragment_search_menu_bg"
+                        style="@style/TextShadowColor.HomeFragmentMenuText"
+                        android:text="寻找导游" />
 
-                        <com.facebook.drawee.view.SimpleDraweeView
-                            android:id="@+id/sdv_home_search_bg"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                        <TextView
-                            style="@style/TextShadowColor.HomeFragmentMenuText"
-                            android:text="寻找导游" />
-
-                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/tv_home_search_text"
@@ -156,48 +152,53 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/x16"
                     android:layout_weight="1"
+
                     android:orientation="vertical">
 
-                    <FrameLayout
-                        android:id="@+id/fl_home_together"
+                    <LinearLayout
+                        android:id="@+id/ll_home_together_menu"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
-
-                        <com.facebook.drawee.view.SimpleDraweeView
-                            android:id="@+id/sdv_home_together_bg"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
+                        android:background="@color/colorFAFAFA"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_height="0dp">
                         <TextView
                             style="@style/TextShadowColor.HomeFragmentMenuText"
                             android:text="我是老司机"
-                            android:textSize="@dimen/x13sp" />
-                    </FrameLayout>
+                            android:layout_marginTop="@dimen/x10"
+                            android:layout_marginLeft="@dimen/x29"
+                            android:background="@drawable/home_fragment_together_menu_bg"
+                            android:textSize="@dimen/x13sp"
+                            android:layout_marginBottom="@dimen/x17"
+                            />
+                        <TextView
+                            android:id="@+id/tv_home_together_text"
+                            style="@style/HomeMenuText" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_home_together_text"
-                        style="@style/HomeMenuText" />
 
-                    <FrameLayout
-                        android:id="@+id/fl_home_with_me"
+                    <LinearLayout
+                        android:id="@+id/ll_home_with_me"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="@dimen/x5">
-
-                        <com.facebook.drawee.view.SimpleDraweeView
-                            android:id="@+id/sdv_home_with_me_bg"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                        android:background="@color/colorFAFAFA"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/x11"
+                        android:layout_height="0dp">
 
                         <TextView
                             style="@style/TextShadowColor.HomeFragmentMenuText"
                             android:text="定制行程"
+                            android:layout_marginTop="@dimen/x9"
+                            android:layout_marginBottom="@dimen/x16"
+                            android:layout_marginLeft="@dimen/x29"
+                            android:background="@drawable/home_fragment_with_me_menu_bg"
                             android:textSize="@dimen/x13sp" />
-                    </FrameLayout>
+                        <TextView
+                            android:id="@+id/tv_home_with_me_text"
+                            style="@style/HomeMenuText" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_home_with_me_text"
-                        style="@style/HomeMenuText" />
 
                 </LinearLayout>
             </LinearLayout>

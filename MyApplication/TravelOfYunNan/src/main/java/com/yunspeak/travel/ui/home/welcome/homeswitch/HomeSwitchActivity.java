@@ -3,10 +3,13 @@ package com.yunspeak.travel.ui.home.welcome.homeswitch;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.GlobalValue;
@@ -15,6 +18,7 @@ import com.yunspeak.travel.ui.appoint.searchappoint.SearchAppointActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
+import com.yunspeak.travel.utils.LogUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +37,8 @@ public class HomeSwitchActivity extends BaseToolBarActivity {
     WebView wvHtml;
     @BindView(R.id.bt_start)
     Button btStart;
+    @BindView(R.id.pb_progress)
+    ProgressBar pbProgress;
     private int choose;
 
     public static void start(Context context, String url, int choose) {
@@ -57,8 +63,20 @@ public class HomeSwitchActivity extends BaseToolBarActivity {
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return true;
             }
+
         });
+        pbProgress.setMax(100);
         wvHtml.loadUrl(url);
+        wvHtml.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                pbProgress.setProgress(newProgress);
+                if (newProgress==100){
+                    pbProgress.setVisibility(View.GONE);
+                }
+
+            }
+        });
     }
 
     @Override

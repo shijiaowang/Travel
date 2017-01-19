@@ -246,16 +246,12 @@
 <style name="TextShadowColor.HomeFragmentMenuText">
         <item name="android:textColor">@color/colorFAFAFA</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
         <item name="android:textSize">@dimen/x16sp</item>
-        <item name="android:paddingLeft">@dimen/x20</item>
-        <item name="android:paddingRight">@dimen/x20</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/x29</item>
+        <item name="android:layout_height">wrap_content</item>
 
     </style>
 <style name="HomeMenuText">
-        <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/x10sp</item>
         <item name="android:paddingLeft">@dimen/x7</item>
         <item name="android:paddingRight">@dimen/x7</item>
@@ -263,8 +259,8 @@
         <item name="android:textColor">@color/color646464</item>
         <item name="android:background">@color/colorFAFAFA</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+
     </style>
 
 
