@@ -15,9 +15,11 @@
 
         <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
+            android:fitsSystemWindows="false"
             android:layout_height="match_parent">
 
-            <include layout="@layout/activity_destination" />
+            <include
+                layout="@layout/activity_destination" />
 
             <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
                 android:id="@+id/swipe_container"

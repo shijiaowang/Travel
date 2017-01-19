@@ -2,15 +2,19 @@ package com.yunspeak.travel.ui.find.findcommon;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.design.widget.CoordinatorLayout;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -29,6 +33,7 @@ import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.Sele
 import com.yunspeak.travel.ui.appoint.travelplan.lineplan.selectdestination.customdestination.CustomDestinationActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.baseui.SystemBarHelper;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
@@ -88,6 +93,9 @@ public class FindCommonActivity extends BaseRecycleViewActivity<DestinationEvent
     protected void initEvent() {
         super.initEvent();
         changeMargin(0, 5);
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mSwipe.getLayoutParams();
+        layoutParams.topMargin= -SystemBarHelper.getStatusBarHeight(this);
+        mSwipe.setLayoutParams(layoutParams);
         type = getIntent().getIntExtra(IVariable.TYPE, -1);
         mTvTitle.setText(initTitle());
         url = type == DELICIOUS_NORMAL ? IVariable.FIND_FOOD : IVariable.FIND_DESTINATION;

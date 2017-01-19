@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,11 +15,13 @@
         android:layout_height="wrap_content"
         android:background="@color/otherTitleBg"
         android:theme="@style/toolbar_theme">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x49"
             android:background="@color/otherTitleBg">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x49"
@@ -80,258 +84,258 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-   <!-- <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_container"
+    <!-- <android.support.v4.widget.SwipeRefreshLayout
+         android:id="@+id/swipe_container"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">-->
+    <com.yunspeak.travel.ui.view.SpringScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">-->
-        <android.support.v4.widget.NestedScrollView
+        android:layout_height="match_parent"
+        android:background="@color/homeContentBg"
+        android:scrollbars="none">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/homeContentBg"
-            android:scrollbars="none">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x203">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_active"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.yunspeak.travel.ui.view.PagerCursorView
+                    android:id="@+id/pager_cursor"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x6"
+                    android:layout_marginTop="@dimen/x170" />
+
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/x203">
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/vp_active"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                    <com.yunspeak.travel.ui.view.PagerCursorView
-                        android:layout_marginTop="@dimen/x170"
-                        android:id="@+id/pager_cursor"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/x6"/>
+                android:layout_height="@dimen/x232"
+                android:layout_marginEnd="@dimen/x15"
+                android:layout_marginStart="@dimen/x15"
+                android:layout_marginTop="@dimen/x22"
+                android:orientation="horizontal">
 
-                </FrameLayout>
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_marginStart="@dimen/x15"
-                    android:layout_marginEnd="@dimen/x15"
-                    android:layout_marginTop="@dimen/x22"
-                    android:layout_height="@dimen/x232">
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:orientation="vertical"
-                        android:layout_height="match_parent">
-                        <FrameLayout
-                            android:id="@+id/fl_home_search_appoint"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/fl_home_search_appoint"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x116">
+
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/sdv_home_search_bg"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/x116">
-                            <com.facebook.drawee.view.SimpleDraweeView
-                                android:id="@+id/sdv_home_search_bg"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
-                            <TextView
-                                android:text="寻找导游"
-                                android:background="@drawable/fragment_home_menu_search_bg"
-                                style="@style/HomeFragmentMenuText" />
+                            android:layout_height="match_parent" />
 
-                        </FrameLayout>
                         <TextView
-                             android:id="@+id/tv_home_search_text"
-                            style="@style/HomeMenuText"/>
+                            style="@style/TextShadowColor.HomeFragmentMenuText"
+                            android:text="寻找导游" />
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginLeft="@dimen/x16"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:orientation="vertical"
-                        android:layout_height="match_parent">
-                        <FrameLayout
-                            android:id="@+id/fl_home_together"
-                            android:layout_width="match_parent"
-                            android:layout_height="70dp">
-                            <com.facebook.drawee.view.SimpleDraweeView
-                                android:id="@+id/sdv_home_together_bg"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
-                            <TextView
-                                android:text="我是老司机"
-                                android:textSize="@dimen/x13sp"
-                                android:background="@drawable/fragment_home_menu_together_bg"
-                                style="@style/HomeFragmentMenuText" />
-                        </FrameLayout>
-                        <TextView
-                            android:id="@+id/tv_home_together_text"
-                            style="@style/HomeMenuText"
-                            />
-                        <FrameLayout
-                            android:id="@+id/fl_home_with_me"
-                            android:layout_marginTop="@dimen/x5"
-                            android:layout_width="match_parent"
-                            android:layout_height="70dp">
-                            <com.facebook.drawee.view.SimpleDraweeView
-                                android:id="@+id/sdv_home_with_me_bg"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
-                            <TextView
-                                android:text="定制行程"
-                                android:textSize="@dimen/x13sp"
-                                android:background="@drawable/fragment_home_menu_with_me_bg"
-                                style="@style/HomeFragmentMenuText" />
-                        </FrameLayout>
-                        <TextView
-                           android:id="@+id/tv_home_with_me_text"
-                            style="@style/HomeMenuText"
-                            />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!--精选-->
-                <!--<LinearLayout style="@style/HomeTopicParent">
-
-                    <com.yunspeak.travel.ui.view.FontsIconTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/x1"
-                        android:text="@string/fragment_home_chosen"
-                        android:textColor="@color/homeTopicTextColor"
-                        android:textSize="@dimen/x15sp" />
+                    </FrameLayout>
 
                     <TextView
-                        style="@style/HomeTopicText"
-                        android:text="@string/home_topic_chosen" />
+                        android:id="@+id/tv_home_search_text"
+                        style="@style/HomeMenuText" />
+
                 </LinearLayout>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/gv_chosen"
-                    android:layout_gravity="center_horizontal"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x16"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/fl_home_together"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp">
+
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/sdv_home_together_bg"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            style="@style/TextShadowColor.HomeFragmentMenuText"
+                            android:text="我是老司机"
+                            android:textSize="@dimen/x13sp" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tv_home_together_text"
+                        style="@style/HomeMenuText" />
+
+                    <FrameLayout
+                        android:id="@+id/fl_home_with_me"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="@dimen/x5">
+
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/sdv_home_with_me_bg"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            style="@style/TextShadowColor.HomeFragmentMenuText"
+                            android:text="定制行程"
+                            android:textSize="@dimen/x13sp" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tv_home_with_me_text"
+                        style="@style/HomeMenuText" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--精选-->
+            <!--<LinearLayout style="@style/HomeTopicParent">
+
+                <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/x14"
-                    android:horizontalSpacing="@dimen/x18"
-                    android:numColumns="2"
-                    android:verticalSpacing="@dimen/x10" />-->
+                    android:layout_marginTop="@dimen/x1"
+                    android:text="@string/fragment_home_chosen"
+                    android:textColor="@color/homeTopicTextColor"
+                    android:textSize="@dimen/x15sp" />
 
-                <RelativeLayout
-                    android:id="@+id/rl_active"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/x134"
-                    android:layout_marginTop="@dimen/x15"
-                    >
-
-                    <com.facebook.drawee.view.SimpleDraweeView
-                        android:id="@+id/iv_bg"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <com.yunspeak.travel.ui.view.FontsIconTextView
-                        android:id="@+id/tv_air"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/x15"
-                        android:text="@string/activity_active_item_air"
-                        android:shadowDx="5"
-                        android:shadowDy="5"
-                        android:shadowRadius="5"
-                        android:shadowColor="@android:color/black"
-                        android:textColor="@color/colorffda60"
-                        android:textSize="@dimen/x40sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_type"
-                            android:shadowDx="5"
-                            android:shadowDy="5"
-                            android:shadowRadius="5"
-                            android:shadowColor="@android:color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/x9"
-                            android:textColor="@color/colorffda60"
-                            android:textSize="@dimen/x9sp" />
-
-                        <TextView
-                            android:id="@+id/tv_name"
-                            android:shadowDx="5"
-                            android:shadowDy="5"
-                            android:shadowRadius="5"
-                            android:shadowColor="@android:color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/x10"
-                            android:textColor="@color/colorFAFAFA"
-                            android:textSize="@dimen/x18sp" />
-
-                        <TextView
-                            android:id="@+id/tv_people"
-                            android:shadowDx="5"
-                            android:shadowDy="5"
-                            android:shadowRadius="5"
-                            android:shadowColor="@android:color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/x11"
-                            android:textColor="@color/colorFAFAFA"
-                            android:textSize="@dimen/x9sp" />
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <!--热门景点-->
-               <!-- <LinearLayout style="@style/HomeTopicParent">
-
-                    <com.yunspeak.travel.ui.view.FontsIconTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/x1"
-                        android:text="@string/fragment_home_spot"
-                        android:textColor="@color/homeTopicTextColor"
-                        android:textSize="@dimen/x15sp" />
-
-                    <TextView
-                        style="@style/HomeTopicText"
-                        android:text="@string/home_topic_hot_spots" />
-                </LinearLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_hot_spots"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/x14">
-
-                </android.support.v7.widget.RecyclerView>-->
-                <!--经典游记-->
-                <!--<LinearLayout style="@style/HomeTopicParent">
-
-                    <com.yunspeak.travel.ui.view.FontsIconTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/x1"
-                        android:text="@string/fragment_find_travels"
-                        android:textColor="@color/homeTopicTextColor"
-                        android:textSize="@dimen/x15sp" />
-
-                    <TextView
-                        style="@style/HomeTopicText"
-                        android:text="@string/home_topic_travels" />
-                </LinearLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/lv_travels"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x10"
-                    android:layout_marginRight="@dimen/x10"
-                    android:layout_marginTop="@dimen/x14"
-                    android:divider="@color/homeContentBg"/>-->
+                <TextView
+                    style="@style/HomeTopicText"
+                    android:text="@string/home_topic_chosen" />
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
-   <!-- </android.support.v4.widget.SwipeRefreshLayout>-->
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/gv_chosen"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x14"
+                android:horizontalSpacing="@dimen/x18"
+                android:numColumns="2"
+                android:verticalSpacing="@dimen/x10" />-->
+
+            <RelativeLayout
+                android:id="@+id/rl_active"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x134"
+                android:layout_marginTop="@dimen/x15">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/iv_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    android:id="@+id/tv_air"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/x15"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="5"
+                    android:shadowDy="5"
+                    android:shadowRadius="5"
+                    android:text="@string/activity_active_item_air"
+                    android:textColor="@color/colorffda60"
+                    android:textSize="@dimen/x40sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_type"
+                        style="@style/TextShadowColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x9"
+                        android:textColor="@color/colorffda60"
+                        android:textSize="@dimen/x9sp" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        style="@style/TextShadowColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x10"
+                        android:textColor="@color/colorFAFAFA"
+                        android:textSize="@dimen/x18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_people"
+                        style="@style/TextShadowColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x11"
+                        android:textColor="@color/colorFAFAFA"
+                        android:textSize="@dimen/x9sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <!--热门景点-->
+            <!-- <LinearLayout style="@style/HomeTopicParent">
+
+                 <com.yunspeak.travel.ui.view.FontsIconTextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="@dimen/x1"
+                     android:text="@string/fragment_home_spot"
+                     android:textColor="@color/homeTopicTextColor"
+                     android:textSize="@dimen/x15sp" />
+
+                 <TextView
+                     style="@style/HomeTopicText"
+                     android:text="@string/home_topic_hot_spots" />
+             </LinearLayout>
+
+             <android.support.v7.widget.RecyclerView
+                 android:id="@+id/rv_hot_spots"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/x14">
+
+             </android.support.v7.widget.RecyclerView>-->
+            <!--经典游记-->
+            <!--<LinearLayout style="@style/HomeTopicParent">
+
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x1"
+                    android:text="@string/fragment_find_travels"
+                    android:textColor="@color/homeTopicTextColor"
+                    android:textSize="@dimen/x15sp" />
+
+                <TextView
+                    style="@style/HomeTopicText"
+                    android:text="@string/home_topic_travels" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lv_travels"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_marginTop="@dimen/x14"
+                android:divider="@color/homeContentBg"/>-->
+        </LinearLayout>
+    </com.yunspeak.travel.ui.view.SpringScrollView>
+    <!-- </android.support.v4.widget.SwipeRefreshLayout>-->
 </LinearLayout>

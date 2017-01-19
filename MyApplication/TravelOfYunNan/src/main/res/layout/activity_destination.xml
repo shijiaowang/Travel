@@ -14,8 +14,6 @@
         android:layout_height="@dimen/x47" />
 
     <LinearLayout
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:layout_collapseParallaxMultiplier="0.7"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x40"
         android:background="@color/colorFAFAFA"

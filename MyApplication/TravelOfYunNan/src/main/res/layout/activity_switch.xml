@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
     <WebView
         android:id="@+id/wv_html"
+        android:layout_marginBottom="@dimen/x45"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <Button

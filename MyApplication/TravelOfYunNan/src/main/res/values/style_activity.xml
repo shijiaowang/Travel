@@ -237,7 +237,13 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/select_text_selector</item>
     </style>
-<style name="HomeFragmentMenuText">
+    <style name="TextShadowColor">
+        <item name="android:shadowDx">5</item>
+        <item name="android:shadowDy">5</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowColor">@android:color/black</item>
+    </style>
+<style name="TextShadowColor.HomeFragmentMenuText">
         <item name="android:textColor">@color/colorFAFAFA</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
@@ -246,6 +252,7 @@
         <item name="android:paddingRight">@dimen/x20</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/x29</item>
+
     </style>
 <style name="HomeMenuText">
         <item name="android:gravity">center</item>
@@ -259,5 +266,6 @@
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
     </style>
+
 
 </resources>

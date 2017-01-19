@@ -18,9 +18,9 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //省市级联表
-        String sql = "create table yuns_district(_id integer primary key autoincrement,name text,level text,upid text)";
-        String userNick = "create table chatuser(_id integer primary key autoincrement,userid text,username text,userimg text)";
-        String saveData = "create table homedata(_id integer primary key autoincrement,pagename text,pagecontent text)";
+        String sql = "CREATE TABLE IF NOT EXISTS yuns_district(_id integer primary key autoincrement,name text,level text,upid text)";
+        String userNick = "CREATE TABLE IF NOT EXISTS chatuser(_id integer primary key autoincrement,userid text,username text,userimg text)";
+        String saveData = "CREATE TABLE IF NOT EXISTS homedata(_id integer primary key autoincrement,pagename text,pagecontent text)";
         sqLiteDatabase.execSQL(sql);
         sqLiteDatabase.execSQL(userNick);
         sqLiteDatabase.execSQL(saveData);

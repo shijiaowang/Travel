@@ -47,7 +47,8 @@ public class WelcomeActivity extends FullTransparencyActivity {
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-
+        EventBus.getDefault().register(this);
+        ActivityUtils.getInstance().addActivity(this);
     }
 
     @Override
@@ -57,8 +58,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
     @Override
     protected void initView() {
-        EventBus.getDefault().register(this);
-        ActivityUtils.getInstance().addActivity(this);
+
     }
 
     @Override
@@ -68,7 +68,6 @@ public class WelcomeActivity extends FullTransparencyActivity {
 
     @Override
     protected void initData() {
-        LogUtils.e("闪屏页启动啦");
         String code = ShareUtil.getString(this,IVariable.KEY_VALUE, "");
         //获取key
         if (StringUtils.isEmpty(code)) {
