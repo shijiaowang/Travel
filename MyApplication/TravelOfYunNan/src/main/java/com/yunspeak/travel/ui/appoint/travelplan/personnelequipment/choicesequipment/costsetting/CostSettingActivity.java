@@ -59,8 +59,6 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
         return R.layout.activity_cost_setting;
     }
 
-
-
     @Override
     protected void initEvent() {
 
@@ -171,6 +169,7 @@ public class CostSettingActivity extends BaseNetWorkActivity<CostSettingEvent> i
                 break;
         }
     }
+
 
     private void saveData() {
         String string = getString(mEtPrice);

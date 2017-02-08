@@ -9,18 +9,20 @@ public class SettingTitle implements Serializable{
     private int type;
     private String title;
     private int changeType;
-
+    private String id;
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
+    public  SettingTitle(){
 
-    private String id;
-
-
+    }
+    public SettingTitle(String title, String id) {
+        this.title = title;
+        this.id = id;
+    }
 
     public int getChangeType() {
         return changeType;

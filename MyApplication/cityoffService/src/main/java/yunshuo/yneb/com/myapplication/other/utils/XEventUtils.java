@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import id.zelory.compressor.Compressor;
 import yunshuo.yneb.com.myapplication.IVariable;
+import yunshuo.yneb.com.myapplication.R;
 import yunshuo.yneb.com.myapplication.other.event.HttpEvent;
 /**
  * Created by wangyang on 2016/7/27 0027.
@@ -195,7 +196,7 @@ public class XEventUtils {
             httpEvent.setCode(IVariable.X_UTLIS_ERROR);
             if (ex != null) {
                 if (ex instanceof ConnectException) {
-                    message = "网络错误";
+                    message = UIUtils.getString(R.string.network_unavailable);
                 } else {
                     //message = ex.getMessage();
                     message = "连接错误";
@@ -257,7 +258,7 @@ public class XEventUtils {
             httpEvent.setCode(IVariable.X_UTLIS_ERROR);
             if (ex != null) {
                 if (ex instanceof ConnectException) {
-                    message = "网络错误";
+                    message = UIUtils.getString(R.string.network_unavailable);
                 } else {
                     message = ex.getMessage();
                 }

@@ -124,13 +124,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityUtils.getInstance().exit();
-        String registrationId = PushAgent.getInstance(this).getRegistrationId();
-        LogUtils.e("注册ID为" + registrationId);
         registerEventBus(this);
         if (!NetworkUtils.isNetworkConnected()) {
             ToastUtils.showToast("网络未连接");
         }
-
         //收到消息刷新
         messageListener = new EMMessageListener() {
             @Override
@@ -157,7 +154,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             }
         };
         EMClient.getInstance().chatManager().addMessageListener(messageListener);
-
         goToWhere();
         instance = this;
         boolean isNetwork = getIntent().getBooleanExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, true);
@@ -341,7 +337,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     startActivity(new Intent(this, LoginActivity.class));
                     finish();
                 } else {
-                    ToastUtils.showToast("网络错误！");
+                    ToastUtils.showToast(getString(R.string.network_unavailable));
                 }
             }
 

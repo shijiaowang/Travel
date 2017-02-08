@@ -306,11 +306,6 @@ public class YunSpeakHelper {
                 if (NetUtils.hasNetwork(UIUtils.getContext())) {
                     LogUtils.e("无法连接聊天服务器");
                 }
-                //连接不到聊天服务器
-                else {
-                    //当前网络不可用，请检查网络设置
-                    toast("当前网络不可用，请检查网络。");
-                }
             }
 
         }

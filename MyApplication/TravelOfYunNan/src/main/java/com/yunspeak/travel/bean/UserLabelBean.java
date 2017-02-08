@@ -2,6 +2,7 @@ package com.yunspeak.travel.bean;
 
 import com.google.gson.annotations.SerializedName;
 import com.yunspeak.travel.global.TravelsObject;
+import com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.settingtitle.SettingTitle;
 
 /**
  * Created by wangyang on 2016/9/28 0028.
@@ -43,5 +44,8 @@ public  class UserLabelBean  extends TravelsObject {
 
     public void setClassX(String classX) {
         this.classX = classX;
+    }
+    public SettingTitle copyToSettingTitle(){
+        return new SettingTitle(name,id);
     }
 }

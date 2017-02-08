@@ -89,23 +89,23 @@ public class TabFragment extends BaseFragment {
         }
     }
 
-    public void notifyTitleByPosition(int position) {
-        if (integerSet.contains(position)) integerSet.remove(position);
-        notifyTitle(TYPE_ADD);
+    public void addTitleByPosition(int position) {
+        integerSet.add(position);
+        notifyTitle(TYPE_ADD,position);
     }
 
-    private void notifyTitle(int type) {
+    private void notifyTitle(int type,int position) {
         //发送消息，更新activity界面
         SettingTitle settingTitle = new SettingTitle();
-        settingTitle.setPosition(prePosition);
+        settingTitle.setPosition(position);
         settingTitle.setType(mTitleType);
         settingTitle.setChangeType(type);
-        settingTitle.setId(mTitle.get(prePosition).getId());
-        settingTitle.setTitle(mTitle.get(prePosition).getName());
+        settingTitle.setId(mTitle.get(position).getId());
+        settingTitle.setTitle(mTitle.get(position).getName());
         AddTitleEvent addTitleEvent = new AddTitleEvent();
         addTitleEvent.setSettingTitle(settingTitle);
         EventBus.getDefault().post(addTitleEvent);
-        mFlTitle.changeColorAndBg(type, mTitle.get(prePosition).getId());
+        mFlTitle.changeColorAndBg(type, mTitle.get(position).getId());
     }
 
 
@@ -137,7 +137,7 @@ public class TabFragment extends BaseFragment {
                         if (integerSet.contains(position)) {
                             integerSet.remove(position);
                             GlobalValue.selectTitleNumber--;
-                            notifyTitle(REMOVE);
+                            notifyTitle(REMOVE,prePosition);
                         } else {
                             if (GlobalValue.selectTitleNumber >= 7) {
                                 ToastUtils.showToast("最不起，最多选择7个称号");
@@ -145,7 +145,7 @@ public class TabFragment extends BaseFragment {
                             }
                             GlobalValue.selectTitleNumber++;
                             integerSet.add(position);
-                            notifyTitle(TYPE_ADD);
+                            notifyTitle(TYPE_ADD,prePosition);
                         }
 
                     }

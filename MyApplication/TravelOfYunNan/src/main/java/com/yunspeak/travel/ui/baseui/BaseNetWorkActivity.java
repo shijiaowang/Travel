@@ -64,6 +64,7 @@ public abstract class BaseNetWorkActivity<T extends HttpEvent> extends BaseToolB
     public T getTInstance() {
 
         try {
+            //有些页面没有泛型的会报错
             ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
             Class c = (Class<T>) pt.getActualTypeArguments()[0];
             Constructor constructor = c.getConstructor();

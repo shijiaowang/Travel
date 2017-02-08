@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.aop.CheckNetwork;
 import com.yunspeak.travel.bean.FindBean;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.SystemBarHelper;
@@ -43,8 +44,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
     @BindView(R.id.ll_active) LinearLayout mLlActive;
     @BindView(R.id.rv_recommend) RecyclerView mRvRecommend;
     @BindView(R.id.rv_hot) RecyclerView mRvHot;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.pager_cursor) PagerCursorView pagerCursorView;
     private List<FindBean.DataBean.RecommendBean> banner;
 
@@ -61,7 +61,6 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),2);
         mRvRecommend.setAdapter(findRecommendAdapter);
         mRvRecommend.setLayoutManager(gridLayoutManager);
-
         gridLayoutManager.setSmoothScrollbarEnabled(true);
         gridLayoutManager.setAutoMeasureEnabled(true);
         mRvRecommend.setHasFixedSize(true);
@@ -104,6 +103,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
     protected void childAdd(MapUtils.Builder builder, int type) {
 
     }
+    @CheckNetwork
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

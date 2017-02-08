@@ -7,13 +7,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.aop.CheckNetwork;
 import com.yunspeak.travel.bean.ActivityBean;
 import com.yunspeak.travel.bean.HomeBean;
 import com.yunspeak.travel.global.IVariable;
@@ -29,9 +28,7 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-
 import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -131,7 +128,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
             rlActive.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ActivateDetailActivity.startShareElement(getContext(), activit.getId(), ivBg, activit.getActivity_img());
+                    startDetail(activit);
                 }
             });
         } else {
@@ -145,6 +142,11 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         }
 
 
+    }
+
+    @CheckNetwork
+    private void startDetail(ActivityBean activit) {
+        ActivateDetailActivity.startShareElement(getContext(), activit.getId(), ivBg, activit.getActivity_img());
     }
 
     private void initMenuText(List<HomeBean.DataBean.IndexTextBean> indexTextBeen) {
@@ -164,16 +166,25 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         }
     }
 
-    private void initTextAndListener(TextView textView, final LinearLayout frameLayout, final HomeBean.DataBean.IndexTextBean indexTextBean) {
+    private void initTextAndListener(TextView textView, final LinearLayout linearLayout, final HomeBean.DataBean.IndexTextBean indexTextBean) {
         textView.setText(indexTextBean.getTitle());
-        frameLayout.setTag(indexTextBean);
-        frameLayout.setOnClickListener(new View.OnClickListener() {
+        linearLayout.setTag(indexTextBean);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeBean.DataBean.IndexTextBean tag = (HomeBean.DataBean.IndexTextBean) frameLayout.getTag();
-                HomeSwitchActivity.start(getContext(), tag.getUrl(), tag.getType());
+                startSwitch(linearLayout);
             }
         });
+    }
+
+    /**
+     *进入定制约伴等页面选择
+     * @param linearLayout
+     */
+   @CheckNetwork
+    private void startSwitch(LinearLayout linearLayout) {
+        HomeBean.DataBean.IndexTextBean tag = (HomeBean.DataBean.IndexTextBean) linearLayout.getTag();
+        HomeSwitchActivity.start(getContext(), tag.getUrl(), tag.getType());
     }
 
     @Override
@@ -206,13 +217,17 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
         switch (v.getId()) {
             case R.id.et_search:
             case R.id.rl_search:
-                startActivity(new Intent(getContext(), HomeSearchActivity.class));
+                startSearch();
                 break;
             case R.id.tv_focus:
                 ToastUtils.showToast("暂时只支持云南");
                 break;
 
         }
+    }
+    @CheckNetwork
+    private void startSearch() {
+        startActivity(new Intent(getContext(), HomeSearchActivity.class));
     }
 
     @Override
@@ -234,12 +249,7 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String title = data.get(position).getTitle();
-                    String url = data.get(position).getUrl();
-                    if (StringUtils.isEmpty(title) || StringUtils.isEmpty(url)) {
-                        return;
-                    }
-                    WebViewActivity.start(getContext(), title, url);
+                    startBanner(data.get(position));
                 }
             });
             container.addView(imageView);
@@ -253,6 +263,15 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
 
             container.removeView(((SimpleDraweeView) object));
         }
+    }
+    @CheckNetwork
+    private void startBanner(HomeBean.DataBean.BannerBean bannerBean) {
+        String title = bannerBean.getTitle();
+        String url = bannerBean.getUrl();
+        if (StringUtils.isEmpty(title) || StringUtils.isEmpty(url)) {
+            return;
+        }
+        WebViewActivity.start(getContext(), title, url);
     }
 
     @Override

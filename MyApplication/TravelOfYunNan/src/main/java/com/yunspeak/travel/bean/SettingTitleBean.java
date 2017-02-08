@@ -25,6 +25,7 @@ public class SettingTitleBean extends TravelsObject implements Serializable{
         private List<UserLabelBean> user_label;
         private List<UserLabelBean> platform_label;
         private List<UserLabelBean> play_way;
+        private List<UserLabelBean> is_daoyou;
 
         public List<UserLabelBean> getUser_label() {
             return user_label;
@@ -50,9 +51,12 @@ public class SettingTitleBean extends TravelsObject implements Serializable{
             this.play_way = play_way;
         }
 
+        public List<UserLabelBean> getIs_daoyou() {
+            return is_daoyou;
+        }
 
-
-
-
+        public void setIs_daoyou(List<UserLabelBean> is_daoyou) {
+            this.is_daoyou = is_daoyou;
+        }
     }
 }

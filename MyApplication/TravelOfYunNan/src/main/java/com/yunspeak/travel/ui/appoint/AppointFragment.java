@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.aop.CheckNetwork;
 import com.yunspeak.travel.bean.AppointBean;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
@@ -205,7 +206,6 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
 
 
     private void showAppointDialog() {
-
         Bitmap viewBitmap = createViewBitmap(mLlRoot);
         Bitmap bitmap = FastBlur.zoomImage(viewBitmap, 300, 500);//压缩图片
         viewBitmap.recycle();
@@ -228,8 +228,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onClick(View v) {
                 GlobalValue.mAppointType = IVariable.TYPE_TOGETHER;
-                startActivity(new Intent(getContext(), TravelsPlanActivity.class));
-                dialog.dismiss();
+                startCreateAppoint(dialog, new Intent(getContext(), TravelsPlanActivity.class));
 
             }
         });
@@ -237,8 +236,7 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onClick(View v) {
                 GlobalValue.mAppointType = IVariable.TYPE_WITH_ME;
-                startActivity(new Intent(getContext(), TravelsPlanWithMeActivity.class));
-                dialog.dismiss();
+                startCreateAppoint(dialog, new Intent(getContext(), TravelsPlanWithMeActivity.class));
 
             }
         });
@@ -261,6 +259,11 @@ public class AppointFragment extends BaseFragment implements View.OnClickListene
         }
         dialog.show();
 
+    }
+    @CheckNetwork
+    private void startCreateAppoint(Dialog dialog, Intent intent) {
+        startActivity(intent);
+        dialog.dismiss();
     }
 
 

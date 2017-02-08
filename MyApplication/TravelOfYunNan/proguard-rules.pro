@@ -264,3 +264,5 @@
 -keepclassmembers class fqcn.of.javascript.interface.for.webview {
     public *;
 }
+#asp
+-keep class com.hujiang.test.A {*;}

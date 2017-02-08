@@ -79,17 +79,9 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
 
 
     private void initCity() {
-        x.task().run(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    options1Items = DBManager.getProvince();
-                    options2Items = DBManager.getCity(options1Items);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+          options1Items = DBManager.getProvince();
+          options2Items = DBManager.getCity(options1Items);
+
     }
 
 
@@ -104,8 +96,8 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
             //设置选择的三级单位
 //          pwOptions.setLabels("省", "市", "区");
             pvOptions.setTitle("选择城市");
-            //pvOptions.setSelectOptions(24, 1, 1);//默认选中云南 25-1
-           pvOptions.setCyclic(false, true, true);
+            pvOptions.setSelectOptions(24, 1, 1);//默认选中云南 25-1
+            pvOptions.setCyclic(false, true, true);
             pvOptions.setCancelable(true);
             //设置默认选中的三级项目
             pvOptions.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
@@ -113,11 +105,11 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
                 @Override
                 public void onOptionsSelect(int options1, int option2, int options3) {
                     //返回的分别是三个级别的选中位置
-                    String tx = options1Items.get(options1).getPickerViewText()
+                    address = options1Items.get(options1).getPickerViewText()
                             + options2Items.get(options1).get(option2);
-                    address = tx;
                     id = options1Items.get(options1).getId();//省得id
-                    cityName = options2Items.get(options1).get(option2);
+                    cityName =options1Items.get(options1).getPickerViewText();
+                    cityName += options2Items.get(options1).get(option2);
                     mTvStartCity.setText(cityName);
                 }
             });

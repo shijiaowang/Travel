@@ -12,6 +12,7 @@ import com.google.android.flexbox.FlexboxLayout;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.aop.CheckNetwork;
 import com.yunspeak.travel.bean.MeBean;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.bean.UserLabelBean;
@@ -178,7 +179,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
             super.userResultSize(uCrop, width, height);
         }
     }
-
+    @CheckNetwork
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

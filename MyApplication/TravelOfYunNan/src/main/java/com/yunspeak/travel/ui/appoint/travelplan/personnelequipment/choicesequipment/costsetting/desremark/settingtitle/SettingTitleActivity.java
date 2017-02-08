@@ -43,7 +43,6 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
     private static final int TYPE_MY_TITLE = 0;
     private static final int TYPE_VER_TITLE = 1;//认证标志
     private static final int TYPE_PLAY_WAY = 2;//玩法
-    private static final int TYPE_DIY_TITLE = 3;
     private String[] mTitles = {"我的称号", "认证标志", "玩法"};
     private List<Fragment> fragmentList = new ArrayList<>();
     @BindView(R.id.vp_pager) ViewPager mVpPager;
@@ -51,15 +50,9 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
     @BindView(R.id.fl_title) FlexboxLayout mFlTitle;
     @BindView(R.id.pager_cursor)
     PagerCursorView mPagerCursorView;
-    private boolean isSure=false;//如果用户一旦确认过就一只保存标签，除非用户清除
     private LayoutInflater inflater;
     private TextView mTvTitle;
-    private List<SettingTitle>  settingTitles=new ArrayList<>();
-
-
-
-
-
+    private List<SettingTitle> settingTitles;
     @Override
     protected void initEvent() {
         init();
@@ -68,15 +61,11 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 mIndicator.scroll(position,positionOffset);
             }
-
             @Override
             public void onPageSelected(int position) {
-
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
     }
@@ -85,11 +74,12 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
     private void init() {
         settingTitles= (List<SettingTitle>) getIntent().getSerializableExtra(IVariable.DATA);
         inflater = LayoutInflater.from(this);
-        if (settingTitles!=null){
-            for (SettingTitle settingTitle:settingTitles) {
+        if (!ListIsEmpty(settingTitles)) {
+            for (SettingTitle settingTitle : settingTitles) {
                 insertTitle(settingTitle);
             }
         }
+
         mIndicator.setIsTitle(true);
         mIndicator.setViewPager(mVpPager);
         mIndicator.setTitles(mTitles);
@@ -146,6 +136,7 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
         List<UserLabelBean> userLabel = settingTitleBean.getData().getUser_label();
         List<UserLabelBean> platformLabel = settingTitleBean.getData().getPlatform_label();
         List<UserLabelBean> playWayLabel = settingTitleBean.getData().getPlay_way();
+        List<UserLabelBean> isDaoyou = settingTitleBean.getData().getIs_daoyou();
         TabFragment tabFragment1 = TabFragment.newInstance(userLabel, TYPE_MY_TITLE,settingTitles);
         TabFragment tabFragment2 = TabFragment.newInstance(platformLabel, TYPE_VER_TITLE,settingTitles);
         TabFragment tabFragment3 = TabFragment.newInstance(playWayLabel, TYPE_PLAY_WAY,settingTitles);
@@ -155,7 +146,28 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
         mPagerCursorView.setViewPager(mVpPager,fragmentList.size(),false,null);
         mVpPager.setOffscreenPageLimit(2);
         mVpPager.setAdapter(new TitlePagerAdapter(getSupportFragmentManager()));
+        mVpPager.setCurrentItem(0,false);
+        if (isDaoyou!=null && isDaoyou.size()!=0){
+            if (settingTitles==null || settingTitles.size()==0){
+                addAutoLabel(isDaoyou,platformLabel,tabFragment2);
+            }
+        }
+    }
 
+    /**
+     * 添加默认需要添加的标签
+     * @param isDaoyou
+     * @param tabFragment2
+     */
+    private void addAutoLabel(List<UserLabelBean> isDaoyou, List<UserLabelBean> labelBeens, TabFragment tabFragment2) {
+        if (labelBeens==null || labelBeens.size()==0)return;
+        for (UserLabelBean userLabelBean:isDaoyou){
+            for (int i=0;i<labelBeens.size();i++){
+                if (userLabelBean.getId().equals(labelBeens.get(i).getId())){
+                    tabFragment2.addTitleByPosition(i);
+                }
+            }
+        }
     }
 
 
@@ -224,6 +236,9 @@ public class SettingTitleActivity extends BaseNetWorkActivity<SettingTitleEvent>
      * @param settingTitle
      */
     private void insertTitle(final SettingTitle settingTitle) {
+        if (settingTitles==null){
+            settingTitles=new ArrayList<>();
+        }
         if (!settingTitles.contains(settingTitle)){
             settingTitles.add(settingTitle);
         }

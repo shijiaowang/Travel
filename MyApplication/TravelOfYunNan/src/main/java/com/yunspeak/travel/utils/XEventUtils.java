@@ -3,6 +3,7 @@ package com.yunspeak.travel.utils;
 
 import android.graphics.Bitmap;
 
+import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
 
@@ -219,7 +220,7 @@ public class XEventUtils {
             httpEvent.setCode(IVariable.X_UTLIS_ERROR);
             if (ex != null) {
                 if (ex instanceof ConnectException) {
-                    message = "网络错误";
+                    message = UIUtils.getString(R.string.network_unavailable);
                 } else {
                     //message = ex.getMessage();
                     message = "连接错误";
@@ -281,9 +282,9 @@ public class XEventUtils {
             httpEvent.setCode(IVariable.X_UTLIS_ERROR);
             if (ex != null) {
                 if (ex instanceof ConnectException) {
-                    message = "网络错误";
+                    message = UIUtils.getString(R.string.network_unavailable);
                 } else if (ex instanceof UnknownHostException){
-                    message = "网络错误";
+                    message = UIUtils.getString(R.string.network_unavailable);
                 }else {
                     message = ex.getMessage();
                 }
