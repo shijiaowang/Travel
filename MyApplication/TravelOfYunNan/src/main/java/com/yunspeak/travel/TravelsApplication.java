@@ -25,6 +25,7 @@ import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageAdap
 import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
 import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
 import com.yunspeak.travel.utils.FormatDateUtils;
+import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.StringUtils;
 
 import org.xutils.common.util.LogUtil;
@@ -46,6 +47,7 @@ public class TravelsApplication extends MultiDexApplication {
         super.onCreate();
         MultiDex.install(this);
         x.Ext.init(this);
+        x.Ext.setDebug(false);
         ImagePipelineConfig imagePipelineConfig = ImagePipelineConfigFactory.getImagePipelineConfig(getApplicationContext());
         Fresco.initialize(getApplicationContext(),imagePipelineConfig);
         mContext = getApplicationContext();

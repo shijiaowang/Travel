@@ -177,7 +177,9 @@ public class CirclePreviewActivity extends AppCompatActivity implements View.OnC
         @Override
         public void destroyItem(ViewGroup container, int position,
                                 Object object) {
-            container.removeView((ZoomableDraweeView) object);
+            ZoomableDraweeView zoomableDraweeView = (ZoomableDraweeView) object;
+            zoomableDraweeView.setController(null);
+            container.removeView(zoomableDraweeView);
         }
     }
 

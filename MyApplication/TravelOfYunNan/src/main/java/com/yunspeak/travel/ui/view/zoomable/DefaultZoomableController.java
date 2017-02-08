@@ -58,7 +58,7 @@ public class DefaultZoomableController
   private Listener mListener = null;
 
   private boolean mIsEnabled = false;
-  private boolean mIsRotationEnabled = true;
+  private boolean mIsRotationEnabled = false;
   private boolean mIsScaleEnabled = true;
   private boolean mIsTranslationEnabled = true;
 
