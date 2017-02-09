@@ -92,7 +92,7 @@ public class HomeSwitchActivity extends BaseToolBarActivity {
                 btStart.setText("发布约伴-带人玩");
                 break;
             case GO_WITH_ME:
-                title = "定制形成";
+                title = "定制行程";
                 btStart.setText("发布约伴-找人带");
                 break;
         }

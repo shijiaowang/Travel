@@ -1,7 +1,9 @@
 package com.yunspeak.travel.aop;
 
+import com.yunspeak.travel.R;
 import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.ToastUtils;
+import com.yunspeak.travel.utils.UIUtils;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -36,7 +38,7 @@ public class AspUtil {
         if (NetworkUtils.isNetworkConnected()){
             proceedingJoinPoint.proceed();
         }else {
-            ToastUtils.showToast("当前网络不可用,请检查网络");
+            ToastUtils.showToast(UIUtils.getString(R.string.network_unavailable));
         }
 
     }

@@ -9,12 +9,8 @@ import java.util.List;
  * Created by wangyang on 2016/9/30 0030.
  */
 
-public class MyPublishBean extends TravelsObject implements ParentBean{
-
-
-
+public class MyPublishBean extends TravelsObject implements ParentBean {
     private List<DataBean> data;
-
 
     public List<DataBean> getData() {
         return data;

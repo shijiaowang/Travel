@@ -256,10 +256,11 @@
         <item name="android:paddingLeft">@dimen/x7</item>
         <item name="android:paddingRight">@dimen/x7</item>
         <item name="android:lineSpacingExtra">@dimen/x5</item>
+        <item name="android:gravity">center</item>
         <item name="android:textColor">@color/color646464</item>
         <item name="android:background">@color/colorFAFAFA</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
 
     </style>
 

@@ -73,8 +73,11 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
     LinearLayout llHomeSearchMenu;
     @BindView(R.id.ll_home_together_menu)
     LinearLayout llHomeTogetherMenu;
-    @BindView(R.id.ll_home_with_me)
-    LinearLayout llHomeWithMeMenu;
+    @BindView(R.id.ll_home_with_me) LinearLayout llHomeWithMeMenu;
+    @BindView(R.id.sdv_together) SimpleDraweeView sdvTogether;
+    @BindView(R.id.sdv_old_driver) SimpleDraweeView sdvOlderDriver;
+    @BindView(R.id.sdv_diy_travel) SimpleDraweeView sdvDiyTravel;
+
     private List<HomeBean.DataBean.BannerBean> banner;
 
     @Override
@@ -154,12 +157,15 @@ public class HomeFragment extends LoadBaseFragment<HomeEvent> implements View.On
             switch (indexTextBean.getType()) {
                 case 1:
                     initTextAndListener(tvHomeSearchText, llHomeSearchMenu, indexTextBean);
+                    FrescoUtils.displayNormal(sdvTogether,indexTextBean.getImg());
                     break;
                 case 2:
                     initTextAndListener(tvHomeTogetherText, llHomeTogetherMenu, indexTextBean);
+                    FrescoUtils.displayNormal(sdvOlderDriver,indexTextBean.getImg());
                     break;
                 case 3:
                     initTextAndListener(tvHomeWithMeText, llHomeWithMeMenu, indexTextBean);
+                    FrescoUtils.displayNormal(sdvDiyTravel,indexTextBean.getImg());
                     break;
             }
 

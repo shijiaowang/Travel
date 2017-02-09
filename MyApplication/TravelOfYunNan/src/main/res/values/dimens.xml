@@ -201,4 +201,5 @@
     <!--新加的 没有适配其他-->
     <dimen name="x232">232dp</dimen>
     <dimen name="x94dp">94dp</dimen>
+    <dimen name="x77">77dp</dimen>
 </resources>

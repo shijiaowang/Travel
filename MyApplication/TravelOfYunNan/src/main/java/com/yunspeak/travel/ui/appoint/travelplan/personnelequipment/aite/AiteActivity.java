@@ -1,6 +1,4 @@
 package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment.aite;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.KeyEvent;
@@ -13,25 +11,22 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.AiteBean;
 import com.yunspeak.travel.bean.AiteFollow;
 import com.yunspeak.travel.bean.Follow;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
-import com.yunspeak.travel.ui.view.FastQueryIndex;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
+import com.yunspeak.travel.ui.view.SlideCursorView;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import butterknife.BindView;
 
 /**
@@ -43,7 +38,8 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
     @BindView(R.id.tv_search) FontsIconTextView tvSearch;
     @BindView(R.id.rl_search) RelativeLayout rlSearch;
     @BindView(R.id.lv_follow_people) ListView lvFollowPeople;
-    @BindView(R.id.fqi_index) FastQueryIndex fqiIndex;
+    @BindView(R.id.scv_index)
+    SlideCursorView fqiIndex;
     @BindView(R.id.et_content)EditText mEtContent;
     private List<AiteFollow> followAndFans;
     private List<AiteFollow> mSelectPeople;
@@ -77,10 +73,11 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
                 return false;
             }
         });
-        fqiIndex.setOnItemClickListener(new FastQueryIndex.OnItemClickListener() {
+        fqiIndex.setWordSelectChangeListener(new SlideCursorView.WordSelectChangeListener() {
             @Override
-            public void onClickWord(char c) {
-                queryAndSmooth(c);
+            public void wordChange(char word) {
+                ToastUtils.showCenterToast(String.valueOf(word));
+                queryAndSmooth(word);
             }
         });
         lvFollowPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -214,33 +211,13 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
             ToastUtils.showToast("暂无数据！");
         } else {
             initDataAndSort(data);
-            initIndexQuery();
             adapter = new AiteAdapter(this, followAndFans);
             lvFollowPeople.setAdapter(adapter);
         }
 
     }
 
-    private void initIndexQuery() {
-        List<String> indexList = new ArrayList<>();
-        indexList.add("*");//第一个默认
-        //排好序后获得有序索引
-        for (AiteFollow aiteFollow : followAndFans) {
-            String index;
-            char indexChar = aiteFollow.getIndexChar();
-            if (indexChar >= '{') {//与之前的排序设置有关，bean对象中的
-                index = "#";
-            } else {
-                index = String.valueOf(indexChar);
-            }
 
-            if (!indexList.contains(index)) {
-                indexList.add(index);
-            }
-        }
-        //完毕后，初始化所以列表
-        fqiIndex.initWordIndex(indexList);
-    }
 
 
     @Override

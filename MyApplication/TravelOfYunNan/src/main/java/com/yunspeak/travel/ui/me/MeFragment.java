@@ -1,7 +1,10 @@
 package com.yunspeak.travel.ui.me;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -99,6 +102,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     @BindView(R.id.ll_theme) LinearLayout mLlTheme;
     @BindView(R.id.tv_setting) TextView mTvSetting;
 
+
     private int upType=-1;
     private static final int UP_BG=99;//上传背景
     private static final int UP_ICON=100;//上传头像
@@ -145,7 +149,6 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
         mBvAppointCount.setTargetView(mTvAppoint);
         mBvOrderCount.setTargetView(mTvMyOrder);
         mBvMessageCount.setTargetView(mTvMessageCenter);
-
     }
 
     private void init() {
@@ -336,6 +339,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
     @Override
     public void onRefresh() {
         onLoad(TYPE_REFRESH);
+
     }
 
 

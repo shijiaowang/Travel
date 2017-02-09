@@ -66,12 +66,12 @@
 
         </ListView>
 
-        <com.yunspeak.travel.ui.view.FastQueryIndex
-            android:id="@+id/fqi_index"
-            android:layout_width="@dimen/x14"
+        <com.yunspeak.travel.ui.view.SlideCursorView
+            android:id="@+id/scv_index"
+            android:layout_width="@dimen/x30"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/x5"
-            android:orientation="vertical" />
+            />
 
     </LinearLayout>
 

@@ -9,18 +9,18 @@ import java.util.List;
  * Created by wangyang on 2016/9/28 0028.
  */
 
-public class ActiveBean extends TravelsObject implements ParentBean{
+public class ActiveBean extends TravelsObject implements ParentBean<List<ActiveBean.DataBean>>{
 
 
 
 
-    private List<DataBean> data;
+    private List<ActiveBean.DataBean> data;
 
-    public List<DataBean> getData() {
+    public List<ActiveBean.DataBean> getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(List<ActiveBean.DataBean> data) {
         this.data = data;
     }
 
