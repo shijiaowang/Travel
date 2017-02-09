@@ -79,6 +79,9 @@ public class SlideCursorView extends View {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 setBackgroundColor(Color.parseColor("#00000000"));
+                if (wordSelectChangeListener!=null){
+                    wordSelectChangeListener.wordCancel();
+                }
                 break;
         }
         return true;
@@ -111,6 +114,7 @@ public class SlideCursorView extends View {
 
     public interface WordSelectChangeListener{
         void wordChange(char word);
+        void wordCancel();
     }
 
     public void setWordSelectChangeListener(WordSelectChangeListener wordSelectChangeListener) {

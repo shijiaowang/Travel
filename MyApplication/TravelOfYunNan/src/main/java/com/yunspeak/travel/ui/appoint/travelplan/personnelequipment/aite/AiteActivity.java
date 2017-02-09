@@ -41,6 +41,7 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
     @BindView(R.id.scv_index)
     SlideCursorView fqiIndex;
     @BindView(R.id.et_content)EditText mEtContent;
+    @BindView(R.id.tv_cursor)TextView mTvCursor;
     private List<AiteFollow> followAndFans;
     private List<AiteFollow> mSelectPeople;
     private AiteAdapter adapter;
@@ -76,8 +77,14 @@ public class AiteActivity extends BaseNetWorkActivity<AiteEvent> {
         fqiIndex.setWordSelectChangeListener(new SlideCursorView.WordSelectChangeListener() {
             @Override
             public void wordChange(char word) {
-                ToastUtils.showCenterToast(String.valueOf(word));
+                mTvCursor.setText(word+"");
+                mTvCursor.setVisibility(View.VISIBLE);
                 queryAndSmooth(word);
+            }
+
+            @Override
+            public void wordCancel() {
+                mTvCursor.setVisibility(View.GONE);
             }
         });
         lvFollowPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {

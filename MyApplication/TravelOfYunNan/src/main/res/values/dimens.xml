@@ -202,4 +202,5 @@
     <dimen name="x232">232dp</dimen>
     <dimen name="x94dp">94dp</dimen>
     <dimen name="x77">77dp</dimen>
+    <dimen name="x80sp">80sp</dimen>
 </resources>

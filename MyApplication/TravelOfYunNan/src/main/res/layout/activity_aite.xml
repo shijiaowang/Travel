@@ -49,30 +49,37 @@
         android:background="@color/meLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x1"/>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <ListView
             android:id="@+id/lv_follow_people"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:dividerHeight="0dp"
             android:scrollbars="none">
 
         </ListView>
-
+        <TextView
+            android:id="@+id/tv_cursor"
+            android:visibility="gone"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/x80sp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <com.yunspeak.travel.ui.view.SlideCursorView
             android:id="@+id/scv_index"
             android:layout_width="@dimen/x30"
             android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/x5"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
