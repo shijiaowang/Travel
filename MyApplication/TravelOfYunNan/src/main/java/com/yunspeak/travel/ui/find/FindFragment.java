@@ -18,7 +18,7 @@ import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.SystemBarHelper;
 import com.yunspeak.travel.ui.find.active.ActiveActivity;
 import com.yunspeak.travel.ui.find.findcommon.FindCommonActivity;
-import com.yunspeak.travel.ui.find.hotel.HotelActivity;
+import com.yunspeak.travel.ui.find.hotel.HotelIndexActivity;
 import com.yunspeak.travel.ui.find.travels.TravelsActivity;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.ui.me.myappoint.withmeselect.TopDecoration;
@@ -120,7 +120,7 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
                 FindCommonActivity.start(getContext(),FindCommonActivity.DESTINATION_NORMAL, 0);
                 break;
             case R.id.ll_hotel:
-                startActivity(new Intent(getContext(), HotelActivity.class));
+                startActivity(new Intent(getContext(), HotelIndexActivity.class));
                 break;
         }
     }

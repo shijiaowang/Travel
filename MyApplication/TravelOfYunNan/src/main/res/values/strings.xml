@@ -336,6 +336,8 @@
     <string name="sd_not_available">SD卡不可用！</string>
     <string name="network_not_available">网络不可用！</string>
     <string name="download_fail">下载失败！</string>
+    <string name="hotel_reservation">预订酒店</string>
+    <string name="select_city">选择城市</string>
 
 
 </resources>

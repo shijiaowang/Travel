@@ -10,18 +10,24 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.hyphenate.util.DensityUtil;
+import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.DensityUtils;
+import com.yunspeak.travel.utils.UIUtils;
+
 /**
  * Created by wangyang on 2017/2/9.
  */
 
 public class SlideCursorView extends View {
-    private static char[] words=new char[28];
+    private static char[] words = new char[28];
+
     static {
-        words[0]='*';
-        words[27]='#';
-        char start='A';
-        for (int i=1;i<=26;i++){
-            words[i]=start++;
+        words[0] = '*';
+        words[27] = '#';
+        char start = 'A';
+        for (int i = 1; i <= 26; i++) {
+            words[i] = start++;
         }
     }
 
@@ -29,66 +35,81 @@ public class SlideCursorView extends View {
     private int wordHeight;//一个单词的高度
     private Paint wordPaint;
     private Rect textMesure;
-    private float preY=-1f;
+    private float preY = -1f;
+    private Paint selectPaint;
+    private char currentWord;
 
     public SlideCursorView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public SlideCursorView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public SlideCursorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         wordPaint = new Paint();
         wordPaint.setAntiAlias(true);
-        wordPaint.setTextSize(28);
+        wordPaint.setTextSize(DensityUtil.sp2px(context, 10));
         wordPaint.setColor(Color.DKGRAY);
+        selectPaint = new Paint();
+        selectPaint.setAntiAlias(true);
+        selectPaint.setTextSize(DensityUtil.sp2px(context, 10));
+        selectPaint.setColor(UIUtils.getColor(R.color.otherTitleBg));
         textMesure = new Rect();
 
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        for (int i=0;i<words.length;i++){
+        for (int i = 0; i < words.length; i++) {
             String currentWord = String.valueOf(words[i]);
-            wordPaint.getTextBounds(currentWord,0,currentWord.length(),textMesure);
+            wordPaint.getTextBounds(currentWord, 0, currentWord.length(), textMesure);
             int textWidth = textMesure.width();
             int textHeight = textMesure.height();
-            float x=(width-textWidth)/2f;
-            float y=(i+1)*wordHeight-(wordHeight-textHeight)/2f;
-            canvas.drawText(currentWord,x,y,wordPaint);
+            float x = (width - textWidth) / 2f;
+            float y = (i + 1) * wordHeight - (wordHeight - textHeight) / 2f;
+            if (currentWord.equals(String.valueOf(this.currentWord))){
+                canvas.drawText(currentWord, x, y, selectPaint);
+            }else {
+                canvas.drawText(currentWord, x, y, wordPaint);
+            }
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 setBackgroundColor(Color.parseColor("#21969696"));
             case MotionEvent.ACTION_MOVE:
                 float y = event.getY();
-                if ((wordSelectChangeListener!=null && canUseListener(y)) || (wordSelectChangeListener!=null && preY==-1f)){
-                    if (floatToInt(y)<words.length && floatToInt(y)>0) {
-                        wordSelectChangeListener.wordChange(words[floatToInt(y)]);
-                }
+                currentWord = words[floatToInt(y)];
+                if ((wordSelectChangeListener != null && canUseListener(y)) || (wordSelectChangeListener != null && preY == -1f)) {
+                    if (floatToInt(y) < words.length && floatToInt(y) > 0) {
+                        wordSelectChangeListener.wordChange(currentWord);
+                    }
                 }
                 preY = y;
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 setBackgroundColor(Color.parseColor("#00000000"));
-                if (wordSelectChangeListener!=null){
+                if (wordSelectChangeListener != null) {
                     wordSelectChangeListener.wordCancel();
                 }
+                currentWord=0;
                 break;
+
         }
+        invalidate();
         return true;
     }
 
     /**
      * 是否触发listener
+     *
      * @param y
      */
     private boolean canUseListener(float y) {
@@ -99,21 +120,22 @@ public class SlideCursorView extends View {
     }
 
     private int floatToInt(float y) {
-        return (int) (y/wordHeight);
+        return (int) (y / wordHeight);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         width = w;
-        wordHeight = h/words.length;
+        wordHeight = h / words.length;
     }
+
     private WordSelectChangeListener wordSelectChangeListener;
 
 
-
-    public interface WordSelectChangeListener{
+    public interface WordSelectChangeListener {
         void wordChange(char word);
+
         void wordCancel();
     }
 

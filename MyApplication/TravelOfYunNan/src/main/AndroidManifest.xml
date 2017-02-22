@@ -160,7 +160,9 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.appoint.together.togetherdetail.AppointTogetherDetailActivity" />
         <activity android:name=".ui.me.messagecenter.relateme.RelateMeActivity" />
-        <activity android:name=".ui.find.hotel.HotelActivity" />
+        <activity android:name=".ui.find.hotel.HotelIndexActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".ui.appoint.travelplan.personnelequipment.choicesequipment.costsetting.desremark.settingtitle.SettingTitleActivity"
             android:launchMode="singleTop" />

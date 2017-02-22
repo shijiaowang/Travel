@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.yunspeak.travel.bean.CityNameBean;
 import com.yunspeak.travel.bean.ProvinceBean;
+import com.yunspeak.travel.utils.IOUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -44,7 +46,42 @@ public class DBManager {
         }
         return buffer.toString();
     }
+    public static List<CityNameBean> queryAllCity(){
+        if (!cityDBIsExits()){
+            initCityDB(UIUtils.getContext());
+        }
+        List<CityNameBean> list=new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase=dbHelper.getReadableDatabase();
+        Cursor cursor=null;
+        // TODO: 2017/2/22  记得查询直辖市，香港 澳门等等
+        //
+        try {
+            cursor = sqLiteDatabase.query("yuns_district", null, "level=?", new String[]{"2"},null,null, "pinyin");
+            CityNameBean cityNameBean=null;
+            while (cursor.moveToNext()){
+                cityNameBean=new CityNameBean();
+                int id = cursor.getInt(cursor.getColumnIndex("_id"));
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                int upid = cursor.getInt(cursor.getColumnIndex("upid"));
+                String index = cursor.getString(cursor.getColumnIndex("key"));
+                String pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+                cityNameBean.set_id(id);
+                cityNameBean.setName(name);
+                cityNameBean.setUpId(upid);
+                cityNameBean.setIndex(index);
+                cityNameBean.setPinYin(pinyin);
+                list.add(cityNameBean);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (cursor!=null){
+                cursor.close();
+            }
+        }
+        return list;
 
+    }
     /**
      * 获取省
      *
