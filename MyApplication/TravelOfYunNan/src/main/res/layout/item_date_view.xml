@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x48">
+        <ImageView
+            android:id="@+id/iv_date_pre"
+            android:layout_marginLeft="@dimen/x13"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x10"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/time_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+
+            android:id="@+id/tv_date_view_month"
+            android:textColor="@color/color646464"
+            android:textSize="@dimen/x14sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/iv_date_next"
+            android:layout_marginLeft="@dimen/x13"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x10"
+            android:layout_gravity="center_vertical|right"
+            android:src="@drawable/time_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+    <View
+        android:layout_marginRight="@dimen/x4"
+        android:layout_marginLeft="@dimen/x4"
+        android:layout_width="match_parent"
+        android:background="#d9d9d9"
+        android:layout_height="@dimen/x1"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_date_month"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

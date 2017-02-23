@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorFAFAFA"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x200" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/x20"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/x20"
+        android:layout_height="@dimen/x40">
+        <ImageView
+            android:id="@+id/iv_hotel_reservation_location"
+            android:scaleType="fitXY"
+            android:src="@drawable/activity_hotel_reservation_locatioon"
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/x20" />
+        <TextView
+            android:id="@+id/tv_hotel_reservation_city_name"
+            android:textColor="@color/otherTitleBg"
+            android:textSize="@dimen/x14sp"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:paddingLeft="@dimen/x20"
+            android:id="@+id/tv_hotel_reservation_cursor"
+            android:text=">"
+            android:textColor="@color/color969696"
+            android:textSize="@dimen/x14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_hotel_reservation_address"
+            android:layout_marginLeft="@dimen/x32"
+            android:textSize="@dimen/x10sp"
+            android:textColor="@color/color969696"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <View
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginLeft="@dimen/x20"
+        android:background="@color/meLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x20"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/x20"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x40">
+        <ImageView
+            android:id="@+id/iv_hotel_reservation_date"
+            android:src="@drawable/activity_hotel_reservation_date"
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/x20" />
+        <TextView
+            android:id="@+id/tv_hotel_reservation_in"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/x33"
+            android:textColor="@color/otherTitleBg"
+            android:textSize="@dimen/x14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="入住"
+            android:textColor="@color/color969696"
+            android:textSize="@dimen/x10sp"
+            android:layout_marginLeft="@dimen/x17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_hotel_reservation_out"
+            android:layout_marginLeft="@dimen/x77"
+            android:textStyle="bold"
+            android:textColor="@color/otherTitleBg"
+            android:textSize="@dimen/x14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="离开"
+            android:textColor="@color/color969696"
+            android:textSize="@dimen/x10sp"
+            android:layout_marginLeft="@dimen/x17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <View
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginLeft="@dimen/x20"
+        android:background="@color/meLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"/>
+    <Button
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x29"
+        android:text="搜索"
+        style="@style/commonButtonNext"
+        android:textSize="@dimen/x16sp"
+        android:layout_width="@dimen/x125"
+        android:layout_height="@dimen/x35" />
+
+
+</LinearLayout>

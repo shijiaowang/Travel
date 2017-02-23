@@ -256,6 +256,10 @@
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.payresult.PayResultActivity" />
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.backmoney.BackMoneyActivity" />
         <activity android:name=".ui.home.welcome.homeswitch.HomeSwitchActivity" />
+        <activity android:name=".ui.find.hotel.hotelreservation.HotelReservationActivity"
+            android:launchMode="standard"
+            />
+        <activity android:name=".ui.find.hotel.timeselect.TimeSelectActivity" />
 
         <!-- 百度地图所需的service -->
         <service
@@ -280,7 +284,6 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-
         <service
             android:name=".service.MessageReciviceService"
             android:exported="false"></service>

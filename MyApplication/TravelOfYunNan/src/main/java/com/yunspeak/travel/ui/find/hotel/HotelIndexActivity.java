@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.find.hotel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,11 +24,15 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.CityNameBean;
 import com.yunspeak.travel.db.DBManager;
+import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
 import com.yunspeak.travel.ui.view.SlideCursorView;
 import com.yunspeak.travel.utils.ToastUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -100,6 +105,13 @@ public class HotelIndexActivity extends BaseToolBarActivity {
                 return !list.get(position).getIndex().equals(list.get(position + 1).getIndex());
             }
         });
+        hotelIndexAdapter.setItemClickListener(new BaseRecycleViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                EventBus.getDefault().post(list.get(position));
+                finish();
+            }
+        });
         rvHotelCityList.setAdapter(hotelIndexAdapter);
         final LinearLayoutManager layout = new LinearLayoutManager(this);
         rvHotelCityList.setLayoutManager(layout);
@@ -143,7 +155,8 @@ public class HotelIndexActivity extends BaseToolBarActivity {
                 String item = (String) parent.getAdapter().getItem(position);
                 for (int i=0;i<name.length;i++){
                     if (item.equals(name[i])){
-                        ToastUtils.showToast("您选择了"+i+"-"+item);
+                        EventBus.getDefault().post(list.get(i));
+                        finish();
                     }
                 }
 
