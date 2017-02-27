@@ -1,5 +1,4 @@
 package com.yunspeak.travel.ui.view.dateview;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -10,10 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.MonthBean;
-
+import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
+import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,7 +32,8 @@ public class DateRecycleView extends RecyclerView {
     public  int endSelectDay=-1;//结束日子
     public  int endSelectMonth=-1;//结束月份
     private int startMonth;
-
+    private Calendar startCalender=null;
+    private Calendar endCalender=null;
 
     public DateRecycleView(Context context) {
         this(context, null);
@@ -62,7 +64,8 @@ public class DateRecycleView extends RecyclerView {
         start.set(current.get(Calendar.YEAR), current.get(Calendar.MONTH), 1);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月");
         Calendar temp = Calendar.getInstance();
-        List<MonthBean> monthBeens=new ArrayList<>();
+        final String[] monthTitles=new String[limit];
+        final List<MonthBean> monthBeens=new ArrayList<>();
         for (int i = 0; i < limit; i++) {
             MonthBean monthBean = new MonthBean();
             int startDayOfWeek = start.get(Calendar.DAY_OF_WEEK);
@@ -84,7 +87,10 @@ public class DateRecycleView extends RecyclerView {
             int currentMaxDay = start.getActualMaximum(Calendar.DAY_OF_MONTH);
             monthBean.setEndIndex(index + currentMaxDay + 7);
             monthBean.setCurrentMonth(start.get(Calendar.MONTH)+1);
-            monthBean.setYearMonth(simpleDateFormat.format(start.getTime()));
+            String des = simpleDateFormat.format(start.getTime());
+            monthBean.setYearMonth(des);
+            monthTitles[i]=des;
+            monthBean.setCurrentYear(start.get(Calendar.YEAR));
             monthBean.setMaxDay(currentMaxDay);
             for (int k = 1; k <= currentMaxDay; k++) {
                 day[index++] = k;
@@ -97,6 +103,23 @@ public class DateRecycleView extends RecyclerView {
         }
         this.setAdapter(new DateRecycleViewAdapter(monthBeens,getContext()));
         this.setLayoutManager(new LinearLayoutManager(getContext()));
+        this.addItemDecoration(new DateDecoration(monthTitles, getContext(), new DateDecoration.DecorationCallback() {
+            @Override
+            public String getGroupId(int position) {
+                if (position<monthTitles.length && position>-1){
+                    return monthTitles[position];
+                }
+                return "-1";
+            }
+
+            @Override
+            public String getGroupFirstLine(int position) {
+                if (position<monthTitles.length && position>-1){
+                    return monthTitles[position];
+                }
+                return "";
+            }
+        }));
     }
 
     /**
@@ -175,6 +198,8 @@ public class DateRecycleView extends RecyclerView {
             if (startMonth==monthBean.getCurrentMonth() && dayIndex[position]==monthBean.getCurrentDay() &&position>=monthBean.getCurrentDay()){
                 dayNumber="今天";
             }
+
+
             dayRecycleHolder.tvDateDay.setTextColor(textColor);
             dayRecycleHolder.tvDateDay.setText(dayNumber);
             dayRecycleHolder.tvDateDay.setOnClickListener(new OnClickListener() {
@@ -183,18 +208,22 @@ public class DateRecycleView extends RecyclerView {
                     if (position<monthBean.getStartIndex() || monthBean.getCurrentMonth()<startSelectMonth
                             || (monthBean.getCurrentMonth()==startSelectMonth && position<startSelectDay)
                             ||(startMonth==monthBean.getCurrentMonth() && dayIndex[position]<monthBean.getCurrentDay())){
-                        //不能点的情况如果遇到需要充重置也重置一下
+                        //不能点的日子如果遇到需要重置也重置一下
                         if (isReset()){
                             reset();
+                            callBack();
                             getAdapter().notifyDataSetChanged();
                         }
                         return;
                     }
+
                     if (isReset()) {
                         reset();
                     } else if (isStart()){
                         startSelectDay=position;
                         startSelectMonth=monthBean.getCurrentMonth();
+                        startCalender= Calendar.getInstance();
+                        startCalender.set(monthBean.getCurrentYear(),monthBean.getCurrentMonth(),dayIndex[position]);
                     } else {
                         //开始和结束不能在同一天
                         if (startSelectDay==position && startSelectMonth==monthBean.getCurrentMonth()){
@@ -202,7 +231,10 @@ public class DateRecycleView extends RecyclerView {
                         }
                          endSelectDay=position;
                          endSelectMonth=monthBean.getCurrentMonth();
+                        endCalender= Calendar.getInstance();
+                        endCalender.set(monthBean.getCurrentYear(),monthBean.getCurrentMonth(),dayIndex[position]);
                     }
+                    callBack();
                     getAdapter().notifyDataSetChanged();
                 }
             });
@@ -210,6 +242,12 @@ public class DateRecycleView extends RecyclerView {
 
         }
 
+         /**
+          * 渲染选择之后的颜色变化
+          * @param position
+          * @param dayRecycleHolder
+          * @return
+          */
          private int getTextColor(int position, DayRecycleHolder dayRecycleHolder) {
              int textColor;
              dayRecycleHolder.tvDateDay.setBackgroundColor(Color.TRANSPARENT);
@@ -240,10 +278,17 @@ public class DateRecycleView extends RecyclerView {
              if (position>6 && isInclude(position) && monthBean.getDayIndex()[position]<=position
                      ){
                      textColor = Color.WHITE;
-                 dayRecycleHolder.itemView.setBackgroundColor(Color.parseColor("#505cd0c2"));
+                 dayRecycleHolder.llDateDay.setBackgroundColor(Color.parseColor("#505cd0c2"));
+
+             }else if (endSelectMonth!=-1 && startSelectMonth!=-1){
+                 if (startSelectMonth==monthBean.getCurrentMonth() && position==startSelectDay){
+                     dayRecycleHolder.llDateDay.setBackgroundResource(R.drawable.date_start_color);
+                 }else if (endSelectMonth==monthBean.getCurrentMonth() && position==endSelectDay){
+                     dayRecycleHolder.llDateDay.setBackgroundResource(R.drawable.date_end_color);
+                 }
 
              }else {
-                 dayRecycleHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
+                 dayRecycleHolder.llDateDay.setBackgroundColor(Color.TRANSPARENT);
              }
 
              return textColor;
@@ -282,11 +327,24 @@ public class DateRecycleView extends RecyclerView {
         }
         class DayRecycleHolder extends RecyclerView.ViewHolder{
             private TextView tvDateDay;
+            private LinearLayout llDateDay;
             public DayRecycleHolder(View itemView) {
                 super(itemView);
                 tvDateDay = (TextView) itemView.findViewById(R.id.tv_date_day);
-
+                llDateDay = (LinearLayout) itemView.findViewById(R.id.ll_date_day);
             }
+        }
+    }
+
+    private void callBack() {
+        if (startCalender!=null && endCalender!=null){
+            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+            String start = simpleDateFormat.format(startCalender.getTime());
+            String end = simpleDateFormat.format(endCalender.getTime());
+            System.out.println(start+"-"+end);
+        }
+        if (selectListener!=null){
+            selectListener.onCallBack(startCalender,endCalender);
         }
     }
 
@@ -295,6 +353,8 @@ public class DateRecycleView extends RecyclerView {
         endSelectDay=-1;
         startSelectMonth=-1;
         endSelectMonth=-1;
+        startCalender=null;
+        endCalender=null;
         this.getAdapter().notifyDataSetChanged();
     }
 
@@ -307,7 +367,7 @@ public class DateRecycleView extends RecyclerView {
         this.selectListener = selectListener;
     }
 
-    interface SelectListener{
+    public interface SelectListener{
         void  onCallBack(Calendar in, Calendar out);
     }
 }

@@ -1,7 +1,5 @@
 package com.yunspeak.travel.bean;
 
-import java.util.Arrays;
-
 /**
  * Created by wangyang on 2017/2/23.
  */
@@ -11,14 +9,33 @@ public class MonthBean {
     private int endIndex;
     private int[] dayIndex=new int[42];
     private int currentDay;
-    private String month;
 
-    public String getMonth() {
-        return month;
+    public int getCurrentYear() {
+        return currentYear;
     }
 
-    public void setMonth(String month) {
-        this.month = month;
+    public void setCurrentYear(int currentYear) {
+        this.currentYear = currentYear;
+    }
+
+    private int currentYear;
+    private int currentMonth;
+    private String yearMonth;
+
+    public int getCurrentMonth() {
+        return currentMonth;
+    }
+
+    public void setCurrentMonth(int currentMonth) {
+        this.currentMonth = currentMonth;
+    }
+
+    public String getYearMonth() {
+        return yearMonth;
+    }
+
+    public void setYearMonth(String yearMonth) {
+        this.yearMonth = yearMonth;
     }
 
     public int getStartIndex() {
@@ -61,15 +78,4 @@ public class MonthBean {
         this.currentDay = currentDay;
     }
 
-    @Override
-    public String toString() {
-        return "MonthBean{" +
-                "startIndex=" + startIndex +
-                ", maxDay=" + maxDay +
-                ", endIndex=" + endIndex +
-                ", dayIndex=" + Arrays.toString(dayIndex) +
-                ", currentDay=" + currentDay +
-                ", month='" + month + '\'' +
-                '}';
-    }
 }
