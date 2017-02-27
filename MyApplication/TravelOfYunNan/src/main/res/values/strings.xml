@@ -338,6 +338,9 @@
     <string name="download_fail">下载失败！</string>
     <string name="hotel_reservation">预订酒店</string>
     <string name="select_city">选择城市</string>
+    <string name="select">筛选</string>
+    <string name="area_location">区域位置</string>
+    <string name="money">价格</string>
 
 
 </resources>

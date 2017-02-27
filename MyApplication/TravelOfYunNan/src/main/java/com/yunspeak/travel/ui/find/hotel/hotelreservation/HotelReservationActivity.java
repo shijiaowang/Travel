@@ -1,13 +1,11 @@
 package com.yunspeak.travel.ui.find.hotel.hotelreservation;
 
-import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -15,13 +13,20 @@ import com.baidu.location.LocationClientOption;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.CityNameBean;
 import com.yunspeak.travel.event.HttpEvent;
+import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.ui.find.hotel.HotelIndexActivity;
+import com.yunspeak.travel.ui.find.hotel.hotellist.HotelListActivity;
 import com.yunspeak.travel.ui.find.hotel.timeselect.TimeSelectActivity;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 
@@ -32,7 +37,7 @@ import butterknife.BindView;
  */
 
 public class HotelReservationActivity extends BaseNetWorkActivity<HttpEvent> implements View.OnClickListener {
-
+    private boolean isFirstLocation=true;//第一次定位可能存在失败
     @BindView(R.id.iv_hotel_reservation_location)
     ImageView ivHotelReservationLocation;
     @BindView(R.id.tv_hotel_reservation_city_name)
@@ -47,8 +52,15 @@ public class HotelReservationActivity extends BaseNetWorkActivity<HttpEvent> imp
     TextView tvHotelReservationIn;
     @BindView(R.id.tv_hotel_reservation_out)
     TextView tvHotelReservationOut;
+    @BindView(R.id.bt_next)
+    Button btNext;
     private LocationClient mLocationClient;
+    SimpleDateFormat simpleDateFormat=new SimpleDateFormat("MM月dd日", Locale.CHINESE);
     public BDLocationListener myListener = new MyLocationListener();
+    private Calendar start=Calendar.getInstance();
+    private Calendar end=Calendar.getInstance();
+    private CalendarEvent calendarEvent;
+
     @Override
     protected void initEvent() {
         getLocation();
@@ -56,7 +68,16 @@ public class HotelReservationActivity extends BaseNetWorkActivity<HttpEvent> imp
         ivHotelReservationDate.setOnClickListener(this);
         tvHotelReservationCityName.setOnClickListener(this);
         tvHotelReservationCursor.setOnClickListener(this);
-
+        tvHotelReservationIn.setOnClickListener(this);
+        tvHotelReservationOut.setOnClickListener(this);
+        btNext.setOnClickListener(this);
+        //初始化数据
+        Date date=new Date();
+        start.setTime(date);
+        end.setTime(date);
+        end.add(Calendar.DAY_OF_MONTH,1);
+        tvHotelReservationIn.setText(simpleDateFormat.format(start.getTime()));
+        tvHotelReservationOut.setText(simpleDateFormat.format(end.getTime()));
     }
     /**
      * 获取地址信息
@@ -65,12 +86,6 @@ public class HotelReservationActivity extends BaseNetWorkActivity<HttpEvent> imp
         //声明LocationClient类
         mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(myListener);
-
-        LocationManager locManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        if(!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-        {
-            Toast.makeText(this, "打开GPS定位将更准确", Toast.LENGTH_SHORT).show();
-        }
         initLocation();
         mLocationClient.start();
 
@@ -112,7 +127,12 @@ public class HotelReservationActivity extends BaseNetWorkActivity<HttpEvent> imp
                 if (!TextUtils.isEmpty(addrStr)) tvHotelReservationAddress.setText(addrStr);
                 if (!TextUtils.isEmpty(city)) tvHotelReservationCityName.setText(city);
             }else {
-                ToastUtils.showToast("定位失败");
+                if (isFirstLocation){
+                    getLocation();//再次定位,切换页面等可能存在初次定位失败
+                    isFirstLocation=false;
+                }else {
+                    ToastUtils.showToast("定位失败");
+                }
             }
         }
     }
@@ -124,6 +144,12 @@ public class HotelReservationActivity extends BaseNetWorkActivity<HttpEvent> imp
     @Override
     protected void childAdd(MapUtils.Builder builder, int type) {
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isFirstLocation=true;
     }
 
     @Override
@@ -150,8 +176,12 @@ public class HotelReservationActivity extends BaseNetWorkActivity<HttpEvent> imp
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.tv_hotel_reservation_in:
+            case R.id.tv_hotel_reservation_out:
             case R.id.iv_hotel_reservation_date:
-                startActivity(new Intent(this, TimeSelectActivity.class));
+                Intent intent = new Intent(this, TimeSelectActivity.class);
+                intent.putExtra(IVariable.DATA,calendarEvent);
+                startActivity(intent);
                 break;
             case R.id.iv_hotel_reservation_location:
                 if (mLocationClient!=null) {
@@ -164,6 +194,14 @@ public class HotelReservationActivity extends BaseNetWorkActivity<HttpEvent> imp
             case R.id.tv_hotel_reservation_city_name:
                 startActivity(new Intent(this, HotelIndexActivity.class));
                 break;
+            case R.id.bt_next:
+                Intent hotelListIntent=new Intent(this, HotelListActivity.class);
+                if (calendarEvent==null){
+                    calendarEvent=new CalendarEvent(start,end);
+                }
+                hotelListIntent.putExtra(IVariable.DATA,calendarEvent);
+                startActivity(hotelListIntent);
+                break;
         }
     }
     @Subscribe
@@ -171,6 +209,13 @@ public class HotelReservationActivity extends BaseNetWorkActivity<HttpEvent> imp
         if (cityNameBean==null)return;
         tvHotelReservationCityName.setText(cityNameBean.getName()+"市");
         tvHotelReservationAddress.setText("");
+    }
+    @Subscribe
+    public void onEvent(CalendarEvent calendarEvent){
+        if (calendarEvent==null)return;
+        this.calendarEvent=calendarEvent;
+        tvHotelReservationIn.setText(simpleDateFormat.format(calendarEvent.getStart().getTime()));
+        tvHotelReservationOut.setText(simpleDateFormat.format(calendarEvent.getEnd().getTime()));
     }
 
 }

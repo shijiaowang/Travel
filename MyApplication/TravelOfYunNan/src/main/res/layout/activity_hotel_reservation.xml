@@ -74,14 +74,19 @@
             android:layout_height="wrap_content" />
         <TextView
             android:text="入住"
+            android:lines="1"
             android:textColor="@color/color969696"
             android:textSize="@dimen/x10sp"
             android:layout_marginLeft="@dimen/x17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <View
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"/>
+
         <TextView
             android:id="@+id/tv_hotel_reservation_out"
-            android:layout_marginLeft="@dimen/x77"
             android:textStyle="bold"
             android:textColor="@color/otherTitleBg"
             android:textSize="@dimen/x14sp"
@@ -91,6 +96,7 @@
             android:text="离开"
             android:textColor="@color/color969696"
             android:textSize="@dimen/x10sp"
+            android:lines="1"
             android:layout_marginLeft="@dimen/x17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

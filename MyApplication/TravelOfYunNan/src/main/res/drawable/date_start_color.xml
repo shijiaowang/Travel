@@ -4,16 +4,15 @@
     >
     <item android:gravity="start">
         <shape android:shape="rectangle">
-            <solid android:color="#505cd0c2"/>
-            <size android:width="@dimen/x43"
-
+            <solid android:color="@color/colorefeff4"/>
+            <size android:width="@dimen/x21.5"
                 />
         </shape>
     </item>
-    <item android:gravity="start">
+    <item android:gravity="start" android:left="@dimen/x21.5">
         <shape android:shape="rectangle">
-            <solid android:color="@color/colorefeff4"/>
-            <size android:width="@dimen/x22"
+            <solid android:color="#505cd0c2"/>
+            <size android:width="@dimen/x21.5"
                 />
         </shape>
     </item>

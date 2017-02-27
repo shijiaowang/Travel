@@ -260,6 +260,7 @@
             android:launchMode="standard"
             />
         <activity android:name=".ui.find.hotel.timeselect.TimeSelectActivity" />
+        <activity android:name=".ui.find.hotel.hotellist.HotelListActivity" />
 
         <!-- 百度地图所需的service -->
         <service

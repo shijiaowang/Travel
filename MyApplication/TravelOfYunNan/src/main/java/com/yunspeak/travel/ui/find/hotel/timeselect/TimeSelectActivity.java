@@ -3,18 +3,26 @@ package com.yunspeak.travel.ui.find.hotel.timeselect;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.TextAppearanceSpan;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.hyphenate.util.DensityUtil;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
+import com.yunspeak.travel.ui.find.hotel.hotelreservation.CalendarEvent;
 import com.yunspeak.travel.ui.view.dateview.DateRecycleView;
+import com.yunspeak.travel.utils.CalendarUtils;
+import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UIUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,6 +32,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by wangyang on 2017/2/23.
@@ -37,8 +46,11 @@ public class TimeSelectActivity extends BaseToolBarActivity {
     TextView tvTimeSelectDay;
     @BindView(R.id.rv_time_select_date)
     DateRecycleView rvTimeSelectDate;
+    @BindView(R.id.bt_next)
+    Button btNext;
     private SimpleDateFormat dateInstance;
-
+    private Calendar start=null;
+    private Calendar end=null;
     @Override
     protected int initLayoutRes() {
         return R.layout.activity_time_select;
@@ -48,11 +60,27 @@ public class TimeSelectActivity extends BaseToolBarActivity {
     protected void initOptions() {
         setHowLong(0);
         dateInstance = new SimpleDateFormat("MM月dd日", Locale.CHINESE);
-        formatDate(null,null);
+
+        CalendarEvent calendarEvent = (CalendarEvent) getIntent().getSerializableExtra(IVariable.DATA);
+        start=calendarEvent!=null?calendarEvent.getStart():null;
+        end=calendarEvent!=null?calendarEvent.getEnd():null;
+        formatDate(start,end);
+        rvTimeSelectDate.init(6,calendarEvent);
         rvTimeSelectDate.setSelectListener(new DateRecycleView.SelectListener() {
             @Override
             public void onCallBack(Calendar in, Calendar out) {
                 formatDate(in,out);
+            }
+        });
+        btNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (start==null || end==null){
+                    ToastUtils.showToast("请选择相应日期");
+                    return;
+                }
+                EventBus.getDefault().post(new CalendarEvent(start,end));
+                finish();
             }
         });
     }
@@ -60,6 +88,9 @@ public class TimeSelectActivity extends BaseToolBarActivity {
     private void formatDate(Calendar start,Calendar end) {
         String startText;
         String endText;
+        int howLong=0;
+        this.start=start;
+        this.end=end;
         if (start==null){
             startText=endText=dateInstance.format(new Date());
         }else if (end==null){
@@ -67,14 +98,20 @@ public class TimeSelectActivity extends BaseToolBarActivity {
         }else {
             startText=dateInstance.format(start.getTime());
             endText=dateInstance.format(end.getTime());
+            howLong= CalendarUtils.getHowDay(start.getTime().getTime()+"",end.getTime().getTime()+"")-1;
         }
-        if (startText.startsWith("0")){
-            startText=startText.substring(1,startText.length());
-        }
+        startText = getStringSubZero(startText);
+        endText = getStringSubZero(endText);
+        tvTimeSelectTime.setText(startText+"\n"+endText);
+        setHowLong(howLong);
+    }
+
+    @NonNull
+    private String getStringSubZero(String endText) {
         if (endText.startsWith("0")){
             endText=endText.substring(1,endText.length());
         }
-        tvTimeSelectTime.setText(startText+"\n"+endText);
+        return endText;
     }
 
     private void setHowLong(int day) {

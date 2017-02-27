@@ -15,11 +15,14 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.MonthBean;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
+import com.yunspeak.travel.ui.find.hotel.hotelreservation.CalendarEvent;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -51,8 +54,13 @@ public class DateRecycleView extends RecyclerView {
      * 计算出剩下几个月的时间排序数组
      *
      * @param limit
+     * @param calendarEvent
      */
-    public void init(int limit) {
+    public void init(int limit, CalendarEvent calendarEvent) {
+       if (calendarEvent!=null){
+           startSelectMonth=calendarEvent.getStart().get(Calendar.MONTH);
+           endSelectMonth=calendarEvent.getEnd().get(Calendar.MONTH);
+       }
         Calendar current = Calendar.getInstance();
         Calendar end = Calendar.getInstance();
         Date date = new Date();
@@ -62,7 +70,7 @@ public class DateRecycleView extends RecyclerView {
         Calendar start = Calendar.getInstance();
         startMonth = start.get(Calendar.MONTH)+1;
         start.set(current.get(Calendar.YEAR), current.get(Calendar.MONTH), 1);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月", Locale.CHINESE);
         Calendar temp = Calendar.getInstance();
         final String[] monthTitles=new String[limit];
         final List<MonthBean> monthBeens=new ArrayList<>();
@@ -86,7 +94,7 @@ public class DateRecycleView extends RecyclerView {
             monthBean.setCurrentDay(i == 0 ? current.get(Calendar.DAY_OF_MONTH) : 1);
             int currentMaxDay = start.getActualMaximum(Calendar.DAY_OF_MONTH);
             monthBean.setEndIndex(index + currentMaxDay + 7);
-            monthBean.setCurrentMonth(start.get(Calendar.MONTH)+1);
+            monthBean.setCurrentMonth(start.get(Calendar.MONTH));
             String des = simpleDateFormat.format(start.getTime());
             monthBean.setYearMonth(des);
             monthTitles[i]=des;
@@ -94,11 +102,19 @@ public class DateRecycleView extends RecyclerView {
             monthBean.setMaxDay(currentMaxDay);
             for (int k = 1; k <= currentMaxDay; k++) {
                 day[index++] = k;
+                if (calendarEvent==null)continue;
+                if (startSelectMonth==monthBean.getCurrentMonth() && (calendarEvent.getStart().get(Calendar.DAY_OF_MONTH))==k){
+                    startSelectDay=index+6;
+                }
+                if (endSelectMonth==monthBean.getCurrentMonth() && (calendarEvent.getEnd().get(Calendar.DAY_OF_MONTH))==k){
+                    endSelectDay=index+6;
+                }
             }
             int[] realDayArray = new int[monthBean.getEndIndex()];
             System.arraycopy(day, 0, realDayArray, 7, monthBean.getEndIndex() - 7);
             monthBean.setDayIndex(realDayArray);
             monthBeens.add(monthBean);
+
             start.add(Calendar.MONTH, 1);
         }
         this.setAdapter(new DateRecycleViewAdapter(monthBeens,getContext()));

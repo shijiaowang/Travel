@@ -204,4 +204,5 @@
     <dimen name="x77">77dp</dimen>
     <dimen name="x80sp">80sp</dimen>
     <dimen name="x88">88dp</dimen>
+    <dimen name="x21.5">21.5dp</dimen>
 </resources>

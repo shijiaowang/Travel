@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.view.dateview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,8 @@ public class DateDecoration extends RecyclerView.ItemDecoration {
     private Paint paint;
     private int topGap;
     private DecorationCallback callback;
+    private final int lineHeight;
+    private final Paint linPaint;
 
 
     interface DecorationCallback {
@@ -34,6 +37,8 @@ public class DateDecoration extends RecyclerView.ItemDecoration {
     public DateDecoration(String[] monthTitles, Context context, DecorationCallback callback) {
         this.monthTitles = monthTitles;
         this.callback = callback;
+        linPaint = new Paint();
+        linPaint.setColor(Color.parseColor("#d9d9d9"));
         //设置悬浮栏的画笔
         paint = new Paint();
         paint.setColor(UIUtils.getColor(R.color.colorefeff4));
@@ -44,6 +49,7 @@ public class DateDecoration extends RecyclerView.ItemDecoration {
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setColor(UIUtils.getColor(R.color.color646464));
         topGap = UIUtils.getDimen(R.dimen.x48);
+        lineHeight = UIUtils.getDimen(R.dimen.x1);
 
 
     }
@@ -62,9 +68,7 @@ public class DateDecoration extends RecyclerView.ItemDecoration {
         int itemCount = state.getItemCount();
         int childCount = parent.getChildCount();
         int left = parent.getPaddingLeft();
-        int leftDistance = parent.getLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
-        int width = parent.getWidth();
         String preGroupId;
         String groupId = "-1";
         for (int i = 0; i < childCount; i++) {
@@ -86,11 +90,13 @@ public class DateDecoration extends RecyclerView.ItemDecoration {
                 }
             }
             //textY-toGap决定了悬浮栏绘制的高度和位置
-            c.drawRect(leftDistance + left, textY - topGap, right, textY, paint);
+            c.drawRect(left, textY - topGap, right, textY, paint);
+            //绘制一条线
+            c.drawRect(left,textY,right,textY+lineHeight,linPaint);
             Rect rect = new Rect();
             String monthTitle = monthTitles[position];
             textPaint.getTextBounds(monthTitle, 0, monthTitle.length(), rect);
-            c.drawText(monthTitle, (width - rect.width()) / 2 + leftDistance + left, textY - (topGap - rect.height()) / 2, textPaint);
+            c.drawText(monthTitle,left+right/2,textY-(topGap-rect.height())/2,textPaint);
 
         }
     }
