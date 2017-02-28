@@ -22,6 +22,8 @@ public class HotelListHolder extends BaseRecycleViewHolder<HotelListBean> {
     TextView tvHotelName;
     @BindView(R.id.tv_hotel_address)
     TextView tvHotelAddress;
+    @BindView(R.id.tv_hotel_money)
+    TextView tvHotelMoney;
     public HotelListHolder(View itemView) {
         super(itemView);
     }

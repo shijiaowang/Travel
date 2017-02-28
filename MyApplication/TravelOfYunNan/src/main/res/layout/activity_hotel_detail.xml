@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x200">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_hotel_detail_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/x13"
+                android:layout_marginLeft="@dimen/x10"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="@dimen/x11sp" />
+
+            <TextView
+                android:id="@+id/tv_hotel_detail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/tv_hotel_detail_city"
+                android:layout_marginLeft="@dimen/x10"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="@dimen/x14sp" />
+
+            <TextView
+                android:id="@+id/tv_hotel_detail_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/x11"
+                android:layout_marginRight="@dimen/x10"
+                android:background="@drawable/hotel_detail_hotel_picture_number_bg"
+                android:minHeight="@dimen/x16"
+                android:minWidth="@dimen/x34"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="@dimen/x10sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x56"
+            android:background="@color/colorFAFAFA"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_hotel_detail_address"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="@dimen/x7"
+                android:lines="2"
+                android:textColor="@color/color323232"
+                android:textSize="@dimen/x13sp" />
+
+            <View
+                android:layout_width="@dimen/x1"
+                android:layout_height="@dimen/x20"
+                android:background="@color/meLine" />
+
+            <TextView
+                android:layout_width="@dimen/x82"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/x5"
+                android:drawableTop="@drawable/hotel_detail_air"
+                android:gravity="center"
+                android:text="跟我走"
+                android:textColor="@color/otherTitleBg"
+                android:textSize="@dimen/x9sp" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:background="@color/colorFAFAFA">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:background="@color/meLine" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x49"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_hotel_detail_in"
+                style="@style/HotelDetailInOut" />
+
+            <TextView
+                android:id="@+id/tv_hotel_detail_sum_day"
+                style="@style/HotelDetailInOut"
+                android:textColor="@color/color646464"
+                android:textSize="@dimen/x17sp" />
+
+            <TextView
+                android:id="@+id/tv_hotel_detail_out"
+                style="@style/HotelDetailInOut" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_hotel_detail_room_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/x10" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x10" />
+        <TextView
+            android:text="@string/supporting_facilities"
+            android:paddingBottom="@dimen/x11"
+            style="@style/HotelDetailTitle" />
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/fl_hotel_detail_support"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/x20"
+            android:layout_height="wrap_content"/>
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x10" />
+        <TextView
+            android:text="@string/hotel_des"
+            android:paddingBottom="@dimen/x8"
+            style="@style/HotelDetailTitle" />
+        <TextView
+            android:id="@+id/tv_hotel_detail_des"
+            android:textColor="@color/color646464"
+            android:textSize="@dimen/x11sp"
+            android:background="@color/colorFAFAFA"
+            android:paddingRight="@dimen/x42"
+            android:paddingLeft="@dimen/x34"
+            android:paddingBottom="@dimen/x20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x10" />
+       <TextView
+           android:text="@string/servce_des"
+           android:textColor="@color/color646464"
+           android:textSize="@dimen/x11sp"
+           android:gravity="center"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/x37" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

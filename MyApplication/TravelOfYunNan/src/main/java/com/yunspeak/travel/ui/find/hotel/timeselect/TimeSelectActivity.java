@@ -115,7 +115,7 @@ public class TimeSelectActivity extends BaseToolBarActivity {
     }
 
     private void setHowLong(int day) {
-        String text="共 "+day+" 晚";
+        String text=String.format(getString(R.string.how_night),day);
         SpannableStringBuilder spannableStringBuilder=new SpannableStringBuilder(text);
         ColorStateList colorStateList=ColorStateList.valueOf(UIUtils.getColor(R.color.otherTitleBg));
         spannableStringBuilder.setSpan(new TextAppearanceSpan(null, Typeface.BOLD, DensityUtil.sp2px(this,24),colorStateList,null)

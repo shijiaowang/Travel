@@ -85,7 +85,7 @@ public class HotelListActivity extends BaseNetWorkActivity {
         end = getStringSubZero(end);
         String text = "住 " + start + "\n离 " + end;
         tvHotelListInOut.setText(text);
-        tvHotelListDay.setText(String.format("%d晚", CalendarUtils.getHowDay(calendarEvent.getStart().getTime().getTime() + "", calendarEvent.getEnd().getTime().getTime() + "") - 1));
+        tvHotelListDay.setText(String.format("%d晚",calendarEvent.getHowDay()));
         initSelectBean();
     }
 

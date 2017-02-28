@@ -24,8 +24,16 @@
         android:id="@+id/tv_hotel_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/x22"
         />
+    <TextView
+        android:id="@+id/tv_hotel_money"
+        android:textColor="@color/otherFf7f6c"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/x12sp"
+        android:layout_marginRight="@dimen/x7"
+        android:layout_gravity="end"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/x22" />
     <View
         android:background="@color/meLine"
         android:layout_width="match_parent"

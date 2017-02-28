@@ -261,6 +261,9 @@
             />
         <activity android:name=".ui.find.hotel.timeselect.TimeSelectActivity" />
         <activity android:name=".ui.find.hotel.hotellist.HotelListActivity" />
+        <activity android:name=".ui.find.hotel.hotellist.hoteldetail.HotelDetailActivity" />
+        <activity android:name=".ui.find.hotel.hotellist.searchhotel.SearchHotelActivity" />
+        <activity android:name=".ui.find.hotel.hotellist.hoteldetail.hotelorder.SubmitHotelOrder" />
 
         <!-- 百度地图所需的service -->
         <service

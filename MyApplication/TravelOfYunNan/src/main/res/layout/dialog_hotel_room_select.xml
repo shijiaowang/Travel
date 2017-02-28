@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x300"
+    android:background="@drawable/dialog_hotel_room_select_bg"
+    android:layout_height="@dimen/x295">
+    <TextView
+        android:id="@+id/tv_room_name"
+        android:layout_marginTop="@dimen/x9"
+        android:layout_marginLeft="@dimen/x10"
+        android:textColor="@color/color323232"
+        android:textSize="@dimen/x15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_room_close"
+        android:gravity="center"
+        android:text="@string/delete_symbol"
+        android:textSize="@dimen/x30sp"
+        android:textColor="@color/color969696"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40" />
+    <TextView
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_below="@id/tv_room_name"
+        android:id="@+id/tv_room_food"
+        android:textColor="@color/color969696"
+        android:textSize="@dimen/x11sp"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/line"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_below="@id/tv_room_food"
+        android:background="@color/meLine"
+        android:layout_marginRight="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"/>
+    <TextView
+        android:layout_below="@id/line"
+        android:id="@+id/information"
+        android:text="@string/reservation_information"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x11"
+        android:textColor="@color/color646464"
+        android:textSize="@dimen/x12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_room_information"
+        android:layout_marginTop="@dimen/x8"
+        android:layout_below="@id/information"
+        android:layout_marginLeft="@dimen/x22"
+        android:lineSpacingExtra="@dimen/x4"
+        android:textColor="@color/color646464"
+        android:textSize="@dimen/x12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <FrameLayout
+        android:id="@+id/f"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/x40">
+        <TextView
+            android:id="@+id/tv_room_price"
+            android:layout_marginLeft="@dimen/x20"
+            android:textColor="@color/otherFf7f6c"
+            android:textSize="@dimen/x14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_gravity="end"
+            android:layout_marginRight="@dimen/x11"
+            android:id="@+id/tv_room_select"
+            android:layout_marginLeft="@dimen/x20"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="@dimen/x12sp"
+            android:minWidth="@dimen/x66"
+            android:text="@string/reserve_now"
+            android:gravity="center"
+            android:background="@drawable/r_green"
+            android:layout_width="wrap_content"
+            android:minHeight="@dimen/x25"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+
+</RelativeLayout>

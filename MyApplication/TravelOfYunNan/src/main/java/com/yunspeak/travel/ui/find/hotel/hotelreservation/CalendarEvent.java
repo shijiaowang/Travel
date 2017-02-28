@@ -1,5 +1,7 @@
 package com.yunspeak.travel.ui.find.hotel.hotelreservation;
 
+import com.yunspeak.travel.utils.CalendarUtils;
+
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -30,5 +32,14 @@ public class CalendarEvent implements Serializable{
 
     public void setEnd(Calendar end) {
         this.end = end;
+    }
+    public boolean isEmpty(){
+        return start!=null && end!=null;
+    }
+    public  int  getHowDay(){
+        if (start==null || end==null){
+            return 0;
+        }
+        return CalendarUtils.getHowDay(start.getTime().getTime()+"",end.getTime().getTime()+"")-1;
     }
 }

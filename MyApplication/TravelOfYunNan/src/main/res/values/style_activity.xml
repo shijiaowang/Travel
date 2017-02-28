@@ -279,6 +279,25 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+<style name="HotelDetailInOut">
+        <item name="android:textColor">@color/otherTitleBg</item>
+        <item name="android:textSize">@dimen/x12sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:lineSpacingExtra">@dimen/x9</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="HotelDetailTitle">
+        <item name="android:background">@color/colorFAFAFA</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">@dimen/x15</item>
+        <item name="android:paddingTop">@dimen/x11</item>
+        <item name="android:textColor">@color/color646464</item>
+        <item name="android:textSize">@dimen/x14sp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 
 
 </resources>

@@ -341,6 +341,16 @@
     <string name="select">筛选</string>
     <string name="area_location">区域位置</string>
     <string name="money">价格</string>
+    <string name="supporting_facilities">配套设置</string>
+    <string name="hotel_des">酒店简介</string>
+    <string name="servce_des">\@城外旅游 客服电话:13245522</string>
+    <string name="how_night">"共 %d 晚"</string>
+    <string name="delete_symbol">×</string>
+    <string name="reservation_information">预订须知</string>
+    <string name="reserve_now">立即预定</string>
+    <string name="hotel_name_and_location_message">酒店名称/位置信息</string>
+    <string name="hotel_search">酒店搜索</string>
+    <string name="room_number">房间数</string>
 
 
 </resources>

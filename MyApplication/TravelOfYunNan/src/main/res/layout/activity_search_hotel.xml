@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@color/colorFAFAFA"
+        android:paddingLeft="@dimen/x20"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/x45">
+        <RelativeLayout
+            android:id="@+id/rl_destination"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x28"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="@dimen/x8"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_marginTop="@dimen/x8"
+            android:layout_weight="5"
+            android:background="@drawable/activity_travels_search_bg">
+
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x7"
+                android:background="@drawable/normal_press_bg"
+                android:paddingLeft="@dimen/x3"
+                android:paddingRight="@dimen/x3"
+                android:text="@string/fragment_circle_search"
+                android:textColor="@color/colorC1c1c1"
+                android:textSize="@dimen/x20sp" />
+
+            <EditText
+                android:id="@+id/et_search"
+                style="@style/commonSingleLineTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@+id/tv_search"
+                android:background="@null"
+                android:completionThreshold="1"
+                android:gravity="center_vertical"
+                android:hint="@string/hotel_name_and_location_message"
+                android:imeOptions="actionSearch"
+                android:maxLength="18"
+                android:paddingLeft="@dimen/x15"
+                android:paddingRight="@dimen/x30"
+                android:textColorHint="@color/colorC1c1c1"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/x12sp" />
+        </RelativeLayout>
+        <Button
+            android:id="@+id/bt_hotel_search_search"
+            android:text="@string/search"
+            android:gravity="center"
+            android:textColor="@color/color969696"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginLeft="@dimen/x6"
+            android:minWidth="@dimen/x43"
+            android:minHeight="@dimen/x23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_search_hotel_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

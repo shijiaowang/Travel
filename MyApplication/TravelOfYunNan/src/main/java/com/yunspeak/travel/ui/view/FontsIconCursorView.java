@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/22 0022.
+ * Created by wangyang on 2016/8/22 0022.
  * 搜索页面导航条
  */
 public class FontsIconCursorView extends LinearLayout implements View.OnClickListener {
