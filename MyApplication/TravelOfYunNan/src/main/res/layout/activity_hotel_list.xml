@@ -18,7 +18,7 @@
             android:id="@+id/tv_hotel_list_in_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x7"
+            android:layout_marginTop="@dimen/x3"
             android:lineSpacingExtra="@dimen/x7"
             android:lines="2"
             android:textColor="@color/color969696"
@@ -85,7 +85,9 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <LinearLayout style="@style/HotelListLL">
+        <LinearLayout
+            android:id="@+id/ll_hotel_list_select"
+            style="@style/HotelListLL">
 
             <TextView
                 android:id="@+id/tv_hotel_list_select"
@@ -98,7 +100,9 @@
             android:layout_height="@dimen/x20"
             android:background="@color/colorC1c1c1" />
 
-        <LinearLayout style="@style/HotelListLL">
+        <LinearLayout
+            android:id="@+id/ll_hotel_list_area"
+            style="@style/HotelListLL">
 
             <TextView
                 android:id="@+id/tv_hotel_list_are"
@@ -111,7 +115,9 @@
             android:layout_height="@dimen/x20"
             android:background="@color/colorC1c1c1" />
 
-        <LinearLayout style="@style/HotelListLL">
+        <LinearLayout
+            android:id="@+id/ll_hotel_list_money"
+            style="@style/HotelListLL">
 
             <TextView
                 android:id="@+id/tv_hotel_list_money"

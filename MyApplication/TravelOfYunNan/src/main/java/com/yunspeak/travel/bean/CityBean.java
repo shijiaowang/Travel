@@ -13,7 +13,25 @@ public class CityBean extends TravelsObject {
         private String name;
         private String upid;
         private String type;//这个是用在appointFragment中的
+        private int minLevel;//用于单选 酒店
+        private int maxLevel;//用于单选 酒店
         private boolean isChecked;
+    public CityBean(){
+
+    }
+    public CityBean(String id, int minLevel, int maxLevel, String upid, String name) {
+        this.id = id;
+        this.minLevel = minLevel;
+        this.maxLevel = maxLevel;
+        this.upid = upid;
+        this.name = name;
+    }
+
+    public CityBean(String name, String id, boolean isChecked) {
+        this.name = name;
+        this.id = id;
+        this.isChecked = isChecked;
+    }
 
     public boolean isChecked() {
         return isChecked;
