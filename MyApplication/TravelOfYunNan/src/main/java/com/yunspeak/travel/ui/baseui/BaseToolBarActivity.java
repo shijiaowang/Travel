@@ -296,6 +296,7 @@ public abstract class BaseToolBarActivity extends BaseHideSoftActivity implement
 
 
     protected String getString(EditText editText) {
+        if (editText==null)return "";
         return editText.getText().toString().trim();
     }
 

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorFAFAFA"
+    android:layout_height="@dimen/x220">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x44">
+        <TextView
+            android:layout_marginLeft="@dimen/x20"
+            android:text="@string/order_pay"
+            style="@style/HotelOrderTitle"/>
+        <ImageView
+            android:padding="@dimen/x10"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/hotel_delete"
+            android:id="@+id/iv_hotel_order_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <include layout="@layout/margin_15_height_1_line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x44">
+        <TextView
+           android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x20"
+            android:text="@string/wechat_pay"
+            style="@style/HotelOrderEdit" />
+        <com.yunspeak.travel.ui.view.FontsIconTextView
+            android:textSize="@dimen/x15sp"
+            android:text="@string/activity_message_center_cursor"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/color969696"
+            android:layout_marginRight="@dimen/x40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <include layout="@layout/margin_15_height_1_line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x44">
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x20"
+            android:text="@string/well_pay_money"
+            style="@style/HotelOrderEdit" />
+        <TextView
+            android:id="@+id/tv_well_pay_money"
+            android:textSize="@dimen/x15sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/otherFf7f6c"
+            android:layout_marginRight="@dimen/x40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <com.yunspeak.travel.ui.view.AvoidFastButton
+        android:id="@+id/tv_hotel_order_pay"
+        android:text="@string/pay_now"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/r_green"
+        android:textSize="@dimen/x16sp"
+        android:textColor="@color/colorFAFAFA"
+        android:layout_marginBottom="@dimen/x23"
+        android:layout_width="@dimen/x125"
+        android:layout_height="@dimen/x35" />
+    
+
+</LinearLayout>

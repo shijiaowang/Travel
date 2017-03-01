@@ -343,7 +343,7 @@
     <string name="money">价格</string>
     <string name="supporting_facilities">配套设置</string>
     <string name="hotel_des">酒店简介</string>
-    <string name="servce_des">\@城外旅游 客服电话:13245522</string>
+    <string name="service">\@城外旅游\u3000\u3000客服电话:0871–65126820</string>
     <string name="how_night">"共 %d 晚"</string>
     <string name="delete_symbol">×</string>
     <string name="reservation_information">预订须知</string>
@@ -351,6 +351,14 @@
     <string name="hotel_name_and_location_message">酒店名称/位置信息</string>
     <string name="hotel_search">酒店搜索</string>
     <string name="room_number">房间数</string>
+    <string name="live_user_name">入住人姓名</string>
+    <string name="cancel_des">取消扣款:\n预订人因自身原因或其他非法律因素原因退款，将扣除全部预付款。(法定原因以《合同法》和《消费者权益保护法》为准)如订单无法确认，房费全部退还。</string>
+    <string name="submit_order">提交订单</string>
+    <string name="please_enter_live_name">请填写居住人姓名</string>
+    <string name="order_pay">订单支付</string>
+    <string name="wechat_pay">微信支付</string>
+    <string name="well_pay_money">待付资金</string>
+    <string name="pay_now">立即支付</string>
 
 
 </resources>

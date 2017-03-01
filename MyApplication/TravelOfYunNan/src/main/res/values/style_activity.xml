@@ -297,7 +297,30 @@
         <item name="android:textSize">@dimen/x14sp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+<style name="HotelOrderTitle">
+        <item name="android:textColor">@color/color323232</item>
+        <item name="android:textSize">@dimen/x14sp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/x44</item>
+    </style>
 
+
+<style name="HotelOrderRl">
+        <item name="android:paddingLeft">@dimen/x25</item>
+        <item name="android:paddingRight">@dimen/x26</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/x44</item>
+    </style>
+<style name="HotelOrderEdit">
+        <item name="android:textColor">@color/color969696</item>
+        <item name="android:textSize">@dimen/x14sp</item>
+        <item name="android:layout_marginLeft">@dimen/x137</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
 
 </resources>

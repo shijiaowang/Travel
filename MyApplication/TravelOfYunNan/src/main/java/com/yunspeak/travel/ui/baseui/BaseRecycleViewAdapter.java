@@ -37,6 +37,9 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
         this.mDatas = mDatas;
         this.mContext = mContext;
     }
+    public List<T> getmDatas(){
+        return mDatas;
+    }
 
     public void notifiyData(List list) {
         if (list == null) return;
