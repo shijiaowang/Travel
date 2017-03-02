@@ -25,17 +25,17 @@ import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageAdap
 import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
 import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
 import com.yunspeak.travel.utils.FormatDateUtils;
-import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.StringUtils;
-
 import org.xutils.common.util.LogUtil;
 import org.xutils.x;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Date;
 import java.util.Map;
+import simpledao.cityoff.com.easydao.BaseDaoFactory;
+import simpledao.cityoff.com.easydao.EasyConfig;
+import simpledao.cityoff.com.easydao.exception.EasyConfigErrorException;
 
 /**
  * Created by wangyang on 2016/7/8 0008.
@@ -53,10 +53,12 @@ public class TravelsApplication extends MultiDexApplication {
         mContext = getApplicationContext();
         initUmeng();
         YunSpeakHelper.getInstance().init(mContext);
-
-
-
-
+        EasyConfig build = new EasyConfig.Builder().setDbName("simple.db").build();
+        try {
+            BaseDaoFactory.init(build,getApplicationContext());
+        } catch (EasyConfigErrorException e) {
+            e.printStackTrace();
+        }
 
 
     }

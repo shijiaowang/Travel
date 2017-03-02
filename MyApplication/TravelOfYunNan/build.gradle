@@ -21,7 +21,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 106
-        versionName "1.0.6"
+        versionName "V1.0.6"//与数据库想关联
         multiDexEnabled true
     }
     //签名

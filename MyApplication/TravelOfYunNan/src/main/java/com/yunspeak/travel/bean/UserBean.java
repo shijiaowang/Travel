@@ -4,8 +4,11 @@ import com.yunspeak.travel.global.TravelsObject;
 
 import java.util.List;
 
+import simpledao.cityoff.com.easydao.annotation.TableName;
+
 /**
  * Created by wangyang on 2016/10/13 0013.
+ * 用户数据
  */
 public  class UserBean extends TravelsObject {
     private String id;
@@ -31,8 +34,6 @@ public  class UserBean extends TravelsObject {
     private String update_time;
     private String fans;
     private int is_fans;
-
-
     private List<UserLabelBean> interest_label;
     public String getId() {
         return id;

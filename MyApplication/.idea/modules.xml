@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/TravelOfYunNan/TravelOfYunNan.iml" filepath="$PROJECT_DIR$/TravelOfYunNan/TravelOfYunNan.iml" />
       <module fileurl="file://$PROJECT_DIR$/cityoffService/cityoffService.iml" filepath="$PROJECT_DIR$/cityoffService/cityoffService.iml" />
       <module fileurl="file://$PROJECT_DIR$/easeui/easeui.iml" filepath="$PROJECT_DIR$/easeui/easeui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easydao/easydao.iml" filepath="$PROJECT_DIR$/easydao/easydao.iml" />
       <module fileurl="file://$PROJECT_DIR$/pickerview/pickerview.iml" filepath="$PROJECT_DIR$/pickerview/pickerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/ucrop/ucrop.iml" filepath="$PROJECT_DIR$/ucrop/ucrop.iml" />
     </modules>

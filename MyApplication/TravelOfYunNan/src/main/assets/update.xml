@@ -1,0 +1,19 @@
+<!-- 请保证该文档一定是 UTF-8编码 -->
+<updateXml>
+    <!--创建的数据库版本  V1.0.6与versionName一致-->
+    <createVersion version="V1.0.6">
+        <!--数据库名称 ，公用数据库-->
+        <createDb name="simple">
+            <!-- 创建数据表 -->
+            <sql_createTable>
+                create table if not exists user(name TEXT,password TEXT,user_id Integer primary key);
+            </sql_createTable>
+        </createDb>
+        <!--数据库名称 ，多用户数据库-->
+        <createDb name="personal">
+            <sql_createTable>
+                create table if not exists photo(time TEXT,path TEXT,to_user TEXT,sendTime TEXT);
+            </sql_createTable>
+        </createDb>
+    </createVersion>
+</updateXml>
