@@ -10,8 +10,10 @@ import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.bean.Login;
+import com.yunspeak.travel.bean.User;
 import com.yunspeak.travel.bean.UserInfo;
-import com.yunspeak.travel.db.DBManager;
+import com.yunspeak.travel.db.ChatDao;
+import com.yunspeak.travel.db.UserDao;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseEventBusActivity;
@@ -35,9 +37,11 @@ import com.yunspeak.travel.utils.XEventUtils;
 
 import org.xutils.x;
 
+import java.util.Date;
 import java.util.Map;
 
 import butterknife.BindView;
+import simpledao.cityoff.com.easydao.BaseDaoFactory;
 
 /**
  * Created by wangyang on 2016/7/26 0026.
@@ -123,7 +127,7 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
             UserInfo userInfo = object.getData();
             GlobalValue.userInfo = userInfo;//赋值
             UserUtils.saveUserInfo(userInfo);//序列化
-            PushAgent.getInstance(LoginActivity.this).addAlias(userInfo.getId(), "CITYOFF_ID", new UTrack.ICallBack() {
+            PushAgent.getInstance(LoginActivity.this).addAlias(userInfo.getId() + "", "CITYOFF_ID", new UTrack.ICallBack() {
                 @Override
                 public void onMessage(boolean b, String s) {
                     LogUtils.e("是否成功" + b + "信息" + s);
@@ -138,20 +142,20 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
     private void goToHomeActivity(LoginEvent event) {
         Login login = GsonUtils.getObject(event.getResult(), Login.class);
         UserInfo data = login.getData();
-        ShareUtil.putString(this, IVariable.SAVE_NAME, data.getName());
-        ShareUtil.putString(this, IVariable.SAVE_PWD, data.getPwd());
-        setResult(SPLASH_RESULT);
         Intent intent = new Intent(this, HomeActivity.class);
         if (data != null) {
+            setResult(SPLASH_RESULT);
             com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
             userInfo.setId(data.getId());
             userInfo.setNick_name(data.getNick_name());
             userInfo.setUser_img(data.getUser_img());
-            DBManager.insertChatUserInfo(userInfo);
+            ChatDao userDao = BaseDaoFactory.getInstance().getUserDao(ChatDao.class, com.hyphenate.easeui.domain.UserInfo.class, true, data.getId() + "");
+            userDao.updateOrInsert(data.getId(), userInfo);
+            intent.putExtra(IVariable.USER_INFO, data);
+            UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
+            daoHelper.setCurrentUser(new User(event.getResult(),data.getId(),data.getName(),data.getPwd(),new Date().getTime()+"","1"));
         }
-        intent.putExtra(IVariable.USER_INFO, data);
         startActivity(intent);
-
         finish();
     }
 

@@ -18,7 +18,7 @@ public class MapUtils {
             return this;
         }
         public Builder addMyId(){
-            stringMap.put(IVariable.MY_ID,GlobalUtils.getUserInfo().getId());
+            stringMap.put(IVariable.MY_ID,GlobalUtils.getUserInfo().getId()+"");
             return this;
         }
         public Builder addUserName(String userName){
@@ -119,7 +119,7 @@ public class MapUtils {
         }
         public Builder addUserId(){
             try {
-                stringMap.put(IVariable.USER_ID,GlobalUtils.getUserInfo().getId());
+                stringMap.put(IVariable.USER_ID,GlobalUtils.getUserInfo().getId()+"");
             } catch (Exception e) {
                 e.printStackTrace();
                 LogUtils.e("userId不见啦");

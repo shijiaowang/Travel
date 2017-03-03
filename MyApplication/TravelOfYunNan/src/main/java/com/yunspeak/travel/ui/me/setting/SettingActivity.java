@@ -214,7 +214,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                     public void onClick(int type) {
                         EMClient.getInstance().logout(true);
                         ShareUtil.deleteData(SettingActivity.this);
-                        PushAgent.getInstance(SettingActivity.this).removeAlias(userInfo.getId(), "YUNS_ID", new UTrack.ICallBack() {
+                        PushAgent.getInstance(SettingActivity.this).removeAlias(userInfo.getId()+"", "YUNS_ID", new UTrack.ICallBack() {
                             @Override
                             public void onMessage(boolean b, String s) {
                                 LogUtils.e("是否成功"+b+"信息"+s);

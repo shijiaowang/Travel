@@ -293,7 +293,7 @@ public class OtherUserCenterActivity extends BaseChangeBarColorActivity<OtherUse
      */
     private void initUserInfo(UserBean user) {
         UserInfo userInfo = new UserInfo();
-        userInfo.setId(userId);
+        userInfo.setId(Integer.parseInt(userId));
         userInfo.setNick_name(user.getNick_name());
         userInfo.setUser_img(user.getUser_img());
         isFans = user.getIs_fans();

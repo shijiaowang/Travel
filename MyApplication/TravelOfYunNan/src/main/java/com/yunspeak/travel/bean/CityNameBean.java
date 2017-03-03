@@ -1,15 +1,29 @@
 package com.yunspeak.travel.bean;
 
+import com.bigkoo.pickerview.model.IPickerViewData;
+
+import simpledao.cityoff.com.easydao.annotation.TableName;
+
 /**
  * Created by wangyang on 2017/2/22.
+ * 城市名称
  */
+@TableName("yuns_district")
+public class CityNameBean implements IPickerViewData {
+    private int _id;//城市id
+    private String name;//城市名称
+    private int upId;//城市上一级别 0省直辖市等 1市
+    private String index;//第一个大写字母
+    private String pinYin;//全拼音
+    private int level;//当前级别 0省直辖市等 1市
 
-public class CityNameBean {
-    private int _id;
-    private String name;
-    private int upId;
-    private String index;
-    private String pinYin;
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     public int get_id() {
         return _id;
@@ -60,5 +74,14 @@ public class CityNameBean {
                 ", index='" + index + '\'' +
                 ", pinYin='" + pinYin + '\'' +
                 '}';
+    }
+
+    /**
+     * 城市列表需要
+     * @return 返回城市名称
+     */
+    @Override
+    public String getPickerViewText() {
+        return name;
     }
 }

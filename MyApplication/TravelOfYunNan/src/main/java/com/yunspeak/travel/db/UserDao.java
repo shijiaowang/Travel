@@ -1,12 +1,11 @@
 package com.yunspeak.travel.db;
 
+import android.database.Cursor;
+
 import com.yunspeak.travel.bean.User;
 import com.yunspeak.travel.bean.UserBean;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.StringUtils;
-
-import net.sqlcipher.Cursor;
-
 import java.util.Date;
 
 import simpledao.cityoff.com.easydao.BaseEasyDao;

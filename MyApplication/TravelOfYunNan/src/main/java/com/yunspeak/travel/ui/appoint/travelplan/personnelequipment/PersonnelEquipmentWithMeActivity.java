@@ -182,7 +182,7 @@ public class PersonnelEquipmentWithMeActivity extends BaseToolBarActivity implem
         JsonUtils.putString(IVariable.BIND_CONDITION, authType, basecJsonObject);
         JSONArray propJsonArray = JsonUtils.getPropJsonArray();//人员信息
         JSONObject jsonObject = new JSONObject();
-        JsonUtils.putString(IVariable.USER_ID, GlobalUtils.getUserInfo().getId(), jsonObject);
+        JsonUtils.putString(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()+"", jsonObject);
         propJsonArray.put(jsonObject);
         if (ListIsEmpty(aiteFollows)) return;
         for (int i = 0; i < aiteFollows.size(); i++) {//要加上自己

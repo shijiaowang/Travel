@@ -9,6 +9,16 @@ public class EasyConfig {
     private String dbName;
     private String updateXmlName;
 
+    public String getDbDir() {
+        return dbDir;
+    }
+
+    public void setDbDir(String dbDir) {
+        this.dbDir = dbDir;
+    }
+
+    private String dbDir;//存放数据库的文件夹名称
+
 
     public String getUpdateXmlName() {
         return updateXmlName;
@@ -29,8 +39,13 @@ public class EasyConfig {
     public static class Builder {
         private String dbName;
         private String updateXmlName;
+        private String dbDir;
         public Builder setDbName(String dbName) {
             this.dbName=dbName;
+            return this;
+        }
+        public Builder setDbDir(String dbDir) {
+            this.dbDir=dbDir;
             return this;
         }
         public Builder setUpdateXmlName(String xmlName){
@@ -41,6 +56,7 @@ public class EasyConfig {
             EasyConfig easyConfig=new EasyConfig();
             easyConfig.dbName=this.dbName;
             easyConfig.updateXmlName=this.updateXmlName;
+            easyConfig.dbDir=this.dbDir;
 
             return easyConfig;
         }

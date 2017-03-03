@@ -5,10 +5,16 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.CityNameBean;
 import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.bean.Login;
+import com.yunspeak.travel.bean.User;
+import com.yunspeak.travel.bean.UserBean;
 import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.db.ChatDao;
+import com.yunspeak.travel.db.CityDao;
 import com.yunspeak.travel.db.DBManager;
+import com.yunspeak.travel.db.UserDao;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.WelcomeEvent;
 import com.yunspeak.travel.global.GlobalValue;
@@ -24,13 +30,17 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.ShareUtil;
 import com.yunspeak.travel.utils.StringUtils;
+import com.yunspeak.travel.utils.UIUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.Date;
 import java.util.Map;
+
+import simpledao.cityoff.com.easydao.BaseDaoFactory;
 
 
 /**
@@ -49,6 +59,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
         super.onCreate(savedInstanceState, persistentState);
         EventBus.getDefault().register(this);
         ActivityUtils.getInstance().addActivity(this);
+
     }
 
     @Override
@@ -74,13 +85,12 @@ public class WelcomeActivity extends FullTransparencyActivity {
             XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new WelcomeEvent());
         } else {
             GlobalValue.KEY_VALUE = ShareUtil.getString(this,IVariable.KEY_VALUE, "");
+            UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
+            UserBean currentUser = daoHelper.getCurrentUser();
             //验证缓存的登录
-            String userName = ShareUtil.getString(this,IVariable.SAVE_NAME, "");
-            String userPwd = ShareUtil.getString(this,IVariable.SAVE_PWD, "");
-            if (!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(userPwd)) {
+            if (currentUser!=null && !StringUtils.isEmpty(currentUser.getName()) && !StringUtils.isEmpty(currentUser.getPwd())) {
                 GO_WHERE_PAGE = START_HOME;//去首页，之后会验证是否经过网络验证
-                checkNetAndCheckLogin(userName, userPwd);
-
+                checkNetAndCheckLogin(currentUser.getName(), currentUser.getPwd());
             } else {
                 GO_WHERE_PAGE = START_LOGIN;
             }
@@ -88,9 +98,9 @@ public class WelcomeActivity extends FullTransparencyActivity {
         getWindow().getDecorView().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!DBManager.cityDBIsExits()) {
-                    DBManager.initCityDB(WelcomeActivity.this);
-                }
+                //初始化城市数据
+                CityDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(CityDao.class, CityNameBean.class);
+                daoHelper.init(UIUtils.getContext());
                 if (GO_WHERE_PAGE == START_HOME) {
                     Intent homeIntent = new Intent(WelcomeActivity.this, HomeActivity.class);
                     homeIntent.putExtra(IVariable.CACHE_LOGIN_ARE_WITH_NETWORK, isNetWork);
@@ -147,9 +157,14 @@ public class WelcomeActivity extends FullTransparencyActivity {
                     userInfo.setId(data.getId());
                     userInfo.setNick_name(data.getNick_name());
                     userInfo.setUser_img(data.getUser_img());
-                    DBManager.insertChatUserInfo(userInfo);
-                }
-                UserUtils.saveUserInfo(data);
+                    ChatDao userDao = BaseDaoFactory.getInstance().getUserDao(ChatDao.class, com.hyphenate.easeui.domain.UserInfo.class, true, data.getId()+"");
+                    userDao.updateOrInsert(data.getId(),userInfo);
+                    UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
+                    daoHelper.setCurrentUser(new User(event.getResult(),data.getId(),data.getName(),data.getPwd(),new Date().getTime()+"","1"));
+                 }
+
+                //保存用户信息
+                //UserUtils.saveUserInfo(data);
             } catch (Exception e) {
                 e.printStackTrace();
             }

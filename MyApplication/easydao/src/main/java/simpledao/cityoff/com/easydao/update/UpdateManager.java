@@ -3,12 +3,12 @@ package simpledao.cityoff.com.easydao.update;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
-import net.sqlcipher.SQLException;
-import net.sqlcipher.database.SQLiteDatabase;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -457,7 +457,7 @@ public class UpdateManager {
         if (dbName.equalsIgnoreCase(baseDaoFactory.getCommonDbName())) {
             return baseDaoFactory.getSqLiteDatabase();
         } else if (dbName.equalsIgnoreCase("personal.db")) {
-            return SQLiteDatabase.openOrCreateDatabase(PrivatePathEnums.DATABASE.getPath(id),BaseDaoFactory.DB_SECURITY, null);
+            return SQLiteDatabase.openOrCreateDatabase(PrivatePathEnums.DATABASE.getPath(id), null);
         } else {
             Log.e(TAG, "no named" + dbName + " db");
             return null;

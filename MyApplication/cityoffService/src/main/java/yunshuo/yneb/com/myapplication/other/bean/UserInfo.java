@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class UserInfo implements Serializable {
     private static final long serialVersionUID = 5L;
 
-    private String id;
+    private int id;
     private String tel;
     private String name;
     private String pwd;
@@ -33,7 +33,7 @@ public class UserInfo implements Serializable {
     private String update_time;
     private int birthday_see;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -45,7 +45,7 @@ public class UserInfo implements Serializable {
         this.birthday_see = birthday_see;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -53,7 +53,7 @@ public class TravelsApplication extends MultiDexApplication {
         mContext = getApplicationContext();
         initUmeng();
         YunSpeakHelper.getInstance().init(mContext);
-        EasyConfig build = new EasyConfig.Builder().setDbName("simple.db").build();
+        EasyConfig build = new EasyConfig.Builder().setDbName("simple.db").setDbDir("cityoff").build();
         try {
             BaseDaoFactory.init(build,getApplicationContext());
         } catch (EasyConfigErrorException e) {

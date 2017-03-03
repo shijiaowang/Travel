@@ -85,7 +85,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     @Override
     public void resendMessage(final EMMessage message) {
         if (!EMClient.getInstance().isConnected()){//未登陆进行登陆
-            EMClient.getInstance().login(GlobalUtils.getUserInfo().getId(), GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {
+            EMClient.getInstance().login(GlobalUtils.getUserInfo().getId()+"", GlobalUtils.getUserInfo().getPwd(), new EMCallBack() {
                 @Override
                 public void onSuccess() {
                   resendMessage(message);

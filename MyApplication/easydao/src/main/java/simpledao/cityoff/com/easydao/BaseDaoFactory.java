@@ -1,11 +1,11 @@
 package simpledao.cityoff.com.easydao;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import net.sqlcipher.database.SQLiteDatabase;
 
 import java.io.File;
 import java.util.Collections;
@@ -22,7 +22,6 @@ import simpledao.cityoff.com.easydao.update.UpdateManager;
 
 public class BaseDaoFactory {
     public static final String PRIVATE_DB="personal.db";
-    public static final String DB_SECURITY="cityoff";//数据库加密字段
     private static Context context=null;
     private  static EasyConfig easyConfig;
     private SQLiteDatabase sqLiteDatabase;//这个用户存放公用数据
@@ -61,7 +60,7 @@ public class BaseDaoFactory {
      * 打开或者创建数据库
      */
     private void openDatabase() {
-        sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(defaultDataPath,DB_SECURITY,null);
+        sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(defaultDataPath,null);
     }
     public  <T extends BaseEasyDao<M>,M> T getDaoHelper(Class<T> daoClass,Class<M> beanClass){
         return getDaoHelper(daoClass,beanClass,true);
@@ -112,7 +111,7 @@ public class BaseDaoFactory {
      * @return
      */
     public  <T extends BaseEasyDao<M>,M> T getUserDao(Class<T> daoClass,Class<M> beanClass,boolean isIgnoreZero,String currentUserId){
-        userDatabase=SQLiteDatabase.openOrCreateDatabase(PrivatePathEnums.DATABASE.getPath(currentUserId),DB_SECURITY,null);
+        userDatabase=SQLiteDatabase.openOrCreateDatabase(PrivatePathEnums.DATABASE.getPath(currentUserId),null);
         return getHelper(daoClass,beanClass,isIgnoreZero,userDatabase);
     }
 
@@ -124,11 +123,11 @@ public class BaseDaoFactory {
         if (easyConfig == null) throw new EasyConfigErrorException("database is not set");
         BaseDaoFactory.context=context;
         BaseDaoFactory.easyConfig = easyConfig;
-        SQLiteDatabase.loadLibs(context);//初始化加密数据库
         dbPath = Environment.isExternalStorageEmulated()?Environment.getExternalStorageDirectory().getAbsolutePath()
                 :context.getFilesDir().getAbsolutePath();
         dbName = easyConfig.getDbName();
-        File file=new File(dbPath,"update");
+        String dbDir = easyConfig.getDbDir();
+        File file=new File(dbPath,TextUtils.isEmpty(dbDir)?"simpleDao":dbDir);
         if (!file.exists()){
            file.mkdirs();
         }

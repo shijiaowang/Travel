@@ -268,7 +268,7 @@ public class DBManager {
         for (UserInfo userInfo : userInfos) {
             try {
                 if (userInfo == null) continue;
-                chatuser = writableDatabase.query("chatuser", null, "userid=?", new String[]{userInfo.getId()}, null, null, null);
+                chatuser = writableDatabase.query("chatuser", null, "userid=?", new String[]{userInfo.getId()+""}, null, null, null);
                 if (chatuser.moveToLast()) {
                     String username = chatuser.getString(chatuser.getColumnIndex("username"));
                     String userimg = chatuser.getString(chatuser.getColumnIndex("userimg"));
@@ -278,7 +278,7 @@ public class DBManager {
                         ContentValues contentValues = new ContentValues();
                         contentValues.put("username", userInfo.getNick_name());
                         contentValues.put("userimg", userInfo.getUser_img());
-                        writableDatabase.update("chatuser", contentValues, "userid=?", new String[]{userInfo.getId()});
+                        writableDatabase.update("chatuser", contentValues, "userid=?", new String[]{userInfo.getId()+""});
                     }
                 } else {
                     ContentValues contentValues = new ContentValues();

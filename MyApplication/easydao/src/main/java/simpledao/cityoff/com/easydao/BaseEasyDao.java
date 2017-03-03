@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import net.sqlcipher.database.SQLiteDatabase;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import simpledao.cityoff.com.easydao.update.UpdateManager;
  */
 
 public abstract class BaseEasyDao<T> implements IEasyDao<T> {
-    protected  SQLiteDatabase sqLiteDatabase;
+    protected SQLiteDatabase sqLiteDatabase;
     private Map<String, Field> fieldMap = null;//维护实体对象与数据列名的关系
     protected String tableName;
     private boolean isInit = false;
@@ -432,6 +432,20 @@ public abstract class BaseEasyDao<T> implements IEasyDao<T> {
         }
     }
 
+    /**
+     * 判断是否需要更新
+     * @param queryObj 用于查询的条件
+     * @param object 需要更新的object
+     */
+   public void updateOrInsert(T queryObj,T object){
+       if (object==null)return;
+       T query = query(queryObj);
+       if (query==null){
+           insert(object);
+       }else {
+           update(object);//直接更新，反射判断更浪费时间
+       }
+   }
     @Override
     public void exec(String sql) throws Exception{
          sqLiteDatabase.execSQL(sql);

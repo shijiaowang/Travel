@@ -4,15 +4,23 @@
     <createVersion version="V1.0.6">
         <!--数据库名称 ，公用数据库-->
         <createDb name="simple">
-            <!-- 创建数据表 -->
+            <!-- 创建城市数据表 -->
             <sql_createTable>
-                create table if not exists user(name TEXT,password TEXT,user_id Integer primary key);
+                create table if not exists yuns_district(_id integer primary key ,name text,level text,upid text,key text,pinyin text);
+            </sql_createTable>
+            <sql_createTable>
+                create table if not exists user(id integer primary key,name varchar(11),password varchar(40),json text,isLogin varchar(1),lastLoginTime varchar(20));
             </sql_createTable>
         </createDb>
         <!--数据库名称 ，多用户数据库-->
         <createDb name="personal">
+            <!--主页缓存数据，有私人数据存在-->
             <sql_createTable>
-                create table if not exists photo(time TEXT,path TEXT,to_user TEXT,sendTime TEXT);
+                create table if not exists home_data(_id integer primary key autoincrement,name text,pageContent text)
+            </sql_createTable>
+            <!--聊天对象数据-->
+            <sql_createTable>
+                create table if not exists chat_user(_id integer primary key autoincrement,userId text,nickName text,userImg text)
             </sql_createTable>
         </createDb>
     </createVersion>

@@ -285,7 +285,7 @@ public abstract class TravelsPlanBaseActivity extends BaseCutPhotoActivity imple
     private void addJson() {
         try {
             JSONObject basecJsonObject = JsonUtils.getBasecJsonObject();
-            JsonUtils.putString(IVariable.USER_ID, GlobalUtils.getUserInfo().getId(), basecJsonObject);
+            JsonUtils.putString(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()+"", basecJsonObject);
             JsonUtils.putString(IVariable.START_TIME, startDate.getTime() / 1000 + "", basecJsonObject);
             JsonUtils.putString(IVariable.END_TIME, endDate.getTime() / 1000 + "", basecJsonObject);
             addChildJson(basecJsonObject);

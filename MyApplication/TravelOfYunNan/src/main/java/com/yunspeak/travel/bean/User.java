@@ -1,12 +1,13 @@
 package com.yunspeak.travel.bean;
 
+import simpledao.cityoff.com.easydao.annotation.TableName;
 import simpledao.cityoff.com.easydao.annotation.UpdateKey;
 
 /**
  * Created by wangyang on 2017/3/2.
  * 数据库 user对象保存
  */
-
+@TableName("user")
 public class User {
     public User(){
 
@@ -61,11 +62,7 @@ public class User {
     }
 
 
-    private String json;//保存网络拉取的用户json数据
-    @UpdateKey
-    private int id;//用户id 唯一标识 其余详细详细反射json获得
-    @UpdateKey
-    private String name;//用户账号 唯一标识 其余详细详细反射json获得
+
 
     public String getName() {
         return name;
@@ -82,7 +79,11 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    private String json;//保存网络拉取的用户json数据
+    @UpdateKey
+    private int id;//用户id 唯一标识 其余详细详细反射json获得
+    @UpdateKey
+    private String name;//用户账号 唯一标识 其余详细详细反射json获得
     private String password;//用户id 唯一标识 其余详细详细反射json获得
     private String lastLoginTime;//用户最后登录时间
     private String isLogin="0";//是否为登录状态 0 未登录 1登录

@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class UserInfo extends TravelsObject implements Serializable {
 
 
-    private String id;
+    private int id;
     private String tel;
     private String name;
     private String pwd;
@@ -35,9 +35,7 @@ public class UserInfo extends TravelsObject implements Serializable {
     private String update_time;
     private int birthday_see;
 
-    public String getId() {
-        return id;
-    }
+
 
     public int getBirthday_see() {
         return birthday_see;
@@ -47,7 +45,11 @@ public class UserInfo extends TravelsObject implements Serializable {
         this.birthday_see = birthday_see;
     }
 
-    public void setId(String id) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -69,7 +69,7 @@ public class ConversationListFragment extends EaseConversationListFragment {
     protected void onConnectionDisconnected() {
         super.onConnectionDisconnected();
         if (NetUtils.hasNetwork(getActivity())) {
-            EMClient.getInstance().login(UserUtils.getUserInfo().getId(), UserUtils.getUserInfo().getPwd(), new EMCallBack() {
+            EMClient.getInstance().login(UserUtils.getUserInfo().getId()+"", UserUtils.getUserInfo().getPwd(), new EMCallBack() {
                 @Override
                 public void onSuccess() {
                 }

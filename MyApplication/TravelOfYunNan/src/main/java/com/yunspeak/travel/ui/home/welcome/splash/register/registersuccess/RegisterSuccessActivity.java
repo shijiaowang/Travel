@@ -128,7 +128,7 @@ public class RegisterSuccessActivity extends BaseEventBusActivity<RegisterSucces
         GlobalValue.userInfo = userInfo;//赋值
         UserUtils.saveUserInfo(userInfo);//序列化
         if (!EMClient.getInstance().isConnected()) {
-            EMClient.getInstance().login(userInfo.getId(), userInfo.getPwd(), new EMCallBack() {//回调
+            EMClient.getInstance().login(userInfo.getId()+"", userInfo.getPwd(), new EMCallBack() {//回调
                 @Override
                 public void onSuccess() {
                     EMClient.getInstance().groupManager().loadAllGroups();

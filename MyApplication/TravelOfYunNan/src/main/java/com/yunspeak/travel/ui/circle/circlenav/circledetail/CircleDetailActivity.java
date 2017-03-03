@@ -195,7 +195,7 @@ public class CircleDetailActivity extends BaseChangeColorRecycleActivity<CircleD
      */
     private void followOrCancelFollow() {
         if (mTvFollow==null)return;
-        MapUtils.Builder builder = MapUtils.Build().addKey().add(IVariable.CIRCLE_ID, cId).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId());
+        MapUtils.Builder builder = MapUtils.Build().addKey().add(IVariable.CIRCLE_ID, cId).add(IVariable.USER_ID, GlobalUtils.getUserInfo().getId()+"");
         //已关注
         if (mTvFollow.getText().toString().trim().equals(getString(R.string.activity_circle_detail_followed))){
             builder.add(IVariable.TYPE,TYPE_CANCEL_FOLLOW);

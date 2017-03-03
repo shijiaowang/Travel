@@ -226,4 +226,5 @@ public  class UserBean extends TravelsObject {
         this.interest_label = interest_label;
     }
 
+
 }
