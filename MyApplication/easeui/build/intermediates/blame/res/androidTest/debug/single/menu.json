@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\menu\\circle_map.xml",
+        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\menu\\circle_map.xml"
+    },
+    {
+        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\menu\\circle_map2.xml",
+        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\menu\\circle_map2.xml"
+    },
+    {
+        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\menu\\circle_home.xml",
+        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\menu\\circle_home.xml"
+    }
+]
