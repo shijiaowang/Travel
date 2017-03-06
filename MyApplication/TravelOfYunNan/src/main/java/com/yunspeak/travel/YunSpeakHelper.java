@@ -19,13 +19,13 @@ import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.model.EaseNotifier;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.NetUtils;
-import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.ChatActivity;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UIUtils;
+import com.yunspeak.travel.utils.UserUtils;
 
 import org.xutils.x;
 
@@ -42,7 +42,7 @@ public class YunSpeakHelper {
         easeUI.setUserProfileProvider(new EaseUI.EaseUserProfileProvider() {
             @Override
             public EaseUser getUser(String username) {
-                return DBManager.getChatUserByChatId(username);
+                return UserUtils.getEaseChatUser(username);
             }
         });
         //set notification options, will use default if you don't set it

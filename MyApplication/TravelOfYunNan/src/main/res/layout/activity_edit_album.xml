@@ -21,8 +21,13 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x200"
-                    android:background="@drawable/register_banner">
-
+                    >
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/iv_cover"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x200"
+                        android:layout_alignParentTop="true"
+                        />
                     <TextView
                         android:id="@+id/tv_album_name"
                         android:layout_width="wrap_content"
@@ -66,13 +71,7 @@
                         android:textSize="@dimen/x12sp"
                         android:visibility="gone" />
 
-                    <com.facebook.drawee.view.SimpleDraweeView
-                        android:id="@+id/iv_cover"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/x200"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/ed_set_name"
-                        android:layout_toEndOf="@+id/ed_set_name" />
+
 
 
                 </RelativeLayout>

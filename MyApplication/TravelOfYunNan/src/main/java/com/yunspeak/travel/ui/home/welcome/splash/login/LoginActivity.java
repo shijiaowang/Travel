@@ -151,7 +151,7 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
         if (data != null) {
             setResult(SPLASH_RESULT);
             com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
-            userInfo.setId(data.getId());
+            userInfo.setUserId(data.getId());
             userInfo.setNick_name(data.getNick_name());
             userInfo.setUser_img(data.getUser_img());
             ChatDao userDao = BaseDaoFactory.getInstance().getUserDao(ChatDao.class, com.hyphenate.easeui.domain.UserInfo.class, true, data.getId() + "");

@@ -449,6 +449,7 @@ public abstract class BaseEasyDao<T> implements IEasyDao<T> {
            update(object);//直接更新，反射判断更浪费时间
        }
    }
+
     @Override
     public void exec(String sql) throws Exception{
          sqLiteDatabase.execSQL(sql);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -70,8 +71,13 @@ public class HomeSwitchActivity extends BaseToolBarActivity {
         wvHtml.setWebChromeClient(new WebChromeClient(){
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
+                LogUtils.e("当前进度为"+newProgress);
                 pbProgress.setProgress(newProgress);
                 if (newProgress==100){
+                    AlphaAnimation alphaAnimation=new AlphaAnimation(1f,0f);
+                    alphaAnimation.setDuration(500);
+                    pbProgress.setAnimation(alphaAnimation);
+                    alphaAnimation.start();
                     pbProgress.setVisibility(View.GONE);
                 }
 

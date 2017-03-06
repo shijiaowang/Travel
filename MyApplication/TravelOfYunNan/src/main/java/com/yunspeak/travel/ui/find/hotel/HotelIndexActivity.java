@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.CityNameBean;
-import com.yunspeak.travel.db.DBManager;
+import com.yunspeak.travel.db.CityDao;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.view.FontsIconTextView;
@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import butterknife.BindView;
+import simpledao.cityoff.com.easydao.BaseDaoFactory;
 
 /**
  * Created by wangyang on 2016/9/7 0007.
@@ -71,7 +72,8 @@ public class HotelIndexActivity extends BaseToolBarActivity {
     }
 
     private void initCityList() {
-        final List<CityNameBean> list = DBManager.queryAllCity();
+        CityDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(CityDao.class, CityNameBean.class);
+        final List<CityNameBean> list = daoHelper.queryAllCity();
 
         final Map<String,Integer> indexMap=new HashMap<>();
         final String[] name=new String[list.size()];

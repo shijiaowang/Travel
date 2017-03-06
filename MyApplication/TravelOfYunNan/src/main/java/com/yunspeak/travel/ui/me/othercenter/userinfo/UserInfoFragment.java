@@ -8,12 +8,12 @@ import android.widget.TextView;
 import com.google.android.flexbox.FlexboxLayout;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.UserInfoBean;
-import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
 import com.yunspeak.travel.bean.UserLabelBean;
 import com.yunspeak.travel.ui.me.othercenter.INotify;
 import com.yunspeak.travel.bean.UserBean;
+import com.yunspeak.travel.utils.CityUtils;
 import com.yunspeak.travel.utils.FormatDateUtils;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.MapUtils;
@@ -78,7 +78,7 @@ public class UserInfoFragment extends LoadBaseFragment<UserInfoEvent> implements
         tvName.setText(user.getNick_name());
         tvDes.setText(user.getContent());
         tvSex.setText(user.getSex().equals("1")?"男":"女");
-        tvAddress.setText(DBManager.getStringById("name",user.getProvince())+"-"+DBManager.getStringById("name",user.getCity()));
+        tvAddress.setText(CityUtils.getStringById(user.getProvince())+"-"+CityUtils.getStringById(user.getCity()));
         List<UserLabelBean> interestLabel = user.getInterest_label();
         flTitle.removeAllViews();
         if (interestLabel==null || interestLabel.size()==0){

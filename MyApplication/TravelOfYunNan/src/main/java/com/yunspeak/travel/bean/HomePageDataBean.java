@@ -18,6 +18,9 @@ public class HomePageDataBean {
         this.pageContent = pageContent;
     }
 
+    public HomePageDataBean() {
+    }
+
     public String getPageContent() {
 
         return pageContent;

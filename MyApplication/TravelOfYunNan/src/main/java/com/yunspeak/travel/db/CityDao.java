@@ -9,6 +9,7 @@ import com.yunspeak.travel.bean.User;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import simpledao.cityoff.com.easydao.BaseEasyDao;
@@ -160,6 +161,12 @@ public class CityDao extends BaseEasyDao<CityNameBean> {
         }
         return datas;
     }
+    /**
+     * 通过列名称 与 upId获取名称
+     * @param name
+     * @param upId
+     * @return
+     */
    public String getCityId(String name,int upId){
        CityNameBean cityNameBean=new CityNameBean();
        cityNameBean.setUpId(upId);
@@ -168,4 +175,15 @@ public class CityDao extends BaseEasyDao<CityNameBean> {
        return query==null?"":query.get_id()+"";
    }
 
+    /**
+     * 通过id获取城市名称
+     * @param id
+     * @return
+     */
+   public String getStringById(int id){
+       CityNameBean cityNameBean=new CityNameBean();
+       cityNameBean.set_id(id);
+       CityNameBean query = query(cityNameBean);
+       return query==null?"未知":query.getName();
+   }
 }

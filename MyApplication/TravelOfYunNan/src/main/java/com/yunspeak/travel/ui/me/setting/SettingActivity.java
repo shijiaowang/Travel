@@ -26,9 +26,7 @@ import com.yunspeak.travel.bean.SettingBean;
 import com.yunspeak.travel.bean.User;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.db.CityDao;
-import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.db.UserDao;
-import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.global.SendTextClick;
@@ -44,6 +42,7 @@ import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
 import com.yunspeak.travel.ui.view.PhoneTextView;
 import com.yunspeak.travel.utils.CacheUtils;
 import com.yunspeak.travel.utils.CalendarUtils;
+import com.yunspeak.travel.utils.CityUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.GlobalUtils;
 import com.yunspeak.travel.utils.GsonUtils;
@@ -54,6 +53,8 @@ import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
+
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,6 +98,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     private TimePickerView pvTime;
     private long time;
     private CityDao daoHelper;
+    private boolean isInitCityList;
 
     @Override
     protected void initEvent() {
@@ -124,11 +126,19 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     }
 
     private void initCity() {
+        isInitCityList = false;
         daoHelper = BaseDaoFactory.getInstance().getDaoHelper(CityDao.class, CityNameBean.class);
-        CityNameBean cityNameBean=new CityNameBean();
+        final CityNameBean cityNameBean=new CityNameBean();
         cityNameBean.setLevel(1);
-        options1Items = daoHelper.queryAll(cityNameBean);
-        options2Items = daoHelper.getCity(options1Items);
+        x.task().run(new Runnable() {
+            @Override
+            public void run() {
+                options1Items = daoHelper.queryAll(cityNameBean);
+                options2Items = daoHelper.getCity(options1Items);
+                isInitCityList=true;
+            }
+        });
+
     }
 
     private void initData() {
@@ -138,8 +148,8 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
             FrescoUtils.displayIcon(mIvIcon, userInfo.getUser_img());
             String province = userInfo.getProvince();
             String city = userInfo.getCity();
-            String provinceName = DBManager.getStringById("name", province);
-            String cityName = DBManager.getStringById("name", city);
+            String provinceName = CityUtils.getStringById(province);
+            String cityName = CityUtils.getStringById(city);
             mTvUserLivePlace.setText( provinceName+ "-" +cityName );
             mTvUserNickName.setText(userInfo.getNick_name());
             mPtvPhone.setPhoneNumber(userInfo.getTel());
@@ -184,16 +194,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     protected void onSuccess(SettingEvent settingEvent) {
         ToastUtils.showToast(settingEvent.getMessage());
         SettingBean object = GsonUtils.getObject(settingEvent.getResult(), SettingBean.class);
-        UserInfo data = object.getData();
-        if (data!=null){
-            GlobalValue.userInfo=data;
-            com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
-            userInfo.setId(data.getId());
-            userInfo.setNick_name(data.getNick_name());
-            userInfo.setUser_img(data.getUser_img());
-            DBManager.insertChatUserInfo(userInfo);
-        }
-        UserUtils.saveUserInfo(data);
+        UserUtils.saveUserInfo(object.getData());
         messageIsChange=false;
         time=0;
         setResult(HomeActivity.UP_RESULT);
@@ -294,6 +295,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         }
     }
     protected void showTime() {
+        if (!isInitCityList)return;
         if (pvTime == null) {
             pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
             //控制时间范围

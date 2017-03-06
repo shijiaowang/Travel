@@ -30,6 +30,7 @@ import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.ShareUtil;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.UIUtils;
+import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -82,8 +83,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
             XEventUtils.getUseCommonBackJson(IVariable.GET_KEY, null, IVariable.TYPE_GET_KEY, new WelcomeEvent());
         } else {
             GlobalValue.KEY_VALUE = ShareUtil.getString(this,IVariable.KEY_VALUE, "");
-            UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
-            UserInfo currentUser = daoHelper.getCurrentUser();
+            UserInfo currentUser = UserUtils.getUserInfo();
             //验证缓存的登录
             if (currentUser!=null && !StringUtils.isEmpty(currentUser.getName()) && !StringUtils.isEmpty(currentUser.getPwd())) {
                 GO_WHERE_PAGE = START_HOME;//去首页，之后会验证是否经过网络验证
@@ -146,25 +146,8 @@ public class WelcomeActivity extends FullTransparencyActivity {
         if (event.isSuccess()) {
             isNetWork = true;
             GO_WHERE_PAGE = START_HOME;
-            try {
-                Login object = GsonUtils.getObject(event.getResult(), Login.class);
-                UserInfo data = object.getData();
-                if (data != null) {
-                    com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
-                    userInfo.setId(data.getId());
-                    userInfo.setNick_name(data.getNick_name());
-                    userInfo.setUser_img(data.getUser_img());
-                    ChatDao userDao = BaseDaoFactory.getInstance().getUserDao(ChatDao.class, com.hyphenate.easeui.domain.UserInfo.class, true, data.getId()+"");
-                    userDao.updateOrInsert(data.getId(),userInfo);
-                    UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
-                    daoHelper.setCurrentUser(new User(GsonUtils.getJson(data),data.getId(),data.getName(),data.getPwd(),new Date().getTime()+"","1"));
-                 }
-
-                //保存用户信息
-                //UserUtils.saveUserInfo(data);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Login object = GsonUtils.getObject(event.getResult(), Login.class);
+            UserUtils.saveUserInfo(object.getData());
         } else {
             isNetWork = false;
             GO_WHERE_PAGE = event.getCode() == 0 ? START_LOGIN : START_HOME;

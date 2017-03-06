@@ -14,7 +14,7 @@ import com.hyphenate.easeui.domain.UserInfo;
 import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.ChatBean;
-import com.yunspeak.travel.db.DBManager;
+
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.ChatSettingActivity;
 import com.yunspeak.travel.ui.me.myappoint.chat.chatsetting.privatesetting.PrivateChatSettingActivity;
@@ -22,6 +22,7 @@ import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
+import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -151,13 +152,14 @@ public class ChatActivity extends EaseBaseActivity {
                     if (travel!=null) {
                         tvTitle.setText(travel.getTravel_title());
                         UserInfo userInfo = new UserInfo();
-                        userInfo.setId(toChatUsername);
+                        userInfo.setUserId(toChatUsername);
                         userInfo.setNick_name(travel.getTravel_title());
                         userInfo.setUser_img(travel.getTravel_img());
+                        UserUtils.saveChatUserInfo(userInfo);
                         data.add(userInfo);
                     }
                 }
-                DBManager.insertChatUserInfo(data);//初次存入用户信息
+
             } catch (Exception e) {
                 e.printStackTrace();
                 LogUtils.e("获取用户信息出错了");

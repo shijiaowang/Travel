@@ -15,7 +15,8 @@ import android.view.ViewGroup;
 
 import com.umeng.analytics.MobclickAgent;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.db.DBManager;
+import com.yunspeak.travel.bean.HomePageDataBean;
+import com.yunspeak.travel.db.HomeDataDao;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IState;
 import com.yunspeak.travel.ui.view.LoadingPage;
@@ -24,6 +25,7 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
+import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -40,6 +42,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import butterknife.ButterKnife;
+import simpledao.cityoff.com.easydao.BaseDaoFactory;
 
 
 /**
@@ -197,7 +200,10 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
      */
     private void saveData(T event) {
         if(!isSaveData){
-            DBManager.insertHomePageSavaData(TAG,event.getResult());
+            HomeDataDao userDao = BaseDaoFactory.getInstance().getUserDao(HomeDataDao.class, HomePageDataBean.class, true, UserUtils.getUserInfo().getId());
+            HomePageDataBean homePageDataBean=new HomePageDataBean(TAG,event.getResult());
+            HomePageDataBean queryPageDataBean=new HomePageDataBean(TAG,"");
+            userDao.updateOrInsert(queryPageDataBean,homePageDataBean);
             isSaveData=true;
         }
     }
@@ -236,7 +242,10 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
     protected void loadSqlData(T event) {
         event.setCode(1);
         event.setIsSuccess(true);
-        String data = DBManager.querySaveDataByPageName(TAG);
+        HomeDataDao userDao = BaseDaoFactory.getInstance().getUserDao(HomeDataDao.class, HomePageDataBean.class, true, UserUtils.getUserInfo().getId());
+        HomePageDataBean queryPageDataBean=new HomePageDataBean(TAG,"");
+        HomePageDataBean query = userDao.query(queryPageDataBean);
+        String data=query==null?"":query.getPageContent();
         if (!StringUtils.isEmpty(data)){
             event.setResult(data);
             setState(LoadingPage.ResultState.STATE_SUCCESS);

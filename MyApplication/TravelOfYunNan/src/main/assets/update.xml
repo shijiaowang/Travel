@@ -16,11 +16,11 @@
         <createDb name="personal">
             <!--主页缓存数据，有私人数据存在-->
             <sql_createTable>
-                create table if not exists home_data(_id integer primary key autoincrement,name text,pageContent text)
+                create table if not exists home_data(name varchar(20) primary key,pageContent text)
             </sql_createTable>
             <!--聊天对象数据-->
             <sql_createTable>
-                create table if not exists chat_user(_id integer primary key autoincrement,userId text,nickName text,userImg text)
+                create table if not exists chat_user(id integer primary key autoincrement,userId varchar(20),nickName varchar(20),userImg text)
             </sql_createTable>
         </createDb>
     </createVersion>

@@ -359,6 +359,7 @@
     <string name="wechat_pay">微信支付</string>
     <string name="well_pay_money">待付资金</string>
     <string name="pay_now">立即支付</string>
+    <string name="cityoff_agreement">城外旅游软件服务及许可协议</string>
 
 
 </resources>

@@ -22,8 +22,8 @@ public class ChatDao extends BaseEasyDao<UserInfo> {
     public void insertChatUserInfo(List<UserInfo> userInfos) {
         if (userInfos == null) return;
         for (UserInfo userInfo : userInfos) {
-            if (userInfo == null || TextUtils.isEmpty(userInfo.getId())) continue;
-            updateOrInsert(userInfo.getId(),userInfo);
+            if (userInfo == null || TextUtils.isEmpty(userInfo.getUserId())) continue;
+            updateOrInsert(userInfo.getUserId(),userInfo);
         }
     }
 

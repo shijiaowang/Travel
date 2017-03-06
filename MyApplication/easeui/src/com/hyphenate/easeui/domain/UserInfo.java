@@ -15,25 +15,25 @@ import simpledao.cityoff.com.easydao.annotation.UpdateKey;
 @TableName("chat_user")
 public class UserInfo implements Serializable{
         @UpdateKey
-        private String id;
+        private String userId;
         @RenameField("nickName")
         private String nick_name;
         @RenameField("userImg")
         private String user_img;
 
-    public UserInfo(String id) {
-        this.id = id;
+    public UserInfo(String userId) {
+        this.userId = userId;
     }
 
     public UserInfo() {
     }
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getNick_name() {
@@ -50,12 +50,6 @@ public class UserInfo implements Serializable{
 
         public void setUser_img(String user_img) {
             this.user_img = user_img;
-        }
-        public boolean isEquals(UserInfo userInfo){
-            if (userInfo==null || TextUtils.isEmpty(this.id) || this.nick_name==null || this.user_img==null)return false;
-            return this.id==userInfo.getId() && this.user_img.equals(userInfo.getUser_img())
-                    && this.nick_name.equals(userInfo.getNick_name())
-                    ;
         }
 
 }

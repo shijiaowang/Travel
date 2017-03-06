@@ -6,10 +6,10 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.HomeBean;
-import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.ui.adapter.holer.BaseRecycleViewHolder;
 import com.yunspeak.travel.ui.find.findcommon.BaseFindDetailActivity;
 import com.yunspeak.travel.ui.find.findcommon.destinationdetail.DestinationDetailActivity;
+import com.yunspeak.travel.utils.CityUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -33,8 +33,8 @@ public class HotSpotsHolder extends BaseRecycleViewHolder<HomeBean.DataBean.Dest
     @Override
     public void childBindView(int position, final HomeBean.DataBean.DestinationBean data, final Context mContext) {
         FrescoUtils.displayNormal(ivPicture,data.getLogo_img());
-        String provice = DBManager.getStringById("name", data.getProvince());
-        String city = DBManager.getStringById("name", data.getCity());
+        String provice = CityUtils.getStringById(data.getProvince());
+        String city = CityUtils.getStringById(data.getCity());
         tvCity.setText(provice+city);
         tvName.setText(data.getTitle());
         itemView.setOnClickListener(new View.OnClickListener() {

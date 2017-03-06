@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.home.welcome.splash.register;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -43,7 +44,7 @@ public class WebViewActivity extends BaseToolBarActivity {
     protected void initOptions() {
         pbProgress.setMax(100);
         String title = getIntent().getStringExtra(IVariable.TITLE);
-        mTvTitle.setText(StringUtils.isEmpty(title)?"城外旅游软件服务及许可协议":title);
+        mTvTitle.setText(StringUtils.isEmpty(title)?getString(R.string.cityoff_agreement):title);
         String url = getIntent().getStringExtra(IVariable.URL);
         url=StringUtils.isEmpty(url)?IVariable.PROTOCOL:url;
         mWvView = (WebView)findViewById(R.id.wv_html);
@@ -61,6 +62,10 @@ public class WebViewActivity extends BaseToolBarActivity {
             public void onProgressChanged(WebView view, int newProgress) {
                 pbProgress.setProgress(newProgress);
                 if (newProgress==100){
+                    AlphaAnimation alphaAnimation=new AlphaAnimation(1f,0f);
+                    alphaAnimation.setDuration(500);
+                    pbProgress.setAnimation(alphaAnimation);
+                    alphaAnimation.start();
                     pbProgress.setVisibility(View.GONE);
                 }
             }

@@ -22,12 +22,9 @@ import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.message.PushAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.bean.UpdateBean;
-import com.yunspeak.travel.bean.UserInfo;
-import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.ui.appoint.AppointFragment;
@@ -315,32 +312,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         LogUtils.e(event.getMessage());
         if (event.isSuccess()) {
             Login object = GsonUtils.getObject(event.getResult(), Login.class);
-            UserInfo data = object.getData();
-            if (data != null) {
-                com.hyphenate.easeui.domain.UserInfo userInfo = new com.hyphenate.easeui.domain.UserInfo();
-                userInfo.setId(data.getId());
-                userInfo.setNick_name(data.getNick_name());
-                userInfo.setUser_img(data.getUser_img());
-                DBManager.insertChatUserInfo(userInfo);
-            }
-            UserUtils.saveUserInfo(data);
-            if (GlobalUtils.getUserInfo() == null) {
-                // TODO: 2016/11/5 0005 清除app所有缓存，不再提示
-                ToastUtils.showToast("用户信息发生错误，请尝试重新登录，若多次无效，可清除缓存！");
-            }
+            UserUtils.saveUserInfo(object.getData());
         } else {
-            if (NetworkUtils.isNetworkConnected() && GlobalUtils.getUserInfo() == null) {
-                ToastUtils.showToast("您的登录信息有误！可能导致无法进行正常浏览，请重新登录！");
-            } else {
-                if (event.getMessage().equals("密码错误")) {
+                if (event.getCode()==0) {
                     ToastUtils.showToast("密码错误！请重新登录");
                     startActivity(new Intent(this, LoginActivity.class));
                     finish();
-                } else {
+                } else if (!NetworkUtils.isNetworkConnected()){
                     ToastUtils.showToast(getString(R.string.network_unavailable));
                 }
-            }
-
         }
     }
 
