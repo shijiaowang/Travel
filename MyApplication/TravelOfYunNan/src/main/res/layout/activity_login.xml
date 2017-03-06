@@ -19,6 +19,7 @@
             android:layout_marginRight="@dimen/x10"
             app:line_edittext_max_length="11"
             app:line_edittext_hint="请输入账号"
+            app:line_edittext_auto_show="true"
             android:lines="1" />
 
     <com.yunspeak.travel.ui.view.LoginEditText

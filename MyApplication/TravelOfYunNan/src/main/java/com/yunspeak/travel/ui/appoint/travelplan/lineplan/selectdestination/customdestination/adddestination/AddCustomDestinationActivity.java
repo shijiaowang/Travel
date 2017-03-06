@@ -11,12 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.ProvinceBean;
-import com.yunspeak.travel.db.DBManager;
+import com.yunspeak.travel.bean.CityNameBean;
+import com.yunspeak.travel.db.CityDao;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.BaseNetWorkActivity;
 import com.yunspeak.travel.utils.BitmapUtils;
@@ -25,12 +24,11 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import butterknife.BindView;
+import simpledao.cityoff.com.easydao.BaseDaoFactory;
 
 /**
  * Created by wangyang on 2016/9/8 0008.
@@ -46,14 +44,16 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
     SimpleDraweeView mIvImage;
     @BindView(R.id.tv_delete) TextView mTvDelete;
     @BindView(R.id.tv_picture) TextView mTvPicture;
-    private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
-    private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
+    private ArrayList<CityNameBean> options1Items;
+    private ArrayList<ArrayList<CityNameBean>> options2Items;
     private OptionsPickerView pvOptions;
     private String address;
-    private String id;
+    private int id;
     private String cityName;
     private static final int OPEN_ALBUM=5;//打开相册
     private String imageAbsolutePath;
+    private CityDao daoHelper;
+
     @Override
     protected void initEvent() {
         initCity();
@@ -101,10 +101,10 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
                 public void onOptionsSelect(int options1, int option2, int options3) {
                     //返回的分别是三个级别的选中位置
                     String tx = options1Items.get(options1).getPickerViewText()
-                            +"-"+options2Items.get(options1).get(option2);
+                            +"-"+options2Items.get(options1).get(option2).getPickerViewText();
                     address = tx;
-                    id = options1Items.get(options1).getId();//省得id
-                    cityName = options2Items.get(options1).get(option2);
+                    id = options1Items.get(options1).get_id();//省得id
+                    cityName = options2Items.get(options1).get(option2).getName();
                     mTvAddress.setText(tx);
                 }
             });
@@ -117,8 +117,11 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
     }
 
     private void initCity() {
-        options1Items = DBManager.getProvince();
-        options2Items = DBManager.getCity(options1Items);
+        daoHelper = BaseDaoFactory.getInstance().getDaoHelper(CityDao.class, CityNameBean.class);
+        CityNameBean cityNameBean=new CityNameBean();
+        cityNameBean.setLevel(1);
+        options1Items = daoHelper.queryAll(cityNameBean);
+        options2Items = daoHelper.getCity(options1Items);
 
     }
 
@@ -237,8 +240,8 @@ public class AddCustomDestinationActivity extends BaseNetWorkActivity<AddCustomS
             ToastUtils.showToast("请上传一张图片");
             return;
         }
-        String cityId = DBManager.getCityId(cityName, id);
-        Map<String, String> createSpotMap = MapUtils.Build().addKey().addUserId().addTitle(name).addContent(des).addProvince(id).addCity(cityId).addAddress(add).end();
+        String cityId = daoHelper.getCityId(cityName, id);
+        Map<String, String> createSpotMap = MapUtils.Build().addKey().addUserId().addTitle(name).addContent(des).addProvince(String.valueOf(id)).addCity(cityId).addAddress(add).end();
         List<String> fileList=new ArrayList<>();
         fileList.add(imageAbsolutePath);
         XEventUtils.postFileCommonBackJson(IVariable.ADD_CUSTOM_SPOT, createSpotMap,fileList,0, new AddCustomSpotEvent());

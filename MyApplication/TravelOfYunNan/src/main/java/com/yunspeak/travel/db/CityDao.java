@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.text.TextUtils;
 import com.yunspeak.travel.bean.CityNameBean;
+import com.yunspeak.travel.bean.User;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -118,20 +120,52 @@ public class CityDao extends BaseEasyDao<CityNameBean> {
      * @param options1Items 传入省的集合
      * @return
      */
-    public  ArrayList<List<CityNameBean>> getCity(ArrayList<CityNameBean> options1Items) {
+    public  ArrayList<ArrayList<CityNameBean>> getCity(ArrayList<CityNameBean> options1Items) {
         if (options1Items==null || options1Items.size()==0)return null;
         CityNameBean queryBean=new CityNameBean();
         queryBean.setLevel(2);
-        ArrayList<List<CityNameBean>> arrayLists = new ArrayList<>();
+        ArrayList<ArrayList<CityNameBean>> arrayLists = new ArrayList<>();
         for (CityNameBean cityNameBean : options1Items) {
             queryBean.setUpId(cityNameBean.get_id());
-            List<CityNameBean> list = queryAll(queryBean);
+            ArrayList<CityNameBean> list = queryAll(queryBean);
             arrayLists.add(list);
         }
        return arrayLists;
     }
 
-
-
+    public ArrayList<CityNameBean> queryAll(CityNameBean t) {
+        if (t == null) return null;
+        ExecParams execParams = null;
+        try {
+            execParams = new ExecParams(t).invoke();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        String whereClause = execParams.getWhereClause();
+        String[] whereArgs = execParams.getWhereArgs();
+        Cursor query = sqLiteDatabase.query(this.tableName, null, whereClause, whereArgs, null, null, null);
+        ArrayList<CityNameBean> datas = new ArrayList<>();
+        try {
+            while (query.moveToNext()) {
+                CityNameBean data = getEntity(t, query);
+                datas.add(data);
+            }
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } finally {
+            closeCursor(query);
+        }
+        return datas;
+    }
+   public String getCityId(String name,int upId){
+       CityNameBean cityNameBean=new CityNameBean();
+       cityNameBean.setUpId(upId);
+       cityNameBean.setName(name);
+       CityNameBean query = query(cityNameBean);
+       return query==null?"":query.get_id()+"";
+   }
 
 }

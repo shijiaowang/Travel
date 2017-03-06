@@ -3,17 +3,16 @@ package com.yunspeak.travel.ui.home.welcome;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.view.WindowManager;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.CityNameBean;
 import com.yunspeak.travel.bean.Key;
 import com.yunspeak.travel.bean.Login;
 import com.yunspeak.travel.bean.User;
-import com.yunspeak.travel.bean.UserBean;
 import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.db.ChatDao;
 import com.yunspeak.travel.db.CityDao;
-import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.db.UserDao;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.WelcomeEvent;
@@ -31,9 +30,7 @@ import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.ShareUtil;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.UIUtils;
-import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -70,7 +67,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
     @Override
     protected void initView() {
 
-    }
+}
 
     @Override
     protected void initListener() {
@@ -86,7 +83,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
         } else {
             GlobalValue.KEY_VALUE = ShareUtil.getString(this,IVariable.KEY_VALUE, "");
             UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
-            UserBean currentUser = daoHelper.getCurrentUser();
+            UserInfo currentUser = daoHelper.getCurrentUser();
             //验证缓存的登录
             if (currentUser!=null && !StringUtils.isEmpty(currentUser.getName()) && !StringUtils.isEmpty(currentUser.getPwd())) {
                 GO_WHERE_PAGE = START_HOME;//去首页，之后会验证是否经过网络验证
@@ -160,7 +157,7 @@ public class WelcomeActivity extends FullTransparencyActivity {
                     ChatDao userDao = BaseDaoFactory.getInstance().getUserDao(ChatDao.class, com.hyphenate.easeui.domain.UserInfo.class, true, data.getId()+"");
                     userDao.updateOrInsert(data.getId(),userInfo);
                     UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
-                    daoHelper.setCurrentUser(new User(event.getResult(),data.getId(),data.getName(),data.getPwd(),new Date().getTime()+"","1"));
+                    daoHelper.setCurrentUser(new User(GsonUtils.getJson(data),data.getId(),data.getName(),data.getPwd(),new Date().getTime()+"","1"));
                  }
 
                 //保存用户信息

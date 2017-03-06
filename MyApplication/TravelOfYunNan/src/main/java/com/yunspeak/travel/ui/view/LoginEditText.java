@@ -12,12 +12,13 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.utils.PhoneUtils;
 import com.yunspeak.travel.utils.StringUtils;
@@ -31,7 +32,7 @@ import org.xutils.common.util.DensityUtil;
 public class LoginEditText extends FrameLayout {
 
     private boolean isEmpty;
-    private EditText mEtEnter;
+    private AutoCompleteTextView mEtEnter;
     private View mVLine;
     private TextView mTvDelete;
     private String hint = "";
@@ -45,6 +46,7 @@ public class LoginEditText extends FrameLayout {
     int verTime=60;
     private boolean canSending=true;//是否可以点击发送按钮
     private boolean canShowDelete=true;//是否显示删除按钮
+    private boolean isAutoShow;//是否自动联想字母
 
     public LoginEditText(Context context) {
         this(context, null);
@@ -101,6 +103,9 @@ public class LoginEditText extends FrameLayout {
                 case R.styleable.LoginEditText_line_edittext_show_send_button:
                     isShowSendButton = typedArray.getBoolean(index,false);
                     break;
+                case R.styleable.LoginEditText_line_edittext_auto_show:
+                    isAutoShow = typedArray.getBoolean(index,false);
+                    break;
 
             }
 
@@ -108,7 +113,7 @@ public class LoginEditText extends FrameLayout {
         typedArray.recycle();
         View inflate = LayoutInflater.from(context).inflate(R.layout.line_edit_text, this, false);
         ImageView mIvLeftImage = (ImageView) inflate.findViewById(R.id.iv_left_image);
-        mEtEnter = (EditText) inflate.findViewById(R.id.et_enter);
+        mEtEnter = (AutoCompleteTextView) inflate.findViewById(R.id.et_enter);
         mEtEnter.setHint(hint);
         //密码隐藏
         setMaxLength(length);
@@ -326,5 +331,21 @@ public class LoginEditText extends FrameLayout {
             canShowDelete = false;
             mTvDelete.setVisibility(GONE);
         }
+    }
+
+    /**
+     * 自动联想数据
+     * @param data
+     */
+    public void setOnAutoShowData(final String[] data){
+        if (data==null || !isAutoShow)return;
+        mEtEnter.setAdapter(new ArrayAdapter<String>(getContext(),R.layout.item_array,data){ });
+        mEtEnter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String) parent.getAdapter().getItem(position);
+                mEtEnter.setText(item);
+            }
+        });
     }
 }

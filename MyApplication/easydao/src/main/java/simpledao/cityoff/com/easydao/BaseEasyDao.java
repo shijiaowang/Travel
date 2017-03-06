@@ -115,6 +115,9 @@ public abstract class BaseEasyDao<T> implements IEasyDao<T> {
         if (t == null) return -1;
         ContentValues contentValues = getContentValues(t);
         Field[] declaredFields = t.getClass().getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            declaredField.setAccessible(true);
+        }
         StringBuilder whereClause = new StringBuilder();
         StringBuilder whereArgs = new StringBuilder();
         boolean isFirst = true;
@@ -323,7 +326,7 @@ public abstract class BaseEasyDao<T> implements IEasyDao<T> {
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
-    private T getEntity(T t, Cursor query) throws InstantiationException, IllegalAccessException {
+    protected T getEntity(T t, Cursor query) throws InstantiationException, IllegalAccessException {
         T data = (T) t.getClass().newInstance();
         Iterator<String> iterator = fieldMap.keySet().iterator();
         while (iterator.hasNext()) {
@@ -389,7 +392,7 @@ public abstract class BaseEasyDao<T> implements IEasyDao<T> {
     /**
      * 查询删除条件类
      */
-    private class ExecParams {
+    protected class ExecParams {
         private T t;
         private StringBuilder whereClause;
         private String[] whereArgs;

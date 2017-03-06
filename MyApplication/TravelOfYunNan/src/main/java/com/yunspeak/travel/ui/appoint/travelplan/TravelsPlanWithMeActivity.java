@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.CityNameBean;
+import com.yunspeak.travel.db.CityDao;
 import com.yunspeak.travel.db.DBManager;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.bean.LineBean;
@@ -29,15 +31,15 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import simpledao.cityoff.com.easydao.BaseDaoFactory;
+
 /**
  * Created by wangyang on 2016/9/17.
  * 找人带-旅行计划
  */
 public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
-
-    private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
-    private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
-
+    private ArrayList<CityNameBean> options1Items = new ArrayList<>();
+    private ArrayList<ArrayList<CityNameBean>> options2Items = new ArrayList<>();
     private OptionsPickerView pvOptions;
     private String name;
     private String des;
@@ -79,8 +81,11 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
 
 
     private void initCity() {
-          options1Items = DBManager.getProvince();
-          options2Items = DBManager.getCity(options1Items);
+        CityDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(CityDao.class, CityNameBean.class);
+        CityNameBean cityNameBean=new CityNameBean();
+        cityNameBean.setLevel(1);
+        options1Items = daoHelper.queryAll(cityNameBean);
+        options2Items = daoHelper.getCity(options1Items);
 
     }
 
@@ -106,11 +111,10 @@ public class TravelsPlanWithMeActivity extends TravelsPlanBaseActivity {
                 public void onOptionsSelect(int options1, int option2, int options3) {
                     //返回的分别是三个级别的选中位置
                     address = options1Items.get(options1).getPickerViewText()
-                            + options2Items.get(options1).get(option2);
-                    id = options1Items.get(options1).getId();//省得id
-                    cityName =options1Items.get(options1).getPickerViewText();
-                    cityName += options2Items.get(options1).get(option2);
-                    mTvStartCity.setText(cityName);
+                            + options2Items.get(options1).get(option2).getPickerViewText();
+                    id = options1Items.get(options1).get_id()+"";//省得id
+                    cityName = options2Items.get(options1).get(option2).getPickerViewText();
+                    mTvStartCity.setText(address);
                 }
             });
 

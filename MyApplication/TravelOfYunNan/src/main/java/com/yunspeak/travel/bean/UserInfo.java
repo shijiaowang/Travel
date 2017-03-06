@@ -1,16 +1,13 @@
 package com.yunspeak.travel.bean;
 
-import com.yunspeak.travel.global.TravelsObject;
-
 import java.io.Serializable;
 
 /**
  * Created by wangyang on 2016/9/20 0020.
  */
-public class UserInfo extends TravelsObject implements Serializable {
+public class UserInfo implements Serializable {
 
-
-    private int id;
+    private String id;
     private String tel;
     private String name;
     private String pwd;
@@ -45,11 +42,11 @@ public class UserInfo extends TravelsObject implements Serializable {
         this.birthday_see = birthday_see;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -228,6 +225,8 @@ public class UserInfo extends TravelsObject implements Serializable {
     public void setUpdate_time(String update_time) {
         this.update_time = update_time;
     }
-
+    public String getStringId(){//返回String的id 方便设置
+        return String.valueOf(id);
+    }
 }
 

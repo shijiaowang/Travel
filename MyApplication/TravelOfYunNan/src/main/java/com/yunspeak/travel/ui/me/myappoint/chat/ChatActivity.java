@@ -151,7 +151,7 @@ public class ChatActivity extends EaseBaseActivity {
                     if (travel!=null) {
                         tvTitle.setText(travel.getTravel_title());
                         UserInfo userInfo = new UserInfo();
-                        userInfo.setId(Integer.parseInt(toChatUsername));
+                        userInfo.setId(toChatUsername);
                         userInfo.setNick_name(travel.getTravel_title());
                         userInfo.setUser_img(travel.getTravel_img());
                         data.add(userInfo);

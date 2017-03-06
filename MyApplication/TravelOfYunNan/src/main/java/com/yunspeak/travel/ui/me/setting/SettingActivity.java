@@ -21,15 +21,18 @@ import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yalantis.ucrop.UCrop;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.bean.CityNameBean;
 import com.yunspeak.travel.bean.SettingBean;
+import com.yunspeak.travel.bean.User;
 import com.yunspeak.travel.bean.UserInfo;
+import com.yunspeak.travel.db.CityDao;
 import com.yunspeak.travel.db.DBManager;
+import com.yunspeak.travel.db.UserDao;
 import com.yunspeak.travel.global.GlobalValue;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.ParentPopClick;
 import com.yunspeak.travel.global.SendTextClick;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
-import com.yunspeak.travel.bean.ProvinceBean;
 import com.yunspeak.travel.ui.baseui.BaseCutPhotoActivity;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
@@ -58,6 +61,7 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import simpledao.cityoff.com.easydao.BaseDaoFactory;
 
 /**
  * Created by wangyang on 2016/7/22 0022.
@@ -82,16 +86,17 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     Switch mSToggle;
     private UserInfo userInfo;
     private String nickName="";
-    private String provice="";
+    private int proviceId;
     private String city="";
-    private ArrayList<ProvinceBean> options1Items = new ArrayList<>(0);
-    private ArrayList<ArrayList<String>> options2Items = new ArrayList<>(0);
+    private ArrayList<CityNameBean> options1Items;
+    private ArrayList<ArrayList<CityNameBean>> options2Items;
     private OptionsPickerView pvOptions;
     private boolean messageIsChange=false;
     private String iconUrl;
     private int isCanSee=0;//默认不能看
     private TimePickerView pvTime;
     private long time;
+    private CityDao daoHelper;
 
     @Override
     protected void initEvent() {
@@ -119,14 +124,17 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
     }
 
     private void initCity() {
-        options1Items = DBManager.getProvince();
-        options2Items = DBManager.getCity(options1Items);
+        daoHelper = BaseDaoFactory.getInstance().getDaoHelper(CityDao.class, CityNameBean.class);
+        CityNameBean cityNameBean=new CityNameBean();
+        cityNameBean.setLevel(1);
+        options1Items = daoHelper.queryAll(cityNameBean);
+        options2Items = daoHelper.getCity(options1Items);
     }
 
     private void initData() {
         userInfo = GlobalUtils.getUserInfo();
         try {
-            mTvUserId.setText(userInfo.getId());
+            mTvUserId.setText(userInfo.getStringId());
             FrescoUtils.displayIcon(mIvIcon, userInfo.getUser_img());
             String province = userInfo.getProvince();
             String city = userInfo.getCity();
@@ -213,6 +221,8 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                     @Override
                     public void onClick(int type) {
                         EMClient.getInstance().logout(true);
+                        UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
+                        daoHelper.resetAllUserToNoLogion();
                         ShareUtil.deleteData(SettingActivity.this);
                         PushAgent.getInstance(SettingActivity.this).removeAlias(userInfo.getId()+"", "YUNS_ID", new UTrack.ICallBack() {
                             @Override
@@ -330,11 +340,11 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                     //返回的分别是三个级别的选中位置
 
                     String tx = options1Items.get(options1).getPickerViewText()
-                            + "-" + options2Items.get(options1).get(option2);
+                            + "-" + options2Items.get(options1).get(option2).getPickerViewText();
                     mTvUserLivePlace.setText(tx);
-                    provice = options1Items.get(options1).getId();//省得id
-                    String cityName = options2Items.get(options1).get(option2);
-                    city = DBManager.getCityId(cityName, provice);
+                    proviceId = options1Items.get(options1).get_id();//省得id
+                    String cityName = options2Items.get(options1).get(option2).getName();
+                    city = daoHelper.getCityId(cityName, proviceId);
                     messageIsChange = true;
                 }
             });
@@ -359,8 +369,8 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
         if (!StringUtils.isEmptyNotNull(nickName)){
             builder.addNickName(nickName);
         }
-        if (!StringUtils.isEmptyNotNull(provice) && !StringUtils.isEmptyNotNull(city)){
-            builder.addProvince(provice).addCity(city);
+        if (!StringUtils.isEmptyNotNull(String.valueOf(proviceId)) && !StringUtils.isEmptyNotNull(city)){
+            builder.addProvince(String.valueOf(proviceId)).addCity(city);
         }
         if (time!=0){
             builder.add(IVariable.BIRTHDAY,(time/1000)+"");

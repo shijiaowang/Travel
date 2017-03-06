@@ -24,4 +24,15 @@ public class GsonUtils{
         }
         return t;
     }
+    public static String getJson(Object o){
+        String json="";
+        try {
+            Gson gson = new Gson();
+            json =  gson.toJson(o);
+        }catch (Exception e){
+            e.printStackTrace();
+            LogUtils.e("json解析出错了");
+        }
+        return json;
+    }
 }

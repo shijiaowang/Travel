@@ -3,7 +3,7 @@ package com.yunspeak.travel.db;
 import android.database.Cursor;
 
 import com.yunspeak.travel.bean.User;
-import com.yunspeak.travel.bean.UserBean;
+import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.utils.GsonUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import java.util.Date;
@@ -22,14 +22,14 @@ public class UserDao extends BaseEasyDao<User>{
      * 获取当前登录的用户
      * @return
      */
-    public UserBean getCurrentUser(){
-        UserBean userBean=null;
-        User user=new User("",0,"","1");
+    public UserInfo getCurrentUser(){
+        User user=new User("","","","1");
         user = query(user);
+        UserInfo userInfo=null;
         if (user!=null){
-            userBean = GsonUtils.getObject(user.getJson(), UserBean.class);
+            userInfo = GsonUtils.getObject(user.getJson(), UserInfo.class);
         }
-        return userBean;
+        return userInfo;
     }
 
     /**
@@ -51,11 +51,24 @@ public class UserDao extends BaseEasyDao<User>{
     }
 
     /**
+     * 重置所有用户为未登录状态
+     * @return true 成功 false失败
+     */
+    public boolean resetAllUserToNoLogion(){
+        try {
+            exec("update user set isLogin = 0;");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    /**
      * 设置当前对象为登录对象，并且重置其他的
      * @param user
      */
     public boolean setCurrentUser(User user){
-        int id = user.getId();
+        String id = user.getId();
         String lastLoginTime = user.getLastLoginTime();
         if (StringUtils.isEmpty(lastLoginTime)){
             lastLoginTime=String.valueOf(new Date().getTime());

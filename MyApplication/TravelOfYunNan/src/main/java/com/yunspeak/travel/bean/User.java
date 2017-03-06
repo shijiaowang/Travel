@@ -12,14 +12,14 @@ public class User {
     public User(){
 
     }
-    public User(String json, int id, String lastLoginTime, String isLogin) {
+    public User(String json, String id, String lastLoginTime, String isLogin) {
         this.json = json;
         this.id = id;
         this.lastLoginTime = lastLoginTime;
         this.isLogin = isLogin;
     }
 
-    public User(String json, int id, String name, String password, String lastLoginTime, String isLogin) {
+    public User(String json, String id, String name, String password, String lastLoginTime, String isLogin) {
         this.json = json;
         this.id = id;
         this.name = name;
@@ -45,11 +45,11 @@ public class User {
         this.json = json;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -81,7 +81,7 @@ public class User {
     }
     private String json;//保存网络拉取的用户json数据
     @UpdateKey
-    private int id;//用户id 唯一标识 其余详细详细反射json获得
+    private String id;//用户id 唯一标识 其余详细详细反射json获得
     @UpdateKey
     private String name;//用户账号 唯一标识 其余详细详细反射json获得
     private String password;//用户id 唯一标识 其余详细详细反射json获得

@@ -5,6 +5,7 @@ import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.gson.Gson;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.yunspeak.travel.R;
@@ -77,6 +78,10 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+        UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
+        if (daoHelper!=null) {
+            mEdName.setOnAutoShowData(daoHelper.getAccountArray());
+        }
         mBtLogin.setOnAvoidFastOnClickListener(new AvoidFastButton.AvoidFastOnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,7 +158,7 @@ public class LoginActivity extends BaseEventBusActivity<LoginEvent> {
             userDao.updateOrInsert(data.getId(), userInfo);
             intent.putExtra(IVariable.USER_INFO, data);
             UserDao daoHelper = BaseDaoFactory.getInstance().getDaoHelper(UserDao.class, User.class);
-            daoHelper.setCurrentUser(new User(event.getResult(),data.getId(),data.getName(),data.getPwd(),new Date().getTime()+"","1"));
+            daoHelper.setCurrentUser(new User(GsonUtils.getJson(data),data.getId(),data.getName(),data.getPwd(),new Date().getTime()+"","1"));
         }
         startActivity(intent);
         finish();
