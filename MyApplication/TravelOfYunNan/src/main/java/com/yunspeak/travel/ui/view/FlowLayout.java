@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by android on 2016/7/12.
+ * Created by wangyang on 2016/7/12.
  * 标签页
  */
 public class FlowLayout extends ViewGroup {

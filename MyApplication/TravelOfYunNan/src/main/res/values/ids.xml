@@ -4,4 +4,6 @@
     <item name="bt_next" type="id"/>
     <item name="statusbar_view" type="id"/>
     <item name="translucent_view" type="id"/>
+    <!--用于显示隐藏的-->
+    <item name="content" type="id"/>
 </resources>

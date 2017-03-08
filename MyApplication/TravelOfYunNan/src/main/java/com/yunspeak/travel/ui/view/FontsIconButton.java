@@ -7,7 +7,7 @@ import android.widget.Button;
 import com.yunspeak.travel.utils.TypefaceUtis;
 
 /**
- * Created by Administrator on 2016/9/19 0019.
+ * Created by wangyang on 2016/9/19 0019.
  * 字体图标按钮
  */
 public class FontsIconButton extends Button {

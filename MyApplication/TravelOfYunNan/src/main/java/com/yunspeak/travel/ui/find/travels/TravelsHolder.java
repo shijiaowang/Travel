@@ -44,7 +44,7 @@ public class TravelsHolder extends BaseRecycleViewHolder<FindTravelsBean.DataBea
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TravelsDetailActivity.startShareElement(mContext,datas.getId(),datas.getTitle(),mIvPicture,datas.getLogo_img(), BaseFindDetailActivity.TYPE_TRAVELS);
+                TravelsDetailActivity.start(mContext,datas.getId(),datas.getTitle());
             }
         });
     }

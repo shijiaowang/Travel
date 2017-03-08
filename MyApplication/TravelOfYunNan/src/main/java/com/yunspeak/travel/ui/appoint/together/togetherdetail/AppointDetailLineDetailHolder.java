@@ -40,7 +40,7 @@ public class AppointDetailLineDetailHolder extends BaseRecycleViewHolder<Appoint
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DestinationDetailActivity.startShareElement(mContext,datas.getId(),datas.getTitle(),mIvBg,datas.getLogo_img(), BaseFindDetailActivity.TYPE_DESTINATION);
+                DestinationDetailActivity.start(mContext,datas.getId(),datas.getTitle());
             }
         });
     }

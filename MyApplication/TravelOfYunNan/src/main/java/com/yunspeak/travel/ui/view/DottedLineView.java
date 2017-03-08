@@ -13,7 +13,7 @@ import com.yunspeak.travel.R;
 
 
 /**
- * Created by Administrator on 2016/8/5 0005.
+ * Created by wangyang on 2016/8/5 0005.
  */
 public class DottedLineView extends View {
 

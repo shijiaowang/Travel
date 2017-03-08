@@ -21,7 +21,6 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 
-import id.zelory.compressor.Compressor;
 
 
 /**
@@ -29,7 +28,7 @@ import id.zelory.compressor.Compressor;
  */
 public class XEventUtils {
 
-    private static Compressor compressor;
+  /*  private static Compressor compressor;*/
 
     /**
      * get获取请求
@@ -104,15 +103,15 @@ public class XEventUtils {
                     }
                     continue;
                 }
-                Compressor compressor = getCompressor();
-                File compressedImageFile = compressor.compressToFile(file);
-                requestParams.addBodyParameter("file["+j+"]", compressedImageFile);
+                /*Compressor compressor = getCompressor();
+                File compressedImageFile = compressor.compressToFile(file);*/
+                requestParams.addBodyParameter("file["+j+"]", file);
             }
         }
         return x.http().post(requestParams, new MyCommonCallback(type,event));
     }
 
-    private synchronized static Compressor getCompressor() {
+   /* private synchronized static Compressor getCompressor() {
         if (compressor==null) {
             Compressor.Builder builder = new Compressor.Builder(UIUtils.getContext());
             builder.setMaxWidth(1920);
@@ -122,7 +121,7 @@ public class XEventUtils {
             compressor = builder.build();
         }
         return compressor;
-    }
+    }*/
 
     /**
      * post请求
@@ -158,8 +157,8 @@ public class XEventUtils {
                     }
                     continue;
                 }
-                File compressedImageFile = Compressor.getDefault(UIUtils.getContext()).compressToFile(file);
-                requestParams.addBodyParameter("file["+j+"]", compressedImageFile);
+               // File compressedImageFile = Compressor.getDefault(UIUtils.getContext()).compressToFile(file);
+                requestParams.addBodyParameter("file["+j+"]", file);
             }
         }
         return x.http().post(requestParams, new ProgressCallback(type,event));

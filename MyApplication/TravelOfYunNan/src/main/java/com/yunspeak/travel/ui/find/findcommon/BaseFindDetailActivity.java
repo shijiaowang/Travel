@@ -57,28 +57,7 @@ public abstract class BaseFindDetailActivity<T extends HttpEvent,E extends Paren
     protected BaseRecycleViewAdapter initAdapter(List<TravelReplyBean> mDatas) {
         return new DiscussCommonAdapter(mDatas,this,detailType());
     }
-    public static void  startShareElement(Context context, String tid, String name, View imageView, String imageUrl,int type){
-        Class clazz;
-        switch (type){
-            case  TYPE_DESTINATION:clazz= DestinationDetailActivity.class;
-                break;
-            case TYPE_DELICIOUS:
-                clazz= DeliciousDetailActivity.class;
-                break;
-            default:
-                clazz= TravelsDetailActivity.class;
-                break;
-        }
-        Intent intent = new Intent(context,clazz);
-        intent.putExtra(IVariable.T_ID, tid);
-        intent.putExtra(IVariable.NAME, name);
-        intent.putExtra(IVariable.URL, imageUrl);
-        ActivityOptionsCompat optionsCompat =
-                ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,
-                        Pair.create(imageView,TRANSIT_IMAGE1));
-        ActivityCompat.startActivity((Activity) context, intent, optionsCompat.toBundle());
 
-    }
 
 
 

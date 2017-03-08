@@ -40,7 +40,7 @@ public class HotSpotsHolder extends BaseRecycleViewHolder<HomeBean.DataBean.Dest
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DestinationDetailActivity.startShareElement(mContext,data.getId(),data.getTitle(),ivPicture,data.getLogo_img(), BaseFindDetailActivity.TYPE_DESTINATION);
+                DestinationDetailActivity.start(mContext,data.getId(),data.getTitle());
             }
         });
     }

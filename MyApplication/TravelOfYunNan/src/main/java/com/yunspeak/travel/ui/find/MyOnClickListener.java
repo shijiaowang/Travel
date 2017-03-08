@@ -31,13 +31,13 @@ class MyOnClickListener implements View.OnClickListener {
     public void onClick(View v) {
         switch (data.getType()){
             case 1:
-                DestinationDetailActivity.startShareElement(mContext,data.getId(),data.getTitle(),iamge,data.getLogo_img(), BaseFindDetailActivity.TYPE_DESTINATION);
+                DestinationDetailActivity.start(mContext,data.getId(),data.getTitle());
                 break;
             case 2:
-                DeliciousDetailActivity.startShareElement(mContext,data.getId(),data.getTitle(),iamge,data.getLogo_img(),BaseFindDetailActivity.TYPE_DELICIOUS);
+                DeliciousDetailActivity.start(mContext,data.getId(),data.getTitle());
                 break;
             case 3:
-                TravelsDetailActivity.startShareElement(mContext,data.getId(),data.getTitle(),iamge,data.getLogo_img(),BaseFindDetailActivity.TYPE_TRAVELS);
+                TravelsDetailActivity.start(mContext,data.getId(),data.getTitle());
                 break;
             case 4:
                 ActivateDetailActivity.startShareElement(mContext,data.getId(),iamge,data.getLogo_img());

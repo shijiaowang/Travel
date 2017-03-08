@@ -58,9 +58,9 @@ public class DestinationHoler extends BaseRecycleViewHolder<FindDestinationBean.
             @Override
             public void onClick(View v) {
                 if (isDestination) {
-                    DestinationDetailActivity.startShareElement(mContext,datas.getId(),datas.getTitle(),mIvSpot,datas.getLogo_img(),BaseFindDetailActivity.TYPE_DESTINATION);
+                    DestinationDetailActivity.start(mContext,datas.getId(),datas.getTitle());
                 } else {
-                    DeliciousDetailActivity.startShareElement(mContext,datas.getId(),datas.getTitle(),mIvSpot,datas.getLogo_img(),BaseFindDetailActivity.TYPE_DELICIOUS);
+                    DeliciousDetailActivity.start(mContext,datas.getId(),datas.getTitle());
                 }
 
             }
