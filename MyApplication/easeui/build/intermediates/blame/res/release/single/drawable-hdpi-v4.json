@@ -608,12 +608,12 @@
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable-hdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
-        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png",
-        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatting_biaoqing_btn_enable.png",
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_chatting_biaoqing_btn_enable.png"
+    },
+    {
+        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png",
+        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png",

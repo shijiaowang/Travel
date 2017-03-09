@@ -5,5 +5,6 @@
     <item name="statusbar_view" type="id"/>
     <item name="translucent_view" type="id"/>
     <!--用于显示隐藏的-->
-    <item name="content" type="id"/>
+    <item name="status_content_view" type="id"/>
+    <item name="status_view" type="id"/>
 </resources>

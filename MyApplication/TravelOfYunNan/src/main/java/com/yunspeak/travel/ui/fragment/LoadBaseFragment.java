@@ -397,12 +397,6 @@ public abstract class  LoadBaseFragment<T extends HttpEvent> extends Fragment im
         builder.setNegativeButton(negativeText, onNegativeButtonClickListener);
         builder.show();
     }
-    public void canSmoothInNetScroll(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager){
-        linearLayoutManager.setSmoothScrollbarEnabled(true);
-        linearLayoutManager.setAutoMeasureEnabled(true);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setNestedScrollingEnabled(false);
-    }
     protected void setLoading(){
         loadingPage.setLoading(true);
     }
