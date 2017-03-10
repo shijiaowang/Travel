@@ -1,10 +1,12 @@
-package com.yunspeak.travel.ui.home.welcome.home;
+package com.yunspeak.travel.ui.home.welcome.home.model;
+
+import android.databinding.BaseObservable;
 
 /**
  * Created by wangyang on 2017/3/9.
  */
 
-public  class IndexTextBean {
+public  class IndexTextBean extends BaseObservable{
     private String id;
     private String type;
     private String title;

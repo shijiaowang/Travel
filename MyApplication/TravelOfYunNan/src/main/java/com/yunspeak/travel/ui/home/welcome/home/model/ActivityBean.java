@@ -1,10 +1,13 @@
-package com.yunspeak.travel.ui.home.welcome.home;
+package com.yunspeak.travel.ui.home.welcome.home.model;
+
+import android.databinding.BaseObservable;
+
 
 /**
  * Created by wangyang on 2017/3/9.
  */
 
-public class ActivityBean{
+public class ActivityBean extends BaseObservable{
     private String id;
     private String title;
     private String activity_img;
@@ -20,9 +23,11 @@ public class ActivityBean{
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
+
     public String getActivity_img() {
         return activity_img;
     }
@@ -32,14 +37,18 @@ public class ActivityBean{
 
     public String getNow_people() {
         return now_people;
+
     }
     public void setNow_people(String now_people) {
         this.now_people = now_people;
     }
+
     public String getType() {
         return type;
     }
     public void setType(String type) {
         this.type = type;
     }
+
+
 }

@@ -16,12 +16,15 @@ import retrofit2.http.QueryMap;
  */
 
 public interface CityoffService {
-    String DOMAIN_NAME="http://yuns.yunspeak.com/";//服务器地址
+
 
     @GET("{url}")//主页数据
      Observable<ResponseBody> getData(@Path("url") String url, @QueryMap Map<String, String> key);
     @POST("{url}")
     Observable<ResponseBody> postData(@Path("url") String url, @QueryMap Map<String, String> key);
+
+
+
     @GET("User/getUserNew/&key=bfd18989ff0aa0f6ea67e4e9a1a57a18&user_id=10009")//主页数据
     <T> Call<T> getData();
 }

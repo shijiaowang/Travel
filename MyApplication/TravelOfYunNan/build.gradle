@@ -34,9 +34,9 @@ android {
         }
         release {// 自己的签名文件
             storeFile file("C:\\Users\\Administrator\\cityoff.jks")
-            storePassword "CWYunspeak2016"
-            keyAlias "cityoff"
-            keyPassword "cwYunspeak2016"
+            storePassword "xxx"
+            keyAlias "xx"
+            keyPassword "xx"
         }
     }
     buildTypes {

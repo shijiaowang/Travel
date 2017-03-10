@@ -1,17 +1,20 @@
 package com.yunspeak.travel.ui.fragment;
 
+import android.text.TextUtils;
+import com.yunspeak.travel.bean.HomePageDataBean;
+import com.yunspeak.travel.db.HomeDataDao;
 import com.yunspeak.travel.download.DownloadClient;
 import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.view.StatusView;
+import com.yunspeak.travel.utils.GlobalUtils;
+import com.yunspeak.travel.utils.GsonUtils;
+import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
-
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
+import simpledao.cityoff.com.easydao.BaseDaoFactory;
 
 /**
  * Created by wangyang on 2017/3/9.
@@ -20,16 +23,24 @@ import io.reactivex.functions.Consumer;
  */
 
 public abstract class SaveBaseFragment<T extends TravelsObject> extends BaseLoadingFragment{
-
+    HomeDataDao daoHelper = BaseDaoFactory.getInstance().getUserDao(HomeDataDao.class, HomePageDataBean.class,true, GlobalUtils.getUserInfo().getId());
+    private String TAG=this.getClass().getSimpleName();
     @Override
     protected void childLoad() {
         DownloadClient.getInstance().getDataDealErrorAuto(statusView,getTInstance(), new Consumer<T>() {
             @Override
             public void accept(@NonNull T data) throws Exception {
-                System.out.println(data);
+                if (data!=null) {
+                    HomePageDataBean query = daoHelper.query(new HomePageDataBean(TAG, ""));
+                    HomePageDataBean content =new HomePageDataBean(TAG,GsonUtils.getJson(data));
+                    daoHelper.updateOrInsert(query,content);
+                    receiveData(data);
+                }
             }
         },initParams(),initUrl());
     }
+
+    protected abstract void receiveData(T data);
 
     protected abstract Map<String,String> initParams();
 
@@ -43,9 +54,32 @@ public abstract class SaveBaseFragment<T extends TravelsObject> extends BaseLoad
             public void onErrorBack(Throwable throwable) {
                 ToastUtils.showToast(throwable.getMessage());
                 //查看数据库是否存有数据，有就显示缓存，没有就显示错误页面
+                HomePageDataBean query = daoHelper.query(new HomePageDataBean(TAG, ""));
+                if (query==null || TextUtils.isEmpty(query.getPageContent())){
+                    showNotSuccess();
+                }else {
+                    T t = GsonUtils.getObject(query.getPageContent(), getTInstance());
+                    if (t==null){
+                        showNotSuccess();
+                        return;
+                    }
+                    receiveData(t);
+                }
             }
         });
     }
+
+    /**
+     * 展示不正确的页面
+     */
+    private void showNotSuccess() {
+        if (NetworkUtils.isNetworkConnected()){//网络错误
+            statusView.showNoNetworkView();
+        }else {
+            statusView.showErrorView();
+        }
+    }
+
     /**
      * 实例化 T
      *

@@ -1,5 +1,7 @@
 package com.yunspeak.travel.ui.fragment;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IStatusChange;
 import com.yunspeak.travel.ui.view.StatusView;
+import com.yunspeak.travel.utils.LogUtils;
 
 /**
  * Created by wangyang on 2017/3/9.
@@ -21,17 +24,27 @@ public abstract class BaseLoadingFragment extends Fragment {
 
     private boolean isVisible;
     private boolean isPrepared;
-    boolean isFirstLoad=false;
+    boolean isFirstLoad=true;
     protected StatusView statusView;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflate = inflater.inflate(initLayoutRes(), container, false);
-        statusView = (StatusView) inflate.findViewById(R.id.status_view);
+        /*viewDataBinding = DataBindingUtil.inflate(inflater, initLayoutRes(), container, false);
+        View rootView = viewDataBinding.getRoot();*/
+        View rootView=inflater.inflate(initLayoutRes(),container,false);
+        statusView = (StatusView) rootView.findViewById(R.id.status_view);
+        statusView.setOnTryGetDataListener(new StatusView.OnTryGetDataListener() {
+            @Override
+            public void onTryGet() {
+                childLoad();
+            }
+        });
         isPrepared = true;
+         onLoad();
         initOptions();
-        return inflate;
+        return rootView;
     }
 
     /**
@@ -80,12 +93,11 @@ public abstract class BaseLoadingFragment extends Fragment {
     }
 
     private void onLoad() {
-        if (isPrepared && isVisible) {
+        if (isVisible && isPrepared) {
             statusView.showLoadingView(isFirstLoad);
-            if (!isFirstLoad) isFirstLoad = true;
+            if (!isFirstLoad) isFirstLoad = false;
             childLoad();
         }
-
     }
 
     /**

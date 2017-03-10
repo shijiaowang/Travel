@@ -32,6 +32,7 @@ import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
 import com.yunspeak.travel.ui.circle.CircleFragment;
 import com.yunspeak.travel.ui.find.FindFragment;
+import com.yunspeak.travel.ui.home.welcome.home.HomeFragment;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
 import com.yunspeak.travel.ui.me.MeFragment;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageActivity;

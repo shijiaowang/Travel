@@ -9,6 +9,11 @@ import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UIUtils;
+
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
@@ -17,7 +22,11 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -29,19 +38,30 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  */
 
 public class DownloadClient {
-    private static CityoffService cityoffService;
-    private static Gson gson;
+    private static   CityoffService cityoffService;
+    private  final String BASE_URL="";
+    private static Gson   gson = new Gson();
     static {
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).readTimeout(15, TimeUnit.SECONDS).build();
+        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).readTimeout(15, TimeUnit.SECONDS).addNetworkInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                String url = request.url().url().toString();
+                String decodeUrl = URLDecoder.decode(url,"UTF-8");
+                String fixUrl = decodeUrl.replace("/?", "/&");//服务器不支持/？
+                Request newRequest = request.newBuilder().url(fixUrl).build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
         Retrofit retrofit = new Retrofit.Builder().
-                addCallAdapterFactory(RxJava2CallAdapterFactory.create()).client(client)
-                .baseUrl(CityoffService.DOMAIN_NAME).
+                addCallAdapterFactory(RxJava2CallAdapterFactory.create()).
+                client(client)
+                .baseUrl("http://yuns.yunspeak.com/").
                         build();
-
         cityoffService = retrofit.create(CityoffService.class);
-        gson = new Gson();
-    }
 
+
+    }
 
 
     private DownloadClient() {
@@ -81,7 +101,8 @@ public class DownloadClient {
     }
     private  <T extends TravelsObject>Disposable getData(IStatusChange iStatusChange,final Class<T> tClass,Consumer<T> success, IDownLoadCallBack<T> callBack, Map<String,String> params, String url) {
         if (callBack == null && success==null) return null;
-        Observable<ResponseBody> observable = cityoffService.getData(url, params);
+
+        Observable<ResponseBody> observable = cityoffService.getData(url,params);
         return dealData(observable,iStatusChange,tClass,success,callBack);
     }
     /**
@@ -100,6 +121,10 @@ public class DownloadClient {
             @Override
             public void accept(@NonNull ResponseBody responseBody) throws Exception {
                 String string = responseBody.string();
+                TravelsObject travelsObject = gson.fromJson(string, TravelsObject.class);
+                if (travelsObject.getCode()==-1){
+                    throw new Exception("未找到相关信息");
+                }
                 T t = gson.fromJson(string, tClass);
                 if (!isNeedSelf){
                         switch (t.getCode()){
@@ -142,7 +167,6 @@ public class DownloadClient {
                 }else {
                     callBack.error(throwable);//回调自行处理
                 }
-                LogUtils.e(throwable.getMessage());
             }
         });
     }

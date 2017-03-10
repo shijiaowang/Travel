@@ -28,11 +28,10 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
     public static final int STATE_LOAD_EMPTY = 3;//数据为空
     public static final int STATE_LOAD_NO_NETWORK = 4;//没有网络
     private View[] childView = new View[5];
-    private int loadingId;
-    private int emptyId;
-    private int successId;
-    private int errorId;
-    private int noNetworkId;
+    private int loadingId=R.layout.status_loading_progress_view;;
+    private int emptyId=R.layout.status_empty_view;
+    private int errorId=R.layout.status_error_view;
+    private int noNetworkId=R.layout.status_no_network_view;
     private View loadingView;//加载页
     private View errorView;//错误也
     private View successView;//成功页面
@@ -61,20 +60,17 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
         for (int i = 0; i < indexCount; i++) {
             int index = typedArray.getIndex(i);
             switch (index) {
-                case R.styleable.StatusView_success_view:
-                    successId = typedArray.getResourceId(index, 0);
-                    break;
                 case R.styleable.StatusView_empty_view:
-                    emptyId = typedArray.getResourceId(index, R.layout.status_empty_view);
+                    emptyId = typedArray.getInteger(index, R.layout.status_empty_view);
                     break;
                 case R.styleable.StatusView_loading_view:
-                    loadingId = typedArray.getResourceId(index, R.layout.status_loading_progress_view);
+                    loadingId = typedArray.getInteger(index, R.layout.status_loading_progress_view);
                     break;
                 case R.styleable.StatusView_error_view:
-                    errorId = typedArray.getResourceId(index, R.layout.status_error_view);
+                    errorId = typedArray.getInteger(index, R.layout.status_error_view);
                     break;
                 case R.styleable.StatusView_no_network_view:
-                    noNetworkId = typedArray.getResourceId(index, R.layout.status_no_network_view);
+                    noNetworkId = typedArray.getInteger(index, R.layout.status_no_network_view);
                     break;
             }
         }
@@ -85,9 +81,6 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
         setStatus(status, true);
     }
 
-    public void setSuccessId(int successLayoutId) {
-        this.successId = successLayoutId;
-    }
 
     public void setEmptyId(int emptyId) {
         this.emptyId = emptyId;

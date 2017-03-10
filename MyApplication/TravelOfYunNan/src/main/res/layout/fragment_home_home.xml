@@ -1,243 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    tools:context=".ui.home.HomeActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x49"
-        android:background="@color/otherTitleBg">
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        tools:context=".ui.home.HomeActivity">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x49"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:background="@color/otherTitleBg">
 
-            <TextView
-                android:id="@+id/tv_focus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x15"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:text="@string/homeName"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/x18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x49"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/x5"
-                android:src="@drawable/home_triangle" />
-
-            <RelativeLayout
-                android:id="@+id/rl_search"
-                android:layout_width="@dimen/x250"
-                android:layout_height="@dimen/x28"
-                android:layout_marginLeft="@dimen/x26"
-                android:background="@drawable/home_search_bg">
-
-                <EditText
-                    android:id="@+id/et_search"
+                <TextView
+                    android:id="@+id/tv_focus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x10"
-                    android:background="@null"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:hint="输入您的关键词"
-                    android:textColorHint="@android:color/white"
-                    android:textCursorDrawable="@null"
-                    android:textSize="@dimen/x15sp" />
+                    android:layout_marginLeft="@dimen/x15"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:text="@string/homeName"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/x18sp" />
 
-                <com.yunspeak.travel.ui.view.FontsIconTextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/x10"
-                    android:text="@string/fragment_circle_search"
-                    android:textColor="@color/colorFAFAFA"
-                    android:textSize="@dimen/x15sp" />
-            </RelativeLayout>
+                    android:layout_marginTop="@dimen/x5"
+                    android:src="@drawable/home_triangle" />
 
-        </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_search"
+                    android:layout_width="@dimen/x250"
+                    android:layout_height="@dimen/x28"
+                    android:layout_marginLeft="@dimen/x26"
+                    android:background="@drawable/home_search_bg">
 
-    </android.support.v7.widget.Toolbar>
+                    <EditText
+                        android:id="@+id/et_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="输入您的关键词"
+                        android:textColorHint="@android:color/white"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/x15sp" />
 
-    <com.yunspeak.travel.ui.view.StatusView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x10"
+                        android:layout_marginEnd="@dimen/x10"
+                        android:text="@string/fragment_circle_search"
+                        android:textColor="@color/colorFAFAFA"
+                        android:textSize="@dimen/x15sp" />
+                </RelativeLayout>
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@id/status_content_view"
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <com.yunspeak.travel.ui.view.StatusView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
+            <android.support.v4.widget.NestedScrollView
+                android:id="@id/status_content_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/homeContentBg"
-                android:orientation="vertical">
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp_active"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/x203" />
-
-                <com.yunspeak.travel.ui.view.PagerCursorView
-                    android:id="@+id/pager_cursor"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/x6"
-                    android:layout_marginTop="@dimen/x170" />
-
-
-                <android.support.percent.PercentRelativeLayout
-                    android:id="@+id/ll_center"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/x232"
-                    android:layout_below="@id/vp_active"
-                    android:layout_marginTop="@dimen/x22">
-
-                    <LinearLayout
-                        android:id="@+id/ll_home_search_menu"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/colorFAFAFA"
-                        android:orientation="vertical"
-                        app:layout_heightPercent="100%"
-                        app:layout_marginLeftPercent="4%"
-                        app:layout_widthPercent="44%">
-
-                        <ImageView
-                            android:id="@+id/sdv_together"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/x116" />
-
-                        <TextView
-                            android:id="@+id/tv_home_search_text"
-                            style="@style/HomeMenuText" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_home_together_menu"
-                        app:layout_heightPercent="48%"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:background="@color/colorFAFAFA"
-                        app:layout_marginRightPercent="4%"
-                        android:orientation="vertical"
-                        app:layout_widthPercent="44%">
-
-                        <ImageView
-                            android:id="@+id/sdv_old_driver"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/x77" />
-
-                        <TextView
-                            android:id="@+id/tv_home_together_text"
-                            style="@style/HomeMenuText" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/ll_home_with_me"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_below="@id/ll_home_together_menu"
-                        app:layout_heightPercent="48%"
-                        app:layout_marginTopPercent="4%"
-                        app:layout_marginRightPercent="4%"
-                        app:layout_widthPercent="44%"
-                        android:background="@color/colorFAFAFA"
-                        android:orientation="vertical"
-                      >
-
-                        <ImageView
-                            android:id="@+id/sdv_diy_travel"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/x77" />
-
-                        <TextView
-                            android:id="@+id/tv_home_with_me_text"
-                            style="@style/HomeMenuText" />
-                    </LinearLayout>
-
-                </android.support.percent.PercentRelativeLayout>
+                android:layout_height="match_parent">
 
                 <RelativeLayout
-                    android:id="@+id/rl_active"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/x134"
-                    android:layout_below="@id/ll_center"
-                    android:layout_marginTop="@dimen/x15">
+                    android:layout_height="match_parent"
+                    android:background="@color/homeContentBg"
+                    android:orientation="vertical">
 
-                    <com.facebook.drawee.view.SimpleDraweeView
-                        android:id="@+id/iv_bg"
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/vp_active"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="@dimen/x203" />
 
-                    <com.yunspeak.travel.ui.view.FontsIconTextView
-                        android:id="@+id/tv_air"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/x15"
-                        android:shadowColor="@android:color/black"
-                        android:shadowDx="5"
-                        android:shadowDy="5"
-                        android:shadowRadius="5"
-                        android:text="@string/activity_active_item_air"
-                        android:textColor="@color/colorffda60"
-                        android:textSize="@dimen/x40sp" />
-
-                    <LinearLayout
-
+                    <com.yunspeak.travel.ui.view.PagerCursorView
+                        android:id="@+id/pager_cursor"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="@dimen/x6"
+                        android:layout_marginTop="@dimen/x170" />
 
-                        <TextView
-                            android:id="@+id/tv_type"
-                            style="@style/TextShadowColor"
+
+                    <android.support.percent.PercentRelativeLayout
+                        android:id="@+id/ll_center"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x232"
+                        android:layout_below="@id/vp_active"
+                        android:layout_marginTop="@dimen/x22">
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_search_menu"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorFAFAFA"
+                            android:orientation="vertical"
+                            app:layout_heightPercent="100%"
+                            app:layout_marginLeftPercent="4%"
+                            app:layout_widthPercent="44%">
+
+                            <ImageView
+                                android:id="@+id/sdv_together"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/x116" />
+
+                            <TextView
+                                android:id="@+id/tv_home_search_text"
+                                style="@style/HomeMenuText" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_together_menu"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/colorFAFAFA"
+                            android:orientation="vertical"
+                            app:layout_heightPercent="48%"
+                            app:layout_marginRightPercent="4%"
+                            app:layout_widthPercent="44%">
+
+                            <ImageView
+                                android:id="@+id/sdv_old_driver"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/x77" />
+
+                            <TextView
+                                android:id="@+id/tv_home_together_text"
+                                style="@style/HomeMenuText" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_with_me"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@id/ll_home_together_menu"
+                            android:background="@color/colorFAFAFA"
+                            android:orientation="vertical"
+                            app:layout_heightPercent="48%"
+                            app:layout_marginRightPercent="4%"
+                            app:layout_marginTopPercent="4%"
+                            app:layout_widthPercent="44%">
+
+                            <ImageView
+                                android:id="@+id/sdv_diy_travel"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/x77" />
+
+                            <TextView
+                                android:id="@+id/tv_home_with_me_text"
+                                style="@style/HomeMenuText" />
+                        </LinearLayout>
+
+                    </android.support.percent.PercentRelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_active"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x134"
+                        android:layout_below="@id/ll_center"
+                        android:layout_marginTop="@dimen/x15">
+                        <ImageView
+                            android:scaleType="fitXY"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
+                            android:id="@+id/tv_air"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/x9"
+                            android:layout_margin="@dimen/x15"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="5"
+                            android:shadowDy="5"
+                            android:shadowRadius="5"
+                            android:text="@string/activity_active_item_air"
                             android:textColor="@color/colorffda60"
-                            android:textSize="@dimen/x9sp" />
+                            android:textSize="@dimen/x40sp" />
 
-                        <TextView
-                            android:id="@+id/tv_name"
-                            style="@style/TextShadowColor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/x10"
-                            android:textColor="@color/colorFAFAFA"
-                            android:textSize="@dimen/x18sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tv_people"
-                            style="@style/TextShadowColor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/x11"
-                            android:textColor="@color/colorFAFAFA"
-                            android:textSize="@dimen/x9sp" />
-                    </LinearLayout>
+                            <TextView
+                                style="@style/TextShadowColor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/x9"
+                                android:textColor="@color/colorffda60"
+                                android:textSize="@dimen/x9sp" />
+
+                            <TextView
+                                style="@style/TextShadowColor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/x10"
+                                android:textColor="@color/colorFAFAFA"
+                                android:textSize="@dimen/x18sp" />
+
+                            <TextView
+                                style="@style/TextShadowColor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/x11"
+                                android:textColor="@color/colorFAFAFA"
+                                android:textSize="@dimen/x9sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
                 </RelativeLayout>
-            </RelativeLayout>
-        </android.support.v4.widget.NestedScrollView>
-    </com.yunspeak.travel.ui.view.StatusView>
-</LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </com.yunspeak.travel.ui.view.StatusView>
+    </LinearLayout>

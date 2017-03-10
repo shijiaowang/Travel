@@ -1,4 +1,4 @@
-package com.yunspeak.travel.ui.home.welcome.home;
+package com.yunspeak.travel.ui.home.welcome.home.model;
 
 /**
  * Created by wangyang on 2017/3/9.

@@ -1,4 +1,4 @@
-package com.yunspeak.travel.ui.home.welcome.home;
+package com.yunspeak.travel.ui.home.welcome.home.model;
 
 import com.yunspeak.travel.global.TravelsObject;
 
@@ -39,12 +39,5 @@ public class Home extends TravelsObject{
         public void setIndex_text(List<IndexTextBean> index_text) {
             this.index_text = index_text;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Home{" +
-                "data=" + data +
-                '}';
     }
 }

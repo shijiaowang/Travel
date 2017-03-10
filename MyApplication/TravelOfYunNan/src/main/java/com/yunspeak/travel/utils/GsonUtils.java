@@ -6,6 +6,7 @@ import com.google.gson.Gson;
  * Created by wanyang on 2016/7/29 0029.
  */
 public class GsonUtils{
+   private static Gson gson = new Gson();
     /**
      * 返回数据
      * @param result
@@ -16,7 +17,7 @@ public class GsonUtils{
     public static <T> T getObject(String result,Class<T> clazz){
         T t=null;
         try {
-            Gson gson = new Gson();
+
              t = gson.fromJson(result, clazz);
         }catch (Exception e){
             e.printStackTrace();
@@ -27,7 +28,6 @@ public class GsonUtils{
     public static String getJson(Object o){
         String json="";
         try {
-            Gson gson = new Gson();
             json =  gson.toJson(o);
         }catch (Exception e){
             e.printStackTrace();

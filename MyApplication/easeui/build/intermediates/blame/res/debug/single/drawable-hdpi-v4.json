@@ -676,12 +676,12 @@
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\ease_video_play_btn_small_nor.png"
     },
     {
-        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\chat_voice4.png",
-        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice4.png"
-    },
-    {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\chat_voice7.png",
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice7.png"
+    },
+    {
+        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\chat_voice4.png",
+        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\res\\drawable-hdpi\\chat_voice4.png"
     },
     {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_31.png",
