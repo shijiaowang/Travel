@@ -1,13 +1,13 @@
 package com.yunspeak.travel.ui.home.welcome.home.model;
-
-
 import android.databinding.BindingAdapter;
+import android.view.View;
 import android.widget.ImageView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.utils.ShowImageUtils;
-
 /**
  * Created by wangyang on 2017/3/9.
+ * 首页 活动
  */
 
 public class ActivityModel {
@@ -55,5 +55,7 @@ public class ActivityModel {
         this.type = type;
     }
 
-
+    public void onClick(View view){
+        ActivateDetailActivity.start(view.getContext(),getId());
+    }
 }

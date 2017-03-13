@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data class="HomeFragmentBinding">
+        <import type="com.yunspeak.travel.ui.home.welcome.home.model.IndexTextModel" />
         <variable
             name="statusBarHeight"
-            type="float"/>
+            type="float" />
         <variable
             name="indexTogether"
-            type="com.yunspeak.travel.ui.home.welcome.home.model.IndexTextModel"/>
-         <variable
+            type="IndexTextModel" />
+        <variable
             name="indexOldDriver"
-            type="com.yunspeak.travel.ui.home.welcome.home.model.IndexTextModel"/>
-         <variable
+            type="IndexTextModel" />
+        <variable
             name="indexDiyDriver"
-            type="com.yunspeak.travel.ui.home.welcome.home.model.IndexTextModel"/>
-
+            type="IndexTextModel" />
         <variable
             name="activityModel"
-            type="com.yunspeak.travel.ui.home.welcome.home.model.ActivityModel"/>
-
+            type="com.yunspeak.travel.ui.home.welcome.home.model.ActivityModel" />
+        <variable
+            name="otherControl"
+            type="com.yunspeak.travel.ui.home.welcome.home.model.OtherControlModel"/>
     </data>
-    <LinearLayout
 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusable="true"
@@ -34,10 +35,11 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:paddingTop="@{statusBarHeight}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/otherTitleBg">
+            android:background="@color/otherTitleBg"
+            android:elevation="2dp"
+            android:paddingTop="@{statusBarHeight}">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,7 +48,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_focus"
+                    android:onClick="@{otherControl.onWordClick}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -64,7 +66,7 @@
                     android:src="@drawable/home_triangle" />
 
                 <RelativeLayout
-                    android:id="@+id/rl_search"
+                    android:onClick="@{otherControl.onSearchClick}"
                     android:layout_width="@dimen/x250"
                     android:layout_height="@dimen/x28"
                     android:layout_marginLeft="@dimen/x26"
@@ -88,11 +90,11 @@
                     <com.yunspeak.travel.ui.view.FontsIconTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/x10"
                         android:layout_marginEnd="@dimen/x10"
+                        android:layout_marginRight="@dimen/x10"
                         android:text="@string/fragment_circle_search"
                         android:textColor="@color/colorFAFAFA"
                         android:textSize="@dimen/x15sp" />
@@ -137,7 +139,8 @@
                         android:layout_marginTop="@dimen/x22">
 
                         <LinearLayout
-                            android:onClick="@{indexTogether.onClik()}"
+
+                            android:onClick="@{indexTogether.onClick}"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:background="@color/colorFAFAFA"
@@ -147,19 +150,19 @@
                             app:layout_widthPercent="44%">
 
                             <ImageView
-                                app:img="@{indexTogether.img}"
-                                android:scaleType="fitXY"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/x116" />
+                                android:layout_height="@dimen/x116"
+                                android:scaleType="fitXY"
+                                app:img="@{indexTogether.img}" />
 
                             <TextView
-                                android:text="@{indexTogether.title}"
-                                style="@style/HomeMenuText" />
+                                style="@style/HomeMenuText"
+                                android:text="@{indexTogether.title}" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:onClick="@{indexOldDriver.onClik()}"
+                            android:onClick="@{indexOldDriver.onClick}"
                             android:id="@+id/ll_home_together_menu"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
@@ -170,19 +173,19 @@
                             app:layout_widthPercent="44%">
 
                             <ImageView
-                                app:img="@{indexOldDriver.img}"
-                                android:scaleType="fitXY"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/x77" />
+                                android:layout_height="@dimen/x77"
+                                android:scaleType="fitXY"
+                                app:img="@{indexOldDriver.img}" />
 
                             <TextView
-                                android:text="@{indexOldDriver.title}"
-                                style="@style/HomeMenuText" />
+                                style="@style/HomeMenuText"
+                                android:text="@{indexOldDriver.title}" />
                         </LinearLayout>
 
 
                         <LinearLayout
-                            android:onClick="@{indexDiyDriver.onClik()}"
+                            android:onClick="@{indexDiyDriver.onClick}"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_below="@id/ll_home_together_menu"
@@ -194,30 +197,33 @@
                             app:layout_widthPercent="44%">
 
                             <ImageView
-                                app:img="@{indexDiyDriver.img}"
-                                android:scaleType="fitXY"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/x77" />
+                                android:layout_height="@dimen/x77"
+                                android:scaleType="fitXY"
+                                app:img="@{indexDiyDriver.img}" />
 
                             <TextView
-                                android:text="@{indexDiyDriver.title}"
-                                style="@style/HomeMenuText" />
+                                style="@style/HomeMenuText"
+                                android:text="@{indexDiyDriver.title}" />
                         </LinearLayout>
 
                     </android.support.percent.PercentRelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/rl_active"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/x134"
-                        android:layout_marginBottom="@dimen/x20"
                         android:layout_below="@id/ll_center"
-                        android:layout_marginTop="@dimen/x15">
+                        android:layout_marginBottom="@dimen/x5"
+                        android:layout_marginTop="@dimen/x15"
+                        android:onClick="@{activityModel.onClick}">
+
                         <ImageView
-                            android:scaleType="fitXY"
-                            app:activity_img="@{activityModel.activity_img}"
+                            android:onClick="@{activityModel.onClick}"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            app:activity_img="@{activityModel.activity_img}" />
+
                         <com.yunspeak.travel.ui.view.FontsIconTextView
                             android:id="@+id/tv_air"
                             android:layout_width="wrap_content"
@@ -239,11 +245,11 @@
 
                             <TextView
                                 style="@style/TextShadowColor"
-                                android:text="@{activityModel.type.equals(`2`)?@string/down_activity:@string/up_activity}"
-
                                 android:layout_width="wrap_content"
+
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/x9"
+                                android:text="@{activityModel.type.equals(`2`)?@string/down_activity:@string/up_activity}"
                                 android:textColor="@color/colorffda60"
                                 android:textSize="@dimen/x9sp" />
 
@@ -257,11 +263,11 @@
                                 android:textSize="@dimen/x18sp" />
 
                             <TextView
-                                android:text="@{String.format(@string/how_people,activityModel==null? @string/zero:activityModel.now_people)}"
                                 style="@style/TextShadowColor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/x11"
+                                android:text="@{String.format(@string/how_people,activityModel==null? @string/zero:activityModel.now_people)}"
                                 android:textColor="@color/colorFAFAFA"
                                 android:textSize="@dimen/x9sp" />
                         </LinearLayout>

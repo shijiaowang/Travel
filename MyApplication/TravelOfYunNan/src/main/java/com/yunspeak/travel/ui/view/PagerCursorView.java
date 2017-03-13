@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.view;
 
 import android.content.Context;
+import android.databinding.ObservableArrayList;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -212,7 +213,31 @@ public class PagerCursorView extends RelativeLayout {
 
          void onPageScrollStateChanged(int state);
     }
+    //databinding
+    public static abstract class ObCursorPagerAdapter<T> extends PagerAdapter {
+        protected ObservableArrayList<T> data;
 
+        public ObCursorPagerAdapter(ObservableArrayList<T> data) {
+            this.data = data;
+        }
+
+        @Override
+        public int getCount() {
+            return Integer.MAX_VALUE;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            return inflateView(container, position % data.size());
+        }
+
+        public abstract Object inflateView(ViewGroup container, int position);
+    }
     public static abstract class CursorPagerAdapter<T> extends PagerAdapter {
         protected List<T> data;
 

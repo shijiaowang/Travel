@@ -1,7 +1,20 @@
 package com.yunspeak.travel.ui.home.welcome.home.model;
 
+import android.databinding.BindingAdapter;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.yunspeak.travel.R;
+import com.yunspeak.travel.aop.CheckNetwork;
+import com.yunspeak.travel.bean.HomeBean;
+import com.yunspeak.travel.ui.home.welcome.splash.register.WebViewActivity;
+import com.yunspeak.travel.utils.ShowImageUtils;
+import com.yunspeak.travel.utils.StringUtils;
+
+
 /**
  * Created by wangyang on 2017/3/9.
+ * 首页 banner 轮播
  */
 
 public class BannerModel {
@@ -49,5 +62,18 @@ public class BannerModel {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @BindingAdapter("bind:imageUrl")
+    public static void loadImage(ImageView imageView, String imageUrl) {
+        ShowImageUtils.showNormal(imageView, R.drawable.normal_2_1, imageUrl);
+    }
+
+    @CheckNetwork
+    public void onClick(View view) {
+        if (StringUtils.isEmpty(title) || StringUtils.isEmpty(url)) {
+            return;
+        }
+        WebViewActivity.start(view.getContext(), title, url);
     }
 }

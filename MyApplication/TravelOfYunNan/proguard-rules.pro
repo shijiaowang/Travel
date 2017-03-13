@@ -29,6 +29,8 @@
 -keepattributes *Annotation*
 
 # 保持哪些类不被混淆
+-keep public class * com.yunspeak.travel.*.model.** {*;}#model不被混淆
+
 -keep public class * extends android.app.Fragment
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application

@@ -8,8 +8,10 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.home.welcome.homeswitch.HomeSwitchActivity;
 import com.yunspeak.travel.utils.ShowImageUtils;
 
+
 /**
  * Created by wangyang on 2017/3/9.
+ * 首页 索引
  */
 
 public  class IndexTextModel{

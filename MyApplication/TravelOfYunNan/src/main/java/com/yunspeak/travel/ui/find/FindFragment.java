@@ -62,10 +62,12 @@ public class FindFragment extends LoadBaseFragment<FindEvent> implements View.On
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),2);
         mRvRecommend.setAdapter(findRecommendAdapter);
         mRvRecommend.setLayoutManager(gridLayoutManager);
-        gridLayoutManager.setSmoothScrollbarEnabled(true);
-        gridLayoutManager.setAutoMeasureEnabled(true);
         mRvRecommend.setHasFixedSize(true);
         mRvRecommend.setNestedScrollingEnabled(false);
+
+        gridLayoutManager.setSmoothScrollbarEnabled(true);
+        gridLayoutManager.setAutoMeasureEnabled(true);
+
         FindHotAdapter findHotAdapter=new FindHotAdapter(findBean.getData().getHot(),getContext());
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         mRvHot.setAdapter(findHotAdapter);

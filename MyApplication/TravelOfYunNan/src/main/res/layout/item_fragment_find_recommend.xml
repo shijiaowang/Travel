@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/x166"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:scaleType="fitXY"
-        android:id="@+id/iv_photo"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x90" />
-    <TextView
-        android:background="@color/colorFAFAFA"
-        android:id="@+id/tv_text"
-        android:paddingLeft="@dimen/x10"
-        style="@style/commonSingleLineTextStyle"
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x35" />
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="recommendModel"
+            type="com.yunspeak.travel.ui.find.find.model.RecommendModel"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="@dimen/x166"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <ImageView
+            app:img="@{recommendModel.logo_img}"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x90" />
+        <TextView
+            android:background="@color/colorFAFAFA"
+            android:text="@{recommendModel.title}"
+            android:paddingLeft="@dimen/x10"
+            style="@style/commonSingleLineTextStyle"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x35" />
 
-</LinearLayout>
+    </LinearLayout>
+</layout>
+

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="FragmentFindBinding">
+
+        <variable
+            name="statusBarHeight"
+            type="float" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:paddingTop="@{statusBarHeight}"
+                android:layout_height="wrap_content"
+                android:background="@color/otherTitleBg">
+
+                <TextView
+                    android:gravity="center"
+                    style="@style/commonSingleLineTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/x49"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:text="发现"
+                    android:textColor="@color/colorFAFAFA"
+                    android:textSize="@dimen/x18sp" />
+
+            </android.support.v7.widget.Toolbar>
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x160">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/vp_find"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <com.yunspeak.travel.ui.view.PagerCursorView
+                        android:id="@+id/pager_cursor"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x6"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/x20" />
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x76"
+                    android:background="@color/circleTitleColorUnChecked"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_add"
+                        style="@style/fragmentFindIconLl"
+                        android:background="@drawable/normal_press_bg">
+
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fragment_find_add"
+                            android:textColor="#ff7f6c"
+                            android:textSize="@dimen/x25sp" />
+
+                        <TextView
+                            style="@style/fragmentFindIconText"
+                            android:text="目的地" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_hotel"
+                        style="@style/fragmentFindIconLl"
+                        android:background="@drawable/normal_press_bg">
+
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fragment_find_hotel"
+                            android:textColor="#50c3eb"
+                            android:textSize="@dimen/x25sp" />
+
+                        <TextView
+                            style="@style/fragmentFindIconText"
+                            android:text="酒店" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_travels"
+                        style="@style/fragmentFindIconLl"
+                        android:background="@drawable/normal_press_bg">
+
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fragment_find_travels"
+                            android:textColor="#9f8fe4"
+                            android:textSize="@dimen/x25sp" />
+
+                        <TextView
+                            style="@style/fragmentFindIconText"
+                            android:text="游记" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_delicious_food"
+                        style="@style/fragmentFindIconLl"
+                        android:background="@drawable/normal_press_bg">
+
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fragment_find_food"
+                            android:textColor="@color/otherTitleBg"
+                            android:textSize="@dimen/x25sp" />
+
+                        <TextView
+                            style="@style/fragmentFindIconText"
+                            android:text="美食" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_active"
+                        style="@style/fragmentFindIconLl"
+                        android:background="@drawable/normal_press_bg">
+
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fragment_find_active"
+                            android:textColor="#fcae04"
+                            android:textSize="@dimen/x25sp" />
+
+                        <TextView
+                            style="@style/fragmentFindIconText"
+                            android:text="活动" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/meLine">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x40"
+                        android:layout_gravity="center_horizontal"
+                        android:drawableLeft="@drawable/fragment_find_line"
+                        android:drawablePadding="@dimen/x5"
+                        android:drawableRight="@drawable/fragment_find_line"
+                        android:gravity="center"
+                        android:text="推荐"
+                        android:textColor="@color/color323232"
+                        android:textSize="@dimen/x13sp" />
+                </FrameLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_recommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/meLine">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x40"
+                        android:layout_gravity="center_horizontal"
+                        android:drawableLeft="@drawable/fragment_find_line"
+                        android:drawablePadding="@dimen/x5"
+                        android:drawableRight="@drawable/fragment_find_line"
+                        android:gravity="center"
+                        android:text="热门"
+                        android:textColor="@color/color323232"
+                        android:textSize="@dimen/x13sp" />
+                </FrameLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_hot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+
+</layout>

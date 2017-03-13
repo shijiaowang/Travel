@@ -25,6 +25,7 @@ public abstract class BaseLoadingFragment extends Fragment {
     protected StatusView statusView;
 
 
+    protected abstract View initRootView(LayoutInflater inflater, ViewGroup container);
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,7 +43,6 @@ public abstract class BaseLoadingFragment extends Fragment {
         return rootView;
     }
 
-    protected abstract View initRootView(LayoutInflater inflater, ViewGroup container);
 
     /**
      * 可以做一些操作
@@ -76,7 +76,7 @@ public abstract class BaseLoadingFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (getUserVisibleHint()) {
             isVisible = true;
-            onLoad();
+            //onLoad();
         }else {
             isVisible=false;
         }
