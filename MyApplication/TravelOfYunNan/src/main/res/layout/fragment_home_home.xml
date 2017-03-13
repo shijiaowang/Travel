@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data class="HomeFragmentBinding">
+        <variable
+            name="statusBarHeight"
+            type="float"/>
+        <variable
+            name="indexTogether"
+            type="com.yunspeak.travel.ui.home.welcome.home.model.IndexTextModel"/>
+         <variable
+            name="indexOldDriver"
+            type="com.yunspeak.travel.ui.home.welcome.home.model.IndexTextModel"/>
+         <variable
+            name="indexDiyDriver"
+            type="com.yunspeak.travel.ui.home.welcome.home.model.IndexTextModel"/>
 
+        <variable
+            name="activityModel"
+            type="com.yunspeak.travel.ui.home.welcome.home.model.ActivityModel"/>
+
+    </data>
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusable="true"
@@ -13,6 +34,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            android:paddingTop="@{statusBarHeight}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/otherTitleBg">
@@ -115,7 +137,7 @@
                         android:layout_marginTop="@dimen/x22">
 
                         <LinearLayout
-                            android:id="@+id/ll_home_search_menu"
+                            android:onClick="@{indexTogether.onClik()}"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:background="@color/colorFAFAFA"
@@ -125,17 +147,19 @@
                             app:layout_widthPercent="44%">
 
                             <ImageView
-                                android:id="@+id/sdv_together"
+                                app:img="@{indexTogether.img}"
+                                android:scaleType="fitXY"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/x116" />
 
                             <TextView
-                                android:id="@+id/tv_home_search_text"
+                                android:text="@{indexTogether.title}"
                                 style="@style/HomeMenuText" />
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:onClick="@{indexOldDriver.onClik()}"
                             android:id="@+id/ll_home_together_menu"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
@@ -146,18 +170,19 @@
                             app:layout_widthPercent="44%">
 
                             <ImageView
-                                android:id="@+id/sdv_old_driver"
+                                app:img="@{indexOldDriver.img}"
+                                android:scaleType="fitXY"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/x77" />
 
                             <TextView
-                                android:id="@+id/tv_home_together_text"
+                                android:text="@{indexOldDriver.title}"
                                 style="@style/HomeMenuText" />
                         </LinearLayout>
 
 
                         <LinearLayout
-                            android:id="@+id/ll_home_with_me"
+                            android:onClick="@{indexDiyDriver.onClik()}"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_below="@id/ll_home_together_menu"
@@ -169,12 +194,13 @@
                             app:layout_widthPercent="44%">
 
                             <ImageView
-                                android:id="@+id/sdv_diy_travel"
+                                app:img="@{indexDiyDriver.img}"
+                                android:scaleType="fitXY"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/x77" />
 
                             <TextView
-                                android:id="@+id/tv_home_with_me_text"
+                                android:text="@{indexDiyDriver.title}"
                                 style="@style/HomeMenuText" />
                         </LinearLayout>
 
@@ -184,10 +210,12 @@
                         android:id="@+id/rl_active"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/x134"
+                        android:layout_marginBottom="@dimen/x20"
                         android:layout_below="@id/ll_center"
                         android:layout_marginTop="@dimen/x15">
                         <ImageView
                             android:scaleType="fitXY"
+                            app:activity_img="@{activityModel.activity_img}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                         <com.yunspeak.travel.ui.view.FontsIconTextView
@@ -211,6 +239,8 @@
 
                             <TextView
                                 style="@style/TextShadowColor"
+                                android:text="@{activityModel.type.equals(`2`)?@string/down_activity:@string/up_activity}"
+
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/x9"
@@ -222,10 +252,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/x10"
+                                android:text="@{activityModel.title}"
                                 android:textColor="@color/colorFAFAFA"
                                 android:textSize="@dimen/x18sp" />
 
                             <TextView
+                                android:text="@{String.format(@string/how_people,activityModel==null? @string/zero:activityModel.now_people)}"
                                 style="@style/TextShadowColor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -238,3 +270,4 @@
             </android.support.v4.widget.NestedScrollView>
         </com.yunspeak.travel.ui.view.StatusView>
     </LinearLayout>
+</layout>

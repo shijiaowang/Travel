@@ -4,7 +4,7 @@ package com.yunspeak.travel.ui.home.welcome.home.model;
  * Created by wangyang on 2017/3/9.
  */
 
-public class BannerBean {
+public class BannerModel {
     private String id;
     private String path;
     private String article_id;

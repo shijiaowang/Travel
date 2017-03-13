@@ -1,14 +1,20 @@
 package com.yunspeak.travel.ui.home.welcome.home.model;
 
-import android.databinding.BaseObservable;
+
+import android.databinding.BindingAdapter;
+import android.view.View;
+import android.widget.ImageView;
+import com.yunspeak.travel.R;
+import com.yunspeak.travel.ui.home.welcome.homeswitch.HomeSwitchActivity;
+import com.yunspeak.travel.utils.ShowImageUtils;
 
 /**
  * Created by wangyang on 2017/3/9.
  */
 
-public  class IndexTextBean extends BaseObservable{
+public  class IndexTextModel{
     private String id;
-    private String type;
+    private int type;
     private String title;
     private String img;
     private String url;
@@ -21,11 +27,11 @@ public  class IndexTextBean extends BaseObservable{
         this.id = id;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -51,5 +57,12 @@ public  class IndexTextBean extends BaseObservable{
 
     public void setUrl(String url) {
         this.url = url;
+    }
+    @BindingAdapter("bind:img")
+    public static void loadImage(ImageView imageView,String url){
+        ShowImageUtils.showNormal(imageView,R.drawable.normal_2_1,url);
+    }
+    public void onClick(View view){
+        HomeSwitchActivity.start(view.getContext(),getUrl(),getType());
     }
 }

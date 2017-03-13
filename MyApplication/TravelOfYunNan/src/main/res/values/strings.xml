@@ -361,6 +361,10 @@
     <string name="pay_now">立即支付</string>
     <string name="cityoff_agreement">城外旅游软件服务及许可协议</string>
     <string name="no_more_data">没有更多数据了</string>
+    <string name="zero">0</string>
+    <string name="how_people">%s人参与</string>
+    <string name="down_activity">线下活动</string>
+    <string name="up_activity">线上活动</string>
 
 
 </resources>

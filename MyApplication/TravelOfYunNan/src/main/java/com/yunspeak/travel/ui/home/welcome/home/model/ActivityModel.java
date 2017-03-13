@@ -1,13 +1,16 @@
 package com.yunspeak.travel.ui.home.welcome.home.model;
 
-import android.databinding.BaseObservable;
 
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
+import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.ShowImageUtils;
 
 /**
  * Created by wangyang on 2017/3/9.
  */
 
-public class ActivityBean extends BaseObservable{
+public class ActivityModel {
     private String id;
     private String title;
     private String activity_img;
@@ -34,7 +37,6 @@ public class ActivityBean extends BaseObservable{
     public void setActivity_img(String activity_img) {
         this.activity_img = activity_img;
     }
-
     public String getNow_people() {
         return now_people;
 
@@ -42,7 +44,10 @@ public class ActivityBean extends BaseObservable{
     public void setNow_people(String now_people) {
         this.now_people = now_people;
     }
-
+    @BindingAdapter("bind:activity_img")
+    public static void loadImage(ImageView imageView,String url){
+        ShowImageUtils.showNormal(imageView,R.drawable.normal_1_3,url);
+    }
     public String getType() {
         return type;
     }

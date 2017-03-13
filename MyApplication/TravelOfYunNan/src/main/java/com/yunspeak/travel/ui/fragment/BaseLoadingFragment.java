@@ -1,19 +1,16 @@
 package com.yunspeak.travel.ui.fragment;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.umeng.analytics.MobclickAgent;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.global.IStatusChange;
 import com.yunspeak.travel.ui.view.StatusView;
-import com.yunspeak.travel.utils.LogUtils;
+
 
 /**
  * Created by wangyang on 2017/3/9.
@@ -31,9 +28,7 @@ public abstract class BaseLoadingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        /*viewDataBinding = DataBindingUtil.inflate(inflater, initLayoutRes(), container, false);
-        View rootView = viewDataBinding.getRoot();*/
-        View rootView=inflater.inflate(initLayoutRes(),container,false);
+        View rootView=initRootView(inflater,container);
         statusView = (StatusView) rootView.findViewById(R.id.status_view);
         statusView.setOnTryGetDataListener(new StatusView.OnTryGetDataListener() {
             @Override
@@ -47,19 +42,14 @@ public abstract class BaseLoadingFragment extends Fragment {
         return rootView;
     }
 
+    protected abstract View initRootView(LayoutInflater inflater, ViewGroup container);
+
     /**
      * 可以做一些操作
      */
     protected  void initOptions(){
 
     }
-
-    /**
-     * 布局 id
-     * @return 布局 id
-     */
-    protected abstract int initLayoutRes();
-
 
     @Override
     public void onResume() {

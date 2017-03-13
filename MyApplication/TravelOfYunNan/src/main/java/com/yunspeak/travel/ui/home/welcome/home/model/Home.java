@@ -18,25 +18,25 @@ public class Home extends TravelsObject{
     }
 
     public static class DataBean {
-        private ActivityBean activit;
-        private List<BannerBean> banner;
-        private List<IndexTextBean> index_text;
-        public ActivityBean getActivit() {
+        private ActivityModel activit;
+        private List<BannerModel> banner;
+        private List<IndexTextModel> index_text;
+        public ActivityModel getActivit() {
             return activit;
         }
-        public void setActivit(ActivityBean activit) {
+        public void setActivit(ActivityModel activit) {
             this.activit = activit;
         }
-        public List<BannerBean> getBanner() {
+        public List<BannerModel> getBanner() {
             return banner;
         }
-        public void setBanner(List<BannerBean> banner) {
+        public void setBanner(List<BannerModel> banner) {
             this.banner = banner;
         }
-        public List<IndexTextBean> getIndex_text() {
+        public List<IndexTextModel> getIndex_text() {
             return index_text;
         }
-        public void setIndex_text(List<IndexTextBean> index_text) {
+        public void setIndex_text(List<IndexTextModel> index_text) {
             this.index_text = index_text;
         }
     }
