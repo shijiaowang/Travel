@@ -18,7 +18,6 @@ import com.yunspeak.travel.ui.view.StatusView;
  */
 
 public abstract class BaseLoadingFragment extends Fragment {
-
     private boolean isVisible;
     private boolean isPrepared;
     boolean isFirstLoad=true;
@@ -76,18 +75,28 @@ public abstract class BaseLoadingFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (getUserVisibleHint()) {
             isVisible = true;
-            //onLoad();
+            onLoad();
         }else {
             isVisible=false;
         }
     }
 
+    /**
+     * 第一次请求
+     */
     private void onLoad() {
-        if (isVisible && isPrepared) {
-            statusView.showLoadingView(isFirstLoad);
-            if (!isFirstLoad) isFirstLoad = false;
-            childLoad();
+        if (isVisible && isPrepared && isFirstLoad) {
+            isFirstLoad = false;
+            load();
         }
+    }
+
+    /**
+     * 加载网络
+     */
+    private void load() {
+        statusView.showLoadingView(!isFirstLoad);
+        childLoad();
     }
 
     /**

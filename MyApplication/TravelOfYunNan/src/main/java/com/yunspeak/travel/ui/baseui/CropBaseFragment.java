@@ -1,6 +1,8 @@
 package com.yunspeak.travel.ui.baseui;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,11 +12,12 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -24,7 +27,9 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.event.HttpEvent;
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.fragment.LoadBaseFragment;
+import com.yunspeak.travel.ui.fragment.SaveBaseFragment;
 import com.yunspeak.travel.utils.BitmapUtils;
 import com.yunspeak.travel.utils.IOUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -42,7 +47,7 @@ import java.io.IOException;
  * Created by wangyang on 2016/9/27 0027.
  */
 
-public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBaseFragment<T> {
+public abstract class CropBaseFragment<T extends TravelsObject> extends SaveBaseFragment<T> {
     protected static final int REQUEST_SELECT_PICTURE = 0x01;
     private static final int TAKE_PHOTO = 0x02;
     protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
@@ -117,7 +122,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
                 intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
             } else {
-                intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             }
             startActivityForResult(intent, currentCode);
         }
@@ -227,7 +232,7 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
         uCrop.withMaxResultSize(width,height).start(getContext(), this);//Fragment中使用
     }
     /**
-     * Sometimes you want to adjust more options, it's done via {@link com.yalantis.ucrop.UCrop.Options} class.
+     * Sometimes you want to adjust more options, it's done via {@link UCrop.Options} class.
      *
      * @param uCrop - ucrop builder instance
      * @return - ucrop builder instance
@@ -425,5 +430,34 @@ public abstract class CropPhotoBaseFragment<T extends HttpEvent> extends LoadBas
                 Toast.makeText(getContext(), R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    protected void requestPermission(final String permission, String rationale, final int requestCode) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), permission)) {
+            showAlertDialog(getString(R.string.permission_title_rationale), rationale,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(getActivity(),
+                                    new String[]{permission}, requestCode);
+                        }
+                    },getString(R.string.label_ok), null,getString(R.string.label_cancel), getActivity());
+        } else {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{permission}, requestCode);
+        }
+    }
+
+    protected void showAlertDialog(@Nullable String title, @Nullable String message,
+                                   @Nullable DialogInterface.OnClickListener onPositiveButtonClickListener,
+                                   @NonNull String positiveText,
+                                   @Nullable DialogInterface.OnClickListener onNegativeButtonClickListener,
+                                   @NonNull String negativeText,
+                                   @NonNull Context context
+    ) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton(positiveText, onPositiveButtonClickListener);
+        builder.setNegativeButton(negativeText, onNegativeButtonClickListener);
+        builder.show();
     }
 }

@@ -269,8 +269,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         fragments.add(new HomeFragment());
         fragments.add(new AppointFragment());
         fragments.add(new CircleFragment());
-        fragments.add(new FindFragment());
-        fragments.add(new MeFragment());
+        fragments.add(new com.yunspeak.travel.ui.find.find.FindFragment());
+        fragments.add(new com.yunspeak.travel.ui.me.me.MeFragment());
         mVpHome.setAdapter(new HomeFragmentAdapter(getSupportFragmentManager()));
         mVpHome.setOffscreenPageLimit(5);//设置缓存距离为3
         initIconFonts();

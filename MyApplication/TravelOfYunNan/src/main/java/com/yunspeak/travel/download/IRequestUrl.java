@@ -11,4 +11,6 @@ public interface IRequestUrl {
 
    /*发现*/
     String FIND_HOME = API_KEY + "Find/getFindIndex/";//发现主页
+    /*我*/
+    String ME_MESSAGE = API_KEY + "User/getUserNew/";//我
 }

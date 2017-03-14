@@ -20,5 +20,8 @@ public class ToastUtils {
         mToast.setText(text);
         mToast.show();
     }
+    public static void showToast(int res){
+        showToast(UIUtils.getString(res));
+    }
 
 }

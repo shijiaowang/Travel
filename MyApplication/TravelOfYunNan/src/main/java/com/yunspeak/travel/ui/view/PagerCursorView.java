@@ -247,7 +247,7 @@ public class PagerCursorView extends RelativeLayout {
 
         @Override
         public int getCount() {
-            return Integer.MAX_VALUE;
+            return data==null?0:Integer.MAX_VALUE;
         }
 
         @Override
@@ -257,7 +257,7 @@ public class PagerCursorView extends RelativeLayout {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            return inflateView(container, position % data.size());
+            return inflateView(container, data==null?position:position % data.size());
         }
 
         public abstract Object inflateView(ViewGroup container, int position);

@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.yunspeak.travel.glide.GlideCircleTransform;
 
 /**
  * Created by wangyang on 2017/3/13.
@@ -23,6 +24,14 @@ public class ShowImageUtils {
             Glide.with(imageView.getContext()).load(normalRes).into(imageView);
         }else {
             Glide.with(imageView.getContext()).load(url).placeholder(normalRes).error(normalRes).into(imageView);
+        }
+    }
+    public static void showCircle(ImageView imageView,int normalRes, String url){
+        if (imageView==null)return;
+        if (TextUtils.isEmpty(url)){
+            Glide.with(imageView.getContext()).load(normalRes).into(imageView);
+        }else {
+            Glide.with(imageView.getContext()).load(url).transform(new GlideCircleTransform(imageView.getContext())).placeholder(normalRes).error(normalRes).into(imageView);
         }
     }
 }

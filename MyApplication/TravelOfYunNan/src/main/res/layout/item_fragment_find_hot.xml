@@ -1,46 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="recommendModel"
+            type="com.yunspeak.travel.ui.find.find.model.RecommendModel" />
+    </data>
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+        android:onClick="@{recommendModel.onClick}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x10"
         android:layout_marginRight="@dimen/x10"
         android:background="@color/colorFAFAFA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/iv_photo"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x175" />
+                android:layout_height="@dimen/x175"
+                android:scaleType="fitXY"
+                app:img="@{recommendModel.logo_img}" />
+
             <TextView
-                android:id="@+id/tv_type"
+                style="@style/commonSingleLineTextStyle"
+                android:layout_width="@dimen/x45"
+                android:layout_height="@dimen/x20"
                 android:layout_marginLeft="@dimen/x6"
                 android:layout_marginTop="@dimen/x10"
-                android:gravity="center"
-                android:textSize="@dimen/x8sp"
-                style="@style/commonSingleLineTextStyle"
-                android:textColor="@color/otherFcae04"
                 android:background="@drawable/fragment_find_title_bg"
-                android:layout_width="@dimen/x45"
-                android:layout_height="@dimen/x20" />
+                android:gravity="center"
+                android:text="@{recommendModel.type==1?@string/hot_travel:recommendModel.type==2?@string/food_store:recommendModel.type==3?@string/travels:@string/line_activity}"
+                android:textColor="@color/otherFcae04"
+                android:textSize="@dimen/x8sp" />
 
         </FrameLayout>
+
         <TextView
-            android:id="@+id/tv_content"
-            android:layout_marginTop="@dimen/x9"
-            android:layout_marginLeft="@dimen/x10"
-            android:textColor="@color/color323232"
-            android:textSize="@dimen/x14sp"
-            android:layout_marginBottom="@dimen/x10"
-            android:lineSpacingExtra="@dimen/x8"
-            android:ellipsize="end"
-            android:maxLines="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-          />
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x9"
+            android:ellipsize="end"
+            android:lineSpacingExtra="@dimen/x8"
+            android:maxLines="2"
+            android:text="@{recommendModel.title}"
+            android:textColor="@color/color323232"
+            android:textSize="@dimen/x14sp" />
 
     </LinearLayout>
+</layout>
+
 

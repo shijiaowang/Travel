@@ -17,8 +17,8 @@ import butterknife.BindView;
  */
 
 public class FindHotHolder extends BaseRecycleViewHolder<FindBean.DataBean.RecommendBean> {
-    @BindView(R.id.iv_photo)
-    SimpleDraweeView ivPhoto;
+    /*@BindView(R.id.iv_photo)
+    SimpleDraweeView ivPhoto;*/
     @BindView(R.id.tv_type)
     TextView tvType;
     @BindView(R.id.tv_content)
@@ -30,8 +30,8 @@ public class FindHotHolder extends BaseRecycleViewHolder<FindBean.DataBean.Recom
 
     @Override
     public void childBindView(int position, FindBean.DataBean.RecommendBean data, Context mContext) {
-        itemView.setOnClickListener(new MyOnClickListener(mContext,data,ivPhoto));
-        FrescoUtils.displayNormal(ivPhoto,data.getLogo_img(),640,360,R.drawable.normal_2_1);
+        //itemView.setOnClickListener(new MyOnClickListener(mContext,data,ivPhoto));
+        //FrescoUtils.displayNormal(ivPhoto,data.getLogo_img(),640,360,R.drawable.normal_2_1);
         tvContent.setText(data.getTitle());
         int type = data.getType();
         if (type==1){

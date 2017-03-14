@@ -21,9 +21,9 @@ import java.lang.annotation.Target;
  * aop工具类
  */
 @Aspect
-public class AspUtil {
+public class AspNetworkUtil {
     //拦截com.yunspeak.travel.ui包下所有带有@CheckAnnotation注解的方法
-    final String checkRule="execution(@CheckNetwork * com.yunspeak.travel.ui..*.*(..))";
+    private final String checkRule="execution(@CheckNetwork * com.yunspeak.travel.ui..*.*(..))";
     @Pointcut(checkRule)
     public void checkNetworkPoint(){
     }

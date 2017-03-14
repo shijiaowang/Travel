@@ -48,7 +48,7 @@ public class CommonRecycleViewAdapter<T> extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public int getItemCount() {
-        return datas.size();
+        return datas==null?0:datas.size();
     }
    private static class CommonRecycleHolder extends RecyclerView.ViewHolder{
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+     <data>
+         <variable
+             name="recommendModel"
+             type="com.yunspeak.travel.ui.find.find.model.RecommendModel"/>
+     </data>
+
+    <ImageView
+        app:img="@{recommendModel.logo_img}"
+        android:scaleType="fitXY"
+        android:onClick="@{recommendModel.onClick}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</layout>

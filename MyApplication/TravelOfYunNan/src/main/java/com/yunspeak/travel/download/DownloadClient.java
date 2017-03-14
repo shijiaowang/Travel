@@ -39,7 +39,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 public class DownloadClient {
     private static   CityoffService cityoffService;
-    private  final String BASE_URL="";
     private static Gson   gson = new Gson();
     static {
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).readTimeout(15, TimeUnit.SECONDS).addNetworkInterceptor(new Interceptor() {
@@ -59,7 +58,6 @@ public class DownloadClient {
                 .baseUrl("http://yuns.yunspeak.com/").
                         build();
         cityoffService = retrofit.create(CityoffService.class);
-
 
     }
 

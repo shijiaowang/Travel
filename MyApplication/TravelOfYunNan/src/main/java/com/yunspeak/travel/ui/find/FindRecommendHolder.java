@@ -16,8 +16,8 @@ import butterknife.BindView;
  * Created by wangyang on 2016/10/15 0015.
  */
 class FindRecommendHolder extends BaseRecycleViewHolder<FindBean.DataBean.RecommendBean> {
-    @BindView(R.id.iv_photo)
-    SimpleDraweeView ivPhoto;
+    //@BindView(R.id.iv_photo)
+    //SimpleDraweeView ivPhoto;
     @BindView(R.id.tv_text)
     TextView tvText;
     public FindRecommendHolder(View itemView) {
@@ -26,8 +26,8 @@ class FindRecommendHolder extends BaseRecycleViewHolder<FindBean.DataBean.Recomm
 
     @Override
     public void childBindView(int position, FindBean.DataBean.RecommendBean recommendBean, Context mContext) {
-        FrescoUtils.displayNormal(ivPhoto,recommendBean.getLogo_img(),640,360,R.drawable.normal_2_1);
+        //FrescoUtils.displayNormal(ivPhoto,recommendBean.getLogo_img(),640,360,R.drawable.normal_2_1);
         tvText.setText(recommendBean.getTitle());
-        itemView.setOnClickListener(new MyOnClickListener(mContext,recommendBean,ivPhoto));
+        //itemView.setOnClickListener(new MyOnClickListener(mContext,recommendBean,ivPhoto));
     }
 }

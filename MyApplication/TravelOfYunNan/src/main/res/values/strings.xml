@@ -366,6 +366,10 @@
     <string name="down_activity">线下活动</string>
     <string name="up_activity">线上活动</string>
     <string name="noly_support_yun_nan">暂时只支持云南</string>
+    <string name="hot_travel">热门景点</string>
+    <string name="food_store">美食名店</string>
+    <string name="travels">旅行游记</string>
+    <string name="line_activity">线上活动</string>
 
 
 </resources>

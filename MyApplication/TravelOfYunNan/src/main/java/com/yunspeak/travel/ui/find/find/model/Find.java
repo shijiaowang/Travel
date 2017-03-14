@@ -1,14 +1,17 @@
 package com.yunspeak.travel.ui.find.find.model;
 
 import android.databinding.BindingAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
+import com.yunspeak.travel.BR;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.TravelsObject;
+import com.yunspeak.travel.ui.adapter.CommonPagerCursorAdapter;
 import com.yunspeak.travel.ui.adapter.CommonRecycleViewAdapter;
 import com.yunspeak.travel.ui.find.FindDecoration;
-
+import com.yunspeak.travel.ui.me.myappoint.withmeselect.TopDecoration;
 import java.util.List;
 
 
@@ -61,14 +64,32 @@ public class Find extends TravelsObject {
             this.banner = banner;
         }
 
+        @BindingAdapter("bind:setRecycleAdapter")
+        public static void setRecycleAdapter(RecyclerView recyclerView,List<RecommendModel> recommendModels){
+            recyclerView.setAdapter(new CommonRecycleViewAdapter<>(recommendModels,BR.recommendModel,R.layout.item_fragment_find_recommend));
+            GridLayoutManager gridLayoutManager=new GridLayoutManager(recyclerView.getContext(),2);
+            gridLayoutManager.setSmoothScrollbarEnabled(true);
+            gridLayoutManager.setAutoMeasureEnabled(true);
+            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setNestedScrollingEnabled(false);
+            recyclerView.addItemDecoration(new FindDecoration(5,5));
+        }
+        @BindingAdapter("bind:setLinearRecycle")
+        public static void setRecycleAdapter2(RecyclerView recycleAdapter2,List<RecommendModel> recommendModels){
+            LinearLayoutManager linearLayoutManager=new LinearLayoutManager(recycleAdapter2.getContext());
+            recycleAdapter2.setAdapter(new CommonRecycleViewAdapter<>(recommendModels,BR.recommendModel,R.layout.item_fragment_find_hot));
+            recycleAdapter2.setLayoutManager(linearLayoutManager);
+            linearLayoutManager.setSmoothScrollbarEnabled(true);
+            linearLayoutManager.setAutoMeasureEnabled(true);
+            recycleAdapter2.setHasFixedSize(true);
+            recycleAdapter2.addItemDecoration(new TopDecoration(10));
+            recycleAdapter2.setNestedScrollingEnabled(false);
+        }
+        @BindingAdapter("bind:setPagerAdapter")
+        public static void setViewPagerAdapter(ViewPager viewPager,List<RecommendModel> recommendModels){
+            viewPager.setAdapter(new CommonPagerCursorAdapter<>(recommendModels,R.layout.fragment_find_pager,BR.recommendModel));
+        }
     }
-    @BindingAdapter("bind:setRecycleAdapter")
-    public static void setRecycleAdapter(RecyclerView recyclerView,List<RecommendModel> recommendModels){
-        recyclerView.setAdapter(new CommonRecycleViewAdapter(recommendModels,BR.recommendModel,R.layout.item_fragment_find_recommend));
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(recyclerView.getContext(),2);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.addItemDecoration(new FindDecoration(5,5));
-    }
+
 }
