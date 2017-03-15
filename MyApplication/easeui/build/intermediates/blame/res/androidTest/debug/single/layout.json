@@ -144,12 +144,12 @@
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_screen_simple.xml"
     },
     {
-        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_web_map.xml",
-        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_web_map.xml"
-    },
-    {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_screen_content_include.xml",
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_web_map.xml",
+        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_web_map.xml"
     },
     {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_alert_dialog.xml",

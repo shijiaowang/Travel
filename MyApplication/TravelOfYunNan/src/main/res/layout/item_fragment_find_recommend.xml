@@ -8,6 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="@dimen/x166"
         android:orientation="vertical"
+        android:onClick="@{recommendModel.onClick}"
         android:layout_height="wrap_content">
         <ImageView
             app:img="@{recommendModel.logo_img}"

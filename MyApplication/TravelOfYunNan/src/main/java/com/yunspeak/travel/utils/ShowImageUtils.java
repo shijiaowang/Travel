@@ -1,5 +1,6 @@
 package com.yunspeak.travel.utils;
 
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
@@ -26,12 +27,15 @@ public class ShowImageUtils {
             Glide.with(imageView.getContext()).load(url).placeholder(normalRes).error(normalRes).into(imageView);
         }
     }
-    public static void showCircle(ImageView imageView,int normalRes, String url){
+    public static void showCircle(ImageView imageView,int normalRes, String url,int borderWidth){
         if (imageView==null)return;
         if (TextUtils.isEmpty(url)){
             Glide.with(imageView.getContext()).load(normalRes).into(imageView);
         }else {
-            Glide.with(imageView.getContext()).load(url).transform(new GlideCircleTransform(imageView.getContext())).placeholder(normalRes).error(normalRes).into(imageView);
+            Glide.with(imageView.getContext()).load(url).placeholder(normalRes).error(normalRes).transform(new GlideCircleTransform(imageView.getContext(),borderWidth, Color.WHITE)).into(imageView);
         }
+    }
+    public static void showCircle(ImageView imageView,int normalRes, String url){
+        showCircle(imageView,normalRes,url,0);
     }
 }

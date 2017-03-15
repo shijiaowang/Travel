@@ -94,7 +94,7 @@ public abstract class BaseLoadingFragment extends Fragment {
     /**
      * 加载网络
      */
-    private void load() {
+    protected void load() {
         statusView.showLoadingView(!isFirstLoad);
         childLoad();
     }

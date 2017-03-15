@@ -284,12 +284,12 @@
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_chatfrom_voice_playing_f1.png"
     },
     {
-        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_28.png",
-        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_28.png"
-    },
-    {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_25.png",
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_25.png"
+    },
+    {
+        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_28.png",
+        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_28.png"
     },
     {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png",
@@ -432,12 +432,12 @@
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_5.png"
     },
     {
-        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_chatting_biaoqing_btn_enable.png",
-        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_chatting_biaoqing_btn_enable.png"
-    },
-    {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_voice_unread.png",
         "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_voice_unread.png"
+    },
+    {
+        "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_chatting_biaoqing_btn_enable.png",
+        "source": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_chatting_biaoqing_btn_enable.png"
     },
     {
         "merged": "H:\\cityoff\\Travel\\MyApplication\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png",

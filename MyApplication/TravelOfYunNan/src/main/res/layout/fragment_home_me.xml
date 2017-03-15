@@ -6,46 +6,47 @@
         <variable
             name="meData"
             type="com.yunspeak.travel.ui.me.me.model.Me.DataBean" />
-
     </data>
 
-    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.yunspeak.travel.ui.view.StatusView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
-        <com.yunspeak.travel.ui.view.StatusView
+        <android.support.v4.widget.NestedScrollView
+            android:id="@id/status_content_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
             <LinearLayout
-                android:id="@id/status_content_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorFAFAFA"
                 android:orientation="vertical">
-
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/x200"
+                        android:id="@+id/iv_bg"
                         android:scaleType="fitXY"
-                        app:setBgImg="@{meData.user.background_img}" />
+                        app:setBgImg="@{meData.user.background_img}"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x200" />
 
                     <ImageView
+                        android:id="@+id/iv_icon"
+                        app:setIcon="@{meData.user.user_img}"
                         android:layout_width="@dimen/x73"
                         android:layout_height="@dimen/x73"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/x163"
-                        android:scaleType="fitXY"
-                        app:setIcon="@{meData.user.user_img}" />
+                        android:layout_marginTop="@dimen/x163" />
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
+                        android:onClick="@{meData.onClick}"
                         android:id="@+id/tv_setting"
                         android:layout_width="@dimen/x35"
                         android:layout_height="@dimen/x35"
@@ -59,7 +60,9 @@
                         android:textColor="@color/colorFAFAFA" />
 
                     <TextView
+                        android:onClick="@{meData.onClick}"
                         android:id="@+id/tv_level"
+                        android:text="@{@string/LV+meData.user.level}"
                         android:layout_width="@dimen/x52"
                         android:layout_height="@dimen/x29"
                         android:layout_alignParentRight="true"
@@ -70,7 +73,7 @@
                         android:textSize="@dimen/x14sp" />
 
                     <TextView
-                        android:id="@+id/tv_nick_name"
+                        android:text="@{meData.user.nick_name}"
                         style="@style/commonSingleLineTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,22 +90,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tv_follow_name"
+                            android:onClick="@{meData.onClick}"
+                            android:id="@+id/tv_follow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/x8"
                             android:paddingTop="@dimen/x8"
-                            android:text="关注"
-                            android:textColor="@color/homeButtonUnCheckedColor"
-                            android:textSize="@dimen/x14sp" />
-
-                        <TextView
-                            android:id="@+id/tv_follow_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/x8"
-                            android:paddingLeft="@dimen/x6"
-                            android:paddingTop="@dimen/x8"
+                            android:text="@{@string/follow_word+meData.follow}"
                             android:textColor="@color/homeButtonUnCheckedColor"
                             android:textSize="@dimen/x14sp" />
 
@@ -117,30 +111,20 @@
                             android:background="@drawable/fragment_me_dot" />
 
                         <TextView
-                            android:id="@+id/tv_fan_name"
+                            android:onClick="@{meData.onClick}"
+                            android:id="@+id/tv_fan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/x8"
                             android:paddingTop="@dimen/x8"
-                            android:text="粉丝"
+                            android:text="@{@string/fans_word+meData.fans}"
                             android:textColor="@color/homeButtonUnCheckedColor"
                             android:textSize="@dimen/x14sp" />
-
-                        <TextView
-                            android:id="@+id/tv_fan_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/x8"
-                            android:paddingLeft="@dimen/x6"
-                            android:paddingTop="@dimen/x8"
-                            android:textColor="@color/homeButtonUnCheckedColor"
-                            android:textSize="@dimen/x14sp" />
-
                     </LinearLayout>
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/tv_profile"
+                    android:text="@{meData.user.content.empty?@string/this_people_not_write:meData.user.content}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/x24"
@@ -167,6 +151,8 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:onClick="@{meData.onClick}"
+                        app:badge="@{meData.count_travel}"
                         android:id="@+id/tv_appoint"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -174,7 +160,7 @@
                         android:drawablePadding="@dimen/x8"
                         android:drawableTop="@drawable/fragment_me_togther_button"
                         android:gravity="center"
-                        android:text="我的行程"
+                        android:text="@string/my_travel"
                         android:textColor="@color/color323232"
                         android:textSize="@dimen/x10sp" />
 
@@ -197,6 +183,8 @@
                         android:layout_weight="1" />
 
                     <TextView
+                        app:badge="@{meData.count_order}"
+                        android:onClick="@{meData.onClick}"
                         android:id="@+id/tv_my_order"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -204,7 +192,7 @@
                         android:drawablePadding="@dimen/x8"
                         android:drawableTop="@drawable/fragment_me_order"
                         android:gravity="center"
-                        android:text="我的订单"
+                        android:text="@string/my_order"
                         android:textColor="@color/color323232"
                         android:textSize="@dimen/x10sp" />
 
@@ -227,6 +215,7 @@
                         android:layout_weight="1" />
 
                     <TextView
+                        android:onClick="@{meData.onClick}"
                         android:id="@+id/tv_my_collection"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -234,7 +223,7 @@
                         android:drawablePadding="@dimen/x8"
                         android:drawableTop="@drawable/fragment_me_collection"
                         android:gravity="center"
-                        android:text="我的收藏"
+                        android:text="@string/my_collection"
                         android:textColor="@color/color323232"
                         android:textSize="@dimen/x10sp" />
 
@@ -256,6 +245,8 @@
                         android:layout_weight="1" />
 
                     <TextView
+                        app:badge="@{meData.count_msg}"
+                        android:onClick="@{meData.onClick}"
                         android:id="@+id/tv_message_center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -264,7 +255,7 @@
                         android:drawableTop="@drawable/fragment_me_message"
                         android:gravity="center"
                         android:paddingTop="@dimen/x5"
-                        android:text="消息中心"
+                        android:text="@string/message_center"
                         android:textColor="@color/color323232"
                         android:textSize="@dimen/x10sp" />
                 </LinearLayout>
@@ -291,11 +282,14 @@
                         android:textSize="@dimen/x13sp" />
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
+                        android:onClick="@{meData.onClick}"
                         android:id="@+id/tv_title_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginRight="@dimen/x9"
+                        android:layout_marginEnd="@dimen/x9"
                         android:padding="@dimen/x10"
                         android:text="@string/activity_activate_detail_pen"
 
@@ -305,10 +299,9 @@
                 </RelativeLayout>
                 <!--Item的marginRight为15dp-->
                 <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/fl_label"
+                    app:setFlex="@{meData.user_label}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_title"
                     android:layout_marginBottom="@dimen/x10"
                     android:layout_marginLeft="@dimen/x20"
                     android:layout_marginRight="@dimen/x20"
@@ -324,112 +317,68 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x6"
                     android:background="@color/meLine" />
-
-                <LinearLayout
-                    android:id="@+id/ll_album"
-                    style="@style/lLFragmentMeAlbum">
-
-                    <TextView
-                        style="@style/fragmentMeAlbum"
-                        android:drawableLeft="@drawable/fragment_me_album"
-                        android:text="我的相册" />
-
-                    <View style="@style/AVGLine" />
-
-                    <ImageView style="@style/ivFragmentMeAlbumButton" />
-                </LinearLayout>
+                <com.yunspeak.travel.ui.view.ItemView
+                    android:onClick="@{meData.onClick}"
+                    android:id="@+id/iv_album"
+                    android:layout_width="match_parent"
+                    app:item_drawable="@drawable/fragment_me_album"
+                    app:item_text="@string/my_album"
+                    android:layout_height="@dimen/x50"/>
+                <View style="@style/fragmentMeLine" />
+                <com.yunspeak.travel.ui.view.ItemView
+                    android:onClick="@{meData.onClick}"
+                    android:id="@+id/iv_theme"
+                    android:layout_width="match_parent"
+                    app:item_drawable="@drawable/fragment_me_theme"
+                    app:item_text="@string/my_theme"
+                    android:layout_height="@dimen/x50"/>
+                <View style="@style/fragmentMeLine" />
+                <com.yunspeak.travel.ui.view.ItemView
+                    android:onClick="@{meData.onClick}"
+                    android:id="@+id/iv_hobby"
+                    android:layout_width="match_parent"
+                    app:item_drawable="@drawable/fragment_me_hobby"
+                    app:item_text="@string/my_hobby"
+                    android:layout_height="@dimen/x50"/>
 
                 <View style="@style/fragmentMeLine" />
 
-                <LinearLayout
-                    android:id="@+id/ll_theme"
-                    style="@style/lLFragmentMeAlbum">
-
-                    <TextView
-                        style="@style/fragmentMeAlbum"
-                        android:drawableLeft="@drawable/fragment_me_theme"
-                        android:text="我的主题" />
-
-                    <View style="@style/AVGLine" />
-
-                    <ImageView style="@style/ivFragmentMeAlbumButton" />
-                </LinearLayout>
+                <com.yunspeak.travel.ui.view.ItemView
+                    android:onClick="@{meData.onClick}"
+                    android:id="@+id/iv_card"
+                    android:layout_width="match_parent"
+                    app:item_drawable="@drawable/fragment_me_id_card"
+                    app:item_text="@string/auth_id_card"
+                    android:layout_height="@dimen/x50"/>
 
                 <View style="@style/fragmentMeLine" />
 
-                <LinearLayout
-                    android:id="@+id/ll_hobby"
-                    style="@style/lLFragmentMeAlbum">
-
-                    <TextView
-                        style="@style/fragmentMeAlbum"
-                        android:drawableLeft="@drawable/fragment_me_hobby"
-                        android:text="我的兴趣" />
-
-                    <View style="@style/AVGLine" />
-
-                    <ImageView style="@style/ivFragmentMeAlbumButton" />
-                </LinearLayout>
-
-                <View style="@style/fragmentMeLine" />
-
-                <LinearLayout
-                    android:id="@+id/ll_identity"
-                    style="@style/lLFragmentMeAlbum">
-
-                    <TextView
-                        style="@style/fragmentMeAlbum"
-                        android:drawableLeft="@drawable/fragment_me_id_card"
-                        android:text="身份认证" />
-
-                    <View style="@style/AVGLine" />
-
-                    <ImageView style="@style/ivFragmentMeAlbumButton" />
-                </LinearLayout>
-
-                <View style="@style/fragmentMeLine" />
-
-                <LinearLayout
-                    android:id="@+id/ll_customer_center"
-                    style="@style/lLFragmentMeAlbum">
-
-                    <TextView
-                        style="@style/fragmentMeAlbum"
-                        android:drawableLeft="@drawable/fragment_me_service_center"
-                        android:text="客服中心" />
-
-                    <View style="@style/AVGLine" />
-
-                    <ImageView style="@style/ivFragmentMeAlbumButton" />
-                </LinearLayout>
+                <com.yunspeak.travel.ui.view.ItemView
+                    android:onClick="@{meData.onClick}"
+                    android:id="@+id/iv_service"
+                    android:layout_width="match_parent"
+                    app:item_drawable="@drawable/fragment_me_service_center"
+                    app:item_text="@string/service_center"
+                    android:layout_height="@dimen/x50"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="6dp"
                     android:background="@color/meLine" />
-
-                <LinearLayout
-                    android:id="@+id/ll_setting"
-                    style="@style/lLFragmentMeAlbum">
-
-                    <TextView
-                        style="@style/fragmentMeAlbum"
-                        android:drawableLeft="@drawable/fragment_me_setting"
-                        android:text="设置" />
-
-                    <View style="@style/AVGLine" />
-
-                    <ImageView style="@style/ivFragmentMeAlbumButton" />
-                </LinearLayout>
-
-                <View style="@style/fragmentMeLine" />
-
+                <com.yunspeak.travel.ui.view.ItemView
+                    android:onClick="@{meData.onClick}"
+                    android:id="@+id/iv_setting"
+                    android:layout_width="match_parent"
+                    app:item_drawable="@drawable/fragment_me_setting"
+                    app:item_text="@string/setting"
+                    android:layout_height="@dimen/x50"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x10"
-                    android:background="@color/meLine" />
+                    android:background="@color/meLine"
+                    />
             </LinearLayout>
-        </com.yunspeak.travel.ui.view.StatusView>
-    </android.support.v4.widget.NestedScrollView>
-</layout>
 
+        </android.support.v4.widget.NestedScrollView>
+    </com.yunspeak.travel.ui.view.StatusView>
+</layout>

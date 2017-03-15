@@ -23,6 +23,8 @@ import butterknife.BindView;
  */
 
 public class FollowAndFanActivity extends BaseToolBarActivity implements View.OnClickListener {
+
+    public static final String FOLLOW_SELECT = "follow_select";//进入关注
     private int currentPosition = 0;
     private List<Fragment> fragments = new ArrayList<>(2);
     @BindView(R.id.vp_follow_fan) ViewPager mVpFollowFan;//pager
@@ -37,7 +39,7 @@ public class FollowAndFanActivity extends BaseToolBarActivity implements View.On
 
     @Override
     protected void initOptions() {
-        boolean isFollow = getIntent().getBooleanExtra(MeFragment.FOLLOW_SELECT, false);
+        boolean isFollow = getIntent().getBooleanExtra(FOLLOW_SELECT, false);
         currentPosition = isFollow ? 0 : 1;
         mVpFollowFan.setOnPageChangeListener(new FollowFanChangeListener());
         fragments.add(FanAndFollowFragment.newInstance("1"));

@@ -95,4 +95,11 @@
         <attr name="no_network_view" />
         <attr name="loading_view" />
     </declare-styleable>
+
+    <attr name="item_drawable" format="reference" />
+    <attr name="item_text" format="string" />
+    <declare-styleable name="ItemView">
+        <attr name="item_drawable" />
+        <attr name="item_text" />
+    </declare-styleable>
 </resources>
