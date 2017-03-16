@@ -2,39 +2,33 @@ package com.yunspeak.travel.ui.me.me;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.bean.User;
-import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.databinding.FragmentMeBinding;
-import com.yunspeak.travel.db.UserDao;
+import com.yunspeak.travel.download.HttpClient;
+import com.yunspeak.travel.download.INetworkCallBack;
 import com.yunspeak.travel.download.IRequestUrl;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.baseui.CropBaseFragment;
 import com.yunspeak.travel.ui.home.HomeActivity;
 import com.yunspeak.travel.ui.me.MeEvent;
 import com.yunspeak.travel.ui.me.me.model.Me;
 import com.yunspeak.travel.ui.me.setting.SettingActivity;
-import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.ui.view.ItemView;
-import com.yunspeak.travel.utils.FrescoUtils;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ShowImageUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-import com.yunspeak.travel.utils.UIUtils;
 import com.yunspeak.travel.utils.XEventUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +36,9 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import okhttp3.ResponseBody;
 
 
 /**
@@ -64,10 +61,6 @@ public class MeFragment extends CropBaseFragment<Me> {
     private int upType=-1;
     private static final int UP_BG=99;//上传背景
     private static final int UP_ICON=100;//上传头像
-    private BadgeView mBvMessageCount;
-    private BadgeView mBvAppointCount;
-    private BadgeView mBvOrderCount;
-    private int countMsg=0;
     @Override
     protected void receiveData(Me meData) {
         this.dataBean = meData.getData();
@@ -109,9 +102,20 @@ public class MeFragment extends CropBaseFragment<Me> {
         }
         List<String> flies=new ArrayList<>();
         flies.add(fileName);
-        String url=upType==UP_BG? IVariable.CHANGE_BG:IVariable.CHANGE_USER_INFO;
+        String url=upType==UP_BG? IRequestUrl.CHANGE_BG:IRequestUrl.CHANGE_USER_INFO;
+        HttpClient.getInstance().postImage(url, bgImageMap, flies, new INetworkCallBack<TravelsObject>() {
+            @Override
+            public void accept(@NonNull TravelsObject travelsObject) throws Exception {
+                ToastUtils.showToast(travelsObject.getMessage());
+            }
+
+            @Override
+            public void error(Throwable throwable) {
+               ToastUtils.showToast("上传失败");
+            }
+        });
         //上传图片
-        XEventUtils.postFileCommonBackJson(url,bgImageMap,flies,upType,new MeEvent());
+        //XEventUtils.postFileCommonBackJson(url,bgImageMap,flies,upType,new MeEvent());
     }
 
     @Override
@@ -119,7 +123,7 @@ public class MeFragment extends CropBaseFragment<Me> {
         if (upType==UP_BG){
             ShowImageUtils.showNormal(ivBg,R.drawable.normal_2_1,s);
         }else {
-            ShowImageUtils.showCircle(ivIcon,R.drawable.normal_2_1,s,2);
+            ShowImageUtils.showCircle(ivIcon,R.drawable.boy,s,2);
         }
     }
     @Override

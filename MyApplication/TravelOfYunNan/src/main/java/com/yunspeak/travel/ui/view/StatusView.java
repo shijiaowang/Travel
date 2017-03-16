@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IStatusChange;
+import com.yunspeak.travel.utils.LogUtils;
 
 import static android.content.ContentValues.TAG;
 
@@ -141,11 +142,12 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
 
         }
         for (View view : childView) {
+            LogUtils.e("调用了几次"+status);
             if (view == null) continue;
             if (view == childView[status]) {
                 view.setVisibility(View.VISIBLE);
             } else {
-                view.setVisibility(isHideContent ? View.GONE : status == STATE_LOAD_SUCCESS ? View.VISIBLE : View.GONE);
+                view.setVisibility(isHideContent ? View.GONE : view == successView ? View.VISIBLE : View.GONE);
             }
         }
     }
@@ -160,7 +162,7 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
     }
     public void showSuccessView(){
         isSuccessfully=true;
-        setStatus(STATE_LOAD_SUCCESS);
+        setStatus(STATE_LOAD_SUCCESS,false);
     }
    public void resetSuccess(){
        isSuccessfully=false;//有些页面需要重置成功过没有的状态
@@ -178,7 +180,7 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
         if (onErrorBackListener!=null){
             onErrorBackListener.onErrorBack(throwable);
         }
-        return onErrorBackListener==null;
+        return onErrorBackListener!=null;
     }
 
     @Override

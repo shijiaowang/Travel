@@ -5,6 +5,12 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 
 import java.io.File;
+
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+
 public class Compressor {
     private static volatile Compressor INSTANCE;
     private Context context;
@@ -31,6 +37,14 @@ public class Compressor {
             }
         }
         return INSTANCE;
+    }
+    public Observable<File> compressUseRxJava(final File file){
+        return Observable.create(new ObservableOnSubscribe<File>() {
+            @Override
+            public void subscribe(ObservableEmitter<File> e) throws Exception {
+                e.onNext(compressToFile(file));
+            }
+        });
     }
     public File compressToFile(File file) {
         return ImageUtil.compressImage(context, Uri.fromFile(file), maxWidth, maxHeight,

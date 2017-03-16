@@ -40,6 +40,7 @@
                     <ImageView
                         android:id="@+id/iv_icon"
                         app:setIcon="@{meData.user.user_img}"
+                        android:scaleType="fitXY"
                         android:layout_width="@dimen/x73"
                         android:layout_height="@dimen/x73"
                         android:layout_centerHorizontal="true"

@@ -32,7 +32,7 @@ public class ShowImageUtils {
         if (TextUtils.isEmpty(url)){
             Glide.with(imageView.getContext()).load(normalRes).into(imageView);
         }else {
-            Glide.with(imageView.getContext()).load(url).placeholder(normalRes).error(normalRes).transform(new GlideCircleTransform(imageView.getContext(),borderWidth, Color.WHITE)).into(imageView);
+            Glide.with(imageView.getContext()).load(url).centerCrop().placeholder(normalRes).error(normalRes).transform(new GlideCircleTransform(imageView.getContext(),borderWidth, Color.WHITE)).into(imageView);
         }
     }
     public static void showCircle(ImageView imageView,int normalRes, String url){

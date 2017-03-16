@@ -46,7 +46,7 @@ public class CircleFragment extends BaseFragment implements View.OnClickListener
     protected void initData() {
         if (fragments.size()<2) {
             fragments.add(new NavLeftFragment());
-            fragments.add(new HotFragment());
+            fragments.add(new com.yunspeak.travel.ui.circle.hot.HotFragment());
         }
         mVpCircle.setAdapter(new CirclePagerAdapter(getChildFragmentManager()));
         initTitle(0);

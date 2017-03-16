@@ -15,7 +15,6 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.aop.CheckNetwork;
 import com.yunspeak.travel.bean.ActivityBean;
 import com.yunspeak.travel.bean.HomeBean;
-import com.yunspeak.travel.download.DownloadClient;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.ui.baseui.SystemBarHelper;
 import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;

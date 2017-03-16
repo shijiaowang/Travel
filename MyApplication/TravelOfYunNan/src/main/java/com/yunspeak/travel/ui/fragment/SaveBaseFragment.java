@@ -1,9 +1,11 @@
 package com.yunspeak.travel.ui.fragment;
 
 import android.text.TextUtils;
+
+import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.HomePageDataBean;
 import com.yunspeak.travel.db.HomeDataDao;
-import com.yunspeak.travel.download.DownloadClient;
+import com.yunspeak.travel.download.HttpClient;
 import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.view.StatusView;
 import com.yunspeak.travel.utils.GlobalUtils;
@@ -27,7 +29,7 @@ public abstract class SaveBaseFragment<T extends TravelsObject> extends BaseLoad
     private String TAG=this.getClass().getSimpleName();
     @Override
     protected void childLoad() {
-        DownloadClient.getInstance().getDataDealErrorAuto(statusView,getTInstance(), new Consumer<T>() {
+        HttpClient.getInstance().getDataDealErrorAuto(statusView,getTInstance(), new Consumer<T>() {
             @Override
             public void accept(@NonNull T data) throws Exception {
                 if (data!=null) {
@@ -52,7 +54,7 @@ public abstract class SaveBaseFragment<T extends TravelsObject> extends BaseLoad
         statusView.setOnErrorBackListener(new StatusView.OnErrorBackListener() {
             @Override
             public void onErrorBack(Throwable throwable) {
-                ToastUtils.showToast(throwable.getMessage());
+                ToastUtils.showToast(!NetworkUtils.isNetworkConnected()?getString(R.string.network_isnot_available):throwable.getMessage());
                 //查看数据库是否存有数据，有就显示缓存，没有就显示错误页面
                 HomePageDataBean query = daoHelper.query(new HomePageDataBean(TAG, ""));
                 if (query==null || TextUtils.isEmpty(query.getPageContent())){
@@ -64,6 +66,7 @@ public abstract class SaveBaseFragment<T extends TravelsObject> extends BaseLoad
                         return;
                     }
                     receiveData(t);
+                    statusView.showSuccessView();
                 }
             }
         });

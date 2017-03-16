@@ -4,6 +4,7 @@ package com.yunspeak.travel.utils;
 import android.graphics.Bitmap;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.compressor.Compressor;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.global.IVariable;
 
@@ -28,7 +29,7 @@ import java.util.Map;
  */
 public class XEventUtils {
 
-  /*  private static Compressor compressor;*/
+   private static Compressor compressor;
 
     /**
      * get获取请求
@@ -103,15 +104,15 @@ public class XEventUtils {
                     }
                     continue;
                 }
-                /*Compressor compressor = getCompressor();
-                File compressedImageFile = compressor.compressToFile(file);*/
-                requestParams.addBodyParameter("file["+j+"]", file);
+                Compressor compressor = getCompressor();
+                File compressedImageFile = compressor.compressToFile(file);
+                requestParams.addBodyParameter("file["+j+"]", compressedImageFile);
             }
         }
         return x.http().post(requestParams, new MyCommonCallback(type,event));
     }
 
-   /* private synchronized static Compressor getCompressor() {
+    private synchronized static Compressor getCompressor() {
         if (compressor==null) {
             Compressor.Builder builder = new Compressor.Builder(UIUtils.getContext());
             builder.setMaxWidth(1920);
@@ -121,7 +122,7 @@ public class XEventUtils {
             compressor = builder.build();
         }
         return compressor;
-    }*/
+    }
 
     /**
      * post请求

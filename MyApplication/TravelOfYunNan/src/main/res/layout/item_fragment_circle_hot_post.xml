@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="hotPostModel"
+            type="com.yunspeak.travel.ui.circle.hot.model.HotPostModel"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorFAFAFA"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x8"
+            android:layout_marginTop="@dimen/x22">
+
+            <ImageView
+                android:id="@+id/iv_user_icon"
+                app:img="@{hotPostModel.user_img}"
+                android:scaleType="fitXY"
+                android:layout_width="@dimen/x31"
+                android:layout_height="@dimen/x31"
+                android:layout_marginLeft="@dimen/x20" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/x31"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_toRightOf="@id/iv_user_icon"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="@{hotPostModel.nick_name}"
+                    style="@style/commonSingleLineTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/homeTopicChosenText"
+                    android:textSize="@dimen/x10sp" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x5"
+                    style="@style/commonSingleLineTextStyle"
+                    android:textColor="@color/homeButtonUnCheckedColor"
+                    android:textSize="@dimen/x8sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/x18"
+                android:layout_marginRight="@dimen/x25"
+                android:textColor="@color/homeButtonUnCheckedColor"
+                android:textSize="@dimen/x10sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x24"
+            android:background="#f5f5f5" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/x17"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/homeTopicChosenText"
+            android:textSize="@dimen/x18sp" />
+
+        <com.yunspeak.travel.ui.view.EllipsizeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginRight="@dimen/x40"
+            android:layout_marginTop="@dimen/x15"
+            android:lineSpacingExtra="@dimen/x10"
+            android:ellipsize="end"
+            app:m_limit_lines="3"
+            android:maxLines="3"
+            android:textSize="@dimen/x14sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginRight="@dimen/x15"
+            android:layout_marginTop="@dimen/x19"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x35"
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginRight="@dimen/x15"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/x10"
+            android:paddingTop="@dimen/x10">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_zhan"
+                android:text="@string/activity_circle_love_empty"
+                android:textColor="@color/colorb5b5b5"
+                android:layout_width="@dimen/x19"
+                android:layout_height="@dimen/x15"
+                />
+
+            <TextView
+                android:id="@+id/tv_zhan_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x5"
+                android:textColor="@color/colorb5b5b5"
+                android:textSize="@dimen/x9sp" />
+
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x15"
+                android:text="@string/activity_circle_discuss"
+                android:textColor="@color/colorb5b5b5" />
+
+            <TextView
+                android:id="@+id/tv_discuss_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x5"
+                android:textColor="@color/colorb5b5b5"
+                android:textSize="@dimen/x9sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
+

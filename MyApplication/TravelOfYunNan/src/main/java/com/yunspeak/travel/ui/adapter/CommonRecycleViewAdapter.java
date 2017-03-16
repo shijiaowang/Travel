@@ -15,14 +15,13 @@ import java.util.List;
  * 通用recycleviewadapter
  */
 
-public class CommonRecycleViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class CommonRecycleViewAdapter<T> extends BaseRecycleViewAdapter<T>{
     private int layoutId;
     private int brId;
-    private List<T> datas=null;
     private LayoutInflater layoutInflater;
 
     public CommonRecycleViewAdapter(List<T> datas, int brId, int layoutId) {
-        this.datas = datas;
+        super(datas);
         this.brId = brId;
         this.layoutId = layoutId;
     }
@@ -44,11 +43,6 @@ public class CommonRecycleViewAdapter<T> extends RecyclerView.Adapter<RecyclerVi
                 binding.setVariable(brId, datas.get(holder.getAdapterPosition()));
                 binding.executePendingBindings();
             }
-    }
-
-    @Override
-    public int getItemCount() {
-        return datas==null?0:datas.size();
     }
    private static class CommonRecycleHolder extends RecyclerView.ViewHolder{
 

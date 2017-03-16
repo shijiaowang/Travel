@@ -44,14 +44,14 @@
 
         </android.support.v7.widget.Toolbar>
 
-
+        <com.yunspeak.travel.ui.view.StatusView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.yunspeak.travel.ui.view.StatusView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+
 
                 <LinearLayout
                     android:id="@id/status_content_view"
@@ -229,8 +229,9 @@
                         android:overScrollMode="never" />
                 </LinearLayout>
 
-            </com.yunspeak.travel.ui.view.StatusView>
+
         </android.support.v4.widget.NestedScrollView>
+        </com.yunspeak.travel.ui.view.StatusView>
     </LinearLayout>
 
 </layout>

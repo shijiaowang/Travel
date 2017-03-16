@@ -44,7 +44,7 @@ public class CircleHotHolder extends BaseRecycleViewHolder<HotPostBean.DataBean>
         if (inflater==null) {
             inflater = LayoutInflater.from(mContext);
         }
-        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-mm-dd",circleHot.getTime()));
+        mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy-MM-dd",circleHot.getTime()));
         mTvTitle.setText(circleHot.getTitle());
         if (StringUtils.isEmpty(circleHot.getTitle())){
             mTvTitle.setVisibility(View.GONE);
