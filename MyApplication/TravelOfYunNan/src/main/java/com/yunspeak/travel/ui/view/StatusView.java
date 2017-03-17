@@ -23,6 +23,7 @@ import static android.content.ContentValues.TAG;
 
 public class StatusView extends FrameLayout implements View.OnClickListener,IStatusChange {
     private boolean isSuccessfully =false;
+    private boolean isShowStatus=true;//之后是否暂时其他状态，除成功之外
     public static final int STATE_LOAD_SUCCESS = 0;//加载成功
     public static final int STATE_LOAD_ERROR = 1;//加载错误
     public static final int STATE_LOAD_LOADING = 2;//加载中
@@ -104,6 +105,7 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
      * @param isHideContent 是否隐藏内容页
      */
     public void setStatus(int status, boolean isHideContent) {
+        if (!isShowStatus)return;
         if (status < 0 || status > childView.length - 1) {
             return;
         }
@@ -220,10 +222,31 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
        }
     }
 
+    @Override
+    public void cnaShow(boolean isShowStatus) {
+        this.isShowStatus=isShowStatus;
+    }
+
+
+
+    /**
+     * 如果之前有数据展示 就取消显示错误页面
+     */
     public void showErrorView(){
+        if (isSuccessfully){
+            showSuccessView();
+         return;
+        }
         setStatus(STATE_LOAD_ERROR);
     }
+    /**
+     * 如果之前有数据展示 就取消显示没有网络页面
+     */
     public void showNoNetworkView(){
+        if (isSuccessfully){
+            showSuccessView();
+            return;
+        }
         setStatus(STATE_LOAD_NO_NETWORK);
     }
     /**

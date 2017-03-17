@@ -149,9 +149,9 @@ public class HttpClient {
         for (int i=0;i<fileList.size();i++) {
             File file = new File(fileList.get(i));
             File newFile = getCompressor().compressToFile(file);
-            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"),newFile);
             // MultipartBody.Part is used to send also the actual file name
-            MultipartBody.Part filePart = MultipartBody.Part.createFormData("file["+ i +"]", file.getName(), requestFile);
+            MultipartBody.Part filePart = MultipartBody.Part.createFormData("file["+ i +"]", newFile.getName(), requestFile);
             parts[i]=filePart;
         }
         return parts;
@@ -193,6 +193,7 @@ public class HttpClient {
                             case 0:
                                 if (iStatusChange.isSuccessfully()){
                                     iStatusChange.showSuccessView();
+                                    success.accept(t);
                                     ToastUtils.showToast(UIUtils.getString(R.string.no_more_data));
                                 }else {
                                     iStatusChange.showEmptyView();//展示空页面
@@ -209,7 +210,7 @@ public class HttpClient {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
                 if (!isNeedSelf){
-                    if (iStatusChange.errorBack(throwable)){
+                    if (iStatusChange.errorBack(throwable)){//自行处理
                         //返回错误，不用做什么操作
                     }else if (NetworkUtils.isNetworkConnected()) {
                         iStatusChange.showErrorView();//错误页面展示错误

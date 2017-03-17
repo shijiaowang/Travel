@@ -16,13 +16,13 @@
             android:id="@id/status_content_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:init="@{1}"
+            app:init="@{0}"
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@id/swipe_target"
                 app:manager="@{0}"
                 app:child_space="@{5}"
-                app:setAdapter="@{hot.datas}"
+                app:setRecycleView="@{hot.datas}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
