@@ -53,35 +53,26 @@ public abstract class SaveBaseFragment<T extends TravelsObject> extends BaseLoad
         super.initOptions();
         statusView.setOnErrorBackListener(new StatusView.OnErrorBackListener() {
             @Override
-            public void onErrorBack(Throwable throwable) {
+            public boolean onErrorBack(Throwable throwable) {
                 ToastUtils.showToast(!NetworkUtils.isNetworkConnected()?getString(R.string.network_isnot_available):throwable.getMessage());
                 //查看数据库是否存有数据，有就显示缓存，没有就显示错误页面
                 HomePageDataBean query = daoHelper.query(new HomePageDataBean(TAG, ""));
                 if (query==null || TextUtils.isEmpty(query.getPageContent())){
-                    showNotSuccess();
+                    return false;//继续自动处理需要显示的页面
                 }else {
                     T t = GsonUtils.getObject(query.getPageContent(), getTInstance());
                     if (t==null){
-                        showNotSuccess();
-                        return;
+                        return false;
                     }
                     receiveData(t);
                     statusView.showSuccessView();
+                    return true;
                 }
             }
         });
     }
 
-    /**
-     * 展示不正确的页面
-     */
-    private void showNotSuccess() {
-        if (NetworkUtils.isNetworkConnected()){//网络错误
-            statusView.showNoNetworkView();
-        }else {
-            statusView.showErrorView();
-        }
-    }
+
 
     /**
      * 实例化 T

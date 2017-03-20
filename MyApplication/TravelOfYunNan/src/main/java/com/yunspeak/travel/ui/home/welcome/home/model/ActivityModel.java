@@ -3,6 +3,7 @@ import android.databinding.BindingAdapter;
 import android.view.View;
 import android.widget.ImageView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.aop.CheckNetwork;
 import com.yunspeak.travel.ui.find.active.activedetail.ActivateDetailActivity;
 import com.yunspeak.travel.utils.ShowImageUtils;
 /**
@@ -54,7 +55,7 @@ public class ActivityModel {
     public void setType(String type) {
         this.type = type;
     }
-
+    @CheckNetwork
     public void onClick(View view){
         ActivateDetailActivity.start(view.getContext(),getId());
     }

@@ -61,7 +61,7 @@ public class DiscussCommonReplyTextHolder extends BaseRecycleViewHolder<TravelRe
         mTvReplyTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(datas.getReply_time(),"yyyy-MM-dd HH:mm"));
         mTvFloorNumber.setText(datas.getFloor() + "楼");
         boolean equals = datas.getIs_like().equals("1");
-        AiteUtils.setIconText(equals,equals?fullLove:emptyLove,-1,datas.getLike_count(),mContext,mTvLoveNumber,R.dimen.x14sp);
+        AiteUtils.setIconText(equals,equals?fullLove:emptyLove,-1,datas.getLike_count(),mTvLoveNumber,R.dimen.x14sp);
         mTvLoveNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

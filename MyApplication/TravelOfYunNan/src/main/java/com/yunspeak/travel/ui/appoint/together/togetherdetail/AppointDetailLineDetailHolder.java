@@ -34,7 +34,7 @@ public class AppointDetailLineDetailHolder extends BaseRecycleViewHolder<Appoint
     @Override
     public void childBindView(int position, final AppointTogetherDetailBean.DataBean.RoutesBean datas, final Context mContext) {
         FrescoUtils.displayNormal(mIvBg,datas.getLogo_img(),300,200,R.drawable.normal_2_1);
-        AiteUtils.setIconText(addressIcon,datas.getAddress(),mContext,mTvAddress);
+        AiteUtils.setIconText(addressIcon,datas.getAddress(),mTvAddress);
         mTvDes.setText(datas.getProvince()+datas.getContent());
         mTvName.setText(datas.getCity()+" · "+datas.getTitle());
         itemView.setOnClickListener(new View.OnClickListener() {

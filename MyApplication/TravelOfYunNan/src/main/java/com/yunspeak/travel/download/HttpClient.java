@@ -190,7 +190,7 @@ public class HttpClient {
                                     iStatusChange.showErrorView();//显示错误页面
                                 }
                                 break;
-                            case 0:
+                            case 2:
                                 if (iStatusChange.isSuccessfully()){
                                     iStatusChange.showSuccessView();
                                     success.accept(t);

@@ -89,13 +89,13 @@ public class AiteUtils {
     public static int normalColor= Color.parseColor("#969696");
     public static int clickColor=Color.parseColor("#ff7f6c");
 
-    public static void setIconText(String text,String number,Context context,TextView textView){
-        setIconText(false,text,-1,number,context,textView,-1);
+    public static void setIconText(String text,String number,TextView textView){
+        setIconText(false,text,-1,number,textView,-1);
     }
-    public static void setIconText(boolean isLove,String text,int color,String number,Context context,TextView textView,int resSize){
+    public static void setIconText(boolean isLove,String text,int color,String number,TextView textView,int resSize){
         String likeNumber =text+"\u0020"+number;
         SpannableStringBuilder spannableStringBuilder=new SpannableStringBuilder(likeNumber);
-        spannableStringBuilder.setSpan(new CustomTypefaceSpan("sans-serif",context,isLove?clickColor:color,resSize),0,1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        spannableStringBuilder.setSpan(new CustomTypefaceSpan("sans-serif",textView.getContext(),isLove?clickColor:color,resSize),0,1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textView.setText(spannableStringBuilder);
     }
 

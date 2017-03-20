@@ -1,7 +1,11 @@
 package com.yunspeak.travel.ui.view;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -12,7 +16,7 @@ import android.widget.FrameLayout;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.global.IStatusChange;
-import com.yunspeak.travel.utils.LogUtils;
+import com.yunspeak.travel.utils.NetworkUtils;
 
 import static android.content.ContentValues.TAG;
 
@@ -23,12 +27,13 @@ import static android.content.ContentValues.TAG;
 
 public class StatusView extends FrameLayout implements View.OnClickListener,IStatusChange {
     private boolean isSuccessfully =false;
-    private boolean isShowStatus=true;//之后是否暂时其他状态，除成功之外
+    private boolean isShowStatusAfter =false;//成功一次以后，之后是否显示其他状态，除成功之外
     public static final int STATE_LOAD_SUCCESS = 0;//加载成功
     public static final int STATE_LOAD_ERROR = 1;//加载错误
     public static final int STATE_LOAD_LOADING = 2;//加载中
     public static final int STATE_LOAD_EMPTY = 3;//数据为空
     public static final int STATE_LOAD_NO_NETWORK = 4;//没有网络
+    NetworkBroadcastReceiver networkBroadcastReceiver;
     private View[] childView = new View[5];
     private int loadingId=R.layout.status_loading_progress_view;;
     private int emptyId=R.layout.status_empty_view;
@@ -40,6 +45,7 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
     private View emptyView;//空页面
     private View noNetworkView;//没有网络页面
     private LayoutInflater layoutInflater;
+    private int currentStatus=-1;
 
     public StatusView(Context context) {
         this(context, null);
@@ -105,7 +111,9 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
      * @param isHideContent 是否隐藏内容页
      */
     public void setStatus(int status, boolean isHideContent) {
-        if (!isShowStatus)return;
+        currentStatus=status;
+        if (!isShowStatusAfter && isSuccessfully)return;
+        if (status==STATE_LOAD_SUCCESS)  isSuccessfully=true;
         if (status < 0 || status > childView.length - 1) {
             return;
         }
@@ -132,7 +140,19 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
                     break;
                 case STATE_LOAD_NO_NETWORK:
                     view = noNetworkView = inflateView(noNetworkId);
-                    setClick(view);
+                    noNetworkView.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (NetworkUtils.isNetworkConnected()){
+                                unregisterNetworkBroadcastReceiver();
+                                onClick(noNetworkView);
+                            }else {
+                                registerNetworkBroadcastReceiver();
+                                Intent intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+                                noNetworkView.getContext().startActivity(intent);
+                            }
+                        }
+                    });
                     break;
             }
             if (view == null) {
@@ -144,7 +164,6 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
 
         }
         for (View view : childView) {
-            LogUtils.e("调用了几次"+status);
             if (view == null) continue;
             if (view == childView[status]) {
                 view.setVisibility(View.VISIBLE);
@@ -163,7 +182,7 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
         setStatus(STATE_LOAD_EMPTY);
     }
     public void showSuccessView(){
-        isSuccessfully=true;
+
         setStatus(STATE_LOAD_SUCCESS,false);
     }
    public void resetSuccess(){
@@ -171,18 +190,18 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
    }
     /**
      *
-     * @param isShowSuccessView 是否展示内容页
+     * @param isHideSuccessView 是否展示内容页
      */
-    public void showLoadingView(boolean isShowSuccessView){
-        setStatus(STATE_LOAD_LOADING,isShowSuccessView);
+    public void showLoadingView(boolean isHideSuccessView){
+        setStatus(STATE_LOAD_LOADING,isHideSuccessView);
     }
 
     @Override
     public boolean errorBack(Throwable throwable) {
         if (onErrorBackListener!=null){
-            onErrorBackListener.onErrorBack(throwable);
+            return onErrorBackListener.onErrorBack(throwable);
         }
-        return onErrorBackListener!=null;
+         return false;
     }
 
     @Override
@@ -224,7 +243,7 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
 
     @Override
     public void cnaShow(boolean isShowStatus) {
-        this.isShowStatus=isShowStatus;
+        this.isShowStatusAfter =isShowStatus;
     }
 
 
@@ -310,6 +329,40 @@ public class StatusView extends FrameLayout implements View.OnClickListener,ISta
     }
     private OnErrorBackListener onErrorBackListener;
     public interface OnErrorBackListener{
-        void onErrorBack(Throwable throwable);
+        boolean onErrorBack(Throwable throwable);
+    }
+
+    /**
+     * 注册广播
+     */
+  public void registerNetworkBroadcastReceiver(){
+      IntentFilter mFilter = new IntentFilter();
+      if (networkBroadcastReceiver==null){
+          networkBroadcastReceiver=new NetworkBroadcastReceiver();
+      }
+      mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+      getContext().registerReceiver(networkBroadcastReceiver, mFilter);
+
+  }
+
+    /**
+     * 注销广播
+     */
+    public void unregisterNetworkBroadcastReceiver(){
+        if (networkBroadcastReceiver!=null){
+            getContext().unregisterReceiver(networkBroadcastReceiver);
+        }
+    }
+   public class NetworkBroadcastReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)){
+                if (NetworkUtils.isNetworkConnected() && onTryGetDataListener!=null){
+                    unregisterNetworkBroadcastReceiver();
+                    onClick(null);
+                }
+            }
+        }
     }
 }

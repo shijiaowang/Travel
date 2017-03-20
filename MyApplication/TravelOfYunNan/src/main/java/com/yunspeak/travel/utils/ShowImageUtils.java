@@ -5,7 +5,11 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.yunspeak.travel.glide.GlideCircleTransform;
+import com.yunspeak.travel.ui.view.CircleImageView;
 
 /**
  * Created by wangyang on 2017/3/13.
@@ -32,7 +36,25 @@ public class ShowImageUtils {
         if (TextUtils.isEmpty(url)){
             Glide.with(imageView.getContext()).load(normalRes).into(imageView);
         }else {
-            Glide.with(imageView.getContext()).load(url).centerCrop().placeholder(normalRes).error(normalRes).transform(new GlideCircleTransform(imageView.getContext(),borderWidth, Color.WHITE)).into(imageView);
+            Glide.with(imageView.getContext()).load(url).placeholder(normalRes).error(normalRes).transform(new GlideCircleTransform(imageView.getContext(),borderWidth, Color.WHITE)).into(imageView);
+        }
+    }
+    public static void showCircle(final CircleImageView imageView, int normalRes, String url){
+        if (imageView==null)return;
+        if (TextUtils.isEmpty(url)){
+            Glide.with(imageView.getContext()).load(normalRes).into(new SimpleTarget<GlideDrawable>() {
+                @Override
+                public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                    imageView.setImageDrawable(resource);
+                }
+            });
+        }else {
+            Glide.with(imageView.getContext()).load(url).centerCrop().placeholder(normalRes).error(normalRes).into(new SimpleTarget<GlideDrawable>() {
+                @Override
+                public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                    imageView.setImageDrawable(resource);
+                }
+            });
         }
     }
     public static void showCircle(ImageView imageView,int normalRes, String url){

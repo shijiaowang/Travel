@@ -5,6 +5,7 @@ import android.databinding.BindingAdapter;
 import android.view.View;
 import android.widget.ImageView;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.aop.CheckNetwork;
 import com.yunspeak.travel.ui.home.welcome.homeswitch.HomeSwitchActivity;
 import com.yunspeak.travel.utils.ShowImageUtils;
 
@@ -64,6 +65,7 @@ public  class IndexTextModel{
     public static void loadImage(ImageView imageView,String url){
         ShowImageUtils.showNormal(imageView,R.drawable.normal_2_1,url);
     }
+    @CheckNetwork
     public void onClick(View view){
         HomeSwitchActivity.start(view.getContext(),getUrl(),getType());
     }

@@ -9,7 +9,6 @@ import com.yunspeak.travel.databinding.FragmentHotBinding;
 import com.yunspeak.travel.ui.baseui.BaseLoadAndRefreshFragment;
 import com.yunspeak.travel.ui.baseui.BasePullAndRefreshModel;
 import com.yunspeak.travel.ui.circle.hot.model.Hot;
-import com.yunspeak.travel.ui.circle.hot.model.HotComponent;
 import com.yunspeak.travel.ui.circle.hot.model.HotPostModel;
 import com.yunspeak.travel.ui.circle.hot.model.HotRecycleModel;
 
@@ -28,7 +27,7 @@ public class HotFragment extends BaseLoadAndRefreshFragment<Hot,HotPostModel> {
 
     @Override
     protected View initRootView(LayoutInflater inflater, ViewGroup container) {
-        fragmentHotBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hot_post, container, false,new HotComponent());
+        fragmentHotBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hot_post, container, false);
         return fragmentHotBinding.getRoot();
     }
 

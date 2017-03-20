@@ -9,7 +9,7 @@
         android:drawablePadding="@dimen/x20"
         android:drawableTop="@drawable/no_network"
         android:gravity="center"
-        android:text="@string/network_isnot_available"
+        android:text="@string/network_is_not_work_click_open"
         android:textColor="@color/color969696"
         android:textSize="@dimen/x14sp">
     </TextView>

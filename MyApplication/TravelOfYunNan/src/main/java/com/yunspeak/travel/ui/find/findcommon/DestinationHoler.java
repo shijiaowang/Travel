@@ -50,7 +50,7 @@ public class DestinationHoler extends BaseRecycleViewHolder<FindDestinationBean.
     public void childBindView(int position, final FindDestinationBean.DataBean.BodyBean datas, final Context mContext) {
         FrescoUtils.displayNormal(mIvSpot,datas.getLogo_img(),R.drawable.normal_2_1);
         mTvName.setText(datas.getTitle());
-        AiteUtils.setIconText(addressIcon,datas.getAddress(),mContext,mTvAdd);
+        AiteUtils.setIconText(addressIcon,datas.getAddress(),mTvAdd);
         float star=5.0f;
         star = getStar(datas, star);
         mRbStart.setRating(star);
