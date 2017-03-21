@@ -50,9 +50,9 @@ public class CircleHotHolder extends BaseRecycleViewHolder<HotPostBean.DataBean>
             mTvTitle.setVisibility(View.GONE);
         }else {
             mTvTitle.setVisibility(View.VISIBLE);
-            AiteUtils.parseTextMessage(mTvTitle, null, circleHot.getTitle(), mContext,false);
+            AiteUtils.parseTextMessage(mTvTitle, null, circleHot.getTitle(),false);
         }
-        AiteUtils.parseTextMessage(mTvContent,circleHot.getInform(),circleHot.getContent(),mContext,false);
+        AiteUtils.parseTextMessage(mTvContent,circleHot.getInform(),circleHot.getContent(),false);
         FrescoUtils.displayIcon(mIvUserIcon,circleHot.getUser_img());
         mTvNickName.setText(circleHot.getNick_name());
         mTvDiscussNumber.setText(circleHot.getCount_reply());

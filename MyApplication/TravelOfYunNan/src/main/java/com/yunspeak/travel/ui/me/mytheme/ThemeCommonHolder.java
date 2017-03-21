@@ -64,13 +64,13 @@ public class ThemeCommonHolder extends BaseRecycleViewHolder {
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss", datas.getAdd_time()));
             mTvLoveNumber.setText(datas.getCount_like());
             mTvCircle.setText("#" + datas.getCname() + "#");
-            AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),mContext,false);
+            AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),false);
             mTvDiscussNumber.setText(datas.getCount_reply());
             if (StringUtils.isEmpty(datas.getTitle())){
                 mTvName.setVisibility(View.GONE);
             }else {
                 mTvName.setVisibility(View.VISIBLE);
-                AiteUtils.parseTextMessage(mTvName,null,datas.getTitle(),mContext,false);
+                AiteUtils.parseTextMessage(mTvName,null,datas.getTitle(),false);
             }
             mTvCircle.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -99,14 +99,14 @@ public class ThemeCommonHolder extends BaseRecycleViewHolder {
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm:ss", datas.getAdd_time()));
             mTvLoveNumber.setText(datas.getCount_like());
             mTvCircle.setText("#" + datas.getCname() + "#");
-            AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),mContext,false);
+            AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),false);
             mTvContent.setText(AiteUtils.getSmiedTextWithAiteAndLinke(mContext,datas.getContent(),datas.getInform(),datas.getUrl()));
             mTvDiscuss.setVisibility(View.GONE);
             if (StringUtils.isEmpty(datas.getTitle())){
                 mTvName.setVisibility(View.GONE);
             }else {
                 mTvName.setVisibility(View.VISIBLE);
-                AiteUtils.parseTextMessage(mTvName,null,datas.getTitle(),mContext,false);
+                AiteUtils.parseTextMessage(mTvName,null,datas.getTitle(),false);
             }
             mTvDiscussNumber.setVisibility(View.GONE);
             final String type = datas.getType();

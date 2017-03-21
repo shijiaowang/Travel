@@ -136,13 +136,13 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
             int viewBottom=view.getBottom();
             float textY= Math.max(topGap,view.getTop());
             //下一个和当前不一样移动当前
-            /*if (position+1<itemCount){
+            if (position+1<itemCount){
                 String nextGroupId=callback.getGroupId(position+1);
                 //组内最后一个view进入了header
                 if (!nextGroupId.equals(groupId)&&viewBottom<textY){
                     textY=viewBottom;
                 }
-            }*/
+            }
             //textY-toGap决定了悬浮栏绘制的高度和位置
             c.drawRect(left,textY-topGap,right,textY,paint);
             Rect rect=new Rect();

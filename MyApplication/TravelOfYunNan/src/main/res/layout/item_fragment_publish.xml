@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="publish"
+            type="com.yunspeak.travel.ui.me.mytheme.model.PublishModel"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@color/colorFAFAFA"
+        android:orientation="vertical"
+        android:onClick="@{publish.onRootClick}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginLeft="@dimen/x13"
+            android:layout_marginTop="@dimen/x7"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/x5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                app:publish_img="@{publish.img}"
+                android:layout_width="@dimen/x41"
+                android:layout_height="@dimen/x41"
+                android:layout_centerVertical="true"
+                />
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/x11"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:minHeight="@dimen/x41"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_icon"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:visibility="@{(publish.title==null || publish.title.empty)?View.GONE:View.VISIBLE}"
+                    app:publish_parse_text="@{publish.title??``}"
+                    style="@style/commonSingleLineTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#575555"
+                    android:layout_marginBottom="@dimen/x10"
+                    android:textSize="@dimen/x12sp" />
+
+                <TextView
+                    style="@style/commonSingleLineTextStyle"
+                    app:publish_parse_content="@{publish.content}"
+                    app:publish_content_inform="@{publish.inform}"
+                    app:publish_url="@{publish.url}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#777777"
+                    android:textSize="@dimen/x11sp" />
+
+
+            </LinearLayout>
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_delete"
+                android:text="@string/activity_my_appoint_delete"
+                android:textColor="@color/Ffbf75"
+                android:textSize="@dimen/x15sp"
+                android:padding="@dimen/x10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <View
+            android:background="@color/meLine"
+            android:layout_marginLeft="@dimen/x13"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"/>
+        <RelativeLayout
+            android:layout_marginRight="@dimen/x13"
+            android:layout_marginLeft="@dimen/x13"
+            android:layout_marginTop="@dimen/x6"
+            android:layout_marginBottom="@dimen/x6"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_time"
+                app:publish_time="@{publish.add_time??``}"
+                style="@style/themeCommonText" />
+            <TextView
+                android:onClick="@{publish.onNameClick}"
+                android:text="@{`#`+publish.cname+`#`}"
+                android:layout_marginLeft="@dimen/x14"
+                android:layout_toRightOf="@id/tv_time"
+                android:textColor="@color/otherTitleBg"
+                style="@style/themeCommonText" />
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    android:layout_marginRight="@dimen/x6"
+                    android:text="@string/activity_circle_love_empty"
+                    style="@style/themeCommonText" />
+                <TextView
+                    android:id="@+id/tv_love_number"
+                    android:layout_marginRight="@dimen/x12"
+                    style="@style/themeCommonText" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

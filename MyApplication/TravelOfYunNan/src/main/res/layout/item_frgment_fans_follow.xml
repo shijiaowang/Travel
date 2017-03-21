@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="fanFollowModel"
+            type="com.yunspeak.travel.ui.me.fans.model.FansFollowModel"/>
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:onClick="@{fanFollowModel.onClick}"
+        android:layout_height="@dimen/x80"
+        android:background="@android:color/white">
+        <ImageView
+            app:fan_img="@{fanFollowModel.user_img}"
+            android:layout_marginTop="@dimen/x20"
+            android:layout_marginBottom="@dimen/x20"
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/x43"
+            android:layout_height="@dimen/x43"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x12"
+            android:layout_marginStart="@dimen/x12"
+            />
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/x16"
+            android:layout_marginTop="@dimen/x20"
+            android:layout_toRightOf="@id/iv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x40"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@{fanFollowModel.nick_name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#8c8c8c"
+                android:textSize="@dimen/x12sp" />
+            <android.support.v4.widget.Space
+                android:layout_weight="1"
+                android:layout_width="@dimen/x1"
+                android:layout_height="0dp"/>
+
+            <TextView
+                android:text="@{fanFollowModel.content??@string/this_people_not_write}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#b3b3b3"
+                android:textSize="@dimen/x12sp" />
+
+
+        </LinearLayout>
+        <com.yunspeak.travel.ui.view.FontsIconTextView
+            android:text="@string/activity_message_center_cursor"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_cursor"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x15"
+            android:layout_below="@id/tv_time"
+            android:layout_marginRight="@dimen/x13"
+            android:gravity="center"
+            android:textColor="#7b7b7b"
+            android:textSize="@dimen/x11sp" />
+
+    </RelativeLayout>
+
+</layout>

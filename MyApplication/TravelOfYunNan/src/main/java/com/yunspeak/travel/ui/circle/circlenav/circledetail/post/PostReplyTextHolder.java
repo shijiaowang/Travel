@@ -72,7 +72,7 @@ public class PostReplyTextHolder extends BaseRecycleViewHolder {
             }
             mTvReplyNickName.setText(forumReplyBean.getNick_name());
             FrescoUtils.displayIcon(mIvReplyIcon,forumReplyBean.getUser_img());
-            AiteUtils.parseTextMessage(mTvReplyMessage,forumReplyBean.getInform(),forumReplyBean.getContent(),t,true);
+            AiteUtils.parseTextMessage(mTvReplyMessage,forumReplyBean.getInform(),forumReplyBean.getContent(),true);
             mTvReplyMessage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

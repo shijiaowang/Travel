@@ -71,7 +71,7 @@ class PostOpHolder extends BaseRecycleViewHolder {
         if (isFirst) {
             isFirst = false;
             mTvNickName.setText(forum.getNick_name());
-            AiteUtils.parseTextMessage(mTvContent,forum.getInform(),forum.getContent(),mContext,true);
+            AiteUtils.parseTextMessage(mTvContent,forum.getInform(),forum.getContent(),true);
             FrescoUtils.displayIcon(mIvUserIcon, forum.getUser_img());
             if (!StringUtils.isEmpty(forum.getForum_img())) {
                 String[] split = forum.getForum_img().split(",");

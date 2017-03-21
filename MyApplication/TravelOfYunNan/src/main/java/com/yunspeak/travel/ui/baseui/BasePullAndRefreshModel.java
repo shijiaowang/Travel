@@ -25,8 +25,6 @@ import io.reactivex.functions.Consumer;
 /**
  * Created by wangyang on 2017/3/16.
  * 统一的下拉刷新 与 上啦加载
- *
- * DataBindingSetRecycleAdapter 为了避免使用静态方法设置adapter
  */
 
 public abstract class BasePullAndRefreshModel<T>{
@@ -50,8 +48,7 @@ public abstract class BasePullAndRefreshModel<T>{
         this.datas = datas;
     }
     protected  Map<String,String> initChildParams(MapUtils.Builder builder){
-        Map<String, String> end = builder.end();
-        return end;
+        return builder.end();
     }
 
     public SwipeToLoadLayout getSwipeToLoadLayout() {
@@ -90,7 +87,8 @@ public abstract class BasePullAndRefreshModel<T>{
 
 
     public Map<String,String> initParams(){
-        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId().addPageSize().addCount( isRefresh ? 0 : commonRecycleViewAdapter == null?0:commonRecycleViewAdapter.getItemCount());
+        int count= isRefresh ? 0 : commonRecycleViewAdapter == null?0:commonRecycleViewAdapter.getItemCount();
+        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId().addPageSize().addCount(count);
         return initChildParams(builder);
     }
     /**

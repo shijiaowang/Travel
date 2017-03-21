@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.MeFragment;
+import com.yunspeak.travel.ui.me.fans.FansFollowFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +43,8 @@ public class FollowAndFanActivity extends BaseToolBarActivity implements View.On
         boolean isFollow = getIntent().getBooleanExtra(FOLLOW_SELECT, false);
         currentPosition = isFollow ? 0 : 1;
         mVpFollowFan.setOnPageChangeListener(new FollowFanChangeListener());
-        fragments.add(FanAndFollowFragment.newInstance("1"));
-        fragments.add(FanAndFollowFragment.newInstance("2"));
+        fragments.add(FansFollowFragment.newInstance("1"));//粉丝
+        fragments.add(FansFollowFragment.newInstance("2"));//关注的人
         mVpFollowFan.setAdapter(new FollowFanAdapter(getSupportFragmentManager()));
         mVpFollowFan.setCurrentItem(currentPosition, false);
 

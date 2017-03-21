@@ -26,8 +26,8 @@ import java.util.Set;
 
 public class AiteUtils {
 
-    public static void parseTextMessage(TextView textView, List<InformBean> inform, String content, Context mContext,boolean isClick){
-        Spannable span =getSmiledText(mContext, content, inform);
+    public static void parseTextMessage(TextView textView, List<InformBean> inform, String content,boolean isClick){
+        Spannable span =getSmiledText(textView.getContext(), content, inform);
         // 设置内容
         textView.setText(span);
         if (isClick) {

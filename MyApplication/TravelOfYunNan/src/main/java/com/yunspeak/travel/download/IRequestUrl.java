@@ -15,6 +15,8 @@ public interface IRequestUrl {
     String ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String CHANGE_BG = API_KEY + "User/updateUserbackgroundImg/";//更改个人中心背景
     String CHANGE_USER_INFO = API_KEY + "User/updateUser/";//更改用户信息
+    String GET_FOLLOW_USER = API_KEY + "User/getInformlists/";//获取关注列表
+    String THEME_MY_PUBLISH = API_KEY + "UserMsg/getMyReplay/";//主题-我的评论
     /*圈子*/
     String HOT_POST = API_KEY + "Circle/getForumishot/";//热帖
 }

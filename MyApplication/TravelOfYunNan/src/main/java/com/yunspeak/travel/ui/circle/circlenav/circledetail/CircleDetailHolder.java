@@ -93,7 +93,7 @@ class CircleDetailHolder extends BaseRecycleViewHolder<CircleDetailBean.DataBean
         mTvLoveNumber.setText(countLike);
         mTvTime.setText(HowLongWithCurrentUtils.getDesStringFromTime(datas.getTime(),"yyyy-M-dd HH:mm"));
        mTvUserNickName.setText(datas.getNick_name());
-        AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),mContext,false);
+        AiteUtils.parseTextMessage(mTvContent,datas.getInform(),datas.getContent(),false);
         mTvIconLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

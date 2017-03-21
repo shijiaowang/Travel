@@ -52,6 +52,7 @@ public class FanAndFollowFragment extends LoadAndPullBaseFragment<FanAndFollowEv
     public static FanAndFollowFragment newInstance(String type) {
         FanAndFollowFragment fanAndFollowFragment = new FanAndFollowFragment();
         Bundle bundle = new Bundle();
+
         bundle.putString(IVariable.TYPE, type);
         fanAndFollowFragment.setArguments(bundle);
         return fanAndFollowFragment;

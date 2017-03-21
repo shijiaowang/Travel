@@ -40,6 +40,6 @@ public class HotFragment extends BaseLoadAndRefreshFragment<Hot,HotPostModel> {
 
     @Override
     protected BasePullAndRefreshModel<HotPostModel> initModel() {
-        return new HotRecycleModel();
+        return hotRecycleModel;
     }
 }

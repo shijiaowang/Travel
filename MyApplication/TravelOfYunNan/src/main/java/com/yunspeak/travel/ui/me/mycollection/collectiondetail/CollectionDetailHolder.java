@@ -128,12 +128,12 @@ public class CollectionDetailHolder extends BaseRecycleViewHolder<Object> {
             FrescoUtils.displayNormal(mIvIcon,dataBean.getForum_img());
             cancelId=dataBean.getCid();
             mTvContent.setTextColor(mContext.getResources().getColor(R.color.color969696));
-            AiteUtils.parseTextMessage(mTvContent,dataBean.getInform(),dataBean.getContent(),mContext,false);
+            AiteUtils.parseTextMessage(mTvContent,dataBean.getInform(),dataBean.getContent(),false);
             if (StringUtils.isEmpty(dataBean.getTitle())){
                 mTvName.setVisibility(View.GONE);
             }else {
                 mTvName.setVisibility(View.VISIBLE);
-                AiteUtils.parseTextMessage(mTvName,null,dataBean.getTitle(),mContext,false);
+                AiteUtils.parseTextMessage(mTvName,null,dataBean.getTitle(),false);
             }
             mTvTime.setText(FormatDateUtils.FormatLongTime("yyyy.MM.dd HH:mm", dataBean.getAdd_time()));
             mTvPrice.setTextColor(Color.parseColor("#ff8888"));

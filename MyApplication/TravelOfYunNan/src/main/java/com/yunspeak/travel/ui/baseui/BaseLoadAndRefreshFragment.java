@@ -33,6 +33,10 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
         if (basePullAndRefreshModel == null) {
             basePullAndRefreshModel = initModel();
         }
+        //关联adapter
+        if (basePullAndRefreshModel.getCommonRecycleViewAdapter()==null && recyclerView!=null && recyclerView.getAdapter()!=null){
+            basePullAndRefreshModel.setCommonRecycleViewAdapter((CommonRecycleViewAdapter<T>) recyclerView.getAdapter());
+        }
         basePullAndRefreshModel.onLoadAuto(statusView, getTInstance(), new Consumer<E>() {
 
 
@@ -47,12 +51,11 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
                         swipeToLoadLayout.setOnRefreshListener(BaseLoadAndRefreshFragment.this);
                     }
                     onReceive(datas);
+
                     isFirst = false;
                     return;
                 }
-                if (basePullAndRefreshModel.getCommonRecycleViewAdapter()==null && recyclerView!=null && recyclerView.getAdapter()!=null){
-                    basePullAndRefreshModel.setCommonRecycleViewAdapter((CommonRecycleViewAdapter<T>) recyclerView.getAdapter());
-                }
+
                 if (isRefresh) {
                     basePullAndRefreshModel.refresh(datas.getData());
                 } else {
@@ -89,7 +92,7 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
      *
      * @return T的 class类型
      */
-    public Class<E> getTInstance() {
+    protected Class<E> getTInstance() {
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         return (Class<E>) pt.getActualTypeArguments()[0];
     }

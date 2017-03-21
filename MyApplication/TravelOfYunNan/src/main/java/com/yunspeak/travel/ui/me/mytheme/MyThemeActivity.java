@@ -33,7 +33,7 @@ public class MyThemeActivity extends BaseToolBarActivity {
     protected void initOptions() {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new MyPostFragment());
-        fragments.add(new MyPublishFragment());
+        fragments.add(new PublishFragment());
         mVpTheme.setAdapter(new TitlePagerAdapter(getSupportFragmentManager(), fragments,mTitles));
         mTbCursor.setupWithViewPager(mVpTheme);
     }

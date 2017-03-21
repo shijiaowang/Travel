@@ -61,6 +61,8 @@ public class MeFragment extends CropBaseFragment<Me> {
     private int upType=-1;
     private static final int UP_BG=99;//上传背景
     private static final int UP_ICON=100;//上传头像
+
+    // TODO: 2017/3/21  刷新，包括其他页面做了修改，使用shareprefence 
     @Override
     protected void receiveData(Me meData) {
         this.dataBean = meData.getData();

@@ -243,7 +243,7 @@ public class HotPostModel {
         if (TextUtils.isEmpty(title)){
             return;
         }
-        AiteUtils.parseTextMessage(textView, null, title, textView.getContext(),false);
+        AiteUtils.parseTextMessage(textView, null, title,false);
     }
     @BindingAdapter("bind:format_text")
     public static  void formatText(TextView textView,String text){
