@@ -253,20 +253,20 @@ public class HotPostModel {
     }
     @BindingAdapter("bind:setImgs")
     public static void setImage(LinearLayout mLlPicture,String forumImg){
+        mLlPicture.removeAllViews();
         if (StringUtils.isEmpty(forumImg)){
             mLlPicture.setVisibility(View.GONE);
         }else {
             LayoutInflater layoutInflater = (LayoutInflater) mLlPicture.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             mLlPicture.setVisibility(View.VISIBLE);
             String[] images = forumImg.split(",");
-            int newSize;
-            //服务器可能返回超过三张
-            String[] newImages=new String[newSize=images.length>3?3:images.length];
-            System.arraycopy(images,0,newImages,0,newSize);
-            for (String url:newImages){
+            for (String url:images){
                 ImageView imageView = (ImageView) layoutInflater.inflate(R.layout.item_hot_post, mLlPicture, false);
                 ShowImageUtils.showNormal(imageView,R.drawable.normal_1_1,url);
                 mLlPicture.addView(imageView);
+                if (mLlPicture.getChildCount()==3){//显示三个
+                    break;
+                }
             }
         }
 

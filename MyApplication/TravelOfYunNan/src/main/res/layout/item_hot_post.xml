@@ -5,5 +5,7 @@
     android:layout_width="@dimen/x108"
     android:layout_height="@dimen/x108"
     android:scaleType="fitXY"
-    android:layout_marginLeft="@dimen/x3" />
+    android:layout_marginRight="@dimen/x1"
+    android:layout_marginLeft="@dimen/x1" />
+
 

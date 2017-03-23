@@ -104,11 +104,10 @@
         <LinearLayout
             android:visibility="@{hotPostModel.forum_img==null||hotPostModel.forum_img.empty?View.GONE:View.VISIBLE}"
             app:setImgs="@{hotPostModel.forum_img}"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x15"
-            android:layout_marginRight="@dimen/x15"
             android:layout_marginTop="@dimen/x19"
+            android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal"
             />
@@ -125,6 +124,7 @@
             android:paddingTop="@dimen/x10">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/loveIcon"
                 android:text="@{hotPostModel.is_like.equals(`1`)?@string/activity_circle_love_full:@string/activity_circle_love_empty}"
                 android:gravity="center"
                 android:textColor="@{hotPostModel.is_like.equals(`1`)?@color/otherFf7f6c:@color/colorb5b5b5}"
@@ -134,7 +134,7 @@
 
             <TextView
                 android:text="@{hotPostModel.count_like}"
-                android:textColor="@{hotPostModel.is_like.equals(`1`)?@color/otherFf7f6c:@color/colorb5b5b5}"
+                android:textColor="@{loveIcon.textColor}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/x9sp" />
