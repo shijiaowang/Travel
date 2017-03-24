@@ -122,7 +122,7 @@ public class MapUtils {
         }
         public Builder addUserId(){
             try {
-                stringMap.put(IVariable.USER_ID,GlobalUtils.getUserInfo().getId());
+                stringMap.put(IVariable.USER_ID,GlobalUtils.getUserInfo().getId()+"");
             } catch (Exception e) {
                 e.printStackTrace();
                 LogUtils.e("userId不见啦");

@@ -20,6 +20,12 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
         this.datas=newDatas;
         notifyDataSetChanged();
     }
+    public void addHeaderDatas(List<T> newDatas){
+        if (newDatas==null)return;
+        this.datas.addAll(0,newDatas);
+        notifyDataSetChanged();
+    }
+
     public void addDatas(List<T> newDatas){
         if (newDatas==null)return;
         if (this.datas!=null) {

@@ -17,6 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:init="@{0}"
+            app:onRefreshListener="@{fans.onRefreshListener}"
+            app:onLoadingMoreListener="@{fans.onLoadMoreListener}"
+            app:loading="@={fans.isLoading}"
+            app:refreshing="@={fans.isRefreshing}"
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@id/swipe_target"

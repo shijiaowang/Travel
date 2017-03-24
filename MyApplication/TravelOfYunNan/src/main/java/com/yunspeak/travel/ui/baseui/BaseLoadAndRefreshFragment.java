@@ -20,7 +20,7 @@ import io.reactivex.functions.Consumer;
  * 基类 加载 刷新
  */
 
-public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> extends BaseLoadingFragment implements OnLoadMoreListener, OnRefreshListener {
+public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> extends BaseLoadingFragment{
     BasePullAndRefreshModel<T> basePullAndRefreshModel = null;
     private SwipeToLoadLayout swipeToLoadLayout;
     private boolean isRefresh;
@@ -46,9 +46,13 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
                     swipeToLoadLayout = (SwipeToLoadLayout) statusView.findViewById(R.id.status_content_view);
                     recyclerView = (RecyclerView) statusView.findViewById(R.id.swipe_target);
                     if (swipeToLoadLayout != null) {
-                        basePullAndRefreshModel.setSwipeToLoadLayout(swipeToLoadLayout);
-                        swipeToLoadLayout.setOnLoadMoreListener(BaseLoadAndRefreshFragment.this);
-                        swipeToLoadLayout.setOnRefreshListener(BaseLoadAndRefreshFragment.this);
+                        basePullAndRefreshModel.setOnLoadListener(new BasePullAndRefreshModel.OnLoadListener() {
+                            @Override
+                            public void onLoad(boolean isRefresh) {
+                                BaseLoadAndRefreshFragment.this.isRefresh=isRefresh;
+                                childLoad();
+                            }
+                        });
                     }
                     onReceive(datas);
 
@@ -95,19 +99,5 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
     protected Class<E> getTInstance() {
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         return (Class<E>) pt.getActualTypeArguments()[0];
-    }
-
-    @Override
-    public void onLoadMore() {
-        isRefresh = false;
-        childLoad();
-
-    }
-
-    @Override
-    public void onRefresh() {
-        isRefresh = true;
-        childLoad();
-
     }
 }
