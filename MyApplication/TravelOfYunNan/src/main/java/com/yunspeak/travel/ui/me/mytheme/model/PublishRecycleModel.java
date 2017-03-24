@@ -8,6 +8,7 @@ import com.yunspeak.travel.R;
 import com.yunspeak.travel.download.IRequestUrl;
 import com.yunspeak.travel.ui.adapter.CommonRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.BasePullAndRefreshModel;
+import com.yunspeak.travel.ui.me.mytheme.PublishAdapter;
 
 import java.util.List;
 
@@ -22,6 +23,6 @@ public class PublishRecycleModel extends BasePullAndRefreshModel<PublishModel> {
     }
     @BindingAdapter("setPublishRecycle")
     public static void setPublucRecycle(RecyclerView recycle, List<PublishModel> publishes){
-        recycle.setAdapter(new CommonRecycleViewAdapter<>(publishes, BR.publish, R.layout.item_fragment_publish));
+        recycle.setAdapter(new PublishAdapter(publishes, BR.publish, R.layout.item_fragment_publish));
     }
 }

@@ -31,10 +31,8 @@ import com.yunspeak.travel.ui.appoint.AppointFragment;
 import com.yunspeak.travel.ui.appoint.dialog.EnterAppointDialog;
 import com.yunspeak.travel.ui.baseui.BaseActivity;
 import com.yunspeak.travel.ui.circle.CircleFragment;
-import com.yunspeak.travel.ui.find.FindFragment;
 import com.yunspeak.travel.ui.home.welcome.home.HomeFragment;
 import com.yunspeak.travel.ui.home.welcome.splash.login.LoginActivity;
-import com.yunspeak.travel.ui.me.MeFragment;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageActivity;
 import com.yunspeak.travel.ui.me.messagecenter.appointmessage.AppointMessageAdapter;
 import com.yunspeak.travel.ui.me.messagecenter.relateme.detailmessage.RelateMeDetailActivity;
@@ -79,7 +77,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private List<GradientTextView> iconFonts = new ArrayList<>(5);
     private List<TextView> iconNames = new ArrayList<>(5);
     private List<Fragment> fragments;
-    //渐变图标
     @BindView(R.id.vp_home)
     NoScrollViewPager mVpHome;
     @BindView(R.id.tv_home_fonts_icon)

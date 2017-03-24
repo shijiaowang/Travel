@@ -5,7 +5,6 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -41,10 +40,20 @@ public class CommonRecycleViewAdapter<T> extends BaseRecycleViewAdapter<T>{
                 CommonRecycleHolder commonRecycleHolder = (CommonRecycleHolder) holder;
                 ViewDataBinding binding = commonRecycleHolder.getBinding();
                 binding.setVariable(brId, datas.get(holder.getAdapterPosition()));
+                onBind(binding);
                 binding.executePendingBindings();
             }
     }
-   private static class CommonRecycleHolder extends RecyclerView.ViewHolder{
+
+    /**
+     * 绑定其他事件
+     * @param binding
+     */
+    protected  void onBind(ViewDataBinding binding) {
+
+    }
+
+    private static class CommonRecycleHolder extends RecyclerView.ViewHolder{
 
         private  ViewDataBinding binding;
 

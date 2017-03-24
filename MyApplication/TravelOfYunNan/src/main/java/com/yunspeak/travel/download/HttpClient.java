@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -45,15 +46,16 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  */
 
 public class HttpClient {
-    private static   CityoffService cityoffService;
-    private static Gson   gson = new Gson();
+    private static CityoffService cityoffService;
+    private static Gson gson = new Gson();
+
     static {
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).readTimeout(15, TimeUnit.SECONDS).addNetworkInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
                 String url = request.url().url().toString();
-                String decodeUrl = URLDecoder.decode(url,"UTF-8");
+                String decodeUrl = URLDecoder.decode(url, "UTF-8");
                 String fixUrl = decodeUrl.replace("/?", "/&");//服务器不支持/？
                 Request newRequest = request.newBuilder().url(fixUrl).build();
                 return chain.proceed(newRequest);
@@ -83,53 +85,86 @@ public class HttpClient {
 
     /**
      * 通过get请求获得数据 处理error由自己实现
+     *
      * @param tClass 反射出来的实体类
      * @param params 参数map集合
-     * @param <T> 泛型
+     * @param <T>    泛型
      * @return Disposable对象
      */
-    public <T extends TravelsObject>Disposable getDataDealErrorSelf(final Class<T> tClass, INetworkCallBack<T> callBack, Map<String,String> params, String url) {
-        return getData(null,tClass,null,callBack,params,url);
+    public <T extends TravelsObject> Disposable getDataDealErrorSelf(final Class<T> tClass, INetworkCallBack<T> callBack, Map<String, String> params, String url) {
+        return getData(null, tClass, null, callBack, params, url);
     }
 
     /**
      * 自动处理信息
+     *
      * @param iStatusChange 需要展示什么界面的接口
-     * @param tClass gson所需要的类class
-     * @param callBack 回调
-     * @param params 参数
-     * @param url 链接
+     * @param tClass        gson所需要的类class
+     * @param callBack      回调
+     * @param params        参数
+     * @param url           链接
      * @param <T>
      * @return Disposable
      */
-    public <T extends TravelsObject>Disposable getDataDealErrorAuto(IStatusChange iStatusChange,final Class<T> tClass, Consumer<T> callBack, Map<String,String> params, String url) {
+    public <T extends TravelsObject> Disposable getDataDealErrorAuto(IStatusChange iStatusChange, final Class<T> tClass, Consumer<T> callBack, Map<String, String> params, String url) {
 
-        return getData(iStatusChange,tClass,callBack,null,params,url);
+        return getData(iStatusChange, tClass, callBack, null, params, url);
     }
-    private  <T extends TravelsObject>Disposable getData(IStatusChange iStatusChange, final Class<T> tClass, Consumer<T> success, INetworkCallBack<T> callBack, Map<String,String> params, String url) {
-        if (callBack == null && success==null) return null;
 
-        Observable<ResponseBody> observable = cityoffService.getData(url,params);
-        return dealData(observable,iStatusChange,tClass,success,callBack);
+    private <T extends TravelsObject> Disposable getData(IStatusChange iStatusChange, final Class<T> tClass, Consumer<T> success, INetworkCallBack<T> callBack, Map<String, String> params, String url) {
+        if (callBack == null && success == null) return null;
+
+        Observable<ResponseBody> observable = cityoffService.getData(url, params);
+        return dealData(observable, iStatusChange, tClass, success, callBack);
     }
 
     /**
      * 上传图片
-     * @param url 地址
-     * @param params 参数
+     *
+     * @param url      地址
+     * @param params   参数
      * @param fileList 图片集合
      * @return
      */
-    public  Disposable postImage(String url, Map<String,String> params, List<String> fileList,INetworkCallBack<TravelsObject> callBack){
-        if (fileList==null || fileList.size()==0)return null;
-        MultipartBody.Part[] parts= compressFile(fileList);
+    public Disposable postImage(String url, Map<String, String> params, List<String> fileList, INetworkCallBack<TravelsObject> callBack) {
+        if (fileList == null || fileList.size() == 0) return null;
+        MultipartBody.Part[] parts = compressFile(fileList);
         LogUtils.e("解压完啦");
         Observable<ResponseBody> observable = cityoffService.postImage(url, params, parts);
-         return dealData(observable,null,TravelsObject.class,null,callBack);
+        return dealData(observable, null, TravelsObject.class, null, callBack);
+    }
+
+    /**
+     * 提交数据
+     *
+     * @param url
+     * @param params
+     * @return
+     */
+    public Disposable postData(String url, Map<String, String> params, final INetworkCallBack<TravelsObject> iNetworkCallBack) {
+        Observable<ResponseBody> observable = cityoffService.postData(url, params);
+        return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<ResponseBody>() {
+
+            @Override
+            public void accept(@NonNull ResponseBody responseBody) throws Exception {
+                String string = responseBody.string();
+                TravelsObject travelsObject = gson.fromJson(string, TravelsObject.class);
+                if (travelsObject.getCode()==1){//成功
+                    iNetworkCallBack.accept(travelsObject);
+                }else {
+                    iNetworkCallBack.error(new Throwable(travelsObject.getMessage()));
+                }
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable throwable) throws Exception {
+                iNetworkCallBack.error(throwable);
+            }
+        });
     }
 
     private synchronized static Compressor getCompressor() {
-        if (compressor ==null) {
+        if (compressor == null) {
             Compressor.Builder builder = new Compressor.Builder(UIUtils.getContext());
             builder.setMaxWidth(1920);
             builder.setMaxHeight(1080);
@@ -139,69 +174,72 @@ public class HttpClient {
         }
         return compressor;
     }
+
     /**
      * 压缩图片
+     *
      * @param fileList 压缩放入集合
      * @return 参数集合
      */
     private MultipartBody.Part[] compressFile(List<String> fileList) {
-        final MultipartBody.Part[] parts=new MultipartBody.Part[fileList.size()];
-        for (int i=0;i<fileList.size();i++) {
+        final MultipartBody.Part[] parts = new MultipartBody.Part[fileList.size()];
+        for (int i = 0; i < fileList.size(); i++) {
             File file = new File(fileList.get(i));
             File newFile = getCompressor().compressToFile(file);
-            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"),newFile);
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), newFile);
             // MultipartBody.Part is used to send also the actual file name
-            MultipartBody.Part filePart = MultipartBody.Part.createFormData("file["+ i +"]", newFile.getName(), requestFile);
-            parts[i]=filePart;
+            MultipartBody.Part filePart = MultipartBody.Part.createFormData("file[" + i + "]", newFile.getName(), requestFile);
+            parts[i] = filePart;
         }
         return parts;
     }
 
     /**
-     *   错误数据是自己处理还是自动处理
-     * @param observable 数据
+     * 错误数据是自己处理还是自动处理
+     *
+     * @param observable    数据
      * @param iStatusChange 如果不为NULL 就自动处理
-     * @param tClass 解析出来的实体类class
-     * @param success 如果不为NULL 就自动处理
-     * @param callBack 如果不为NULL 就自行处理
-     * @param <T> 解析出来的实体类
+     * @param tClass        解析出来的实体类class
+     * @param success       如果不为NULL 就自动处理
+     * @param callBack      如果不为NULL 就自行处理
+     * @param <T>           解析出来的实体类
      * @return Disposable
      */
-    private  <T extends TravelsObject>Disposable dealData(Observable<ResponseBody> observable, final IStatusChange iStatusChange, final Class<T> tClass, final Consumer<T> success, final INetworkCallBack<T> callBack){
-        final boolean isNeedSelf=iStatusChange==null;
+    private <T extends TravelsObject> Disposable dealData(Observable<ResponseBody> observable, final IStatusChange iStatusChange, final Class<T> tClass, final Consumer<T> success, final INetworkCallBack<T> callBack) {
+        final boolean isNeedSelf = iStatusChange == null;
         return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<ResponseBody>() {
             @Override
             public void accept(@NonNull ResponseBody responseBody) throws Exception {
                 String string = responseBody.string();
                 TravelsObject travelsObject = gson.fromJson(string, TravelsObject.class);
-                if (travelsObject.getCode()==-1){
+                if (travelsObject.getCode() == -1) {
                     throw new Exception("未找到相关信息");
                 }
                 T t = gson.fromJson(string, tClass);
-                if (!isNeedSelf){
-                        switch (t.getCode()){
-                            case 1:
-                                iStatusChange.showSuccessView();//显示成功页面
+                if (!isNeedSelf) {
+                    switch (t.getCode()) {
+                        case 1:
+                            iStatusChange.showSuccessView();//显示成功页面
+                            success.accept(t);
+                            break;
+                        case -1:
+                            //自动处理遇到错误页面，但是当前页面缓存过数据 ，具体情况就有activity 或者fragment决定
+                            if (!iStatusChange.errorBack(new Throwable(t.getMessage()))) {
+                                iStatusChange.showErrorView();//显示错误页面
+                            }
+                            break;
+                        case 2:
+                            if (iStatusChange.isSuccessfully()) {
+                                iStatusChange.showSuccessView();
                                 success.accept(t);
-                                break;
-                            case -1:
-                                //自动处理遇到错误页面，但是当前页面缓存过数据 ，具体情况就有activity 或者fragment决定
-                                if (!iStatusChange.errorBack(new Throwable(t.getMessage()))){
-                                    iStatusChange.showErrorView();//显示错误页面
-                                }
-                                break;
-                            case 2:
-                                if (iStatusChange.isSuccessfully()){
-                                    iStatusChange.showSuccessView();
-                                    success.accept(t);
-                                    ToastUtils.showToast(UIUtils.getString(R.string.no_more_data));
-                                }else {
-                                    iStatusChange.showEmptyView();//展示空页面
-                                }
-                                break;
-                        }
+                                ToastUtils.showToast(UIUtils.getString(R.string.no_more_data));
+                            } else {
+                                iStatusChange.showEmptyView();//展示空页面
+                            }
+                            break;
+                    }
 
-                }else{
+                } else {
                     callBack.accept(t);
                 }
 
@@ -209,15 +247,15 @@ public class HttpClient {
         }, new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
-                if (!isNeedSelf){
-                    if (iStatusChange.errorBack(throwable)){//自行处理
+                if (!isNeedSelf) {
+                    if (iStatusChange.errorBack(throwable)) {//自行处理
                         //返回错误，不用做什么操作
-                    }else if (NetworkUtils.isNetworkConnected()) {
+                    } else if (NetworkUtils.isNetworkConnected()) {
                         iStatusChange.showErrorView();//错误页面展示错误
-                    }else {
+                    } else {
                         iStatusChange.showNoNetworkView();//没有网络连接页面
                     }
-                }else {
+                } else {
                     callBack.error(throwable);//回调自行处理
                 }
             }

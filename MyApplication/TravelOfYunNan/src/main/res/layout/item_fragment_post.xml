@@ -3,16 +3,16 @@
     <data>
         <import type="android.view.View"/>
         <variable
-            name="publish"
-            type="com.yunspeak.travel.ui.me.mytheme.model.PublishModel"/>
+            name="postAdapter"
+            type="com.yunspeak.travel.ui.me.mytheme.PostAdapter"/>
         <variable
-            name="publishAdapter"
-            type="com.yunspeak.travel.ui.me.mytheme.PublishAdapter"/>
+            name="postModel"
+            type="com.yunspeak.travel.ui.me.mytheme.model.PostModel"/>
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="@color/colorFAFAFA"
         android:orientation="vertical"
-        android:onClick="@{publish.onRootClick}"
+        android:onClick="@{postModel.onItemClick}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                app:publish_img="@{publish.img}"
+                app:setPostImg="@{postModel.img}"
                 android:layout_width="@dimen/x41"
                 android:layout_height="@dimen/x41"
                 android:layout_centerVertical="true"
@@ -40,8 +40,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:visibility="@{(publish.title==null || publish.title.empty)?View.GONE:View.VISIBLE}"
-                    app:publish_parse_text="@{publish.title??``}"
+                    android:visibility="@{postModel==null || postModel.title.empty?View.GONE:View.VISIBLE}"
+                    app:postParseText="@{postModel.title}"
                     style="@style/commonSingleLineTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,9 +51,8 @@
 
                 <TextView
                     style="@style/commonSingleLineTextStyle"
-                    app:publish_parse_content="@{publish.content}"
-                    app:publish_content_inform="@{publish.inform}"
-                    app:publish_url="@{publish.url}"
+                    app:postParseContent="@{postModel.content}"
+                    app:postParseInform="@{postModel.inform}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#777777"
@@ -62,7 +61,7 @@
 
             </LinearLayout>
             <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:onClick="@{(view)->publishAdapter.onDeleteClick(view,publish)}"
+                android:onClick="@{(view)->postAdapter.onDeleteClick(view,postModel)}"
                 android:text="@string/activity_my_appoint_delete"
                 android:textColor="@color/Ffbf75"
                 android:textSize="@dimen/x15sp"
@@ -85,12 +84,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                app:postParseTime="@{postModel.add_time}"
                 android:id="@+id/tv_time"
-                app:publish_time="@{publish.add_time??``}"
                 style="@style/themeCommonText" />
             <TextView
-                android:onClick="@{publish.onNameClick}"
-                android:text="@{`#`+publish.cname+`#`}"
+                android:text="@{`#`+postModel.cname+`#`}"
+                android:onClick="@{postModel.onCnameClick}"
                 android:layout_marginLeft="@dimen/x14"
                 android:layout_toRightOf="@id/tv_time"
                 android:textColor="@color/otherTitleBg"
@@ -107,13 +106,20 @@
                     android:text="@string/activity_circle_love_empty"
                     style="@style/themeCommonText" />
                 <TextView
-                    android:text="@{publish.count_like??`0`}"
+                    android:text="@{postModel.count_like??`0`}"
                     android:layout_marginRight="@dimen/x12"
+                    style="@style/themeCommonText" />
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    android:layout_marginRight="@dimen/x6"
+                    android:text="@string/activity_circle_discuss"
+                    style="@style/themeCommonText" />
+                <TextView
+                    android:text="@{postModel.count_reply??`0`}"
                     style="@style/themeCommonText" />
             </LinearLayout>
 
         </RelativeLayout>
 
     </LinearLayout>
-
 </layout>
+

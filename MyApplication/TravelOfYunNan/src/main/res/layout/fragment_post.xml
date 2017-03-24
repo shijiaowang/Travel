@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data class="FragmentPostBinding">
+        <variable
+            name="post"
+            type="com.yunspeak.travel.ui.me.mytheme.model.PostRecycleModel"/>
+
+    </data>
+    <com.yunspeak.travel.ui.view.StatusView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
+            android:id="@id/status_content_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:init="@{0}"
+            app:onRefreshListener="@{post.onRefreshListener}"
+            app:onLoadingMoreListener="@{post.onLoadMoreListener}"
+            app:loading="@={post.isLoading}"
+            app:refreshing="@={post.isRefreshing}"
+            >
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/swipe_target"
+                app:manager="@{0}"
+                app:child_space="@{3}"
+                app:setPostRecycle="@{post.datas}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/x6" />
+        </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+    </com.yunspeak.travel.ui.view.StatusView>
+</layout>
+
