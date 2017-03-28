@@ -1,6 +1,6 @@
 package com.yunspeak.travel.global;
 
-import com.yunspeak.travel.ui.circle.hot.model.HotPostModel;
+
 
 import java.util.List;
 

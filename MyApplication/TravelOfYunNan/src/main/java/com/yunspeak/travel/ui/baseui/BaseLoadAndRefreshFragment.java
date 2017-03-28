@@ -1,12 +1,15 @@
 package com.yunspeak.travel.ui.baseui;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
-import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
-import com.aspsine.swipetoloadlayout.OnRefreshListener;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.databinding.CommonDataBinding;
 import com.yunspeak.travel.global.ListBean;
-import com.yunspeak.travel.ui.adapter.CommonRecycleViewAdapter;
 import com.yunspeak.travel.ui.fragment.BaseLoadingFragment;
 import com.yunspeak.travel.ui.view.StatusView;
 import com.yunspeak.travel.utils.NetworkUtils;
@@ -26,6 +29,7 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
     private boolean isRefresh;
     private boolean isFirst = true;
     private RecyclerView recyclerView;
+    protected CommonDataBinding commonDataBinding;
 
 
     @Override
@@ -33,13 +37,7 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
         if (basePullAndRefreshModel == null) {
             basePullAndRefreshModel = initModel();
         }
-        //关联adapter
-        if (basePullAndRefreshModel.getCommonRecycleViewAdapter()==null && recyclerView!=null && recyclerView.getAdapter()!=null){
-            basePullAndRefreshModel.setCommonRecycleViewAdapter((CommonRecycleViewAdapter<T>) recyclerView.getAdapter());
-        }
         basePullAndRefreshModel.onLoadAuto(statusView, getTInstance(), new Consumer<E>() {
-
-
             @Override
             public void accept(@NonNull E datas) throws Exception {
                 if (isFirst) {
@@ -55,6 +53,9 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
                         });
                     }
                     onReceive(datas);
+                    if (recyclerView!=null){
+                        basePullAndRefreshModel.setRecycleView(recyclerView,datas.getData());
+                    }
                     isFirst = false;
                     return;
                 }
@@ -68,6 +69,17 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
             }
         },isRefresh);
 
+    }
+
+    @Override
+    protected View initRootView(LayoutInflater inflater, ViewGroup container) {
+        commonDataBinding = DataBindingUtil.inflate(inflater, R.layout.common_recycle_databinding_layout, container, false);
+        return commonDataBinding.getRoot();
+    }
+
+    protected void onReceive(E datas) {
+        commonDataBinding.setBase(basePullAndRefreshModel);
+        commonDataBinding.setManagerType(0);//默认的样式为刷新加载样式
     }
 
     @Override
@@ -85,8 +97,6 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
             }
         });
     }
-
-    protected abstract void onReceive(E datas);
 
     protected abstract BasePullAndRefreshModel<T> initModel();
 

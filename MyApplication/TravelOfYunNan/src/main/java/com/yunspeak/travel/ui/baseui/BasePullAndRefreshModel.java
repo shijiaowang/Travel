@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -18,7 +17,6 @@ import com.yunspeak.travel.download.INetworkCallBack;
 import com.yunspeak.travel.global.IStatusChange;
 import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.TravelsObject;
-import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
 import com.yunspeak.travel.utils.MapUtils;
 import java.util.List;
 import java.util.Map;
@@ -32,10 +30,9 @@ import  com.yunspeak.travel.ui.adapter.BaseRecycleViewAdapter;
  */
 
 public abstract class BasePullAndRefreshModel<T>{
-    private List<T> datas;
-    public final ObservableBoolean isRefreshing=new ObservableBoolean(false);
-    public final ObservableBoolean isLoading=new ObservableBoolean(false);
-    public final ObservableBoolean isLoadingEnable=new ObservableBoolean(true);
+    public final ObservableBoolean isRefreshing=new ObservableBoolean(false);//上啦刷新双向绑定
+    public final ObservableBoolean isLoading=new ObservableBoolean(false);//下拉加载双向绑定
+    public final ObservableBoolean isLoadingEnable=new ObservableBoolean(true);//是否还有数据加载
     public boolean isAddHeader=false;//上拉是否将数据添加到头部
     private int pageCount;
 
@@ -49,33 +46,33 @@ public abstract class BasePullAndRefreshModel<T>{
 
     private BaseRecycleViewAdapter<T> baseRecycleViewAdapter;
     private boolean isRefresh=true;
-    public BaseRecycleViewAdapter<T> getCommonRecycleViewAdapter() {
+
+    public BaseRecycleViewAdapter<T> getBaseRecycleViewAdapter() {
         return baseRecycleViewAdapter;
     }
-    public void setCommonRecycleViewAdapter(BaseRecycleViewAdapter<T> commonRecycleViewAdapter) {
-        this.baseRecycleViewAdapter = commonRecycleViewAdapter;
+    public  void setRecycleView(RecyclerView recyclerView, List<T> datas){
+        this.baseRecycleViewAdapter=initAdapter(datas);
+        if (getSize(datas)<IVariable.pageCount){
+            isLoadingEnable.set(false);
+        }
+        recyclerView.setAdapter(baseRecycleViewAdapter);
+        recyclerView.addItemDecoration(initChildSpace());
+
     }
+
+    protected abstract RecyclerView.ItemDecoration initChildSpace();
+
+
+    protected abstract BaseRecycleViewAdapter<T> initAdapter(List<T> datas);
 
     public BasePullAndRefreshModel(){
 
     }
-    public BasePullAndRefreshModel(List<T> datas) {
-        this.datas = datas;
-    }
+
     protected  Map<String,String> initChildParams(MapUtils.Builder builder){
         return builder.end();
     }
 
-
-
-    public List<T> getDatas() {
-        return datas;
-    }
-
-    public void setDatas(List<T> datas) {
-        this.datas = datas;
-
-    }
     private int getSize(List<T> datas){
         return datas==null?0:datas.size();
     }
@@ -139,10 +136,6 @@ public abstract class BasePullAndRefreshModel<T>{
             recyclerView.setLayoutManager(gridLayoutManager);
         }
 
-    }
-    @BindingAdapter("bind:child_space")
-    public static void add(RecyclerView recyclerView,int childSpace){
-        recyclerView.addItemDecoration(new MyCollectionDecoration(childSpace,0));
     }
 
     public abstract String url();

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.global.IVariable;
 
 import java.util.List;
 
@@ -21,8 +22,11 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
     protected List<T> datas;
     protected LayoutInflater layoutInflater;
     private boolean isNoMore=false;
-    public BaseRecycleViewAdapter(List<T> datas){
+    public BaseRecycleViewAdapter(List<T> datas, boolean canLoadMore){
         this.datas = datas;
+        if (canLoadMore && datas!=null && datas.size()< IVariable.pageCount){//如果没有达到请求的个数 就没有了
+            isNoMore=true;
+        }
     }
     public void resetDatas(List<T> newDatas,boolean isNoMore){
         this.isNoMore=isNoMore;

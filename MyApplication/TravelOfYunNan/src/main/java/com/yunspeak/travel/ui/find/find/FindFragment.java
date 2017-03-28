@@ -27,9 +27,8 @@ import butterknife.ButterKnife;
  */
 
 public class FindFragment extends SaveBaseFragment<Find> {
-    @BindView(R.id.vp_find)
+
     ViewPager viewPager;
-    @BindView(R.id.pager_cursor)
     PagerCursorView pagerCursorView;
 
     private FragmentFindBinding fragmentFindBinding;
@@ -37,6 +36,8 @@ public class FindFragment extends SaveBaseFragment<Find> {
     protected View initRootView(LayoutInflater inflater, ViewGroup container) {
         fragmentFindBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_find, container, false);
         ButterKnife.bind(this,fragmentFindBinding.getRoot());
+        pagerCursorView= (PagerCursorView) fragmentFindBinding.getRoot().findViewById(R.id.pager_cursor);
+        viewPager= (ViewPager) fragmentFindBinding.getRoot().findViewById(R.id.vp_find);
         return fragmentFindBinding.getRoot();
     }
     @Override

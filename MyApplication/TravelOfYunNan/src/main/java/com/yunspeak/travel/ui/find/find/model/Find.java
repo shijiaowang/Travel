@@ -66,7 +66,7 @@ public class Find extends TravelsObject {
 
         @BindingAdapter("bind:setRecycleAdapter")
         public static void setRecycleAdapter(RecyclerView recyclerView,List<RecommendModel> recommendModels){
-            recyclerView.setAdapter(new CommonRecycleViewAdapter<>(recommendModels,BR.recommendModel,R.layout.item_fragment_find_recommend));
+            recyclerView.setAdapter(new CommonRecycleViewAdapter<>(recommendModels,BR.recommendModel,R.layout.item_fragment_find_recommend,false));
             GridLayoutManager gridLayoutManager=new GridLayoutManager(recyclerView.getContext(),2);
             gridLayoutManager.setSmoothScrollbarEnabled(true);
             gridLayoutManager.setAutoMeasureEnabled(true);
@@ -78,7 +78,7 @@ public class Find extends TravelsObject {
         @BindingAdapter("bind:setLinearRecycle")
         public static void setRecycleAdapter2(RecyclerView recycleAdapter2,List<RecommendModel> recommendModels){
             LinearLayoutManager linearLayoutManager=new LinearLayoutManager(recycleAdapter2.getContext());
-            recycleAdapter2.setAdapter(new CommonRecycleViewAdapter<>(recommendModels,BR.recommendModel,R.layout.item_fragment_find_hot));
+            recycleAdapter2.setAdapter(new CommonRecycleViewAdapter<>(recommendModels,BR.recommendModel,R.layout.item_fragment_find_hot,false));
             recycleAdapter2.setLayoutManager(linearLayoutManager);
             linearLayoutManager.setSmoothScrollbarEnabled(true);
             linearLayoutManager.setAutoMeasureEnabled(true);

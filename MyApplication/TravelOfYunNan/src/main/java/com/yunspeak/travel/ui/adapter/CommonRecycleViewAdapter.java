@@ -15,12 +15,16 @@ public class CommonRecycleViewAdapter<T> extends BaseRecycleViewAdapter<T>{
     private int layoutId;
     private int brId;
 
-    public CommonRecycleViewAdapter(List<T> datas, int brId, int layoutId) {
-        super(datas);
+    public CommonRecycleViewAdapter(List<T> datas, int brId, int layoutId,boolean canLoadMore) {
+        super(datas,canLoadMore);
         this.brId = brId;
         this.layoutId = layoutId;
     }
-
+    public CommonRecycleViewAdapter(List<T> datas, int brId, int layoutId) {
+        super(datas,true);
+        this.brId = brId;
+        this.layoutId = layoutId;
+    }
     @Override
     protected void onBindOtherHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof  CommonRecycleHolder) {

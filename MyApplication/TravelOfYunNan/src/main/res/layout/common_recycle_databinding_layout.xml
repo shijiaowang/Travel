@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <data class="FragmentFansFollowBinding">
+
+    <data class="CommonDataBinding">
         <variable
-            name="fans"
-            type="com.yunspeak.travel.ui.me.fans.model.FansFollowRecycleModel"/>
-
-
+            name="base"
+            type="com.yunspeak.travel.ui.baseui.BasePullAndRefreshModel"/>
+        <variable
+            name="managerType"
+            type="int"/>
     </data>
     <com.yunspeak.travel.ui.view.StatusView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,22 +19,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:init="@{0}"
-            app:onRefreshListener="@{fans.onRefreshListener}"
-            app:onLoadingMoreListener="@{fans.onLoadMoreListener}"
-            app:loading="@={fans.isLoading}"
-            app:refreshing="@={fans.isRefreshing}"
-            app:load_more_enabled="@{fans.isLoadingEnable}"
+            app:onRefreshListener="@{base.onRefreshListener}"
+            app:onLoadingMoreListener="@{base.onLoadMoreListener}"
+            app:loading="@={base.isLoading}"
+            app:refreshing="@={base.isRefreshing}"
+            app:load_more_enabled="@{base.isLoadingEnable}"
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@id/swipe_target"
-                app:manager="@{0}"
-                app:child_space="@{0}"
-                app:setRecycle="@{fans.datas}"
+                app:manager="@{managerType}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:paddingTop="@dimen/x3" />
+                />
         </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
     </com.yunspeak.travel.ui.view.StatusView>
 </layout>
-

@@ -1,10 +1,10 @@
 package com.yunspeak.travel.ui.me.fans.model;
 
-import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 import com.yunspeak.travel.BR;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.download.IRequestUrl;
+import com.yunspeak.travel.ui.adapter.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.adapter.CommonRecycleViewAdapter;
 import com.yunspeak.travel.ui.baseui.BasePullAndRefreshModel;
 import com.yunspeak.travel.ui.me.fans.LineDecoration;
@@ -22,16 +22,22 @@ public class FansFollowRecycleModel extends BasePullAndRefreshModel<FansFollowMo
     public FansFollowRecycleModel(String type){
         this.type=type;
     }
+
+    @Override
+    protected RecyclerView.ItemDecoration initChildSpace() {
+        return  new LineDecoration();
+    }
+
+    @Override
+    protected BaseRecycleViewAdapter<FansFollowModel> initAdapter(List<FansFollowModel> datas) {
+        return new CommonRecycleViewAdapter<>(datas, BR.fanFollowModel, R.layout.item_frgment_fans_follow);
+    }
+
     @Override
     protected Map<String, String> initChildParams(MapUtils.Builder builder) {
         return builder.addType(this.type).end();
     }
 
-    @BindingAdapter("bind:setRecycle")
-    public static void setRecycle(RecyclerView recyclerView, List<FansFollowModel> datas)  {
-        recyclerView.addItemDecoration(new LineDecoration());
-        recyclerView.setAdapter(new CommonRecycleViewAdapter<>(datas, BR.fanFollowModel, R.layout.item_frgment_fans_follow));
-    }
     @Override
     public String url() {
         return IRequestUrl.GET_FOLLOW_USER;
