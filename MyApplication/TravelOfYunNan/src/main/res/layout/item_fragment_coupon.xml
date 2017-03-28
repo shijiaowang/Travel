@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="couponModel"
+            type="com.yunspeak.travel.ui.me.ordercenter.coupon.model.CouponModel"/>
+        <variable
+            name="isFragment"
+            type="boolean"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorFcfcfd"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/x4"
+            android:paddingRight="@dimen/x4">
+            <TextView
+                android:text="@{@string/money_icon+couponModel.number}"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/x20"
+                android:background="@drawable/activity_confirm_orders_coupon"
+                android:gravity="center"
+                android:textColor="@color/colorFAFAFA"
+                android:textSize="@dimen/x9sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/x45"
+                        android:layout_marginLeft="@dimen/x11"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:text="@{couponModel.number+@string/how_coupon}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color8c8c8c"
+                            android:textSize="@dimen/x12sp" />
+
+                        <TextView
+                            app:parseCouponTime="@{couponModel.end_time}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/x10"
+                            android:textColor="@color/colorB1b1b1"
+                            android:textSize="@dimen/x10sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:text="@{couponModel.status.equals(`1`)?@string/can_use:couponModel.status.equals(`2`)?@string/used:@string/time_over}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@{couponModel.status.equals(`1`)?@color/color90c75c:couponModel.status.equals(`2`)?@color/colorff806d:@color/colorb5b5b5}"
+                        android:textSize="@dimen/x12sp" />
+                </LinearLayout>
+                <View
+                    android:layout_marginLeft="@dimen/x11"
+                    android:visibility="@{isFragment?View.VISIBLE:View.GONE}"
+                    android:background="@color/meLine"
+                    android:layout_marginTop="@dimen/x5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x1"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <View
+            android:visibility="@{isFragment?View.GONE:View.VISIBLE}"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x10"
+            android:background="@color/colorFAFAFA" />
+
+    </LinearLayout>
+</layout>
+

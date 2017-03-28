@@ -20,6 +20,7 @@ public interface IRequestUrl {
     String THEME_MY_POST = API_KEY + "UserMsg/getMyForum/";//主题-我的帖子
     String DELETE_POST = API_KEY + "Circle/deleteForum/";//删除帖子
     String DELETE_PUBLISH = API_KEY + "Circle/deleteForumreply/";//删除发表
+    String MY_COUPON = API_KEY + "Order/getConpoulists/";//优惠券
     /*圈子*/
     String HOT_POST = API_KEY + "Circle/getForumishot/";//热帖
 }

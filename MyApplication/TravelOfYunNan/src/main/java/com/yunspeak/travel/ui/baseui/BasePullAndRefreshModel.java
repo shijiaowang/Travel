@@ -270,7 +270,7 @@ public abstract class BasePullAndRefreshModel<T>{
     public   interface OnLoadListener{
         void onLoad(boolean isRefresh);
     }
-    private OnLoadListener onLoadListener;
+    protected OnLoadListener onLoadListener;
 
 
     public void setOnLoadListener(OnLoadListener onLoadListener) {

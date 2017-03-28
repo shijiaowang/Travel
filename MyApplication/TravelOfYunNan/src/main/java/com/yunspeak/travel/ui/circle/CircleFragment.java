@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.circle.circlenav.NavLeftFragment;
-import com.yunspeak.travel.ui.circle.hotpost.HotFragment;
 import com.yunspeak.travel.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
