@@ -20,6 +20,7 @@
             app:onLoadingMoreListener="@{post.onLoadMoreListener}"
             app:loading="@={post.isLoading}"
             app:refreshing="@={post.isRefreshing}"
+            app:load_more_enabled="@{post.isLoadingEnable}"
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@id/swipe_target"

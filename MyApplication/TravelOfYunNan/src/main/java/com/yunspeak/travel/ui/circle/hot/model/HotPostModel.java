@@ -248,7 +248,13 @@ public class HotPostModel {
     @BindingAdapter("bind:format_text")
     public static  void formatText(TextView textView,String text){
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE);
-        String formatText = simpleDateFormat.format(new Date(Long.parseLong(text)));
+        long l=0;
+        try {
+            l= Long.parseLong(text);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        String formatText = simpleDateFormat.format(new Date(l));
         textView.setText(formatText);
     }
     @BindingAdapter("bind:setImgs")

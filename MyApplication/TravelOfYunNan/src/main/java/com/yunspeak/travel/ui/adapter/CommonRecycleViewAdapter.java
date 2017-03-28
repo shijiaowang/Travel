@@ -1,12 +1,9 @@
 package com.yunspeak.travel.ui.adapter;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 import java.util.List;
 
 /**
@@ -17,7 +14,6 @@ import java.util.List;
 public class CommonRecycleViewAdapter<T> extends BaseRecycleViewAdapter<T>{
     private int layoutId;
     private int brId;
-    private LayoutInflater layoutInflater;
 
     public CommonRecycleViewAdapter(List<T> datas, int brId, int layoutId) {
         super(datas);
@@ -26,23 +22,21 @@ public class CommonRecycleViewAdapter<T> extends BaseRecycleViewAdapter<T>{
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (layoutInflater==null){
-            layoutInflater= (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    protected void onBindOtherHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof  CommonRecycleHolder) {
+            CommonRecycleHolder commonRecycleHolder = (CommonRecycleHolder) holder;
+            ViewDataBinding binding = commonRecycleHolder.getBinding();
+            binding.setVariable(brId, datas.get(holder.getAdapterPosition()));
+            onBind(binding);
+            binding.executePendingBindings();
         }
-        ViewDataBinding inflate = DataBindingUtil.inflate(layoutInflater, layoutId, parent, false);
-        return new CommonRecycleHolder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            if (holder instanceof  CommonRecycleHolder) {
-                CommonRecycleHolder commonRecycleHolder = (CommonRecycleHolder) holder;
-                ViewDataBinding binding = commonRecycleHolder.getBinding();
-                binding.setVariable(brId, datas.get(holder.getAdapterPosition()));
-                onBind(binding);
-                binding.executePendingBindings();
-            }
+    protected RecyclerView.ViewHolder otherViewHolder(ViewGroup parent, int viewType) {
+
+        ViewDataBinding inflate = DataBindingUtil.inflate(layoutInflater, layoutId, parent, false);
+        return new CommonRecycleHolder(inflate);
     }
 
     /**

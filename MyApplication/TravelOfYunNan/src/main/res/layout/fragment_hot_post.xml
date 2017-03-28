@@ -21,6 +21,7 @@
             app:onLoadingMoreListener="@{hot.onLoadMoreListener}"
             app:loading="@={hot.isLoading}"
             app:refreshing="@={hot.isRefreshing}"
+            app:load_more_enabled="@{hot.isLoadingEnable}"
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@id/swipe_target"

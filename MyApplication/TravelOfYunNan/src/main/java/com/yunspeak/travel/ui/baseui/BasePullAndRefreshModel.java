@@ -17,6 +17,7 @@ import com.yunspeak.travel.download.HttpClient;
 import com.yunspeak.travel.download.INetworkCallBack;
 import com.yunspeak.travel.global.IStatusChange;
 import com.yunspeak.travel.global.IVariable;
+import com.yunspeak.travel.global.ListBean;
 import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.adapter.CommonRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
@@ -36,6 +37,7 @@ public abstract class BasePullAndRefreshModel<T>{
     private List<T> datas;
     public final ObservableBoolean isRefreshing=new ObservableBoolean(false);
     public final ObservableBoolean isLoading=new ObservableBoolean(false);
+    public final ObservableBoolean isLoadingEnable=new ObservableBoolean(false);
     public boolean isAddHeader=false;//上拉是否将数据添加到头部
     private int pageCount;
 
@@ -76,9 +78,17 @@ public abstract class BasePullAndRefreshModel<T>{
         this.datas = datas;
 
     }
+    private int getSize(List<T> datas){
+        return datas==null?0:datas.size();
+    }
     public void refresh(List<T> datas){
         isRefreshing.set(false);
         if (commonRecycleViewAdapter==null)return;
+        if (getSize(datas)<pageCount){
+            isLoadingEnable.set(false);
+        }else if (!isLoadingEnable.get()){
+            isLoadingEnable.set(true);
+        }
         if (isAddHeader){
             commonRecycleViewAdapter.addHeaderDatas(datas);//添加到头部
         }else {
@@ -88,6 +98,11 @@ public abstract class BasePullAndRefreshModel<T>{
     }
     public void loadMore(List<T> datas){
         isLoading.set(false);
+        if (getSize(datas)<pageCount){
+            isLoadingEnable.set(false);
+        }else if (!isLoadingEnable.get()){
+            isLoadingEnable.set(true);
+        }
         if (commonRecycleViewAdapter!=null) {
             commonRecycleViewAdapter.addDatas(datas);
         }
@@ -100,7 +115,8 @@ public abstract class BasePullAndRefreshModel<T>{
         return initChildParams(builder);
     }
     public int getPageCount() {
-        return isRefresh && !isAddHeader ?commonRecycleViewAdapter == null?IVariable.pageCount:commonRecycleViewAdapter.getItemCount():IVariable.pageCount;
+        pageCount=isRefresh && !isAddHeader ?commonRecycleViewAdapter == null?IVariable.pageCount:commonRecycleViewAdapter.getItemCount():IVariable.pageCount;
+        return pageCount;
     }
     /**
      * 计算个数
@@ -131,7 +147,10 @@ public abstract class BasePullAndRefreshModel<T>{
     }
 
     public abstract String url();
-
+    @BindingAdapter("app:load_more_enabled")
+    public static void setEnable(SwipeToLoadLayout swipeToLoadLayout,boolean isTrue){
+        swipeToLoadLayout.setLoadMoreEnabled(isTrue);
+    }
 
     /**
      * 调用网络请求
