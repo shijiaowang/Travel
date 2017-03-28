@@ -20,28 +20,34 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
 
     protected List<T> datas;
     protected LayoutInflater layoutInflater;
-
+    private boolean isNoMore=false;
     public BaseRecycleViewAdapter(List<T> datas){
         this.datas = datas;
     }
-    public void resetDatas(List<T> newDatas){
+    public void resetDatas(List<T> newDatas,boolean isNoMore){
+        this.isNoMore=isNoMore;
         this.datas=newDatas;
         notifyDataSetChanged();
     }
-    public void addHeaderDatas(List<T> newDatas){
+    public int getDataSize(){
+        return datas==null?0:datas.size();
+    }
+    public void addHeaderDatas(List<T> newDatas,boolean isNoMore){
         if (newDatas==null)return;
+        this.isNoMore=isNoMore;
         this.datas.addAll(0,newDatas);
         notifyDataSetChanged();
     }
 
-    public void addDatas(List<T> newDatas){
+    public void addDatas(List<T> newDatas,boolean isNoMore){
         if (newDatas==null)return;
         if (this.datas!=null) {
+            this.isNoMore=isNoMore;
             int size = this.datas.size();
             this.datas.addAll(newDatas);
             notifyItemRangeInserted(size,this.datas.size());
         }else {
-            resetDatas(newDatas);
+            resetDatas(newDatas,isNoMore);
         }
     }
 
@@ -71,16 +77,30 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
 
     @Override
     public int getItemViewType(int position) {
-        if (position==getItemCount()-1){
+        if (isNoMore && position==getItemCount()-1){
             return TYPE_NO_MORE;
         }
+        return getOtherViewType(position);
+    }
+
+    protected  int getOtherViewType(int position){
         return TYPE_NOREMAL;
     }
+
     @Override
     public int getItemCount() {
-        return (datas==null?0:datas.size())+1;
+        return getDataSize()+(isNoMore?1:0);
     }
-   private class NoMoreHolder extends RecyclerView.ViewHolder{
+
+    public boolean isNoMore() {
+        return isNoMore;
+    }
+
+    public void setNoMore(boolean noMore) {
+        isNoMore = noMore;
+    }
+
+    private class NoMoreHolder extends RecyclerView.ViewHolder{
 
         public NoMoreHolder(View itemView) {
             super(itemView);

@@ -17,9 +17,7 @@ import com.yunspeak.travel.download.HttpClient;
 import com.yunspeak.travel.download.INetworkCallBack;
 import com.yunspeak.travel.global.IStatusChange;
 import com.yunspeak.travel.global.IVariable;
-import com.yunspeak.travel.global.ListBean;
 import com.yunspeak.travel.global.TravelsObject;
-import com.yunspeak.travel.ui.adapter.CommonRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecoration;
 import com.yunspeak.travel.utils.MapUtils;
 import java.util.List;
@@ -27,7 +25,7 @@ import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-
+import  com.yunspeak.travel.ui.adapter.BaseRecycleViewAdapter;
 /**
  * Created by wangyang on 2017/3/16.
  * 统一的下拉刷新 与 上啦加载
@@ -37,7 +35,7 @@ public abstract class BasePullAndRefreshModel<T>{
     private List<T> datas;
     public final ObservableBoolean isRefreshing=new ObservableBoolean(false);
     public final ObservableBoolean isLoading=new ObservableBoolean(false);
-    public final ObservableBoolean isLoadingEnable=new ObservableBoolean(false);
+    public final ObservableBoolean isLoadingEnable=new ObservableBoolean(true);
     public boolean isAddHeader=false;//上拉是否将数据添加到头部
     private int pageCount;
 
@@ -49,13 +47,13 @@ public abstract class BasePullAndRefreshModel<T>{
         isAddHeader = addHeader;
     }
 
-    private CommonRecycleViewAdapter<T> commonRecycleViewAdapter;
+    private BaseRecycleViewAdapter<T> baseRecycleViewAdapter;
     private boolean isRefresh=true;
-    public CommonRecycleViewAdapter<T> getCommonRecycleViewAdapter() {
-        return commonRecycleViewAdapter;
+    public BaseRecycleViewAdapter<T> getCommonRecycleViewAdapter() {
+        return baseRecycleViewAdapter;
     }
-    public void setCommonRecycleViewAdapter(CommonRecycleViewAdapter<T> commonRecycleViewAdapter) {
-        this.commonRecycleViewAdapter = commonRecycleViewAdapter;
+    public void setCommonRecycleViewAdapter(BaseRecycleViewAdapter<T> commonRecycleViewAdapter) {
+        this.baseRecycleViewAdapter = commonRecycleViewAdapter;
     }
 
     public BasePullAndRefreshModel(){
@@ -83,16 +81,16 @@ public abstract class BasePullAndRefreshModel<T>{
     }
     public void refresh(List<T> datas){
         isRefreshing.set(false);
-        if (commonRecycleViewAdapter==null)return;
+        if (baseRecycleViewAdapter==null)return;
         if (getSize(datas)<pageCount){
             isLoadingEnable.set(false);
         }else if (!isLoadingEnable.get()){
             isLoadingEnable.set(true);
         }
         if (isAddHeader){
-            commonRecycleViewAdapter.addHeaderDatas(datas);//添加到头部
+            baseRecycleViewAdapter.addHeaderDatas(datas,!isLoadingEnable.get());//添加到头部
         }else {
-          commonRecycleViewAdapter.resetDatas(datas);
+            baseRecycleViewAdapter.resetDatas(datas,!isLoadingEnable.get());
         }
 
     }
@@ -103,8 +101,8 @@ public abstract class BasePullAndRefreshModel<T>{
         }else if (!isLoadingEnable.get()){
             isLoadingEnable.set(true);
         }
-        if (commonRecycleViewAdapter!=null) {
-            commonRecycleViewAdapter.addDatas(datas);
+        if (baseRecycleViewAdapter!=null) {
+            baseRecycleViewAdapter.addDatas(datas,!isLoadingEnable.get());
         }
     }
 
@@ -115,7 +113,8 @@ public abstract class BasePullAndRefreshModel<T>{
         return initChildParams(builder);
     }
     public int getPageCount() {
-        pageCount=isRefresh && !isAddHeader ?commonRecycleViewAdapter == null?IVariable.pageCount:commonRecycleViewAdapter.getItemCount():IVariable.pageCount;
+        pageCount=isRefresh && !isAddHeader ?(baseRecycleViewAdapter == null?IVariable.pageCount:baseRecycleViewAdapter.getDataSize()):IVariable.pageCount;
+        pageCount=pageCount<IVariable.pageCount?IVariable.pageCount:pageCount;
         return pageCount;
     }
     /**
@@ -123,7 +122,7 @@ public abstract class BasePullAndRefreshModel<T>{
      * @return
      */
     private int getCount() {
-        return isRefresh && !isAddHeader ? 0 : commonRecycleViewAdapter == null?0:commonRecycleViewAdapter.getItemCount();
+        return isRefresh && !isAddHeader ? 0 : baseRecycleViewAdapter == null?0:baseRecycleViewAdapter.getDataSize();
     }
 
     /**

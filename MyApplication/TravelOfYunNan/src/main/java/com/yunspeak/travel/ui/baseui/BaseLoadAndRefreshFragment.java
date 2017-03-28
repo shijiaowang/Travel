@@ -55,7 +55,6 @@ public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> exten
                         });
                     }
                     onReceive(datas);
-
                     isFirst = false;
                     return;
                 }
