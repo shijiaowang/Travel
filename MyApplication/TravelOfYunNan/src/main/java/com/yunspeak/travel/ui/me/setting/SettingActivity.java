@@ -3,6 +3,7 @@ package com.yunspeak.travel.ui.me.setting;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -249,7 +250,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 break;
             case R.id.tv_user_nick_name:
 
-                EnterAppointDialog.showInputTextView(this,mTvUserNickName,userInfo.getNick_name(),"昵称设置","确定",new SendTextClick() {
+                EnterAppointDialog.showInputTextView(InputType.TYPE_CLASS_TEXT,mTvUserNickName,userInfo.getNick_name(),"昵称设置","确定",new SendTextClick() {
                     @Override
                     public void onClick(String text) {
                           mTvUserNickName.setText(text);

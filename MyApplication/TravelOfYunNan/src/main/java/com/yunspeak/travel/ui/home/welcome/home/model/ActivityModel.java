@@ -45,7 +45,7 @@ public class ActivityModel {
     public void setNow_people(String now_people) {
         this.now_people = now_people;
     }
-    @BindingAdapter("bind:activity_img")
+    @BindingAdapter("img_1_3")
     public static void loadImage(ImageView imageView,String url){
         ShowImageUtils.showNormal(imageView,R.drawable.normal_1_3,url);
     }

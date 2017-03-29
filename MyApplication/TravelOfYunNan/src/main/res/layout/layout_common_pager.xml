@@ -9,7 +9,7 @@
      </data>
 
     <ImageView
-        app:imageUrl="@{bannerModel.path}"
+        app:img_2_1="@{bannerModel.path}"
         android:scaleType="fitXY"
         android:onClick="@{bannerModel.onClick}"
         android:layout_width="match_parent"

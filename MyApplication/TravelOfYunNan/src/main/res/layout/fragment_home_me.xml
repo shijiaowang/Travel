@@ -33,13 +33,13 @@
                     <ImageView
                         android:id="@+id/iv_bg"
                         android:scaleType="fitXY"
-                        app:setBgImg="@{meData.user.background_img}"
+                        app:img_2_1="@{meData.user.background_img}"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/x200" />
 
                     <ImageView
                         android:id="@+id/iv_icon"
-                        app:setIcon="@{meData.user.user_img}"
+                        app:icon_2="@{meData.user.user_img}"
                         android:scaleType="fitXY"
                         android:layout_width="@dimen/x73"
                         android:layout_height="@dimen/x73"

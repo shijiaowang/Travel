@@ -1,6 +1,7 @@
 package com.yunspeak.travel.ui.appoint.travelplan.personnelequipment;
 
 import android.content.Intent;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -138,7 +139,7 @@ public class PersonnelEquipmentActivity extends BaseNetWorkActivity<PersonnelEqu
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_select_equ:
-                EnterAppointDialog.showInputTextView(this, v, "高级认证会员使用密码才有效！", "输入密码", "确定", new SendTextClick() {
+                EnterAppointDialog.showInputTextView(InputType.TYPE_TEXT_VARIATION_PASSWORD, v, "高级认证会员使用密码才有效！", "输入密码", "确定", new SendTextClick() {
                     @Override
                     public void onClick(String text) {
                          if (text.equals("cw65126820")){

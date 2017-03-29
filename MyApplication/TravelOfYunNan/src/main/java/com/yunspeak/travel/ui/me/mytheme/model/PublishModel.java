@@ -158,7 +158,7 @@ public class PublishModel {
     public void setFind_type(int find_type) {
         this.find_type = find_type;
     }
-    @BindingAdapter("publish_img")
+    @BindingAdapter("icon_1")
      public static void setPublishImg(ImageView img,String url){
          ShowImageUtils.showCircle(img, R.drawable.boy,url,1);
      }

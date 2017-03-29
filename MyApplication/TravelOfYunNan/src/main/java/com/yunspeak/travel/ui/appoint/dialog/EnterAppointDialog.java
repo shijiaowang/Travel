@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -182,13 +183,15 @@ public class EnterAppointDialog {
     /**
      * 设置目的地
      */
-    public static void showInputTextView(final Context context, final View hideView, String hint, String title, String okText, final SendTextClick parentPopClick) {
+    public static void showInputTextView(int inputType, final View hideView, String hint, String title, String okText, final SendTextClick parentPopClick) {
         //创建视图
+        Context context = hideView.getContext();
         View dialogView = View.inflate(context, R.layout.dialog_appoint_add_destination, null);
         final Dialog dialog = new Dialog(context, R.style.noTitleDialog);
         final EditText mEtDestination = (EditText) dialogView.findViewById(R.id.et_destination);
         ((TextView) dialogView.findViewById(R.id.tv_title)).setText(title);
         mEtDestination.requestFocus();
+        mEtDestination.setInputType(inputType);
         UIUtils.setEmojiFilter(mEtDestination);
         mEtDestination.setHint(hint);
         final InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);

@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x175"
                 android:scaleType="fitXY"
-                app:img="@{recommendModel.logo_img}" />
+                app:img_2_1="@{recommendModel.logo_img}" />
 
             <TextView
                 style="@style/commonSingleLineTextStyle"

@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.ui.me.ordercenter.coupon.CouponFragment;
-import com.yunspeak.travel.ui.me.ordercenter.coupon.CouponFragment2;
 import com.yunspeak.travel.ui.me.ordercenter.orders.MyOrdersFragment;
 import com.yunspeak.travel.ui.view.SimpleViewPagerIndicator;
 import java.util.ArrayList;
@@ -153,7 +152,7 @@ public class OrdersCenterActivity extends BaseToolBarActivity {
         fragments = new ArrayList<>();
         fragments.add(MyOrdersFragment.newInstance(RECENT_ORDERS));
         fragments.add(MyOrdersFragment.newInstance(ALL_ORDERS));
-        fragments.add(new CouponFragment2());
+        fragments.add(new CouponFragment());
         mVpOrders.setAdapter(new OrdersPagerAdapter(getSupportFragmentManager()));
         mVpOrders.setOffscreenPageLimit(3);
     }

@@ -118,11 +118,8 @@ public class Me extends TravelsObject{
         public void setUser_label(List<UserLabelBean> user_label) {
             this.user_label = user_label;
         }
-        @BindingAdapter("bind:setBgImg")
-       public static void setBg(ImageView imageView,String url){
-            ShowImageUtils.showNormal(imageView, R.drawable.normal_2_1,url);
-       }
-        @BindingAdapter("bind:setIcon")
+
+        @BindingAdapter("icon_2")
         public static void setIcon(ImageView icon,String url){
             ShowImageUtils.showCircle(icon,R.drawable.boy,url,2);
         }

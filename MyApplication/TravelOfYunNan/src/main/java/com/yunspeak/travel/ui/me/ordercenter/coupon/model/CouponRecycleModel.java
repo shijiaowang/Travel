@@ -13,7 +13,7 @@ import com.yunspeak.travel.ui.me.mycollection.collectiondetail.MyCollectionDecor
 import java.util.List;
 
 /**
- * Created by wangyang on 2017/3/28.
+ * Created by wangyang on 2017/3/29.
  */
 
 public class CouponRecycleModel extends BasePullAndRefreshModel<CouponModel> {

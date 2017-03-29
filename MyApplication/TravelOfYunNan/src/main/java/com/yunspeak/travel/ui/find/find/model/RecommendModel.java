@@ -1,13 +1,7 @@
 package com.yunspeak.travel.ui.find.find.model;
-
-import android.databinding.BindingAdapter;
 import android.view.View;
-import android.widget.ImageView;
-
-import com.yunspeak.travel.R;
 import com.yunspeak.travel.aop.CheckNetwork;
 import com.yunspeak.travel.ui.find.find.FindClickListener;
-import com.yunspeak.travel.utils.ShowImageUtils;
 
 /**
  * Created by wangyang on 2017/3/13.
@@ -105,10 +99,7 @@ public class RecommendModel {
     public void setType(int type) {
         this.type = type;
     }
-    @BindingAdapter("bind:img")
-     public static void loadImage(ImageView imageView,String url){
-         ShowImageUtils.showNormal(imageView, R.drawable.normal_2_1,url);
-     }
+
     @CheckNetwork
     public void onClick(View view){
         FindClickListener.onClick(view,this);

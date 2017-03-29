@@ -23,7 +23,7 @@
             >
 
             <ImageView
-                app:setIcon="@{hotPostModel.user_img}"
+                app:icon_1="@{hotPostModel.user_img}"
                 android:scaleType="fitXY"
                 android:layout_width="@dimen/x31"
                 android:layout_height="@dimen/x31"

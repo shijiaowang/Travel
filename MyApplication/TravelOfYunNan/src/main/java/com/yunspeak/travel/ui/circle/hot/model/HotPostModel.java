@@ -234,10 +234,7 @@ public class HotPostModel {
     public void onClick(View view){
         PostActivity.start(view.getContext(),getId());
     }
-    @BindingAdapter("bind:setIcon")
-    public static void setIcon(ImageView icon, String url){
-        ShowImageUtils.showCircle(icon,R.drawable.boy,url,2);
-   }
+
     @BindingAdapter("bind:parse_text")
     public static void parseText(TextView textView, String title){
         if (TextUtils.isEmpty(title)){

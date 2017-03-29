@@ -120,10 +120,7 @@ public class PostModel {
         public void setCount_like(String count_like) {
             this.count_like = count_like;
         }
-      @BindingAdapter("setPostImg")
-      public static void setPostImg(ImageView img,String url){
-          ShowImageUtils.showCircle(img, R.drawable.boy,url,1);
-      }
+
     @BindingAdapter("postParseText")
     public static void setPostParseText(TextView textView, String text){
         AiteUtils.parseTextMessage(textView,null,text,false);

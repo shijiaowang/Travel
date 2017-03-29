@@ -35,7 +35,6 @@ public class FindFragment extends SaveBaseFragment<Find> {
     @Override
     protected View initRootView(LayoutInflater inflater, ViewGroup container) {
         fragmentFindBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_find, container, false);
-        ButterKnife.bind(this,fragmentFindBinding.getRoot());
         pagerCursorView= (PagerCursorView) fragmentFindBinding.getRoot().findViewById(R.id.pager_cursor);
         viewPager= (ViewPager) fragmentFindBinding.getRoot().findViewById(R.id.vp_find);
         return fragmentFindBinding.getRoot();

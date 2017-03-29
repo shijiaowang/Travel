@@ -153,7 +153,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/x116"
                                 android:scaleType="fitXY"
-                                app:img="@{indexTogether.img}" />
+                                app:img_1_3="@{indexTogether.img}" />
 
                             <TextView
                                 style="@style/HomeMenuText"
@@ -176,7 +176,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/x77"
                                 android:scaleType="fitXY"
-                                app:img="@{indexOldDriver.img}" />
+                                app:img_2_1="@{indexOldDriver.img}" />
 
                             <TextView
                                 style="@style/HomeMenuText"
@@ -200,7 +200,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/x77"
                                 android:scaleType="fitXY"
-                                app:img="@{indexDiyDriver.img}" />
+                                app:img_2_1="@{indexDiyDriver.img}" />
 
                             <TextView
                                 style="@style/HomeMenuText"
@@ -222,7 +222,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
-                            app:activity_img="@{activityModel.activity_img}" />
+                            app:img_2_1="@{activityModel.activity_img}" />
 
                         <com.yunspeak.travel.ui.view.FontsIconTextView
                             android:id="@+id/tv_air"

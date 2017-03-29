@@ -64,7 +64,7 @@ public class BannerModel {
         this.url = url;
     }
 
-    @BindingAdapter("bind:imageUrl")
+    @BindingAdapter("img_2_1")
     public static void loadImage(ImageView imageView, String imageUrl) {
         ShowImageUtils.showNormal(imageView, R.drawable.normal_2_1, imageUrl);
     }

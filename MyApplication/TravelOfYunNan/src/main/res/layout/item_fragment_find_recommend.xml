@@ -11,7 +11,7 @@
         android:onClick="@{recommendModel.onClick}"
         android:layout_height="wrap_content">
         <ImageView
-            app:img="@{recommendModel.logo_img}"
+            app:img_2_1="@{recommendModel.logo_img}"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x90" />

@@ -54,10 +54,7 @@ public class FansFollowModel {
     public void setContent(String content) {
         this.content = content;
     }
-    @BindingAdapter("fan_img")
-    public static void setImg(ImageView img,String url){
-        ShowImageUtils.showCircle(img, R.drawable.boy,url,2);
-    }
+
     @CheckNetwork
     public void onClick(View view){
         OtherUserCenterActivity.start(view.getContext(),getId());

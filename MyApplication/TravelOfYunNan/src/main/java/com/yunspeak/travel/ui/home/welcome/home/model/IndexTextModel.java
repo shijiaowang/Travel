@@ -61,10 +61,6 @@ public  class IndexTextModel{
     public void setUrl(String url) {
         this.url = url;
     }
-    @BindingAdapter("bind:img")
-    public static void loadImage(ImageView imageView,String url){
-        ShowImageUtils.showNormal(imageView,R.drawable.normal_2_1,url);
-    }
     @CheckNetwork
     public void onClick(View view){
         HomeSwitchActivity.start(view.getContext(),getUrl(),getType());
