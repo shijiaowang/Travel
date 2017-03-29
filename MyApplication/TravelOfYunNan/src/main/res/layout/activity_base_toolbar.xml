@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/x49"
             android:minHeight="@dimen/x49"
-
             app:titleTextAppearance="@style/ToolBar.TitleText">
             <ViewStub
                 android:id="@+id/vs_bar"

@@ -58,12 +58,11 @@ public class CouponFragment extends BaseLoadAndRefreshFragment<Coupon,CouponMode
                                 ToastUtils.showToast(travelsObject.getMessage());
                                 couponRecycleModel.onLoadMoreListener().onLoadMore();//激活成功加载更多
                             }
-
                             @Override
                             public void error(Throwable throwable) {
                                 ToastUtils.showToast("激活失败:"+throwable.getMessage());
                             }
-                        });
+                        },getContext());
                     }
                 });
             }

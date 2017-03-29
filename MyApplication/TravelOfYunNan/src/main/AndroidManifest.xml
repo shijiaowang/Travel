@@ -139,7 +139,6 @@
         <activity android:name=".ui.me.ordercenter.OrdersCenterActivity" />
         <activity android:name=".ui.me.ordercenter.orders.confirmorders.ConfirmOrdersActivity" />
         <activity android:name=".ui.me.mycollection.collectiondetail.CollectionDetailActivity" />
-        <activity android:name=".ui.me.userservice.CustomerServiceActivity" />
         <activity android:name=".ui.me.myalbum.editalbum.albumselector.pictureselector.previewpicture.PreviewPicturesActivity" />
         <activity android:name=".ui.me.changephone.ChangePhoneActivity" />
         <activity android:name=".ui.me.messagecenter.privatemessage.MessagePrivateActivity" />
@@ -264,6 +263,7 @@
         <activity android:name=".ui.find.hotel.hotellist.hoteldetail.HotelDetailActivity" />
         <activity android:name=".ui.find.hotel.hotellist.searchhotel.SearchHotelActivity" />
         <activity android:name=".ui.find.hotel.hotellist.hoteldetail.hotelorder.SubmitHotelOrderActivity" />
+        <activity android:name=".ui.me.userservice.ServiceActivity" />
 
         <!-- 百度地图所需的service -->
         <service

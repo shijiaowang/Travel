@@ -1,13 +1,16 @@
 package com.yunspeak.travel.download;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.google.gson.Gson;
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.aop.CheckNetwork;
 import com.yunspeak.travel.compressor.Compressor;
 import com.yunspeak.travel.global.IStatusChange;
 import com.yunspeak.travel.global.TravelsObject;
+import com.yunspeak.travel.ui.view.progress.ProgressManager;
 import com.yunspeak.travel.utils.LogUtils;
 import com.yunspeak.travel.utils.NetworkUtils;
 import com.yunspeak.travel.utils.ToastUtils;
@@ -16,13 +19,11 @@ import com.yunspeak.travel.utils.UIUtils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -126,9 +127,10 @@ public class HttpClient {
      * @param fileList 图片集合
      * @return
      */
-    public Disposable postImage(String url, Map<String, String> params, List<String> fileList, INetworkCallBack<TravelsObject> callBack) {
+    public Disposable postImage(String url, Map<String, String> params, List<String> fileList, INetworkCallBack<TravelsObject> callBack,Context context) {
         if (fileList == null || fileList.size() == 0) return null;
         MultipartBody.Part[] parts = compressFile(fileList);
+        ProgressManager.getInstance().showProgress(context);
         LogUtils.e("解压完啦");
         Observable<ResponseBody> observable = cityoffService.postImage(url, params, parts);
         return dealData(observable, null, TravelsObject.class, null, callBack);
@@ -141,7 +143,8 @@ public class HttpClient {
      * @param params
      * @return
      */
-    public Disposable postData(String url, Map<String, String> params, final INetworkCallBack<TravelsObject> iNetworkCallBack) {
+    public Disposable postData(String url, Map<String, String> params, final INetworkCallBack<TravelsObject> iNetworkCallBack,Context context) {
+        ProgressManager.getInstance().showProgress(context);
         Observable<ResponseBody> observable = cityoffService.postData(url, params);
         return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<ResponseBody>() {
 
@@ -154,13 +157,49 @@ public class HttpClient {
                 }else {
                     iNetworkCallBack.error(new Throwable(travelsObject.getMessage()));
                 }
+                ProgressManager.getInstance().dismiss();
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
+                ProgressManager.getInstance().dismiss();
                 iNetworkCallBack.error(throwable);
             }
         });
+    }
+    public Disposable postDataOneBack(String url, Map<String, String> params, final ICallBack iCallBack,Context context){
+        return postData(url, params, new INetworkCallBack<TravelsObject>() {
+            @Override
+            public void accept(@android.support.annotation.NonNull TravelsObject travelsObject) throws Exception {
+                iCallBack.back(true,travelsObject.getMessage());
+            }
+            @CheckNetwork
+            @Override
+            public void error(Throwable throwable) {
+                iCallBack.back(false,throwable.getMessage());
+            }
+        },context);
+    }
+    /**
+     * 这个方法表示不关心回调
+     * @param url
+     * @param params
+     * @return
+     */
+    public Disposable postDataNoBackMessage(String url, Map<String, String> params, Context context){
+
+        return postData(url, params, new INetworkCallBack<TravelsObject>() {
+            @Override
+            public void accept(@android.support.annotation.NonNull TravelsObject travelsObject) throws Exception {
+                ToastUtils.showToast(travelsObject.getMessage());
+
+            }
+            @CheckNetwork
+            @Override
+            public void error(Throwable throwable) {
+                ToastUtils.showToast("提交失败:"+throwable.getMessage());
+            }
+        },context);
     }
 
     private synchronized static Compressor getCompressor() {
@@ -215,6 +254,7 @@ public class HttpClient {
                 if (travelsObject.getCode() == -1) {
                     throw new Exception("未找到相关信息");
                 }
+                ProgressManager.getInstance().dismiss();
                 T t = gson.fromJson(string, tClass);
                 if (!isNeedSelf) {
                     switch (t.getCode()) {
@@ -258,6 +298,7 @@ public class HttpClient {
                 } else {
                     callBack.error(throwable);//回调自行处理
                 }
+                ProgressManager.getInstance().dismiss();
             }
         });
     }

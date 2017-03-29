@@ -27,7 +27,8 @@ import com.yunspeak.travel.ui.me.mytheme.MyThemeActivity;
 import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
 
 import com.yunspeak.travel.ui.me.titlemanage.TitleManagementActivity;
-import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
+
+import com.yunspeak.travel.ui.me.userservice.ServiceActivity;
 import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.ShowImageUtils;
@@ -177,7 +178,7 @@ public class Me extends TravelsObject{
                     start(context,OrdersCenterActivity.class);
                     break;
                 case R.id.iv_service:
-                    CustomerServiceActivity.start(context,true);
+                    ServiceActivity.start(context,true);
                     break;
                 case R.id.iv_card:
                     start(context,IdentityAuthenticationActivity.class);

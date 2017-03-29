@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 import com.yunspeak.travel.R;
@@ -16,29 +15,19 @@ import com.yunspeak.travel.databinding.FragmentMeBinding;
 import com.yunspeak.travel.download.HttpClient;
 import com.yunspeak.travel.download.INetworkCallBack;
 import com.yunspeak.travel.download.IRequestUrl;
-import com.yunspeak.travel.global.IVariable;
 import com.yunspeak.travel.global.TravelsObject;
 import com.yunspeak.travel.ui.baseui.CropBaseFragment;
 import com.yunspeak.travel.ui.home.HomeActivity;
-import com.yunspeak.travel.ui.me.MeEvent;
 import com.yunspeak.travel.ui.me.me.model.Me;
 import com.yunspeak.travel.ui.me.setting.SettingActivity;
-import com.yunspeak.travel.ui.view.ItemView;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ShowImageUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
-import com.yunspeak.travel.utils.XEventUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import okhttp3.ResponseBody;
 
 
 /**
@@ -46,27 +35,20 @@ import okhttp3.ResponseBody;
  * 我的 个人中心
  */
 
-public class MeFragment extends CropBaseFragment<Me> {
+public class MeFragment extends CropBaseFragment<Me> implements View.OnClickListener {
 
-    @BindView(R.id.iv_bg)
+
     ImageView ivBg;
-    @BindView(R.id.iv_icon)
     ImageView ivIcon;
-    @BindView(R.id.tv_setting)
-    TextView textView;
-    @BindView(R.id.iv_setting)
-    ItemView itemView;
     private FragmentMeBinding fragmentMeBinding;
-    private Me.DataBean dataBean;
     private int upType=-1;
     private static final int UP_BG=99;//上传背景
     private static final int UP_ICON=100;//上传头像
 
-    // TODO: 2017/3/21  刷新，包括其他页面做了修改，使用shareprefence 
+    // TODO: 2017/3/21  刷新，包括其他页面做了修改，自定义evenetbus
     @Override
     protected void receiveData(Me meData) {
-        this.dataBean = meData.getData();
-        fragmentMeBinding.setMeData(this.dataBean);
+        fragmentMeBinding.setMeData(meData.getData());
     }
 
     @Override
@@ -82,8 +64,14 @@ public class MeFragment extends CropBaseFragment<Me> {
     @Override
     protected View initRootView(LayoutInflater inflater, ViewGroup container) {
         fragmentMeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_me, container, false);
-        ButterKnife.bind(this, fragmentMeBinding.getRoot());
-        return fragmentMeBinding.getRoot();
+       View view=fragmentMeBinding.getRoot();
+        ivBg= (ImageView) view.findViewById(R.id.iv_bg);
+        ivIcon= (ImageView) view.findViewById(R.id.iv_icon);
+        ivBg.setOnClickListener(this);
+        ivIcon.setOnClickListener(this);
+        view.findViewById(R.id.iv_me_setting).setOnClickListener(this);
+        view.findViewById(R.id.tv_me_setting).setOnClickListener(this);
+        return view;
     }
 
 
@@ -115,9 +103,7 @@ public class MeFragment extends CropBaseFragment<Me> {
             public void error(Throwable throwable) {
                ToastUtils.showToast("上传失败");
             }
-        });
-        //上传图片
-        //XEventUtils.postFileCommonBackJson(url,bgImageMap,flies,upType,new MeEvent());
+        },getContext());
     }
 
     @Override
@@ -148,7 +134,7 @@ public class MeFragment extends CropBaseFragment<Me> {
     }
 
 
-    @OnClick({R.id.iv_bg, R.id.iv_icon,R.id.iv_setting,R.id.tv_setting})
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_bg:
@@ -161,10 +147,11 @@ public class MeFragment extends CropBaseFragment<Me> {
                 upType = UP_ICON;
                 showPictureCutPop(bottom);
                 break;
-            case R.id.tv_setting:
-            case R.id.ll_setting:
+            case R.id.iv_me_setting:
+            case R.id.tv_me_setting:
                 Intent intent = new Intent(getContext(), SettingActivity.class);
                 startActivityForResult(intent, HomeActivity.REQ);
+                break;
         }
     }
 }

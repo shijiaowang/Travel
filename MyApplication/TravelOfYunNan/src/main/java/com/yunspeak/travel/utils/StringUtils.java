@@ -20,4 +20,14 @@ public class StringUtils {
     public static boolean isEmptyNotNull(String value) {
         return !(value != null && !"".equalsIgnoreCase(value.trim()));
     }
+    public static boolean isEqual(String value1,String value2){
+        if (value1==null && value2==null){
+            return true;
+        }else if (value1==null || value2==null){
+            return false;
+        } else if (value1.equals(value2)){
+            return true;
+        }
+        return false;
+    }
 }

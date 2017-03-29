@@ -1,69 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
-        android:paddingTop="@dimen/x5"
-        android:paddingBottom="@dimen/x5"
-        android:background="@color/colorFAFAFA"
+<layout>
+    <data class="PersonalBinding">
+        <import type="com.yunspeak.travel.utils.StringUtils"/>
+        <import type="android.view.View"/>
+        <variable
+            name="personalModel"
+            type="com.yunspeak.travel.ui.me.setting.personalprofile.model.PersonalModel"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x150">
+        android:layout_height="match_parent">
+        <include layout="@layout/common_tool_bar"/>
+        <RelativeLayout
+            android:paddingTop="@dimen/x5"
+            android:paddingBottom="@dimen/x5"
+            android:background="@color/colorFAFAFA"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x150">
 
-        <EditText
-            android:id="@+id/et_profile"
-            android:maxLength="80"
-            android:textSize="@dimen/x12sp"
-            android:gravity="start"
-            android:textColor="@color/color323232"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_marginRight="@dimen/x10"
-            android:background="@null"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <LinearLayout
-            android:id="@+id/ll_hint"
-            android:layout_marginLeft="@dimen/x10"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:text="@string/activity_activate_detail_pen"
-                android:textColor="@color/colorC1c1c1"
+            <EditText
+                android:text="@={personalModel.des}"
+                android:maxLength="80"
                 android:textSize="@dimen/x12sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:gravity="start"
+                android:textColor="@color/color323232"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <LinearLayout
+                android:visibility="@{StringUtils.isEmpty(personalModel.des)?View.VISIBLE:View.GONE}"
+                android:layout_marginLeft="@dimen/x10"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.yunspeak.travel.ui.view.FontsIconTextView
+                    android:text="@string/activity_activate_detail_pen"
+                    android:textColor="@color/colorC1c1c1"
+                    android:textSize="@dimen/x12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginLeft="@dimen/x5"
+                    android:text="@string/show_you"
+                    android:textColor="@color/colorC1c1c1"
+                    android:textSize="@dimen/x12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
             <TextView
-                android:layout_marginLeft="@dimen/x5"
-                android:text="介绍一下你自己吧"
+                android:layout_marginRight="@dimen/x10"
+                android:text="@={personalModel.limit}"
                 android:textColor="@color/colorC1c1c1"
                 android:textSize="@dimen/x12sp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
-        <TextView
-            android:id="@+id/tv_number"
-            android:layout_marginRight="@dimen/x10"
-            android:text="0/80"
-            android:textColor="@color/colorC1c1c1"
-            android:textSize="@dimen/x12sp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <Button
+            android:onClick="@{personalModel.onChange}"
+            android:text="@string/save_change"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/fragment_find_search_bg"
+            android:textColor="@color/colorFAFAFA"
+            android:textSize="@dimen/x15sp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/x29"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x35" />
+    </LinearLayout>
 
-    </RelativeLayout>
-    <com.yunspeak.travel.ui.view.AvoidFastButton
-        android:id="@+id/bt_save_change"
-        android:text="@string/save_change"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/fragment_find_search_bg"
-        android:textColor="@color/colorFAFAFA"
-        android:textSize="@dimen/x15sp"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/x29"
-        android:layout_width="@dimen/x150"
-        android:layout_height="@dimen/x35" />
-
-</LinearLayout>
+</layout>

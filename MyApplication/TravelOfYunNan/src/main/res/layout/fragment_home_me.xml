@@ -47,15 +47,11 @@
                         android:layout_marginTop="@dimen/x163" />
 
                     <com.yunspeak.travel.ui.view.FontsIconTextView
-                        android:onClick="@{meData.onClick}"
-                        android:id="@+id/tv_setting"
+                        android:id="@+id/tv_me_setting"
                         android:layout_width="@dimen/x35"
                         android:layout_height="@dimen/x35"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="@dimen/x25sp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
                         android:padding="@dimen/x10"
                         android:text="@string/activity_message_center_setting"
                         android:textColor="@color/colorFAFAFA" />
@@ -367,8 +363,7 @@
                     android:layout_height="6dp"
                     android:background="@color/meLine" />
                 <com.yunspeak.travel.ui.view.ItemView
-                    android:onClick="@{meData.onClick}"
-                    android:id="@+id/iv_setting"
+                    android:id="@+id/iv_me_setting"
                     android:layout_width="match_parent"
                     app:item_drawable="@drawable/fragment_me_setting"
                     app:item_text="@string/setting"

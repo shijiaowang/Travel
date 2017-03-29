@@ -2,7 +2,6 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:text="@string/cant_find_more_data"
     android:gravity="center"
-    android:background="@color/meLine"
     android:textSize="@dimen/x15sp"
     android:textColor="@color/color646464"
     android:layout_width="match_parent"

@@ -87,7 +87,7 @@ public class CityDao extends BaseEasyDao<CityNameBean> {
         Cursor cursor=null;
         try {
             //"yuns_district", null, "level=? or _id=?", new String[]{"2"},null,null, "pinyin"
-            cursor = sqLiteDatabase.rawQuery("select * from "+TABLE_NAME+" where level = ? or _id in ('?','?','?','?','?','?','?','?') order by pinyin",new String[]{"2","1","2","9","22","32","33","34","36"});
+            cursor = sqLiteDatabase.rawQuery("select * from "+TABLE_NAME+" where level = ? or _id in ('1','2','9','22','32','33','34','36') order by pinyin",new String[]{"2"});
             CityNameBean cityNameBean=null;
             while (cursor.moveToNext()){
                 cityNameBean=new CityNameBean();

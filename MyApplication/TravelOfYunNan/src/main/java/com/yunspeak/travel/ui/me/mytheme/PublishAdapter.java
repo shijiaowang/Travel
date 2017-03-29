@@ -43,6 +43,6 @@ public class PublishAdapter extends CommonRecycleViewAdapter<PublishModel> {
             public void error(Throwable throwable) {
                 ToastUtils.showToast(throwable.getMessage());
             }
-        });
+        },view.getContext());
     }
 }

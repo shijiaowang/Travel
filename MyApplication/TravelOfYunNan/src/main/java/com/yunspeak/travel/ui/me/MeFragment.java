@@ -34,7 +34,8 @@ import com.yunspeak.travel.ui.me.mytheme.MyThemeActivity;
 import com.yunspeak.travel.ui.me.ordercenter.OrdersCenterActivity;
 import com.yunspeak.travel.ui.me.setting.SettingActivity;
 import com.yunspeak.travel.ui.me.titlemanage.TitleManagementActivity;
-import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
+
+import com.yunspeak.travel.ui.me.userservice.ServiceActivity;
 import com.yunspeak.travel.ui.view.BadgeView;
 import com.yunspeak.travel.utils.AiteUtils;
 import com.yunspeak.travel.utils.FrescoUtils;
@@ -219,7 +220,7 @@ public class MeFragment extends CropPhotoBaseFragment<MeEvent> implements View.O
                 startActivity(new Intent(getContext(), OrdersCenterActivity.class));
                 break;
             case R.id.ll_customer_center:
-                CustomerServiceActivity.start(getContext(),true);
+                startActivity(new Intent(getContext(), ServiceActivity.class));
                 break;
             case R.id.ll_identity:
                 startActivity(new Intent(getContext(), IdentityAuthenticationActivity.class));

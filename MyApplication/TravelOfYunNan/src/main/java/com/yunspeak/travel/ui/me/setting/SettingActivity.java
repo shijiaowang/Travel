@@ -39,7 +39,7 @@ import com.yunspeak.travel.ui.me.about.AboutActivity;
 import com.yunspeak.travel.ui.me.changepassword.ChangePassWordActivity;
 import com.yunspeak.travel.ui.me.changephone.ChangePhoneActivity;
 import com.yunspeak.travel.ui.me.setting.personalprofile.PersonalProfileActivity;
-import com.yunspeak.travel.ui.me.userservice.CustomerServiceActivity;
+import com.yunspeak.travel.ui.me.userservice.ServiceActivity;
 import com.yunspeak.travel.ui.view.PhoneTextView;
 import com.yunspeak.travel.utils.CacheUtils;
 import com.yunspeak.travel.utils.CalendarUtils;
@@ -291,7 +291,7 @@ public class SettingActivity extends BaseCutPhotoActivity<SettingEvent> implemen
                 break;
 
             case R.id.ll_back://意见反馈
-                CustomerServiceActivity.start(this,false);
+                ServiceActivity.start(this,false);
                 break;
         }
     }
