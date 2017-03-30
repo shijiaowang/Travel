@@ -1,5 +1,7 @@
 package com.yunspeak.travel.ui.me.setting.personalprofile.model;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.view.View;
 
 import com.yunspeak.travel.R;
@@ -12,6 +14,7 @@ import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 import com.yunspeak.travel.utils.UIUtils;
+import com.yunspeak.travel.BR;
 
 import java.util.Map;
 
@@ -19,30 +22,22 @@ import java.util.Map;
  * Created by wangyang on 2017/3/29.
  */
 
-public class PersonalModel {
+public class PersonalModel extends BaseObservable{
     private String preDes;
-    private String des;
-    private String limit;
-
-    public String getLimit() {
-        return limit;
-    }
-
-    public void setLimit(String limit) {
-        this.limit = limit;
-    }
+    private  String des;
 
     public PersonalModel(String des){
         this.des=des;
         this.preDes=des;
     }
+    @Bindable
     public String getDes() {
         return des;
     }
 
     public void setDes(String des) {
         this.des = des;
-        setLimit(des+"/80");
+        notifyPropertyChanged(BR.des);
     }
     public void onChange(View view){
         if (StringUtils.isEqual(des,preDes)){
@@ -54,6 +49,7 @@ public class PersonalModel {
             @Override
             public void back(boolean isSuccess, String message) {
                 if (isSuccess){
+                    preDes=des;
                     GlobalUtils.getUserInfo().setContent(des);
                     //// TODO: 2017/3/29 可做数据库存储，每次登录进入页面就已经更新数据到数据库了，这里不是必须， 
                 }

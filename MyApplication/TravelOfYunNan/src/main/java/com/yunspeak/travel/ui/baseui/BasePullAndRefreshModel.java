@@ -29,7 +29,7 @@ import  com.yunspeak.travel.ui.adapter.BaseRecycleViewAdapter;
  * 统一的下拉刷新 与 上啦加载
  */
 
-public abstract class BasePullAndRefreshModel<T>{
+public abstract class BasePullAndRefreshModel<T> extends NetworkModel{
     public final ObservableBoolean isRefreshing=new ObservableBoolean(false);//上啦刷新双向绑定
     public final ObservableBoolean isLoading=new ObservableBoolean(false);//下拉加载双向绑定
     public final ObservableBoolean isLoadingEnable=new ObservableBoolean(true);//是否还有数据加载
@@ -103,10 +103,10 @@ public abstract class BasePullAndRefreshModel<T>{
         }
     }
 
-
-    public Map<String, String> initParams() {
+    @Override
+    public Map<String, String> initParams(MapUtils.Builder builder) {
         int count = getCount();
-        MapUtils.Builder builder = MapUtils.Build().addKey().addUserId().addPageSize(getPageCount()).addCount(count);
+        builder.addPageSize(getPageCount()).addCount(count);
         return initChildParams(builder);
     }
     public int getPageCount() {
@@ -138,7 +138,7 @@ public abstract class BasePullAndRefreshModel<T>{
 
     }
 
-    public abstract String url();
+
     @BindingAdapter("app:load_more_enabled")
     public static void setEnable(SwipeToLoadLayout swipeToLoadLayout,boolean isTrue){
         swipeToLoadLayout.setLoadMoreEnabled(isTrue);
@@ -159,9 +159,9 @@ public abstract class BasePullAndRefreshModel<T>{
         HttpClient instance = HttpClient.getInstance();
         Disposable disposable;
         if (callBack==null) {
-            disposable=instance.getDataDealErrorAuto(iStatusChange,eClass,success,initParams(),url());
+            disposable=instance.getDataDealErrorAuto(iStatusChange,eClass,success,rootParams(),url());
         }else {
-            disposable=instance.getDataDealErrorSelf(eClass,callBack,initParams(),url());
+            disposable=instance.getDataDealErrorSelf(eClass,callBack,rootParams(),url());
         }
         return disposable;
     }

@@ -23,6 +23,7 @@ public interface IRequestUrl {
     String MY_COUPON = API_KEY + "Order/getConpoulists/";//优惠券
     String ACTIVATE_COUPONS = API_KEY + "Order/setCouponCode/";//激活优惠券
     String USER_SERVICE_CENTER = API_KEY + "User/setReport/";//客服中心
+    String MESSAGE_CENTER_COUNT = API_KEY + "UserMsg/getMyCount/";//消息中心数量 type 1 最外层（全部消息） 2 中间层（消息中心） 3最里层（每个子项目）
     /*圈子*/
     String HOT_POST = API_KEY + "Circle/getForumishot/";//热帖
 }

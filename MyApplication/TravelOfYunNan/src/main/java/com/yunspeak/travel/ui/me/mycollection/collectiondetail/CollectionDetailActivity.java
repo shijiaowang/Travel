@@ -11,6 +11,7 @@ import com.yunspeak.travel.global.ParentBean;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewActivity;
 import com.yunspeak.travel.ui.baseui.BaseRecycleViewAdapter;
 import com.yunspeak.travel.ui.me.mycollection.MyCollectionActivity;
+import com.yunspeak.travel.ui.me.mycollection.model.CollectionModel;
 import com.yunspeak.travel.utils.MapUtils;
 import com.yunspeak.travel.utils.ToastUtils;
 
@@ -30,22 +31,22 @@ public class CollectionDetailActivity extends BaseRecycleViewActivity<Collection
     private void setName(int collectionType) {
         name = "收藏详情";
         switch (collectionType){
-            case MyCollectionActivity.COLLECTION_ACTIVE:
+            case CollectionModel.COLLECTION_ACTIVE:
                 name ="收藏的活动";
                 break;
-            case MyCollectionActivity.COLLECTION_TRAVELS:
+            case CollectionModel.COLLECTION_TRAVELS:
                 name ="收藏的游记";
                 break;
-            case MyCollectionActivity.COLLECTION_DESTINATION:
+            case CollectionModel.COLLECTION_DESTINATION:
                 name ="收藏的目的地";
                 break;
-            case MyCollectionActivity.COLLECTION_OTHER:
+            case CollectionModel.COLLECTION_OTHER:
                 name ="其他";
                 break;
-            case MyCollectionActivity.COLLECTION_TEAM:
+            case CollectionModel.COLLECTION_TEAM:
                 name ="收藏的队伍";
                 break;
-            case MyCollectionActivity.COLLECTION_POST:
+            case CollectionModel.COLLECTION_POST:
                 name ="收藏的帖子";
                 break;
         }
@@ -56,7 +57,7 @@ public class CollectionDetailActivity extends BaseRecycleViewActivity<Collection
     @Override
     protected void initEvent() {
         super.initEvent();
-        collectionType = getIntent().getIntExtra(MyCollectionActivity.COLLECTION_TYPE, -1);
+        collectionType = getIntent().getIntExtra(CollectionModel.COLLECTION_TYPE, -1);
          changeMargin(5,10);
         init();
     }
@@ -97,17 +98,17 @@ public class CollectionDetailActivity extends BaseRecycleViewActivity<Collection
     @Override
     protected Class<? extends ParentBean> useChildedBean() {
         switch (collectionType) {
-            case MyCollectionActivity.COLLECTION_ACTIVE:
+            case CollectionModel.COLLECTION_ACTIVE:
                 return ActiveBean.class;
-            case MyCollectionActivity.COLLECTION_TRAVELS:
+            case CollectionModel.COLLECTION_TRAVELS:
                 return TravelsBean.class;
-            case MyCollectionActivity.COLLECTION_DESTINATION:
+            case CollectionModel.COLLECTION_DESTINATION:
                 return DestinationBean.class;
-            case MyCollectionActivity.COLLECTION_OTHER:
+            case CollectionModel.COLLECTION_OTHER:
                 return OtherBean.class;
-            case MyCollectionActivity.COLLECTION_TEAM:
+            case CollectionModel.COLLECTION_TEAM:
                 return TeamBean.class;
-            case MyCollectionActivity.COLLECTION_POST:
+            case CollectionModel.COLLECTION_POST:
                 return PostBean.class;
             default:
                 return PostBean.class;

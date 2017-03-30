@@ -402,6 +402,10 @@
     <string name="no_change">没有修改内容</string>
     <string name="show_you">介绍一下你自己吧</string>
     <string name="user_des">个人简介</string>
+    <string name="out_relevant">出行相关</string>
+    <string name="system_message">系统消息</string>
+    <string name="private_message">私信</string>
+    <string name="me_relevant">与我相关</string>
 
 
 </resources>

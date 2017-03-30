@@ -53,7 +53,7 @@ public abstract class BaseBarActivity<T extends ViewDataBinding> extends BaseHid
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         //设置StatusBar透明
         SystemBarHelper.immersiveStatusBar(this);
-        SystemBarHelper.setPadding(this, mToolbar);
+        SystemBarHelper.setHeightAndPadding(this, mToolbar);
     }
 
     //设置头部

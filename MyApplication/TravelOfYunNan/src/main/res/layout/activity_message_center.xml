@@ -1,107 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/ll_appoint_message"
-        style="@style/activityMessageCenterLl">
-
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            style="@style/activityMessageCenterIconText"
-            android:text="@string/activity_my_publication_team"
-            android:textColor="@color/otherFcae04" />
-
-        <TextView
-            style="@style/activityMessageCenterText"
-            android:text="出行相关" />
-        <View
-            android:id="@+id/bv_appoint_dot"
-            android:background="@drawable/message_dot"
-            style="@style/activityMessageCenterDot"/>
-
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_cursor_appoint"
-            style="@style/activityMessageCenterCursor"
-            android:text="@string/activity_message_center_cursor" />
-    </LinearLayout>
-    <View
-        android:background="@color/meLine"
+<layout>
+    <data class="MessageCenterBinding">
+        <import type="android.view.View"/>
+        <variable
+            name="messageCenter"
+            type="com.yunspeak.travel.ui.me.messagecenter.model.MessageCenterModel"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"/>
-    <LinearLayout
-        android:id="@+id/ll_system_message"
-        style="@style/activityMessageCenterLl">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/common_tool_bar"/>
+        <LinearLayout
+            android:id="@+id/ll_appoint_message"
+            style="@style/activityMessageCenterLl">
 
-        <com.yunspeak.travel.ui.view.FontsIconTextView
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                style="@style/activityMessageCenterIconText"
+                android:text="@string/activity_my_publication_team"
+                android:textColor="@color/otherFcae04" />
 
-            style="@style/activityMessageCenterIconText"
-            android:text="@string/activity_message_center_setting"
-            android:textColor="@color/otherTitleBg" />
+            <TextView
+                style="@style/activityMessageCenterText"
+                android:text="@string/out_relevant" />
+            <View
+                android:visibility="@{messageCenter.travel>0?View.VISIBLE:View.GONE}"
+                android:background="@drawable/message_dot"
+                style="@style/activityMessageCenterDot"/>
 
-        <TextView
-            style="@style/activityMessageCenterText"
-            android:text="系统消息" />
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_cursor_appoint"
+                style="@style/activityMessageCenterCursor"
+                android:text="@string/activity_message_center_cursor" />
+        </LinearLayout>
         <View
-            android:id="@+id/bv_system_dot"
-            android:background="@drawable/message_dot"
-            style="@style/activityMessageCenterDot" />
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_cursor_system"
-            style="@style/activityMessageCenterCursor"
-            android:text="@string/activity_message_center_cursor" />
-    </LinearLayout>
-    <View
-        android:background="@color/meLine"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"/>
-    <LinearLayout
-        android:id="@+id/ll_private"
-        style="@style/activityMessageCenterLl">
+            android:background="@color/meLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"/>
+        <LinearLayout
+            android:id="@+id/ll_system_message"
+            style="@style/activityMessageCenterLl">
 
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            style="@style/activityMessageCenterIconText"
-            android:text="@string/activity_other_private_message"
-            android:textColor="@color/color97cb66" />
+            <com.yunspeak.travel.ui.view.FontsIconTextView
 
-        <TextView
-            style="@style/activityMessageCenterText"
-            android:text="私信" />
+                style="@style/activityMessageCenterIconText"
+                android:text="@string/activity_message_center_setting"
+                android:textColor="@color/otherTitleBg" />
+
+            <TextView
+                style="@style/activityMessageCenterText"
+                android:text="@string/system_message" />
+            <View
+                android:visibility="@{messageCenter.system>0?View.VISIBLE:View.GONE}"
+                android:background="@drawable/message_dot"
+                style="@style/activityMessageCenterDot" />
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_cursor_system"
+                style="@style/activityMessageCenterCursor"
+                android:text="@string/activity_message_center_cursor" />
+        </LinearLayout>
         <View
-            android:id="@+id/bv_private_dot"
-            android:background="@drawable/message_dot"
-            style="@style/activityMessageCenterDot"/>
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_cursor_private"
-            style="@style/activityMessageCenterCursor"
-            android:text="@string/activity_message_center_cursor" />
-    </LinearLayout>
-    <View
-        android:background="@color/meLine"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"/>
-    <LinearLayout
-        android:id="@+id/ll_relate_me"
-        style="@style/activityMessageCenterLl">
+            android:background="@color/meLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"/>
+        <LinearLayout
+            android:id="@+id/ll_private"
+            style="@style/activityMessageCenterLl">
 
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            style="@style/activityMessageCenterIconText"
-            android:text="@string/home_activity_button_me"
-            android:textColor="@color/colorff806d" />
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                style="@style/activityMessageCenterIconText"
+                android:text="@string/activity_other_private_message"
+                android:textColor="@color/color97cb66" />
 
-        <TextView
-            style="@style/activityMessageCenterText"
-            android:text="与我相关" />
+            <TextView
+                style="@style/activityMessageCenterText"
+                android:text="@string/private_message" />
+            <View
+                android:visibility="@{messageCenter.message>0?View.VISIBLE:View.GONE}"
+                android:background="@drawable/message_dot"
+                style="@style/activityMessageCenterDot"/>
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_cursor_private"
+                style="@style/activityMessageCenterCursor"
+                android:text="@string/activity_message_center_cursor" />
+        </LinearLayout>
         <View
-            android:id="@+id/bv_relate_me"
-            android:background="@drawable/message_dot"
-            style="@style/activityMessageCenterDot" />
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_cursor_relate"
-            style="@style/activityMessageCenterCursor"
-            android:text="@string/activity_message_center_cursor" />
+            android:background="@color/meLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"/>
+        <LinearLayout
+            android:id="@+id/ll_relate_me"
+            style="@style/activityMessageCenterLl">
+
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                style="@style/activityMessageCenterIconText"
+                android:text="@string/home_activity_button_me"
+                android:textColor="@color/colorff806d" />
+
+            <TextView
+                style="@style/activityMessageCenterText"
+                android:text="@string/me_relevant" />
+            <View
+                android:visibility="@{messageCenter.user>0?View.VISIBLE:View.GONE}"
+                android:background="@drawable/message_dot"
+                style="@style/activityMessageCenterDot" />
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_cursor_relate"
+                style="@style/activityMessageCenterCursor"
+                android:text="@string/activity_message_center_cursor" />
+        </LinearLayout>
     </LinearLayout>
-
-
-
-</LinearLayout>
+</layout>

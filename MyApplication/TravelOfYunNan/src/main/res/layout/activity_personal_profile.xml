@@ -53,7 +53,7 @@
             </LinearLayout>
             <TextView
                 android:layout_marginRight="@dimen/x10"
-                android:text="@={personalModel.limit}"
+                android:text="@{String.valueOf(personalModel.des.length())+`/80`}"
                 android:textColor="@color/colorC1c1c1"
                 android:textSize="@dimen/x12sp"
                 android:layout_alignParentBottom="true"

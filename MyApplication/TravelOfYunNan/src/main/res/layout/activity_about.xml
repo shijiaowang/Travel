@@ -1,164 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+<layout>
+    <data class="AboutBinding">
+        <variable
+            name="aboutModel"
+            type="com.yunspeak.travel.ui.me.about.model.AboutModel"/>
+    </data>
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="@dimen/x92"
-            android:layout_height="@dimen/x92"
-            android:layout_marginTop="@dimen/x25"
-            android:scaleType="fitXY"
-            android:src="@drawable/activity_other_title_load" />
-
-        <TextView
-            android:id="@+id/tv_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x27"
-            android:layout_marginTop="@dimen/x24"
-            android:textColor="@color/color323232"
-            android:textSize="@dimen/x12sp" />
-
-        <View
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <include layout="@layout/common_tool_bar"/>
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x2"
-            android:layout_marginLeft="@dimen/x42"
-            android:layout_marginRight="@dimen/x42"
-            android:background="@drawable/dash_line" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x56"
-            android:layout_marginLeft="@dimen/x20"
-            android:layout_marginRight="@dimen/x20"
-            android:layout_marginTop="@dimen/x26"
-            android:text="@string/about_des"
-            android:textColor="@color/color989898"
-            android:textSize="@dimen/x12sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginLeft="@dimen/x100"
-            android:orientation="horizontal">
-
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/activity_confirm_orders_we_chat" />
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/x92"
+                    android:layout_height="@dimen/x92"
+                    android:layout_marginTop="@dimen/x25"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/activity_other_title_load" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x5"
-                android:text="@string/public_number"
-                android:textColor="@color/color232323"
-                android:textSize="@dimen/x12sp" />
+                <TextView
+                    android:text="@{aboutModel.version??`测试版`}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/x27"
+                    android:layout_marginTop="@dimen/x24"
+                    android:textColor="@color/color323232"
+                    android:textSize="@dimen/x12sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x26"
-                android:text="@string/app_name"
-                android:textColor="@color/color232323"
-                android:textSize="@dimen/x12sp" />
-        </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x2"
+                    android:layout_marginLeft="@dimen/x42"
+                    android:layout_marginRight="@dimen/x42"
+                    android:background="@drawable/dash_line" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginLeft="@dimen/x100"
-            android:layout_marginTop="@dimen/x15sp"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/x56"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_marginTop="@dimen/x26"
+                    android:text="@string/about_des"
+                    android:textColor="@color/color989898"
+                    android:textSize="@dimen/x12sp" />
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_confirm_orders_we_chat" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="@dimen/x100"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/official_micro_blog"
-                android:textColor="@color/color232323"
-                android:textSize="12sp" />
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_confirm_orders_we_chat" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x13"
-                android:text="@string/aite_cityoff"
-                android:textColor="@color/color232323"
-                android:textSize="@dimen/x12sp" />
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x5"
+                        android:text="@string/public_number"
+                        android:textColor="@color/color232323"
+                        android:textSize="@dimen/x12sp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginLeft="@dimen/x100"
-            android:layout_marginTop="@dimen/x15"
-            android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x26"
+                        android:text="@string/app_name"
+                        android:textColor="@color/color232323"
+                        android:textSize="@dimen/x12sp" />
+                </LinearLayout>
 
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_confirm_orders_we_chat" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="@dimen/x100"
+                    android:layout_marginTop="@dimen/x15sp"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x5"
-                android:text="@string/service_tel"
-                android:textColor="@color/color232323"
-                android:textSize="@dimen/x12sp" />
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_confirm_orders_we_chat" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x13"
-                android:text="@string/service_tel_number"
-                android:textColor="@color/color232323"
-                android:textSize="@dimen/x12sp" />
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/official_micro_blog"
+                        android:textColor="@color/color232323"
+                        android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_appoint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x48"
-            android:text="@string/cityoff_protocol"
-            android:textColor="@color/otherTitleBg"
-            android:textSize="@dimen/x11sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x13"
+                        android:text="@string/aite_cityoff"
+                        android:textColor="@color/color232323"
+                        android:textSize="@dimen/x12sp" />
+                </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x34"
-            android:text="@string/cityoff_company"
-            android:textColor="@color/color232323"
-            android:textSize="@dimen/x12sp"
-            />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="@dimen/x100"
+                    android:layout_marginTop="@dimen/x15"
+                    android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x10"
-            android:text="@string/cityoff_english_des"
-            android:textColor="@color/color232323"
-            android:textSize="@dimen/x11sp"
-            android:layout_marginBottom="100dp"
-            />
+                    <com.yunspeak.travel.ui.view.FontsIconTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_confirm_orders_we_chat" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x5"
+                        android:text="@string/service_tel"
+                        android:textColor="@color/color232323"
+                        android:textSize="@dimen/x12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x13"
+                        android:text="@string/service_tel_number"
+                        android:textColor="@color/color232323"
+                        android:textSize="@dimen/x12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_appoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x48"
+                    android:text="@string/cityoff_protocol"
+                    android:textColor="@color/otherTitleBg"
+                    android:textSize="@dimen/x11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x34"
+                    android:text="@string/cityoff_company"
+                    android:textColor="@color/color232323"
+                    android:textSize="@dimen/x12sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x10"
+                    android:text="@string/cityoff_english_des"
+                    android:textColor="@color/color232323"
+                    android:textSize="@dimen/x11sp"
+                    android:layout_marginBottom="100dp"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-</ScrollView>
+
+</layout>
