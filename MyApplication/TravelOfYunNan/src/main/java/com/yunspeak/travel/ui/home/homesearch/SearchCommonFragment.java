@@ -2,6 +2,9 @@ package com.yunspeak.travel.ui.home.homesearch;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.yunspeak.travel.bean.SearchCommonBean;
 import com.yunspeak.travel.global.IState;
@@ -29,6 +32,7 @@ public class SearchCommonFragment extends LoadAndPullBaseFragment<HomeSearchEven
         type = getArguments().getString(IVariable.TYPE, HomeSearchActivity.SEARCH_USER);
     }
 
+
     public static SearchCommonFragment newInstance(String type) {
         SearchCommonFragment searchCommonFragment = new SearchCommonFragment();
         Bundle bundle = new Bundle();
@@ -41,6 +45,24 @@ public class SearchCommonFragment extends LoadAndPullBaseFragment<HomeSearchEven
     protected void initListener() {
         super.initListener();
         mSwipe.setRefreshEnabled(false);
+        mRvCommon.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState==RecyclerView.SCROLL_STATE_IDLE) {
+                    LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                    int lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
+                    int itemCount = layoutManager.getItemCount();
+                    if (lastCompletelyVisibleItemPosition==itemCount-1){
+                        //滑动到最后了开始加载
+                        mSwipe.setLoadingMore(true);
+                        onLoadMore();
+                    }
+                }
+
+
+            }
+
+        });
     }
 
     @Override

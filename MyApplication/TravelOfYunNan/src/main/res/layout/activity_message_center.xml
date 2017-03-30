@@ -13,6 +13,7 @@
         <include layout="@layout/common_tool_bar"/>
         <LinearLayout
             android:id="@+id/ll_appoint_message"
+            android:onClick="@{messageCenter.onClick}"
             style="@style/activityMessageCenterLl">
 
             <com.yunspeak.travel.ui.view.FontsIconTextView
@@ -38,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/x1"/>
         <LinearLayout
+            android:onClick="@{messageCenter.onClick}"
             android:id="@+id/ll_system_message"
             style="@style/activityMessageCenterLl">
 
@@ -64,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/x1"/>
         <LinearLayout
+            android:onClick="@{messageCenter.onClick}"
             android:id="@+id/ll_private"
             style="@style/activityMessageCenterLl">
 
@@ -89,6 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/x1"/>
         <LinearLayout
+            android:onClick="@{messageCenter.onClick}"
             android:id="@+id/ll_relate_me"
             style="@style/activityMessageCenterLl">
 

@@ -1,118 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
-        android:id="@+id/rl_change_phone"
-        style="@style/activityIdentityAuthenticationRl">
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:text="@string/activity_identity_phone"
-            style="@style/activityIdentityAuthenticationIcon" />
-        <TextView
-            style="@style/activityIdentityAuthenticationText"
-            android:text="绑定手机"
-            />
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_cursor1"
-            style="@style/activityIdentityAuthenticationCursor"
+<layout>
+    <data class="IdentityAuthBinding">
+        <variable
+            name="identityAuth"
+            type="com.yunspeak.travel.ui.me.identityauth.model.IdentityAuthModel"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/common_tool_bar"/>
+        <RelativeLayout
+            android:onClick="@{(view)->identityAuth.onClick(view,identityAuth.tel)}"
+            android:id="@+id/rl_change_phone"
+            style="@style/activityIdentityAuthenticationRl">
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:gravity="center"
 
-            />
-        <TextView
-            android:id="@+id/tv_identity_phone"
-            style="@style/activityIdentityAuthenticationType"
-            android:layout_toLeftOf="@id/tv_cursor1"
-            />
-    </RelativeLayout>
-    <View
-        style="@style/oneHeightMatchLine"/>
-    <RelativeLayout
-        android:id="@+id/rl_id_auth"
-        style="@style/activityIdentityAuthenticationRl">
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:text="@string/activity_identity_id_card"
-            style="@style/activityIdentityAuthenticationIcon" />
-        <TextView
-            style="@style/activityIdentityAuthenticationText"
-            android:text="身份证"
-            />
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_cursor2"
-            style="@style/activityIdentityAuthenticationCursor"
+                android:text="@string/activity_identity_phone"
+                style="@style/activityIdentityAuthenticationIcon" />
+            <TextView
+                style="@style/activityIdentityAuthenticationText"
+                android:text="@string/bind_phone"
+                />
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_cursor1"
+                style="@style/activityIdentityAuthenticationCursor"
 
-            />
-        <TextView
-            android:id="@+id/tv_identity_id_card"
-            style="@style/activityIdentityAuthenticationType"
-            android:layout_toLeftOf="@id/tv_cursor2"
-            />
-    </RelativeLayout>
-    <View
-        style="@style/oneHeightMatchLine"/>
-    <RelativeLayout
-        android:id="@+id/rl_dirver"
-        style="@style/activityIdentityAuthenticationRl">
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:text="@string/activity_identity_run_card"
-            style="@style/activityIdentityAuthenticationIcon" />
-        <TextView
-            style="@style/activityIdentityAuthenticationText"
-            android:text="驾驶证"
-            />
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_cursor3"
-            style="@style/activityIdentityAuthenticationCursor"
+                />
+            <TextView
+                android:text="@{identityAuth.tel.empty || identityAuth.tel.equals(`0`)?@string/no_auth:@string/authed}"
+                android:textColor="@{identityAuth.tel.empty || identityAuth.tel.equals(`0`)?@color/color969696:@color/otherTitleBg}"
+                style="@style/activityIdentityAuthenticationType"
+                android:layout_toLeftOf="@id/tv_cursor1"
+                />
+        </RelativeLayout>
+        <View
+            style="@style/oneHeightMatchLine"/>
+        <RelativeLayout
+            android:id="@+id/rl_id_auth"
+            android:onClick="@{(view)->identityAuth.onClick(view,identityAuth.id_card)}"
+            style="@style/activityIdentityAuthenticationRl">
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:text="@string/activity_identity_id_card"
+                style="@style/activityIdentityAuthenticationIcon" />
+            <TextView
+                style="@style/activityIdentityAuthenticationText"
+                android:text="@string/id_card"
+                />
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_cursor2"
+                style="@style/activityIdentityAuthenticationCursor"
 
-            />
-        <TextView
-            android:id="@+id/tv_identity_device_card"
-            style="@style/activityIdentityAuthenticationType"
-            android:layout_toLeftOf="@id/tv_cursor3"
-            />
-    </RelativeLayout>
-    <View
-        style="@style/oneHeightMatchLine"/>
-    <RelativeLayout
-        android:id="@+id/rl_car"
-        style="@style/activityIdentityAuthenticationRl">
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:text="@string/activity_identity_car_card"
-            style="@style/activityIdentityAuthenticationIcon" />
-        <TextView
-            style="@style/activityIdentityAuthenticationText"
-            android:text="车辆认证/行驶证"
-            />
-        <com.yunspeak.travel.ui.view.FontsIconTextView
-            android:id="@+id/tv_cursor4"
-            style="@style/activityIdentityAuthenticationCursor"
+                />
+            <TextView
+                android:text="@{identityAuth.id_card.empty || identityAuth.id_card.equals(`0`)?@string/no_auth:@string/authed}"
+                android:textColor="@{identityAuth.id_card.empty || identityAuth.id_card.equals(`0`)?@color/color969696:@color/otherTitleBg}"
+                style="@style/activityIdentityAuthenticationType"
+                android:layout_toLeftOf="@id/tv_cursor2"
+                />
+        </RelativeLayout>
+        <View
+            style="@style/oneHeightMatchLine"/>
+        <RelativeLayout
+            android:id="@+id/rl_dirver"
+            android:onClick="@{(view)->identityAuth.onClick(view,identityAuth.driver_card)}"
+            style="@style/activityIdentityAuthenticationRl">
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:text="@string/activity_identity_run_card"
+                style="@style/activityIdentityAuthenticationIcon" />
+            <TextView
+                style="@style/activityIdentityAuthenticationText"
+                android:text="@string/driver_card"
+                />
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_cursor3"
+                style="@style/activityIdentityAuthenticationCursor"
 
-            />
+                />
+            <TextView
+                android:text="@{identityAuth.driver_card.empty || identityAuth.driver_card.equals(`0`)?@string/no_auth:@string/authed}"
+                android:textColor="@{identityAuth.driver_card.empty || identityAuth.driver_card.equals(`0`)?@color/color969696:@color/otherTitleBg}"
+                style="@style/activityIdentityAuthenticationType"
+                android:layout_toLeftOf="@id/tv_cursor3"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_car"
+            android:onClick="@{(view)->identityAuth.onClick(view,identityAuth.run_card)}"
+            style="@style/activityIdentityAuthenticationRl">
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:text="@string/activity_identity_car_card"
+                style="@style/activityIdentityAuthenticationIcon" />
+            <TextView
+                style="@style/activityIdentityAuthenticationText"
+                android:text="@string/run_card"
+                />
+            <com.yunspeak.travel.ui.view.FontsIconTextView
+                android:id="@+id/tv_cursor4"
+                style="@style/activityIdentityAuthenticationCursor"
+
+                />
+            <TextView
+                android:text="@{identityAuth.run_card.empty || identityAuth.run_card.equals(`0`)?@string/no_auth:@string/authed}"
+                android:textColor="@{identityAuth.run_card.empty || identityAuth.run_card.equals(`0`)?@color/color969696:@color/otherTitleBg}"
+                style="@style/activityIdentityAuthenticationType"
+                android:layout_toLeftOf="@id/tv_cursor4"
+                />
+        </RelativeLayout>
+
+        <View
+            style="@style/oneHeightMatchLine"/>
+
+        <View
+            style="@style/oneHeightMatchLine"/>
         <TextView
-            android:id="@+id/tv_identity_car_card"
-            style="@style/activityIdentityAuthenticationType"
-            android:layout_toLeftOf="@id/tv_cursor4"
-            />
-    </RelativeLayout>
-    <View
-        style="@style/oneHeightMatchLine"/>
-    <TextView
-        android:layout_marginTop="@dimen/x25"
-        android:text="认证说明"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/color323232"
-        android:textSize="@dimen/x15sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginTop="@dimen/x20"
-        android:text="@string/id_auth_des"
-        android:textColor="@color/color646464"
-        android:textSize="@dimen/x13sp"
-        android:lineSpacingExtra="@dimen/x8"
-        android:layout_marginLeft="@dimen/x25"
-        android:layout_marginRight="@dimen/x25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            android:layout_marginTop="@dimen/x25"
+            android:text="@string/auth_des"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/color323232"
+            android:textSize="@dimen/x15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="@dimen/x20"
+            android:text="@string/id_auth_des"
+            android:textColor="@color/color646464"
+            android:textSize="@dimen/x13sp"
+            android:lineSpacingExtra="@dimen/x8"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginRight="@dimen/x25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6" />
 
 
-</LinearLayout>
+    </LinearLayout>
+
+</layout>

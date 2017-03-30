@@ -12,6 +12,7 @@ public interface IRequestUrl {
    /*发现*/
     String FIND_HOME = API_KEY + "Find/getFindIndex/";//发现主页
     /*我*/
+    String USER_LEVEL = API_KEY + "User/getLevel/";//用户等级
     String ME_MESSAGE = API_KEY + "User/getUserNew/";//我
     String CHANGE_BG = API_KEY + "User/updateUserbackgroundImg/";//更改个人中心背景
     String CHANGE_USER_INFO = API_KEY + "User/updateUser/";//更改用户信息

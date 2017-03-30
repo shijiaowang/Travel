@@ -1,189 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data class="LevelBinding">
+
+        <variable
+            name="level"
+            type="com.yunspeak.travel.ui.me.level.model.Level.DataBean" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/x13"
-        android:layout_marginRight="@dimen/x13"
         android:orientation="vertical">
-
-        <RelativeLayout
+        <include layout="@layout/common_tool_bar" />
+        <com.yunspeak.travel.ui.view.StatusView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x28"
-            android:layout_marginTop="@dimen/x19">
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/iv_icon"
-                android:layout_width="@dimen/x51"
-                android:layout_height="@dimen/x51" />
-
-            <LinearLayout
+            android:layout_height="match_parent">
+            <android.support.v4.widget.NestedScrollView
+                android:id="@id/status_content_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x11"
-                android:layout_toRightOf="@id/iv_icon"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_user_nick_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/color3f3f3f"
-                    android:textSize="@dimen/x13sp" />
-
+                android:layout_height="match_parent">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/x9"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_level"
-                        android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x13"
+                    android:layout_marginRight="@dimen/x13"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/color3f3f3f"
-                        android:textSize="@dimen/x13sp" />
+                        android:layout_marginBottom="@dimen/x28"
+                        android:layout_marginTop="@dimen/x19">
 
-                    <ProgressBar
-                        android:id="@+id/pb_progress"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="@dimen/x124"
-                        android:layout_height="@dimen/x6"
-                        android:max="100"
-                        android:progress="50"
-                        android:progressDrawable="@drawable/activity_level_progress_bg" />
+                        <ImageView
+                            android:id="@+id/iv_icon"
+                            android:scaleType="fitXY"
+                            app:icon_1="@{level.user.user_img}"
+                            android:layout_width="@dimen/x51"
+                            android:layout_height="@dimen/x51" />
 
-                    <TextView
-                        android:id="@+id/tv_progress"
-                        android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/x11"
+                            android:layout_toRightOf="@id/iv_icon"
+                            android:orientation="vertical">
+                            <TextView
+                                android:text="@{@string/user_name_other(level.user.nick_name)}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color3f3f3f"
+                                android:textSize="@dimen/x13sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/x9"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:text="@{`Lv.`+level.user.level+` :`}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color3f3f3f"
+                                    android:textSize="@dimen/x13sp" />
+
+                                <ProgressBar
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_margin="0dp"
+                                    android:padding="0dp"
+                                    style="?android:attr/progressBarStyleHorizontal"
+                                    android:layout_width="@dimen/x124"
+                                    android:layout_height="@dimen/x6"
+                                    android:max="@{level.user.level_max_score==0?100:level.user.level_max_score}"
+                                    android:progress="@{level.user.level_score}"
+                                    android:progressDrawable="@drawable/activity_level_progress_bg" />
+
+                                <TextView
+
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/x6"
+                                    android:text="@{level.user.level_score+`/`+level.user.level_max_score}"
+                                    android:textColor="@color/color8c8c8c"
+                                    android:textSize="@dimen/x13sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x6"
-                        android:text="66/100"
-                        android:textColor="@color/color8c8c8c"
-                        android:textSize="@dimen/x13sp" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fragment_home_chosen"
+                            android:textColor="@color/color3f3f3f" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/x9"
+                            android:text="@string/level_des"
+                            android:textColor="@color/color3f3f3f"
+                            android:textSize="@dimen/x13sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x30"
+                        android:layout_marginTop="@dimen/x22"
+                        android:background="@color/otherTitleBg"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/x50"
+                            android:text="@string/level"
+                            android:textColor="@color/colorFAFAFA"
+                            android:textSize="@dimen/x13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/x50"
+                            android:text="@string/express"
+                            android:textColor="@color/colorFAFAFA"
+                            android:textSize="@dimen/x13sp" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        app:setLevel="@{level.level}"
+                        app:recycle_fix_scroll="@{0}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x23"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.yunspeak.travel.ui.view.FontsIconTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fragment_home_chosen"
+                            android:textColor="@color/color3f3f3f" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/x9"
+                            android:text="@string/express_get"
+                            android:textColor="@color/color3f3f3f"
+                            android:textSize="@dimen/x13sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x30"
+                        android:layout_marginTop="@dimen/x22"
+                        android:background="@color/otherTitleBg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/x29"
+                            android:text="@string/project"
+                            android:textColor="@color/colorFAFAFA"
+                            android:textSize="@dimen/x13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="@dimen/x29"
+                            android:text="@string/express"
+                            android:textColor="@color/colorFAFAFA"
+                            android:textSize="@dimen/x13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/x29"
+                            android:text="@string/day_up_limit"
+                            android:textColor="@color/colorFAFAFA"
+                            android:textSize="@dimen/x13sp" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        app:setLevelDes="@{level.level_desc}"
+                        app:recycle_fix_scroll="@{0}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fragment_home_chosen"
-                android:textColor="@color/color3f3f3f" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x9"
-                android:text="等级说明"
-                android:textColor="@color/color3f3f3f"
-                android:textSize="@dimen/x13sp" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x30"
-            android:layout_marginTop="@dimen/x22"
-            android:background="@color/otherTitleBg"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x50"
-                android:text="等级"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="@dimen/x13sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x50"
-                android:text="经验"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="@dimen/x13sp" />
-        </RelativeLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_level"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x23"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.yunspeak.travel.ui.view.FontsIconTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fragment_home_chosen"
-                android:textColor="@color/color3f3f3f" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x9"
-                android:text="经验获得"
-                android:textColor="@color/color3f3f3f"
-                android:textSize="@dimen/x13sp" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x30"
-            android:layout_marginTop="@dimen/x22"
-            android:background="@color/otherTitleBg">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x29"
-                android:text="项目"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="@dimen/x13sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/x29"
-                android:text="经验"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="@dimen/x13sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x29"
-                android:text="每日上限"
-                android:textColor="@color/colorFAFAFA"
-                android:textSize="@dimen/x13sp" />
-        </RelativeLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_express"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            </android.support.v4.widget.NestedScrollView>
+        </com.yunspeak.travel.ui.view.StatusView>
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</layout>

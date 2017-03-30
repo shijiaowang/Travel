@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="levelModel"
+            type="com.yunspeak.travel.ui.me.level.model.LevelModel"/>
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x30"
+        android:gravity="center_vertical">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/x30"
-    android:gravity="center_vertical">
+        <TextView
+            android:text="@{`Lv.`+levelModel.id}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x50"
+            android:textColor="@color/color646464"
+            android:textSize="@dimen/x13sp" />
 
-    <TextView
-        android:id="@+id/tv_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x50"
-        android:textColor="@color/color646464"
-        android:textSize="@dimen/x13sp" />
-
-    <TextView
-        android:id="@+id/tv_express"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/x50"
-        android:textColor="@color/color646464"
-        android:textSize="@dimen/x13sp" />
-</RelativeLayout>
+        <TextView
+            android:text="@{levelModel.content}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x50"
+            android:textColor="@color/color646464"
+            android:textSize="@dimen/x13sp" />
+    </RelativeLayout>
+</layout>

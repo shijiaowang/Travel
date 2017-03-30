@@ -57,7 +57,6 @@ public abstract class BasePullAndRefreshModel<T> extends NetworkModel{
         }
         recyclerView.setAdapter(baseRecycleViewAdapter);
         recyclerView.addItemDecoration(initChildSpace());
-
     }
 
     protected abstract RecyclerView.ItemDecoration initChildSpace();
