@@ -8,39 +8,38 @@ import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
-import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
+import com.yunspeak.travel.ui.baseui.BaseBarActivity;
 import com.yunspeak.travel.ui.view.FontsIconCursorView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 
 /**
  * Created by wangyang on 2016/8/22 0022.
  * 首页搜索
  */
-public class HomeSearchActivity extends BaseToolBarActivity implements View.OnClickListener {
+public class HomeSearchActivity extends BaseBarActivity implements View.OnClickListener {
     @BindView(R.id.ficv_cursor) FontsIconCursorView mFicvCursor;
     @BindView(R.id.vp_search) ViewPager mVpSearch;
     public static final String SEARCH_USER="1";
     public static final String SEARCH_DESTINATION="2";
     public static final String SEARCH_CIRCLE="3";
     public static final String SEARCH_CONTENT="4";
-    protected static String content="";
-    private List<SearchCommonFragment> fragments;
+    public static String content="";
+    private List<SearchFragment> fragments;
     private EditText mEtSearch;
 
     @Override
     protected int initLayoutRes() {
         return R.layout.activity_home_search;
     }
+
 
     @Override
     protected void initOptions() {
@@ -66,10 +65,10 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
         mToolbar.addView(inflate);
         setIsProgress(false);
         fragments = new ArrayList<>();
-        SearchCommonFragment searchUser=SearchCommonFragment.newInstance(SEARCH_USER);
-        SearchCommonFragment searchDestination=SearchCommonFragment.newInstance(SEARCH_DESTINATION);
-        SearchCommonFragment searchCircle=SearchCommonFragment.newInstance(SEARCH_CIRCLE);
-        SearchCommonFragment searchContent=SearchCommonFragment.newInstance(SEARCH_CONTENT);
+        SearchFragment searchUser=SearchFragment.newInstance(SEARCH_USER);
+        SearchFragment searchDestination=SearchFragment.newInstance(SEARCH_DESTINATION);
+        SearchFragment searchCircle=SearchFragment.newInstance(SEARCH_CIRCLE);
+        SearchFragment searchContent=SearchFragment.newInstance(SEARCH_CONTENT);
         fragments.add(searchUser);
         fragments.add(searchDestination);
         fragments.add(searchCircle);
@@ -102,7 +101,7 @@ public class HomeSearchActivity extends BaseToolBarActivity implements View.OnCl
 
     private void search() {
         content=getString(mEtSearch);
-        fragments.get(mVpSearch.getCurrentItem()).search();
+        fragments.get(mVpSearch.getCurrentItem()).onSearch();
     }
 
     class SearchPagerAdapter extends FragmentPagerAdapter{

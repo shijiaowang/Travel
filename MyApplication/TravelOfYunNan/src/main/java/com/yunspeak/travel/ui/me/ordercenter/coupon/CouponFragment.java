@@ -62,7 +62,7 @@ public class CouponFragment extends BaseLoadAndRefreshFragment<Coupon,CouponMode
                             public void error(Throwable throwable) {
                                 ToastUtils.showToast("激活失败:"+throwable.getMessage());
                             }
-                        },getContext());
+                        },getContext(),true);
                     }
                 });
             }

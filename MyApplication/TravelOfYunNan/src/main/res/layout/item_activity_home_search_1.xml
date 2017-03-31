@@ -1,67 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorFAFAFA"
-    android:orientation="vertical">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="searchModel"
+            type="com.yunspeak.travel.ui.home.homesearch.model.SearchModel" />
+        <variable
+            name="searchType"
+            type="String"/>
+    </data>
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x60"
+        android:layout_height="@dimen/x61"
+        android:background="@color/colorFAFAFA"
         android:gravity="center_vertical"
+        android:onClick="@{(view)->searchModel.onClick(view,searchType)}"
         android:orientation="horizontal">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/iv_icon"
+        <ImageView
+            app:icon_url="@{searchModel.logo_img}"
+            app:icon_type="@{searchType}"
+            android:scaleType="fitXY"
             android:layout_width="@dimen/x45"
             android:layout_height="@dimen/x45"
             android:layout_marginLeft="@dimen/x13"
-            android:layout_marginRight="@dimen/x12"
-           />
+            android:layout_marginRight="@dimen/x12" />
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
+                android:text="@{searchModel.title}"
+                style="@style/commonSingleLineTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/commonSingleLineTextStyle"
-                android:id="@+id/tv_title"
                 android:textColor="@color/Ffbf75"
                 android:textSize="@dimen/x12sp" />
 
             <TextView
+                android:text="@{searchModel.content.empty?@string/this_people_not_write:searchModel.content}"
                 style="@style/commonSingleLineTextStyle"
-                android:layout_marginTop="@dimen/x10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_content"
+                android:layout_marginTop="@dimen/x10"
                 android:textColor="@color/color7d7d7d"
                 android:textSize="@dimen/x11sp" />
-
         </LinearLayout>
 
         <TextView
-            android:gravity="center"
-            android:textSize="@dimen/x11sp"
+            android:onClick="@{(view)->searchModel.onFollowClick(view,searchType)}"
+            android:visibility="@{searchType.equals(`2`)?View.GONE:View.VISIBLE}"
+            android:text="@{searchType.equals(`1`)?(searchModel.cname.equals(`1`)?@string/activity_circle_detail_followed:@string/activity_circle_detail_follow):`#`+searchModel.cname+`#`}"
+            android:background="@{searchType.equals(`1`)?(searchModel.cname.equals(`1`)?@drawable/activity_home_search_followed_bg:@drawable/activity_home_search_follow_bg):null}"
+            android:textColor="@{searchModel.cname.equals(`1`)?@color/colorFAFAFA:@color/otherFf7f6c}"
             style="@style/commonSingleLineTextStyle"
-            android:layout_marginRight="@dimen/x13"
-            android:minWidth="@dimen/x70"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/x18"
-            android:id="@+id/tv_follow" />
-
-
+            android:layout_marginRight="@dimen/x13"
+            android:gravity="center"
+            android:minWidth="@dimen/x70"
+            android:textSize="@dimen/x11sp" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="70dp"
-        android:background="@color/meLine" />
 
-</LinearLayout>
+</layout>

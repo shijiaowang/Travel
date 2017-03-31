@@ -57,6 +57,6 @@ public class ServiceModel {
             return;
         }
         Map<String, String> end = MapUtils.Build().addKey().addUserId().addContent(content).addTel(phone).addType(isService ? "2" : "1").end();
-        HttpClient.getInstance().postDataNoBackMessage(IRequestUrl.USER_SERVICE_CENTER, end,view.getContext());
+        HttpClient.getInstance().postDataNoBackMessage(IRequestUrl.USER_SERVICE_CENTER, end,view.getContext(),true);
     }
 }

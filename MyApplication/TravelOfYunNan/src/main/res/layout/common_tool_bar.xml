@@ -2,7 +2,6 @@
 
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tv_common_bar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/x49"
@@ -11,7 +10,7 @@
     android:minHeight="@dimen/x49"
     android:theme="@style/toolbar_theme"
     app:titleTextAppearance="@style/ToolBar.TitleText"
-    tools:targetApi="lollipop">
+    >
 
     <TextView
         android:id="@+id/tv_common_title"

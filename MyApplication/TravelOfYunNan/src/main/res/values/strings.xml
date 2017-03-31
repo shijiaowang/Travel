@@ -421,6 +421,11 @@
     <string name="express_get">经验获得</string>
     <string name="level_des">等级说明</string>
     <string name="user_name_other">用户名 :%s</string>
+    <string name="please_enter_key">请输入关键字</string>
+    <string name="user">用户</string>
+    <string name="destination">目的地</string>
+    <string name="circle">圈子</string>
+    <string name="content">内容</string>
 
 
 </resources>

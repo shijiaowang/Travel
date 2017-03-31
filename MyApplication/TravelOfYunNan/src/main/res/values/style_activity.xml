@@ -5,7 +5,7 @@
         <item name="android:background">@color/meLine</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/x1</item>
-        </style>
+    </style>
     <!--公用button-->
     <style name="commonButtonNext">
         <item name="android:id">@id/bt_next</item>
@@ -19,7 +19,6 @@
     </style>
 
 
-
     <!--认证页面-->
     <style name="activityIdentityAuthenticationRl">
         <item name="android:gravity">center_vertical</item>
@@ -29,6 +28,7 @@
         <item name="android:background">@drawable/normal_press_bg</item>
         <item name="android:layout_height">@dimen/x50</item>
     </style>
+
     <style name="activityIdentityAuthenticationText">
         <item name="android:layout_marginLeft">@dimen/x35</item>
         <item name="android:layout_width">wrap_content</item>
@@ -36,15 +36,18 @@
         <item name="android:textSize">@dimen/x13sp</item>
         <item name="android:textColor">@color/color323232</item>
     </style>
+
     <style name="activityIdentityAuthenticationIcon" parent="activityIdentityAuthenticationText">
         <item name="android:layout_marginLeft">0dp</item>
     </style>
+
     <style name="activityIdentityAuthenticationCursor" parent="activityIdentityAuthenticationIcon">
         <item name="android:textColor">@color/color969696</item>
         <item name="android:text">@string/activity_message_center_cursor</item>
         <item name="android:layout_alignParentRight">true</item>
 
     </style>
+
     <style name="activityIdentityAuthenticationType" parent="activityIdentityAuthenticationCursor">
         <item name="android:layout_marginRight">5dp</item>
         <item name="android:layout_alignParentRight">false</item>
@@ -74,11 +77,13 @@
         <item name="android:paddingLeft">@dimen/x13</item>
         <item name="android:paddingRight">@dimen/x13</item>
     </style>
+
     <style name="activityMessageCenterIconText">
         <item name="android:textSize">@dimen/x20sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="activityMessageCenterText" parent="activityMessageCenterIconText">
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/color8c8c8c</item>
@@ -87,29 +92,32 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="activityMessageCenterCursor" parent="activityMessageCenterIconText">
         <item name="android:textSize">@dimen/x11sp</item>
         <item name="android:textColor">#7b7b7b</item>
     </style>
-<style name="activityMessageCenterDot">
-    <item name="android:layout_width">@dimen/x12</item>
-    <item name="android:layout_height">@dimen/x12</item>
-    <item name="android:layout_marginRight">@dimen/x5</item>
-    <item name="android:background">@drawable/message_dot</item>
-</style>
+
+    <style name="activityMessageCenterDot">
+        <item name="android:layout_width">@dimen/x12</item>
+        <item name="android:layout_height">@dimen/x12</item>
+        <item name="android:layout_marginRight">@dimen/x5</item>
+        <item name="android:background">@drawable/message_dot</item>
+    </style>
 
 
     <style name="XScrollViewListViewCommon" parent="commonListViewStyle">
         <item name="android:focusable">false</item>
         <item name="android:focusableInTouchMode">false</item>
     </style>
-  <!--旅行计划-->
+    <!--旅行计划-->
     <style name="activityTravelsPlanRl">
         <item name="android:layout_marginTop">@dimen/x15</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="activityTravelsPlanTv" parent="commonSingleLineTextStyle">
         <item name="android:textColor">@color/color323232</item>
         <item name="android:textSize">@dimen/x16sp</item>
@@ -118,15 +126,18 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="activityTravelsPlanDes" parent="activityTravelsPlanTv">
         <item name="android:layout_marginLeft">@dimen/x53</item>
     </style>
+
     <style name="activityTravelsPlanTvTime" parent="activityTravelsPlanTv">
         <item name="android:textColor">@color/color646464</item>
         <item name="android:textSize">@dimen/x15sp</item>
         <item name="android:layout_marginLeft">0dp</item>
 
     </style>
+
     <style name="activityTravelsPlanTvTimeSelect">
         <item name="android:textColor">@color/color323232</item>
         <item name="android:textSize">@dimen/x15sp</item>
@@ -135,23 +146,23 @@
         <item name="android:layout_width">@dimen/x106</item>
         <item name="android:layout_height">@dimen/x23</item>
     </style>
+
     <style name="activityTravelsPlanIconRl">
         <item name="android:layout_marginLeft">@dimen/x31</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="activityTravelsPlanIcon" parent="activityTravelsPlanIconRl">
         <item name="android:text">@string/activity_aite_ok</item>
         <item name="android:layout_marginLeft">0dp</item>
     </style>
+
     <style name="activityTravelsPlanIconText" parent="activityTravelsPlanIconRl">
         <item name="android:textColor">@color/color323232</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:textSize">@dimen/x12sp</item>
     </style>
-
-
-
 
 
     <!--一起玩详情页-->
@@ -164,11 +175,12 @@
 
     <!--添加景点-->
     <style name="activityAddDestinationLl">
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:orientation">horizontal</item>
-    <item name="android:layout_marginLeft">@dimen/x22</item>
-</style>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginLeft">@dimen/x22</item>
+    </style>
+
     <style name="activityAddDestinationIcon">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -177,9 +189,11 @@
         <item name="android:textColor">@color/color313131</item>
 
     </style>
+
     <style name="activityAddDestinationText" parent="activityAddDestinationIcon">
         <item name="android:layout_marginLeft">@dimen/x5</item>
     </style>
+
     <style name="activityAddDestinationEd">
         <item name="android:layout_marginLeft">@dimen/x23</item>
         <item name="android:background">@drawable/activity_travels_plan_time_bg</item>
@@ -193,6 +207,7 @@
         <item name="android:textColor">@color/colorFAFAFA</item>
         <item name="android:layout_centerVertical">true</item>
     </style>
+
     <style name="shareText">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -203,6 +218,7 @@
         <item name="android:drawablePadding">@dimen/x9</item>
         <item name="android:background">@drawable/normal_press_bg</item>
     </style>
+
     <style name="complaintRb" parent="commonSingleLineTextStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -220,7 +236,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"-->
 
-    <style name="themeCommonText" >
+    <style name="themeCommonText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
@@ -228,7 +244,7 @@
         <item name="android:textColor">#a5a5a5</item>
     </style>
     <!--我的约伴 文字-->
-    <style name="myAppointRadioButton" >
+    <style name="myAppointRadioButton">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">@dimen/x40</item>
         <item name="android:gravity">center</item>
@@ -236,13 +252,15 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/select_text_selector</item>
     </style>
+
     <style name="TextShadowColor">
         <item name="android:shadowDx">5</item>
         <item name="android:shadowDy">5</item>
         <item name="android:shadowRadius">5</item>
         <item name="android:shadowColor">@android:color/black</item>
     </style>
-<style name="TextShadowColor.HomeFragmentMenuText">
+
+    <style name="TextShadowColor.HomeFragmentMenuText">
         <item name="android:textColor">@color/colorFAFAFA</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/x16sp</item>
@@ -250,7 +268,8 @@
         <item name="android:layout_height">wrap_content</item>
 
     </style>
-<style name="HomeMenuText">
+
+    <style name="HomeMenuText">
         <item name="android:textSize">@dimen/x10sp</item>
         <item name="android:paddingLeft">@dimen/x7</item>
         <item name="android:paddingRight">@dimen/x7</item>
@@ -263,7 +282,7 @@
 
     </style>
 
-<style name="HotelListCursor">
+    <style name="HotelListCursor">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textColor">@color/color646464</item>
         <item name="android:textSize">@dimen/x13sp</item>
@@ -272,13 +291,15 @@
         <item name="android:gravity">center</item>
         <item name="android:drawablePadding">@dimen/x5</item>
     </style>
+
     <style name="HotelListLL">
         <item name="android:layout_width">0dp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">match_parent</item>
     </style>
-<style name="HotelDetailInOut">
+
+    <style name="HotelDetailInOut">
         <item name="android:textColor">@color/otherTitleBg</item>
         <item name="android:textSize">@dimen/x12sp</item>
         <item name="android:layout_weight">1</item>
@@ -287,6 +308,7 @@
         <item name="android:lineSpacingExtra">@dimen/x9</item>
         <item name="android:gravity">center</item>
     </style>
+
     <style name="HotelDetailTitle">
         <item name="android:background">@color/colorFAFAFA</item>
         <item name="android:layout_width">match_parent</item>
@@ -296,7 +318,8 @@
         <item name="android:textSize">@dimen/x14sp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-<style name="HotelOrderTitle">
+
+    <style name="HotelOrderTitle">
         <item name="android:textColor">@color/color323232</item>
         <item name="android:textSize">@dimen/x14sp</item>
         <item name="android:layout_centerVertical">true</item>
@@ -306,19 +329,50 @@
     </style>
 
 
-<style name="HotelOrderRl">
+    <style name="HotelOrderRl">
         <item name="android:paddingLeft">@dimen/x25</item>
         <item name="android:paddingRight">@dimen/x26</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/x44</item>
     </style>
-<style name="HotelOrderEdit">
+
+    <style name="HotelOrderEdit">
         <item name="android:textColor">@color/color969696</item>
         <item name="android:textSize">@dimen/x14sp</item>
         <item name="android:layout_marginLeft">@dimen/x137</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="searchIcon">
+        <item name="android:id">@id/tv_search</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">@dimen/x10</item>
+        <item name="android:background">@drawable/normal_press_bg</item>
+        <item name="android:padding">@dimen/x5</item>
+        <item name="android:text">@string/fragment_circle_search</item>
+        <item name="android:textColor">@color/colorFAFAFA</item>
+    </style>
+
+    <style name="searchEditText">
+        <item name="android:id">@id/et_search</item>
+        <item name="android:layout_toLeftOf">@id/tv_search</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@null</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:hint">@string/please_enter_key</item>
+        <item name="android:imeOptions">actionSearch</item>
+        <item name="android:inputType">text</item>
+        <item name="android:lines">1</item>
+        <item name="android:paddingLeft">@dimen/x10</item>
+        <item name="android:textColor">@color/color646464</item>
+        <item name="android:textColorHint">@color/colorFAFAFA</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
 

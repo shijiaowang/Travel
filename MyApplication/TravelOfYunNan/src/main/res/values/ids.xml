@@ -4,7 +4,10 @@
     <item name="bt_next" type="id"/>
     <item name="statusbar_view" type="id"/>
     <item name="translucent_view" type="id"/>
+    <item name="tv_search" type="id"/>
+    <item name="ed_search" type="id"/>
     <!--用于显示隐藏的-->
     <item name="status_content_view" type="id"/>
     <item name="status_view" type="id"/>
+
 </resources>

@@ -8,7 +8,8 @@ public interface IRequestUrl {
     String API_KEY ="api.php?s=/";
     /*首页*/
     String HOME_PAGE = API_KEY + "Index/loadIndex/";//首页数据加载
-
+    String HOME_SEARCH = API_KEY + "Index/search/";//首页搜索
+    String FOLLOW_OR_CANCEL_FOLLOW = API_KEY + "User/setInformforUser/";//取消关注
    /*发现*/
     String FIND_HOME = API_KEY + "Find/getFindIndex/";//发现主页
     /*我*/

@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yunspeak.travel.R;
+import com.yunspeak.travel.utils.UIUtils;
 
 /**
  * Created by wangyang on 2017/3/15.
@@ -55,7 +56,7 @@ public class ItemView extends RelativeLayout {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,13);
         textView.setCompoundDrawablePadding((int) resources.getDimension(R.dimen.x10));
         if (drawableLeft!=0) {
-            Drawable drawable = resources.getDrawable(drawableLeft, null);
+            Drawable drawable = resources.getDrawable(drawableLeft);
             textView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
         }
         RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

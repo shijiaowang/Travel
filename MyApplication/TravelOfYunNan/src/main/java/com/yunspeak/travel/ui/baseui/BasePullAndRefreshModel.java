@@ -33,6 +33,7 @@ public abstract class BasePullAndRefreshModel<T> extends NetworkModel{
     public final ObservableBoolean isRefreshing=new ObservableBoolean(false);//上啦刷新双向绑定
     public final ObservableBoolean isLoading=new ObservableBoolean(false);//下拉加载双向绑定
     public final ObservableBoolean isLoadingEnable=new ObservableBoolean(true);//是否还有数据加载
+    public final ObservableBoolean isRefreshEnable=new ObservableBoolean(true);//是否还有数据加载
     public boolean isAddHeader=false;//上拉是否将数据添加到头部
     private int pageCount;
 
@@ -142,7 +143,10 @@ public abstract class BasePullAndRefreshModel<T> extends NetworkModel{
     public static void setEnable(SwipeToLoadLayout swipeToLoadLayout,boolean isTrue){
         swipeToLoadLayout.setLoadMoreEnabled(isTrue);
     }
-
+    @BindingAdapter("app:refresh_enabled")
+    public static void setRefreshEnable(SwipeToLoadLayout swipeToLoadLayout,boolean isTrue){
+        swipeToLoadLayout.setRefreshEnabled(false);
+    }
     /**
      * 调用网络请求
      * @param <E> 泛型
@@ -209,16 +213,17 @@ public abstract class BasePullAndRefreshModel<T> extends NetworkModel{
         view.setOnLoadMoreListener(newValue);
     }
     public OnLoadMoreListener onLoadMoreListener() {
-        return new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                //加载数据
-                if (onLoadListener!=null){
-                    onLoadListener.onLoad(false);
-                }
-            }
-        };
+        return loadListener;
     }
+  OnLoadMoreListener loadListener = new OnLoadMoreListener() {
+        @Override
+        public void onLoadMore() {
+            //加载数据
+            if (onLoadListener!=null){
+                onLoadListener.onLoad(false);
+            }
+        }
+    };
    //设置刷新的双向绑定事件
     @BindingAdapter("refreshing")
     public static void setRefreshing(SwipeToLoadLayout view, boolean refreshing) {

@@ -110,4 +110,12 @@
         <attr name="civ_border_overlay" format="boolean" />
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
+    <declare-styleable name="SearchView">
+        <attr name="search_icon_text" format="string" /><!--右边搜索的字体图标-->
+        <attr name="search_bg" format="reference" /><!--背景颜色-->
+        <attr name="search_hint_color" format="color" /><!--提示的颜色-->
+        <attr name="search_hint" format="string" /><!--提示的字-->
+        <attr name="search_color" format="color" /><!--搜索时的颜色-->
+        <attr name="search_edit_clicked" format="boolean" /><!--搜索时的颜色-->
+    </declare-styleable>
 </resources>

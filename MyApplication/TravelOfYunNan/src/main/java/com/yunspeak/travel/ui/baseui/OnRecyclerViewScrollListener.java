@@ -39,11 +39,6 @@ public abstract class OnRecyclerViewScrollListener extends RecyclerView.OnScroll
      */
     private int lastVisibleItemPosition;
 
-    /**
-     * 当前滑动的状态
-     */
-    private int currentScrollState = 0;
-
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
@@ -83,11 +78,13 @@ public abstract class OnRecyclerViewScrollListener extends RecyclerView.OnScroll
     @Override
     public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
-        currentScrollState = newState;
+        /*
+      当前滑动的状态
+     */
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         int visibleItemCount = layoutManager.getChildCount();
         int totalItemCount = layoutManager.getItemCount();
-        if ((visibleItemCount > 0 && currentScrollState == RecyclerView.SCROLL_STATE_IDLE && (lastVisibleItemPosition) >= totalItemCount - 1)) {
+        if ((visibleItemCount > 0 && newState == RecyclerView.SCROLL_STATE_IDLE && (lastVisibleItemPosition) >= totalItemCount - 1)) {
             onBottom();
         }
     }

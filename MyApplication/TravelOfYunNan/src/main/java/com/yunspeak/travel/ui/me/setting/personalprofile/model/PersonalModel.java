@@ -55,7 +55,7 @@ public class PersonalModel extends BaseObservable{
                 }
                 ToastUtils.showToast(message);
             }
-        }, view.getContext());
+        }, view.getContext(),true);
 
     }
 }

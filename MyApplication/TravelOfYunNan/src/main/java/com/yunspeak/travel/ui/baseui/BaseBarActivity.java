@@ -44,7 +44,7 @@ public abstract class BaseBarActivity<T extends ViewDataBinding> extends BaseHid
     }
 
     protected  void initBar() {
-        dataBinding = DataBindingUtil.setContentView(this,initLayoutRes());
+        setContentView();
         mToolbar = (Toolbar) findViewById(R.id.tv_common_bar);
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
@@ -54,6 +54,10 @@ public abstract class BaseBarActivity<T extends ViewDataBinding> extends BaseHid
         //设置StatusBar透明
         SystemBarHelper.immersiveStatusBar(this);
         SystemBarHelper.setHeightAndPadding(this, mToolbar);
+    }
+
+    private void setContentView() {
+        dataBinding = DataBindingUtil.setContentView(this,initLayoutRes());
     }
 
     //设置头部

@@ -46,7 +46,7 @@ public class PostAdapter extends CommonRecycleViewAdapter<PostModel> {
             public void error(Throwable throwable) {
                 ToastUtils.showToast(throwable.getMessage());
             }
-        },linearLayout.getContext());
+        },linearLayout.getContext(),false);
 
     }
 }

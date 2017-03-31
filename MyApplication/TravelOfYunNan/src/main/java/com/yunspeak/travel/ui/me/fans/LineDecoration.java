@@ -28,6 +28,15 @@ public class LineDecoration extends RecyclerView.ItemDecoration {
         paint.setAntiAlias(true);
 
     }
+    public LineDecoration(int left,int right) {
+        this.leftDistance =left;
+        this.rightDistance= right;
+        paint = new Paint();
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setColor(UIUtils.getColor(R.color.meLine));
+        paint.setAntiAlias(true);
+
+    }
 
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {

@@ -1,6 +1,7 @@
 package com.yunspeak.travel.utils;
 
 import android.graphics.Color;
+import android.media.Image;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
@@ -8,7 +9,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.yunspeak.travel.R;
 import com.yunspeak.travel.glide.GlideCircleTransform;
+import com.yunspeak.travel.glide.GlideRoundTransform;
 import com.yunspeak.travel.ui.view.CircleImageView;
 
 /**
@@ -30,6 +33,9 @@ public class ShowImageUtils {
         }else {
             Glide.with(imageView.getContext()).load(url).placeholder(normalRes).error(normalRes).into(imageView);
         }
+    }
+    public static void showCircle(ImageView imageView,String url){
+        showCircle(imageView,R.drawable.boy,url,2);
     }
     public static void showCircle(ImageView imageView,int normalRes, String url,int borderWidth){
         if (imageView==null)return;
@@ -55,6 +61,17 @@ public class ShowImageUtils {
                     imageView.setImageDrawable(resource);
                 }
             });
+        }
+    }
+    public static void showRound(ImageView imageView,String url){
+        showRound(imageView,url,4);
+    }
+    public static void showRound(ImageView imageView,String url,int rudias){
+        if (imageView==null)return;
+        if (TextUtils.isEmpty(url)){
+            Glide.with(imageView.getContext()).load(R.drawable.normal_1_1).into(imageView);
+        }else {
+            Glide.with(imageView.getContext()).load(url).placeholder(R.drawable.normal_1_1).error(R.drawable.normal_1_1).transform(new GlideRoundTransform(imageView.getContext(),rudias)).into(imageView);
         }
     }
     public static void showCircle(ImageView imageView,int normalRes, String url){

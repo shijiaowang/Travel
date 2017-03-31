@@ -64,8 +64,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/x5"
                     android:src="@drawable/home_triangle" />
-
-                <RelativeLayout
+                 <com.yunspeak.travel.ui.view.SearchView
+                     android:onClick="@{otherControl.onSearchClick}"
+                     android:layout_marginLeft="@dimen/x26"
+                     app:search_edit_clicked="false"
+                     android:layout_width="@dimen/x250"
+                     android:layout_height="@dimen/x28"/>
+                <!--<RelativeLayout
                     android:onClick="@{otherControl.onSearchClick}"
                     android:layout_width="@dimen/x250"
                     android:layout_height="@dimen/x28"
@@ -98,7 +103,7 @@
                         android:text="@string/fragment_circle_search"
                         android:textColor="@color/colorFAFAFA"
                         android:textSize="@dimen/x15sp" />
-                </RelativeLayout>
+                </RelativeLayout>-->
 
             </LinearLayout>
 

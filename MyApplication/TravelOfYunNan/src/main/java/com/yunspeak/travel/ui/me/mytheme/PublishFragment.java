@@ -13,11 +13,9 @@ import com.yunspeak.travel.ui.me.mytheme.model.PublishRecycleModel;
 
 public class PublishFragment extends BaseLoadAndRefreshFragment<Publish,PublishModel> {
 
-    PublishRecycleModel publishRecycleModel=new PublishRecycleModel();
-
     @Override
     protected BasePullAndRefreshModel<PublishModel> initModel() {
-        return publishRecycleModel;
+        return new PublishRecycleModel();
     }
 
 

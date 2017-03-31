@@ -24,6 +24,8 @@
             app:loading="@={base.isLoading}"
             app:refreshing="@={base.isRefreshing}"
             app:load_more_enabled="@{base.isLoadingEnable}"
+            app:refresh_enabled="@{base.isRefreshEnable}"
+
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@id/swipe_target"

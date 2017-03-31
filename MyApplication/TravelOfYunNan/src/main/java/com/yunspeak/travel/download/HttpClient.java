@@ -143,8 +143,10 @@ public class HttpClient {
      * @param params
      * @return
      */
-    public Disposable postData(String url, Map<String, String> params, final INetworkCallBack<TravelsObject> iNetworkCallBack,Context context) {
-        ProgressManager.getInstance().showProgress(context);
+    public Disposable postData(String url, Map<String, String> params, final INetworkCallBack<TravelsObject> iNetworkCallBack, Context context, final boolean showDialog) {
+        if (showDialog) {
+            ProgressManager.getInstance().showProgress(context);
+        }
         Observable<ResponseBody> observable = cityoffService.postData(url, params);
         return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<ResponseBody>() {
 
@@ -157,17 +159,21 @@ public class HttpClient {
                 }else {
                     iNetworkCallBack.error(new Throwable(travelsObject.getMessage()));
                 }
-                ProgressManager.getInstance().dismiss();
+                if (showDialog) {
+                    ProgressManager.getInstance().dismiss();
+                }
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
-                ProgressManager.getInstance().dismiss();
+                if (showDialog) {
+                    ProgressManager.getInstance().dismiss();
+                }
                 iNetworkCallBack.error(throwable);
             }
         });
     }
-    public Disposable postDataOneBack(String url, Map<String, String> params, final ICallBack iCallBack,Context context){
+    public Disposable postDataOneBack(String url, Map<String, String> params, final ICallBack iCallBack,Context context,boolean isShow){
         return postData(url, params, new INetworkCallBack<TravelsObject>() {
             @Override
             public void accept(@android.support.annotation.NonNull TravelsObject travelsObject) throws Exception {
@@ -178,7 +184,7 @@ public class HttpClient {
             public void error(Throwable throwable) {
                 iCallBack.back(false,throwable.getMessage());
             }
-        },context);
+        },context,isShow);
     }
     /**
      * 这个方法表示不关心回调
@@ -186,7 +192,7 @@ public class HttpClient {
      * @param params
      * @return
      */
-    public Disposable postDataNoBackMessage(String url, Map<String, String> params, Context context){
+    public Disposable postDataNoBackMessage(String url, Map<String, String> params, Context context,boolean isSHow){
 
         return postData(url, params, new INetworkCallBack<TravelsObject>() {
             @Override
@@ -199,7 +205,7 @@ public class HttpClient {
             public void error(Throwable throwable) {
                 ToastUtils.showToast("提交失败:"+throwable.getMessage());
             }
-        },context);
+        },context,isSHow);
     }
 
     private synchronized static Compressor getCompressor() {

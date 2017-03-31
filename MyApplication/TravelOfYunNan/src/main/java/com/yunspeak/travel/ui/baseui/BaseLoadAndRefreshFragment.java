@@ -26,9 +26,9 @@ import io.reactivex.functions.Consumer;
 public abstract class BaseLoadAndRefreshFragment<E extends ListBean<T>, T> extends BaseLoadingFragment{
     protected BasePullAndRefreshModel<T> basePullAndRefreshModel = null;
     private SwipeToLoadLayout swipeToLoadLayout;
-    private boolean isRefresh;
+    protected boolean isRefresh;
     private boolean isFirst = true;
-    private RecyclerView recyclerView;
+    protected RecyclerView recyclerView;
     protected CommonDataBinding commonDataBinding;
 
 
