@@ -35,14 +35,14 @@ public class ShowImageUtils {
         }
     }
     public static void showCircle(ImageView imageView,String url){
-        showCircle(imageView,R.drawable.boy,url,2);
+        showCircle(imageView,R.drawable.boy,url,1);
     }
     public static void showCircle(ImageView imageView,int normalRes, String url,int borderWidth){
         if (imageView==null)return;
         if (TextUtils.isEmpty(url)){
             Glide.with(imageView.getContext()).load(normalRes).into(imageView);
         }else {
-            Glide.with(imageView.getContext()).load(url).placeholder(normalRes).error(normalRes).transform(new GlideCircleTransform(imageView.getContext(),borderWidth, Color.WHITE)).into(imageView);
+            Glide.with(imageView.getContext()).load(url).placeholder(normalRes).error(normalRes).transform(new GlideCircleTransform(imageView.getContext(),1, Color.WHITE)).into(imageView);
         }
     }
     public static void showCircle(final CircleImageView imageView, int normalRes, String url){

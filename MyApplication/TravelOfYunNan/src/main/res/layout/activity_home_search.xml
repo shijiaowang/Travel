@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data class="HomeSearchBinding">
-
         <variable
-            name="homeSearchModel"
-            type="com.yunspeak.travel.ui.home.homesearch.model.HomeSearchModel" />
+            name="content"
+            type="String"/>
+        <variable
+            name="textChange"
+            type="com.yunspeak.travel.ui.home.homesearch.model.TextChangeModel"/>
     </data>
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@color/colorFAFAFA"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.Toolbar
             android:id="@+id/tv_common_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x49"
@@ -24,93 +22,81 @@
             android:minHeight="@dimen/x49"
             android:theme="@style/toolbar_theme"
             app:titleTextAppearance="@style/ToolBar.TitleText">
-
             <com.yunspeak.travel.ui.view.SearchView
                 android:id="@+id/search_view"
-                android:layout_width="@dimen/x250"
-                android:layout_height="@dimen/x28"
-                android:layout_centerInParent="true" />
+                android:gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                app:text="@{textChange.text}"
+                app:textChangeListener="@{textChange.onTextChangeListener}"
+                android:layout_width="@dimen/x280"
+                android:layout_height="@dimen/x28"/>
         </android.support.v7.widget.Toolbar>
-
         <com.yunspeak.travel.ui.view.FontsIconCursorView
             android:id="@+id/ficv_cursor"
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x38"
-            android:elevation="2dp"
-            android:gravity="center_vertical">
+            android:layout_height="@dimen/x38">
             <LinearLayout
                 android:id="@+id/ll_user"
                 style="@style/activityHomeSearchLl">
-
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_user_icon"
-                    style="@style/activityHomeSearchText"
-                    android:text="@string/activity_register_nick_name" />
-
+                    android:text="@string/activity_register_nick_name"
+                    style="@style/activityHomeSearchText" />
                 <TextView
-                    android:id="@+id/tv_user"
-                    style="@style/activityHomeSearchText"
                     android:layout_marginLeft="@dimen/x5"
-                    android:text="@string/user" />
+                    android:text="@string/user"
+                    android:id="@+id/tv_user"
+                    style="@style/activityHomeSearchText"/>
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/ll_destination"
                 style="@style/activityHomeSearchLl">
-
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_destination_icon"
-                    style="@style/activityHomeSearchText"
-                    android:text="@string/fragment_find_add" />
-
+                    android:text="@string/fragment_find_add"
+                    style="@style/activityHomeSearchText" />
                 <TextView
-                    android:id="@+id/tv_destination"
-                    style="@style/activityHomeSearchText"
                     android:layout_marginLeft="@dimen/x5"
-                    android:text="@string/destination" />
+                    android:text="@string/destination"
+                    android:id="@+id/tv_destination"
+                    style="@style/activityHomeSearchText"/>
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/ll_circle"
                 style="@style/activityHomeSearchLl">
-
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_circle_icon"
-                    style="@style/activityHomeSearchText"
-                    android:text="@string/home_activity_button_circle" />
-
+                    android:text="@string/home_activity_button_circle"
+                    style="@style/activityHomeSearchText" />
                 <TextView
-                    android:id="@+id/tv_circle"
-                    style="@style/activityHomeSearchText"
                     android:layout_marginLeft="@dimen/x5"
-                    android:text="@string/circle" />
+                    android:text="@string/circle"
+                    android:id="@+id/tv_circle"
+                    style="@style/activityHomeSearchText"/>
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/ll_content"
                 style="@style/activityHomeSearchLl">
-
                 <com.yunspeak.travel.ui.view.FontsIconTextView
                     android:id="@+id/tv_content_icon"
-                    style="@style/activityHomeSearchText"
-                    android:text="@string/activity_register_nick_name" />
-
+                    android:text="@string/activity_register_nick_name"
+                    style="@style/activityHomeSearchText" />
                 <TextView
-                    android:id="@+id/tv_content"
-                    style="@style/activityHomeSearchText"
                     android:layout_marginLeft="@dimen/x5"
-                    android:text="@string/content" />
+                    android:text="@string/content"
+                    android:id="@+id/tv_content"
+                    style="@style/activityHomeSearchText"/>
             </LinearLayout>
 
         </com.yunspeak.travel.ui.view.FontsIconCursorView>
-
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:background="@color/meLine"
             android:clipToPadding="false"
-            android:paddingTop="@dimen/x4">
+            android:paddingTop="@dimen/x4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         </android.support.v4.view.ViewPager>
 

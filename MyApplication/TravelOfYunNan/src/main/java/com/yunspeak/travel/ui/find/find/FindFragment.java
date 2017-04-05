@@ -2,6 +2,7 @@ package com.yunspeak.travel.ui.find.find;
 
 import android.databinding.DataBindingUtil;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,29 +19,33 @@ import com.yunspeak.travel.utils.MapUtils;
 
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by wangyang on 2017/3/13.
  * 首页 发现
  */
 
-public class FindFragment extends SaveBaseFragment<Find> {
+public class FindFragment extends SaveBaseFragment<Find> implements SwipeRefreshLayout.OnRefreshListener {
 
     ViewPager viewPager;
     PagerCursorView pagerCursorView;
 
     private FragmentFindBinding fragmentFindBinding;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
     protected View initRootView(LayoutInflater inflater, ViewGroup container) {
         fragmentFindBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_find, container, false);
         pagerCursorView= (PagerCursorView) fragmentFindBinding.getRoot().findViewById(R.id.pager_cursor);
         viewPager= (ViewPager) fragmentFindBinding.getRoot().findViewById(R.id.vp_find);
+        swipeRefreshLayout = (SwipeRefreshLayout) fragmentFindBinding.getRoot().findViewById(R.id.swipe_container);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.otherTitleBg));
+        swipeRefreshLayout.setOnRefreshListener(this);
         return fragmentFindBinding.getRoot();
     }
     @Override
     protected void receiveData(Find data) {
+        swipeRefreshLayout.setRefreshing(false);
         Find.DataBean findData = data.getData();
         pagerCursorView.setViewPager(viewPager,findData.getBanner().size(),true,this);
         fragmentFindBinding.setFindData(findData);
@@ -63,5 +68,14 @@ public class FindFragment extends SaveBaseFragment<Find> {
         return IRequestUrl.FIND_HOME;
     }
 
+    @Override
+    protected boolean onError(Throwable throwable) {
+        swipeRefreshLayout.setRefreshing(false);
+        return super.onError(throwable);
+    }
 
+    @Override
+    public void onRefresh() {
+        childLoad();
+    }
 }

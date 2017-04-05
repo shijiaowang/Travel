@@ -54,7 +54,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x15"
                     android:focusable="true"
-                    android:focusableInTouchMode="true"
+                    android:focusableInTouchMode="false"
                     android:text="@string/homeName"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/x18sp" />
@@ -70,41 +70,6 @@
                      app:search_edit_clicked="false"
                      android:layout_width="@dimen/x250"
                      android:layout_height="@dimen/x28"/>
-                <!--<RelativeLayout
-                    android:onClick="@{otherControl.onSearchClick}"
-                    android:layout_width="@dimen/x250"
-                    android:layout_height="@dimen/x28"
-                    android:layout_marginLeft="@dimen/x26"
-                    android:background="@drawable/home_search_bg">
-
-                    <EditText
-                        android:id="@+id/et_search"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/x10"
-                        android:background="@null"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="输入您的关键词"
-                        android:textColorHint="@android:color/white"
-                        android:textCursorDrawable="@null"
-                        android:textSize="@dimen/x15sp" />
-
-                    <com.yunspeak.travel.ui.view.FontsIconTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/x10"
-                        android:layout_marginRight="@dimen/x10"
-                        android:text="@string/fragment_circle_search"
-                        android:textColor="@color/colorFAFAFA"
-                        android:textSize="@dimen/x15sp" />
-                </RelativeLayout>-->
-
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>

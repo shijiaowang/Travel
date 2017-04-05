@@ -1,11 +1,10 @@
 package com.yunspeak.travel.glide;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import com.yunspeak.travel.R;
 import android.graphics.Paint;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
@@ -27,8 +26,8 @@ public class GlideCircleTransform extends BitmapTransformation {
 
     public GlideCircleTransform(Context context, int borderWidth, int borderColor) {
         super(context);
-        mBorderWidth = Resources.getSystem().getDisplayMetrics().density * borderWidth;
-
+        mBorderWidth = UIUtils.getDimen(R.dimen.x1);
+        mBorderWidth=mBorderWidth>3?1:mBorderWidth;
         mBorderPaint = new Paint();
         mBorderPaint.setDither(true);
         mBorderPaint.setAntiAlias(true);

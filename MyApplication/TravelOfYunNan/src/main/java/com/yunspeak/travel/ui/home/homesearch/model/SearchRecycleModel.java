@@ -22,6 +22,15 @@ import java.util.Map;
 
 public class SearchRecycleModel extends BasePullAndRefreshModel<SearchModel> {
     private String type;
+    private String content="";
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public SearchRecycleModel(String type){
 
@@ -39,7 +48,7 @@ public class SearchRecycleModel extends BasePullAndRefreshModel<SearchModel> {
     }
     @Override
     protected Map<String, String> initChildParams(MapUtils.Builder builder) {
-        return builder.addType(type).addContent(HomeSearchActivity.content).end();
+        return builder.addType(type).addContent(getContent()).end();
     }
 
 

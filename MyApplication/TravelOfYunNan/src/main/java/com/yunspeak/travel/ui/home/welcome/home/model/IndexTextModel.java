@@ -64,5 +64,7 @@ public  class IndexTextModel{
     @CheckNetwork
     public void onClick(View view){
         HomeSwitchActivity.start(view.getContext(),getUrl(),getType());
+
+
     }
 }

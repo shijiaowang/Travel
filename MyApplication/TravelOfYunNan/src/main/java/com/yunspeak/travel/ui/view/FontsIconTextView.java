@@ -27,4 +27,5 @@ public class FontsIconTextView extends TextView {
     private void init() {
         setTypeface(TypefaceUtis.getTypeface(getContext()));
     }
+
 }

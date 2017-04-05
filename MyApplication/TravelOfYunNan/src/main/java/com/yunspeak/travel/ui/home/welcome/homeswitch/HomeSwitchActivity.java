@@ -20,6 +20,7 @@ import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanActivity;
 import com.yunspeak.travel.ui.appoint.travelplan.TravelsPlanWithMeActivity;
 import com.yunspeak.travel.ui.baseui.BaseToolBarActivity;
 import com.yunspeak.travel.utils.LogUtils;
+import com.yunspeak.travel.utils.OpenActivityUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,7 +47,8 @@ public class HomeSwitchActivity extends BaseToolBarActivity {
         Intent intent = new Intent(context, HomeSwitchActivity.class);
         intent.putExtra(IVariable.URL, url);
         intent.putExtra(IVariable.POSITION, choose);
-        context.startActivity(intent);
+        OpenActivityUtils.getInstance().startAnimation(intent,context);
+
     }
 
     @Override

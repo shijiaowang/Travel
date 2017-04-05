@@ -63,7 +63,7 @@ public class FontsIconCursorView extends LinearLayout implements View.OnClickLis
     public void setViewPager(ViewPager viewPager){
         initView();
         this.mViewPager=viewPager;
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 initCursor(position);

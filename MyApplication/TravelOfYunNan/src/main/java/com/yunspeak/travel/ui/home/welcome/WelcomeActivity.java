@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.WindowManager;
 
+import com.google.gson.Gson;
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.bean.CityNameBean;
 import com.yunspeak.travel.bean.Key;
@@ -14,6 +15,7 @@ import com.yunspeak.travel.bean.UserInfo;
 import com.yunspeak.travel.db.ChatDao;
 import com.yunspeak.travel.db.CityDao;
 import com.yunspeak.travel.db.UserDao;
+import com.yunspeak.travel.download.HttpClient;
 import com.yunspeak.travel.event.HttpEvent;
 import com.yunspeak.travel.event.WelcomeEvent;
 import com.yunspeak.travel.global.GlobalValue;
@@ -32,12 +34,20 @@ import com.yunspeak.travel.utils.StringUtils;
 import com.yunspeak.travel.utils.UIUtils;
 import com.yunspeak.travel.utils.UserUtils;
 import com.yunspeak.travel.utils.XEventUtils;
+
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.xutils.common.Callback;
+import org.xutils.http.HttpMethod;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
+import io.reactivex.functions.Consumer;
 import simpledao.cityoff.com.easydao.BaseDaoFactory;
 
 

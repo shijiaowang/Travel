@@ -2,22 +2,19 @@ package com.yunspeak.travel.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.text.InputType;
-import android.text.TextUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.yunspeak.travel.R;
 import com.yunspeak.travel.utils.UIUtils;
 
@@ -34,6 +31,7 @@ public class SearchView extends RelativeLayout {
     int defaultBackgroundBg=R.drawable.home_search_bg;
     boolean defaultSearchClickAble=true;
     private EditText editText;
+    private TextView fontsIconTextView;
 
     public SearchView(Context context) {
         this(context,null);
@@ -49,6 +47,9 @@ public class SearchView extends RelativeLayout {
     }
 
     private void init(final Context context, AttributeSet attrs, int defStyleAttr) {
+        this.setClickable(true);
+        this.setFocusableInTouchMode(false);//因为有edittext的原因，避免点击获取焦点，导致点两次才能触发点击事件
+        this.setFocusable(true);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SearchView, defStyleAttr, 0);
         int indexCount = typedArray.getIndexCount();//获取自定义属性个数
         for (int i = 0; i < indexCount; i++) {
@@ -79,7 +80,7 @@ public class SearchView extends RelativeLayout {
         View inflate = systemService.inflate(R.layout.activity_search, null,false);
         inflate.setBackgroundResource(defaultBackgroundBg);
         editText = (EditText) inflate.findViewById(R.id.et_search);
-        TextView fontsIconTextView = (TextView) inflate.findViewById(R.id.tv_search);
+        fontsIconTextView = (TextView) inflate.findViewById(R.id.tv_search);
         fontsIconTextView.setText(defaultSearchIcon);
         editText.setTextColor(defaultTextColor);
         editText.setHintTextColor(defaultHintColor);
@@ -89,11 +90,13 @@ public class SearchView extends RelativeLayout {
             editText.setFocusable(false);
             editText.setFocusableInTouchMode(false);
         }else {
+            fontsIconTextView.setClickable(true);
+            fontsIconTextView.setFocusableInTouchMode(false);
             fontsIconTextView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener!=null){
-                        listener.onSearch(getTrim(editText));
+                        listener.onSearch(getTrim());
                     }
                 }
             });
@@ -107,11 +110,29 @@ public class SearchView extends RelativeLayout {
                         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(editText.getWindowToken(), 0); //强制隐藏键盘
                         if (listener!=null){
-                            listener.onSearch(getTrim(editText));
+                            listener.onSearch(getTrim());
                         }
                         return true;
                     }
                     return false;
+                }
+            });
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                   if (textChangeListener!=null){
+                       textChangeListener.onTextChange(getTrim());
+                   }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
                 }
             });
         }
@@ -120,13 +141,19 @@ public class SearchView extends RelativeLayout {
     }
 
     @NonNull
-    private String getTrim(EditText editText) {
+    public String getTrim() {
+        if (editText==null) return "";
         return editText.getText().toString().trim();
+    }
+    public void  setText(String text){
+        if (text!=null && editText!=null) {
+            editText.setText(text.trim());
+        }
     }
 
     private OnSearchListener listener;
 
-    public void setListener(OnSearchListener listener) {
+    public void setOnSearchListener(OnSearchListener listener) {
         this.listener = listener;
     }
 
@@ -136,6 +163,18 @@ public class SearchView extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return !defaultSearchClickAble || super.onInterceptTouchEvent(ev);
+        return !defaultSearchClickAble;
+    }
+
+
+
+    private TextChangeListener textChangeListener;
+
+    public void setTextChangeListener(TextChangeListener textChangeListener) {
+        this.textChangeListener = textChangeListener;
+    }
+
+    public interface TextChangeListener{
+        void onTextChange(String text);
     }
 }

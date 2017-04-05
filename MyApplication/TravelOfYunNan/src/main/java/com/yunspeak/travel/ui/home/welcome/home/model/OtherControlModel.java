@@ -19,6 +19,10 @@ public class OtherControlModel {
     }
     @CheckNetwork
     public void onSearchClick(View view){
+        view.setClickable(true);
+        view.setFocusable(true);
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
         view.getContext().startActivity(new Intent(view.getContext(), HomeSearchActivity.class));
     }
 }

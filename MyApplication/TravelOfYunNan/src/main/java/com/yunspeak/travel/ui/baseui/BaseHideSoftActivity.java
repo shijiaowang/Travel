@@ -1,8 +1,13 @@
 package com.yunspeak.travel.ui.baseui;
 
 import android.content.Context;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -14,6 +19,14 @@ import android.widget.EditText;
  */
 
 public abstract class BaseHideSoftActivity extends AppCompatActivity {
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Fade().setDuration(200));
+        getWindow().setExitTransition(new Fade().setDuration(200));
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -56,8 +69,6 @@ public abstract class BaseHideSoftActivity extends AppCompatActivity {
         // 如果焦点不是EditText则忽略，这个发生在视图刚绘制完，第一个焦点不在EditText上，和用户用轨迹球选择其他的焦点
         return false;
     }
-
-
 
 
 

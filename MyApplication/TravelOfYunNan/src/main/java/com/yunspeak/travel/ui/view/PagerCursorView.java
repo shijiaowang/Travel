@@ -81,7 +81,10 @@ public class PagerCursorView extends RelativeLayout {
 
     public void setViewPager(ViewPager viewPager, int count, boolean isAutoMove, Fragment fragment) {
 
-        if (count < 2 || this.viewPager != null) {
+        if (this.viewPager != null) {
+            return;
+        }
+        if (count < 2 ){
             mVDot.setVisibility(GONE);
             return;//少于二
         }

@@ -26,7 +26,12 @@ public class CommonPagerCursorAdapter<T> extends PagerCursorView.CursorPagerAdap
         this.layoutId = layoutId;
         this.brId = brId;
     }
-
+    public void reset(List<T> t){
+        if (t!=null){
+            data=t;
+            notifyDataSetChanged();
+        }
+    }
     @Override
     public Object inflateView(ViewGroup container, int position) {
         if (layoutInflater==null){
